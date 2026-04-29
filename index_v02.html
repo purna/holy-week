@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messenger 3D - Modular Architecture</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.4/howler.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/dialogue.css">
+    <link rel="stylesheet" href="css/panels.css">
+    <link rel="stylesheet" href="css/actions.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+    <div id="start-screen" class="overlay">
+        <h1>MESSENGER</h1>
+        <p>DELIVER THE SIGNAL</p>
+        <button id="btn-start">SYNC INTERFACE</button>
+    </div>
+
+    <!-- Win / Mission Complete Screen -->
+    <div id="win-screen" class="overlay hidden" style="display:none;">
+        <div id="win-content">
+            <h1>MISSION COMPLETE</h1>
+            <p>All objectives fulfilled. Signal delivered.</p>
+            <button id="btn-replay">REINITIALIZE</button>
+        </div>
+    </div>
+
+    <!-- Right sidebar: flex column, top/bottom sections -->
+    <div id="right-sidebar">
+        <!-- TOP: Quest button + panel -->
+        <div id="sidebar-top">
+            <div class="sidebar-row">
+                <div id="panel-quest" class="panel">
+                    <h3>MISSION</h3><div id="quest-list"></div>
+                </div>
+                <button id="btn-quest-toggle" class="ui-toggle" title="Toggle Quest Log">
+                    <i class="fas fa-list-check"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- BOTTOM: Inventory, Actions, Sound -->
+        <div id="sidebar-bottom">
+            <div class="sidebar-row" id="inv-anchor">
+                <div id="panel-inv" class="panel">
+                    <h3>STORAGE</h3><div id="inv-list">0_CELLS</div>
+                </div>
+                <button id="btn-inv-toggle" class="ui-toggle" title="Toggle Inventory">
+                    <i class="fas fa-boxes-stacked"></i>
+                </button>
+            </div>
+
+            <div class="sidebar-row" id="actions-anchor">
+                <div id="panel-actions" class="panel">
+                    <h3>ACTIONS</h3><div id="actions-list"></div>
+                </div>
+                <button id="btn-actions-toggle" class="ui-toggle" title="Toggle Actions">
+                    <i class="fas fa-list"></i>
+                </button>
+            </div>
+
+            <div class="sidebar-row">
+                <button id="btn-sound-toggle" class="ui-toggle" title="Toggle Music">
+                    <i class="fas fa-volume-up"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="npc-indicator-container">
+        <div id="world-prompt" class="interact-prompt">CONNECT_TO_ECHO</div>
+    </div>
+
+    <!-- Location name display -->
+    <div id="loc-box">
+        <h2 id="loc-name">LOC_NAME</h2>
+    </div>
+
+    <!-- Simple bubble for non-dialogue NPCs -->
+    <div id="npc-bubble" class="npc-bubble"></div>
+
+    <div id="local-dialogue-box">
+        <span id="npc-name-display" class="npc-name-tag">NAME_ID</span>
+        <div id="bubble-text">...</div>
+        <div id="bubble-choices" class="choice-container"></div>
+    </div>
+
+    <!-- Wipe transition overlay -->
+    <div id="wipe-overlay"></div>
+
+    <!-- External Libraries -->
+    <script src="https://unpkg.com/inkjs@2.2.1/dist/ink.js"></script>
+    <script>console.log('Ink runtime loaded:', !!window.ink, !!window.inkjs);</script>
+
+    <!-- Import Map for Three.js and Cannon-es -->
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+            "cannon": "https://unpkg.com/cannon-es@0.20.0/dist/cannon-es.js"
+        }
+    }
+    </script>
+
+    <!-- Main Application Module -->
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>
