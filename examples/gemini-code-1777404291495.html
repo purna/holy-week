@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messenger 3D - Stable Spherical Physics</title>
+    <style>
+        body { margin: 0; overflow: hidden; background: #1a1a2e; font-family: sans-serif; }
+        .overlay { position: absolute; top:0; left:0; width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; color:white; z-index:1000; text-align:center; }
+        #ui-main { position:absolute; top:20px; left:20px; color:white; background:rgba(0,0,0,0.8); padding:15px; border-radius:8px; display:none; border: 1px solid #ffaa00; }
+        button { background:#ffaa00; border:none; padding:15px 40px; cursor:pointer; border-radius:50px; font-weight:bold; margin-top:20px; }
+    </style>
+</head>
+<body>
+    <div id="start-screen" class="overlay">
+        <h1>MESSENGER</h1>
+        <button id="btn-start">START MISSION</button>
+    </div>
+    <div id="ui-main"><b>STABLE PHYSICS ENABLED</b></div>
+
+    <script type="importmap">{ "imports": { "three": "https://unpkg.com/three@0.160.0/build/three.module.js", "cannon": "https://unpkg.com/cannon-es@0.20.0/dist/cannon-es.js" } }</script>
+
+    <script type="module">
+        import * as THREE from 'three';
+        import * as CANNON from 'cannon';
+
+        let started = false;
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(60, window.innerWidth/window.innerHeight, 0.1, 3000);
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.shadowMap.enabled = true;
+        document.body.appendChild(renderer.domElement);
+
+        const world = new CANNON.World();
+        const planetR = 40;
+        
+        // --- LIGHTING ---
+        scene.add(new THREE.AmbientLight(0xffffff, 0.5));
+        const sun = new THREE.DirectionalLight(0xffffff, 1);
+        sun.castShadow = true;
+        sun.shadow.mapSize.set(1024, 1024);
+        scene.add(sun);
+
+        // --- PLANET ---
+        const planetMesh = new THREE.Mesh(new THREE.IcosahedronGeometry(planetR, 5), new THREE.MeshStandardMaterial({color: 0x55aa55}));
+        planetMesh.receiveShadow = true;
+        scene.add(planetMesh);
+        world.addBody(new CANNON.Body({ mass: 0, shape: new CANNON.Sphere(planetR) }));
+
+        // --- PLAYER (USING SPHERICAL PHYSICS TO PREVENT TIPPING) ---
+        const pBody = new CANNON.Body({ 
+            mass: 1, 
+            shape: new CANNON.Sphere(1), // FIXED: Sphere shape never "trips"
+            linearDamping: 0.9,
+            fixedRotation: true 
+        });
+        pBody.position.set(0, planetR + 5, 0);
+        world.addBody(pBody);
+        
+        const playerVisual = new THREE.Group();
+        const box = new THREE.Mesh(new THREE.BoxGeometry(1, 2, 1), new THREE.MeshStandardMaterial({color: 0xff4444}));
+        box.position.y = 1; // Offset visual so feet are at the physics center
+        box.castShadow = true;
+        playerVisual.add(box);
+        scene.add(playerVisual);
+
+        // --- INPUTS ---
+        const keys = {};
+        const raycaster = new THREE.Raycaster();
+        const mouse = new THREE.Vector2();
+        let clickTarget = null;
+        let camHeading = new THREE.Vector3(0, 0, 1);
+        const dummy = new THREE.Object3D();
+
+        window.onkeydown = (e) => { keys[e.code] = true; clickTarget = null; };
+        window.onkeyup = (e) => keys[e.code] = false;
+        window.onmousedown = (e) => {
+            if(!started) return;
+            mouse.x = (e.clientX/window.innerWidth)*2-1;
+            mouse.y = -(e.clientY/window.innerHeight)*2+1;
+            raycaster.setFromCamera(mouse, camera);
+            const hits = raycaster.intersectObject(planetMesh);
+            if(hits.length > 0) clickTarget = hits[0].point;
+        };
+
+        document.getElementById('btn-start').onclick = () => {
+            document.getElementById('start-screen').style.display = 'none';
+            document.getElementById('ui-main').style.display = 'block';
+            started = true;
+        };
+
+        function loop() {
+            requestAnimationFrame(loop);
+            world.step(1/60);
+
+            const pPos = new THREE.Vector3().copy(pBody.position);
+            const up = pPos.clone().normalize();
+            pBody.applyForce(up.clone().multiplyScalar(-60), pBody.position); 
+
+            if (started) {
+                const camFwd = pPos.clone().sub(camera.position).projectOnPlane(up).normalize();
+                const camRgt = new THREE.Vector3().crossVectors(up, camFwd).normalize();
+
+                let moveDir = new THREE.Vector3(0, 0, 0);
+                if (keys['KeyW'] || keys['ArrowUp']) moveDir.add(camFwd);
+                if (keys['KeyS'] || keys['ArrowDown']) moveDir.sub(camFwd);
+                if (keys['KeyA'] || keys['ArrowLeft']) moveDir.add(camRgt);
+                if (keys['KeyD'] || keys['ArrowRight']) moveDir.sub(camRgt);
+
+                if (clickTarget) {
+                    const toTarget = clickTarget.clone().sub(pPos).projectOnPlane(up);
+                    if (toTarget.length() > 1) moveDir.add(toTarget.normalize());
+                    else clickTarget = null;
+                }
+
+                if (moveDir.length() > 0) {
+                    moveDir.normalize();
+                    camHeading.lerp(moveDir, 0.1).normalize();
+                    const speed = 12;
+                    pBody.velocity.set(moveDir.x * speed, moveDir.y * speed, moveDir.z * speed);
+                } else {
+                    pBody.velocity.scale(0.9, pBody.velocity);
+                }
+
+                // --- ORIENTATION (STRICTLY PERPENDICULAR) ---
+                playerVisual.position.copy(pPos);
+                playerVisual.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), up);
+                dummy.position.set(0,0,0);
+                dummy.lookAt(camHeading);
+                playerVisual.quaternion.multiply(dummy.quaternion);
+
+                // --- CAMERA & LIGHT ---
+                const targetCam = pPos.clone().add(camHeading.clone().multiplyScalar(-25)).add(up.clone().multiplyScalar(15));
+                camera.position.lerp(targetCam, 0.05);
+                camera.lookAt(pPos);
+
+                sun.position.copy(pPos).add(up.clone().multiplyScalar(50)).add(new THREE.Vector3(10,10,10));
+                sun.target.position.copy(pPos);
+            }
+
+            renderer.render(scene, camera);
+        }
+        loop();
+    </script>
+</body>
+</html>

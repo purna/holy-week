@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messenger 3D - High Fidelity Shadows</title>
+    <style>
+        body { margin: 0; overflow: hidden; background: #020208; font-family: 'Courier New', Courier, monospace; text-transform: uppercase; letter-spacing: 1px; }
+        .overlay { position: absolute; top:0; left:0; width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; color:white; z-index:1000; text-align:center; transition: opacity 0.5s; background:rgba(0,0,0,0.9); }
+        .panel { position:absolute; color:white; background:rgba(0,10,20,0.95); padding:15px; border-radius:2px; border: 1px solid #00f2ff; backdrop-filter: blur(15px); box-shadow: 0 0 20px rgba(0,242,255,0.1); }
+        #panel-quest { top:20px; right:20px; width:240px; border-right: 4px solid #00f2ff; }
+        #panel-inv { top:20px; left:20px; width:200px; border-left: 4px solid #ffaa00; }
+        #msg-box { position: absolute; bottom: 12%; left: 50%; transform: translateX(-50%); background: rgba(0,5,10,0.98); color: #00f2ff; padding: 20px; border: 1px solid #00f2ff; display:none; width: 80%; max-width: 500px; text-align: center; }
+        #loc-box { position: absolute; top: 18%; left: 50%; transform: translateX(-50%); text-align: center; pointer-events: none; display:none; }
+        #loc-name { font-size: 2.8em; color: #ffaa00; margin: 0; text-shadow: 0 0 20px rgba(255,170,0,0.6); }
+        #loc-desc { color: white; font-size: 1.1em; opacity: 0.8; letter-spacing: 3px; }
+        h3 { margin: 0 0 10px 0; font-size: 0.8em; color: #ffaa00; opacity: 0.6; }
+        .item { font-size: 0.85em; margin: 5px 0; color: #ffaa00; border-left: 2px solid #ffaa00; padding-left: 5px; }
+        .q-item { font-size: 0.85em; margin: 12px 0; border-bottom: 1px solid #111; padding-bottom: 5px; }
+        .q-done { color: #00ffaa; text-decoration: line-through; opacity: 0.5; }
+        button { background:#ffaa00; border:none; padding:15px 40px; cursor:pointer; font-weight:bold; font-size:1.2em; color: black; transition: all 0.2s; }
+        button:hover { background: #fff; transform: scale(1.05); }
+        .spinner { width:40px; height:40px; border:3px solid #111; border-top-color:#00f2ff; border-radius:50%; animation:s 1s linear infinite; }
+        @keyframes s { to { transform:rotate(360deg); } }
+    </style>
+</head>
+<body>
+    <div id="loading-screen" class="overlay"><div class="spinner"></div></div>
+    
+    <div id="start-screen" class="overlay">
+        <h1 style="color:#ffaa00; font-size:4.5em; margin:0; letter-spacing: 15px;">MESSENGER</h1>
+        <p style="margin-bottom:40px; opacity:0.5; letter-spacing: 5px;">SHADOW_DRIVE INITIALIZED // V4.2</p>
+        <button id="btn-start">SYNC INTERFACE</button>
+    </div>
+
+    <div id="panel-inv" class="panel">
+        <h3>STORAGE_UNIT</h3>
+        <div id="inv-list">0_ITEMS</div>
+    </div>
+
+    <div id="panel-quest" class="panel">
+        <h3>MISSION_LOG</h3>
+        <div id="quest-list"></div>
+    </div>
+
+    <div id="msg-box"></div>
+    <div id="loc-box">
+        <h2 id="loc-name"></h2>
+        <div id="loc-desc"></div>
+    </div>
+
+    <script type="importmap">{ "imports": { "three": "https://unpkg.com/three@0.160.0/build/three.module.js", "cannon": "https://unpkg.com/cannon-es@0.20.0/dist/cannon-es.js" } }</script>
+
+    <script type="module">
+        import * as THREE from 'three';
+        import * as CANNON from 'cannon';
+
+        let started = false;
+        const scene = new THREE.Scene();
+        scene.background = new THREE.Color(0x020208);
+        
+        const camera = new THREE.PerspectiveCamera(65, window.innerWidth/window.innerHeight, 0.1, 5000);
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        
+        // --- SHADOW SETUP ---
+        renderer.shadowMap.enabled = true;
+        renderer.shadowMap.type = THREE.PCFSoftShadowMap; // Softer shadows
+        document.body.appendChild(renderer.domElement);
+
+        const ambient = new THREE.AmbientLight(0x404040, 1.5); // Boosted ambient for clarity
+        scene.add(ambient);
+        
+        const sun = new THREE.DirectionalLight(0xffffff, 2.5);
+        sun.position.set(100, 150, 100);
+        sun.castShadow = true;
+        
+        // Optimize shadow camera for a sphere of radius 50
+        sun.shadow.camera.left = -100;
+        sun.shadow.camera.right = 100;
+        sun.shadow.camera.top = 100;
+        sun.shadow.camera.bottom = -100;
+        sun.shadow.camera.near = 0.5;
+        sun.shadow.camera.far = 500;
+        sun.shadow.mapSize.width = 2048; // Higher resolution shadows
+        sun.shadow.mapSize.height = 2048;
+        scene.add(sun);
+
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        const playBeep = (freq, type="sine", dur=0.1) => {
+            if(audioCtx.state === 'suspended') return;
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = type;
+            osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+            gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + dur);
+            osc.connect(gain); gain.connect(audioCtx.destination);
+            osc.start(); osc.stop(audioCtx.currentTime + dur);
+        };
+
+        const world = new CANNON.World();
+        world.solver.iterations = 15;
+        const planetR = 50;
+
+        const questData = [
+            { id: 'q_scout', name: 'RECON_01', task: 'Visit North Spire', status: 0, tar: 1 },
+            { id: 'q_collect', name: 'DATA_01', task: 'Collect Samples', status: 0, tar: 3 }
+        ];
+        const inventory = [];
+
+        const npcs = [
+            { name: "Unit-01 Echo", msg: "Shadow drive active. Visibility optimized.", pos: [0.1, 0.1, 0.1], color: 0x00f2ff, sound: 600 },
+            { name: "Archive-Bot", msg: "Atmospheric density is stable.", pos: [0.7, 0.4, 0.2], color: 0xffaa00, sound: 400 }
+        ];
+
+        const locations = [
+            { name: "NORTH SPIRE", desc: "TRANSMISSION RADIUS", pos: [0.1, 0.5, 0.5], r: 15 }
+        ];
+
+        // --- PLANET ---
+        const groundMat = new THREE.MeshToonMaterial({ color: 0x1a2b1a });
+        const planetMesh = new THREE.Mesh(new THREE.IcosahedronGeometry(planetR, 5), groundMat);
+        planetMesh.receiveShadow = true; // Planet must receive shadows
+        scene.add(planetMesh);
+        world.addBody(new CANNON.Body({ mass: 0, shape: new CANNON.Sphere(planetR) }));
+
+        // Buildings
+        for(let i=0; i<45; i++) {
+            const h = Math.random()*8+4;
+            const m = new THREE.Mesh(new THREE.BoxGeometry(4, h, 4), new THREE.MeshToonMaterial({ color: 0x333344 }));
+            const pos = new THREE.Vector3().setFromSphericalCoords(planetR, Math.random()*Math.PI, Math.random()*Math.PI*2);
+            m.position.copy(pos);
+            m.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0), pos.clone().normalize());
+            m.castShadow = true;
+            m.receiveShadow = true;
+            scene.add(m);
+            const body = new CANNON.Body({ mass: 0, shape: new CANNON.Box(new CANNON.Vec3(2, h/2, 2)) });
+            body.position.copy(pos); body.quaternion.copy(m.quaternion);
+            world.addBody(body);
+        }
+
+        const npcObjects = [];
+        npcs.forEach(data => {
+            const m = new THREE.Mesh(new THREE.CapsuleGeometry(1, 2, 4, 8), new THREE.MeshToonMaterial({ color: data.color }));
+            const p = new THREE.Vector3().setFromSphericalCoords(planetR + 1.5, data.pos[0]*Math.PI, data.pos[1]*Math.PI*2);
+            m.position.copy(p);
+            m.up.copy(p.clone().normalize());
+            m.lookAt(new THREE.Vector3(0,0,0)); m.rotateX(Math.PI/2);
+            m.castShadow = true;
+            scene.add(m);
+            npcObjects.push({ mesh: m, data });
+        });
+
+        // PLAYER
+        const pBody = new CANNON.Body({ mass: 1, shape: new CANNON.Box(new CANNON.Vec3(0.5, 1, 0.5)), fixedRotation: true, linearDamping: 0.9 });
+        pBody.position.set(0, planetR + 15, 0); 
+        world.addBody(pBody);
+        
+        const playerGroup = new THREE.Group();
+        const pVis = new THREE.Mesh(new THREE.BoxGeometry(1.2, 2, 1.2), new THREE.MeshToonMaterial({ color: 0xff3333 }));
+        pVis.castShadow = true; // Player casts shadow
+        playerGroup.add(pVis);
+        scene.add(playerGroup);
+
+        const keys = {};
+        let camHeading = new THREE.Vector3(0, 0, 1);
+        let activeLoc = null;
+        let activeNpc = null;
+
+        const updateUI = () => {
+            document.getElementById('inv-list').innerHTML = inventory.length ? inventory.map(i => `<div class="item">ID_${i}</div>`).join('') : "0_ITEMS";
+            document.getElementById('quest-list').innerHTML = questData.map(q => `<div class="q-item ${q.status>=q.tar?'q-done':''}">${q.name}<br><small>${q.task} [${q.status}/${q.tar}]</small></div>`).join('');
+        };
+
+        window.onkeydown = (e) => keys[e.code] = true;
+        window.onkeyup = (e) => keys[e.code] = false;
+
+        document.getElementById('btn-start').onclick = () => {
+            audioCtx.resume();
+            document.getElementById('start-screen').style.display = 'none';
+            started = true; updateUI();
+        };
+
+        window.onload = () => document.getElementById('loading-screen').style.display = 'none';
+
+        function loop() {
+            requestAnimationFrame(loop);
+            world.step(1/60);
+            const pPos = new THREE.Vector3().copy(pBody.position);
+            const up = pPos.clone().normalize();
+            pBody.applyForce(up.clone().multiplyScalar(-75), pBody.position);
+
+            if(!started) { renderer.render(scene, camera); return; }
+
+            // NPC/Loc Proximity
+            let foundNpc = null;
+            npcObjects.forEach(obj => { if(pPos.distanceTo(obj.mesh.position) < 6) foundNpc = obj; });
+            if(foundNpc && activeNpc !== foundNpc) {
+                activeNpc = foundNpc;
+                const box = document.getElementById('msg-box');
+                box.innerHTML = `[${foundNpc.data.name}]<br><span style="font-size:0.9em; color:#fff;">${foundNpc.data.msg}</span>`;
+                box.style.display = 'block';
+                playBeep(foundNpc.data.sound, "square", 0.1);
+            } else if (!foundNpc) {
+                activeNpc = null;
+                document.getElementById('msg-box').style.display = 'none';
+            }
+
+            let currentLoc = null;
+            locations.forEach(loc => {
+                const lPos = new THREE.Vector3().setFromSphericalCoords(planetR, loc.pos[0]*Math.PI, loc.pos[1]*Math.PI*2);
+                if(pPos.distanceTo(lPos) < loc.r) currentLoc = loc;
+            });
+            if(currentLoc && activeLoc !== currentLoc) {
+                activeLoc = currentLoc;
+                document.getElementById('loc-name').innerText = activeLoc.name;
+                document.getElementById('loc-desc').innerText = activeLoc.desc;
+                document.getElementById('loc-box').style.display = 'block';
+                playBeep(800, "sine", 0.05);
+                if(activeLoc.name === "NORTH SPIRE" && questData[0].status === 0) { questData[0].status = 1; updateUI(); }
+            } else if (!currentLoc) {
+                activeLoc = null;
+                document.getElementById('loc-box').style.display = 'none';
+            }
+
+            const camFwd = pPos.clone().sub(camera.position).projectOnPlane(up).normalize();
+            const camRgt = new THREE.Vector3().crossVectors(up, camFwd).normalize();
+            let moveDir = new THREE.Vector3(0,0,0);
+            if(keys['KeyW'] || keys['ArrowUp']) moveDir.add(camFwd);
+            if(keys['KeyS'] || keys['ArrowDown']) moveDir.sub(camFwd);
+            if(keys['KeyA'] || keys['ArrowLeft']) moveDir.add(camRgt);
+            if(keys['KeyD'] || keys['ArrowRight']) moveDir.sub(camRgt);
+
+            if(moveDir.length() > 0) {
+                moveDir.normalize();
+                camHeading.lerp(moveDir, 0.1).normalize();
+                pBody.velocity.set(moveDir.x*18, moveDir.y*18, moveDir.z*18);
+            }
+
+            playerGroup.position.copy(pPos);
+            playerGroup.up.copy(up);
+            playerGroup.lookAt(pPos.clone().add(camHeading.projectOnPlane(up).normalize()));
+
+            const targetCam = pPos.clone()
+                .add(camHeading.clone().multiplyScalar(-30))
+                .add(up.clone().multiplyScalar(16))
+                .add(new THREE.Vector3().crossVectors(up, camHeading).multiplyScalar(8));
+            
+            camera.position.lerp(targetCam, 0.05);
+            camera.lookAt(pPos.clone().add(camHeading.clone().multiplyScalar(6)));
+
+            renderer.render(scene, camera);
+        }
+        loop();
+    </script>
+</body>
+</html>

@@ -24,6 +24,7 @@ let visitedNpcs = new Set();
 let lastNearNpcId = null;
 let mouseTarget = null;
 let activeLoc = null;
+let locNameTypewriter = null;
 const keys = {};
 
 // Systems
@@ -78,6 +79,34 @@ function playBeep(f, t = "sine", d = 0.1) {
     g.connect(audioCtx.destination);
     osc.start();
     osc.stop(audioCtx.currentTime + d);
+}
+
+// ── Typewriter utility ──────────────────────────────────────────────
+class Typewriter {
+    constructor(element, options = {}) {
+        this.element = element;
+        this.speed = options.speed || 30;
+        this.onComplete = options.onComplete || null;
+        this._tw = null;
+    }
+    type(text) {
+        if (this._tw) clearTimeout(this._tw);
+        this.element.textContent = '';
+        this.element.classList.remove('typewriter-done');
+        this.element.classList.add('typewriter-cursor');
+        const chars = text.split('');
+        let i = 0;
+        const tick = () => {
+            if (i < chars.length) {
+                this.element.textContent += chars[i++];
+                this._tw = setTimeout(tick, this.speed + Math.random() * 12 - 6);
+            } else {
+                this.element.classList.add('typewriter-done');
+                if (this.onComplete) this.onComplete();
+            }
+        };
+        tick();
+    }
 }
 
 // Ink text processing
@@ -262,6 +291,9 @@ async function init() {
     audio = new AudioManager();
     cameraCtrl = new CameraController(sceneMgr.camera);
 
+    // Initialize typewriter for location names
+    locNameTypewriter = new Typewriter(document.getElementById('loc-name'), { speed: 45 });
+
     await dialogueMgr.loadAllStories();
     dialogueMgr.setInkLib(window.inkjs || window.ink);
 
@@ -441,8 +473,9 @@ function gameLoop() {
     }
     if (curLoc && activeLoc !== curLoc) {
         activeLoc = curLoc;
-        elLocName.innerText = curLoc.name.replace('LOC_', '').replace('_', ' ');
+        const displayName = curLoc.name.replace('LOC_', '').replace(/_/g, ' ');
         elLocBox.style.display = 'block';
+        locNameTypewriter.type(displayName);
         if (curLoc.questId !== undefined && quests[curLoc.questId].cur < quests[curLoc.questId].tar) {
             quests[curLoc.questId].cur = 1;
             updateUI();
@@ -480,28 +513,33 @@ function gameLoop() {
         elNpcBubble.style.display = 'none';
     }
 
-    // Movement (camera-relative)
-    let camFwd = pPos.clone().sub(sceneMgr.camera.position).projectOnPlane(up).normalize();
-    let camRgt = new THREE.Vector3().crossVectors(up, camFwd).normalize();
-    let moveDir = new THREE.Vector3(0, 0, 0);
+     // Movement (head-based pivot)
+     let moveDir = new THREE.Vector3(0, 0, 0);
 
-    if (!isDialogueOpen) {
-        if (keys['KeyW'] || keys['ArrowUp']) moveDir.add(camFwd);
-        if (keys['KeyS'] || keys['ArrowDown']) moveDir.sub(camFwd);
-        if (keys['KeyA'] || keys['ArrowLeft']) moveDir.add(camRgt);
-        if (keys['KeyD'] || keys['ArrowRight']) moveDir.sub(camRgt);
+     if (!isDialogueOpen) {
+         // A/D rotates camHeading (player orientation)
+         const viewRight = new THREE.Vector3().crossVectors(up, player.camHeading).normalize();
+         if (keys['KeyA'] || keys['ArrowLeft']) {
+             player.camHeading.add(viewRight.clone().multiplyScalar(0.045)).normalize();
+         }
+         if (keys['KeyD'] || keys['ArrowRight']) {
+             player.camHeading.sub(viewRight.clone().multiplyScalar(0.045)).normalize();
+         }
 
-        if (mouseTarget) {
-            const toMouse = mouseTarget.clone().sub(pPos).projectOnPlane(up);
-            if (toMouse.length() > 2) moveDir.add(toMouse.normalize());
-            else mouseTarget = null;
-        }
+         // Re-flatten camHeading onto planet surface to prevent tilting
+         player.camHeading.copy(player.camHeading.projectOnPlane(up).normalize());
 
-        if (moveDir.length() > 0) {
-            moveDir.normalize();
-            player.camHeading.lerp(moveDir, 0.1).normalize();
-        }
-    }
+         // W/S moves along horizontal camHeading
+         const headingFlat = player.camHeading.clone();
+         if (keys['KeyW'] || keys['ArrowUp']) moveDir.add(headingFlat);
+         if (keys['KeyS'] || keys['ArrowDown']) moveDir.sub(headingFlat);
+
+         if (mouseTarget) {
+             const toMouse = mouseTarget.clone().sub(pPos).projectOnPlane(up);
+             if (toMouse.length() > 2) moveDir.add(toMouse.normalize());
+             else mouseTarget = null;
+         }
+     }
 
     player.applyMovement(moveDir);
 
@@ -515,4 +553,11 @@ function gameLoop() {
 }
 
 // Start
-window.addEventListener('load', init);
+window.addEventListener('load', () => {
+    setTimeout(() => {
+        document.getElementById('loading-screen').style.display = 'none';
+        document.getElementById('start-screen').style.display = 'flex';
+    }, 1500);
+});
+
+window.addEventListener('DOMContentLoaded', init);

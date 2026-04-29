@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messenger 3D - Cinematic Float</title>
+    <style>
+        body { margin: 0; overflow: hidden; background: #000; font-family: sans-serif; }
+        #ui {
+            position: absolute; top: 20px; left: 20px; color: white;
+            background: rgba(0, 0, 0, 0.6); padding: 15px; border-radius: 8px;
+            pointer-events: none; border-left: 4px solid #ffaa00;
+        }
+        .key { border: 1px solid white; padding: 2px 6px; border-radius: 4px; margin: 0 2px; font-size: 0.8em; }
+    </style>
+</head>
+<body>
+    <div id="ui">
+        <b style="color: #ffaa00;">Cinematic Camera Mode</b><br>
+        <div style="margin-top: 5px;"><span class="key">WASD</span> / <span class="key">Arrows</span></div>
+        <div style="margin-top: 8px; font-size: 0.9em; opacity: 0.8;">
+            - High-Damping "Floaty" Camera<br>
+            - Rule of Thirds (Bottom-Left Anchor)
+        </div>
+    </div>
+
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+                "cannon": "https://unpkg.com/cannon-es@0.20.0/dist/cannon-es.js"
+            }
+        }
+    </script>
+
+    <script type="module">
+        import * as THREE from 'three';
+        import * as CANNON from 'cannon';
+
+        // --- SETUP & PHYSICS (Standard Example 2/3 Base) ---
+        const scene = new THREE.Scene();
+        scene.background = new THREE.Color(0xa3d5ff);
+        const camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+
+        const world = new CANNON.World();
+        world.gravity.set(0, 0, 0);
+
+        const planetRadius = 30;
+        const planetMesh = new THREE.Mesh(
+            new THREE.IcosahedronGeometry(planetRadius, 5),
+            new THREE.MeshStandardMaterial({ color: 0x55aa55, flatShading: true })
+        );
+        scene.add(planetMesh);
+        world.addBody(new CANNON.Body({ mass: 0, shape: new CANNON.Sphere(planetRadius) }));
+
+        // Buildings with Colliders
+        for (let i = 0; i < 40; i++) {
+            const h = Math.random() * 4 + 2;
+            const bMesh = new THREE.Mesh(new THREE.BoxGeometry(2, h, 2), new THREE.MeshStandardMaterial({ color: 0xcccccc }));
+            const phi = Math.acos(-1 + (2 * i) / 40);
+            const theta = Math.sqrt(40 * Math.PI) * phi;
+            const pos = new THREE.Vector3().setFromSphericalCoords(planetRadius + h/2, phi, theta);
+            bMesh.position.copy(pos);
+            bMesh.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), pos.clone().normalize());
+            scene.add(bMesh);
+
+            const bBody = new CANNON.Body({ mass: 0, shape: new CANNON.Box(new CANNON.Vec3(1, h/2, 1)) });
+            bBody.position.copy(pos);
+            bBody.quaternion.copy(bMesh.quaternion);
+            world.addBody(bBody);
+        }
+
+        const playerBody = new CANNON.Body({ mass: 1, shape: new CANNON.Box(new CANNON.Vec3(0.4, 0.8, 0.4)), fixedRotation: true, linearDamping: 0.9 });
+        playerBody.position.set(0, planetRadius + 3, 0);
+        world.addBody(playerBody);
+
+        const playerMesh = new THREE.Mesh(new THREE.BoxGeometry(0.8, 1.6, 0.8), new THREE.MeshStandardMaterial({ color: 0xff4444 }));
+        scene.add(playerMesh);
+        scene.add(new THREE.AmbientLight(0xffffff, 0.7));
+        const sun = new THREE.DirectionalLight(0xffffff, 1.2); sun.position.set(50, 100, 50); scene.add(sun);
+
+        const keys = {};
+        window.onkeydown = (e) => keys[e.key.length === 1 ? e.key.toLowerCase() : e.key] = true;
+        window.onkeyup = (e) => keys[e.key.length === 1 ? e.key.toLowerCase() : e.key] = false;
+
+        const dummy = new THREE.Object3D();
+        let lastMoveDir = new THREE.Vector3(0, 0, 1);
+
+        function update() {
+            requestAnimationFrame(update);
+            world.step(1/60);
+
+            const pPos = new THREE.Vector3().copy(playerBody.position);
+            const up = pPos.clone().normalize();
+            playerBody.applyForce(up.clone().multiplyScalar(-30), playerBody.position);
+
+            // Movement logic
+            const camForward = pPos.clone().sub(camera.position).projectOnPlane(up).normalize();
+            const camRight = new THREE.Vector3().crossVectors(up, camForward).normalize();
+            
+            let moveDir = new THREE.Vector3(0, 0, 0);
+            if (keys.w || keys.ArrowUp) moveDir.add(camForward);
+            if (keys.s || keys.ArrowDown) moveDir.sub(camForward);
+            if (keys.a || keys.ArrowLeft) moveDir.add(camRight);
+            if (keys.d || keys.ArrowRight) moveDir.sub(camRight);
+
+            if (moveDir.length() > 0) {
+                moveDir.normalize();
+                lastMoveDir.copy(moveDir);
+                playerBody.velocity.set(moveDir.x * 7, moveDir.y * 7, moveDir.z * 7);
+                
+                dummy.position.copy(pPos);
+                dummy.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), up);
+                dummy.lookAt(pPos.clone().add(moveDir));
+                playerMesh.quaternion.slerp(dummy.quaternion, 0.15);
+            }
+
+            // --- CINEMATIC RULE OF THIRDS CAMERA ---
+            const currentForward = lastMoveDir.clone();
+            const currentRight = new THREE.Vector3().crossVectors(up, currentForward).normalize();
+
+            // Offset the camera position: 
+            // 1. Move behind (-10)
+            // 2. Move up (5)
+            // 3. Move right (6) - this pushes the player to the left of the frame
+            const targetCamPos = pPos.clone()
+                .add(currentForward.clone().multiplyScalar(-10))
+                .add(up.clone().multiplyScalar(5))
+                .add(currentRight.clone().multiplyScalar(6));
+
+            // Floatiness: Use a very low lerp value (0.02) for that "drifting" feel
+            camera.position.lerp(targetCamPos, 0.02);
+
+            // Look Target:
+            // Look ahead and to the right to place the player in the bottom-left
+            const lookAtTarget = pPos.clone()
+                .add(currentForward.clone().multiplyScalar(4))
+                .add(currentRight.clone().multiplyScalar(3))
+                .add(up.clone().multiplyScalar(-2)); // Tilt down slightly
+
+            camera.lookAt(lookAtTarget);
+
+            playerMesh.position.copy(playerBody.position);
+            renderer.render(scene, camera);
+        }
+
+        window.onresize = () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        };
+        update();
+    </script>
+</body>
+</html>

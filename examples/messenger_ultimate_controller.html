@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messenger 3D - Ultimate Controller</title>
+    <style>
+        body { margin: 0; overflow: hidden; background: #1a1a2e; font-family: sans-serif; }
+        .overlay { position: absolute; top:0; left:0; width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; color:white; z-index:1000; text-align:center; transition: opacity 0.5s; }
+        #loading-screen { background:#000; }
+        #start-screen { background:rgba(0,0,0,0.8); backdrop-filter:blur(10px); display:none; }
+        #win-screen { background:rgba(0,30,60,0.9); backdrop-filter:blur(8px); display:none; }
+        #ui-main, #quest-log { position:absolute; top:20px; color:white; background:rgba(0,0,0,0.7); padding:15px; border-radius:8px; display:none; border: 1px solid #ffaa00; }
+        #ui-main { left:20px; }
+        #quest-log { right:20px; width:200px; }
+        h1 { font-size:3.5em; color:#ffaa00; letter-spacing:5px; margin:0; }
+        button { background:#ffaa00; border:none; padding:15px 40px; cursor:pointer; border-radius:50px; font-weight:bold; font-size:1.2em; margin-top:20px; transition: transform 0.2s; }
+        button:hover { transform: scale(1.1); }
+        .complete { text-decoration:line-through; color:#00ffaa; opacity:0.6; }
+        .spinner { width:40px; height:40px; border:4px solid #333; border-top-color:#ffaa00; border-radius:50%; animation:s 1s linear infinite; }
+        @keyframes s { to { transform:rotate(360deg); } }
+    </style>
+</head>
+<body>
+    <div id="loading-screen" class="overlay"><div class="spinner"></div></div>
+    <div id="start-screen" class="overlay">
+        <h1>MESSENGER</h1>
+        <button id="btn-start">START MISSION</button>
+        <p style="color:#aaa; margin-top:10px;">WASD/Arrows to Move • Click to Pathfind</p>
+    </div>
+    <div id="win-screen" class="overlay">
+        <h1 style="color:#00f2ff">MISSION COMPLETE</h1>
+        <button onclick="location.reload()">REPLAY</button>
+    </div>
+    <div id="ui-main"><b>MESSENGER SYSTEM</b></div>
+    <div id="quest-log"><div id="quest-list"></div></div>
+
+    <script type="importmap">{ "imports": { "three": "https://unpkg.com/three@0.160.0/build/three.module.js", "cannon": "https://unpkg.com/cannon-es@0.20.0/dist/cannon-es.js" } }</script>
+
+    <script type="module">
+        import * as THREE from 'three';
+        import * as CANNON from 'cannon';
+
+        let started = false;
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(65, window.innerWidth/window.innerHeight, 0.1, 4000);
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+
+        // --- PHYSICS WORLD (Optimized for no-tunneling) ---
+        const world = new CANNON.World();
+        world.solver.iterations = 15;
+        const groundMat = new CANNON.Material("ground");
+        const playerMat = new CANNON.Material("player");
+        world.addContactMaterial(new CANNON.ContactMaterial(groundMat, playerMat, { friction: 0.1, restitution: 0 }));
+
+        const skyMat = new THREE.ShaderMaterial({
+            side: THREE.BackSide,
+            uniforms: { t: { value: new THREE.Color(0x0077ff) }, b: { value: new THREE.Color(0xffaa00) } },
+            vertexShader: `varying vec3 vP; void main(){vP=position; gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0);}`,
+            fragmentShader: `varying vec3 vP; uniform vec3 t; uniform vec3 b; void main(){float h=normalize(vP).y*0.5+0.5; gl_FragColor=vec4(mix(b,t,h),1.0);}`
+        });
+        scene.add(new THREE.Mesh(new THREE.SphereGeometry(1200), skyMat));
+
+        const toon = (c) => new THREE.ShaderMaterial({
+            uniforms: { uC: { value: new THREE.Color(c) }, uS: { value: new THREE.Vector3(1,1,0.5).normalize() } },
+            vertexShader: `varying vec3 vN; void main(){vN=normalize(normalMatrix*normal); gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0);}`,
+            fragmentShader: `varying vec3 vN; uniform vec3 uC; uniform vec3 uS; void main(){float d=dot(vN,uS); float s=d>0.5?1.0:(d>0.1?0.6:0.3); gl_FragColor=vec4(uC*s,1.0);}`
+        });
+
+        // PLANET MATCHING
+        const planetR = 40;
+        const planetMesh = new THREE.Mesh(new THREE.IcosahedronGeometry(planetR, 5), toon(0x66cc66));
+        scene.add(planetMesh);
+        const planetBody = new CANNON.Body({ mass: 0, shape: new CANNON.Sphere(planetR), material: groundMat });
+        world.addBody(planetBody);
+
+        const collidables = [planetMesh];
+        for(let i=0; i<45; i++){
+            const h = Math.random()*5+3;
+            const m = new THREE.Mesh(new THREE.BoxGeometry(3,h,3), toon(0x999999));
+            const pos = new THREE.Vector3().setFromSphericalCoords(planetR, Math.random()*Math.PI, Math.random()*Math.PI*2);
+            m.position.copy(pos);
+            m.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0), pos.clone().normalize());
+            scene.add(m); collidables.push(m);
+            const b = new CANNON.Body({ mass: 0, shape: new CANNON.Box(new CANNON.Vec3(1.5, h/2, 1.5)) });
+            b.position.copy(pos); b.quaternion.copy(m.quaternion);
+            world.addBody(b);
+        }
+
+        // QUEST SYSTEM
+        const state = { inv: [], won: false, quests: [{id:'h', t:'Heal Citizens', c:0, tar:3}, {id:'r', t:'Secure Relic', c:0, tar:1, req:'Keycard'}] };
+        const actors = [];
+        const spawnActor = (c, ty, id, p) => {
+            const m = new THREE.Mesh(new THREE.SphereGeometry(1.2), toon(c));
+            m.position.copy(p); scene.add(m); actors.push({ m, ty, id, a:true });
+        };
+        for(let i=0; i<3; i++) spawnActor(0x00ccff,'h','p', new THREE.Vector3().setFromSphericalCoords(planetR+1.5, Math.random()*Math.PI, Math.random()*Math.PI*2));
+        spawnActor(0xffff00,'i','Keycard', new THREE.Vector3().setFromSphericalCoords(planetR+1.5, 0.8, 0.8));
+        spawnActor(0xff00ff,'r','r', new THREE.Vector3().setFromSphericalCoords(planetR+1.5, -0.8, -0.8));
+
+        const updateUI = () => {
+            document.getElementById('quest-list').innerHTML = state.quests.map(q=>`<div class="${q.c>=q.tar?'complete':''}">• ${q.t} ${q.c}/${q.tar}</div>`).join('');
+            if(state.quests.every(q=>q.c>=q.tar)){ state.won=true; document.getElementById('win-screen').style.display='flex'; }
+        };
+
+        // PLAYER
+        const pBody = new CANNON.Body({ mass: 1, shape: new CANNON.Box(new CANNON.Vec3(0.5, 1, 0.5)), material: playerMat, fixedRotation: true, linearDamping: 0.9 });
+        pBody.position.set(0, planetR + 10, 0); 
+        world.addBody(pBody);
+        const playerMesh = new THREE.Mesh(new THREE.BoxGeometry(1, 2, 1), toon(0xff4444));
+        playerMesh.add(new THREE.Mesh(new THREE.BoxGeometry(1.1, 2.1, 1.1), new THREE.MeshBasicMaterial({color:0, side:THREE.BackSide})));
+        scene.add(playerMesh);
+
+        // CONTROLLER STATE
+        const keys = {};
+        const raycaster = new THREE.Raycaster();
+        const mouse = new THREE.Vector2();
+        let clickTarget = null;
+        let camHeading = new THREE.Vector3(0, 0, 1);
+        const dummy = new THREE.Object3D();
+        const MAX_SPEED = 14;
+
+        window.onkeydown = (e) => { keys[e.code] = true; clickTarget = null; };
+        window.onkeyup = (e) => keys[e.code] = false;
+        window.onmousedown = (e) => {
+            if(!started) return;
+            mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
+            mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
+            raycaster.setFromCamera(mouse, camera);
+            const hits = raycaster.intersectObjects(collidables);
+            if (hits.length > 0) clickTarget = hits[0].point;
+        };
+
+        window.onload=()=>{ setTimeout(()=>{ document.getElementById('loading-screen').style.display='none'; document.getElementById('start-screen').style.display='flex'; }, 1200); };
+        document.getElementById('btn-start').onclick = () => {
+            document.getElementById('start-screen').style.opacity = '0';
+            setTimeout(()=>{ 
+                document.getElementById('start-screen').style.display = 'none';
+                document.getElementById('ui-main').style.display = 'block'; document.getElementById('quest-log').style.display = 'block';
+                started = true; updateUI();
+            }, 500);
+        };
+
+        function loop() {
+            requestAnimationFrame(loop);
+            world.step(1/60);
+
+            const pPos = new THREE.Vector3().copy(pBody.position);
+            const up = pPos.clone().normalize();
+            pBody.applyForce(up.clone().multiplyScalar(-60), pBody.position); 
+
+            // Menu/Idle state alignment
+            if(!started) {
+                playerMesh.position.copy(pPos);
+                playerMesh.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), up);
+                renderer.render(scene, camera);
+                return;
+            }
+
+            // --- ACTOR INTERACTION ---
+            actors.forEach(a=>{
+                if(a.a && pPos.distanceTo(a.m.position)<2.5){
+                    if(a.ty==='h'){ state.quests[0].c++; a.a=false; scene.remove(a.m); }
+                    if(a.ty==='i'){ state.inv.push(a.id); a.a=false; scene.remove(a.m); }
+                    if(a.ty==='r' && state.inv.includes('Keycard')){ state.quests[1].c++; a.a=false; scene.remove(a.m); }
+                    updateUI();
+                }
+            });
+
+            // --- SEAMLESS CONTROLLER SYSTEM ---
+            const camFwd = pPos.clone().sub(camera.position).projectOnPlane(up).normalize();
+            const camRgt = new THREE.Vector3().crossVectors(up, camFwd).normalize();
+
+            let moveDir = new THREE.Vector3(0, 0, 0);
+            
+            // Input merging (Keyboard + Click)
+            if (keys['KeyW'] || keys['ArrowUp']) moveDir.add(camFwd);
+            if (keys['KeyS'] || keys['ArrowDown']) moveDir.sub(camFwd);
+            if (keys['KeyA'] || keys['ArrowLeft']) moveDir.add(camRgt);
+            if (keys['KeyD'] || keys['ArrowRight']) moveDir.sub(camRgt);
+
+            if (clickTarget) {
+                const toClick = clickTarget.clone().sub(pPos).projectOnPlane(up);
+                if (toClick.length() > 1.5) moveDir.add(toClick.normalize());
+                else clickTarget = null;
+            }
+
+            // Sync heading and apply velocity
+            if (moveDir.length() > 0) {
+                moveDir.normalize();
+                camHeading.lerp(moveDir, 0.1).normalize();
+                pBody.velocity.set(moveDir.x * MAX_SPEED, moveDir.y * MAX_SPEED, moveDir.z * MAX_SPEED);
+            } else {
+                pBody.velocity.scale(0.9, pBody.velocity);
+            }
+
+            // Orientation
+            playerMesh.position.copy(pPos);
+            playerMesh.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), up);
+            dummy.position.set(0, 0, 0);
+            dummy.lookAt(camHeading);
+            playerMesh.quaternion.multiply(dummy.quaternion);
+
+            // --- CINEMATIC CAMERA SYSTEM ---
+            // Anchor target relative to player heading and sphere curvature
+            const targetCam = pPos.clone()
+                .add(camHeading.clone().multiplyScalar(-25)) // Distance behind
+                .add(up.clone().multiplyScalar(13))           // Vertical height
+                .add(new THREE.Vector3().crossVectors(up, camHeading).multiplyScalar(7)); // Rule of Thirds offset
+            
+            camera.position.lerp(targetCam, 0.05);
+            // Look ahead of the player
+            camera.lookAt(pPos.clone().add(camHeading.clone().multiplyScalar(6)).sub(up.clone().multiplyScalar(2)));
+
+            renderer.render(scene, camera);
+        }
+        loop();
+    </script>
+</body>
+</html>

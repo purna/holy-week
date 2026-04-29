@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messenger 3D - Perpendicular & Synced</title>
+    <style>
+        body { margin: 0; overflow: hidden; background: #000; font-family: sans-serif; }
+        #ui {
+            position: absolute; top: 20px; left: 20px; color: white;
+            background: rgba(0, 0, 0, 0.7); padding: 15px; border-radius: 8px;
+            pointer-events: none; border-left: 4px solid #ffaa00;
+        }
+        .key { border: 1px solid white; padding: 2px 6px; border-radius: 4px; margin: 0 2px; font-size: 0.8em; }
+    </style>
+</head>
+<body>
+    <div id="ui">
+        <b style="color: #ffaa00;">Stable Perpendicular Mode</b><br>
+        <div style="margin-top: 5px;"><span class="key">WASD</span> / <span class="key">Arrows</span></div>
+        <div style="margin-top: 8px; font-size: 0.9em; opacity: 0.8;">
+            - Perpendicular Locking Active<br>
+            - Slower Turns (A/D)<br>
+            - Backwards Movement Synced
+        </div>
+    </div>
+
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+                "cannon": "https://unpkg.com/cannon-es@0.20.0/dist/cannon-es.js"
+            }
+        }
+    </script>
+
+    <script type="module">
+        import * as THREE from 'three';
+        import * as CANNON from 'cannon';
+
+        const scene = new THREE.Scene();
+        scene.background = new THREE.Color(0xa3d5ff);
+        const camera = new THREE.PerspectiveCamera(65, window.innerWidth / window.innerHeight, 0.1, 3000);
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+
+        const world = new CANNON.World();
+        world.gravity.set(0, 0, 0);
+
+        const planetRadius = 60;
+        const planetBody = new CANNON.Body({ mass: 0, shape: new CANNON.Sphere(planetRadius) });
+        world.addBody(planetBody);
+
+        const planetMesh = new THREE.Mesh(
+            new THREE.IcosahedronGeometry(planetRadius, 6),
+            new THREE.MeshStandardMaterial({ color: 0x55aa55, flatShading: true })
+        );
+        scene.add(planetMesh);
+
+        // Populate World
+        const collidableObjects = [planetMesh];
+        for (let i = 0; i < 120; i++) {
+            const h = Math.random() * 6 + 3;
+            const bMesh = new THREE.Mesh(new THREE.BoxGeometry(3, h, 3), new THREE.MeshStandardMaterial({ color: 0x888888 }));
+            const phi = Math.acos(-1 + (2 * i) / 120);
+            const theta = Math.sqrt(120 * Math.PI) * phi;
+            const pos = new THREE.Vector3().setFromSphericalCoords(planetRadius + h/2, phi, theta);
+            bMesh.position.copy(pos);
+            bMesh.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), pos.clone().normalize());
+            scene.add(bMesh);
+            collidableObjects.push(bMesh);
+
+            const bBody = new CANNON.Body({ mass: 0, shape: new CANNON.Box(new CANNON.Vec3(1.5, h/2, 1.5)) });
+            bBody.position.copy(pos);
+            bBody.quaternion.copy(bMesh.quaternion);
+            world.addBody(bBody);
+        }
+
+        const playerBody = new CANNON.Body({
+            mass: 1, shape: new CANNON.Box(new CANNON.Vec3(0.5, 1, 0.5)), 
+            fixedRotation: true, linearDamping: 0.95 
+        });
+        playerBody.position.set(0, planetRadius + 5, 0);
+        world.addBody(playerBody);
+
+        const playerMesh = new THREE.Mesh(
+            new THREE.BoxGeometry(1, 2, 1),
+            new THREE.MeshStandardMaterial({ color: 0xff4444 })
+        );
+        scene.add(playerMesh);
+        scene.add(new THREE.AmbientLight(0xffffff, 0.6));
+        const sun = new THREE.DirectionalLight(0xffffff, 1.2); sun.position.set(100, 200, 100); scene.add(sun);
+
+        const keys = {};
+        window.onkeydown = (e) => keys[e.key.length === 1 ? e.key.toLowerCase() : e.key] = true;
+        window.onkeyup = (e) => keys[e.key.length === 1 ? e.key.toLowerCase() : e.key] = false;
+
+        const dummy = new THREE.Object3D();
+        const camPivot = new THREE.Vector3(); 
+        let camHeading = new THREE.Vector3(0, 0, 1); 
+
+        function update() {
+            requestAnimationFrame(update);
+            world.step(1/60);
+
+            const pPos = new THREE.Vector3().copy(playerBody.position);
+            const up = pPos.clone().normalize();
+
+            // Heavy Gravity to keep feet glued
+            playerBody.applyForce(up.clone().multiplyScalar(-50), playerBody.position);
+
+            const camForward = pPos.clone().sub(camera.position).projectOnPlane(up).normalize();
+            const camRight = new THREE.Vector3().crossVectors(up, camForward).normalize();
+
+            let moveDir = new THREE.Vector3(0, 0, 0);
+            const isMovingBackward = (keys.s || keys.arrowdown);
+
+            // Tuned Speeds
+            const turnSpeed = 0.5; // Lowered turn speed (A/D)
+            const forwardSpeed = 5.5;
+            const backSpeed = 4.5; // Synced slower to keep player at top of sphere
+
+            if (keys.w || keys.arrowup) moveDir.add(camForward.clone().multiplyScalar(forwardSpeed));
+            if (isMovingBackward) moveDir.sub(camForward.clone().multiplyScalar(backSpeed));
+            if (keys.a || keys.arrowleft) moveDir.add(camRight.clone().multiplyScalar(turnSpeed));
+            if (keys.d || keys.arrowright) moveDir.sub(camRight.clone().multiplyScalar(turnSpeed));
+
+            if (moveDir.length() > 0) {
+                // Set velocity directly for precision
+                playerBody.velocity.set(moveDir.x, moveDir.y, moveDir.z);
+                
+                if (!isMovingBackward) {
+                    const normDir = moveDir.clone().normalize();
+                    camHeading.lerp(normDir, 0.02); 
+                }
+
+                // ALWAYS PERPENDICULAR: Align mesh to 'up' vector first, then 'lookAt'
+                playerMesh.position.copy(pPos);
+                dummy.position.copy(pPos);
+                dummy.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), up);
+                
+                // Secondary rotation to face movement direction
+                const lookTarget = pPos.clone().add(moveDir);
+                dummy.lookAt(lookTarget);
+                playerMesh.quaternion.slerp(dummy.quaternion, 0.1);
+            } else {
+                playerBody.velocity.scale(0.92, playerBody.velocity);
+            }
+
+            // --- CAMERA TRACKING ---
+            camPivot.lerp(pPos, 0.03); 
+            const currentForward = camHeading.clone().normalize();
+            const currentRight = new THREE.Vector3().crossVectors(up, currentForward).normalize();
+
+            const targetCamPos = camPivot.clone()
+                .add(currentForward.clone().multiplyScalar(-20)) 
+                .add(up.clone().multiplyScalar(10))              
+                .add(currentRight.clone().multiplyScalar(8)); 
+
+            camera.position.lerp(targetCamPos, 0.04);
+
+            const lookTarget = camPivot.clone()
+                .add(currentForward.clone().multiplyScalar(5)) 
+                .add(currentRight.clone().multiplyScalar(3))   
+                .sub(up.clone().multiplyScalar(4));
+
+            camera.lookAt(lookTarget);
+
+            playerMesh.position.copy(playerBody.position);
+            renderer.render(scene, camera);
+        }
+
+        window.onresize = () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        };
+        update();
+    </script>
+</body>
+</html>

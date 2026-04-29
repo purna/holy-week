@@ -48,7 +48,6 @@ export class Player {
     applyMovement(moveDir) {
         if (moveDir.length() > 0) {
             moveDir.normalize();
-            this.camHeading.lerp(moveDir, 0.1).normalize();
             this.pBody.velocity.set(
                 moveDir.x * 18,
                 moveDir.y * 18,

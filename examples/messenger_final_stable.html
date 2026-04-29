@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messenger 3D - Final Production</title>
+    <style>
+        body { margin: 0; overflow: hidden; background: #010105; font-family: 'Courier New', Courier, monospace; text-transform: uppercase; user-select: none; }
+        .overlay { position: absolute; top:0; left:0; width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; color:white; z-index:1000; text-align:center; background:rgba(0,0,0,0.95); }
+        
+        /* Side HUD Panels */
+        .panel { position:absolute; color:white; background:rgba(0,10,20,0.9); padding:15px; border: 1px solid #00f2ff; backdrop-filter: blur(10px); pointer-events: none; z-index: 10; }
+        #panel-inv { top:20px; left:20px; width:200px; border-left: 4px solid #ffaa00; }
+        #panel-quest { top:20px; right:20px; width:240px; border-right: 4px solid #00f2ff; }
+        
+        /* Floating NPC UI */
+        #npc-ui-container { position: absolute; top: 0; left: 0; pointer-events: none; width: 100%; height: 100%; z-index: 5; }
+        .npc-bubble { 
+            position: absolute; background: rgba(0, 5, 10, 0.98); color: #00f2ff; 
+            padding: 15px; border: 1px solid #00f2ff; border-radius: 4px;
+            font-size: 0.85em; transform: translate(-50%, -100%);
+            display: none; width: 280px; box-shadow: 0 0 20px rgba(0,242,255,0.4);
+            pointer-events: auto;
+        }
+        .npc-bubble::after { content: ''; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); border-left: 10px solid transparent; border-right: 10px solid transparent; border-top: 10px solid #00f2ff; }
+        .npc-name { color: #ffaa00; font-weight: bold; margin-bottom: 8px; border-bottom: 1px solid #333; display: block; }
+        #bubble-text { margin-bottom: 10px; line-height: 1.4; text-transform: none; }
+        .choice-btn { 
+            display: block; width: 100%; background: rgba(255,255,255,0.05); border: 1px solid #333; 
+            color: #00f2ff; text-align: left; padding: 8px; margin-top: 5px; 
+            cursor: pointer; font-family: inherit; font-size: 0.9em; transition: 0.2s;
+        }
+        .choice-btn:hover { background: rgba(0,242,255,0.2); border-color: #00f2ff; }
+
+        #loc-box { position: absolute; top: 18%; left: 50%; transform: translateX(-50%); text-align: center; pointer-events: none; display:none; }
+        #loc-name { font-size: 2.8em; color: #ffaa00; margin: 0; text-shadow: 0 0 20px #000; }
+        
+        h3 { margin: 0 0 10px 0; font-size: 0.8em; color: #ffaa00; opacity: 0.6; border-bottom: 1px solid #333; }
+        .item { font-size: 0.8em; margin: 5px 0; color: #ffaa00; border-left: 2px solid #ffaa00; padding-left: 5px; }
+        .q-item { font-size: 0.8em; margin: 12px 0; border-bottom: 1px solid #111; padding-bottom: 5px; }
+        .q-done { color: #00ffaa; text-decoration: line-through; opacity: 0.4; }
+        
+        button#btn-start { background:#ffaa00; border:none; padding:15px 40px; cursor:pointer; font-weight:bold; font-size:1.2em; color: black; box-shadow: 0 4px 0 #b37700; }
+    </style>
+</head>
+<body>
+    <div id="start-screen" class="overlay">
+        <h1 style="color:#ffaa00; font-size:4em; margin:0; letter-spacing:10px;">MESSENGER</h1>
+        <p style="margin-bottom:30px; opacity:0.5;">FINAL_STABLE_BUILD // V13.0</p>
+        <button id="btn-start">INITIALIZE MISSION</button>
+    </div>
+
+    <div id="panel-inv" class="panel"><h3>STORAGE_UNIT</h3><div id="inv-list">0_CELLS</div></div>
+    <div id="panel-quest" class="panel"><h3>MISSION_LOG</h3><div id="quest-list"></div></div>
+    
+    <div id="npc-ui-container">
+        <div id="npc-bubble" class="npc-bubble">
+            <span id="bubble-name" class="npc-name"></span>
+            <div id="bubble-text"></div>
+            <div id="bubble-choices"></div>
+        </div>
+    </div>
+
+    <div id="loc-box"><h2 id="loc-name"></h2></div>
+
+    <!-- EXTERNAL LIBS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/inkjs/2.2.1/ink.min.js"></script>
+    <script type="importmap">{ "imports": { "three": "https://unpkg.com/three@0.160.0/build/three.module.js", "cannon": "https://unpkg.com/cannon-es@0.20.0/dist/cannon-es.js" } }</script>
+
+    <script type="module">
+        import * as THREE from 'three';
+        import * as CANNON from 'cannon';
+
+        let started = false;
+        let inkStory = null;
+        let activeNpcId = null;
+        let storyData = null;
+
+        // Load the Ink story JSON at startup
+        async function loadStory() {
+            try {
+                const response = await fetch('./NPC_UNIT_ECHO.json');
+                if (!response.ok) throw new Error('Failed to load story');
+                storyData = await response.json();
+            } catch (e) {
+                console.error("Failed to load Ink story:", e);
+            }
+        }
+        loadStory();
+
+        // Ink text processing: strip control markers and sanitize HTML tags
+        function stripInkMarkers(s) {
+            if (!s) return '';
+            const rawLines = s.split(/\r?\n/);
+            const out = [];
+            for (let line of rawLines) {
+                let l = (line || '').trim();
+                if (l === '#' || l === '/#') continue;
+                if (l.startsWith('^')) l = l.slice(1).trim();
+                if (l.startsWith('#')) l = l.slice(1).trim();
+                if (l) out.push(l);
+            }
+            return out.join('\n');
+        }
+
+        function sanitizeAllowedHtml(dirty) {
+            if (!dirty) return '';
+            const allowedTags = ['b','strong','i','em','br','p','a','ul','ol','li','span'];
+            const allowedAttrs = { 'a': ['href','target','rel'], 'span': ['class'] };
+
+            const container = document.createElement('div');
+            container.innerHTML = dirty;
+
+            function cleanNode(node) {
+                if (node.nodeType === Node.COMMENT_NODE) { node.remove(); return; }
+                if (node.nodeType === Node.ELEMENT_NODE) {
+                    const tag = node.tagName.toLowerCase();
+                    if (!allowedTags.includes(tag)) {
+                        const parent = node.parentNode;
+                        while (node.firstChild) parent.insertBefore(node.firstChild, node);
+                        parent.removeChild(node);
+                        return;
+                    }
+                    const attrs = Array.from(node.attributes || []);
+                    for (const attr of attrs) {
+                        const name = attr.name.toLowerCase();
+                        const allowedForTag = allowedAttrs[tag] || [];
+                        if (!allowedForTag.includes(name)) {
+                            node.removeAttribute(attr.name);
+                        } else if (tag === 'a' && name === 'href') {
+                            const val = node.getAttribute('href') || '';
+                            if (/^\s*javascript:/i.test(val) || /^\s*data:/i.test(val)) {
+                                node.removeAttribute('href');
+                            } else {
+                                node.setAttribute('rel','noopener');
+                                node.setAttribute('target','_blank');
+                            }
+                        }
+                    }
+                }
+                let child = node.firstChild;
+                while (child) { const next = child.nextSibling; cleanNode(child); child = next; }
+            }
+
+            // Sanitize children only, not the container itself
+            Array.from(container.childNodes).forEach(child => cleanNode(child));
+            return container.innerHTML;
+        }
+
+        // --- INK LOGIC ---
+        const continueStory = () => {
+            const textEl = document.getElementById('bubble-text');
+            const choiceEl = document.getElementById('bubble-choices');
+            let txt = "";
+            while(inkStory.canContinue) txt += inkStory.Continue();
+            const cleaned = stripInkMarkers(txt);
+            console.log('Cleaned:', cleaned);
+            textEl.innerHTML = cleaned;
+            choiceEl.innerHTML = "";
+            inkStory.currentChoices.forEach(c => {
+                const b = document.createElement('button');
+                b.className = "choice-btn"; b.innerText = c.text;
+                b.onclick = () => { inkStory.ChooseChoiceIndex(c.index); continueStory(); };
+                choiceEl.appendChild(b);
+            });
+            if(inkStory.currentChoices.length === 0 && !inkStory.canContinue) {
+                const b = document.createElement('button');
+                b.className = "choice-btn"; b.innerText = "[End Transmission]";
+                b.onclick = () => { document.getElementById('npc-bubble').style.display = 'none'; activeNpcId = "DONE"; };
+                choiceEl.appendChild(b);
+            }
+        };
+
+        const startDialogue = () => {
+            if (!storyData) {
+                console.error("Story data not loaded yet");
+                return;
+            }
+            try {
+                inkStory = new inkjs.Story(storyData);
+                document.getElementById('bubble-name').innerText = "Unit-01 Echo";
+                continueStory();
+            } catch(e) { console.error(e); }
+        };
+
+        const updateUI = () => {
+            document.getElementById('inv-list').innerHTML = inventory.length ? inventory.map(i => `<div class="item">${i}</div>`).join('') : "0_CELLS";
+            document.getElementById('quest-list').innerHTML = quests.map(q => `<div class="q-item ${q.cur>=q.tar?'q-done':''}"><b>${q.name}</b><br><small>${q.task} [${q.cur}/${q.tar}]</small></div>`).join('');
+        };
+
+        document.getElementById('btn-start').onclick = () => { started = true; document.getElementById('start-screen').style.display='none'; updateUI(); };
+
+        function loop() {
+            requestAnimationFrame(loop);
+            world.step(1/60);
+            const pPos = new THREE.Vector3().copy(pBody.position);
+            const up = pPos.clone().normalize();
+            pBody.applyForce(up.clone().multiplyScalar(-75), pBody.position);
+
+            if(pPos.length() < planetR + 1.6) canJump = true;
+            if(!started) { renderer.render(scene, camera); return; }
+
+            // NPC Interaction
+            const dist = pPos.distanceTo(npcPos);
+            const bubble = document.getElementById('npc-bubble');
+            if(dist < 8) {
+                if(activeNpcId === null) {
+                    activeNpcId = "NPC_ECHO";
+                    bubble.style.display = 'block';
+                    startDialogue();
+                }
+                const sPos = npcPos.clone().add(up.clone().multiplyScalar(4)).project(camera);
+                bubble.style.left = (sPos.x * 0.5 + 0.5) * window.innerWidth + 'px';
+                bubble.style.top = (sPos.y * -0.5 + 0.5) * window.innerHeight + 'px';
+            } else if (dist > 15) {
+                activeNpcId = null;
+                bubble.style.display = 'none';
+            }
+
+            // Movement
+            const camFwd = pPos.clone().sub(camera.position).projectOnPlane(up).normalize();
+            const camRgt = new THREE.Vector3().crossVectors(up, camFwd).normalize();
+            let move = new THREE.Vector3(0,0,0);
+            if(keys['KeyW'] || keys['ArrowUp']) move.add(camFwd);
+            if(keys['KeyS'] || keys['ArrowDown']) move.sub(camFwd);
+            if(keys['KeyA'] || keys['ArrowLeft']) move.add(camRgt);
+            if(keys['KeyD'] || keys['ArrowRight']) move.sub(camRgt);
+
+            if(move.length() > 0) {
+                move.normalize();
+                camHeading.lerp(move, 0.1).normalize();
+                pBody.velocity.set(move.x*18, move.y*18, move.z*18);
+            }
+
+            playerMesh.position.copy(pPos);
+            playerMesh.up.copy(up);
+            playerMesh.lookAt(pPos.clone().add(camHeading.projectOnPlane(up).normalize()));
+            camera.up.copy(up);
+            
+            const camT = pPos.clone().add(camHeading.clone().multiplyScalar(-25)).add(up.clone().multiplyScalar(15));
+            camera.position.lerp(camT, 0.05);
+            camera.lookAt(pPos);
+
+            renderer.render(scene, camera);
+        }
+        loop();
+        window.onresize = () => { camera.aspect = window.innerWidth/window.innerHeight; camera.updateProjectionMatrix(); renderer.setSize(window.innerWidth, window.innerHeight); };
+    </script>
+</body>
+</html>

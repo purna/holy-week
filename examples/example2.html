@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messenger 3D Prototype - Hybrid Controls</title>
+    <style>
+        body { margin: 0; overflow: hidden; background: #000; font-family: sans-serif; }
+        #ui {
+            position: absolute; top: 20px; left: 20px; color: white;
+            background: rgba(0, 0, 0, 0.6); padding: 15px; border-radius: 8px;
+            pointer-events: none; border-left: 4px solid #44ccff;
+        }
+        .key { border: 1px solid white; padding: 2px 6px; border-radius: 4px; margin: 0 2px; font-size: 0.8em; }
+        #cursor-hint {
+            position: absolute; width: 20px; height: 20px; border: 2px solid white;
+            border-radius: 50%; pointer-events: none; transform: translate(-50%, -50%);
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="ui">
+        <div><span class="key">W</span><span class="key">A</span><span class="key">S</span><span class="key">D</span> to Walk</div>
+        <div style="margin-top: 8px;">Hold <span class="key">Left Click</span> to Follow Mouse</div>
+        <div style="margin-top: 8px; color: #44ccff;">Hybrid Control Mode Active</div>
+    </div>
+    <div id="cursor-hint"></div>
+
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+                "cannon": "https://unpkg.com/cannon-es@0.20.0/dist/cannon-es.js"
+            }
+        }
+    </script>
+
+    <script type="module">
+        import * as THREE from 'three';
+        import * as CANNON from 'cannon';
+
+        // --- 1. SETUP ---
+        const scene = new THREE.Scene();
+        scene.background = new THREE.Color(0xa3d5ff);
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(window.devicePixelRatio);
+        document.body.appendChild(renderer.domElement);
+
+        // --- 2. PHYSICS ---
+        const world = new CANNON.World();
+        world.gravity.set(0, 0, 0);
+
+        // --- 3. THE PLANET (Radius 30) ---
+        const planetRadius = 30;
+        const planetBody = new CANNON.Body({ mass: 0, shape: new CANNON.Sphere(planetRadius) });
+        world.addBody(planetBody);
+
+        const planetMesh = new THREE.Mesh(
+            new THREE.IcosahedronGeometry(planetRadius, 5),
+            new THREE.MeshStandardMaterial({ color: 0x55aa55, flatShading: true })
+        );
+        scene.add(planetMesh);
+
+        // Decor (Simple Buildings)
+        for (let i = 0; i < 40; i++) {
+            const h = Math.random() * 4 + 2;
+            const bMesh = new THREE.Mesh(new THREE.BoxGeometry(2, h, 2), new THREE.MeshStandardMaterial({ color: 0xcccccc }));
+            const phi = Math.acos(-1 + (2 * i) / 40);
+            const theta = Math.sqrt(40 * Math.PI) * phi;
+            bMesh.position.setFromSphericalCoords(planetRadius + h/2, phi, theta);
+            bMesh.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), bMesh.position.clone().normalize());
+            scene.add(bMesh);
+        }
+
+        // --- 4. THE PLAYER ---
+        const playerBody = new CANNON.Body({
+            mass: 1,
+            shape: new CANNON.Box(new CANNON.Vec3(0.4, 0.8, 0.4)),
+            fixedRotation: true
+        });
+        playerBody.position.set(0, planetRadius + 5, 0);
+        world.addBody(playerBody);
+
+        const playerMesh = new THREE.Mesh(
+            new THREE.BoxGeometry(0.8, 1.6, 0.8),
+            new THREE.MeshStandardMaterial({ color: 0xff4444 })
+        );
+        scene.add(playerMesh);
+
+        // --- 5. LIGHTING ---
+        scene.add(new THREE.AmbientLight(0xffffff, 0.7));
+        const sun = new THREE.DirectionalLight(0xffffff, 1.2);
+        sun.position.set(50, 100, 50);
+        scene.add(sun);
+
+        // --- 6. HYBRID INPUTS ---
+        const keys = {};
+        const mouse = new THREE.Vector2();
+        const raycaster = new THREE.Raycaster();
+        let isMouseDown = false;
+
+        window.onkeydown = (e) => keys[e.key.toLowerCase()] = true;
+        window.onkeyup = (e) => keys[e.key.toLowerCase()] = false;
+        
+        window.onmousemove = (e) => {
+            mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
+            mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
+        };
+        window.onmousedown = () => isMouseDown = true;
+        window.onmouseup = () => isMouseDown = false;
+
+        // --- 7. LOOP ---
+        const clock = new THREE.Clock();
+        const dummy = new THREE.Object3D();
+
+        function update() {
+            requestAnimationFrame(update);
+            world.step(1/60);
+
+            const pPos = new THREE.Vector3().copy(playerBody.position);
+            const up = pPos.clone().normalize();
+
+            // Gravity
+            const gForce = up.clone().multiplyScalar(-25);
+            playerBody.applyForce(new CANNON.Vec3(gForce.x, gForce.y, gForce.z), playerBody.position);
+
+            // Base Orientation
+            dummy.position.copy(pPos);
+            dummy.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), up);
+
+            // COMBINED MOVEMENT VECTOR
+            let moveDir = new THREE.Vector3(0, 0, 0);
+
+            // A. WASD Input (Relative to Camera)
+            const forward = pPos.clone().sub(camera.position).projectOnPlane(up).normalize();
+            const right = new THREE.Vector3().crossVectors(up, forward).normalize();
+            if (keys.w) moveDir.add(forward);
+            if (keys.s) moveDir.sub(forward);
+            if (keys.a) moveDir.add(right);
+            if (keys.d) moveDir.sub(right);
+
+            // B. Mouse Follow Input
+            raycaster.setFromCamera(mouse, camera);
+            const intersects = raycaster.intersectObject(planetMesh);
+            if (intersects.length > 0 && isMouseDown) {
+                const targetPoint = intersects[0].point;
+                const mouseDir = new THREE.Vector3().subVectors(targetPoint, pPos).projectOnPlane(up).normalize();
+                moveDir.add(mouseDir);
+            }
+
+            if (moveDir.length() > 0) {
+                moveDir.normalize();
+
+                // Smooth Rotate to Face Movement
+                const lookTarget = pPos.clone().add(moveDir);
+                dummy.lookAt(lookTarget);
+                playerMesh.quaternion.slerp(dummy.quaternion, 0.15);
+
+                const v = moveDir.multiplyScalar(10);
+                playerBody.velocity.set(v.x, v.y, v.z);
+            } else {
+                playerBody.velocity.set(0, 0, 0);
+                playerMesh.quaternion.slerp(dummy.quaternion, 0.1);
+            }
+
+            // Camera: Dist = 6 (Double Zoom) & Top-Anchored
+            const camDist = 6;
+            // Static orbital camera since we aren't using pointer lock anymore
+            // We'll keep it simple for this hybrid version
+            const camPos = pPos.clone().add(up.clone().multiplyScalar(camDist)).add(new THREE.Vector3(0,0,0.1));
+            
+            // For a better experience, we keep camera trailing slightly
+            const targetCamPos = pPos.clone().add(up.clone().multiplyScalar(4)).add(forward.clone().multiplyScalar(-6));
+            camera.position.lerp(targetCamPos, 0.1);
+            
+            const focusShift = 1.8; 
+            camera.lookAt(pPos.clone().sub(up.clone().multiplyScalar(focusShift)));
+
+            playerMesh.position.copy(playerBody.position);
+            renderer.render(scene, camera);
+        }
+
+        window.onresize = () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        };
+
+        update();
+    </script>
+</body>
+</html>

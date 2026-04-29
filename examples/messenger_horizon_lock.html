@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messenger 3D - Fixed Horizon System</title>
+    <style>
+        body { margin: 0; overflow: hidden; background: #010105; font-family: 'Courier New', Courier, monospace; text-transform: uppercase; }
+        .overlay { position: absolute; top:0; left:0; width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; color:white; z-index:1000; text-align:center; background:rgba(0,0,0,0.9); }
+        .panel { position:absolute; color:white; background:rgba(0,8,15,0.95); padding:15px; border: 1px solid #00f2ff; backdrop-filter: blur(10px); pointer-events: none; }
+        #panel-inv { top:20px; left:20px; width:200px; border-left: 4px solid #ffaa00; }
+        #panel-quest { top:20px; right:20px; width:240px; border-right: 4px solid #00f2ff; }
+        #msg-box { position: absolute; bottom: 10%; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.9); color: #00f2ff; padding: 20px; border: 1px solid #00f2ff; display:none; width: 70%; max-width: 500px; text-align: center; }
+        #loc-box { position: absolute; top: 20%; left: 50%; transform: translateX(-50%); text-align: center; display:none; }
+        #loc-name { font-size: 2.5em; color: #ffaa00; margin: 0; text-shadow: 0 0 15px #000; }
+        h3 { margin: 0 0 10px 0; font-size: 0.8em; color: #ffaa00; opacity: 0.7; }
+        .item { font-size: 0.8em; margin: 5px 0; color: #ffaa00; border-left: 2px solid #ffaa00; padding-left: 5px; }
+        .q-item { font-size: 0.8em; margin: 10px 0; }
+        .q-done { color: #00ffaa; text-decoration: line-through; opacity: 0.4; }
+        button { background:#ffaa00; border:none; padding:15px 40px; cursor:pointer; font-weight:bold; font-size:1.2em; color: black; }
+    </style>
+</head>
+<body>
+    <div id="start-screen" class="overlay">
+        <h1 style="color:#ffaa00; letter-spacing:10px;">MESSENGER</h1>
+        <p style="opacity:0.5;">HORIZON_LOCK_V6.0</p>
+        <button id="btn-start">STABILIZE & START</button>
+    </div>
+
+    <div id="panel-inv" class="panel"><h3>STORAGE</h3><div id="inv-list">0_CELLS</div></div>
+    <div id="panel-quest" class="panel"><h3>MISSION</h3><div id="quest-list"></div></div>
+    <div id="msg-box"></div>
+    <div id="loc-box"><h2 id="loc-name"></h2><div id="loc-desc" style="color:white"></div></div>
+
+    <script type="importmap">{ "imports": { "three": "https://unpkg.com/three@0.160.0/build/three.module.js", "cannon": "https://unpkg.com/cannon-es@0.20.0/dist/cannon-es.js" } }</script>
+
+    <script type="module">
+        import * as THREE from 'three';
+        import * as CANNON from 'cannon';
+
+        let started = false;
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(60, window.innerWidth/window.innerHeight, 0.1, 5000);
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.shadowMap.enabled = true;
+        document.body.appendChild(renderer.domElement);
+
+        const sun = new THREE.DirectionalLight(0xffffff, 2.5);
+        sun.position.set(100, 200, 100);
+        sun.castShadow = true;
+        sun.shadow.camera.left = -100; sun.shadow.camera.right = 100;
+        sun.shadow.camera.top = 100; sun.shadow.camera.bottom = -100;
+        scene.add(sun);
+        scene.add(new THREE.AmbientLight(0xffffff, 1.0));
+
+        const world = new CANNON.World();
+        const planetR = 50;
+
+        // --- PLANET & OBJECTS ---
+        const planet = new THREE.Mesh(new THREE.IcosahedronGeometry(planetR, 5), new THREE.MeshToonMaterial({ color: 0x152515 }));
+        planet.receiveShadow = true;
+        scene.add(planet);
+        world.addBody(new CANNON.Body({ mass: 0, shape: new CANNON.Sphere(planetR) }));
+
+        const quests = [
+            { id:'r', name:'RECON', task:'Visit Spire', cur:0, tar:1 },
+            { id:'d', name:'CELLS', task:'Collect Data', cur:0, tar:3 }
+        ];
+        const inventory = [];
+
+        // Data Cells
+        const pickups = [];
+        for(let i=0; i<6; i++) {
+            const m = new THREE.Mesh(new THREE.SphereGeometry(1), new THREE.MeshToonMaterial({ color: 0xffaa00 }));
+            m.position.setFromSphericalCoords(planetR + 1.2, Math.random()*Math.PI, Math.random()*Math.PI*2);
+            m.castShadow = true; scene.add(m); pickups.push(m);
+        }
+
+        // --- PLAYER ---
+        const pBody = new CANNON.Body({ mass: 1, shape: new CANNON.Box(new CANNON.Vec3(0.5, 1, 0.5)), fixedRotation: true, linearDamping: 0.9 });
+        pBody.position.set(0, planetR + 10, 0); 
+        world.addBody(pBody);
+        const playerMesh = new THREE.Group();
+        const pVis = new THREE.Mesh(new THREE.BoxGeometry(1.2, 2, 1.2), new THREE.MeshToonMaterial({ color: 0xff3333 }));
+        pVis.castShadow = true; playerMesh.add(pVis);
+        scene.add(playerMesh);
+
+        const keys = {};
+        let camHeading = new THREE.Vector3(0, 0, 1);
+        let activeNpc = null;
+
+        window.onkeydown = (e) => keys[e.code] = true;
+        window.onkeyup = (e) => keys[e.code] = false;
+        document.getElementById('btn-start').onclick = () => { started = true; document.getElementById('start-screen').style.display='none'; updateUI(); };
+
+        const updateUI = () => {
+            document.getElementById('inv-list').innerHTML = inventory.length ? inventory.map(i => `<div class="item">${i}</div>`).join('') : "0_CELLS";
+            document.getElementById('quest-list').innerHTML = quests.map(q => `<div class="q-item ${q.cur>=q.tar?'q-done':''}"><b>${q.name}</b><br><small>${q.task} [${q.cur}/${q.tar}]</small></div>`).join('');
+        };
+
+        function loop() {
+            requestAnimationFrame(loop);
+            world.step(1/60);
+            const pPos = new THREE.Vector3().copy(pBody.position);
+            const up = pPos.clone().normalize();
+            pBody.applyForce(up.clone().multiplyScalar(-75), pBody.position);
+
+            if(!started) { renderer.render(scene, camera); return; }
+
+            // Pickups
+            for(let i=pickups.length-1; i>=0; i--) {
+                if(pPos.distanceTo(pickups[i].position) < 3) {
+                    inventory.push("CELL_"+pickups.length);
+                    scene.remove(pickups[i]); pickups.splice(i,1);
+                    if(quests[1].cur < quests[1].tar) quests[1].cur++;
+                    updateUI();
+                }
+            }
+
+            // Movement
+            const camFwd = pPos.clone().sub(camera.position).projectOnPlane(up).normalize();
+            const camRgt = new THREE.Vector3().crossVectors(up, camFwd).normalize();
+            let moveDir = new THREE.Vector3(0,0,0);
+            if(keys['KeyW']) moveDir.add(camFwd);
+            if(keys['KeyS']) moveDir.sub(camFwd);
+            if(keys['KeyA']) moveDir.add(camRgt);
+            if(keys['KeyD']) moveDir.sub(camRgt);
+
+            if(moveDir.length() > 0) {
+                moveDir.normalize();
+                camHeading.lerp(moveDir, 0.1).normalize();
+                pBody.velocity.set(moveDir.x*18, moveDir.y*18, moveDir.z*18);
+            }
+
+            // --- THE HORIZON LOCK FIX ---
+            // 1. Align Player
+            playerMesh.position.copy(pPos);
+            playerMesh.up.copy(up); // Crucial: Set local 'up' to sphere normal
+            playerMesh.lookAt(pPos.clone().add(camHeading.projectOnPlane(up).normalize()));
+
+            // 2. Camera Orientation Stability
+            // We tell the camera that "Up" is the current surface normal of the planet.
+            // This prevents the camera from rolling or flipping upside down as you cross poles.
+            camera.up.copy(up);
+
+            // 3. Camera Position (Smooth follow)
+            const targetCamPos = pPos.clone()
+                .add(camHeading.clone().multiplyScalar(-32)) // Distance behind
+                .add(up.clone().multiplyScalar(18))         // Height above
+                .add(new THREE.Vector3().crossVectors(up, camHeading).multiplyScalar(10)); // Side offset
+            
+            camera.position.lerp(targetCamPos, 0.05);
+            
+            // 4. Look Target
+            const lookAtPoint = pPos.clone().add(camHeading.clone().multiplyScalar(8));
+            camera.lookAt(lookAtPoint);
+
+            renderer.render(scene, camera);
+        }
+        loop();
+        window.onresize = () => { camera.aspect = window.innerWidth/window.innerHeight; camera.updateProjectionMatrix(); renderer.setSize(window.innerWidth, window.innerHeight); };
+    </script>
+</body>
+</html>

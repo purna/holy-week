@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messenger 3D - Stylized World Prototype</title>
+    <style>
+        body { margin: 0; overflow: hidden; background: #000; font-family: sans-serif; }
+        #ui {
+            position: absolute; top: 20px; left: 20px; color: white;
+            background: rgba(0, 0, 0, 0.7); padding: 15px; border-radius: 8px;
+            pointer-events: none; border-left: 4px solid #ff00ff;
+        }
+        .key { border: 1px solid white; padding: 2px 6px; border-radius: 4px; margin: 0 2px; font-size: 0.8em; }
+    </style>
+</head>
+<body>
+    <div id="ui">
+        <b style="color: #ff00ff;">Milestone 03 & 04: Style + World</b><br>
+        <div style="margin-top: 5px;"><span class="key">WASD</span> to walk up the Spiral Stairs</div>
+        <div style="margin-top: 10px; font-size: 0.9em; opacity: 0.8;">
+            - Character: Cel-Shaded + Outline<br>
+            - World: Curved Spiral Staircase<br>
+            - Camera: Floaty Rule-of-Thirds
+        </div>
+    </div>
+
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+                "cannon": "https://unpkg.com/cannon-es@0.20.0/dist/cannon-es.js"
+            }
+        }
+    </script>
+
+    <script type="module">
+        import * as THREE from 'three';
+        import * as CANNON from 'cannon';
+
+        // --- 1. SETUP ---
+        const scene = new THREE.Scene();
+        scene.background = new THREE.Color(0xf0f0f0);
+        const camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.1, 2000);
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(window.devicePixelRatio);
+        document.body.appendChild(renderer.domElement);
+
+        // --- 2. PHYSICS ---
+        const world = new CANNON.World();
+        world.gravity.set(0, 0, 0);
+        
+        // Physics Material for better climbing
+        const groundMat = new CANNON.Material("ground");
+        const slipperMat = new CANNON.Material("slippery");
+        const contactMat = new CANNON.ContactMaterial(groundMat, slipperMat, {
+            friction: 0.0,
+            restitution: 0.1
+        });
+        world.addContactMaterial(contactMat);
+
+        // --- 3. THE PLANET (Radius 30) ---
+        const planetRadius = 30;
+        const planetBody = new CANNON.Body({ mass: 0, shape: new CANNON.Sphere(planetRadius), material: groundMat });
+        world.addBody(planetBody);
+
+        const planetMesh = new THREE.Mesh(
+            new THREE.IcosahedronGeometry(planetRadius, 5),
+            new THREE.MeshStandardMaterial({ color: 0xdddddd, flatShading: true })
+        );
+        scene.add(planetMesh);
+
+        // --- 4. THE WORLD (Spiral Staircase) ---
+        for (let i = 0; i < 30; i++) {
+            const stepW = 6, stepH = 0.6, stepD = 3;
+            const stepGeo = new THREE.BoxGeometry(stepW, stepH, stepD);
+            const stepMat = new THREE.MeshStandardMaterial({ color: 0x555555 });
+            const stepMesh = new THREE.Mesh(stepGeo, stepMat);
+            
+            const angle = i * 0.15;
+            const height = planetRadius + (i * 0.45);
+            
+            // Spiral math
+            stepMesh.position.set(
+                Math.sin(angle) * height,
+                Math.cos(angle) * height,
+                i * 0.5 
+            );
+            
+            const up = stepMesh.position.clone().normalize();
+            stepMesh.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), up);
+            scene.add(stepMesh);
+
+            const stepBody = new CANNON.Body({
+                mass: 0,
+                shape: new CANNON.Box(new CANNON.Vec3(stepW/2, stepH/2, stepD/2)),
+                material: groundMat
+            });
+            stepBody.position.copy(stepMesh.position);
+            stepBody.quaternion.copy(stepMesh.quaternion);
+            world.addBody(stepBody);
+        }
+
+        // --- 5. THE STYLE (Toon Shader + Outline) ---
+        const toonShader = {
+            uniforms: {
+                uColor: { value: new THREE.Color(0xff4444) },
+                uLightPos: { value: new THREE.Vector3(10, 20, 10).normalize() }
+            },
+            vertexShader: `
+                varying vec3 vNormal;
+                void main() {
+                    vNormal = normalize(normalMatrix * normal);
+                    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+                }
+            `,
+            fragmentShader: `
+                varying vec3 vNormal;
+                uniform vec3 uColor;
+                uniform vec3 uLightPos;
+                void main() {
+                    float dotL = dot(vNormal, uLightPos);
+                    float cel = dotL > 0.5 ? 1.0 : (dotL > 0.1 ? 0.6 : 0.3);
+                    gl_FragColor = vec4(uColor * cel, 1.0);
+                }
+            `
+        };
+
+        const playerToonMat = new THREE.ShaderMaterial(toonShader);
+
+        // Player Group (Mesh + Outline)
+        const playerGroup = new THREE.Group();
+        const mainMesh = new THREE.Mesh(new THREE.BoxGeometry(0.8, 1.6, 0.8), playerToonMat);
+        
+        // Outline Mesh (Slightly larger, back-side rendering)
+        const outlineMat = new THREE.MeshBasicMaterial({ color: 0x000000, side: THREE.BackSide });
+        const outlineMesh = new THREE.Mesh(new THREE.BoxGeometry(0.9, 1.7, 0.9), outlineMat);
+        
+        playerGroup.add(mainMesh, outlineMesh);
+        scene.add(playerGroup);
+
+        const playerBody = new CANNON.Body({
+            mass: 1, 
+            shape: new CANNON.Box(new CANNON.Vec3(0.4, 0.8, 0.4)), 
+            fixedRotation: true,
+            material: slipperMat
+        });
+        playerBody.position.set(0, planetRadius + 3, 0);
+        world.addBody(playerBody);
+
+        // --- 6. LIGHTING & INPUTS ---
+        scene.add(new THREE.AmbientLight(0xffffff, 0.4));
+        const sun = new THREE.DirectionalLight(0xffffff, 0.8);
+        sun.position.set(10, 20, 10);
+        scene.add(sun);
+
+        const keys = {};
+        window.onkeydown = (e) => keys[e.key.toLowerCase()] = true;
+        window.onkeyup = (e) => keys[e.key.toLowerCase()] = false;
+
+        // --- 7. LOOP ---
+        const clock = new THREE.Clock();
+        const dummy = new THREE.Object3D();
+        let lastMoveDir = new THREE.Vector3(0, 0, 1);
+
+        function update() {
+            requestAnimationFrame(update);
+            world.step(1/60);
+
+            const pPos = new THREE.Vector3().copy(playerBody.position);
+            const up = pPos.clone().normalize();
+
+            playerBody.applyForce(up.clone().multiplyScalar(-30), playerBody.position);
+
+            let moveDir = new THREE.Vector3(0, 0, 0);
+            const camFwd = pPos.clone().sub(camera.position).projectOnPlane(up).normalize();
+            const camRgt = new THREE.Vector3().crossVectors(up, camFwd).normalize();
+
+            if (keys['w'] || keys['arrowup']) moveDir.add(camFwd);
+            if (keys['s'] || keys['arrowdown']) moveDir.sub(camFwd);
+            if (keys['a'] || keys['arrowleft']) moveDir.add(camRgt);
+            if (keys['d'] || keys['arrowright']) moveDir.sub(camRgt);
+
+            if (moveDir.length() > 0) {
+                moveDir.normalize();
+                lastMoveDir.copy(moveDir);
+                playerBody.velocity.set(moveDir.x * 10, moveDir.y * 10, moveDir.z * 10);
+                
+                dummy.position.copy(pPos);
+                dummy.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), up);
+                dummy.lookAt(pPos.clone().add(moveDir));
+                playerGroup.quaternion.slerp(dummy.quaternion, 0.15);
+            }
+
+            // Camera: Cinematic Rule-of-Thirds
+            const targetCamPos = pPos.clone()
+                .add(lastMoveDir.clone().multiplyScalar(-10))
+                .add(up.clone().multiplyScalar(6))
+                .add(new THREE.Vector3().crossVectors(up, lastMoveDir).normalize().multiplyScalar(5));
+
+            camera.position.lerp(targetCamPos, 0.04);
+            const lookAtPoint = pPos.clone().add(lastMoveDir.clone().multiplyScalar(5)).sub(up.clone().multiplyScalar(2));
+            camera.lookAt(lookAtPoint);
+
+            playerGroup.position.copy(playerBody.position);
+            renderer.render(scene, camera);
+        }
+        update();
+    </script>
+</body>
+</html>
