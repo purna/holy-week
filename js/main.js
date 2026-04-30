@@ -479,8 +479,10 @@ function setupUIHandlers() {
     elActionsList.addEventListener('click', (e) => {
         const actionDiv = e.target.closest('.item');
         if (!actionDiv) return;
-        const actionIndex = Array.from(actionDiv.parentNode.children).indexOf(actionDiv);
-        const action = actionMgr.getActions()[actionIndex];
+        const actions = actionMgr.getActions();
+        // Find action by comparing text content (more reliable than index)
+        const actionName = actionDiv.querySelector('span')?.textContent?.trim();
+        const action = actions.find(a => a.name === actionName);
         if (action) {
             audio.playUI('click');
             const questCompleted = actionMgr.executeAction(

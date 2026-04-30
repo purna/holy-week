@@ -52,6 +52,16 @@
     display: flex;
     align-items: center;
     gap: 8px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.item:hover {
+    background: rgba(0, 242, 255, 0.1);
+}
+
+.item:hover {
+    background: rgba(0, 242, 255, 0.1);
 }
 
 .item i,
