@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Messenger 3D - Integrated Dual UI</title>
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.4/howler.min.js"></script>
+     <style>
+/* ===== VARIABLES ===== */ 
+:root {
+    --bg-main: #010105;
+    --panel-bg: rgba(0, 10, 20, 0.88);
+    --accent-primary: #00f2ff;
+    --accent-secondary: #ffaa00;
+    --accent-success: #00ffaa;
+    --text-main: #ffffff;
+    --glow-soft: 0 0 10px rgba(0,242,255,0.3);
+    --glow-strong: 0 0 20px rgba(0,242,255,0.6);
+}
+
+/* ===== BASE ===== */
+body { margin: 0; overflow: hidden; background: var(--bg-main); font-family: 'Courier New', monospace; text-transform: uppercase; user-select: none; }
+
+/* ===== SIDEBAR & PANELS ===== */
+#right-sidebar { position: absolute; top: 0; right: 0; height: 100%; display: flex; flex-direction: column; justify-content: space-between; padding: 20px; pointer-events: none; z-index: 500; }
+#sidebar-top, #sidebar-bottom { display: flex; flex-direction: column; align-items: flex-end; gap: 10px; pointer-events: auto; }
+.sidebar-row { display: flex; gap: 8px; }
+.panel { color: var(--text-main); background: var(--panel-bg); padding: 12px; border: 1px solid var(--accent-primary); width: 200px; transform: scale(0.85); opacity: 0; pointer-events: none; transition: 0.25s; box-shadow: var(--glow-soft); }
+.panel.open { transform: scale(1); opacity: 1; pointer-events: auto; }
+.ui-toggle { width: 48px; height: 48px; background: rgba(0,10,20,0.8); border: 1px solid var(--accent-primary); color: var(--accent-primary); cursor: pointer; border-radius: 4px; display: flex; align-items: center; justify-content: center; }
+.ui-toggle.active { background: rgba(0,242,255,0.3); color: var(--accent-success); border-color: var(--accent-success); }
+
+/* ===== WHATSAPP DIALOGUE UI ===== */
+#local-dialogue-box {
+    position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
+    width: 450px; max-width: 90%; height: 450px;
+    background: rgba(10, 15, 20, 0.98); border: 1px solid var(--accent-primary);
+    display: none; flex-direction: column; z-index: 1000; border-radius: 12px; box-shadow: var(--glow-strong);
+}
+.npc-header { padding: 12px; background: rgba(0, 242, 255, 0.1); border-bottom: 1px solid rgba(0, 242, 255, 0.3); color: var(--accent-secondary); font-weight: bold; }
+#bubble-text-container { flex: 1; overflow-y: auto; padding: 15px; display: flex; flex-direction: column; gap: 10px; scroll-behavior: smooth; }
+.msg-bubble { max-width: 80%; padding: 10px 14px; border-radius: 15px; font-size: 0.9em; line-height: 1.4; text-transform: none; }
+.npc-msg { align-self: flex-start; background: #202c33; color: white; border-bottom-left-radius: 2px; }
+.player-msg { align-self: flex-end; background: #005c4b; color: white; border-bottom-right-radius: 2px; }
+#bubble-choices { padding: 12px; background: rgba(0,0,0,0.3); display: flex; flex-direction: column; gap: 8px; }
+.poll-choice { background: rgba(0, 242, 255, 0.05); border: 1px solid var(--accent-primary); color: var(--accent-primary); padding: 10px; border-radius: 20px; text-align: center; cursor: pointer; font-family: inherit; }
+.poll-choice:hover { background: var(--accent-primary); color: black; }
+
+/* Overlay & Transitions */
+.overlay { position: fixed; top:0; left:0; width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; color:white; z-index:2000; background:rgba(0,0,0,0.95); text-align:center; }
+#btn-start { background:#ffaa00; border:none; padding:15px 40px; cursor:pointer; font-weight:bold; font-size:1.2em; color: black;}
+#wipe-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #010105; z-index: 3000; pointer-events: none; transform: translateX(-100%); }
+#wipe-overlay.active { animation: wipe-in 1s ease-in-out forwards; }
+@keyframes wipe-in { 0% { transform: translateX(-100%); } 50% { transform: translateX(0); } 100% { transform: translateX(100%); } }
+.interact-prompt { position: absolute; background: var(--accent-secondary); color: black; padding: 8px 16px; font-weight: bold; border-radius: 4px; display: none; cursor: pointer; z-index: 600; }
+.item { font-size: 0.8em; margin: 5px 0; color: var(--accent-secondary); border-left: 2px solid var(--accent-secondary); padding-left: 5px; }
+     </style>
+</head>
+<body>
+    <div id="start-screen" class="overlay">
+        <h1>MESSENGER</h1>
+        <p>DELIVER THE SIGNAL</p>
+        <button id="btn-start">SYNC INTERFACE</button>
+    </div>
+
+    <div id="right-sidebar">
+        <div id="sidebar-top">
+            <div class="sidebar-row">
+                <div id="panel-quest" class="panel"><h3>MISSION</h3><div id="quest-list"></div></div>
+                <button id="btn-quest-toggle" class="ui-toggle"><i class="fas fa-list-check"></i></button>
+            </div>
+        </div>
+        <div id="sidebar-bottom">
+            <div class="sidebar-row">
+                <div id="panel-inv" class="panel"><h3>STORAGE</h3><div id="inv-list">0_CELLS</div></div>
+                <button id="btn-inv-toggle" class="ui-toggle"><i class="fas fa-boxes-stacked"></i></button>
+            </div>
+            <div class="sidebar-row">
+                <div id="panel-actions" class="panel"><h3>ACTIONS</h3><div id="actions-list"></div></div>
+                <button id="btn-actions-toggle" class="ui-toggle"><i class="fas fa-list"></i></button>
+            </div>
+            <button id="btn-sound-toggle" class="ui-toggle"><i class="fas fa-volume-up"></i></button>
+        </div>
+    </div>
+
+    <div id="npc-indicator-container"><div id="world-prompt" class="interact-prompt">CONNECT</div></div>
+
+    <div id="local-dialogue-box">
+        <div class="npc-header" id="npc-name-display">NAME_ID</div>
+        <div id="bubble-text-container"></div>
+        <div id="bubble-choices"></div>
+    </div>
+
+    <div id="wipe-overlay"></div>
+
+    <script src="https://unpkg.com/inkjs@2.2.1/dist/ink.js"></script>
+    <script type="importmap">{ "imports": { "three": "https://unpkg.com/three@0.160.0/build/three.module.js", "cannon": "https://unpkg.com/cannon-es@0.20.0/dist/cannon-es.js" } }</script>
+
+    <script type="module">
+        import * as THREE from 'three';
+        import * as CANNON from 'cannon';
+
+        // --- STATE & CONFIG ---
+        let started = false;
+        let isDialogueOpen = false;
+        let inkStory = null;
+        let npcStories = {};
+        const inventory = [];
+        const quests = [
+            { id: 'RECON', name: 'NORTH_RECON', task: 'Reach North Spire', cur: 0, tar: 1, completed: false },
+            { id: 'CELLS', name: 'CELL_RECOVERY', task: 'Collect Cells', cur: 0, tar: 3, completed: false }
+        ];
+        const quests = [
+            { id: 'RECON', name: 'NORTH_RECON', task: 'Reach North Spire', cur: 0, tar: 1, completed: false },
+            { id: 'CELLS', name: 'CELL_RECOVERY', task: 'Collect Cells', cur: 0, tar: 3, completed: false }
+        ];
+
+        const npcs = [
+            { id: 1, name: "UNIT-01 ECHO", color: 0x00f2ff, pos: [0.1, 0.1], storyFile: './assets/dialogue/NPC_UNIT_ECHO_1.json', hasDialogue: true },
+            { id: 2, name: "UNIT-02 HORIZON", color: 0xffaa00, pos: [0.6, 2.2], storyFile: './assets/dialogue/NPC_UNIT_ECHO_2.json', hasDialogue: true }
+        ];
+
+        // --- 3D ENVIRONMENT ---
+        const scene = new THREE.Scene();
+        scene.background = new THREE.Color(0x020205);
+        const camera = new THREE.PerspectiveCamera(65, window.innerWidth/window.innerHeight, 0.1, 5000);
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+
+        scene.add(new THREE.AmbientLight(0xffffff, 0.5));
+        const sun = new THREE.DirectionalLight(0xffffff, 1.5);
+        sun.position.set(100, 200, 100);
+        scene.add(sun);
+
+        const world = new CANNON.World();
+        const planetR = 50;
+        const planet = new THREE.Mesh(new THREE.IcosahedronGeometry(planetR, 5), new THREE.MeshStandardMaterial({ color: 0x1a251a }));
+        scene.add(planet);
+        world.addBody(new CANNON.Body({ mass: 0, shape: new CANNON.Sphere(planetR) }));
+
+        const pBody = new CANNON.Body({ mass: 1, shape: new CANNON.Box(new CANNON.Vec3(0.5, 1, 0.5)), fixedRotation: true, linearDamping: 0.9 });
+        pBody.position.set(0, planetR + 10, 0);
+        world.addBody(pBody);
+        
+        const playerMesh = new THREE.Group();
+        const pVis = new THREE.Mesh(new THREE.BoxGeometry(1.2, 2, 1.2), new THREE.MeshStandardMaterial({ color: 0xff3333 }));
+        playerMesh.add(pVis);
+        scene.add(playerMesh);
+
+        const npcMeshes = npcs.map(n => {
+            const grp = new THREE.Group();
+            const m = new THREE.Mesh(new THREE.CapsuleGeometry(1, 2), new THREE.MeshStandardMaterial({ color: n.color }));
+            m.position.y = 1.5;
+            grp.add(m);
+            const p = new THREE.Vector3().setFromSphericalCoords(planetR, n.pos[0]*Math.PI, n.pos[1]*Math.PI*2);
+            grp.position.copy(p);
+            grp.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0), p.clone().normalize());
+            scene.add(grp);
+            return { mesh: grp, bodyMesh: m, data: n };
+        });
+
+        // --- DIALOGUE & UI LOGIC ---
+        const appendMessage = (text, type = 'npc') => {
+            const container = document.getElementById('bubble-text-container');
+            const msg = document.createElement('div');
+            msg.className = `msg-bubble ${type}-msg`;
+            msg.innerText = text;
+            container.appendChild(msg);
+            container.scrollTop = container.scrollHeight;
+        };
+
+        const continueStory = () => {
+            const choiceEl = document.getElementById('bubble-choices');
+            choiceEl.innerHTML = "";
+            let txt = "";
+            while(inkStory.canContinue) txt += inkStory.Continue();
+            if(txt.trim()) appendMessage(txt.trim(), 'npc');
+
+            inkStory.currentChoices.forEach(c => {
+                const b = document.createElement('button');
+                b.className = "poll-choice";
+                b.innerText = c.text;
+                b.onclick = () => {
+                    appendMessage(c.text, 'player');
+                    inkStory.ChooseChoiceIndex(c.index);
+                    setTimeout(continueStory, 400);
+                };
+                choiceEl.appendChild(b);
+            });
+
+            if(inkStory.currentChoices.length === 0 && !inkStory.canContinue) {
+                const b = document.createElement('button');
+                b.className = "poll-choice";
+                b.innerText = "[DISCONNECT]";
+                b.onclick = () => {
+                    document.getElementById('local-dialogue-box').style.display = 'none';
+                    document.getElementById('bubble-text-container').innerHTML = "";
+                    isDialogueOpen = false;
+                    pBody.wakeUp();
+                };
+                choiceEl.appendChild(b);
+            }
+        };
+
+        const keys = {};
+        let camHeading = new THREE.Vector3(0, 0, 1);
+        window.addEventListener('keydown', e => keys[e.code] = true);
+        window.addEventListener('keyup', e => keys[e.code] = false);
+
+        document.getElementById('btn-start').onclick = () => {
+            document.getElementById('wipe-overlay').classList.add('active');
+            setTimeout(() => { document.getElementById('start-screen').style.display = 'none'; started = true; updateUI(); }, 500);
+        };
+
+        const updateUI = () => {
+            document.getElementById('inv-list').innerHTML = inventory.length ? inventory.join('') : "0_CELLS";
+            document.getElementById('actions-list').innerHTML = actions.map(a => `<div class="item"><i class="${a.icon}"></i> ${a.name}</div>`).join('');
+            document.getElementById('quest-list').innerHTML = quests.map(q => `<div>${q.name}: ${q.cur}/${q.tar}</div>`).join('');
+        };
+
+        // --- WORLD LOOP ---
+        let activeNpc = null;
+        function loop() {
+            requestAnimationFrame(loop);
+            if(!started) return;
+
+            world.step(1/60);
+            const pPos = new THREE.Vector3().copy(pBody.position);
+            const up = pPos.clone().normalize();
+            pBody.applyForce(up.clone().multiplyScalar(-75), pBody.position); // Advanced gravity force[cite: 3]
+
+            // NPC interaction check[cite: 3]
+            activeNpc = null;
+            npcMeshes.forEach(n => {
+                n.bodyMesh.position.y = 1.5 + Math.sin(Date.now() * 0.002) * 0.2;
+                if(pPos.distanceTo(n.mesh.position) < 8) activeNpc = n;
+            });
+
+            const prompt = document.getElementById('world-prompt');
+            if(activeNpc && !isDialogueOpen) {
+                prompt.style.display = 'block';
+                const sPos = activeNpc.mesh.position.clone().add(up.clone().multiplyScalar(5)).project(camera);
+                prompt.style.left = (sPos.x * 0.5 + 0.5) * window.innerWidth + 'px';
+                prompt.style.top = (sPos.y * -0.5 + 0.5) * window.innerHeight + 'px';
+            } else { prompt.style.display = 'none'; }
+
+            // Restored Advanced Movement Logic[cite: 3]
+            let moveDir = new THREE.Vector3(0,0,0);
+            if(!isDialogueOpen) {
+                const camFwd = pPos.clone().sub(camera.position).projectOnPlane(up).normalize();
+                const camRgt = new THREE.Vector3().crossVectors(up, camFwd).normalize();
+                if(keys['KeyW']) moveDir.add(camFwd);
+                if(keys['KeyS']) moveDir.sub(camFwd);
+                if(keys['KeyA']) moveDir.add(camRgt);
+                if(keys['KeyD']) moveDir.sub(camRgt);
+
+                if(moveDir.length() > 0) {
+                    moveDir.normalize();
+                    camHeading.lerp(moveDir, 0.1).normalize();
+                    pBody.velocity.set(moveDir.x*18, moveDir.y*18, moveDir.z*18);
+                }
+            } else { pBody.velocity.set(0,0,0); }
+
+            playerMesh.position.copy(pPos);
+            playerMesh.up.copy(up);
+            playerMesh.lookAt(pPos.clone().add(camHeading.projectOnPlane(up).normalize()));
+
+            // Restored Advanced Camera Follow Logic[cite: 3]
+            camera.up.copy(up);
+            const targetCamPos = pPos.clone()
+                .add(camHeading.clone().multiplyScalar(-30))
+                .add(up.clone().multiplyScalar(16))
+                .add(new THREE.Vector3().crossVectors(up, camHeading).multiplyScalar(8));
+            camera.position.lerp(targetCamPos, 0.05);
+            camera.lookAt(pPos.clone().add(camHeading.clone().multiplyScalar(5)));
+
+            renderer.render(scene, camera);
+        }
+        loop();
+
+        // Dialogue Start
+        document.getElementById('world-prompt').onclick = () => {
+            const inkLib = window.inkjs || window.ink;
+
+             const mock = {
+                    "inkVersion": 21,
+                    "root": [
+                        [
+                            "^Hello traveler. I am the system's ECHO.", "\n",
+                            "^The signal is weak here. Can you hear me?", "\n",
+                            [
+                                "ev", {"^->": "0.c-0"}, "str", "^I hear you clearly.", "/str", "/ev", {"*": ".^.c-0", "flg": 20},
+                                "ev", {"^->": "0.c-1"}, "str", "^Everything is static.", "/str", "/ev", {"*": ".^.c-1", "flg": 20},
+                                {
+                                    "c-0": ["^Excellent. Proceed to the North Spire.", "\n", "end", {"#f": 5}],
+                                    "c-1": ["^Then we must recalibrate your interface.", "\n", "end", {"#f": 5}],
+                                    "#f": 5
+                                }
+                            ],
+                            "done", {"#f": 5}
+                        ],
+                        "done", {"#f": 5}
+                    ],
+                    "listDefs": {}
+                };
+
+
+            inkStory = new inkLib.Story(mock);
+            pBody.sleep();
+            isDialogueOpen = true;
+            document.getElementById('npc-name-display').innerText = activeNpc.data.name;
+            document.getElementById('local-dialogue-box').style.display = 'flex';
+            continueStory();
+        };
+
+        // Panel Toggles
+        document.getElementById('btn-quest-toggle').onclick = () => document.getElementById('panel-quest').classList.toggle('open');
+        document.getElementById('btn-inv-toggle').onclick = () => document.getElementById('panel-inv').classList.toggle('open');
+        document.getElementById('btn-actions-toggle').onclick = () => document.getElementById('panel-actions').classList.toggle('open');
+    </script>
+</body>
+</html>

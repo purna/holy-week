@@ -71,20 +71,27 @@ This file centralizes all major settings for the 3D world application.
 - `easing`: Easing function
 
 ### 10. Typewriter Effect (`js/typewriter.js`)
-The typewriter effect gradually reveals text character-by-character for a more immersive dialogue experience.
+
+The typewriter effect gradually reveals text character-by-character for immersive UI text display.
+
+**Primary Use: Location Panel**
+- The typewriter effect is applied to the **location name display** (`#loc-name`) when the player enters a named location zone
+- The location text types out letter-by-letter when first detected
+- The effect can be skipped by pressing any key or clicking
+- Once completed, the full location name remains visible
 
 **Features:**
 - Gradual character-by-character text reveal
 - Adjustable typing speed and delay
-- Blinking cursor effect
-- Support for looping text
-- Click/tap to skip typewriter and show full text
+- Blinking cursor effect during typing
+- Click/tap or keypress to skip to full text
 - Automatic initialization via `data-typewriter` attribute
+- Resets and replays when entering a new location
 
 **Usage in HTML:**
 ```html
-<div data-typewriter data-typewriter-speed="30" data-typewriter-delay="100">
-  This text will type out gradually...
+<div id="loc-name" data-typewriter data-typewriter-speed="40" data-typewriter-delay="0">
+  NORTH_SPIRE
 </div>
 ```
 
@@ -92,13 +99,13 @@ The typewriter effect gradually reveals text character-by-character for a more i
 ```javascript
 import { Typewriter } from './js/typewriter.js';
 
-const element = document.getElementById('my-text');
+const element = document.getElementById('loc-name');
 const writer = new Typewriter(element, {
-  speed: 30,        // ms per character
-  delay: 100,       // ms before starting
+  speed: 40,        // ms per character
+  delay: 0,         // ms before starting
   loop: false,      // repeat after completion
   cursor: true,     // show blinking cursor
-  onComplete: () => console.log('Done!')
+  onComplete: () => console.log('Location revealed!')
 });
 
 writer.start();      // Begin typewriter effect
@@ -107,55 +114,20 @@ writer.stop();       // Pause the effect
 writer.reset();      // Reset to beginning
 ```
 
-**Ink Dialogue Integration:**
-The typewriter is automatically applied to Ink dialogue text. Players can click the "Skip" button or press any key to instantly reveal all text.
+**Location Integration:**
+The typewriter effect is triggered by the `LocationSystem`:
+1. Player enters a location trigger zone
+2. Location name is set on `#loc-name` element
+3. Typewriter effect auto-starts (if `data-typewriter` attribute present)
+4. Text types out over ~1–2 seconds
+5. Cursor blinks until completion or user skip
 
 **CSS Classes:**
 - `.typewriter-text` - Applied to elements with typewriter effect
 - `.typewriter-cursor` - Blinking cursor animation
-- `.typewriter-skip` - Skip button styling
+- `.typewriter-skip` - Skip button styling (if used)
 
-### 11. Chat-Style Dialogue System (`js/ink-dialogue.js`)
-
-The Ink dialogue system has been enhanced with a WhatsApp-style chat interface. Messages appear as conversation bubbles with timestamps, choices appear as selectable poll cards, and the interface feels like a modern messaging app.
-
-**Features:**
-- WhatsApp-style message bubbles with rounded corners
-- Sent messages (player/system) in green, received messages (NPC) in white
-- Timestamps on each message (HH:MM format)
-- Choices displayed as poll cards with selection animation
-- Typing indicator in header during NPC speech
-- Avatar with NPC initial or custom portrait
-- Smooth slide-in animations
-- Auto-scroll to newest message
-- Responsive design (max 500px width, 60vh height)
-
-**UI Components:**
-
-**Chat Header:**
-- NPC avatar circle (with initial letter or custom image)
-- NPC name and status below
-- Typing indicator dots (...)
-- Close button (×)
-
-**Message Area:**
-- Chat background with subtle dot pattern
-- Messages stacked vertically with gap
-- Sent messages: green bubble, right-aligned, rounded bottom-left
-- Received messages: white bubble, left-aligned, rounded bottom-right
-- System messages: blue-tinted italic text
-
-**Choice Cards:**
-- Displayed as selectable poll cards
-- Hover: light background, border color change, slight right shift
-- Selected: green checkmark, green border, light green background
-- Smooth transitions on all interactions
-
-**Header States:**
-- Idle: Shows NPC name and status
-- Typing: Shows animated dots in header
-
-**Implementation:**
+**Note:** The typewriter effect is **not** used for Ink dialogue text. Dialogue uses its own `continueStory()` flow with optional filler messages and immediate choice display.
 
 The chat system is built into `js/ink-dialogue.js` with:
 
@@ -487,19 +459,315 @@ my-3d-world/
 - **Three.js**: 3D rendering and scene graph
 - **Cannon.js**: Physics simulation
 
-### 22. Implementation Priority
+### 22. Day/Night Cycle & VFX System (`js/vfx.js`, `day_night_example.html`)
 
-1. **Phase 1**: Update config.js with actions, npcs, pathfinding, colliders, locations
-2. **Phase 2**: Modularize core JS files (scene, player, world, NPC, actions)
-3. **Phase 3**: Implement GLB player model with toon shading
-4. **Phase 4**: Add typewriter.js for dialogue text effects
-5. **Phase 5**: Add actions.js with cooldown and UI system
-6. **Phase 6**: Add pathfinding.js for NPC navigation
-7. **Phase 7**: Add collider.js for collision/trigger system
-8. **Phase 8**: Implement NPC quest and dialogue system
-9. **Phase 9**: Implement inventory system
-10. **Phase 10**: Implement location detection system
-11. **Phase 11**: Create actions.css for floating animations
-12. **Phase 12**: Test quest completion workflows
-13. **Phase 13**: Optimize and balance gameplay
+The day/night system provides dynamic lighting, sky/fog color transitions, and visual effects that react to time of day and player actions.
+
+**Features:**
+- Automatic or manual day/night cycle
+- Dynamic sky color transitions (day: sky blue, night: deep space black)
+- Fog color matches sky for atmospheric consistency
+- Sun and moon celestial bodies with orbital motion
+- Lighting intensity changes based on time of day
+- Player trail particles (color varies by day/night)
+- Landing decals on ground impact (SVG-based, color-inverted at night)
+- Jump impulse with grounded state tracking
+- Manual toggle button (sun/moon icon) to switch day/night
+
+**Configuration:**
+
+**Day/Night Timing:**
+- `isDayMode`: Boolean flag (true = day, false = night)
+- `timeProgress`: Float 0–1 representing orbital position (0.25 = day peak, 0.75 = night peak)
+- `autoCycle`: Boolean to enable automatic time progression (default: true)
+
+**Celestial Bodies:**
+- `sunSphere`: Visible sphere mesh during daytime
+- `moonLight`: Directional light active at night (blue tint)
+- `sunLight`: Directional light active during day (white, casts shadows)
+- Light positions orbit based on `timeProgress` using sine/cosine
+
+**Lighting:**
+- `ambientLight`: Base scene light (intensity varies 0.6 day / 0.2 night)
+- `hemiLight`: Hemisphere light (sky/ground gradient, disabled at night)
+- `playerMat.emissive`: Player mesh glow (black by day, red glow at night)
+- `torch` (PointLight): Player-mounted light (off by day, 600 intensity at night)
+
+**Trail System:**
+- Spawns small spheres behind player during movement
+- Trail color: brownish (`0x966F33`) during day, cyan (`0x00f2ff`) at night
+- Trail particles fade out and shrink over time
+- Triggered when player velocity exceeds threshold
+
+**Landing Decals (Jump Splat):**
+- SVG texture loaded from `assets/gfx/dirt.svg`
+- Raycast downward from player position to find exact ground hit point
+- Decal aligns with surface normal using `DecalGeometry`
+- Decal size: 4×4×4 world units
+- Fades out over 1.5 seconds
+- Color inversion: black in day mode, white in night mode for visibility
+- Only spawns when player transitions from air to ground (`isGrounded && !wasGrounded`)
+
+**Player Movement & Jump:**
+- Gravity: constant downward force toward planet center (`-75` units/s²)
+- Ground detection: `pPos.length() < planetR + 1.6`
+- Jump impulse: 12 units applied radially outward from planet center
+- Jump cooldown: `canJump` flag resets only when grounded
+- Movement controlled by WASD keys relative to camera heading
+- Camera follows player with offset based on heading and up vector
+
+**Controls:**
+- **WASD**: Move player (relative to camera direction)
+- **Spacebar**: Jump (only when grounded)
+- **C key**: Toggle auto-cycle on/off
+- **Sun/Moon button**: Manual day/night toggle (sets `timeProgress` to 0.25 or 0.75)
+
+**Visual Effects (VFX) Class Structure:**
+```javascript
+class VFXSystem {
+  constructor(scene, planetMesh, planetR) { ... }
+  setNightMode(isNight)           // Updates internal night flag
+  getDecalMaterial()              // Returns cloned material with correct color tint
+  emitLandingDecal(pos, up)       // Spawns decal at ground impact point
+  updateDecals(dt)                // Updates/fades decals each frame
+}
+```
+
+**Implementation Notes:**
+- Decals use `polygonOffset` to avoid z-fighting with planet surface
+- TextureLoader is asynchronous; decals wait for SVG load before spawning
+- Night mode color achieved by setting material `color` property to white (tints bright) vs black (original SVG colors show through)
+- `DecalGeometry` requires importing from Three.js addons: `import { DecalGeometry } from 'three/addons/geometries/DecalGeometry.js'`
+
+**Asset Requirements:**
+- `assets/gfx/dirt.svg` — Landing pad decal texture (black shapes on transparent background)
+- Must be served over HTTP (SVG textures blocked by CORS on file://)
+
+**Performance:**
+- Decals are automatically disposed after 1.5s lifetime
+- Particle system uses object pooling for trail spheres
+- VFX updates called once per frame in main loop
+
+### 23. Shadows & Render Quality
+
+Three.js shadow system configuration:
+
+**Shadow Map Settings:**
+- `renderer.shadowMap.enabled = true`
+- `renderer.shadowMap.type = THREE.VSMShadowMap` (Variance Shadow Maps for soft edges)
+- `shadow.mapSize.set(2048, 2048)` — High-resolution shadow maps
+- `shadow.bias = -0.0005` — Prevents shadow acne artifacts
+- `shadow.radius = 6` — Softens shadow edges (VSM only)
+
+**Shadow-Casting Lights:**
+- `sunLight` (Directional): Casts sharp daytime shadows, intensity 3.5
+- `moonLight` (Directional): Casts soft blue-tinted night shadows, intensity 1.2
+
+**Shadow-Receiving Objects:**
+- `planet.receiveShadow = true` — Ground receives shadows
+- `buildings[i].receiveShadow = true` — Structures receive shadows
+- `playerMesh.children[0].receiveShadow = true` — Player receives shadows
+- `NPC body meshes` — Receive shadows from sun/moon
+
+**Optimization Tips:**
+- Keep shadow camera bounds tight (frustum) to reduce map area
+- Lower map size (1024) for mobile/performance
+- Disable shadows on small decorative objects
+- Use `castShadow = false` for particles and trails
+
+### 23. WhatsApp-Style Dialogue System (`js/ink-dialogue.js`, `whatsapp2.html`)
+
+The dialogue system presents Ink-powered conversations in a modern WhatsApp/chat interface. Centered on screen, it displays message bubbles with NPC and player messages, interactive poll-style choices, and smooth animations.
+
+**Features:**
+- WhatsApp-like chat bubbles (NPC left-aligned, player right-aligned)
+- Cyclamic scrolling with custom scrollbar styling
+- Poll-choice buttons for player decisions
+- Disconnect/close connection option at conversation end
+- Auto-scroll to newest message
+- Filler messages during "typing" simulation (optional)
+- Background blur overlay while dialogue active
+- Player movement disabled during conversation
+
+**Dialogue Flow:**
+1. Player approaches NPC within interaction radius (8 units)
+2. "CONNECT" prompt appears above NPC (positioned in 3D space)
+3. Player clicks "CONNECT" (or presses E key in some variants)
+4. Dialogue box fades in (centered)
+5. NPC name displayed in header (teal/orange colored)
+6. Story begins: `inkStory.Continue()` outputs initial text
+7. Text appears as NPC message bubble with optional filler lines
+8. Choices render as poll cards if available
+9. Player selects choice → message sent → next story segment
+10. Loop until story reaches `END` or no choices remain
+11. "[DISCONNECT]" button closes the dialogue
+
+**Ink JSON Integration:**
+The system loads Ink story files via `fetch()` at startup:
+```javascript
+const npcs = [
+  { id: 1, name: "UNIT-01 ECHO", storyFile: './assets/dialogue/NPC_UNIT_ECHO_1.json', hasDialogue: true }
+];
+
+async function loadAllStories() {
+  for (const npc of npcs) {
+    const response = await fetch(npc.storyFile);
+    npcStories[npc.id] = await response.json();
+  }
+}
+```
+Each story JSON must follow the Ink glue format with `inkVersion`, `root` array, and optional `listDefs`. Example minimal structure:
+```json
+{
+  "inkVersion": 21,
+  "root": [
+    "^Hello traveler.", "\n",
+    "?^(choice1) Yes, I'll help.", "?^(choice2) Not now."
+  ]
+}
+```
+
+**Dialogue API:**
+```javascript
+// Start dialogue with loaded story
+function startDialogue(npc) {
+  const inkLib = window.inkjs || window.ink;
+  inkStory = new inkLib.Story(npcStories[npc.id]);
+  pBody.sleep();                          // Freeze player physics
+  isDialogueOpen = true;
+  document.getElementById('npc-name-display').innerText = npc.data.name;
+  document.getElementById('local-dialogue-box').style.display = 'flex';
+  continueStory();                        // Begin Ink flow
+}
+
+// Continue to next story segment
+function continueStory() {
+  let txt = "";
+  while(inkStory.canContinue) txt += inkStory.Continue();  // Accumulate text
+  
+  if(txt.trim()) {
+    appendMessage(txt.trim(), 'npc');      // Show NPC message
+    // Optional: add filler lines for extended dialogue
+    setTimeout(continueStory, 400);        // Delay before choices appear
+  }
+
+  // Render choices
+  inkStory.currentChoices.forEach(c => {
+    const btn = document.createElement('button');
+    btn.className = "poll-choice";
+    btn.innerText = c.text;
+    btn.onclick = () => {
+      appendMessage(c.text, 'player');
+      inkStory.ChooseChoiceIndex(c.index);
+      continueStory();                    // Continue after selection
+    };
+    choiceEl.appendChild(btn);
+  });
+
+  // No choices and story ended → show disconnect
+  if(inkStory.currentChoices.length === 0 && !inkStory.canContinue) {
+    const close = document.createElement('button');
+    close.className = "poll-choice";
+    close.innerText = "[DISCONNECT]";
+    close.onclick = closeDialogue;
+    choiceEl.appendChild(close);
+  }
+}
+```
+
+**Visual Design:**
+- **NPC messages**: Dark teal/blue bubble (`rgba(32,44,51,0.95)`), left-aligned, cyan border accent
+- **Player messages**: Green teal bubble (`rgba(0,92,75,0.95)`), right-aligned, green border accent
+- **Choice buttons**: Semi-transparent panel background, cyan border, hover glow effect
+- **Header**: Rounded pill shape with NPC name in orange (`--accent-secondary`)
+- **Background**: Transparent overlay (3D world visible behind)
+- **Font**: Monospace uppercase (consistent with UI theme)
+
+**CSS Classes:**
+- `#local-dialogue-box` — Main container (centered, flex column)
+- `.npc-header` — NPC name pill
+- `#bubble-text-container` — Scrollable message area
+- `.msg-bubble` — Base message bubble
+- `.npc-msg` / `.player-msg` — Message alignment variants
+- `#bubble-choices` — Choice button container
+- `.poll-choice` — Individual choice button
+
+**Controls & Interaction:**
+- **Click on CONNECT prompt**: Starts dialogue
+- **Click choice button**: Selects dialogue option
+- **Click [DISCONNECT]**: Closes dialogue, wakes player body
+- **Movement keys (WASD)**: Disabled while dialogue open
+- **Escape key**: Not bound (could be added to close)
+
+**Technical Notes:**
+- Dialogue box uses `position: fixed` centered via `transform: translate(-50%, -50%)`
+- `pointer-events: none` on container, `auto` on interactive children
+- `z-index: 1000` ensures dialogue above 3D canvas
+- Ink.js loaded via CDN: `https://unpkg.com/inkjs@2.2.1/dist/ink.js`
+- `pBody.sleep()` pauses physics; `pBody.wakeUp()` resumes on close
+- Message container auto-scrolls to bottom after each append
+
+**Differences from test1.html Dialogue:**
+- Centered modal vs. bottom-aligned WhatsApp-style panel
+- Simpler message bubble styling (no timestamp avatars)
+- No typing indicator (instant text + optional filler messages)
+- No inline save/load or quest integration in header
+- Focused purely on conversation flow without extra UI chrome
+
+**Asset Requirements:**
+- `assets/dialogue/NPC_*.json` — Ink story files for each NPC
+- Font Awesome icons (CDN loaded)
+- ink.js runtime (CDN loaded)
+
+**Accessibility Considerations:**
+- Buttons use semantic `<button>` elements
+- Focus styles could be enhanced for keyboard navigation
+- High contrast text on dark backgrounds
+- Scalable UI (max-width: 90% for smaller screens)
+
+**Mobile Touch Support:**
+- Touch-friendly choice buttons (min 44px height via padding)
+- Prompt positioned near NPC in screen space
+- Dialogue dismisses on disconnect tap
+
+
+### 24. Skybox & Fog
+
+**Day Mode:**
+- Sky color: `0x87CEEB` (light blue)
+- Fog color: `0x87CEEB` (matches sky)
+- Fog density: `0.002` (FogExp2)
+
+**Night Mode:**
+- Sky color: `0x020205` (deep space black)
+- Fog color: `0x020205` (matches sky)
+- Fog density: unchanged (0.002)
+
+**Transition:**
+- Colors lerp over time (factor 0.02 per frame) when toggling
+- `scene.background` and `scene.fog.color` both animate
+- Instant snap possible via `updateCelestial(true)`
+
+### 25. Implementation Roadmap (Current)
+
+**Completed:**
+1. ✅ Day/night cycle with celestial orbits
+2. ✅ VFX system: landing decals (SVG), trail particles, color inversion
+3. ✅ Jump mechanics with grounded state & impulse physics
+4. ✅ Auto-cycle toggle (C key) and manual button
+5. ✅ Shadows (VSM) with sun/moon lighting
+6. ✅ Atmospheric sky/fog transitions
+7. ✅ WhatsApp-style Ink dialogue system with poll choices
+8. ✅ Mission/storage/actions panels with toggle buttons
+9. ✅ WASD camera-relative movement on spherical terrain
+10. ✅ Wipe transition start screen
+
+**Next Phases:**
+11. ⬜ Full Ink story loading from JSON files for all NPCs
+12. ⬜ Quest progression tied to dialogue choices
+13. ⬜ Inventory item collection and display
+14. ⬜ Audio integration (ambiance, UI sounds, NPC voices)
+15. ⬜ Mobile touch controls
+16. ⬜ Save/load game state
+17. ⬜ Optimize particle counts and shadow cascades
 
