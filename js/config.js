@@ -192,10 +192,10 @@ export const SOUND = {
 };
 
 export const npcs = [
-    { id: 1, name: "UNIT-01 ECHO", color: COLORS.cyan, pos: [0.1, 0.1], storyFile: baseNPCPath + 'NPC_UNIT_ECHO_1.json', hasDialogue: true },
-    { id: 2, name: "UNIT-02 HORIZON", color: COLORS.green, pos: [0.6, 2.2], storyFile: baseNPCPath + 'NPC_UNIT_ECHO_2.json', hasDialogue: false },
+    { id: 1, name: "UNIT-01 ECHO", color: COLORS.cyan, pos: [0.1, 0.1], storyFile: baseNPCPath + 'NPC_UNIT_ECHO_1.json', hasDialogue: true, bubbleMsg: ". . ." },
+    { id: 2, name: "UNIT-02 HORIZON", color: COLORS.green, pos: [0.6, 2.2], storyFile: baseNPCPath + 'NPC_UNIT_ECHO_2.json', hasDialogue: false, questId: 3, bubbleMsg: "please heal me", bubbleMsgComplete: "Thank you, I'm restored." }, // VISIT quest is at index 3
     { id: 3, name: "SPIRE_MINOR", color: COLORS.orange, pos: [1.2, 0.3], hasDialogue: false, bubbleMsg: "The Spire awaits..." },
-    { id: 4, name: "DATA_KEEPER", color: COLORS.purple, pos: [0.8, 1.0], storyFile: baseNPCPath + 'NPC_DATA_KEEPER.json', hasDialogue: true, questId: 1 }
+    { id: 4, name: "DATA_KEEPER", color: COLORS.purple, pos: [0.8, 1.0], storyFile: baseNPCPath + 'NPC_DATA_KEEPER.json', hasDialogue: true, questId: 1, bubbleMsg: ". . ." } // CELLS quest at index 1
 ];
 
 export const locations = [
@@ -207,7 +207,35 @@ export const quests = [
     { id: 'RECON', name: 'NORTH_RECON', task: 'Reach the North Spire', cur: 0, tar: 1, completed: false },
     { id: 'CELLS', name: 'CELL_RECOVERY', task: 'Collect Data Cells', cur: 0, tar: 3, completed: false },
     { id: 'SHARDS', name: 'SIGNAL_FRAGMENTS', task: 'Collect Purple Shards', cur: 0, tar: 3, completed: false },
-    { id: 'VISIT', name: 'VISIT_HORIZON', task: 'Contact UNIT-02 HORIZON', cur: 0, tar: 1, completed: false }
+    { id: 'VISIT', name: 'VISIT_HORIZON', task: 'Contact UNIT-02 HORIZON - Heal Med Kit', cur: 0, tar: 1, completed: false }
+];
+
+export const collectables = [
+    {
+        id: 1,
+        name: "Data Cell",
+        key: "pickupCell",
+        prefix: "CELL",
+        count: 4,
+        color: 0xffaa00,
+        questIndex: 1,
+        model: 'pickupCell',
+        primitive: { type: "sphere", radius: 1 },
+        material: "toon"
+    },
+    {
+        id: 2,
+        name: "Signal Shard",
+        key: "pickupShard",
+        prefix: "SHARD",
+        count: 4,
+        color: 0xa020f0,
+        emissive: 0x4a0080,
+        questIndex: 2,
+        model: 'pickupShard',
+        primitive: { type: "octahedron", radius: 0.9 },
+        material: "standard"
+    }
 ];
 
 export const actions = [

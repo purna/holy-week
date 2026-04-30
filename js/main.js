@@ -591,18 +591,21 @@ function gameLoop() {
         updateUI();
     });
 
-    // Non-dialogue NPC bubble
-    const nonDialogueNpc = npcSystem.getClosestNonDialogueNPC(pPos);
-    if (nonDialogueNpc) {
-        const sPos = nonDialogueNpc.mesh.position.clone().add(up.clone().multiplyScalar(4)).project(sceneMgr.camera);
-        elNpcBubble.style.left = (sPos.x * 0.5 + 0.5) * window.innerWidth + 'px';
-        elNpcBubble.style.top = (sPos.y * -0.5 + 0.5) * window.innerHeight + 'px';
-        const txt = nonDialogueNpc.data.bubbleMsg || nonDialogueNpc.data.name.replace('_', ' ');
-        elNpcBubble.innerHTML = `<b>${txt}</b>`;
-        elNpcBubble.style.display = 'block';
-    } else {
-        elNpcBubble.style.display = 'none';
-    }
+     // Non-dialogue NPC bubble
+     const nonDialogueNpc = npcSystem.getClosestNonDialogueNPC(pPos);
+     if (nonDialogueNpc) {
+         const sPos = nonDialogueNpc.mesh.position.clone().add(up.clone().multiplyScalar(4)).project(sceneMgr.camera);
+         elNpcBubble.style.left = (sPos.x * 0.5 + 0.5) * window.innerWidth + 'px';
+         elNpcBubble.style.top = (sPos.y * -0.5 + 0.5) * window.innerHeight + 'px';
+         let txt = nonDialogueNpc.data.bubbleMsg || nonDialogueNpc.data.name.replace('_', ' ');
+         if (nonDialogueNpc.data.questId !== undefined && quests[nonDialogueNpc.data.questId].completed) {
+             txt = nonDialogueNpc.data.bubbleMsgComplete || txt;
+         }
+         elNpcBubble.innerHTML = `<b>${txt}</b>`;
+         elNpcBubble.style.display = 'block';
+     } else {
+         elNpcBubble.style.display = 'none';
+     }
 
      // Movement (head-based pivot)
      let moveDir = new THREE.Vector3(0, 0, 0);
