@@ -36,20 +36,24 @@ export class ActionManager {
             }
         }
 
-        if (!questCompleted) {
-            this.performActionLogic(action);
-        }
+     if (!questCompleted) {
+         this.performActionLogic(action);
+     }
 
-        updateUI();
+     // Decrement uses before UI update so the display is accurate
+     if (action.uses !== undefined && action.uses > 0) {
+         action.uses--;
+         if (action.uses === 0) {
+             const index = this.actions.indexOf(action);
+             if (index > -1) {
+                 this.actions.splice(index, 1);
+             }
+         }
+     }
 
-        if (action.consumable) {
-            const index = this.actions.indexOf(action);
-            if (index > -1) {
-                this.actions.splice(index, 1);
-            }
-        }
+     updateUI();
 
-        return questCompleted;
+     return questCompleted;
     }
 
     performActionLogic(action) {

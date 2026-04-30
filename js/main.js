@@ -26,6 +26,8 @@ let visitedNpcs = new Set();
 let lastNearNpcId = null;
 let mouseTarget = null;
 let activeLoc = null;
+let locTimeout = null;
+let locCooldownUntil = 0;
 let locNameTypewriter = null;
 const keys = {};
 
@@ -150,19 +152,29 @@ function updateUI() {
         }
     }).join('') : "0_CELLS";
 
-    // Actions list (uses configured icons from actionMgr)
-    const actions = actionMgr.getActions();
-    elActionsList.innerHTML = actions.length ?
-        actions.map(a => {
-            const iconEl = iconMgr.createIconElement(a.iconType || a.icon, { size: '1.2em' });
-            const div = document.createElement('div');
-            div.className = 'item';
-            div.appendChild(iconEl);
-            const span = document.createElement('span');
-            span.textContent = a.name;
-            div.appendChild(span);
-            return div.outerHTML;
-        }).join('') : "NO_ACTIONS";
+     // Actions list (uses configured icons from actionMgr)
+     const actions = actionMgr.getActions();
+     elActionsList.innerHTML = actions.length ?
+         actions.map(a => {
+             const iconEl = iconMgr.createIconElement(a.iconType || a.icon, { size: '1.2em' });
+             const div = document.createElement('div');
+             div.className = 'item';
+             div.appendChild(iconEl);
+             const span = document.createElement('span');
+             span.textContent = a.name;
+             div.appendChild(span);
+             if (a.uses !== undefined) {
+                 const usesEl = document.createElement('small');
+                 usesEl.style.marginLeft = '0.5em';
+                 if (a.uses === -1) {
+                     usesEl.textContent = '∞';
+                 } else {
+                     usesEl.textContent = `(${a.uses})`;
+                 }
+                 div.appendChild(usesEl);
+             }
+             return div.outerHTML;
+         }).join('') : "NO_ACTIONS";
 
     // Quest list (uses SVG check icons)
     elQuestList.innerHTML = quests.map(q => {
@@ -556,25 +568,57 @@ function gameLoop() {
         }
     }
 
-    // Location detection
-    let curLoc = null;
-    for (const loc of locations) {
-        const lp = new THREE.Vector3().setFromSphericalCoords(worldMgr.planetR, loc.pos[0] * Math.PI, loc.pos[1] * Math.PI * 2);
-        if (pPos.distanceTo(lp) < loc.r) curLoc = loc;
-    }
-    if (curLoc && activeLoc !== curLoc) {
-        activeLoc = curLoc;
-        const displayName = curLoc.name.replace('LOC_', '').replace(/_/g, ' ');
-        elLocBox.style.display = 'block';
-        locNameTypewriter.type(displayName);
-        if (curLoc.questId !== undefined && quests[curLoc.questId].cur < quests[curLoc.questId].tar) {
-            quests[curLoc.questId].cur = 1;
-            updateUI();
-        }
-    } else if (!curLoc) {
-        elLocBox.style.display = 'none';
-        activeLoc = null;
-    }
+     // Location detection
+     let curLoc = null;
+     for (const loc of locations) {
+         const lp = new THREE.Vector3().setFromSphericalCoords(worldMgr.planetR, loc.pos[0] * Math.PI, loc.pos[1] * Math.PI * 2);
+         if (pPos.distanceTo(lp) < loc.r) curLoc = loc;
+     }
+     
+     if (curLoc) {
+         const locationChanged = activeLoc !== curLoc;
+         activeLoc = curLoc;
+         
+         // Clear existing timeout only when location changes (not every frame)
+         if (locationChanged && locTimeout) {
+             clearTimeout(locTimeout);
+             locTimeout = null;
+         }
+         
+         // Only show on location change AND after cooldown expires
+         if (locationChanged) {
+             const now = Date.now();
+             if (now >= locCooldownUntil) {
+                 // Show location
+                 elLocBox.classList.remove('fade-out');
+                 elLocBox.style.display = 'block';
+                 const displayName = curLoc.name.replace('LOC_', '').replace(/_/g, ' ');
+                 locNameTypewriter.type(displayName);
+                 // Set 6-second cooldown
+                 locCooldownUntil = now + 6000;
+                 // Auto-fade after 3 seconds
+                 locTimeout = setTimeout(() => {
+                     elLocBox.classList.add('fade-out');
+                     setTimeout(() => {
+                         elLocBox.style.display = 'none';
+                     }, 500);
+                 }, 3000);
+             }
+         }
+         
+         if (curLoc.questId !== undefined && quests[curLoc.questId].cur < quests[curLoc.questId].tar) {
+             quests[curLoc.questId].cur = 1;
+             updateUI();
+         }
+     } else {
+         // Leaving area: hide immediately and clear timeout
+         if (locTimeout) {
+             clearTimeout(locTimeout);
+             locTimeout = null;
+         }
+         elLocBox.style.display = 'none';
+         activeLoc = null;
+     }
 
     // Pickup collection
     worldMgr.updatePickupCollection(pPos, (itemName) => {
