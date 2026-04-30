@@ -13,7 +13,9 @@ import { AudioManager } from './audio.js';
 import { ActionManager } from './actions.js';
 import { DialogueManager } from './dialogue.js';
 import { CameraController } from './CameraController.js';
-import { npcs, quests, locations } from './config.js';
+import { npcs, quests, locations, ICON_SYSTEM, MODEL_SYSTEM } from './config.js';
+import { IconManager } from './IconManager.js';
+import { ModelManager } from './ModelManager.js';
 
 // Global state
 let started = false;
@@ -36,6 +38,8 @@ let audio = null;
 let actionMgr = null;
 let dialogueMgr = null;
 let cameraCtrl = null;
+let iconMgr = null;
+let modelMgr = null;
 
 // Inventory
 let inventory = [];
@@ -126,20 +130,55 @@ function stripInkMarkers(s) {
 
 // UI update
 function updateUI() {
+    // Inventory list
     elInvList.innerHTML = inventory.length ? inventory.map(i => {
-        let icon = 'fa-circle';
-        if (i.includes('CELL')) icon = 'fa-memory';
-        else if (i.includes('SHARD')) icon = 'fa-gem';
-        return `<div class="item"><i class="fas ${icon}"></i> ${i}</div>`;
+        let iconType = 'circle';
+        if (i.includes('CELL')) iconType = 'memory';
+        else if (i.includes('SHARD')) iconType = 'gem';
+
+        if (ICON_SYSTEM === 'svg') {
+            const iconEl = iconMgr.createIconElement(iconType, { size: '1em' });
+            const div = document.createElement('div');
+            div.className = 'item';
+            div.appendChild(iconEl);
+            const span = document.createElement('span');
+            span.textContent = i;
+            div.appendChild(span);
+            return div.outerHTML;
+        } else {
+            return `<div class="item"><i class="fas fa-${iconType}"></i> ${i}</div>`;
+        }
     }).join('') : "0_CELLS";
 
-    elActionsList.innerHTML = actionMgr.getActions().length ?
-        actionMgr.getActions().map(a => `<div class="item"><i class="${a.icon}"></i> ${a.name}</div>`).join('') :
-        "NO_ACTIONS";
+    // Actions list (uses configured icons from actionMgr)
+    const actions = actionMgr.getActions();
+    elActionsList.innerHTML = actions.length ?
+        actions.map(a => {
+            const iconEl = iconMgr.createIconElement(a.iconType || a.icon, { size: '1.2em' });
+            const div = document.createElement('div');
+            div.className = 'item';
+            div.appendChild(iconEl);
+            const span = document.createElement('span');
+            span.textContent = a.name;
+            div.appendChild(span);
+            return div.outerHTML;
+        }).join('') : "NO_ACTIONS";
 
+    // Quest list (uses SVG check icons)
     elQuestList.innerHTML = quests.map(q => {
-        const iconClass = q.cur >= q.tar ? 'fa-solid fa-square-check' : 'fa-regular fa-square-check';
-        return `<div class="q-item ${q.cur >= q.tar ? 'q-done' : ''}"><i class="${iconClass}"></i> <b>${q.name}</b><small>${q.task} [${q.cur}/${q.tar}]</small></div>`;
+        const isComplete = q.cur >= q.tar;
+        const iconType = isComplete ? 'checkFull' : 'checkEmpty';
+        const iconEl = iconMgr.createIconElement(iconType, { size: '1.8em' });
+        const div = document.createElement('div');
+        div.className = `q-item ${isComplete ? 'q-done' : ''}`;
+        div.appendChild(iconEl);
+        const b = document.createElement('b');
+        b.textContent = q.name;
+        const small = document.createElement('small');
+        small.textContent = `${q.task} [${q.cur}/${q.tar}]`;
+        div.appendChild(b);
+        div.appendChild(small);
+        return div.outerHTML;
     }).join('');
 
     quests.forEach(q => {
@@ -280,16 +319,66 @@ function togglePanel(panel, btn, otherBtn1, otherBtn2, otherPanel1, otherPanel2)
   audio.playUI(isOpen ? 'close' : 'open');
 }
 
+/**
+ * Apply configured icons (FA or SVG) to all UI button elements
+ */
+function applyUIIcons() {
+    // Panel toggle buttons
+    setButtonIcon(btnQuest, 'quest');
+    setButtonIcon(btnInv, 'inventory');
+    setButtonIcon(btnActions, 'actions');
+    updateSoundIcon();
+
+    // Action list items will be rendered dynamically via updateUI()
+}
+
+/**
+ * Set icon on a button element (replaces <i> content or appends SVG)
+ */
+function setButtonIcon(btn, iconType) {
+    // Clear existing icons
+    btn.innerHTML = '';
+    const iconEl = iconMgr.createIconElement(iconType, { size: '1.2em' });
+    btn.appendChild(iconEl);
+}
+
+/**
+ * Update sound toggle icon based on state
+ */
+function updateSoundIcon(enabled) {
+    if (enabled === undefined) {
+        // Fallback: check audio manager state
+        enabled = audio.musicEnabled;
+    }
+    btnSound.innerHTML = '';
+    const iconType = enabled ? 'soundOn' : 'soundOff';
+    const iconEl = iconMgr.createIconElement(iconType, { size: '1.2em' });
+    btnSound.appendChild(iconEl);
+}
+
 // Initialize all systems
 async function init() {
     sceneMgr = new SceneManager();
-    worldMgr = new WorldManager(sceneMgr.scene, sceneMgr.world);
-    player = new Player(worldMgr.world, sceneMgr.scene);
-    npcSystem = new NPCSystem(npcs, worldMgr.planetR, sceneMgr.scene);
-    actionMgr = new ActionManager();
+
+    // Initialize model manager first (needed by WorldManager)
+    modelMgr = new ModelManager();
+    await modelMgr.init();
+
+    worldMgr = new WorldManager(sceneMgr.scene, sceneMgr.world, modelMgr);
+
+    // Initialize icon manager
+    iconMgr = new IconManager();
+    await iconMgr.init();
+
+    player = new Player(worldMgr.world, sceneMgr.scene, modelMgr);
+    npcSystem = new NPCSystem(npcs, worldMgr.planetR, sceneMgr.scene, modelMgr);
+    actionMgr = new ActionManager(iconMgr);
     dialogueMgr = new DialogueManager();
     audio = new AudioManager();
     cameraCtrl = new CameraController(sceneMgr.camera);
+
+    // Apply icons to UI based on system
+    applyUIIcons();
 
     // Initialize typewriter for location names
     locNameTypewriter = new Typewriter(document.getElementById('loc-name'), { speed: 45 });
@@ -364,7 +453,7 @@ function setupUIHandlers() {
         e.stopPropagation();
         audio.playUI('click');
         const enabled = audio.toggleMusic();
-        btnSound.innerHTML = enabled ? '<i class="fas fa-volume-up"></i>' : '<i class="fas fa-volume-off"></i>';
+        updateSoundIcon(enabled);
     };
 
     // Panel toggles

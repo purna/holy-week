@@ -1,10 +1,11 @@
 import { NPC } from './NPC.js';
 
 export class NPCSystem {
-    constructor(npcs, planetR, scene) {
+    constructor(npcs, planetR, scene, modelMgr) {
         this.npcsData = npcs;
         this.planetR = planetR;
         this.scene = scene;
+        this.modelMgr = modelMgr;
         this.npcMeshes = [];
         this.activeNpc = null;
         this.lastNearNpcId = null;
@@ -14,7 +15,7 @@ export class NPCSystem {
 
     createAllNPCs() {
         this.npcMeshes = this.npcsData.map(npcData => {
-            const npc = new NPC(npcData, this.planetR, this.scene);
+            const npc = new NPC(npcData, this.planetR, this.scene, this.modelMgr);
             return npc;
         });
     }

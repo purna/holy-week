@@ -45,6 +45,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+
 }
 .ui-toggle:hover {
     background: rgba(0,242,255,0.2);

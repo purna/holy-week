@@ -2,9 +2,10 @@ import { actions as actionDefs } from './config.js';
 import { quests } from './config.js';
 
 export class ActionManager {
-    constructor() {
+    constructor(iconMgr) {
         this.actions = [...actionDefs];
         this.pendingFloatingIcon = null;
+        this.iconMgr = iconMgr;
     }
 
     getActions() {
@@ -14,7 +15,7 @@ export class ActionManager {
     executeAction(action, activeNpc, updateUI, playSoundFunc, playQuestSound) {
         if (playSoundFunc) playSoundFunc();
 
-        this.showFloatingActionIcon(action.icon);
+        this.showFloatingActionIcon(action.iconType || action.icon);
 
         let questCompleted = false;
 
@@ -71,25 +72,28 @@ export class ActionManager {
         }
     }
 
-    showFloatingActionIcon(iconClass) {
-        this.pendingFloatingIcon = iconClass;
+    showFloatingActionIcon(iconType) {
+        this.pendingFloatingIcon = iconType;
     }
 
     renderFloatingIcon(camera, playerPosition) {
         if (this.pendingFloatingIcon) {
-            const icon = document.createElement('i');
-            icon.className = `${this.pendingFloatingIcon} floating-action-icon`;
+            const iconEl = this.iconMgr.createIconElement(this.pendingFloatingIcon, {
+                size: 32,
+                color: 'var(--accent-secondary)',
+                className: 'floating-action-icon' // Ensure positioning
+            });
 
             const playerScreenPos = playerPosition.project(camera);
             const startX = (playerScreenPos.x * 0.5 + 0.5) * window.innerWidth;
             const startY = (playerScreenPos.y * -0.5 + 0.5) * window.innerHeight;
-            icon.style.left = `${startX}px`;
-            icon.style.top = `${startY}px`;
+            iconEl.style.left = `${startX}px`;
+            iconEl.style.top = `${startY}px`;
 
-            icon.style.transform = 'translate(0, 0) scale(2)';
-            icon.style.opacity = '1';
+            iconEl.style.transform = 'translate(0, 0) scale(2)';
+            iconEl.style.opacity = '1';
 
-            document.body.appendChild(icon);
+            document.body.appendChild(iconEl);
 
             let startTime = null;
             const duration = 3000;
@@ -100,7 +104,7 @@ export class ActionManager {
                 const progress = Math.min((timestamp - startTime) / duration, 1);
                 const scale = 2 - progress;
                 const translateY = -travelDistance * progress;
-                icon.style.transform = `translate(0, ${translateY}px) scale(${scale})`;
+                iconEl.style.transform = `translate(0, ${translateY}px) scale(${scale})`;
 
                 let opacity;
                 if (progress < 0.2) {
@@ -110,12 +114,12 @@ export class ActionManager {
                 } else {
                     opacity = 0;
                 }
-                icon.style.opacity = opacity;
+                iconEl.style.opacity = opacity;
 
                 if (progress < 1) {
                     requestAnimationFrame(animate);
                 } else {
-                    document.body.removeChild(icon);
+                    document.body.removeChild(iconEl);
                 }
             };
 
@@ -123,4 +127,6 @@ export class ActionManager {
             this.pendingFloatingIcon = null;
         }
     }
+        
 }
+

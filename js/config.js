@@ -1,6 +1,122 @@
 // Configuration object - npcs, locations, quests, actions, audio paths
 const basePath = './assets/audio/';
 const baseNPCPath = './assets/dialogue/';
+const baseModelPath = './assets/models/';
+const baseIconPath = './assets/gfx/';
+
+// ============================================================================
+// RENDERING SYSTEM CONFIGURATION
+// ============================================================================
+/**
+ * ICON_SYSTEM: Choose between FontAwesome and inline SVG icons.
+ *   - 'fontawesome': Loads FontAwesome CDN and uses CSS classes.
+ *   - 'svg': Uses local SVG files from assets/gfx/ via IconManager.
+ *
+ * MODEL_SYSTEM: Choose between primitive geometries and GLB 3D models.
+ *   - 'primitives': Uses Three.js built-in geometries (boxes, spheres, capsules).
+ *   - 'glb': Loads .glb files from assets/models/ via ModelManager.
+ *
+ * To switch systems, simply change these values and ensure required assets exist.
+ */
+export const ICON_SYSTEM = 'svg'; // 'fontawesome' | 'svg'
+export const MODEL_SYSTEM = 'primitives'; // 'primitives' | 'glb'
+
+// Debug flags: force primitive rendering for specific objects even in GLB mode
+// Useful when GLB models are missing or you want to see fallback primitives
+export const DEBUG_FORCE_PRIMITIVES = {
+    player: false,       // Set true to see box primitive instead of player.glb
+    planet: false,       // Set true to see icosahedron primitive instead of earth.glb
+    npcs: false,         // Set true to see capsule primitives instead of NPC GLBs
+    pickups: false       // Set true to see sphere/octahedron primitives instead of GLBs
+};
+
+
+// ============================================================================
+// ICON CONFIGURATION
+// ============================================================================
+// Icon mappings for SVG system (file paths)
+export const ICONS = {
+    // UI buttons
+    quest:        baseIconPath + 'list.svg',
+    inventory:    baseIconPath + 'inventory.svg',
+    actions:      baseIconPath + 'list.svg',
+    soundOn:      baseIconPath + 'music.svg',
+    soundOff:     baseIconPath + 'music_off.svg',
+    // Action icons (for floating icons & action list)
+    scan:         baseIconPath + 'search.svg',
+    repair:       baseIconPath + 'wrench.svg',
+    hack:         baseIconPath + 'laptop-code.svg',
+    heal:         baseIconPath + 'first-aid.svg',
+    // Inventory item icons
+    circle:       baseIconPath + 'circle.svg',
+    memory:       baseIconPath + 'memory.svg',
+    gem:          baseIconPath + 'gem.svg',
+    // Quest icons
+    checkFull:    baseIconPath + 'check-square-full.svg',
+    checkEmpty:   baseIconPath + 'check-square-empty.svg'
+};
+
+// FontAwesome icon class names (for FA system)
+export const FA_ICONS = {
+    quest:        'fas fa-list-check',
+    inventory:    'fas fa-boxes-stacked',
+    actions:      'fas fa-list',
+    soundOn:      'fas fa-volume-up',
+    soundOff:     'fas fa-volume-off',
+    scan:         'fas fa-search',
+    repair:       'fas fa-wrench',
+    hack:         'fas fa-laptop-code',
+    heal:         'fas fa-first-aid',
+    circle:       'fas fa-circle',
+    memory:       'fas fa-memory',
+    gem:          'fas fa-gem',
+    interact:     'fas fa-hand-pointer'
+};
+
+// ── MODEL PATHS (used when MODEL_SYSTEM === 'glb') ───────────────────────
+export const MODELS = {
+    player:       baseModelPath + 'player/player.glb',    // Player character GLB
+    npcEcho:      baseModelPath + 'npcs/npc_echo.glb',
+    npcHorizon:   baseModelPath + 'npcs/npc_horizon.glb',
+    npcSpire:     baseModelPath + 'npcs/npc_spire.glb',
+    npcKeeper:    baseModelPath + 'npcs/npc_keeper.glb',
+    pickupCell:   baseModelPath + 'cell.glb',
+    pickupShard:  baseModelPath + 'shard.glb',
+    // Environment
+    planet:       baseModelPath + 'earth.glb',
+    tower:        baseModelPath + 'tower.glb',
+    rocks:        baseModelPath + 'rocks.glb',
+    house:        baseModelPath + 'house.glb'
+};
+
+// Model scale factors (apply when loading GLB)
+export const MODEL_SCALES = {
+    planet: 0.5,        // earth.glb already at radius 50
+    player: 1,
+    npcEcho: 1,
+    npcHorizon: 1,
+    npcSpire: 1,
+    npcKeeper: 1,
+    pickupCell: 1,
+    pickupShard: 1,
+    tower: 1,
+    rocks: 1,
+    house: 1
+};
+
+// Fallback primitive configs (used when MODEL_SYSTEM === 'primitives')
+export const PRIMITIVE_CONFIG = {
+    player:       { type: 'box', size: [1.2, 2, 1.2], color: 0xff3333 },
+    npcEcho:      { type: 'capsule', radius: 1, length: 2, color: 0x00f2ff },
+    npcHorizon:   { type: 'capsule', radius: 1, length: 2, color: 0xffaa00 },
+    npcSpire:     { type: 'capsule', radius: 1, length: 2, color: 0x00ffaa },
+    npcKeeper:    { type: 'capsule', radius: 1, length: 2, color: 0xff00ff },
+    pickupCell:   { type: 'sphere', radius: 1, color: 0xffaa00 },
+    pickupShard:  { type: 'octahedron', radius: 0.9, color: 0xa020f0, emissive: 0x4a0080 },
+    planet:       { type: 'icosahedron', radius: 50, segments: 5, color: 0x1a251a },
+    tower:        { type: 'box', size: [3, 10, 3], color: 0x333344 },
+    rocks:        { type: 'box', size: [2, 4, 2], color: 0xdddddd }
+};
 
 export const COLORS = {
     cyan: 0x00f2ff,      // Cyan accent
@@ -95,8 +211,8 @@ export const quests = [
 ];
 
 export const actions = [
-    { name: "Scan Area", type: "scan", icon: "fas fa-search", consumable: false },
-    { name: "Repair Gear", type: "repair", icon: "fas fa-wrench", consumable: true },
-    { name: "Hack Terminal", type: "hack", icon: "fas fa-laptop-code", consumable: true },
-    { name: "Med Kit", type: "heal", icon: "fas fa-first-aid", consumable: true }
+    { name: "Scan Area", type: "scan", icon: ICON_SYSTEM === 'svg' ? ICONS.scan : FA_ICONS.scan, iconType: "scan", consumable: false },
+    { name: "Repair Gear", type: "repair", icon: ICON_SYSTEM === 'svg' ? ICONS.repair : FA_ICONS.repair, iconType: "repair", consumable: true },
+    { name: "Hack Terminal", type: "hack", icon: ICON_SYSTEM === 'svg' ? ICONS.hack : FA_ICONS.hack, iconType: "hack", consumable: true },
+    { name: "Med Kit", type: "heal", icon: ICON_SYSTEM === 'svg' ? ICONS.heal : FA_ICONS.heal, iconType: "heal", consumable: true }
 ];

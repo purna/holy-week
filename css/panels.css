@@ -54,7 +54,8 @@
     gap: 8px;
 }
 
-.item i {
+.item i,
+.item svg {
     font-size: 1em;
     color: var(--accent-primary);
     flex-shrink: 0;
@@ -73,7 +74,8 @@
     align-items: start;
 }
 
-.q-item>i:first-child {
+.q-item>i:first-child,
+.q-item>svg:first-child {
     color: var(--text-main);
     font-size: 1.8em;
     grid-row: 1 / span 2;
@@ -103,6 +105,64 @@
     opacity: 0.4;
 }
 
-.q-done>i:first-child {
+.q-done>i:first-child,
+.q-done>svg:first-child {
     color: var(--accent-success);
+}
+
+/* ===== LOADING SCREEN (moved from index.html) ===== */
+#loading-screen {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #000;
+    color: white;
+    z-index: 1000;
+    text-align: center;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid #333;
+    border-top: 5px solid var(--accent-secondary, #ffaa00);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 20px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* ===== TYPEWRITER CURSOR ===== */
+.typewriter-cursor::after {
+    content: '█';
+    animation: tw-blink 0.7s step-end infinite;
+    opacity: 0.7;
+    font-size: 0.75em;
+    margin-left: 2px;
+}
+
+@keyframes tw-blink {
+    0%, 100% { opacity: 0.7; }
+    50% { opacity: 0; }
+}
+
+.typewriter-done::after {
+    display: none;
+}
+
+/* ===== FLOATING ACTION ICON (SVG support) ===== */
+.floating-action-icon {
+    position: fixed;
+    pointer-events: none;
+    z-index: 2000;
+    color: var(--accent-secondary);
+    filter: drop-shadow(0 0 8px var(--accent-secondary));
 }

@@ -2,9 +2,10 @@ import * as THREE from 'three';
 import * as CANNON from 'cannon';
 
 export class Player {
-    constructor(world, scene) {
+    constructor(world, scene, modelMgr) {
         this.world = world;
         this.scene = scene;
+        this.modelMgr = modelMgr;
         this.planetR = 50;
         this.canJump = true;
         this.camHeading = new THREE.Vector3(0, 0, 1);
@@ -25,14 +26,15 @@ export class Player {
     }
 
     setupMesh() {
+        // Use ModelManager to get player model
+        const playerModel = this.modelMgr.getModel('player');
+
         this.playerMesh = new THREE.Group();
-        const pVis = new THREE.Mesh(
-            new THREE.BoxGeometry(1.2, 2, 1.2),
-            new THREE.MeshToonMaterial({ color: 0xff3333 })
-        );
-        pVis.castShadow = true;
-        pVis.receiveShadow = true;
-        this.playerMesh.add(pVis);
+        this.playerMesh.add(playerModel.clone());
+
+        // Scale/position adjustment if needed
+        this.playerMesh.scale.set(1, 1, 1);
+
         this.scene.add(this.playerMesh);
     }
 

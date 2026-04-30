@@ -2,9 +2,10 @@ import * as THREE from 'three';
 import * as CANNON from 'cannon';
 
 export class WorldManager {
-    constructor(scene, world) {
+    constructor(scene, world, modelMgr = null) {
         this.scene = scene;
         this.world = world;
+        this.modelMgr = modelMgr;
         this.planetR = 50;
         this.pickups = [];
         this.buildings = [];
@@ -19,10 +20,15 @@ export class WorldManager {
     }
 
     setupPlanet() {
-        this.planet = new THREE.Mesh(
-            new THREE.IcosahedronGeometry(this.planetR, 5),
-            new THREE.MeshToonMaterial({ color: 0x1a251a })
-        );
+        if (this.modelMgr && this.modelMgr.system === 'glb') {
+            const planetModel = this.modelMgr.getModel('planet');
+            this.planet = planetModel;
+        } else {
+            this.planet = new THREE.Mesh(
+                new THREE.IcosahedronGeometry(this.planetR, 5),
+                new THREE.MeshToonMaterial({ color: 0x1a251a })
+            );
+        }
         this.planet.receiveShadow = true;
         this.scene.add(this.planet);
 
@@ -35,10 +41,25 @@ export class WorldManager {
     setupPickups() {
         // Data Cells (orange spheres) - 4
         for (let i = 0; i < 4; i++) {
-            const m = new THREE.Mesh(
-                new THREE.SphereGeometry(1),
-                new THREE.MeshToonMaterial({ color: 0xffaa00 })
-            );
+            let m;
+            if (this.modelMgr && this.modelMgr.system === 'glb') {
+                const model = this.modelMgr.getModel('pickupCell');
+                if (model && model.children.length > 0) {
+                    m = model.children[0].clone();
+                    m.material = m.material.clone();
+                    m.material.color.setHex(0xffaa00);
+                } else {
+                    m = new THREE.Mesh(
+                        new THREE.SphereGeometry(1),
+                        new THREE.MeshToonMaterial({ color: 0xffaa00 })
+                    );
+                }
+            } else {
+                m = new THREE.Mesh(
+                    new THREE.SphereGeometry(1),
+                    new THREE.MeshToonMaterial({ color: 0xffaa00 })
+                );
+            }
             m.name = `CELL_${i + 1}`;
             m.position.setFromSphericalCoords(this.planetR + 1.2, Math.random() * Math.PI, Math.random() * Math.PI * 2);
             m.castShadow = true;
@@ -48,10 +69,26 @@ export class WorldManager {
 
         // Signal Shards (purple octahedrons) - 4
         for (let i = 0; i < 4; i++) {
-            const m = new THREE.Mesh(
-                new THREE.OctahedronGeometry(0.9),
-                new THREE.MeshStandardMaterial({ color: 0xa020f0, emissive: 0x4a0080 })
-            );
+            let m;
+            if (this.modelMgr && this.modelMgr.system === 'glb') {
+                const model = this.modelMgr.getModel('pickupShard');
+                if (model && model.children.length > 0) {
+                    m = model.children[0].clone();
+                    m.material = m.material.clone();
+                    m.material.color.setHex(0xa020f0);
+                    m.material.emissive = new THREE.Color(0x4a0080);
+                } else {
+                    m = new THREE.Mesh(
+                        new THREE.OctahedronGeometry(0.9),
+                        new THREE.MeshStandardMaterial({ color: 0xa020f0, emissive: 0x4a0080 })
+                    );
+                }
+            } else {
+                m = new THREE.Mesh(
+                    new THREE.OctahedronGeometry(0.9),
+                    new THREE.MeshStandardMaterial({ color: 0xa020f0, emissive: 0x4a0080 })
+                );
+            }
             m.name = `SHARD_${i + 1}`;
             m.position.setFromSphericalCoords(this.planetR + 1.2, Math.random() * Math.PI, Math.random() * Math.PI * 2);
             m.castShadow = true;
@@ -63,10 +100,23 @@ export class WorldManager {
     setupBuildings() {
         for (let i = 0; i < 8; i++) {
             const h = Math.random() * 6 + 2;
-            const m = new THREE.Mesh(
-                new THREE.BoxGeometry(3, h, 3),
-                new THREE.MeshToonMaterial({ color: 0x333344 })
-            );
+            let m;
+            if (this.modelMgr && this.modelMgr.system === 'glb') {
+                const model = this.modelMgr.getModel('tower');
+                if (model && model.children.length > 0) {
+                    m = model.clone();
+                } else {
+                    m = new THREE.Mesh(
+                        new THREE.BoxGeometry(3, h, 3),
+                        new THREE.MeshToonMaterial({ color: 0x333344 })
+                    );
+                }
+            } else {
+                m = new THREE.Mesh(
+                    new THREE.BoxGeometry(3, h, 3),
+                    new THREE.MeshToonMaterial({ color: 0x333344 })
+                );
+            }
             const pos = new THREE.Vector3().setFromSphericalCoords(this.planetR + h / 2, Math.random() * Math.PI, Math.random() * Math.PI * 2);
             m.position.copy(pos);
             m.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), pos.clone().normalize());
@@ -166,7 +216,6 @@ export class WorldManager {
     }
 
     getClosestNonDialogueNPC(playerPosition) {
-        // This is actually handled by NPCSystem now, but keep for compatibility (not used)
         return null;
     }
 }
