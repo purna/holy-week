@@ -40,6 +40,10 @@ A collection of visual effects and particle systems.
 Example UI and layout built with Miracle Maker.
 👉 https://purna.github.io/miracle-maker/tests/landing.html
 
+### 🛬 Whats Apps Page
+Example UI and layout built with Miracle Maker.
+👉 https://purna.github.io/miracle-maker/tests/whatsapp.html
+
 ## Contributing
 
 We welcome contributions! Please read our [Contributing Guide](CONTRIBUTING.md) for details on how to submit pull requests, report issues, and suggest features.
