@@ -30,18 +30,22 @@ xplore interactive demos powered by Miracle Maker:
 
 ### 🌫️ Fog Effect
 Real-time atmospheric fog rendering.
+
 👉 https://purna.github.io/miracle-maker/tests/fog.html
 
 ### ✨ VFX Demo
 A collection of visual effects and particle systems.
+
 👉 https://purna.github.io/miracle-maker/tests/vfx.html
 
 ### 🛬 Landing Page
 Example UI and layout built with Miracle Maker.
+
 👉 https://purna.github.io/miracle-maker/tests/landing.html
 
 ### 🛬 Whats Apps Page
 Example UI and layout built with Miracle Maker.
+
 👉 https://purna.github.io/miracle-maker/tests/whatsapp.html
 
 ## Contributing
