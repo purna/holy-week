@@ -1,10 +1,25 @@
 import { npcs } from './config.js';
 
+/**
+ * DialogueManager
+ *
+ * Handles loading Ink story JSON files and driving the WhatsApp-style
+ * chat-bubble dialogue UI introduced in whatsapp2.html.
+ *
+ * Key changes vs. original:
+ *   - continueStory() no longer writes to a flat #bubble-text element.
+ *     Instead it calls appendMessage() to add .msg-bubble elements into
+ *     #bubble-text-container (provided via the `appendMessage` callback).
+ *   - Player choice selection echoes the choice text as a 'player' bubble
+ *     before advancing the Ink story.
+ *   - Ambient filler messages are shown between NPC lines via showFiller().
+ *   - Choice buttons use CSS class "choice-btn" (styled as pills in index.html).
+ */
 export class DialogueManager {
     constructor() {
         this.inkStory = null;
         this.isDialogueOpen = false;
-        this.npcStories = {}; // story data loaded per NPC
+        this.npcStories = {};
         this.inkLib = null;
         this.activeNpc = null;
     }
@@ -50,34 +65,61 @@ export class DialogueManager {
         return new this.inkLib.Story(storyData);
     }
 
-    continueStory(inkStory, textEl, choiceEl, uiSounds, onClose) {
+    /**
+     * Drive the Ink story one step forward using the WhatsApp-style UI.
+     *
+     * @param {object}   inkStory       - Active inkjs Story instance
+     * @param {Function} appendMessage  - fn(text, 'npc'|'player') → appends a bubble
+     * @param {Function} showFiller     - fn(count) → shows ambient filler bubbles
+     * @param {Element}  choiceEl       - #bubble-choices container
+     * @param {object}   uiSounds       - optional (not used directly; kept for API compat)
+     * @param {Function} onClose        - called when the player closes the dialogue
+     */
+    continueStory(inkStory, appendMessage, showFiller, choiceEl, uiSounds, onClose) {
+        // Collect all pending Ink text
         let txt = "";
         while (inkStory.canContinue) txt += inkStory.Continue();
 
         const cleaned = this.stripInkMarkers(txt);
-        textEl.innerHTML = cleaned;
         choiceEl.innerHTML = "";
 
-        inkStory.currentChoices.forEach(c => {
-            const b = document.createElement('button');
-            b.className = "choice-btn";
-            b.innerText = c.text;
-            b.onclick = () => {
-                inkStory.ChooseChoiceIndex(c.index);
-                this.continueStory(inkStory, textEl, choiceEl, uiSounds, onClose);
-            };
-            choiceEl.appendChild(b);
-        });
-
-        if (inkStory.currentChoices.length === 0 && !inkStory.canContinue) {
-            const b = document.createElement('button');
-            b.className = "choice-btn";
-            b.innerText = "[CLOSE CONNECTION]";
-            b.onclick = () => {
-                onClose();
-            };
-            choiceEl.appendChild(b);
+        // Append the NPC's lines as a chat bubble, then show filler activity
+        if (cleaned.trim()) {
+            appendMessage(cleaned.trim(), 'npc');
+            showFiller(3);
         }
+
+        // Delay choice rendering until after filler messages appear
+        const renderDelay = cleaned.trim() ? 3 * 300 + 100 : 0;
+
+        setTimeout(() => {
+            choiceEl.innerHTML = "";
+
+            inkStory.currentChoices.forEach(c => {
+                const b = document.createElement('button');
+                b.className = "choice-btn";
+                b.innerText = c.text;
+                b.onclick = () => {
+                    // Echo player's choice as a right-aligned bubble
+                    appendMessage(c.text, 'player');
+                    inkStory.ChooseChoiceIndex(c.index);
+                    // Small delay before NPC response (feels more natural)
+                    setTimeout(() => {
+                        this.continueStory(inkStory, appendMessage, showFiller, choiceEl, uiSounds, onClose);
+                    }, 400);
+                };
+                choiceEl.appendChild(b);
+            });
+
+            // End of story
+            if (inkStory.currentChoices.length === 0 && !inkStory.canContinue) {
+                const b = document.createElement('button');
+                b.className = "choice-btn";
+                b.innerText = "[CLOSE CONNECTION]";
+                b.onclick = () => onClose();
+                choiceEl.appendChild(b);
+            }
+        }, renderDelay);
     }
 
     stripInkMarkers(s) {

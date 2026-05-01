@@ -1,6 +1,12 @@
 /**
  * Messenger 3D - Main Entry Point
  * Modular architecture preserving all functionality from inline code
+ *
+ * DIALOGUE SYSTEM: WhatsApp-style chat bubbles (whatsapp2.html)
+ *   - NPC lines appended as .msg-bubble.npc-msg into #bubble-text-container
+ *   - Player choices echoed as .msg-bubble.player-msg before advancing story
+ *   - Ambient "filler" messages shown while NPC types next line
+ *   - Old flat #bubble-text element removed; scrollable container used instead
  */
 
 import * as THREE from 'three';
@@ -13,6 +19,9 @@ import { AudioManager } from './audio.js';
 import { ActionManager } from './actions.js';
 import { DialogueManager } from './dialogue.js';
 import { CameraController } from './CameraController.js';
+import { VFXSystem } from './vfx.js';
+import { ToonShader } from './ToonShader.js';
+import { DayNight } from './DayNight.js';
 import { npcs, quests, locations, ICON_SYSTEM, MODEL_SYSTEM } from './config.js';
 import { IconManager } from './IconManager.js';
 import { ModelManager } from './ModelManager.js';
@@ -42,33 +51,37 @@ let dialogueMgr = null;
 let cameraCtrl = null;
 let iconMgr = null;
 let modelMgr = null;
+let vfx = null;
+let toonShader = null;
+let dayNight = null;
 
 // Inventory
 let inventory = [];
 
 // DOM elements
-const elStartScreen = document.getElementById('start-screen');
-const elWinScreen = document.getElementById('win-screen');
-const elWorldPrompt = document.getElementById('world-prompt');
-const elLocalDialogueBox = document.getElementById('local-dialogue-box');
-const elBubbleText = document.getElementById('bubble-text');
-const elBubbleChoices = document.getElementById('bubble-choices');
-const elNpcNameDisplay = document.getElementById('npc-name-display');
-const elNpcBubble = document.getElementById('npc-bubble');
-const elLocName = document.getElementById('loc-name');
-const elLocBox = document.getElementById('loc-box');
+const elStartScreen       = document.getElementById('start-screen');
+const elWinScreen         = document.getElementById('win-screen');
+const elWorldPrompt       = document.getElementById('world-prompt');
+const elLocalDialogueBox  = document.getElementById('local-dialogue-box');
+const elBubbleContainer   = document.getElementById('bubble-text-container'); // NEW: chat history
+const elBubbleChoices     = document.getElementById('bubble-choices');
+const elNpcNameDisplay    = document.getElementById('npc-name-display');
+const elNpcBubble         = document.getElementById('npc-bubble');
+const elLocName           = document.getElementById('loc-name');
+const elLocBox            = document.getElementById('loc-box');
 
-const panelQuest = document.getElementById('panel-quest');
-const panelInv = document.getElementById('panel-inv');
+const panelQuest   = document.getElementById('panel-quest');
+const panelInv     = document.getElementById('panel-inv');
 const panelActions = document.getElementById('panel-actions');
-const btnQuest = document.getElementById('btn-quest-toggle');
-const btnInv = document.getElementById('btn-inv-toggle');
-const btnActions = document.getElementById('btn-actions-toggle');
-const btnSound = document.getElementById('btn-sound-toggle');
-const btnStart = document.getElementById('btn-start');
-const btnReplay = document.getElementById('btn-replay');
-const elQuestList = document.getElementById('quest-list');
-const elInvList = document.getElementById('inv-list');
+const btnQuest     = document.getElementById('btn-quest-toggle');
+const btnInv       = document.getElementById('btn-inv-toggle');
+const btnActions   = document.getElementById('btn-actions-toggle');
+const btnSound     = document.getElementById('btn-sound-toggle');
+const btnCycleToggle = document.getElementById('btn-cycle-toggle');
+const btnStart     = document.getElementById('btn-start');
+const btnReplay    = document.getElementById('btn-replay');
+const elQuestList  = document.getElementById('quest-list');
+const elInvList    = document.getElementById('inv-list');
 const elActionsList = document.getElementById('actions-list');
 
 // Audio Context for jump beep
@@ -130,6 +143,48 @@ function stripInkMarkers(s) {
     return out.join('\n');
 }
 
+// ── Chat bubble helpers ─────────────────────────────────────────────────────
+
+/**
+ * Append a single chat bubble to #bubble-text-container.
+ * @param {string} text  - message text
+ * @param {'npc'|'player'} type - controls left/right alignment and colour
+ */
+function appendMessage(text, type = 'npc') {
+    const msg = document.createElement('div');
+    msg.className = `msg-bubble ${type}-msg`;
+    msg.innerText = text;
+    elBubbleContainer.appendChild(msg);
+    // Smooth scroll to latest message
+    requestAnimationFrame(() => {
+        elBubbleContainer.scrollTop = elBubbleContainer.scrollHeight;
+    });
+}
+
+/**
+ * Ambient filler messages shown while the NPC "types" its next response.
+ * Gives the impression of a live, busy connection.
+ */
+const FILLER_LINES = [
+    "Awaiting decryption...",
+    "Verifying local coordinates...",
+    "Establishing secure handshake...",
+    "Background tasks synchronized.",
+    "No interference detected.",
+    "Signal strength: 88%.",
+    "Parsing metadata...",
+    "Updating local cache...",
+    "Redirecting signal packets..."
+];
+
+function showFillerMessages(count = 3) {
+    for (let i = 0; i < count; i++) {
+        setTimeout(() => {
+            appendMessage(FILLER_LINES[i % FILLER_LINES.length], 'npc');
+        }, (i + 1) * 300);
+    }
+}
+
 // UI update
 function updateUI() {
     // Inventory list
@@ -152,31 +207,27 @@ function updateUI() {
         }
     }).join('') : "0_CELLS";
 
-     // Actions list (uses configured icons from actionMgr)
-     const actions = actionMgr.getActions();
-     elActionsList.innerHTML = actions.length ?
-         actions.map(a => {
-             const iconEl = iconMgr.createIconElement(a.iconType || a.icon, { size: '1.2em' });
-             const div = document.createElement('div');
-             div.className = 'item';
-             div.appendChild(iconEl);
-             const span = document.createElement('span');
-             span.textContent = a.name;
-             div.appendChild(span);
-             if (a.uses !== undefined) {
-                 const usesEl = document.createElement('small');
-                 usesEl.style.marginLeft = '0.5em';
-                 if (a.uses === -1) {
-                     usesEl.textContent = '∞';
-                 } else {
-                     usesEl.textContent = `(${a.uses})`;
-                 }
-                 div.appendChild(usesEl);
-             }
-             return div.outerHTML;
-         }).join('') : "NO_ACTIONS";
+    // Actions list
+    const actions = actionMgr.getActions();
+    elActionsList.innerHTML = actions.length ?
+        actions.map(a => {
+            const iconEl = iconMgr.createIconElement(a.iconType || a.icon, { size: '1.2em' });
+            const div = document.createElement('div');
+            div.className = 'item';
+            div.appendChild(iconEl);
+            const span = document.createElement('span');
+            span.textContent = a.name;
+            div.appendChild(span);
+            if (a.uses !== undefined) {
+                const usesEl = document.createElement('small');
+                usesEl.style.marginLeft = '0.5em';
+                usesEl.textContent = a.uses === -1 ? '∞' : `(${a.uses})`;
+                div.appendChild(usesEl);
+            }
+            return div.outerHTML;
+        }).join('') : "NO_ACTIONS";
 
-    // Quest list (uses SVG check icons)
+    // Quest list
     elQuestList.innerHTML = quests.map(q => {
         const isComplete = q.cur >= q.tar;
         const iconType = isComplete ? 'checkFull' : 'checkEmpty';
@@ -232,7 +283,12 @@ function triggerWinSequence() {
     }, 500);
 }
 
-// Ink dialogue continuation
+// ── WhatsApp-style Ink dialogue continuation ────────────────────────────────
+/**
+ * Reads the next Ink passage and appends it as an NPC bubble,
+ * then renders choice buttons as pill-shaped elements.
+ * Player choices are echoed back as player-msg bubbles before advancing.
+ */
 function continueStory() {
     let txt = "";
     while (dialogueMgr.inkStory.canContinue) {
@@ -240,33 +296,51 @@ function continueStory() {
     }
 
     const cleaned = stripInkMarkers(txt);
-    elBubbleText.innerHTML = cleaned;
     elBubbleChoices.innerHTML = "";
 
-    dialogueMgr.inkStory.currentChoices.forEach(c => {
-        const b = document.createElement('button');
-        b.className = "choice-btn";
-        b.innerText = c.text;
-        b.onclick = () => {
-            dialogueMgr.inkStory.ChooseChoiceIndex(c.index);
-            continueStory();
-        };
-        elBubbleChoices.appendChild(b);
-    });
-
-    if (dialogueMgr.inkStory.currentChoices.length === 0 && !dialogueMgr.inkStory.canContinue) {
-        const b = document.createElement('button');
-        b.className = "choice-btn";
-        b.innerText = "[CLOSE CONNECTION]";
-        b.onclick = () => {
-            elLocalDialogueBox.style.display = 'none';
-            isDialogueOpen = false;
-            player.wakeUp();
-            player.resetTarget();
-            if (activeNpc) audio.playNpcSound(activeNpc.data.id, 'onExit');
-        };
-        elBubbleChoices.appendChild(b);
+    // Append main NPC line as a chat bubble
+    if (cleaned.trim()) {
+        appendMessage(cleaned.trim(), 'npc');
+        // Show a handful of ambient filler messages to simulate activity
+        showFillerMessages(3);
     }
+
+    // Render choices after filler delay (so they appear after the filler)
+    const renderDelay = cleaned.trim() ? 3 * 300 + 100 : 0;
+    setTimeout(() => {
+        elBubbleChoices.innerHTML = "";
+
+        dialogueMgr.inkStory.currentChoices.forEach(c => {
+            const b = document.createElement('button');
+            b.className = "choice-btn";
+            b.innerText = c.text;
+            b.onclick = () => {
+                // Echo player's choice as a right-aligned bubble
+                appendMessage(c.text, 'player');
+                dialogueMgr.inkStory.ChooseChoiceIndex(c.index);
+                // Small delay before NPC responds, feels more natural
+                setTimeout(continueStory, 400);
+            };
+            elBubbleChoices.appendChild(b);
+        });
+
+        // End of story: show disconnect button
+        if (dialogueMgr.inkStory.currentChoices.length === 0 && !dialogueMgr.inkStory.canContinue) {
+            const b = document.createElement('button');
+            b.className = "choice-btn";
+            b.innerText = "[CLOSE CONNECTION]";
+            b.onclick = () => {
+                // Clear chat history for next conversation
+                elBubbleContainer.innerHTML = "";
+                elLocalDialogueBox.style.display = 'none';
+                isDialogueOpen = false;
+                player.wakeUp();
+                player.resetTarget();
+                if (activeNpc) audio.playNpcSound(activeNpc.data.id, 'onExit');
+            };
+            elBubbleChoices.appendChild(b);
+        }
+    }, renderDelay);
 }
 
 // Start dialogue (click on world prompt)
@@ -293,7 +367,13 @@ function startDialogue() {
 
     isDialogueOpen = true;
     elWorldPrompt.style.display = 'none';
-    elLocalDialogueBox.style.display = 'block';
+
+    // Clear previous chat history before opening a fresh conversation
+    elBubbleContainer.innerHTML = "";
+    elBubbleChoices.innerHTML = "";
+
+    // Show dialogue box as flex (required by CSS layout)
+    elLocalDialogueBox.style.display = 'flex';
 
     audio.playNpcSound(activeNpc.data.id, 'onEnter');
 
@@ -301,6 +381,7 @@ function startDialogue() {
         const storyData = dialogueMgr.getStory(activeNpc.data.id);
         dialogueMgr.inkStory = new inkLib.Story(storyData);
 
+        // Set NPC name in the pill header
         if (activeNpc.data.questId !== undefined) {
             const q = quests[activeNpc.data.questId];
             const status = q.cur >= q.tar ? '✓ COMPLETED' : `QUEST [${q.cur}/${q.tar}]`;
@@ -318,50 +399,43 @@ function startDialogue() {
 
 // Toggle panel helper
 function togglePanel(panel, btn, otherBtn1, otherBtn2, otherPanel1, otherPanel2) {
-  const isOpen = panel.classList.contains('open');
-  panel.classList.toggle('open', !isOpen);
-  btn.classList.toggle('active', !isOpen);
-  // Close other panels when opening this one
-  if (!isOpen) {
-    otherBtn1.classList.remove('active');
-    otherBtn2.classList.remove('active');
-    otherPanel1.classList.remove('open');
-    otherPanel2.classList.remove('open');
-  }
-  audio.playUI(isOpen ? 'close' : 'open');
+    const isOpen = panel.classList.contains('open');
+    panel.classList.toggle('open', !isOpen);
+    btn.classList.toggle('active', !isOpen);
+    if (!isOpen) {
+        otherBtn1.classList.remove('active');
+        otherBtn2.classList.remove('active');
+        otherPanel1.classList.remove('open');
+        otherPanel2.classList.remove('open');
+    }
+    audio.playUI(isOpen ? 'close' : 'open');
 }
 
-/**
- * Apply configured icons (FA or SVG) to all UI button elements
- */
 function applyUIIcons() {
-    // Panel toggle buttons
     setButtonIcon(btnQuest, 'quest');
     setButtonIcon(btnInv, 'inventory');
     setButtonIcon(btnActions, 'actions');
     updateSoundIcon();
-
-    // Action list items will be rendered dynamically via updateUI()
+    updateCycleIcon();
 }
 
-/**
- * Set icon on a button element (replaces <i> content or appends SVG)
- */
+function updateCycleIcon() {
+    if (btnCycleToggle && dayNight) {
+        btnCycleToggle.innerHTML = '';
+        const iconType = dayNight.isDayMode() ? 'day' : 'night';
+        const iconEl = iconMgr.createIconElement(iconType, { size: '1.2em' });
+        btnCycleToggle.appendChild(iconEl);
+    }
+}
+
 function setButtonIcon(btn, iconType) {
-    // Clear existing icons
     btn.innerHTML = '';
     const iconEl = iconMgr.createIconElement(iconType, { size: '1.2em' });
     btn.appendChild(iconEl);
 }
 
-/**
- * Update sound toggle icon based on state
- */
 function updateSoundIcon(enabled) {
-    if (enabled === undefined) {
-        // Fallback: check audio manager state
-        enabled = audio.musicEnabled;
-    }
+    if (enabled === undefined) enabled = audio.musicEnabled;
     btnSound.innerHTML = '';
     const iconType = enabled ? 'soundOn' : 'soundOff';
     const iconEl = iconMgr.createIconElement(iconType, { size: '1.2em' });
@@ -372,27 +446,40 @@ function updateSoundIcon(enabled) {
 async function init() {
     sceneMgr = new SceneManager();
 
-    // Initialize model manager first (needed by WorldManager)
     modelMgr = new ModelManager();
     await modelMgr.init();
 
-    worldMgr = new WorldManager(sceneMgr.scene, sceneMgr.world, modelMgr);
+    // Initialize toon shader for stylized rendering
+    toonShader = new ToonShader();
 
-    // Initialize icon manager
+    worldMgr = new WorldManager(sceneMgr.scene, sceneMgr.world, modelMgr, toonShader);
+
     iconMgr = new IconManager();
     await iconMgr.init();
 
-    player = new Player(worldMgr.world, sceneMgr.scene, modelMgr);
-    npcSystem = new NPCSystem(npcs, worldMgr.planetR, sceneMgr.scene, modelMgr);
+    player = new Player(worldMgr.world, sceneMgr.scene, modelMgr, toonShader);
+    npcSystem = new NPCSystem(npcs, worldMgr.planetR, sceneMgr.scene, modelMgr, toonShader);
     actionMgr = new ActionManager(iconMgr);
     dialogueMgr = new DialogueManager();
     audio = new AudioManager();
     cameraCtrl = new CameraController(sceneMgr.camera);
 
-    // Apply icons to UI based on system
+    // Initialize day/night cycle system
+    dayNight = new DayNight(sceneMgr.scene, sceneMgr.renderer);
+
+    // Initialize VFX system for landing decals and trails
+    vfx = new VFXSystem(sceneMgr.scene, worldMgr.planet, worldMgr.planetR, worldMgr.planetMesh);
+
+    // Register player torch and material with DayNight system
+    dayNight.registerPlayerEffects(player.torch, player.bodyMaterial);
+
+    // Connect day/night system to VFX
+    dayNight.onModeChange = (isNight) => {
+        vfx.setNightMode(isNight);
+    };
+
     applyUIIcons();
 
-    // Initialize typewriter for location names
     locNameTypewriter = new Typewriter(document.getElementById('loc-name'), { speed: 45 });
 
     await dialogueMgr.loadAllStories();
@@ -401,11 +488,15 @@ async function init() {
     setupInputs();
     setupUIHandlers();
 
+    // Listen for player landing events to spawn decals
+    window.addEventListener('playerLand', (e) => {
+        vfx.emitLandingDecal(e.detail.position, e.detail.up);
+    });
+
     gameLoop();
 }
 
 function setupInputs() {
-    // Keyboard
     window.addEventListener('keydown', e => {
         keys[e.code] = true;
         if (e.code === 'Space' && started && !isDialogueOpen) {
@@ -417,7 +508,6 @@ function setupInputs() {
         keys[e.code] = false;
     });
 
-    // Mouse click for movement
     const raycaster = new THREE.Raycaster();
     const mouse = new THREE.Vector2();
 
@@ -439,7 +529,6 @@ function setupInputs() {
 }
 
 function setupUIHandlers() {
-    // Start button
     btnStart.onclick = () => {
         const wipe = document.getElementById('wipe-overlay');
         wipe.classList.add('active');
@@ -454,13 +543,11 @@ function setupUIHandlers() {
         }, 1000);
     };
 
-    // Replay button
     btnReplay.onclick = () => {
         audio.playUI('click');
         location.reload();
     };
 
-    // Sound toggle
     btnSound.onclick = (e) => {
         e.stopPropagation();
         audio.playUI('click');
@@ -468,7 +555,6 @@ function setupUIHandlers() {
         updateSoundIcon(enabled);
     };
 
-    // Panel toggles
     btnQuest.onclick = (e) => {
         e.stopPropagation();
         audio.playUI('click');
@@ -487,12 +573,17 @@ function setupUIHandlers() {
         togglePanel(panelActions, btnActions, btnQuest, btnInv, panelQuest, panelInv);
     };
 
-    // Actions click
+    btnCycleToggle.onclick = (e) => {
+        e.stopPropagation();
+        audio.playUI('click');
+        const isDay = dayNight.toggleMode();
+        updateCycleIcon();
+    };
+
     elActionsList.addEventListener('click', (e) => {
         const actionDiv = e.target.closest('.item');
         if (!actionDiv) return;
         const actions = actionMgr.getActions();
-        // Find action by comparing text content (more reliable than index)
         const actionName = actionDiv.querySelector('span')?.textContent?.trim();
         const action = actions.find(a => a.name === actionName);
         if (action) {
@@ -509,6 +600,7 @@ function setupUIHandlers() {
             }
         }
     });
+
     elWorldPrompt.onclick = startDialogue;
 }
 
@@ -523,6 +615,27 @@ function gameLoop() {
 
     player.update();
 
+    // Update day/night cycle
+    dayNight.update(1 / 60);
+
+    // Update VFX system (particles, decals, birds)
+    vfx.update(1 / 60, pPos, player.getVelocity ? player.getVelocity() : new THREE.Vector3(), pPos.length() < worldMgr.planetR + 1.6);
+
+    // Update trail particles (fade and remove)
+    for (let i = vfx.trailParticles.length - 1; i >= 0; i--) {
+        const p = vfx.trailParticles[i];
+        p.life -= 0.015; // Slow fade rate
+        const scale = Math.max(0.1, p.life);
+        p.mesh.scale.setScalar(scale);
+        p.mesh.material.opacity = Math.max(0, p.life);
+        if (p.life <= 0) {
+            sceneMgr.scene.remove(p.mesh);
+            if (p.mesh.geometry) p.mesh.geometry.dispose();
+            if (p.mesh.material) p.mesh.material.dispose();
+            vfx.trailParticles.splice(i, 1);
+        }
+    }
+
     if (!started) {
         sceneMgr.render();
         return;
@@ -533,7 +646,6 @@ function gameLoop() {
     let nearestDist = Infinity;
 
     for (const npcObj of npcSystem.npcMeshes) {
-        // Bobbing animation
         npcObj.bodyMesh.position.y = 1.5 + Math.sin(Date.now() * 0.002 + npcObj.data.id) * 0.2;
         const dist = pPos.distanceTo(npcObj.mesh.position);
         if (dist < 8 && dist < nearestDist) {
@@ -568,57 +680,46 @@ function gameLoop() {
         }
     }
 
-     // Location detection
-     let curLoc = null;
-     for (const loc of locations) {
-         const lp = new THREE.Vector3().setFromSphericalCoords(worldMgr.planetR, loc.pos[0] * Math.PI, loc.pos[1] * Math.PI * 2);
-         if (pPos.distanceTo(lp) < loc.r) curLoc = loc;
-     }
-     
-     if (curLoc) {
-         const locationChanged = activeLoc !== curLoc;
-         activeLoc = curLoc;
-         
-         // Clear existing timeout only when location changes (not every frame)
-         if (locationChanged && locTimeout) {
-             clearTimeout(locTimeout);
-             locTimeout = null;
-         }
-         
-         // Only show on location change AND after cooldown expires
-         if (locationChanged) {
-             const now = Date.now();
-             if (now >= locCooldownUntil) {
-                 // Show location
-                 elLocBox.classList.remove('fade-out');
-                 elLocBox.style.display = 'block';
-                 const displayName = curLoc.name.replace('LOC_', '').replace(/_/g, ' ');
-                 locNameTypewriter.type(displayName);
-                 // Set 6-second cooldown
-                 locCooldownUntil = now + 6000;
-                 // Auto-fade after 3 seconds
-                 locTimeout = setTimeout(() => {
-                     elLocBox.classList.add('fade-out');
-                     setTimeout(() => {
-                         elLocBox.style.display = 'none';
-                     }, 500);
-                 }, 3000);
-             }
-         }
-         
-         if (curLoc.questId !== undefined && quests[curLoc.questId].cur < quests[curLoc.questId].tar) {
-             quests[curLoc.questId].cur = 1;
-             updateUI();
-         }
-     } else {
-         // Leaving area: hide immediately and clear timeout
-         if (locTimeout) {
-             clearTimeout(locTimeout);
-             locTimeout = null;
-         }
-         elLocBox.style.display = 'none';
-         activeLoc = null;
-     }
+    // Location detection
+    let curLoc = null;
+    for (const loc of locations) {
+        const lp = new THREE.Vector3().setFromSphericalCoords(worldMgr.planetR, loc.pos[0] * Math.PI, loc.pos[1] * Math.PI * 2);
+        if (pPos.distanceTo(lp) < loc.r) curLoc = loc;
+    }
+
+    if (curLoc) {
+        const locationChanged = activeLoc !== curLoc;
+        activeLoc = curLoc;
+
+        if (locationChanged && locTimeout) {
+            clearTimeout(locTimeout);
+            locTimeout = null;
+        }
+
+        if (locationChanged) {
+            const now = Date.now();
+            if (now >= locCooldownUntil) {
+                elLocBox.classList.remove('fade-out');
+                elLocBox.style.display = 'block';
+                const displayName = curLoc.name.replace('LOC_', '').replace(/_/g, ' ');
+                locNameTypewriter.type(displayName);
+                locCooldownUntil = now + 6000;
+                locTimeout = setTimeout(() => {
+                    elLocBox.classList.add('fade-out');
+                    setTimeout(() => { elLocBox.style.display = 'none'; }, 500);
+                }, 3000);
+            }
+        }
+
+        if (curLoc.questId !== undefined && quests[curLoc.questId].cur < quests[curLoc.questId].tar) {
+            quests[curLoc.questId].cur = 1;
+            updateUI();
+        }
+    } else {
+        if (locTimeout) { clearTimeout(locTimeout); locTimeout = null; }
+        elLocBox.style.display = 'none';
+        activeLoc = null;
+    }
 
     // Pickup collection
     worldMgr.updatePickupCollection(pPos, (itemName) => {
@@ -635,56 +736,51 @@ function gameLoop() {
         updateUI();
     });
 
-     // Non-dialogue NPC bubble
-     const nonDialogueNpc = npcSystem.getClosestNonDialogueNPC(pPos);
-     if (nonDialogueNpc) {
-         const sPos = nonDialogueNpc.mesh.position.clone().add(up.clone().multiplyScalar(4)).project(sceneMgr.camera);
-         elNpcBubble.style.left = (sPos.x * 0.5 + 0.5) * window.innerWidth + 'px';
-         elNpcBubble.style.top = (sPos.y * -0.5 + 0.5) * window.innerHeight + 'px';
-         let txt = nonDialogueNpc.data.bubbleMsg || nonDialogueNpc.data.name.replace('_', ' ');
-         if (nonDialogueNpc.data.questId !== undefined && quests[nonDialogueNpc.data.questId].completed) {
-             txt = nonDialogueNpc.data.bubbleMsgComplete || txt;
-         }
-         elNpcBubble.innerHTML = `<b>${txt}</b>`;
-         elNpcBubble.style.display = 'block';
-     } else {
-         elNpcBubble.style.display = 'none';
-     }
+    // Non-dialogue NPC bubble
+    const nonDialogueNpc = npcSystem.getClosestNonDialogueNPC(pPos);
+    if (nonDialogueNpc) {
+        const sPos = nonDialogueNpc.mesh.position.clone().add(up.clone().multiplyScalar(4)).project(sceneMgr.camera);
+        elNpcBubble.style.left = (sPos.x * 0.5 + 0.5) * window.innerWidth + 'px';
+        elNpcBubble.style.top = (sPos.y * -0.5 + 0.5) * window.innerHeight + 'px';
+        let txt = nonDialogueNpc.data.bubbleMsg || nonDialogueNpc.data.name.replace('_', ' ');
+        if (nonDialogueNpc.data.questId !== undefined && quests[nonDialogueNpc.data.questId].completed) {
+            txt = nonDialogueNpc.data.bubbleMsgComplete || txt;
+        }
+        elNpcBubble.innerHTML = `<b>${txt}</b>`;
+        elNpcBubble.style.display = 'block';
+    } else {
+        elNpcBubble.style.display = 'none';
+    }
 
-     // Movement (head-based pivot)
-     let moveDir = new THREE.Vector3(0, 0, 0);
+    // Movement (head-based pivot)
+    let moveDir = new THREE.Vector3(0, 0, 0);
 
-     if (!isDialogueOpen) {
-         // A/D rotates camHeading (player orientation)
-         const viewRight = new THREE.Vector3().crossVectors(up, player.camHeading).normalize();
-         if (keys['KeyA'] || keys['ArrowLeft']) {
-             player.camHeading.add(viewRight.clone().multiplyScalar(0.045)).normalize();
-         }
-         if (keys['KeyD'] || keys['ArrowRight']) {
-             player.camHeading.sub(viewRight.clone().multiplyScalar(0.045)).normalize();
-         }
+    if (!isDialogueOpen) {
+        const viewRight = new THREE.Vector3().crossVectors(up, player.camHeading).normalize();
+        if (keys['KeyA'] || keys['ArrowLeft']) {
+            player.camHeading.add(viewRight.clone().multiplyScalar(0.045)).normalize();
+        }
+        if (keys['KeyD'] || keys['ArrowRight']) {
+            player.camHeading.sub(viewRight.clone().multiplyScalar(0.045)).normalize();
+        }
 
-         // Re-flatten camHeading onto planet surface to prevent tilting
-         player.camHeading.copy(player.camHeading.projectOnPlane(up).normalize());
+        player.camHeading.copy(player.camHeading.projectOnPlane(up).normalize());
 
-         // W/S moves along horizontal camHeading
-         const headingFlat = player.camHeading.clone();
-         if (keys['KeyW'] || keys['ArrowUp']) moveDir.add(headingFlat);
-         if (keys['KeyS'] || keys['ArrowDown']) moveDir.sub(headingFlat);
+        const headingFlat = player.camHeading.clone();
+        if (keys['KeyW'] || keys['ArrowUp']) moveDir.add(headingFlat);
+        if (keys['KeyS'] || keys['ArrowDown']) moveDir.sub(headingFlat);
 
-         if (mouseTarget) {
-             const toMouse = mouseTarget.clone().sub(pPos).projectOnPlane(up);
-             if (toMouse.length() > 2) moveDir.add(toMouse.normalize());
-             else mouseTarget = null;
-         }
-     }
+        if (mouseTarget) {
+            const toMouse = mouseTarget.clone().sub(pPos).projectOnPlane(up);
+            if (toMouse.length() > 2) moveDir.add(toMouse.normalize());
+            else mouseTarget = null;
+        }
+    }
 
     player.applyMovement(moveDir);
 
-    // Camera follow
     cameraCtrl.follow(pPos, player.camHeading, up);
 
-    // Floating action icons
     actionMgr.renderFloatingIcon(sceneMgr.camera, pPos);
 
     sceneMgr.render();

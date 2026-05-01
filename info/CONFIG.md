@@ -730,25 +730,435 @@ function continueStory() {
 - Prompt positioned near NPC in screen space
 - Dialogue dismisses on disconnect tap
 
+### 24. Toon Shader Rendering (`tests/toon_shader_example.html`)
 
-### 24. Skybox & Fog
+The toon shader system provides a non-photorealistic cel-shaded visual style with hard-edged lighting and black outlines. Ideal for cartoon/anime aesthetics.
 
-**Day Mode:**
-- Sky color: `0x87CEEB` (light blue)
-- Fog color: `0x87CEEB` (matches sky)
-- Fog density: `0.002` (FogExp2)
+**Features:**
+- Cel shading with discrete lighting steps
+- Gradient map for quantized shading
+- Black outline (cel outline) effect via back-side mesh scaling
+- Works with all geometries (player, NPCs, environment)
+- Compatible with shadows (VSM)
+- Lightweight custom helper function `createToonGroup()`
 
-**Night Mode:**
-- Sky color: `0x020205` (deep space black)
-- Fog color: `0x020205` (matches sky)
-- Fog density: unchanged (0.002)
+**Implementation:**
 
-**Transition:**
-- Colors lerp over time (factor 0.02 per frame) when toggling
-- `scene.background` and `scene.fog.color` both animate
-- Instant snap possible via `updateCelestial(true)`
+**Gradient Map Setup:**
+```javascript
+// Create a 3-step gradient (dark → mid → light)
+const format = renderer.capabilities.isWebGL2) ? THREE.RedFormat : THREE.LuminanceFormat;
+const colors = new Uint8Array([0, 128, 255]);  // 0=dark, 128=mid, 255=light
+const gradientMap = new THREE.DataTexture(colors, colors.length, 1, format);
+gradientMap.needsUpdate = true;  // Required for WebGL1
+```
 
-### 25. Implementation Roadmap (Current)
+**Toon Material:**
+```javascript
+const toonMat = new THREE.MeshToonMaterial({
+    color: 0xff3333,      // Base color
+    gradientMap: gradientMap  // 3-step shading
+});
+```
+
+**Outline Mesh:**
+```javascript
+const outlineMat = new THREE.MeshBasicMaterial({ color: 0x000000, side: THREE.BackSide });
+const outlineMesh = new THREE.Mesh(geometry, outlineMat);
+outlineMesh.scale.multiplyScalar(1 + outlineSize);  // Expand slightly (0.08 typical)
+```
+
+**Helper Function:**
+```javascript
+function createToonGroup(geometry, color, outlineSize = 0.08) {
+    const group = new THREE.Group();
+
+    // Main toon-shaded mesh
+    const toonMat = new THREE.MeshToonMaterial({ color, gradientMap });
+    const mainMesh = new THREE.Mesh(geometry, toonMat);
+    mainMesh.castShadow = true;
+    mainMesh.receiveShadow = true;
+    group.add(mainMesh);
+
+    // Black outline (back-side)
+    const outlineMat = new THREE.MeshBasicMaterial({ color: 0x000000, side: THREE.BackSide });
+    const outlineMesh = new THREE.Mesh(geometry, outlineMat);
+    outlineMesh.scale.multiplyScalar(1 + outlineSize);
+    group.add(outlineMesh);
+
+    return { group, mainMesh };
+}
+```
+
+**Usage Examples:**
+
+```javascript
+// Player
+const playerToon = createToonGroup(new THREE.BoxGeometry(1.2, 2, 1.2), 0xff3333, 0.1);
+playerMesh.add(playerToon.group);
+
+// NPC
+const npcToon = createToonGroup(new THREE.CapsuleGeometry(1, 2), npc.color, 0.1);
+npcToon.group.position.y = 1.5;
+
+// Planet
+const planetToon = createToonGroup(new THREE.IcosahedronGeometry(50, 5), 0x1a251a, 0.005);
+scene.add(planetToon.group);
+
+// Pickups
+const cell = createToonGroup(new THREE.SphereGeometry(1), 0xffaa00, 0.12);
+const shard = createToonGroup(new THREE.OctahedronGeometry(0.9), 0xa020f0, 0.12);
+
+// Buildings
+const buildingToon = createToonGroup(new THREE.BoxGeometry(3, 8, 3), 0x333344, 0.05);
+```
+
+**Configuration Parameters:**
+- `outlineSize`: Outline thickness as scale multiplier (default: 0.08 = 8% larger)
+  - Smaller objects (cells, shards): 0.12
+  - Medium objects (NPCs, buildings): 0.05–0.1
+  - Large objects (planet): 0.005 (nearly seamless)
+
+**Lighting Requirements:**
+- Directional light with sufficient intensity (≥3.5) to create visible toon steps
+- Ambient light provides base illumination (≥1.5)
+- `gradientMap` defines the threshold levels; 3 colors is standard for classic toon look
+
+**Performance:**
+- Each toon object uses **two meshes** (main + outline) → higher draw count
+- Outline mesh uses `BackSide` culling to avoid z-fighting (polygonOffset not needed)
+- `MeshToonMaterial` is single-pass; no extra cost vs standard material beyond gradient lookup
+- Consider merging geometries for static objects to reduce draw calls
+
+**Shadow Compatibility:**
+- Main mesh casts/receives shadows normally
+- Outline mesh typically does **not** cast shadows (set `castShadow = false`)
+- For planet ground, outline on both sides may cause artifacts; use minimal outline size
+
+**Customizing Shading Steps:**
+To change the number of shading bands, modify the `colors` array:
+- 2-step (simple): `new Uint8Array([0, 255])`
+- 3-step (standard): `new Uint8Array([0, 128, 255])`
+- 4-step: `new Uint8Array([0, 85, 170, 255])`
+- Values represent luminance thresholds (0–255)
+
+**WebGL1 vs WebGL2:**
+- WebGL2: use `THREE.RedFormat`
+- WebGL1: use `THREE.LuminanceFormat` for compatibility
+- Check with `renderer.capabilities.isWebGL2`
+
+**Asset Requirements:**
+None — gradient map is procedurally generated. Colors defined in code.
+
+**Tips:**
+- Outline size should scale with object size on screen (larger objects need thinner outlines)
+- For mobile, reduce outline counts or merge geometries
+- Toon shading is incompatible with some post-processing effects (SSAO, bloom) unless configured carefully
+
+**Example Output:**
+- Planet: dark green (`0x1a251a`) with subtle 3-tone shading
+- Player: red (`0xff3333`) with bold black outline
+- NPCs: vibrant colors (cyan, orange, purple) with consistent 0.1 outline scale
+
+### 25. Comprehensive VFX Particle System (`tests/visual_effects.html`)
+
+The VFXSystem class provides advanced particle effects including dust, fireworks, ambient particles, and animated bird flocks. Designed for high-performance visual polish with object pooling and additive blending.
+
+**Features:**
+- **Dust particles**: Emitted from player feet during movement (grounded state)
+- **Ambient spores**: Sparse floating particles throughout the environment
+- **Fireworks**: Burst effects on quest/item completion (200 particles, multi-color)
+- **Bird flock**: 20 animated birds flying at high altitude with flapping motion
+- **Object pooling**: Pre-allocated 2500-particle buffer for optimal performance
+- **Additive blending**: Glowing overlapping particles
+- **Planet-aware**: Particles affected by spherical gravity (pulled toward planet center)
+
+**Particle System Architecture:**
+
+**VFXSystem Class:**
+```javascript
+class VFXSystem {
+    constructor(scene, planetR) { ... }
+    spawnParticle(pos, vel, color, life)  // Recycle dead particle
+    emitDust(pos, up)                     // Footsteps on ground
+    emitAmbientDust(playerPos)            // Random floating spores
+    emitFirework(pos, up)                 // Burst explosion
+    update(dt, playerPos, playerVel, isGrounded)  // Advance all effects
+}
+```
+
+**Particle Pool (2500 particles):**
+- Pre-allocated Float32Arrays for positions (3), colors (3), lifetimes
+- Velocities stored as THREE.Vector3 objects
+- Hidden when lifetime ≤ 0 (position set to 99999)
+- Additive blending (`THREE.AdditiveBlending`) for glow effect
+- `depthWrite: false` for proper transparency sorting
+
+**Dust Emission:**
+- Triggered when `isGrounded && playerVel.lengthSq() > 10`
+- 40% spawn chance per frame (limited rate)
+- 2 particles per emission
+- Color: `0x444455` (dark gray-blue)
+- Velocity: Random direction ×3 + up ×2
+- Lifetime: 0.4–0.8 seconds
+- Spawned at player feet with slight random offset
+
+**Ambient Dust:**
+- 10% spawn chance per frame (very sparse)
+- Color: `0x00f2ff` (cyan/neon blue)
+- Spawn radius: 15–25 units around player
+- Velocity: Slow drift (0.5 scalar random direction)
+- Lifetime: 5–10 seconds (long lingering)
+- Creates atmospheric depth in open areas
+
+**Fireworks:**
+- Multi-color: orange (`0xffaa00`), cyan (`0x00f2ff`), green (`0x00ffaa`)
+- 200 particles per burst
+- Spawn position: 6 units above player (radial up)
+- Velocity: Random direction × (15–35)
+- Lifetime: 1.5–3.0 seconds
+- Triggered on:
+  - Quest completion (`quests.forEach` check)
+  - Item collection (CELL/SHARD quests)
+  - Action-based quest completion
+
+**Bird Flock:**
+- 20 cone-shaped birds (3-sided geometry)
+- Color: `0x00f2ff` (matches primary accent)
+- Altitude: planetR + 30 units (high sky)
+- Movement:
+  - Random initial velocity (15 units/s)
+  - Altitude maintenance (spring toward target)
+  - Sinusoidal bobbing (flapping: 10 rad/s phase)
+  - Mesh orientation: `lookAt` velocity direction
+- Birds auto-orient to planet surface normal
+
+**Configuration Parameters:**
+- `MAX_PARTICLES`: 2500 (can be adjusted)
+- `DUST_PER_EMIT`: 2 particles
+- `AMBIENT_SPAWN_RATE`: 0.1 (10% chance per frame)
+- `FIREWORK_PARTICLE_COUNT`: 200
+- `FIREWORK_COLORS`: `[0xffaa00, 0x00f2ff, 0x00ffaa]`
+- `BIRD_COUNT`: 20
+- `BIRD_ALTITUDE`: planetR + 30
+- `BIRD_SPEED`: 15
+- `DUST_COLOR`: `0x444455`
+- `AMBIENT_DUST_COLOR`: `0x00f2ff`
+
+**Performance Notes:**
+- Single Points mesh with BufferGeometry (1 draw call for all particles)
+- GPU-side position/color updates via BufferAttribute.needsUpdate
+- Birds are individual meshes but count is low (20)
+- Update loop runs every frame with O(N) particle iteration
+- Consider lowering MAX_PARTICLES on mobile (1000–1500)
+
+---
+
+### 26. Enhanced Scene Elements (`tests/visual_effects.html`)
+
+Beyond the particle system, the test file demonstrates rich environmental details that enhance the atmospheric world.
+
+**Star Field (1500 stars):**
+- Random directions, distances 100–2100 units
+- `THREE.Points` with `PointsMaterial`
+- Color: `0x88ccff` (soft blue)
+- Size: 1.5 units
+- Opacity: 0.8, transparent
+- Provides deep space background
+
+**Crystal Clusters (15 locations):**
+- Groups of 2–5 cone-shaped crystals
+- Geometry: `ConeGeometry(0.8, 4–7, 5)` (5-sided for low-poly look)
+- Material: `MeshStandardMaterial` with emissive accent
+- Color: `0x00f2ff` (cyan, matches theme)
+- Emissive: `0x004444` (subtle glow)
+- Positioned on planet surface (spherical coords)
+- Oriented to match surface normal
+- Cast/receive shadows
+- Random rotation for organic feel
+
+**Relay Towers (6 structures):**
+- Multi-part group: base cylinder, central orb, decorative ring
+- Base: `CylinderGeometry(1.5, 2, 10, 8)`, dark gray (`0x333344`)
+- Orb: `SphereGeometry(1.5)`, orange (`0xffaa00`) with emissive `0x663300`
+- Ring: `TorusGeometry(3.5, 0.2, 8, 24)`, orange, rotated horizontal
+- Positioned on planet surface, aligned to normal
+- Includes Cannon.js static collider (for physics world)
+- Height: ~10–11 units (player scale reference)
+
+**Scene Color Palette:**
+- Background: `#010105` (near-black with blue tint)
+- Accent primary: `0x00f2ff` (cyan)
+- Accent secondary: `0xffaa00` (orange)
+- Accent success: `0x00ffaa` (green)
+- Panel background: `rgba(0, 10, 20, 0.88)` (dark translucent)
+
+---
+
+### 27. Floating Action Icon Effect
+
+When the player executes an action from the actions panel, a floating icon animates upward from the player's position.
+
+**Visual Behavior:**
+- Icon starts at player's screen-projected position
+- Initial scale: 2× (large)
+- Travels upward 500px over 3 seconds
+- Scale shrinks from 2 → 1 during travel
+- Opacity: 1 → 0 (fade starts at 20% progress, zero at 60%)
+- Uses `requestAnimationFrame` smooth animation
+- Removed from DOM after completion
+
+**CSS:**
+```css
+.floating-action-icon {
+    position: fixed;
+    font-size: 24px;
+    color: var(--accent-primary);
+    z-index: 1000;
+    pointer-events: none;
+    transform-origin: center center;
+    will-change: transform, opacity;
+}
+```
+
+**JavaScript Integration:**
+```javascript
+const showFloatingActionIcon = (iconClass) => {
+    const icon = document.createElement('i');
+    icon.className = `${iconClass} floating-action-icon`;
+    // Project 3D position to 2D screen space
+    const playerScreenPos = playerPos.project(camera);
+    icon.style.left = `${(playerScreenPos.x * 0.5 + 0.5) * window.innerWidth}px`;
+    icon.style.top = `${(playerScreenPos.y * -0.5 + 0.5) * window.innerHeight}px`;
+    icon.style.transform = 'translate(0, 0) scale(2)';
+    icon.style.opacity = '1';
+    document.body.appendChild(icon);
+    // Animate...
+};
+```
+
+**Configuration via `config.actions[].animation`:**
+```javascript
+{
+    name: "Scan Area",
+    icon: "fas fa-search",
+    animation: {
+        duration: 3000,        // ms
+        travelDistance: 500,   // px
+        startScale: 2,
+        endScale: 1,
+        fadeStart: 0.2,        // progress ratio (0–1)
+        fadeEnd: 0.6
+    }
+}
+```
+
+---
+
+### 28. Wipe Transition Effect (`tests/visual_effects.html`)
+
+Screen wipe overlay used for scene transitions (start screen, win screen).
+
+**Implementation:**
+```css
+#wipe-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: #010105; z-index: 2000; pointer-events: none;
+    transform: translateX(-100%);  /* hidden left */
+}
+#wipe-overlay.active  { animation: wipe-in 1s ease-in-out forwards; }
+#wipe-overlay.out     { animation: wipe-out 1s ease-in-out forwards; }
+
+@keyframes wipe-in {
+    0%   { transform: translateX(-100%); }
+    50%  { transform: translateX(0); }
+    100% { transform: translateX(100%); }  /* exits right */
+}
+@keyframes wipe-out {
+    0%   { transform: translateX(100%); }
+    50%  { transform: translateX(0); }
+    100% { transform: translateX(-100%); }  /* exits left */
+}
+```
+
+**Usage:**
+- **Start game**: Wipe in from left → right, hide start screen after 500ms
+- **Win sequence**: Wipe in from left → right, reveal win screen behind at 500ms mark, then wipe out on replay
+- Duration: 1 second (configurable via CSS animation)
+- Direction: Horizontal (left/right) only in current implementation
+
+**Configuration via `config.wipeTransition`:**
+Already documented in §9. The color is `#010105`, duration `1000ms`, easing `ease-in-out`.
+
+---
+
+### 29. Atmosphere: Linear Fog & Background (`tests/visual_effects.html`)
+
+The scene uses `THREE.Fog` for depth cueing and atmospheric blending.
+
+**Settings:**
+- Fog color: `0x050a1a` (dark blue-gray)
+- Type: `THREE.Fog(color, near, far)`
+- Near: 20 units (fog starts)
+- Far: 80 units (fully opaque)
+- Background color matches fog for seamless horizon
+
+**Purpose:**
+- Fades distant objects into background
+- Hides horizon edge on spherical planet
+- Creates enclosed atmospheric feeling
+
+**Performance:**
+- Fog is free on modern GPUs (depth-based fragment shader math)
+- No texture lookups or extra passes
+
+---
+
+### 30. Audio System Enhancements (`tests/visual_effects.html`)
+
+Beyond base Howler integration, the test includes:
+
+**Audio Context Fallback:**
+- Web Audio API used for jump beep (synthesized tone)
+- `AudioContext` with oscillator, gain node
+- Frequency: 300 Hz, type: sine, duration: 0.05s, volume: 0.05
+
+**NPC Sounds (per-ID):**
+```javascript
+const npcs = [
+    { id: 1, ... },
+    { id: 2, ... }
+];
+
+const SOUND = {
+    npc: {
+        1: { enter: 'echo_enter.mp3', exit: 'echo_exit.mp3' },
+        2: { enter: 'horizon_enter.mp3', exit: 'horizon_exit.mp3' },
+        // ...
+    }
+};
+
+// Auto-play enter sound once when player first approaches
+if (lastNearNpcId !== activeNpc.data.id) {
+    playNpcSound(activeNpc.data.id, 'enter');
+    lastNearNpcId = activeNpc.data.id;
+}
+// Play exit sound when moving away
+if (lastNearNpcId !== null && !isDialogueOpen) {
+    playNpcSound(lastNearNpcId, 'exit');
+    lastNearNpcId = null;
+}
+```
+
+**Sound Toggle Button:**
+- Bottom-right UI button (volume up/off icons)
+- Mutes/unmutes background music only (not UI sounds)
+- State persisted in `musicEnabled` variable
+- Howler `mute(true/false)` and `play()`/`pause()`
+
+---
+
+### 31. Implementation Roadmap (Current)
 
 **Completed:**
 1. ✅ Day/night cycle with celestial orbits
@@ -769,5 +1179,5 @@ function continueStory() {
 14. ⬜ Audio integration (ambiance, UI sounds, NPC voices)
 15. ⬜ Mobile touch controls
 16. ⬜ Save/load game state
-17. ⬜ Optimize particle counts and shadow cascades
+ 17. ⬜ Optimize particle counts and shadow cascades
 

@@ -42,6 +42,8 @@ export const ICONS = {
     actions:      baseIconPath + 'list.svg',
     soundOn:      baseIconPath + 'music.svg',
     soundOff:     baseIconPath + 'music_off.svg',
+    day:          baseIconPath + 'day.svg',
+    night:        baseIconPath + 'night.svg',
     // Action icons (for floating icons & action list)
     scan:         baseIconPath + 'search.svg',
     repair:       baseIconPath + 'wrench.svg',
@@ -54,6 +56,7 @@ export const ICONS = {
     // Quest icons
     checkFull:    baseIconPath + 'check-square-full.svg',
     checkEmpty:   baseIconPath + 'check-square-empty.svg'
+    //
 };
 
 // FontAwesome icon class names (for FA system)
@@ -70,7 +73,9 @@ export const FA_ICONS = {
     circle:       'fas fa-circle',
     memory:       'fas fa-memory',
     gem:          'fas fa-gem',
-    interact:     'fas fa-hand-pointer'
+    interact:     'fas fa-hand-pointer',
+    day:          'fas fa-sun',
+    night:        'fas fa-moon'
 };
 
 // ── MODEL PATHS (used when MODEL_SYSTEM === 'glb') ───────────────────────
@@ -113,7 +118,7 @@ export const PRIMITIVE_CONFIG = {
     npcKeeper:    { type: 'capsule', radius: 1, length: 2, color: 0xff00ff },
     pickupCell:   { type: 'sphere', radius: 1, color: 0xffaa00 },
     pickupShard:  { type: 'octahedron', radius: 0.9, color: 0xa020f0, emissive: 0x4a0080 },
-    planet:       { type: 'icosahedron', radius: 50, segments: 5, color: 0x1a251a },
+    planet:       { type: 'icosahedron', radius: 50, segments: 5, color: 0x2a552a },
     tower:        { type: 'box', size: [3, 10, 3], color: 0x333344 },
     rocks:        { type: 'box', size: [2, 4, 2], color: 0xdddddd }
 };
@@ -136,18 +141,24 @@ export const SCENE = {
     background: 0x020205,        // Dark background
     fogColor: 0x020205,          // Fog color
     fogDensity: 0.008,           // Fog density
-    ambientLight: 0x404040,      // Ambient light intensity
+    ambientLight: 0x404040,      // Ambient light color
     ambientIntensity: 1.5,       // Ambient light strength
     sunColor: 0xffffff,          // Sunlight color
-    sunIntensity: 2.5,           // Sunlight intensity
-    shadowMapSize: 2048          // Shadow map resolution
+    sunIntensity: 3.5,           // Sunlight intensity (higher for toon shading)
+    shadowMapSize: 2048,         // Shadow map resolution
+    // Player torch settings
+    torchColor: 0x00f2ff,        // Cyan torch light
+    torchIntensityDay: 0,        // Torch off during day
+    torchIntensityNight: MODEL_SYSTEM === 'glb' ? 400 : 800, // Lower for GLB, higher for primitives
+    torchDistance: 80,           // Moderate reach distance
+    torchDecay: 2                // Light falloff
 };
 
 // Planet configuration
 export const PLANET = {
     radius: 50,                  // Planet radius
     segments: 5,                 // Geometry segments
-    color: 0x1a251a,             // Planet surface color
+    color: 0x2a552a,             // Planet surface color (brighter green)
     toonRampLevels: 3,           // Toon shading levels
     shadowBias: 0.0001           // Shadow bias for artifacts
 };
@@ -242,5 +253,82 @@ export const actions = [
     { name: "Scan Area", type: "scan", icon: ICON_SYSTEM === 'svg' ? ICONS.scan : FA_ICONS.scan, iconType: "scan", uses: -1 },
     { name: "Repair Gear", type: "repair", icon: ICON_SYSTEM === 'svg' ? ICONS.repair : FA_ICONS.repair, iconType: "repair", uses: 1 },
     { name: "Hack Terminal", type: "hack", icon: ICON_SYSTEM === 'svg' ? ICONS.hack : FA_ICONS.hack, iconType: "hack", uses: 1 },
-    { name: "Med Kit", type: "heal", icon: ICON_SYSTEM === 'svg' ? ICONS.heal : FA_ICONS.heal, iconType: "heal", uses: 5}
+    { name: "Med Kit", type: "heal", icon: ICON_SYSTEM === 'svg' ? ICONS.heal : FA_ICONS.heal, iconType: "heal", uses: 5 }
 ];
+
+// ============================================================================
+// DIALOGUE SYSTEM CONFIGURATION
+// ============================================================================
+/**
+ * Dialogue system uses WhatsApp-style chat interface.
+ * Ink.js runtime loaded via CDN (https://unpkg.com/inkjs@2.2.1/dist/ink.js)
+ *
+ * NPCs with `hasDialogue: true` will load their story from `storyFile` at startup.
+ * Stories are stored in npcStories cache and instantiated on conversation start.
+ */
+export const DIALOGUE = {
+    // Ink library detection order
+    inkLibrary: ['inkjs', 'ink'],           // window.inkjs or window.ink
+
+    // Dialogue UI timing (ms)
+    fillerDelay: 300,                       // Delay between filler messages
+    choiceDelay: 400,                       // Delay after choice before continuing
+
+    // Whether to show filler messages during conversation
+    enableFiller: true,
+
+    // Auto-scroll behavior
+    autoScroll: true,
+
+    // Conversation bubble limits
+    maxBubblesPerSegment: 10,               // Prevent spam
+};
+
+// ============================================================================
+// VFX SYSTEM CONFIGURATION ( Landing Decals, Trails )
+// ============================================================================
+export const VFX = {
+    landingDecal: {
+        enabled: true,
+        size: 4,                            // World units
+        lifetime: 1.5,                      // Seconds before fade
+        svgPath: './assets/gfx/dirt.svg',   // Decal texture (black shapes)
+        nightColor: 0xffffff,               // Tint color in night mode (white)
+        dayColor: 0x000000                  // Tint color in day mode (black)
+    },
+    trail: {
+        enabled: true,
+        particleSize: 0.3,
+        dayColor: 0x966F33,                 // Brownish by day
+        nightColor: 0x00f2ff,               // Cyan by night
+        lifetime: 1.0                       // Seconds
+    }
+};
+
+// ============================================================================
+// DAY/NIGHT CYCLE CONFIGURATION
+// ============================================================================
+export const DAY_NIGHT = {
+    autoCycle: true,                        //自动时间推进
+    cycleSpeed: 0.0001,                     // timeProgress increment per frame
+    dayPosition: 0.25,                      // timeProgress value for full day
+    nightPosition: 0.75,                    // timeProgress value for full night
+    sky: {
+        day: 0x87CEEB,                      // Light blue
+        night: 0x020205                     // Deep space black
+    },
+    fogDensity: 0.002
+};
+
+// ============================================================================
+// INPUT CONFIGURATION
+// ============================================================================
+export const CONTROLS = {
+    jumpKey: 'Space',
+    toggleAutoCycleKey: 'KeyC',
+    moveForward: 'KeyW',
+    moveBackward: 'KeyS',
+    moveLeft: 'KeyA',
+    moveRight: 'KeyD'
+};
+

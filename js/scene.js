@@ -26,20 +26,8 @@ export class SceneManager {
     }
 
     setupLights() {
-        const sun = new THREE.DirectionalLight(0xffffff, 2.5);
-        sun.position.set(100, 200, 100);
-        sun.castShadow = true;
-        sun.shadow.camera.left = -100;
-        sun.shadow.camera.right = 100;
-        sun.shadow.camera.top = 100;
-        sun.shadow.camera.bottom = -100;
-        sun.shadow.camera.near = 0.5;
-        sun.shadow.camera.far = 500;
-        sun.shadow.mapSize.width = 2048;
-        sun.shadow.mapSize.height = 2048;
-        this.scene.add(sun);
-        this.scene.add(new THREE.AmbientLight(0x404040, 1.5));
-        this.sun = sun;
+        // Lighting is now handled by DayNight system
+        // This method is kept for compatibility but doesn't set up lights
     }
 
     setupStarField() {

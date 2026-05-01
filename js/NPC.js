@@ -1,11 +1,12 @@
 import * as THREE from 'three';
 
 export class NPC {
-    constructor(data, planetR, scene, modelMgr) {
+    constructor(data, planetR, scene, modelMgr, toonShader = null) {
         this.data = data;
         this.planetR = planetR;
         this.scene = scene;
         this.modelMgr = modelMgr;
+        this.toonShader = toonShader;
         this.mesh = null;
         this.bodyMesh = null; // Reference to mesh that bobs
         this.createMesh();
@@ -14,37 +15,56 @@ export class NPC {
     createMesh() {
         const grp = new THREE.Group();
 
-        // Base Pad (still primitive)
-        const pad = new THREE.Mesh(
+        // Base Pad with toon shader
+        const padToon = this.toonShader.createToonGroup(
             new THREE.CylinderGeometry(2.5, 2.5, 0.2, 16),
-            new THREE.MeshStandardMaterial({ color: 0x222222, emissive: 0x111111 })
+            0x222222,
+            0.05,
+            { emissive: 0x111111 }
         );
-        grp.add(pad);
+        grp.add(padToon.group);
 
         // NPC Body: use ModelManager if GLB system, else primitive
         if (this.modelMgr && this.modelMgr.system === 'glb') {
             const modelKey = this.getModelKey();
             const npcModel = this.modelMgr.getModel(modelKey);
-            grp.add(npcModel.clone());
+            if (npcModel) {
+                const clonedModel = npcModel.clone();
+                // Update materials to toon
+                clonedModel.traverse((child) => {
+                    if (child.isMesh && child.material) {
+                        child.material = this.toonShader.createToonMaterial(this.data.color);
+                    }
+                });
+                grp.add(clonedModel);
 
-            // Assume the first mesh in the model is the body for bobbing
-            this.bodyMesh = npcModel.children[0];
-            if (this.bodyMesh) {
-                this.bodyMesh.castShadow = true;
-                this.bodyMesh.receiveShadow = true;
-                // Store original Y offset for bobbing
-                this.bodyMesh.userData.originalY = this.bodyMesh.position.y;
+                // Assume the first mesh in the model is the body for bobbing
+                this.bodyMesh = clonedModel.children[0];
+                if (this.bodyMesh) {
+                    // Store original Y offset for bobbing
+                    this.bodyMesh.userData.originalY = this.bodyMesh.position.y;
+                }
+            } else {
+                // Fallback to toon group
+                const npcToon = this.toonShader.createToonGroup(
+                    new THREE.CapsuleGeometry(1, 2),
+                    this.data.color,
+                    0.1
+                );
+                npcToon.group.position.y = 1.5;
+                grp.add(npcToon.group);
+                this.bodyMesh = npcToon.mainMesh;
             }
         } else {
-            // Primitive fallback
-            this.bodyMesh = new THREE.Mesh(
+            // Primitive fallback with toon shader
+            const npcToon = this.toonShader.createToonGroup(
                 new THREE.CapsuleGeometry(1, 2),
-                new THREE.MeshToonMaterial({ color: this.data.color })
+                this.data.color,
+                0.1
             );
-            this.bodyMesh.position.y = 1.5;
-            this.bodyMesh.castShadow = true;
-            this.bodyMesh.receiveShadow = true;
-            grp.add(this.bodyMesh);
+            npcToon.group.position.y = 1.5;
+            grp.add(npcToon.group);
+            this.bodyMesh = npcToon.mainMesh;
         }
 
         const p = new THREE.Vector3().setFromSphericalCoords(
