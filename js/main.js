@@ -22,7 +22,7 @@ import { CameraController } from './CameraController.js';
 import { VFXSystem } from './vfx.js';
 import { ToonShader } from './ToonShader.js';
 import { DayNight } from './DayNight.js';
-import { npcs, quests, locations, ICON_SYSTEM, MODEL_SYSTEM } from './config.js';
+import { npcs, quests, locations, ICON_SYSTEM, MODEL_SYSTEM, DIALOGUE } from './config.js';
 import { IconManager } from './IconManager.js';
 import { ModelManager } from './ModelManager.js';
 
@@ -69,6 +69,13 @@ const elNpcNameDisplay    = document.getElementById('npc-name-display');
 const elNpcBubble         = document.getElementById('npc-bubble');
 const elLocName           = document.getElementById('loc-name');
 const elLocBox            = document.getElementById('loc-box');
+
+console.log('[init] DOM elements loaded:', {
+    elBubbleContainer: !!elBubbleContainer,
+    elBubbleChoices: !!elBubbleChoices,
+    elLocalDialogueBox: !!elLocalDialogueBox,
+    elWorldPrompt: !!elWorldPrompt
+});
 
 const panelQuest   = document.getElementById('panel-quest');
 const panelInv     = document.getElementById('panel-inv');
@@ -151,11 +158,28 @@ function stripInkMarkers(s) {
  * @param {'npc'|'player'} type - controls left/right alignment and colour
  */
 function appendMessage(text, type = 'npc') {
+    console.log('[appendMessage]', type, text.substring(0, 50));
+    if (!elBubbleContainer) {
+        console.error('[appendMessage] elBubbleContainer is null!');
+        return;
+    }
     const msg = document.createElement('div');
     msg.className = `msg-bubble ${type}-msg`;
     msg.innerText = text;
     elBubbleContainer.appendChild(msg);
-    // Smooth scroll to latest message
+
+    // Highlight new message briefly
+    msg.animate([
+        { opacity: 0.7, transform: 'translateY(4px)' },
+        { opacity: 1, transform: 'translateY(0)' }
+    ], {
+        duration: 150,
+        easing: 'ease-out'
+    });
+
+    // Force scroll to bottom immediately
+    elBubbleContainer.scrollTop = elBubbleContainer.scrollHeight;
+    // Also requestAnimationFrame for smooth scroll behavior
     requestAnimationFrame(() => {
         elBubbleContainer.scrollTop = elBubbleContainer.scrollHeight;
     });
@@ -179,9 +203,25 @@ const FILLER_LINES = [
 
 function showFillerMessages(count = 3) {
     for (let i = 0; i < count; i++) {
+        const originalDelay = (i + 1) * DIALOGUE.fillerDelay;
+        const typingStartDelay = Math.max(0, originalDelay - DIALOGUE.typingDelay);
+
         setTimeout(() => {
-            appendMessage(FILLER_LINES[i % FILLER_LINES.length], 'npc');
-        }, (i + 1) * 300);
+            // Show typing indicator
+            const typingBubble = document.createElement('div');
+            typingBubble.className = 'msg-bubble npc-msg typing-indicator';
+            typingBubble.innerText = '...';
+            typingBubble.style.fontStyle = 'italic';
+            typingBubble.style.opacity = '0.6';
+            elBubbleContainer.appendChild(typingBubble);
+            requestAnimationFrame(() => elBubbleContainer.scrollTop = elBubbleContainer.scrollHeight);
+
+            // After typingDelay, replace with actual filler message
+            setTimeout(() => {
+                elBubbleContainer.removeChild(typingBubble);
+                appendMessage(FILLER_LINES[i % FILLER_LINES.length], 'npc');
+            }, DIALOGUE.typingDelay);
+        }, typingStartDelay);
     }
 }
 
@@ -290,61 +330,104 @@ function triggerWinSequence() {
  * Player choices are echoed back as player-msg bubbles before advancing.
  */
 function continueStory() {
+    console.log('[continueStory] called, canContinue:', dialogueMgr.inkStory.canContinue);
+
     let txt = "";
-    while (dialogueMgr.inkStory.canContinue) {
-        txt += dialogueMgr.inkStory.Continue();
+    // Collect all available narrative text until we hit a choice point
+    while (dialogueMgr.inkStory.canContinue && dialogueMgr.inkStory.currentChoices.length === 0) {
+        const chunk = dialogueMgr.inkStory.Continue();
+        console.log('[continueStory] collected chunk:', JSON.stringify(chunk.substring(0, 50)));
+        txt += chunk;
     }
+    console.log('[continueStory] total collected txt length:', txt.length, 'choices now:', dialogueMgr.inkStory.currentChoices.length);
 
     const cleaned = stripInkMarkers(txt);
+    console.log('[continueStory] cleaned:', cleaned.substring(0, 100));
+
     elBubbleChoices.innerHTML = "";
 
-    // Append main NPC line as a chat bubble
-    if (cleaned.trim()) {
-        appendMessage(cleaned.trim(), 'npc');
-        // Show a handful of ambient filler messages to simulate activity
-        showFillerMessages(3);
+    if (!cleaned.trim()) {
+        // No narrative text available; check if story simply ended
+        if (!dialogueMgr.inkStory.canContinue && dialogueMgr.inkStory.currentChoices.length === 0) {
+            console.log('[continueStory] Story ended with no choices');
+            return;
+        }
     }
 
-    // Render choices after filler delay (so they appear after the filler)
-    const renderDelay = cleaned.trim() ? 3 * 300 + 100 : 0;
-    setTimeout(() => {
-        elBubbleChoices.innerHTML = "";
+    if (cleaned.trim()) {
+        // Show typing indicator immediately
+        const typingBubble = document.createElement('div');
+        typingBubble.className = 'msg-bubble npc-msg typing-indicator';
+        typingBubble.innerText = '...';
+        elBubbleContainer.appendChild(typingBubble);
+        requestAnimationFrame(() => elBubbleContainer.scrollTop = elBubbleContainer.scrollHeight);
 
-        dialogueMgr.inkStory.currentChoices.forEach(c => {
-            const b = document.createElement('button');
-            b.className = "choice-btn";
-            b.innerText = c.text;
-            b.onclick = () => {
-                // Echo player's choice as a right-aligned bubble
-                appendMessage(c.text, 'player');
-                dialogueMgr.inkStory.ChooseChoiceIndex(c.index);
-                // Small delay before NPC responds, feels more natural
-                setTimeout(continueStory, 400);
-            };
-            elBubbleChoices.appendChild(b);
-        });
+        // Delay before showing main NPC message (simulates typing/thinking time)
+        setTimeout(() => {
+            // Remove typing indicator
+            elBubbleContainer.removeChild(typingBubble);
+            appendMessage(cleaned.trim(), 'npc');
+            // Show filler messages after main message appears, staggered
+            showFillerMessages(3);
+        }, DIALOGUE.messageDelay);
 
-        // End of story: show disconnect button
-        if (dialogueMgr.inkStory.currentChoices.length === 0 && !dialogueMgr.inkStory.canContinue) {
-            const b = document.createElement('button');
-            b.className = "choice-btn";
-            b.innerText = "[CLOSE CONNECTION]";
-            b.onclick = () => {
-                // Clear chat history for next conversation
-                elBubbleContainer.innerHTML = "";
-                elLocalDialogueBox.style.display = 'none';
-                isDialogueOpen = false;
-                player.wakeUp();
-                player.resetTarget();
-                if (activeNpc) audio.playNpcSound(activeNpc.data.id, 'onExit');
-            };
-            elBubbleChoices.appendChild(b);
-        }
-    }, renderDelay);
+        // Render choices after: messageDelay + (fillerCount * fillerDelay) + buffer
+        const renderDelay = DIALOGUE.messageDelay + (3 * DIALOGUE.fillerDelay) + 100;
+        setTimeout(() => {
+            elBubbleChoices.innerHTML = "";
+
+            dialogueMgr.inkStory.currentChoices.forEach(c => {
+                const b = document.createElement('button');
+                b.className = "choice-btn";
+                b.innerText = c.text;
+                b.onclick = () => {
+                    appendMessage(c.text, 'player');
+                    dialogueMgr.inkStory.ChooseChoiceIndex(c.index);
+                    // Small delay before NPC responds, feels more natural
+                    setTimeout(continueStory, 400);
+                };
+                elBubbleChoices.appendChild(b);
+            });
+
+            // End of story: show disconnect button
+            if (dialogueMgr.inkStory.currentChoices.length === 0 && !dialogueMgr.inkStory.canContinue) {
+                const b = document.createElement('button');
+                b.className = "choice-btn";
+                b.innerText = "[CLOSE CONNECTION]";
+                b.onclick = () => {
+                    elBubbleContainer.innerHTML = "";
+                    elLocalDialogueBox.style.display = 'none';
+                    isDialogueOpen = false;
+                    player.wakeUp();
+                    player.resetTarget();
+                    if (activeNpc) audio.playNpcSound(activeNpc.data.id, 'onExit');
+                };
+                elBubbleChoices.appendChild(b);
+            }
+        }, renderDelay);
+    } else {
+        // Edge case: no text but there are choices (immediate choice)
+        const renderDelay = DIALOGUE.messageDelay + (3 * DIALOGUE.fillerDelay) + 100;
+        setTimeout(() => {
+            elBubbleChoices.innerHTML = "";
+            dialogueMgr.inkStory.currentChoices.forEach(c => {
+                const b = document.createElement('button');
+                b.className = "choice-btn";
+                b.innerText = c.text;
+                b.onclick = () => {
+                    appendMessage(c.text, 'player');
+                    dialogueMgr.inkStory.ChooseChoiceIndex(c.index);
+                    setTimeout(continueStory, 400);
+                };
+                elBubbleChoices.appendChild(b);
+            });
+        }, renderDelay);
+    }
 }
 
 // Start dialogue (click on world prompt)
 function startDialogue() {
+    console.log('[startDialogue] called', { activeNpc, hasStory: dialogueMgr.getStory(activeNpc?.data?.id) });
     const inkLib = (() => {
         if (typeof window.inkjs !== 'undefined' && window.inkjs.Story) return window.inkjs;
         if (typeof window.ink !== 'undefined' && window.ink.Story) return window.ink;
@@ -371,17 +454,61 @@ function startDialogue() {
     // Clear previous chat history before opening a fresh conversation
     elBubbleContainer.innerHTML = "";
     elBubbleChoices.innerHTML = "";
+    console.log('[startDialogue] cleared containers, bubbleContainer exists:', !!elBubbleContainer);
 
     // Show dialogue box as flex (required by CSS layout)
     elLocalDialogueBox.style.display = 'flex';
+    console.log('[startDialogue] dialogue box display set to flex');
 
     audio.playNpcSound(activeNpc.data.id, 'onEnter');
 
     try {
         const storyData = dialogueMgr.getStory(activeNpc.data.id);
+        if (!storyData) {
+            console.error('[startDialogue] No story data for NPC', activeNpc.data.id);
+            alert('No dialogue story found for this NPC');
+            return;
+        }
         dialogueMgr.inkStory = new inkLib.Story(storyData);
+        console.log('[startDialogue] Story created, canContinue:', dialogueMgr.inkStory.canContinue);
 
-        // Set NPC name in the pill header
+        // Try to get text directly; if empty, jump to known content knots
+        let txt = "";
+        if (dialogueMgr.inkStory.canContinue) {
+            txt = dialogueMgr.inkStory.Continue();
+            console.log('[startDialogue] First Continue returned:', JSON.stringify(txt));
+        }
+
+        if (!txt || !txt.trim()) {
+            // This story uses divert-glue at start; jump directly to first content knot
+            const contentKnots = ['morning', 'fear', 'hide', 'basket', 'start'];
+            let found = false;
+            for (const knot of contentKnots) {
+                try {
+                    dialogueMgr.inkStory.ChoosePathString(knot);
+                    if (dialogueMgr.inkStory.canContinue) {
+                        txt = dialogueMgr.inkStory.Continue();
+                        console.log(`[startDialogue] Knot "${knot}" yielded:`, txt.substring(0, 80));
+                        if (txt && txt.trim()) {
+                            found = true;
+                            break;
+                        }
+                    }
+                } catch (e) {
+                    console.log(`[startDialogue] Knot "${knot}" failed:`, e.message);
+                }
+            }
+            if (!found) {
+                console.error('[startDialogue] Could not extract dialogue from any known knot');
+                alert('This dialogue appears to be empty or cannot be read.');
+                return;
+            }
+        }
+
+        const cleaned = stripInkMarkers(txt);
+        console.log('[startDialogue] Final cleaned text:', cleaned.substring(0, 100));
+
+        // Set NPC name
         if (activeNpc.data.questId !== undefined) {
             const q = quests[activeNpc.data.questId];
             const status = q.cur >= q.tar ? '✓ COMPLETED' : `QUEST [${q.cur}/${q.tar}]`;
@@ -390,7 +517,71 @@ function startDialogue() {
             elNpcNameDisplay.innerText = activeNpc.data.name;
         }
 
-        continueStory();
+        // Clear and show the dialogue box
+        elBubbleContainer.innerHTML = "";
+        elBubbleChoices.innerHTML = "";
+        elLocalDialogueBox.style.display = 'flex';
+
+        // Show the pre-fetched message with typing effect
+        if (cleaned.trim()) {
+            const typingBubble = document.createElement('div');
+            typingBubble.className = 'msg-bubble npc-msg typing-indicator';
+            typingBubble.innerText = '...';
+            elBubbleContainer.appendChild(typingBubble);
+
+            setTimeout(() => {
+                elBubbleContainer.removeChild(typingBubble);
+                appendMessage(cleaned.trim(), 'npc');
+                showFillerMessages(3);
+            }, DIALOGUE.messageDelay);
+        }
+
+        // Schedule choice rendering after main message + filler complete
+        const renderDelay = DIALOGUE.messageDelay + (3 * DIALOGUE.fillerDelay) + 100;
+        setTimeout(() => {
+            console.log('[startDialogue] Rendering choices, canContinue:', dialogueMgr.inkStory.canContinue, 'currentChoices:', dialogueMgr.inkStory.currentChoices.length);
+
+            elBubbleChoices.innerHTML = "";
+
+            // If story can continue but no choices yet, advance until choices appear
+            if (dialogueMgr.inkStory.canContinue && dialogueMgr.inkStory.currentChoices.length === 0) {
+                console.log('[startDialogue] Advancing to reach choice point...');
+                let advanceCount = 0;
+                while (dialogueMgr.inkStory.canContinue && dialogueMgr.inkStory.currentChoices.length === 0 && advanceCount < 20) {
+                    const moreText = dialogueMgr.inkStory.Continue();
+                    console.log(`[startDialogue] advance ${advanceCount}: "${moreText.substring(0, 50)}"`);
+                    advanceCount++;
+                }
+                console.log('[startDialogue] After advance - canContinue:', dialogueMgr.inkStory.canContinue, 'choices:', dialogueMgr.inkStory.currentChoices.length);
+            }
+
+            dialogueMgr.inkStory.currentChoices.forEach(c => {
+                const b = document.createElement('button');
+                b.className = 'choice-btn';
+                b.innerText = c.text;
+                b.onclick = () => {
+                    appendMessage(c.text, 'player');
+                    dialogueMgr.inkStory.ChooseChoiceIndex(c.index);
+                    setTimeout(continueStory, 400);
+                };
+                elBubbleChoices.appendChild(b);
+            });
+
+            if (dialogueMgr.inkStory.currentChoices.length === 0 && !dialogueMgr.inkStory.canContinue) {
+                const b = document.createElement('button');
+                b.className = 'choice-btn';
+                b.innerText = '[CLOSE CONNECTION]';
+                b.onclick = () => {
+                    elBubbleContainer.innerHTML = '';
+                    elLocalDialogueBox.style.display = 'none';
+                    isDialogueOpen = false;
+                    player.wakeUp();
+                    player.resetTarget();
+                    if (activeNpc) audio.playNpcSound(activeNpc.data.id, 'onExit');
+                };
+                elBubbleChoices.appendChild(b);
+            }
+        }, renderDelay);
     } catch (e) {
         console.error("STORY_INIT_ERROR", e);
         alert(`Failed to load dialogue: ${e.message}`);
@@ -435,7 +626,7 @@ function setButtonIcon(btn, iconType) {
 }
 
 function updateSoundIcon(enabled) {
-    if (enabled === undefined) enabled = audio.musicEnabled;
+    if (enabled === undefined) enabled = audio.soundEnabled;
     btnSound.innerHTML = '';
     const iconType = enabled ? 'soundOn' : 'soundOff';
     const iconEl = iconMgr.createIconElement(iconType, { size: '1.2em' });
@@ -500,6 +691,8 @@ function setupInputs() {
     window.addEventListener('keydown', e => {
         keys[e.code] = true;
         if (e.code === 'Space' && started && !isDialogueOpen) {
+            e.preventDefault();
+            e.stopPropagation();
             if (player.jump()) playBeep(300, "sine", 0.05);
         }
     });

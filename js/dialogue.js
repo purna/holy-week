@@ -41,7 +41,12 @@ export class DialogueManager {
     }
 
     loadStoryForNPC(npc) {
-        if (!npc.hasDialogue || !npc.storyFile) return Promise.resolve();
+        if (!npc.hasDialogue || !npc.storyFile) {
+            console.log('[DialogueManager] NPC has no dialogue or storyFile:', npc.id, npc.name);
+            return Promise.resolve();
+        }
+
+        console.log('[DialogueManager] Loading story for NPC', npc.id, npc.name, 'from', npc.storyFile);
 
         return fetch(npc.storyFile)
             .then(response => {
@@ -53,9 +58,9 @@ export class DialogueManager {
                     throw new Error('Invalid Ink JSON: missing inkVersion field');
                 }
                 this.npcStories[npc.id] = storyData;
-                console.log(`Loaded story for ${npc.name} (Ink v${storyData.inkVersion})`);
+                console.log(`[DialogueManager] Loaded story for ${npc.name} (Ink v${storyData.inkVersion})`);
             })
-            .catch(e => console.error(`Failed to load story for ${npc.name}:`, e));
+            .catch(e => console.error(`[DialogueManager] Failed to load story for ${npc.name}:`, e));
     }
 
     createStory(npcId) {
@@ -137,6 +142,10 @@ export class DialogueManager {
     }
 
     getStory(npcId) {
-        return this.npcStories[npcId];
+        const story = this.npcStories[npcId];
+        if (!story) {
+            console.warn('[DialogueManager] No story found for npcId:', npcId, 'Available:', Object.keys(this.npcStories));
+        }
+        return story;
     }
 }

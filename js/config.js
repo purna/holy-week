@@ -7,122 +7,8 @@ const baseIconPath = './assets/gfx/';
 // ============================================================================
 // RENDERING SYSTEM CONFIGURATION
 // ============================================================================
-/**
- * ICON_SYSTEM: Choose between FontAwesome and inline SVG icons.
- *   - 'fontawesome': Loads FontAwesome CDN and uses CSS classes.
- *   - 'svg': Uses local SVG files from assets/gfx/ via IconManager.
- *
- * MODEL_SYSTEM: Choose between primitive geometries and GLB 3D models.
- *   - 'primitives': Uses Three.js built-in geometries (boxes, spheres, capsules).
- *   - 'glb': Loads .glb files from assets/models/ via ModelManager.
- *
- * To switch systems, simply change these values and ensure required assets exist.
- */
-export const ICON_SYSTEM = 'svg'; // 'fontawesome' | 'svg'
-export const MODEL_SYSTEM = 'primitives'; // 'primitives' | 'glb'
 
-// Debug flags: force primitive rendering for specific objects even in GLB mode
-// Useful when GLB models are missing or you want to see fallback primitives
-export const DEBUG_FORCE_PRIMITIVES = {
-    player: false,       // Set true to see box primitive instead of player.glb
-    planet: false,       // Set true to see icosahedron primitive instead of earth.glb
-    npcs: false,         // Set true to see capsule primitives instead of NPC GLBs
-    pickups: false       // Set true to see sphere/octahedron primitives instead of GLBs
-};
-
-
-// ============================================================================
-// ICON CONFIGURATION
-// ============================================================================
-// Icon mappings for SVG system (file paths)
-export const ICONS = {
-    // UI buttons
-    quest:        baseIconPath + 'list.svg',
-    inventory:    baseIconPath + 'inventory.svg',
-    actions:      baseIconPath + 'list.svg',
-    soundOn:      baseIconPath + 'music.svg',
-    soundOff:     baseIconPath + 'music_off.svg',
-    day:          baseIconPath + 'day.svg',
-    night:        baseIconPath + 'night.svg',
-    // Action icons (for floating icons & action list)
-    scan:         baseIconPath + 'search.svg',
-    repair:       baseIconPath + 'wrench.svg',
-    hack:         baseIconPath + 'laptop-code.svg',
-    heal:         baseIconPath + 'first-aid.svg',
-    // Inventory item icons
-    circle:       baseIconPath + 'circle.svg',
-    memory:       baseIconPath + 'memory.svg',
-    gem:          baseIconPath + 'gem.svg',
-    // Quest icons
-    checkFull:    baseIconPath + 'check-square-full.svg',
-    checkEmpty:   baseIconPath + 'check-square-empty.svg'
-    //
-};
-
-// FontAwesome icon class names (for FA system)
-export const FA_ICONS = {
-    quest:        'fas fa-list-check',
-    inventory:    'fas fa-boxes-stacked',
-    actions:      'fas fa-list',
-    soundOn:      'fas fa-volume-up',
-    soundOff:     'fas fa-volume-off',
-    scan:         'fas fa-search',
-    repair:       'fas fa-wrench',
-    hack:         'fas fa-laptop-code',
-    heal:         'fas fa-first-aid',
-    circle:       'fas fa-circle',
-    memory:       'fas fa-memory',
-    gem:          'fas fa-gem',
-    interact:     'fas fa-hand-pointer',
-    day:          'fas fa-sun',
-    night:        'fas fa-moon'
-};
-
-// ── MODEL PATHS (used when MODEL_SYSTEM === 'glb') ───────────────────────
-export const MODELS = {
-    player:       baseModelPath + 'player/player.glb',    // Player character GLB
-    npcEcho:      baseModelPath + 'npcs/npc_echo.glb',
-    npcHorizon:   baseModelPath + 'npcs/npc_horizon.glb',
-    npcSpire:     baseModelPath + 'npcs/npc_spire.glb',
-    npcKeeper:    baseModelPath + 'npcs/npc_keeper.glb',
-    pickupCell:   baseModelPath + 'cell.glb',
-    pickupShard:  baseModelPath + 'shard.glb',
-    // Environment
-    planet:       baseModelPath + 'earth.glb',
-    tower:        baseModelPath + 'tower.glb',
-    rocks:        baseModelPath + 'rocks.glb',
-    house:        baseModelPath + 'house.glb'
-};
-
-// Model scale factors (apply when loading GLB)
-export const MODEL_SCALES = {
-    planet: 0.5,        // earth.glb already at radius 50
-    player: 1,
-    npcEcho: 1,
-    npcHorizon: 1,
-    npcSpire: 1,
-    npcKeeper: 1,
-    pickupCell: 1,
-    pickupShard: 1,
-    tower: 1,
-    rocks: 1,
-    house: 1
-};
-
-// Fallback primitive configs (used when MODEL_SYSTEM === 'primitives')
-export const PRIMITIVE_CONFIG = {
-    player:       { type: 'box', size: [1.2, 2, 1.2], color: 0xff3333 },
-    npcEcho:      { type: 'capsule', radius: 1, length: 2, color: 0x00f2ff },
-    npcHorizon:   { type: 'capsule', radius: 1, length: 2, color: 0xffaa00 },
-    npcSpire:     { type: 'capsule', radius: 1, length: 2, color: 0x00ffaa },
-    npcKeeper:    { type: 'capsule', radius: 1, length: 2, color: 0xff00ff },
-    pickupCell:   { type: 'sphere', radius: 1, color: 0xffaa00 },
-    pickupShard:  { type: 'octahedron', radius: 0.9, color: 0xa020f0, emissive: 0x4a0080 },
-    planet:       { type: 'icosahedron', radius: 50, segments: 5, color: 0x2a552a },
-    tower:        { type: 'box', size: [3, 10, 3], color: 0x333344 },
-    rocks:        { type: 'box', size: [2, 4, 2], color: 0xdddddd }
-};
-
+// Color definitions (moved up to avoid hoisting issues)
 export const COLORS = {
     cyan: 0x00f2ff,      // Cyan accent
     orange: 0xffaa00,    // Orange accent
@@ -133,25 +19,33 @@ export const COLORS = {
     white: 0xffffff,     // White
     black: 0x000000,     // Black
     gray: 0x888888,      // Neutral gray
-    darkGray: 0x333333   // Dark gray
+    darkGray: 0x333333,  // Dark gray
+    brown: 0x966F33,     // Brown (for trails/day)
+    darkRed: 0x663300,   // Dark red (for emissive glows)
+    shard: 0xa020f0,     // Purple for signal shards
+    shardEmissive: 0x4a0080, // Dark red emissive for shards
+    crystal: 0x00f2ff,   // Cyan for crystal clusters (same as cyan)
+    crystalEmissive: 0x004444 // Dark blue emissive for crystals
 };
 
-// Scene configuration
-export const SCENE = {
-    background: 0x020205,        // Dark background
-    fogColor: 0x020205,          // Fog color
-    fogDensity: 0.008,           // Fog density
-    ambientLight: 0x404040,      // Ambient light color
-    ambientIntensity: 1.5,       // Ambient light strength
-    sunColor: 0xffffff,          // Sunlight color
-    sunIntensity: 3.5,           // Sunlight intensity (higher for toon shading)
-    shadowMapSize: 2048,         // Shadow map resolution
-    // Player torch settings
-    torchColor: 0x00f2ff,        // Cyan torch light
-    torchIntensityDay: 0,        // Torch off during day
-    torchIntensityNight: MODEL_SYSTEM === 'glb' ? 400 : 800, // Lower for GLB, higher for primitives
-    torchDistance: 80,           // Moderate reach distance
-    torchDecay: 2                // Light falloff
+// NPC Pad colors (used in NPC.js for base pad)
+export const NPC_PAD = {
+    baseColor: 0x222222,      // Dark gray base pad
+    emissive: 0x111111        // Dim emissive for pad
+};
+
+// Fallback primitive configs (used when MODEL_SYSTEM === 'primitives')
+export const PRIMITIVE_CONFIG = {
+    player: { type: 'box', size: [1.2, 2, 1.2], color: COLORS.red },
+    npcEcho: { type: 'capsule', radius: 1, length: 2, color: COLORS.cyan },
+    npcHorizon: { type: 'capsule', radius: 1, length: 2, color: COLORS.orange },
+    npcSpire: { type: 'capsule', radius: 1, length: 2, color: COLORS.green },
+    npcKeeper: { type: 'capsule', radius: 1, length: 2, color: COLORS.purple },
+    pickupCell: { type: 'sphere', radius: 1, color: COLORS.orange },
+    pickupShard: { type: 'octahedron', radius: 0.9, color: COLORS.shard, emissive: COLORS.shardEmissive },
+    planet: { type: 'icosahedron', radius: 50, segments: 5, color: 0x2a552a },
+    tower: { type: 'box', size: [3, 10, 3], color: 0x333344 },
+    rocks: { type: 'box', size: [2, 4, 2], color: 0xdddddd }
 };
 
 // Planet configuration
@@ -180,6 +74,157 @@ export const NPC_COLORS = {
     spire: 0x00ffaa,       // Green - SPIRE_MINOR
     keeper: 0xff00ff       // Purple - DATA_KEEPER
 };
+
+
+// ============================================================================
+// RENDERING SYSTEM CONFIGURATION
+// ============================================================================
+/**
+ * ICON_SYSTEM: Choose between FontAwesome and inline SVG icons.
+ *   - 'fontawesome': Loads FontAwesome CDN and uses CSS classes.
+ *   - 'svg': Uses local SVG files from assets/gfx/ via IconManager.
+ *
+ * MODEL_SYSTEM: Choose between primitive geometries and GLB 3D models.
+ *   - 'primitives': Uses Three.js built-in geometries (boxes, spheres, capsules).
+ *   - 'glb': Loads .glb files from assets/models/ via ModelManager.
+ *
+ * To switch systems, simply change these values and ensure required assets exist.
+ */
+export const ICON_SYSTEM = 'svg'; // 'fontawesome' | 'svg'
+export const MODEL_SYSTEM = 'glb'; // 'primitives' | 'glb'
+export const USE_TOON_SHADER = true; // Enable toon shading (false = use MeshStandardMaterial)
+
+// Debug flags: force primitive rendering for specific objects even in GLB mode
+// Useful when GLB models are missing or you want to see fallback primitives
+export const DEBUG_FORCE_PRIMITIVES = {
+    player: false,       // Set true to see box primitive instead of player.glb
+    planet: false,       // Set true to see icosahedron primitive instead of earth.glb
+    npcs: false,         // Set true to see capsule primitives instead of NPC GLBs
+    pickups: false       // Set true to see sphere/octahedron primitives instead of GLBs
+};
+
+
+
+// ============================================================================
+// ICON CONFIGURATION
+// ============================================================================
+// Icon mappings for SVG system (file paths)
+export const ICONS = {
+    // UI buttons
+    quest: baseIconPath + 'list.svg',
+    inventory: baseIconPath + 'inventory.svg',
+    actions: baseIconPath + 'list.svg',
+    soundOn: baseIconPath + 'music.svg',
+    soundOff: baseIconPath + 'music_off.svg',
+    day: baseIconPath + 'day.svg',
+    night: baseIconPath + 'night.svg',
+    // Action icons (for floating icons & action list)
+    scan: baseIconPath + 'search.svg',
+    repair: baseIconPath + 'wrench.svg',
+    hack: baseIconPath + 'laptop-code.svg',
+    heal: baseIconPath + 'first-aid.svg',
+    // Inventory item icons
+    circle: baseIconPath + 'circle.svg',
+    memory: baseIconPath + 'memory.svg',
+    gem: baseIconPath + 'gem.svg',
+    // Quest icons
+    checkFull: baseIconPath + 'check-square-full.svg',
+    checkEmpty: baseIconPath + 'check-square-empty.svg'
+    //
+};
+
+// FontAwesome icon class names (for FA system)
+export const FA_ICONS = {
+    quest: 'fas fa-list-check',
+    inventory: 'fas fa-boxes-stacked',
+    actions: 'fas fa-list',
+    soundOn: 'fas fa-volume-up',
+    soundOff: 'fas fa-volume-off',
+    scan: 'fas fa-search',
+    repair: 'fas fa-wrench',
+    hack: 'fas fa-laptop-code',
+    heal: 'fas fa-first-aid',
+    circle: 'fas fa-circle',
+    memory: 'fas fa-memory',
+    gem: 'fas fa-gem',
+    interact: 'fas fa-hand-pointer',
+    day: 'fas fa-sun',
+    night: 'fas fa-moon'
+};
+
+// ── MODEL PATHS (used when MODEL_SYSTEM === 'glb') ───────────────────────
+export const MODELS = {
+    player: baseModelPath + 'player/player.glb',    // Player character GLB
+    npcEcho: baseModelPath + 'npcs/npc_echo.glb',
+    npcHorizon: baseModelPath + 'npcs/npc_horizon.glb',
+    npcSpire: baseModelPath + 'npcs/npc_spire.glb',
+    npcKeeper: baseModelPath + 'npcs/npc_keeper.glb',
+    pickupCell: baseModelPath + 'cell.glb',
+    pickupShard: baseModelPath + 'shard.glb',
+    // Environment
+    planet: baseModelPath + 'earth.glb',
+    tower: baseModelPath + 'tower.glb',
+    rocks: baseModelPath + 'rocks.glb',
+    house: baseModelPath + 'house.glb'
+};
+
+// Model scale factors (apply when loading GLB)
+export const MODEL_SCALES = {
+    planet: 0.5,        // earth.glb already at radius 50
+    player: 1,
+    npcEcho: 1,
+    npcHorizon: 1,
+    npcSpire: 1,
+    npcKeeper: 1,
+    pickupCell: 1,
+    pickupShard: 1,
+    tower: 1,
+    rocks: 1,
+    house: 1
+};
+
+// Scene configuration
+export const SCENE = {
+    background: 0x020205,        // Dark background
+    fogColor: 0x020205,          // Fog color
+    fogDensity: 0.018,           // Fog density
+    ambientLight: 0x404040,      // Ambient light color
+    ambientIntensity: 0.,       // Ambient light strength
+    sunColor: 0xffffff,          // Sunlight color
+    sunIntensity: 2.5,           // Sunlight intensity (higher for toon shading)
+    shadowMapSize: 2048,         // Shadow map resolution
+    // Sun sphere (visual)
+    sunSphereColor: 0xffffee,    // Sun sphere color
+    // Moon light
+    moonColor: 0x4444ff,         // Moon light color
+    moonIntensity: 1.2,          // Moon light intensity
+    // Hemisphere light
+    hemiGroundColorDay: 0x333333, // Hemisphere light ground color (day)
+    hemiGroundColorNight: 0x000000, // Hemisphere light ground color (night)
+    hemiIntensityDay: 0.5,       // Hemisphere light intensity (day)
+    hemiIntensityNight: 0,       // Hemisphere light intensity (night)
+    // Ambient light night multiplier
+    ambientNightMultiplier: 0.1, // Ambient light intensity multiplier at night
+    // Star field
+    starColor: 0x88ccff,         // Star field color
+    // Player torch settings
+    torchColor: 0x00f2ff,        // Cyan torch light
+    torchIntensityDay: 0,        // Torch off during day
+    torchIntensityNightGLB: 200, // Lower for GLB  default is 400, lower this value (e.g., 300 for dimmer)
+    torchIntensityNightPrimitive: 5, // Higher for primitives  default is 600, lower this value (e.g., 300 for dimmer)
+    torchDistance: 10,          // Light reach distance (increased for better coverage)
+    torchDecay: 1                // Light falloff value
+    /*
+    Range: 0 to 3 (theoretical), but practical values:
+    0 — No decay (constant brightness at any distance, unrealistic)
+    1 — Linear falloff (light dims proportionally with distance)
+    2 — Quadratic/physical decay (realistic point light, light falls off with inverse square of distance) ← most common, physically correct
+    3 — Cubic decay (extremely rapid falloff, rarely used)
+    */
+};
+
+// Outline color for toon shading
+export const OUTLINE_COLOR = 0x000000;
 
 export const SOUND = {
     // UI sounds
@@ -228,7 +273,7 @@ export const collectables = [
         key: "pickupCell",
         prefix: "CELL",
         count: 4,
-        color: 0xffaa00,
+        color: COLORS.orange,
         questIndex: 1,
         model: 'pickupCell',
         primitive: { type: "sphere", radius: 1 },
@@ -240,8 +285,8 @@ export const collectables = [
         key: "pickupShard",
         prefix: "SHARD",
         count: 4,
-        color: 0xa020f0,
-        emissive: 0x4a0080,
+        color: COLORS.shard,
+        emissive: COLORS.shardEmissive,
         questIndex: 2,
         model: 'pickupShard',
         primitive: { type: "octahedron", radius: 0.9 },
@@ -271,8 +316,10 @@ export const DIALOGUE = {
     inkLibrary: ['inkjs', 'ink'],           // window.inkjs or window.ink
 
     // Dialogue UI timing (ms)
-    fillerDelay: 300,                       // Delay between filler messages
-    choiceDelay: 400,                       // Delay after choice before continuing
+    messageDelay: 800,                      // Delay before main NPC message appears
+    typingDelay: 800,                        // Duration of typing indicator before message appears
+    fillerDelay: 1200,                      // Delay between filler messages
+    choiceDelay: 1200,                      // Delay after choice before continuing
 
     // Whether to show filler messages during conversation
     enableFiller: true,
@@ -293,8 +340,8 @@ export const VFX = {
         size: 4,                            // World units
         lifetime: 1.5,                      // Seconds before fade
         svgPath: './assets/gfx/dirt.svg',   // Decal texture (black shapes)
-        nightColor: 0xffffff,               // Tint color in night mode (white)
-        dayColor: 0x000000                  // Tint color in day mode (black)
+        nightColor: 0xffffff,               // Tint color in night mode (white for visibility)
+        dayColor: 0x000000                  // Tint color in day mode (black - matches dark dirt)
     },
     trail: {
         enabled: true,
@@ -305,9 +352,7 @@ export const VFX = {
     }
 };
 
-// ============================================================================
-// DAY/NIGHT CYCLE CONFIGURATION
-// ============================================================================
+// Day/Night configuration
 export const DAY_NIGHT = {
     autoCycle: true,                        //自动时间推进
     cycleSpeed: 0.0001,                     // timeProgress increment per frame
@@ -317,7 +362,16 @@ export const DAY_NIGHT = {
         day: 0x87CEEB,                      // Light blue
         night: 0x020205                     // Deep space black
     },
-    fogDensity: 0.002
+    fogDensity: 0.002,
+    // Player emissive glow
+    playerGlowDay: 0x000000,                // No glow during day
+    playerGlowNightGLB: 0x220000,           // Red glow at night (GLB - less intense)
+    playerGlowNightPrimitive: 0x440000,     // Red glow at night (primitives - more intense)
+    // Ambient lighting
+    ambientDay: 0.6,                        // Ambient light multiplier (day)
+    ambientNight: 0.2,                      // Ambient light multiplier (night)
+    hemiDay: 0.5,                           // Hemisphere light intensity (day)
+    hemiNight: 0                            // Hemisphere light intensity (night)
 };
 
 // ============================================================================
@@ -331,4 +385,3 @@ export const CONTROLS = {
     moveLeft: 'KeyA',
     moveRight: 'KeyD'
 };
-

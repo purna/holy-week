@@ -7,7 +7,7 @@
     const INK_RUNTIME_CDN = 'https://unpkg.com/inkjs/dist/ink.js';
     
     // Get accent color from config or use default
-    const ACCENT_COLOR = (typeof CONFIG !== 'undefined' && CONFIG.toon && CONFIG.toon.highlightColor) || '#00f2ff';
+    const ACCENT_COLOR = (typeof COLORS !== 'undefined' && COLORS.cyan) ? COLORS.cyan : '#00f2ff';
     
     // Inject CSS for the dialogue UI (chat-style)
     const css = `

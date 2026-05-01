@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import { DAY_NIGHT, SCENE, MODEL_SYSTEM } from './config.js';
+import * as CONFIG from './config.js';
 
 export class DayNight {
     constructor(scene, renderer) {
@@ -73,9 +74,11 @@ export class DayNight {
 
         // Update player emissive glow (adjusted for model system)
         if (this._playerMaterial && this._playerMaterial.emissive) {
-            const glowIntensity = MODEL_SYSTEM === 'glb' ? 0x220000 : 0x440000; // Less glow for GLB
+            const glowIntensity = MODEL_SYSTEM === 'glb' 
+                ? CONFIG.DAY_NIGHT.playerGlowNightGLB 
+                : CONFIG.DAY_NIGHT.playerGlowNightPrimitive;
             const targetGlow = this._isDay
-                ? new THREE.Color(0x000000) // No glow during day
+                ? new THREE.Color(CONFIG.DAY_NIGHT.playerGlowDay) // No glow during day
                 : new THREE.Color(glowIntensity); // Adjusted red glow at night
 
             this._playerMaterial.emissive.lerp(targetGlow, lerpFactor);
@@ -86,7 +89,7 @@ export class DayNight {
         // Sun sphere (visual only)
         this.sunSphere = new THREE.Mesh(
             new THREE.SphereGeometry(12, 32, 32),
-            new THREE.MeshBasicMaterial({ color: 0xffffee })
+            new THREE.MeshBasicMaterial({ color: CONFIG.SCENE.sunSphereColor })
         );
         this.scene.add(this.sunSphere);
 
@@ -95,7 +98,7 @@ export class DayNight {
         this.scene.add(this.ambientLight);
 
         // Hemisphere light (sky-ground illumination)
-        this.hemiLight = new THREE.HemisphereLight(this.skyColors.day, 0x333333, 0.5);
+        this.hemiLight = new THREE.HemisphereLight(this.skyColors.day, CONFIG.SCENE.hemiGroundColorDay, CONFIG.SCENE.hemiIntensityDay);
         this.scene.add(this.hemiLight);
 
         // Sun directional light (shadow-casting)
@@ -117,7 +120,7 @@ export class DayNight {
         this.scene.add(this.sunLight.target);
 
         // Moon directional light
-        this.moonLight = new THREE.DirectionalLight(0x4444ff, 1.2);
+        this.moonLight = new THREE.DirectionalLight(CONFIG.SCENE.moonColor, CONFIG.SCENE.moonIntensity);
         this.scene.add(this.moonLight);
 
         // Set initial scene colors
@@ -149,8 +152,8 @@ export class DayNight {
         this.scene.background.lerp(targetSky, lerpFactor);
         this.scene.fog.color.lerp(targetSky, lerpFactor);
 
-        this.ambientLight.intensity = THREE.MathUtils.lerp(this.ambientLight.intensity, this.isDayMode() ? SCENE.ambientIntensity : SCENE.ambientIntensity * 0.4, lerpFactor);
-        this.hemiLight.intensity = THREE.MathUtils.lerp(this.hemiLight.intensity, this.isDayMode() ? 0.5 : 0, lerpFactor);
+        this.ambientLight.intensity = THREE.MathUtils.lerp(this.ambientLight.intensity, this.isDayMode() ? SCENE.ambientIntensity : SCENE.ambientIntensity * SCENE.ambientNightMultiplier, lerpFactor);
+        this.hemiLight.intensity = THREE.MathUtils.lerp(this.hemiLight.intensity, this.isDayMode() ? CONFIG.SCENE.hemiIntensityDay : CONFIG.SCENE.hemiIntensityNight, lerpFactor);
 
 
         // Update ambient lighting
@@ -162,6 +165,7 @@ export class DayNight {
 
         // Update hemisphere light colors
         this.hemiLight.color.lerp(this._isDay ? this.skyBlueDay : this.spaceBlackNight, lerpFactor);
+        this.hemiLight.groundColor.lerp(this._isDay ? new THREE.Color(CONFIG.SCENE.hemiGroundColorDay) : new THREE.Color(CONFIG.SCENE.hemiGroundColorNight), lerpFactor);
 
         // Update player torch and emissive glow
         this._updatePlayerEffects();

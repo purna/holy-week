@@ -1,11 +1,12 @@
 import * as THREE from 'three';
 import * as CANNON from 'cannon';
+import * as CONFIG from './config.js';
 
 export class SceneManager {
     constructor() {
         this.scene = new THREE.Scene();
-        this.scene.background = new THREE.Color(0x020205);
-        this.scene.fog = new THREE.FogExp2(0x020205, 0.008);
+        this.scene.background = new THREE.Color(CONFIG.SCENE.background);
+        this.scene.fog = new THREE.FogExp2(CONFIG.SCENE.fogColor, CONFIG.SCENE.fogDensity);
 
         this.camera = new THREE.PerspectiveCamera(65, window.innerWidth / window.innerHeight, 0.1, 5000);
         this.camera.position.set(0, 80, 150);
@@ -39,7 +40,7 @@ export class SceneManager {
         }
         starGeo.setAttribute('position', new THREE.Float32BufferAttribute(starPos, 3));
         const stars = new THREE.Points(starGeo, new THREE.PointsMaterial({
-            color: 0x88ccff,
+            color: CONFIG.SCENE.starColor,
             size: 1.5,
             transparent: true,
             opacity: 0.8

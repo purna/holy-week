@@ -67,7 +67,7 @@
 
 import * as THREE from 'three';
 import { DecalGeometry } from 'three/addons/geometries/DecalGeometry.js';
-import { VFX } from './config.js';
+import { COLORS, VFX } from './config.js';
 
 // ---------------------------------------------------------------------------
 // createCircuitTexture()
@@ -190,7 +190,7 @@ export class VFXSystem {
 
         const bodyGeo = new THREE.BoxGeometry(0.6, 0.15, 0.15);
         const wingGeo = new THREE.BoxGeometry(0.15, 0.08, 0.8);
-        const mat     = new THREE.MeshBasicMaterial({ color: 0x222222 });
+        const mat     = new THREE.MeshBasicMaterial({ color: COLORS.bird });
 
         group.add(new THREE.Mesh(bodyGeo, mat));
 
@@ -247,37 +247,35 @@ export class VFXSystem {
         );
     }
 
-    /** Create a transparent, depth-write-off decal material. */
-    _buildDecalMaterial(texture) {
-        return new THREE.MeshBasicMaterial({
-            map:         texture,
-            transparent: true,
-            depthWrite:  false,
-            depthTest:   true,
-            opacity:     0.8,
-            color:       new THREE.Color(
-                VFX.landingDecal.dayColor ?? '#00f2ff'
-            ),
-        });
-    }
+     /** Create a transparent, depth-write-off decal material. */
+     _buildDecalMaterial(texture) {
+         return new THREE.MeshBasicMaterial({
+             map:         texture,
+             transparent: true,
+             depthWrite:  false,
+             depthTest:   true,
+             opacity:     0.8,
+             color:       new THREE.Color(COLORS.white), // White base, will be tinted in getDecalMaterial
+         });
+     }
 
     // =========================================================================
     // Public API
     // =========================================================================
 
-    /**
-     * Returns the current decal material, tinted for day or night.
-     * Returns null if the texture is still loading.
-     * @returns {THREE.MeshBasicMaterial|null}
-     */
-    getDecalMaterial() {
-        if (!this.decalMat) return null;
-        const color = this._isNight
-            ? (VFX.landingDecal.nightColor ?? '#ff6600')
-            : (VFX.landingDecal.dayColor   ?? '#00f2ff');
-        this.decalMat.color.set(color);
-        return this.decalMat.clone(); // Clone so each decal fades independently
-    }
+     /**
+      * Returns the current decal material, tinted for day or night.
+      * Returns null if the texture is still loading.
+      * @returns {THREE.MeshBasicMaterial|null}
+      */
+     getDecalMaterial() {
+         if (!this.decalMat) return null;
+         const color = this._isNight
+             ? VFX.landingDecal.nightColor
+             : VFX.landingDecal.dayColor;
+         this.decalMat.color.setHex(color);
+         return this.decalMat.clone(); // Clone so each decal fades independently
+     }
 
     // ── Player trail system ──────────────────────────────────────────────
 
@@ -286,7 +284,7 @@ export class VFXSystem {
      * @param {THREE.Vector3} pos  Position to spawn the trail particle.
      */
     spawnTrail(pos) {
-        const color = this._isNight ? 0x00f2ff : 0x966F33;
+        const color = this._isNight ? COLORS.cyan : COLORS.brown;
         const geo = new THREE.SphereGeometry(0.3, 6, 6);
         const mat = new THREE.MeshBasicMaterial({
             color: color,
@@ -349,7 +347,9 @@ export class VFXSystem {
     setNightMode(isNight) {
         this._isNight = isNight;
         // Update any live decals immediately
-        const tint = isNight ? 0xffffff : 0x000000;
+        const tint = isNight 
+            ? (VFX.landingDecal.nightColor ?? COLORS.white) 
+            : (VFX.landingDecal.dayColor ?? COLORS.black);
         for (const d of this.decals) {
             d.mesh.material.color.setHex(tint);
         }
@@ -398,8 +398,8 @@ export class VFXSystem {
      */
     emitTrail(pos, up) {
         const color = this._isNight
-            ? new THREE.Color(0x00f2ff)
-            : new THREE.Color(0x966F33);
+            ? new THREE.Color(COLORS.cyan)
+            : new THREE.Color(COLORS.brown);
 
         const vel = new THREE.Vector3()
             .randomDirection()
@@ -416,7 +416,7 @@ export class VFXSystem {
      * @param {THREE.Vector3} up   normalised up vector at that point
      */
     emitDust(pos, up) {
-        const color = new THREE.Color(0x444455);
+        const color = new THREE.Color(COLORS.dust);
         for (let i = 0; i < 2; i++) {
             const vel = new THREE.Vector3()
                 .randomDirection()
@@ -439,7 +439,7 @@ export class VFXSystem {
      */
     emitAmbientDust(playerPos) {
         if (Math.random() > 0.1) return; // Back to normal spawn rate
-        const color  = new THREE.Color(0x00f2ff);
+        const color  = new THREE.Color(COLORS.cyan);
         const offset = new THREE.Vector3()
             .randomDirection()
             .multiplyScalar(15 + Math.random() * 10);
@@ -461,9 +461,9 @@ export class VFXSystem {
      */
     emitFirework(pos, up) {
         const palette = [
-            new THREE.Color(0xffaa00),
-            new THREE.Color(0x00f2ff),
-            new THREE.Color(0x00ffaa),
+            new THREE.Color(COLORS.orange),
+            new THREE.Color(COLORS.cyan),
+            new THREE.Color(COLORS.green),
         ];
         const color  = palette[Math.floor(Math.random() * palette.length)];
         const origin = pos.clone().add(up.clone().multiplyScalar(6));

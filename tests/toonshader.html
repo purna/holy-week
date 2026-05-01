@@ -284,8 +284,10 @@ button#btn-start, button#btn-replay { background:#ffaa00; border:none; padding:1
                 const camFwd = pPos.clone().sub(camera.position).projectOnPlane(up).normalize();
                 const camRgt = new THREE.Vector3().crossVectors(up, camFwd).normalize();
                 let moveDir = new THREE.Vector3(0,0,0);
-                if(keys['KeyW']) moveDir.add(camFwd); if(keys['KeyS']) moveDir.sub(camFwd);
-                if(keys['KeyA']) moveDir.add(camRgt); if(keys['KeyD']) moveDir.sub(camRgt);
+                if(keys['KeyW'] || keys['ArrowUp']) moveDir.add(camFwd);
+                if(keys['KeyS'] || keys['ArrowDown']) moveDir.sub(camFwd);
+                if(keys['KeyA'] || keys['ArrowLeft']) moveDir.add(camRgt);
+                if(keys['KeyD'] || keys['ArrowRight']) moveDir.sub(camRgt);
                 if(mouseTarget) { const toM = mouseTarget.clone().sub(pPos).projectOnPlane(up); if(toM.length()>2) moveDir.add(toM.normalize()); else mouseTarget=null; }
                 if(moveDir.length()>0) { moveDir.normalize(); camHeading.lerp(moveDir, 0.1).normalize(); pBody.velocity.set(moveDir.x*18, moveDir.y*18, moveDir.z*18); }
             }

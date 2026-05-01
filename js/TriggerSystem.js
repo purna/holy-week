@@ -4,7 +4,7 @@
  */
 
 import * as THREE from '../lib/three.module.js';
-import { config } from './config.js';
+import { COLORS, config } from './config.js';
 
 /**
  * Parse Blender-style name: PREFIX_Type_Value[_param=value]
@@ -100,7 +100,7 @@ export class TriggerSystem {
   _createDebugVisual(trigger) {
     const geometry = new THREE.SphereGeometry(trigger.radius, 16, 16);
     const material = new THREE.MeshBasicMaterial({
-      color: 0x00ff00,
+      color: COLORS.green,
       transparent: true,
       opacity: 0.15,
       wireframe: true,
@@ -114,7 +114,7 @@ export class TriggerSystem {
     // Add wireframe at trigger boundary
     const wireGeometry = new THREE.SphereGeometry(trigger.radius, 16, 16);
     const wireMaterial = new THREE.LineBasicMaterial({
-      color: 0x00ff00,
+      color: COLORS.green,
       transparent: true,
       opacity: 0.3
     });

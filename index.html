@@ -3,157 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Messenger 3D - Modular Architecture</title>
+    <meta name="description" content="A 3D interactive experience with modular architecture and dynamic lighting.">
+    <meta name="keywords" content="3D, interactive, web, game, modular, architecture">
+    <meta name="author" content="Pixelagent">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#000000">
+    <title>Miracle Maker</title>
+    <!-- Three.js -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+    <!-- Howler.js for audio -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.4/howler.min.js"></script>
+    <!-- CSS -->
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="css/dialogue.css">
     <link rel="stylesheet" href="css/panels.css">
     <link rel="stylesheet" href="css/actions.css">
     <link rel="stylesheet" href="css/responsive.css">
-
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16" />
     <link rel="icon" type="image/png" href="favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
     <link rel="shortcut icon" href="favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
     <link rel="manifest" href="site.webmanifest" />
 
-    <!-- Conditionally load FontAwesome if using FA icon system -->
-    <script type="module">
-        import { ICON_SYSTEM } from './js/config.js';
-        if (ICON_SYSTEM === 'fontawesome') {
-            const link = document.createElement('link');
-            link.rel = 'stylesheet';
-            link.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css';
-            document.head.appendChild(link);
-            console.log('FontAwesome icons enabled');
-        } else {
-            console.log('SVG icons enabled');
-        }
-    </script>
-
-    <!-- ── WhatsApp-style dialogue UI ─────────────────────────────────────
-         Replaces the old flat #local-dialogue-box with a centred chat window.
-         Variables inherit from styles.css / dialogue.css but are also defined
-         here as safe fallbacks so the dialogue looks correct in isolation.
-    ──────────────────────────────────────────────────────────────────────── -->
-    <style>
-        /* Fallback CSS variables (real values come from styles.css) */
-        :root {
-            --panel-bg:        rgba(0, 10, 20, 0.88);
-            --accent-primary:  #00f2ff;
-            --accent-secondary:#ffaa00;
-            --accent-success:  #00ffaa;
-            --text-main:       #ffffff;
-            --glow-soft:       0 0 10px rgba(0,242,255,0.3);
-            --glow-strong:     0 0 20px rgba(0,242,255,0.6);
-        }
-
-        /* ── Dialogue container: centred, transparent, no border ── */
-        #local-dialogue-box {
-            position: fixed;
-            top:  50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 500px;
-            max-width: 90%;
-            height: 65vh;
-            background: transparent;
-            border: none;
-            display: none;           /* shown by main.js via style.display = 'flex' */
-            flex-direction: column;
-            z-index: 1000;
-        }
-
-        /* ── NPC name pill at the top ── */
-        #npc-name-display {
-            align-self: center;
-            padding: 8px 25px;
-            background: var(--panel-bg);
-            border: 1px solid var(--accent-secondary);
-            color: var(--accent-secondary);
-            font-weight: bold;
-            border-radius: 25px;
-            margin-bottom: 20px;
-            box-shadow: var(--glow-soft);
-            text-align: center;
-            font-family: 'Courier New', monospace;
-            text-transform: uppercase;
-            /* Remove old name-tag positioning if set in dialogue.css */
-            position: static;
-        }
-
-        /* ── Scrollable message area ── */
-        #bubble-text-container {
-            flex: 1;
-            overflow-y: auto;
-            padding: 15px;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            scroll-behavior: smooth;
-        }
-
-        /* Custom scrollbar */
-        #bubble-text-container::-webkit-scrollbar       { width: 6px; }
-        #bubble-text-container::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); border-radius: 10px; }
-        #bubble-text-container::-webkit-scrollbar-thumb { background: var(--accent-primary); border-radius: 10px; box-shadow: 0 0 5px var(--accent-primary); }
-
-        /* ── Message bubbles ── */
-        .msg-bubble {
-            max-width: 80%;
-            padding: 12px 18px;
-            border-radius: 15px;
-            font-size: 0.95em;
-            line-height: 1.4;
-            text-transform: none;
-            font-family: 'Courier New', monospace;
-            word-break: break-word;
-        }
-        .npc-msg {
-            align-self: flex-start;
-            background: rgba(32, 44, 51, 0.95);
-            color: var(--text-main);
-            border-bottom-left-radius: 2px;
-            border: 1px solid rgba(0, 242, 255, 0.2);
-        }
-        .player-msg {
-            align-self: flex-end;
-            background: rgba(0, 92, 75, 0.95);
-            color: var(--text-main);
-            border-bottom-right-radius: 2px;
-            border: 1px solid rgba(0, 255, 170, 0.2);
-        }
-
-        /* ── Choice buttons: pill style ── */
-        #bubble-choices {
-            width: 50%;
-            margin: 0 25%;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        /* Override old .choice-btn styling from dialogue.css */
-        #bubble-choices .choice-btn {
-            background: var(--panel-bg);
-            border: 1px solid var(--accent-primary);
-            color: var(--accent-primary);
-            padding: 12px;
-            border-radius: 25px;
-            text-align: center;
-            cursor: pointer;
-            font-family: 'Courier New', monospace;
-            font-size: 0.9em;
-            text-transform: uppercase;
-            transition: background 0.2s, color 0.2s, box-shadow 0.2s;
-        }
-        #bubble-choices .choice-btn:hover {
-            background: var(--accent-primary);
-            color: #000;
-            box-shadow: var(--glow-strong);
-        }
-    </style>
+     <!-- Conditionally load FontAwesome if using FA icon system -->
+     <script type="module">
+         import { ICON_SYSTEM } from './js/config.js';
+         if (ICON_SYSTEM === 'fontawesome') {
+             const link = document.createElement('link');
+             link.rel = 'stylesheet';
+             link.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css';
+             document.head.appendChild(link);
+             console.log('FontAwesome icons enabled');
+         } else {
+             console.log('SVG icons enabled');
+         }
+     </script>
 </head>
 <body>
     <!-- Loading Screen -->
@@ -238,22 +125,7 @@
     <!-- Simple bubble for non-dialogue NPCs -->
     <div id="npc-bubble" class="npc-bubble"></div>
 
-    <!--
-        ── WhatsApp-style dialogue box ─────────────────────────────────────
-        Replaces the old structure:
-            <span id="npc-name-display">  (inline name tag)
-            <div  id="bubble-text">       (flat text block)
-            <div  id="bubble-choices">    (choices)
-
-        New structure:
-            <div id="npc-name-display">          (pill header)
-            <div id="bubble-text-container">     (scrollable chat history)
-            <div id="bubble-choices">            (pill choice buttons)
-
-        main.js / dialogue.js write NPC lines into #bubble-text-container
-        as .msg-bubble.npc-msg elements, and player choices as .player-msg.
-        The old #bubble-text element is intentionally removed.
-    ─────────────────────────────────────────────────────────────────────── -->
+   <!-- Dialogue box with name tag and text container -->
     <div id="local-dialogue-box">
         <div id="npc-name-display" class="npc-name-tag">NAME_ID</div>
         <div id="bubble-text-container"></div>

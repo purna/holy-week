@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import * as CANNON from 'cannon';
-import { MODEL_SCALES } from './config.js';
+import { MODEL_SCALES, COLORS, PRIMITIVE_CONFIG } from './config.js';
 
 export class WorldManager {
     constructor(scene, world, modelMgr = null, toonShader = null) {
@@ -52,37 +52,37 @@ export class WorldManager {
                     }
                 });
 
-                // Apply scale if specified
-                const scale = MODEL_SCALES.planet || 1;
-                clonedPlanet.scale.setScalar(scale);
+                 // Apply scale if specified
+                 const scale = MODEL_SCALES.planet || 1;
+                 clonedPlanet.scale.setScalar(scale);
 
-                this.planet = clonedPlanet;
-                this.scene.add(clonedPlanet);
+                 this.planet = clonedPlanet;
+                 this.scene.add(clonedPlanet);
 
-                // Ensure planet receives shadows
-                clonedPlanet.traverse((child) => {
-                    if (child.isMesh) {
-                        child.receiveShadow = true;
-                    }
-                });
-                console.log('Planet GLB loaded:', clonedPlanet);
-            } else {
-                console.warn('Planet GLB model not found, falling back to primitive');
-                // Fallback to primitive
-                const planetToon = this.toonShader.createToonGroup(
-                    new THREE.IcosahedronGeometry(this.planetR, 5),
-                    0x2a552a,
-                    0.005
-                );
-                this.planet = planetToon.mainMesh;
-                this.planetMesh = planetToon.mainMesh;
-                this.scene.add(planetToon.group);
-            }
+                 // Ensure planet receives shadows
+                 clonedPlanet.traverse((child) => {
+                     if (child.isMesh) {
+                         child.receiveShadow = true;
+                     }
+                 });
+                 console.log('Planet GLB loaded:', clonedPlanet);
+             } else {
+                 console.warn('Planet GLB model not found, falling back to primitive');
+                 // Fallback to primitive
+                 const planetToon = this.toonShader.createToonGroup(
+                     new THREE.IcosahedronGeometry(this.planetR, 5),
+                     PRIMITIVE_CONFIG.planet.color,
+                     0.005
+                 );
+                 this.planet = planetToon.mainMesh;
+                 this.planetMesh = planetToon.mainMesh;
+                 this.scene.add(planetToon.group);
+             }
         } else {
             // Use toon shader for planet
             const planetToon = this.toonShader.createToonGroup(
                 new THREE.IcosahedronGeometry(this.planetR, 5),
-                0x2a552a,
+                COLORS.green,
                 0.005 // Small outline for planet
             );
             this.planet = planetToon.mainMesh;
@@ -107,7 +107,7 @@ export class WorldManager {
                 const model = this.modelMgr.getModel('pickupCell');
                 if (model && model.children.length > 0) {
                     const m = model.children[0].clone();
-                    m.material = this.toonShader.createToonMaterial(0xffaa00);
+                     m.material = this.toonShader.createToonMaterial(COLORS.orange);
                     m.name = `CELL_${i + 1}`;
                     m.position.setFromSphericalCoords(this.planetR + 1.2, Math.random() * Math.PI, Math.random() * Math.PI * 2);
                     this.toonShader.updateShadowSettings(m);
@@ -116,7 +116,7 @@ export class WorldManager {
                 } else {
                     pickupGroup = this.toonShader.createToonGroup(
                         new THREE.SphereGeometry(1),
-                        0xffaa00,
+                        COLORS.green,
                         0.12
                     );
                     pickupGroup.group.name = `CELL_${i + 1}`;
@@ -127,7 +127,7 @@ export class WorldManager {
             } else {
                 pickupGroup = this.toonShader.createToonGroup(
                     new THREE.SphereGeometry(1),
-                    0xffaa00,
+                    COLORS.green,
                     0.12
                 );
                 pickupGroup.group.name = `CELL_${i + 1}`;
@@ -144,19 +144,19 @@ export class WorldManager {
                 const model = this.modelMgr.getModel('pickupShard');
                 if (model && model.children.length > 0) {
                     const m = model.children[0].clone();
-                    m.material = this.toonShader.createToonMaterial(0xa020f0, { emissive: 0x4a0080 });
+                     m.material = this.toonShader.createToonMaterial(COLORS.shard, { emissive: COLORS.shardEmissive });
                     m.name = `SHARD_${i + 1}`;
                     m.position.setFromSphericalCoords(this.planetR + 1.2, Math.random() * Math.PI, Math.random() * Math.PI * 2);
                     this.toonShader.updateShadowSettings(m);
                     this.scene.add(m);
                     this.pickups.push(m);
                 } else {
-                    pickupGroup = this.toonShader.createToonGroup(
-                        new THREE.OctahedronGeometry(0.9),
-                        0xa020f0,
-                        0.12,
-                        { emissive: 0x4a0080 }
-                    );
+                     pickupGroup = this.toonShader.createToonGroup(
+                         new THREE.OctahedronGeometry(0.9),
+                         COLORS.shard,
+                         0.12,
+                         { emissive: COLORS.shardEmissive }
+                     );
                     pickupGroup.group.name = `SHARD_${i + 1}`;
                     pickupGroup.group.position.setFromSphericalCoords(this.planetR + 1.2, Math.random() * Math.PI, Math.random() * Math.PI * 2);
                     this.scene.add(pickupGroup.group);
@@ -165,9 +165,9 @@ export class WorldManager {
             } else {
                 pickupGroup = this.toonShader.createToonGroup(
                     new THREE.OctahedronGeometry(0.9),
-                    0xa020f0,
+                    COLORS.shard,
                     0.12,
-                    { emissive: 0x4a0080 }
+                    { emissive: COLORS.shardEmissive }
                 );
                 pickupGroup.group.name = `SHARD_${i + 1}`;
                 pickupGroup.group.position.setFromSphericalCoords(this.planetR + 1.2, Math.random() * Math.PI, Math.random() * Math.PI * 2);
@@ -188,7 +188,7 @@ export class WorldManager {
                     // Update materials to toon and enable shadows
                     m.traverse((child) => {
                         if (child.isMesh && child.material) {
-                            child.material = this.toonShader.createToonMaterial(0x333344);
+                            child.material = this.toonShader.createToonMaterial(COLORS.blue);
                             child.castShadow = true;
                             child.receiveShadow = true;
                         }
@@ -197,14 +197,14 @@ export class WorldManager {
                 } else {
                     buildingGroup = this.toonShader.createToonGroup(
                         new THREE.BoxGeometry(3, h, 3),
-                        0x333344,
+                        COLORS.blue,
                         0.05
                     ).group;
                 }
             } else {
                 buildingGroup = this.toonShader.createToonGroup(
                     new THREE.BoxGeometry(3, h, 3),
-                    0x333344,
+                    COLORS.blue,
                     0.05
                 ).group;
             }
@@ -232,12 +232,12 @@ export class WorldManager {
             const count = Math.floor(Math.random() * 4) + 2;
 
             for (let j = 0; j < count; j++) {
-                const crystalToon = this.toonShader.createToonGroup(
-                    new THREE.ConeGeometry(0.8, 4 + Math.random() * 3, 5),
-                    0x00f2ff,
-                    0.08,
-                    { emissive: 0x004444, transparent: true, opacity: 0.9 }
-                );
+                 const crystalToon = this.toonShader.createToonGroup(
+                     new THREE.ConeGeometry(0.8, 4 + Math.random() * 3, 5),
+                     COLORS.cyan,
+                     0.08,
+                     { emissive: COLORS.crystalEmissive, transparent: true, opacity: 0.9 }
+                 );
                 crystalToon.group.position.set((Math.random() - 0.5) * 2, 2, (Math.random() - 0.5) * 2);
                 crystalToon.group.rotation.set((Math.random() - 0.5) * 0.6, Math.random() * Math.PI, (Math.random() - 0.5) * 0.6);
                 cluster.add(crystalToon.group);
@@ -258,7 +258,7 @@ export class WorldManager {
             // Base with toon shader
             const baseToon = this.toonShader.createToonGroup(
                 new THREE.CylinderGeometry(1.5, 2, 10, 8),
-                0x333344,
+                COLORS.blue,
                 0.05
             );
             baseToon.group.position.y = 5;
@@ -267,7 +267,7 @@ export class WorldManager {
             // Orb (use basic material for glow effect)
             const orb = new THREE.Mesh(
                 new THREE.SphereGeometry(1.5),
-                new THREE.MeshStandardMaterial({ color: 0xffaa00, emissive: 0x663300 })
+                new THREE.MeshStandardMaterial({ color: COLORS.orange, emissive: COLORS.brown })
             );
             orb.position.y = 11;
             orb.castShadow = true;
@@ -276,7 +276,7 @@ export class WorldManager {
             // Ring (keep basic material for visibility)
             const ring = new THREE.Mesh(
                 new THREE.TorusGeometry(3.5, 0.2, 8, 24),
-                new THREE.MeshBasicMaterial({ color: 0xffaa00 })
+                new THREE.MeshBasicMaterial({ color: COLORS.green })
             );
             ring.position.y = 8;
             ring.rotation.x = Math.PI / 2;

@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { NPC_PAD } from './config.js';
 
 export class NPC {
     constructor(data, planetR, scene, modelMgr, toonShader = null) {
@@ -18,9 +19,9 @@ export class NPC {
         // Base Pad with toon shader
         const padToon = this.toonShader.createToonGroup(
             new THREE.CylinderGeometry(2.5, 2.5, 0.2, 16),
-            0x222222,
+            NPC_PAD.baseColor,
             0.05,
-            { emissive: 0x111111 }
+            { emissive: NPC_PAD.emissive }
         );
         grp.add(padToon.group);
 

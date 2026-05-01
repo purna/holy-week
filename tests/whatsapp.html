@@ -188,11 +188,24 @@ body { margin: 0; overflow: hidden; background: var(--bg-main); font-family: 'Co
                     "Parsing metadata...", "Updating local cache...", "Redirecting signal packets..."
                 ];
                 
-                appendMessage(txt.trim(), 'npc');
-                // Triple dialogue effect[cite: 4]
-                for(let i=0; i < 9; i++) {
-                   setTimeout(() => appendMessage(filler[i % filler.length], 'npc'), (i + 1) * 300);
-                }
+                // Typing indicator
+                const container = document.getElementById('bubble-text-container');
+                const typing = document.createElement('div');
+                typing.className = 'msg-bubble npc-msg';
+                typing.innerText = '...';
+                typing.style.fontStyle = 'italic';
+                typing.style.opacity = '0.6';
+                container.appendChild(typing);
+                
+                // Delay before main message (typing simulation)
+                setTimeout(() => {
+                    container.removeChild(typing);
+                    appendMessage(txt.trim(), 'npc');
+                    // Filler messages staggered
+                    for(let i = 0; i < 9; i++) {
+                        setTimeout(() => appendMessage(filler[i % filler.length], 'npc'), (i + 1) * 300);
+                    }
+                }, 200); // messageDelay
             }
 
             inkStory.currentChoices.forEach(c => {
@@ -203,6 +216,20 @@ body { margin: 0; overflow: hidden; background: var(--bg-main); font-family: 'Co
                     inkStory.ChooseChoiceIndex(c.index);
                     setTimeout(continueStory, 400);
                 };
+                choiceEl.appendChild(b);
+            });
+
+            if(inkStory.currentChoices.length === 0 && !inkStory.canContinue) {
+                const b = document.createElement('button');
+                b.className = "poll-choice"; b.innerText = "[DISCONNECT]";
+                b.onclick = () => {
+                    document.getElementById('local-dialogue-box').style.display = 'none';
+                    document.getElementById('bubble-text-container').innerHTML = "";
+                    isDialogueOpen = false; pBody.wakeUp();
+                };
+                choiceEl.appendChild(b);
+            }
+        };
                 choiceEl.appendChild(b);
             });
 
@@ -259,13 +286,16 @@ body { margin: 0; overflow: hidden; background: var(--bg-main); font-family: 'Co
             if(!isDialogueOpen) {
                 const camFwd = pPos.clone().sub(camera.position).projectOnPlane(up).normalize();
                 const camRgt = new THREE.Vector3().crossVectors(up, camFwd).normalize();
-                let move = new THREE.Vector3(0,0,0);
-                if(keys['KeyW']) move.add(camFwd); if(keys['KeyS']) move.sub(camFwd);
-                if(keys['KeyA']) move.add(camRgt); if(keys['KeyD']) move.sub(camRgt);
-                if(move.length() > 0) {
-                    move.normalize(); camHeading.lerp(move, 0.1).normalize();
-                    pBody.velocity.set(move.x*18, move.y*18, move.z*18);
+                let moveDir = new THREE.Vector3(0,0,0);
+                if(keys['KeyW'] || keys['ArrowUp']) moveDir.add(camFwd);
+                if(keys['KeyS'] || keys['ArrowDown']) moveDir.sub(camFwd);
+                if(keys['KeyA'] || keys['ArrowLeft']) moveDir.add(camRgt);
+                if(keys['KeyD'] || keys['ArrowRight']) moveDir.sub(camRgt);
+                if(moveDir.length() > 0) {
+                    moveDir.normalize(); camHeading.lerp(moveDir, 0.1).normalize();
+                    pBody.velocity.set(moveDir.x*18, moveDir.y*18, moveDir.z*18);
                 }
+            }
             } else { pBody.velocity.set(0,0,0); }
 
             playerMesh.position.copy(pPos);

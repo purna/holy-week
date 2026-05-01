@@ -9,6 +9,11 @@
     --glow-soft: 0 0 10px rgba(0,242,255,0.3);
     --glow-strong: 0 0 20px rgba(0,242,255,0.6);
     --shadow-panel: 0 8px 25px rgba(0,0,0,0.6);
+    --npc-msg-bg: rgba(32, 44, 51, 0.95);
+    --npc-msg-border: rgba(0, 242, 255, 0.2);
+    --player-msg-bg: rgba(0, 92, 75, 0.95);
+    --player-msg-border: rgba(0, 255, 170, 0.2);
+    --choice-hover-text: #000;
 }
 
 /* ===== BASE ===== */
@@ -144,3 +149,38 @@ button#btn-start, button#btn-replay {
     font-weight:bold; font-size:1.2em; color: black;
 }
 button#btn-replay { background:#00ffaa; color:#000; }
+
+/* ===== NPC INTERACTION PROMPT (World-space UI) ===== */
+#npc-indicator-container {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 600; /* Above sidebar (500) */
+    overflow: hidden;
+}
+
+.interact-prompt {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 10, 20, 0.9);
+    border: 1px solid var(--accent-primary);
+    color: var(--accent-primary);
+    padding: 10px 20px;
+    font-size: 0.85em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 4px;
+    box-shadow: var(--glow-soft);
+    white-space: nowrap;
+    display: none;
+    pointer-events: auto;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+    z-index: 1000; /* Above sidebar (500) and other UI */
+}
+
+.interact-prompt:hover {
+    background: rgba(0, 242, 255, 0.15);
+    box-shadow: var(--glow-strong);
+}

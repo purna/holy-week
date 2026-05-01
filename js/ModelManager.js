@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
-import { MODEL_SYSTEM, MODELS, PRIMITIVE_CONFIG, MODEL_SCALES } from './config.js';
+import { MODEL_SYSTEM, MODELS, PRIMITIVE_CONFIG, MODEL_SCALES, COLORS, USE_TOON_SHADER } from './config.js';
 
 /**
  * ModelManager - Loads and caches 3D models (GLB or primitives)
@@ -83,50 +83,67 @@ export class ModelManager {
     createPrimitive(cfg) {
         const group = new THREE.Group();
 
+        // Choose material type based on USE_TOON_SHADER flag
+        const useToon = USE_TOON_SHADER;
+
         switch (cfg.type) {
             case 'box':
-                const box = new THREE.Mesh(
-                    new THREE.BoxGeometry(...cfg.size),
-                    new THREE.MeshToonMaterial({ color: cfg.color })
-                );
+                const geometryBox = new THREE.BoxGeometry(...cfg.size);
+                const materialBox = useToon
+                    ? new THREE.MeshToonMaterial({ color: cfg.color })
+                    : new THREE.MeshStandardMaterial({ color: cfg.color, roughness: 0.8, metallic: 0.0 });
+                const box = new THREE.Mesh(geometryBox, materialBox);
                 group.add(box);
                 break;
 
             case 'sphere':
-                const sphere = new THREE.Mesh(
-                    new THREE.SphereGeometry(cfg.radius, 16, 16),
-                    new THREE.MeshToonMaterial({ color: cfg.color })
-                );
+                const geometrySphere = new THREE.SphereGeometry(cfg.radius, 16, 16);
+                const materialSphere = useToon
+                    ? new THREE.MeshToonMaterial({ color: cfg.color })
+                    : new THREE.MeshStandardMaterial({ color: cfg.color, roughness: 0.8, metallic: 0.0 });
+                const sphere = new THREE.Mesh(geometrySphere, materialSphere);
                 group.add(sphere);
                 break;
 
             case 'capsule':
-                const capsule = new THREE.Mesh(
-                    new THREE.CapsuleGeometry(cfg.radius, cfg.length, 8, 16),
-                    new THREE.MeshToonMaterial({ color: cfg.color })
-                );
+                const geometryCapsule = new THREE.CapsuleGeometry(cfg.radius, cfg.length, 8, 16);
+                const materialCapsule = useToon
+                    ? new THREE.MeshToonMaterial({ color: cfg.color })
+                    : new THREE.MeshStandardMaterial({ color: cfg.color, roughness: 0.8, metallic: 0.0 });
+                const capsule = new THREE.Mesh(geometryCapsule, materialCapsule);
                 capsule.position.y = cfg.length / 2 + cfg.radius;
                 group.add(capsule);
                 break;
 
             case 'octahedron':
-                const oct = new THREE.Mesh(
-                    new THREE.OctahedronGeometry(cfg.radius),
-                    new THREE.MeshStandardMaterial({
+                const geometryOct = new THREE.OctahedronGeometry(cfg.radius);
+                const hasEmissive = !!cfg.emissive;
+                let materialOct;
+                if (useToon) {
+                    materialOct = new THREE.MeshToonMaterial({
                         color: cfg.color,
-                        emissive: cfg.emissive || 0x000000,
-                        transparent: !!cfg.emissive,
-                        opacity: cfg.emissive ? 0.9 : 1.0
-                    })
-                );
+                        emissive: cfg.emissive || COLORS.black
+                    });
+                } else {
+                    materialOct = new THREE.MeshStandardMaterial({
+                        color: cfg.color,
+                        emissive: cfg.emissive || COLORS.black,
+                        transparent: hasEmissive,
+                        opacity: hasEmissive ? 0.9 : 1.0,
+                        roughness: 0.8,
+                        metallic: 0.0
+                    });
+                }
+                const oct = new THREE.Mesh(geometryOct, materialOct);
                 group.add(oct);
                 break;
 
             case 'icosahedron':
-                const ico = new THREE.Mesh(
-                    new THREE.IcosahedronGeometry(cfg.radius, cfg.segments || 0),
-                    new THREE.MeshToonMaterial({ color: cfg.color })
-                );
+                const geometryIco = new THREE.IcosahedronGeometry(cfg.radius, cfg.segments || 0);
+                const materialIco = useToon
+                    ? new THREE.MeshToonMaterial({ color: cfg.color })
+                    : new THREE.MeshStandardMaterial({ color: cfg.color, roughness: 0.8, metallic: 0.0 });
+                const ico = new THREE.Mesh(geometryIco, materialIco);
                 group.add(ico);
                 break;
         }

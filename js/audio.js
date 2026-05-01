@@ -6,7 +6,7 @@ export class AudioManager {
         this.ambientSounds = {};
         this.npcInteractionSounds = {};
         this.bgMusic = null;
-        this.musicEnabled = true;
+        this.soundEnabled = true; // Master sound toggle (affects all audio)
 
         this.initAudio();
     }
@@ -39,6 +39,7 @@ export class AudioManager {
     }
 
     playNpcSound(npcId, type) {
+        if (!this.soundEnabled) return;
         if (typeof Howler === 'undefined') return;
         const npcCfg = SOUND.npc[npcId];
         if (!npcCfg || !npcCfg[type]) return;
@@ -51,23 +52,27 @@ export class AudioManager {
     }
 
     playUI(key) {
+        if (!this.soundEnabled) return;
         if (this.uiSounds[key]) this.uiSounds[key].play();
     }
 
     playPickup() {
+        if (!this.soundEnabled) return;
         if (this.uiSounds.pickup) this.uiSounds.pickup.play();
     }
 
     playQuestComplete() {
+        if (!this.soundEnabled) return;
         if (this.uiSounds.questComplete) this.uiSounds.questComplete.play();
     }
 
     playVictory() {
+        if (!this.soundEnabled) return;
         if (this.uiSounds.victory) this.uiSounds.victory.play();
     }
 
     startMusic() {
-        if (this.bgMusic && this.musicEnabled) {
+        if (this.bgMusic && this.soundEnabled) {
             this.bgMusic.play();
         }
     }
@@ -77,16 +82,16 @@ export class AudioManager {
     }
 
     toggleMusic() {
-        this.musicEnabled = !this.musicEnabled;
-        if (this.bgMusic) {
-            this.bgMusic.mute(!this.musicEnabled);
-            if (this.musicEnabled) this.bgMusic.play();
+        this.soundEnabled = !this.soundEnabled;
+        // Mute/unmute all Howler sounds globally
+        if (typeof Howler !== 'undefined') {
+            Howler.mute(!this.soundEnabled);
         }
-        return this.musicEnabled;
+        return this.soundEnabled;
     }
 
     startAmbient() {
-        if (this.ambientSounds.birds) {
+        if (this.soundEnabled && this.ambientSounds.birds) {
             this.ambientSounds.birds.play();
             this.ambientSounds.birds.fade(0, 0.15, 3000);
         }

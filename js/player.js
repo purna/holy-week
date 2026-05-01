@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import * as CANNON from 'cannon';
-import { SCENE, MODEL_SYSTEM } from './config.js';
+import { SCENE, MODEL_SYSTEM, PRIMITIVE_CONFIG, COLORS, DAY_NIGHT } from './config.js';
 
 export class Player {
     constructor(world, scene, modelMgr, toonShader = null) {
@@ -41,22 +41,22 @@ export class Player {
                 const clonedModel = playerModel.clone();
                 // Update materials to toon
                 clonedModel.traverse((child) => {
-                    if (child.isMesh && child.material) {
-                        child.material = this.toonShader.createToonMaterial(0xff3333);
-                        // Store reference to main body material for VFX
-                        if (!this.bodyMaterial) {
-                            this.bodyMaterial = child.material;
-                        }
-                    }
+                 if (child.isMesh && child.material) {
+                         child.material = this.toonShader.createToonMaterial(PRIMITIVE_CONFIG.player.color);
+                         // Store reference to main body material for VFX
+                         if (!this.bodyMaterial) {
+                             this.bodyMaterial = child.material;
+                         }
+                     }
                 });
                 this.playerMesh.add(clonedModel);
             } else {
-                // Fallback to toon group
-                const playerToon = this.toonShader.createToonGroup(
-                    new THREE.BoxGeometry(1.2, 2, 1.2),
-                    0xff3333,
-                    0.1
-                );
+             // Fallback to toon group
+             const playerToon = this.toonShader.createToonGroup(
+                 new THREE.BoxGeometry(1.2, 2, 1.2),
+                 PRIMITIVE_CONFIG.player.color,
+                 0.1
+             );
                 this.playerMesh.add(playerToon.group);
                 // Store reference to main body material for VFX
                 this.bodyMaterial = playerToon.mainMesh.material;
@@ -64,10 +64,10 @@ export class Player {
         } else {
             // Use toon shader for primitive models
             const playerToon = this.toonShader.createToonGroup(
-                new THREE.BoxGeometry(1.2, 2, 1.2),
-                0xff3333,
-                0.1
-            );
+                 new THREE.BoxGeometry(1.2, 2, 1.2),
+                 PRIMITIVE_CONFIG.player.color,
+                 0.1
+             );
             this.playerMesh.add(playerToon.group);
             // Store reference to main body material for VFX
             this.bodyMaterial = playerToon.mainMesh.material;
@@ -98,23 +98,20 @@ export class Player {
             SCENE.torchDistance,
             SCENE.torchDecay
         );
-        this.torch.position.set(0, 1.5, 1); // Position in front of player
-        this.torch.castShadow = true;
-        // Configure shadow properties for better quality
-        this.torch.shadow.mapSize.width = 512;
-        this.torch.shadow.mapSize.height = 512;
-        this.torch.shadow.camera.near = 0.1;
-        this.torch.shadow.camera.far = SCENE.torchDistance;
+        this.torch.position.set(0, 1.5, 1); // Position in front of player, above center
+        // Torch should NOT cast shadows onto the player - it's an ambient light source
+        // Shadows from torch cause self-shadowing artifacts on the player mesh
+        this.torch.castShadow = false;
         this.playerMesh.add(this.torch);
 
         // Store the target intensity for night mode on the torch object
         this.torch.targetIntensity = baseIntensity;
 
-        // Also add a subtle emissive effect to the player material for torch visibility
-        if (this.bodyMaterial) {
-            // Store original emissive for restoration
-            this.originalEmissive = this.bodyMaterial.emissive ? this.bodyMaterial.emissive.clone() : new THREE.Color(0x000000);
-        }
+         // Also add a subtle emissive effect to the player material for torch visibility
+         if (this.bodyMaterial) {
+             // Store original emissive for restoration
+             this.originalEmissive = this.bodyMaterial.emissive ? this.bodyMaterial.emissive.clone() : new THREE.Color(COLORS.black);
+         }
 
         // Debug: Confirm torch creation
         console.log('Torch created for', MODEL_SYSTEM, 'mode:', {
@@ -224,23 +221,25 @@ export class Player {
         }
     }
 
-    updateEmissiveGlow() {
-        // Update player emissive glow based on day/night mode
-        if (this.playerMesh) {
-            this.playerMesh.traverse((child) => {
-                if (child.isMesh && child.material) {
-                    const targetGlow = this.isNight ? new THREE.Color(0xff0000) : new THREE.Color(0x000000);
-                    if (child.material.emissive) {
-                        child.material.emissive.lerp(targetGlow, 0.02);
-                    }
-                }
-            });
-        }
+      updateEmissiveGlow() {
+          // Update player emissive glow based on day/night mode
+          if (this.playerMesh) {
+              this.playerMesh.traverse((child) => {
+                  if (child.isMesh && child.material) {
+                      const targetGlow = this.isNight 
+                          ? new THREE.Color(DAY_NIGHT.playerGlowNightPrimitive) 
+                          : new THREE.Color(DAY_NIGHT.playerGlowDay);
+                      if (child.material.emissive) {
+                          child.material.emissive.lerp(targetGlow, 0.02);
+                      }
+                  }
+              });
+          }
 
-        // Update torch light intensity
-        if (this.torch) {
-            const targetIntensity = this.isNight ? 600 : 0;
-            this.torch.intensity = THREE.MathUtils.lerp(this.torch.intensity, targetIntensity, 0.02);
-        }
-    }
+          // Update torch light intensity
+          if (this.torch) {
+              const targetIntensity = this.isNight ? 600 : 0;
+              this.torch.intensity = THREE.MathUtils.lerp(this.torch.intensity, targetIntensity, 0.02);
+          }
+      }
 }
