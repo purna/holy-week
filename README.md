@@ -26,6 +26,20 @@ npm start
 
 Refer to the documentation in the `docs/` directory for more detailed instructions.
 
+xplore interactive demos powered by Miracle Maker:
+
+### 🌫️ Fog Effect
+Real-time atmospheric fog rendering.
+👉 https://purna.github.io/miracle-maker/tests/fog.html
+
+### ✨ VFX Demo
+A collection of visual effects and particle systems.
+👉 https://purna.github.io/miracle-maker/tests/vfx.html
+
+### 🛬 Landing Page
+Example UI and layout built with Miracle Maker.
+👉 https://purna.github.io/miracle-maker/tests/landing.html
+
 ## Contributing
 
 We welcome contributions! Please read our [Contributing Guide](CONTRIBUTING.md) for details on how to submit pull requests, report issues, and suggest features.
