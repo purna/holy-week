@@ -15,12 +15,64 @@ export class WorldManager {
         this.buildings = [];
         this.crystalClusters = [];
         this.relayTowers = [];
+        this.rocks = [];
 
         this.setupPlanet();
         this.setupPickups();
         this.setupBuildings();
         this.setupCrystalClusters();
         this.setupRelayTowers();
+        this.setupRocks();
+    }
+
+    setupRocks() {
+        for (let i = 0; i < 15; i++) {
+            const pos = new THREE.Vector3().setFromSphericalCoords(this.planetR + 2, Math.random() * Math.PI, Math.random() * Math.PI * 2);
+            let rockMesh;
+            
+            if (this.modelMgr && this.modelMgr.system === 'glb') {
+                const model = this.modelMgr.getModel('rocks');
+                if (model && model.children.length > 0) {
+                    const m = model.children[0].clone();
+                    m.material = this.toonShader.createToonMaterial(COLORS.gray);
+                    m.position.copy(pos);
+                    m.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), pos.clone().normalize());
+                    this.scene.add(m);
+                    rockMesh = m;
+                } else {
+                    const rockToon = this.toonShader.createToonGroup(
+                        new THREE.BoxGeometry(2, 4, 2),
+                        PRIMITIVE_CONFIG.rocks.color,
+                        0.12
+                    );
+                    rockToon.group.position.copy(pos);
+                    rockToon.group.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), pos.clone().normalize());
+                    this.scene.add(rockToon.group);
+                    rockMesh = rockToon.group;
+                }
+            } else {
+                const rockToon = this.toonShader.createToonGroup(
+                    new THREE.BoxGeometry(2, 4, 2),
+                    PRIMITIVE_CONFIG.rocks.color,
+                    0.12
+                );
+                rockToon.group.position.copy(pos);
+                rockToon.group.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), pos.clone().normalize());
+                this.scene.add(rockToon.group);
+                rockMesh = rockToon.group;
+            }
+
+            // Add physics body for collision
+            const body = new CANNON.Body({
+                mass: 0,
+                shape: new CANNON.Box(new CANNON.Vec3(1, 2, 1))
+            });
+            body.position.copy(pos);
+            body.quaternion.setFromAxisAngle(new CANNON.Vec3(0, 1, 0), Math.random() * Math.PI * 2);
+            this.world.addBody(body);
+
+            this.rocks.push(rockMesh);
+        }
     }
 
     setupPlanet() {

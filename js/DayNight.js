@@ -63,7 +63,10 @@ export class DayNight {
         // Update torch intensity
         if (this._playerTorch) {
             // Use torch's stored target intensity (adjusted for model system)
-            const targetIntensity = this._isDay ? 0 : (this._playerTorch.targetIntensity || 400);
+            const modelSystemIntensity = MODEL_SYSTEM === 'glb' 
+                ? SCENE.torchIntensityNightGLB 
+                : SCENE.torchIntensityNightPrimitive;
+            const targetIntensity = this._isDay ? 0 : (this._playerTorch.targetIntensity || modelSystemIntensity);
             const newIntensity = THREE.MathUtils.lerp(
                 this._playerTorch.intensity,
                 targetIntensity,

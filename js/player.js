@@ -87,9 +87,9 @@ export class Player {
         this.scene.add(this.playerMesh);
     }
 
-    setupTorch() {
+     setupTorch() {
         // Adjust torch intensity based on model system
-        const baseIntensity = MODEL_SYSTEM === 'glb' ? 300 : 600; // Lower for GLB, higher for primitives
+        const baseIntensity = MODEL_SYSTEM === 'glb' ? SCENE.torchIntensityNightGLB : SCENE.torchIntensityNightPrimitive;
 
         // Create torch light with proper range for area lighting
         this.torch = new THREE.PointLight(

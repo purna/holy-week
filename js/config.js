@@ -14,24 +14,35 @@ export const COLORS = {
     orange: 0xffaa00,    // Orange accent
     purple: 0xff00ff,    // Purple accent
     green: 0x00ff88,     // Success green
-    red: 0xff4444,       // Alert red
+
+    lightRed: 0x440000,  // Light red (for player glow, less intense than pure red)
+    red: 0xff0000,       // Alert red (standard bright red)
+    torchRed: 0xff3333,   // Bright red for torch light (more vibrant than darkRed)
+    darkRed: 0x663300,   // Dark red (for emissive glows)
+
+    lightBlue: 0x88ccff,      // Soft blue for stars
     blue: 0x4488ff,      // Info blue
     white: 0xffffff,     // White
     black: 0x000000,     // Black
     gray: 0x888888,      // Neutral gray
     darkGray: 0x333333,  // Dark gray
+    veryDarkGray : 0x111111,   // Very dark gray (for NPC pads)
+    deepSpaceBlack : 0x020205,   // Deep space black (for night sky background)
     brown: 0x966F33,     // Brown (for trails/day)
-    darkRed: 0x663300,   // Dark red (for emissive glows)
+    beige: 0xffffee,    // Beige (for sun sphere)
+    yellow: 0xffff00,    // Yellow (for sun)
     shard: 0xa020f0,     // Purple for signal shards
     shardEmissive: 0x4a0080, // Dark red emissive for shards
     crystal: 0x00f2ff,   // Cyan for crystal clusters (same as cyan)
-    crystalEmissive: 0x004444 // Dark blue emissive for crystals
+    crystalEmissive: 0x004444, // Dark blue emissive for crystals
+    
+    
 };
 
 // NPC Pad colors (used in NPC.js for base pad)
 export const NPC_PAD = {
-    baseColor: 0x222222,      // Dark gray base pad
-    emissive: 0x111111        // Dim emissive for pad
+    baseColor: COLORS.darkGray,      // Dark gray base pad
+    emissive: COLORS.veryDarkGray        // Dim emissive for pad
 };
 
 // Fallback primitive configs (used when MODEL_SYSTEM === 'primitives')
@@ -43,24 +54,25 @@ export const PRIMITIVE_CONFIG = {
     npcKeeper: { type: 'capsule', radius: 1, length: 2, color: COLORS.purple },
     pickupCell: { type: 'sphere', radius: 1, color: COLORS.orange },
     pickupShard: { type: 'octahedron', radius: 0.9, color: COLORS.shard, emissive: COLORS.shardEmissive },
-    planet: { type: 'icosahedron', radius: 50, segments: 5, color: 0x2a552a },
-    tower: { type: 'box', size: [3, 10, 3], color: 0x333344 },
-    rocks: { type: 'box', size: [2, 4, 2], color: 0xdddddd }
+    planet: { type: 'icosahedron', radius: 50, segments: 5, color: COLORS.green },
+    tower: { type: 'box', size: [3, 10, 3], color: COLORS.gray },
+    rocks: { type: 'box', size: [2, 4, 2], color: COLORS.gray },
+    crystalCluster: { type: 'cone', radius: 0.8, height: 4, segments: 5, color: COLORS.cyan, emissive: COLORS.crystalEmissive, transparent: true, opacity: 0.9 }
 };
 
 // Planet configuration
 export const PLANET = {
     radius: 50,                  // Planet radius
     segments: 5,                 // Geometry segments
-    color: 0x2a552a,             // Planet surface color (brighter green)
-    toonRampLevels: 3,           // Toon shading levels
+    color: COLORS.green,             // Planet surface color (brighter green)
+    toonRampLevels: 6,           // Toon shading levels
     shadowBias: 0.0001           // Shadow bias for artifacts
 };
 
 // Player configuration
 export const PLAYER = {
     bodySize: { x: 0.5, y: 1, z: 0.5 },  // Collision box size
-    meshColor: 0xff3333,          // Player mesh color
+    meshColor: COLORS.red,          // Player mesh color
     jumpImpulse: 12,              // Jump impulse force
     mass: 1,                      // Player mass
     linearDamping: 0.9,           // Movement damping
@@ -69,10 +81,10 @@ export const PLAYER = {
 
 // NPC color palette
 export const NPC_COLORS = {
-    echo: 0x00f2ff,         // Cyan - UNIT-01 ECHO
-    horizon: 0xffaa00,     // Orange - UNIT-02 HORIZON
-    spire: 0x00ffaa,       // Green - SPIRE_MINOR
-    keeper: 0xff00ff       // Purple - DATA_KEEPER
+    echo: COLORS.cyan,         // Cyan - UNIT-01 ECHO
+    horizon: COLORS.orange,     // Orange - UNIT-02 HORIZON
+    spire: COLORS.green,       // Green - SPIRE_MINOR
+    keeper: COLORS.purple,       // Purple - DATA_KEEPER
 };
 
 
@@ -91,7 +103,7 @@ export const NPC_COLORS = {
  * To switch systems, simply change these values and ensure required assets exist.
  */
 export const ICON_SYSTEM = 'svg'; // 'fontawesome' | 'svg'
-export const MODEL_SYSTEM = 'glb'; // 'primitives' | 'glb'
+export const MODEL_SYSTEM = 'primitives'; // 'primitives' | 'glb'
 export const USE_TOON_SHADER = true; // Enable toon shading (false = use MeshStandardMaterial)
 
 // Debug flags: force primitive rendering for specific objects even in GLB mode
@@ -185,35 +197,35 @@ export const MODEL_SCALES = {
 
 // Scene configuration
 export const SCENE = {
-    background: 0x020205,        // Dark background
-    fogColor: 0x020205,          // Fog color
-    fogDensity: 0.018,           // Fog density
-    ambientLight: 0x404040,      // Ambient light color
-    ambientIntensity: 0.,       // Ambient light strength
-    sunColor: 0xffffff,          // Sunlight color
-    sunIntensity: 2.5,           // Sunlight intensity (higher for toon shading)
+    background: COLORS.deepSpaceBlack,        // Dark background
+    fogColor: COLORS.deepSpaceBlack,          // Fog color
+    fogDensity: 0.02,           // Fog density
+    ambientLight: COLORS.deepSpaceBlack,      // Ambient light color
+    ambientIntensity: 0.1,       // Ambient light strength
+    sunColor: COLORS.white,          // Sunlight color
+    sunIntensity: 1.2,           // Sunlight intensity (higher for toon shading)
     shadowMapSize: 2048,         // Shadow map resolution
     // Sun sphere (visual)
-    sunSphereColor: 0xffffee,    // Sun sphere color
+    sunSphereColor: COLORS.yellow,    // Sun sphere color
     // Moon light
-    moonColor: 0x4444ff,         // Moon light color
+    moonColor: COLORS.blue,         // Moon light color
     moonIntensity: 1.2,          // Moon light intensity
     // Hemisphere light
-    hemiGroundColorDay: 0x333333, // Hemisphere light ground color (day)
-    hemiGroundColorNight: 0x000000, // Hemisphere light ground color (night)
-    hemiIntensityDay: 0.5,       // Hemisphere light intensity (day)
+    hemiGroundColorDay: COLORS.darkGray, // Hemisphere light ground color (day)
+    hemiGroundColorNight: COLORS.deepSpaceBlack, // Hemisphere light ground color (night)
+    hemiIntensityDay: 0.4,       // Hemisphere light intensity (day)
     hemiIntensityNight: 0,       // Hemisphere light intensity (night)
     // Ambient light night multiplier
     ambientNightMultiplier: 0.1, // Ambient light intensity multiplier at night
     // Star field
-    starColor: 0x88ccff,         // Star field color
+    starColor: COLORS.lightBlue,         // Star field color
     // Player torch settings
-    torchColor: 0x00f2ff,        // Cyan torch light
+    torchColor: COLORS.cyan,        // Torch light color (cyan or COLORS.torchRed for red)
     torchIntensityDay: 0,        // Torch off during day
-    torchIntensityNightGLB: 200, // Lower for GLB  default is 400, lower this value (e.g., 300 for dimmer)
-    torchIntensityNightPrimitive: 5, // Higher for primitives  default is 600, lower this value (e.g., 300 for dimmer)
+    torchIntensityNightGLB: 300,       // Torch intensity for GLB mode at night
+    torchIntensityNightPrimitive: 600,   // Torch intensity for primitive mode at night
     torchDistance: 10,          // Light reach distance (increased for better coverage)
-    torchDecay: 1                // Light falloff value
+    torchDecay: 1                // Light falloff value (linear)
     /*
     Range: 0 to 3 (theoretical), but practical values:
     0 — No decay (constant brightness at any distance, unrealistic)
@@ -224,7 +236,7 @@ export const SCENE = {
 };
 
 // Outline color for toon shading
-export const OUTLINE_COLOR = 0x000000;
+export const OUTLINE_COLOR = COLORS.black; // Match background for silhouette effect
 
 export const SOUND = {
     // UI sounds
@@ -340,14 +352,14 @@ export const VFX = {
         size: 4,                            // World units
         lifetime: 1.5,                      // Seconds before fade
         svgPath: './assets/gfx/dirt.svg',   // Decal texture (black shapes)
-        nightColor: 0xffffff,               // Tint color in night mode (white for visibility)
-        dayColor: 0x000000                  // Tint color in day mode (black - matches dark dirt)
+        nightColor: COLORS.white,               // Tint color in night mode (white for visibility)
+        dayColor: COLORS.black,                  // Tint color in day mode (black - matches dark dirt)
     },
     trail: {
         enabled: true,
         particleSize: 0.3,
-        dayColor: 0x966F33,                 // Brownish by day
-        nightColor: 0x00f2ff,               // Cyan by night
+        dayColor: COLORS.brown,                 // Brownish by day
+        nightColor: COLORS.cyan,               // Cyan by night
         lifetime: 1.0                       // Seconds
     }
 };
@@ -359,14 +371,14 @@ export const DAY_NIGHT = {
     dayPosition: 0.25,                      // timeProgress value for full day
     nightPosition: 0.75,                    // timeProgress value for full night
     sky: {
-        day: 0x87CEEB,                      // Light blue
-        night: 0x020205                     // Deep space black
+        day: COLORS.lightBlue,                      // Light blue
+        night: COLORS.deepSpaceBlack                     // Deep space black
     },
     fogDensity: 0.002,
     // Player emissive glow
-    playerGlowDay: 0x000000,                // No glow during day
-    playerGlowNightGLB: 0x220000,           // Red glow at night (GLB - less intense)
-    playerGlowNightPrimitive: 0x440000,     // Red glow at night (primitives - more intense)
+    playerGlowDay: COLORS.red,                // No glow during day
+    playerGlowNightGLB: COLORS.lightRed,           // Red glow at night (GLB - less intense)
+    playerGlowNightPrimitive: COLORS.red,     // Red glow at night (primitives - more intense)
     // Ambient lighting
     ambientDay: 0.6,                        // Ambient light multiplier (day)
     ambientNight: 0.2,                      // Ambient light multiplier (night)
