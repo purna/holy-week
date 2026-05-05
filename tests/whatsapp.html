@@ -230,20 +230,6 @@ body { margin: 0; overflow: hidden; background: var(--bg-main); font-family: 'Co
                 choiceEl.appendChild(b);
             }
         };
-                choiceEl.appendChild(b);
-            });
-
-            if(inkStory.currentChoices.length === 0 && !inkStory.canContinue) {
-                const b = document.createElement('button');
-                b.className = "poll-choice"; b.innerText = "[DISCONNECT]";
-                b.onclick = () => {
-                    document.getElementById('local-dialogue-box').style.display = 'none';
-                    document.getElementById('bubble-text-container').innerHTML = "";
-                    isDialogueOpen = false; pBody.wakeUp();
-                };
-                choiceEl.appendChild(b);
-            }
-        };
 
         const keys = {};
         let camHeading = new THREE.Vector3(0, 0, 1);
@@ -295,7 +281,7 @@ body { margin: 0; overflow: hidden; background: var(--bg-main); font-family: 'Co
                     moveDir.normalize(); camHeading.lerp(moveDir, 0.1).normalize();
                     pBody.velocity.set(moveDir.x*18, moveDir.y*18, moveDir.z*18);
                 }
-            }
+
             } else { pBody.velocity.set(0,0,0); }
 
             playerMesh.position.copy(pPos);
