@@ -1,367 +1,599 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <title>Messenger 3D - Atmospheric Update</title>
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.4/howler.min.js"></script>
-     <style>
+    <meta name="description"
+        content="Miracle Maker 3Dprototype with atmospheric dust particles, ambient floating spores, bird flocking AI, and firework burst effects. Enhanced particle VFX system.">
+    <title>Miracle Maker 3D- Atmospheric Particles</title>
+    <!--
 
-/* ===== VARIABLES ===== */ 
-:root {
-    --bg-main: #010105;
-    --panel-bg: rgba(0, 10, 20, 0.88);
-    --accent-primary: #00f2ff;
-    --accent-secondary: #ffaa00;
-    --accent-success: #00ffaa;
-    --text-main: #ffffff;
-    --glow-soft: 0 0 10px rgba(0,242,255,0.3);
-    --glow-strong: 0 0 20px rgba(0,242,255,0.6);
-    --shadow-panel: 0 8px 25px rgba(0,0,0,0.6);
-    --btn-size: 12vmin;
-}
+        CORE CONCEPT
+        ------------
+        Advanced particle VFX prototype featuring optimized particle pool system.
+        Demonstrates efficient GPU-based particle rendering with Three.js Points
+        and custom update logic for gravity, lifetime, and color.
 
-/* ===== BASE ===== */
-body {
-    margin: 0;
-    overflow: hidden;
-    background: var(--bg-main);
-    font-family: 'Courier New', monospace;
-    text-transform: uppercase;
-    user-select: none;
-}
+        KEY FEATURES
+        ------------
+        • VFXSystem class (lines 363–550) managing all effects
+        • Particle pool: 2500 pre-allocated particles (off-screen initially at 99999)
+        • Three particle types:
+          - DUST: grey, short-lived (0.4–0.8s), emitted on footfalls
+          - AMBIENT: cyan spores, long-lived (5–10s), random emission
+          - FIREWORK: explosion of 200 mixed-color particles on quest complete
+        • Bird flocking: 20 birds with velocity, altitude maintenance, wing-flap bob
+        • Bird AI: flock circles at altitude, random direction changes
+        • No decals (decal code removed from this version)
 
-/* ===== PANELS ===== */
-.panel {
-    color: var(--text-main);
-    background: var(--panel-bg);
-    padding: 12px;
-    border: 1px solid var(--accent-primary);
-    backdrop-filter: blur(10px);
-    width: 200px;
-    transform-origin: right center;
-    transform: scale(0.85);
-    opacity: 0;
-    pointer-events: none;
-    transition: transform 0.25s ease, opacity 0.2s ease;
-    box-shadow: var(--shadow-panel), var(--glow-soft);
-}
-.panel.open {
-    transform: scale(1);
-    opacity: 1;
-    pointer-events: auto;
-}
-#panel-quest { border-right: 4px solid var(--accent-primary); }
-#panel-inv { border-right: 4px solid var(--accent-secondary); }
+        PARTICLE PHYSICS
+        ----------------
+        Each particle has: position (Vector3), velocity (Vector3), lifetime (float)
+        Gravity: particles pulled toward planet surface (up × -20)
+        Update: position += velocity × dt, lifetime -= dt
+        Render: PointsMaterial with vertexColors, AdditiveBlending
+        Optimization: single BufferGeometry with typed arrays
 
-#inv-anchor { position: relative; }
-#panel-inv {
-    position: absolute;
-    bottom: calc(100% + 10px);
-    right: calc(100% + 8px);
-}
+        BIRD SYSTEM
+        -----------
+        Bird geometry: ConeGeometry(0.4, 1.2, 3) rotated X 90° (dart shape)
+        Flight: random initial velocity, maintain altitude (planetR+30)
+        Bobbing: sin(phase) × 0.08 vertical offset
+        Orientation: lookAt(mesh.position + velocity)
+        Phase: random start + dt×10 for asynchronous flapping
 
- /* ===== BUTTONS ===== */
-  .ui-toggle {
-      width: var(--btn-size);
-      height: var(--btn-size);
-      min-width: 48px;
-      min-height: 48px;
-      padding: 0;
-      background: rgba(0,10,20,0.8);
-      border: 1px solid var(--accent-primary);
-      color: var(--accent-primary);
-      cursor: pointer;
-      font-size: 1.2em;
-      border-radius: 4px;
-      transition: transform 0.12s ease, background 0.2s, box-shadow 0.2s;
-      box-shadow: var(--glow-soft);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-  }
-  #btn-quest-toggle {
-      width: var(--btn-size);
-      height: var(--btn-size);
-      min-width: 48px;
-      min-height: 48px;
-      padding: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-  }
-.ui-toggle:hover {
-    background: rgba(0,242,255,0.2);
-    box-shadow: var(--glow-strong);
-}
-.ui-toggle:active {
-    transform: scale(0.9);
-}
-.ui-toggle.active {
-    background: rgba(0,242,255,0.3);
-    border-color: var(--accent-success);
-    color: var(--accent-success);
-}
+        COMPARISON TO test.html
+        -----------------------
+        Identical game logic and UI to test.html
+        VFX system extracts particle effects into class
+        Bird flock added (test.html had no birds)
+        Decals removed (only in landing.html)
+        No sound effects (audio code stubbed but not initialized)
+        No Howler dependency
 
-/* ===== SIDEBAR ===== */
-#right-sidebar {
-    position: absolute;
-    top: 0;
-    right: 0;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 20px;
-    pointer-events: none;
-    z-index: 500;
-}
- #sidebar-top, #sidebar-bottom {
-     display: flex;
-     flex-direction: column;
-     align-items: flex-end;
-     gap: 10px;
-     pointer-events: auto;
-     margin-bottom: 40px;
- }
- .sidebar-row {
-    display: flex;
-    gap: 8px;
-}
+        WHY THIS VARIANT EXISTS
+        -----------------------
+        Demonstrates performance-optimized particle rendering versus
+        landing.html's decal+VFX hybrid approach. Lower memory footprint
+        due to particle pool reuse.
 
-/* ===== TEXT ===== */
-h3 {
-    margin: 0 0 10px 0;
-    font-size: 0.8em;
-    color: var(--accent-secondary);
-    opacity: 0.6;
-    border-bottom: 1px solid #333;
-}
-.item {
-    font-size: 0.8em;
-    margin: 5px 0;
-    color: var(--accent-secondary);
-    border-left: 2px solid var(--accent-secondary);
-    padding-left: 5px;
-}
-.q-item {
-    font-size: 0.8em;
-    margin: 12px 0;
-    border-bottom: 1px solid #111;
-    padding-bottom: 5px;
-}
-.q-done {
-    color: var(--accent-success);
-    text-decoration: line-through;
-    opacity: 0.4;
-}
+        CONTROLS
+        --------
+        Identical to test.html (WASD + Space + Mouse)
 
-/* ===== INTERACT PROMPT ===== */
-#npc-indicator-container { position: absolute; top: 0; left: 0; pointer-events: none; width: 100%; height: 100%; z-index: 100; }
-.interact-prompt {
-    position: absolute; background: #ffaa00; color: black;
-    padding: 8px 16px; font-weight: bold; border-radius: 4px;
-    font-size: 0.8em; transform: translate(-50%, -50%);
-    display: none; cursor: pointer; pointer-events: auto;
-    box-shadow: 0 0 20px #ffaa00; border: 1px solid white;
-    z-index: 200;
-}
+        TECHNICAL
+        ---------
+        • Geometry: THREE.BufferGeometry with position + color attributes
+        • Material: THREE.PointsMaterial({ size: 1.5, vertexColors: true, blending: AdditiveBlending, depthWrite: false })
+        • Update frequency: every frame in loop(): vfx.update(dt, playerPos, playerVel, isGrounded)
+        • Bird update: vfx.update() handles flock AI internally
 
-.npc-bubble {
-    position: absolute; background: rgba(0, 5, 10, 0.95); color: #00f2ff;
-    padding: 12px 18px; border: 1px solid #00f2ff; border-radius: 2px;
-    font-size: 0.85em; text-align: center; transform: translate(-50%, -100%);
-    display: none; width: 220px; box-shadow: 0 0 15px rgba(0,242,255,0.3);
-    z-index: 150;
-}
-.npc-bubble::after { content: ''; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); border-left: 10px solid transparent; border-right: 10px solid transparent; border-top: 10px solid #00f2ff; }
+        ASSETS: None external (procedural)
 
-#local-dialogue-box {
-    position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
-    width: 750px; max-width: 90%; background: rgba(0, 5, 15, 0.98);
-    border: 1px solid #00f2ff; border-top: 4px solid #00f2ff;
-    padding: 30px; color: white; display: none; z-index: 100;
-}
-.npc-name-tag { color: #ffaa00; font-size: 1.2em; font-weight: bold; margin-bottom: 12px; border-bottom: 1px solid #333; display: block; }
-#bubble-text { margin-bottom: 25px; line-height: 1.6; font-size: 1.1em; text-transform: none; min-height: 60px; }
-.choice-container { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-.choice-btn {
-    background: rgba(0,242,255,0.05); border: 1px solid #00f2ff55;
-    color: #00f2ff; text-align: left; padding: 15px;
-    cursor: pointer; font-family: inherit; transition: 0.2s; font-size: 0.9em;
-}
-.choice-btn:hover { background: rgba(0,242,255,0.2); border-color: #00f2ff; }
+        Known issues: Particles may clump if too many emitted at once; bird collision not implemented
+    -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.4/howler.min.js"></script>
+    <style>
+        /* ===== VARIABLES ===== */
+        :root {
+            --bg-main: #010105;
+            --panel-bg: rgba(0, 10, 20, 0.88);
+            --accent-primary: #00f2ff;
+            --accent-secondary: #ffaa00;
+            --accent-success: #00ffaa;
+            --text-main: #ffffff;
+            --glow-soft: 0 0 10px rgba(0, 242, 255, 0.3);
+            --glow-strong: 0 0 20px rgba(0, 242, 255, 0.6);
+            --shadow-panel: 0 8px 25px rgba(0, 0, 0, 0.6);
+            --btn-size: 12vmin;
+        }
 
-button#btn-start, button#btn-replay { background:#ffaa00; border:none; padding:15px 40px; cursor:pointer; font-weight:bold; font-size:1.2em; color: black; }
-button#btn-replay { background:#00ffaa; color:#000; }
+        /* ===== BASE ===== */
+        body {
+            margin: 0;
+            overflow: hidden;
+            background: var(--bg-main);
+            font-family: 'Courier New', monospace;
+            text-transform: uppercase;
+            user-select: none;
+        }
 
-/* ===== WIPE TRANSITION ===== */
-#wipe-overlay {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: #010105; z-index: 2000; pointer-events: none;
-    transform: translateX(-100%);
-}
-#wipe-overlay.active { animation: wipe-in 1s ease-in-out forwards; }
-#wipe-overlay.out { animation: wipe-out 1s ease-in-out forwards; }
-@keyframes wipe-in {
-    0%   { transform: translateX(-100%); }
-    50%  { transform: translateX(0); }
-    100% { transform: translateX(100%); }
-}
-@keyframes wipe-out {
-    0%   { transform: translateX(100%); }
-    50%  { transform: translateX(0); }
-    100% { transform: translateX(-100%); }
-}
+        /* ===== PANELS ===== */
+        .panel {
+            color: var(--text-main);
+            background: var(--panel-bg);
+            padding: 12px;
+            border: 1px solid var(--accent-primary);
+            backdrop-filter: blur(10px);
+            width: 200px;
+            transform-origin: right center;
+            transform: scale(0.85);
+            opacity: 0;
+            pointer-events: none;
+            transition: transform 0.25s ease, opacity 0.2s ease;
+            box-shadow: var(--shadow-panel), var(--glow-soft);
+        }
 
-/* ===== ACTIONS PANEL ===== */
-#panel-actions {
-    border-right: 4px solid var(--accent-secondary);
-}
+        .panel.open {
+            transform: scale(1);
+            opacity: 1;
+            pointer-events: auto;
+        }
 
-/* Floating action icon effect */
-.floating-action-icon {
-    position: fixed;
-    font-size: 24px;
-    color: var(--accent-primary);
-    z-index: 1000;
-    pointer-events: none;
-    transform-origin: center center;
-    will-change: transform, opacity;
-}
+        #panel-quest {
+            border-right: 4px solid var(--accent-primary);
+        }
 
-/* ===== LOCATION BOX ===== */
-#loc-box {
-    position: absolute; bottom: 20%; left: 50%; transform: translateX(-50%);
-    text-align: center; pointer-events: none; display: none; z-index: 150;
+        #panel-inv {
+            border-right: 4px solid var(--accent-secondary);
+        }
 
-}
- #loc-name {
-     font-size: 2.8em; color: var(--accent-secondary);
-     margin: 0; text-shadow: 0 0 20px #000;
- }
+        #inv-anchor {
+            position: relative;
+        }
 
- /* Retained from original: overlay screens */
-  .overlay {
-      position: fixed;
-      top:0; left:0; width:100%; height:100%;
-      display:flex; flex-direction:column; align-items:center; justify-content:center;
-      color:white; z-index:1000; text-align:center; background:rgba(0,0,0,0.95);
-  }
+        #panel-inv {
+            position: absolute;
+            bottom: calc(100% + 10px);
+            right: calc(100% + 8px);
+        }
 
-#start-screen h1{
-    color: var(--accent-secondary);
-    font-size: 4em;
-    margin: 0;
-    letter-spacing: 10px;
-}
+        /* ===== BUTTONS ===== */
+        .ui-toggle {
+            width: var(--btn-size);
+            height: var(--btn-size);
+            min-width: 48px;
+            min-height: 48px;
+            padding: 0;
+            background: rgba(0, 10, 20, 0.8);
+            border: 1px solid var(--accent-primary);
+            color: var(--accent-primary);
+            cursor: pointer;
+            font-size: 1.2em;
+            border-radius: 4px;
+            transition: transform 0.12s ease, background 0.2s, box-shadow 0.2s;
+            box-shadow: var(--glow-soft);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-#start-screen p{
-    color: var(--accent-secondary);
-    font-size: 1.2em;
-    margin-bottom:30px; opacity:0.6; letter-spacing:3px;
-}
+        #btn-quest-toggle {
+            width: var(--btn-size);
+            height: var(--btn-size);
+            min-width: 48px;
+            min-height: 48px;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-#win-screen h1{
-    color: var(--accent-success);
-    font-size: 4em;
-    margin: 0;
-    letter-spacing: 10px;
-}
- #win-screen p{
-     color: var(--accent-success);
-     font-size: 1.2em;
-     margin:20px 0; opacity:0.8; letter-spacing:2px;
- }
+        .ui-toggle:hover {
+            background: rgba(0, 242, 255, 0.2);
+            box-shadow: var(--glow-strong);
+        }
 
-     </style>
+        .ui-toggle:active {
+            transform: scale(0.9);
+        }
+
+        .ui-toggle.active {
+            background: rgba(0, 242, 255, 0.3);
+            border-color: var(--accent-success);
+            color: var(--accent-success);
+        }
+
+        /* ===== SIDEBAR ===== */
+        #right-sidebar {
+            position: absolute;
+            top: 0;
+            right: 0;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 20px;
+            pointer-events: none;
+            z-index: 500;
+        }
+
+        #sidebar-top,
+        #sidebar-bottom {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 10px;
+            pointer-events: auto;
+            margin-bottom: 40px;
+        }
+
+        .sidebar-row {
+            display: flex;
+            gap: 8px;
+        }
+
+        /* ===== TEXT ===== */
+        h3 {
+            margin: 0 0 10px 0;
+            font-size: 0.8em;
+            color: var(--accent-secondary);
+            opacity: 0.6;
+            border-bottom: 1px solid #333;
+        }
+
+        .item {
+            font-size: 0.8em;
+            margin: 5px 0;
+            color: var(--accent-secondary);
+            border-left: 2px solid var(--accent-secondary);
+            padding-left: 5px;
+        }
+
+        .q-item {
+            font-size: 0.8em;
+            margin: 12px 0;
+            border-bottom: 1px solid #111;
+            padding-bottom: 5px;
+        }
+
+        .q-done {
+            color: var(--accent-success);
+            text-decoration: line-through;
+            opacity: 0.4;
+        }
+
+        /* ===== INTERACT PROMPT ===== */
+        #npc-indicator-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            width: 100%;
+            height: 100%;
+            z-index: 100;
+        }
+
+        .interact-prompt {
+            position: absolute;
+            background: #ffaa00;
+            color: black;
+            padding: 8px 16px;
+            font-weight: bold;
+            border-radius: 4px;
+            font-size: 0.8em;
+            transform: translate(-50%, -50%);
+            display: none;
+            cursor: pointer;
+            pointer-events: auto;
+            box-shadow: 0 0 20px #ffaa00;
+            border: 1px solid white;
+            z-index: 200;
+        }
+
+        .npc-bubble {
+            position: absolute;
+            background: rgba(0, 5, 10, 0.95);
+            color: #00f2ff;
+            padding: 12px 18px;
+            border: 1px solid #00f2ff;
+            border-radius: 2px;
+            font-size: 0.85em;
+            text-align: center;
+            transform: translate(-50%, -100%);
+            display: none;
+            width: 220px;
+            box-shadow: 0 0 15px rgba(0, 242, 255, 0.3);
+            z-index: 150;
+        }
+
+        .npc-bubble::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-top: 10px solid #00f2ff;
+        }
+
+        #local-dialogue-box {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 750px;
+            max-width: 90%;
+            background: rgba(0, 5, 15, 0.98);
+            border: 1px solid #00f2ff;
+            border-top: 4px solid #00f2ff;
+            padding: 30px;
+            color: white;
+            display: none;
+            z-index: 100;
+        }
+
+        .npc-name-tag {
+            color: #ffaa00;
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 12px;
+            border-bottom: 1px solid #333;
+            display: block;
+        }
+
+        #bubble-text {
+            margin-bottom: 25px;
+            line-height: 1.6;
+            font-size: 1.1em;
+            text-transform: none;
+            min-height: 60px;
+        }
+
+        .choice-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .choice-btn {
+            background: rgba(0, 242, 255, 0.05);
+            border: 1px solid #00f2ff55;
+            color: #00f2ff;
+            text-align: left;
+            padding: 15px;
+            cursor: pointer;
+            font-family: inherit;
+            transition: 0.2s;
+            font-size: 0.9em;
+        }
+
+        .choice-btn:hover {
+            background: rgba(0, 242, 255, 0.2);
+            border-color: #00f2ff;
+        }
+
+        button#btn-start,
+        button#btn-replay {
+            background: #ffaa00;
+            border: none;
+            padding: 15px 40px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1.2em;
+            color: black;
+        }
+
+        button#btn-replay {
+            background: #00ffaa;
+            color: #000;
+        }
+
+        /* ===== WIPE TRANSITION ===== */
+        #wipe-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #010105;
+            z-index: 2000;
+            pointer-events: none;
+            transform: translateX(-100%);
+        }
+
+        #wipe-overlay.active {
+            animation: wipe-in 1s ease-in-out forwards;
+        }
+
+        #wipe-overlay.out {
+            animation: wipe-out 1s ease-in-out forwards;
+        }
+
+        @keyframes wipe-in {
+            0% {
+                transform: translateX(-100%);
+            }
+
+            50% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
+        @keyframes wipe-out {
+            0% {
+                transform: translateX(100%);
+            }
+
+            50% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        /* ===== ACTIONS PANEL ===== */
+        #panel-actions {
+            border-right: 4px solid var(--accent-secondary);
+        }
+
+        /* Floating action icon effect */
+        .floating-action-icon {
+            position: fixed;
+            font-size: 24px;
+            color: var(--accent-primary);
+            z-index: 1000;
+            pointer-events: none;
+            transform-origin: center center;
+            will-change: transform, opacity;
+        }
+
+        /* ===== LOCATION BOX ===== */
+        #loc-box {
+            position: absolute;
+            bottom: 20%;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            pointer-events: none;
+            display: none;
+            z-index: 150;
+
+        }
+
+        #loc-name {
+            font-size: 2.8em;
+            color: var(--accent-secondary);
+            margin: 0;
+            text-shadow: 0 0 20px #000;
+        }
+
+        /* Retained from original: overlay screens */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            z-index: 1000;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.95);
+        }
+
+        #start-screen h1 {
+            color: var(--accent-secondary);
+            font-size: 4em;
+            margin: 0;
+            letter-spacing: 10px;
+        }
+
+        #start-screen p {
+            color: var(--accent-secondary);
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            opacity: 0.6;
+            letter-spacing: 3px;
+        }
+
+        #win-screen h1 {
+            color: var(--accent-success);
+            font-size: 4em;
+            margin: 0;
+            letter-spacing: 10px;
+        }
+
+        #win-screen p {
+            color: var(--accent-success);
+            font-size: 1.2em;
+            margin: 20px 0;
+            opacity: 0.8;
+            letter-spacing: 2px;
+        }
+    </style>
 
 </head>
+
 <body>
     <div id="start-screen" class="overlay">
-        <h1 >MESSENGER</h1>
+        <h1>MESSENGER</h1>
         <p>DELIVER THE SIGNAL</p>
-       <button id="btn-start">SYNC INTERFACE</button>
-       </div>
+        <button id="btn-start">SYNC INTERFACE</button>
+    </div>
 
-       <div id="win-screen" class="overlay hidden" style="display:none;">
-           <div id="win-content">
-               <h1 >MISSION COMPLETE</h1>
-               <p></p>All objectives fulfilled. Signal delivered.</p>
-               <button id="btn-replay">REINITIALIZE</button>
-           </div>
-       </div>
+    <div id="win-screen" class="overlay hidden" style="display:none;">
+        <div id="win-content">
+            <h1>MISSION COMPLETE</h1>
+            <p></p>All objectives fulfilled. Signal delivered.</p>
+            <button id="btn-replay">REINITIALIZE</button>
+        </div>
+    </div>
 
-       <div id="right-sidebar">
+    <div id="right-sidebar">
 
-           <div id="sidebar-top">
-                <div class="sidebar-row">
-                    <div id="panel-quest" class="panel">
-                        <h3>MISSION</h3><div id="quest-list"></div>
-                    </div>
-                    <button id="btn-quest-toggle" class="ui-toggle" title="Toggle Quest Log">
-                        <i class="fas fa-list-check"></i>
-                    </button>
+        <div id="sidebar-top">
+            <div class="sidebar-row">
+                <div id="panel-quest" class="panel">
+                    <h3>MISSION</h3>
+                    <div id="quest-list"></div>
                 </div>
+                <button id="btn-quest-toggle" class="ui-toggle" title="Toggle Quest Log">
+                    <i class="fas fa-list-check"></i>
+                </button>
+            </div>
+        </div>
+
+        <div id="sidebar-bottom">
+
+            <div class="sidebar-row" id="inv-anchor">
+                <div id="panel-inv" class="panel">
+                    <h3>STORAGE</h3>
+                    <div id="inv-list">0_CELLS</div>
+                </div>
+                <button id="btn-inv-toggle" class="ui-toggle" title="Toggle Inventory">
+                    <i class="fas fa-boxes-stacked"></i>
+                </button>
             </div>
 
-            <div id="sidebar-bottom">
-              
-                <div class="sidebar-row" id="inv-anchor">
-                    <div id="panel-inv" class="panel">
-                        <h3>STORAGE</h3><div id="inv-list">0_CELLS</div>
-                    </div>
-                    <button id="btn-inv-toggle" class="ui-toggle" title="Toggle Inventory">
-                        <i class="fas fa-boxes-stacked"></i>
-                    </button>
+            <div class="sidebar-row" id="actions-anchor">
+                <div id="panel-actions" class="panel">
+                    <h3>ACTIONS</h3>
+                    <div id="actions-list"></div>
                 </div>
-                
-                <div class="sidebar-row" id="actions-anchor">
-                    <div id="panel-actions" class="panel">
-                        <h3>ACTIONS</h3><div id="actions-list"></div>
-                    </div>
-                    <button id="btn-actions-toggle" class="ui-toggle" title="Toggle Actions">
-                        <i class="fas fa-list"></i>
-                    </button>
-                </div>
-
-                  <div class="sidebar-row">
-                    <button id="btn-sound-toggle" class="ui-toggle" title="Toggle Music">
-                        <i class="fas fa-volume-up"></i>
-                    </button>
-                </div>
-
+                <button id="btn-actions-toggle" class="ui-toggle" title="Toggle Actions">
+                    <i class="fas fa-list"></i>
+                </button>
             </div>
 
-       </div>
+            <div class="sidebar-row">
+                <button id="btn-sound-toggle" class="ui-toggle" title="Toggle Music">
+                    <i class="fas fa-volume-up"></i>
+                </button>
+            </div>
 
-       <div id="npc-indicator-container">
-           <div id="world-prompt" class="interact-prompt">CONNECT_TO_ECHO</div>
-       </div>
+        </div>
 
-       <div id="loc-box">
-           <h2 id="loc-name">LOC_NAME</h2>
-       </div>
+    </div>
 
-       <div id="npc-bubble" class="npc-bubble"></div>
+    <div id="npc-indicator-container">
+        <div id="world-prompt" class="interact-prompt">CONNECT_TO_ECHO</div>
+    </div>
 
-       <div id="local-dialogue-box">
-           <span id="npc-name-display" class="npc-name-tag">NAME_ID</span>
-           <div id="bubble-text">...</div>
-           <div id="bubble-choices" class="choice-container"></div>
-       </div>
+    <div id="loc-box">
+        <h2 id="loc-name">LOC_NAME</h2>
+    </div>
 
-        <div id="wipe-overlay"></div>
+    <div id="npc-bubble" class="npc-bubble"></div>
 
-        <script src="https://unpkg.com/inkjs@2.2.1/dist/ink.js"></script>
-        <script>console.log('Ink runtime loaded:', !!window.ink, !!window.inkjs);</script>
-        <script type="importmap">{ "imports": { 
+    <div id="local-dialogue-box">
+        <span id="npc-name-display" class="npc-name-tag">NAME_ID</span>
+        <div id="bubble-text">...</div>
+        <div id="bubble-choices" class="choice-container"></div>
+    </div>
+
+    <div id="wipe-overlay"></div>
+
+    <script src="https://unpkg.com/inkjs@2.2.1/dist/ink.js"></script>
+    <script>console.log('Ink runtime loaded:', !!window.ink, !!window.inkjs);</script>
+    <script type="importmap">{ "imports": { 
             "three": "https://unpkg.com/three@0.160.0/build/three.module.js", 
             "cannon": "https://unpkg.com/cannon-es@0.20.0/dist/cannon-es.js" } 
         }</script>
 
-        <script type="module">
+    <script type="module">
         import * as THREE from 'three';
         import * as CANNON from 'cannon';
 
@@ -370,27 +602,27 @@ button#btn-replay { background:#00ffaa; color:#000; }
             constructor(scene, planetR) {
                 this.scene = scene;
                 this.planetR = planetR;
-                
+
                 // --- 1. DUST & FIREWORKS (Optimized Points Pool) ---
                 const maxParticles = 2500;
                 this.geom = new THREE.BufferGeometry();
                 this.positions = new Float32Array(maxParticles * 3);
                 this.colors = new Float32Array(maxParticles * 3);
-                this.lifetimes = new Float32Array(maxParticles); 
+                this.lifetimes = new Float32Array(maxParticles);
                 this.velocities = [];
-                
-                for(let i = 0; i < maxParticles; i++) {
+
+                for (let i = 0; i < maxParticles; i++) {
                     // Hide off-screen initially
-                    this.positions[i*3] = 99999;
-                    this.positions[i*3+1] = 99999;
-                    this.positions[i*3+2] = 99999;
+                    this.positions[i * 3] = 99999;
+                    this.positions[i * 3 + 1] = 99999;
+                    this.positions[i * 3 + 2] = 99999;
                     this.velocities.push(new THREE.Vector3());
                     this.lifetimes[i] = 0;
                 }
-                
+
                 this.geom.setAttribute('position', new THREE.BufferAttribute(this.positions, 3));
                 this.geom.setAttribute('color', new THREE.BufferAttribute(this.colors, 3));
-                
+
                 const mat = new THREE.PointsMaterial({
                     size: 1.5,
                     vertexColors: true,
@@ -399,28 +631,28 @@ button#btn-replay { background:#00ffaa; color:#000; }
                     blending: THREE.AdditiveBlending, // Makes overlapping particles glow
                     depthWrite: false
                 });
-                
+
                 this.particleMesh = new THREE.Points(this.geom, mat);
                 this.scene.add(this.particleMesh);
-                
+
                 // --- 2. BIRDS (Flock in the sky) ---
                 this.birds = new THREE.Group();
                 const birdGeo = new THREE.ConeGeometry(0.4, 1.2, 3);
                 birdGeo.rotateX(Math.PI / 2); // Point geometry forward
                 const birdMat = new THREE.MeshBasicMaterial({ color: 0x00f2ff }); // Match primary accent
-                
+
                 this.birdData = [];
-                for(let i = 0; i < 20; i++) {
+                for (let i = 0; i < 20; i++) {
                     const b = new THREE.Mesh(birdGeo, birdMat);
                     // Start them high in the sky
                     const p = new THREE.Vector3().setFromSphericalCoords(
-                        planetR + 30 + Math.random()*10, 
-                        Math.random()*Math.PI, 
-                        Math.random()*Math.PI*2
+                        planetR + 30 + Math.random() * 10,
+                        Math.random() * Math.PI,
+                        Math.random() * Math.PI * 2
                     );
                     b.position.copy(p);
                     this.birds.add(b);
-                    
+
                     this.birdData.push({
                         mesh: b,
                         vel: new THREE.Vector3().randomDirection().multiplyScalar(15),
@@ -431,21 +663,21 @@ button#btn-replay { background:#00ffaa; color:#000; }
             }
 
             spawnParticle(pos, vel, color, life) {
-                for(let i = 0; i < this.lifetimes.length; i++) {
-                    if(this.lifetimes[i] <= 0) {
+                for (let i = 0; i < this.lifetimes.length; i++) {
+                    if (this.lifetimes[i] <= 0) {
                         this.lifetimes[i] = life;
-                        this.positions[i*3] = pos.x;
-                        this.positions[i*3+1] = pos.y;
-                        this.positions[i*3+2] = pos.z;
-                        
-                        this.colors[i*3] = color.r;
-                        this.colors[i*3+1] = color.g;
-                        this.colors[i*3+2] = color.b;
-                        
+                        this.positions[i * 3] = pos.x;
+                        this.positions[i * 3 + 1] = pos.y;
+                        this.positions[i * 3 + 2] = pos.z;
+
+                        this.colors[i * 3] = color.r;
+                        this.colors[i * 3 + 1] = color.g;
+                        this.colors[i * 3 + 2] = color.b;
+
                         this.velocities[i].copy(vel);
-                        
+
                         // Tell Three.js the colors changed
-                        this.geom.attributes.color.needsUpdate = true; 
+                        this.geom.attributes.color.needsUpdate = true;
                         return;
                     }
                 }
@@ -453,30 +685,30 @@ button#btn-replay { background:#00ffaa; color:#000; }
 
             emitDust(pos, up) {
                 const color = new THREE.Color(0x444455);
-                for(let i = 0; i < 2; i++) {
+                for (let i = 0; i < 2; i++) {
                     const vel = new THREE.Vector3()
                         .randomDirection()
                         .multiplyScalar(3)
                         .add(up.clone().multiplyScalar(2));
-                    
+
                     // Offset to player's feet
                     const p = pos.clone().add(new THREE.Vector3().randomDirection().multiplyScalar(0.5));
-                    p.sub(up.clone().multiplyScalar(1.0)); 
+                    p.sub(up.clone().multiplyScalar(1.0));
                     this.spawnParticle(p, vel, color, 0.4 + Math.random() * 0.4);
                 }
             }
-            
+
             emitAmbientDust(playerPos) {
                 // Only emit occasionally to create sparse floating spores
-                if (Math.random() > 0.1) return; 
-                
+                if (Math.random() > 0.1) return;
+
                 const color = new THREE.Color(0x00f2ff); // Neon blue dust
                 const offset = new THREE.Vector3().randomDirection().multiplyScalar(15 + Math.random() * 10);
                 const spawnPos = playerPos.clone().add(offset);
-                
+
                 // Very slow drift
-                const vel = new THREE.Vector3().randomDirection().multiplyScalar(0.5); 
-                
+                const vel = new THREE.Vector3().randomDirection().multiplyScalar(0.5);
+
                 // Long life (5 to 10 seconds)
                 this.spawnParticle(spawnPos, vel, color, 5 + Math.random() * 5);
             }
@@ -485,10 +717,10 @@ button#btn-replay { background:#00ffaa; color:#000; }
                 const colors = [new THREE.Color(0xffaa00), new THREE.Color(0x00f2ff), new THREE.Color(0x00ffaa)];
                 const color = colors[Math.floor(Math.random() * colors.length)];
                 const origin = pos.clone().add(up.clone().multiplyScalar(6)); // Burst above player
-                
-                for(let i = 0; i < 200; i++) {
-                    const vel = new THREE.Vector3().randomDirection().multiplyScalar(15 + Math.random()*20);
-                    this.spawnParticle(origin, vel, color, 1.5 + Math.random()*1.5);
+
+                for (let i = 0; i < 200; i++) {
+                    const vel = new THREE.Vector3().randomDirection().multiplyScalar(15 + Math.random() * 20);
+                    this.spawnParticle(origin, vel, color, 1.5 + Math.random() * 1.5);
                 }
             }
 
@@ -496,36 +728,36 @@ button#btn-replay { background:#00ffaa; color:#000; }
                 // --- Update Particles ---
                 const posAttr = this.geom.attributes.position;
                 let needsUpdate = false;
-                
-                for(let i = 0; i < this.lifetimes.length; i++) {
-                    if(this.lifetimes[i] > 0) {
+
+                for (let i = 0; i < this.lifetimes.length; i++) {
+                    if (this.lifetimes[i] > 0) {
                         this.lifetimes[i] -= dt;
-                        
-                        const p = new THREE.Vector3(posAttr.array[i*3], posAttr.array[i*3+1], posAttr.array[i*3+2]);
+
+                        const p = new THREE.Vector3(posAttr.array[i * 3], posAttr.array[i * 3 + 1], posAttr.array[i * 3 + 2]);
                         const up = p.clone().normalize();
-                        
+
                         // Gravity pulls particles back down
-                        this.velocities[i].add(up.multiplyScalar(-20 * dt)); 
+                        this.velocities[i].add(up.multiplyScalar(-20 * dt));
                         p.add(this.velocities[i].clone().multiplyScalar(dt));
-                        
-                        posAttr.array[i*3] = p.x;
-                        posAttr.array[i*3+1] = p.y;
-                        posAttr.array[i*3+2] = p.z;
-                        
-                        if (this.lifetimes[i] <= 0) posAttr.array[i*3] = 99999; // Hide when dead
+
+                        posAttr.array[i * 3] = p.x;
+                        posAttr.array[i * 3 + 1] = p.y;
+                        posAttr.array[i * 3 + 2] = p.z;
+
+                        if (this.lifetimes[i] <= 0) posAttr.array[i * 3] = 99999; // Hide when dead
                         needsUpdate = true;
                     }
                 }
-                if(needsUpdate) posAttr.needsUpdate = true;
+                if (needsUpdate) posAttr.needsUpdate = true;
 
                 // --- Auto-emit Dust ---
-                if(isGrounded && playerVel.lengthSq() > 10) {
-                    if(Math.random() > 0.4) {
-                         const up = playerPos.clone().normalize();
-                         this.emitDust(playerPos, up);
+                if (isGrounded && playerVel.lengthSq() > 10) {
+                    if (Math.random() > 0.4) {
+                        const up = playerPos.clone().normalize();
+                        this.emitDust(playerPos, up);
                     }
                 }
-                
+
                 // --- Ambient Fog Dust ---
                 this.emitAmbientDust(playerPos);
 
@@ -534,50 +766,50 @@ button#btn-replay { background:#00ffaa; color:#000; }
                     bird.phase += dt * 10;
                     const bPos = bird.mesh.position;
                     const up = bPos.clone().normalize();
-                    
+
                     // Maintain altitude
                     const alt = bPos.length();
                     const targetAlt = this.planetR + 30;
-                    if(alt > targetAlt) bird.vel.add(up.clone().multiplyScalar(-5 * dt));
-                    if(alt < targetAlt) bird.vel.add(up.clone().multiplyScalar(5 * dt));
-                    
+                    if (alt > targetAlt) bird.vel.add(up.clone().multiplyScalar(-5 * dt));
+                    if (alt < targetAlt) bird.vel.add(up.clone().multiplyScalar(5 * dt));
+
                     bPos.add(bird.vel.clone().multiplyScalar(dt));
-                    
+
                     // Flapping/bobbing math
                     bPos.add(up.clone().multiplyScalar(Math.sin(bird.phase) * 0.08));
-                    
+
                     bird.mesh.position.copy(bPos);
                     bird.mesh.up.copy(up);
                     if (bird.vel.lengthSq() > 0.01) {
-                         bird.mesh.lookAt(bPos.clone().add(bird.vel));
+                        bird.mesh.lookAt(bPos.clone().add(bird.vel));
                     }
                 });
             }
         }
 
-         // ===== AUDIO CONFIG (update filenames here) =====
-         const basePath = ''; // './assets/sounds/'
-         const SOUND = {
+        // ===== AUDIO CONFIG (update filenames here) =====
+        const basePath = ''; // './assets/sounds/'
+        const SOUND = {
 
-             // UI sounds
-             panelOpen:   basePath + 'panel_open.mp3',
-             panelClose:  basePath + 'panel_close.mp3',
-             buttonClick: basePath + 'button_click.mp3',
-             questDone:   basePath + 'quest_complete.mp3',
-             victory:     basePath + 'victory_fanfare.mp3',
-             pickup:      basePath + 'pickup.mp3',
-             // Ambient
-             birds:       basePath + 'bird_song.mp3',
-             // Music
-             bgMusic:     basePath + 'bg_music.mp3',
-             // NPC-specific (by ID)
-             npc: {
-                 1: { enter: basePath + 'echo_enter.mp3',   exit: basePath + 'echo_exit.mp3'   },
-                 2: { enter: basePath + 'horizon_enter.mp3',exit: basePath + 'horizon_exit.mp3' },
-                 3: { enter: basePath + 'spire_enter.mp3', exit: basePath + 'spire_exit.mp3'   },
-                 4: { enter: basePath + 'keeper_enter.mp3',exit: basePath + 'keeper_exit.mp3'  }
-             }
-         };
+            // UI sounds
+            panelOpen: basePath + 'panel_open.mp3',
+            panelClose: basePath + 'panel_close.mp3',
+            buttonClick: basePath + 'button_click.mp3',
+            questDone: basePath + 'quest_complete.mp3',
+            victory: basePath + 'victory_fanfare.mp3',
+            pickup: basePath + 'pickup.mp3',
+            // Ambient
+            birds: basePath + 'bird_song.mp3',
+            // Music
+            bgMusic: basePath + 'bg_music.mp3',
+            // NPC-specific (by ID)
+            npc: {
+                1: { enter: basePath + 'echo_enter.mp3', exit: basePath + 'echo_exit.mp3' },
+                2: { enter: basePath + 'horizon_enter.mp3', exit: basePath + 'horizon_exit.mp3' },
+                3: { enter: basePath + 'spire_enter.mp3', exit: basePath + 'spire_exit.mp3' },
+                4: { enter: basePath + 'keeper_enter.mp3', exit: basePath + 'keeper_exit.mp3' }
+            }
+        };
 
         let started = false;
         let inkStory = null;
@@ -587,8 +819,8 @@ button#btn-replay { background:#00ffaa; color:#000; }
 
         // Audio Context for Jump Sound
         const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        const playBeep = (f, t="sine", d=0.1) => {
-            if(audioCtx.state === 'suspended') return;
+        const playBeep = (f, t = "sine", d = 0.1) => {
+            if (audioCtx.state === 'suspended') return;
             const osc = audioCtx.createOscillator();
             const g = audioCtx.createGain();
             osc.type = t; osc.frequency.setValueAtTime(f, audioCtx.currentTime);
@@ -598,13 +830,13 @@ button#btn-replay { background:#00ffaa; color:#000; }
             osc.start(); osc.stop(audioCtx.currentTime + d);
         };
 
-         // NPC Configuration (multiple NPCs supported)
-          const npcs = [
-              { id: 1, name: "UNIT-01 ECHO", color: 0x00f2ff, pos: [0.1, 0.1], storyFile: './assets/dialogue/NPC_UNIT_ECHO_1.json', hasDialogue: true },
-              { id: 2, name: "UNIT-02 HORIZON", color: 0xffaa00, pos: [0.6, 2.2], storyFile: './assets/dialogue/NPC_UNIT_ECHO_2.json', hasDialogue: true },
-              { id: 3, name: "SPIRE_MINOR", color: 0x00ffaa, pos: [1.2, 0.3], hasDialogue: false, bubbleMsg: "The Spire awaits..." },
-              { id: 4, name: "DATA_KEEPER", color: 0xff00ff, pos: [0.8, 1.0], storyFile: './assets/dialogue/NPC_DATA_KEEPER.json', hasDialogue: true, questId: 1 }
-          ];
+        // NPC Configuration (multiple NPCs supported)
+        const npcs = [
+            { id: 1, name: "UNIT-01 ECHO", color: 0x00f2ff, pos: [0.1, 0.1], storyFile: './assets/dialogue/NPC_UNIT_ECHO_1.json', hasDialogue: true },
+            { id: 2, name: "UNIT-02 HORIZON", color: 0xffaa00, pos: [0.6, 2.2], storyFile: './assets/dialogue/NPC_UNIT_ECHO_2.json', hasDialogue: true },
+            { id: 3, name: "SPIRE_MINOR", color: 0x00ffaa, pos: [1.2, 0.3], hasDialogue: false, bubbleMsg: "The Spire awaits..." },
+            { id: 4, name: "DATA_KEEPER", color: 0xff00ff, pos: [0.8, 1.0], storyFile: './assets/dialogue/NPC_DATA_KEEPER.json', hasDialogue: true, questId: 1 }
+        ];
 
         // Location system
         const locations = [
@@ -635,14 +867,14 @@ button#btn-replay { background:#00ffaa; color:#000; }
         loadAllStories();
 
         const scene = new THREE.Scene();
-        
+
         // --- NEW LINEAR FOG ---
-        const fogColor = new THREE.Color(0x050a1a); 
+        const fogColor = new THREE.Color(0x050a1a);
         scene.background = fogColor;
         // Fog starts 20 units away, solid opaque at 80 units away
-        scene.fog = new THREE.Fog(fogColor, 20, 80); 
+        scene.fog = new THREE.Fog(fogColor, 20, 80);
 
-        const camera = new THREE.PerspectiveCamera(65, window.innerWidth/window.innerHeight, 0.1, 5000);
+        const camera = new THREE.PerspectiveCamera(65, window.innerWidth / window.innerHeight, 0.1, 5000);
         const renderer = new THREE.WebGLRenderer({ antialias: true });
         renderer.setSize(window.innerWidth, window.innerHeight);
         renderer.shadowMap.enabled = true;
@@ -659,9 +891,9 @@ button#btn-replay { background:#00ffaa; color:#000; }
         sun.shadow.camera.near = 0.5;
         sun.shadow.camera.far = 500;
         sun.shadow.mapSize.width = 2048;
-         sun.shadow.mapSize.height = 2048;
-         scene.add(sun);
-         scene.add(new THREE.AmbientLight(0x404040, 1.5));
+        sun.shadow.mapSize.height = 2048;
+        scene.add(sun);
+        scene.add(new THREE.AmbientLight(0x404040, 1.5));
 
 
         const world = new CANNON.World();
@@ -673,48 +905,48 @@ button#btn-replay { background:#00ffaa; color:#000; }
         // 1. Star Field
         const starGeo = new THREE.BufferGeometry();
         const starPos = [];
-        for(let i=0; i<1500; i++) {
+        for (let i = 0; i < 1500; i++) {
             const v = new THREE.Vector3().randomDirection().multiplyScalar(Math.random() * 2000 + 100);
             starPos.push(v.x, v.y, v.z);
         }
         starGeo.setAttribute('position', new THREE.Float32BufferAttribute(starPos, 3));
-        const stars = new THREE.Points(starGeo, new THREE.PointsMaterial({color: 0x88ccff, size: 1.5, transparent: true, opacity: 0.8}));
+        const stars = new THREE.Points(starGeo, new THREE.PointsMaterial({ color: 0x88ccff, size: 1.5, transparent: true, opacity: 0.8 }));
         scene.add(stars);
 
         // 2. Crystal Clusters
-        for(let i=0; i<15; i++) {
-            const pos = new THREE.Vector3().setFromSphericalCoords(planetR, Math.random()*Math.PI, Math.random()*Math.PI*2);
+        for (let i = 0; i < 15; i++) {
+            const pos = new THREE.Vector3().setFromSphericalCoords(planetR, Math.random() * Math.PI, Math.random() * Math.PI * 2);
             const cluster = new THREE.Group();
             const count = Math.floor(Math.random() * 4) + 2;
-            for(let j=0; j<count; j++) {
-                const crys = new THREE.Mesh(new THREE.ConeGeometry(0.8, 4 + Math.random()*3, 5), new THREE.MeshStandardMaterial({color: 0x00f2ff, emissive: 0x004444, transparent: true, opacity: 0.9}));
-                crys.position.set((Math.random()-0.5)*2, 2, (Math.random()-0.5)*2);
-                crys.rotation.set((Math.random()-0.5)*0.6, Math.random()*Math.PI, (Math.random()-0.5)*0.6);
+            for (let j = 0; j < count; j++) {
+                const crys = new THREE.Mesh(new THREE.ConeGeometry(0.8, 4 + Math.random() * 3, 5), new THREE.MeshStandardMaterial({ color: 0x00f2ff, emissive: 0x004444, transparent: true, opacity: 0.9 }));
+                crys.position.set((Math.random() - 0.5) * 2, 2, (Math.random() - 0.5) * 2);
+                crys.rotation.set((Math.random() - 0.5) * 0.6, Math.random() * Math.PI, (Math.random() - 0.5) * 0.6);
                 crys.castShadow = true; crys.receiveShadow = true;
                 cluster.add(crys);
             }
             cluster.position.copy(pos);
-            cluster.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0), pos.clone().normalize());
+            cluster.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), pos.clone().normalize());
             scene.add(cluster);
         }
 
         // 3. Relay Towers with Decorative Rings
-        for(let i=0; i<6; i++) {
-            const pos = new THREE.Vector3().setFromSphericalCoords(planetR, Math.random()*Math.PI, Math.random()*Math.PI*2);
+        for (let i = 0; i < 6; i++) {
+            const pos = new THREE.Vector3().setFromSphericalCoords(planetR, Math.random() * Math.PI, Math.random() * Math.PI * 2);
             const tower = new THREE.Group();
-            
-            const base = new THREE.Mesh(new THREE.CylinderGeometry(1.5, 2, 10, 8), new THREE.MeshStandardMaterial({color: 0x333344}));
+
+            const base = new THREE.Mesh(new THREE.CylinderGeometry(1.5, 2, 10, 8), new THREE.MeshStandardMaterial({ color: 0x333344 }));
             base.position.y = 5; base.castShadow = true; base.receiveShadow = true;
-            
-            const orb = new THREE.Mesh(new THREE.SphereGeometry(1.5), new THREE.MeshStandardMaterial({color: 0xffaa00, emissive: 0x663300}));
+
+            const orb = new THREE.Mesh(new THREE.SphereGeometry(1.5), new THREE.MeshStandardMaterial({ color: 0xffaa00, emissive: 0x663300 }));
             orb.position.y = 11;
-            
-            const ring = new THREE.Mesh(new THREE.TorusGeometry(3.5, 0.2, 8, 24), new THREE.MeshBasicMaterial({color: 0xffaa00}));
-            ring.position.y = 8; ring.rotation.x = Math.PI/2;
-            
+
+            const ring = new THREE.Mesh(new THREE.TorusGeometry(3.5, 0.2, 8, 24), new THREE.MeshBasicMaterial({ color: 0xffaa00 }));
+            ring.position.y = 8; ring.rotation.x = Math.PI / 2;
+
             tower.add(base, orb, ring);
             tower.position.copy(pos);
-            tower.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0), pos.clone().normalize());
+            tower.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), pos.clone().normalize());
             scene.add(tower);
 
             const body = new CANNON.Body({ mass: 0, shape: new CANNON.Box(new CANNON.Vec3(1.5, 5, 1.5)) });
@@ -722,7 +954,7 @@ button#btn-replay { background:#00ffaa; color:#000; }
             world.addBody(body);
         }
 
-         // System Arrays
+        // System Arrays
         const inventory = [];
         const actions = [ // Special actions that can be performed
             { name: "Scan Area", type: "scan", icon: "fas fa-search", consumable: false },
@@ -742,15 +974,15 @@ button#btn-replay { background:#00ffaa; color:#000; }
         scene.add(planet);
         world.addBody(new CANNON.Body({ mass: 0, shape: new CANNON.Sphere(planetR) }));
 
-         const pBody = new CANNON.Body({ mass: 1, shape: new CANNON.Box(new CANNON.Vec3(0.5, 1, 0.5)), fixedRotation: true, linearDamping: 0.9 });
-         pBody.position.set(0, planetR + 10, 0);
-         world.addBody(pBody);
-         const playerMesh = new THREE.Group();
-         const pVis = new THREE.Mesh(new THREE.BoxGeometry(1.2, 2, 1.2), new THREE.MeshToonMaterial({ color: 0xff3333 }));
-         pVis.castShadow = true;
-         pVis.receiveShadow = true;
-         playerMesh.add(pVis);
-         scene.add(playerMesh);
+        const pBody = new CANNON.Body({ mass: 1, shape: new CANNON.Box(new CANNON.Vec3(0.5, 1, 0.5)), fixedRotation: true, linearDamping: 0.9 });
+        pBody.position.set(0, planetR + 10, 0);
+        world.addBody(pBody);
+        const playerMesh = new THREE.Group();
+        const pVis = new THREE.Mesh(new THREE.BoxGeometry(1.2, 2, 1.2), new THREE.MeshToonMaterial({ color: 0xff3333 }));
+        pVis.castShadow = true;
+        pVis.receiveShadow = true;
+        playerMesh.add(pVis);
+        scene.add(playerMesh);
 
         // --- INIT VFX SYSTEM ---
         const vfx = new VFXSystem(scene, planetR);
@@ -758,32 +990,32 @@ button#btn-replay { background:#00ffaa; color:#000; }
         // --- ITEMS: Data Cells & Signal Shards ---
         const pickups = [];
         // Data Cells (orange spheres) - 4
-        for(let i=0; i<4; i++) {
+        for (let i = 0; i < 4; i++) {
             const m = new THREE.Mesh(new THREE.SphereGeometry(1), new THREE.MeshToonMaterial({ color: 0xffaa00 }));
-            m.name = `CELL_${i+1}`;
-            m.position.setFromSphericalCoords(planetR + 1.2, Math.random()*Math.PI, Math.random()*Math.PI*2);
+            m.name = `CELL_${i + 1}`;
+            m.position.setFromSphericalCoords(planetR + 1.2, Math.random() * Math.PI, Math.random() * Math.PI * 2);
             m.castShadow = true; scene.add(m); pickups.push(m);
         }
         // Signal Shards (purple octahedrons) - 4
-        for(let i=0; i<4; i++) {
+        for (let i = 0; i < 4; i++) {
             const m = new THREE.Mesh(new THREE.OctahedronGeometry(0.9), new THREE.MeshStandardMaterial({ color: 0xa020f0, emissive: 0x4a0080 }));
-            m.name = `SHARD_${i+1}`;
-            m.position.setFromSphericalCoords(planetR + 1.2, Math.random()*Math.PI, Math.random()*Math.PI*2);
+            m.name = `SHARD_${i + 1}`;
+            m.position.setFromSphericalCoords(planetR + 1.2, Math.random() * Math.PI, Math.random() * Math.PI * 2);
             m.castShadow = true; scene.add(m); pickups.push(m);
         }
 
         // --- WORLD PRIMITIVES (collidable buildings) with shadows ---
         const buildings = [];
-        for(let i=0; i<8; i++) {
-            const h = Math.random()*6 + 2;
+        for (let i = 0; i < 8; i++) {
+            const h = Math.random() * 6 + 2;
             const m = new THREE.Mesh(new THREE.BoxGeometry(3, h, 3), new THREE.MeshToonMaterial({ color: 0x333344 }));
-            const pos = new THREE.Vector3().setFromSphericalCoords(planetR + h/2, Math.random()*Math.PI, Math.random()*Math.PI*2);
+            const pos = new THREE.Vector3().setFromSphericalCoords(planetR + h / 2, Math.random() * Math.PI, Math.random() * Math.PI * 2);
             m.position.copy(pos);
-            m.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0), pos.clone().normalize());
+            m.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), pos.clone().normalize());
             m.castShadow = true;
             m.receiveShadow = true;
             scene.add(m);
-            const body = new CANNON.Body({ mass: 0, shape: new CANNON.Box(new CANNON.Vec3(1.5, h/2, 1.5)) });
+            const body = new CANNON.Body({ mass: 0, shape: new CANNON.Box(new CANNON.Vec3(1.5, h / 2, 1.5)) });
             body.position.copy(pos);
             body.quaternion.copy(m.quaternion);
             world.addBody(body);
@@ -793,21 +1025,21 @@ button#btn-replay { background:#00ffaa; color:#000; }
         // --- NPCS (With Base Pads) ---
         const npcMeshes = npcs.map(npc => {
             const grp = new THREE.Group();
-            
+
             // Base Pad
-            const pad = new THREE.Mesh(new THREE.CylinderGeometry(2.5, 2.5, 0.2, 16), new THREE.MeshStandardMaterial({color: 0x222222, emissive: 0x111111}));
+            const pad = new THREE.Mesh(new THREE.CylinderGeometry(2.5, 2.5, 0.2, 16), new THREE.MeshStandardMaterial({ color: 0x222222, emissive: 0x111111 }));
             grp.add(pad);
 
-             // NPC Body
-             const m = new THREE.Mesh(new THREE.CapsuleGeometry(1, 2), new THREE.MeshToonMaterial({ color: npc.color }));
-             m.position.y = 1.5; m.castShadow = true; m.receiveShadow = true;
+            // NPC Body
+            const m = new THREE.Mesh(new THREE.CapsuleGeometry(1, 2), new THREE.MeshToonMaterial({ color: npc.color }));
+            m.position.y = 1.5; m.castShadow = true; m.receiveShadow = true;
             grp.add(m);
 
-            const p = new THREE.Vector3().setFromSphericalCoords(planetR, npc.pos[0]*Math.PI, npc.pos[1]*Math.PI*2);
+            const p = new THREE.Vector3().setFromSphericalCoords(planetR, npc.pos[0] * Math.PI, npc.pos[1] * Math.PI * 2);
             grp.position.copy(p);
-            grp.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0), p.clone().normalize());
+            grp.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), p.clone().normalize());
             scene.add(grp);
-            
+
             return { mesh: grp, bodyMesh: m, data: npc };
         });
 
@@ -827,12 +1059,12 @@ button#btn-replay { background:#00ffaa; color:#000; }
         // Initialize only if Howler is available
         if (typeof Howler !== 'undefined') {
             uiSounds = {
-                open:   new Howl({ src: [SOUND.panelOpen],   volume: 0.4 }),
-                close:  new Howl({ src: [SOUND.panelClose],  volume: 0.3 }),
-                click:  new Howl({ src: [SOUND.buttonClick], volume: 0.5 }),
-                questComplete: new Howl({ src: [SOUND.questDone],  volume: 0.7 }),
-                victory: new Howl({ src: [SOUND.victory],    volume: 0.8 }),
-                pickup: new Howl({ src: [SOUND.pickup],     volume: 0.5 })
+                open: new Howl({ src: [SOUND.panelOpen], volume: 0.4 }),
+                close: new Howl({ src: [SOUND.panelClose], volume: 0.3 }),
+                click: new Howl({ src: [SOUND.buttonClick], volume: 0.5 }),
+                questComplete: new Howl({ src: [SOUND.questDone], volume: 0.7 }),
+                victory: new Howl({ src: [SOUND.victory], volume: 0.8 }),
+                pickup: new Howl({ src: [SOUND.pickup], volume: 0.5 })
             };
 
             ambientSounds = {
@@ -866,7 +1098,7 @@ button#btn-replay { background:#00ffaa; color:#000; }
         window.addEventListener('keydown', e => {
             keys[e.code] = true;
             // Jump Logic
-            if(e.code === 'Space' && canJump && started) {
+            if (e.code === 'Space' && canJump && started) {
                 const up = new THREE.Vector3().copy(pBody.position).normalize();
                 pBody.applyImpulse(new CANNON.Vec3(up.x * 12, up.y * 12, up.z * 12), pBody.position);
                 canJump = false;
@@ -875,27 +1107,27 @@ button#btn-replay { background:#00ffaa; color:#000; }
         });
         window.addEventListener('keyup', e => keys[e.code] = false);
 
-         const raycaster = new THREE.Raycaster();
-         const mouse = new THREE.Vector2();
-          window.addEventListener('mousedown', e => {
-              if(!started) return;
-              // Ignore clicks on UI elements
-              if (e.target.closest('.ui-toggle') || e.target.closest('.panel') || e.target.closest('.overlay') || e.target.closest('#wipe-overlay')) return;
-              mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
-              mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
-              raycaster.setFromCamera(mouse, camera);
-              const hits = raycaster.intersectObject(planet);
-              if(hits.length) mouseTarget = hits[0].point;
-          });
+        const raycaster = new THREE.Raycaster();
+        const mouse = new THREE.Vector2();
+        window.addEventListener('mousedown', e => {
+            if (!started) return;
+            // Ignore clicks on UI elements
+            if (e.target.closest('.ui-toggle') || e.target.closest('.panel') || e.target.closest('.overlay') || e.target.closest('#wipe-overlay')) return;
+            mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
+            mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
+            raycaster.setFromCamera(mouse, camera);
+            const hits = raycaster.intersectObject(planet);
+            if (hits.length) mouseTarget = hits[0].point;
+        });
 
-          // Handle window resize
-          window.addEventListener('resize', () => {
-              const width = window.innerWidth;
-              const height = window.innerHeight;
-              renderer.setSize(width, height);
-              camera.aspect = width / height;
-              camera.updateProjectionMatrix();
-          });
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            renderer.setSize(width, height);
+            camera.aspect = width / height;
+            camera.updateProjectionMatrix();
+        });
 
         // Ink text processing: strip control markers
         function stripInkMarkers(s) {
@@ -912,26 +1144,26 @@ button#btn-replay { background:#00ffaa; color:#000; }
             return out.join('\n');
         }
 
-         const updateUI = () => {
-             document.getElementById('inv-list').innerHTML = inventory.length ? inventory.map(i => `<div class="item">${i}</div>`).join('') : "0_CELLS";
-             document.getElementById('actions-list').innerHTML = actions.length ? actions.map(a => `<div class="item"><i class="${a.icon}"></i> ${a.name}</div>`).join('') : "NO_ACTIONS";
-             document.getElementById('quest-list').innerHTML = quests.map(q => `<div class="q-item ${q.cur>=q.tar?'q-done':''}"><b>${q.name}</b><br><small>${q.task} [${q.cur}/${q.tar}]</small></div>`).join('');
+        const updateUI = () => {
+            document.getElementById('inv-list').innerHTML = inventory.length ? inventory.map(i => `<div class="item">${i}</div>`).join('') : "0_CELLS";
+            document.getElementById('actions-list').innerHTML = actions.length ? actions.map(a => `<div class="item"><i class="${a.icon}"></i> ${a.name}</div>`).join('') : "NO_ACTIONS";
+            document.getElementById('quest-list').innerHTML = quests.map(q => `<div class="q-item ${q.cur >= q.tar ? 'q-done' : ''}"><b>${q.name}</b><br><small>${q.task} [${q.cur}/${q.tar}]</small></div>`).join('');
 
-             // Check for quest completions (only trigger once per quest)
-             quests.forEach(q => {
-                 if (!q.completed && q.cur >= q.tar) {
-                     q.completed = true;
-                     if (uiSounds.questComplete) uiSounds.questComplete.play();
-                     
-                     // TRIGGER FIREWORKS
-                     const pPos = new THREE.Vector3().copy(pBody.position);
-                     const up = pPos.clone().normalize();
-                     vfx.emitFirework(pPos, up);
-                 }
-             });
+            // Check for quest completions (only trigger once per quest)
+            quests.forEach(q => {
+                if (!q.completed && q.cur >= q.tar) {
+                    q.completed = true;
+                    if (uiSounds.questComplete) uiSounds.questComplete.play();
 
-             checkWinCondition();
-         };
+                    // TRIGGER FIREWORKS
+                    const pPos = new THREE.Vector3().copy(pBody.position);
+                    const up = pPos.clone().normalize();
+                    vfx.emitFirework(pPos, up);
+                }
+            });
+
+            checkWinCondition();
+        };
 
         // Check if all quests are complete, trigger win screen
         const checkWinCondition = () => {
@@ -971,8 +1203,8 @@ button#btn-replay { background:#00ffaa; color:#000; }
             const textEl = document.getElementById('bubble-text');
             const choiceEl = document.getElementById('bubble-choices');
             let txt = "";
-            while(inkStory.canContinue) txt += inkStory.Continue();
-            
+            while (inkStory.canContinue) txt += inkStory.Continue();
+
             const cleaned = stripInkMarkers(txt);
             console.log('Cleaned:', cleaned);
             textEl.innerHTML = cleaned;
@@ -983,14 +1215,14 @@ button#btn-replay { background:#00ffaa; color:#000; }
                 b.onclick = () => { inkStory.ChooseChoiceIndex(c.index); continueStory(); };
                 choiceEl.appendChild(b);
             });
-            if(inkStory.currentChoices.length === 0 && !inkStory.canContinue) {
+            if (inkStory.currentChoices.length === 0 && !inkStory.canContinue) {
                 const b = document.createElement('button');
                 b.className = "choice-btn"; b.innerText = "[CLOSE CONNECTION]";
                 b.onclick = () => {
                     document.getElementById('local-dialogue-box').style.display = 'none';
                     isDialogueOpen = false;
                     pBody.wakeUp();
-                    pBody.velocity.set(0,0,0);
+                    pBody.velocity.set(0, 0, 0);
                     mouseTarget = null;
                     // Play NPC onExit sound
                     if (activeNpc) playNpcSound(activeNpc.data.id, 'onExit');
@@ -1018,30 +1250,30 @@ button#btn-replay { background:#00ffaa; color:#000; }
             pBody.sleep();
             mouseTarget = null;
 
-             // Track NPC visit for quest (only first time)
-             if (activeNpc.data.questId !== undefined && !visitedNpcs.has(activeNpc.data.id)) {
-                 visitedNpcs.add(activeNpc.data.id);
-                 quests[activeNpc.data.questId].cur = 1;
-                 updateUI();
-             }
+            // Track NPC visit for quest (only first time)
+            if (activeNpc.data.questId !== undefined && !visitedNpcs.has(activeNpc.data.id)) {
+                visitedNpcs.add(activeNpc.data.id);
+                quests[activeNpc.data.questId].cur = 1;
+                updateUI();
+            }
 
             isDialogueOpen = true;
             worldPrompt.style.display = 'none';
             document.getElementById('local-dialogue-box').style.display = 'block';
 
-             // Play NPC onEnter sound
-             playNpcSound(activeNpc.data.id, 'onEnter');
+            // Play NPC onEnter sound
+            playNpcSound(activeNpc.data.id, 'onEnter');
 
-             try {
-                 inkStory = new inkLib.Story(npcStories[activeNpc.data.id]);
-                 const npcNameEl = document.getElementById('npc-name-display');
-                 if (activeNpc.data.questId !== undefined) {
-                     const q = quests[activeNpc.data.questId];
-                     const status = q.cur >= q.tar ? '✓ COMPLETED' : `QUEST [${q.cur}/${q.tar}]`;
-                     npcNameEl.innerHTML = `${activeNpc.data.name} <span style="color:var(--accent-success);font-size:0.7em">- ${status}</span>`;
-                 } else {
-                     npcNameEl.innerText = activeNpc.data.name;
-                 }
+            try {
+                inkStory = new inkLib.Story(npcStories[activeNpc.data.id]);
+                const npcNameEl = document.getElementById('npc-name-display');
+                if (activeNpc.data.questId !== undefined) {
+                    const q = quests[activeNpc.data.questId];
+                    const status = q.cur >= q.tar ? '✓ COMPLETED' : `QUEST [${q.cur}/${q.tar}]`;
+                    npcNameEl.innerHTML = `${activeNpc.data.name} <span style="color:var(--accent-success);font-size:0.7em">- ${status}</span>`;
+                } else {
+                    npcNameEl.innerText = activeNpc.data.name;
+                }
                 continueStory();
             } catch (e) { console.error("STORY_INIT_ERROR", e); }
         };
@@ -1067,272 +1299,272 @@ button#btn-replay { background:#00ffaa; color:#000; }
 
         document.getElementById('btn-replay').onclick = () => { if (uiSounds.click) uiSounds.click.play(); location.reload(); };
 
-         // --- UI PANEL INTERACTIONS (Actions Panel) ---
-         document.getElementById('actions-list').addEventListener('click', (e) => {
-             const actionDiv = e.target.closest('.item');
-             if (!actionDiv) return;
-             
-             const actionIndex = Array.from(actionDiv.parentNode.children).indexOf(actionDiv);
-             const action = actions[actionIndex];
-             
-             if (!action) return;
-             
-             // Execute the action
-             executeAction(action);
-         });
+        // --- UI PANEL INTERACTIONS (Actions Panel) ---
+        document.getElementById('actions-list').addEventListener('click', (e) => {
+            const actionDiv = e.target.closest('.item');
+            if (!actionDiv) return;
 
-         // Action execution function
-         const executeAction = (action) => {
-             // Play action sound
-             if (uiSounds.click) uiSounds.click.play();
-             
-             // Show floating icon effect from player position
-             showFloatingActionIcon(action.icon);
-             
-             // Check if near an NPC for quest completion
-             let questCompleted = false;
-             if (activeNpc && activeNpc.data.questId !== undefined) {
-                 const questId = activeNpc.data.questId;
-                 const quest = quests[questId];
-                 
-                 // Define which actions complete which quests
-                 const actionQuestMap = {
-                     'scan': 'RECON',      // Scan action completes reconnaissance
-                     'repair': 'CELLS',    // Repair action completes cell recovery
-                     'hack': 'SHARDS',     // Hack action completes signal fragments
-                     'heal': 'VISIT'       // Heal action completes horizon visit
-                 };
-                 
-                 if (actionQuestMap[action.type] === quest.id && !quest.completed) {
-                     // Complete the quest
-                     quest.cur = quest.tar;
-                     quest.completed = true;
-                     questCompleted = true;
-                     if (uiSounds.questComplete) uiSounds.questComplete.play();
-                     
-                     // TRIGGER FIREWORKS
-                     const pPos = new THREE.Vector3().copy(pBody.position);
-                     const up = pPos.clone().normalize();
-                     vfx.emitFirework(pPos, up);
-                     
-                     // Mark NPC as visited for this quest
-                     visitedNpcs.add(activeNpc.data.id);
-                 }
-             }
-             
-             // If quest wasn't completed by action, handle normal action logic
-             if (!questCompleted) {
-                 // Handle action-specific logic
-                 switch (action.type) {
-                     case 'scan':
-                         performScanAction();
-                         break;
-                     case 'repair':
-                         performRepairAction();
-                         break;
-                     case 'hack':
-                         performHackAction();
-                         break;
-                     case 'heal':
-                         performHealAction();
-                         break;
-                     default:
-                         // Generic action
-                         performGenericAction(action);
-                         break;
-                 }
-             }
-             
-             // Update UI to reflect quest changes
-             updateUI();
-             
-             // Remove action from list after use (if it's consumable)
-             if (action.consumable) {
-                 const index = actions.indexOf(action);
-                 if (index > -1) {
-                     actions.splice(index, 1);
-                     updateUI();
-                 }
-             }
-         };
-         
-         // Floating action icon effect
-         const floatingIcons = [];
-         
-          const showFloatingActionIcon = (iconClass) => {
-              // Create floating icon element
-              const icon = document.createElement('i');
-              icon.className = `${iconClass} floating-action-icon`;
-              
-              // Get player screen position
-              const playerPos = new THREE.Vector3().copy(pBody.position);
-              const playerScreenPos = playerPos.project(camera);
-              
-              // Set initial position
-              const startX = (playerScreenPos.x * 0.5 + 0.5) * window.innerWidth;
-              const startY = (playerScreenPos.y * -0.5 + 0.5) * window.innerHeight;
-              icon.style.left = `${startX}px`;
-              icon.style.top = `${startY}px`;
-              
-              // Initialize transform and opacity
-              icon.style.transform = 'translate(0, 0) scale(2)';
-              icon.style.opacity = '1';
-              
-              document.body.appendChild(icon);
-              
-              // Animation parameters
-              let startTime = null;
-              const duration = 3000; // 3 seconds - slower
-              const travelDistance = 500; // pixels to travel upward
-              
-              const animate = (timestamp) => {
-                  if (!startTime) startTime = timestamp;
-                  const progress = Math.min((timestamp - startTime) / duration, 1);
-                  
-                  // Scale: start at 2, end at 1
-                  const scale = 2 - progress;
-                  
-                  // Vertical movement
-                  const translateY = -travelDistance * progress;
-                  icon.style.transform = `translate(0, ${translateY}px) scale(${scale})`;
-                  
-                  // Fade out: fade starts at 20% progress, ends at 60%
-                  let opacity;
-                  if (progress < 0.2) {
-                      opacity = 1;
-                  } else if (progress < 0.6) {
-                      opacity = 1 - ((progress - 0.2) / 0.4);
-                  } else {
-                      opacity = 0;
-                  }
-                  icon.style.opacity = opacity;
-                  
-                  if (progress < 1) {
-                      requestAnimationFrame(animate);
-                  } else {
-                      document.body.removeChild(icon);
-                  }
-              };
-              
-              requestAnimationFrame(animate);
-          };
-         
-         // Action implementations
-         const performScanAction = () => {
-             // Logic for scanning action
-             console.log('Performing scan action');
-             // Could reveal hidden objects, NPCs, etc.
-             if (uiSounds.questComplete) uiSounds.questComplete.play(); // Reuse quest complete sound for now
-         };
-         
-         const performRepairAction = () => {
-             // Logic for repair action
-             console.log('Performing repair action');
-             // Could repair damaged objects, complete quests
-             if (uiSounds.questComplete) uiSounds.questComplete.play();
-         };
-         
-         const performHackAction = () => {
-             // Logic for hack action
-             console.log('Performing hack action');
-             // Could hack terminals, doors, etc.
-             if (uiSounds.questComplete) uiSounds.questComplete.play();
-         };
-         
-         const performHealAction = () => {
-             // Logic for heal action
-             console.log('Performing heal action');
-             // Could heal player or NPCs
-             if (uiSounds.questComplete) uiSounds.questComplete.play();
-         };
-         
-         const performGenericAction = (action) => {
-             // Generic action handler
-             console.log(`Performing ${action.name} action`);
-             if (uiSounds.questComplete) uiSounds.questComplete.play();
-         };
+            const actionIndex = Array.from(actionDiv.parentNode.children).indexOf(actionDiv);
+            const action = actions[actionIndex];
+
+            if (!action) return;
+
+            // Execute the action
+            executeAction(action);
+        });
+
+        // Action execution function
+        const executeAction = (action) => {
+            // Play action sound
+            if (uiSounds.click) uiSounds.click.play();
+
+            // Show floating icon effect from player position
+            showFloatingActionIcon(action.icon);
+
+            // Check if near an NPC for quest completion
+            let questCompleted = false;
+            if (activeNpc && activeNpc.data.questId !== undefined) {
+                const questId = activeNpc.data.questId;
+                const quest = quests[questId];
+
+                // Define which actions complete which quests
+                const actionQuestMap = {
+                    'scan': 'RECON',      // Scan action completes reconnaissance
+                    'repair': 'CELLS',    // Repair action completes cell recovery
+                    'hack': 'SHARDS',     // Hack action completes signal fragments
+                    'heal': 'VISIT'       // Heal action completes horizon visit
+                };
+
+                if (actionQuestMap[action.type] === quest.id && !quest.completed) {
+                    // Complete the quest
+                    quest.cur = quest.tar;
+                    quest.completed = true;
+                    questCompleted = true;
+                    if (uiSounds.questComplete) uiSounds.questComplete.play();
+
+                    // TRIGGER FIREWORKS
+                    const pPos = new THREE.Vector3().copy(pBody.position);
+                    const up = pPos.clone().normalize();
+                    vfx.emitFirework(pPos, up);
+
+                    // Mark NPC as visited for this quest
+                    visitedNpcs.add(activeNpc.data.id);
+                }
+            }
+
+            // If quest wasn't completed by action, handle normal action logic
+            if (!questCompleted) {
+                // Handle action-specific logic
+                switch (action.type) {
+                    case 'scan':
+                        performScanAction();
+                        break;
+                    case 'repair':
+                        performRepairAction();
+                        break;
+                    case 'hack':
+                        performHackAction();
+                        break;
+                    case 'heal':
+                        performHealAction();
+                        break;
+                    default:
+                        // Generic action
+                        performGenericAction(action);
+                        break;
+                }
+            }
+
+            // Update UI to reflect quest changes
+            updateUI();
+
+            // Remove action from list after use (if it's consumable)
+            if (action.consumable) {
+                const index = actions.indexOf(action);
+                if (index > -1) {
+                    actions.splice(index, 1);
+                    updateUI();
+                }
+            }
+        };
+
+        // Floating action icon effect
+        const floatingIcons = [];
+
+        const showFloatingActionIcon = (iconClass) => {
+            // Create floating icon element
+            const icon = document.createElement('i');
+            icon.className = `${iconClass} floating-action-icon`;
+
+            // Get player screen position
+            const playerPos = new THREE.Vector3().copy(pBody.position);
+            const playerScreenPos = playerPos.project(camera);
+
+            // Set initial position
+            const startX = (playerScreenPos.x * 0.5 + 0.5) * window.innerWidth;
+            const startY = (playerScreenPos.y * -0.5 + 0.5) * window.innerHeight;
+            icon.style.left = `${startX}px`;
+            icon.style.top = `${startY}px`;
+
+            // Initialize transform and opacity
+            icon.style.transform = 'translate(0, 0) scale(2)';
+            icon.style.opacity = '1';
+
+            document.body.appendChild(icon);
+
+            // Animation parameters
+            let startTime = null;
+            const duration = 3000; // 3 seconds - slower
+            const travelDistance = 500; // pixels to travel upward
+
+            const animate = (timestamp) => {
+                if (!startTime) startTime = timestamp;
+                const progress = Math.min((timestamp - startTime) / duration, 1);
+
+                // Scale: start at 2, end at 1
+                const scale = 2 - progress;
+
+                // Vertical movement
+                const translateY = -travelDistance * progress;
+                icon.style.transform = `translate(0, ${translateY}px) scale(${scale})`;
+
+                // Fade out: fade starts at 20% progress, ends at 60%
+                let opacity;
+                if (progress < 0.2) {
+                    opacity = 1;
+                } else if (progress < 0.6) {
+                    opacity = 1 - ((progress - 0.2) / 0.4);
+                } else {
+                    opacity = 0;
+                }
+                icon.style.opacity = opacity;
+
+                if (progress < 1) {
+                    requestAnimationFrame(animate);
+                } else {
+                    document.body.removeChild(icon);
+                }
+            };
+
+            requestAnimationFrame(animate);
+        };
+
+        // Action implementations
+        const performScanAction = () => {
+            // Logic for scanning action
+            console.log('Performing scan action');
+            // Could reveal hidden objects, NPCs, etc.
+            if (uiSounds.questComplete) uiSounds.questComplete.play(); // Reuse quest complete sound for now
+        };
+
+        const performRepairAction = () => {
+            // Logic for repair action
+            console.log('Performing repair action');
+            // Could repair damaged objects, complete quests
+            if (uiSounds.questComplete) uiSounds.questComplete.play();
+        };
+
+        const performHackAction = () => {
+            // Logic for hack action
+            console.log('Performing hack action');
+            // Could hack terminals, doors, etc.
+            if (uiSounds.questComplete) uiSounds.questComplete.play();
+        };
+
+        const performHealAction = () => {
+            // Logic for heal action
+            console.log('Performing heal action');
+            // Could heal player or NPCs
+            if (uiSounds.questComplete) uiSounds.questComplete.play();
+        };
+
+        const performGenericAction = (action) => {
+            // Generic action handler
+            console.log(`Performing ${action.name} action`);
+            if (uiSounds.questComplete) uiSounds.questComplete.play();
+        };
 
 
-           // Sound toggle button (bottom right)
-           const btnSound = document.getElementById('btn-sound-toggle');
-           btnSound.onclick = (e) => {
-               e.stopPropagation();
-               if (uiSounds.click) uiSounds.click.play();
-               musicEnabled = !musicEnabled;
-               if (bgMusic) {
-                   bgMusic.mute(!musicEnabled);
-                   if (musicEnabled) bgMusic.play();
-               }
-               btnSound.innerHTML = musicEnabled
-                   ? '<i class="fas fa-volume-up"></i>'
-                   : '<i class="fas fa-volume-off"></i>';
-           };
+        // Sound toggle button (bottom right)
+        const btnSound = document.getElementById('btn-sound-toggle');
+        btnSound.onclick = (e) => {
+            e.stopPropagation();
+            if (uiSounds.click) uiSounds.click.play();
+            musicEnabled = !musicEnabled;
+            if (bgMusic) {
+                bgMusic.mute(!musicEnabled);
+                if (musicEnabled) bgMusic.play();
+            }
+            btnSound.innerHTML = musicEnabled
+                ? '<i class="fas fa-volume-up"></i>'
+                : '<i class="fas fa-volume-off"></i>';
+        };
 
-         // UI Panel Toggle Buttons
-          const btnQuest = document.getElementById('btn-quest-toggle');
-          const btnInv = document.getElementById('btn-inv-toggle');
-          const btnActions = document.getElementById('btn-actions-toggle');
-          const panelQuest = document.getElementById('panel-quest');
-          const panelInv = document.getElementById('panel-inv');
-          const panelActions = document.getElementById('panel-actions');
+        // UI Panel Toggle Buttons
+        const btnQuest = document.getElementById('btn-quest-toggle');
+        const btnInv = document.getElementById('btn-inv-toggle');
+        const btnActions = document.getElementById('btn-actions-toggle');
+        const panelQuest = document.getElementById('panel-quest');
+        const panelInv = document.getElementById('panel-inv');
+        const panelActions = document.getElementById('panel-actions');
 
-          btnQuest.onclick = (e) => {
-             e.stopPropagation();
-             if (uiSounds.click) uiSounds.click.play();
-             const isOpen = panelQuest.classList.contains('open');
-             panelQuest.classList.toggle('open', !isOpen);
-             btnQuest.classList.toggle('active', !isOpen);
-             panelInv.classList.remove('open');
-             panelActions.classList.remove('open');
-             btnInv.classList.remove('active');
-             btnActions.classList.remove('active');
-             if (!isOpen && uiSounds.open) uiSounds.open.play(); else if (isOpen && uiSounds.close) uiSounds.close.play();
-          };
+        btnQuest.onclick = (e) => {
+            e.stopPropagation();
+            if (uiSounds.click) uiSounds.click.play();
+            const isOpen = panelQuest.classList.contains('open');
+            panelQuest.classList.toggle('open', !isOpen);
+            btnQuest.classList.toggle('active', !isOpen);
+            panelInv.classList.remove('open');
+            panelActions.classList.remove('open');
+            btnInv.classList.remove('active');
+            btnActions.classList.remove('active');
+            if (!isOpen && uiSounds.open) uiSounds.open.play(); else if (isOpen && uiSounds.close) uiSounds.close.play();
+        };
 
-          btnInv.onclick = (e) => {
-             e.stopPropagation();
-             if (uiSounds.click) uiSounds.click.play();
-             const isOpen = panelInv.classList.contains('open');
-             panelInv.classList.toggle('open', !isOpen);
-             btnInv.classList.toggle('active', !isOpen);
-             panelQuest.classList.remove('open');
-             panelActions.classList.remove('open');
-             btnQuest.classList.remove('active');
-             btnActions.classList.remove('active');
-             if (!isOpen && uiSounds.open) uiSounds.open.play(); else if (isOpen && uiSounds.close) uiSounds.close.play();
-          };
+        btnInv.onclick = (e) => {
+            e.stopPropagation();
+            if (uiSounds.click) uiSounds.click.play();
+            const isOpen = panelInv.classList.contains('open');
+            panelInv.classList.toggle('open', !isOpen);
+            btnInv.classList.toggle('active', !isOpen);
+            panelQuest.classList.remove('open');
+            panelActions.classList.remove('open');
+            btnQuest.classList.remove('active');
+            btnActions.classList.remove('active');
+            if (!isOpen && uiSounds.open) uiSounds.open.play(); else if (isOpen && uiSounds.close) uiSounds.close.play();
+        };
 
-          btnActions.onclick = (e) => {
-             e.stopPropagation();
-             if (uiSounds.click) uiSounds.click.play();
-             const isOpen = panelActions.classList.contains('open');
-             panelActions.classList.toggle('open', !isOpen);
-             btnActions.classList.toggle('active', !isOpen);
-             panelQuest.classList.remove('open');
-             panelInv.classList.remove('open');
-             btnQuest.classList.remove('active');
-             btnInv.classList.remove('active');
-             if (!isOpen && uiSounds.open) uiSounds.open.play(); else if (isOpen && uiSounds.close) uiSounds.close.play();
-          };
+        btnActions.onclick = (e) => {
+            e.stopPropagation();
+            if (uiSounds.click) uiSounds.click.play();
+            const isOpen = panelActions.classList.contains('open');
+            panelActions.classList.toggle('open', !isOpen);
+            btnActions.classList.toggle('active', !isOpen);
+            panelQuest.classList.remove('open');
+            panelInv.classList.remove('open');
+            btnQuest.classList.remove('active');
+            btnInv.classList.remove('active');
+            if (!isOpen && uiSounds.open) uiSounds.open.play(); else if (isOpen && uiSounds.close) uiSounds.close.play();
+        };
 
         function loop() {
             requestAnimationFrame(loop);
-            world.step(1/60);
+            world.step(1 / 60);
             const pPos = new THREE.Vector3().copy(pBody.position);
             const up = pPos.clone().normalize();
             const pVel = new THREE.Vector3().copy(pBody.velocity);
 
             // --- Update VFX ---
-            const dt = 1/60; 
+            const dt = 1 / 60;
             vfx.update(dt, pPos, pVel, canJump);
 
             // Gravity
             pBody.applyForce(up.clone().multiplyScalar(-75), pBody.position);
 
             // Ground check for Jump
-            if(pPos.length() < planetR + 1.6) canJump = true;
+            if (pPos.length() < planetR + 1.6) canJump = true;
 
-            if(!started) { renderer.render(scene, camera); return; }
+            if (!started) { renderer.render(scene, camera); return; }
 
             // 1. NPC Interaction (find nearest, animate bobbing)
             let nearestNpc = null;
@@ -1348,24 +1580,24 @@ button#btn-replay { background:#00ffaa; color:#000; }
             }
             activeNpc = nearestNpc;
 
-             if (activeNpc && !isDialogueOpen && activeNpc.data.hasDialogue) {
-                 worldPrompt.style.display = 'block';
-                 worldPrompt.innerText = `CONNECT_TO_${activeNpc.data.name}`;
-                 if (activeNpc.data.questId !== undefined && quests[activeNpc.data.questId].cur < quests[activeNpc.data.questId].tar) {
-                     worldPrompt.innerHTML = `CONNECT_TO_${activeNpc.data.name} <span style="color:var(--accent-success)"> [QUEST]</span>`;
-                 }
-                 const up = pPos.clone().normalize();
-                 const sPos = activeNpc.mesh.position.clone().add(up.clone().multiplyScalar(5)).project(camera);
-                 worldPrompt.style.left = (sPos.x * 0.5 + 0.5) * window.innerWidth + 'px';
-                 worldPrompt.style.top = (sPos.y * -0.5 + 0.5) * window.innerHeight + 'px';
+            if (activeNpc && !isDialogueOpen && activeNpc.data.hasDialogue) {
+                worldPrompt.style.display = 'block';
+                worldPrompt.innerText = `CONNECT_TO_${activeNpc.data.name}`;
+                if (activeNpc.data.questId !== undefined && quests[activeNpc.data.questId].cur < quests[activeNpc.data.questId].tar) {
+                    worldPrompt.innerHTML = `CONNECT_TO_${activeNpc.data.name} <span style="color:var(--accent-success)"> [QUEST]</span>`;
+                }
+                const up = pPos.clone().normalize();
+                const sPos = activeNpc.mesh.position.clone().add(up.clone().multiplyScalar(5)).project(camera);
+                worldPrompt.style.left = (sPos.x * 0.5 + 0.5) * window.innerWidth + 'px';
+                worldPrompt.style.top = (sPos.y * -0.5 + 0.5) * window.innerHeight + 'px';
 
-                 // onEnter sound once when first approaching
-                 if (lastNearNpcId !== activeNpc.data.id) {
-                     playNpcSound(activeNpc.data.id, 'enter');
-                     lastNearNpcId = activeNpc.data.id;
-                 }
-             }
-             else {
+                // onEnter sound once when first approaching
+                if (lastNearNpcId !== activeNpc.data.id) {
+                    playNpcSound(activeNpc.data.id, 'enter');
+                    lastNearNpcId = activeNpc.data.id;
+                }
+            }
+            else {
                 worldPrompt.style.display = 'none';
                 if (lastNearNpcId !== null && !isDialogueOpen) {
                     playNpcSound(lastNearNpcId, 'exit');
@@ -1376,7 +1608,7 @@ button#btn-replay { background:#00ffaa; color:#000; }
             // 1a. Location Detection
             let curLoc = null;
             for (const loc of locations) {
-                const lp = new THREE.Vector3().setFromSphericalCoords(planetR, loc.pos[0]*Math.PI, loc.pos[1]*Math.PI*2);
+                const lp = new THREE.Vector3().setFromSphericalCoords(planetR, loc.pos[0] * Math.PI, loc.pos[1] * Math.PI * 2);
                 if (pPos.distanceTo(lp) < loc.r) curLoc = loc;
             }
             if (curLoc && activeLoc !== curLoc) {
@@ -1393,12 +1625,12 @@ button#btn-replay { background:#00ffaa; color:#000; }
             }
 
             // 1c. Pickup Collection
-            for(let i=pickups.length-1; i>=0; i--) {
-                if(pPos.distanceTo(pickups[i].position) < 3) {
+            for (let i = pickups.length - 1; i >= 0; i--) {
+                if (pPos.distanceTo(pickups[i].position) < 3) {
                     const itemName = pickups[i].name; // e.g. "CELL_1" or "SHARD_1"
                     inventory.push(itemName);
                     scene.remove(pickups[i]);
-                    pickups.splice(i,1);
+                    pickups.splice(i, 1);
 
                     // Handle quest progression
                     if (itemName.startsWith('CELL') && quests[1].cur < quests[1].tar) {
@@ -1445,27 +1677,27 @@ button#btn-replay { background:#00ffaa; color:#000; }
             }
 
             // 2. Movement (Camera-relative or Mouse-targeted)
-            let moveDir = new THREE.Vector3(0,0,0);
-            if(!isDialogueOpen) {
+            let moveDir = new THREE.Vector3(0, 0, 0);
+            if (!isDialogueOpen) {
                 const camFwd = pPos.clone().sub(camera.position).projectOnPlane(up).normalize();
                 const camRgt = new THREE.Vector3().crossVectors(up, camFwd).normalize();
-                if(keys['KeyW'] || keys['ArrowUp']) moveDir.add(camFwd);
-                if(keys['KeyS'] || keys['ArrowDown']) moveDir.sub(camFwd);
-                if(keys['KeyA'] || keys['ArrowLeft']) moveDir.add(camRgt);
-                if(keys['KeyD'] || keys['ArrowRight']) moveDir.sub(camRgt);
-                if(mouseTarget) {
+                if (keys['KeyW'] || keys['ArrowUp']) moveDir.add(camFwd);
+                if (keys['KeyS'] || keys['ArrowDown']) moveDir.sub(camFwd);
+                if (keys['KeyA'] || keys['ArrowLeft']) moveDir.add(camRgt);
+                if (keys['KeyD'] || keys['ArrowRight']) moveDir.sub(camRgt);
+                if (mouseTarget) {
                     const toMouse = mouseTarget.clone().sub(pPos).projectOnPlane(up);
-                    if(toMouse.length() > 2) moveDir.add(toMouse.normalize());
+                    if (toMouse.length() > 2) moveDir.add(toMouse.normalize());
                     else mouseTarget = null;
                 }
 
-                if(moveDir.length() > 0) {
+                if (moveDir.length() > 0) {
                     moveDir.normalize();
                     camHeading.lerp(moveDir, 0.1).normalize();
-                    pBody.velocity.set(moveDir.x*18, moveDir.y*18, moveDir.z*18);
+                    pBody.velocity.set(moveDir.x * 18, moveDir.y * 18, moveDir.z * 18);
                 }
             } else {
-                pBody.velocity.set(0,0,0);
+                pBody.velocity.set(0, 0, 0);
             }
 
             // 3. Player Alignment
@@ -1487,4 +1719,5 @@ button#btn-replay { background:#00ffaa; color:#000; }
         loop();
     </script>
 </body>
+
 </html>

@@ -1,5 +1,5 @@
 /**
- * Messenger 3D - Main Entry Point
+ * Miracle Maker 3D- Main Entry Point
  * Modular architecture preserving all functionality from inline code
  *
  * DIALOGUE SYSTEM: WhatsApp-style chat bubbles (whatsapp2.html)

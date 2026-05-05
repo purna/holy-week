@@ -3,7 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <title>Messenger 3D - Atmospheric Update</title>
+    <meta name="description" content="Miracle Maker 3D prototype focused on ground dust effects, ambient fog particles, and movement-based particle emission. Dust trails and atmospheric density simulation.">
+     <title>Miracle Maker 3D - Dust & Particles</title>
+     <!--
+
+        CORE CONCEPT
+        ------------
+        Dust-and-particles prototype with movement-based emission. Identical VFX
+        system to vfx.html but with emphasis on ground-level dust and atmospheric
+        fog density. Demonstrates proximity-based particle spawning.
+
+        KEY FEATURES
+        ------------
+        • Identical VFXSystem class to vfx.html
+        • DUST: emitted only when isGrounded && playerVel.lengthSq() > 10
+        • DUST: spawns 2 particles per emission, offset to feet
+        • AMBIENT: 10% spawn chance per frame, offset random 15–25 units from player
+        • FIREWORK: 200-particle burst on quest completion (same as vfx)
+        • Bird flock: same 20 birds with identical AI
+        • No decals (only in landing.html)
+        • No crystals or towers (only in landing.html)
+
+        EMISSION RULES
+        --------------
+        emitDust(pos, up): called in VFX.update() when grounded + moving
+          - Spawns at player position - 1 unit along up vector (at feet)
+          - Adds small random offset (±0.5 units)
+          - Velocity: random direction × 3 + upward boost × 2
+          - Lifetime: 0.4–0.8s
+
+        emitAmbientDust(playerPos): called every frame regardless
+          - 90% early-return (only 10% chance to emit)
+          - Spawns 15–25 units from player (far-field effect)
+          - Velocity: slow drift (0.5 speed)
+          - Lifetime: 5–10s long persistence
+          - Color: cyan (0x00f2ff) for atmospheric "spores"
+
+        GAME LOGIC IDENTICAL TO test.html
+        ---------------------------------
+        Full game loop: movement, quests, inventory, actions, NPC dialogue,
+        victory sequence. All features intact. This file only differs in
+        VFX implementation and scene decorations.
+
+        SCENE ELEMENTS (same as test.html minus VFX extras)
+        ---------------------------------------------------
+        • Starfield: 1500 points
+        • NPCs: 4 with dialogue
+        • Items: 4 cells + 4 shards
+        • Buildings: 8 boxes with physics
+        • No crystal clusters (landing.html only)
+        • No relay towers (landing.html only)
+
+        TECHNICAL
+        ---------
+        Identical to vfx.html: particle pool, BufferGeometry, PointsMaterial
+        Bird system identical: 20 birds, same AI, same rendering
+
+        WHY THIS VARIANT EXISTS
+        -----------------------
+        Tests particle density and emission rates. Higher ambient emission
+        creates "spore-filled" atmosphere. Less is more: sparse emission
+        every frame versus burst on events.
+
+        CONTROLS
+        --------
+        Identical to test.html
+
+        ASSETS: None external
+
+        Known issues: None beyond vfx.html notes
+    -->
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
      <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.4/howler.min.js"></script>
      <style>

@@ -4,7 +4,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Messenger 3D - Shadow Stable</title>
+    <meta name="description" content="Miracle Maker 3D prototype with dynamic day/night cycle, sun and moon celestial bodies, time progression, and torch lighting. Orbital lighting system with color transitions.">
+    <title>Miracle Maker 3D - Day Night Cycle</title>
+    <!--
+
+        CORE CONCEPT
+        ------------
+        Day/night cycle prototype with orbital celestial bodies. Sun and moon follow
+        opposing arcs across the sky, dynamically changing lighting intensity and
+        environment colors. Player carries a torch that activates at night.
+
+        KEY FEATURES
+        ------------
+        • Orbital sun/moon system (circular path at radius 450)
+        • Dynamic time progression (0.0001 per frame, auto-cycle)
+        • Day mode: blue sky (0x87CEEB), white sun, bright ambient
+        • Night mode: black space (0x020205), blue moonlight, dim ambient
+        • Torch light on player (PointLight 0x00f2ff, 600 intensity at night)
+        • Player emissive glow (red → red glow at night)
+        • Auto-cycle toggle with 'C' key
+        • Manual cycle button (sun/moon icon)
+        • Day-only sun casting shadows
+        • Night-only moon casting shadows
+        • Ambient trail particles (color changes with time of day)
+        • Landing decals (white in day, black at night)
+
+        CELESTIAL MECHANICS
+        -------------------
+        timeProgress: 0.0–1.0 representing full orbit
+        angle = timeProgress × 2π
+        sunPos: (0, sin(angle)×450, cos(angle)×450)
+        moonPos: opposite (0, -sin(angle)×450, -cos(angle)×450)
+        Daylight threshold: sunPos.y > 0 → day mode
+
+        LIGHTING TRANSITIONS
+        -------------------
+        Sun intensity: 3.5 (day) → 0 (night)
+        Moon intensity: 0 (day) → 1.5 (night)
+        Ambient: 0.6 (day) → 0.2 (night)
+        Hemisphere: 0.5 (day) → 0 (night)
+        Sky/fog color: lerps between blue and black
+        Torch: 0 (day) → 600 (night)
+
+        VISUAL STYLE
+        ------------
+        Planet: standard green (0x3a4a3a) — unchanged
+        Buildings: grey (0x666666)
+        Stars: visible in night only (sky black shows them)
+        Trail: orange-brown (0x966F33) day, cyan blue (0x00f2ff) night
+
+        CONTROLS
+        --------
+        WASD: Move
+        Space: Jump
+        C: Toggle auto-cycle on/off
+        UI Toggle (bottom-right): Manual day/night flip
+
+        TECHNICAL
+        ---------
+        • two-directional lights (sun + moon), swapped based on time
+        • sunSphere mesh visualizes sun position
+        • updateCelestial(instant=false) with lerpFactor 0.02 for smooth transition
+        • Three.js VSMShadowMap for high-quality shadows
+        • Custom decal material color swap based on isNight flag
+        • Particle system: simple trail without VFX class
+
+        UNIQUE ASPECTS
+        --------------
+        Only prototype with time-of-day mechanic.
+        Only prototype with torch light.
+        Only prototype with TrailRenderer-style particles.
+
+        ASSETS: Same as test.html minus voice/chat-specific files
+
+        Known issues: Planet still uses same toon material; could add day/night texture swap
+    -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root { --accent-primary: #00f2ff; --bg-main: #010105; --btn-size: 12vmin; }

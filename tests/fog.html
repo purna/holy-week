@@ -3,7 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <title>Messenger 3D - Atmospheric Update</title>
+    <meta name="description" content="Miracle Maker 3D prototype with dense fog effects, linear fog gradient, starfield background, crystal clusters, and relay tower structures. Atmospheric depth and visibility.">
+     <title>Miracle Maker 3D - Fog & Atmosphere</title>
+     <!--
+
+        CORE CONCEPT
+        ------------
+        Dense fog atmosphere prototype with linear fog gradient for depth
+        perception. Demonstrates fog density tuning for performance vs. aesthetics.
+        Includes all scene elements from test.html plus crystal clusters and
+        relay towers from landing.html, but without VFX particles.
+
+        KEY FEATURES
+        ------------
+        • Linear fog: starts at 20 units, opaque at 80 units (vs. exponential in toonshader)
+        • Fog color: dark blue (0x050a1a) for twilight mood
+        • Same scene elements as landing.html (crystals + towers) but no particle VFX
+        • Identical game logic to test.html (quests, inventory, dialogue)
+        • VFXSystem present but only birds render, particles unused
+        • Starfield visible through fog (points material)
+
+        FOG CONFIGURATION
+        -----------------
+        scene.fog = new THREE.Fog(fogColor, 20, 80)
+        Near: 20 — fog starts at this distance
+        Far:  80 — fully opaque by this distance
+        Density increases linearly between near and far
+
+        VISUAL COMPARISON
+        -----------------
+        test.html: dark, clear, minimal fog (0x020205, exponential 0.008)
+        landing.html: lighter twilight (0x101a30), fog 20–90
+        fog.html: dark blue linear (0x050a1a), fog 20–80
+        toonshader: exponential toon fog (0x020205, 0.008)
+        day_night: fog color transitions with sun/moon
+
+        SCENE CONTENTS
+        --------------
+        ✓ Starfield (1500 points)
+        ✓ Crystal clusters (15 random positions, 2–5 cones each)
+        ✓ Relay towers (6 total, with rings + orbs)
+        ✓ Buildings (8 boxes)
+        ✓ NPCs (4 with dialogue)
+        ✓ Items (4 cells + 4 shards)
+        ✓ VFX birds (20 birds — present but not visible in dense fog)
+
+        WHAT'S MISSING vs landing.html
+        -------------------------------
+        No particle emissions (dust, ambient, fireworks)
+        No landing decals
+        Birds rendered but blend into fog at distance
+
+        WHY THIS VARIANT EXISTS
+        -----------------------
+        Fog as primary atmospheric tool. Tests readability of gameplay
+        elements (NPCs, items) through fog. Linear fog gives more
+        predictable visibility falloff than exponential.
+
+        CONTROLS
+        --------
+        Standard WASD + Space + mouse
+
+        TECHNICAL
+        ---------
+        • THREE.Fog vs THREE.FogExp2
+• Same PCFSoftShadowMap as others
+• Uses VFX class but only birds.update() called
+
+        TUNING NOTES
+        ------------
+        Fog near=20, far=80: NPCs visible within ~15 units, items visible when close.
+        For clearer view: decrease near (5–10) or increase far (120–200).
+        For heavier fog: increase near (30–40) or decrease far (50–60).
+
+        ASSETS: None external
+
+        Known issues: Birds nearly invisible in dense fog; crystals may blend with background
+    -->
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
      <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.4/howler.min.js"></script>
      <style>
