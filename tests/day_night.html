@@ -7,17 +7,18 @@
     <title>Messenger 3D - Shadow Stable</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root { --accent-primary: #00f2ff; --bg-main: #010105; }
+        :root { --accent-primary: #00f2ff; --bg-main: #010105; --btn-size: 12vmin; }
         body { margin: 0; overflow: hidden; background: var(--bg-main); font-family: monospace; }
-        .ui-toggle { position: absolute; bottom: 20px; right: 20px; width: 48px; height: 48px; background: rgba(0, 10, 20, 0.8); border: 1px solid var(--accent-primary); color: var(--accent-primary); cursor: pointer; border-radius: 4px; display: flex; align-items: center; justify-content: center; z-index: 500; }
-        .overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display:flex; flex-direction:column; align-items:center; justify-content:center; color:white; z-index:1000; background:rgba(0,0,0,0.9); }
+        .ui-toggle { position: fixed; bottom: 2vmin; right: 2vmin; width: var(--btn-size); height: var(--btn-size); min-width: 48px; min-height: 48px; background: rgba(0, 10, 20, 0.8); border: 1px solid var(--accent-primary); color: var(--accent-primary); cursor: pointer; border-radius: 4px; display: flex; align-items: center; justify-content: center; z-index: 500; }
+        .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; display:flex; flex-direction:column; align-items:center; justify-content:center; color:white; z-index:1000; background:rgba(0,0,0,0.9); }
     </style>
 </head>
 
 <body>
     <div id="start-screen" class="overlay">
         <h1>MESSENGER</h1>
-        <button id="btn-start" style="background:#ffaa00; border:none; padding:15px 40px; cursor:pointer; font-weight:bold;">SYNC INTERFACE</button>
+        <p>DELIVER THE SIGNAL</p>
+        <button id="btn-start" style="background:#ffaa00; border:none; padding:15px 40px; cursor:pointer; font-weight:bold; font-size:1.2em; color: black;">SYNC INTERFACE</button>
     </div>
 
     <button id="btn-cycle-toggle" class="ui-toggle"><i class="fas fa-sun"></i></button>
