@@ -48,6 +48,11 @@ Example UI and layout built with Miracle Maker.
 
 👉 https://purna.github.io/miracle-maker/tests/whatsapp.html
 
+### 🗺️ Earth Grid Editor
+Flatten the planet into a 60×30 longitude/latitude grid. Select cells on the 2D map, choose an object type, and place 3D objects directly on the sphere. Export or import the full grid as JSON for use in the game engine.
+
+👉 https://purna.github.io/miracle-maker/tests/grid_editor.html
+
 ## Contributing
 
 We welcome contributions! Please read our [Contributing Guide](CONTRIBUTING.md) for details on how to submit pull requests, report issues, and suggest features.

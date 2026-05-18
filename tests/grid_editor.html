@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Earth Grid Editor — unwrapped flat longitude/latitude grid, place 3D objects, export/import JSON">
+<title>Earth Grid Editor</title>
+<style>
+:root {
+    --bg:#070c10; --panel:rgba(5,12,18,0.96);
+    --accent:#00e6c8; --acc2:#ffaa00; --acc3:#ff4466;
+    --text:#c8e0e8; --dim:#4a6a80; --border:#163040;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Courier New',monospace;overflow:hidden;width:100vw;height:100vh;display:flex}
+canvas{display:block;flex:1 1 auto;min-width:0}
+#sidebar{
+    width:230px;min-width:230px;flex:0 0 230px;
+    background:var(--panel);border-left:1px solid var(--border);
+    display:flex;flex-direction:column;height:100vh;overflow-y:auto;z-index:10;
+}
+.s-head{padding:14px 12px 8px;border-bottom:1px solid var(--border)}
+.s-head strong{display:block;color:var(--accent);font-size:1em;letter-spacing:1.5px}
+.s-head small{font-size:0.65em;color:var(--dim);letter-spacing:2px}
+.s-sec{padding:10px 12px;border-bottom:1px solid var(--border)}
+.s-sec h3{font-size:0.65em;color:var(--dim);letter-spacing:2px;margin-bottom:8px}
+.sel-coords{text-align:center;font-size:1.05em;color:var(--accent)}
+.sel-label{text-align:center;font-size:0.7em;color:var(--dim);letter-spacing:1px;margin:4px 0 8px}
+.sel-obj{text-align:center;font-size:0.72em;color:var(--dim)}
+
+.palette{display:flex;flex-direction:column;gap:4px}
+.pal-item{
+    display:flex;align-items:center;gap:8px;padding:5px 8px;
+    border:1px solid var(--border);border-radius:3px;cursor:pointer;font-size:0.78em;
+    transition:border-color .15s,background .15s;
+}
+.pal-item:hover{border-color:var(--accent);background:rgba(0,230,200,.06)}
+.pal-item.active{border-color:var(--accent);background:rgba(0,230,200,.12)}
+.pal-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+
+/* ── LEGEND ── */
+.legend-item{
+    display:flex;align-items:center;gap:7px;
+    padding:3px 6px;border-radius:3px;font-size:0.75em;cursor:pointer;
+    transition:background .15s;
+}
+.legend-item:hover{background:rgba(255,255,255,.05)}
+.legend-item.active{background:rgba(0,230,200,.1)}
+.legend-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+
+/* ── SCENE OBJECT LIST ── */
+.scene-obj{
+    display:flex;justify-content:space-between;gap:6px;
+    padding:2px 6px;border-radius:2px;font-size:0.72em;
+}
+.scene-obj:hover{background:rgba(255,255,255,.04)}
+.scene-obj .s-color{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:2px}
+.scene-obj .s-id{color:var(--dim)}
+.scene-obj .s-coords{color:var(--accent);font-size:.9em}
+#scene-list{max-height:200px;overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--border) transparent}
+
+.btn-row{display:flex;gap:5px}
+.btn{
+    flex:1;padding:7px 4px;font-size:.72em;font-family:inherit;letter-spacing:.5px;
+    border:1px solid var(--border);border-radius:3px;
+    background:rgba(0,230,200,.06);color:var(--accent);cursor:pointer;text-align:center;transition:background .15s;
+}
+.btn:hover{background:rgba(0,230,200,.15);border-color:var(--accent)}
+.btn.b2{color:#ffaa00;background:rgba(255,170,0,.06);border-color:#3a2800}
+.btn.b2:hover{background:rgba(255,170,0,.15);border-color:#ffaa00}
+.btn.b3{color:#ff4466;background:rgba(255,68,102,.06);border-color:#3a0000}
+.btn.b3:hover{background:rgba(255,68,102,.15);border-color:#ff4466}
+.info-row{display:flex;justify-content:space-between;font-size:.78em;padding:2px 0}
+.info-row span:first-child{color:var(--dim)}
+.info-row span:last-child{color:var(--accent)}
+#hud{position:absolute;bottom:10px;left:10px;font-size:.72em;color:var(--dim);pointer-events:none;z-index:10}
+</style>
+</head>
+<body>
+
+<div id="sidebar">
+    <div class="s-head">
+        <strong>EARTH GRID EDITOR</strong>
+        <small>flat 2-D projection · 60×30</small>
+    </div>
+
+    <div class="s-sec">
+        <h3>SELECTED CELL</h3>
+        <div class="sel-label" id="sel-label">MOUSE OVER A CELL</div>
+        <div class="sel-coords" id="sel-coords">— —</div>
+        <div class="sel-obj" id="sel-obj">&nbsp;</div>
+    </div>
+
+    <div class="s-sec">
+        <h3>OBJECT TYPE</h3>
+        <div class="palette" id="palette"></div>
+    </div>
+
+    <!-- ── LEGEND ── -->
+    <div class="s-sec">
+        <h3>LEGEND</h3>
+        <div id="legend"></div>
+    </div>
+
+    <!-- ── SCENE OBJECTS ── -->
+    <div class="s-sec">
+        <h3>SCENE OBJECTS</h3>
+        <div id="scene-list"></div>
+        <div id="scene-label" style="margin-top:4px;font-size:.68em;color:var(--dim);text-align:right"></div>
+    </div>
+
+    <div class="s-sec">
+        <h3>ACTIONS</h3>
+        <div class="btn-row"><button class="btn" id="btn-add">Add Object</button></div>
+        <div class="btn-row" style="margin-top:5px"><button class="btn b3" id="btn-del">Remove Object</button></div>
+        <div class="btn-row" style="margin-top:5px"><button class="btn" id="btn-cam">Reset View</button></div>
+    </div>
+
+    <div class="s-sec">
+        <h3>GRID INFO</h3>
+        <div class="info-row"><span>Longitude cols</span><span id="info-cols">60</span></div>
+        <div class="info-row"><span>Latitude  rows</span><span id="info-rows">30</span></div>
+        <div class="info-row"><span>Total cells</span> <span id="info-cells">1800</span></div>
+        <div class="info-row"><span>Objects placed</span><span id="info-count">0</span></div>
+    </div>
+
+    <div class="s-sec">
+        <h3>EXPORT / IMPORT</h3>
+        <div class="btn-row">
+            <button class="btn b2" id="btn-export">Export JSON</button>
+            <button class="btn b2" id="btn-import-btn">Import JSON</button>
+        </div>
+        <input type="file" id="file-input" accept=".json" style="display:none">
+        <div class="btn-row" style="margin-top:5px"><button class="btn b3" id="btn-clear">Clear All</button></div>
+    </div>
+</div>
+
+<div id="hud">MOUSE — hover/select · WHEEL — zoom · RIGHT-DRAG — pan · DBLCLICK — quick place</div>
+
+<script type="importmap">
+{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js"}}
+</script>
+
+<script type="module">
+import * as THREE from 'three';
+
+/* ═══════════════════════ CONFIG ═══════════════════════ */
+const NUM_LON   = 60;           // longitude 0-360°  (cols)
+const NUM_LAT   = 30;           // latitude  +90 to -90° (rows)
+const SPHERE_R  = 50;           // planet radius in world units
+
+const TYPES = [
+    { id:'prop',   label:'Prop',        color:0xff4466 },
+    { id:'npc',    label:'NPC',         color:0xffaa00 },
+    { id:'item',   label:'Collectible', color:0xaa66ff },
+    { id:'decoy',  label:'Decoy',       color:0x00e6c8 },
+];
+let activeIdx = 0;
+
+/* cells[row][col] = { obj: typeId | null } */
+const cells = Array.from({length:NUM_LAT}, () =>
+    Array.from({length:NUM_LON}, () => ({obj:null})));
+
+/* ═══════════════════════ RENDERER / SCENE ═══════════════════════ */
+const canvas = document.createElement('canvas');
+canvas.style.cssText = 'flex:1;display:block;cursor:crosshair';
+document.body.insertBefore(canvas, document.getElementById('sidebar'));
+
+const renderer = new THREE.WebGLRenderer({ canvas, antialias:true });
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.setClearColor(0x070c10);
+
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x070c10);
+
+scene.add(new THREE.AmbientLight(0xffffff, 0.75));
+const dLight = new THREE.DirectionalLight(0xffffff, 0.45);
+dLight.position.set(15, 25, 20);
+scene.add(dLight);
+
+/* ═══════════════════════ CAMERA (top-down) ═══════════════════════ */
+// Camera sits at z=100, looks down the -Z axis at the map on the XY plane.
+// World X = east-west  ·  World Y = north-south  ·  Z is height above map.
+const CAM_H = SPHERE_R;
+function asp() { return window.innerWidth / window.innerHeight; }
+
+const camera = new THREE.OrthographicCamera(
+    -CAM_H * asp(), CAM_H * asp(),   // left / right  (−west, +east)
+     CAM_H,          -CAM_H,          // top  / bottom (+north, −south)
+     0.1, 500
+);
+camera.position.set(0, 0, 100);
+camera.lookAt(0, 0, 0);
+camera.zoom = 1;
+camera.updateProjectionMatrix();
+
+let panX = 0, panY = 0, zoom = 1;
+
+function updateCam() {
+    const ar = window.innerWidth / window.innerHeight;
+    camera.left   = -CAM_H * ar * zoom + panX;
+    camera.right  =  CAM_H * ar * zoom + panX;
+    camera.top    =  CAM_H       * zoom + panY;
+    camera.bottom = -CAM_H       * zoom + panY;
+    camera.lookAt(0, 0, 0);
+    camera.updateProjectionMatrix();
+}
+
+/* ═══════════════════════ GROUPS ═══════════════════════ */
+const gWorld    = new THREE.Group(); scene.add(gWorld);
+const gMap      = new THREE.Group();  gWorld.add(gMap);
+const gGrid     = new THREE.Group();  gMap.add(gGrid);
+const gMarkers  = new THREE.Group();  gMap.add(gMarkers);
+const gHover    = new THREE.Group();  gMap.add(gHover);
+const gSelect   = new THREE.Group();  gMap.add(gSelect);
+
+/* ═══════════════════════ FLAT MAP ═══════════════════════ */
+// Flat equirectangular rectangle on the XY plane.
+// X runs from -MAP_X to +MAP_X (west→east over all longitudes)
+// Y runs from +MAP_Y to -MAP_Y      (north→south)
+const MAP_W = SPHERE_R * 2;      // exactly fills camera left→right at centre latitude
+const MAP_H = SPHERE_R * 2;      // exactly fills camera top→bottom = ±50
+const cellW = MAP_W / NUM_LON;
+const cellH = MAP_H / NUM_LAT;
+
+/* colour the map cells by latitude */
+function cellRGB(row) {
+    const t = row / NUM_LAT;          // 0=North → 1=South
+    const eq = 1 - Math.abs(t - 0.5) * 2;  // 1 at equator, 0 at poles
+    return new THREE.Color(
+        0.06 + eq * 0.16,             // R
+        0.09 + eq * 0.24,             // G
+        0.05 + (eq > 0.8 ? 0.08 : 0.02)  // B — slight blue at equator
+    );
+}
+
+const mapGeo = new THREE.PlaneGeometry(MAP_W, MAP_H, NUM_LON-1, NUM_LAT-1);
+const colAttr = new THREE.BufferAttribute(
+    new Float32Array(mapGeo.attributes.position.count * 3), 3);
+const posAttr = mapGeo.attributes.position;
+for (let i = 0; i < posAttr.count; i++) {
+    const wy = posAttr.getY(i);
+    const rowT = ((MAP_H/2 - wy) / MAP_H) * NUM_LAT;
+    const c = cellRGB(Math.round(Math.max(0, Math.min(NUM_LAT-1, rowT))));
+    colAttr.setXYZ(i, c.r, c.g, c.b);
+}
+mapGeo.setAttribute('color', colAttr);
+const mapMat = new THREE.MeshStandardMaterial({
+    vertexColors: true, side: THREE.DoubleSide, roughness:.9, metalness:0,
+});
+const mapMesh = new THREE.Mesh(mapGeo, mapMat);
+mapMesh.position.z = -0.8;
+gMap.add(mapMesh);
+
+/* ═══════════════════════ COORDINATE HELPERS ═══════════════════════ */
+/**
+ * Flat map: World X = -MAP_X (west) → +MAP_X (east) over all columns.
+ *            World Y = +MAP_Y (north) → -MAP_Y (south) over all rows.
+ * Camera at z=+100 looking straight down at the XY plane → screen X↔world X,
+ * screen Y (top=+NDC) ↔ world Y (top=+MAP_Y = north).
+ */
+function cellPos(row, col) {
+    const wx = -MAP_W/2 + (col + 0.5) * cellW;   // centre X of cell
+    const wy =  MAP_H/2 - (row + 0.5) * cellH;   // centre Y of cell
+    return { wx, wy };
+}
+
+function worldToCell(wx, wy) {
+    const row = Math.floor((MAP_H/2 - wy) / cellH);
+    const col = Math.floor((wx  + MAP_W/2) / cellW);
+    return {
+        row: Math.max(0, Math.min(NUM_LAT-1, row)),
+        col: Math.max(0, Math.min(NUM_LON-1, col)),
+    };
+}
+
+function ndcToXY(nx, ny) {
+    const ray = new THREE.Raycaster();
+    ray.setFromCamera({ x:nx, y:ny }, camera);
+    const pt = ray.ray.intersectPlane(
+        new THREE.Plane(new THREE.Vector3(0, 0, 1), 0), new THREE.Vector3());
+    return pt ? { wx:pt.x, wy:pt.y } : null;
+}
+
+/* ═══════════════════════ GRID OVERLAY ═══════════════════════ */
+const cellMeshes = [];
+
+function buildGrid() {
+    while (gGrid.children.length) {
+        const c = gGrid.children[0];
+        gGrid.remove(c); c.geometry?.dispose(); c.material?.dispose();
+    }
+    cellMeshes.length = 0;
+
+    const linePos = [];
+
+    for (let row = 0; row < NUM_LAT; row++) {
+        cellMeshes[row] = [];
+        for (let col = 0; col < NUM_LON; col++) {
+            const { wx, wy } = cellPos(row, col);
+
+            /* invisible hit quad */
+            const cw = cellW * 0.98,  ch = cellH * 0.98;
+            const geo = new THREE.BufferGeometry();
+            const v = new Float32Array([
+                wx-cw/2, wy+ch/2, 0.05,
+                wx+cw/2, wy+ch/2, 0.05,
+                wx+cw/2, wy-ch/2, 0.05,
+                wx-cw/2, wy-ch/2, 0.05,
+            ]);
+            geo.setAttribute('position', new THREE.BufferAttribute(v, 3));
+            geo.setIndex([0,1,2, 0,2,3]);
+            const mat = new THREE.MeshBasicMaterial({
+                color:0xffffff, transparent:true, opacity:0,
+                depthWrite:false, side:THREE.DoubleSide,
+            });
+            const mesh = new THREE.Mesh(geo, mat);
+            mesh.userData = { row, col };
+            gGrid.add(mesh);
+            cellMeshes[row][col] = mesh;
+        }
+    }
+
+    /* latitude lines (horizontal, constant Y) */
+    for (let r = 0; r <= NUM_LAT; r++) {
+        const wy = MAP_H/2 - r * cellH;
+        linePos.push(-MAP_W/2, wy, 0,  +MAP_W/2, wy, 0);
+    }
+    /* longitude lines (vertical, constant X) */
+    for (let c = 0; c <= NUM_LON; c++) {
+        const wx = -MAP_W/2 + c * cellW;
+        linePos.push(wx, -MAP_H/2, 0,  wx, MAP_H/2, 0);
+    }
+
+    const g = new THREE.BufferGeometry();
+    g.setAttribute('position', new THREE.BufferAttribute(new Float32Array(linePos), 3));
+    gGrid.add(new THREE.LineSegments(
+        g, new THREE.LineBasicMaterial({ color:0x1a3e2c })));
+
+    /* border */
+    const b = new Float32Array([
+        -MAP_W/2,-MAP_H/2,0,  +MAP_W/2,-MAP_H/2,0,
+        +MAP_W/2,-MAP_H/2,0,  +MAP_W/2,+MAP_H/2,0,
+        +MAP_W/2,+MAP_H/2,0,  -MAP_W/2,+MAP_H/2,0,
+        -MAP_W/2,+MAP_H/2,0,  -MAP_W/2,-MAP_H/2,0,
+    ]);
+    const bg = new THREE.BufferGeometry();
+    bg.setAttribute('position', new THREE.BufferAttribute(b, 3));
+    gGrid.add(new THREE.LineSegments(
+        bg, new THREE.LineBasicMaterial({ color:0x2a5868 })));
+}
+buildGrid();
+
+/* ═══════════════════════ OBJECT MARKERS ═══════════════════════ */
+const markerMap = {};   // `${row}_${col}` → THREE.Mesh
+
+function placeMarker(row, col, typeIdx) {
+    removeMarker(row, col);
+    const { wx, wy } = cellPos(row, col);
+    const type = TYPES[typeIdx];
+    const geo = new THREE.ConeGeometry(0.45, 2.0, 8);
+    const mat = new THREE.MeshStandardMaterial({
+        color: type.color, emissive: type.color, emissiveIntensity: 0.45 });
+    const mesh = new THREE.Mesh(geo, mat);
+    mesh.rotation.z = Math.PI / 2;        // cone lies flat, base on map
+    mesh.position.set(wx, wy, 0.2);       // just above surface
+    gMarkers.add(mesh);
+    markerMap[`${row}_${col}`] = mesh;
+}
+
+function removeMarker(row, col) {
+    const m = markerMap[`${row}_${col}`];
+    if (m) { gMarkers.remove(m); m.geometry.dispose(); m.material.dispose(); delete markerMap[`${row}_${col}`]; }
+}
+
+/* ═══════════════════════ SELECTION & HOVER ═══════════════════════ */
+let selectedCell = null, hoveredCell = null;
+
+function highlightCell(row, col, hex, alpha) {
+    gHover.clear(); gSelect.clear();
+    if (row < 0) return;
+    const { wx, wy } = cellPos(row, col);
+    const geo = new THREE.PlaneGeometry(cellW*0.98, cellH*0.98);
+    const mat = new THREE.MeshBasicMaterial({ color:hex, transparent:true, opacity:alpha, depthWrite:false });
+    const mesh = new THREE.Mesh(geo, mat);
+    mesh.position.set(wx, wy, 0.01);
+    gHover.add(mesh);
+}
+
+/* ─── LEGEND ─── */
+const legendEl = document.getElementById('legend');
+function buildLegend() {
+    legendEl.innerHTML = '';
+    TYPES.forEach((t, i) => {
+        const el = document.createElement('div');
+        el.className = 'legend-item' + (i===activeIdx ? ' active' : '');
+        el.innerHTML =
+            `<div class="legend-dot" style="background:#${t.color.toString(16).padStart(6,'0')}"></div>` +
+            `<span>${t.label}</span>`;
+        el.addEventListener('click', () => {
+            activeIdx = i;
+            legendEl.querySelectorAll('.legend-item').forEach((d, j) =>
+                d.classList.toggle('active', j===i));
+            paletteEl.querySelectorAll('.pal-item').forEach((d, j) =>
+                d.classList.toggle('active', j===i));
+        });
+        legendEl.appendChild(el);
+    });
+}
+buildLegend();
+
+/* ─── PALETTE ─── */
+const paletteEl = document.getElementById('palette');
+TYPES.forEach((t, i) => {
+    const el = document.createElement('div');
+    el.className = 'pal-item' + (i===activeIdx ? ' active' : '');
+    el.innerHTML =
+        `<div class="pal-dot" style="background:#${t.color.toString(16).padStart(6,'0')}"></div>` +
+        `<span>${t.label}</span>`;
+    el.addEventListener('click', () => {
+        activeIdx = i;
+        paletteEl.querySelectorAll('.pal-item').forEach((d, j) =>
+            d.classList.toggle('active', j===i));
+        legendEl.querySelectorAll('.legend-item').forEach((d, j) =>
+            d.classList.toggle('active', j===i));
+    });
+    paletteEl.appendChild(el);
+});
+
+/* ─── SCENE OBJECTS LIST ─── */
+function refreshSceneList() {
+    const list = document.getElementById('scene-list');
+    const label = document.getElementById('scene-label');
+    list.innerHTML = '';
+    let n = 0;
+    for (let r = 0; r < NUM_LAT; r++) {
+        for (let c = 0; c < NUM_LON; c++) {
+            const typeId = cells[r][c].obj;
+            if (!typeId) continue;
+            const type = TYPES.find(t => t.id === typeId);
+            if (!type) continue;
+            const el = document.createElement('div');
+            el.className = 'scene-obj';
+            el.innerHTML =
+                `<div class="s-color" style="background:#${type.color.toString(16).padStart(6,'0')}"></div>` +
+                `<span class="s-id">${type.label}</span>` +
+                `<span class="s-coords">lon ${String(c).padStart(2,'0')} / lat ${String(r).padStart(2,'0')}</span>`;
+            list.appendChild(el);
+            n++;
+        }
+    }
+    label.textContent = `${n} object${n!==1?'s':''} in scene`;
+}
+
+function refreshCount() {
+    let n = 0;
+    for (let r = 0; r < NUM_LAT; r++) for (let c = 0; c < NUM_LON; c++) if (cells[r][c].obj) n++;
+    document.getElementById('info-count').textContent = n;
+}
+
+function setObj(row, col, typeId) {
+    cells[row][col].obj = typeId;
+    if (typeId)
+        placeMarker(row, col, TYPES.findIndex(t => t.id === typeId));
+    else
+        removeMarker(row, col);
+    refreshCount();
+    refreshSceneList();
+}
+
+/* ═══════════════════════ MOUSE INTERACTION ═══════════════════════ */
+canvas.addEventListener('mousemove', e => {
+    const rect = canvas.getBoundingClientRect();
+    const nx =  (e.clientX - rect.left) / rect.width  * 2 - 1;
+    const ny = -(e.clientY - rect.top)  / rect.height * 2 + 1;
+    const p = ndcToXY(nx, ny);
+    if (!p) {
+        hoveredCell = null; gHover.clear();
+        document.getElementById('sel-coords').textContent = '— —';
+        document.getElementById('sel-label').textContent = 'MOUSE OVER A CELL';
+        return;
+    }
+    const { row, col } = worldToCell(p.wx, p.wy);
+    hoveredCell = { row, col };
+    document.getElementById('sel-coords').textContent = `lon ${col}  ·  lat ${row}`;
+    document.getElementById('sel-label').textContent =
+        `COL ${String(col).padStart(3,'0')} / ROW ${String(row).padStart(3,'0')}`;
+    highlightCell(row, col, 0x004422, 0.4);
+});
+
+canvas.addEventListener('click', e => {
+    if (e.button !== 0) return;
+    const rect = canvas.getBoundingClientRect();
+    const nx =  (e.clientX - rect.left) / rect.width  * 2 - 1;
+    const ny = -(e.clientY - rect.top)  / rect.height * 2 + 1;
+    const p = ndcToXY(nx, ny);
+    if (!p) return;
+    const { row, col } = worldToCell(p.wx, p.wy);
+    selectedCell = { row, col };
+    /* selection box */
+    gSelect.clear();
+    const { wx, wy } = cellPos(row, col);
+    const geo = new THREE.PlaneGeometry(cellW*0.98, cellH*0.98);
+    const mat = new THREE.MeshBasicMaterial({ color:0x00e6c8, transparent:true, opacity:0.3, depthWrite:false });
+    const selMesh = new THREE.Mesh(geo, mat);
+    selMesh.position.set(wx, wy, 0.02);
+    gSelect.add(selMesh);
+    /* sidebar */
+    document.getElementById('sel-obj').textContent = cells[row][col].obj
+        ? TYPES.find(t=>t.id===cells[row][col].obj)?.label ?? cells[row][col].obj
+        : '(empty)';
+});
+
+canvas.addEventListener('dblclick', e => {
+    if (e.button !== 0) return;
+    const rect = canvas.getBoundingClientRect();
+    const nx =  (e.clientX - rect.left) / rect.width  * 2 - 1;
+    const ny = -(e.clientY - rect.top)  / rect.height * 2 + 1;
+    const p = ndcToXY(nx, ny);
+    if (!p) return;
+    const { row, col } = worldToCell(p.wx, p.wy);
+    setObj(row, col, TYPES[activeIdx].id);
+    selectedCell = { row, col };
+});
+
+/* scroll → zoom */
+canvas.addEventListener('wheel', e => {
+    e.preventDefault();
+    zoom *= Math.exp(-e.deltaY * 0.001);
+    zoom = Math.max(0.2, Math.min(8, zoom));
+    updateCam();
+}, { passive:false });
+
+/* right-drag → pan */
+let panning=false, panStart=null, panCam=null;
+canvas.addEventListener('mousedown', e => {
+    if (e.button === 2) {
+        panning=true;
+        panStart={x:e.clientX, y:e.clientY};
+        panCam={panX, panY};
+        e.preventDefault();
+    }
+});
+window.addEventListener('mousemove', e => {
+    if (!panning) return;
+    const ar = window.innerWidth / window.innerHeight;
+    panX = panCam.panX - (e.clientX-panStart.x)/window.innerWidth * CAM_H*2*ar*zoom;
+    panY = panCam.panY + (e.clientY-panStart.y)/window.innerHeight * CAM_H*2*zoom;
+    updateCam();
+});
+window.addEventListener('mouseup', () => { panning=false; });
+
+/* ═══════════════════════ SIDEBAR BUTTONS ═══════════════════════ */
+document.getElementById('btn-add').addEventListener('click', () => {
+    if (!selectedCell) return;
+    const { row, col } = selectedCell;
+    setObj(row, col, TYPES[activeIdx].id);
+    highlightCell(row, col, 0x00aa77, 0.55);
+    setTimeout(() => gHover.clear(), 400);
+});
+
+document.getElementById('btn-del').addEventListener('click', () => {
+    if (!selectedCell) return;
+    setObj(selectedCell.row, selectedCell.col, null);
+});
+
+document.getElementById('btn-clear').addEventListener('click', () => {
+    for (let r=0; r<NUM_LAT; r++) for (let c=0; c<NUM_LON; c++) setObj(r, c, null);
+});
+
+document.getElementById('btn-cam').addEventListener('click', () => {
+    panX=0; panY=0; zoom=1; updateCam();
+});
+
+/* ═══════════════════════ EXPORT JSON ═══════════════════════ */
+document.getElementById('btn-export').addEventListener('click', () => {
+    const objects = [];
+    for (let r=0; r<NUM_LAT; r++)
+        for (let c=0; c<NUM_LON; c++)
+            if (cells[r][c].obj)
+                objects.push({ r, c, type: cells[r][c].obj });
+    const data = {
+        meta:    { name:'Earth Grid Export', version:'1.0', tool:'Earth Grid Editor' },
+        grid:    { numLon:NUM_LON,  numLat:NUM_LAT,  sphereRadius:SPHERE_R },
+        objects,
+    };
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type:'application/json' });
+    const a = document.createElement('a');
+    a.href   = URL.createObjectURL(blob);
+    a.download = 'earth-grid.json';
+    a.click();
+    URL.revokeObjectURL(a.href);
+});
+
+/* ═══════════════════════ IMPORT JSON ═══════════════════════ */
+document.getElementById('btn-import-btn').addEventListener('click', () => {
+    document.getElementById('file-input').click();
+});
+document.getElementById('file-input').addEventListener('change', e => {
+    const file = e.target.files[0]; if (!file) return;
+    const reader = new FileReader();
+    reader.onload = ev => {
+        try { loadJson(JSON.parse(ev.target.result)); }
+        catch(err) { alert('Invalid JSON file:\n' + err.message); }
+        e.target.value = '';
+    };
+    reader.readAsText(file);
+});
+
+function loadJson(data) {
+    if (!data.objects || !Array.isArray(data.objects))
+        return alert('Missing objects[] array in JSON.');
+    const g = data.grid || {};
+    if (g.numLon !== NUM_LON || g.numLat !== NUM_LAT)
+        return alert(`Grid mismatch: file is ${g.numLon ?? '?'}×${g.numLat ?? '?'} but editor is ${NUM_LON}×${NUM_LAT}.`);
+    /* clear existing */
+    for (let r=0; r<NUM_LAT; r++) for (let c=0; c<NUM_LON; c++) setObj(r, c, null);
+    let n = 0;
+    data.objects.forEach(o => {
+        if (o.r < 0 || o.r >= NUM_LAT || o.c < 0 || o.c >= NUM_LON) return;
+        if (!TYPES.find(t => t.id === o.type)) return;
+        setObj(o.r, o.c, o.type); n++;
+    });
+    alert(`Placed ${n} object${n !== 1 ? 's' : ''} from ${data.objects.length} entry${data.objects.length !== 1 ? 'ies' : ''}.`);
+}
+
+/* ═══════════════════════ RESIZE ═══════════════════════ */
+function onResize() {
+    renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+    updateCam();
+}
+window.addEventListener('resize', onResize);
+onResize();
+
+/* ═══════════════════════ RENDER LOOP ═══════════════════════ */
+(function loop() {
+    requestAnimationFrame(loop);
+    renderer.render(scene, camera);
+})();
+</script>
+</body>
+</html>

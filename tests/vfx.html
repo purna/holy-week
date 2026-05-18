@@ -1400,9 +1400,9 @@
             const playerPos = new THREE.Vector3().copy(pBody.position);
             const playerScreenPos = playerPos.project(camera);
 
-            // Set initial position
-            const startX = (playerScreenPos.x * 0.5 + 0.5) * window.innerWidth;
-            const startY = (playerScreenPos.y * -0.5 + 0.5) * window.innerHeight;
+            // Set initial position with slight random offset (more on X than Y)
+            const startX = (playerScreenPos.x * 0.5 + 0.5) * window.innerWidth + (Math.random() - 0.5) * 60;
+            const startY = (playerScreenPos.y * -0.5 + 0.5) * window.innerHeight + (Math.random() - 0.5) * 20;
             icon.style.left = `${startX}px`;
             icon.style.top = `${startY}px`;
 

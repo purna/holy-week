@@ -89,8 +89,8 @@ export class ActionManager {
             });
 
             const playerScreenPos = playerPosition.project(camera);
-            const startX = (playerScreenPos.x * 0.5 + 0.5) * window.innerWidth;
-            const startY = (playerScreenPos.y * -0.5 + 0.5) * window.innerHeight;
+            const startX = (playerScreenPos.x * 0.5 + 0.5) * window.innerWidth + (Math.random() - 0.5) * 60;
+            const startY = (playerScreenPos.y * -0.5 + 0.5) * window.innerHeight + (Math.random() - 0.5) * 20;
             iconEl.style.left = `${startX}px`;
             iconEl.style.top = `${startY}px`;
 
