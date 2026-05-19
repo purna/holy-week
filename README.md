@@ -26,7 +26,7 @@ npm start
 
 Refer to the documentation in the `docs/` directory for more detailed instructions.
 
-xplore interactive demos powered by Miracle Maker:
+Explore interactive demos powered by Miracle Maker:
 
 ### 🌫️ Fog Effect
 Real-time atmospheric fog rendering.
@@ -53,9 +53,21 @@ Flatten the planet into a 60×30 longitude/latitude grid. Select cells on the 2D
 
 👉 https://purna.github.io/miracle-maker/tests/grid_editor.html
 
+### 💬 Conversation Tree
+Scroll-driven interactive story inspired by ncase.me/anxiety. Every choice draws a branch on the conversation map, worry and chaos meters track your mental state, and you can jump back to any node in the tree.
+
+👉 https://purna.github.io/miracle-maker/tests/ncase.html
+
 ## Contributing
 
 We welcome contributions! Please read our [Contributing Guide](CONTRIBUTING.md) for details on how to submit pull requests, report issues, and suggest features.
+
+## Inspired by
+https://ncase.me/anxiety
+https://messenger.abeto.co
+
+
+
 
 ## License
 
