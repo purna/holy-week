@@ -149,7 +149,7 @@ export const ICONS = {
 export const FA_ICONS = {
     quest: 'fas fa-list-check',
     inventory: 'fas fa-boxes-stacked',
-    actions: 'fas fa-list',
+    actions: 'fas fa-cogs',
     soundOn: 'fas fa-volume-up',
     soundOff: 'fas fa-volume-off',
     scan: 'fas fa-search',
