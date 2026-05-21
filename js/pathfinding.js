@@ -268,8 +268,14 @@ export class PathFollower {
 
     // Orient NPC toward movement direction
     const tangentForward = new THREE.Vector3();
-    tangentForward.crossVectors(toNewCenter, new THREE.Vector3(0, 1, 0));
-    if (tangentForward.length() > 0.01) {
+    let referenceUp = new THREE.Vector3(0, 1, 0);
+    // Avoid degenerate cross-product when "up" is parallel to the radial direction
+    // (NPC is crossing exactly over the north or south pole of the planet).
+    if (Math.abs(toNewCenter.dot(referenceUp)) > 0.99) {
+        referenceUp.set(0, 0, 1);
+    }
+    tangentForward.crossVectors(toNewCenter, referenceUp);
+    if (tangentForward.lengthSq() > 0.0001) {
       const targetQuat = new THREE.Quaternion();
       targetQuat.setFromUnitVectors(
         new THREE.Vector3(0, 0, 1),

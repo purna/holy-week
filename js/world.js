@@ -29,7 +29,7 @@ export class WorldManager {
         for (let i = 0; i < 15; i++) {
             const pos = new THREE.Vector3().setFromSphericalCoords(this.planetR + 2, Math.random() * Math.PI, Math.random() * Math.PI * 2);
             let rockMesh;
-            
+
             if (this.modelMgr && this.modelMgr.system === 'glb') {
                 const model = this.modelMgr.getModel('rocks');
                 if (model && model.children.length > 0) {
@@ -104,32 +104,32 @@ export class WorldManager {
                     }
                 });
 
-                 // Apply scale if specified
-                 const scale = MODEL_SCALES.planet || 1;
-                 clonedPlanet.scale.setScalar(scale);
+                // Apply scale if specified
+                const scale = MODEL_SCALES.planet || 1;
+                clonedPlanet.scale.setScalar(scale);
 
-                 this.planet = clonedPlanet;
-                 this.scene.add(clonedPlanet);
+                this.planet = clonedPlanet;
+                this.scene.add(clonedPlanet);
 
-                 // Ensure planet receives shadows
-                 clonedPlanet.traverse((child) => {
-                     if (child.isMesh) {
-                         child.receiveShadow = true;
-                     }
-                 });
-                 console.log('Planet GLB loaded:', clonedPlanet);
-             } else {
-                 console.warn('Planet GLB model not found, falling back to primitive');
-                 // Fallback to primitive
-                 const planetToon = this.toonShader.createToonGroup(
-                     new THREE.IcosahedronGeometry(this.planetR, 5),
-                     PRIMITIVE_CONFIG.planet.color,
-                     0.005
-                 );
-                 this.planet = planetToon.mainMesh;
-                 this.planetMesh = planetToon.mainMesh;
-                 this.scene.add(planetToon.group);
-             }
+                // Ensure planet receives shadows
+                clonedPlanet.traverse((child) => {
+                    if (child.isMesh) {
+                        child.receiveShadow = true;
+                    }
+                });
+                console.log('Planet GLB loaded:', clonedPlanet);
+            } else {
+                console.warn('Planet GLB model not found, falling back to primitive');
+                // Fallback to primitive
+                const planetToon = this.toonShader.createToonGroup(
+                    new THREE.IcosahedronGeometry(this.planetR, 5),
+                    PRIMITIVE_CONFIG.planet.color,
+                    0.005
+                );
+                this.planet = planetToon.mainMesh;
+                this.planetMesh = planetToon.mainMesh;
+                this.scene.add(planetToon.group);
+            }
         } else {
             // Use toon shader for planet
             const planetToon = this.toonShader.createToonGroup(
@@ -159,7 +159,7 @@ export class WorldManager {
                 const model = this.modelMgr.getModel('pickupCell');
                 if (model && model.children.length > 0) {
                     const m = model.children[0].clone();
-                     m.material = this.toonShader.createToonMaterial(COLORS.orange);
+                    m.material = this.toonShader.createToonMaterial(COLORS.orange);
                     m.name = `CELL_${i + 1}`;
                     m.position.setFromSphericalCoords(this.planetR + 1.2, Math.random() * Math.PI, Math.random() * Math.PI * 2);
                     this.toonShader.updateShadowSettings(m);
@@ -196,19 +196,19 @@ export class WorldManager {
                 const model = this.modelMgr.getModel('pickupShard');
                 if (model && model.children.length > 0) {
                     const m = model.children[0].clone();
-                     m.material = this.toonShader.createToonMaterial(COLORS.shard, { emissive: COLORS.shardEmissive });
+                    m.material = this.toonShader.createToonMaterial(COLORS.shard, { emissive: COLORS.shardEmissive });
                     m.name = `SHARD_${i + 1}`;
                     m.position.setFromSphericalCoords(this.planetR + 1.2, Math.random() * Math.PI, Math.random() * Math.PI * 2);
                     this.toonShader.updateShadowSettings(m);
                     this.scene.add(m);
                     this.pickups.push(m);
                 } else {
-                     pickupGroup = this.toonShader.createToonGroup(
-                         new THREE.OctahedronGeometry(0.9),
-                         COLORS.shard,
-                         0.12,
-                         { emissive: COLORS.shardEmissive }
-                     );
+                    pickupGroup = this.toonShader.createToonGroup(
+                        new THREE.OctahedronGeometry(0.9),
+                        COLORS.shard,
+                        0.12,
+                        { emissive: COLORS.shardEmissive }
+                    );
                     pickupGroup.group.name = `SHARD_${i + 1}`;
                     pickupGroup.group.position.setFromSphericalCoords(this.planetR + 1.2, Math.random() * Math.PI, Math.random() * Math.PI * 2);
                     this.scene.add(pickupGroup.group);
@@ -284,12 +284,12 @@ export class WorldManager {
             const count = Math.floor(Math.random() * 4) + 2;
 
             for (let j = 0; j < count; j++) {
-                 const crystalToon = this.toonShader.createToonGroup(
-                     new THREE.ConeGeometry(0.8, 4 + Math.random() * 3, 5),
-                     COLORS.cyan,
-                     0.08,
-                     { emissive: COLORS.crystalEmissive, transparent: true, opacity: 0.9 }
-                 );
+                const crystalToon = this.toonShader.createToonGroup(
+                    new THREE.ConeGeometry(0.8, 4 + Math.random() * 3, 5),
+                    COLORS.cyan,
+                    0.08,
+                    { emissive: COLORS.crystalEmissive, transparent: true, opacity: 0.9 }
+                );
                 crystalToon.group.position.set((Math.random() - 0.5) * 2, 2, (Math.random() - 0.5) * 2);
                 crystalToon.group.rotation.set((Math.random() - 0.5) * 0.6, Math.random() * Math.PI, (Math.random() - 0.5) * 0.6);
                 cluster.add(crystalToon.group);
@@ -363,5 +363,85 @@ export class WorldManager {
 
     getClosestNonDialogueNPC(playerPosition) {
         return null;
+    }
+
+    // Add these methods inside your WorldManager class in world.js
+
+    clearCurrentWorld() {
+        // 1. Remove and dispose of pickup item meshes
+        this.pickups.forEach(p => this.scene.remove(p));
+        this.pickups = [];
+
+        // 2. Clear out any custom level buildings or decorative rocks
+        this.rocks.forEach(r => {
+            this.scene.remove(r);
+            if (r.geometry) r.geometry.dispose();
+            if (r.material) r.material.dispose();
+        });
+        this.rocks = [];
+
+        // 3. Clear the environment model mesh if it exists
+        if (this.environmentMesh) {
+            this.scene.remove(this.environmentMesh);
+            this.environmentMesh = null;
+        }
+
+        // 4. Clean out DYNAMIC non-player physics bodies from the Cannon world
+        // reserves the first body slot for the player; use body.mass to distinguish
+        if (this.world && this.world.bodies) {
+            for (let i = this.world.bodies.length - 1; i >= 0; i--) {
+                const body = this.world.bodies[i];
+                // Skip static (mass=0) bodies and lock-flagged bodies; skip very large bodies (planet)
+                if (body.mass > 0 && !body.isLocked && body.radius < 50) {
+                    this.world.bodies.splice(i, 1);
+                    this.world.removeBody(body);
+                }
+            }
+        }
+    }
+
+    setupLevelEnvironment(modelPath) {
+        // Dynamically request the specific GLB file using your ModelManager
+        if (this.modelMgr && this.modelMgr.system === 'glb') {
+            this.modelMgr.loadSpecificGLB(modelPath, (loadedModel) => {
+                this.environmentMesh = loadedModel.clone();
+                this.scene.add(this.environmentMesh);
+                // Apply standard lighting modifications here...
+            }); // Properly closing the arrow function and method call
+        }
+    }
+
+    spawnLevelAssets(levelData) {
+        // Spawn level-specific evidence item tokens or parables
+        levelData.evidence.forEach(evData => {
+            this.createItemToken(evData);
+        });
+
+        // Re-initialize or tell NPCSystem to render the specific active NPCs
+    }
+
+    /** Create one evidence-item token mesh and add it to the scene + pickups array. */
+    createItemToken(evData) {
+        const TOKEN_COLORS = [COLORS.orange, COLORS.cyan, COLORS.green, COLORS.yellow];
+
+        const color = TOKEN_COLORS[Math.abs(this._hashString(evData.id)) % TOKEN_COLORS.length];
+        const tokenToon = this.toonShader.createToonGroup(
+            new THREE.BoxGeometry(1.2, 1.2, 1.2),
+            color,
+            0.08
+        );
+        tokenToon.group.name = evData.id;
+        tokenToon.group.position.set(evData.position.x, evData.position.y, evData.position.z);
+        this.scene.add(tokenToon.group);
+        this.pickups.push(tokenToon.group);
+    }
+
+    _hashString(s) {
+        let h = 0;
+        for (let i = 0; i < s.length; i++) {
+            h = ((h << 5) - h) + s.charCodeAt(i);
+            h |= 0;
+        }
+        return h;
     }
 }

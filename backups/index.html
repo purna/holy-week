@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A 3D interactive experience with modular architecture and dynamic lighting.">
+    <meta name="keywords" content="3D, interactive, web, game, modular, architecture">
+    <meta name="author" content="Pixelagent">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#000000">
+    <title>Miracle Maker</title>
+    <!-- Three.js -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+    <!-- Howler.js for audio -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.4/howler.min.js"></script>
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/dialogue.css">
+    <link rel="stylesheet" href="css/panels.css">
+    <link rel="stylesheet" href="css/actions.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+    <link rel="manifest" href="site.webmanifest" />
+
+    <!-- Conditionally load FontAwesome if using FA icon system -->
+    <script type="module">
+        import { ICON_SYSTEM } from './js/config.js';
+        if (ICON_SYSTEM === 'fontawesome') {
+            const link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css';
+            document.head.appendChild(link);
+            console.log('FontAwesome icons enabled');
+        } else {
+            console.log('SVG icons enabled');
+        }
+    </script>
+</head>
+
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="overlay">
+        <div class="spinner"></div>
+        <p>INITIALIZING HISTORICAL DATA...</p>
+    </div>
+
+    <!-- Start Screen -->
+    <div id="start-screen" class="overlay" style="display:none;">
+        <h1>Miracle Maker</h1>
+        <p>WHO WAS HE?</p>
+        <button id="btn-start">START</button>
+    </div>
+
+    <!-- Win / Mission Complete Screen -->
+    <div id="win-screen" class="overlay hidden" style="display:none;">
+        <div id="win-content">
+            <h1>MISSION COMPLETE</h1>
+            <p>All objectives fulfilled. Signal delivered.</p>
+            <button id="btn-replay">REINITIALIZE</button>
+        </div>
+    </div>
+
+    <!-- Right sidebar: flex column, top/bottom sections -->
+    <div id="right-sidebar">
+        <!-- TOP: Quest button + panel -->
+        <div id="sidebar-top">
+            <div class="sidebar-row">
+                <div id="panel-quest" class="panel">
+                    <h3>MISSION</h3>
+                    <div id="quest-list"></div>
+                </div>
+                <button id="btn-quest-toggle" class="ui-toggle" title="Toggle Quest Log">
+                    <i class="fas fa-list-check"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- BOTTOM: Inventory, Actions, Sound, Day/Night -->
+        <div id="sidebar-bottom">
+            <div class="sidebar-row" id="inv-anchor">
+                <div id="panel-inv" class="panel">
+                    <h3>STORAGE</h3>
+                    <div id="inv-list">0_CELLS</div>
+                </div>
+                <button id="btn-inv-toggle" class="ui-toggle" title="Toggle Inventory">
+                    <i class="fas fa-boxes-stacked"></i>
+                </button>
+            </div>
+
+            <div class="sidebar-row" id="actions-anchor">
+                <div id="panel-actions" class="panel">
+                    <h3>ACTIONS</h3>
+                    <div id="actions-list"></div>
+                </div>
+                <button id="btn-actions-toggle" class="ui-toggle" title="Toggle Actions">
+                    <i class="fas fa-list"></i>
+                </button>
+            </div>
+
+            <div class="sidebar-row">
+                <button id="btn-sound-toggle" class="ui-toggle" title="Toggle Music">
+                    <i class="fas fa-volume-up"></i>
+                </button>
+            </div>
+
+            <div class="sidebar-row">
+                <button id="btn-cycle-toggle" class="ui-toggle" title="Toggle Day/Night">
+                    <i class="fas fa-sun"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="npc-indicator-container">
+        <div id="world-prompt" class="interact-prompt">CONNECT_TO_ECHO</div>
+    </div>
+
+    <!-- Location name display -->
+    <div id="loc-box">
+        <h2 id="loc-name">LOC_NAME</h2>
+    </div>
+
+    <!-- Simple bubble for non-dialogue NPCs -->
+    <div id="npc-bubble" class="npc-bubble"></div>
+
+    <!-- Dialogue box with name tag and text container -->
+    <div id="local-dialogue-box">
+        <div id="npc-name-display" class="npc-name-tag">NAME_ID</div>
+        <div id="bubble-text-container"></div>
+        <div id="bubble-choices" class="choice-container"></div>
+    </div>
+
+    <!-- Wipe transition overlay -->
+    <div id="wipe-overlay"></div>
+
+    <!-- External Libraries -->
+    <script src="https://unpkg.com/inkjs@2.2.1/dist/ink.js"></script>
+    <script>console.log('Ink runtime loaded:', !!window.ink, !!window.inkjs);</script>
+
+    <!-- Import Map for Three.js and Cannon-es -->
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+            "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/",
+            "cannon": "https://unpkg.com/cannon-es@0.20.0/dist/cannon-es.js"
+        }
+    }
+    </script>
+
+    <!-- Main Application Module -->
+    <script type="module" src="js/main.js"></script>
+</body>
+
+</html>

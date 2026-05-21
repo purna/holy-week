@@ -68,11 +68,18 @@ export class NPC {
             this.bodyMesh = npcToon.mainMesh;
         }
 
-        const p = new THREE.Vector3().setFromSphericalCoords(
-            this.planetR,
-            this.data.pos[0] * Math.PI,
-            this.data.pos[1] * Math.PI * 2
-        );
+        const p = new THREE.Vector3();
+        if (this.data.position) {
+            // Cartesian: { x, y, z } — from levels.js
+            p.set(this.data.position.x, this.data.position.y, this.data.position.z);
+        } else if (this.data.pos) {
+            // Fractional spherical: [u, v] → theta/phi — from config.js NPCs
+            p.setFromSphericalCoords(
+                this.planetR,
+                this.data.pos[0] * Math.PI,
+                this.data.pos[1] * Math.PI * 2
+            );
+        }
         grp.position.copy(p);
         grp.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), p.clone().normalize());
 

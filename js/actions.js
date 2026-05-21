@@ -1,11 +1,18 @@
 import { actions as actionDefs } from './config.js';
-import { quests } from './config.js';
+
+const actionQuestMap = {
+    'listen': 'RUMOR',
+    'interrogate': 'WITNESS',
+    'examine': 'EVIDENCE',
+    'reflect': 'PARABLE'
+};
 
 export class ActionManager {
-    constructor(iconMgr) {
+     constructor(iconMgr, getQuests) {   // getQuests() → current live quests array
         this.actions = [...actionDefs];
         this.pendingFloatingIcon = null;
         this.iconMgr = iconMgr;
+        this._getQuests = getQuests;
     }
 
     getActions() {
@@ -19,16 +26,13 @@ export class ActionManager {
 
         let questCompleted = false;
 
-        if (activeNpc && activeNpc.data.questId !== undefined) {
-            const quest = quests[activeNpc.data.questId];
-            const actionQuestMap = {
-                'scan': 'RECON',
-                'repair': 'CELLS',
-                'hack': 'SHARDS',
-                'heal': 'VISIT'
-            };
+        // 1. Look inside the level's active quests instead of the configuration file
+        const activeQuests = this._getQuests ? this._getQuests() : [];
+        if (activeNpc && activeNpc.data && activeNpc.data.questId !== undefined) {
+            const targetQuestType = actionQuestMap[action.type];
+            const quest = activeQuests.find(q => q.id === targetQuestType);
 
-            if (actionQuestMap[action.type] === quest.id) {
+            if (quest) {
                 quest.cur = quest.tar;
                 quest.completed = true;
                 questCompleted = true;
@@ -36,24 +40,22 @@ export class ActionManager {
             }
         }
 
-     if (!questCompleted) {
-         this.performActionLogic(action);
-     }
+        if (!questCompleted) {
+            this.performActionLogic(action);
+        }
 
-     // Decrement uses before UI update so the display is accurate
-     if (action.uses !== undefined && action.uses > 0) {
-         action.uses--;
-         if (action.uses === 0) {
-             const index = this.actions.indexOf(action);
-             if (index > -1) {
-                 this.actions.splice(index, 1);
-             }
-         }
-     }
+        if (action.uses !== undefined && action.uses > 0) {
+            action.uses--;
+            if (action.uses === 0) {
+                const index = this.actions.indexOf(action);
+                if (index > -1) this.actions.splice(index, 1);
+            }
+        }
 
-     updateUI();
+        if (updateUI) updateUI();
 
-     return questCompleted;
+
+        return questCompleted;
     }
 
     performActionLogic(action) {
@@ -131,6 +133,6 @@ export class ActionManager {
             this.pendingFloatingIcon = null;
         }
     }
-        
+
 }
 

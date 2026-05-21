@@ -131,7 +131,7 @@
             background: var(--bg);
             border: 1px solid var(--border);
             border-radius: 12px;
-            display: none; 
+            display: none;
             flex-direction: row;
             z-index: 1000;
             overflow: hidden;
@@ -173,8 +173,8 @@
         }
 
 
-     
- 
+
+
 
         #bub-scroll {
             flex: 1;
@@ -214,8 +214,15 @@
         }
 
         @keyframes mIn {
-            from { opacity: 0; transform: translateY(8px); }
-            to { opacity: 1; transform: none; }
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+
+            to {
+                opacity: 1;
+                transform: none;
+            }
         }
 
         .msg.npc {
@@ -278,12 +285,27 @@
             animation: blink 1.4s infinite both;
         }
 
-        .dot:nth-child(2) { animation-delay: .2s; }
-        .dot:nth-child(3) { animation-delay: .4s; }
+        .dot:nth-child(2) {
+            animation-delay: .2s;
+        }
+
+        .dot:nth-child(3) {
+            animation-delay: .4s;
+        }
 
         @keyframes blink {
-            0%, 80%, 100% { opacity: .2; transform: scale(0.8); }
-            40% { opacity: 1; transform: scale(1.15); }
+
+            0%,
+            80%,
+            100% {
+                opacity: .2;
+                transform: scale(0.8);
+            }
+
+            40% {
+                opacity: 1;
+                transform: scale(1.15);
+            }
         }
 
         .typing-lbl {
@@ -374,9 +396,17 @@
         }
 
         @keyframes wipe-in {
-            0% { transform: translateX(-100%); }
-            50% { transform: translateX(0); }
-            100% { transform: translateX(100%); }
+            0% {
+                transform: translateX(-100%);
+            }
+
+            50% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(100%);
+            }
         }
 
         .interact-prompt {
@@ -397,7 +427,7 @@
 
 <body>
     <div id="start-screen" class="overlay">
-        <h1>MESSENGER</h1>
+        <h1>Miracle Maker</h1>
         <p>INITIALIZING DATA MATRIX RELAY NETWORK</p>
         <button id="btn-start">ESTABLISH SECURE LINK</button>
     </div>
@@ -442,7 +472,7 @@
                     <div class="chr" id="npc-name-display">UNIT−01 ECHO</div>
                     <div class="st">● ONLINE </div>
                 </div>
-           
+
             </div>
             <div id="bub-scroll"></div>
             <div id="bar-choices" class="hide"></div>
@@ -691,7 +721,7 @@
             });
         }
 
-  
+
 
         // --- NAVIGATION ROUTER PIPELINES ---
         function revealNode(nodeId) {
@@ -736,7 +766,7 @@
             showChoices(null);
             addMsg('player', choice.text);
 
-           
+
             if (choice.isReset) {
                 document.getElementById('local-dialogue-box').style.display = 'none';
                 bubScroll.innerHTML = '';
@@ -765,12 +795,12 @@
             isDialogueOpen = true;
 
             curNode = "Start";
-           
+
 
             document.getElementById('npc-name-display').innerText = npc.data.name;
             document.getElementById('local-dialogue-box').style.display = 'flex';
             bubScroll.innerHTML = '';
-            
+
             addMsg('system', 'ECHO SECURITY NODE ACCESS HANDSHAKE CONFIRMED.');
             revealNode('Start');
         }
@@ -792,11 +822,11 @@
             setTimeout(() => {
                 document.getElementById('start-screen').style.display = 'none';
                 started = true;
-                
+
                 camera.aspect = window.innerWidth / window.innerHeight;
                 camera.updateProjectionMatrix();
                 renderer.setSize(window.innerWidth, window.innerHeight);
-                
+
                 updateUI();
             }, 500);
         };
@@ -807,12 +837,12 @@
 
         // --- CORE PROCESS PHYSICS RUNNER LOOP ---
         function loop() {
-            requestAnimationFrame(loop); 
+            requestAnimationFrame(loop);
             if (!started) return;
-            
+
             world.step(1 / 60);
             const pPos = new THREE.Vector3().copy(pBody.position);
-            
+
             const up = pPos.clone().normalize();
             if (up.lengthSq() === 0) up.set(0, 1, 0);
 
@@ -846,7 +876,7 @@
                 if (keys['KeyA'] || keys['ArrowLeft']) moveDir.add(camRgt);
                 if (keys['KeyD'] || keys['ArrowRight']) moveDir.sub(camRgt);
                 if (moveDir.length() > 0) {
-                    moveDir.normalize(); 
+                    moveDir.normalize();
                     camHeading.lerp(moveDir, 0.1).normalize();
                     pBody.velocity.set(moveDir.x * 18, moveDir.y * 18, moveDir.z * 18);
                 }
@@ -856,7 +886,7 @@
 
             playerMesh.position.copy(pPos);
             playerMesh.up.copy(up);
-            
+
             let lookTarget = pPos.clone().add(camHeading.projectOnPlane(up).normalize());
             if (!isNaN(lookTarget.x) && !isNaN(lookTarget.y) && !isNaN(lookTarget.z)) {
                 playerMesh.lookAt(lookTarget);
@@ -864,16 +894,16 @@
 
             camera.up.copy(up);
             const targetCamPos = pPos.clone().add(camHeading.clone().multiplyScalar(-30)).add(up.clone().multiplyScalar(16));
-            
+
             if (!isNaN(targetCamPos.x)) {
                 camera.position.lerp(targetCamPos, 0.05);
             }
-            
+
             let camLookTarget = pPos.clone().add(camHeading.clone().multiplyScalar(5));
             if (!isNaN(camLookTarget.x)) {
                 camera.lookAt(camLookTarget);
             }
-            
+
             renderer.render(scene, camera);
         }
         loop();

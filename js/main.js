@@ -22,9 +22,10 @@ import { CameraController } from './CameraController.js';
 import { VFXSystem } from './vfx.js';
 import { ToonShader } from './ToonShader.js';
 import { DayNight } from './DayNight.js';
-import { npcs, quests, locations, ICON_SYSTEM, MODEL_SYSTEM, DIALOGUE } from './config.js';
 import { IconManager } from './IconManager.js';
 import { ModelManager } from './ModelManager.js';
+import { LevelManager } from './LevelManager.js';
+import { locations } from './config.js';
 
 // Global state
 let started = false;
@@ -59,16 +60,16 @@ let dayNight = null;
 let inventory = [];
 
 // DOM elements
-const elStartScreen       = document.getElementById('start-screen');
-const elWinScreen         = document.getElementById('win-screen');
-const elWorldPrompt       = document.getElementById('world-prompt');
-const elLocalDialogueBox  = document.getElementById('local-dialogue-box');
-const elBubbleContainer   = document.getElementById('bubble-text-container'); // NEW: chat history
-const elBubbleChoices     = document.getElementById('bubble-choices');
-const elNpcNameDisplay    = document.getElementById('npc-name-display');
-const elNpcBubble         = document.getElementById('npc-bubble');
-const elLocName           = document.getElementById('loc-name');
-const elLocBox            = document.getElementById('loc-box');
+const elStartScreen = document.getElementById('start-screen');
+const elWinScreen = document.getElementById('win-screen');
+const elWorldPrompt = document.getElementById('world-prompt');
+const elLocalDialogueBox = document.getElementById('local-dialogue-box');
+const elBubbleContainer = document.getElementById('bub-scroll'); // matches index.html #bub-scroll
+const elBubbleChoices = document.getElementById('bar-choices');  // matches index.html #bar-choices
+const elNpcNameDisplay = document.getElementById('npc-name-display');
+const elNpcBubble = document.getElementById('npc-bubble');
+const elLocName = document.getElementById('loc-name');
+const elLocBox = document.getElementById('loc-box');
 
 console.log('[init] DOM elements loaded:', {
     elBubbleContainer: !!elBubbleContainer,
@@ -77,19 +78,34 @@ console.log('[init] DOM elements loaded:', {
     elWorldPrompt: !!elWorldPrompt
 });
 
-const panelQuest   = document.getElementById('panel-quest');
-const panelInv     = document.getElementById('panel-inv');
+const panelQuest = document.getElementById('panel-quest');
+const panelInv = document.getElementById('panel-inv');
 const panelActions = document.getElementById('panel-actions');
-const btnQuest     = document.getElementById('btn-quest-toggle');
-const btnInv       = document.getElementById('btn-inv-toggle');
-const btnActions   = document.getElementById('btn-actions-toggle');
-const btnSound     = document.getElementById('btn-sound-toggle');
+const btnQuest = document.getElementById('btn-quest-toggle');
+const btnInv = document.getElementById('btn-inv-toggle');
+const btnActions = document.getElementById('btn-actions-toggle');
+const btnSound = document.getElementById('btn-sound-toggle');
 const btnCycleToggle = document.getElementById('btn-cycle-toggle');
-const btnStart     = document.getElementById('btn-start');
-const btnReplay    = document.getElementById('btn-replay');
-const elQuestList  = document.getElementById('quest-list');
-const elInvList    = document.getElementById('inv-list');
+const btnStart = document.getElementById('btn-start');
+const btnReplay = document.getElementById('btn-replay');
+const elQuestList = document.getElementById('quest-list');
+const elInvList = document.getElementById('inv-list');
 const elActionsList = document.getElementById('actions-list');
+
+// LEVEL MANAGEMENT
+const levelManager = new LevelManager({
+    get worldMgr() { return worldMgr; },
+    get player() { return player; },
+    get npcSystem() { return npcSystem; },
+    get world() { return worldMgr ? worldMgr.world : null; },
+    get scene() { return sceneMgr ? sceneMgr.scene : null; },
+    get camera() { return sceneMgr ? sceneMgr.camera : null; },
+    get modelMgr() { return modelMgr; },
+    get toonShader() { return toonShader; },
+    get planetR() { return worldMgr ? worldMgr.planetR : 50; },
+    get updateActiveLevelData() { return updateActiveLevelData; },
+    get updateUI() { return updateUI; }
+});
 
 // Audio Context for jump beep
 const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -201,30 +217,6 @@ const FILLER_LINES = [
     "Redirecting signal packets..."
 ];
 
-function showFillerMessages(count = 3) {
-    for (let i = 0; i < count; i++) {
-        const originalDelay = (i + 1) * DIALOGUE.fillerDelay;
-        const typingStartDelay = Math.max(0, originalDelay - DIALOGUE.typingDelay);
-
-        setTimeout(() => {
-            // Show typing indicator
-            const typingBubble = document.createElement('div');
-            typingBubble.className = 'msg-bubble npc-msg typing-indicator';
-            typingBubble.innerText = '...';
-            typingBubble.style.fontStyle = 'italic';
-            typingBubble.style.opacity = '0.6';
-            elBubbleContainer.appendChild(typingBubble);
-            requestAnimationFrame(() => elBubbleContainer.scrollTop = elBubbleContainer.scrollHeight);
-
-            // After typingDelay, replace with actual filler message
-            setTimeout(() => {
-                elBubbleContainer.removeChild(typingBubble);
-                appendMessage(FILLER_LINES[i % FILLER_LINES.length], 'npc');
-            }, DIALOGUE.typingDelay);
-        }, typingStartDelay);
-    }
-}
-
 // UI update
 function updateUI() {
     // Inventory list
@@ -268,7 +260,7 @@ function updateUI() {
         }).join('') : "NO_ACTIONS";
 
     // Quest list
-    elQuestList.innerHTML = quests.map(q => {
+    elQuestList.innerHTML = activeQuests.map(q => {
         const isComplete = q.cur >= q.tar;
         const iconType = isComplete ? 'checkFull' : 'checkEmpty';
         const iconEl = iconMgr.createIconElement(iconType, { size: '1.8em' });
@@ -284,7 +276,7 @@ function updateUI() {
         return div.outerHTML;
     }).join('');
 
-    quests.forEach(q => {
+    activeQuests.forEach(q => {
         if (!q.completed && q.cur >= q.tar) {
             q.completed = true;
             audio.playQuestComplete();
@@ -294,13 +286,23 @@ function updateUI() {
     checkWinCondition();
 }
 
+// Mutable quests & NPCs arrays (set by LevelManager)
+export let activeQuests = [];
+export let activeNpcs = [];
+
+export function updateActiveLevelData(newQuests, newNpcs) {
+    activeQuests = newQuests;
+    activeNpcs = newNpcs;
+}
+
 // Win condition check
 function checkWinCondition() {
-    if (hasWon) return;
-    const allDone = quests.every(q => q.cur >= q.tar);
-    if (allDone) {
-        hasWon = true;
-        setTimeout(triggerWinSequence, 1500);
+    // Verify if all current milestones/quests for this loop level are completed
+    const levelComplete = activeQuests.every(q => q.cur >= q.tar);
+
+    if (levelComplete) {
+        console.log("Stage objectives achieved! Advancing loop...");
+        levelManager.nextLevel(); // Automatically fades, clears, and sets up the next loop!
     }
 }
 
@@ -323,7 +325,47 @@ function triggerWinSequence() {
     }, 500);
 }
 
+// ── Dialogue timing constants ────────────────────────────────────────────
+
+/** Millisecond timings used by showFillerMessages and continueStory. */
+const DIALOGUE = Object.freeze({
+    messageDelay:  200,   // base delay before main NPC message appears after typing indicator
+    fillerDelay:   350,   // gap between each filler "ambient" line
+    typingDelay:   700,   // how long the "..." indicator shows before filler replaces it
+});
+
+// ── WhatsApp-style Ink dialogue helpers ────────────────────────────────────
+
+/**
+ * Ambient filler messages shown while the NPC "types" its next response.
+ * Gives the impression of a live, busy connection.
+ */
+function showFillerMessages(count = 3) {
+    for (let i = 0; i < count; i++) {
+        const originalDelay = (i + 1) * DIALOGUE.fillerDelay;
+        const typingStartDelay = Math.max(0, originalDelay - DIALOGUE.typingDelay);
+
+        setTimeout(() => {
+            // Show typing indicator
+            const typingBubble = document.createElement('div');
+            typingBubble.className = 'msg-bubble npc-msg typing-indicator';
+            typingBubble.innerText = '...';
+            typingBubble.style.fontStyle = 'italic';
+            typingBubble.style.opacity = '0.6';
+            elBubbleContainer.appendChild(typingBubble);
+            requestAnimationFrame(() => elBubbleContainer.scrollTop = elBubbleContainer.scrollHeight);
+
+            // After DIALOGUE.typingDelay, replace with actual filler line
+            setTimeout(() => {
+                elBubbleContainer.removeChild(typingBubble);
+                appendMessage(FILLER_LINES[i % FILLER_LINES.length], 'npc');
+            }, DIALOGUE.typingDelay);
+        }, typingStartDelay);
+    }
+}
+
 // ── WhatsApp-style Ink dialogue continuation ────────────────────────────────
+
 /**
  * Reads the next Ink passage and appends it as an NPC bubble,
  * then renders choice buttons as pill-shaped elements.
@@ -371,11 +413,10 @@ function continueStory() {
             showFillerMessages(3);
         }, DIALOGUE.messageDelay);
 
-        // Render choices after: messageDelay + (fillerCount * fillerDelay) + buffer
+        // Render choice buttons after main message + filler complete
         const renderDelay = DIALOGUE.messageDelay + (3 * DIALOGUE.fillerDelay) + 100;
         setTimeout(() => {
             elBubbleChoices.innerHTML = "";
-
             dialogueMgr.inkStory.currentChoices.forEach(c => {
                 const b = document.createElement('button');
                 b.className = "choice-btn";
@@ -383,7 +424,6 @@ function continueStory() {
                 b.onclick = () => {
                     appendMessage(c.text, 'player');
                     dialogueMgr.inkStory.ChooseChoiceIndex(c.index);
-                    // Small delay before NPC responds, feels more natural
                     setTimeout(continueStory, 400);
                 };
                 elBubbleChoices.appendChild(b);
@@ -395,7 +435,7 @@ function continueStory() {
                 b.className = "choice-btn";
                 b.innerText = "[CLOSE CONNECTION]";
                 b.onclick = () => {
-                    elBubbleContainer.innerHTML = "";
+                    elBubbleContainer.innerHTML = '';
                     elLocalDialogueBox.style.display = 'none';
                     isDialogueOpen = false;
                     player.wakeUp();
@@ -444,7 +484,7 @@ function startDialogue() {
 
     if (activeNpc.data.questId !== undefined && !visitedNpcs.has(activeNpc.data.id)) {
         visitedNpcs.add(activeNpc.data.id);
-        quests[activeNpc.data.questId].cur = 1;
+        activeQuests[activeNpc.data.questId].cur = 1;
         updateUI();
     }
 
@@ -510,8 +550,8 @@ function startDialogue() {
 
         // Set NPC name
         if (activeNpc.data.questId !== undefined) {
-            const q = quests[activeNpc.data.questId];
-            const status = q.cur >= q.tar ? '✓ COMPLETED' : `QUEST [${q.cur}/${q.tar}]`;
+            const _q = activeQuests[activeNpc.data.questId];
+            const status = _q ? (_q.cur >= _q.tar ? '✓ COMPLETED' : `QUEST [${_q.cur}/${_q.tar}]`) : 'IN PROGRESS';
             elNpcNameDisplay.innerHTML = `${activeNpc.data.name} <span style="color:var(--accent-success);font-size:0.7em">- ${status}</span>`;
         } else {
             elNpcNameDisplay.innerText = activeNpc.data.name;
@@ -649,8 +689,8 @@ async function init() {
     await iconMgr.init();
 
     player = new Player(worldMgr.world, sceneMgr.scene, modelMgr, toonShader);
-    npcSystem = new NPCSystem(npcs, worldMgr.planetR, sceneMgr.scene, modelMgr, toonShader);
-    actionMgr = new ActionManager(iconMgr);
+    npcSystem = new NPCSystem(activeNpcs, worldMgr.planetR, sceneMgr.scene, modelMgr, toonShader);
+    actionMgr = new ActionManager(iconMgr, () => activeQuests);
     dialogueMgr = new DialogueManager();
     audio = new AudioManager();
     cameraCtrl = new CameraController(sceneMgr.camera);
@@ -684,6 +724,9 @@ async function init() {
         vfx.emitLandingDecal(e.detail.position, e.detail.up);
     });
 
+    // Load Level 1 quests and NPCs so updateUI / gameLoop have data immediately
+    levelManager.loadLevel(levelManager.getCurrentLevel());
+
     gameLoop();
 }
 
@@ -704,17 +747,70 @@ function setupInputs() {
     const raycaster = new THREE.Raycaster();
     const mouse = new THREE.Vector2();
 
+    // Mouse-drag orbit camera (left-click and drag to look around)
+    let isDragging = false;
+    let lastMouseX = 0;
+    let lastMouseY = 0;
+
     window.addEventListener('mousedown', e => {
         if (!started || isDialogueOpen) return;
         if (e.target.closest('.ui-toggle') || e.target.closest('.panel') ||
             e.target.closest('.overlay') || e.target.closest('#wipe-overlay')) return;
 
-        mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
-        mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
-        raycaster.setFromCamera(mouse, sceneMgr.camera);
-        const hits = raycaster.intersectObject(worldMgr.planet);
-        if (hits.length) mouseTarget = hits[0].point;
+        lastMouseX = e.clientX;
+        lastMouseY = e.clientY;
+
+        if (e.button === 0) {
+            // Left button: begin drag-rotation of camera angle
+            isDragging = true;
+        } else {
+            // Right button: set movement click-target
+            mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
+            mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
+            raycaster.setFromCamera(mouse, sceneMgr.camera);
+            const hits = raycaster.intersectObject(worldMgr.planet);
+            if (hits.length) mouseTarget = hits[0].point;
+        }
     });
+
+    window.addEventListener('mousemove', e => {
+        if (!isDragging) return;
+
+        const dx = e.clientX - lastMouseX;
+        const dy = e.clientY - lastMouseY;
+        lastMouseX = e.clientX;
+        lastMouseY = e.clientY;
+
+        const pPos = player.getPosition();
+        const up = pPos.clone().normalize();
+
+        // Horizontal drag → yaw (rotate around planet up axis)
+        const yawRate = -dx * 0.007;
+        const qYaw = new THREE.Quaternion();
+        qYaw.setFromAxisAngle(up, yawRate);
+        player.camHeading.applyQuaternion(qYaw);
+
+        // Vertical drag → pitch (rotated right-vector)
+        const viewRight = new THREE.Vector3().crossVectors(up, player.camHeading).normalize();
+        const pitchRate = -dy * 0.007;
+        player.camHeading.applyAxisAngle(viewRight, pitchRate);
+
+        // Clamp vertical to avoid going over the poles
+        const projected = player.camHeading.clone().projectOnPlane(up);
+        if (projected.lengthSq() > 0.0001) {
+            player.camHeading.copy(projected.normalize());
+        }
+    });
+
+    window.addEventListener('mouseup', e => {
+        if (e.button === 0) isDragging = false;
+    });
+
+    window.addEventListener('mouseleave', () => {
+        isDragging = false;
+    });
+
+    window.addEventListener('contextmenu', e => e.preventDefault()); // Suppress right-click context menu
 
     window.addEventListener('resize', () => {
         sceneMgr.handleResize();
@@ -853,7 +949,7 @@ function gameLoop() {
     if (activeNpc && !isDialogueOpen && activeNpc.data.hasDialogue) {
         elWorldPrompt.style.display = 'block';
         elWorldPrompt.innerText = `CONNECT_TO_${activeNpc.data.name}`;
-        if (activeNpc.data.questId !== undefined && quests[activeNpc.data.questId].cur < quests[activeNpc.data.questId].tar) {
+        if (activeNpc.data.questId !== undefined && activeQuests[activeNpc.data.questId].cur < activeQuests[activeNpc.data.questId].tar) {
             elWorldPrompt.innerHTML = `CONNECT_TO_${activeNpc.data.name} <span style="color:var(--accent-success)"> [QUEST]</span>`;
         }
 
@@ -904,8 +1000,9 @@ function gameLoop() {
             }
         }
 
-        if (curLoc.questId !== undefined && quests[curLoc.questId].cur < quests[curLoc.questId].tar) {
-            quests[curLoc.questId].cur = 1;
+        const qEntry = activeQuests[curLoc.questId];
+        if (curLoc.questId !== undefined && qEntry && qEntry.cur < qEntry.tar) {
+            qEntry.cur = 1;
             updateUI();
         }
     } else {
@@ -917,13 +1014,13 @@ function gameLoop() {
     // Pickup collection
     worldMgr.updatePickupCollection(pPos, (itemName) => {
         inventory.push(itemName);
-        if (itemName.startsWith('CELL') && quests[1].cur < quests[1].tar) {
-            quests[1].cur++;
-            if (quests[1].cur === quests[1].tar) audio.playQuestComplete();
+        if (itemName.startsWith('CELL') && activeQuests[1]?.cur < (activeQuests[1]?.tar ?? 0)) {
+            activeQuests[1].cur++;
+            if (activeQuests[1].cur === activeQuests[1].tar) audio.playQuestComplete();
         }
-        if (itemName.startsWith('SHARD') && quests[2].cur < quests[2].tar) {
-            quests[2].cur++;
-            if (quests[2].cur === quests[2].tar) audio.playQuestComplete();
+        if (itemName.startsWith('SHARD') && activeQuests[2]?.cur < (activeQuests[2]?.tar ?? 0)) {
+           activeQuests[2].cur++;
+            if (activeQuests[2].cur === activeQuests[2].tar) audio.playQuestComplete();
         }
         audio.playPickup();
         updateUI();
@@ -936,7 +1033,7 @@ function gameLoop() {
         elNpcBubble.style.left = (sPos.x * 0.5 + 0.5) * window.innerWidth + 'px';
         elNpcBubble.style.top = (sPos.y * -0.5 + 0.5) * window.innerHeight + 'px';
         let txt = nonDialogueNpc.data.bubbleMsg || nonDialogueNpc.data.name.replace('_', ' ');
-        if (nonDialogueNpc.data.questId !== undefined && quests[nonDialogueNpc.data.questId].completed) {
+        if (nonDialogueNpc.data.questId !== undefined && activeQuests[nonDialogueNpc.data.questId].completed) {
             txt = nonDialogueNpc.data.bubbleMsgComplete || txt;
         }
         elNpcBubble.innerHTML = `<b>${txt}</b>`;
@@ -978,6 +1075,7 @@ function gameLoop() {
 
     sceneMgr.render();
 }
+
 
 // Start
 window.addEventListener('load', () => {

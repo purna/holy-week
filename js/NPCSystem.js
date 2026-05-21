@@ -21,6 +21,29 @@ export class NPCSystem {
         });
     }
 
+    /** Remove every NPC mesh from the scene and clear the array */
+    removeAllNPCs() {
+        for (const npc of this.npcMeshes) {
+            if (npc.mesh) {
+                this.scene.remove(npc.mesh);
+                npc.mesh.traverse(child => {
+                    if (child.geometry) child.geometry.dispose();
+                    if (child.material) {
+                        if (Array.isArray(child.material)) child.material.forEach(m => m.dispose());
+                        else child.material.dispose();
+                    }
+                });
+            }
+        }
+        this.npcMeshes = [];
+    }
+
+    /** Rebuild all NPC meshes from the current npcsData array (called on level load) */
+    rebuildFromData() {
+        this.removeAllNPCs();
+        this.createAllNPCs();
+    }
+
     findNearestNPC(playerPosition) {
         let nearest = null;
         let nearestDist = Infinity;

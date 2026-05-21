@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,32 +29,33 @@
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
     <link rel="manifest" href="site.webmanifest" />
 
-     <!-- Conditionally load FontAwesome if using FA icon system -->
-     <script type="module">
-         import { ICON_SYSTEM } from './js/config.js';
-         if (ICON_SYSTEM === 'fontawesome') {
-             const link = document.createElement('link');
-             link.rel = 'stylesheet';
-             link.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css';
-             document.head.appendChild(link);
-             console.log('FontAwesome icons enabled');
-         } else {
-             console.log('SVG icons enabled');
-         }
-     </script>
+    <!-- Conditionally load FontAwesome if using FA icon system -->
+    <script type="module">
+        import { ICON_SYSTEM } from './js/config.js';
+        if (ICON_SYSTEM === 'fontawesome') {
+            const link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css';
+            document.head.appendChild(link);
+            console.log('FontAwesome icons enabled');
+        } else {
+            console.log('SVG icons enabled');
+        }
+    </script>
 </head>
+
 <body>
     <!-- Loading Screen -->
     <div id="loading-screen" class="overlay">
         <div class="spinner"></div>
-        <p>INITIALIZING PLANETARY DATA...</p>
+        <p>INITIALIZING HISTORICAL DATA...</p>
     </div>
 
     <!-- Start Screen -->
     <div id="start-screen" class="overlay" style="display:none;">
-        <h1>MESSENGER</h1>
-        <p>DELIVER THE SIGNAL</p>
-        <button id="btn-start">SYNC INTERFACE</button>
+        <h1>Miracle Maker</h1>
+        <p>WHO WAS HE?</p>
+        <button id="btn-start">START</button>
     </div>
 
     <!-- Win / Mission Complete Screen -->
@@ -71,7 +73,8 @@
         <div id="sidebar-top">
             <div class="sidebar-row">
                 <div id="panel-quest" class="panel">
-                    <h3>MISSION</h3><div id="quest-list"></div>
+                    <h3>MISSION</h3>
+                    <div id="quest-list"></div>
                 </div>
                 <button id="btn-quest-toggle" class="ui-toggle" title="Toggle Quest Log">
                     <i class="fas fa-list-check"></i>
@@ -83,7 +86,8 @@
         <div id="sidebar-bottom">
             <div class="sidebar-row" id="inv-anchor">
                 <div id="panel-inv" class="panel">
-                    <h3>STORAGE</h3><div id="inv-list">0_CELLS</div>
+                    <h3>STORAGE</h3>
+                    <div id="inv-list">0_CELLS</div>
                 </div>
                 <button id="btn-inv-toggle" class="ui-toggle" title="Toggle Inventory">
                     <i class="fas fa-boxes-stacked"></i>
@@ -92,7 +96,8 @@
 
             <div class="sidebar-row" id="actions-anchor">
                 <div id="panel-actions" class="panel">
-                    <h3>ACTIONS</h3><div id="actions-list"></div>
+                    <h3>ACTIONS</h3>
+                    <div id="actions-list"></div>
                 </div>
                 <button id="btn-actions-toggle" class="ui-toggle" title="Toggle Actions">
                     <i class="fas fa-list"></i>
@@ -125,11 +130,18 @@
     <!-- Simple bubble for non-dialogue NPCs -->
     <div id="npc-bubble" class="npc-bubble"></div>
 
-   <!-- Dialogue box with name tag and text container -->
+    <!-- Dialogue box — WhatsApp-style chat panel (vn.html pattern) -->
     <div id="local-dialogue-box">
-        <div id="npc-name-display" class="npc-name-tag">NAME_ID</div>
-        <div id="bubble-text-container"></div>
-        <div id="bubble-choices" class="choice-container"></div>
+        <div id="chat-panel">
+            <div class="chat-hdr">
+                <div>
+                    <div class="chr" id="npc-name-display">NAME_ID</div>
+                    <div class="st">● ONLINE</div>
+                </div>
+            </div>
+            <div id="bub-scroll"></div>
+            <div id="bar-choices" class="hide"></div>
+        </div>
     </div>
 
     <!-- Wipe transition overlay -->
@@ -151,6 +163,7 @@
     </script>
 
     <!-- Main Application Module -->
-    <script type="module" src="js/main.js"></script>
+    <script type="module" src="js/main.js?v=20260521b"></script>
 </body>
+
 </html>

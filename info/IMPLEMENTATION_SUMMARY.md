@@ -1,7 +1,7 @@
 # IMPLEMENTATION SUMMARY: Miracle Maker 3DV2 Modular Refactor
 
 ## Overview
-Successfully refactored the 3D Globe Starter project to incorporate the modular architecture, GLTF player model, and advanced NPC/pathfinding/collider systems from `examples/messenger_final_v16.html` into the base `index.html`.
+Successfully refactored the 3D Globe Starter project to incorporate the modular architecture, GLTF player model, and advanced NPC/pathfinding/collider systems from `examples/Miracle Maker_final_v16.html` into the base `index.html`.
 
 ## Files Created
 
@@ -196,7 +196,7 @@ HTML imports verified:
 
 ## Migration Path
 
-The `messenger_final_v16.html` features have been integrated into the existing codebase:
+The `Miracle Maker_final_v16.html` features have been integrated into the existing codebase:
 - Dual UI panels → kept existing HUD system
 - NPC interaction → enhanced with NPC class
 - Pathfinding → new module

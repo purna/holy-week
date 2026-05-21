@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import * as CANNON from 'cannon';
-import { SCENE, MODEL_SYSTEM, PRIMITIVE_CONFIG, COLORS, DAY_NIGHT } from './config.js';
+import { SCENE, MODEL_SYSTEM, PRIMITIVE_CONFIG, COLORS } from './config.js';
 
 export class Player {
     constructor(world, scene, modelMgr, toonShader = null) {
@@ -221,25 +221,5 @@ export class Player {
         }
     }
 
-      updateEmissiveGlow() {
-          // Update player emissive glow based on day/night mode
-          if (this.playerMesh) {
-              this.playerMesh.traverse((child) => {
-                  if (child.isMesh && child.material) {
-                      const targetGlow = this.isNight 
-                          ? new THREE.Color(DAY_NIGHT.playerGlowNightPrimitive) 
-                          : new THREE.Color(DAY_NIGHT.playerGlowDay);
-                      if (child.material.emissive) {
-                          child.material.emissive.lerp(targetGlow, 0.02);
-                      }
-                  }
-              });
-          }
-
-          // Update torch light intensity
-          if (this.torch) {
-              const targetIntensity = this.isNight ? 600 : 0;
-              this.torch.intensity = THREE.MathUtils.lerp(this.torch.intensity, targetIntensity, 0.02);
-          }
-      }
 }
+
