@@ -64,7 +64,7 @@ We welcome contributions! Please read our [Contributing Guide](CONTRIBUTING.md) 
 
 ## Inspired by
 https://ncase.me/anxiety
-https://Miracle Maker.abeto.co
+https://messenger.abeto.co
 
 
 
