@@ -2,7 +2,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Evidence Detective Demo</title>
+  <title>Evidence Detective Investigation Demo</title>
   <style>
     * {
       box-sizing: border-box;
@@ -212,7 +212,15 @@ button:hover {
 
 <div id="questions"></div>
 
+<div class="scene">
+  <h3>Evidence Lab</h3>
+  <p>Combine and analyze clues to unlock deductions.</p>
+  <div id="labActions"></div>
+</div>
+
 <div class="status" id="statusBox">
+  <h3>Investigation Actions</h3>
+  <div id="actionArea"></div>
   <strong>Goal:</strong>
   Find evidence and discover who stole the trophy.
 </div>
@@ -236,10 +244,24 @@ button:hover {
     const state = {
       evidence: [],
       selectedTheory: null,
-      currentNPC: null
+      currentNPC: null,
+      deductions: [],
+      unlockedActions: []
     };
 
     const evidenceData = {
+      soilMatch: {
+        id: 'soilMatch',
+        title: 'Matching Soil Sample',
+        description: 'The mud on the shoes matches soil from the greenhouse.',
+        tag: 'Comparison'
+      },
+      timelineClue: {
+        id: 'timelineClue',
+        title: 'Timeline Reconstruction',
+        description: 'Alex was seen entering the hallway before the alarm sounded.',
+        tag: 'Timeline'
+      },
       muddyShoes: {
         id: 'muddyShoes',
         title: 'Muddy Shoes',
@@ -300,6 +322,36 @@ button:hover {
 
     const objects = [
       {
+        name: 'Compare Mud to Greenhouse Soil',
+        action: () => {
+          if (
+            state.evidence.includes('muddyShoes') &&
+            state.evidence.includes('greenhouseKey')
+          ) {
+            addEvidence('soilMatch');
+            addDeduction('The muddy shoes came from the greenhouse area.');
+            addChat('System', 'You compared the mud samples and found a match.');
+          } else {
+            addChat('System', 'You need more evidence before comparing samples.');
+          }
+        }
+      },
+      {
+        name: 'Reconstruct Timeline',
+        action: () => {
+          if (
+            state.evidence.includes('muddyShoes') &&
+            state.evidence.includes('trophyFingerprint')
+          ) {
+            addEvidence('timelineClue');
+            addDeduction('Alex was near the trophy room before the theft was discovered.');
+            addChat('System', 'You reconstructed the timeline using footprints and fingerprints.');
+          } else {
+            addChat('System', 'You need more clues to reconstruct the timeline.');
+          }
+        }
+      },
+      {
         name: 'Inspect Trophy Room Door',
         action: () => {
           addEvidence('muddyShoes');
@@ -357,6 +409,26 @@ button:hover {
 
       state.evidence.push(id);
       renderEvidence();
+    }
+
+    function addDeduction(text) {
+      if (state.deductions.includes(text)) return;
+
+      state.deductions.push(text);
+      renderActions();
+    }
+
+    function renderActions() {
+      const actionArea = document.getElementById('actionArea');
+
+      actionArea.innerHTML = '';
+
+      state.deductions.forEach(deduction => {
+        const div = document.createElement('div');
+        div.className = 'evidence-card';
+        div.innerHTML = `<strong>Deduction</strong><p>${deduction}</p>`;
+        actionArea.appendChild(div);
+      });
     }
 
     function renderEvidence() {
@@ -453,6 +525,51 @@ button:hover {
 
       const hasFingerprint = state.evidence.includes('trophyFingerprint');
       const hasFootprints = state.evidence.includes('muddyShoes');
+      const hasSoilMatch = state.evidence.includes('soilMatch');
+      const hasTimeline = state.evidence.includes('timelineClue');
+
+      const score = [
+        hasFingerprint,
+        hasFootprints,
+        hasSoilMatch,
+        hasTimeline
+      ].filter(Boolean).length;
+
+      if (state.selectedTheory === 'Alex' && score >= 4) {
+        result.innerHTML = `
+          <p class="success">Case Solved!</p>
+          <p>
+            You proved Alex stole the trophy using fingerprints,
+            timeline reconstruction, and soil comparison.
+          </p>
+        `;
+      } else if (score >= 2) {
+        result.innerHTML = `
+          <p class="fail">Incomplete Investigation</p>
+          <p>
+            Your theory has some evidence, but more investigation is needed.
+          </p>
+        `;
+      } else {
+        result.innerHTML = `
+          <p class="fail">Weak Theory</p>
+          <p>
+            You need stronger deductions before accusing someone.
+          </p>
+        `;
+      }
+    }
+
+    function oldSolveCase() {
+      const result = document.getElementById('result');
+
+      if (!state.selectedTheory) {
+        result.innerHTML = '<p class="fail">Choose a suspect first.</p>';
+        return;
+      }
+
+      const hasFingerprint = state.evidence.includes('trophyFingerprint');
+      const hasFootprints = state.evidence.includes('muddyShoes');
 
       if (
         state.selectedTheory === 'Alex' &&
@@ -484,4 +601,4 @@ button:hover {
 
     addChat('System', 'Welcome Detective! Start by inspecting objects and interviewing students.');
   </script></body>
-</html>v
+</html>
