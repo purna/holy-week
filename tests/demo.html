@@ -140,12 +140,18 @@ button:active { transform: scale(0.97); }
 
   </style>
 </head>
-<body><header>🔍 Evidence Detective</header><div class="tabs">
+<body><header>🌍 World Detective Agency</header><div class="tabs">
+  <div class="tab active" onclick="switchTab('map')">Map</div>
   <div class="tab active" onclick="switchTab('evidence')">Evidence</div>
   <div class="tab" onclick="switchTab('npc')">NPCs</div>
   <div class="tab" onclick="switchTab('lab')">Lab</div>
   <div class="tab" onclick="switchTab('chat')">Chat</div>
-</div><!-- Evidence --><div id="evidence" class="view active"></div><!-- NPC --><div id="npc" class="view"></div><!-- Lab --><div id="lab" class="view">
+</div><!-- Map --><div id="map" class="view active">
+  <div class="card">
+    <h3>World Cases</h3>
+    <p>Select a mystery location.</p>
+  </div>  <div id="caseList"></div>
+</div><!-- Evidence --><div id="evidence" class="view"></div><!-- NPC --><div id="npc" class="view"></div><!-- Lab --><div id="lab" class="view">
   <div class="lab">
     <h3>Investigation Lab</h3><div class="slots">
   <div class="slot" id="slotA">Tap Evidence A</div>
@@ -165,6 +171,39 @@ button:active { transform: scale(0.97); }
 </div><!-- Chat --><div id="chat" class="view">
   <div class="chat" id="chatBox"></div>
 </div><script>
+const cases = [
+{
+  id:'school',
+  title:'The Missing Science Trophy',
+  location:'London School',
+  intro:'Someone stole the school science trophy.',
+  evidence:[
+    { id:'mud', name:'Muddy Shoes', desc:'Mud stuck to shoes' },
+    { id:'finger', name:'Fingerprint', desc:'Matches Alex' },
+    { id:'key', name:'Greenhouse Key', desc:'Hidden behind locker' }
+  ],
+  npcs:[
+    {name:'Alex',dialogue:'I was at football practice.'},
+    {name:'Mia',dialogue:'I saw muddy footprints.'}
+  ]
+},
+{
+  id:'museum',
+  title:'The Museum Diamond Mystery',
+  location:'Paris Museum',
+  intro:'A rare diamond vanished overnight.',
+  evidence:[
+    { id:'glass', name:'Broken Glass', desc:'Window shattered from outside' },
+    { id:'ticket', name:'Train Ticket', desc:'Leads to Rome' },
+    { id:'camera', name:'Security Photo', desc:'Shows a masked figure' }
+  ],
+  npcs:[
+    {name:'Curator',dialogue:'The alarm never triggered.'},
+    {name:'Guard',dialogue:'I heard glass breaking.'}
+  ]
+}
+];
+
 const state = {
   evidence: [],
   selectedA: null,
@@ -172,11 +211,46 @@ const state = {
   deductions: []
 };
 
-const evidenceData = [
-  { id: "mud", name: "Muddy Shoes", desc: "Soil stuck to shoes" },
-  { id: "finger", name: "Fingerprint", desc: "Matches Alex" },
-  { id: "key", name: "Greenhouse Key", desc: "Hidden behind locker" }
-];
+let currentCase = cases[0];
+
+let evidenceData = currentCase.evidence;
+
+function renderCases() {
+  const el = document.getElementById('caseList');
+  el.innerHTML='';
+
+  cases.forEach(c=>{
+    const div=document.createElement('div');
+    div.className='card';
+    div.innerHTML=`<h3>${c.title}</h3><p>${c.location}</p><p>${c.intro}</p>`;
+
+    div.onclick=()=>loadCase(c);
+
+    el.appendChild(div);
+  });
+}
+
+function loadCase(c) {
+  currentCase = c;
+  evidenceData = c.evidence;
+
+  state.evidence=[];
+  state.selectedA=null;
+  state.selectedB=null;
+
+  updateSlots();
+  renderCases();
+renderEvidence();
+renderNPCs();
+
+  switchTab('evidence');
+
+  showResult(`Loaded case: ${c.title}`);
+
+  const chatBox=document.getElementById('chatBox');
+  chatBox.innerHTML='';
+  chatBox.innerHTML += `<div class='msg npc'><b>Agency:</b> ${c.intro}</div>`;
+}
 
 function renderEvidence() {
   const el = document.getElementById("evidence");
@@ -202,11 +276,18 @@ function renderEvidence() {
 }
 
 function renderNPCs() {
-  const el = document.getElementById("npc");
-  el.innerHTML = `
-    <div class='card npc-card' onclick="talk('Alex','I was at practice')"><b>Alex</b></div>
-    <div class='card npc-card' onclick="talk('Mia','I saw someone suspicious')"><b>Mia</b></div>
-  `;
+  const el = document.getElementById('npc');
+  el.innerHTML='';
+
+  currentCase.npcs.forEach(n=>{
+    const div=document.createElement('div');
+    div.className='card npc-card';
+    div.innerHTML=`<b>${n.name}</b><p>Tap to question</p>`;
+
+    div.onclick=()=>talk(n.name,n.dialogue);
+
+    el.appendChild(div);
+  });
 }
 
 function talk(name, msg) {
@@ -229,7 +310,9 @@ function updateSlots() {
 
 function compare() {
   if (state.selectedA && state.selectedB) {
-    showResult(`Comparison shows relationship between ${state.selectedA.name} and ${state.selectedB.name}.`);
+    const result = `Comparison shows a relationship between ${state.selectedA.name} and ${state.selectedB.name}.`;
+    showResult(result);
+    addDeduction(result);
   }
 }
 
@@ -245,6 +328,15 @@ function timeline() {
 
 function contradict() {
   showResult("Contradiction found in suspect statement.");
+}
+
+function addDeduction(text) {
+  if (!state.deductions.includes(text)) {
+    state.deductions.push(text);
+
+    const chat=document.getElementById('chatBox');
+    chat.innerHTML += `<div class='msg player'><b>Deduction:</b> ${text}</div>`;
+  }
 }
 
 function showResult(text) {
