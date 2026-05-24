@@ -2,603 +2,264 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Evidence Detective Investigation Demo</title>
+  <title>Evidence Detective App</title>
   <style>
-    * {
-      box-sizing: border-box;
-    }body {
+    * { box-sizing: border-box; }body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: #1e1f26;
+  background: #0f1117;
   color: #f5f5f5;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  height: 100vh;
+  overflow: hidden;
 }
 
-.panel {
-  overflow-y: auto;
-  padding: 16px;
-  border-bottom: 1px solid #444;
-}
-
-.panel:last-child {
-  border-left: none;
-  border-bottom: none;
-}
-
-h2 {
-  margin-top: 0;
-  font-size: 20px;
-}
-
-.npc,
-.object,
-.evidence-card,
-.question-btn,
-.theory-option {
-  background: #2c2f3a;
-  border: 1px solid #555;
-  padding: 10px;
-  margin-bottom: 10px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-.npc:hover,
-.object:hover,
-.question-btn:hover,
-.theory-option:hover {
-  background: #3b3f4c;
-}
-
-.chat-box {
-  background: #111318;
-  border: 1px solid #444;
-  border-radius: 10px;
+header {
   padding: 12px;
-  min-height: 220px;
-  margin-bottom: 12px;
-  overflow-y: auto;
+  background: #151826;
+  border-bottom: 1px solid #2a2f3d;
+  font-weight: bold;
+  text-align: center;
 }
 
-.message {
-  margin-bottom: 12px;
-  line-height: 1.4;
-}
-
-.player {
-  color: #7fd1ff;
-}
-
-.npc-text {
-  color: #ffd27f;
-}
-
-.evidence-card {
-  cursor: default;
-}
-
-.tag {
-  display: inline-block;
-  background: #4b5563;
-  padding: 2px 8px;
-  border-radius: 12px;
-  font-size: 12px;
-  margin-top: 6px;
-}
-
-.main {
+.tabs {
   display: flex;
-  flex-direction: column;
-  padding: 16px;
-  gap: 16px;
+  justify-content: space-around;
+  background: #151826;
+  border-bottom: 1px solid #2a2f3d;
 }
 
-.scene {
-  background: #12141b;
-  border: 1px solid #444;
-  border-radius: 12px;
-  padding: 16px;
-  margin-bottom: 16px;
-}
-
-.scene h3 {
-  margin-top: 0;
-}
-
-.object-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 10px;
-}
-
-.status {
-  background: #101218;
-  border: 1px solid #444;
-  border-radius: 10px;
+.tab {
+  flex: 1;
   padding: 12px;
-  margin-top: 12px;
+  text-align: center;
+  cursor: pointer;
 }
 
-.success {
-  color: #86efac;
-  font-weight: bold;
+.tab.active {
+  background: #232a3a;
 }
 
-.fail {
-  color: #fca5a5;
-  font-weight: bold;
+.view {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px;
+  display: none;
+}
+
+.view.active { display: block; }
+
+.card {
+  background: #1b2030;
+  padding: 12px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  border: 1px solid #2c3244;
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.card:active {
+  transform: scale(0.98);
+  background: #242b3f;
+}
+
+.evidence-card { cursor: pointer; }
+
+.npc-card { cursor: pointer; }
+
+.chat {
+  background: #0b0d14;
+  padding: 10px;
+  border-radius: 10px;
+  min-height: 180px;
+  overflow-y: auto;
+  border: 1px solid #2a2f3d;
+}
+
+.msg { margin-bottom: 8px; animation: fadeIn 0.2s ease; }
+
+.player { color: #7dd3fc; }
+.npc { color: #fbbf24; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.lab {
+  background: #121622;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #2a2f3d;
+}
+
+.slots {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.slot {
+  flex: 1;
+  padding: 10px;
+  background: #1b2030;
+  border-radius: 8px;
+  text-align: center;
+  border: 1px dashed #3a425a;
+  min-height: 40px;
+}
+
+.actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 10px;
 }
 
 button {
-  background: #3b82f6;
+  padding: 12px;
   border: none;
+  border-radius: 10px;
+  background: #3b82f6;
   color: white;
-  padding: 14px 16px;
-  border-radius: 12px;
-  cursor: pointer;
-  margin-top: 10px;
-  width: 100%;
-  font-size: 16px;
   font-weight: bold;
+  cursor: pointer;
 }
 
-button:hover {
-  background: #2563eb;
-}
+button:active { transform: scale(0.97); }
 
-.npc,
-.object,
-.question-btn,
-.theory-option {
-  min-height: 60px;
-  display: flex;
-  align-items: center;
-  font-size: 16px;
-  touch-action: manipulation;
-}
-
-.chat-box {
-  min-height: 180px;
-  max-height: 260px;
-}
-
-@media (min-width: 900px) {
-  body {
-    display: grid;
-    grid-template-columns: 260px 1fr 320px;
-    height: 100vh;
-  }
-
-  .panel {
-    border-right: 1px solid #444;
-    border-bottom: none;
-  }
-
-  .panel:last-child {
-    border-right: none;
-    border-left: 1px solid #444;
-  }
-
-  button {
-    width: auto;
-  }
-
-  .chat-box {
-    max-height: none;
-  }
+.result {
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  background: #0b0d14;
+  border: 1px solid #2a2f3d;
+  min-height: 40px;
 }
 
   </style>
 </head>
-<body>
-  <div class="panel">
-    <h2>People</h2>
-    <div id="npcList"></div><h2>Evidence</h2>
-<div id="evidenceList"></div>
-
-  </div>  <div class="main">
-    <div class="scene">
-      <h3>Case: The Missing Science Trophy</h3>
-      <p>
-        Someone stole the school science trophy before the big assembly.
-        Talk to students, inspect objects, and uncover the truth.
-      </p><div class="object-grid" id="objectGrid"></div>
+<body><header>🔍 Evidence Detective</header><div class="tabs">
+  <div class="tab active" onclick="switchTab('evidence')">Evidence</div>
+  <div class="tab" onclick="switchTab('npc')">NPCs</div>
+  <div class="tab" onclick="switchTab('lab')">Lab</div>
+  <div class="tab" onclick="switchTab('chat')">Chat</div>
+</div><!-- Evidence --><div id="evidence" class="view active"></div><!-- NPC --><div id="npc" class="view"></div><!-- Lab --><div id="lab" class="view">
+  <div class="lab">
+    <h3>Investigation Lab</h3><div class="slots">
+  <div class="slot" id="slotA">Tap Evidence A</div>
+  <div class="slot" id="slotB">Tap Evidence B</div>
 </div>
 
-<div class="chat-box" id="chatBox"></div>
-
-<div id="questions"></div>
-
-<div class="scene">
-  <h3>Evidence Lab</h3>
-  <p>Combine and analyze clues to unlock deductions.</p>
-  <div id="labActions"></div>
+<div class="actions">
+  <button onclick="compare()">Compare</button>
+  <button onclick="linkEvidence()">Link</button>
+  <button onclick="timeline()">Timeline</button>
+  <button onclick="contradict()">Contradict</button>
 </div>
 
-<div class="status" id="statusBox">
-  <h3>Investigation Actions</h3>
-  <div id="actionArea"></div>
-  <strong>Goal:</strong>
-  Find evidence and discover who stole the trophy.
-</div>
+<div class="result" id="result">Select evidence to begin analysis.</div>
 
-  </div>  <div class="panel">
-    <h2>Detective Board</h2><p>
-  Use evidence to build a theory.
-</p>
+  </div>
+</div><!-- Chat --><div id="chat" class="view">
+  <div class="chat" id="chatBox"></div>
+</div><script>
+const state = {
+  evidence: [],
+  selectedA: null,
+  selectedB: null,
+  deductions: []
+};
 
-<div>
-  <strong>Who stole the trophy?</strong>
-</div>
+const evidenceData = [
+  { id: "mud", name: "Muddy Shoes", desc: "Soil stuck to shoes" },
+  { id: "finger", name: "Fingerprint", desc: "Matches Alex" },
+  { id: "key", name: "Greenhouse Key", desc: "Hidden behind locker" }
+];
 
-<div id="theoryOptions"></div>
+function renderEvidence() {
+  const el = document.getElementById("evidence");
+  el.innerHTML = "";
 
-<button id="solveBtn">Submit Theory</button>
+  evidenceData.forEach(e => {
+    const div = document.createElement("div");
+    div.className = "card evidence-card";
+    div.innerHTML = `<b>${e.name}</b><br>${e.desc}`;
 
-<div id="result"></div>
-
-  </div>  <script>
-    const state = {
-      evidence: [],
-      selectedTheory: null,
-      currentNPC: null,
-      deductions: [],
-      unlockedActions: []
-    };
-
-    const evidenceData = {
-      soilMatch: {
-        id: 'soilMatch',
-        title: 'Matching Soil Sample',
-        description: 'The mud on the shoes matches soil from the greenhouse.',
-        tag: 'Comparison'
-      },
-      timelineClue: {
-        id: 'timelineClue',
-        title: 'Timeline Reconstruction',
-        description: 'Alex was seen entering the hallway before the alarm sounded.',
-        tag: 'Timeline'
-      },
-      muddyShoes: {
-        id: 'muddyShoes',
-        title: 'Muddy Shoes',
-        description: 'A pair of muddy shoes were found near the trophy room.',
-        tag: 'Footprint Clue'
-      },
-      greenhouseKey: {
-        id: 'greenhouseKey',
-        title: 'Greenhouse Key',
-        description: 'A school greenhouse key was hidden behind a locker.',
-        tag: 'Hidden Item'
-      },
-      trophyFingerprint: {
-        id: 'trophyFingerprint',
-        title: 'Fingerprint on Trophy Case',
-        description: 'A fingerprint matches Alex.',
-        tag: 'Fingerprint'
-      }
-    };
-
-    const npcs = [
-      {
-        id: 'alex',
-        name: 'Alex',
-        intro: 'I was practicing soccer after school.',
-        questions: [
-          {
-            text: 'Where were you during the theft?',
-            answer: 'On the sports field with my team.'
-          },
-          {
-            text: 'Do you know anything about the trophy room?',
-            answer: 'Nope. I never went near it.'
-          },
-          {
-            text: 'Show fingerprint evidence',
-            requires: 'trophyFingerprint',
-            answer: 'Okay... I touched the case earlier, but I did not steal it!'
-          }
-        ]
-      },
-      {
-        id: 'mia',
-        name: 'Mia',
-        intro: 'I saw someone near the hallway after school.',
-        questions: [
-          {
-            text: 'Who did you see?',
-            answer: 'I think I saw Alex carrying something shiny.'
-          },
-          {
-            text: 'Anything unusual?',
-            answer: 'There were muddy footprints near the trophy room.'
-          }
-        ]
-      }
-    ];
-
-    const objects = [
-      {
-        name: 'Compare Mud to Greenhouse Soil',
-        action: () => {
-          if (
-            state.evidence.includes('muddyShoes') &&
-            state.evidence.includes('greenhouseKey')
-          ) {
-            addEvidence('soilMatch');
-            addDeduction('The muddy shoes came from the greenhouse area.');
-            addChat('System', 'You compared the mud samples and found a match.');
-          } else {
-            addChat('System', 'You need more evidence before comparing samples.');
-          }
-        }
-      },
-      {
-        name: 'Reconstruct Timeline',
-        action: () => {
-          if (
-            state.evidence.includes('muddyShoes') &&
-            state.evidence.includes('trophyFingerprint')
-          ) {
-            addEvidence('timelineClue');
-            addDeduction('Alex was near the trophy room before the theft was discovered.');
-            addChat('System', 'You reconstructed the timeline using footprints and fingerprints.');
-          } else {
-            addChat('System', 'You need more clues to reconstruct the timeline.');
-          }
-        }
-      },
-      {
-        name: 'Inspect Trophy Room Door',
-        action: () => {
-          addEvidence('muddyShoes');
-          addChat('System', 'You found muddy footprints near the trophy room.');
-        }
-      },
-      {
-        name: 'Dust Trophy Case for Prints',
-        action: () => {
-          addEvidence('trophyFingerprint');
-          addChat('System', 'You discovered a fingerprint matching Alex.');
-        }
-      },
-      {
-        name: 'Search Lockers',
-        action: () => {
-          addEvidence('greenhouseKey');
-          addChat('System', 'You found a hidden greenhouse key.');
-        }
-      }
-    ];
-
-    function renderNPCs() {
-      const npcList = document.getElementById('npcList');
-      npcList.innerHTML = '';
-
-      npcs.forEach(npc => {
-        const div = document.createElement('div');
-        div.className = 'npc';
-        div.innerHTML = `<strong>${npc.name}</strong>`;
-
-        div.onclick = () => openNPC(npc);
-
-        npcList.appendChild(div);
-      });
-    }
-
-    function renderObjects() {
-      const grid = document.getElementById('objectGrid');
-      grid.innerHTML = '';
-
-      objects.forEach(obj => {
-        const div = document.createElement('div');
-        div.className = 'object';
-        div.textContent = obj.name;
-
-        div.onclick = obj.action;
-
-        grid.appendChild(div);
-      });
-    }
-
-    function addEvidence(id) {
-      if (state.evidence.includes(id)) return;
-
-      state.evidence.push(id);
+    div.onclick = () => {
+      if (!state.evidence.includes(e)) state.evidence.push(e);
+      selectEvidence(e);
       renderEvidence();
+    };
+
+    if (state.evidence.includes(e)) {
+      div.style.border = "1px solid #60a5fa";
     }
 
-    function addDeduction(text) {
-      if (state.deductions.includes(text)) return;
+    el.appendChild(div);
+  });
+}
 
-      state.deductions.push(text);
-      renderActions();
-    }
+function renderNPCs() {
+  const el = document.getElementById("npc");
+  el.innerHTML = `
+    <div class='card npc-card' onclick="talk('Alex','I was at practice')"><b>Alex</b></div>
+    <div class='card npc-card' onclick="talk('Mia','I saw someone suspicious')"><b>Mia</b></div>
+  `;
+}
 
-    function renderActions() {
-      const actionArea = document.getElementById('actionArea');
+function talk(name, msg) {
+  switchTab('chat');
+  const box = document.getElementById("chatBox");
+  box.innerHTML += `<div class='msg npc'><b>${name}:</b> ${msg}</div>`;
+}
 
-      actionArea.innerHTML = '';
+function selectEvidence(e) {
+  if (!state.selectedA) state.selectedA = e;
+  else state.selectedB = e;
 
-      state.deductions.forEach(deduction => {
-        const div = document.createElement('div');
-        div.className = 'evidence-card';
-        div.innerHTML = `<strong>Deduction</strong><p>${deduction}</p>`;
-        actionArea.appendChild(div);
-      });
-    }
+  updateSlots();
+}
 
-    function renderEvidence() {
-      const evidenceList = document.getElementById('evidenceList');
-      evidenceList.innerHTML = '';
+function updateSlots() {
+  document.getElementById("slotA").innerText = state.selectedA ? state.selectedA.name : "Tap Evidence A";
+  document.getElementById("slotB").innerText = state.selectedB ? state.selectedB.name : "Tap Evidence B";
+}
 
-      state.evidence.forEach(id => {
-        const item = evidenceData[id];
+function compare() {
+  if (state.selectedA && state.selectedB) {
+    showResult(`Comparison shows relationship between ${state.selectedA.name} and ${state.selectedB.name}.`);
+  }
+}
 
-        const div = document.createElement('div');
-        div.className = 'evidence-card';
+function linkEvidence() {
+  if (state.selectedA && state.selectedB) {
+    showResult(`Linked ${state.selectedA.name} with ${state.selectedB.name}. New deduction formed.`);
+  }
+}
 
-        div.innerHTML = `
-          <strong>${item.title}</strong>
-          <p>${item.description}</p>
-          <div class="tag">${item.tag}</div>
-        `;
+function timeline() {
+  showResult("Timeline reconstructed from selected evidence.");
+}
 
-        evidenceList.appendChild(div);
-      });
-    }
+function contradict() {
+  showResult("Contradiction found in suspect statement.");
+}
 
-    function addChat(sender, text) {
-      const chatBox = document.getElementById('chatBox');
+function showResult(text) {
+  document.getElementById("result").innerText = text;
+}
 
-      const msg = document.createElement('div');
-      msg.className = 'message';
+function switchTab(tab) {
+  document.querySelectorAll(".view").forEach(v => v.classList.remove("active"));
+  document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
 
-      if (sender === 'Player') {
-        msg.innerHTML = `<span class="player"><strong>${sender}:</strong> ${text}</span>`;
-      } else {
-        msg.innerHTML = `<span class="npc-text"><strong>${sender}:</strong> ${text}</span>`;
-      }
+  document.getElementById(tab).classList.add("active");
+  event.target.classList.add("active");
+}
 
-      chatBox.appendChild(msg);
-      chatBox.scrollTop = chatBox.scrollHeight;
-    }
-
-    function openNPC(npc) {
-      state.currentNPC = npc;
-
-      addChat(npc.name, npc.intro);
-
-      const questions = document.getElementById('questions');
-      questions.innerHTML = `<h3>Questions for ${npc.name}</h3>`;
-
-      npc.questions.forEach(q => {
-        if (q.requires && !state.evidence.includes(q.requires)) {
-          return;
-        }
-
-        const btn = document.createElement('div');
-        btn.className = 'question-btn';
-        btn.textContent = q.text;
-
-        btn.onclick = () => {
-          addChat('Player', q.text);
-          addChat(npc.name, q.answer);
-        };
-
-        questions.appendChild(btn);
-      });
-    }
-
-    function renderTheoryOptions() {
-      const container = document.getElementById('theoryOptions');
-
-      ['Alex', 'Mia', 'The Janitor'].forEach(name => {
-        const div = document.createElement('div');
-        div.className = 'theory-option';
-        div.textContent = name;
-
-        div.onclick = () => {
-          state.selectedTheory = name;
-
-          document.querySelectorAll('.theory-option').forEach(el => {
-            el.style.outline = 'none';
-          });
-
-          div.style.outline = '3px solid #60a5fa';
-        };
-
-        container.appendChild(div);
-      });
-    }
-
-    function solveCase() {
-      const result = document.getElementById('result');
-
-      if (!state.selectedTheory) {
-        result.innerHTML = '<p class="fail">Choose a suspect first.</p>';
-        return;
-      }
-
-      const hasFingerprint = state.evidence.includes('trophyFingerprint');
-      const hasFootprints = state.evidence.includes('muddyShoes');
-      const hasSoilMatch = state.evidence.includes('soilMatch');
-      const hasTimeline = state.evidence.includes('timelineClue');
-
-      const score = [
-        hasFingerprint,
-        hasFootprints,
-        hasSoilMatch,
-        hasTimeline
-      ].filter(Boolean).length;
-
-      if (state.selectedTheory === 'Alex' && score >= 4) {
-        result.innerHTML = `
-          <p class="success">Case Solved!</p>
-          <p>
-            You proved Alex stole the trophy using fingerprints,
-            timeline reconstruction, and soil comparison.
-          </p>
-        `;
-      } else if (score >= 2) {
-        result.innerHTML = `
-          <p class="fail">Incomplete Investigation</p>
-          <p>
-            Your theory has some evidence, but more investigation is needed.
-          </p>
-        `;
-      } else {
-        result.innerHTML = `
-          <p class="fail">Weak Theory</p>
-          <p>
-            You need stronger deductions before accusing someone.
-          </p>
-        `;
-      }
-    }
-
-    function oldSolveCase() {
-      const result = document.getElementById('result');
-
-      if (!state.selectedTheory) {
-        result.innerHTML = '<p class="fail">Choose a suspect first.</p>';
-        return;
-      }
-
-      const hasFingerprint = state.evidence.includes('trophyFingerprint');
-      const hasFootprints = state.evidence.includes('muddyShoes');
-
-      if (
-        state.selectedTheory === 'Alex' &&
-        hasFingerprint &&
-        hasFootprints
-      ) {
-        result.innerHTML = `
-          <p class="success">Case Solved!</p>
-          <p>
-            You proved Alex entered the trophy room using the fingerprint
-            and muddy footprints evidence.
-          </p>
-        `;
-      } else {
-        result.innerHTML = `
-          <p class="fail">Weak Theory</p>
-          <p>
-            You need stronger evidence before making an accusation.
-          </p>
-        `;
-      }
-    }
-
-    document.getElementById('solveBtn').onclick = solveCase;
-
-    renderNPCs();
-    renderObjects();
-    renderTheoryOptions();
-
-    addChat('System', 'Welcome Detective! Start by inspecting objects and interviewing students.');
-  </script></body>
+renderEvidence();
+renderNPCs();
+</script></body>
 </html>
