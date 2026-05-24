@@ -1,0 +1,73 @@
+{
+    "editor": "Earth Grid Editor Framework",
+    "grid": {
+        "numLon": 60,
+        "numLat": 30,
+        "radiusEnforced": true,
+        "exclusionRadius": 3
+    },
+    "phase": 4,
+    "act": 2,
+    "title": "The Cleansed Temple",
+    "objects": [
+        {
+            "r": 12,
+            "c": 15,
+            "type": "npc",
+            "name": "Priest Objection",
+            "description": "A defensive Temple authority arguing that the new parable directly insults the council leaders.",
+            "color": "#ffaa00",
+            "shape": "cylinder",
+            "glb": "",
+            "dialogue": "assets/dialogue/story/priest_objection.json",
+            "questId": 4
+        },
+        {
+            "r": 14,
+            "c": 25,
+            "type": "npc",
+            "name": "Roman Garrison Guard",
+            "description": "Stationed along the high outer precinct wall, viewing the structural riot with complete boredom.",
+            "color": "#ffaa00",
+            "shape": "cylinder",
+            "glb": "models/characters/guard.glb",
+            "dialogue": "assets/dialogue/story/guard_report.json",
+            "questId": 4
+        },
+        {
+            "r": 11,
+            "c": 19,
+            "type": "npc",
+            "name": "The Temple Money Changer",
+            "description": "Searching through broken wooden boards for scattered, unapproved coinage files.",
+            "color": "#ffaa00",
+            "shape": "cylinder",
+            "glb": "models/characters/changer.glb",
+            "dialogue": "assets/dialogue/story/money_changer.ink",
+            "questId": 4
+        },
+        {
+            "r": 16,
+            "c": 22,
+            "type": "npc",
+            "name": "Philip the Disciple",
+            "description": "Quietly discussing the inner spiritual meaning of the vineyard story with a small crowd.",
+            "color": "#ffaa00",
+            "shape": "cylinder",
+            "glb": "",
+            "dialogue": "assets/dialogue/story/parable_vineyard.json",
+            "questId": 4
+        },
+        {
+            "r": 8,
+            "c": 28,
+            "type": "item",
+            "name": "Pruned Vine Cutting",
+            "description": "Dropped branches near the teaching steps, representing Israel's vineyard.",
+            "color": "#aa66ff",
+            "shape": "sphere",
+            "glb": "models/items/vine.glb",
+            "icon": "ui/icons/vine.png"
+        }
+    ]
+}

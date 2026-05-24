@@ -168,9 +168,81 @@
     display: none;
 }
 
+.minimap-panel {
+    position: absolute;
+    bottom: 30px;
+    left: 30px;
+    width: 110px;
+    height: 110px;
+    background: rgba(11, 20, 26, 0.9);
+    border: 2px solid var(--accent-primary);
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);
+    z-index: 500;
+}
+
+.minimap-radar-line {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: conic-gradient(from 0deg, rgba(0, 168, 132, 0.15) 0deg, transparent 90deg);
+    border-radius: 50%;
+    transform-origin: center;
+    animation: radar-sweep 2.5s linear infinite;
+    pointer-events: none;
+    z-index: 2;
+}
+
+@keyframes radar-sweep {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.minimap-grid-circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px dashed rgba(0, 168, 132, 0.25);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.minimap-blip {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 5;
+}
+
+.minimap-blip.player {
+    background: var(--accent-success);
+    width: 8px;
+    height: 8px;
+    margin-left: -4px;
+    margin-top: -4px;
+    z-index: 6;
+    box-shadow: 0 0 6px var(--accent-success);
+}
+
+.minimap-blip.npc {
+    background: var(--accent-secondary);
+}
+
+.minimap-blip.collectable {
+    background: #ffdd00;
+}
+
 /* ===== FLOATING ACTION ICON (SVG support) ===== */
-.floating-action-icon {
-    position: fixed;
+.floating-action-icon,
+.action-floating-icon {
+    position: absolute;
     pointer-events: none;
     z-index: 2000;
     color: var(--accent-secondary);

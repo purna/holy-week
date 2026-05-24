@@ -1,0 +1,61 @@
+{
+    "editor": "Earth Grid Editor Framework",
+    "grid": {
+        "numLon": 60,
+        "numLat": 30,
+        "radiusEnforced": true,
+        "exclusionRadius": 3
+    },
+    "phase": 5,
+    "act": 2,
+    "title": "Whispers About Lazarus",
+    "objects": [
+        {
+            "r": 10,
+            "c": 18,
+            "type": "npc",
+            "name": "Bartholomew",
+            "description": "The beggar born blind, boldly stating his case to the neighborhood patrol teams.",
+            "color": "#ffaa00",
+            "shape": "cylinder",
+            "glb": "",
+            "dialogue": "assets/dialogue/story/witness_healed.json",
+            "questId": 5
+        },
+        {
+            "r": 14,
+            "c": 25,
+            "type": "npc",
+            "name": "Levite Officer",
+            "description": "A temple guard taking down formal reports about unlawful Sabbath healing activity.",
+            "color": "#ffaa00",
+            "shape": "cylinder",
+            "glb": "",
+            "dialogue": "assets/dialogue/story/guard_report.json",
+            "questId": 5
+        },
+        {
+            "r": 9,
+            "c": 14,
+            "type": "npc",
+            "name": "The Temple Spy",
+            "description": "An undercover operational operative tracking traveler movements and flagging known sympathizers.",
+            "color": "#ffaa00",
+            "shape": "cylinder",
+            "glb": "models/characters/spy.glb",
+            "dialogue": "assets/dialogue/story/temple_spy.ink",
+            "questId": 5
+        },
+        {
+            "r": 11,
+            "c": 11,
+            "type": "item",
+            "name": "Siloam Pottery Shard",
+            "description": "A broken piece of a water ewer from the sacred washing pool.",
+            "color": "#aa66ff",
+            "shape": "sphere",
+            "glb": "models/items/shard.glb",
+            "icon": "ui/icons/clay_jar.png"
+        }
+    ]
+}

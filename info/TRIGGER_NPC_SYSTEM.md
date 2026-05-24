@@ -200,7 +200,7 @@ This renders:
 The system is designed to work alongside existing NPC classes:
 
 ```javascript
-// Existing NPCs from world.js are automatically detected
+// Existing NPCs from worldManager.js are automatically detected
 addNPCs(scene);  // Creates NPC instances
 npcSystem.scanAndBind();  // Binds them to auto-system
 

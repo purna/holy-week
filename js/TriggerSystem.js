@@ -4,7 +4,7 @@
  */
 
 import * as THREE from '../lib/three.module.js';
-import { COLORS } from './config.js';
+import { COLORS } from './../config.js';
 
 /**
  * Parse Blender-style name: PREFIX_Type_Value[_param=value]

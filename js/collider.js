@@ -2,6 +2,8 @@
  * Collider Module - Collision detection and trigger volumes
  */
 
+import * as THREE from 'three';
+
 /**
  * Collider types
  * @readonly
@@ -427,18 +429,27 @@ export class CollisionManager {
     }
   }
 
-  /**
-   * Flush all tracked collision and trigger data.
-   * Call this explicitly from the LevelManager / WorldManager before loading
-   * a new level scene.  Without this call, this.colliders / this.triggers /
-   * this.objectColliders retain dangling references to Three.js groups that
-   * have been `scene.remove()`-d, causing both a memory leak and needless O(n)
-   * collision checks against dead objects.
-   */
-  clearOldColliders() {
+   /**
+    * Flush all tracked collision and trigger data.
+    * Call this explicitly from the LevelManager / WorldManager before loading
+    * a new level scene.  Without this call, this.colliders / this.triggers /
+    * this.objectColliders retain dangling references to Three.js groups that
+    * have been `scene.remove()`-d, causing both a memory leak and needless O(n)
+    * collision checks against dead objects.
+    */
+   clearOldColliders() {
     this.colliders = [];
     this.triggers = [];
     this.objectColliders.clear();
+    console.log("Stale collision tree references flushed successfully.");
+  }
+
+  /**
+   * Alias for clearOldColliders — used by LevelManager to purge stale
+   * collision state between level transitions.
+   */
+  clearLevelColliders() {
+    this.clearOldColliders();
   }
 
   /**

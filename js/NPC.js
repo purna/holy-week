@@ -16,6 +16,7 @@ export class NPC {
     createMesh() {
         const grp = new THREE.Group();
 
+        // 1. Build Base Shading / Pad layout attachments...
         // Base Pad with toon shader
         const padToon = this.toonShader.createToonGroup(
             new THREE.CylinderGeometry(2.5, 2.5, 0.2, 16),
@@ -68,24 +69,27 @@ export class NPC {
             this.bodyMesh = npcToon.mainMesh;
         }
 
-        const p = new THREE.Vector3();
+        // 2. Resolve flat Cartesian / legacy spherical position
         if (this.data.position) {
-            // Cartesian: { x, y, z } — from levels.js
-            p.set(this.data.position.x, this.data.position.y, this.data.position.z);
+            // Explicitly format direct transform positions from levels.js layout
+            grp.position.set(this.data.position.x, this.data.position.y, this.data.position.z);
+            // Orient the node baseline relative to the planet mesh centre core
+            const upVector = grp.position.clone().normalize();
+            grp.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), upVector);
         } else if (this.data.pos) {
-            // Fractional spherical: [u, v] → theta/phi — from config.js NPCs
-            p.setFromSphericalCoords(
+            // Fallback option processing for legacy normalized spherical coordinate arrays
+            const p = new THREE.Vector3().setFromSphericalCoords(
                 this.planetR,
                 this.data.pos[0] * Math.PI,
                 this.data.pos[1] * Math.PI * 2
             );
+            grp.position.copy(p);
+            grp.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), p.clone().normalize());
         }
-        grp.position.copy(p);
-        grp.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), p.clone().normalize());
 
         this.scene.add(grp);
         this.mesh = grp;
-    }
+}
 
     getModelKey() {
         // Map NPC IDs to model keys matching MODELS config (camelCase)

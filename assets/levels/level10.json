@@ -1,0 +1,61 @@
+{
+    "editor": "Earth Grid Editor Framework",
+    "grid": {
+        "numLon": 60,
+        "numLat": 30,
+        "radiusEnforced": true,
+        "exclusionRadius": 3
+    },
+    "phase": 10,
+    "title": "The Garden & Sanhedrin",
+      "act":4,
+    "objects": [
+        {
+            "r": 15,
+            "c": 30,
+            "type": "npc",
+            "name": "Scribe Master Benjamin",
+            "description": "Waiting patiently to cross-examine your case board and finalize the report.",
+            "color": "#ffaa00",
+            "shape": "cylinder",
+            "glb": "",
+            "dialogue": "assets/dialogue/story/board_review.json",
+            "questId": 10
+        },
+        {
+            "r": 11,
+            "c": 30,
+            "type": "npc",
+            "name": "Caiaphas the High Priest",
+            "description": "Evaluating macro-political risk parameters under time-sensitive midnight tribunal rules.",
+            "color": "#ffaa00",
+            "shape": "cylinder",
+            "glb": "models/characters/caiaphas.glb",
+            "dialogue": "assets/dialogue/story/caiaphas_priest.ink",
+            "questId": 10
+        },
+        {
+            "r": 19,
+            "c": 36,
+            "type": "npc",
+            "name": "Scribe Counselor",
+            "description": "Reviewing legislative scripts and debating historical claims before the trial begins.",
+            "color": "#ffaa00",
+            "shape": "cylinder",
+            "glb": "",
+            "dialogue": "assets/dialogue/story/board_debate.json",
+            "questId": 10
+        },
+        {
+            "r": 12,
+            "c": 24,
+            "type": "item",
+            "name": "Apprentice Logbook Scroll",
+            "description": "A compilation of witness files, object entries, and structural evidence entries.",
+            "color": "#aa66ff",
+            "shape": "sphere",
+            "glb": "models/items/scroll.glb",
+            "icon": "ui/icons/scroll.png"
+        }
+    ]
+}

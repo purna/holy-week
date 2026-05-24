@@ -1,19 +1,15 @@
 /**
- * level03.js — Phase 3: Talk to Witnesses
+ * level03.js — Phase 3: The Man Born Blind
  * Loop step: "Talk to witnesses"
- *
- * The Temple Courts — religious debates, healing accounts, conflicting testimony.
- * The player must find the man born blind and verify his story.
  */
 
 const baseNPCPath = './assets/dialogue/';
 
-/** @type {import('./LevelManager.js').LevelData} */
 export default {
     phase:    3,
-    actLabel: 'ACT 2 – THE TEACHER',
+    actLabel: 'ACT 2: THE EVIDENCE OF ANOMALIES',
     title:    'The Man Born Blind',
-    subtitle: 'A beggar says Jesus healed a man who was blind from birth. Find him.',
+    subtitle: 'A beggar says Jesus healed a man blind from birth. Track down the details.',
     location: 'TEMPLE COURTS',
 
     modelKey:      'temple_courts',
@@ -25,91 +21,60 @@ export default {
     quest: {
         id:   'BLIND_MAN',
         name: 'THE MAN BORN BLIND',
-        task: 'Find the healed man and gather testimony',
+        task: 'Gather witness statements regarding the Bethesda Pool healing.',
         cur:  0,
         tar:  2,
     },
 
     npcs: [
         {
-            id:          'blind_man_01',
-            name:        'The Healed Man',
-            color:       0xaaddff,
-            pos:         [3, 0],
-            storyFile:   baseNPCPath + 'blind_man.json',
+            id:          'nervous_citizen_01',
+            name:        'Nervous Citizen',
+            color:       0xffaa00,
+            pos:         [12, 22],
+            storyFile:   baseNPCPath + 'rumor_whisper.json',
             hasDialogue: true,
-            bubbleMsg:   'I was blind. Now I see. That\'s all I know.',
-            dialogueEvidence: ['healing_testimony'],
+            bubbleMsg:   'Last Sabbath a man blind from birth walked out of the Pool of Bethesda and now says he sees.',
+            dialogueEvidence: ['bethesda_eyewitness_account'],
         },
         {
-            id:          'neighbour_01',
-            name:        'Sceptical Neighbour',
-            color:       0x999999,
-            pos:         [-4, 1],
-            storyFile:   baseNPCPath + 'neighbour_blind.json',
+            id:          'simon_pharisee_01',
+            name:        'Simon the Pharisee',
+            color:       0xffaa00,
+            pos:         [8, 14],
+            storyFile:   baseNPCPath + 'pharisee_critique.json',
             hasDialogue: true,
-            bubbleMsg:   'I knew him as a boy. He really was blind.',
-            dialogueEvidence: ['neighbour_confirms'],
-        },
-        {
-            id:          'pharisee_02',
-            name:        'Temple Official',
-            color:       0x664422,
-            pos:         [8, -2],
-            storyFile:   baseNPCPath + 'pharisee_blind.json',
-            hasDialogue: true,
-            bubbleMsg:   'This "miracle" happened on the Sabbath. That alone makes it suspect.',
-            dialogueEvidence: ['leaders_question_miracle'],
-        },
-        {
-            id:          'parents_01',
-            name:        'Man\'s Father',
-            color:       0x887766,
-            pos:         [-7, 3],
-            storyFile:   baseNPCPath + 'parents_blind.json',
-            hasDialogue: true,
-            bubbleMsg:   'He\'s an adult — ask him yourself. We don\'t want trouble.',
-        },
+            bubbleMsg:   'A man heals on the Sabbath and claims authority over the Law. Torah asks the question.',
+            dialogueEvidence: ['sabbath_compliance_objection'],
+        }
     ],
 
-    collectables: [
-        {
-            id:        'mud_fragment',
-            name:      'Dried Mud Fragment',
-            key:       'mud_fragment',
-            evidenceId: 'healing_testimony',
-            color:     0xaa8844,
-            primitive: { type: 'sphere', radius: 0.5 },
-            position:  [2, 1, -2],
-        },
-    ],
+    collectables: [],
 
     evidence: [
         {
-            id:          'healing_testimony',
-            label:       'Healing Testimony',
+            id:          'bethesda_eyewitness_account',
+            label:       'Bethesda Eyewitness Account',
             category:    'Miracles',
-            description: 'The man himself says Jesus put mud on his eyes and told him to wash. He came back able to see. He had been blind since birth — neighbours confirm it.',
+            description: 'A hidden citizen confirms that a beggar known to be blind since birth left the Bethesda washing pools completely healed.',
             required:    true,
         },
         {
-            id:          'neighbour_confirms',
-            label:       'Neighbour Confirms Blindness',
-            category:    'Miracles',
-            description: 'The sceptical neighbour grudgingly admits the man really was blind from childhood. This rules out a hoax about his original condition.',
-            required:    false,
-        },
-        {
-            id:          'leaders_question_miracle',
-            label:       'Religious Leaders Question Miracle',
+            id:          'sabbath_compliance_objection',
+            label:       'Sabbath Compliance Objection',
             category:    'Opposition',
-            description: 'Temple officials focus on the fact the healing happened on the Sabbath rather than on the healing itself. They seem more interested in the rule-breaking than the miracle.',
+            description: 'Temple authorities focus entirely on the legal infraction of performing work on the Sabbath, treating the healing as religious treason.',
             required:    true,
-        },
+        }
     ],
 
     explanation: {
-        title: 'What Makes This Testimony Interesting',
-        body:  'Investigators look for consistent, independent accounts. The man born blind gave the same story under pressure from religious leaders who wanted him to change it. He lost his social standing by staying honest. People rarely risk everything for a lie.',
+        title: 'Consistency Under Pressure',
+        body:  'The man born blind gave the same exact account to religious leaders who desperately wanted him to change his story. He lost his social standing by remaining completely honest.',
     },
+
+    locations: [
+        { name: "LOC_BEThesda_POOL", pos: [0.25, 0.35], r: 0.1 },
+        { name: "LOC_TEMPLE_PORTICO", pos: [0.65, 0.75], r: 0.08, questId: 0 }
+    ],
 };

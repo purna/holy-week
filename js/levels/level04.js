@@ -1,19 +1,15 @@
 /**
- * level04.js — Phase 4: Complete Tasks / Actions
+ * level04.js — Phase 4: The Cleansed Temple
  * Loop step: "Complete tasks/actions"
- *
- * The Temple has just been turned upside down. Stalls overturned, coins scattered.
- * The player must investigate and complete moral-choice tasks.
  */
 
 const baseNPCPath = './assets/dialogue/';
 
-/** @type {import('./LevelManager.js').LevelData} */
 export default {
     phase:    4,
-    actLabel: 'ACT 2 – THE TEACHER',
+    actLabel: 'ACT 2: THE EVIDENCE OF ANOMALIES',
     title:    'The Cleansed Temple',
-    subtitle: 'Chaos at the Temple. Stalls overturned. Find out what happened — and why.',
+    subtitle: 'Chaos in the outer courts. Stalls overturned. Discover what happened.',
     location: 'THE TEMPLE',
 
     modelKey:      'temple_interior',
@@ -25,113 +21,70 @@ export default {
     quest: {
         id:   'TEMPLE_CLEANSED',
         name: 'INSIDE THE TEMPLE',
-        task: 'Investigate the overturned stalls and gather accounts',
+        task: 'Investigate the monetary disruption and check the market ruins.',
         cur:  0,
         tar:  2,
     },
 
-    // ── Generic actions remain cross-level (defined in config.js).
-    // Level-specific action overrides can be added here:
     actionOverrides: [
-        // "Return scattered coins" — moral choice action only available this level
         {
             name:     'Return Coins',
             type:     'return_coins',
-            iconType: 'heal',   // reuse heal icon for now
+            iconType: 'heal',
             uses:     1,
-            // When executed, awards evidence token
-            onExecute: 'temple_corruption',
-        },
-        {
-            name:     'Inspect Overturned Stall',
-            type:     'inspect',
-            iconType: 'scan',
-            uses:     3,
-            onExecute: 'jesus_defends_worship',
-        },
+            onExecute: 'temple_corruption_disrupted',
+        }
     ],
 
     npcs: [
         {
-            id:          'merchant_02',
-            name:        'Angry Merchant',
-            color:       0xddaa33,
-            pos:         [4, 0],
-            storyFile:   baseNPCPath + 'merchant_temple.json',
+            id:          'garrison_guard_01',
+            name:        'Roman Garrison Guard',
+            color:       0xffaa00,
+            pos:         [14, 25],
+            storyFile:   baseNPCPath + 'guard_report.json',
             hasDialogue: true,
-            bubbleMsg:   'Look at this mess! Months of stock — ruined!',
-            dialogueEvidence: ['temple_corruption'],
+            bubbleMsg:   'Tables overturned, animals scattered... He called it My Father\'s house. The merchants called it their living. I called it my afternoon.',
+            dialogueEvidence: ['gcall_gnum_aux_report'],
         },
         {
-            id:          'poor_woman_01',
-            name:        'Poor Worshipper',
-            color:       0xbbbbbb,
-            pos:         [-5, 2],
-            storyFile:   baseNPCPath + 'poor_woman_temple.json',
+            id:          'money_changer_01',
+            name:        'The Temple Money Changer',
+            color:       0xffaa00,
+            pos:         [11, 19],
+            storyFile:   baseNPCPath + 'money_changer.ink',
             hasDialogue: true,
-            bubbleMsg:   'I couldn\'t afford their prices. I just wanted to pray.',
-            dialogueEvidence: ['jesus_defends_worship'],
-        },
-        {
-            id:          'temple_guard_01',
-            name:        'Temple Guard',
-            color:       0x885522,
-            pos:         [7, -3],
-            storyFile:   baseNPCPath + 'temple_guard.json',
-            hasDialogue: true,
-            bubbleMsg:   'Move along. The situation is under control.',
-        },
-        {
-            id:          'disciple_bystander',
-            name:        'Disciple (Bystander)',
-            color:       0x4488cc,
-            pos:         [-8, 1],
-            storyFile:   baseNPCPath + 'disciple_temple.json',
-            hasDialogue: true,
-            bubbleMsg:   'I\'ve never seen him like that. But he wasn\'t wrong.',
-        },
+            bubbleMsg:   'Look at this mess! Tyrian shekels scattered into the filth! Our weights are fair, our rates are posted!',
+            dialogueEvidence: ['temple_corruption_disrupted'],
+        }
     ],
 
-    collectables: [
-        {
-            id:        'scattered_coins_01',
-            name:      'Scattered Coins',
-            key:       'coins',
-            evidenceId: 'temple_corruption',
-            color:     0xffdd00,
-            primitive: { type: 'sphere', radius: 0.4 },
-            position:  [2, 0.5, 3],
-        },
-        {
-            id:        'scattered_coins_02',
-            name:      'Scattered Coins',
-            key:       'coins',
-            evidenceId: 'temple_corruption',
-            color:     0xffdd00,
-            primitive: { type: 'sphere', radius: 0.4 },
-            position:  [-3, 0.5, -2],
-        },
-    ],
+    collectables: [],
 
     evidence: [
         {
-            id:          'temple_corruption',
-            label:       'Temple Corruption',
+            id:          'temple_corruption_disrupted',
+            label:       'Temple Overheads Disrupted',
             category:    'Opposition',
-            description: 'Merchants were charging inflated prices on items required for worship, exploiting pilgrims who had no choice but to pay. The poorest worshippers suffered most.',
+            description: 'Merchants were charging inflated currency exchange rates on approved Tyrian silver temple coinage, exploiting poor provincial festival worshippers.',
             required:    true,
         },
         {
-            id:          'jesus_defends_worship',
-            label:       'Jesus Defends Worship',
+            id:          'gcall_gnum_aux_report',
+            label:       'Auxiliary Garrison Assessment',
             category:    'Teachings',
-            description: 'Jesus called the Temple a "house of prayer" that had been turned into a "den of thieves". His anger was directed at injustice, not at the Temple itself.',
+            description: 'Jesus deliberately targeted the operational infrastructure of the sacrificial market, declaring it a den of thieves.',
             required:    true,
-        },
+        }
     ],
 
     explanation: {
-        title: 'Why Jesus Was Angry',
-        body:  'The Temple was the most sacred place in Judaism — a place to meet God. But religious leaders had allowed it to become a commercial operation that exploited the poor. Jesus\' anger wasn\'t random. It was a deliberate protest against injustice dressed up as religion. The overturned tables were a statement about priorities: worship over profit, people over systems.',
+        title: 'Priority of Worship over Profit',
+        body:  'The overturned tables served as an open statement about systemic exploitation dressed up as official religion. The protest was focused on justice for marginalized outsiders.',
     },
+
+    locations: [
+        { name: "LOC_TEMPLE_INTERIOR", pos: [0.5, 0.5], r: 0.15 },
+        { name: "LOC_MONEY_CHANGERS", pos: [0.3, 0.3], r: 0.08, questId: 0 }
+    ],
 };

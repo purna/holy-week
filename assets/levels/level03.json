@@ -1,0 +1,73 @@
+{
+    "editor": "Earth Grid Editor Framework",
+    "grid": {
+        "numLon": 60,
+        "numLat": 30,
+        "radiusEnforced": true,
+        "exclusionRadius": 3
+    },
+    "phase": 3,
+    "act": 2,
+    "title": "The Man Born Blind",
+    "objects": [
+        {
+            "r": 8,
+            "c": 14,
+            "type": "npc",
+            "name": "Malachi the Pharisee",
+            "description": "A clever interrogator investigating security threats and unauthorized teachers.",
+            "color": "#ffaa00",
+            "shape": "cylinder",
+            "glb": "",
+            "dialogue": "assets/dialogue/story/pharisee_critique.json",
+            "questId": 3
+        },
+        {
+            "r": 12,
+            "c": 22,
+            "type": "npc",
+            "name": "Shifra the Witness",
+            "description": "Whispering in the shadows of the colonnade about a coin trap gone wrong.",
+            "color": "#ffaa00",
+            "shape": "cylinder",
+            "glb": "",
+            "dialogue": "assets/dialogue/story/rumor_whisper.json",
+            "questId": 3
+        },
+        {
+            "r": 12,
+            "c": 22,
+            "type": "npc",
+            "name": "Nervous Citizen",
+            "description": "Glancing sideways in the shadows of the Bethesda colonnades, speaking in low whispers.",
+            "color": "#ffaa00",
+            "shape": "cylinder",
+            "glb": "models/characters/citizen.glb",
+            "dialogue": "assets/dialogue/story/rumor_whisper.json",
+            "questId": 3
+        },
+        {
+            "r": 8,
+            "c": 14,
+            "type": "npc",
+            "name": "Simon the Pharisee",
+            "description": "Synagogue scholar tracking compliance infractions regarding the unauthorized healing.",
+            "color": "#ffaa00",
+            "shape": "cylinder",
+            "glb": "models/characters/pharisee.glb",
+            "dialogue": "assets/dialogue/story/pharisee_critique.json",
+            "questId": 3
+        },
+        {
+            "r": 15,
+            "c": 30,
+            "type": "item",
+            "name": "Silver Denarius",
+            "description": "A Roman coin carrying the face and divine inscription of Tiberius Caesar.",
+            "color": "#aa66ff",
+            "shape": "sphere",
+            "glb": "models/items/denarius.glb",
+            "icon": "ui/icons/denarius.png"
+        }
+    ]
+}

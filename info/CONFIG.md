@@ -15,7 +15,7 @@ This file centralizes all major settings for the 3D world application.
 
 ### 3. Audio (`config.musicUrl`)
 - Path to background music file
-- Uses Howler.js for audio management (see audio.js module)
+- Uses Howler.js for audio management (see audioManager.js module)
 - Audio files organized by type: UI sounds (panelOpen, panelClose, buttonClick, questDone, victory, pickup), ambient (birds), music (bgMusic), and NPC-specific enter/exit sounds
 - Stored in `assets/audio/` directory with filenames matching the SOUND object in examples/Miracle Maker_final_v16.html
 
@@ -129,7 +129,7 @@ The typewriter effect is triggered by the `LocationSystem`:
 
 **Note:** The typewriter effect is **not** used for Ink dialogue text. Dialogue uses its own `continueStory()` flow with optional filler messages and immediate choice display.
 
-The chat system is built into `js/ink-dialogue.js` with:
+The chat system is built into `js/ink-dialogueManager.js` with:
 
 ```javascript
 // Start dialogue
@@ -420,16 +420,16 @@ my-3d-world/
 ├── js/                    # JavaScript modules
 │   ├── config.js          # Central configuration
 │   ├── main.js            # Application entry point
-│   ├── scene.js           # Three.js scene setup
+│   ├── sceneManager.js           # Three.js scene setup
 │   ├── player.js          # Player controller
-│   ├── world.js           # Terrain and physics
+│   ├── worldManager.js           # Terrain and physics
 │   ├── NPC.js             # NPC class with dialogue
 │   ├── NPCSystem.js       # NPC management
-│   ├── actions.js         # Action system
+│   ├── actionManager.js         # Action system
 │   ├── pathfinding.js     # A* pathfinding
 │   ├── collider.js        # Collision detection
-│   ├── dialogue.js        # Ink wrapper
-│   ├── audio.js           # Sound management
+│   ├── dialogueManager.js        # Ink wrapper
+│   ├── audioManager.js           # Sound management
 │   ├── typewriter.js      # Typewriter effect for dialogue
 │   ├── CameraController.js
 │   ├── ToonShader.js
@@ -459,7 +459,7 @@ my-3d-world/
 - **Three.js**: 3D rendering and scene graph
 - **Cannon.js**: Physics simulation
 
-### 22. Day/Night Cycle & VFX System (`js/vfx.js`, `day_night_example.html`)
+### 22. Day/Night Cycle & VFX System (`js/VFXSystem.js`, `day_night_example.html`)
 
 The day/night system provides dynamic lighting, sky/fog color transitions, and visual effects that react to time of day and player actions.
 
@@ -575,7 +575,7 @@ Three.js shadow system configuration:
 - Disable shadows on small decorative objects
 - Use `castShadow = false` for particles and trails
 
-### 23. WhatsApp-Style Dialogue System (`js/ink-dialogue.js`, `whatsapp2.html`)
+### 23. WhatsApp-Style Dialogue System (`js/ink-dialogueManager.js`, `whatsapp2.html`)
 
 The dialogue system presents Ink-powered conversations in a modern WhatsApp/chat interface. Centered on screen, it displays message bubbles with NPC and player messages, interactive poll-style choices, and smooth animations.
 

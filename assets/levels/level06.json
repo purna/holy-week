@@ -1,0 +1,73 @@
+{
+    "editor": "Earth Grid Editor Framework",
+    "grid": {
+        "numLon": 60,
+        "numLat": 30,
+        "radiusEnforced": true,
+        "exclusionRadius": 3
+    },
+    "phase": 6,
+    "act": 3,
+    "title": "Dinner in Bethany",
+    "objects": [
+        {
+            "r": 15,
+            "c": 20,
+            "type": "npc",
+            "name": "Simon Peter",
+            "description": "Deeply concerned, demanding to know when the Temple stones will fall.",
+            "color": "#ffaa00",
+            "shape": "cylinder",
+            "glb": "",
+            "dialogue": "assets/dialogue/story/peter_defense.json",
+            "questId": 6
+        },
+        {
+            "r": 18,
+            "c": 14,
+            "type": "npc",
+            "name": "Inquiring Ruler",
+            "description": "An aristocratic leader monitoring the conversation from a distance under the trees.",
+            "color": "#ffaa00",
+            "shape": "cylinder",
+            "glb": "",
+            "dialogue": "assets/dialogue/story/secret_visit.json",
+            "questId": 6
+        },
+        {
+            "r": 15,
+            "c": 22,
+            "type": "npc",
+            "name": "Martha of Bethany",
+            "description": "Managing inventory, provisions, and hideout logistics under immediate state alert boundaries.",
+            "color": "#ffaa00",
+            "shape": "cylinder",
+            "glb": "models/characters/martha.glb",
+            "dialogue": "assets/dialogue/story/martha_bethany.ink",
+            "questId": 6
+        },
+        {
+            "r": 11,
+            "c": 25,
+            "type": "npc",
+            "name": "Mary Magdalene",
+            "description": "Reflecting silently in the courtyard, shielding the core team's locations.",
+            "color": "#ffaa00",
+            "shape": "cylinder",
+            "glb": "models/characters/mary.glb",
+            "dialogue": "assets/dialogue/story/mary_magdalene.ink",
+            "questId": 6
+        },
+        {
+            "r": 12,
+            "c": 28,
+            "type": "item",
+            "name": "Gethsemane Weight Stone",
+            "description": "A heavy basalt press stone used to harvest pure olive oil.",
+            "color": "#aa66ff",
+            "shape": "sphere",
+            "glb": "models/items/press_stone.glb",
+            "icon": "ui/icons/stone.png"
+        }
+    ]
+}

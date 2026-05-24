@@ -1,0 +1,50 @@
+{
+    "editor": "Earth Grid Editor Framework",
+    "grid": {
+        "numLon": 60,
+        "numLat": 30,
+        "radiusEnforced": true,
+        "exclusionRadius": 3
+    },
+    "phase": 11,
+    "act":4,
+    "title": "The Imperial Legality",
+    "objects": [
+        {
+            "r": 15,
+            "c": 11,
+            "type": "npc",
+            "name": "Pontius Pilate",
+            "description": "Roman governor analyzing provincial tax metrics and sedition charge definitions.",
+            "color": "#ffaa00",
+            "shape": "cylinder",
+            "glb": "models/characters/pilate.glb",
+            "dialogue": "assets/dialogue/story/pontius_pilate.ink",
+            "questId": 11
+        },
+        {
+            "r": 12,
+            "c": 24,
+            "type": "npc",
+            "name": "Pilate's Secretary",
+            "description": "Drafting imperial crossbeam inscription logs and closing procedural sentencing files.",
+            "color": "#ffaa00",
+            "shape": "cylinder",
+            "glb": "models/characters/secretary.glb",
+            "dialogue": "assets/dialogue/story/pilates_secretary.ink",
+            "questId": 11
+        },
+        {
+            "r": 9,
+            "c": 36,
+            "type": "npc",
+            "name": "Barabbas the Insurgent",
+            "description": "Rattling chains in the lower cells, laughing as mob variables shift in his favor.",
+            "color": "#ffaa00",
+            "shape": "cylinder",
+            "glb": "models/characters/barabbas.glb",
+            "dialogue": "assets/dialogue/story/barabbas_insurgent.ink",
+            "questId": 11
+        }
+    ]
+}

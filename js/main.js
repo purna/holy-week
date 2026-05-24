@@ -11,26 +11,27 @@
 
 import * as THREE from 'three';
 import * as CANNON from 'cannon';
-import { SceneManager } from './scene.js';
-import { WorldManager } from './world.js';
-import { Player } from './player.js';
-import { NPCSystem } from './NPCSystem.js';
-import { AudioManager } from './audio.js';
-import { ActionManager } from './actions.js';
-import { DialogueManager } from './dialogue.js';
-import { CameraController } from './CameraController.js';
-import { VFXSystem } from './vfx.js';
-import { ToonShader } from './ToonShader.js';
-import { DayNight } from './DayNight.js';
-import { IconManager } from './IconManager.js';
-import { ModelManager } from './ModelManager.js';
-import { LevelManager } from './LevelManager.js';
-import { locations } from './config.js';
+import { SceneManager } from './core/sceneManager.js';
+import { WorldManager } from './core/worldManager.js';
+import { Player } from './core/player.js';
+import { NPCSystem } from './gameplay/NPCSystem.js';
+import { DialogueManager } from './gameplay/dialogueManager.js';
+import { CameraController } from './core/CameraController.js';
+import { ToonShader } from './core/ToonShader.js';
+import { IconManager } from './core/IconManager.js';
+import { AudioManager } from './core/audioManager.js';
+import { DayNight } from './core/DayNight.js';
+import { ActionManager } from './gameplay/actionManager.js';
+import { ModelManager } from './core/modelManager.js';
+import { GameLevelManager } from './GameLevelManager.js';
+import { VFXSystem } from './core/VFXSystem.js';
+import { locations as legacyLocations, ICON_SYSTEM } from './config.js';
 
-// Global state
+// Locations are now loaded from level data - use empty array as fallback
+const locations = [];
+
+// Global state — centralized via appState single-point-of-truth
 let started = false;
-let isDialogueOpen = false;
-let hasWon = false;
 let activeNpc = null;
 let visitedNpcs = new Set();
 let lastNearNpcId = null;
@@ -78,9 +79,31 @@ console.log('[init] DOM elements loaded:', {
     elWorldPrompt: !!elWorldPrompt
 });
 
-const panelQuest = document.getElementById('panel-quest');
+// ── Central State Authority (single-point-of-truth) ───────────────────────────
+export let activeQuests = [];
+export let activeNpcsData = [];
+
+export const appState = {
+    isDialogueOpen: false,
+    hasWon: false,
+    currentLevelIndex: 0,
+
+    updateActiveLevelData(quests, npcs) {
+        activeQuests = [...quests];
+        activeNpcsData = [...npcs];
+        console.log("State synchronized safely for active module arrays.");
+        if (actionMgr) actionMgr.setQuests(activeQuests);
+    }
+};
+
+export function updateActiveLevelData(newQuests, newNpcs) {
+    activeQuests = newQuests;
+    activeNpcsData = newNpcs;
+    if (actionMgr) actionMgr.setQuests(activeQuests);
+}
 const panelInv = document.getElementById('panel-inv');
 const panelActions = document.getElementById('panel-actions');
+const panelQuest = document.getElementById('panel-quest');
 const btnQuest = document.getElementById('btn-quest-toggle');
 const btnInv = document.getElementById('btn-inv-toggle');
 const btnActions = document.getElementById('btn-actions-toggle');
@@ -93,7 +116,7 @@ const elInvList = document.getElementById('inv-list');
 const elActionsList = document.getElementById('actions-list');
 
 // LEVEL MANAGEMENT
-const levelManager = new LevelManager({
+const levelManager = new GameLevelManager({
     get worldMgr() { return worldMgr; },
     get player() { return player; },
     get npcSystem() { return npcSystem; },
@@ -286,15 +309,6 @@ function updateUI() {
     checkWinCondition();
 }
 
-// Mutable quests & NPCs arrays (set by LevelManager)
-export let activeQuests = [];
-export let activeNpcs = [];
-
-export function updateActiveLevelData(newQuests, newNpcs) {
-    activeQuests = newQuests;
-    activeNpcs = newNpcs;
-}
-
 // Win condition check
 function checkWinCondition() {
     // Verify if all current milestones/quests for this loop level are completed
@@ -308,7 +322,7 @@ function checkWinCondition() {
 
 // Win sequence
 function triggerWinSequence() {
-    isDialogueOpen = true;
+    appState.isDialogueOpen = true;
     player.sleep();
     mouseTarget = null;
     elLocalDialogueBox.style.display = 'none';
@@ -329,9 +343,9 @@ function triggerWinSequence() {
 
 /** Millisecond timings used by showFillerMessages and continueStory. */
 const DIALOGUE = Object.freeze({
-    messageDelay:  200,   // base delay before main NPC message appears after typing indicator
-    fillerDelay:   350,   // gap between each filler "ambient" line
-    typingDelay:   700,   // how long the "..." indicator shows before filler replaces it
+    messageDelay: 200,   // base delay before main NPC message appears after typing indicator
+    fillerDelay: 350,   // gap between each filler "ambient" line
+    typingDelay: 700,   // how long the "..." indicator shows before filler replaces it
 });
 
 // ── WhatsApp-style Ink dialogue helpers ────────────────────────────────────
@@ -437,14 +451,14 @@ function continueStory() {
                 b.onclick = () => {
                     elBubbleContainer.innerHTML = '';
                     elLocalDialogueBox.style.display = 'none';
-                    isDialogueOpen = false;
+                    appState.isDialogueOpen = false;
                     player.wakeUp();
                     player.resetTarget();
                     if (activeNpc) audio.playNpcSound(activeNpc.data.id, 'onExit');
                 };
                 elBubbleChoices.appendChild(b);
-            }
-        }, renderDelay);
+            }           // ← just close the if block
+        }, renderDelay); // ← then close the setTimeout
     } else {
         // Edge case: no text but there are choices (immediate choice)
         const renderDelay = DIALOGUE.messageDelay + (3 * DIALOGUE.fillerDelay) + 100;
@@ -484,11 +498,12 @@ function startDialogue() {
 
     if (activeNpc.data.questId !== undefined && !visitedNpcs.has(activeNpc.data.id)) {
         visitedNpcs.add(activeNpc.data.id);
-        activeQuests[activeNpc.data.questId].cur = 1;
+        const q = activeQuests.find(q => q.id === activeNpc.data.questId);
+        if (q) q.cur = Math.min(q.cur + 1, q.tar);
         updateUI();
     }
 
-    isDialogueOpen = true;
+    appState.isDialogueOpen = true;
     elWorldPrompt.style.display = 'none';
 
     // Clear previous chat history before opening a fresh conversation
@@ -550,7 +565,7 @@ function startDialogue() {
 
         // Set NPC name
         if (activeNpc.data.questId !== undefined) {
-            const _q = activeQuests[activeNpc.data.questId];
+            const _q = activeQuests.find(q => q.id === activeNpc.data.questId);
             const status = _q ? (_q.cur >= _q.tar ? '✓ COMPLETED' : `QUEST [${_q.cur}/${_q.tar}]`) : 'IN PROGRESS';
             elNpcNameDisplay.innerHTML = `${activeNpc.data.name} <span style="color:var(--accent-success);font-size:0.7em">- ${status}</span>`;
         } else {
@@ -614,7 +629,7 @@ function startDialogue() {
                 b.onclick = () => {
                     elBubbleContainer.innerHTML = '';
                     elLocalDialogueBox.style.display = 'none';
-                    isDialogueOpen = false;
+                    appState.isDialogueOpen = false;
                     player.wakeUp();
                     player.resetTarget();
                     if (activeNpc) audio.playNpcSound(activeNpc.data.id, 'onExit');
@@ -673,6 +688,21 @@ function updateSoundIcon(enabled) {
     btnSound.appendChild(iconEl);
 }
 
+// ── Minimap tracker ─────────────────────────────────────────────────────────
+const mapScaleFactor = 2.0; // normalises ~50-unit planet to minimap space
+
+function updateMinimapTracker() {
+    if (!player || !player.playerMesh) return;
+
+    const playerPos = new THREE.Vector3();
+    player.playerMesh.getWorldPosition(playerPos);
+
+    const uiTrackerDot = document.getElementById('minimap-player-indicator');
+    if (uiTrackerDot) {
+        uiTrackerDot.style.transform = `translate(${playerPos.x * mapScaleFactor}px, ${playerPos.z * mapScaleFactor}px)`;
+    }
+}
+
 // Initialize all systems
 async function init() {
     sceneMgr = new SceneManager();
@@ -689,8 +719,9 @@ async function init() {
     await iconMgr.init();
 
     player = new Player(worldMgr.world, sceneMgr.scene, modelMgr, toonShader);
-    npcSystem = new NPCSystem(activeNpcs, worldMgr.planetR, sceneMgr.scene, modelMgr, toonShader);
-    actionMgr = new ActionManager(iconMgr, () => activeQuests);
+    worldMgr._playerBody = player.pBody; // protect player body from level clears
+    npcSystem = new NPCSystem(activeNpcsData, worldMgr.planetR, sceneMgr.scene, modelMgr, toonShader);
+    actionMgr = new ActionManager(iconMgr);
     dialogueMgr = new DialogueManager();
     audio = new AudioManager();
     cameraCtrl = new CameraController(sceneMgr.camera);
@@ -733,7 +764,7 @@ async function init() {
 function setupInputs() {
     window.addEventListener('keydown', e => {
         keys[e.code] = true;
-        if (e.code === 'Space' && started && !isDialogueOpen) {
+        if (e.code === 'Space' && started && !appState.isDialogueOpen) {
             e.preventDefault();
             e.stopPropagation();
             if (player.jump()) playBeep(300, "sine", 0.05);
@@ -753,7 +784,7 @@ function setupInputs() {
     let lastMouseY = 0;
 
     window.addEventListener('mousedown', e => {
-        if (!started || isDialogueOpen) return;
+        if (!started || appState.isDialogueOpen) return;
         if (e.target.closest('.ui-toggle') || e.target.closest('.panel') ||
             e.target.closest('.overlay') || e.target.closest('#wipe-overlay')) return;
 
@@ -946,11 +977,14 @@ function gameLoop() {
     activeNpc = nearestNpc;
 
     // NPC interaction prompt
-    if (activeNpc && !isDialogueOpen && activeNpc.data.hasDialogue) {
+    if (activeNpc && !appState.isDialogueOpen && activeNpc.data.hasDialogue) {
         elWorldPrompt.style.display = 'block';
         elWorldPrompt.innerText = `CONNECT_TO_${activeNpc.data.name}`;
-        if (activeNpc.data.questId !== undefined && activeQuests[activeNpc.data.questId].cur < activeQuests[activeNpc.data.questId].tar) {
-            elWorldPrompt.innerHTML = `CONNECT_TO_${activeNpc.data.name} <span style="color:var(--accent-success)"> [QUEST]</span>`;
+        if (activeNpc.data.questId !== undefined) {
+            const _npcQuest = activeQuests.find(q => q.id === activeNpc.data.questId);
+            if (_npcQuest && _npcQuest.cur < _npcQuest.tar) {
+                elWorldPrompt.innerHTML = `CONNECT_TO_${activeNpc.data.name} <span style="color:var(--accent-success)"> [QUEST]</span>`;
+            }
         }
 
         const sPos = activeNpc.getScreenPosition(sceneMgr.camera, worldMgr.planetR);
@@ -963,7 +997,7 @@ function gameLoop() {
         }
     } else {
         elWorldPrompt.style.display = 'none';
-        if (lastNearNpcId !== null && !isDialogueOpen) {
+        if (lastNearNpcId !== null && !appState.isDialogueOpen) {
             audio.playNpcSound(lastNearNpcId, 'exit');
             lastNearNpcId = null;
         }
@@ -1019,7 +1053,7 @@ function gameLoop() {
             if (activeQuests[1].cur === activeQuests[1].tar) audio.playQuestComplete();
         }
         if (itemName.startsWith('SHARD') && activeQuests[2]?.cur < (activeQuests[2]?.tar ?? 0)) {
-           activeQuests[2].cur++;
+            activeQuests[2].cur++;
             if (activeQuests[2].cur === activeQuests[2].tar) audio.playQuestComplete();
         }
         audio.playPickup();
@@ -1033,8 +1067,11 @@ function gameLoop() {
         elNpcBubble.style.left = (sPos.x * 0.5 + 0.5) * window.innerWidth + 'px';
         elNpcBubble.style.top = (sPos.y * -0.5 + 0.5) * window.innerHeight + 'px';
         let txt = nonDialogueNpc.data.bubbleMsg || nonDialogueNpc.data.name.replace('_', ' ');
-        if (nonDialogueNpc.data.questId !== undefined && activeQuests[nonDialogueNpc.data.questId].completed) {
-            txt = nonDialogueNpc.data.bubbleMsgComplete || txt;
+        if (nonDialogueNpc.data.questId !== undefined) {
+            const _ndQuest = activeQuests.find(q => q.id === nonDialogueNpc.data.questId);
+            if (_ndQuest && _ndQuest.completed) {
+                txt = nonDialogueNpc.data.bubbleMsgComplete || txt;
+            }
         }
         elNpcBubble.innerHTML = `<b>${txt}</b>`;
         elNpcBubble.style.display = 'block';
@@ -1045,7 +1082,7 @@ function gameLoop() {
     // Movement (head-based pivot)
     let moveDir = new THREE.Vector3(0, 0, 0);
 
-    if (!isDialogueOpen) {
+    if (!appState.isDialogueOpen) {
         const viewRight = new THREE.Vector3().crossVectors(up, player.camHeading).normalize();
         if (keys['KeyA'] || keys['ArrowLeft']) {
             player.camHeading.add(viewRight.clone().multiplyScalar(0.045)).normalize();
@@ -1072,6 +1109,9 @@ function gameLoop() {
     cameraCtrl.follow(pPos, player.camHeading, up);
 
     actionMgr.renderFloatingIcon(sceneMgr.camera, pPos);
+
+    // Update minimap radar blip
+    updateMinimapTracker();
 
     sceneMgr.render();
 }

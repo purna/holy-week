@@ -277,22 +277,26 @@ body{
 </div>
 
 <div id="chat-panel">
-  <div class="chat-hdr">
-    <div>
-      <div class="chr">UNIT−01 ECHO</div>
-      <div class="st">● ONLINE — ANXIETY ANALYSIS FEED PROTOCOL</div>
-    </div>
-    <div class="meters">
-      <div class="meter">
-        <span class="meter-lbl">ANXIETY WORRY</span>
-        <div class="meter-track"><div class="meter-fill worry" id="m-worry"></div></div>
+    <div class="chat-hdr">
+        <div>
+          <div class="chr">UNIT−01 ECHO</div>
+          <div class="st">● ONLINE — ANXIETY ANALYSIS FEED PROTOCOL</div>
+        </div>
+        <div class="meters">
+          <div class="meter">
+            <span class="meter-lbl">ANXIETY WORRY</span>
+            <div class="meter-track"><div class="meter-fill worry" id="m-worry"></div></div>
+          </div>
+          <div class="meter">
+            <span class="meter-lbl">PSYCH CHAOS</span>
+            <div class="meter-track"><div class="meter-fill chaos" id="m-chaos"></div></div>
+          </div>
+        </div>
+        <div style="margin-top: 10px;">
+          <input type="file" id="import-dialogue" accept=".json" style="display: none;">
+          <button id="import-btn" style="background:rgba(0,168,132,0.1);border:1px solid rgba(0,168,132,0.4);color:#ffffff;padding:5px 10px;border-radius:12px;cursor:pointer;font-size:0.7rem;">Import Dialogue</button>
+        </div>
       </div>
-      <div class="meter">
-        <span class="meter-lbl">PSYCH CHAOS</span>
-        <div class="meter-track"><div class="meter-fill chaos" id="m-chaos"></div></div>
-      </div>
-    </div>
-  </div>
   <div id="bub-scroll"></div>
   <div id="bar-choices" class="hide"></div>
 </div>
@@ -765,7 +769,7 @@ function showTip(ev, id) {
 function hideTip() { tooltip.style.display = 'none'; }
 function renderTree() { buildTreeSVG(); }
 
-// ─── SIMULATION INITIALIZATION ENGINE ═════════════════════════════════
+// ─── SIMULATION INITIALIZATION ENGINE ══════════════════════════════════
 (function initializeSimulation() {
   updateMeters();
   visited['Start'] = true;
@@ -774,6 +778,125 @@ function renderTree() { buildTreeSVG(); }
   addMsg('system', 'ECHO SECURITY NODE ACCESS HANDSHAKE CONFIRMED.');
   revealNode('Start');
 })();
+
+// ─── DIALOGUE IMPORT FUNCTIONALITY ═════════════════════════════════════════
+document.getElementById('import-btn').onclick = function() {
+  document.getElementById('import-dialogue').click();
+};
+
+document.getElementById('import-dialogue').onchange = function(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+  
+  const reader = new FileReader();
+  reader.onload = function(event) {
+    try {
+      const importedStory = JSON.parse(event.target.result);
+      
+      // Validate that this looks like a dialogue structure
+      if (typeof importedStory !== 'object' || importedStory === null) {
+        alert('Invalid dialogue file: Expected JSON object');
+        return;
+      }
+      
+      // Check if it has the basic structure of a dialogue node
+      let validStructure = false;
+      for (const key in importedStory) {
+        if (importedStory.hasOwnProperty(key)) {
+          const node = importedStory[key];
+          if (typeof node === 'object' && node !== null && 
+              ('content' in node || 'choices' in node)) {
+            validStructure = true;
+            break;
+          }
+        }
+      }
+      
+      if (!validStructure) {
+        alert('Invalid dialogue file: Does not contain valid dialogue nodes');
+        return;
+      }
+      
+      // Replace the current story with the imported one
+      Object.keys(STORY).forEach(key => delete STORY[key]);
+      Object.assign(STORY, importedStory);
+      
+      // Reset simulation state
+      curNode = "Start";
+      worry = 30;
+      chaos = 20;
+      visited = {};
+      positions = null;
+      
+      // Ensure Start node exists
+      if (!STORY["Start"]) {
+        alert('Imported dialogue does not contain a "Start" node. Adding default Start node.');
+        STORY["Start"] = {
+          content: "Dialogue imported successfully. Begin conversation?",
+          choices: [{ text: "Start", destination: Object.keys(STORY)[0] || "End", worry: 0, chaos: 0 }]
+        };
+        
+        // Add an End node if no other nodes exist
+        if (Object.keys(STORY).length === 1) {
+          STORY["End"] = { content: "Conversation ended.", choices: [] };
+        }
+      }
+      
+      // Reset and restart simulation
+      bubScroll.innerHTML = '';
+      barChoices.classList.add('hide');
+      updateMeters();
+      visited['Start'] = true;
+      renderTree();
+      
+      addMsg('system', 'DIALOGUE IMPORTED SUCCESSFULLY.');
+      revealNode('Start');
+      
+      flash('📥 DIALOGUE IMPORTED');
+    } catch (error) {
+      alert('Error parsing JSON file: ' + error.message);
+    } finally {
+      e.target.value = ''; // Reset file input
+    }
+  };
+  reader.readAsText(file);
+};
+
+// Helper function for flash messages (copied from DialogueEditor)
+function flash(msg) {
+  // Create a temporary flash element
+  const flashEl = document.createElement('div');
+  flashEl.textContent = msg;
+  flashEl.style.position = 'fixed';
+  flashEl.style.bottom = '20px';
+  flashEl.style.left = '50%';
+  flashEl.style.transform = 'translateX(-50%)';
+  flashEl.style.background = 'rgba(0, 168, 132, 0.8)';
+  flashEl.style.color = '#000';
+  flashEl.style.padding = '8px 16px';
+  flashEl.style.borderRadius = '4px';
+  flashEl.style.fontFamily = '\'Courier New\', monospace';
+  flashEl.style.fontSize = '0.9rem';
+  flashEl.style.zIndex = '1000';
+  flashEl.style.opacity = '0';
+  flashEl.style.transition = 'opacity 0.3s ease';
+  
+  document.body.appendChild(flashEl);
+  
+  // Trigger reflow to enable transition
+  void flashEl.offsetWidth;
+  
+  // Fade in
+  flashEl.style.opacity = '1';
+  
+  // Fade out and remove after delay
+  setTimeout(() => {
+    flashEl.style.opacity = '0';
+    setTimeout(() => {
+      document.body.removeChild(flashEl);
+    }, 300);
+  }, 2000);
+}
 </script>
 </body>
 </html>

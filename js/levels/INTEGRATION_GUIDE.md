@@ -314,7 +314,7 @@ function openInvestigationBoard(board) {
 | `LevelManager.js` | Phase lifecycle: load, setup, unload, evidence tracking |
 | `level01.js` … `level10.js` | Pure data: NPCs, quests, evidence defs, model keys |
 | `main.js`       | Wires LevelManager events to existing UI / audio / win screen |
-| `dialogue.js`   | Unchanged — openDialogue() called per NPC as before |
+| `dialogueManager.js`   | Unchanged — openDialogue() called per NPC as before |
 | `config.js`     | Unchanged — generic actions remain here; level overrides in level0X.js |
 
 The key rule: **level files are data only**. No game logic lives in them.

@@ -1,6 +1,6 @@
 // Configuration object - npcs, locations, quests, actions, audio paths
 const basePath = './assets/audio/';
-const baseNPCPath = './assets/dialogue/';
+const baseNPCPath = './assets/dialogue/exmaples/';
 const baseModelPath = './assets/models/';
 const baseIconPath = './assets/gfx/';
 
@@ -33,10 +33,11 @@ export const COLORS = {
     yellow: 0xffff00,    // Yellow (for sun)
     shard: 0xa020f0,     // Purple for signal shards
     shardEmissive: 0x4a0080, // Dark red emissive for shards
-    crystal: 0x00f2ff,   // Cyan for crystal clusters (same as cyan)
+crystal: 0x00f2ff,   // Cyan for crystal clusters (same as cyan)
     crystalEmissive: 0x004444, // Dark blue emissive for crystals
-    
-    
+    bird: 0x333333,   // Dark grey birds
+    dust: 0xaa8855,   // Sandy brown dust
+     
 };
 
 // NPC Pad colors (used in NPC.js for base pad)
@@ -142,7 +143,6 @@ export const ICONS = {
     // Quest icons
     checkFull: baseIconPath + 'check-square-full.svg',
     checkEmpty: baseIconPath + 'check-square-empty.svg'
-    //
 };
 
 // FontAwesome icon class names (for FA system)
@@ -259,59 +259,17 @@ export const SOUND = {
     }
 };
 
-export const npcs = [
-    { id: 1, name: "UNIT-01 ECHO", color: COLORS.cyan, pos: [0.1, 0.1], storyFile: baseNPCPath + 'NPC_UNIT_ECHO_1.json', hasDialogue: true, bubbleMsg: ". . ." },
-    { id: 2, name: "UNIT-02 HORIZON", color: COLORS.green, pos: [0.6, 2.2], storyFile: baseNPCPath + 'NPC_UNIT_ECHO_2.json', hasDialogue: false, questId: 3, bubbleMsg: "please heal me", bubbleMsgComplete: "Thank you, I'm restored." }, // VISIT quest is at index 3
-    { id: 3, name: "SPIRE_MINOR", color: COLORS.orange, pos: [1.2, 0.3], hasDialogue: false, bubbleMsg: "The Spire awaits..." },
-    { id: 4, name: "DATA_KEEPER", color: COLORS.purple, pos: [0.8, 1.0], storyFile: baseNPCPath + 'NPC_DATA_KEEPER.json', hasDialogue: true, questId: 1, bubbleMsg: ". . ." } // CELLS quest at index 1
-];
-
-export const locations = [
-    { name: "LOC_NORTH_SPIRE", pos: [0.1, 0.5], r: 15, questId: 0 },
-    { name: "LOC_SOUTH_SPIRE", pos: [0.9, 2.5], r: 15 }
-];
-
-export const quests = [
-    { id: 'RECON', name: 'NORTH_RECON', task: 'Reach the North Spire', cur: 0, tar: 1, completed: false },
-    { id: 'CELLS', name: 'CELL_RECOVERY', task: 'Collect Data Cells', cur: 0, tar: 3, completed: false },
-    { id: 'SHARDS', name: 'SIGNAL_FRAGMENTS', task: 'Collect Purple Shards', cur: 0, tar: 3, completed: false },
-    { id: 'VISIT', name: 'VISIT_HORIZON', task: 'Contact UNIT-02 HORIZON - Heal Med Kit', cur: 0, tar: 1, completed: false }
-];
-
-export const collectables = [
-    {
-        id: 1,
-        name: "Data Cell",
-        key: "pickupCell",
-        prefix: "CELL",
-        count: 4,
-        color: COLORS.orange,
-        questIndex: 1,
-        model: 'pickupCell',
-        primitive: { type: "sphere", radius: 1 },
-        material: "toon"
-    },
-    {
-        id: 2,
-        name: "Signal Shard",
-        key: "pickupShard",
-        prefix: "SHARD",
-        count: 4,
-        color: COLORS.shard,
-        emissive: COLORS.shardEmissive,
-        questIndex: 2,
-        model: 'pickupShard',
-        primitive: { type: "octahedron", radius: 0.9 },
-        material: "standard"
-    }
-];
-
 export const actions = [
     { name: "Scan Area", type: "scan", icon: ICON_SYSTEM === 'svg' ? ICONS.scan : FA_ICONS.scan, iconType: "scan", uses: -1 },
     { name: "Repair Gear", type: "repair", icon: ICON_SYSTEM === 'svg' ? ICONS.repair : FA_ICONS.repair, iconType: "repair", uses: 1 },
     { name: "Hack Terminal", type: "hack", icon: ICON_SYSTEM === 'svg' ? ICONS.hack : FA_ICONS.hack, iconType: "hack", uses: 1 },
     { name: "Med Kit", type: "heal", icon: ICON_SYSTEM === 'svg' ? ICONS.heal : FA_ICONS.heal, iconType: "heal", uses: 5 }
 ];
+
+// Legacy npcs, quests, collectables deprecated - now in level*.js files
+// Locations are now loaded dynamically from level data
+
+export const locations = [];
 
 // ============================================================================
 // DIALOGUE SYSTEM CONFIGURATION

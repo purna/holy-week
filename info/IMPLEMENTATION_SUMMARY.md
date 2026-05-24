@@ -55,10 +55,10 @@ Successfully refactored the 3D Globe Starter project to incorporate the modular 
 - Added `wipeTransition` settings
 - All physics values tuned for "bee on football" scale
 
-### scene.js
+### sceneManager.js
 - No structural changes (already minimal and correct)
 
-### world.js
+### worldManager.js
 - Added `collisionManager` export
 - Integrated config.npcs via `addNPCs()` (replaces hardcoded NPCs)
 - Removed placeholder test box/primitive NPCs
@@ -81,7 +81,7 @@ Successfully refactored the 3D Globe Starter project to incorporate the modular 
 
 ### main.js
 - Added `pathfinding.js` import
-- Added `collisionManager` from world.js
+- Added `collisionManager` from worldManager.js
 - `setupPathfinding()` initializes waypoint graph
 - Added `updateWorldNPCs()` call in animation loop
 - Added `setupDialogueEvents()`
@@ -104,9 +104,9 @@ Successfully refactored the 3D Globe Starter project to incorporate the modular 
 ```
 js/
 ├── config.js           # Central configuration
-├── scene.js            # Three.js scene setup
+├── sceneManager.js            # Three.js scene setup
 ├── player.js           # Player model, controls, animation
-├── world.js            # Planet, physics, NPC spawner
+├── worldManager.js            # Planet, physics, NPC spawner
 ├── NPC.js              # Base NPC class (GLB support)
 ├── NPCSystem.js        # NPC management, proximity
 ├── pathfinding.js      # A*, waypoints, path following
@@ -182,8 +182,8 @@ All JavaScript files pass syntax validation:
 - ✅ js/NPC.js
 - ✅ js/NPCSystem.js
 - ✅ js/TriggerSystem.js
-- ✅ js/world.js
-- ✅ js/scene.js
+- ✅ js/worldManager.js
+- ✅ js/sceneManager.js
 - ✅ js/pathfinding.js
 - ✅ js/collider.js
 - ✅ js/ToonShader.js
@@ -202,7 +202,7 @@ The `Miracle Maker_final_v16.html` features have been integrated into the existi
 - Pathfinding → new module
 - Collision → new module
 - GLTF models → player.js + NPC.js
-- Ink dialogue → preserved (ink-dialogue.js)
+- Ink dialogue → preserved (ink-dialogueManager.js)
 - Wipe transition → preserved (enhanced in config)
 
 ## Next Steps (Optional Enhancements)

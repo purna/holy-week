@@ -2,6 +2,9 @@
 <html lang="en">
 
 <head>
+    <!--
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' https: 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: https:; font-src 'self' data: https:; connect-src 'self' https:;">
+    -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="A 3D interactive experience with modular architecture and dynamic lighting.">
@@ -116,6 +119,15 @@
                 </button>
             </div>
         </div>
+    </div>
+
+    <!-- Minimap tracker -->
+    <div id="minimap" class="minimap-panel">
+        <div class="minimap-radar-line"></div>
+        <div class="minimap-grid-circle" style="width:30px; height:30px;"></div>
+        <div class="minimap-grid-circle" style="width:65px; height:65px;"></div>
+        <div id="minimap-blips-container"></div>
+        <div id="minimap-player-indicator" class="minimap-blip player"></div>
     </div>
 
     <div id="npc-indicator-container">

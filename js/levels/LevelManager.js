@@ -20,6 +20,8 @@
  * defined at the bottom of this file.
  */
 
+import { levelRegistry } from '../levelRegistry.js';
+
 export class LevelManager {
     /**
      * @param {object} deps  — runtime dependencies injected from main.js
@@ -33,17 +35,17 @@ export class LevelManager {
      * @param {Function}       deps.onWin      — called when ALL levels complete
      */
     constructor(deps) {
-        this.scene       = deps.sceneMgr.scene;
-        this.worldMgr    = deps.worldMgr;
-        this.modelMgr    = deps.modelMgr;
-        this.npcSystem   = deps.npcSystem;
+        this.scene = deps.sceneMgr.scene;
+        this.worldMgr = deps.worldMgr;
+        this.modelMgr = deps.modelMgr;
+        this.npcSystem = deps.npcSystem;
         this.dialogueMgr = deps.dialogueMgr;
-        this.audio       = deps.audio;
-        this.updateUI    = deps.updateUI;
-        this.onWin       = deps.onWin || (() => {});
+        this.audio = deps.audio;
+        this.updateUI = deps.updateUI;
+        this.onWin = deps.onWin || (() => { });
 
-        this.currentPhase   = 0;   // 1-indexed; 0 = not started
-        this.currentData    = null; // active LevelData object
+        this.currentPhase = 0;   // 1-indexed; 0 = not started
+        this.currentData = null; // active LevelData object
         this._spawnedMeshes = [];   // meshes added for this level (cleaned up on exit)
 
         // Evidence collected across all phases
@@ -71,7 +73,7 @@ export class LevelManager {
      * Unloads current phase first.
      */
     async loadPhase(phaseNumber) {
-        if (phaseNumber < 1 || phaseNumber > 10) {
+        if (phaseNumber < 1 || phaseNumber > 12) {
             console.warn('[LevelManager] Invalid phase:', phaseNumber);
             return;
         }
@@ -83,10 +85,9 @@ export class LevelManager {
 
         this.currentPhase = phaseNumber;
 
-        // Dynamic import — only loads the file when needed
-        const padded = String(phaseNumber).padStart(2, '0');
-        const module = await import(`./level${padded}.js`);
-        this.currentData = module.default;
+        // Static lookup via pre-loaded registry — avoids dynamic import(...) with
+        // computed string templates, which CSP scanners flag as eval-type issues.
+        this.currentData = levelRegistry[phaseNumber - 1];
 
         console.log(`[LevelManager] Loaded phase ${phaseNumber}: ${this.currentData.title}`);
 
@@ -97,7 +98,7 @@ export class LevelManager {
     /** Move to the next phase (called when current phase objectives complete) */
     async nextPhase() {
         const next = this.currentPhase + 1;
-        if (next > 10) {
+        if (next > 12) {
             // All phases done — trigger win / trial
             this._emitPhaseEvent('gameComplete', { evidence: this.evidence });
             this.onWin();
@@ -163,7 +164,7 @@ export class LevelManager {
             const mesh = this.modelMgr.getModel(data.modelKey);
             if (mesh) {
                 if (data.modelPosition) mesh.position.set(...data.modelPosition);
-                if (data.modelScale)    mesh.scale.setScalar(data.modelScale);
+                if (data.modelScale) mesh.scale.setScalar(data.modelScale);
                 this.scene.add(mesh);
                 this._spawnedMeshes.push(mesh);
             }
@@ -259,11 +260,11 @@ export class LevelManager {
 
     _showPhaseIntro(data) {
         this._emitPhaseEvent('phaseIntro', {
-            phase:       this.currentPhase,
-            title:       data.title,
-            subtitle:    data.subtitle,
-            location:    data.location,
-            actLabel:    data.actLabel
+            phase: this.currentPhase,
+            title: data.title,
+            subtitle: data.subtitle,
+            location: data.location,
+            actLabel: data.actLabel
         });
     }
 
@@ -281,7 +282,7 @@ export class LevelManager {
 
     /** Bind listeners that persist for the full game session */
     _bindGlobalListeners() {
-        // main.js or world.js dispatches this when a collectable is picked up
+        // main.js or worldManager.js dispatches this when a collectable is picked up
         document.addEventListener('evidencePickup', (e) => {
             this.collectEvidence(e.detail.evidenceId);
         });

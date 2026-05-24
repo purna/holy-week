@@ -2,6 +2,8 @@
  * Pathfinding Module - A* algorithm and waypoint navigation
  */
 
+import * as THREE from 'three';
+
 /**
  * Waypoint Graph for NPC navigation
  */
