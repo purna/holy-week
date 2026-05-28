@@ -1,6 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<!--
+TO DO - 
+[] square brackets inky system
+naming nodes.
+including emojis
+other inky syntax features
+
+
+
+-->
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -2062,11 +2073,14 @@
       el.innerHTML = h;
     }
 
-    function selDlg(id) {
-      S.activeId = id; S.selectedId = null; S.leftTab = 'node';
-      render();
-      updateInkFromNodes();
-    }
+function selDlg(id) {
+  S.activeId = id; S.selectedId = null;
+  if (!isMobile()) {
+    S.leftTab = 'node';
+  }
+  render();
+  updateInkFromNodes();
+}
     function confirmDel(id, name) { if (confirm(`Delete "${name}"?`)) deleteDlg(id); }
 
     function renderNodeEditor(el) {
@@ -2298,18 +2312,34 @@
         });
       }
 
-      // Drag
-      el.addEventListener('mousedown', e => {
-        if (e.button !== 0) return;
-        e.stopPropagation();
-        if (S.spaceDown) {
-          S.panSt = { sx: e.clientX, sy: e.clientY, px: S.pan.x, py: S.pan.y }; return;
-        }
-        S.selectedId = node.id; S.selectedConn = null; S.leftTab = 'node';
-        const p = sc2c(e.clientX, e.clientY);
-        S.drag = { nid: node.id, ox: p.x - node.x, oy: p.y - node.y };
-        updateSel(); renderPanel();
-      });
+       // Drag
+       el.addEventListener('mousedown', e => {
+         if (e.button !== 0) return;
+         e.stopPropagation();
+         if (S.spaceDown) {
+           S.panSt = { sx: e.clientX, sy: e.clientY, px: S.pan.x, py: S.pan.y }; return;
+         }
+         S.selectedId = node.id; S.selectedConn = null; S.leftTab = 'node';
+         const p = sc2c(e.clientX, e.clientY);
+         S.drag = { nid: node.id, ox: p.x - node.x, oy: p.y - node.y };
+         updateSel(); renderPanel();
+       });
+       
+       // Double-click to edit on mobile
+       el.addEventListener('dblclick', e => {
+         e.stopPropagation();
+         if (isMobile()) {
+           S.selectedId = node.id;
+           S.selectedConn = null;
+           S.wire = null; // clear wire
+           S.leftTab = 'dlg'; // Ensure left panel shows dialogue list if opened
+           updateSel();
+           updateStatus();
+           // Hide left panel to avoid showing two edit panels
+           document.getElementById('left-panel').classList.remove('mob-open');
+           openSheet();
+         }
+       });
       return el;
     }
 

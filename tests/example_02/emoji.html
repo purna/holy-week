@@ -1,0 +1,1247 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Miracle Maker 3D - Fixed Production Sandbox with Evidence Archive Systems, Interactive Map, and Smooth Day/Night Cycle.">
+    <title>Miracle Maker 3D - Production Sandbox Continuum</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.4/howler.min.js"></script>
+
+    <style>
+        /* ===== GLOBAL THEME VARIABLE TOKENS ===== */
+        :root {
+            --bg-main: #010105;
+            --panel-bg: rgba(11, 20, 26, 0.94);
+            --accent-primary: #00a884;
+            /* Authentic WhatsApp/VN Theme Teal */
+            --accent-secondary: #ffaa00;
+            --accent-success: #00ffaa;
+            --accent-error: #ff4444;
+            --text-main: #e9edef;
+            --text-muted: #8696a0;
+            --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            --bubble-out: #005c4b;
+            --bubble-in: #202c33;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body,
+        html {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: var(--bg-main);
+            font-family: var(--font-stack);
+            color: var(--text-main);
+            user-select: none;
+        }
+
+        #canvas-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        /* ===== IN-WORLD FLOATING UI TAG MATRICES ===== */
+        .inworld-tag {
+            position: absolute;
+            z-index: 450;
+            transform: translate(-50%, -100%);
+            pointer-events: none;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            animation: tagPop 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes tagPop {
+            from { transform: translate(-50%, -80%) scale(0.8); opacity: 0; }
+            to { transform: translate(-50%, -100%) scale(1); opacity: 1; }
+        }
+
+        .inworld-btn {
+            pointer-events: auto;
+            background: #0b141a;
+            border: 2px solid var(--accent-success);
+            color: #fff;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 4px 14px rgba(0, 255, 170, 0.4);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.15s ease;
+        }
+
+        .inworld-btn:hover {
+            background: var(--accent-success);
+            color: #0b141a;
+            transform: scale(1.05);
+        }
+
+        .inworld-msg {
+            background: rgba(255, 170, 0, 0.95);
+            border: 1px solid #fff;
+            color: #010105;
+            padding: 5px 12px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            box-shadow: 0 4px 12px rgba(255, 170, 0, 0.5);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+        }
+
+        .inworld-arrow {
+            width: 0;
+            height: 0;
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-top: 6px solid #0b141a;
+        }
+
+        .inworld-arrow.collectable-arrow {
+            border-top-color: rgba(255, 170, 0, 0.95);
+        }
+
+        /* ===== HUD LAYER GAUGE FRAMEWORK ===== */
+        .hud-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 10;
+            pointer-events: none;
+            display: grid;
+            grid-template-columns: 320px 1fr 340px;
+            grid-template-rows: 65px 1fr 140px;
+            padding: 20px;
+            gap: 20px;
+        }
+
+        .hud-layer * {
+            pointer-events: auto;
+        }
+
+        .hud-panel {
+            background: var(--panel-bg);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.6);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        #top-bar {
+            grid-column: 1 / -1;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 3px solid var(--accent-primary);
+        }
+
+        .loc-tag {
+            font-size: 1.1rem;
+            color: #fff;
+            font-weight: 700;
+        }
+
+        .act-tag {
+            font-size: 0.8rem;
+            color: var(--accent-secondary);
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-left: 10px;
+        }
+
+        #left-sidebar {
+            grid-column: 1;
+            grid-row: 2;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            transition: opacity 0.25s ease, transform 0.25s ease;
+        }
+
+        #left-sidebar.panel-hidden {
+            opacity: 0;
+            pointer-events: none;
+            transform: translateX(-18px);
+        }
+
+        #right-sidebar {
+            grid-column: 3;
+            grid-row: 2;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            transition: opacity 0.25s ease, transform 0.25s ease;
+        }
+
+        #right-sidebar.panel-hidden {
+            opacity: 0;
+            pointer-events: none;
+            transform: translateX(18px);
+        }
+
+        /* ===== PANEL TOGGLE BUTTONS ===== */
+        .panel-toggle-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 20;
+            background: rgba(11, 20, 26, 0.88);
+            border: 1px solid rgba(0, 168, 132, 0.4);
+            color: var(--accent-primary);
+            width: 22px;
+            height: 52px;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            transition: background 0.2s, border-color 0.2s, color 0.2s;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .panel-toggle-btn:hover {
+            background: rgba(0, 168, 132, 0.2);
+            border-color: var(--accent-primary);
+            color: #fff;
+        }
+
+        #toggle-left-btn {
+            left: calc(320px + 20px + 4px);
+        }
+
+        #toggle-right-btn {
+            right: calc(340px + 20px + 4px);
+        }
+
+        .panel-header {
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--accent-primary);
+            margin-bottom: 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .quest-item {
+            background: #202c33;
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 4px solid var(--accent-secondary);
+            margin-bottom: 10px;
+        }
+
+        .quest-title {
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 4px;
+            font-size: 0.9rem;
+        }
+
+        .quest-task {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .progress-bar-wrap {
+            background: #111b21;
+            height: 6px;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            background: var(--accent-secondary);
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        #evidence-popup-card {
+            background: #111b21;
+            border: 1px solid rgba(0, 255, 170, 0.2);
+            border-radius: 6px;
+            padding: 12px;
+            display: none;
+            margin-bottom: 10px;
+            animation: slideInDown 0.3s ease-out;
+        }
+
+        @keyframes slideInDown {
+            from {
+                transform: translateY(-10px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .popup-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 6px;
+        }
+
+        .popup-title {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--accent-success);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .popup-close {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+
+        .popup-close:hover {
+            color: #fff;
+        }
+
+        .popup-body {
+            font-size: 0.78rem;
+            color: var(--text-main);
+            line-height: 1.4;
+        }
+
+        .evidence-folder-container {
+            background: #111b21;
+            border-radius: 6px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 10px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .evidence-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            overflow-y: auto;
+            padding-top: 4px;
+        }
+
+        .evidence-slot-btn {
+            background: #202c33;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 6px;
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            cursor: pointer;
+            position: relative;
+            transition: all 0.2s;
+            font-size: 1.5rem;
+        }
+
+        /* Adjust sizing tweak for Font Awesome rendering dynamically inside slots */
+        .evidence-slot-btn i {
+            font-size: 1.3rem;
+            color: var(--accent-secondary);
+        }
+
+        .evidence-slot-btn:hover {
+            background: #2a3942;
+            color: var(--accent-success);
+            border-color: var(--accent-success);
+        }
+
+        .evidence-slot-btn.filled {
+            color: var(--accent-secondary);
+            background: #223c34;
+            border-color: var(--accent-primary);
+        }
+
+        .evidence-slot-btn.filled:hover {
+            color: var(--accent-success);
+            box-shadow: 0 0 8px rgba(0, 255, 170, 0.3);
+        }
+
+        .action-btn {
+            width: 100%;
+            background: #202c33;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            color: #fff;
+            padding: 10px 14px;
+            text-align: left;
+            margin-bottom: 8px;
+            cursor: pointer;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.2s;
+        }
+
+        .action-btn:hover {
+            background: #2a3942;
+            border-color: var(--accent-primary);
+        }
+
+        .action-btn.talk-prompt-highlight {
+            border: 1px solid var(--accent-success);
+            background: rgba(0, 255, 170, 0.1);
+            animation: pulse-border 1.5s infinite ease-in-out;
+            font-weight: 700;
+        }
+
+        @keyframes pulse-border {
+
+            0%,
+            100% {
+                border-color: rgba(0, 255, 170, 0.4);
+            }
+
+            50% {
+                border-color: rgba(0, 255, 170, 1.0);
+                box-shadow: 0 0 10px rgba(0, 255, 170, 0.2);
+            }
+        }
+
+        .prophecy-item {
+            font-size: 0.8rem;
+            padding: 8px;
+            background: #111b21;
+            border-radius: 4px;
+            margin-bottom: 6px;
+            color: var(--accent-success);
+            border-left: 3px solid var(--accent-primary);
+        }
+
+        #bottom-bar {
+            grid-column: 1 / -1;
+            grid-row: 3;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .control-group-right {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .hud-row-btn {
+            background: #202c33;
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            transition: all 0.2s;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+        }
+
+        .hud-row-btn:hover {
+            background: #2a3942;
+            color: var(--accent-primary);
+            border-color: var(--accent-primary);
+        }
+
+        .hud-row-btn.active {
+            color: var(--accent-secondary);
+            border-color: var(--accent-secondary);
+        }
+
+        .btn-map-trigger {
+            background: var(--accent-primary);
+            color: #111b21;
+            border: none;
+            font-weight: 700;
+            padding: 14px 36px;
+            border-radius: 28px;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 6px 20px rgba(0, 168, 132, 0.35);
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+        }
+
+        .btn-map-trigger:hover {
+            transform: translateY(-2px);
+            background: #00c49a;
+            box-shadow: 0 8px 24px rgba(0, 168, 132, 0.5);
+        }
+
+        /* ===== RADAR MINIMAP HUD COMPONENT ===== */
+        .minimap-panel {
+            width: 110px;
+            height: 110px;
+            background: rgba(11, 20, 26, 0.9);
+            border: 2px solid var(--accent-primary);
+            border-radius: 50%;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);
+        }
+
+        .minimap-radar-line {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background: conic-gradient(from 0deg, rgba(0, 168, 132, 0.15) 0deg, transparent 90deg);
+            border-radius: 50%;
+            transform-origin: center;
+            animation: radar-sweep 2.5s linear infinite;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        @keyframes radar-sweep {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .minimap-grid-circle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 1px dashed rgba(0, 168, 132, 0.25);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .minimap-blip {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            margin-left: -3px;
+            margin-top: -3px;
+            border-radius: 50%;
+            z-index: 5;
+            background: #fff;
+            box-shadow: 0 0 6px currentColor;
+        }
+
+        .minimap-blip.player {
+            background: var(--accent-success);
+            width: 8px;
+            height: 8px;
+            margin-left: -4px;
+            margin-top: -4px;
+            z-index: 6;
+        }
+
+        .minimap-blip.npc {
+            background: var(--accent-secondary);
+        }
+
+        .minimap-blip.collectable {
+            background: #ffdd00;
+        }
+
+        /* ===== CONVERSATION WRAPPERS ===== */
+        #vn-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 100;
+            pointer-events: none;
+            display: none;
+            background: rgba(11, 20, 26, 0.4);
+            opacity: 0;
+            transition: opacity 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        #vn-overlay.active {
+            display: block;
+        }
+
+        #vn-overlay.fade-in-complete {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        #vn-container {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 750px;
+            background: #0b141a;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.8);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        #vn-header {
+            background: #202c33;
+            padding: 14px 20px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+        }
+
+        #vn-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--accent-primary);
+            margin-right: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        #vn-speaker-name {
+            font-weight: 600;
+            color: #fff;
+            font-size: 0.95rem;
+        }
+
+        #bub-scroll {
+            padding: 20px;
+            max-height: 240px;
+            overflow-y: auto;
+            background-color: #0b141a;
+            background-image: radial-gradient(rgba(0, 168, 132, 0.04) 2px, transparent 0);
+            background-size: 24px 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .chat-bubble {
+            max-width: 80%;
+            padding: 10px 14px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            line-height: 1.4;
+            position: relative;
+            word-wrap: break-word;
+        }
+
+        .chat-bubble.incoming {
+            background: var(--bubble-in);
+            color: var(--text-main);
+            align-self: flex-start;
+            border-top-left-radius: 0;
+        }
+
+        .chat-bubble.outgoing {
+            background: var(--bubble-out);
+            color: #fff;
+            align-self: flex-end;
+            border-top-right-radius: 0;
+        }
+
+        #bar-choices {
+            background: #111b21;
+            padding: 15px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .choice-btn {
+            background: #222e35;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            color: #00a884;
+            padding: 10px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            text-align: left;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .choice-btn:hover {
+            background: #2a3942;
+            color: #00f2ff;
+            padding-left: 22px;
+        }
+
+        /* ===== INTERACTIVE MAP OVERLAYS ===== */
+        #modal-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 500;
+            background: #020306;
+            display: none;
+            flex-direction: column;
+        }
+
+        #modal-overlay.active {
+            display: flex;
+        }
+
+        #modal-header {
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #111b21;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            z-index: 510;
+        }
+
+        #modal-canvas-wrap {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 501;
+        }
+
+        .close-modal-btn {
+            background: transparent;
+            border: 1px solid var(--accent-error);
+            color: var(--accent-error);
+            padding: 8px 20px;
+            border-radius: 18px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.2s;
+            z-index: 510;
+        }
+
+        .close-modal-btn:hover {
+            background: var(--accent-error);
+            color: #000;
+        }
+
+        .map-node-dot {
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            margin-left: -8px;
+            margin-top: -8px;
+            border-radius: 50%;
+            z-index: 550;
+            cursor: pointer;
+            pointer-events: auto;
+            box-shadow: 0 0 16px currentColor;
+            border: 2px solid #fff;
+            transition: transform 0.2s;
+        }
+
+        .map-node-dot:hover {
+            transform: scale(1.4);
+        }
+
+        .map-node-dot.locked {
+            cursor: not-allowed;
+            border: 1px solid #444 !important;
+            background: #1c1c1c !important;
+            color: #444 !important;
+            box-shadow: none;
+        }
+
+        .map-node-dot.completed::after {
+            content: '\f00c';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            position: absolute;
+            top: -18px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--accent-success);
+            font-size: 11px;
+        }
+
+        .map-node-label {
+            position: absolute;
+            z-index: 551;
+            pointer-events: none;
+            font-size: 0.75rem;
+            white-space: nowrap;
+            color: #fff;
+            background: rgba(17, 27, 33, 0.95);
+            padding: 4px 8px;
+            border-radius: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transform: translate(-50%, -32px);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .loading-screen,
+        .end-screen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2000;
+            background: #0b141a;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.4s ease;
+        }
+
+        .loading-inner,
+        .end-inner {
+            text-align: center;
+            max-width: 500px;
+            padding: 20px;
+        }
+
+        .spinner {
+            width: 45px;
+            height: 45px;
+            border: 4px solid rgba(0, 168, 132, 0.1);
+            border-left-color: var(--accent-primary);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .end-btn-row {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .terminal-btn {
+            background: var(--accent-primary);
+            color: #111b21;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 20px;
+            font-weight: 700;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.2s;
+        }
+
+        .terminal-btn:hover {
+            background: #00c49a;
+            transform: translateY(-2px);
+        }
+
+        #screen-alert {
+            position: absolute;
+            top: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            background: #202c33;
+            border-left: 4px solid var(--accent-secondary);
+            padding: 12px 24px;
+            border-radius: 4px;
+            display: none;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+            font-weight: 600;
+            color: #fff;
+        }
+    </style>
+
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.module.js"
+            }
+        }
+    </script>
+</head>
+
+<body>
+
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-inner">
+            <h1 style="color: #fff; font-size: 1.5rem; margin-bottom: 5px; letter-spacing: 1px;">INITIALIZING SANDBOX MATRICES</h1>
+            <p id="loading-text" style="color: var(--text-muted); font-size: 0.85rem; text-transform: uppercase;">
+                Compiling rigid physics bodies and terrain fields...</p>
+            <div class="spinner"></div>
+        </div>
+    </div>
+
+    <div id="inworld-npc-prompt" class="inworld-tag">
+        <button class="inworld-btn" id="inworld-npc-btn">
+            <i class="fa-solid fa-comments"></i> Talk <small>[E]</small>
+        </button>
+        <div class="inworld-arrow"></div>
+    </div>
+
+    <div id="inworld-collectable-prompt" class="inworld-tag">
+        <div class="inworld-msg" id="inworld-collectable-msg">NEARBY COLLECTABLE</div>
+        <div class="inworld-arrow collectable-arrow"></div>
+    </div>
+
+    <div id="end-screen" class="end-screen" style="display: none; opacity: 0;">
+        <div class="end-inner">
+            <i class="fa-solid fa-circle-check"
+                style="color: var(--accent-success); font-size: 3.5rem; margin-bottom: 20px;"></i>
+            <h1 style="color: #fff; font-size: 1.8rem; margin-bottom: 10px;">INVESTIGATION CONCLUDED</h1>
+            <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; margin-bottom: 15px;">
+                All 4 historical validation parameters satisfied throughout the city of Jerusalem. 100% prophecy
+                tracking complete.
+            </p>
+            <div class="end-btn-row">
+                <button class="terminal-btn" onclick="window.location.reload();">Restart Loop Continuum</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="canvas-container"></div>
+    <div id="screen-alert"></div>
+
+    <button id="toggle-left-btn" class="panel-toggle-btn" title="Toggle Left Panel">
+        <i class="fa-solid fa-chevron-left"></i>
+    </button>
+    <button id="toggle-right-btn" class="panel-toggle-btn" title="Toggle Right Panel">
+        <i class="fa-solid fa-chevron-right"></i>
+    </button>
+
+    <div class="hud-layer">
+        <div id="top-bar" class="hud-panel">
+            <div>
+                <span id="loc-name" class="loc-tag">---</span>
+                <span id="act-name" class="act-tag">---</span>
+            </div>
+            <div id="level-title" style="font-weight: 600; color: var(--accent-primary);">---</div>
+        </div>
+
+        <div id="left-sidebar">
+            <div class="hud-panel" style="flex: 0 0 auto;">
+                <div class="panel-header">⭐ Active Quest Task</div>
+                <div id="quest-card" class="quest-item">
+                    <div id="quest-title" class="quest-title">---</div>
+                    <div id="quest-task" class="quest-task">---</div>
+                    <div class="progress-bar-wrap">
+                        <div id="quest-progress" class="progress-fill"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="evidence-popup-card">
+                <div class="popup-header">
+                    <span id="popup-evidence-title" class="popup-title">🛡️ Evidence Logged</span>
+                    <button class="popup-close"
+                        onclick="document.getElementById('evidence-popup-card').style.display='none';">✕</button>
+                </div>
+                <div id="popup-evidence-body" class="popup-body">---</div>
+            </div>
+
+            <div class="hud-panel" style="flex: 1 1 auto;">
+                <div class="panel-header">📂 Evidence Folder Archive</div>
+                <div class="evidence-folder-container">
+                    <div id="evidence-slots-grid" class="evidence-grid">
+                        <div class="evidence-slot-btn" id="slot-0" onclick="window.AppEngine.readStoredEvidenceItem(0);">📁</div>
+                        <div class="evidence-slot-btn" id="slot-1" onclick="window.AppEngine.readStoredEvidenceItem(1);">📁</div>
+                        <div class="evidence-slot-btn" id="slot-2" onclick="window.AppEngine.readStoredEvidenceItem(2);">📁</div>
+                        <div class="evidence-slot-btn" id="slot-3" onclick="window.AppEngine.readStoredEvidenceItem(3);">📁</div>
+                        <div class="evidence-slot-btn" id="slot-4" onclick="window.AppEngine.readStoredEvidenceItem(4);">📁</div>
+                        <div class="evidence-slot-btn" id="slot-5" onclick="window.AppEngine.readStoredEvidenceItem(5);">📁</div>
+                        <div class="evidence-slot-btn" id="slot-6" onclick="window.AppEngine.readStoredEvidenceItem(6);">📁</div>
+                        <div class="evidence-slot-btn" id="slot-7" onclick="window.AppEngine.readStoredEvidenceItem(7);">📁</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="right-sidebar">
+            <div class="hud-panel" style="flex:1;">
+                <div class="panel-header">⚡ Context Actions</div>
+                <div id="actions-container" style="flex:1; overflow-y:auto;"></div>
+            </div>
+            <div class="hud-panel" style="flex:1;">
+                <div class="panel-header">📜 Fulfilled Prophecies</div>
+                <div id="prophecies-container" style="flex:1; overflow-y:auto;"></div>
+            </div>
+        </div>
+
+        <div id="bottom-bar">
+            <div id="minimap" class="minimap-panel">
+                <div class="minimap-radar-line"></div>
+                <div class="minimap-grid-circle" style="width:30px; height:30px;"></div>
+                <div class="minimap-grid-circle" style="width:65px; height:65px;"></div>
+                <div id="minimap-blips-container"></div>
+            </div>
+            <div class="control-group-right">
+                <button id="btn-audio-toggle" class="hud-row-btn active" title="Toggle Sound Matrix">
+                    <i class="fa-solid fa-volume-high"></i>
+                </button>
+                <button id="btn-open-map" class="btn-map-trigger">
+                    <i class="fa-solid fa-map-location-dot" style="margin-right:10px; font-size:1.1rem;"></i> Open Map Archive
+                </button>
+                <button id="btn-cycle-toggle" class="hud-row-btn" title="Toggle Celestial Mode">
+                    <i class="fa-solid fa-sun"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="vn-overlay">
+        <div id="vn-container">
+            <div id="vn-header">
+                <div id="vn-avatar">?</div>
+                <div id="vn-speaker-name">NPC Speaker</div>
+            </div>
+            <div id="bub-scroll"></div>
+            <div id="bar-choices"></div>
+        </div>
+    </div>
+
+    <div id="modal-overlay">
+        <div id="modal-header">
+            <div>
+                <h2 style="margin:0; font-size:1.1rem; color:var(--accent-primary); font-weight:700;">Jerusalem 3D Continuum</h2>
+                <p style="margin:2px 0 0 0; font-size:0.8rem; color:var(--text-muted);">Left-click + drag background to orbit city framework. Select destination nodes.</p>
+            </div>
+            <button id="btn-close-map" class="close-modal-btn">Close Matrix</button>
+        </div>
+        <div id="modal-canvas-wrap"></div>
+    </div>
+
+    <script type="module">
+        import * as THREE from 'three';
+
+        // =========================================================================
+        // DATA LEVEL SEQUENCES AND CONFIGS (With Emojis and Icons added)
+        // =========================================================================
+        const WORLD_LEVEL_TREE_SCHEMATIC = [
+            {
+                phase: 1,
+                actLabel: 'ACT 1 – THE ARRIVAL',
+                title: 'The Donkey King',
+                location: 'JERUSALEM GATE STREETS',
+                color: 0x00a884,
+                theta: Math.PI * 0.18,
+                phi: Math.PI * 0.42,
+                unlockAfter: [],
+                isComplete: false,
+                quest: { id: 'DONKEY_KING', name: 'THE ARRIVAL', task: 'Investigate gathering crowd parameters near gates', cur: 0, tar: 2 },
+                prophecies: ['Zechariah 9:9 — "Behold, your King comes to you, humble, riding upon a donkey."'],
+                npcs: [
+                    { id: 'child_01', name: 'Excited Child', color: 0xffcc44, pos: [25, 1, -15], story: 'child_start' },
+                    { id: 'guard_01', name: 'Roman Sentry', color: 0xff4444, pos: [-35, 1, -25], story: 'guard_start' }
+                ],
+                actions: [
+                    { name: 'Observe Entrance Assemblies', type: 'quest_advance', payload: 1, label: 'Look' },
+                    { name: 'Listen to Public Feedback', type: 'quest_advance', payload: 1, label: 'Listen' }
+                ],
+                collectables: [
+                    { id: 'c1_1', pos: [45, 0.5, -35], color: 0xffaa00, collected: false, label: 'Palm Branch Fragment', description: 'Waved by public assemblies as royal recognition matrices.', emoji: '🌿', icon: 'fa-solid fa-leaf' },
+                    { id: 'c1_2', pos: [-55, 0.5, 20], color: 0xffaa00, collected: false, label: 'Zechariah Scroll Scrap', description: 'Ancient linguistic scrap explicitly verifying donkey rider arrivals.', emoji: '📜', icon: 'fa-solid fa-scroll' }
+                ]
+            },
+            {
+                phase: 2,
+                actLabel: 'ACT 1 – THE ARRIVAL',
+                title: 'Marketplace Rumours',
+                location: 'CENTRAL MARKETPLACE',
+                color: 0xffaa00,
+                theta: Math.PI * 0.48,
+                phi: Math.PI * 0.32,
+                unlockAfter: [1],
+                isComplete: false,
+                quest: { id: 'MARKET_RUMOURS', name: 'GATHERING RUMOURS', task: 'Cross-reference street testimonies', cur: 0, tar: 3 },
+                prophecies: ['Isaiah 61:1 — "To bind up the brokenhearted, to proclaim liberty to captives."'],
+                npcs: [
+                    { id: 'trader_01', name: 'Caravan Merchant', color: 0xddaa55, pos: [30, 1, 35], story: 'trader_start' },
+                    { id: 'beggar_01', name: 'Aged Citizen', color: 0x996633, pos: [-20, 0.5, 45], story: 'beggar_start' }
+                ],
+                actions: [
+                    { name: 'Audit Currency Discrepancies', type: 'quest_advance', payload: 1, label: 'Inspect' }
+                ],
+                collectables: [
+                    { id: 'c2_1', pos: [0, 0.5, -60], color: 0xffaa00, collected: false, label: '5 Loaves Receipt', description: 'Commercial caravan log referencing feeding anomalies near Bethsaida.', emoji: '🍞', icon: 'fa-solid fa-bread-slice' },
+                    { id: 'c2_2', pos: [50, 0.5, 50], color: 0xffaa00, collected: false, label: 'Silver Stater Coin', description: 'Temple tax currency matching fish mouth descriptions.', emoji: '🪙', icon: 'fa-solid fa-coins' }
+                ]
+            }
+        ];
+
+        // Global UI Render configuration preferences
+        let currentDisplayPreference = 'emojis'; // Fallback style can be toggled to 'icons'
+
+        // =========================================================================
+        // CORE UPDATE ENGINE COUPLING INVENTORY DISPLAYS
+        // =========================================================================
+        function updateEvidenceGridUI() {
+            // Find all collected elements flat-mapped across all schematic levels
+            let collectedEvidenceList = [];
+            WORLD_LEVEL_TREE_SCHEMATIC.forEach(level => {
+                level.collectables.forEach(item => {
+                    if (item.collected) {
+                        collectedEvidenceList.push(item);
+                    }
+                });
+            });
+
+            // Iterate across your 8 predefined DOM layout slot buttons
+            for (let i = 0; i < 8; i++) {
+                const slotBtn = document.getElementById(`slot-${i}`);
+                if (!slotBtn) continue;
+
+                const matchedItem = collectedEvidenceList[i];
+
+                if (matchedItem) {
+                    slotBtn.classList.add('filled');
+                    slotBtn.innerHTML = ''; // Wipe stale folder marks
+
+                    if (currentDisplayPreference === 'emojis') {
+                        // Apply raw custom emoji text string strings
+                        slotBtn.textContent = matchedItem.emoji || '🛡️';
+                    } else if (currentDisplayPreference === 'icons') {
+                        // Inject Font Awesome element nodes
+                        const iconNode = document.createElement('i');
+                        const iconClasses = (matchedItem.icon || 'fa-solid fa-circle-info').split(' ');
+                        iconNode.classList.add(...iconClasses);
+                        slotBtn.appendChild(iconNode);
+                    }
+                } else {
+                    // Reset to uncollected folder placeholder representation
+                    slotBtn.classList.remove('filled');
+                    slotBtn.innerHTML = '📁';
+                }
+            }
+        }
+
+        // Exposing reading hooks to global windows layout engines
+        window.AppEngine = {
+            readStoredEvidenceItem: function(slotIndex) {
+                let collectedEvidenceList = [];
+                WORLD_LEVEL_TREE_SCHEMATIC.forEach(level => {
+                    level.collectables.forEach(item => {
+                        if (item.collected) collectedEvidenceList.push(item);
+                    });
+                });
+
+                const targetItem = collectedEvidenceList[slotIndex];
+                if (targetItem) {
+                    document.getElementById('evidence-popup-card').style.display = 'block';
+                    document.getElementById('popup-evidence-title').innerText = `${targetItem.emoji || '🛡️'} ${targetItem.label}`;
+                    document.getElementById('popup-evidence-body').innerText = targetItem.description;
+                } else {
+                    // Show standard HUD notification alerts
+                    const alertEl = document.getElementById('screen-alert');
+                    alertEl.textContent = "Evidence slot unassigned. Explore sandbox bounds to acquire records.";
+                    alertEl.style.display = 'block';
+                    setTimeout(() => alertEl.style.display = 'none', 3000);
+                }
+            }
+        };
+
+        // =========================================================================
+        // THREE.JS SIMULATED PLACEHOLDER LOOP & INITIALIZATION
+        // =========================================================================
+        (function initSandboxApp() {
+            // Hide loading screens instantly for this layout rendering demo environment
+            setTimeout(() => {
+                const loader = document.getElementById('loading-screen');
+                if (loader) loader.style.opacity = '0';
+                setTimeout(() => { if (loader) loader.style.display = 'none'; }, 400);
+            }, 500);
+
+            // Mocking dynamic collection sequence patterns inside level trees for demonstration
+            setTimeout(() => {
+                // Instantly collect items to test grid visual status
+                WORLD_LEVEL_TREE_SCHEMATIC[0].collectables[0].collected = true; // Palm Branch Fragment
+                WORLD_LEVEL_TREE_SCHEMATIC[0].collectables[1].collected = true; // Zechariah Scroll Scrap
+                
+                // Refresh UI Grid
+                updateEvidenceGridUI();
+            }, 1000);
+
+            // Left / Right Panel visibility bindings setup
+            const leftBtn = document.getElementById('toggle-left-btn');
+            const rightBtn = document.getElementById('toggle-right-btn');
+            const leftPanel = document.getElementById('left-sidebar');
+            const rightPanel = document.getElementById('right-sidebar');
+
+            leftBtn.addEventListener('click', () => {
+                leftPanel.classList.toggle('panel-hidden');
+                leftBtn.innerHTML = leftPanel.classList.contains('panel-hidden') 
+                    ? '<i class="fa-solid fa-chevron-right"></i>' 
+                    : '<i class="fa-solid fa-chevron-left"></i>';
+            });
+
+            rightBtn.addEventListener('click', () => {
+                rightPanel.classList.toggle('panel-hidden');
+                rightBtn.innerHTML = rightPanel.classList.contains('panel-hidden') 
+                    ? '<i class="fa-solid fa-chevron-left"></i>' 
+                    : '<i class="fa-solid fa-chevron-right"></i>';
+            });
+
+            // Initialize clear UI states
+            updateEvidenceGridUI();
+        })();
+    </script>
+</body>
+
+</html>

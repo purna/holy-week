@@ -113,6 +113,13 @@
             display: flex;
             flex-direction: column;
             gap: 15px;
+            transition: opacity 0.25s ease, transform 0.25s ease;
+        }
+
+        #left-sidebar.panel-hidden {
+            opacity: 0;
+            pointer-events: none;
+            transform: translateX(-18px);
         }
 
         #right-sidebar {
@@ -121,6 +128,48 @@
             display: flex;
             flex-direction: column;
             gap: 15px;
+            transition: opacity 0.25s ease, transform 0.25s ease;
+        }
+
+        #right-sidebar.panel-hidden {
+            opacity: 0;
+            pointer-events: none;
+            transform: translateX(18px);
+        }
+
+        /* ===== PANEL TOGGLE BUTTONS ===== */
+        .panel-toggle-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 20;
+            background: rgba(11, 20, 26, 0.88);
+            border: 1px solid rgba(0, 168, 132, 0.4);
+            color: var(--accent-primary);
+            width: 22px;
+            height: 52px;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            transition: background 0.2s, border-color 0.2s, color 0.2s;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .panel-toggle-btn:hover {
+            background: rgba(0, 168, 132, 0.2);
+            border-color: var(--accent-primary);
+            color: #fff;
+        }
+
+        #toggle-left-btn {
+            left: calc(320px + 20px + 4px);
+        }
+
+        #toggle-right-btn {
+            right: calc(340px + 20px + 4px);
         }
 
         .panel-header {
@@ -826,6 +875,13 @@
     <div id="canvas-container"></div>
     <div id="screen-alert"></div>
 
+    <button id="toggle-left-btn" class="panel-toggle-btn" title="Toggle Left Panel">
+        <i class="fa-solid fa-chevron-left"></i>
+    </button>
+    <button id="toggle-right-btn" class="panel-toggle-btn" title="Toggle Right Panel">
+        <i class="fa-solid fa-chevron-right"></i>
+    </button>
+
     <div class="hud-layer">
         <div id="top-bar" class="hud-panel">
             <div>
@@ -837,7 +893,7 @@
 
         <div id="left-sidebar">
             <div class="hud-panel" style="flex: 0 0 auto;">
-                <div class="panel-header"><i class="fa-solid fa-star"></i> Active Quest Task</div>
+                <div class="panel-header">⭐ Active Quest Task</div>
                 <div id="quest-card" class="quest-item">
                     <div id="quest-title" class="quest-title">---</div>
                     <div id="quest-task" class="quest-task">---</div>
@@ -849,7 +905,7 @@
 
             <div id="evidence-popup-card">
                 <div class="popup-header">
-                    <span id="popup-evidence-title" class="popup-title"><i class="fa-solid fa-file-shield"></i> Evidence
+                    <span id="popup-evidence-title" class="popup-title">🛡️ Evidence
                         Logged</span>
                     <button class="popup-close"
                         onclick="document.getElementById('evidence-popup-card').style.display='none';">✕</button>
@@ -858,32 +914,32 @@
             </div>
 
             <div class="hud-panel" style="flex: 1 1 auto;">
-                <div class="panel-header"><i class="fa-solid fa-folder-open"></i> Evidence Folder Archive</div>
+                <div class="panel-header">📂 Evidence Folder Archive</div>
                 <div class="evidence-folder-container">
                     <div id="evidence-slots-grid" class="evidence-grid">
                         <div class="evidence-slot-btn" id="slot-0"
-                            onclick="window.AppEngine.readStoredEvidenceItem(0);"><i class="fa-solid fa-folder"></i>
+                            onclick="window.AppEngine.readStoredEvidenceItem(0);">📁
                         </div>
                         <div class="evidence-slot-btn" id="slot-1"
-                            onclick="window.AppEngine.readStoredEvidenceItem(1);"><i class="fa-solid fa-folder"></i>
+                            onclick="window.AppEngine.readStoredEvidenceItem(1);">📁
                         </div>
                         <div class="evidence-slot-btn" id="slot-2"
-                            onclick="window.AppEngine.readStoredEvidenceItem(2);"><i class="fa-solid fa-folder"></i>
+                            onclick="window.AppEngine.readStoredEvidenceItem(2);">📁
                         </div>
                         <div class="evidence-slot-btn" id="slot-3"
-                            onclick="window.AppEngine.readStoredEvidenceItem(3);"><i class="fa-solid fa-folder"></i>
+                            onclick="window.AppEngine.readStoredEvidenceItem(3);">📁
                         </div>
                         <div class="evidence-slot-btn" id="slot-4"
-                            onclick="window.AppEngine.readStoredEvidenceItem(4);"><i class="fa-solid fa-folder"></i>
+                            onclick="window.AppEngine.readStoredEvidenceItem(4);">📁
                         </div>
                         <div class="evidence-slot-btn" id="slot-5"
-                            onclick="window.AppEngine.readStoredEvidenceItem(5);"><i class="fa-solid fa-folder"></i>
+                            onclick="window.AppEngine.readStoredEvidenceItem(5);">📁
                         </div>
                         <div class="evidence-slot-btn" id="slot-6"
-                            onclick="window.AppEngine.readStoredEvidenceItem(6);"><i class="fa-solid fa-folder"></i>
+                            onclick="window.AppEngine.readStoredEvidenceItem(6);">📁
                         </div>
                         <div class="evidence-slot-btn" id="slot-7"
-                            onclick="window.AppEngine.readStoredEvidenceItem(7);"><i class="fa-solid fa-folder"></i>
+                            onclick="window.AppEngine.readStoredEvidenceItem(7);">📁
                         </div>
                     </div>
                 </div>
@@ -892,11 +948,11 @@
 
         <div id="right-sidebar">
             <div class="hud-panel" style="flex:1;">
-                <div class="panel-header">Context Actions</div>
+                <div class="panel-header">⚡ Context Actions</div>
                 <div id="actions-container" style="flex:1; overflow-y:auto;"></div>
             </div>
             <div class="hud-panel" style="flex:1;">
-                <div class="panel-header">Fulfilled Prophecies</div>
+                <div class="panel-header">📜 Fulfilled Prophecies</div>
                 <div id="prophecies-container" style="flex:1; overflow-y:auto;"></div>
             </div>
         </div>
@@ -1256,6 +1312,9 @@
                 btnAudio.onclick = () => {
                     this.audioActive = !this.audioActive;
                     btnAudio.classList.toggle('active', this.audioActive);
+                    btnAudio.innerHTML = this.audioActive
+                        ? '<i class="fa-solid fa-volume-high"></i>'
+                        : '<i class="fa-solid fa-volume-xmark"></i>';
                     Howler.volume(this.audioActive ? 1.0 : 0.0);
                 };
 
@@ -1263,6 +1322,9 @@
                 btnCycle.onclick = () => {
                     this.autoCycleTimeProgress = !this.autoCycleTimeProgress;
                     btnCycle.classList.toggle('active', !this.autoCycleTimeProgress);
+                    btnCycle.innerHTML = this.autoCycleTimeProgress
+                        ? '<i class="fa-solid fa-sun"></i>'
+                        : '<i class="fa-solid fa-moon"></i>';
                     this.displayAlert(this.autoCycleTimeProgress ? "Auto day/night cycle enabled" : "Celestial timeline frozen");
                 };
             }
@@ -1345,10 +1407,10 @@
 
                     if (this.collectedEvidenceArchive[i]) {
                         slotDOM.className = 'evidence-slot-btn filled';
-                        slotDOM.innerHTML = '<i class="fa-solid fa-file-invoice"></i>';
+                        slotDOM.innerHTML = '📄';
                     } else {
                         slotDOM.className = 'evidence-slot-btn';
-                        slotDOM.innerHTML = '<i class="fa-solid fa-folder"></i>';
+                        slotDOM.innerHTML = '📁';
                     }
                 }
             }
@@ -1367,7 +1429,7 @@
                 const titleDOM = document.getElementById('popup-evidence-title');
                 const bodyDOM = document.getElementById('popup-evidence-body');
 
-                titleDOM.innerHTML = `<i class="fa-solid fa-file-shield" style="color:var(--accent-success);"></i> ${title}`;
+                titleDOM.innerHTML = `🛡️ ${title}`;
                 bodyDOM.innerText = description;
                 card.style.display = 'block';
             }
@@ -2027,6 +2089,49 @@
         }
 
         window.addEventListener('DOMContentLoaded', () => { window.AppEngine = new ComprehensiveSandboxEngine(); });
+
+        // ===== PANEL TOGGLE LOGIC =====
+        (function() {
+            const leftPanel = document.getElementById('left-sidebar');
+            const rightPanel = document.getElementById('right-sidebar');
+            const leftBtn = document.getElementById('toggle-left-btn');
+            const rightBtn = document.getElementById('toggle-right-btn');
+
+            let leftVisible = true;
+            let rightVisible = true;
+
+            function updateLeftBtn() {
+                leftBtn.innerHTML = leftVisible
+                    ? '<i class="fa-solid fa-chevron-left"></i>'
+                    : '<i class="fa-solid fa-chevron-right"></i>';
+                leftBtn.title = leftVisible ? 'Hide Left Panel' : 'Show Left Panel';
+                // Reposition button to hug the visible edge
+                leftBtn.style.left = leftVisible ? 'calc(320px + 20px + 4px)' : '24px';
+            }
+
+            function updateRightBtn() {
+                rightBtn.innerHTML = rightVisible
+                    ? '<i class="fa-solid fa-chevron-right"></i>'
+                    : '<i class="fa-solid fa-chevron-left"></i>';
+                rightBtn.title = rightVisible ? 'Hide Right Panel' : 'Show Right Panel';
+                rightBtn.style.right = rightVisible ? 'calc(340px + 20px + 4px)' : '24px';
+            }
+
+            leftBtn.addEventListener('click', () => {
+                leftVisible = !leftVisible;
+                leftPanel.classList.toggle('panel-hidden', !leftVisible);
+                updateLeftBtn();
+            });
+
+            rightBtn.addEventListener('click', () => {
+                rightVisible = !rightVisible;
+                rightPanel.classList.toggle('panel-hidden', !rightVisible);
+                updateRightBtn();
+            });
+
+            updateLeftBtn();
+            updateRightBtn();
+        })();
     </script>
 </body>
 
