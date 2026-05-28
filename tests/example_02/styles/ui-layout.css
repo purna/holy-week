@@ -1,0 +1,159 @@
+/* ==========================================================================
+   HEADS-UP DISPLAY (HUD) GRID & LAYOUT FRAMEWORK
+   ========================================================================== */
+
+.hud-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    pointer-events: none;
+    display: grid;
+    grid-template-columns: 320px 1fr 340px;
+    grid-template-rows: 65px 1fr 140px;
+    padding: 20px;
+    gap: 20px;
+}
+
+/* Re-enable pointer events for specific panel interface components */
+.hud-layer * {
+    pointer-events: auto;
+}
+
+.hud-panel {
+    background: var(--panel-bg);
+    border: 1px solid rgba(100, 255, 218, 0.15);
+    border-radius: 4px;
+    padding: 15px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.7);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* Top Dashboard Navigation / Status Bar */
+#top-bar {
+    grid-column: 1 / -1;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 3px solid var(--accent-primary);
+}
+
+/* Sidebars Base Positioning Coordinates */
+#left-sidebar {
+    grid-column: 1;
+    grid-row: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+#right-sidebar {
+    grid-column: 3;
+    grid-row: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+/* Bottom Control Deck Row Allocation */
+#bottom-bar {
+    grid-column: 1 / -1;
+    grid-row: 3;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+/* Panel Hardware Toggles & Visibility States */
+.panel-toggle-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 20;
+    background: var(--panel-bg);
+    border: 1px solid rgba(100, 255, 218, 0.3);
+    color: var(--accent-primary);
+    width: 22px;
+    height: 52px;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    transition: background 0.2s, border-color 0.2s, color 0.2s;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.panel-toggle-btn:hover {
+    background: rgba(100, 255, 218, 0.15);
+    border-color: var(--accent-primary);
+    color: #fff;
+}
+
+#toggle-left-btn {
+    left: calc(320px + 20px + 4px);
+}
+
+#toggle-right-btn {
+    right: calc(340px + 20px + 4px);
+}
+
+#left-sidebar.panel-hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(-18px);
+}
+
+#right-sidebar.panel-hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(18px);
+}
+
+
+/* ==========================================================================
+   CONTROL GROUP RIGHT - HUD UTILITY BUTTONS
+   ========================================================================== */
+
+.control-group-right {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+/* Individual Top Bar Utility Buttons (Audio, Cycle, Settings) */
+.control-group-right .hud-row-btn {
+    background: rgba(255, 255, 255, 0.03);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    width: 46px;
+    height: 46px;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    transition: all 0.2s;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.control-group-right .hud-row-btn:hover {
+    background: rgba(100, 255, 218, 0.1);
+    color: var(--accent-primary);
+    border-color: var(--accent-primary);
+}
+
+/* Active State (e.g., Audio Enabled) */
+.control-group-right .hud-row-btn.active {
+    color: var(--accent-secondary);
+    border-color: var(--accent-secondary);
+    background: rgba(255, 204, 68, 0.08);
+}

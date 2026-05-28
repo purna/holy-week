@@ -1,0 +1,54 @@
+/* ==========================================================================
+   VARIABLES & CORE CONFIGURATION
+   ========================================================================== */
+
+:root {
+    /* Theme Backgrounds */
+    --bg-main: #020c1b;
+    --panel-bg: rgba(10, 25, 47, 0.92);
+
+    /* Accents & Status Colors */
+    --accent-primary: #64ffda;
+    --accent-secondary: #ffcc44;
+    --accent-success: #00ff88;
+    --accent-error: #ff4444;
+    --accent-blue: #00bfff;
+    --accent: #3b82f6;
+    --gold: #ffb74d;
+    --red: #ff6b6b;
+    --dim: #8696a0;
+
+    /* Text & Typography */
+    --text-main: #e6f1ff;
+    --text-muted: #8892b0;
+    --font-stack: "Fira Code", "Courier New", Courier, Consolas, Monaco, monospace;
+
+    /* Chat Bubbles */
+    --bubble-out: rgba(100, 255, 218, 0.12);
+    --bubble-in: rgba(255, 255, 255, 0.05);
+}
+
+/* Base Resets */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body,
+html {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: var(--bg-main);
+    font-family: var(--font-stack);
+    color: var(--text-main);
+    user-select: none;
+}
+
+/* Typography Overrides */
+h1,
+h2,
+h3 {
+    font-family: 'Cinzel', serif;
+}

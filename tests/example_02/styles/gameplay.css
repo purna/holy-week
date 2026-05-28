@@ -1,0 +1,311 @@
+/* ==========================================================================
+   GAMEPLAY SYSTEMS (HUD Sub-panels, Minimap, Logs & Clues)
+   ========================================================================== */
+
+.panel-header {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--accent-primary);
+    margin-bottom: 12px;
+    border-bottom: 1px solid rgba(100, 255, 218, 0.2);
+    padding-bottom: 5px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.loc-tag {
+    font-size: 1.1rem;
+    color: #fff;
+    font-weight: 700;
+}
+
+.act-tag {
+    font-size: 0.8rem;
+    color: var(--accent-secondary);
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-left: 10px;
+}
+
+/* Quest Objectives Matrix */
+.quest-item {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 12px;
+    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-left: 4px solid var(--accent-secondary);
+    margin-bottom: 10px;
+}
+
+.quest-title {
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 4px;
+    font-size: 0.9rem;
+}
+
+.quest-task {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+}
+
+.progress-bar-wrap {
+    background: rgba(255, 255, 255, 0.08);
+    height: 6px;
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    background: var(--accent-secondary);
+    height: 100%;
+    width: 0%;
+    transition: width 0.3s ease;
+}
+
+/* Historical Findings / Prophecy Monitor */
+.prophecy-item {
+    font-size: 0.8rem;
+    padding: 8px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 2px;
+    margin-bottom: 6px;
+    color: var(--accent-success);
+    border-left: 3px solid var(--accent-primary);
+}
+
+/* Action Execution Inputs */
+.action-btn {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: #fff;
+    padding: 10px 14px;
+    text-align: left;
+    margin-bottom: 8px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.2s;
+}
+
+.action-btn:hover {
+    background: rgba(100, 255, 218, 0.08);
+    border-color: var(--accent-primary);
+}
+
+.action-btn.talk-prompt-highlight {
+    border: 1px solid var(--accent-success);
+    background: rgba(0, 255, 136, 0.08);
+    animation: pulse-border 1.5s infinite ease-in-out;
+    font-weight: 700;
+}
+
+@keyframes pulse-border {
+
+    0%,
+    100% {
+        border-color: rgba(0, 255, 136, 0.4);
+    }
+
+    50% {
+        border-color: rgba(0, 255, 136, 1.0);
+        box-shadow: 0 0 10px rgba(0, 255, 136, 0.15);
+    }
+}
+
+/* Evidence Inventory Subsystem */
+.evidence-folder-container {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    border: 1px solid rgba(100, 255, 218, 0.1);
+    padding: 10px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.evidence-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    overflow-y: auto;
+    padding-top: 4px;
+}
+
+.evidence-slot-btn {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 4px;
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    cursor: pointer;
+    position: relative;
+    transition: all 0.2s;
+    font-size: 1.5rem;
+}
+
+.evidence-slot-btn i {
+    font-size: 1.3rem;
+    color: var(--accent-secondary);
+}
+
+.evidence-slot-btn:hover {
+    background: rgba(100, 255, 218, 0.08);
+    color: var(--accent-success);
+    border-color: var(--accent-success);
+}
+
+.evidence-slot-btn.filled {
+    color: var(--accent-secondary);
+    background: rgba(100, 255, 218, 0.1);
+    border-color: var(--accent-primary);
+}
+
+.evidence-slot-btn.filled:hover {
+    color: var(--accent-success);
+    box-shadow: 0 0 8px rgba(100, 255, 218, 0.3);
+}
+
+/* Real-time Radar Minimap Trackers */
+.minimap-panel {
+    width: 110px;
+    height: 110px;
+    background: rgba(2, 12, 27, 0.9);
+    border: 2px solid var(--accent-primary);
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);
+}
+
+.minimap-radar-line {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: conic-gradient(from 0deg, rgba(100, 255, 218, 0.15) 0deg, transparent 90deg);
+    transform-origin: center;
+    animation: radar-sweep 2.5s linear infinite;
+    pointer-events: none;
+    z-index: 2;
+}
+
+@keyframes radar-sweep {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.minimap-grid-circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px dashed rgba(100, 255, 218, 0.25);
+    border-radius: 4px;
+    pointer-events: none;
+}
+
+.minimap-blip {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    margin-left: -3px;
+    margin-top: -3px;
+    border-radius: 1px;
+    z-index: 5;
+    background: #fff;
+    box-shadow: 0 0 6px currentColor;
+}
+
+.minimap-blip.player {
+    background: var(--accent-success);
+    width: 8px;
+    height: 8px;
+    margin-left: -4px;
+    margin-top: -4px;
+    z-index: 6;
+}
+
+.minimap-blip.npc {
+    background: var(--accent-secondary);
+}
+
+.minimap-blip.collectable {
+    background: #ffff00;
+}
+
+
+/* ==========================================================================
+   10. POPUPS & EVIDENCE FILE SYSTEM
+   ========================================================================== */
+
+/* Contextual Item Inspector Cards */
+#evidence-popup-card {
+    background: rgba(2, 12, 27, 0.95);
+    border: 1px solid var(--accent-success);
+    border-radius: 4px;
+    padding: 12px;
+    display: none;
+    margin-bottom: 10px;
+    animation: slideInDown 0.3s ease-out;
+}
+
+@keyframes slideInDown {
+    from {
+        transform: translateY(-10px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.popup-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 6px;
+}
+
+.popup-title {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--accent-success);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.popup-close {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    font-size: 0.8rem;
+}
+
+.popup-close:hover {
+    color: #fff;
+}
+
+.popup-body {
+    font-size: 0.78rem;
+    color: var(--text-main);
+    line-height: 1.4;
+}
