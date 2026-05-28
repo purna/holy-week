@@ -971,14 +971,17 @@
           const item = this.evidenceMeshes[i];
           if (this.pPos.distanceTo(item.position) < 2) {
             const data = item.userData.dataRef;
-            const discovered = this.es.discover(data.id);
-            this.collectedEvidence.push({
-              label: data.name,
-              description: data.desc || data.description || '',
-              icon: data.icon,
-              emoji: data.emoji,
-              iconFA: data.iconFA
-            });
+            if (!this.es.collected.includes(data.id)) {
+              this.es.collected.push(data.id);
+              this.cm.recordEvidenceFound(data.id);
+              this.collectedEvidence.push({
+                label: data.name,
+                description: data.desc || data.description || '',
+                icon: data.icon,
+                emoji: data.emoji,
+                iconFA: data.iconFA
+              });
+            }
             this.scene.remove(item);
             this.evidenceMeshes.splice(i, 1);
             this.showEvidencePopup(data.name, data.desc || data.description || '', data.emoji || data.icon);
