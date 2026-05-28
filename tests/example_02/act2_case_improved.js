@@ -62,6 +62,8 @@ export const act2CaseA = {
     { id: "chief_priest", name: "Caiaphas", role: "High Priest, Sadducee", avatar: "👨‍⚖️", bibleRef: "Matthew 21:23; John 11:49–52" },
     { id: "scribe", name: "Samuel", role: "Temple Scribe, Pharisee", avatar: "📜", bibleRef: "Mark 12:28–34 — a scribe who asks about the greatest commandment" },
     { id: "pharisee", name: "Nathanael", role: "Pharisee, Herodian ally", avatar: "🧣", bibleRef: "Matthew 22:15–22 — the Pharisees and Herodians on the tax question" },
+    { id: "none", name: "No One", role: "Not Stolen", avatar: "❓", bibleRef: null },
+
   ],
 
   evidencePool: [
@@ -148,6 +150,7 @@ export const act2CaseA = {
     {
       id: "chief_priest",
       name: "Caiaphas",
+      role: "High Priest, Sadducee",
       avatar: "👨‍⚖️",
       truthfulness: 0.55,
       bibleRef: "Matthew 21:23; John 11:49–52; Matthew 26:57–68",
@@ -172,6 +175,7 @@ export const act2CaseA = {
     {
       id: "scribe",
       name: "Samuel",
+      role: "Temple Scribe, Pharisee",
       avatar: "📜",
       truthfulness: 0.85,
       bibleRef: "Mark 12:28–34",
@@ -194,6 +198,7 @@ export const act2CaseA = {
     {
       id: "pharisee",
       name: "Nathanael",
+      role: "Pharisee, Herodian ally",
       avatar: "🧣",
       truthfulness: 0.4,
       bibleRef: "Matthew 22:15–22 — the Pharisee-Herodian coalition",
@@ -218,6 +223,14 @@ export const act2CaseA = {
   ],
 
   deductions: {
+    "lazarus_status+secret_decree": {
+    link: {
+      text: "The targeted hit list highlights their panic; they aren't looking for justice, but political damage control.",
+      insight: "Lazarus didn't do anything political; his mere existence as a living miracle is the threat. The Sanhedrin must destroy the evidence of the miracle to neutralize the prophet.",
+      isKey: true,
+      bibleRef: "John 12:11",
+     },
+   },
     "question_scroll+witness_scroll": {
       compare: {
         text: "The formal authority challenge and the eyewitness account together confirm the scope of what happened: three separate factions (priests, Pharisees-Herodians, Sadducees) attempted coordinated challenges across one morning — and all were silenced.",
@@ -253,12 +266,12 @@ export const act2CaseA = {
   },
 
   truth: {
-    culprit: "none",
-    motive: "There was no crime. Three religious factions — the priestly establishment, the Pharisee-Herodian coalition, and the Sadducees — mounted coordinated attempts to trap Jesus in His words. Each attempt failed. Jesus's responses revealed His authority, their hypocrisy, and the depth of His scriptural knowledge.",
-    method: "Jesus responded to the authority challenge with a counter-question that paralysed the delegation. He then taught three parables (Two Sons, Wicked Tenants, Wedding Banquet) that placed judgement on the religious establishment. Each subsequent question — taxes, resurrection, the greatest commandment, and finally whose son the Christ is — was answered with such precision that by midday 'no one dared ask him any more questions.'",
-    lesson: "The Temple challenges show that Jesus's authority was not human — it was divine. He quoted Psalm 118:22 at the very people who were rejecting Him, Isaiah 5 at the people who considered themselves God's faithful caretakers, and Daniel 7:13 at His trial. Every challenge became an opportunity for prophetic fulfilment. The question was never whether Jesus had authority. The question was whether they would accept it.",
-    prophesyFulfilled: ["Psalm 118:22–23", "Isaiah 5:1–7", "Daniel 7:13–14", "Malachi 3:1", "Isaiah 11:2"],
-    furtherReading: ["Matthew 21:23–22:46", "Mark 11:27–12:44", "Luke 20:1–21:4"],
+    culprit: "caiaphas",
+    motive: "The high priests feared that the massive public following caused by Lazarus's resurrection would spark a Roman military crackdown, destroying both their temple and their nation.",
+    method: "Caiaphas and his inner circle bypassed standard judicial procedures to authorize a shadow assassination plot against Lazarus of Bethany, aiming to eliminate the physical evidence of Jesus's greatest miracle before the Passover feast ended.",
+    lesson: "When humans value their religious systems over God's living truth, they end up trying to suppress and destroy the very life God creates. The plot against Lazarus mirrors the impending attempt to seal the tomb of Jesus.",
+    prophesyFulfilled: ["Isaiah 25:8", "Psalm 16:10"],
+    furtherReading: ["John 11:45–57", "John 12:9–11"],
   },
 };
 
@@ -269,10 +282,10 @@ export const act2CaseA = {
 // ============================================================
 
 export const act2CaseB = {
-  id: "lazarus_plot",
-  title: "The Price of Life",
-  subtitle: "Rumors fly through the Temple that the high priests have issued an unlisted execution order for a man who committed no crime.",
-  location: "Temple",
+   id: "lazarus_plot",
+   title: "The Price of Life",
+   subtitle: "Rumors fly through the Temple that the high priests have issued an unlisted execution order for a man who committed no crime.",
+   location: "temple",
   difficulty: 2,
   requires: "authority_challenged",
   actLabel: "Act II",
@@ -332,29 +345,32 @@ export const act2CaseB = {
     },
   ],
 
-  suspects: [
-    {
-      id: "nicodemus_secret",
-      name: "Nicodemus",
-      role: "Conflicted Sanhedrin Member",
-      avatar: "👴",
-      color: 0x88cc88,
-      pos: [15, 0, 5],
-      bibleRef: "John 7:50–51, John 19:39",
-      background: "A ruler of the Jews who originally approached Jesus by night, now watching the legal framework collapse from within.",
-      dialogue: {
-        neutral: "Our council is supposed to be a vanguard of justice and Mosaic law. Yet, fear makes men blind to the light.",
-        cautious: "The decree is real. Caiaphas argued that it is better for one man to die for the nation. But they aren't stopping at one man anymore. They are trying to cover up the resurrection itself.",
-      },
-      contradictions: {
-        "crowd_report+secret_decree": {
-          exposed: "The more the people see Lazarus, the more our authority crumbles. The decree was rushed through without a full legal trial. I spoke against it, but they are driven by sheer preservation of power. Take that document and warn the family."
-        },
-      },
-    },
-  ],
+suspects: [
+     {
+       id: "nicodemus_secret",
+       name: "Nicodemus",
+       role: "Conflicted Sanhedrin Member",
+       avatar: "👴",
+       color: 0x88cc88,
+       pos: [15, 0, 5],
+       bibleRef: "John 7:50–51, John 19:39",
+       background: "A ruler of the Jews who originally approached Jesus by night, now watching the legal framework collapse from within.",
+       dialogue: {
+         neutral: "Our council is supposed to be a vanguard of justice and Mosaic law. Yet, fear makes men blind to the light.",
+         cautious: "The decree is real. Caiaphas argued that it is better for one man to die for the nation. But they aren't stopping at one man anymore. They are trying to cover up the resurrection itself.",
+       },
+       contradictions: {
+         "crowd_report+secret_decree": {
+           exposed: "The more the people see Lazarus, the more our authority crumbles. The decree was rushed through without a full legal trial. I spoke against it, but they are driven by sheer preservation of power. Take that document and warn the family."
+         },
+       },
+     },
+     { id: "caiaphas", name: "Caiaphas", role: "High Priest, Sadducee", avatar: "👨‍⚖️", color: 0xcc8888, pos: [-15, 0, 5], bibleRef: "John 11:49–52; Matthew 26:57–68" } ,
+   ],
 
-  deductions: {
+   npcs: [],
+
+   deductions: {
     "crowd_report+secret_decree": {
       link: {
         text: "The surge in pilgrim interest matches the exact timeline of the secret execution order.",

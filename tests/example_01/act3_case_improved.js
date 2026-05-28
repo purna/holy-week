@@ -157,6 +157,7 @@ export const act3CaseA = {
     {
       id: "john_mark",
       name: "John Mark",
+      role: "Son of the House Owner",
       avatar: "👨‍🦰",
       truthfulness: 0.75,
       bibleRef: "Acts 12:12; Mark 14:51–52 (possibly the young man who fled the garden)",
@@ -181,6 +182,7 @@ export const act3CaseA = {
     {
       id: "servant",
       name: "Rhoda",
+      role: "Household Servant",
       avatar: "👧",
       truthfulness: 0.9,
       bibleRef: "Acts 12:13–15",
@@ -202,6 +204,7 @@ export const act3CaseA = {
     {
       id: "judas",
       name: "Judas Iscariot",
+      role: "Disciple and Treasurer",
       avatar: "🪙",
       truthfulness: 0.3,
       bibleRef: "Matthew 26:14–16; John 13:27–30; Matthew 27:3–5",
@@ -228,6 +231,14 @@ export const act3CaseA = {
   ],
 
   deductions: {
+    "dropped_torch+severed_ear_wrap": {
+      link: {
+        text: "The proximity of the weapon strike to the fallen military hardware suggests a sudden collision of kingdoms.",
+        insight: "Peter attempted a messy tactical defense, but Jesus immediately neutralized the violence by performing a medical miracle on the enemy commander.",
+        isKey: true,
+        bibleRef: "Luke 22:51",
+      },
+    },
     "betrayal_dipped_bread+money_bag_impression": {
       compare: {
         text: "The dipped bread points to the seat of the honoured guest — who left immediately after receiving it. The money bag impression shows someone was counting coins at the preparation table earlier. Both point to the same disciple.",
@@ -296,7 +307,7 @@ export const act3CaseB = {
   id: "gethsemane_arrest",
   title: "The Severed Ear",
   subtitle: "An armed mob entered Gethsemane under cover of darkness. A sword was drawn, yet the physical evidence makes no sense.",
-  location: "garden",
+  location: "upperroom",
   difficulty: 3,
   requires: "last_supper",
   actLabel: "Act III",
@@ -370,15 +381,19 @@ export const act3CaseB = {
         neutral: "The man surrendered cleanly. The arrest was successful. There is nothing more to discuss.",
         cautious: "I... I felt the cold blade hit my neck. I heard the blood pooling. But then His hand touched me, and the pain vanished. Look at me... my skin is unbroken. Explain that to your records.",
       },
-      contradictions: {
-        "dropped_torch+severed_ear_wrap": {
-          exposed: "Alright! Peter struck me. I should be disfigured, but Jesus repaired what His own disciple broke. I came to chain Him, and He healed me instead. That's why I did not order the arrest of the rest of the disciples."
-        },
-      },
-    },
-  ],
+contradictions: {
+         "dropped_torch+severed_ear_wrap": {
+           exposed: "Alright! Peter struck me. I should be disfigured, but Jesus repaired what His own disciple broke. I came to chain Him, and He healed me instead. That's why I did not order the arrest of the rest of the disciples."
+         },
+       },
+     },
+         { id: "none", name: "No One", role: "Not Stolen", avatar: "❓", bibleRef: null },
 
-  deductions: {
+   ],
+
+   npcs: [],
+
+   deductions: {
     "abandoned_linen+dropped_torch": {
       link: {
         text: "The placement of the dropped torch and the abandoned linen show a split path of panic.",

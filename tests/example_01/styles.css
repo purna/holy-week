@@ -1152,8 +1152,44 @@ button:focus-visible {
     border-radius: var(--radius-lg);
     padding: 28px 24px;
     text-align: center;
-    max-width: 360px;
+    max-width: 480px;
     width: 100%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Firefox */
+.result-card {
+  scrollbar-width: auto;
+  scrollbar-color: #3b82f6 #f0f1f3;
+}
+
+/* Chrome, Edge, and Safari */
+.result-card::-webkit-scrollbar {
+  width: 16px;
+}
+
+.result-card::-webkit-scrollbar-track {
+  background: #f0f1f3;
+  border-radius: 10px;
+}
+
+.result-card::-webkit-scrollbar-thumb {
+  background-color: #3b82f6;
+  border-radius: 10px;
+  border: 3px solid #f0f1f3;
+}
+
+.result-card::-webkit-scrollbar-thumb:hover {
+  background-color: #3278b3;
+}
+
+/* Remove Arrows/Buttons */
+.result-card::-webkit-scrollbar-button {
+  display: none;
+  width: 0;
+  height: 0;
 }
 
 .result-verdict {

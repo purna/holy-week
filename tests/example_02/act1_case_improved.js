@@ -63,6 +63,9 @@ export const act1CaseA = {
     { id: "peter",  name: "Peter",        role: "Disciple of Jesus",  avatar: "👨‍🦰", bibleRef: "Mark 11:1–6" },
     { id: "john",   name: "John",         role: "Disciple of Jesus",  avatar: "👨‍🦰", bibleRef: "Luke 19:29–35" },
     { id: "owner",  name: "Tobias",       role: "Donkey Owner / Sympathiser", avatar: "👴", bibleRef: "Mark 11:3–6 (unnamed owner)" },
+    { id: "villager", name: "Local Villager", role: "Eyewitness", avatar: "👨‍🌾", bibleRef: "Mark 11:3–6 (unnamed villager who witnessed the exchange)" },
+    { id: "pharisee", name: "Pharisee",      role: "Religious Authority", avatar: "👨‍⚖️", bibleRef: "Luke 19:39–40; John 12:19" },
+    { id: "none", name: "No One", role: "Not Stolen", avatar: "❓", bibleRef: null },
   ],
 
   evidencePool: [
@@ -156,6 +159,7 @@ export const act1CaseA = {
     {
       id: "peter",
       name: "Peter",
+      role: "Disciple of Jesus",
       avatar: "👨‍🦰",
       color: 0xffaa44,
       pos: [-10, 0, -5],
@@ -185,6 +189,7 @@ export const act1CaseA = {
     {
       id: "john",
       name: "John",
+      role: "Disciple of Jesus",
       avatar: "👨‍🦰",
       color: 0x66aaff,
       pos: [10, 0, -8],
@@ -210,6 +215,7 @@ export const act1CaseA = {
     {
       id: "owner",
       name: "Tobias",
+      role: "Donkey Owner / Sympathiser",
       avatar: "👴",
       color: 0x88cc88,
       pos: [-5, 0, -12],
@@ -398,6 +404,8 @@ export const act1CaseB = {
         },
       },
     },
+        { id: "none", name: "No One", role: "Not Stolen", avatar: "❓", bibleRef: null },
+
   ],
 
   deductions: {

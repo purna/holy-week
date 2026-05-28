@@ -11,7 +11,7 @@ export const act3CaseA = {
   location: "upperroom",
   difficulty: 3,
   requires: "lazarus_plot",
-  actLabel: "Act III",
+    actLabel: "Act III",
   color: 0x34d399,
   quest: { name: "Last Supper Investigation", task: "Find the bread and wine", cur: 0, tar: 7 },
 
@@ -68,9 +68,9 @@ export const act3CaseA = {
   intro: `It is the evening of Nisan 14. In a large upper room in Jerusalem's southwestern quarter, Peter and John have spent all afternoon preparing for the Passover Seder. The unleavened bread is set. The cups of wine are poured. The Passover lamb is ready. But when Jesus and the twelve arrive for the meal, something is wrong: a cup has been broken, the wine from one goblet has been spilled across the tablecloth, and a portion of the unleavened bread is missing. Three people had access to the upper room that afternoon. Was this sabotage — or something far more significant?`,
 
   suspects: [
-    { id: "john_mark", name: "John Mark", role: "Son of the House Owner", avatar: "👨‍🦰", bibleRef: "Acts 12:12 — later tradition links this house to Mary, John Mark's mother" },
-    { id: "servant", name: "Rhoda", role: "Household Servant", avatar: "👧", bibleRef: "Acts 12:13–15 — a servant named Rhoda is mentioned in the same household" },
-    { id: "judas", name: "Judas Iscariot", role: "Disciple and Treasurer", avatar: "🪙", bibleRef: "John 13:29 — Judas kept the money bag; Luke 22:3–6 — already made his deal" },
+    { id: "john_mark", name: "John Mark",   role: "Son of the House Owner",    avatar: "👨‍🦰", bibleRef: "Acts 12:12 — later tradition links this house to Mary, John Mark's mother" },
+    { id: "servant",   name: "Rhoda",       role: "Household Servant",          avatar: "👧",  bibleRef: "Acts 12:13–15 — a servant named Rhoda is mentioned in the same household" },
+    { id: "judas",     name: "Judas Iscariot", role: "Disciple and Treasurer",  avatar: "🪙",  bibleRef: "John 13:29 — Judas kept the money bag; Luke 22:3–6 — already made his deal" },
   ],
 
   evidencePool: [
@@ -157,6 +157,7 @@ export const act3CaseA = {
     {
       id: "john_mark",
       name: "John Mark",
+      role: "Son of the House Owner",
       avatar: "👨‍🦰",
       truthfulness: 0.75,
       bibleRef: "Acts 12:12; Mark 14:51–52 (possibly the young man who fled the garden)",
@@ -181,6 +182,7 @@ export const act3CaseA = {
     {
       id: "servant",
       name: "Rhoda",
+      role: "Household Servant",
       avatar: "👧",
       truthfulness: 0.9,
       bibleRef: "Acts 12:13–15",
@@ -202,6 +204,7 @@ export const act3CaseA = {
     {
       id: "judas",
       name: "Judas Iscariot",
+      role: "Disciple and Treasurer",
       avatar: "🪙",
       truthfulness: 0.3,
       bibleRef: "Matthew 26:14–16; John 13:27–30; Matthew 27:3–5",
@@ -228,6 +231,14 @@ export const act3CaseA = {
   ],
 
   deductions: {
+    "dropped_torch+severed_ear_wrap": {
+      link: {
+        text: "The proximity of the weapon strike to the fallen military hardware suggests a sudden collision of kingdoms.",
+        insight: "Peter attempted a messy tactical defense, but Jesus immediately neutralized the violence by performing a medical miracle on the enemy commander.",
+        isKey: true,
+        bibleRef: "Luke 22:51",
+      },
+    },
     "betrayal_dipped_bread+money_bag_impression": {
       compare: {
         text: "The dipped bread points to the seat of the honoured guest — who left immediately after receiving it. The money bag impression shows someone was counting coins at the preparation table earlier. Both point to the same disciple.",
@@ -296,7 +307,7 @@ export const act3CaseB = {
   id: "gethsemane_arrest",
   title: "The Severed Ear",
   subtitle: "An armed mob entered Gethsemane under cover of darkness. A sword was drawn, yet the physical evidence makes no sense.",
-  location: "garden",
+  location: "upperroom",
   difficulty: 3,
   requires: "last_supper",
   actLabel: "Act III",
@@ -370,15 +381,19 @@ export const act3CaseB = {
         neutral: "The man surrendered cleanly. The arrest was successful. There is nothing more to discuss.",
         cautious: "I... I felt the cold blade hit my neck. I heard the blood pooling. But then His hand touched me, and the pain vanished. Look at me... my skin is unbroken. Explain that to your records.",
       },
-      contradictions: {
-        "dropped_torch+severed_ear_wrap": {
-          exposed: "Alright! Peter struck me. I should be disfigured, but Jesus repaired what His own disciple broke. I came to chain Him, and He healed me instead. That's why I did not order the arrest of the rest of the disciples."
-        },
-      },
-    },
-  ],
+contradictions: {
+         "dropped_torch+severed_ear_wrap": {
+           exposed: "Alright! Peter struck me. I should be disfigured, but Jesus repaired what His own disciple broke. I came to chain Him, and He healed me instead. That's why I did not order the arrest of the rest of the disciples."
+         },
+       },
+     },
+         { id: "none", name: "No One", role: "Not Stolen", avatar: "❓", bibleRef: null },
 
-  deductions: {
+   ],
+
+   npcs: [],
+
+   deductions: {
     "abandoned_linen+dropped_torch": {
       link: {
         text: "The placement of the dropped torch and the abandoned linen show a split path of panic.",
@@ -404,244 +419,5 @@ export const act3CaseB = {
     lesson: "The kingdom of Jesus does not advance by carnal weapons. His voluntary surrender proves that His death was an act of deliberate obedience, not a tactical failure.",
     prophesyFulfilled: ["Isaiah 53:7", "Zechariah 13:7"],
     furtherReading: ["John 18:1–12", "Luke 22:47–53"],
-  },
-};
-
-
-
-// ============================================================
-// CASE: The Broken Alabaster  — difficulty 2 — Bethany
-// BIBLICAL FOCUS: Matthew 26:6–13, Mark 14:3–9, John 12:1–8
-// PROPHECY: Isaiah 61:1–3 | Psalm 45:7–8 | Song of Songs 1:12
-// ============================================================
-
-export const act3CaseC = {
-  id: "bethany_anointing",
-  title: "The Broken Alabaster",
-  subtitle: "A fortune in perfume has been poured out at a dinner in Bethany — accident, provocation, or prophecy?",
-  location: "bethany",
-  difficulty: 2,
-  requires: "gethsemane_arrest",
-  actLabel: "Act III",
-  color: 0x34d399,
-  quest: { name: "Bethany Dinner Investigation", task: "Gather all witness accounts", cur: 0, tar: 6 },
-
-  // ── BIBLICAL CONTEXT ──────────────────────────────────────────────
-  biblicalContext: {
-    summary: `Six days before Passover, Jesus was at dinner in Bethany at the house of Simon the Leper. Mary — the sister of Lazarus — entered with an alabaster jar of pure nard, a perfume worth nearly a year's wages (300 denarii). She broke the jar and poured the entire contents over Jesus's head and feet, then wiped His feet with her hair. The disciples erupted in anger. Jesus silenced them: "She has done a beautiful thing to me. She has anointed my body beforehand for burial. Wherever the gospel is proclaimed in the whole world, what she has done will be told in memory of her."`,
-    significance: `The anointing was a royal and prophetic act. In the Old Testament, anointing with oil was done to consecrate kings (1 Samuel 16:13), priests (Exodus 29:7), and sacred objects. The word 'Messiah' (Hebrew) and 'Christ' (Greek) literally mean 'the Anointed One.' Mary's act was — knowingly or unknowingly — the only formal anointing Jesus received before His death. Every king had an anointing. This was His.`,
-    historicalNote: `Spikenard (nard) was an imported aromatic resin from the Himalayas — one of the most expensive luxury goods in the ancient world. Three hundred denarii was a working man's full annual wage. Alabaster jars were sealed to preserve the fragrance; breaking the jar was a point of no return — once opened, the nard had to be used completely. The disciples' reaction ('Why this waste?') reflected genuine economic shock. John 12:6 specifically notes Judas's objection — adding that he was a thief who regularly pilfered from the common purse.`,
-  },
-
-  prophecies: [
-    {
-      reference: "Isaiah 61:1–3",
-      text: `"The Spirit of the Lord GOD is upon me, because the LORD has anointed me to bring good news to the poor; he has sent me to bind up the brokenhearted... to comfort all who mourn."`,
-      written: "~700 BC",
-      fulfilledBy: "Jesus being anointed at Bethany — the Messiah ('Anointed One') receiving the only formal consecration before His death",
-      gospelLink: "Luke 4:18 — Jesus quotes this Psalm in the synagogue at Nazareth to describe His mission; the Bethany anointing fulfils its symbolic content",
-      insight: "Jesus read this prophecy publicly at the start of His ministry to define His purpose. Mary's anointing at the end of His ministry enacted it physically. The whole arc of His mission — from Nazareth to Bethany — is framed by anointing.",
-    },
-    {
-      reference: "Psalm 45:7–8",
-      text: `"God, your God, has anointed you with the oil of gladness beyond your companions; your robes are all fragrant with myrrh and aloes and cassia."`,
-      written: "~1000 BC",
-      fulfilledBy: "The fragrance of the pure nard filling the entire house at Bethany (John 12:3)",
-      gospelLink: "John 12:3 — 'the house was filled with the fragrance of the perfume'",
-      insight: "Psalm 45 is a royal wedding psalm — the king is described as fragrant with anointing oil. John specifically records that the scent filled the entire house, an unusual detail that echoes the royal imagery of Psalm 45. The gospel writer's emphasis on the fragrance is deliberate.",
-    },
-    {
-      reference: "Song of Songs 1:12",
-      text: `"While the king was on his couch, my nard gave forth its fragrance."`,
-      written: "~950 BC",
-      fulfilledBy: "The specific perfume used — spikenard — poured out on the 'king' reclining at table in Bethany",
-      gospelLink: "Mark 14:3 — 'a woman came with an alabaster flask of ointment of pure nard'",
-      insight: "Nard appears only twice in all of Scripture: Song of Songs 1:12 and 4:13–14, and at Bethany. Song of Songs uses it in the context of a king's presence. The specific choice of nard — out of all available perfumes — carries this resonance for attentive readers.",
-    },
-  ],
-
-  intro: `It is Wednesday evening of Passion Week. You have followed a tip to Simon the Leper's house in Bethany, where Jesus and His disciples gathered for dinner. The evening has exploded into argument. A woman — Mary, the sister of Lazarus — has shattered an alabaster jar containing some of the most expensive perfume in the known world and poured it over Jesus's head. The room still smells of nard. Several disciples are furious about the waste. Jesus silenced them in a way that disturbed everyone present. Three people give sharply conflicting accounts of what happened and why. Your task: find out what Mary actually did — and whether Jesus's response was a moment of grace or something far stranger.`,
-
-  suspects: [
-    { id: "mary_bethany", name: "Mary of Bethany", role: "Sister of Lazarus, Devoted Follower", avatar: "👩", bibleRef: "John 12:1–3; Luke 10:39" },
-    { id: "judas_iscariot", name: "Judas Iscariot", role: "Disciple, Group Treasurer", avatar: "🪙", bibleRef: "John 12:4–6; Matthew 26:14–16" },
-    { id: "simon_leper", name: "Simon", role: "House Owner, Healed Leper", avatar: "🏠", bibleRef: "Matthew 26:6; Mark 14:3" },
-  ],
-
-  evidencePool: [
-    {
-      id: "alabaster_shards",
-      name: "Shattered Alabaster Neck",
-      type: "physical",
-      icon: "🏺",
-      location: "Dining Room Floor, Simon's House",
-      desc: "Fragments of the broken alabaster jar neck — the seal deliberately snapped off to release the contents. White alabaster, imported quality. Breaking the neck is irreversible: the entire jar must be used at once.",
-      bibleRef: "Mark 14:3 — 'She broke the jar and poured it over his head.'",
-      propheticLink: "Breaking an alabaster jar echoes Jeremiah 19:10–11, where God told Jeremiah to shatter a clay jar before the leaders of Jerusalem as a prophetic act of consecration and judgment. The breaking was the message.",
-      investigatorNote: "The break is clean and deliberate — not a drop or an accident. She made a decision before she entered the room. This was not spontaneous.",
-    },
-    {
-      id: "nard_residue",
-      name: "Nard Perfume Residue",
-      type: "physical",
-      icon: "💧",
-      location: "Floor Matting Near the Reclining Table",
-      desc: "A dense, amber-brown residue saturating the floor matting where Jesus reclined. The scent is overwhelming — pure spikenard, imported from the Himalayas. At current market rates: approximately 300 denarii.",
-      bibleRef: "John 12:3 — '...pure nard, very costly. She anointed Jesus's feet and wiped his feet with her hair. The house was filled with the fragrance.'",
-      propheticLink: "Spikenard appears in Song of Songs 1:12 in the context of a reclining king. The same specific perfume, the same posture, the same overwhelming presence. The gospel writers chose this detail with care.",
-      investigatorNote: "The full jar was used — nothing held back. 300 denarii is a year's wages for a common worker. This was everything Mary had. This was not a gift; it was an act of total surrender.",
-    },
-    {
-      id: "disciples_objection",
-      name: "Written Record of Disciples' Protest",
-      type: "testimonial",
-      icon: "📋",
-      location: "John Mark's Scribal Notes, Courtyard",
-      desc: "A partial record of the disciples' reaction: 'Why this waste? This could have been sold for a large sum and given to the poor.' Multiple voices. The objection was collective, not just from one person.",
-      bibleRef: "Matthew 26:8–9 — 'And when the disciples saw it, they were indignant, saying, Why this waste?'",
-      propheticLink: "The disciples' objection mirrors how Israel's leaders repeatedly dismissed prophetic acts as impractical or excessive — just as they rejected the prophets themselves. Amos 5:21–24 describes God's frustration with religious performance that ignores genuine devotion.",
-      investigatorNote: "The objection was framed in terms of poverty relief — which sounds virtuous. But John 12:6 specifies that Judas, who led the objection, regularly stole from the common purse. The 'charitable concern' was not sincere.",
-    },
-    {
-      id: "jesus_response_record",
-      name: "Eyewitness Account of Jesus's Words",
-      type: "analytical",
-      icon: "📜",
-      location: "Upstairs Room, Simon's House",
-      desc: "A short but extraordinary written account from a dinner guest: 'He said, Leave her alone. She has done a beautiful thing to me. She has anointed my body beforehand for burial. Wherever the gospel is proclaimed in the whole world, what she has done will be told in memory of her.' The guest added: 'We didn't understand what burial meant. Not then.'",
-      bibleRef: "Matthew 26:10–13; Mark 14:6–9",
-      propheticLink: "Jesus's prediction that this act would be remembered 'wherever the gospel is proclaimed in the whole world' is itself a prophetic claim — that His story would reach the entire world, and that a woman's act of devotion would outlast the objections of His own disciples. That prediction is still being fulfilled.",
-      investigatorNote: "The burial reference troubled every witness interviewed. Jesus was connecting this dinner to His own death. The disciples heard it and didn't understand. Mary may have.",
-    },
-    {
-      id: "money_ledger",
-      name: "Disciples' Common Purse Ledger",
-      type: "physical",
-      icon: "💰",
-      location: "Judas's Travel Satchel, Outer Courtyard",
-      desc: "A small wax tablet recording recent transactions from the disciples' shared funds. The entries are consistent — standard expenses for food and accommodation. But there is a notable discrepancy: a sum received and not recorded. The handwriting is Judas's.",
-      bibleRef: "John 12:6 — 'He said this, not because he cared about the poor, but because he was a thief, and having charge of the moneybag he used to help himself to what was put into it.'",
-      propheticLink: "Zechariah 11:12–13 foreshadowed the treasurer of God's people betraying Him for silver. Judas's ledger — already showing irregularities before the 30-coin agreement — begins to show the financial pressure and opportunism that would lead to the betrayal.",
-      investigatorNote: "The unrecorded sum cannot be confirmed from the ledger alone. But the objection to the nard — framed as concern for the poor — must be read in light of this: the man protesting the waste was already stealing from the fund meant for the poor.",
-    },
-  ],
-
-  npcs: [
-    {
-      id: "mary_bethany",
-      name: "Mary of Bethany",
-      avatar: "👩",
-      truthfulness: 0.95,
-      bibleRef: "John 12:1–3; Luke 10:39–42",
-      background: "Mary is the younger sister of Martha and Lazarus. She watched Jesus raise her brother from four days of death. She has sat at Jesus's feet whenever He taught, absorbing His words more deeply than most of His own disciples. She is quiet, perceptive, and acts from conviction rather than calculation.",
-      dialogue: {
-        neutral: "He is going to die. Everyone is pretending not to hear it, but He has been saying it for weeks. I wanted Him to know — before it's too late — that I understood.",
-        cautious: "I know what it cost. I know what they said. I would do it again.",
-        pressured: "The jar was mine. The nard was mine. I don't need anyone's permission to honour Him.",
-        exposed: "He said it was for His burial. When He said it, I knew I had done the right thing. If that's foolishness to you, I can't help that.",
-        repeat: "There's nothing more to say. He accepted it. That's all that matters.",
-      },
-      reactions: {
-        alabaster_shards: { text: "I broke it on purpose. You can't pour nard from a sealed jar. And I didn't want to use only some of it. He deserved all of it.", isLie: false },
-        nard_residue: { text: "Yes, I anointed His feet and wiped them with my hair. Some of the disciples thought that was improper. I didn't care.", isLie: false },
-        disciples_objection: { text: "They were angry. Judas most of all. He called it waste. Jesus told him to leave me alone.", isLie: false, revealedClue: "money_ledger" },
-        jesus_response_record: { text: "He said it would be remembered. I don't understand all of what He meant. But the way He said 'burial'... He wasn't being figurative.", isLie: false },
-      },
-      contradictions: {
-        "alabaster_shards+jesus_response_record": { exposed: "I had been holding that jar for a long time. I didn't know when to use it — or if I ever would. When He kept talking about dying and none of the others would listen — I understood. That was the moment." },
-      },
-    },
-    {
-      id: "judas_iscariot",
-      name: "Judas Iscariot",
-      avatar: "🪙",
-      truthfulness: 0.35,
-      bibleRef: "John 12:4–6; Matthew 26:14–16",
-      background: "Judas is the group's treasurer — the only non-Galilean among the twelve, from Kerioth in Judah. He manages the common purse and has, for some time, been helping himself to its contents. He led the objection to Mary's anointing on the grounds of charity. Two days later, he will approach the chief priests to negotiate a betrayal price.",
-      dialogue: {
-        neutral: "Three hundred denarii. Poured on the floor. There are families in the lower city who haven't eaten this week.",
-        cautious: "I manage the group's finances. I know exactly what things cost. What she did was indefensible from any responsible perspective.",
-        pressured: "My concern was entirely for the poor. That is the position I stated at the table and it remains my position now.",
-        exposed: "...He saw through me. He always sees through me. I don't know why I bother.",
-        repeat: "I have nothing more to say about the perfume.",
-      },
-      reactions: {
-        nard_residue: { text: "Three hundred denarii. Gone. Absorbed into the dirt. Yes, I'm still angry about it.", isLie: false },
-        disciples_objection: { text: "The others agreed with me initially. It was Jesus who reversed the room.", isLie: false },
-        money_ledger: { text: "My records are accurate. The discrepancy you're referring to is an accounting rounding error. I can explain it properly to you at another time.", isLie: true },
-        jesus_response_record: { text: "He said she would be remembered. He said it was for His burial. I find it difficult to accept that He genuinely believes He is going to die.", isLie: false },
-      },
-      contradictions: {
-        "disciples_objection+money_ledger": { exposed: "You want to know why I cared so much about three hundred denarii? Because I know what money like that can do. I've been — I've been managing funds for three years and I know what gets overlooked and what doesn't. That's all I'll say." },
-      },
-    },
-    {
-      id: "simon_leper",
-      name: "Simon",
-      avatar: "🏠",
-      truthfulness: 0.8,
-      bibleRef: "Matthew 26:6; Mark 14:3",
-      background: "Simon was a leper — meaning he was ritually excluded from all social and religious life, unable to live within city walls, unable to attend Temple, unable to touch or be touched. Jesus healed him at some point before Passion Week. The dinner was Simon's way of giving thanks. He is a man who understands what it means to be restored from what seemed like a death sentence.",
-      dialogue: {
-        neutral: "I opened my house because He gave me back my life. Whatever happened at my table, I take full responsibility for the evening.",
-        cautious: "Mary has been a guest of my household since her brother's sickness. What she did — I understood it.",
-        pressured: "The disciples were upset. I was not. A man who has been an outcast knows what it means to give everything to the one who called you back.",
-        exposed: "I'll tell you what I saw: a woman who heard what no one else was willing to hear, and did what no one else had the courage to do.",
-        repeat: "I've said what I have to say.",
-      },
-      reactions: {
-        alabaster_shards: { text: "She broke it deliberately, yes. I saw her face when she walked in. She had already decided. She was not distressed — she was resolved.", isLie: false },
-        nard_residue: { text: "The house still smells of it. I don't mind. In my years as a leper, I forgot what it was to have fragrance around me rather than being the one others covered their faces against.", isLie: false },
-        disciples_objection: { text: "The argument was louder than it should have been for a dinner table. Judas was the most vocal. One or two others joined him. Jesus stopped it quickly.", isLie: false },
-        jesus_response_record: { text: "He said 'burial.' Very clearly. Very calmly. And the argument stopped. I've heard Jesus silence rooms before — but this was different. This was the silence of people who suddenly understood something they didn't want to understand.", isLie: false },
-      },
-      contradictions: {
-        "alabaster_shards+nard_residue": { exposed: "She told me beforehand, actually — before the meal. She said, 'I need to do something tonight.' I didn't ask what. After what He did for my brother and for me... I would have let her bring an entire warehouse of nard." },
-      },
-    },
-  ],
-
-  deductions: {
-    "alabaster_shards+jesus_response_record": {
-      link: {
-        text: "The deliberate breaking of the sealed jar and Jesus's immediate declaration that she was anointing Him 'for burial' form a single connected prophetic act.",
-        insight: "Mary did not misunderstand what she was doing. She heard Jesus's repeated predictions of His death and responded with a formal royal anointing — the act of consecration given to kings before their greatest moment. The disciples objected to the economics. Jesus recognised the prophecy.",
-        isKey: true,
-        bibleRef: "Mark 14:8; Isaiah 61:1",
-      },
-    },
-    "disciples_objection+money_ledger": {
-      link: {
-        text: "The moral language of the objection ('give to the poor') is directly undermined by the financial irregularities in the treasurer's own records.",
-        insight: "The leading voice against a 300-denarii act of generosity belonged to the man quietly stealing from the fund designated for the poor. This is not simply ironic — it reveals that Judas's objection was never really about charity. He recognized value, not sacrifice.",
-        isKey: true,
-        bibleRef: "John 12:6; Zechariah 11:12–13",
-      },
-    },
-    "nard_residue+alabaster_shards": {
-      compare: {
-        text: "The full depletion of an irreversibly broken jar confirms this was a total, unreserved offering — nothing withheld.",
-        insight: "The alabaster jar could not be resealed. Every drop of nard was used. In the economy of sacred gesture, this parallels the completeness of the sacrifice Mary was anointing Jesus toward — a sacrifice that would also be total and unreserved.",
-        isKey: false,
-        bibleRef: "Mark 14:3; Psalm 45:7–8",
-      },
-    },
-    "simon_leper+jesus_response_record": {
-      timeline: {
-        text: "Simon's account of the room's silence after the 'burial' word connects with Jesus's public prediction.",
-        insight: "Two people at this dinner had experienced what it means to be recalled from a death sentence: Simon (healed of leprosy) and Lazarus (who was present, John 12:2). They understood at a visceral level what Mary was doing. The room fell silent because the ones who had faced death knew exactly what Jesus meant.",
-        isKey: false,
-        bibleRef: "John 12:1–3; Matthew 26:10–13",
-      },
-    },
-  },
-
-  truth: {
-    culprit: "none",
-    motive: "There was no crime and no waste. Mary of Bethany performed the only formal anointing Jesus received — a prophetic royal consecration carried out with full awareness of His impending death, which most of the disciples refused to accept. The disciples' outrage revealed their own failure to listen to what Jesus had been telling them for months.",
-    method: "Mary entered with a sealed alabaster jar of pure nard worth 300 denarii — a year's wages, her entire reserve. She broke the seal deliberately and poured the complete contents over Jesus's head and feet, then wiped His feet with her hair. The act was premeditated, total, and unreversible. Jesus not only accepted it but declared it a preparation for His burial and promised her memory would outlast the objections of His own disciples.",
-    lesson: "Mary heard what the disciples refused to hear. While the twelve argued about waste and poverty relief, she understood that Jesus was going to die and acted accordingly. The broken jar is a picture of the same totality — what Jesus was about to give would also be unreserved and unrepeatable. Judas's objection, funded by his own theft from the poor fund, shows how self-interest disguises itself as moral concern. True devotion is recognized not by its cost, but by what it costs the giver.",
-    prophesyFulfilled: ["Isaiah 61:1–3", "Psalm 45:7–8", "Song of Songs 1:12"],
-    furtherReading: ["Matthew 26:6–13", "Mark 14:3–9", "John 12:1–8"],
   },
 };

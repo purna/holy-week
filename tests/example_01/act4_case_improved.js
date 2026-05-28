@@ -72,6 +72,8 @@ export const act4CaseA = {
     { id: "mary_magdalene", name: "Mary Magdalene", role: "Disciple, First Witness", avatar: "👩", bibleRef: "John 20:1–18; Mark 16:9" },
     { id: "marcus", name: "Marcus", role: "Roman Soldier, Guard Detail", avatar: "🛡️", bibleRef: "Matthew 27:62–66; 28:11–15" },
     { id: "joseph", name: "Joseph of Arimathea", role: "Secret Disciple, Tomb Owner", avatar: "🧓", bibleRef: "Matthew 27:57–61; John 19:38–42" },
+    { id: "none", name: "No One", role: "Not Stolen", avatar: "❓", bibleRef: null },
+
   ],
 
   evidencePool: [
@@ -158,6 +160,7 @@ export const act4CaseA = {
     {
       id: "mary_magdalene",
       name: "Mary Magdalene",
+      role: "Disciple, First Witness",
       avatar: "👩",
       truthfulness: 0.98,
       bibleRef: "John 20:1–18; Mark 16:9; Luke 8:1–3",
@@ -180,6 +183,7 @@ export const act4CaseA = {
     {
       id: "marcus",
       name: "Marcus",
+      role: "Roman Soldier, Guard Detail",
       avatar: "🛡️",
       truthfulness: 0.6,
       bibleRef: "Matthew 27:62–66; 28:2–4; 28:11–15",
@@ -204,6 +208,7 @@ export const act4CaseA = {
     {
       id: "joseph",
       name: "Joseph of Arimathea",
+      role: "Secret Disciple, Tomb Owner",
       avatar: "🧓",
       truthfulness: 0.9,
       bibleRef: "Matthew 27:57–61; Mark 15:43–47; Luke 23:50–56; John 19:38–42",
@@ -297,7 +302,7 @@ export const act4CaseB = {
   id: "roman_inquiry",
   title: "The Guard's Report",
   subtitle: "A Roman guard detail has returned from the garden tomb with a story that breaks military law. What are they hiding?",
-  location: "antonia_fortress",
+  location: "garden",
   difficulty: 3,
   requires: "resurrection",
   actLabel: "Act IV",
@@ -371,15 +376,20 @@ export const act4CaseB = {
         neutral: "We fell asleep. The night was long. The disciples sneaked in like ghosts and robbed the place. That is our statement.",
         cautious: "Look, if the Governor hears about this, my life is forfeit. But the High Priest promised that if this reaches Pilate's ears, they will satisfy him and keep us out of trouble. I'm just following orders.",
       },
-      contradictions: {
-        "bribe_shekels+broken_imperial_seal": {
-          exposed: "You think a handful of unarmed galilean fishermen broke a Roman imperial seal while an elite unit slept right next to it? We didn't sleep! The ground split open, and a light like lightning blinded us. We woke up paralyzed, and the body was gone. The priests paid us to lie because the truth scares them to death!"
-        },
-      },
-    },
-  ],
+contradictions: {
+         "bribe_shekels+broken_imperial_seal": {
+           exposed: "You think a handful of unarmed galilean fishermen broke a Roman imperial seal while an elite unit slept right next to it? We didn't sleep! The ground split open, and a light like lightning blinded us. We woke up paralyzed, and the body was gone. The priests paid us to lie because the truth scares them to death!"
+         },
+       },
+     },
+         { id: "none", name: "No One", role: "Not Stolen", avatar: "❓", bibleRef: null },
 
-  deductions: {
+   ],
+
+   npcs: [],
+
+   deductions: {
+    
     "bribe_shekels+broken_imperial_seal": {
       link: {
         text: "The silver currency from the temple treasury directly connects to the broken security parameters of the Roman state.",

@@ -9,14 +9,14 @@ export class NPCSystem {
     this.npcStates = {};   // npcId -> { mood, pressureLevel, contradictions, memory }
   }
 
-  loadCase(caseData) {
+loadCase(caseData) {
     this.npcStates = {};
-    caseData.npcs.forEach(npc => {
+    (caseData.npcs || []).forEach(npc => {
       this.npcStates[npc.id] = {
-        mood: "neutral",        // neutral | cautious | pressured | exposed | friendly
-        pressureLevel: 0,       // 0-100
+        mood: "neutral",
+        pressureLevel: 0,
         contradictions: [],
-        memory: [],             // evidence IDs shown to this NPC
+        memory: [],
       };
     });
   }
