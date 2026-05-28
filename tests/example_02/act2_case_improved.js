@@ -275,7 +275,6 @@ export const act2CaseA = {
     furtherReading: ["John 11:45–57", "John 12:9–11"],
   },
 };
-
 // ============================================================
 // CASE: The Price of Life  — difficulty 2 — The Lazarus Conspiracy
 // BIBLICAL FOCUS: John 11:45–57, John 12:9–11
@@ -283,10 +282,10 @@ export const act2CaseA = {
 // ============================================================
 
 export const act2CaseB = {
-   id: "lazarus_plot",
-   title: "The Price of Life",
-   subtitle: "Rumors fly through the Temple that the high priests have issued an unlisted execution order for a man who committed no crime.",
-   location: "temple",
+  id: "lazarus_plot",
+  title: "The Price of Life",
+  subtitle: "Rumors fly through the Temple that the high priests have issued an unlisted execution order for a man who committed no crime.",
+  location: "temple",
   timeOfDay: "day",
   difficulty: 2,
   requires: "authority_challenged",
@@ -320,7 +319,7 @@ export const act2CaseB = {
       pos: [2, -6, 0],
       snippet: "A watchman's tally book monitoring the eastern gate traffic.",
       description: "A log recording unprecedented human crowds leaving the city gates toward Bethany after dusk, specifically asking for the house of Simon the Leper.",
-      propheticLink: "John 12:9 notes that a large crowd found out Jesus was there and came not only because of Him, but also to see Lazarus, whom He had raised.",
+      bibleRef: "John 12:9 notes that a large crowd found out Jesus was there and came not only because of Him, but also to see Lazarus, whom He had raised.",
       investigatorNote: "The exponential growth of these crowd tallies explains the absolute state of panic inside the Sanhedrin chambers.",
     },
     {
@@ -331,7 +330,7 @@ export const act2CaseB = {
       pos: [-3, 3, 0],
       snippet: "Trace white dust contaminated with heavy burial aloes.",
       description: "Powdery white limestone scrapings mixed with residual traces of heavy myrrh and aloe resins, found dropped outside the high priest's council room.",
-      propheticLink: "John 11:39 notes that Lazarus had been dead four days, meaning the traditional aromatic burial preservation oils were heavily present.",
+      bibleRef: "John 11:39 notes that Lazarus had been dead four days, meaning the traditional aromatic burial preservation oils were heavily present.",
       investigatorNote: "This dust indicates that witnesses from the actual tomb site in Bethany have been brought into the inner chambers of the Sanhedrin for intense interrogation.",
     },
     {
@@ -342,37 +341,106 @@ export const act2CaseB = {
       pos: [0, 0, 0],
       snippet: "A sealed tablet bearing the administrative mark of the House of Annas.",
       description: "A secure internal brief detailing political damage control. It outlines plans to quietly eliminate a 'destabilizing living asset' currently residing in Bethany.",
-      propheticLink: "John 12:10–11 explicitly validates this conspiracy: 'So the chief priests made plans to put Lazarus to death as well.'",
+      bibleRef: "John 12:10–11 explicitly validates this conspiracy: 'So the chief priests made plans to put Lazarus to death as well.'",
       investigatorNote: "Murdering a resurrected man is a fascinating logical absurdity. It reveals that the leadership doesn't doubt the miracle occurred—they simply care more about their institutional control than God's reality.",
     },
   ],
 
-suspects: [
-     {
-       id: "nicodemus_secret",
-       name: "Nicodemus",
-       role: "Conflicted Sanhedrin Member",
-       avatar: "👴",
-       color: 0x88cc88,
-       pos: [15, 0, 5],
-       bibleRef: "John 7:50–51, John 19:39",
-       background: "A ruler of the Jews who originally approached Jesus by night, now watching the legal framework collapse from within.",
-       dialogue: {
-         neutral: "Our council is supposed to be a vanguard of justice and Mosaic law. Yet, fear makes men blind to the light.",
-         cautious: "The decree is real. Caiaphas argued that it is better for one man to die for the nation. But they aren't stopping at one man anymore. They are trying to cover up the resurrection itself.",
-       },
-       contradictions: {
-         "crowd_report+secret_decree": {
-           exposed: "The more the people see Lazarus, the more our authority crumbles. The decree was rushed through without a full legal trial. I spoke against it, but they are driven by sheer preservation of power. Take that document and warn the family."
-         },
-       },
-     },
-     { id: "caiaphas", name: "Caiaphas", role: "High Priest, Sadducee", avatar: "👨‍⚖️", color: 0xcc8888, pos: [-15, 0, 5], bibleRef: "John 11:49–52; Matthew 26:57–68" } ,
-   ],
+  suspects: [
+    {
+      id: "nicodemus_secret",
+      name: "Nicodemus",
+      role: "Conflicted Sanhedrin Member",
+      avatar: "👴",
+      color: 0x88cc88,
+      pos: [15, 0, 5],
+      bibleRef: "John 7:50–51, John 19:39",
+      background: "A ruler of the Jews who originally approached Jesus by night, now watching the legal framework collapse from within.",
+      dialogue: {
+        neutral: "Our council is supposed to be a vanguard of justice and Mosaic law. Yet, fear makes men blind to the light.",
+        cautious: "The decree is real. Caiaphas argued that it is better for one man to die for the nation. But they aren't stopping at one man anymore. They are trying to cover up the resurrection itself.",
+      },
+      contradictions: {
+        "crowd_report+secret_decree": {
+          exposed: "The more the people see Lazarus, the more our authority crumbles. The decree was rushed through without a full legal trial. I spoke against it, but they are driven by sheer preservation of power. Take that document and warn the family."
+        },
+      },
+    },
+    { id: "caiaphas", name: "Caiaphas", role: "High Priest, Sadducee", avatar: "👨‍⚖️", color: 0xcc8888, pos: [-15, 0, 5], bibleRef: "John 11:49–52; Matthew 26:57–68" },
+  ],
 
-   npcs: [],
+  npcs: [
+    {
+      id: "temple_spy",
+      name: "Maluch",
+      role: "Temple Informant / Spy",
+      avatar: "👤",
+      truthfulness: 0.60,
+      bibleRef: "John 18:10; Luke 22:52",
+      background: "An administrative operative and courier under the payroll of the high priest's household, tasked with logging suspicious crowd densities, tracking routes, and profiling revolutionary movement between Jerusalem and Bethany.",
+      dialogue: {
+        neutral: "I look at movements, routes, and numbers. My job is to ensure the Passover crowds do not aggregate into an uncontrollable nationalist front.",
+        cautious: "Bethany has become a major intelligence blindspot. The road is constantly jammed with pilgrims who are bypassing our official checkpoints.",
+        pressured: "The elders wanted specific confirmation from the tomb itself. They didn't want hearsay; they wanted structural verification before taking action.",
+        exposed: "Fine. I tracked the family. The crowds aren't visiting a gravesite; they are eating dinner with a man who was rotting last week. It's an operational nightmare.",
+        repeat: "The streets are crowded. Keep moving if you don't have business with the guard.",
+      },
+      reactions: {
+        crowd_report: { text: "That is my gate tally. Look at the dusk trajectory toward the eastern gate. That isn't standard holiday traffic; those people are marching to a single house.", isLie: false },
+        grave_dirt: { text: "I may have tracked some residue into the courthouse corridors after my sweep of the cave. The smell of burial spice doesn't wash off easily.", isLie: false },
+        secret_decree: { text: "I don't sign political policies. I just gather the logistical data that makes those policies necessary.", isLie: false },
+      },
+      contradictions: {},
+    },
+    {
+      id: "annas_patriarch",
+      name: "Annas",
+      role: "High Priest Emeritus",
+      avatar: "🦅",
+      truthfulness: 0.35,
+      bibleRef: "John 18:13; Luke 3:2; Acts 4:6",
+      background: "The elderly patriarch of the ruling Sadducean family. Though Rome formally deposed him years ago, he remains the true systemic power behind the high priesthood, controlling his sons and son-in-law Caiaphas. He values political continuity and institutional risk management above all else.",
+      dialogue: {
+        neutral: "True governance is quiet, indirect, and economical. Populist enthusiasm fades, but the temple infrastructure must endure.",
+        cautious: "When a crowd begins to look past the priesthood to find a king, it is no longer a religious debate. It is a crisis of regional stability.",
+        pressured: "Caiaphas looks at the immediate problem. I look at the long-term mechanics of Roman occupation. If the governor senses an unpoliced movement, his legions will destroy our nation.",
+        exposed: "You think a dynamic miracle justifies civic chaos? If a man is raised from the dead but his existence sparks a war that levels Jerusalem, his life is an unacceptable expense. The security of the temple requires the eradication of the asset.",
+        repeat: "Our conversation has reached its logical conclusion. Guard, show this investigator out.",
+      },
+      reactions: {
+        secret_decree: { text: "A routine security memorandum from my house. It outlines proactive containment protocols for a severe socio-political disruption.", isLie: false },
+        grave_dirt: { text: "Judean soil. The temple floor is swept daily; your forensic parameters are irrelevant to council business.", isLie: true },
+        crowd_report: { text: "Pilgrim metrics fluctuate every Passover. These counts are highly exaggerated by nationalist sympathizers.", isLie: true },
+      },
+      contradictions: {
+        "grave_dirt+secret_decree": { exposed: "The legal trial is a tool for ordinary criminals. In matters of national survival, we do not wait for a court to verify what our own spies have confirmed by the smell of burial cloth. The threat will be neutralized quietly." },
+      },
+    },
+    {
+      id: "martha_bethany",
+      name: "Martha",
+      role: "Sister of Lazarus",
+      avatar: "🧺",
+      truthfulness: 0.95,
+      bibleRef: "John 11:1–44; John 12:1–2",
+      background: "The practical, protective head of the Bethany household. Having witnessed her brother's descent into death and subsequent revival, she is now trapped in a terrifying surveillance grid, managing family survival while shadow operatives monitor her home.",
+      dialogue: {
+        neutral: "We were a quiet household before the illness. Now, strange men stand at the edge of our fields, watching who enters and leaves.",
+        cautious: "My brother is inside. He is alive, he is eating, and yet the temple officials treat him like he has committed a capital crime.",
+        pressured: "They brought our neighbors in for questioning. They asked about the linen, the stones, the exact hour. They aren't looking for a miracle; they are hunting for a reason.",
+        exposed: "I found a dropped seal near our garden wall. They want to put him back in the earth. How can you look at a man given back to his family by God and plan his murder?",
+        repeat: "I must prepare food for the household. Please, if you are followed, do not stay near our door.",
+      },
+      reactions: {
+        crowd_report: { text: "The pilgrims have been so kind, but their presence draws the eyes of the guard. We never asked for these massive crowds.", isLie: false },
+        grave_dirt: { text: "That is the white dust from our family tomb. The oils... it smells like the morning Jesus stood outside and commanded the stone to be moved.", isLie: false },
+        secret_decree: { text: "This writing bears the seal of the high priest's family. They want to take my brother away. Please, you have to help us warn the disciples.", isLie: false },
+      },
+      contradictions: {},
+    },
+  ],
 
-   deductions: {
+  deductions: {
     "crowd_report+secret_decree": {
       link: {
         text: "The surge in pilgrim interest matches the exact timeline of the secret execution order.",

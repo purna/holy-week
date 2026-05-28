@@ -390,10 +390,78 @@ export const act3CaseB = {
       },
     },
     { id: "none", name: "No One", role: "Not Stolen", avatar: "❓", bibleRef: null },
-
   ],
 
-  npcs: [],
+  npcs: [
+    {
+      id: "malchus_servant",
+      name: "Malchus",
+      role: "High Priest's Personal Assistant",
+      avatar: "👨‍💼",
+      truthfulness: 0.90,
+      bibleRef: "John 18:10; Luke 22:51",
+      background: "The confidential agent of Caiaphas[cite: 1]. He was at the front of the line holding the warrant when Simon Peter drawing a hidden blade ambushed him in the dark. He is dealing with acute cognitive dissonance after an enemy healed his wound[cite: 1].",
+      dialogue: {
+        neutral: "The tactical entry succeeded. The prisoner surrendered without demanding a siege.",
+        cautious: "The blood on my tunic is real. The cut on my head covering is clean through. But my flesh... there isn't even a scar.",
+        pressured: "Simon Peter came at me from the dark brush. I didn't see the steel until it caught me. I fell into the mud, holding the side of my face, expecting to bleed out in an oil grove.",
+        exposed: "The Galilean didn't run. He touched the side of my face, and the burning cold turned into... skin. He rebuilt my flesh. I came to put iron bands on Him, and He mended my wound. Why didn't he let his men fight?",
+        repeat: "My report to the high priest is concluded. Do not waste my time.",
+      },
+      reactions: {
+        severed_ear_wrap: { text: "That is my head scarf. You can see where the blade sliced the linen cleanly from above. The blood soaked through completely before the touch occurred.", isLie: false },
+        dropped_torch: { text: "When we asked for Him, He stepped forward and said 'I am He.' The air went thick, like a heavy gale hitting a wall. Half the line tumbled backward over the roots. That's when torches were trampled.", isLie: false },
+        abandoned_linen: { text: "One of their younger followers was grabbed by a guard. He panicked, slipped right out of his white cloak, and bolted into the deep brush naked.", isLie: false },
+      },
+      contradictions: {},
+    },
+    {
+      id: "simon_peter",
+      name: "Simon Peter",
+      role: "Galilean Disciple",
+      avatar: "🐓",
+      truthfulness: 0.70,
+      bibleRef: "John 18:10-11; Matthew 26:51-54",
+      background: "The informal leader of the inner circle[cite: 1]. He is currently hidden in the shadows outside the high priest's courthouse, deeply traumatized, defensive, and swinging violently between raw panic and profound shame[cite: 1].",
+      dialogue: {
+        neutral: "They came with swords and clubs as if hunting an insurgent. What did they expect us to do? Sit there?",
+        cautious: "The garden was dark. Torches were moving through the trees. Everything happened in seconds.",
+        pressured: "I drew the blade because we said we would die with Him. I swung at the closest person holding a rope. I wanted to split his skull.",
+        exposed: "I cut the ear clean off. I saw the blood hit the mud. But the teacher... He yelled at me. He told me those who take the sword die by the sword. He didn't want a war. He healed the man, then told me to sheath the iron. I don't understand His strategy.",
+        repeat: "Leave me alone. I don't know the man you're talking about.",
+      },
+      reactions: {
+        severed_ear_wrap: { text: "That blood belongs to Malchus. I dropped my defense when the teacher commanded me to put the blade away. The wound should still be open.", isLie: false },
+        dropped_torch: { text: "The cohort fell backward when He spoke. They had lanterns and military weapons, but they were shaking like leaves when He stepped into the light.", isLie: false },
+        abandoned_linen: { text: "That belongs to John Mark. He was tracking us from the upper city. When the temple police grabbed his shoulder, he just ran.", isLie: false },
+      },
+      contradictions: {
+        "severed_ear_wrap+dropped_torch": { exposed: "I thought we were starting the rebellion! He told us to carry swords earlier. But when I actually used the steel, He fixed the enemy's wounds and surrendered willingly. I ran because... if He isn't fighting Rome, what are we doing?" },
+      },
+    },
+    {
+      id: "roman_soldier",
+      name: "Garrison Guard",
+      role: "Antonia Fortress Auxiliary",
+      avatar: "🛡️",
+      truthfulness: 0.85,
+      bibleRef: "John 18:3; Matthew 26:47",
+      background: "A professional auxiliary infantryman stationed at the Antonia Fortress, assigned to reinforce the temple police for a high-risk night arrest[cite: 1]. He views the regional religious dynamics with absolute cynical detachment[cite: 1].",
+      dialogue: {
+        neutral: "We were ordered to secure the perimeter of an olive orchard. We hold the fortress, not local theological opinions[cite: 1].",
+        cautious: "The operation was a logistical mess. Night deployments in heavy brush are always unpredictable.",
+        pressured: "The temple enforcers were nervous. They thought the Galilean had an armed cell waiting in the trees. Then one of the inner circle jumped from the shadows with a short sword.",
+        exposed: "The old man Peter sliced Malchus. Standard tactical procedure would be to deploy lethal force against the entire cell. But the prisoner stopped it. He literally commanded His own rebel to stand down, touched the servant, and solved the injury. We just stood there with our spears low.",
+        repeat: "My shift ends at dawn. Talk to the centurion if you want a dispatch report.",
+      },
+      reactions: {
+        dropped_torch: { text: "That pine torch belongs to my unit. Stamped with the fortress mark. The frontline fell back like they hit a stone barrier when the target declared his identity. Clumsy line work.", isLie: false },
+        severed_ear_wrap: { text: "I saw the strike. Messy swing, but it took the ear off. The servant should be dead or disfigured. Instead, he walked back to the city gates tracking our prisoner with his head intact.", isLie: false },
+        abandoned_linen: { text: "One of the local kids left his cloak in our hands. He scampered off into the darkness. Not our target, so we let him clear the line.", isLie: false },
+      },
+      contradictions: {},
+    },
+  ],
 
   deductions: {
     "abandoned_linen+dropped_torch": {
@@ -423,7 +491,6 @@ export const act3CaseB = {
     furtherReading: ["John 18:1–12", "Luke 22:47–53"],
   },
 };
-
 
 // ============================================================
 // CASE: The Curtain and the Cross  — difficulty 3 — Crucifixion

@@ -66,6 +66,7 @@ export const act1CaseA = {
     { id: "owner", name: "Tobias", role: "Donkey Owner / Sympathiser", avatar: "👴", bibleRef: "Mark 11:3–6 (unnamed owner)" },
     { id: "villager", name: "Local Villager", role: "Eyewitness", avatar: "👨‍🌾", bibleRef: "Mark 11:3–6 (unnamed villager who witnessed the exchange)" },
     { id: "pharisee", name: "Pharisee", role: "Religious Authority", avatar: "👨‍⚖️", bibleRef: "Luke 19:39–40; John 12:19" },
+    { id: "local_skeptic", name: "Jemimah", role: "Jerusalem Local", avatar: "👩‍🌾", bibleRef: "Matthew 21:10-11" },
     { id: "none", name: "No One", role: "Not Stolen", avatar: "❓", bibleRef: null },
   ],
 
@@ -255,6 +256,34 @@ export const act1CaseA = {
         "cloaks+palm_branch": { exposed: "Yes, the cloaks used as a saddle, the palm branches, the crowd quoting Psalm 118 — these things didn't happen by accident. Every element connects back to Scripture. That's what made it extraordinary." },
       },
     },
+    {
+      id: "local_skeptic",
+      name: "Jemimah",
+      role: "Jerusalem Local",
+      avatar: "👩‍🌾",
+      color: 0xba93db,
+      pos: [12, 0, -15],
+      truthfulness: 0.8,
+      bibleRef: "Matthew 21:10-11 (The city asking 'Who is this?')",
+      background: "A local city resident managing her household. Irritated by the Passover overcrowding, she is naturally suspicious of Galilean zeal and views the disruptive procession with typical urban cynicism.",
+      dialogue: {
+        neutral: "The whole city is in an uproar because of these country pilgrims. They're tracking mud everywhere and throwing their clothes in the middle of the road!",
+        cautious: "Everyone is yelling 'Hosanna' like the Romans aren't watching from the Antonia tower. This Galilean teacher—who does He think He is? David?",
+        pressured: "Look, I just want to buy my grain without a mob blocking the eastern valley gate. They're calling Him a prophet, but prophets don't usually ride into town with an unauthorized parade.",
+        exposed: "I asked the people next to me, 'Who is this?' and they just looked at me like I was blind. They said, 'This is Jesus, the prophet from Nazareth!' Nazareth! Nothing good comes from there.",
+        repeat: "Go ask the pilgrims with the green hands. I have work to do.",
+      },
+      reactions: {
+        palm_branch: { text: "People were hacking these off the trees out toward Jericho and dragging them all the way up the path. It's a miracle someone wasn't blinded by them.", isLie: false },
+        cloaks: { text: "Whose garments are those? Left right in the dirt! If they wanted to build a carpet for a king, they should use proper tapestry, not smelly travel cloaks.", isLie: false },
+        donkey_tracks: { text: "Hoofprints? Yes, right down the Mount of Olives path. The animal was small—practically a baby. It could barely handle the weight, let alone the shouting.", isLie: false },
+        crowd_testimony: { text: "The Pharisees aren't the only ones complaining. The noise was deafening. If the crowd doesn't calm down, the Roman garrison will come down from the walls to quiet us themselves.", isLie: false },
+        witness_account: { text: "Tobias let them take it? He's a fool. He's always reading old scrolls and staring at the hills. He probably thought they were angels.", isLie: false }
+      },
+      contradictions: {
+        "cloaks+donkey_tracks": { exposed: "Alright, so maybe the donkey didn't look burdened. It actually walked down that steep, noisy hill perfectly steady—even though a wild, unridden colt should have bolted the second the crowd started screaming. I'll admit... that part was strange." }
+      },
+    }
   ],
 
   deductions: {
@@ -322,7 +351,6 @@ export const act1CaseA = {
   },
 };
 
-
 // ============================================================
 // CASE: The Overturned Tables  — difficulty 2 — Temple Cleansing
 // BIBLICAL FOCUS: Matthew 21:12–17, Mark 11:15–19, Luke 19:45–48, John 2:13–22
@@ -341,6 +369,7 @@ export const act1CaseB = {
   color: 0x60a5fa,
   quest: { name: "Temple Forensic Search", task: "Collect all evidence", cur: 0, tar: 7 },
 
+  // ── BIBLICAL CONTEXT ──────────────────────────────────────────────
   biblicalContext: {
     summary: `On Monday morning, Jesus entered the Temple courts and forcefully drove out those who were buying and selling. He overturned the tables of the moneychangers and the benches of those selling doves, declaring: "My house will be called a house of prayer, but you are making it a den of robbers."`,
     significance: `By halting the commercial exploitation in the Court of the Gentiles, Jesus disrupted the high-priestly financial monopoly. More importantly, He acted out a prophetic sign of judgment against an institutional temple system that had locked out the nations from genuine prayer.`,
@@ -430,7 +459,61 @@ export const act1CaseB = {
       },
     },
     { id: "none", name: "No One", role: "Not Stolen", avatar: "❓", bibleRef: null },
+  ],
 
+  npcs: [
+    {
+      id: "money_changer",
+      name: "Malachi",
+      role: "Temple Money Changer",
+      avatar: "🤑",
+      color: 0xffdd66,
+      pos: [-6, 0, 6],
+      truthfulness: 0.5,
+      bibleRef: "Mark 11:15",
+      background: "A licensed merchant operating under high-priestly authorization. His business scales on demanding steep transaction rates to exchange foreign pilgrim coins into Tyrian shekels.",
+      dialogue: {
+        neutral: "Look at my stall! Upended! This isn't reform, it's financial sabotage! I have a civic permit from the Sanhedrin itself.",
+        cautious: "The man is dangerous. He speaks about the Temple as if He owns the deeds. The crowd was backing Him up, that's the only reason we ran.",
+        pressured: "Alright, look—our markup rates are set by the families of Annas. We don't keep all the profits. We just enforce the exchange standard.",
+        exposed: "He didn't steal a single coin. That's what unnerves me. A zealot or a thief takes the silver. He just scattered it, like it was nothing but dirt under His feet.",
+        repeat: "I am still counting my structural losses. Go bother the dove merchants.",
+      },
+      reactions: {
+        scattered_shekels: { text: "Those are high-purity Tyrian silvers. The only legal currency for the Sanctuary tax. He dumped them right into the courtyard dust!", isLie: false },
+        whip_of_cords: { text: "He was waving that thing around like a madman! He struck my ledger table directly. I nearly lost an eye to the flying splinters.", isLie: true },
+        broken_cages: { text: "Jadan's birds? Good riddance. The noise in this court was already intolerable before the Galilean started a riot.", isLie: false }
+      },
+      contradictions: {
+        "scattered_shekels+whip_of_cords": { exposed: "Fine! He didn't use the whip on us. He didn't even touch the moneychangers. He just walked up to the tables, looked at our transaction balances, and flipped them over. But His voice... it shook the entire colonnade." }
+      }
+    },
+    {
+      id: "garrison_guard",
+      name: "Marcus",
+      role: "Antonia Fortress Guard",
+      avatar: "💂",
+      color: 0xdd4444,
+      pos: [0, 0, 12],
+      truthfulness: 0.85,
+      bibleRef: "Luke 19:47-48",
+      background: "A working-class Roman auxiliary stationed on the high outer wall walkways. He views the regional theological squabbles with complete military detachment.",
+      dialogue: {
+        neutral: "He called it 'My Father's House.' The merchants called it their living. I called it my afternoon duty shift.",
+        cautious: "Our orders from the Centurion were clear: do not intervene unless a full political rebellion begins. Flipped tables don't violate Roman civil law.",
+        pressured: "The temple priests were furious that we didn't send in the cohorts. But why should Roman blood protect their currency exchange booths?",
+        exposed: "I watched the whole thing from the parapet. The Galilean had total control over that crowd. One word from Him, and they would have taken the fortress gates.",
+        repeat: "Shift's almost over. Talk to the merchants if you want complaints.",
+      },
+      reactions: {
+        whip_of_cords: { text: "I saw Him braided that out of livestock bedding. Clever, really. It wouldn't stop a legionary, but it scared the sheep out of the gates fast enough.", isLie: false },
+        scattered_shekels: { text: "I watched the locals diving into the dirt to grab those coins. Surprising the merchants didn't fight back, but they were paralyzed by His presence.", isLie: false },
+        broken_cages: { text: "Those feathers are going to be floating around the stOA for a week. A total mess, but not our tactical concern.", isLie: false }
+      },
+      contradictions: {
+        "broken_cages+scattered_shekels": { exposed: "The priests tried to frame this as an armed insurrection to Pilate. But we logged it as a domestic religious cleanup. The Galilean wasn't fighting Rome; He was fighting the merchants' corruption." }
+      }
+    }
   ],
 
   deductions: {

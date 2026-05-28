@@ -10,7 +10,9 @@
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.4/howler.min.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Source+Code+Pro:wght@300;400;600&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Source+Code+Pro:wght@300;400;600&display=swap"
+    rel="stylesheet">
 
   <link rel="stylesheet" href="styles.css">
   <script type="importmap">
@@ -26,7 +28,7 @@
   <!-- ══════════════ START SCREEN ══════════════ -->
   <div id="loading-screen" class="loading-screen">
     <div class="loading-inner">
-      <h1 style="color: #fff; font-size: 1.5rem; margin-bottom: 5px; letter-spacing: 1px;">HOLY WEEK</h1>
+      <h1 style="color: #fff; font-size: 3rem; margin-bottom: 5px; letter-spacing: 1px;">HOLY WEEK</h1>
       <p id="loading-text" style="color: var(--text-muted); font-size: 0.85rem; text-transform: uppercase;">
         Loading investigation environment and evidence archives...</p>
 
@@ -38,7 +40,7 @@
   </div>
 
   <!-- ══════════════ WIPE ══════════════ -->
-<div id="wipe-overlay"></div>
+  <div id="wipe-overlay"></div>
 
   <div id="end-screen" class="end-screen" style="display: none; opacity: 0;">
     <div class="end-inner">
@@ -260,22 +262,32 @@
         overlay.style.display = 'flex';
 
 
-      /* ═══════════════════════════════════════════════════════════════
-        START
-      ═══════════════════════════════════════════════════════════════ */
-      document.getElementById('btn-start').onclick=()=>{
-      audioCtx.resume();
-      const w=document.getElementById('wipe-overlay');
-      w.classList.add('active');
-      setTimeout(()=>{document.getElementById('start-screen').style.display='none';},500);
-      setTimeout(()=>{
-        started=true;
-        levelMgr=new LevelManager();
-        levelModal=new LevelSelectModal(levelMgr);
-        levelMgr.start();
-        updateUI();
-      },1000);
-      };
+        /* ═══════════════════════════════════════════════════════════════
+          START
+        ═══════════════════════════════════════════════════════════════ */
+        // Start button handler
+        document.getElementById('btn-start').onclick = () => {
+          const wipe = document.getElementById('wipe-overlay');
+          const loadingScreen = document.getElementById('loading-screen');
+
+          // Show wipe effect
+          wipe.classList.add('active');
+
+          // Wait for wipe animation to complete, then start game
+          setTimeout(() => {
+            // Hide loading screen
+            loadingScreen.style.display = 'none';
+
+            // Initialize game
+            loadCase('triumphal_entry');
+            mapModal = new OrbitalSelectMatrixModal();
+            animate();
+
+            // Wipe back (optional - you could also just hide it)
+            wipe.classList.remove('active');
+
+          }, 1000); // Match the duration of the wipeIn animation
+        };
 
 
 
@@ -429,9 +441,7 @@
       initEngine();
       initAudio();
       initControls();
-      loadCase('triumphal_entry');
-      mapModal = new OrbitalSelectMatrixModal();
-      animate();
+      // Don't load case or start animation yet - wait for start button
 
       // Add UI click sound to all buttons
       document.addEventListener('click', function (e) {
@@ -447,119 +457,52 @@
           }
         }
       });
-    }
 
-    let labUI = null;
-    let chatUI = null;
-    let prevScreen = "map";
+      // Start button handler
+      document.getElementById('btn-start').onclick = () => {
+        const wipe = document.getElementById('wipe-overlay');
+        const loadingScreen = document.getElementById('loading-screen');
 
-    function initEngine() {
-      const container = document.getElementById('canvas-container');
-      scene = new THREE.Scene();
-      scene.background = new THREE.Color(0x020306);
-      scene.fog = new THREE.FogExp2(0x020306, 0.015);
+        // Show wipe effect
+        wipe.classList.add('active');
 
-      camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1500);
+        // Wait for wipe animation to complete, then start game
+        setTimeout(() => {
+          // Hide loading screen
+          loadingScreen.style.display = 'none';
 
-      renderer = new THREE.WebGLRenderer({ antialias: true });
-      renderer.setSize(window.innerWidth, window.innerHeight);
-      renderer.shadowMap.enabled = true;
-      container.appendChild(renderer.domElement);
+          // Initialize game
+          loadCase('triumphal_entry');
+          mapModal = new OrbitalSelectMatrixModal();
+          animate();
 
-      const ambient = new THREE.AmbientLight(0xffffff, 0.2);
-      scene.add(ambient);
+          // Wipe back (optional - you could also just hide it)
+          wipe.classList.remove('active');
 
-      sunLight = new THREE.DirectionalLight(0xffffff, 1.0);
-      sunLight.castShadow = true;
-      scene.add(sunLight);
-
-      moonLight = new THREE.DirectionalLight(0x5588ff, 0.4);
-      scene.add(moonLight);
-
-      const geo = new THREE.ConeGeometry(0.6, 2.2, 8);
-      geo.rotateX(Math.PI / 2);
-      playerMesh = new THREE.Mesh(geo, new THREE.MeshStandardMaterial({ color: 0x00a884, roughness: 0.3, emissive: 0x002211 }));
-      playerMesh.position.copy(pPos);
-      scene.add(playerMesh);
-
-      torchLight = new THREE.PointLight(0x00f2ff, 0, 25, 1.5);
-      playerMesh.add(torchLight);
-
-      const ground = new THREE.Mesh(new THREE.PlaneGeometry(500, 500), new THREE.MeshStandardMaterial({ color: 0x14181e }));
-      ground.rotation.x = -Math.PI / 2;
-      scene.add(ground);
-
-      setTimeout(() => {
-        const loader = document.getElementById('loading-screen');
-        if (loader) { loader.style.opacity = '0'; setTimeout(() => loader.style.display = 'none', 400); }
-      }, 1400);
-
-      window.addEventListener('resize', () => {
-        camera.aspect = window.innerWidth / window.innerHeight;
-        camera.updateProjectionMatrix();
-        renderer.setSize(window.innerWidth, window.innerHeight);
-      });
-    }
-
-    function initAudio() {
-      // Ambient sound managed by AudioManager
-    }
-
-    function initControls() {
-      window.addEventListener('keydown', (e) => {
-        keys[e.code] = true;
-        if (e.code === 'Space' && isGrounded && !inDialogue) {
-          pVelocity.y = 16.5;
-          isGrounded = false;
-        }
-        if (e.code === 'KeyE' && nearestNPC && !inDialogue) {
-          startDialogue(nearestNPC.userData.config);
-        }
-        if (e.code === 'KeyM') { mapModal.open(); }
-        if (e.code === 'KeyR') {
-          if (document.getElementById('modal-overlay').classList.contains('active')) return;
-          autoCycle = !autoCycle;
-          displayAlert(autoCycle ? "Auto day/night enabled" : "Celestial timeline frozen");
-        }
-      });
-      window.addEventListener('keyup', (e) => keys[e.code] = false);
-
-      document.getElementById('btn-open-map').onclick = () => mapModal.open();
-      document.getElementById('btn-audio-toggle').onclick = () => {
-        audioActive = !audioActive;
-        const btn = document.getElementById('btn-audio-toggle');
-        btn.classList.toggle('active', audioActive);
-        const icon = btn.querySelector('i');
-        icon.className = audioActive ? 'fa-solid fa-volume-high' : 'fa-solid fa-volume-xmark';
-        Howler.mute(!audioActive);
-        if (audioActive) {
-          audio.playAmbientMorningFarm();
-        } else {
-          audio.stopAmbient();
-        }
-        a11y.toggle('sound');
+        }, 1000); // Match the duration of the wipeIn animation
       };
+    };
 
-      // Panel toggle setup
-      const leftPanel = document.getElementById('left-sidebar');
-      const rightPanel = document.getElementById('right-sidebar');
-      const leftBtn = document.getElementById('toggle-left-btn');
-      const rightBtn = document.getElementById('toggle-right-btn');
+    // Panel toggle setup
+    const leftPanel = document.getElementById('left-sidebar');
+    const rightPanel = document.getElementById('right-sidebar');
+    const leftBtn = document.getElementById('toggle-left-btn');
+    const rightBtn = document.getElementById('toggle-right-btn');
 
-      leftBtn.addEventListener('click', () => {
-        leftPanel.classList.toggle('panel-hidden');
-        leftBtn.innerHTML = leftPanel.classList.contains('panel-hidden')
-          ? '<i class="fa-solid fa-chevron-right"></i>'
-          : '<i class="fa-solid fa-chevron-left"></i>';
-      });
+    leftBtn.addEventListener('click', () => {
+      leftPanel.classList.toggle('panel-hidden');
+      leftBtn.innerHTML = leftPanel.classList.contains('panel-hidden')
+        ? '<i class="fa-solid fa-chevron-right"></i>'
+        : '<i class="fa-solid fa-chevron-left"></i>';
+    });
 
-      rightBtn.addEventListener('click', () => {
-        rightPanel.classList.toggle('panel-hidden');
-        rightBtn.innerHTML = rightPanel.classList.contains('panel-hidden')
-          ? '<i class="fa-solid fa-chevron-left"></i>'
-          : '<i class="fa-solid fa-chevron-right"></i>';
-      });
-    }
+    rightBtn.addEventListener('click', () => {
+      rightPanel.classList.toggle('panel-hidden');
+      rightBtn.innerHTML = rightPanel.classList.contains('panel-hidden')
+        ? '<i class="fa-solid fa-chevron-left"></i>'
+        : '<i class="fa-solid fa-chevron-right"></i>';
+    });
+
 
     function loadCase(caseId) {
       const caseData = cm.cases[caseId];

@@ -292,7 +292,6 @@ export const act4CaseA = {
   },
 };
 
-
 // ============================================================
 // CASE: The Guard's Report  — difficulty 3 — The Roman Inquiry
 // BIBLICAL FOCUS: Matthew 28:11–15
@@ -385,13 +384,80 @@ export const act4CaseB = {
       },
     },
     { id: "none", name: "No One", role: "Not Stolen", avatar: "❓", bibleRef: null },
-
   ],
 
-  npcs: [],
+  npcs: [
+    {
+      id: "sentry_lucas",
+      name: "Lucas of the Tenth Legion",
+      role: "Tomb Guard Sentry",
+      avatar: "💂",
+      truthfulness: 0.50,
+      bibleRef: "Matthew 28:11–15",
+      background: "A veteran legionary auxiliary from the Antonia Fortress garrison[cite: 1]. He was on the final pre-dawn watch when the tomb seal was breached. Caught between mandatory military execution for a failed post and a high-value religious payoff, his panic is extreme.",
+      dialogue: {
+        neutral: "The shift was standard until the lapse occurred. We fell asleep under heavy exhaustion. The body vanished during our slumber.",
+        cautious: "A soldier does not look for trouble in provincial courts. The high priest has given his word that our names are protected with the procurator.",
+        pressured: "If I tell you anything else, the cohort will brand me a traitor to the legion standard. We slept. The disciples must have carried out the theft.",
+        exposed: "We didn't close our eyes! No human thief could have bypassed our array without drawing steel. The earth groaned, the rock seal tore away with a dynamic concussive shock, and a flash like white lightning left us flat and frozen. When we came to, the chamber was empty. We ran straight to the Temple because Pilate would have nailed us to a timber for it.",
+        repeat: "I have given my authorized narrative. Leave my barracks locker alone.",
+      },
+      reactions: {
+        bribe_shekels: { text: "That pouch belongs to the Temple inner treasury, not Rome. The priests weighed it out to us directly in the Sanhedrin chamber. It’s... a security stipend. For our silence.", isLie: true },
+        broken_imperial_seal: { text: "The Governor’s seal was snapped clear through. It wasn't chipped or pried off with tools; it exploded off the limestone face during the tremors.", isLie: false },
+        shattered_spear: { text: "That is my primary pilum. The ash shaft split from extreme structural compression when the concussive shock knocked us down. No rebel sword made that fracture.", isLie: false },
+      },
+      contradictions: {},
+    },
+    {
+      id: "chief_priest_caiaphas",
+      name: "Caiaphas",
+      role: "High Priest, Sadducee",
+      avatar: "👨‍⚖️",
+      truthfulness: 0.30,
+      bibleRef: "Matthew 28:11-12; John 11:49-50",
+      background: "Joseph ben Caiaphas, managing severe institutional damage control[cite: 1]. He must maintain the stability of the Temple state and protect the nation from an immediate Roman military crackdown by manufacturing an alternate narrative for the empty tomb.",
+      dialogue: {
+        neutral: "The tomb is empty because of common grave-robbing. Frightened Galileans returned under cover of night to stage a dynamic event.",
+        cautious: "The allocation of treasury funds is an internal administrative matter. We frequently compensate secular guards for civic peacekeeping actions.",
+        pressured: "The rumor of resurrection is a contagious superstition designed to foster civil unrest. We have taken logical steps to stabilize public interpretation.",
+        exposed: "Do you truly think I care about the testimony of a few terrified mercenaries? If the populace believes a dead man broke a Roman seal, a nationalist riot will level this city by sunset. The silver from our treasury buys the narrative that preserves the peace. The truth is whatever prevents an imperial legionary response.",
+        repeat: "The Sanhedrin council session is locked. This inquiry is closed.",
+      },
+      reactions: {
+        bribe_shekels: { text: "Tyrian sanctuary silver. We paid it out to secure the soldiers' protection from the Governor’s immediate wrath. It was an act of administrative diplomacy.", isLie: true },
+        broken_imperial_seal: { text: "The disciples used precision levers to displace the stone and shatter the clay. A common strategy for ideological martyrs.", isLie: true },
+        shattered_spear: { text: "A routine manufacturing flaw in auxiliary equipment. Roman supply chains are famously inconsistent in our province.", isLie: true },
+      },
+      contradictions: {
+        "bribe_shekels+broken_imperial_seal": { exposed: "The soldiers came to us shaking, babbling about angels and lightning! If I let that report reach the streets, our authority collapses instantly. I spent the silver to purchase their story because an open grave robbery is a minor local felony, but a resurrected prophet is a direct threat to our entire system!" },
+      },
+    },
+    {
+      id: "pilates_secretary",
+      name: "Pilate’s Secretary",
+      role: "Administrative Bureaucrat",
+      avatar: "📜",
+      truthfulness: 0.90,
+      bibleRef: "Matthew 27:65-66; 28:14",
+      background: "An educated Roman scribe responsible for auditing legal charges, guard dispatches, and official provincial records inside the Praetorium[cite: 1]. He approaches the entire situation with absolute bureaucratic detachment[cite: 1].",
+      dialogue: {
+        neutral: "I process the garrison dockets and security ledgers. The official report filed by the sentries states a sleeping lapse occurred.",
+        cautious: "The legal ledger contains major inconsistencies. An elite guard detail does not confess to sleeping on a capital assignment without a prior guarantee of executive immunity.",
+        pressured: "The High Priest had a private meeting with the Governor this morning. Afterward, the formal misconduct charges against Lucas's unit were quietly struck from the execution log.",
+        exposed: "The official theft narrative is an absolute structural farce. Under imperial law, if a guard unit falls completely unconscious on a state watch, they wake up on crosses, not with purses full of high-grade Tyrian silver. The Temple elite bought those men, and the Governor allowed the transaction to preserve provincial tax metrics.",
+        repeat: "The docket has been signed and archived. The paperwork is finished.",
+      },
+      reactions: {
+        bribe_shekels: { text: "This silver did not originate from our imperial mints. This is pure Temple coinage. It proves a financial transaction occurred between the Sanhedrin and our auxiliary line.", isLie: false },
+        broken_imperial_seal: { text: "The structural fracture on this clay seal shows zero scrape marks from metal tools. It was sheared off by a singular percussive impact wave.", isLie: false },
+        shattered_spear: { text: "A standard-issue pilum from our armory. The impact split the wood grains from top to bottom, indicating severe kinetic displacement.", isLie: false },
+      },
+      contradictions: {},
+    },
+  ],
 
   deductions: {
-
     "bribe_shekels+broken_imperial_seal": {
       link: {
         text: "The silver currency from the temple treasury directly connects to the broken security parameters of the Roman state.",

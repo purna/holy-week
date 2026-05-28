@@ -11,6 +11,9 @@
     --font-stack: "Fira Code", "Courier New", Courier, Consolas, Monaco, monospace;
     --bubble-out: rgba(100, 255, 218, 0.12);
     --bubble-in: rgba(255, 255, 255, 0.05);
+    --gold: #ffb74d;
+    --red: #ff6b6b;
+    --dim: #8696a0;
 }
 
 * {
@@ -79,6 +82,7 @@ h3 {
 
 .btn-primary {
     background: var(--gold);
+    margin: 3em;
     border: none;
     padding: 14px 44px;
     cursor: pointer;

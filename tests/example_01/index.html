@@ -240,9 +240,21 @@
       const ns = new NPCSystem(cm, es);
       const de = new DeductionEngine(cm, es);
       const ls = new LocationSystem(cm);
-      const audio = new AudioManager();
-
-      // Connect audio manager to accessibility sound toggle
+       const audio = new AudioManager();
+      window.checkGameComplete = function() {
+        const allCases = cm.getAllCases();
+        const solvedCount = allCases.filter(c => cm.getCaseProgress(c.id)?.solved).length;
+        if (solvedCount === allCases.length) {
+          const modal = document.getElementById("game-complete-modal");
+          const progress = cm.getProgress();
+          document.getElementById("final-score-value").textContent = progress.totalScore || 0;
+          document.getElementById("final-score-rank").textContent = progress.rank || "Rookie";
+          modal.classList.add("active");
+          a11y.speak(`Game complete! Your final score is ${progress.totalScore || 0} points.`, "assertive");
+        }
+      };
+      
+       // Connect audio manager to accessibility sound toggle
       const originalToggle = a11y.toggle.bind(a11y);
       a11y.toggle = function(feature) {
         const result = originalToggle(feature);
@@ -559,16 +571,20 @@ window.accuse = function (suspectId) {
     function renderResult(result) {
       const c = cm.getActiveCase();
       document.getElementById("result-content").innerHTML = `
+    <div class="container" role="region" aria-label="Case result details">
     <div class="result-card">
       <div class="result-verdict" aria-hidden="true">${result.correct ? "🏆" : "❌"}</div>
       <div class="result-verdict-text ${result.correct ? 'correct' : 'wrong'}" role="heading" aria-level="1">
         ${result.correct ? "Case Solved!" : "Wrong Accusation"}
       </div>
-      <div class="result-truth">
-        <strong>The truth:</strong> ${a11y.simplify(c.truth.motive)} ${a11y.simplify(c.truth.method)}
-      </div>
-      <div class="result-lesson" aria-label="What you learned">
-        📚 ${a11y.simplify(c.truth.lesson)}
+
+      <div class="result-summary scrollable" aria-label="Case summary">
+        <div class="result-truth">
+          <strong>The truth:</strong> ${a11y.simplify(c.truth.motive)} ${a11y.simplify(c.truth.method)}
+        </div>
+        <div class="result-lesson" aria-label="What you learned">
+          📚 ${a11y.simplify(c.truth.lesson)}
+        </div>
       </div>
       <div class="score-grid" aria-label="Your score breakdown">
         <div class="score-item"><div class="score-item-value">${result.score.evidence}</div><div class="score-item-label">Evidence</div></div>
@@ -576,6 +592,7 @@ window.accuse = function (suspectId) {
         <div class="score-item"><div class="score-item-value">${result.score.total}</div><div class="score-item-label">Total</div></div>
       </div>
       <button class="result-continue-btn" onclick="showScreen('map')" aria-label="Continue to world map">Continue →</button>
+    </div>
     </div>
   `;
     }
@@ -642,18 +659,7 @@ window.accuse = function (suspectId) {
      window.cm = cm;
 
      // ── Game Complete Check ───────────────────────────────────────
-     window.checkGameComplete = function() {
-       const allCases = cm.getAllCases();
-       const solvedCount = allCases.filter(c => cm.getCaseProgress(c.id)?.solved).length;
-       if (solvedCount === allCases.length) {
-         const modal = document.getElementById("game-complete-modal");
-         const progress = cm.getProgress();
-         document.getElementById("final-score-value").textContent = progress.totalScore || 0;
-         document.getElementById("final-score-rank").textContent = progress.rank || "Rookie";
-         modal.classList.add("active");
-         a11y.speak(`Game complete! Your final score is ${progress.totalScore || 0} points.`, "assertive");
-       }
-     };
+
 
 window.playAgain = function() {
         cm.resetProgress();
