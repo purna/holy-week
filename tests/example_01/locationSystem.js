@@ -23,7 +23,7 @@ const LOCATIONS = {
   },
   upperroom: {
     id: "upperroom",
-    name: "🍷 The Last Supper",
+    name: "🍞 The Last Supper",
     region: "Jerusalem",
     icon: "🍷",
     color: "#34d399",

@@ -11,8 +11,9 @@ export const act4CaseA = {
   title: "The Empty Tomb",
   subtitle: "The sealed tomb is open. The body is gone. The guards have fled. What happened on the third day?",
   location: "garden",
+  timeOfDay: "day",
   difficulty: 3,
-  requires: "gethsemane_arrest",
+  requires: "crucifixion_site",
   actLabel: "Act IV",
   color: 0xa78bfa,
   quest: { name: "Garden Investigation", task: "Find the body", cur: 0, tar: 7 },
@@ -303,6 +304,7 @@ export const act4CaseB = {
   title: "The Guard's Report",
   subtitle: "A Roman guard detail has returned from the garden tomb with a story that breaks military law. What are they hiding?",
   location: "garden",
+  timeOfDay: "day",
   difficulty: 3,
   requires: "resurrection",
   actLabel: "Act IV",
@@ -376,20 +378,20 @@ export const act4CaseB = {
         neutral: "We fell asleep. The night was long. The disciples sneaked in like ghosts and robbed the place. That is our statement.",
         cautious: "Look, if the Governor hears about this, my life is forfeit. But the High Priest promised that if this reaches Pilate's ears, they will satisfy him and keep us out of trouble. I'm just following orders.",
       },
-contradictions: {
-         "bribe_shekels+broken_imperial_seal": {
-           exposed: "You think a handful of unarmed galilean fishermen broke a Roman imperial seal while an elite unit slept right next to it? We didn't sleep! The ground split open, and a light like lightning blinded us. We woke up paralyzed, and the body was gone. The priests paid us to lie because the truth scares them to death!"
-         },
-       },
-     },
-         { id: "none", name: "No One", role: "Not Stolen", avatar: "❓", bibleRef: null },
+      contradictions: {
+        "bribe_shekels+broken_imperial_seal": {
+          exposed: "You think a handful of unarmed galilean fishermen broke a Roman imperial seal while an elite unit slept right next to it? We didn't sleep! The ground split open, and a light like lightning blinded us. We woke up paralyzed, and the body was gone. The priests paid us to lie because the truth scares them to death!"
+        },
+      },
+    },
+    { id: "none", name: "No One", role: "Not Stolen", avatar: "❓", bibleRef: null },
 
-   ],
+  ],
 
-   npcs: [],
+  npcs: [],
 
-   deductions: {
-    
+  deductions: {
+
     "bribe_shekels+broken_imperial_seal": {
       link: {
         text: "The silver currency from the temple treasury directly connects to the broken security parameters of the Roman state.",

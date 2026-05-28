@@ -187,9 +187,26 @@
       </div>
     </div>
 
-  </div><!-- #app -->
+</div><!-- #app -->
 
-   <script type="module">
+   <!-- ══════════════ GAME COMPLETE MODAL ══════════════ -->
+   <div id="game-complete-modal" aria-label="Game Complete">
+     <div class="game-complete-content">
+       <div class="game-complete-title">🏆 Game Complete!</div>
+       <div class="game-complete-subtitle">All Holy Week mysteries solved</div>
+       <div class="final-score-display">
+         <div class="final-score-label">Your Final Score</div>
+         <div class="final-score-value" id="final-score-value">0</div>
+         <div class="final-score-rank" id="final-score-rank">Rookie Detective</div>
+       </div>
+<div class="game-complete-actions">
+          <button class="play-again-btn" onclick="playAgain()" id="play-again-btn" aria-label="Play again">Play Again</button>
+          <button class="game-complete-btn" onclick="closeGameComplete()" aria-label="Return to map">Continue Exploring</button>
+        </div>
+     </div>
+   </div>
+
+    <script type="module">
      import { CaseManager } from "./caseManager.js";
      import { EvidenceSystem } from "./evidenceSystem.js";
      import { NPCSystem } from "./npcSystem.js";
@@ -200,18 +217,19 @@
      import { ChatUI } from "./chatUI.js";
      import { act1CaseA, act1CaseB } from "./act1_case_improved.js";
      import { act2CaseA, act2CaseB } from "./act2_case_improved.js";
-     import { act3CaseA, act3CaseB } from "./act3_case_improved.js";
+     import { act3CaseA, act3CaseB, act3CaseC } from "./act3_case_improved.js";
      import { act4CaseA, act4CaseB } from "./act4_case_improved.js";
       import { AudioManager } from "./audioManager.js";
 
       // ── Bootstrap ──────────────────────────────────────────────
       const cm = new CaseManager();
       cm.registerCase(act1CaseA);
-      cm.registerCase(act1CaseB);
+      cm.registerCase(act1CaseB)
       cm.registerCase(act2CaseA);
       cm.registerCase(act2CaseB);
       cm.registerCase(act3CaseA);
       cm.registerCase(act3CaseB);
+      cm.registerCase(act3CaseC);
       cm.registerCase(act4CaseA);
       cm.registerCase(act4CaseB);
 
@@ -282,30 +300,33 @@
       document.getElementById("progress-fill").style.width = pct + "%";
       document.getElementById("progress-track").setAttribute("aria-valuenow", pct);
 
-      const container = document.getElementById("map-locations");
-      container.innerHTML = mapData.map(loc => {
-        const status = !loc.isUnlocked ? "locked" : loc.allSolved ? "solved" : "open";
-        const badge = loc.allSolved ? "✅" : loc.isUnlocked ? "🔍" : "🔒";
-        const statusText = { locked: "🔒 Locked — solve earlier cases", open: "🔍 Cases available", solved: "✅ All solved" }[status];
-        const ariaLabel = `${loc.name}. ${loc.region}. ${statusText}`;
-        return `
-      <div
-        class="location-card ${status}"
-        role="listitem"
-        ${loc.isUnlocked ? `tabindex="0" aria-label="${ariaLabel}" onclick="openLocation('${loc.id}')" onkeydown="if(event.key==='Enter'||event.key===' ')openLocation('${loc.id}')"` : `aria-label="${ariaLabel}" aria-disabled="true"`}
-      >
-        <div class="location-inner">
-          <div class="location-icon" aria-hidden="true">${loc.icon}</div>
-          <div class="location-info">
-            <div class="location-name">${loc.name}</div>
-            <div class="location-region">${loc.region}</div>
-            <div class="location-fact">${loc.fact}</div>
-            <div class="location-status ${status}">${statusText}</div>
-          </div>
-        </div>
-        <div class="location-badge" aria-hidden="true">${badge}</div>
-      </div>`;
-      }).join("");
+const container = document.getElementById("map-locations");
+       container.innerHTML = mapData.map(loc => {
+         const status = !loc.isUnlocked ? "locked" : loc.allSolved ? "solved" : "open";
+         const badge = loc.allSolved ? "✅" : loc.isUnlocked ? "🔍" : "🔒";
+         const statusText = { locked: "🔒 Locked — solve earlier cases", open: "🔍 Cases available", solved: "✅ All solved" }[status];
+         const ariaLabel = `${loc.name}. ${loc.region}. ${statusText}`;
+         return `
+       <div
+         class="location-card ${status}"
+         role="listitem"
+         tabindex="0"
+         aria-label="${ariaLabel}"
+         onclick="openLocation('${loc.id}')"
+         onkeydown="if(event.key==='Enter'||event.key===' ')openLocation('${loc.id}')"
+       >
+         <div class="location-inner">
+           <div class="location-icon" aria-hidden="true">${loc.icon}</div>
+           <div class="location-info">
+             <div class="location-name">${loc.name}</div>
+             <div class="location-region">${loc.region}</div>
+             <div class="location-fact">${loc.fact}</div>
+             <div class="location-status ${status}">${statusText}</div>
+           </div>
+         </div>
+         <div class="location-badge" aria-hidden="true">${badge}</div>
+       </div>`;
+       }).join("");
     }
 
     window.openLocation = function (locId) {
@@ -519,7 +540,7 @@
   `;
     }
 
-     window.accuse = function (suspectId) {
+window.accuse = function (suspectId) {
        const result = cm.submitAccusation(suspectId);
        if (!result) return;
        renderResult(result);
@@ -527,6 +548,8 @@
        if (result.correct) {
          a11y.speak(`Correct! You solved the case!`, "assertive");
          audio.playComplete(); // Play completion sound
+         // Check if all cases are solved (game complete)
+         setTimeout(checkGameComplete, 500);
        } else {
          a11y.speak(`Wrong accusation. The real culprit was ${result.truth.culprit}.`, "assertive");
          audio.playError(); // Play error sound
@@ -591,11 +614,14 @@
        });
      });
 
-     // ── Init ─────────────────────────────────────────────────────
-     renderMap();
-     a11y.announce("Detective World loaded. Choose a location to begin.");
-     
-     // Add UI click sound to all buttons
+// ── Init ─────────────────────────────────────────────────────
+      renderMap();
+      a11y.announce("Detective World loaded. Choose a location to begin.");
+
+      // Check if game is already complete on load
+      setTimeout(checkGameComplete, 100);
+
+      // Add UI click sound to all buttons
      document.addEventListener('click', function(e) {
        if (e.target.tagName.toLowerCase() === 'button' || 
            e.target.tagName.toLowerCase() === 'input' && 
@@ -611,9 +637,36 @@
        }
      });
 
-    // expose helpers to global scope for onclick attrs
-    window.a11y = a11y;
-  </script>
+// expose helpers to global scope for onclick attrs
+     window.a11y = a11y;
+     window.cm = cm;
+
+     // ── Game Complete Check ───────────────────────────────────────
+     window.checkGameComplete = function() {
+       const allCases = cm.getAllCases();
+       const solvedCount = allCases.filter(c => cm.getCaseProgress(c.id)?.solved).length;
+       if (solvedCount === allCases.length) {
+         const modal = document.getElementById("game-complete-modal");
+         const progress = cm.getProgress();
+         document.getElementById("final-score-value").textContent = progress.totalScore || 0;
+         document.getElementById("final-score-rank").textContent = progress.rank || "Rookie";
+         modal.classList.add("active");
+         a11y.speak(`Game complete! Your final score is ${progress.totalScore || 0} points.`, "assertive");
+       }
+     };
+
+window.playAgain = function() {
+        cm.resetProgress();
+        document.getElementById("game-complete-modal").classList.remove("active");
+        renderMap();
+        a11y.announce("Game reset. All progress cleared. Choose a location to begin.");
+      };
+
+      window.closeGameComplete = function() {
+        document.getElementById("game-complete-modal").classList.remove("active");
+        showScreen("map");
+      };
+    </script>
 <!-- Code injected by live-server -->
 <script>
 	// <![CDATA[  <-- For SVG support

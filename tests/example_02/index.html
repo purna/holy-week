@@ -10,6 +10,7 @@
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.4/howler.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Source+Code+Pro:wght@300;400;600&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="styles.css">
   <script type="importmap">
@@ -22,14 +23,22 @@
 </head>
 
 <body>
+  <!-- ══════════════ START SCREEN ══════════════ -->
   <div id="loading-screen" class="loading-screen">
     <div class="loading-inner">
       <h1 style="color: #fff; font-size: 1.5rem; margin-bottom: 5px; letter-spacing: 1px;">HOLY WEEK</h1>
       <p id="loading-text" style="color: var(--text-muted); font-size: 0.85rem; text-transform: uppercase;">
         Loading investigation environment and evidence archives...</p>
+
+      <p class="sub">Jerusalem Investigation</p>
+      <button id="btn-start" class="btn-primary">Begin Investigation</button>
+      <p class="hint">WASD / Arrow Keys to move · Click to approach · Space to jump</p>
       <div class="spinner"></div>
     </div>
   </div>
+
+  <!-- ══════════════ WIPE ══════════════ -->
+<div id="wipe-overlay"></div>
 
   <div id="end-screen" class="end-screen" style="display: none; opacity: 0;">
     <div class="end-inner">
@@ -45,8 +54,27 @@
     </div>
   </div>
 
+  <div id="inworld-npc-prompt" class="inworld-tag">
+    <button class="inworld-btn" id="inworld-npc-btn">
+      <i class="fa-solid fa-comments"></i> Talk <small>[E]</small>
+    </button>
+    <div class="inworld-arrow"></div>
+  </div>
+
+  <div id="inworld-collectable-prompt" class="inworld-tag">
+    <div class="inworld-msg" id="inworld-collectable-msg">NEARBY COLLECTABLE</div>
+    <div class="inworld-arrow collectable-arrow"></div>
+  </div>
+
   <div id="canvas-container"></div>
   <div id="screen-alert"></div>
+
+  <button id="toggle-left-btn" class="panel-toggle-btn" title="Toggle Left Panel">
+    <i class="fa-solid fa-chevron-left"></i>
+  </button>
+  <button id="toggle-right-btn" class="panel-toggle-btn" title="Toggle Right Panel">
+    <i class="fa-solid fa-chevron-right"></i>
+  </button>
 
   <div class="hud-layer">
     <div id="top-bar" class="hud-panel">
@@ -55,6 +83,20 @@
         <span id="act-name" class="act-tag">---</span>
       </div>
       <div id="level-title" style="font-weight: 600; color: var(--accent-primary);">Detective HQ</div>
+
+      <div class="control-group-right">
+        <button id="btn-audio-toggle" class="hud-row-btn active" title="Toggle Sound">
+          <i class="fa-solid fa-volume-high"></i>
+        </button>
+
+        <button id="btn-open-map" class="btn-map-trigger">
+          <i class="fa-solid fa-map-location-dot"></i>
+        </button>
+
+        <button id="btn-cycle-toggle" class="hud-row-btn" title="Toggle Day/Night">
+          <i class="fa-solid fa-sun"></i>
+        </button>
+      </div>
     </div>
 
     <div id="left-sidebar">
@@ -69,6 +111,16 @@
         </div>
       </div>
 
+
+
+      <div class="hud-panel" style="flex: 0 0 auto;">
+        <div class="panel-header"><i class="fa-solid fa-folder-open"></i> Evidence Archive</div>
+        <div class="evidence-folder-container">
+          <div id="evidence-slots-grid" class="evidence-grid">
+          </div>
+        </div>
+      </div>
+
       <div id="evidence-popup-card">
         <div class="popup-header">
           <span id="popup-evidence-title" class="popup-title"><i class="fa-solid fa-file-shield"></i> Evidence
@@ -77,14 +129,6 @@
             onclick="document.getElementById('evidence-popup-card').style.display='none';">✕</button>
         </div>
         <div id="popup-evidence-body" class="popup-body">---</div>
-      </div>
-
-      <div class="hud-panel" style="flex: 1 1 auto;">
-        <div class="panel-header"><i class="fa-solid fa-folder-open"></i> Evidence Archive</div>
-        <div class="evidence-folder-container">
-          <div id="evidence-slots-grid" class="evidence-grid">
-          </div>
-        </div>
       </div>
     </div>
 
@@ -107,19 +151,7 @@
         <div id="minimap-blips-container"></div>
       </div>
 
-      <div class="control-group-right">
-        <button id="btn-audio-toggle" class="hud-row-btn active" title="Toggle Sound">
-          <i class="fa-solid fa-volume-high"></i>
-        </button>
 
-        <button id="btn-open-map" class="btn-map-trigger">
-          <i class="fa-solid fa-map-location-dot" style="margin-right:10px; font-size:1.1rem;"></i> Open Case Files
-        </button>
-
-        <button id="btn-cycle-toggle" class="hud-row-btn" title="Toggle Day/Night">
-          <i class="fa-solid fa-sun"></i>
-        </button>
-      </div>
     </div>
   </div>
 
@@ -131,6 +163,24 @@
       </div>
       <div id="bub-scroll"></div>
       <div id="bar-choices"></div>
+    </div>
+  </div>
+
+  <!-- Bible Passage Modal Overlay -->
+  <div id="passage-overlay" class="overlay-mask" onclick="window.BibleReader.closeOverlay(event)">
+    <div class="modal-panel" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <div>
+          <span id="passage-ref-title">Verse Reference</span>
+          <span id="passage-version-lbl" class="badge">NIV</span>
+        </div>
+        <button class="close-icon-btn" onclick="window.BibleReader.closeOverlay(null)">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div id="passage-text-content" class="modal-body">
+        <!-- Dynamic Content Loader -->
+      </div>
     </div>
   </div>
 
@@ -147,6 +197,10 @@
   </div>
 
   <script type="module">
+
+
+
+
     import * as THREE from 'three';
 
     import { CaseManager } from "./caseManager.js";
@@ -159,19 +213,173 @@
     import { ChatUI } from "./chatUI.js";
     import { act1CaseA, act1CaseB } from "./act1_case_improved.js";
     import { act2CaseA, act2CaseB } from "./act2_case_improved.js";
-    import { act3CaseA, act3CaseB } from "./act3_case_improved.js";
+    import { act3CaseA, act3CaseB, act3CaseC } from "./act3_case_improved.js";
     import { act4CaseA, act4CaseB } from "./act4_case_improved.js";
     import { AudioManager } from "./audioManager.js";
+
+    // Bible API Configuration
+    const BIBLE_API_CONFIG = {
+      apiKey: '40uwrV5VD_g7dxygwU-WK',
+      baseUrl: 'https://api.bible/v1',
+      translations: {
+        NIV: 'de4e12af7c28f528-02', // API ID for New International Version
+        GNT: 'c3154be53a35ca34-01'  // API ID for Good News Translation
+      }
+    };
+
+    // Bible Reading Engine
+    window.BibleReader = {
+      selectedTranslation: 'NIV',
+
+      updateTranslation: function (val) {
+        this.selectedTranslation = val;
+      },
+
+      closeOverlay: function (event) {
+        // If clicked out or explicitly via close button, drop layout visibility
+        if (!event || event.target === document.getElementById('passage-overlay')) {
+          document.getElementById('passage-overlay').style.display = 'none';
+        }
+      },
+
+      displayPassage: async function (pKey) {
+        // 1. Prepare UI State & Window References
+        const contentArea = document.getElementById('passage-text-content');
+        const titleArea = document.getElementById('passage-ref-title');
+        const versionLabel = document.getElementById('passage-version-lbl');
+        const overlay = document.getElementById('passage-overlay');
+
+        titleArea.innerText = "Connecting to API.Bible...";
+        versionLabel.innerText = this.selectedTranslation;
+        contentArea.innerHTML = `
+            <div style="text-align:center; padding:30px; color:var(--text-muted);">
+                <i class="fa-solid fa-circle-notch spinner" style="font-size:1.5rem; margin-bottom:10px; color:var(--accent-primary);"></i>
+                <div>Fetching passage...</div>
+            </div>
+        `;
+        overlay.style.display = 'flex';
+
+
+      /* ═══════════════════════════════════════════════════════════════
+        START
+      ═══════════════════════════════════════════════════════════════ */
+      document.getElementById('btn-start').onclick=()=>{
+      audioCtx.resume();
+      const w=document.getElementById('wipe-overlay');
+      w.classList.add('active');
+      setTimeout(()=>{document.getElementById('start-screen').style.display='none';},500);
+      setTimeout(()=>{
+        started=true;
+        levelMgr=new LevelManager();
+        levelModal=new LevelSelectModal(levelMgr);
+        levelMgr.start();
+        updateUI();
+      },1000);
+      };
+
+
+
+        // Format the passage key (e.g., 'ZECH_9_9') to standard API structure ('ZECH.9.9')
+        const formattedVerseId = pKey.replace(/_/g, '.');
+        const targetBibleId = BIBLE_API_CONFIG.translations[this.selectedTranslation] || BIBLE_API_CONFIG.translations.NIV;
+
+        // Track context position for chaining verses
+        let nextVerseId = null;
+
+        try {
+          // Query initial passage
+          const response = await fetch(`${BIBLE_API_CONFIG.baseUrl}/bibles/${targetBibleId}/verses/${formattedVerseId}?content-type=text`, {
+            method: 'GET',
+            headers: { 'api-key': BIBLE_API_CONFIG.apiKey }
+          });
+
+          if (!response.ok) throw new Error(`Server returned error status: ${response.status}`);
+          const result = await response.json();
+
+          const currentData = result.data;
+          titleArea.innerText = currentData.reference;
+          nextVerseId = currentData.next?.id; // Get the target ID for sequential chaining
+
+          // Render the current verse
+          contentArea.innerHTML = `
+              <p class="current-v">
+                  <strong>${currentData.reference}</strong> ${currentData.content}
+              </p>
+              <div id="extended-verses"></div>
+              
+              ${nextVerseId ? `
+                  <button id="btn-load-next-verse" class="terminal-btn">
+                      <i class="fa-solid fa-arrow-down"></i> Read Next Verse
+                  </button>
+              ` : ''}
+          `;
+
+          // Set up the "Read Next Verse" button functionality
+          if (nextVerseId) {
+            document.getElementById('btn-load-next-verse').onclick = async (e) => {
+              const targetButton = e.currentTarget;
+              targetButton.disabled = true;
+              targetButton.innerHTML = `<i class="fa-solid fa-circle-notch spinner"></i> Loading...`;
+
+              try {
+                // Request the next verse
+                const nextResponse = await fetch(`${BIBLE_API_CONFIG.baseUrl}/bibles/${targetBibleId}/verses/${nextVerseId}?content-type=text`, {
+                  method: 'GET',
+                  headers: { 'api-key': BIBLE_API_CONFIG.apiKey }
+                });
+
+                if (!nextResponse.ok) throw new Error("Failed to load next verse.");
+                const nextResult = await nextResponse.json();
+                const nextData = nextResult.data;
+
+                // Append the next verse
+                const extendedArea = document.getElementById('extended-verses');
+                const paragraph = document.createElement('p');
+                paragraph.className = 'context-v';
+                paragraph.innerHTML = `<strong>${nextData.reference}</strong> ${nextData.content}`;
+                extendedArea.appendChild(paragraph);
+
+                // Update pointer for further continuity
+                nextVerseId = nextData.next?.id;
+
+                if (!nextVerseId) {
+                  targetButton.remove(); // End of passage
+                } else {
+                  targetButton.disabled = false;
+                  targetButton.innerHTML = `<i class="fa-solid fa-arrow-down"></i> Read Next Verse`;
+                }
+
+              } catch (err) {
+                console.error("Error loading next verse:", err);
+                targetButton.innerHTML = `<span style="color:var(--accent-error);">Error loading verse</span>`;
+                targetButton.disabled = false;
+              }
+            };
+          }
+
+        } catch (error) {
+          console.error("API Error:", error);
+          contentArea.innerHTML = `
+              <div style="color:var(--accent-error); padding:10px; text-align:center; border:1px solid rgba(255,68,68,0.2); border-radius:6px; background:rgba(255,68,68,0.05);">
+                  <i class="fa-solid fa-triangle-exclamation" style="font-size:1.2rem; margin-bottom:6px;"></i>
+                  <p style="margin:4px 0; font-size:0.9rem;">Failed to fetch passage.</p>
+                  <small style="color:var(--text-muted); font-size:0.75rem;">${error.message}</small>
+              </div>
+          `;
+        }
+      }
+    };
 
     // ── Bootstrap ──────────────────────────────────────────────
     const cm = new CaseManager();
     cm.registerCase(act1CaseA);
+    cm.registerCase(act1CaseB)
     cm.registerCase(act2CaseA);
-    cm.registerCase(act3CaseA);
-    cm.registerCase(act4CaseA);
-    cm.registerCase(act1CaseB);
     cm.registerCase(act2CaseB);
+    cm.registerCase(act3CaseA);
     cm.registerCase(act3CaseB);
+    cm.registerCase(act3CaseC);
+    cm.registerCase(act4CaseA);
     cm.registerCase(act4CaseB);
 
     const a11y = new AccessibilityManager();
@@ -215,7 +423,7 @@
       audioBtn.classList.remove('active');
       const icon = audioBtn.querySelector('i');
       icon.className = 'fa-solid fa-volume-xmark';
-      };
+    };
 
     function init() {
       initEngine();
@@ -226,10 +434,10 @@
       animate();
 
       // Add UI click sound to all buttons
-      document.addEventListener('click', function(e) {
+      document.addEventListener('click', function (e) {
         if (e.target.tagName.toLowerCase() === 'button' ||
-            (e.target.tagName.toLowerCase() === 'input' &&
-             (e.target.type === 'button' || e.target.type === 'submit'))) {
+          (e.target.tagName.toLowerCase() === 'input' &&
+            (e.target.type === 'button' || e.target.type === 'submit'))) {
           if (audio && typeof audio.playTalk === 'function') {
             try {
               audio.playTalk();
@@ -331,6 +539,26 @@
         }
         a11y.toggle('sound');
       };
+
+      // Panel toggle setup
+      const leftPanel = document.getElementById('left-sidebar');
+      const rightPanel = document.getElementById('right-sidebar');
+      const leftBtn = document.getElementById('toggle-left-btn');
+      const rightBtn = document.getElementById('toggle-right-btn');
+
+      leftBtn.addEventListener('click', () => {
+        leftPanel.classList.toggle('panel-hidden');
+        leftBtn.innerHTML = leftPanel.classList.contains('panel-hidden')
+          ? '<i class="fa-solid fa-chevron-right"></i>'
+          : '<i class="fa-solid fa-chevron-left"></i>';
+      });
+
+      rightBtn.addEventListener('click', () => {
+        rightPanel.classList.toggle('panel-hidden');
+        rightBtn.innerHTML = rightPanel.classList.contains('panel-hidden')
+          ? '<i class="fa-solid fa-chevron-left"></i>'
+          : '<i class="fa-solid fa-chevron-right"></i>';
+      });
     }
 
     function loadCase(caseId) {
@@ -384,7 +612,22 @@
         const div = document.createElement('div');
         div.className = 'prophecy-item';
         if (typeof p === 'object') {
-          div.innerHTML = `<strong>${p.reference}</strong>: ${p.text}`;
+          // Create a clickable reference that opens the Bible passage modal
+          const reference = p.reference;
+          // Convert reference format for API (e.g., "Zechariah 9:9" -> "ZECH_9_9")
+          const apiReference = reference
+            .toUpperCase()
+            .replace(/ /g, '_')
+            .replace(/:/g, '_')
+            .replace(/[^A-Z0-9_]/g, '');
+
+          div.innerHTML = `<strong class="clickable-reference" data-reference="${apiReference}">${reference}</strong>: ${p.text}`;
+
+          // Add click event listener
+          div.querySelector('.clickable-reference').onclick = (e) => {
+            e.preventDefault();
+            window.BibleReader.displayPassage(apiReference);
+          };
         } else {
           div.innerText = p;
         }
@@ -415,13 +658,30 @@
       actWrap.appendChild(collectBtn);
     }
 
+    // Global UI Render configuration preferences
+    let currentDisplayPreference = 'emojis'; // 'emojis' or 'icons'
+
     function updateEvidenceGrid() {
       const grid = document.getElementById('evidence-slots-grid');
       grid.innerHTML = '';
       for (let i = 0; i < 8; i++) {
         const slot = document.createElement('div');
         slot.className = 'evidence-slot-btn ' + (collectedEvidence[i] ? 'filled' : '');
-        slot.innerHTML = collectedEvidence[i] ? '<i class="fa-solid fa-file-invoice"></i>' : '<i class="fa-solid fa-folder"></i>';
+
+        if (collectedEvidence[i]) {
+          if (currentDisplayPreference === 'emojis') {
+            slot.textContent = collectedEvidence[i].emoji || collectedEvidence[i].icon || '🛡️';
+            slot.style.fontSize = '1.5rem';
+          } else {
+            const iconNode = document.createElement('i');
+            const iconClasses = (collectedEvidence[i].iconFA || 'fa-solid fa-file-invoice').split(' ');
+            iconNode.classList.add(...iconClasses);
+            slot.appendChild(iconNode);
+          }
+        } else {
+          slot.innerHTML = '<i class="fa-solid fa-folder"></i>';
+        }
+
         slot.onclick = () => {
           if (collectedEvidence[i]) showEvidenceDetail(i);
         };
@@ -429,8 +689,8 @@
       }
     }
 
-    function showEvidencePopup(title, desc) {
-      document.getElementById('popup-evidence-title').innerHTML = `<i class="fa-solid fa-file-shield" style="color:var(--accent-success);"></i> ${title}`;
+    function showEvidencePopup(title, desc, emoji) {
+      document.getElementById('popup-evidence-title').innerHTML = `<i class="fa-solid fa-file-shield" style="color:var(--accent-success);"></i> ${emoji || ''} ${title}`;
       document.getElementById('popup-evidence-body').innerText = desc;
       document.getElementById('evidence-popup-card').style.display = 'block';
     }
@@ -594,7 +854,49 @@
 
       updateDayNight();
       updateMinimap();
+      updateInWorldTags();
       renderer.render(scene, camera);
+    }
+
+    function updateInWorldTags() {
+      // Position NPC prompt
+      const npcPrompt = document.getElementById('inworld-npc-prompt');
+      if (nearestNPC && !inDialogue) {
+        const screenPos = nearestNPC.position.clone().project(camera);
+        const x = (screenPos.x * 0.5 + 0.5) * window.innerWidth;
+        const y = (screenPos.y * -0.5 + 0.5) * window.innerHeight;
+        npcPrompt.style.left = `${x}px`;
+        npcPrompt.style.top = `${y}px`;
+        npcPrompt.style.display = 'flex';
+        document.getElementById('inworld-npc-btn').onclick = () => startDialogue(nearestNPC.userData.config);
+      } else {
+        npcPrompt.style.display = 'none';
+      }
+
+      // Position collectable prompt (nearest item)
+      const collPrompt = document.getElementById('inworld-collectable-prompt');
+      let nearestItem = null;
+      let minDist = 6.5;
+      evidenceMeshes.forEach(item => {
+        const d = pPos.distanceTo(item.position);
+        if (d < minDist) {
+          minDist = d;
+          nearestItem = item;
+        }
+      });
+
+      if (nearestItem && minDist > 2) {
+        const screenPos = nearestItem.position.clone().project(camera);
+        const x = (screenPos.x * 0.5 + 0.5) * window.innerWidth;
+        const y = (screenPos.y * -0.5 + 0.5) * window.innerHeight;
+        collPrompt.style.left = `${x}px`;
+        collPrompt.style.top = `${y}px`;
+        collPrompt.style.display = 'flex';
+        const data = nearestItem.userData.dataRef;
+        document.getElementById('inworld-collectable-msg').textContent = data.label || 'NEARBY COLLECTABLE';
+      } else {
+        collPrompt.style.display = 'none';
+      }
     }
 
     function movePlayer() {
@@ -640,10 +942,16 @@
         const item = evidenceMeshes[i];
         if (pPos.distanceTo(item.position) < 2) {
           const data = item.userData.dataRef;
-          collectedEvidence.push({ label: data.name, description: data.desc, icon: data.icon });
+          collectedEvidence.push({
+            label: data.name,
+            description: data.desc,
+            icon: data.icon,
+            emoji: data.emoji,
+            iconFA: data.iconFA
+          });
           scene.remove(item);
           evidenceMeshes.splice(i, 1);
-          showEvidencePopup(data.name, data.desc);
+          showEvidencePopup(data.name, data.desc, data.emoji || data.icon);
           audio.playCollect();
           advanceQuest(1);
         }
@@ -913,6 +1221,44 @@
 
     // expose helpers to global scope for onclick attrs
     window.a11y = a11y;
+
+    // ==== SETTINGS FUNCTIONALITY ====
+    document.addEventListener('DOMContentLoaded', function () {
+      const settingsBtn = document.getElementById('btn-open-settings');
+      const settingsOverlay = document.getElementById('settings-overlay');
+      const closeSettingsBtn = document.getElementById('btn-close-settings');
+      const saveSettingsBtn = document.getElementById('btn-save-settings');
+      const bibleVersionSelect = document.getElementById('setting-bible-version');
+
+      // Open settings
+      settingsBtn.onclick = () => {
+        settingsOverlay.classList.add('active');
+        setTimeout(() => settingsOverlay.classList.add('fade-in-complete'), 50);
+      };
+
+      // Close settings
+      closeSettingsBtn.onclick = () => {
+        settingsOverlay.classList.remove('fade-in-complete');
+        setTimeout(() => settingsOverlay.classList.remove('active'), 350);
+      };
+
+      // Save settings
+      saveSettingsBtn.onclick = () => {
+        // Apply Bible translation selection
+        const selectedVersion = bibleVersionSelect.value;
+        window.BibleReader.updateTranslation(selectedVersion);
+
+        // Close settings
+        settingsOverlay.classList.remove('fade-in-complete');
+        setTimeout(() => settingsOverlay.classList.remove('active'), 350);
+
+        // Show confirmation
+        displayAlert(`Bible translation set to ${selectedVersion}`);
+      };
+
+      // Initialize with current selection
+      bibleVersionSelect.value = window.BibleReader.selectedTranslation || 'NIV';
+    });
 
     // ===== ENTRY POINT =====
     init();

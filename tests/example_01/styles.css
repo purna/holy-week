@@ -71,6 +71,12 @@ body {
     font-family: var(--font-display);
     overflow: hidden;
 }
+body {
+    margin: 0;
+    overflow: hidden;
+    user-select: none;
+    -webkit-user-select: none;
+}
 
 #app {
     display: flex;
@@ -129,7 +135,7 @@ button:focus-visible {
 }
 
 .header-title {
-    font-size: 1.1rem;
+    font-size: 1.4rem;
     font-weight: 700;
     letter-spacing: 0.02em;
 }
@@ -192,17 +198,17 @@ button:focus-visible {
     transition: transform 0.2s var(--ease-out), border-color 0.2s;
 }
 
-.location-card.unlocked {
-    cursor: pointer;
-    border-color: var(--border2);
-}
-
 .location-card.unlocked:active {
     transform: scale(0.98);
 }
 
 .location-card.locked {
     opacity: 0.45;
+    cursor: pointer;
+}
+
+.location-card.locked:active {
+    transform: scale(0.98);
 }
 
 .location-card.all-solved {
@@ -228,7 +234,7 @@ button:focus-visible {
 }
 
 .location-name {
-    font-size: 1rem;
+    font-size: 1.1rem;
     font-weight: 700;
 }
 
@@ -335,7 +341,7 @@ button:focus-visible {
 }
 
 .location-header-name {
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-weight: 800;
 }
 
@@ -822,6 +828,7 @@ button:focus-visible {
 
 .picker-card {
     background: var(--surface2);
+    color: var(--text);
     border: 1.5px solid var(--border);
     border-radius: var(--radius-sm);
     padding: 8px 6px;
@@ -1378,4 +1385,107 @@ button:focus-visible {
     color: var(--blue);
     font-family: var(--font-mono);
     margin-bottom: 10px;
+}
+
+/* ─── Game Complete Modal ─── */
+#game-complete-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(8, 12, 20, 0.95);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s var(--ease-out);
+}
+
+#game-complete-modal.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.game-complete-content {
+    background: var(--surface);
+    border: 1px solid var(--gold);
+    border-radius: var(--radius-lg);
+    padding: 32px 28px;
+    text-align: center;
+    max-width: 420px;
+    width: 90%;
+    animation: fadeSlide 0.4s var(--ease-out);
+}
+
+.game-complete-title {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--gold);
+    margin-bottom: 8px;
+}
+
+.game-complete-subtitle {
+    font-size: 1rem;
+    color: var(--text-muted);
+    margin-bottom: 24px;
+    font-family: var(--font-mono);
+}
+
+.final-score-display {
+    background: var(--surface2);
+    border-radius: var(--radius);
+    padding: 20px;
+    margin-bottom: 24px;
+}
+
+.final-score-label {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+    font-family: var(--font-mono);
+}
+
+.final-score-value {
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--gold);
+    font-family: var(--font-mono);
+    letter-spacing: 0.04em;
+}
+
+.final-score-rank {
+    font-size: 1.1rem;
+    color: var(--green);
+    margin-top: 8px;
+    font-weight: 700;
+}
+
+.game-complete-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.play-again-btn {
+    background: var(--gold);
+    color: var(--bg);
+    font-size: 1rem;
+    font-weight: 700;
+    border-radius: var(--radius);
+    padding: 16px;
+    transition: transform 0.12s;
+}
+
+.play-again-btn:active {
+    transform: scale(0.97);
+}
+
+.game-complete-btn {
+    background: var(--surface3);
+    color: var(--text);
+    font-size: 0.9rem;
+    font-weight: 600;
+    border-radius: var(--radius);
+    padding: 14px;
+    border: 1px solid var(--border2);
 }

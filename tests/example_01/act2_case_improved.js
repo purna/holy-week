@@ -9,6 +9,7 @@ export const act2CaseA = {
   title: "The Silenced Teacher",
   subtitle: "Three religious leaders have attempted to trap Jesus in His words — but who holds the real authority?",
   location: "temple",
+  timeOfDay: "day",
   difficulty: 2,
   requires: "temple_cleansing",
   actLabel: "Act II",
@@ -63,6 +64,7 @@ export const act2CaseA = {
     { id: "scribe", name: "Samuel", role: "Temple Scribe, Pharisee", avatar: "📜", bibleRef: "Mark 12:28–34 — a scribe who asks about the greatest commandment" },
     { id: "pharisee", name: "Nathanael", role: "Pharisee, Herodian ally", avatar: "🧣", bibleRef: "Matthew 22:15–22 — the Pharisees and Herodians on the tax question" },
     { id: "none", name: "No One", role: "Not Stolen", avatar: "❓", bibleRef: null },
+    { id: "caiaphas", name: "Caiaphas", role: "High Priest, Sadducee", avatar: "👨‍⚖️", color: 0xcc8888, pos: [-15, 0, 5], bibleRef: "John 11:49–52; Matthew 26:57–68" } ,
 
   ],
 
@@ -286,6 +288,7 @@ export const act2CaseB = {
    title: "The Price of Life",
    subtitle: "Rumors fly through the Temple that the high priests have issued an unlisted execution order for a man who committed no crime.",
    location: "temple",
+   timeOfDay: "day",
   difficulty: 2,
   requires: "authority_challenged",
   actLabel: "Act II",
