@@ -4,7 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description"  content="Holy Week - Collect evidence by moving around the scene. Use actions and chat to NPCs when found.">
+  <meta name="description"
+    content="Holy Week - Collect evidence by moving around the scene. Use actions and chat to NPCs when found.">
   <title>Holy Week - Evidence Collection Adventure</title>
 
   <!-- ==========================================================================
@@ -21,15 +22,19 @@
        - Source Code Pro: Clean monospace typeface applied to standard interface panels -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Source+Code+Pro:wght@300;400;600&display=swap">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Source+Code+Pro:wght@300;400;600&display=swap">
 
   <!-- ==========================================================================
      2. MODULAR ARCHITECTURE STYLESHEETS
      ========================================================================== -->
-  <link rel="stylesheet" href="styles/variables.css">   <!-- Theme colors, variables, typography, and base resets -->
-  <link rel="stylesheet" href="styles/ui-layout.css">   <!-- Core screen structure, grid-mesh overlay, and sidebar wireframes -->
-  <link rel="stylesheet" href="styles/gameplay.css">    <!-- Active HUD sub-panels, items inventory, tracking meters, and radar -->
-  <link rel="stylesheet" href="styles/components.css">  <!-- Modals, screens, transitions, floating tags, and dialogue layouts -->
+  <link rel="stylesheet" href="styles/variables.css"> <!-- Theme colors, variables, typography, and base resets -->
+  <link rel="stylesheet" href="styles/ui-layout.css">
+  <!-- Core screen structure, grid-mesh overlay, and sidebar wireframes -->
+  <link rel="stylesheet" href="styles/gameplay.css">
+  <!-- Active HUD sub-panels, items inventory, tracking meters, and radar -->
+  <link rel="stylesheet" href="styles/components.css">
+  <!-- Modals, screens, transitions, floating tags, and dialogue layouts -->
 
   <!-- Three.js Import Map Configuration: Resolves 'three' bare specifiers inside ES6 modules -->
   <script type="importmap">
@@ -70,7 +75,8 @@
   <!-- End Game / Case Resolution Screen: Displayed upon a definitive investigation completion -->
   <div id="end-screen" class="end-screen" style="display: none; opacity: 0;">
     <div class="end-inner">
-      <i class="fa-solid fa-circle-check" style="color: var(--accent-success); font-size: 3.5rem; margin-bottom: 20px;"></i>
+      <i class="fa-solid fa-circle-check"
+        style="color: var(--accent-success); font-size: 3.5rem; margin-bottom: 20px;"></i>
       <h1 style="color: #fff; font-size: 1.8rem; margin-bottom: 10px;">CASE CLOSED</h1>
       <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; margin-bottom: 15px;">
         All evidence collected and mysteries solved. Ready for the next investigation.
@@ -124,6 +130,8 @@
     <i class="fa-solid fa-chevron-right"></i>
   </button>
 
+  
+
 
   <!-- ==========================================================================
      7. MAIN HEADS-UP DISPLAY (HUD) INTERFACE LAYER
@@ -149,6 +157,11 @@
         <!-- Investigation Matrix / Progress Map Modal Toggle -->
         <button id="btn-open-map" class="btn-map-trigger">
           <i class="fa-solid fa-map-location-dot"></i>
+        </button>
+
+        <!-- Investigation Board Toggle -->
+        <button id="btn-inv-board-toggle" title="Investigation Board">
+          <i class="fa-solid fa-clipboard-list"></i> Analysis
         </button>
 
         <!-- Environmental Directional Lighting Cycle Override (Day/Night) -->
@@ -191,7 +204,8 @@
           <span id="popup-evidence-title" class="popup-title">
             <i class="fa-solid fa-file-shield"></i> Evidence Logged
           </span>
-          <button class="popup-close" onclick="document.getElementById('evidence-popup-card').style.display='none';">✕</button>
+          <button class="popup-close"
+            onclick="document.getElementById('evidence-popup-card').style.display='none';">✕</button>
         </div>
         <div id="popup-evidence-body" class="popup-body">---</div>
       </article>
@@ -281,7 +295,8 @@
         <label for="setting-bible-version" style="color:var(--text-muted); display:block; margin-bottom:8px;">
           Bible Translation Engine:
         </label>
-        <select id="setting-bible-version" style="width:100%; background:#1a233a; color:#fff; border:1px solid rgba(255,255,255,0.1); padding:8px; border-radius:4px;">
+        <select id="setting-bible-version"
+          style="width:100%; background:#1a233a; color:#fff; border:1px solid rgba(255,255,255,0.1); padding:8px; border-radius:4px;">
           <option value="NIV">New International Version (NIV)</option>
           <option value="GNT">Good News Translation (GNT)</option>
         </select>
@@ -293,10 +308,28 @@
     </div>
   </div>
 
+  <!-- Investigation Board Overlay - Evidence Comparison Interface -->
+  <div id="inv-board-overlay" class="overlay-mask" style="z-index:1500; display:none;">
+    <div class="modal-panel" style="max-width:900px; width:95%; max-height:85vh;">
+      <header class="modal-header">
+        <div>
+          <h2 style="margin:0; font-size:1.1rem; color:var(--accent-primary); font-weight:700;">Investigation Board</h2>
+          <p style="margin:2px 0 0 0; font-size:0.8rem; color:var(--text-muted);">Compare evidence to uncover deductions
+          </p>
+        </div>
+        <button id="btn-close-inv-board" class="close-icon-btn">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </header>
+      <main class="modal-body" style="padding:0; display:flex; flex-direction:column; gap:0;">
+        <div id="inv-board-content"></div>
+      </main>
+    </div>
+  </div>
 
   <!-- ==========================================================================
-     9. CORE APPLICATION SCRIPTS & INITIALIZATION LIFECYCLE
-     ========================================================================== -->
+      9. CORE APPLICATION SCRIPTS & INITIALIZATION LIFECYCLE
+      ========================================================================== -->
 
   <!-- Bible Reader API Module: Handles asynchronous fetching and parsing of scriptural data -->
   <script type="module" src="./BibleReader.js"></script>
@@ -516,7 +549,18 @@
 
         this.activeCaseId = caseId;
         this.nearestNPC = null;
-        this.collectedEvidence = [];
+
+        this.cm.startCase(caseId);
+        this.es.loadCase(caseData);
+
+        // Sync evidence from EvidenceSystem to collectedEvidence array
+        this.collectedEvidence = this.es.getCollected().map(e => ({
+          label: e.name,
+          description: e.desc || e.description || '',
+          icon: e.icon,
+          emoji: e.emoji,
+          iconFA: e.iconFA
+        }));
 
         // Garbage collection: Flush legacy meshes from WebGL memory
         this.npcMeshes.forEach(m => this.scene.remove(m));
@@ -619,6 +663,7 @@
       updateEvidenceGrid() {
         const grid = document.getElementById('evidence-slots-grid');
         grid.innerHTML = '';
+
         for (let i = 0; i < 8; i++) {
           const slot = document.createElement('div');
           slot.className = 'evidence-slot-btn ' + (this.collectedEvidence[i] ? 'filled' : '');
@@ -637,7 +682,9 @@
             slot.innerHTML = '<i class="fa-solid fa-folder"></i>';
           }
 
-          slot.onclick = () => { if (this.collectedEvidence[i]) this.showEvidenceDetail(i); };
+          slot.onclick = () => {
+            if (this.collectedEvidence[i]) this.showEvidenceDetail(i);
+          };
           grid.appendChild(slot);
         }
       }
@@ -924,18 +971,20 @@
           const item = this.evidenceMeshes[i];
           if (this.pPos.distanceTo(item.position) < 2) {
             const data = item.userData.dataRef;
+            const discovered = this.es.discover(data.id);
             this.collectedEvidence.push({
               label: data.name,
-              description: data.desc,
+              description: data.desc || data.description || '',
               icon: data.icon,
               emoji: data.emoji,
               iconFA: data.iconFA
             });
             this.scene.remove(item);
             this.evidenceMeshes.splice(i, 1);
-            this.showEvidencePopup(data.name, data.desc, data.emoji || data.icon);
+            this.showEvidencePopup(data.name, data.desc || data.description || '', data.emoji || data.icon);
             this.audio.playCollect();
             this.advanceQuest(1);
+            this.updateEvidenceGrid();
           }
         }
       }
@@ -1016,11 +1065,14 @@
           }
         });
       }
-    }
+}
 
     // ==========================================================================
     // 14. SETTINGS ENGINE INITIALIZATION HOOKS
     // ==========================================================================
+    const game = new GameEngine();
+    window.a11y = game.a11y;
+
     document.addEventListener('DOMContentLoaded', () => {
       const settingsOverlay = document.getElementById('settings-overlay');
       const bibleVersionSelect = document.getElementById('setting-bible-version');
@@ -1053,11 +1105,44 @@
           }, 350);
         };
       }
+
+      // Investigation Board Initialization
+      const invBoardOverlay = document.getElementById('inv-board-overlay');
+      const invBoardContent = document.getElementById('inv-board-content');
+      const btnInvBoardToggle = document.getElementById('btn-inv-board-toggle');
+      const btnCloseInvBoard = document.getElementById('btn-close-inv-board');
+
+      btnInvBoardToggle.onclick = () => {
+        window.renderInvestigationBoard();
+        invBoardOverlay.style.display = 'flex';
+        setTimeout(() => invBoardOverlay.classList.add('active'), 10);
+        setTimeout(() => invBoardOverlay.classList.add('fade-in-complete'), 50);
+      };
+
+      btnCloseInvBoard.onclick = () => {
+        invBoardOverlay.classList.remove('fade-in-complete');
+        setTimeout(() => {
+          invBoardOverlay.classList.remove('active');
+          invBoardOverlay.style.display = 'none';
+        }, 350);
+      };
+
+      // LabUI Instance for the Investigation Board
+      let labUIInstance = null;
+
+      window.renderInvestigationBoard = function() {
+        const labUI = new LabUI(game.de, game.es, game.a11y, (result) => {
+          if (result && result.type === 'selection') {
+            window.renderInvestigationBoard();
+          }
+        });
+
+        invBoardContent.innerHTML = labUI.render();
+        labUI.bindEvents(invBoardContent);
+        labUIInstance = labUI;
+      };
     });
 
-    // Fire up the instance engine
-    const game = new GameEngine();
-    window.a11y = game.a11y;
     game.init();
   </script>
 

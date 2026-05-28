@@ -67,10 +67,11 @@ export class LabUI {
 
       </div>
 
-      <div class="lab-evidence-picker" role="region" aria-label="Evidence to select for lab">
+<div class="lab-evidence-picker" role="region" aria-label="Evidence to select for lab">
         <h3 class="picker-title">Your Evidence</h3>
         <div class="picker-grid">
           ${this.es.getCollected().map(e => {
+          const desc = e.desc || e.description || '';
           const isA = this.es.selectedA?.id === e.id;
           const isB = this.es.selectedB?.id === e.id;
           const selected = isA || isB;
@@ -78,15 +79,15 @@ export class LabUI {
               <button
                 class="picker-card ${isA ? 'selected-a' : ''} ${isB ? 'selected-b' : ''}"
                 data-evidence-id="${e.id}"
-                aria-label="${e.name}: ${e.desc}. ${selected ? (isA ? 'Selected as A' : 'Selected as B') : 'Tap to select'}"
+                aria-label="${e.name}: ${desc}. ${selected ? (isA ? 'Selected as A' : 'Selected as B') : 'Tap to select'}"
                 aria-pressed="${selected}"
               >
                 <span class="picker-icon" aria-hidden="true">${e.icon}</span>
                 <span class="picker-name">${e.name}</span>
-                ${isA ? `<span class="sel-badge" aria-hidden="true">A</span>` : ""}
-                ${isB ? `<span class="sel-badge" aria-hidden="true">B</span>` : ""}
+                ${isA ? `<span class="sel-badge" aria-label="Selected as A">A</span>` : ""}
+                ${isB ? `<span class="sel-badge" aria-label="Selected as B">B</span>` : ""}
               </button>`;
-        }).join("")}
+          }).join("")}
           ${this.es.getCollected().length === 0
         ? `<p class="picker-empty">Collect evidence from the scene first.</p>` : ""}
         </div>

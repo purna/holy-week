@@ -36,19 +36,41 @@ export class ControlsManager {
         const leftBtn = document.getElementById('toggle-left-btn');
         const rightBtn = document.getElementById('toggle-right-btn');
 
-        leftBtn.addEventListener('click', () => {
-            leftPanel.classList.toggle('panel-hidden');
-            leftBtn.innerHTML = leftPanel.classList.contains('panel-hidden')
+        let leftVisible = true;
+        let rightVisible = true;
+
+
+        function updateLeftBtn() {
+            leftBtn.innerHTML = leftVisible
+                ? '<i class="fa-solid fa-chevron-left"></i>'
+                : '<i class="fa-solid fa-chevron-right"></i>';
+            leftBtn.title = leftVisible ? 'Hide Left Panel' : 'Show Left Panel';
+            // Reposition button to hug the visible edge
+            leftBtn.style.left = leftVisible ? 'calc(320px + 20px + 4px)' : '24px';
+        }
+
+        function updateRightBtn() {
+            rightBtn.innerHTML = rightVisible
                 ? '<i class="fa-solid fa-chevron-right"></i>'
                 : '<i class="fa-solid fa-chevron-left"></i>';
+            rightBtn.title = rightVisible ? 'Hide Right Panel' : 'Show Right Panel';
+            rightBtn.style.right = rightVisible ? 'calc(340px + 20px + 4px)' : '24px';
+        }
+
+        leftBtn.addEventListener('click', () => {
+            leftVisible = !leftVisible;
+            leftPanel.classList.toggle('panel-hidden', !leftVisible);
+            updateLeftBtn();
         });
 
         rightBtn.addEventListener('click', () => {
-            rightPanel.classList.toggle('panel-hidden');
-            rightBtn.innerHTML = rightPanel.classList.contains('panel-hidden')
-                ? '<i class="fa-solid fa-chevron-left"></i>'
-                : '<i class="fa-solid fa-chevron-right"></i>';
+            rightVisible = !rightVisible;
+            rightPanel.classList.toggle('panel-hidden', !rightVisible);
+            updateRightBtn();
         });
+
+        updateLeftBtn();
+        updateRightBtn();
     }
 
     displayAlert(msg) {

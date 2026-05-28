@@ -564,6 +564,15 @@
     z-index: 1000;
 }
 
+.overlay-mask.active {
+    display: flex;
+}
+
+.overlay-mask.fade-in-complete {
+    opacity: 1;
+    pointer-events: auto;
+}
+
 .modal-panel {
     background: var(--panel-bg);
     border: 1px solid rgba(100, 255, 218, 0.2);
@@ -575,6 +584,13 @@
     flex-direction: column;
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
     animation: modalSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Investigation Board Modal - Wider for comparison UI */
+#inv-board-overlay .modal-panel {
+    max-width: 900px;
+    width: 95%;
+    max-height: 85vh;
 }
 
 @keyframes modalSlideUp {
@@ -696,4 +712,338 @@
     font-size: 0.75rem;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+}
+
+/* ==========================================================================
+   INVESTIGATION BOARD - Evidence Comparison UI (LabUI Style)
+   ========================================================================== */
+
+#inv-board-content {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    gap: 20px;
+}
+
+/* Evidence Selection Slots */
+.lab-slots {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    justify-content: center;
+}
+
+.lab-slot {
+    flex: 1;
+    max-width: 320px;
+    min-height: 70px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(100, 255, 218, 0.2);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+    padding: 10px 16px;
+}
+
+.lab-slot:hover {
+    background: rgba(100, 255, 218, 0.08);
+    border-color: var(--accent-primary);
+}
+
+.lab-slot.empy::before {
+    content: "Tap evidence below";
+    color: var(--text-muted);
+    font-size: 0.85rem;
+}
+
+.slot-icon {
+    font-size: 1.8rem;
+    opacity: 0.9;
+}
+
+.slot-name {
+    color: var(--text-main);
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.slot-empty {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+}
+
+.lab-slot-divider {
+    color: var(--accent-primary);
+    font-size: 1.5rem;
+    font-weight: bold;
+    opacity: 0.5;
+}
+
+/* Analysis Operation Buttons */
+.lab-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 10px 0;
+}
+
+.lab-btn {
+    background: rgba(100, 255, 218, 0.06);
+    border: 1px solid rgba(100, 255, 218, 0.25);
+    color: var(--text-main);
+    padding: 10px 18px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.85rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    min-width: 110px;
+    transition: all 0.2s;
+}
+
+.lab-btn:hover:not([aria-disabled='true']) {
+    background: var(--accent-primary);
+    color: var(--bg-main);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(100, 255, 218, 0.25);
+}
+
+.lab-btn[aria-disabled='true'] {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.lab-btn-icon {
+    font-size: 1.2rem;
+}
+
+.lab-btn-label {
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+}
+
+/* Result Display */
+.lab-result {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(100, 255, 218, 0.15);
+    border-radius: 4px;
+    padding: 14px;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.result-placeholder {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+}
+
+.result-content {
+    color: var(--text-main);
+}
+
+.result-text {
+    margin: 0 0 6px 0;
+    font-size: 0.85rem;
+    line-height: 1.4;
+}
+
+.result-insight {
+    color: var(--accent-success);
+    font-size: 0.8rem;
+    margin: 0;
+    font-style: italic;
+}
+
+.result-key {
+    color: var(--accent-primary);
+}
+
+.result-key-badge {
+    color: var(--accent-success);
+    font-weight: 700;
+    font-size: 0.75rem;
+    margin-top: 4px;
+}
+
+.result-error {
+    color: var(--accent-error);
+    font-size: 0.85rem;
+}
+
+/* Evidence Picker Grid */
+.lab-evidence-picker {
+    margin-top: 10px;
+}
+
+.picker-title {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--accent-primary);
+    margin: 0 0 12px 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.picker-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 10px;
+}
+
+.picker-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 4px;
+    padding: 12px 8px;
+    cursor: pointer;
+    text-align: center;
+    position: relative;
+    transition: all 0.2s;
+}
+
+.picker-card:hover {
+    background: rgba(100, 255, 218, 0.08);
+    border-color: var(--accent-primary);
+}
+
+.picker-card.selected-a,
+.picker-card.selected-b {
+    background: rgba(100, 255, 218, 0.15);
+    border-color: var(--accent-success);
+}
+
+.picker-card.selected-a {
+    border-left: 3px solid var(--accent-success);
+}
+
+.picker-card.selected-b {
+    border-left: 3px solid var(--accent-secondary);
+}
+
+.picker-icon {
+    font-size: 1.5rem;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.picker-name {
+    font-size: 0.75rem;
+    color: var(--text-main);
+    display: block;
+}
+
+.sel-badge {
+    position: absolute;
+    top: 4px;
+    right: 6px;
+    background: var(--accent-success);
+    color: var(--bg-main);
+    font-size: 0.6rem;
+    font-weight: 700;
+    width: 18px;
+    height: 18px;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.picker-card.selected-b .sel-badge {
+    background: var(--accent-secondary);
+}
+
+.picker-empty {
+    grid-column: 1 / -1;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Deduction History */
+.lab-history {
+    margin-top: 10px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(100, 255, 218, 0.1);
+}
+
+.lab-history-title {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--accent-primary);
+    margin: 0 0 10px 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.lab-empty {
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    margin: 0;
+}
+
+.deduction-entry {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 4px;
+    padding: 8px 12px;
+    margin-bottom: 8px;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+.deduction-entry.key {
+    border-left: 2px solid var(--accent-success);
+    background: rgba(0, 255, 136, 0.08);
+}
+
+.deduction-op {
+    font-size: 1rem;
+}
+
+.deduction-text {
+    color: var(--text-main);
+    flex: 1;
+}
+
+.key-badge {
+    color: var(--accent-success);
+    font-weight: 700;
+    margin-left: auto;
+}
+
+/* Investigation Board Toggle Button */
+#btn-inv-board-toggle {
+    background: var(--accent-primary);
+    color: var(--bg-main);
+    border: none;
+    font-weight: 700;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+#btn-inv-board-toggle:hover {
+    background: #84ffea;
+    transform: translateY(-1px);
 }
