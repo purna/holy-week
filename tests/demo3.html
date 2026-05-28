@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>World Detective Agency</title>
+
+<style>
+:root{
+  --bg:#0f1117;
+  --panel:#171c28;
+  --card:#202738;
+  --border:#30384d;
+  --accent:#60a5fa;
+  --text:#f5f5f5;
+  --success:#86efac;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  display:flex;
+  flex-direction:column;
+  height:100vh;
+}
+
+/* HEADER */
+
+header{
+  padding:14px;
+  background:#141926;
+  border-bottom:1px solid var(--border);
+  text-align:center;
+  font-size:20px;
+  font-weight:bold;
+}
+
+/* ACCESSIBILITY BAR */
+
+.topbar{
+  display:flex;
+  gap:8px;
+  overflow-x:auto;
+  padding:10px;
+  background:#111621;
+  border-bottom:1px solid var(--border);
+}
+
+.topbar button{
+  white-space:nowrap;
+}
+
+/* TABS */
+
+.tabs{
+  display:flex;
+  background:#141926;
+  border-bottom:1px solid var(--border);
+}
+
+.tab{
+  flex:1;
+  padding:12px;
+  text-align:center;
+  cursor:pointer;
+  font-size:14px;
+}
+
+.tab.active{
+  background:#1f2638;
+  color:var(--accent);
+  font-weight:bold;
+}
+
+/* VIEWS */
+
+.view{
+  flex:1;
+  overflow-y:auto;
+  display:none;
+  padding:12px;
+}
+
+.view.active{
+  display:block;
+}
+
+/* CARDS */
+
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:14px;
+  margin-bottom:12px;
+  transition:0.15s;
+}
+
+.card:active{
+  transform:scale(0.98);
+}
+
+.card.selected{
+  border:2px solid var(--accent);
+}
+
+h2,h3,p{
+  margin-top:0;
+}
+
+/* CHAT */
+
+.chat{
+  background:#0b0d14;
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:12px;
+  height:300px;
+  overflow-y:auto;
+}
+
+.msg{
+  margin-bottom:10px;
+}
+
+.player{
+  color:#7dd3fc;
+}
+
+.npc{
+  color:#fbbf24;
+}
+
+.system{
+  color:#86efac;
+}
+
+/* LAB */
+
+.slots{
+  display:flex;
+  gap:10px;
+}
+
+.slot{
+  flex:1;
+  background:#121826;
+  border:2px dashed var(--border);
+  border-radius:12px;
+  padding:14px;
+  text-align:center;
+  min-height:70px;
+}
+
+.actions{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:12px;
+}
+
+/* BUTTONS */
+
+button{
+  background:#3b82f6;
+  border:none;
+  color:white;
+  padding:12px;
+  border-radius:12px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+button:active{
+  transform:scale(0.97);
+}
+
+/* RESULT */
+
+.result{
+  margin-top:12px;
+  background:#0b0d14;
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:12px;
+  min-height:70px;
+}
+
+/* ACCESSIBILITY */
+
+.high-contrast{
+  --bg:black;
+  --panel:black;
+  --card:black;
+  --border:yellow;
+  --accent:cyan;
+  --text:yellow;
+}
+
+.large-text{
+  font-size:20px;
+}
+
+.dyslexia{
+  font-family:Verdana,sans-serif;
+  letter-spacing:1px;
+  line-height:1.7;
+}
+
+.simple-mode .description{
+  display:none;
+}
+
+.sr-only{
+  position:absolute;
+  left:-9999px;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+🌍 World Detective Agency
+</header>
+
+<!-- ACCESSIBILITY -->
+
+<div class="topbar">
+
+<button onclick="toggleSpeech()">
+🔊 Voice
+</button>
+
+<button onclick="toggleContrast()">
+🎨 Contrast
+</button>
+
+<button onclick="toggleLargeText()">
+🔍 Large Text
+</button>
+
+<button onclick="toggleSimpleMode()">
+🧩 Simple Mode
+</button>
+
+<button onclick="toggleDyslexiaMode()">
+📖 Reading Mode
+</button>
+
+</div>
+
+<!-- TABS -->
+
+<div class="tabs">
+
+<div class="tab active" data-view="map">
+🗺️ Map
+</div>
+
+<div class="tab" data-view="evidence">
+🔍 Evidence
+</div>
+
+<div class="tab" data-view="npc">
+🧑 NPCs
+</div>
+
+<div class="tab" data-view="lab">
+🧪 Lab
+</div>
+
+<div class="tab" data-view="chat">
+💬 Chat
+</div>
+
+</div>
+
+<!-- MAP -->
+
+<div class="view active" id="map">
+
+<h2>
+World Cases
+</h2>
+
+<div id="caseList"></div>
+
+</div>
+
+<!-- EVIDENCE -->
+
+<div class="view" id="evidence">
+
+<h2>
+Evidence
+</h2>
+
+<div id="evidenceList"></div>
+
+</div>
+
+<!-- NPC -->
+
+<div class="view" id="npc">
+
+<h2>
+Witnesses
+</h2>
+
+<div id="npcList"></div>
+
+</div>
+
+<!-- LAB -->
+
+<div class="view" id="lab">
+
+<h2>
+Investigation Lab
+</h2>
+
+<div class="slots">
+
+<div class="slot" id="slotA">
+Tap Evidence A
+</div>
+
+<div class="slot" id="slotB">
+Tap Evidence B
+</div>
+
+</div>
+
+<div class="actions">
+
+<button onclick="compareEvidence()">
+Compare
+</button>
+
+<button onclick="linkEvidence()">
+Link
+</button>
+
+<button onclick="timelineEvidence()">
+Timeline
+</button>
+
+<button onclick="contradictEvidence()">
+Contradict
+</button>
+
+</div>
+
+<div class="result" id="result">
+Select two pieces of evidence.
+</div>
+
+</div>
+
+<!-- CHAT -->
+
+<div class="view" id="chat">
+
+<h2>
+Detective Notes
+</h2>
+
+<div
+class="chat"
+id="chatBox"
+aria-live="polite"
+></div>
+
+</div>
+
+<script>
+
+/* =========================
+ACCESSIBILITY
+========================= */
+
+let speechEnabled = false;
+
+function speak(text){
+
+  if(!speechEnabled) return;
+
+  const utterance = new SpeechSynthesisUtterance(text);
+
+  speechSynthesis.speak(utterance);
+}
+
+function toggleSpeech(){
+
+  speechEnabled = !speechEnabled;
+
+  addChat(
+    "System",
+    speechEnabled
+      ? "Voice narration enabled."
+      : "Voice narration disabled."
+  );
+}
+
+function toggleContrast(){
+  document.body.classList.toggle("high-contrast");
+}
+
+function toggleLargeText(){
+  document.body.classList.toggle("large-text");
+}
+
+function toggleSimpleMode(){
+  document.body.classList.toggle("simple-mode");
+}
+
+function toggleDyslexiaMode(){
+  document.body.classList.toggle("dyslexia");
+}
+
+/* =========================
+DATA
+========================= */
+
+const cases = [
+
+{
+  id:"school",
+  title:"The Missing Science Trophy",
+  location:"London School",
+  intro:"Someone stole the science trophy after school.",
+
+  evidence:[
+    {
+      id:"mud",
+      name:"Muddy Shoes",
+      desc:"Mud stuck to shoes near trophy room."
+    },
+
+    {
+      id:"finger",
+      name:"Fingerprint",
+      desc:"Fingerprint matches Alex."
+    },
+
+    {
+      id:"key",
+      name:"Greenhouse Key",
+      desc:"Found hidden behind locker."
+    }
+  ],
+
+  npcs:[
+    {
+      name:"Alex",
+      text:"I was at football practice."
+    },
+
+    {
+      name:"Mia",
+      text:"I saw muddy footprints."
+    }
+  ]
+},
+
+{
+  id:"museum",
+  title:"The Museum Diamond Mystery",
+  location:"Paris Museum",
+  intro:"A rare diamond vanished overnight.",
+
+  evidence:[
+    {
+      id:"glass",
+      name:"Broken Glass",
+      desc:"Glass shattered from outside."
+    },
+
+    {
+      id:"photo",
+      name:"Security Photo",
+      desc:"Shows masked figure escaping."
+    },
+
+    {
+      id:"ticket",
+      name:"Train Ticket",
+      desc:"Ticket leads toward Rome."
+    }
+  ],
+
+  npcs:[
+    {
+      name:"Curator",
+      text:"The alarm never sounded."
+    },
+
+    {
+      name:"Guard",
+      text:"I heard breaking glass."
+    }
+  ]
+}
+
+];
+
+/* =========================
+STATE
+========================= */
+
+const state = {
+
+  currentCase:null,
+
+  evidenceCollected:[],
+
+  selectedA:null,
+
+  selectedB:null,
+
+  deductions:[]
+};
+
+/* =========================
+MAP
+========================= */
+
+function renderCases(){
+
+  const caseList =
+    document.getElementById("caseList");
+
+  caseList.innerHTML = "";
+
+  cases.forEach(c => {
+
+    const div =
+      document.createElement("div");
+
+    div.className = "card";
+
+    div.innerHTML = `
+      <h3>${c.title}</h3>
+
+      <p>
+      📍 ${c.location}
+      </p>
+
+      <p class="description">
+      ${c.intro}
+      </p>
+    `;
+
+    div.onclick = () => loadCase(c);
+
+    caseList.appendChild(div);
+  });
+}
+
+function loadCase(c){
+
+  state.currentCase = c;
+
+  state.evidenceCollected = [];
+
+  state.selectedA = null;
+
+  state.selectedB = null;
+
+  state.deductions = [];
+
+  renderEvidence();
+
+  renderNPCs();
+
+  updateSlots();
+
+  switchTab("evidence");
+
+  addChat(
+    "Agency",
+    c.intro
+  );
+}
+
+/* =========================
+EVIDENCE
+========================= */
+
+function renderEvidence(){
+
+  const container =
+    document.getElementById("evidenceList");
+
+  container.innerHTML = "";
+
+  if(!state.currentCase) return;
+
+  state.currentCase.evidence.forEach(e => {
+
+    const div =
+      document.createElement("div");
+
+    div.className = "card";
+
+    if(
+      state.selectedA === e ||
+      state.selectedB === e
+    ){
+      div.classList.add("selected");
+    }
+
+    div.innerHTML = `
+      <h3>${e.name}</h3>
+
+      <p class="description">
+      ${e.desc}
+      </p>
+    `;
+
+    div.onclick = () => {
+
+      collectEvidence(e);
+
+      selectEvidence(e);
+    };
+
+    container.appendChild(div);
+  });
+}
+
+function collectEvidence(e){
+
+  if(
+    !state.evidenceCollected.includes(e)
+  ){
+
+    state.evidenceCollected.push(e);
+
+    addChat(
+      "System",
+      `Collected evidence: ${e.name}`
+    );
+  }
+}
+
+function selectEvidence(e){
+
+  if(!state.selectedA){
+
+    state.selectedA = e;
+
+  }else if(!state.selectedB){
+
+    state.selectedB = e;
+
+  }else{
+
+    state.selectedA = e;
+
+    state.selectedB = null;
+  }
+
+  updateSlots();
+
+  renderEvidence();
+
+  switchTab("lab");
+}
+
+function updateSlots(){
+
+  document.getElementById("slotA")
+    .innerText =
+      state.selectedA
+        ? state.selectedA.name
+        : "Tap Evidence A";
+
+  document.getElementById("slotB")
+    .innerText =
+      state.selectedB
+        ? state.selectedB.name
+        : "Tap Evidence B";
+}
+
+/* =========================
+NPCS
+========================= */
+
+function renderNPCs(){
+
+  const npcList =
+    document.getElementById("npcList");
+
+  npcList.innerHTML = "";
+
+  if(!state.currentCase) return;
+
+  state.currentCase.npcs.forEach(n => {
+
+    const div =
+      document.createElement("div");
+
+    div.className = "card";
+
+    div.innerHTML = `
+      <h3>${n.name}</h3>
+
+      <p>
+      Tap to question
+      </p>
+    `;
+
+    div.onclick = () => {
+
+      addChat(
+        n.name,
+        n.text
+      );
+
+      switchTab("chat");
+    };
+
+    npcList.appendChild(div);
+  });
+}
+
+/* =========================
+LAB ACTIONS
+========================= */
+
+function compareEvidence(){
+
+  if(
+    !state.selectedA ||
+    !state.selectedB
+  ){
+
+    showResult(
+      "Select two clues first."
+    );
+
+    return;
+  }
+
+  const result =
+    `${state.selectedA.name}
+     connects with
+     ${state.selectedB.name}.`;
+
+  showResult(result);
+
+  addDeduction(result);
+}
+
+function linkEvidence(){
+
+  if(
+    !state.selectedA ||
+    !state.selectedB
+  ){
+
+    showResult(
+      "Select two clues first."
+    );
+
+    return;
+  }
+
+  const result =
+    `${state.selectedA.name}
+     supports information in
+     ${state.selectedB.name}.`;
+
+  showResult(result);
+
+  addDeduction(result);
+}
+
+function timelineEvidence(){
+
+  if(
+    !state.selectedA ||
+    !state.selectedB
+  ){
+
+    showResult(
+      "Select two clues first."
+    );
+
+    return;
+  }
+
+  const result =
+    `Timeline updated using
+     ${state.selectedA.name}
+     and
+     ${state.selectedB.name}.`;
+
+  showResult(result);
+
+  addDeduction(result);
+}
+
+function contradictEvidence(){
+
+  if(
+    !state.selectedA ||
+    !state.selectedB
+  ){
+
+    showResult(
+      "Select two clues first."
+    );
+
+    return;
+  }
+
+  const result =
+    `${state.selectedA.name}
+     contradicts evidence
+     connected to
+     ${state.selectedB.name}.`;
+
+  showResult(result);
+
+  addDeduction(result);
+}
+
+/* =========================
+RESULTS
+========================= */
+
+function showResult(text){
+
+  document.getElementById("result")
+    .innerText = text;
+
+  speak(text);
+}
+
+function addDeduction(text){
+
+  if(
+    !state.deductions.includes(text)
+  ){
+
+    state.deductions.push(text);
+
+    addChat(
+      "Deduction",
+      text
+    );
+  }
+}
+
+/* =========================
+CHAT
+========================= */
+
+function addChat(name,text){
+
+  const chatBox =
+    document.getElementById("chatBox");
+
+  const div =
+    document.createElement("div");
+
+  div.className =
+    name === "System"
+      ? "msg system"
+      : name === "Deduction"
+        ? "msg player"
+        : "msg npc";
+
+  div.innerHTML =
+    `<strong>${name}:</strong> ${text}`;
+
+  chatBox.appendChild(div);
+
+  chatBox.scrollTop =
+    chatBox.scrollHeight;
+
+  speak(text);
+}
+
+/* =========================
+TABS
+========================= */
+
+document.querySelectorAll(".tab")
+.forEach(tab => {
+
+  tab.addEventListener("click",() => {
+
+    const view =
+      tab.dataset.view;
+
+    switchTab(view);
+  });
+});
+
+function switchTab(view){
+
+  document
+    .querySelectorAll(".tab")
+    .forEach(t =>
+      t.classList.remove("active")
+    );
+
+  document
+    .querySelectorAll(".view")
+    .forEach(v =>
+      v.classList.remove("active")
+    );
+
+  document
+    .querySelector(`[data-view="${view}"]`)
+    .classList.add("active");
+
+  document
+    .getElementById(view)
+    .classList.add("active");
+}
+
+/* =========================
+START
+========================= */
+
+renderCases();
+
+</script>
+
+</body>
+</html>
