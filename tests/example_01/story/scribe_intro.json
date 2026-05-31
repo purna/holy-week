@@ -1,0 +1,1 @@
+{"start": {"content": "I am Master Scribe. The archives hold testimony \u2014 not opinion. Many have walked these stones carrying questions no scroll could answer.", "choices": [{"text": "I seek truth here.", "destination": "closing"}, {"text": "What do the streets say?", "destination": "closing"}]}, "closing": {"content": "-> DONE", "choices": []}}

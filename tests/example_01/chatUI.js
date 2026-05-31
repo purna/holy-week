@@ -96,15 +96,38 @@ export class ChatUI {
     `;
   }
 
-  bindNPCEvents(container, feedContainer) {
+bindNPCEvents(container, feedContainer) {
     let pendingNPC = null;
 
     container.querySelectorAll("[data-action='talk']").forEach(btn => {
       btn.addEventListener("click", () => {
-        const result = this.npcs.talk(btn.dataset.npc);
+        const npcId = btn.dataset.npc;
+        const npc = this.npcs.getNPC(npcId);
+        
+        // DialogueManager modal (story-based conversations with evidence unlock)
+        if (window.dm && npc && npc.hasDialogue && npc.storyFile) {
+          const story = window.dm.createStory(npcId);
+          if (story) {
+            window.dm.openDialogue(npc, story, () => {
+              if (npc.unlocksEvidence && npc.unlocksEvidence.length > 0) {
+                npc.unlocksEvidence.forEach(id => {
+                  const unlocked = this.es.discover(id);
+                  if (unlocked) {
+                    this.addSystem(`🔓 New clue: ${unlocked.name}`);
+                  }
+                });
+              }
+              if (this.onAction) this.onAction({ type: "talk_complete", npcId });
+              this._refreshFeed(feedContainer);
+            });
+            return;
+          }
+        }
+        
+        // Simple dialogue - use NPC's dialogue property as fallback
+        const result = this.npcs.talk(npcId);
         if (result) {
           this.addMessage(result.speaker, result.text);
-          this.audio.playTalk(); 
           this._refreshFeed(feedContainer);
         }
       });

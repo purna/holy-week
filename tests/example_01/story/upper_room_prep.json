@@ -1,0 +1,1 @@
+{"start": {"content": "They have prepared the room for the evening meal. Whatever happened in the temple courts changed everything.", "choices": [{"text": "Who said nothing?", "destination": "closing"}, {"text": "What did the bread become?", "destination": "closing"}]}, "closing": {"content": "-> DONE", "choices": []}}

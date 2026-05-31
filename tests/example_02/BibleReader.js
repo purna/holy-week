@@ -1,132 +1,239 @@
-// Bible API Configuration
-const BIBLE_API_CONFIG = {
-  apiKey: '40uwrV5VD_g7dxygwU-WK',
-  baseUrl: 'https://api.bible/v1',
-  translations: {
-    NIV: 'de4e12af7c28f528-02', // API ID for New International Version
-    GNT: 'c3154be53a35ca34-01'  // API ID for Good News Translation
-  }
-};
-
-// Bible Reading Engine
+// Bible Reading Engine — uses open bible-api.com (no CORS issues from localhost)
 window.BibleReader = {
-  selectedTranslation: 'NIV',
+  translation: 'web',
+  anchorRef: null,
+  verses: [],
+  topPrevId: null,
+  bottomNextId: null,
 
   updateTranslation: function(val) {
-    this.selectedTranslation = val;
+    this.translation = val;
   },
 
   closeOverlay: function(event) {
-    // If clicked out or explicitly via close button, drop layout visibility
     if (!event || event.target === document.getElementById('passage-overlay')) {
       document.getElementById('passage-overlay').style.display = 'none';
     }
   },
 
+  formatRef: function(raw) {
+    return raw.trim().toUpperCase()
+      .replace(/[\s_-]+/g, '.')
+      .replace(/:/g, '.')
+      .replace(/[^\w.]/g, '')
+      .replace(/\.+/g, '.')
+      .replace(/^\./, '').replace(/\.$/, '');
+  },
+
+  fetchVerse: async function(verseId) {
+    const parts = verseId.split('.');
+    if (parts.length < 2) throw new Error('Invalid reference');
+
+    const book = parts[0];
+    const chapter = parts[1];
+    let verse = parts[2];
+
+    let url = `https://bible-api.com/${book}+${chapter}`;
+    if (verse && verse !== 'LAST') url += `:${verse}`;
+    url += `?translation=${this.translation}`;
+
+    const r = await fetch(url);
+    if (!r.ok) throw new Error(`${r.status} – Not Found`);
+    const j = await r.json();
+    if (!j.verses || !j.verses.length) throw new Error('Verse not found');
+
+    const v = (verse === 'LAST') ? j.verses[j.verses.length - 1] : j.verses[0];
+    return {
+      id: `${v.book_id}.${v.chapter}.${v.verse}`,
+      reference: `${v.book_name} ${v.chapter}:${v.verse}`,
+      content: v.text.trim(),
+      verseNum: v.verse,
+      bookId: v.book_id,
+      chapter: v.chapter,
+      verse: v.verse
+    };
+  },
+
+  loadChain: async function(startId, count) {
+    const chain = [];
+    let currentId = startId;
+    for (let i = 0; i < count && currentId; i++) {
+      try {
+        const data = await this.fetchVerse(currentId);
+        chain.push(data);
+        currentId = `${data.bookId}.${data.chapter}.${data.verse + 1}`;
+      } catch (err) {
+        try {
+          const parts = currentId.split('.');
+          const nextChapterId = `${parts[0]}.${parseInt(parts[1]) + 1}.1`;
+          const data = await this.fetchVerse(nextChapterId);
+          chain.push(data);
+          currentId = `${data.bookId}.${data.chapter}.${data.verse + 1}`;
+        } catch (err2) {
+          currentId = null;
+        }
+      }
+    }
+    return chain;
+  },
+
+  loadChainBack: async function(startId, count) {
+    const chain = [];
+    let currentId = startId;
+    for (let i = 0; i < count && currentId; i++) {
+      try {
+        const data = await this.fetchVerse(currentId);
+        chain.unshift(data);
+        if (data.verse > 1) {
+          currentId = `${data.bookId}.${data.chapter}.${data.verse - 1}`;
+        } else if (data.chapter > 1) {
+          currentId = `${data.bookId}.${data.chapter - 1}.LAST`;
+        } else {
+          currentId = null;
+        }
+      } catch (err) {
+        currentId = null;
+      }
+    }
+    let furthestPrevId = null;
+    if (chain.length > 0) {
+      const first = chain[0];
+      if (first.verse > 1) furthestPrevId = `${first.bookId}.${first.chapter}.${first.verse - 1}`;
+      else if (first.chapter > 1) furthestPrevId = `${first.bookId}.${first.chapter - 1}.LAST`;
+    }
+    return { chain, furthestPrevId };
+  },
+
+  renderVerses: function() {
+    const contentArea = document.getElementById('passage-text-content');
+    if (!contentArea) return;
+    if (!this.verses.length) return;
+
+    const anchorId = this.anchorRef;
+    let html = '';
+
+    html += '<div class="load-prev-strip">';
+    if (this.topPrevId) {
+      html += `<button class="terminal-btn" id="btn-load-prev-verse" style="margin-right:8px;"><i class="fa-solid fa-arrow-up"></i> Load Previous Verses</button>`;
+    } else {
+      html += '<span class="passage-hint">Beginning of passage</span>';
+    }
+    html += '</div>';
+
+    this.verses.forEach(v => {
+      const isAnchor = v.id === anchorId;
+      const anchorIdx = this.verses.findIndex(x => x.id === anchorId);
+      const myIdx = this.verses.indexOf(v);
+      const isPrev = myIdx < anchorIdx;
+      const cls = isAnchor ? 'anchor-verse' : isPrev ? 'prev-verse' : '';
+      html += `
+        <div class="verse-block ${cls}">
+          <span class="verse-num">${v.verseNum}</span>
+          <span class="verse-text">${v.content}</span>
+        </div>`;
+    });
+
+    html += '<div class="load-more-strip">';
+    if (this.bottomNextId) {
+      html += `<button class="terminal-btn" id="btn-load-next-verse"><i class="fa-solid fa-arrow-down"></i> Read More</button>`;
+    } else {
+      html += '<span class="passage-hint">End of passage</span>';
+    }
+    html += '</div>';
+
+    contentArea.innerHTML = html;
+
+    const anchorEl = contentArea.querySelector('.anchor-verse');
+    if (anchorEl) anchorEl.scrollIntoView({ block: 'center', behavior: 'smooth' });
+
+    const prevBtn = document.getElementById('btn-load-prev-verse');
+    if (prevBtn) {
+      prevBtn.onclick = async () => {
+        const { chain, furthestPrevId } = await this.loadChainBack(this.topPrevId, 4);
+        this.verses = chain.concat(this.verses);
+        if (chain.length) {
+          const first = chain[0];
+          this.topPrevId = furthestPrevId;
+        } else {
+          this.topPrevId = null;
+        }
+        this.renderVerses();
+        const blocks = contentArea.querySelectorAll('.verse-block');
+        if (blocks.length >= chain.length && chain.length > 0) blocks[0].scrollIntoView({ behavior: 'smooth', block: 'start' });
+      };
+    }
+
+    const nextBtn = document.getElementById('btn-load-next-verse');
+    if (nextBtn) {
+      nextBtn.onclick = async () => {
+        if (!this.bottomNextId) return;
+        const btn = nextBtn;
+        btn.disabled = true;
+        btn.innerHTML = '<i class="fa-solid fa-circle-notch spinner"></i> Loading…';
+        try {
+          const chain = await this.loadChain(this.bottomNextId, 4);
+          this.verses = this.verses.concat(chain);
+          if (chain.length) {
+            const last = chain[chain.length - 1];
+            this.bottomNextId = `${last.bookId}.${last.chapter}.${last.verse + 1}`;
+          } else {
+            this.bottomNextId = null;
+          }
+          this.renderVerses();
+          const blocks = contentArea.querySelectorAll('.verse-block');
+          if (blocks.length) blocks[blocks.length - (chain.length || 1)].scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } catch (err) {
+          btn.disabled = false;
+          btn.innerHTML = '<i class="fa-solid fa-arrow-down"></i> Read More';
+        }
+      };
+    }
+  },
+
   displayPassage: async function(pKey) {
-    // 1. Prepare UI State & Window References
     const contentArea = document.getElementById('passage-text-content');
     const titleArea = document.getElementById('passage-ref-title');
-    const versionLabel = document.getElementById('passage-version-lbl');
     const overlay = document.getElementById('passage-overlay');
 
-    titleArea.innerText = "Connecting to API.Bible...";
-    versionLabel.innerText = this.selectedTranslation;
+    titleArea.innerText = 'Loading scripture…';
     contentArea.innerHTML = `
-        <div style="text-align:center; padding:30px; color:var(--text-muted);">
-            <i class="fa-solid fa-circle-notch spinner" style="font-size:1.5rem; margin-bottom:10px; color:var(--accent);"></i>
-            <div>Fetching context trail...</div>
-        </div>
-    `;
+      <div class="state-box">
+        <div class="icon"><i class="fa-solid fa-circle-notch spinner"></i></div>
+        <p>Fetching passage…</p>
+      </div>`;
     overlay.style.display = 'flex';
 
-    // Format the passage key (e.g., 'ZECH_9_9') to standard API structure ('ZECH.9.9')
-    const formattedVerseId = pKey.replace(/_/g, '.');
-    const targetBibleId = BIBLE_API_CONFIG.translations[this.selectedTranslation] || BIBLE_API_CONFIG.translations.NIV;
-
-    // Track context position for chaining verses
-    let nextVerseId = null;
+    const formattedRef = this.formatRef(pKey);
+    const parts = formattedRef.split('.');
+    const verseRef = parts.length >= 2 ? `${parts[0]}.${parts[1]}.${parts[2] || '1'}` : formattedRef;
 
     try {
-      // Query initial passage
-      const response = await fetch(`${BIBLE_API_CONFIG.baseUrl}/bibles/${targetBibleId}/verses/${formattedVerseId}?content-type=text`, {
-        method: 'GET',
-        headers: { 'api-key': BIBLE_API_CONFIG.apiKey }
-      });
+      const anchor = await this.fetchVerse(verseRef);
+      this.anchorRef = anchor.id;
+      this.verses = [anchor];
+      this.topPrevId = (anchor.verse > 1) ? `${anchor.bookId}.${anchor.chapter}.${anchor.verse - 1}` : (anchor.chapter > 1 ? `${anchor.bookId}.${anchor.chapter - 1}.LAST` : null);
+      this.bottomNextId = `${anchor.bookId}.${anchor.chapter}.${anchor.verse + 1}`;
 
-      if (!response.ok) throw new Error(`Server returned error status: ${response.status}`);
-      const result = await response.json();
-
-      const currentData = result.data;
-      titleArea.innerText = currentData.reference;
-      nextVerseId = currentData.next?.id; // Get the target ID for sequential chaining
-
-      // Render the current verse
-      contentArea.innerHTML = `
-          <p class="current-v">
-              <strong>${currentData.reference}</strong> ${currentData.content}
-          </p>
-          <div id="extended-verses"></div>
-          
-          ${nextVerseId ? `
-              <button id="btn-load-next-verse" class="terminal-btn">
-                  <i class="fa-solid fa-arrow-down"></i> Read Next Verse
-              </button>
-          ` : ''}
-      `;
-
-      // Set up the "Read Next Verse" button functionality
-      if (nextVerseId) {
-        document.getElementById('btn-load-next-verse').onclick = async (e) => {
-          const targetButton = e.currentTarget;
-          targetButton.disabled = true;
-          targetButton.innerHTML = `<i class="fa-solid fa-circle-notch spinner"></i> Loading...`;
-
-          try {
-            // Request the next verse
-            const nextResponse = await fetch(`${BIBLE_API_CONFIG.baseUrl}/bibles/${targetBibleId}/verses/${nextVerseId}?content-type=text`, {
-              method: 'GET',
-              headers: { 'api-key': BIBLE_API_CONFIG.apiKey }
-            });
-
-            if (!nextResponse.ok) throw new Error("Failed to load next verse.");
-            const nextResult = await nextResponse.json();
-            const nextData = nextResult.data;
-
-            // Append the next verse
-            const extendedArea = document.getElementById('extended-verses');
-            const paragraph = document.createElement('p');
-            paragraph.className = 'context-v';
-            paragraph.innerHTML = `<strong>${nextData.reference}</strong> ${nextData.content}`;
-            extendedArea.appendChild(paragraph);
-
-            // Update pointer for further continuity
-            nextVerseId = nextData.next?.id;
-
-            if (!nextVerseId) {
-              targetButton.remove(); // End of passage
-            } else {
-              targetButton.disabled = false;
-              targetButton.innerHTML = `<i class="fa-solid fa-arrow-down"></i> Read Next Verse`;
-            }
-
-          } catch (err) {
-            console.error("Error loading next verse:", err);
-            targetButton.innerHTML = `<span style="color:var(--accent-error);">Error loading verse</span>`;
-            targetButton.disabled = false;
-          }
-        };
+      if (this.bottomNextId) {
+        const after = await this.loadChain(this.bottomNextId, 4);
+        this.verses = this.verses.concat(after);
+        if (after.length) {
+          const last = after[after.length - 1];
+          this.bottomNextId = `${last.bookId}.${last.chapter}.${last.verse + 1}`;
+        }
       }
 
-    } catch (error) {
-      console.error("API Error:", error);
+      titleArea.innerText = anchor.reference;
+      this.renderVerses();
+    } catch (err) {
+      console.error('BibleReader error:', err);
       contentArea.innerHTML = `
-          <div style="color:var(--accent-error); padding:10px; text-align:center; border:1px solid rgba(255,68,68,0.2); border-radius:6px; background:rgba(255,68,68,0.05);">
-              <i class="fa-solid fa-triangle-exclamation" style="font-size:1.2rem; margin-bottom:6px;"></i>
-              <p style="margin:4px 0; font-size:0.9rem;">Failed to fetch live content.</p>
-              <small style="color:var(--text-muted); font-size:0.75rem;">${error.message}</small>
-          </div>
-      `;
+        <div class="state-box">
+          <div class="icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
+          <p>Could not load passage.</p>
+          <small>${err.message}</small>
+          <br><button class="terminal-btn" onclick="window.BibleReader.closeOverlay()" style="margin-top:10px;">Close</button>
+        </div>`;
     }
   }
 };

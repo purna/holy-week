@@ -139,8 +139,7 @@ export class ChatUI {
         if (result) {
           this.addMessage(result.speaker, result.text, "npc", { revealedClue: result.revealedClue });
           if (result.revealedClue) {
-            this.es.discover(result.revealedClue);
-            this.addSystem(`New evidence found: ${this.es.getById(result.revealedClue)?.name}`);
+            this.addSystem(`🔍 New evidence revealed: ${this.es.getById(result.revealedClue)?.name} — go collect it in the world!`);
           }
           this._refreshFeed(feedContainer);
           if (this.onAction) this.onAction({ type: "show_evidence", result });

@@ -377,6 +377,9 @@ export const act2CaseB = {
       avatar: "👤",
       truthfulness: 0.60,
       bibleRef: "John 18:10; Luke 22:52",
+      hasDialogue: true,
+      storyFile: "./story/temple_spy.json",
+      unlocksEvidence: ["crowd_report"],
       background: "An administrative operative and courier under the payroll of the high priest's household, tasked with logging suspicious crowd densities, tracking routes, and profiling revolutionary movement between Jerusalem and Bethany.",
       dialogue: {
         neutral: "I look at movements, routes, and numbers. My job is to ensure the Passover crowds do not aggregate into an uncontrollable nationalist front.",
@@ -399,6 +402,9 @@ export const act2CaseB = {
       avatar: "🦅",
       truthfulness: 0.35,
       bibleRef: "John 18:13; Luke 3:2; Acts 4:6",
+      hasDialogue: true,
+      storyFile: "./story/annas_patriarch.json",
+      unlocksEvidence: ["secret_decree"],
       background: "The elderly patriarch of the ruling Sadducean family. Though Rome formally deposed him years ago, he remains the true systemic power behind the high priesthood, controlling his sons and son-in-law Caiaphas. He values political continuity and institutional risk management above all else.",
       dialogue: {
         neutral: "True governance is quiet, indirect, and economical. Populist enthusiasm fades, but the temple infrastructure must endure.",
@@ -423,6 +429,9 @@ export const act2CaseB = {
       avatar: "🧺",
       truthfulness: 0.95,
       bibleRef: "John 11:1–44; John 12:1–2",
+      hasDialogue: true,
+      storyFile: "./story/martha_bethany.json",
+      unlocksEvidence: ["grave_dirt"],
       background: "The practical, protective head of the Bethany household. Having witnessed her brother's descent into death and subsequent revival, she is now trapped in a terrifying surveillance grid, managing family survival while shadow operatives monitor her home.",
       dialogue: {
         neutral: "We were a quiet household before the illness. Now, strange men stand at the edge of our fields, watching who enters and leaves.",

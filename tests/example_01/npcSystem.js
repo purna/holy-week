@@ -26,11 +26,11 @@ loadCase(caseData) {
     return c ? c.npcs : [];
   }
 
-  getNPC(id) {
-    return this.getNPCs().find(n => n.id === id) || null;
-  }
+getNPC(id) {
+     return this.getNPCs().find(n => n.id === id) || null;
+   }
 
-  getState(npcId) {
+   getState(npcId) {
     return this.npcStates[npcId] || null;
   }
 

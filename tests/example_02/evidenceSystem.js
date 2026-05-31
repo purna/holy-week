@@ -13,47 +13,58 @@ export const EVIDENCE_TYPES = {
 export class EvidenceSystem {
   constructor(caseManager) {
     this.caseManager = caseManager;
-    this.collected = [];    // evidence IDs found this session
+    this.collected = [];    // all collected IDs (restored from save)
     this.selectedA = null;
     this.selectedB = null;
+    this.unlockedIds = new Set(); // only IDs revealed this session
   }
 
   loadCase(caseData) {
     const saved = this.caseManager.getCaseProgress(caseData.id);
     this.collected = saved?.evidenceFound ? [...saved.evidenceFound] : [];
+    this.unlockedIds = new Set();
     this.selectedA = null;
     this.selectedB = null;
   }
 
   getEvidencePool() {
-    const c = this.caseManager.getActiveCase();
-    return c ? c.evidencePool : [];
+    return this.caseManager.getActiveCase()?.evidencePool || [];
   }
 
   getCollected() {
-    return this.getEvidencePool().filter(e => this.collected.includes(e.id));
-  }
-
-  getUndiscovered() {
-    return this.getEvidencePool().filter(e => !this.collected.includes(e.id));
-  }
-
-  discover(evidenceId) {
-    if (!this.collected.includes(evidenceId)) {
-      this.collected.push(evidenceId);
-      this.caseManager.recordEvidenceFound(evidenceId);
-      return this.getById(evidenceId);
-    }
-    return null;
+    return this.getEvidencePool().filter(e => this.collected.includes(e.id) && this.unlockedIds.has(e.id));
   }
 
   getById(id) {
     return this.getEvidencePool().find(e => e.id === id) || null;
   }
 
+  isCollected(id) {
+    return this.collected.includes(id);
+  }
+
+  unlock(id) {
+    if (!this.unlockedIds.has(id)) {
+      this.unlockedIds.add(id);
+      this.collected.push(id);
+      this.caseManager.recordEvidenceFound(id);
+      return this.getById(id);
+    }
+    return null;
+  }
+
+  isUnlocked(id) {
+    return this.unlockedIds.has(id);
+  }
+
+  getUndiscovered() {
+    return this.getEvidencePool().filter(e => !this.unlockedIds.has(e.id));
+  }
+
   selectEvidence(evidenceId) {
     const e = this.getById(evidenceId);
     if (!e) return;
+    if (!this.isUnlocked(evidenceId)) return;
     if (!this.selectedA || (this.selectedA && this.selectedB)) {
       this.selectedA = e;
       this.selectedB = null;
@@ -71,7 +82,6 @@ export class EvidenceSystem {
     return EVIDENCE_TYPES[typeId.toUpperCase()] || EVIDENCE_TYPES.PHYSICAL;
   }
 
-  // Returns evidence grouped by type (for display)
   getCollectedByType() {
     const groups = {};
     this.getCollected().forEach(e => {
@@ -85,6 +95,6 @@ export class EvidenceSystem {
   getCompletionPercent() {
     const pool = this.getEvidencePool();
     if (!pool.length) return 0;
-    return Math.round((this.collected.length / pool.length) * 100);
+    return Math.round((this.getCollected().length / pool.length) * 100);
   }
 }

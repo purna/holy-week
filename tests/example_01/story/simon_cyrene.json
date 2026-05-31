@@ -1,0 +1,1 @@
+{"start": {"content": "My friend, I was just walking home when they seized this man. They made me carry the cross. I did not know his name then.", "choices": [{"text": "What did he say on the way?", "destination": "closing"}, {"text": "What did you see in his eyes?", "destination": "closing"}]}, "closing": {"content": "-> DONE", "choices": []}}

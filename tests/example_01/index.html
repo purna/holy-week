@@ -24,8 +24,8 @@
 
   <div id="app" role="main">
 
-    <!-- ══════════════ WORLD MAP ══════════════ -->
-    <div id="screen-map" class="screen active" aria-label="World Map">
+    <!-- ══════════════ EVENT MAP ══════════════ -->
+    <div id="screen-map" class="screen active" aria-label="Event Map">
       <div class="app-header">
         <div>
           <div class="header-title">🔍 Holy Week</div>
@@ -60,7 +60,7 @@
          </div>
          <button class="a11y-btn" id="a11y-btn-cases" onclick="showScreen('a11y')" aria-label="Accessibility settings">♿</button>
        </div>
-       <button class="back-btn" id="back-btn-map" onclick="showScreen('map')" aria-label="Back to city map">← City Map</button>
+       <button class="back-btn" id="back-btn-map" onclick="showScreen('map')" aria-label="Back to city events">← Events Map</button>
       <div class="cases-scroll" id="cases-scroll"></div>
     </div>
 
@@ -76,18 +76,22 @@
        <button class="back-btn" id="back-btn-cases" onclick="showScreen('cases')" aria-label="Back to case list">← Cases</button>
 
       <nav class="inv-tabs" role="tablist" aria-label="Investigation sections">
+        
         <button class="inv-tab active" role="tab" aria-selected="true" data-tab="scene" aria-controls="inv-scene"
           onclick="switchInvTab('scene')">
           <span class="inv-tab-icon" aria-hidden="true">🔎</span>Scene
         </button>
-        <button class="inv-tab" role="tab" aria-selected="false" data-tab="lab" aria-controls="inv-lab"
-          onclick="switchInvTab('lab')">
-          <span class="inv-tab-icon" aria-hidden="true">🧪</span>Lab
-        </button>
+
         <button class="inv-tab" role="tab" aria-selected="false" data-tab="people" aria-controls="inv-people"
           onclick="switchInvTab('people')">
           <span class="inv-tab-icon" aria-hidden="true">🗣</span>People
         </button>
+
+        <button class="inv-tab" role="tab" aria-selected="false" data-tab="lab" aria-controls="inv-lab"
+          onclick="switchInvTab('lab')">
+          <span class="inv-tab-icon" aria-hidden="true">🧪</span>Lab
+        </button>
+  
         <button class="inv-tab" role="tab" aria-selected="false" data-tab="accuse" aria-controls="inv-accuse"
           onclick="switchInvTab('accuse')">
           <span class="inv-tab-icon" aria-hidden="true">⚖️</span>Accuse
@@ -189,7 +193,21 @@
 
 </div><!-- #app -->
 
-   <!-- ══════════════ GAME COMPLETE MODAL ══════════════ -->
+<!-- ══════════════ LOCAL DIALOGUE MODAL ══════════════ -->
+     <div id="local-dialogue-box" role="dialog" aria-label="Conversation" aria-modal="true">
+       <div id="chat-panel">
+         <div class="chat-hdr">
+           <div>
+             <div class="chr" id="npc-name-display">NPC</div>
+             <div class="st">● ONLINE</div>
+           </div>
+         </div>
+         <div id="bub-scroll" role="log" aria-live="polite" aria-label="Dialogue messages"></div>
+         <div id="bar-choices" class="hide"></div>
+       </div>
+     </div>
+
+    <!-- ══════════════ GAME COMPLETE MODAL ══════════════ -->
    <div id="game-complete-modal" aria-label="Game Complete">
      <div class="game-complete-content">
        <div class="game-complete-title">🏆 Game Complete!</div>
@@ -206,42 +224,69 @@
      </div>
    </div>
 
-    <script type="module">
-     import { CaseManager } from "./caseManager.js";
-     import { EvidenceSystem } from "./evidenceSystem.js";
-     import { NPCSystem } from "./npcSystem.js";
-     import { DeductionEngine } from "./deductionEngine.js";
-     import { LocationSystem } from "./locationSystem.js";
-     import { AccessibilityManager } from "./accessibility.js";
-     import { LabUI } from "./labUI.js";
-     import { ChatUI } from "./chatUI.js";
-     import { act1CaseA, act1CaseB } from "./act1_case_improved.js";
-     import { act2CaseA, act2CaseB } from "./act2_case_improved.js";
-     import { act3CaseA, act3CaseB, act3CaseC } from "./act3_case_improved.js";
-     import { act4CaseA, act4CaseB } from "./act4_case_improved.js";
-      import { AudioManager } from "./audioManager.js";
+<!-- Load ink.js BEFORE module script -->
+    <script src="./plugins/ink.js"></script>
 
-      // ── Bootstrap ──────────────────────────────────────────────
-      const cm = new CaseManager();
-      cm.registerCase(act1CaseA);
-      cm.registerCase(act1CaseB)
-      cm.registerCase(act2CaseA);
-      cm.registerCase(act2CaseB);
-      cm.registerCase(act3CaseA);
-      cm.registerCase(act3CaseB);
-      cm.registerCase(act3CaseC);
-      cm.registerCase(act4CaseA);
-      cm.registerCase(act4CaseB);
+     <script type="module">
+      import { CaseManager } from "./caseManager.js";
+      import { EvidenceSystem } from "./evidenceSystem.js";
+      import { NPCSystem } from "./npcSystem.js";
+      import { DeductionEngine } from "./deductionEngine.js";
+      import { LocationSystem } from "./locationSystem.js";
+      import { AccessibilityManager } from "./accessibility.js";
+      import { LabUI } from "./labUI.js";
+      import { ChatUI } from "./chatUI.js";
+      import { DialogueManager } from "./dialogueManager.js";
+      import { act1CaseA, act1CaseB } from "./act1_case_improved.js";
+      import { act2CaseA, act2CaseB } from "./act2_case_improved.js";
+      import { act3CaseA, act3CaseB, act3CaseC } from "./act3_case_improved.js";
+      import { act4CaseA, act4CaseB } from "./act4_case_improved.js";
+       import { AudioManager } from "./audioManager.js";
 
-      const a11y = new AccessibilityManager();
-      a11y.restorePreferences();
+       // ── Bootstrap ──────────────────────────────────────────────
+       const cm = new CaseManager();
+       cm.registerCase(act1CaseA);
+       cm.registerCase(act1CaseB)
+       cm.registerCase(act2CaseA);
+       cm.registerCase(act2CaseB);
+       cm.registerCase(act3CaseA);
+       cm.registerCase(act3CaseB);
+       cm.registerCase(act3CaseC);
+       cm.registerCase(act4CaseA);
+       cm.registerCase(act4CaseB);
 
-      const es = new EvidenceSystem(cm);
-      const ns = new NPCSystem(cm, es);
-      const de = new DeductionEngine(cm, es);
-      const ls = new LocationSystem(cm);
-       const audio = new AudioManager();
-      window.checkGameComplete = function() {
+       const a11y = new AccessibilityManager();
+       a11y.restorePreferences();
+
+const es = new EvidenceSystem(cm);
+        const ns = new NPCSystem(cm, es);
+        const de = new DeductionEngine(cm, es);
+       const ls = new LocationSystem(cm);
+        const audio = new AudioManager();
+
+       // ── DialogueManager (Ink narrative system) ───────────────────────
+       const dm = new DialogueManager();
+       dm.setInkLib(window.inkjs);
+       
+       // Preload all NPC stories
+       const allNPCs = [];
+       cm.getAllCases().forEach(c => {
+         (c.npcs || []).forEach(npc => {
+           if (npc.hasDialogue && npc.storyFile && !allNPCs.some(existing => existing.id === npc.id)) {
+             allNPCs.push(npc);
+           }
+         });
+       });
+       
+       // Load stories in background
+       Promise.all(allNPCs.map(npc => dm.loadStoryForNPC(npc))).then(() => {
+         console.log('[Game] Loaded', allNPCs.length, 'NPC dialogue stories');
+       }).catch(e => console.warn('[Game] Some stories failed to load:', e));
+       
+       window.dm = dm; // Expose for ChatUI to use
+       window.es = es; // Expose for ChatUI to use
+
+       window.checkGameComplete = function() {
         const allCases = cm.getAllCases();
         const solvedCount = allCases.filter(c => cm.getCaseProgress(c.id)?.solved).length;
         if (solvedCount === allCases.length) {
@@ -425,7 +470,7 @@ const container = document.getElementById("map-locations");
       a11y.speak(`Case started: ${c.title}. ${c.intro}`);
     };
 
-    // ── Scene ───────────────────────────────────────────────────
+// ── Scene ───────────────────────────────────────────────────
     function renderScene() {
       const c = cm.getActiveCase();
       if (!c) return;
@@ -441,17 +486,14 @@ const container = document.getElementById("map-locations");
         const collected = es.collected.includes(e.id);
         return `
           <div
-            class="evidence-card ${collected ? 'collected' : ''}"
+            class="evidence-card ${collected ? 'collected' : 'locked'}"
             role="listitem"
-            tabindex="0"
-            aria-label="${e.name}, ${a11y.evidenceTypeLabel(e.type)}: ${e.desc}. ${collected ? 'Collected' : 'Tap to collect'}"
-            onclick="collectEvidence('${e.id}')"
-            onkeydown="if(event.key==='Enter'||event.key===' ')collectEvidence('${e.id}')"
+            aria-label="${e.name}, ${a11y.evidenceTypeLabel(e.type)}: ${e.desc}. ${collected ? 'Collected' : 'Locked - talk to witnesses to unlock'}"
           >
             <div class="evidence-card-icon" aria-hidden="true">${e.icon}</div>
             <div class="evidence-card-name">${e.name}</div>
             <div class="evidence-card-type">${a11y.evidenceTypeLabel(e.type)}</div>
-            ${!collected ? `<div class="evidence-card-new" aria-hidden="true">Tap</div>` : ""}
+            ${!collected ? `<div class="evidence-card-new" aria-hidden="true">Locked</div>` : ""}
           </div>`;
       }).join("")}
     </div>
@@ -459,36 +501,8 @@ const container = document.getElementById("map-locations");
     }
 
      window.collectEvidence = function (evidenceId) {
-       const e = es.getById(evidenceId);
-       if (!e) return;
-       const isNew = es.discover(evidenceId);
-       renderScene();
-
-       // Show detail
-       const view = document.getElementById("inv-scene");
-       let detail = view.querySelector(".evidence-detail");
-       if (detail) detail.remove();
-
-       detail = document.createElement("div");
-       detail.className = "evidence-detail";
-       detail.setAttribute("role", "status");
-       detail.setAttribute("aria-live", "polite");
-       detail.setAttribute("aria-label", `${e.name}: ${e.desc}. Found at ${e.location}`);
-       detail.innerHTML = `
-     <div class="evidence-detail-header">
-       <div class="evidence-detail-icon" aria-hidden="true">${e.icon}</div>
-       <div>
-         <div class="evidence-detail-name">${e.name}</div>
-         <div class="evidence-detail-location">📍 ${e.location}</div>
-       </div>
-     </div>
-     <div class="evidence-detail-desc">${a11y.simplify(e.desc)}</div>
-   `;
-       view.appendChild(detail);
-
-       if (isNew) a11y.speak(`New evidence: ${e.name}. ${e.desc}`);
-       else a11y.speak(`${e.name}: ${e.desc}`);
-       audio.playCollect(); // Play sound for collecting item
+       // Evidence is now collected via NPC dialogue only; this function disabled
+       a11y.speak("Talk to witnesses to unlock evidence.");
      };
 
     // ── Lab ─────────────────────────────────────────────────────
@@ -519,9 +533,14 @@ const container = document.getElementById("map-locations");
       chatUI.bindNPCEvents(npcPanel, chatFeed);
     }
 
-    function onChatAction() {
-      renderPeople();
-    }
+function onChatAction(result) {
+       renderPeople();
+       // If evidence was unlocked, refresh scene and lab
+       if (result?.type === "talk_complete" && result.unlocked > 0) {
+         renderScene();
+         renderLab();
+       }
+     }
 
     // ── Accuse ───────────────────────────────────────────────────
     function renderAccuse() {

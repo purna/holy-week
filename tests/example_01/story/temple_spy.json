@@ -1,0 +1,1 @@
+{"start": {"content": "Keep moving, scribe. Do not look at me directly. I am cataloging the faces near the treasury gates.", "choices": [{"text": "Who are you reporting these names to?", "destination": "closing"}, {"text": "Has anyone in his inner circle spoken to you?", "destination": "closing"}]}, "closing": {"content": "-> DONE", "choices": []}}

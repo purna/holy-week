@@ -1,0 +1,1 @@
+{"start": {"content": "The council chamber was closed to many of us tonight. Whatever decisions were made inside, they were final.", "choices": [{"text": "Will the council oppose?", "destination": "closing"}, {"text": "Where will you lay him?", "destination": "closing"}]}, "closing": {"content": "-> DONE", "choices": []}}

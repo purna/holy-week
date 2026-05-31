@@ -26,8 +26,8 @@
     href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Source+Code+Pro:wght@300;400;600&display=swap">
 
   <!-- ==========================================================================
-     2. MODULAR ARCHITECTURE STYLESHEETS
-     ========================================================================== -->
+      2. MODULAR ARCHITECTURE STYLESHEETS
+      ========================================================================== -->
   <link rel="stylesheet" href="styles/variables.css"> <!-- Theme colors, variables, typography, and base resets -->
   <link rel="stylesheet" href="styles/ui-layout.css">
   <!-- Core screen structure, grid-mesh overlay, and sidebar wireframes -->
@@ -35,6 +35,8 @@
   <!-- Active HUD sub-panels, items inventory, tracking meters, and radar -->
   <link rel="stylesheet" href="styles/components.css">
   <!-- Modals, screens, transitions, floating tags, and dialogue layouts -->
+
+
 
   <!-- Three.js Import Map Configuration: Resolves 'three' bare specifiers inside ES6 modules -->
   <script type="importmap">
@@ -56,7 +58,8 @@
   <div id="loading-screen" class="loading-screen">
     <div class="loading-inner">
       <h1 style="color: #fff; font-size: 3rem; margin-bottom: 5px; letter-spacing: 1px;">HOLY WEEK</h1>
-      <p id="loading-text" style="color: var(--text-muted); font-size: 0.85rem; text-transform: uppercase;">
+      <p id="loading-text" class="loading-text"
+        style="color: var(--text-muted); font-size: 0.85rem; text-transform: uppercase;">
         Loading investigation environment and evidence archives...
       </p>
 
@@ -130,7 +133,7 @@
     <i class="fa-solid fa-chevron-right"></i>
   </button>
 
-  
+
 
 
   <!-- ==========================================================================
@@ -164,10 +167,6 @@
           <i class="fa-solid fa-clipboard-list"></i> Analysis
         </button>
 
-        <!-- Environmental Directional Lighting Cycle Override (Day/Night) -->
-        <button id="btn-cycle-toggle" class="hud-row-btn" title="Toggle Day/Night">
-          <i class="fa-solid fa-sun"></i>
-        </button>
 
         <!-- Configuration Preferences Panel Trigger -->
         <button id="btn-open-settings" class="hud-row-btn" title="Settings">
@@ -243,15 +242,28 @@
      8. OVERLAY MODAL INTERFACES & BACKEND MODULES
      ========================================================================== -->
 
-  <!-- Cinematic Visual Novel Dialogue Sub-view System -->
+  <!-- ── WhatsApp-style NPC Dialogue Modal ── -->
   <div id="vn-overlay">
     <div id="vn-container">
-      <header id="vn-header">
-        <div id="vn-avatar">?</div>
-        <div id="vn-speaker-name">NPC Speaker</div>
-      </header>
-      <main id="bub-scroll"></main>
-      <footer id="bar-choices"></footer>
+
+      <!-- Header: avatar + name + close -->
+      <div class="vn-chat-hdr">
+        <div class="vn-hdr-left">
+          <div id="vn-avatar" class="vn-avatar-bubble">?</div>
+          <div>
+            <div id="vn-speaker-name" class="vn-chr">NPC</div>
+            <div class="vn-st" id="vn-status">● ONLINE</div>
+          </div>
+        </div>
+        <button id="vn-close-btn" class="vn-close-btn" title="End conversation">✕</button>
+      </div>
+
+      <!-- Scrollable message feed -->
+      <div id="bub-scroll"></div>
+
+      <!-- Choice pill buttons -->
+      <div id="bar-choices" class="vn-bar-choices hide"></div>
+
     </div>
   </div>
 
@@ -287,23 +299,37 @@
 
   <!-- Settings Configuration Engine Management Panel -->
   <div id="settings-overlay" class="overlay-mask" style="display:none; z-index:1000;">
-    <div class="modal-panel" style="max-width:400px; margin:auto; top:20%;">
+    <div class="modal-panel" style="max-width:420px; margin:auto; top:15%;">
       <header class="modal-header">
-        <h2 style="margin:0; font-size:1.1rem; color:var(--accent-primary);">System Preferences</h2>
+        <h2 style="margin:0; font-size:1.1rem; color:var(--accent-primary); font-family:'Cinzel',serif; letter-spacing:1px;">
+          <i class="fa-solid fa-sliders" style="margin-right:8px;"></i>SYSTEM PREFERENCES
+        </h2>
       </header>
-      <main class="modal-body" style="padding:15px 0;">
-        <label for="setting-bible-version" style="color:var(--text-muted); display:block; margin-bottom:8px;">
-          Bible Translation Engine:
-        </label>
-        <select id="setting-bible-version"
-          style="width:100%; background:#1a233a; color:#fff; border:1px solid rgba(255,255,255,0.1); padding:8px; border-radius:4px;">
-          <option value="NIV">New International Version (NIV)</option>
-          <option value="GNT">Good News Translation (GNT)</option>
-        </select>
+      <main class="modal-body" style="padding:20px 0;">
+        <div style="margin-bottom:18px;">
+          <label for="setting-bible-version" style="color:var(--accent-primary); display:block; margin-bottom:8px; font-size:0.75rem; letter-spacing:2px; text-transform:uppercase; font-family:'Cinzel',serif;">
+            Bible Translation
+          </label>
+          <select id="setting-bible-version"
+            style="width:100%; background:#0b141a; color:var(--text-main); border:1px solid rgba(100,255,218,0.2); padding:10px 14px; border-radius:3px; font-family:'Source Code Pro',monospace; font-size:0.9rem; appearance:none; cursor:pointer;">
+            <option value="web">World English Bible (WEB)</option>
+            <option value="kjv">King James Version (KJV)</option>
+            <option value="bbe">Bible in Basic English (BBE)</option>
+            <option value="oeb-us">Open English Bible (OEB)</option>
+          </select>
+          <p style="color:var(--text-muted); font-size:0.7rem; margin-top:6px; font-style:italic;">
+            Select translation for all scripture references
+          </p>
+        </div>
+        <div id="settings-saved-label" style="height:1rem; color:var(--accent-success); font-size:0.75rem; letter-spacing:1px;"></div>
       </main>
-      <footer style="display:flex; justify-content:flex-end; gap:10px; margin-top:15px;">
-        <button id="btn-close-settings" class="btn-primary terminal-btn">Cancel</button>
-        <button id="btn-save-settings" class="btn-primary">Save Setup</button>
+      <footer style="display:flex; justify-content:space-between; gap:10px; margin-top:10px; padding:0 4px;">
+        <button id="btn-close-settings" class="terminal-btn">
+          <i class="fa-solid fa-xmark"></i> Cancel
+        </button>
+        <button id="btn-save-settings" class="terminal-btn" style="background:var(--accent-primary); color:#000; border-color:var(--accent-primary);">
+          <i class="fa-solid fa-check"></i> Save
+        </button>
       </footer>
     </div>
   </div>
@@ -392,6 +418,7 @@
         this.evidenceMeshes = [];
         this.audioActive = true;
         this.currentDisplayPreference = 'emojis';
+        this.lockedEvidence = {};
 
         // Load the hardware/keyboard peripheral controller manager
         this.controls = new ControlsManager(this);
@@ -480,12 +507,6 @@
         // Bind core interface interactions
         this.bindGlobalUIEvents();
 
-        // Animate out the load gate screen smoothly on environment ready
-        setTimeout(() => {
-          const loader = document.getElementById('loading-screen');
-          if (loader) { loader.style.opacity = '0'; setTimeout(() => loader.style.display = 'none', 400); }
-        }, 1400);
-
         // Viewport Aspect-Ratio Mutation Calculation
         window.addEventListener('resize', () => {
           this.camera.aspect = window.innerWidth / window.innerHeight;
@@ -499,7 +520,12 @@
        * @description Hooks up event handlers to static persistent DOM elements.
        */
       bindGlobalUIEvents() {
-        document.getElementById('btn-open-map').onclick = () => { if (this.mapModal) this.mapModal.open(); };
+        document.getElementById('btn-open-map').onclick = () => {
+          if (!this.mapModal) {
+            this.mapModal = new OrbitalSelectMatrixModal(this.cm, (caseId) => this.loadCase(caseId));
+          }
+          this.mapModal.open();
+        };
 
         document.getElementById('btn-audio-toggle').onclick = () => {
           this.audioActive = !this.audioActive;
@@ -516,7 +542,7 @@
           this.a11y.toggle('sound');
         };
 
-        // UI Haptic Click Sound Hook: Catches event bubblings to trigger standard button feedbacks
+        // UI Haptic Click Sound Hook
         document.addEventListener('click', (e) => {
           if (e.target.tagName.toLowerCase() === 'button' || (e.target.tagName.toLowerCase() === 'input' && (e.target.type === 'button' || e.target.type === 'submit'))) {
             if (this.audio && typeof this.audio.playTalk === 'function') {
@@ -525,16 +551,17 @@
           }
         });
 
-        // Gateway Trigger: Executes opening transitions and initiates animation ticks
+        // Start button: close loading screen and open case-select menu
         document.getElementById('btn-start').onclick = () => {
-          document.getElementById('wipe-overlay').classList.add('active');
+          document.getElementById('loading-screen').classList.add('ready');
           setTimeout(() => {
             document.getElementById('loading-screen').style.display = 'none';
-            this.loadCase('triumphal_entry');
-            this.mapModal = new OrbitalSelectMatrixModal(this.cm, this.loadCase.bind(this));
-            this.animate();
-            document.getElementById('wipe-overlay').classList.remove('active');
-          }, 1000);
+            if (!this.mapModal) {
+              this.mapModal = new OrbitalSelectMatrixModal(this.cm, (caseId) => this.loadCase(caseId));
+            }
+            this.mapModal.open();
+            game.animate();
+          }, 400);
         };
       }
 
@@ -553,20 +580,35 @@
         this.cm.startCase(caseId);
         this.es.loadCase(caseData);
 
-        // Sync evidence from EvidenceSystem to collectedEvidence array
-        this.collectedEvidence = this.es.getCollected().map(e => ({
-          label: e.name,
-          description: e.desc || e.description || '',
-          icon: e.icon,
-          emoji: e.emoji,
-          iconFA: e.iconFA
-        }));
+        // Build a forensic evidence display hierarchy derived from the active case file.
+        this.collectedEvidence = [];
+        // All evidence in the locked pool is NOT yet available for selection
+        this.lockedEvidence = {};
+        caseData.evidencePool.forEach(item => {
+          this.lockedEvidence[item.id] = item;
+        });
+
+        // Evidence already in collected[] (from saved progress) counts as unlocked
+        this.es.collected.forEach(id => {
+          delete this.lockedEvidence[id];
+          const ev = this.es.getById(id);
+          if (ev) {
+            this.collectedEvidence.push({
+              label: ev.name,
+              description: ev.desc || ev.description || '',
+              icon: ev.icon,
+              emoji: ev.emoji,
+              iconFA: ev.iconFA
+            });
+          }
+        });
 
         // Garbage collection: Flush legacy meshes from WebGL memory
         this.npcMeshes.forEach(m => this.scene.remove(m));
         this.npcMeshes = [];
         this.evidenceMeshes.forEach(m => this.scene.remove(m));
         this.evidenceMeshes = [];
+        this.lockedEvidence = {};
 
         // Distribute case-specific NPC bounding boxes throughout coordinates
         caseData.npcs.forEach(npc => {
@@ -577,16 +619,14 @@
           this.npcMeshes.push(box);
         });
 
-        // Map and spawn active collectable physical evidence spheres
+        // Evidence starts LOCKED — only spawned into 3D world after an NPC unlocks it via dialogue.
         caseData.evidencePool.forEach(item => {
-          const sphere = new THREE.Mesh(
-            new THREE.SphereGeometry(0.5, 16, 16),
-            new THREE.MeshStandardMaterial({ color: 0xffaa00, emissive: 0xffaa00, emissiveIntensity: 0.5 })
-          );
-          sphere.position.set(item.pos[0], item.pos[1], item.pos[2]);
-          sphere.userData = { dataRef: item };
-          this.scene.add(sphere);
-          this.evidenceMeshes.push(sphere);
+          this.lockedEvidence[item.id] = item;
+        });
+
+        // Any evidence already in collected[] (from saved progress) is not locked
+        this.es.collected.forEach(id => {
+          delete this.lockedEvidence[id];
         });
 
         this.updateHUD(caseData);
@@ -605,7 +645,8 @@
 
         const q = caseData.quest;
         document.getElementById('quest-title').innerText = q.name;
-        document.getElementById('quest-task').innerText = `${q.task} (${q.cur}/${q.tar})`;
+        document.getElementById('quest-task').innerText =
+          `${q.task} (${q.cur}/${q.tar}) — Talk to NPCs to reveal evidence`;
         document.getElementById('quest-progress').style.width = `${(q.cur / q.tar) * 100}%`;
 
         // Parse and render historical texts with attached BibleReader module API action triggers
@@ -658,7 +699,7 @@
 
       /**
        * @method updateEvidenceGrid
-       * @description Populates inventory item slots following accessibility display criteria rules.
+       * @description Populates inventory item slots — only shows evidence that has been unlocked and collected this session.
        */
       updateEvidenceGrid() {
         const grid = document.getElementById('evidence-slots-grid');
@@ -702,67 +743,343 @@
 
       /**
        * @method startDialogue
-       * @description Shifts core state context over to the cinematic visual novel sub-layer overlay view.
-       * @param {Object} npcConfig - Target NPC structural attributes and branch mappings.
+       * @description Opens the WhatsApp-style chat modal for an NPC and begins the conversation.
+       * Conversations are branching: each player choice can unlock evidence items.
+       * @param {Object} npcConfig - NPC config object with .dialogue, .reactions, .avatar, .name
        */
       startDialogue(npcConfig) {
         this.inDialogue = true;
         this.pVelocity.set(0, 0, 0);
 
-        const overlay = document.getElementById('vn-overlay');
-        const scroll = document.getElementById('bub-scroll');
-        const choices = document.getElementById('bar-choices');
-
+        // Populate header
         document.getElementById('vn-speaker-name').innerText = npcConfig.name;
         document.getElementById('vn-avatar').innerText = npcConfig.avatar || '?';
-        this.audio.playTalk();
+        document.getElementById('vn-status').textContent = '● ONLINE';
 
+        // Reset chat feed
+        const scroll = document.getElementById('bub-scroll');
+        const choices = document.getElementById('bar-choices');
         scroll.innerHTML = '';
         choices.innerHTML = '';
+        choices.classList.add('hide');
 
+        // Wire up close button
+        const closeBtn = document.getElementById('vn-close-btn');
+        closeBtn.onclick = () => this._closeDialogue(npcConfig);
+
+        // Show overlay
+        const overlay = document.getElementById('vn-overlay');
         overlay.classList.add('active');
-        requestAnimationFrame(() => {
-          requestAnimationFrame(() => overlay.classList.add('fade-in-complete'));
-        });
 
-        setTimeout(() => this.renderDialogue(npcConfig), 350);
+        if (this.audio) this.audio.playTalk();
+
+        // System handshake then first NPC line
+        setTimeout(() => {
+          this._addMsg('SECURE CONNECTION ESTABLISHED.', 'system');
+          setTimeout(() => this._npcTypeThen(() => {
+            // NPC opens with neutral line
+            const openLine = npcConfig.dialogue.neutral || 'I have nothing to say.';
+            this._addMsg(openLine, 'npc');
+            setTimeout(() => this._renderChoices(npcConfig, 'initial'), 400);
+          }, npcConfig.name), 400);
+        }, 300);
       }
 
       /**
-       * @method renderDialogue
-       * @description Generates chat nodes and structural response options into the dialogue view container.
-       * @param {Object} npcConfig - Target NPC structural attributes and branch mappings.
+       * Build the choice buttons for a given conversation stage.
+       * Stages: 'initial' → ask about evidence → 'followup' → deeper probing → 'closing'
        */
-      renderDialogue(npcConfig) {
-        const scroll = document.getElementById('bub-scroll');
+      _renderChoices(npcConfig, stage) {
         const choices = document.getElementById('bar-choices');
-        const state = this.nearestNPC ? (this.nearestNPC.userData.state || 'neutral') : 'neutral';
+        choices.innerHTML = '';
+        choices.classList.remove('hide');
 
-        const dialogue = npcConfig.dialogue[state] || npcConfig.dialogue.neutral;
-        const bubble = document.createElement('div');
-        bubble.className = 'chat-bubble incoming';
-        bubble.innerText = dialogue;
-        scroll.appendChild(bubble);
-        scroll.scrollTop = scroll.scrollHeight;
+        const caseData = this.cm.cases[this.activeCaseId];
+        const npcState = this.nearestNPC ? (this.nearestNPC.userData.state || 'neutral') : 'neutral';
 
-        const optionKeys = Object.keys(npcConfig.dialogue);
-        const options = optionKeys.filter(k => k !== state && k !== 'repeat').slice(0, 3);
+        if (stage === 'initial') {
+          // Build options from dialogue keys (cautious / pressured / exposed) + evidence reactions
+          const dialogueOptions = Object.keys(npcConfig.dialogue)
+            .filter(k => !['neutral', 'repeat'].includes(k))
+            .slice(0, 2)
+            .map(k => ({
+              label: this._dialogueKeyLabel(k),
+              action: () => this._playerChoosesDialogue(npcConfig, k)
+            }));
 
-        options.forEach(opt => {
-          const btn = document.createElement('button');
-          btn.className = 'choice-btn';
-          btn.innerText = `→ ${opt.charAt(0).toUpperCase() + opt.slice(1)}`;
-          btn.onclick = () => {
-            if (this.nearestNPC) this.nearestNPC.userData.state = opt;
-            document.getElementById('vn-overlay').classList.remove('fade-in-complete');
-            setTimeout(() => {
-              document.getElementById('vn-overlay').classList.remove('active');
-              this.inDialogue = false;
-              this.updateActions(this.cm.cases[this.activeCaseId]);
-            }, 350);
+          // Add "Ask about evidence" options for each unlocked-but-not-yet-collected evidence item this NPC reacts to
+          const reactionEvidenceIds = Object.keys(npcConfig.reactions || {});
+          const availableIds = reactionEvidenceIds.filter(eid => !this.lockedEvidence[eid]);
+          const askOptions = availableIds
+            .slice(0, 2)
+            .map(eid => {
+              const ev = this.es.getById(eid);
+              return {
+                label: `Show ${ev ? ev.name : eid}`,
+                evidenceHint: ev ? ev.icon : '🔍',
+                action: () => this._playerShowsEvidence(npcConfig, eid)
+              };
+            });
+
+          const allOptions = [...dialogueOptions, ...askOptions];
+
+          if (allOptions.length === 0) {
+            this._addCloseBtn(npcConfig);
+            return;
+          }
+
+          allOptions.forEach(opt => {
+            const btn = document.createElement('button');
+            btn.className = 'choice-btn';
+            btn.innerHTML = `→ ${opt.label}${opt.evidenceHint ? `<span class="evidence-hint">${opt.evidenceHint} Show evidence</span>` : ''}`;
+            btn.onclick = () => {
+              choices.classList.add('hide');
+              opt.action();
+            };
+            choices.appendChild(btn);
+          });
+
+          // Always offer a way to probe deeper or close
+          const probeBtn = document.createElement('button');
+          probeBtn.className = 'choice-btn';
+          probeBtn.innerHTML = '→ Press harder';
+          probeBtn.onclick = () => {
+            choices.classList.add('hide');
+            this._playerChoosesDialogue(npcConfig, 'pressured');
           };
-          choices.appendChild(btn);
-        });
+          choices.appendChild(probeBtn);
+
+        } else if (stage === 'followup') {
+          // After NPC has been pressed: offer to show remaining evidence or close
+          const reactionEvidenceIds = Object.keys(npcConfig.reactions || {});
+          const allPoolIds = (caseData?.evidencePool || []).map(e => e.id);
+          // Show options for evidence the NPC reacts to that's in the pool but NOT yet collected
+          const uncollected = reactionEvidenceIds
+            .filter(eid => allPoolIds.includes(eid) && !this.es.getCollected().some(e => e.id === eid))
+            .slice(0, 3);
+
+          if (uncollected.length > 0) {
+            const hint = document.createElement('div');
+            hint.className = 'msg system';
+            hint.textContent = `${npcConfig.name} might know something about nearby evidence...`;
+            document.getElementById('bub-scroll').appendChild(hint);
+          }
+
+          // Deep-press option → exposed state
+          if (npcConfig.dialogue.exposed && npcState !== 'exposed') {
+            const deepBtn = document.createElement('button');
+            deepBtn.className = 'choice-btn';
+            deepBtn.innerHTML = '→ I think you\'re hiding something';
+            deepBtn.onclick = () => {
+              choices.classList.add('hide');
+              this._playerChoosesDialogue(npcConfig, 'exposed');
+            };
+            choices.appendChild(deepBtn);
+          }
+
+          this._addCloseBtn(npcConfig);
+
+        } else {
+          this._addCloseBtn(npcConfig);
+        }
+      }
+
+      /** Player picks a dialogue branch → NPC responds, possible evidence unlock */
+      _playerChoosesDialogue(npcConfig, key) {
+        const playerLine = this._playerLineForKey(key);
+        this._addMsg(playerLine, 'player');
+
+        if (this.nearestNPC) this.nearestNPC.userData.state = key;
+
+        const npcLine = npcConfig.dialogue[key] || npcConfig.dialogue.neutral;
+
+        // Check if this response reveals a clue via reactions
+        // Some dialogues have a revealedClue on a matching reaction
+        const revealedFromDialogue = this._checkDialogueReveal(npcConfig, key);
+
+        setTimeout(() => {
+          this._npcTypeThen(() => {
+            this._addMsg(npcLine, 'npc');
+            if (revealedFromDialogue) {
+              setTimeout(() => this._unlockEvidence(revealedFromDialogue), 400);
+            }
+            setTimeout(() => this._renderChoices(npcConfig, 'followup'), 500);
+          }, npcConfig.name);
+        }, 300);
+      }
+
+      /** Player shows a piece of collected evidence to NPC → reaction + possible new evidence unlock */
+      _playerShowsEvidence(npcConfig, evidenceId) {
+        const ev = this.es.getById(evidenceId);
+        this._addMsg(`${ev ? ev.icon + ' ' : ''}Show: ${ev ? ev.name : evidenceId}`, 'player');
+
+        const reaction = npcConfig.reactions?.[evidenceId];
+        const reactionText = reaction?.text || npcConfig.dialogue.repeat || 'I have nothing to add about that.';
+        const revealedClue = reaction?.revealedClue || null;
+
+        setTimeout(() => {
+          this._npcTypeThen(() => {
+            this._addMsg(reactionText, 'npc');
+            if (revealedClue) {
+              setTimeout(() => this._unlockEvidence(revealedClue), 500);
+            }
+            // Update NPC pressure if it was a lie
+            if (reaction?.isLie && this.nearestNPC) {
+              const state = this.nearestNPC.userData.npcState || { pressureLevel: 0 };
+              state.pressureLevel = Math.min(100, (state.pressureLevel || 0) + 25);
+              this.nearestNPC.userData.npcState = state;
+              if (state.pressureLevel >= 50) this.nearestNPC.userData.state = 'pressured';
+            }
+            setTimeout(() => this._renderChoices(npcConfig, 'followup'), 500);
+          }, npcConfig.name);
+        }, 300);
+      }
+
+      /** 
+       * Unlock a piece of evidence: registers it as unlocked, then spawns a glowing sphere
+       * in the 3D world at its defined position. The player must walk to it to pick it up.
+       */
+      _unlockEvidence(evidenceId) {
+        const ev = this.lockedEvidence?.[evidenceId];
+        if (!ev) return;                                      // already unlocked or unknown
+        if (this.es.isCollected(evidenceId)) return;          // already collected
+
+        // Register unlock in evidenceSystem (syncs lockedEvidence, collected, HUD)
+        const unlocked = this.es.unlock(evidenceId);
+        if (!unlocked) return;
+
+        // Remove from locked registry
+        delete this.lockedEvidence[evidenceId];
+
+        // Spawn the glowing sphere at the evidence's world position
+        const sphere = new THREE.Mesh(
+          new THREE.SphereGeometry(0.5, 16, 16),
+          new THREE.MeshStandardMaterial({
+            color: 0x00ffaa,
+            emissive: 0x00ffaa,
+            emissiveIntensity: 0.8,
+          })
+        );
+        sphere.position.set(ev.pos[0], ev.pos[1], ev.pos[2]);
+        sphere.userData = { dataRef: ev, newlyUnlocked: true };
+        this.scene.add(sphere);
+        this.evidenceMeshes.push(sphere);
+
+        // Pulse animation: briefly scale up then normalise
+        let pulse = 0;
+        const pulseFn = () => {
+          pulse++;
+          const s = 1 + Math.sin(pulse * 0.15) * 0.3;
+          sphere.scale.setScalar(s);
+          if (pulse < 80) requestAnimationFrame(pulseFn);
+          else sphere.scale.setScalar(1);
+        };
+        requestAnimationFrame(pulseFn);
+
+        // Show unlock notification in chat
+        this._addMsg(`🔍 EVIDENCE REVEALED: ${ev.icon} ${ev.name} — go collect it in the world!`, 'evidence-unlock');
+
+        // Screen alert
+        this.controls?.displayAlert(`Evidence revealed: ${ev.name}`);
+
+        // If investigation board is open, refresh it so the new evidence appears immediately
+        if (typeof window.renderInvestigationBoard === 'function') {
+          window.renderInvestigationBoard();
+        }
+      }
+
+      /** Add a close-conversation button */
+      _addCloseBtn(npcConfig) {
+        const choices = document.getElementById('bar-choices');
+        choices.classList.remove('hide');
+        const btn = document.createElement('button');
+        btn.className = 'choice-btn';
+        btn.innerHTML = '→ End conversation';
+        btn.onclick = () => this._closeDialogue(npcConfig);
+        choices.appendChild(btn);
+      }
+
+      /** Close the dialogue modal */
+      _closeDialogue(npcConfig) {
+        const overlay = document.getElementById('vn-overlay');
+        overlay.classList.remove('active');
+        setTimeout(() => {
+          document.getElementById('bub-scroll').innerHTML = '';
+          document.getElementById('bar-choices').innerHTML = '';
+          document.getElementById('bar-choices').classList.add('hide');
+        }, 300);
+        this.inDialogue = false;
+        this.updateActions(this.cm.cases[this.activeCaseId]);
+      }
+
+      // ── Dialogue helpers ─────────────────────────────────────────────────────
+
+      /** Add a bubble to #bub-scroll */
+      _addMsg(text, type) {
+        const scroll = document.getElementById('bub-scroll');
+        const el = document.createElement('div');
+        el.className = 'msg ' + type;
+        el.textContent = text;
+        scroll.appendChild(el);
+        scroll.scrollTop = scroll.scrollHeight;
+      }
+
+      /** Show typing dots then call cb() after short delay */
+      _npcTypeThen(cb, npcName) {
+        const scroll = document.getElementById('bub-scroll');
+        const row = document.createElement('div');
+        row.className = 'typing-row';
+        row.innerHTML =
+          '<div class="dot"></div><div class="dot"></div><div class="dot"></div>' +
+          `<span class="typing-lbl">${npcName || 'NPC'} is typing…</span>`;
+        scroll.appendChild(row);
+        scroll.scrollTop = scroll.scrollHeight;
+        setTimeout(() => { row.remove(); cb(); }, 650 + Math.random() * 300);
+      }
+
+      /** Friendly label for dialogue state keys */
+      _dialogueKeyLabel(key) {
+        const map = {
+          cautious: 'Ask a careful question',
+          pressured: 'Press for more details',
+          exposed: 'Confront them directly',
+          friendly: 'Speak warmly',
+        };
+        return map[key] || key.charAt(0).toUpperCase() + key.slice(1);
+      }
+
+      /** What does the player say when choosing a branch */
+      _playerLineForKey(key) {
+        const map = {
+          cautious: 'Can you tell me more about what happened?',
+          pressured: 'I need the full truth. Something doesn\'t add up.',
+          exposed: 'I believe you\'re not being entirely honest with me.',
+          friendly: 'Thank you — I appreciate your honesty.',
+        };
+        return map[key] || `Ask about: ${key}`;
+      }
+
+      /**
+       * Some dialogue branches have implicit evidence reveals baked into reactions.
+       * Scan reactions for any that have revealedClue tied to this dialogue key context.
+       */
+      _checkDialogueReveal(npcConfig, key) {
+        // Look through reactions for one matching this dialogue key as a hint
+        const reactions = npcConfig.reactions || {};
+        for (const [eid, reaction] of Object.entries(reactions)) {
+          if (reaction.revealedClue && reaction._dialogueTrigger === key) {
+            return reaction.revealedClue;
+          }
+        }
+        // For 'exposed' state: automatically surface the first un-collected reaction evidence
+        if (key === 'exposed') {
+          for (const [eid, reaction] of Object.entries(reactions)) {
+            if (reaction.revealedClue && !this.es.collected.includes(reaction.revealedClue)) {
+              return reaction.revealedClue;
+            }
+          }
+        }
+        return null;
       }
 
       advanceQuest(amount) {
@@ -785,19 +1102,19 @@
 
         document.getElementById('vn-speaker-name').innerText = "Make Accusation";
         document.getElementById('vn-avatar').innerText = "⚖️";
+        document.getElementById('vn-status').textContent = '● JUDGEMENT';
 
         scroll.innerHTML = '';
         choices.innerHTML = '';
+        choices.classList.remove('hide');
 
-        const bubble = document.createElement('div');
-        bubble.className = 'chat-bubble system';
-        bubble.innerText = "All evidence collected. Who do you accuse?";
-        scroll.appendChild(bubble);
+        this._addMsg("SECURE CONNECTION ESTABLISHED.", 'system');
+        this._addMsg("All evidence collected. Who do you accuse?", 'npc');
 
         caseData.suspects.forEach(s => {
           const btn = document.createElement('button');
           btn.className = 'choice-btn';
-          btn.innerHTML = `<span>${s.avatar || '👤'} ${s.name}</span><small>${s.role}</small>`;
+          btn.innerHTML = `<span>${s.avatar || '👤'} ${s.name}</span><small style="display:block;font-size:.7rem;color:#8696a0;margin-top:2px;">${s.role}</small>`;
           btn.onclick = () => {
             const correct = s.id === caseData.truth.culprit;
             this.endInvestigation(correct, s.name);
@@ -805,10 +1122,8 @@
           choices.appendChild(btn);
         });
 
+        this.inDialogue = true;
         overlay.classList.add('active');
-        requestAnimationFrame(() => {
-          requestAnimationFrame(() => overlay.classList.add('fade-in-complete'));
-        });
       }
 
       /**
@@ -823,32 +1138,29 @@
           ? `Correct! ${accusedName} was guilty.`
           : `${accusedName} was innocent. The real culprit was ${caseData.truth.culprit}.`;
 
-        const overlay = document.getElementById('vn-overlay');
         const scroll = document.getElementById('bub-scroll');
         const choices = document.getElementById('bar-choices');
 
-        scroll.innerHTML = '';
         choices.innerHTML = '';
+        choices.classList.remove('hide');
 
-        const resultBubble = document.createElement('div');
-        resultBubble.className = correct ? 'chat-bubble system' : 'chat-bubble incoming';
-        resultBubble.innerHTML = `<strong>${correct ? 'SUCCESS' : 'WRONG'}</strong>: ${message}<br><br><em>${caseData.truth.lesson}</em>`;
+        this._addMsg(message, correct ? 'evidence-unlock' : 'npc');
+        this._addMsg(caseData.truth.lesson, 'system');
 
         if (correct) this.audio.playComplete();
         else this.audio.playError();
-
-        scroll.appendChild(resultBubble);
 
         const restartBtn = document.createElement('button');
         restartBtn.className = 'choice-btn';
         restartBtn.innerText = '→ New Investigation';
         restartBtn.onclick = () => {
-          document.getElementById('vn-overlay').classList.remove('fade-in-complete');
+          const overlay = document.getElementById('vn-overlay');
+          overlay.classList.remove('active');
           setTimeout(() => {
-            document.getElementById('vn-overlay').classList.remove('active');
+            this.inDialogue = false;
             document.getElementById('end-screen').style.display = 'flex';
             setTimeout(() => document.getElementById('end-screen').style.opacity = '1', 50);
-          }, 350);
+          }, 300);
         };
         choices.appendChild(restartBtn);
       }
@@ -886,7 +1198,11 @@
           npcPrompt.style.left = `${x}px`;
           npcPrompt.style.top = `${y}px`;
           npcPrompt.style.display = 'flex';
-          document.getElementById('inworld-npc-btn').onclick = () => this.startDialogue(this.nearestNPC.userData.config);
+
+          const npcBtn = document.getElementById('inworld-npc-btn');
+          const npcName = this.nearestNPC.userData.config?.name || 'NPC';
+          npcBtn.innerHTML = `<i class="fa-solid fa-comments"></i> Talk to <strong>${npcName}</strong> <small>[E]</small>`;
+          npcBtn.onclick = () => this.startDialogue(this.nearestNPC.userData.config);
         } else {
           npcPrompt.style.display = 'none';
         }
@@ -910,7 +1226,8 @@
           collPrompt.style.top = `${y}px`;
           collPrompt.style.display = 'flex';
           const data = nearestItem.userData.dataRef;
-          document.getElementById('inworld-collectable-msg').textContent = data.name || 'NEARBY COLLECTABLE';
+          document.getElementById('inworld-collectable-msg').textContent =
+            (nearestItem.userData.newlyUnlocked ? '✨ NEW — ' : '') + (data.name || 'NEARBY COLLECTABLE');
         } else {
           collPrompt.style.display = 'none';
         }
@@ -964,22 +1281,36 @@
 
       /**
        * @method collectEvidence
-       * @description AABB/Proximity intersection loop monitoring active item positions to manage pick-ups.
+       * @description AABB/Proximity intersection loop — only collects evidence that has been
+       * unlocked via NPC dialogue. Locked evidence does not exist as a sphere in the scene.
+       * Shows a hint when the player is near a locked evidence spot.
        */
       collectEvidence() {
+        // Check for nearby locked evidence spots — show a ghost hint
+        if (this.lockedEvidence && Object.keys(this.lockedEvidence).length > 0) {
+          for (const [eid, ev] of Object.entries(this.lockedEvidence)) {
+            if (!ev.pos) continue;
+            const evPos = new THREE.Vector3(ev.pos[0], ev.pos[1], ev.pos[2]);
+            const dist = this.pPos.distanceTo(evPos);
+            if (dist < 3.5) {
+              this.controls.displayAlert(`🔒 Locked — talk to NPCs to reveal: ${ev.name}`, 3000);
+              break;
+            }
+          }
+        }
+
         for (let i = this.evidenceMeshes.length - 1; i >= 0; i--) {
           const item = this.evidenceMeshes[i];
           if (this.pPos.distanceTo(item.position) < 2) {
             const data = item.userData.dataRef;
-            if (!this.es.collected.includes(data.id)) {
-              this.es.collected.push(data.id);
-              this.cm.recordEvidenceFound(data.id);
+            const unlocked = this.es.unlock(data.id);
+            if (unlocked) {
               this.collectedEvidence.push({
-                label: data.name,
-                description: data.desc || data.description || '',
-                icon: data.icon,
-                emoji: data.emoji,
-                iconFA: data.iconFA
+                label: unlocked.name,
+                description: unlocked.desc || unlocked.description || '',
+                icon: unlocked.icon,
+                emoji: unlocked.emoji,
+                iconFA: unlocked.iconFA
               });
             }
             this.scene.remove(item);
@@ -1061,14 +1392,20 @@
 
           if (x >= 0 && x <= 110 && y >= 0 && y <= 110) {
             const blip = document.createElement('div');
-            blip.className = 'minimap-blip collectable';
+            const isNew = item.userData.newlyUnlocked;
+            blip.className = 'minimap-blip collectable' + (isNew ? ' newly-unlocked' : '');
             blip.style.left = `${x}px`;
             blip.style.top = `${y}px`;
+            blip.title = item.userData.dataRef?.name || 'Evidence';
+            if (isNew) {
+              blip.textContent = 'NEW';
+              blip.style.cssText = `left:${x}px;top:${y}px;position:absolute;width:28px;height:14px;background:#00ffaa;color:#000;font-size:9px;font-weight:900;border-radius:2px;display:flex;align-items:center;justify-content:center;pointer-events:auto;z-index:552;letter-spacing:.5px;box-shadow:0 0 8px #00ffaa;`;
+            }
             blipContainer.appendChild(blip);
           }
         });
       }
-}
+    }
 
     // ==========================================================================
     // 14. SETTINGS ENGINE INITIALIZATION HOOKS
@@ -1076,7 +1413,7 @@
     const game = new GameEngine();
     window.a11y = game.a11y;
 
-    document.addEventListener('DOMContentLoaded', () => {
+    (function domInit() {
       const settingsOverlay = document.getElementById('settings-overlay');
       const bibleVersionSelect = document.getElementById('setting-bible-version');
 
@@ -1100,7 +1437,15 @@
 
       if (document.getElementById('btn-save-settings')) {
         document.getElementById('btn-save-settings').onclick = () => {
-          window.BibleReader.updateTranslation(bibleVersionSelect.value);
+          const bibleVersionSelect = document.getElementById('setting-bible-version');
+          if (window.BibleReader && typeof window.BibleReader.updateTranslation === 'function') {
+            window.BibleReader.updateTranslation(bibleVersionSelect.value);
+            const savedLabel = document.getElementById('settings-saved-label');
+            if (savedLabel) {
+              savedLabel.textContent = 'Saved';
+              setTimeout(() => { savedLabel.textContent = ''; }, 1500);
+            }
+          }
           settingsOverlay.classList.remove('fade-in-complete');
           setTimeout(() => {
             settingsOverlay.classList.remove('active');
@@ -1109,7 +1454,6 @@
         };
       }
 
-      // Investigation Board Initialization
       const invBoardOverlay = document.getElementById('inv-board-overlay');
       const invBoardContent = document.getElementById('inv-board-content');
       const btnInvBoardToggle = document.getElementById('btn-inv-board-toggle');
@@ -1130,21 +1474,16 @@
         }, 350);
       };
 
-      // LabUI Instance for the Investigation Board
-      let labUIInstance = null;
-
-      window.renderInvestigationBoard = function() {
+      window.renderInvestigationBoard = function () {
         const labUI = new LabUI(game.de, game.es, game.a11y, (result) => {
           if (result && result.type === 'selection') {
             window.renderInvestigationBoard();
           }
         });
-
         invBoardContent.innerHTML = labUI.render();
         labUI.bindEvents(invBoardContent);
-        labUIInstance = labUI;
       };
-    });
+    })();
 
     game.init();
   </script>
