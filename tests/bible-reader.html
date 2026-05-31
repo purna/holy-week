@@ -374,7 +374,7 @@
     <div class="page-header">
         <div class="ornament">✦ ✦ ✦</div>
         <h1>Scripture Reader</h1>
-        <p class="subtitle">Navigate the Word, verse by verse</p>
+        <p class="subtitle">Navigate the Word, verse by byte</p>
     </div>
 
     <div class="controls-bar">
@@ -418,7 +418,8 @@
     // ── API Config ──────────────────────────────────────────────────────────────
     const API = {
         key: '40uwrV5VD_g7dxygwU-WK',
-        base: 'https://api.bible/v1',
+        base: 'https://rest.api.bible/v1', // Updated to the correct official API.Bible domain
+        proxy: 'https://cors-anywhere.herokuapp.com/', // CORS wrapper to append access control headers
         bibles: {
             NIV: 'de4e12af7c28f528-02',
             GNT: 'c3154be53a35ca34-01',
@@ -450,7 +451,9 @@
 
     // ── Fetch helpers ────────────────────────────────────────────────────────────
     async function fetchVerse(verseId) {
-        const url = `${API.base}/bibles/${state.bibleId()}/verses/${verseId}?content-type=text&include-verse-numbers=false`;
+        const targetUrl = `${API.base}/bibles/${state.bibleId()}/verses/${verseId}?content-type=text&include-verse-numbers=false`;
+        const url = API.proxy + targetUrl; // Prepend proxy to bypass browser-side CORS policies
+        
         const r = await fetch(url, { headers: { 'api-key': API.key } });
         if (!r.ok) throw new Error(`${r.status} – ${r.statusText}`);
         const j = await r.json();
@@ -458,7 +461,9 @@
     }
 
     async function fetchPassage(passageId) {
-        const url = `${API.base}/bibles/${state.bibleId()}/passages/${passageId}?content-type=text&include-verse-numbers=true`;
+        const targetUrl = `${API.base}/bibles/${state.bibleId()}/passages/${passageId}?content-type=text&include-verse-numbers=true`;
+        const url = API.proxy + targetUrl; // Prepend proxy to bypass browser-side CORS policies
+        
         const r = await fetch(url, { headers: { 'api-key': API.key } });
         if (!r.ok) throw new Error(`${r.status} – ${r.statusText}`);
         const j = await r.json();
