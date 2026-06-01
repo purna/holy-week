@@ -1,18 +1,14 @@
 -> start
 === start ===
-You trace my steps with your ink and your parchment, little scribe. You think you are tracking a simple exchange of silver.
-You have no understanding of what it means to watch three years of momentum evaporate into poetry and feet-washing. 
-We were supposed to hold the gates of the city! Now he speaks of tombs and broken bread. Someone must force his hand to action.
-* [Is it silver or disappointment that drives you to the temple gates?] -> motives
-* [The others cross the table are watching you, Judas.] -> suspicion
-
-=== motives ===
-Silver is a ledger entry. Disappointment is a fire. If he is the King, the soldiers will not be able to bind him in the garden. Let the system test him.
--> closing
-
-=== suspicion ===
-Let them look. John dreams of symbols, and Peter dreams of swords. Neither of them sees the net closing over this upper room before the sun rises.
--> closing
-
+You trace my steps with your ink and your parchment, little scribe. You think you are tracking a simple exchange of silver. You have no understanding of what it means to watch three years of momentum evaporate into poetry and feet-washing. We were supposed to hold the gates of the city! Now he speaks of tombs and broken bread. Someone must force his hand to action.
+* [You sold Him for thirty pieces.] -> thirty
+* [You regret it.] -> regret
+=== thirty ===
+Thirty pieces of silver. The price of a slave. That is what the Temple assessed the Son of God to be worth. And they paid me to deliver Him.
+* [Why did you take it?] -> regret
+=== regret ===
+I watched three years of expectation curdle into disappointment. The Messiah was supposed to be a king. Instead He washed feet. Instead He spoke of dying. The Zealots wanted a general. I wanted a winner. I was wrong.
+* [What happened to the money?] -> closing
 === closing ===
+Silver is a ledger entry. Disappointment is a fire. The Temple priests counted it out. I took it. And then I saw Him look at me from across the courtyard. I threw the silver at them and ran.
 -> DONE

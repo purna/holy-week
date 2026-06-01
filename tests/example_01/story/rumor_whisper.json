@@ -1,1 +1,37 @@
-{"start": {"content": "(A nervous citizen glances sideways before leaning close.) Last Sabbath a man blind from birth walked out of the Pool of Bethesda and now says he sees. The Pharisees asked for details. He said, 'I was blind. Now I can see.' I will not say my name, but you should find him and ask.", "choices": [{"text": "I will speak to the man who now sees.", "destination": "seeker"}, {"text": "Tell me exactly what happened.", "destination": "reluctant"}]}, "seeker": {"content": "", "choices": [{"text": "I will speak to the man who now sees.", "destination": "closing"}]}, "reluctant": {"content": "", "choices": [{"text": "Tell me exactly what happened.", "destination": "closing"}]}, "closing": {"content": "-> DONE", "choices": []}}
+{
+  "start": {
+    "content": "(A nervous citizen glances sideways before leaning close.) Last Sabbath a man blind from birth walked out of the Pool of Bethesda and now says he sees. The Pharisees asked for details. He said, \"I was blind. Now I can see.\" I will not say my name, but you should find him and ask.",
+    "choices": [
+      {
+        "text": "Why are you telling me this?",
+        "destination": "nervous_tell"
+      },
+      {
+        "text": "The Pharisees didn't believe him?",
+        "destination": "pharisee_response"
+      }
+    ]
+  },
+  "nervous_tell": {
+    "content": "Because what happened at that pool was not natural. The man had been blind since birth \u2014 the disciples themselves had asked Jesus about him once. Now he's seeing. The Pharisees want the story buried.",
+    "choices": [
+      {
+        "text": "What did they do?",
+        "destination": "pharisee_response"
+      }
+    ]
+  },
+  "pharisee_response": {
+    "content": "They questioned him closely. Not about the healing \u2014 about the voice. They wanted to know who spoke to him. He said \"the man they call Jesus.\" They didn't like that answer.",
+    "choices": [
+      {
+        "text": "And then?",
+        "destination": "closing"
+      }
+    ]
+  },
+  "closing": {
+    "content": "The conversation is over. Go in peace.",
+    "choices": []
+  }
+}

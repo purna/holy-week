@@ -63,8 +63,8 @@
         Loading investigation environment and evidence archives...
       </p>
 
-      <p class="sub">Jerusalem Investigation</p>
-      <button id="btn-start" class="btn-primary">Begin Investigation</button>
+      <p class="sub hidden">Jerusalem Investigation</p>
+      <button id="btn-start" class="btn-primary hidden">Begin Investigation</button>
       <p class="hint">WASD / Arrow Keys to move · Click to approach · Space to jump</p>
 
       <!-- Animated CSS Spinner -->
@@ -551,9 +551,11 @@
           }
         });
 
-        // Start button: close loading screen and open case-select menu
+        // Start button: trigger wipe effect, then open case-select menu
         document.getElementById('btn-start').onclick = () => {
-          document.getElementById('loading-screen').classList.add('ready');
+          // Trigger wipe animation
+          document.getElementById('wipe-overlay').classList.add('active');
+          // Wait for wipe to complete (1s), then hide loading screen and show menu
           setTimeout(() => {
             document.getElementById('loading-screen').style.display = 'none';
             if (!this.mapModal) {
@@ -561,7 +563,7 @@
             }
             this.mapModal.open();
             game.animate();
-          }, 400);
+          }, 1000);
         };
       }
 
@@ -1486,6 +1488,8 @@
     })();
 
     game.init();
+    // Show start button when game is loaded
+    document.getElementById('loading-screen').classList.add('ready');
   </script>
 
 </body>

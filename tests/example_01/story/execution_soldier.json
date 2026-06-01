@@ -1,1 +1,55 @@
-{"start": {"content": "We have done three of these already this month. It is heavy work hammering spikes through bone, but you get used to the rhythm. But this one... when the sky went pitch black at noon, the entire detail stopped gambling for the garments. Even the Centurion looks like he has seen a ghost. This is not a standard provincial execution.", "choices": [{"text": "What did he say right before the end?", "destination": "phrase"}, {"text": "Is the guard detail staying on the hill tonight?", "destination": "guard"}]}, "phrase": {"content": "He did not curse us like the others. He said, 'Father, forgive them.' It felt like the ground was moving beneath our boots. -> closing", "choices": []}, "guard": {"content": "We are posted here until the bodies are broken and taken down. No one wants to sit in this darkness, but orders are orders. -> closing", "choices": []}, "closing": {"content": "-> DONE", "choices": []}}
+{
+  "start": {
+    "content": "I am Marcus. I was on duty. I will read this scene plainly and let you draw your own conclusions. Last Sabbath, outside the outer court \u2014 tables overturned, animals scattered, the crowd orange with excitement. He called it My Father's house. The merchants called it their living. I called it my afternoon.",
+    "choices": [
+      {
+        "text": "What did the merchants do?",
+        "destination": "merchants"
+      },
+      {
+        "text": "Did He hurt anyone?",
+        "destination": "violence"
+      }
+    ]
+  },
+  "merchants": {
+    "content": "The money changers scattered first \u2014 Tyrian shekels rolling into the drainage cracks. Then the livestock dealers. Within minutes the court was cleared and the crowd was singing.",
+    "choices": [
+      {
+        "text": "The crowd supported Him?",
+        "destination": "crowd_support"
+      }
+    ]
+  },
+  "violence": {
+    "content": "No blade was drawn. No centurion was summoned. He simply stood there while the merchants fled. It was the most disciplined crowd-disruption I have ever witnessed.",
+    "choices": [
+      {
+        "text": "That sounds rehearsed.",
+        "destination": "opening"
+      }
+    ]
+  },
+  "crowd_support": {
+    "content": "The people were already agitated from the triumphal entry two days prior. This was not a random crowd \u2014 this was a movement with momentum.",
+    "choices": [
+      {
+        "text": "And the priests?",
+        "destination": "priestly_response"
+      }
+    ]
+  },
+  "priestly_response": {
+    "content": "The priests are meeting emergency sessions day and night. They are not meeting about the coinage. They are meeting about the man.",
+    "choices": [
+      {
+        "text": "Show me your official dispatch.",
+        "destination": "closing"
+      }
+    ]
+  },
+  "closing": {
+    "content": "I am on duty. I will stick to what I observed. The rest belongs to the archives and the Sanhedrin's emergency sessions.",
+    "choices": []
+  }
+}

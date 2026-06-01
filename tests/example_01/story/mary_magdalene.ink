@@ -1,18 +1,14 @@
 -> start
 === start ===
-They speak of him in the palaces as if he were a tactical problem to be mapped out and solved. 
-They did not see the graves open. They do not know what it feels like to have seven demons wrenched out of your mind by a single word.
-My memory is the only anchor I have left, and I will not look away from it.
-* [Are you not afraid of the high priest's guards?] -> fear
-* [What does he mean when he speaks of his upcoming departure?] -> departure
-
-=== fear ===
-Fear is a clothing I took off a long time ago. Let them watch the house. The stone has already been rolled away from my past; they cannot lock me back inside it.
--> closing
-
-=== departure ===
-He speaks in shadows, but his eyes look straight through the horizon. He is preparing us for a night where there will be no lanterns to follow.
--> closing
-
+I am Mary of Magdala. Seven demons were cast from me by the word of His mouth. My mind was a wilderness before that day. After it, I had a memory — and a purpose.
+* [You followed Him everywhere.] -> following
+* [The authorities don't fear women.] -> fear_auth
+=== following ===
+I followed from Galilee to Jerusalem. I watched from the hill when they crucified Him. I stood at the tomb before dawn. I saw the linen. I heard the voice.
+* [And you recognised Him.] -> following
+=== fear_auth ===
+The Sanhedrin fears testimony from women. In Roman courts, a woman's word does not count. In the Temple hierarchy, women cannot give evidence. So they will dismiss me.
+* [But you saw what you saw.] -> closing
 === closing ===
+They did not see the graves open. They did not feel the demons leave. Their categories are too small for what happened that morning. I am not afraid of them. I am afraid that people will forget.
 -> DONE

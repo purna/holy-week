@@ -1,1 +1,37 @@
-{"start": {"content": "They speak of him in the palaces as if he were a tactical problem to be mapped out and solved. They did not see the graves open. They do not know what it feels like to have seven demons wrenched out of your mind by a single word. My memory is the only anchor I have left, and I will not look away from it.", "choices": [{"text": "Are you not afraid of the high priest's guards?", "destination": "fear"}, {"text": "What does he mean when he speaks of his upcoming departure?", "destination": "departure"}]}, "fear": {"content": "Fear is a clothing I took off a long time ago. Let them watch the house. The stone has already been rolled away from my past; they cannot lock me back inside it.", "choices": [{"text": "Continue.", "destination": "closing"}]}, "departure": {"content": "He speaks in shadows, but his eyes look straight through the horizon. He is preparing us for a night where there will be no lanterns to follow.", "choices": [{"text": "Continue.", "destination": "closing"}]}, "closing": {"content": "The conversation is over. Go in peace.", "choices": []}}
+{
+  "start": {
+    "content": "I am Mary of Magdala. Seven demons were cast from me by the word of His mouth. My mind was a wilderness before that day. After it, I had a memory \u2014 and a purpose.",
+    "choices": [
+      {
+        "text": "You followed Him everywhere.",
+        "destination": "following"
+      },
+      {
+        "text": "The authorities don't fear women.",
+        "destination": "fear_auth"
+      }
+    ]
+  },
+  "following": {
+    "content": "I followed from Galilee to Jerusalem. I watched from the hill when they crucified Him. I stood at the tomb before dawn. I saw the linen. I heard the voice.",
+    "choices": [
+      {
+        "text": "And you recognised Him.",
+        "destination": "following"
+      }
+    ]
+  },
+  "fear_auth": {
+    "content": "The Sanhedrin fears testimony from women. In Roman courts, a woman's word does not count. In the Temple hierarchy, women cannot give evidence. So they will dismiss me.",
+    "choices": [
+      {
+        "text": "But you saw what you saw.",
+        "destination": "closing"
+      }
+    ]
+  },
+  "closing": {
+    "content": "They did not see the graves open. They did not feel the demons leave. Their categories are too small for what happened that morning. I am not afraid of them. I am afraid that people will forget.",
+    "choices": []
+  }
+}

@@ -1,1 +1,37 @@
-{"start": {"content": "The candles are burning down, and he keeps speaking about washing feet and breaking bread like it is a farewell. I looked across the table at Judas—his eyes were tracking the doorway the entire evening. Something is fracturing inside our circle tonight, and I do not think words can mend it.", "choices": [{"text": "What did Jesus mean by his warning about denial?", "destination": "warning"}, {"text": "Where will you go if the guard arrives?", "destination": "loyalty"}]}, "warning": {"content": "He looks at Simon Peter when he says it. Simon thinks he is iron, but Jesus sees the forge fire coming.", "choices": [{"text": "Continue.", "destination": "closing"}]}, "loyalty": {"content": "I will follow him. Even if they take him to the palace court. Someone needs to stay near his mother.", "choices": [{"text": "Continue.", "destination": "closing"}]}, "closing": {"content": "The conversation is over. Go in peace.", "choices": []}}
+{
+  "start": {
+    "content": "The candles are burning down, and He keeps speaking about washing feet and breaking bread like it is a farewell. I looked across the table at Judas \u2014 his eyes were tracking the doorway the entire evening. Something is fracturing inside our circle tonight, and I do not think words can mend it.",
+    "choices": [
+      {
+        "text": "You saw Judas watching the door?",
+        "destination": "judas"
+      },
+      {
+        "text": "What happened at the table?",
+        "destination": "table"
+      }
+    ]
+  },
+  "judas": {
+    "content": "His eyes kept moving. Not like he was worried about being caught \u2014 like he had somewhere else to be. Something urgent. Then Jesus gave him a piece of bread, dipped in the bitter herbs. \"Do quickly,\" He said. Judas left immediately. It was night.",
+    "choices": [
+      {
+        "text": "You knew what was happening.",
+        "destination": "table"
+      }
+    ]
+  },
+  "table": {
+    "content": "Jesus took the bread and broke it. \"This is my body.\" Then the cup: \"This cup is the new covenant in my blood.\" We didn't understand. We were still thinking in terms of kingdoms and swords. He was speaking of something far greater \u2014 and far more terrible.",
+    "choices": [
+      {
+        "text": "You wrote it down.",
+        "destination": "closing"
+      }
+    ]
+  },
+  "closing": {
+    "content": "The conversation is over. Go in peace.",
+    "choices": []
+  }
+}

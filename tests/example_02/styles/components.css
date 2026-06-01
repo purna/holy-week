@@ -63,7 +63,7 @@
 
 .loading-screen .btn-primary,
 .loading-screen .hint {
-    display: inline-block;
+    display: none;
 }
 
 .loading-screen.ready .spinner,
@@ -94,7 +94,8 @@
     opacity: .85;
 }
 
-.loading-screen .spinner {
+.loading-screen .spinner,
+.loading-screen .loading-text {
     display: block;
     margin: 2em auto;
 }
@@ -147,8 +148,8 @@
 /* Fullscreen Camera Wipe Transition Animation */
 #wipe-overlay {
     position: fixed;
-    inset: 0;
-    background: var(--bg);
+  inset: 0;
+  background: var(--bg-main);
     z-index: 9000;
     pointer-events: none;
     transform: translateX(-100%);

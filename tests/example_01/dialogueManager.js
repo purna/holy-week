@@ -145,29 +145,50 @@ export class DialogueManager {
         el.className = 'msg ' + type;
         el.textContent = text;
         bubScroll.appendChild(el);
-        bubScroll.scrollTop = bubScroll.scrollHeight;
+        const atBottom = bubScroll.scrollHeight - bubScroll.scrollTop - bubScroll.clientHeight < 120;
+        if (atBottom) {
+            bubScroll.scrollTop = bubScroll.scrollHeight;
+        }
     }
 
     /**
-     * Show an animated typing indicator, then call cb() after ~600–800 ms.
-     * @param {Function} cb
-     */
+      * Show an animated typing indicator, then call cb() after the delay.
+      * @param {Function} cb
+      */
     addTyping(cb) {
         const { bubScroll } = this._getEls();
         const npcName = this.activeNpc?.name ?? 'NPC';
         const row = document.createElement('div');
         row.className = 'typing-row';
+        row.setAttribute('aria-label', `${npcName} is typing`);
         row.innerHTML =
             '<div class="dot"></div>' +
             '<div class="dot"></div>' +
             '<div class="dot"></div>' +
-            `<span class="typing-lbl">${npcName} is typing…</span>`;
+            `<span class="typing-lbl">${npcName} is typing</span>`;
         bubScroll.appendChild(row);
-        bubScroll.scrollTop = bubScroll.scrollHeight;
+        const delay = 1200 + Math.random() * 600;
         setTimeout(() => {
             row.remove();
             cb();
-        }, 600 + Math.random() * 200);
+        }, delay);
+    }
+
+    addTypingBubble(message) {
+        const { bubScroll } = this._getEls();
+        const bubble = document.createElement('div');
+        bubble.className = 'msg npc typing-bubble';
+        bubble.textContent = '...';
+        bubScroll.appendChild(bubble);
+        bubScroll.scrollTop = bubScroll.scrollHeight;
+        return bubble;
+    }
+
+    replaceTypingBubble(bubble, message) {
+        if (!bubble) return;
+        bubble.textContent = message;
+        bubble.classList.remove('typing-bubble');
+        bubScroll.scrollTop = bubScroll.scrollHeight;
     }
 
     /**
@@ -185,7 +206,10 @@ export class DialogueManager {
             const b = document.createElement('button');
             b.className = 'choice-btn';
             b.textContent = '→ ' + c.text;
-            b.onclick = () => onPick(c);
+            b.onclick = () => {
+                barChoices.classList.add('hide');
+                setTimeout(() => onPick(c), 120);
+            };
             barChoices.appendChild(b);
         });
     }
@@ -261,7 +285,11 @@ export class DialogueManager {
 _stepStory(story, nodeId, onClose) {
         const node = story[nodeId];
         if (!node) {
-            return this.closeDialogue(onClose);
+            this.showChoices(
+                [{ text: 'End Conversation', index: -1 }],
+                () => this.closeDialogue(onClose)
+            );
+            return;
         }
 
         this.addTyping(() => {
@@ -278,7 +306,7 @@ _stepStory(story, nodeId, onClose) {
                 });
             } else {
                 this.showChoices(
-                    [{ text: '🔄 [ CLOSE CONNECTION ]', index: -1 }],
+                    [{ text: 'End Conversation', index: -1 }],
                     () => this.closeDialogue(onClose)
                 );
             }

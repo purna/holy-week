@@ -1,18 +1,20 @@
 -> start
 === start ===
-We have done three of these already this month. It is heavy work hammering spikes through bone, but you get used to the rhythm.
-But this one... when the sky went pitch black at noon, the entire detail stopped gambling for the garments.
-Even the Centurion looks like he has seen a ghost. This is not a standard provincial execution.
-* [What did he say right before the end?] -> phrase
-* [Is the guard detail staying on the hill tonight?] -> guard
-
-=== phrase ===
-He did not curse us like the others. He said, 'Father, forgive them.' It felt like the ground was moving beneath our boots.
--> closing
-
-=== guard ===
-We are posted here until the bodies are broken and taken down. No one wants to sit in this darkness, but orders are orders.
--> closing
-
+I am Marcus. I was on duty. I will read this scene plainly and let you draw your own conclusions. Last Sabbath, outside the outer court — tables overturned, animals scattered, the crowd orange with excitement. He called it My Father's house. The merchants called it their living. I called it my afternoon.
+* [What did the merchants do?] -> merchants
+* [Did He hurt anyone?] -> violence
+=== merchants ===
+The money changers scattered first — Tyrian shekels rolling into the drainage cracks. Then the livestock dealers. Within minutes the court was cleared and the crowd was singing.
+* [The crowd supported Him?] -> crowd_support
+=== violence ===
+No blade was drawn. No centurion was summoned. He simply stood there while the merchants fled. It was the most disciplined crowd-disruption I have ever witnessed.
+* [That sounds rehearsed.] -> opening
+=== crowd_support ===
+The people were already agitated from the triumphal entry two days prior. This was not a random crowd — this was a movement with momentum.
+* [And the priests?] -> priestly_response
+=== priestly_response ===
+The priests are meeting emergency sessions day and night. They are not meeting about the coinage. They are meeting about the man.
+* [Show me your official dispatch.] -> closing
 === closing ===
+I am on duty. I will stick to what I observed. The rest belongs to the archives and the Sanhedrin's emergency sessions.
 -> DONE

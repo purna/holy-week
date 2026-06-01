@@ -1,1 +1,55 @@
-{"start": {"content": "Am Am I an expert in your laws, Judean? Your priests drag this man to my praetorium at dawn and expect me to sign a death warrant for words. They say he claims to be a king. If he is a king without an army, he is a fool. If he has an army, let him show his banners. What is truth to a man holding three legions?", "choices": [{"text": "Does Roman law allow execution without clear sedition?", "destination": "crime"}, {"text": "The crowd outside is becoming violent...", "destination": "pressure"}]}, "crime": {"content": "My duty is to ensure the peace. If executing an eccentric philosopher prevents a provincial rebellion, the choice is simple arithmetic. -> closing", "choices": []}, "pressure": {"content": "Mobs are volatile. Give them Barabbas if they want a thief. I will wash my hands of this local dispute. -> closing", "choices": []}, "closing": {"content": "-> DONE", "choices": []}}
+{
+  "start": {
+    "content": "Am I an expert in your laws, Judean? Your priests drag this man to my praetorium at dawn and expect me to sign a death warrant for words. They say he claims to be a king. If he is a king without an army, he is a fool. If he has an army, let him show his banners.",
+    "choices": [
+      {
+        "text": "You don't see Him as a threat?",
+        "destination": "threat"
+      },
+      {
+        "text": "The crowd wants Barabbas.",
+        "destination": "barabbas"
+      }
+    ]
+  },
+  "threat": {
+    "content": "What is truth to a man holding three legions? A man who heals the blind and raises the dead is not a military threat. He is a philosophical problem. And Rome does not execute philosophers.",
+    "choices": [
+      {
+        "text": "But you will execute Him.",
+        "destination": "crowd_response"
+      }
+    ]
+  },
+  "barabbas": {
+    "content": "The crowd wants Barabbas \u2014 an actual murderer. Give them what they want. It satisfies the feast custom, and it gets this theological dispute off my docket.",
+    "choices": [
+      {
+        "text": "You are washing your hands.",
+        "destination": "crowd_response"
+      }
+    ]
+  },
+  "crowd_response": {
+    "content": "Mobs are volatile. Give them Barabbas if they want a thief. I will wash my hands of this local dispute. The sentence stands.",
+    "choices": [
+      {
+        "text": "And the inscription on the cross?",
+        "destination": "writing"
+      }
+    ]
+  },
+  "writing": {
+    "content": "\"Jesus of Nazareth, King of the Jews.\" That is the titulus I authorised \u2014 in Latin, Greek, and Hebrew for every traveller on the road to read. The priests complained. I told them: what is written, is written. The Prefect does not take edits from the Sanhedrin.",
+    "choices": [
+      {
+        "text": "That is defiance.",
+        "destination": "closing"
+      }
+    ]
+  },
+  "closing": {
+    "content": "I have no further comments for your investigation. The matter is concluded.",
+    "choices": []
+  }
+}
