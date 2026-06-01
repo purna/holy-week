@@ -5,8 +5,8 @@
 export class NPCSystem {
   constructor(caseManager, evidenceSystem) {
     this.caseManager = caseManager;
-    this.evidenceSystem = evidenceSystem;
-    this.npcStates = {};   // npcId -> { mood, pressureLevel, contradictions, memory }
+    this.es = evidenceSystem;
+    this.npcStates = {};
   }
 
 loadCase(caseData) {
@@ -51,7 +51,7 @@ getNPC(id) {
   showEvidence(npcId, evidenceId) {
     const npc = this.getNPC(npcId);
     const state = this.getState(npcId);
-    const evidence = this.evidenceSystem.getById(evidenceId);
+    const evidence = this.es.getById(evidenceId);
     if (!npc || !state || !evidence) return null;
 
     // Already shown?
@@ -102,7 +102,14 @@ getNPC(id) {
       return { speaker: npc.name, text: contradiction.exposed, mood: state.mood, breakthrough: true };
     }
 
-    return { speaker: npc.name, text: npc.dialogue.pressured || "You can't prove anything.", mood: state.mood, breakthrough: false };
+    state.pressureLevel = Math.min(100, state.pressureLevel + 5);
+    this._updateMood(npcId, state);
+    return {
+      speaker: npc.name,
+      text: npc.dialogue.noContradiction || `No contradiction found between "${this.es.getById(evidenceAId)?.name || evidenceAId}" and "${this.es.getById(evidenceBId)?.name || evidenceBId}". Try a different pairing.`,
+      mood: state.mood,
+      breakthrough: false
+    };
   }
 
   _updateMood(npcId, state) {

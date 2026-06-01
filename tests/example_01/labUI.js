@@ -110,12 +110,22 @@ export class LabUI {
     });
 
     container.querySelectorAll("[data-evidence-id]").forEach(card => {
-      card.addEventListener("click", () => {
-        this.es.selectEvidence(card.dataset.evidenceId);
+      card.addEventListener("click", (e) => {
+        const evidenceId = card.dataset.evidenceId;
+        if (e.shiftKey || e.ctrlKey || e.metaKey) {
+          window.openEvidenceDetail(evidenceId);
+          return;
+        }
+        this.es.selectEvidence(evidenceId);
         this.a11y.speak(`Selected ${card.querySelector(".picker-name").textContent}`);
         if (this.onResult) this.onResult({ type: "selection" });
       });
-      card.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") card.click(); });
+      card.addEventListener("keydown", e => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          card.click();
+        }
+      });
     });
   }
 

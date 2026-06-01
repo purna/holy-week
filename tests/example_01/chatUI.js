@@ -9,27 +9,35 @@ export class ChatUI {
     this.a11y  = accessibility;
     this.onAction = onAction;
     this.audio = audioManager;
-    this.messages = [];
-  } // Removed the extra closing brace that was here
+    this.messagesByNPC = {};
+    this.challengeResultsByNPC = {};
+  }
 
-  addMessage(speaker, text, type = "npc", extra = {}) {
+  addMessage(speaker, text, type = "npc", extra = {}, npcId = null) {
+    const targetNPC = npcId || this.pendingNPC;
     const msg = { speaker, text, type, extra, id: Date.now() };
-    this.messages.push(msg);
+    if (targetNPC) {
+      if (!this.messagesByNPC[targetNPC]) this.messagesByNPC[targetNPC] = [];
+      this.messagesByNPC[targetNPC].push(msg);
+    }
     this.a11y.speak(`${speaker}: ${text}`);
     return msg;
   }
 
-  addSystem(text) {
-    const msg = { speaker: "System", text, type: "system", id: Date.now() };
-    this.messages.push(msg);
-    return msg;
+  addSystem(text, npcId = null) {
+    return this.addMessage("System", text, "system", {}, npcId || this.pendingNPC);
   }
 
-  renderFeed() {
-    if (!this.messages.length) {
-      return `<p class="chat-empty" role="status">No conversation yet. Go to NPCs to start talking.</p>`;
+  getMessages(npcId) {
+    return this.messagesByNPC[npcId] || [];
+  }
+
+  renderFeed(npcId = null) {
+    const msgs = npcId ? this.getMessages(npcId) : [];
+    if (!msgs.length) {
+      return `<p class="chat-empty" role="status">No conversation yet. Talk to this witness to begin.</p>`;
     }
-    return this.messages.slice(-30).map(m => this._renderMsg(m)).join("");
+    return msgs.slice(-20).map(m => this._renderMsg(m)).join("");
   }
 
   _renderMsg(m) {
@@ -62,6 +70,9 @@ export class ChatUI {
                 </div>
                 <span class="npc-mood" style="color:${moodColor}" aria-label="Mood: ${moodLabel}">${moodLabel}</span>
               </div>
+              <div class="npc-feed" role="log" aria-live="polite" aria-label="Conversation with ${npc.name}">
+                ${this.renderFeed(npc.id)}
+              </div>
               <div class="npc-actions" role="group" aria-label="Actions with ${npc.name}">
                 <button class="npc-btn" data-action="talk" data-npc="${npc.id}" aria-label="Talk to ${npc.name}">
                   💬 Talk
@@ -71,7 +82,7 @@ export class ChatUI {
                 </button>
                 <button class="npc-btn npc-btn-challenge" data-action="challenge" data-npc="${npc.id}"
                   aria-label="Challenge ${npc.name} with a contradiction"
-                  ${!this.es.selectedA || !this.es.selectedB ? "aria-disabled='true'" : ""}>
+                  ${!this.es.selectedA ? "aria-disabled='true'" : ""}>
                   ⚡ Challenge
                 </button>
               </div>
@@ -79,32 +90,37 @@ export class ChatUI {
                 <div class="pressure-bar" role="progressbar" aria-valuenow="${state.pressureLevel}" aria-valuemin="0" aria-valuemax="100" aria-label="Pressure level: ${state.pressureLevel}%">
                   <div class="pressure-fill" style="width:${state.pressureLevel}%"></div>
                 </div>` : ""}
+              <div class="challenge-result" data-npc-challenge="${npc.id}" ${this.challengeResultsByNPC[npc.id] ? '' : 'hidden'}>
+                ${this.challengeResultsByNPC[npc.id] || ''}
+              </div>
+              <div class="show-evidence-picker" data-npc-picker="${npc.id}" hidden>
+                <h3>Select evidence to show (up to 2):</h3>
+                <div class="evidence-pick-list">
+                  ${this.es.getCollected().map(e => `
+                    <button class="evidence-pick-btn" data-evidence="${e.id}" data-npc="${npc.id}" aria-label="Show ${e.name}" aria-pressed="false">
+                      ${e.icon} ${e.name}
+                    </button>`).join("")}
+                </div>
+                <button class="cancel-btn" data-npc="${npc.id}" aria-label="Cancel">Cancel</button>
+                <button class="confirm-show-btn" data-npc="${npc.id}" aria-label="Confirm selection" disabled>✓ Show Selected</button>
+              </div>
+              <div class="challenge-result" data-npc-challenge="${npc.id}" hidden></div>
             </div>`;
         }).join("")}
-      </div>
-
-      <div class="show-evidence-picker" id="evidencePicker" aria-label="Evidence to show" hidden>
-        <h3>Choose evidence to show:</h3>
-        <div class="evidence-pick-list">
-          ${this.es.getCollected().map(e => `
-            <button class="evidence-pick-btn" data-evidence="${e.id}" aria-label="Show ${e.name}">
-              ${e.icon} ${e.name}
-            </button>`).join("")}
-        </div>
-        <button class="cancel-btn" id="cancelShow" aria-label="Cancel">Cancel</button>
       </div>
     `;
   }
 
-bindNPCEvents(container, feedContainer) {
+  bindNPCEvents(container) {
     let pendingNPC = null;
+    let pendingSelection = [];
 
     container.querySelectorAll("[data-action='talk']").forEach(btn => {
       btn.addEventListener("click", () => {
         const npcId = btn.dataset.npc;
         const npc = this.npcs.getNPC(npcId);
-        
-        // DialogueManager modal (story-based conversations with evidence unlock)
+        this.pendingNPC = npcId;
+
         if (window.dm && npc && npc.hasDialogue && npc.storyFile) {
           const story = window.dm.createStory(npcId);
           if (story) {
@@ -113,22 +129,21 @@ bindNPCEvents(container, feedContainer) {
                 npc.unlocksEvidence.forEach(id => {
                   const unlocked = this.es.discover(id);
                   if (unlocked) {
-                    this.addSystem(`🔓 New clue: ${unlocked.name}`);
+                    this.addSystem(`🔓 New clue: ${unlocked.name}`, npcId);
                   }
                 });
               }
               if (this.onAction) this.onAction({ type: "talk_complete", npcId });
-              this._refreshFeed(feedContainer);
+              this._refreshNPCFeed(npcId, container);
             });
             return;
           }
         }
-        
-        // Simple dialogue - use NPC's dialogue property as fallback
+
         const result = this.npcs.talk(npcId);
         if (result) {
-          this.addMessage(result.speaker, result.text);
-          this._refreshFeed(feedContainer);
+          this.addMessage(result.speaker, result.text, "npc", {}, npcId);
+          this._refreshNPCFeed(npcId, container);
         }
       });
     });
@@ -136,49 +151,132 @@ bindNPCEvents(container, feedContainer) {
     container.querySelectorAll("[data-action='show']").forEach(btn => {
       btn.addEventListener("click", () => {
         pendingNPC = btn.dataset.npc;
-        const picker = container.querySelector("#evidencePicker");
-        if (picker) { picker.hidden = false; picker.focus(); }
-      });
-    });
+        pendingSelection = [];
+        const npcId = pendingNPC;
+        delete this.challengeResultsByNPC[npcId];
+        const npcCard = btn.closest(".npc-card");
+        const picker = npcCard?.querySelector("[data-npc-picker]");
 
-    container.querySelectorAll("[data-action='challenge']").forEach(btn => {
-      btn.addEventListener("click", () => {
-        if (btn.getAttribute("aria-disabled") === "true") {
-          this.a11y.speak("Select two pieces of evidence in the Lab first.");
-          return;
-        }
-        const npcId = btn.dataset.npc;
-        const result = this.npcs.challenge(npcId, this.es.selectedA?.id, this.es.selectedB?.id);
-        if (result) {
-          this.addMessage(result.speaker, result.text, "npc", { breakthrough: result.breakthrough });
-          this._refreshFeed(feedContainer);
-          if (this.onAction) this.onAction({ type: "challenge", result });
-        }
+        const allPickers = container.querySelectorAll(".show-evidence-picker");
+        allPickers.forEach(p => p.hidden = true);
+
+        container.querySelectorAll(".evidence-pick-btn").forEach(b => {
+          b.classList.remove("selected");
+          b.setAttribute("aria-pressed", "false");
+        });
+        container.querySelectorAll(".confirm-show-btn").forEach(b => b.disabled = true);
+        container.querySelectorAll(".challenge-btn").forEach(b => b.disabled = true);
+
+        if (picker) { picker.hidden = false; }
       });
     });
 
     container.querySelectorAll(".evidence-pick-btn").forEach(btn => {
       btn.addEventListener("click", () => {
-        if (!pendingNPC) return;
-        const result = this.npcs.showEvidence(pendingNPC, btn.dataset.evidence);
-        if (result) {
-          this.addMessage(result.speaker, result.text, "npc", { revealedClue: result.revealedClue });
-          if (result.revealedClue) {
-            this.es.discover(result.revealedClue);
-            this.addSystem(`New evidence found: ${this.es.getById(result.revealedClue)?.name}`);
-          }
-          this._refreshFeed(feedContainer);
-          if (this.onAction) this.onAction({ type: "show_evidence", result });
+        const npcId = btn.dataset.npc;
+        if (!npcId || npcId !== pendingNPC) return;
+
+        const evId = btn.dataset.evidence;
+        const idx = pendingSelection.indexOf(evId);
+
+        if (idx >= 0) {
+          pendingSelection.splice(idx, 1);
+          btn.classList.remove("selected");
+          btn.setAttribute("aria-pressed", "false");
+          this.es.deselectAll();
+          pendingSelection.forEach(id => this.es.selectEvidence(id));
+        } else if (pendingSelection.length < 2) {
+          pendingSelection.push(evId);
+          btn.classList.add("selected");
+          btn.setAttribute("aria-pressed", "true");
+          this.es.deselectAll();
+          pendingSelection.forEach(id => this.es.selectEvidence(id));
         }
-        container.querySelector("#evidencePicker").hidden = true;
+
+        const confirmBtn = container.querySelector(`.confirm-show-btn[data-npc="${npcId}"]`);
+        if (confirmBtn) confirmBtn.disabled = pendingSelection.length === 0;
+
+        const challengeBtn = container.querySelector(`[data-action="challenge"][data-npc="${npcId}"]`);
+        if (challengeBtn) {
+          challengeBtn.disabled = pendingSelection.length < 2;
+          challengeBtn.setAttribute("aria-disabled", pendingSelection.length < 2 ? "true" : "false");
+        }
+      });
+    });
+
+    container.querySelectorAll(".confirm-show-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const npcId = btn.dataset.npc;
+        if (!npcId || pendingSelection.length === 0) return;
+
+        pendingSelection.forEach(evId => {
+          const result = this.npcs.showEvidence(npcId, evId);
+          if (result) {
+            this.addMessage(result.speaker, result.text, "npc", { revealedClue: result.revealedClue }, npcId);
+            if (result.revealedClue) {
+              this.es.discover(result.revealedClue);
+              this.addSystem(`New evidence found: ${this.es.getById(result.revealedClue)?.name}`, npcId);
+            }
+          }
+        });
+
+        this._refreshNPCFeed(npcId, container);
+        const picker = container.querySelector(`[data-npc-picker="${npcId}"]`);
+        if (picker) picker.hidden = true;
+        pendingSelection = [];
+        pendingNPC = null;
+
+        if (this.onAction) this.onAction({ type: "show_evidence", npcId });
+      });
+    });
+
+    container.querySelectorAll(".cancel-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const npcId = btn.dataset.npc || pendingNPC;
+        const picker = container.querySelector(`[data-npc-picker="${npcId}"]`);
+        if (picker) picker.hidden = true;
+        pendingSelection = [];
         pendingNPC = null;
       });
     });
 
-    container.querySelector("#cancelShow")?.addEventListener("click", () => {
-      container.querySelector("#evidencePicker").hidden = true;
-      pendingNPC = null;
+    container.querySelectorAll("[data-action='challenge']").forEach(btn => {
+      btn.addEventListener("click", () => {
+        if (btn.getAttribute("aria-disabled") === "true") return;
+        const npcId = btn.dataset.npc;
+        if (pendingSelection.length === 0) return;
+
+        const result = this.npcs.challenge(npcId, this.es.selectedA?.id, this.es.selectedB?.id);
+        if (!result) return;
+        const npcCard = btn.closest(".npc-card");
+        const resultPanel = npcCard?.querySelector(`[data-npc-challenge="${npcId}"]`);
+        if (resultPanel) {
+          resultPanel.hidden = false;
+          const html = `
+            <div class="challenge-result-box ${result.breakthrough ? 'breakthrough' : ''}">
+              <div class="challenge-result-header">
+                <span class="challenge-result-icon">${result.breakthrough ? '⚡' : '💬'}</span>
+                <span class="challenge-result-speaker">${result.speaker}</span>
+              </div>
+              <div class="challenge-result-text">${result.text}</div>
+              ${result.breakthrough ? '<div class="challenge-breakthrough-badge">⚡ Breakthrough</div>' : ''}
+            </div>
+          `;
+          resultPanel.innerHTML = html;
+          this.challengeResultsByNPC[npcId] = html;
+        } else {
+          this.addMessage(result.speaker, result.text, "npc", { breakthrough: result.breakthrough }, npcId);
+          this._refreshNPCFeed(npcId, container);
+        }
+        if (this.onAction) this.onAction({ type: "challenge", result, npcId });
+      });
     });
+  }
+
+  _refreshNPCFeed(npcId, container) {
+    const feed = container.querySelector(`.npc-card:has([data-npc="${npcId}"]) .npc-feed`)
+      || container.querySelector(`.npc-feed`);
+    if (feed) feed.innerHTML = this.renderFeed(npcId);
   }
 
   _refreshFeed(feedContainer) {
