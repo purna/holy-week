@@ -77,20 +77,16 @@ export class OrbitalSelectMatrixModal {
             const actHeader = document.createElement('div');
             actHeader.className = 'act-tree-header';
             actHeader.dataset.act = actLabel;
-            actHeader.style.cssText = 'display:flex;align-items:center;gap:10px;padding:12px 16px;cursor:pointer;border-left:3px solid transparent;transition:all .2s;';
 
             const actIcon = document.createElement('span');
             actIcon.className = 'act-tree-icon';
-            actIcon.style.cssText = 'width:9px;height:9px;border-radius:50%;background:#64ffda;box-shadow:0 0 8px #64ffda;';
 
             const actName = document.createElement('span');
             actName.className = 'act-tree-name';
-            actName.style.cssText = 'color:#64ffda;font-size:.68rem;letter-spacing:2px;text-transform:uppercase;font-weight:700;flex:1;';
             actName.textContent = actLabel;
 
             const actChevron = document.createElement('span');
             actChevron.className = 'act-tree-chevron';
-            actChevron.style.cssText = 'color:#64ffda;font-size:.6rem;';
             actChevron.textContent = '▶';
 
             actHeader.appendChild(actIcon);
@@ -115,15 +111,14 @@ export class OrbitalSelectMatrixModal {
                 item.style.cursor = locked ? 'not-allowed' : 'pointer';
 
                 const dot = document.createElement('div');
-                dot.className = 'tree-dot';
-                dot.style.background = locked ? '#444' : solved ? '#ffcc44' : '#64ffda';
+                dot.className = `tree-dot ${locked ? 'locked' : solved ? 'solved' : 'available'}`;
 
                 const info = document.createElement('div');
                 info.className = 'tree-info';
 
                 const title = document.createElement('div');
                 title.className = 'tree-title';
-                title.style.cssText = 'color:#e6f1ff;font-size:.7rem;letter-spacing:.5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;';
+                title.style.cssText = 'color:#e6f1ff;';
                 title.textContent = c.title;
 
                 info.appendChild(title);

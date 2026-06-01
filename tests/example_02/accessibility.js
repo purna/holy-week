@@ -9,6 +9,8 @@ export class AccessibilityManager {
     this.simpleMode = false;
     this.largeText = false;
     this.soundEnabled = true;
+    this.slowSpeech = false;
+    this.reduceMotion = false;
     this._ensureLiveRegion();
     this._bindKeyboard();
   }
@@ -49,11 +51,11 @@ export class AccessibilityManager {
   }
 
   // ── TEXT-TO-SPEECH ────────────────────────────────────
-  _speak(text, rate = 0.9) {
+  _speak(text, rate) {
     if (!('speechSynthesis' in window)) return;
     window.speechSynthesis.cancel();
     const utt = new SpeechSynthesisUtterance(text);
-    utt.rate = rate;
+    utt.rate = rate ?? (this.slowSpeech ? 0.5 : 0.9);
     utt.lang = 'en-GB';
     window.speechSynthesis.speak(utt);
   }
@@ -107,6 +109,25 @@ export class AccessibilityManager {
   }
 
   toggleSound() { this.enableSound(!this.soundEnabled); }
+
+  enableSlowSpeech(enabled) {
+    this.slowSpeech = enabled;
+    this._updateBtn('btn-slow-speech', enabled);
+    localStorage.setItem('a11y-slow-speech', enabled);
+    this.announce(enabled ? 'Slow speech on' : 'Slow speech off');
+  }
+
+  toggleSlowSpeech() { this.enableSlowSpeech(!this.slowSpeech); }
+
+  enableReduceMotion(enabled) {
+    this.reduceMotion = enabled;
+    document.body.classList.toggle('reduce-motion', enabled);
+    this._updateBtn('btn-reduce-motion', enabled);
+    localStorage.setItem('a11y-reduce-motion', enabled);
+    this.announce(enabled ? 'Reduce motion on' : 'Reduce motion off');
+  }
+
+  toggleReduceMotion() { this.enableReduceMotion(!this.reduceMotion); }
 
   // ── KEYBOARD NAVIGATION ───────────────────────────────
   _bindKeyboard() {
@@ -171,6 +192,10 @@ export class AccessibilityManager {
     if (soundSaved !== null) {
       this.enableSound(soundSaved === 'true');
     }
+    const slowSpeechSaved = localStorage.getItem('a11y-slow-speech');
+    if (slowSpeechSaved === 'true') this.enableSlowSpeech(true);
+    const reduceMotionSaved = localStorage.getItem('a11y-reduce-motion');
+    if (reduceMotionSaved === 'true') this.enableReduceMotion(true);
   }
 
   // ── TOOLBAR RENDERER ─────────────────────────────────
@@ -180,9 +205,11 @@ export class AccessibilityManager {
 
     const tools = [
       { id: 'btn-tts',      icon: '🔊', label: 'Text to Speech',  action: () => this.toggleTTS() },
+      { id: 'btn-slow-speech', icon: '🐢', label: 'Slow Speech', action: () => this.toggleSlowSpeech() },
       { id: 'btn-contrast', icon: '🌓', label: 'High Contrast',   action: () => this.toggleHighContrast() },
       { id: 'btn-simple',   icon: '🅰',  label: 'Simple Text',    action: () => this.toggleSimpleMode() },
       { id: 'btn-large',    icon: '🔠', label: 'Large Text',      action: () => this.toggleLargeText() },
+      { id: 'btn-reduce-motion', icon: '⏸', label: 'Reduce Motion', action: () => this.toggleReduceMotion() },
       { id: 'btn-reset',    icon: '↺',  label: 'Reset Progress',  action: () => window.__resetProgress?.() }
     ];
 
@@ -267,9 +294,9 @@ export class AccessibilityManager {
       large_text: this.largeText,
       tts: this.ttsEnabled,
       sound: this.soundEnabled,
-      slow_speech: false,
+      slow_speech: this.slowSpeech,
       simple_mode: this.simpleMode,
-      reduce_motion: false
+      reduce_motion: this.reduceMotion
     };
   }
 
@@ -279,9 +306,9 @@ export class AccessibilityManager {
       large_text: () => this.toggleLargeText(),
       tts: () => this.toggleTTS(),
       sound: () => this.toggleSound(),
-      slow_speech: () => {},
+      slow_speech: () => this.toggleSlowSpeech(),
       simple_mode: () => this.toggleSimpleMode(),
-      reduce_motion: () => {}
+      reduce_motion: () => this.toggleReduceMotion()
     };
     const fn = toggles[feature];
     if (fn) fn();
