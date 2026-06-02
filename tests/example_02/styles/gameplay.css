@@ -141,6 +141,20 @@
     font-weight: 700;
 }
 
+.action-btn.challenge-action-btn {
+    border: 1px solid rgba(201, 64, 64, 0.35);
+    background: rgba(201, 64, 64, 0.05);
+}
+.action-btn.challenge-action-btn:hover:not(:disabled) {
+    background: rgba(201, 64, 64, 0.12);
+    border-color: var(--accent-error);
+    color: var(--accent-error);
+}
+.action-btn.challenge-action-btn:disabled {
+    opacity: 0.38;
+    cursor: not-allowed;
+}
+
 @keyframes pulse-border {
     0%, 100% { border-color: rgba(143, 191, 106, 0.4); }
     50% {
@@ -158,9 +172,10 @@
     border-radius: 2px;
     border: 1px solid var(--border-subtle);
     padding: 10px;
-    flex: 1;
+    flex: 1 1 auto;
     display: flex;
     flex-direction: column;
+    min-height: 200px;
     overflow: hidden;
 }
 
@@ -208,6 +223,25 @@
     color: var(--accent-secondary);
     box-shadow: 0 0 8px rgba(200, 150, 90, 0.25);
 }
+
+.evidence-slot-btn.sel-a,
+.evidence-slot-btn.sel-b {
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 10px rgba(200, 150, 90, 0.35);
+}
+
+.evidence-slot-btn.sel-a::after,
+.evidence-slot-btn.sel-b::after {
+    position: absolute;
+    top: 2px;
+    right: 4px;
+    font-size: 0.6rem;
+    font-weight: 900;
+    color: var(--accent-secondary);
+}
+
+.evidence-slot-btn.sel-a::after { content: 'A'; }
+.evidence-slot-btn.sel-b::after { content: 'B'; }
 
 /* ==========================================================================
    MINIMAP RADAR

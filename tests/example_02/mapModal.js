@@ -61,12 +61,17 @@ export class OrbitalSelectMatrixModal {
 
         const tree = document.createElement('div');
         tree.id = 'lsm-tree';
-        tree.style.cssText = 'position:absolute;top:65px;left:0;bottom:0;width:240px;background:rgba(0,0,0,.4);border-right:1px solid rgba(100,255,218,.08);overflow-y:auto;padding:16px 0;z-index:10;';
-        this.overlay.appendChild(tree);
+        tree.className = 'lsm-tree';
+        const panel = this.overlay.querySelector('.modal-panel');
+        if (panel) {
+          panel.appendChild(tree);
+        } else {
+          this.overlay.appendChild(tree);
+        }
         this.treeEl = tree;
 
         const hdr = document.createElement('div');
-        hdr.style.cssText = 'padding:16px 16px 8px;color:#64ffda;font-size:.58rem;letter-spacing:3px;';
+        hdr.className = 'lsm-tree-header';
         hdr.textContent = 'INVESTIGATION ACTS';
         this.treeEl.appendChild(hdr);
 
@@ -97,7 +102,7 @@ export class OrbitalSelectMatrixModal {
             // Cases list (hidden initially)
             const caseList = document.createElement('div');
             caseList.className = 'act-cases-list';
-            caseList.style.cssText = 'display:none;';
+            caseList.style.display = 'none';
 
             cases.forEach((c, i) => {
                 const progress = this.cm.getCaseProgress(c.id);
@@ -107,8 +112,11 @@ export class OrbitalSelectMatrixModal {
                 const item = document.createElement('div');
                 item.className = 'tree-item';
                 item.dataset.case = c.id;
-                item.style.opacity = locked ? '0.35' : '1';
-                item.style.cursor = locked ? 'not-allowed' : 'pointer';
+                if (locked) {
+                    item.classList.add('locked');
+                } else {
+                    item.classList.add('available');
+                }
 
                 const dot = document.createElement('div');
                 dot.className = `tree-dot ${locked ? 'locked' : solved ? 'solved' : 'available'}`;
@@ -118,7 +126,6 @@ export class OrbitalSelectMatrixModal {
 
                 const title = document.createElement('div');
                 title.className = 'tree-title';
-                title.style.cssText = 'color:#e6f1ff;';
                 title.textContent = c.title;
 
                 info.appendChild(title);
@@ -271,9 +278,9 @@ export class OrbitalSelectMatrixModal {
 
     open() {
         this.overlay.classList.add('active');
-        // Position tree inside overlay
-        if (this.treeEl && !this.treeEl.parentElement) {
-            this.overlay.appendChild(this.treeEl);
+        const panel = this.overlay.querySelector('.modal-panel');
+        if (this.treeEl && panel) {
+          panel.appendChild(this.treeEl);
         }
         this.showAllCasesOnGlobe();
         this.loop();

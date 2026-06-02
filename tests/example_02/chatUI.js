@@ -78,6 +78,7 @@ export class ChatUI {
                 <div class="pressure-bar" role="progressbar" aria-valuenow="${state.pressureLevel}" aria-valuemin="0" aria-valuemax="100" aria-label="Pressure level: ${state.pressureLevel}%">
                   <div class="pressure-fill" style="width:${state.pressureLevel}%"></div>
                 </div>` : ""}
+              <div class="npc-challenge-result" data-npc-challenge="${npc.id}" hidden></div>
             </div>`;
         }).join("")}
       </div>
@@ -96,8 +97,6 @@ export class ChatUI {
   }
 
   bindNPCEvents(container, feedContainer) {
-    let pendingNPC = null;
-
     container.querySelectorAll("[data-action='talk']").forEach(btn => {
       btn.addEventListener("click", () => {
         const result = this.npcs.talk(btn.dataset.npc);
@@ -110,18 +109,15 @@ export class ChatUI {
 
     container.querySelectorAll("[data-action='show']").forEach(btn => {
       btn.addEventListener("click", () => {
-        pendingNPC = btn.dataset.npc;
         const picker = container.querySelector("#evidencePicker");
-        if (picker) { picker.hidden = false; picker.focus(); }
+        container.querySelectorAll(".show-evidence-picker").forEach(p => p.hidden = true);
+        if (picker) picker.hidden = false;
       });
     });
 
     container.querySelectorAll("[data-action='challenge']").forEach(btn => {
       btn.addEventListener("click", () => {
-        if (btn.getAttribute("aria-disabled") === "true") {
-          this.a11y.speak("Select two pieces of evidence in the Lab first.");
-          return;
-        }
+        if (btn.getAttribute("aria-disabled") === "true") return;
         const npcId = btn.dataset.npc;
         const result = this.npcs.challenge(npcId, this.es.selectedA?.id, this.es.selectedB?.id);
         if (result) {
@@ -134,24 +130,18 @@ export class ChatUI {
 
     container.querySelectorAll(".evidence-pick-btn").forEach(btn => {
       btn.addEventListener("click", () => {
-        if (!pendingNPC) return;
-        const result = this.npcs.showEvidence(pendingNPC, btn.dataset.evidence);
+        const npcId = btn.dataset.npc;
+        const result = this.npcs.showEvidence(npcId, btn.dataset.evidence);
         if (result) {
           this.addMessage(result.speaker, result.text, "npc", { revealedClue: result.revealedClue });
-          if (result.revealedClue) {
-            this.addSystem(`🔍 New evidence revealed: ${this.es.getById(result.revealedClue)?.name} — go collect it in the world!`);
-          }
           this._refreshFeed(feedContainer);
-          if (this.onAction) this.onAction({ type: "show_evidence", result });
         }
         container.querySelector("#evidencePicker").hidden = true;
-        pendingNPC = null;
       });
     });
 
     container.querySelector("#cancelShow")?.addEventListener("click", () => {
       container.querySelector("#evidencePicker").hidden = true;
-      pendingNPC = null;
     });
   }
 
