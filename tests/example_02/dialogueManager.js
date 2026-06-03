@@ -24,6 +24,7 @@ const DIALOGUE_ID_MAP = {
     trial_rumors: './story/trial_rumors.json',
     judas_betrayal: './story/judas_betrayal.json',
     mary_resurrection: './story/mary_resurrection.json',
+    sadducee_opposition: './story/sadducee_opposition.json',
     peter_denial: './story/peter_denial.json',
 };
 /**

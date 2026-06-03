@@ -14,7 +14,7 @@ export const act1CaseA = {
   requires: null,
   actLabel: "Act I",
   color: 0x60a5fa,
-  quest: { name: "Missing Donkey Investigation", task: "Find the donkey colt", cur: 0, tar: 7 },
+  quest: { name: "Missing Donkey Investigation", task: "Find the donkey colt", cur: 0, tar: 8 },
 
   // ── BIBLICAL CONTEXT ──────────────────────────────────────────────
   biblicalContext: {
@@ -66,6 +66,7 @@ export const act1CaseA = {
     { id: "owner", name: "Tobias", role: "Donkey Owner / Sympathiser", avatar: "👴", bibleRef: "Mark 11:3–6 (unnamed owner)" },
     { id: "villager", name: "Local Villager", role: "Eyewitness", avatar: "👨‍🌾", bibleRef: "Mark 11:3–6 (unnamed villager who witnessed the exchange)" },
     { id: "pharisee", name: "Pharisee", role: "Religious Authority", avatar: "👨‍⚖️", bibleRef: "Luke 19:39–40; John 12:19" },
+    { id: "sadducee_noble", name: "Eleazar ben Simon", role: "Sadducean Aristocrat", avatar: "💍", bibleRef: "Acts 5:17 (Sadducean opposition context)" },
     { id: "local_skeptic", name: "Jemimah", role: "Jerusalem Local", avatar: "👩‍🌾", bibleRef: "Matthew 21:10-11" },
     { id: "none", name: "No One", role: "Not Stolen", avatar: "❓", bibleRef: null },
   ],
@@ -168,6 +169,20 @@ export const act1CaseA = {
       bibleRef: "Luke 19:39–40 — The Pharisees said, 'Teacher, rebuke your disciples!' Jesus replied, 'If they keep quiet, the stones will cry out.'",
       propheticLink: "The Pharisees recognised the messianic implication of the palm branches and shouts. John 12:19 records their panic: 'Look how the whole world has gone after him!'",
       investigatorNote: "If the religious authorities were alarmed, this event was unmistakably public and significant. A stolen donkey doesn't cause this kind of reaction.",
+    },
+    {
+      id: "noble_deposition",
+      name: "Eleazar's Deposition",
+      type: "testimonial",
+      icon: "📜",
+      emoji: "📜",
+      iconFA: "fa-solid fa-file-signature",
+      pos: [7, 0, -28],
+      location: "Temple Police Office",
+      desc: "A formal statement from Eleazar ben Simon claiming he witnessed two men 'hacking at a tether' and 'dragging a beast away' while the owner cried for help.",
+      bibleRef: "Acts 5:17-18 shows the Sadducean high priests' 'jealousy' leading to arrests of disciples.",
+      propheticLink: "Psalm 2:2 — 'The kings of the earth rise up and the rulers band together against the Lord and against his anointed.'",
+      investigatorNote: "This statement is a legal instrument designed to force Roman involvement. It conflicts with the physical state of the rope.",
     },
   ],
 
@@ -330,6 +345,22 @@ export const act1CaseA = {
         insight: "The religious authorities' alarm is itself evidence of how the crowd interpreted the entry. This was not an ambiguous moment — everyone present understood the claim being made.",
         isKey: true,
         bibleRef: "John 12:19; Luke 19:39–40",
+      },
+    },
+    "noble_deposition+crowd_testimony": {
+      compare: {
+        text: "Eleazar's Sadducean report alleges a violent criminal theft; the Pharisees' complaint focuses on religious subversion ('Hosanna' cries).",
+        insight: "The two factions are coordinating a legal pincer: the Sadducees provide the 'criminal' pretext for the Romans to intervene, while the Pharisees provide the 'blasphemous' pretext for the Temple crowd. They are 'banding together' exactly as the Psalms predicted.",
+        isKey: true,
+        bibleRef: "Psalm 2:2; Luke 22:66",
+      },
+    },
+    "noble_deposition+rope_fibers": {
+      contradict: {
+        text: "Eleazar claims the rope was 'hacked' with knives. The physical evidence shows a clean Shepherd's hitch knot was untied.",
+        insight: "The physical evidence proves the deposition is a fabrication. Eleazar is perjuring himself to create a security threat where none exists.",
+        isKey: true,
+        bibleRef: "Mark 11:4–6",
       },
     },
     "rope_fibers+cloaks": {

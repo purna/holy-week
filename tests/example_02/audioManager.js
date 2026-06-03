@@ -4,14 +4,14 @@ export class AudioManager {
     this.enabled = true;
     this.volume = 0.5;
     this.sounds = {
-      collect: 'https://actions.google.com/sounds/v1/impacts/coin_2.ogg',
-      clue: 'https://actions.google.com/sounds/v1/fx/magic_wand.ogg',
-      complete: 'https://actions.google.com/sounds/v1/sports/cheering.ogg',
-      talk: 'https://actions.google.com/sounds/v1/fx/chat.ogg',
-      error: 'https://actions.google.com/sounds/v1/fx/error.ogg',
-      ui: 'https://actions.google.com/sounds/v1/ui/beep_short_on.ogg',
+      collect: 'https://actions.google.com/sounds/v1/impacts/silver_coins_drop.ogg',
+      clue: 'https://actions.google.com/sounds/v1/foley/magic_wand.ogg',
+      complete: 'https://actions.google.com/sounds/v1/human_voices/applause.ogg',
+      talk: 'https://actions.google.com/sounds/v1/foley/notification.ogg',
+      error: 'https://actions.google.com/sounds/v1/alarms/beep_short.ogg',
+      ui: 'https://actions.google.com/sounds/v1/foley/button_click.ogg',
       morning: 'https://actions.google.com/sounds/v1/ambiences/morning_birds.ogg',
-      outdoor: 'https://actions.google.com/sounds/v1/ambiences/outdoor_farm.ogg'
+      outdoor: 'https://actions.google.com/sounds/v1/ambiences/farm_animal_sounds.ogg'
     };
     this._howls = {};
     this.currentAmbient = null;

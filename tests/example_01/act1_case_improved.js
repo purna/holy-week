@@ -109,6 +109,7 @@ export const act1CaseA = {
       pos: [-5, 0, -20],
       location: "Bethphage Village Square",
       desc: "A local villager reports seeing two men untying the colt at dawn. When challenged — 'Why are you untying it?' — they answered: 'The Lord needs it.' The owner then nodded and let them go.",
+      revealsSuspect: "villager",
       bibleRef: "Mark 11:3–6 — 'They answered as Jesus had told them to, and the people let them go.'",
       propheticLink: "Jesus's foreknowledge of the exact response to give is consistent with His omniscience, and mirrors how the Passover lamb was 'set apart' by divine instruction (Exodus 12:3–6).",
       investigatorNote: "Both the gospel accounts of Mark and Luke confirm this exchange happened exactly as predicted. This is not a theft.",
@@ -165,6 +166,7 @@ export const act1CaseA = {
       pos: [8, 0, -12],
       location: "Temple Authority Notice Board",
       desc: "A formal written complaint from the Pharisees: 'The Galilean has stirred up the whole city. The crowds are out of control. We can do nothing.' It references the donkey procession and the cries of 'Hosanna to the Son of David.'",
+      revealsSuspect: "pharisee",
       bibleRef: "Luke 19:39–40 — The Pharisees said, 'Teacher, rebuke your disciples!' Jesus replied, 'If they keep quiet, the stones will cry out.'",
       propheticLink: "The Pharisees recognised the messianic implication of the palm branches and shouts. John 12:19 records their panic: 'Look how the whole world has gone after him!'",
       investigatorNote: "If the religious authorities were alarmed, this event was unmistakably public and significant. A stolen donkey doesn't cause this kind of reaction.",
@@ -187,7 +189,11 @@ export const act1CaseA = {
       unlocksEvidence: ["cloaks", "rope_fibers"],
       background: "Simon Peter, a fisherman from Galilee, is one of the inner circle of three disciples (along with James and John). Passionate and impulsive, he speaks before thinking. He was one of the two sent to find the donkey.",
       dialogue: {
-        neutral: "Jesus sent us to Bethphage. He told us exactly where to find the colt and what to say if anyone questioned us.",
+        neutral: { 
+          text: "Peter and I untied the rope carefully, just as the owner asked. Everything was done according to the Law.", 
+          isLie: true, 
+          correction: "I'll be honest—the knot was tight and I was in a hurry to get back to the Teacher, so I cut the rope with my fish-knife." 
+        },
         cautious: "We weren't stealing anything! The Lord had authorised this. It's all perfectly within the Law.",
         pressured: "Alright — yes, we showed the owner a scroll of Zechariah. He understood immediately. He was actually glad to help.",
         exposed: "The owner had been waiting for this day his whole life. We untied the colt, draped our cloaks over it as a saddle, and led it to Jesus. The crowds came from everywhere. It was like the whole Mount of Olives was alive.",
@@ -202,7 +208,7 @@ export const act1CaseA = {
         crowd_testimony: { text: "The Pharisees were furious. Jesus told them if the crowd went silent, the stones themselves would cry out. You can't stop prophecy being fulfilled.", isLie: false },
       },
       contradictions: {
-        "witness_account+rope_fibers": { exposed: "Alright — I cut the rope. Not to steal anything, but the knot had been tied extra tight and I was in a hurry. We were supposed to be back before the main crowd arrived. Everything else happened exactly as Jesus said." },
+        "witness_account+rope_fibers": { exposed: "Alright — I cut the rope. Not to steal anything, but the knot had been tied extra tight and I was in a hurry.", corrects: "neutral" },
         "prophecy_scroll+crowd_testimony": { exposed: "The owner knew. The Pharisees knew. The whole city knew what this meant. Jesus wasn't being subtle — He was making a public claim to be the prophesied king." },
       },
     },
@@ -283,7 +289,11 @@ export const act1CaseA = {
       unlocksEvidence: [],
       background: "A local city resident managing her household. Irritated by the Passover overcrowding, she is naturally suspicious of Galilean zeal and views the disruptive procession with typical urban cynicism.",
       dialogue: {
-        neutral: "The whole city is in an uproar because of these country pilgrims. They're tracking mud everywhere and throwing their clothes in the middle of the road!",
+        neutral: {
+          text: "I saw those Galileans hacking at the rope and dragging the poor beast away. Plain theft in broad daylight!",
+          isLie: true,
+          correction: "Fine, the owner Tobias was standing right there and he let them take it. But hacking at a tethering post is no way for a 'prophet' to behave."
+        },
         cautious: "Everyone is yelling 'Hosanna' like the Romans aren't watching from the Antonia tower. This Galilean teacher—who does He think He is? David?",
         pressured: "Look, I just want to buy my grain without a mob blocking the eastern valley gate. They're calling Him a prophet, but prophets don't usually ride into town with an unauthorized parade.",
         exposed: "I asked the people next to me, 'Who is this?' and they just looked at me like I was blind. They said, 'This is Jesus, the prophet from Nazareth!' Nazareth! Nothing good comes from there.",
@@ -297,8 +307,43 @@ export const act1CaseA = {
         witness_account: { text: "Tobias let them take it? He's a fool. He's always reading old scrolls and staring at the hills. He probably thought they were angels.", isLie: false }
       },
       contradictions: {
-        "cloaks+donkey_tracks": { exposed: "Alright, so maybe the donkey didn't look burdened. It actually walked down that steep, noisy hill perfectly steady—even though a wild, unridden colt should have bolted the second the crowd started screaming. I'll admit... that part was strange." }
+        "witness_account+donkey_tracks": { exposed: "Alright, the owner didn't seem to mind them taking it. But that donkey was too small for a man to ride through those crowds.", corrects: "neutral" }
       },
+    },
+    {
+      id: "eleazar",
+      name: "Eleazar",
+      role: "Sadducean Aristocrat",
+      faction: "temple",
+      avatar: "🏛️",
+      color: 0x94a3b8,
+      pos: [5, 0, -5],
+      truthfulness: 0.3,
+      bibleRef: "Acts 5:17 (Sadducees filled with jealousy)",
+      hasDialogue: true,
+      storyFile: "./story/eleazar_sadducee.json",
+      unlocksEvidence: [],
+      background: "A wealthy member of the priestly aristocracy. He views the Galilean movement as a threat to the status quo and his own influence.",
+      dialogue: {
+        neutral: {
+          text: "I saw those Galileans hacked through the ropes with a sword and dragged the beast away while the owner was distracted. It was a theft, plain and simple.",
+          isLie: true,
+          correction: "The owner didn't protest; he seemed to expect them. But such displays of royal pretension only invite Roman intervention."
+        },
+        cautious: "We maintain the peace with Rome through diplomacy. This 'prophet' and his crowd are a threat to that peace.",
+        pressured: "They were laying clothes on the road — a royal claim. It is sedition against both the Temple and Caesar.",
+        exposed: "I wanted them stopped. I told the guards they were thieves to trigger an arrest. Our authority cannot survive a populist king.",
+      },
+      reactions: {
+        rope_fibers: { text: "Those fibers prove they hacked the rope. A violent act from a violent group.", isLie: true },
+        witness_account: { text: "The villager is likely a sympathizer. His word means nothing compared to a member of the Sanhedrin.", isLie: false }
+      },
+      contradictions: {
+        "rope_fibers+witness_account": { 
+          exposed: "Fine. The rope wasn't hacked. And the owner Tobias practically handed it to them. But don't you see? This 'fulfillment' is a match to a tinderbox.", 
+          corrects: "neutral" 
+        }
+      }
     }
   ],
 
@@ -493,7 +538,11 @@ export const act1CaseB = {
       unlocksEvidence: ["scattered_shekels", "broken_cages"],
       background: "A licensed merchant operating under high-priestly authorization. His business scales on demanding steep transaction rates to exchange foreign pilgrim coins into Tyrian shekels.",
       dialogue: {
-        neutral: "Look at my stall! Upended! This isn't reform, it's financial sabotage! I have a civic permit from the Sanhedrin itself.",
+        neutral: {
+          text: "The Galilean is a common thief! He upended my table and made off with a heavy bag of Tyrian silver shekels!",
+          isLie: true,
+          correction: "He didn't take a single coin. He just scattered the silver in the dirt like it was nothing but common gravel. It was an insult to the Sanctuary tax itself."
+        },
         cautious: "The man is dangerous. He speaks about the Temple as if He owns the deeds. The crowd was backing Him up, that's the only reason we ran.",
         pressured: "Alright, look—our markup rates are set by the families of Annas. We don't keep all the profits. We just enforce the exchange standard.",
         exposed: "He didn't steal a single coin. That's what unnerves me. A zealot or a thief takes the silver. He just scattered it, like it was nothing but dirt under His feet.",
@@ -505,7 +554,7 @@ export const act1CaseB = {
         broken_cages: { text: "Jadan's birds? Good riddance. The noise in this court was already intolerable before the Galilean started a riot.", isLie: false }
       },
       contradictions: {
-        "scattered_shekels+whip_of_cords": { exposed: "Fine! He didn't use the whip on us. He didn't even touch the moneychangers. He just walked up to the tables, looked at our transaction balances, and flipped them over. But His voice... it shook the entire colonnade." }
+        "scattered_shekels+whip_of_cords": { exposed: "Fine! He didn't use the whip on us. He didn't even touch the moneychangers.", corrects: "neutral" }
       }
     },
     {

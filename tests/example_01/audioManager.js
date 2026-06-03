@@ -8,6 +8,8 @@ export class AudioManager {
     
     // Initialize audio context on first user interaction (required by browsers)
     this._initAudioContext = this._initAudioContext.bind(this);
+    document.addEventListener('click', this._initAudioContext);
+    document.addEventListener('keydown', this._initAudioContext);
     
     // Bind play methods to ensure they can be called from event listeners
     this.playCollect = this.playCollect.bind(this);
@@ -21,16 +23,21 @@ export class AudioManager {
   }
 
   _initAudioContext() {
-    if (!this.audioContext) {
-      this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    try {
+      if (!this.audioContext) {
+        this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        this._createAmbienceOscillators();
+      }
       
-      // Create ambience oscillators
-      this._createAmbienceOscillators();
-      
-      // Remove the listener after first use
-      document.removeEventListener('click', this._initAudioContext);
-      document.removeEventListener('keydown', this._initAudioContext);
-    }
+      if (this.audioContext.state === 'suspended') {
+        this.audioContext.resume();
+      }
+
+      if (this.audioContext.state === 'running') {
+        document.removeEventListener('click', this._initAudioContext);
+        document.removeEventListener('keydown', this._initAudioContext);
+      }
+    } catch (e) { /* Silently wait for next gesture */ }
   }
 
   _createAmbienceOscillators() {
@@ -104,12 +111,7 @@ export class AudioManager {
   }
 
   play(event) {
-    // Initialize audio context on first interaction if needed
-    if (!this.audioContext) {
-      this._initAudioContext();
-    }
-    
-    if (!this.enabled || !this.audioContext) return;
+    if (!this.enabled || !this.audioContext || this.audioContext.state === 'suspended') return;
     
     // Create different sounds for different events
     const now = this.audioContext.currentTime;

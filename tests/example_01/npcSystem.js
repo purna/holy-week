@@ -17,6 +17,8 @@ loadCase(caseData) {
         pressureLevel: 0,
         contradictions: [],
         memory: [],
+        hasFailedChallenge: false,
+        correctedLies: [],
       };
     });
   }
@@ -41,10 +43,25 @@ getNPC(id) {
     if (!npc || !state) return null;
 
     const mood = state.mood;
-    const line = npc.dialogue[mood] || npc.dialogue.neutral;
+    const node = npc.dialogue[mood] || npc.dialogue.neutral;
+
+    // Handle object-based dialogue with lie/correction logic
+    if (node && typeof node === 'object' && node.text) {
+      const isCorrected = state.correctedLies.includes(mood);
+      const text = isCorrected ? (node.correction || node.text) : node.text;
+      
+      this._addMemory(npcId, { type: "talk", mood, isLie: node.isLie && !isCorrected });
+      return { 
+        speaker: npc.name, 
+        text, 
+        mood, 
+        isLie: node.isLie && !isCorrected, 
+        wasCorrected: isCorrected 
+      };
+    }
 
     this._addMemory(npcId, { type: "talk", mood });
-    return { speaker: npc.name, text: line, mood };
+    return { speaker: npc.name, text: node, mood };
   }
 
   // Show evidence to NPC — they react based on their role + truthfulness
@@ -69,14 +86,7 @@ getNPC(id) {
         this._updateMood(npcId, state);
       }
       this._addMemory(npcId, { type: "shown_evidence", evidenceId, reaction: reaction.text });
-      
-      let clue = reaction.revealedClue || null;
-      // Support mood-dependent clue revelation (e.g., revealedClue: { pressured: "id" })
-      if (clue && typeof clue === 'object') {
-        clue = clue[state.mood] || null;
-      }
-
-      return { speaker: npc.name, text: reaction.text, mood: state.mood, revealedClue: clue };
+      return { speaker: npc.name, text: reaction.text, mood: state.mood, revealedClue: reaction.revealedClue || null };
     }
 
     // Generic reaction by type
@@ -106,11 +116,45 @@ getNPC(id) {
       state.pressureLevel = Math.min(100, state.pressureLevel + 40);
       state.contradictions.push(key);
       this._updateMood(npcId, state);
-      return { speaker: npc.name, text: contradiction.exposed, mood: state.mood, breakthrough: true };
+
+      // Check if this contradiction corrects a lying dialogue node
+      let correctedNode = null;
+      if (contradiction.corrects && !state.correctedLies.includes(contradiction.corrects)) {
+        state.correctedLies.push(contradiction.corrects);
+        correctedNode = contradiction.corrects;
+      }
+
+      // Reputation Bonus for precise investigation
+      if (!state.hasFailedChallenge && npc.faction) {
+        this.caseManager.updateReputation(npc.faction, 5);
+      }
+
+      this.caseManager.recordBreakthrough(npcId, key);
+
+      return { 
+        speaker: npc.name, 
+        text: contradiction.exposed, 
+        mood: state.mood, 
+        breakthrough: true,
+        correctedNode 
+      };
     }
 
+    // Failure Logic
+    state.hasFailedChallenge = true;
     state.pressureLevel = Math.min(100, state.pressureLevel + 5);
     this._updateMood(npcId, state);
+
+    if (typeof this.caseManager.updateDoubt === 'function') {
+      this.caseManager.updateDoubt(10);
+    }
+    if (npc.faction && typeof this.caseManager.updateReputation === 'function') {
+      this.caseManager.updateReputation(npc.faction, -15);
+    }
+    if (typeof this.caseManager.recordFailedChallenge === 'function') {
+      this.caseManager.recordFailedChallenge();
+    }
+
     return {
       speaker: npc.name,
       text: npc.dialogue.noContradiction || `No contradiction found between "${this.es.getById(evidenceAId)?.name || evidenceAId}" and "${this.es.getById(evidenceBId)?.name || evidenceBId}". Try a different pairing.`,

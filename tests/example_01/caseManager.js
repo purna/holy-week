@@ -38,6 +38,7 @@ export class CaseManager {
         deductionsMade: [],
         breakthroughs: [],
         failedChallenges: 0,
+        discoveredSuspects: ["none"], // "No One" is always an option
         accusation: null,
         score: null,
       };
@@ -52,8 +53,15 @@ export class CaseManager {
 
   recordEvidenceFound(evidenceId) {
     const p = this.progress.cases[this.activeCaseId];
-    if (p && !p.evidenceFound.includes(evidenceId)) {
+    const c = this.getActiveCase();
+    if (p && c && !p.evidenceFound.includes(evidenceId)) {
       p.evidenceFound.push(evidenceId);
+      
+      // Auto-unlock suspects identified by physical evidence
+      const ev = c.evidencePool.find(e => e.id === evidenceId);
+      if (ev && ev.revealsSuspect) {
+        this.discoverSuspect(ev.revealsSuspect);
+      }
       this._saveProgress();
     }
   }
@@ -75,6 +83,14 @@ export class CaseManager {
         this._saveProgress();
         if (window.audio && typeof window.audio.playClue === 'function') window.audio.playClue();
       }
+    }
+  }
+
+  discoverSuspect(suspectId) {
+    const p = this.progress.cases[this.activeCaseId];
+    if (p && !p.discoveredSuspects.includes(suspectId)) {
+      p.discoveredSuspects.push(suspectId);
+      this._saveProgress();
     }
   }
 

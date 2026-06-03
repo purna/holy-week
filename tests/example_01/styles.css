@@ -199,17 +199,7 @@ button:focus-visible {
     100% { transform: scale(1); text-shadow: none; }
 }
 
-.reset-btn {
-    background: var(--surface3);
-    color: var(--text-muted);
-    border-radius: var(--radius-sm);
-    padding: 4px 10px;
-    font-size: 0.75rem;
-}
 
-.reset-btn:hover {
-    background: var(--surface2);
-}
 
 .a11y-btn {
     background: var(--surface3);
@@ -1012,9 +1002,21 @@ button:focus-visible {
 
 .lab-actions {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(4, 1fr);
     gap: 8px;
     margin-bottom: 12px;
+}
+
+@media (max-width: 440px) {
+    .lab-actions {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 340px) {
+    .lab-actions {
+        grid-template-columns: 1fr;
+    }
 }
 
 .lab-btn {
@@ -1045,6 +1047,10 @@ button:focus-visible {
 
 .lab-btn-icon {
     font-size: 1.3rem;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .lab-btn-label {
@@ -1057,15 +1063,17 @@ button:focus-visible {
     background: var(--surface2);
     border: 1px solid var(--border);
     border-radius: var(--radius);
-    padding: 12px;
-    min-height: 54px;
+    padding: 6px;
+    min-height: 24px;
     margin-bottom: 12px;
+    text-align: center;
 }
 
 .result-placeholder {
     font-size: 0.78rem;
-    color: var(--text-dim);
+    color: var(--text);
     font-family: var(--font-mono);
+
 }
 
 .result-text {
@@ -1106,14 +1114,57 @@ button:focus-visible {
     font-family: var(--font-mono);
 }
 
+.lab-history-list {
+    max-height: 220px;
+    overflow-y: auto;
+    padding-right: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 12px;
+
+    /* Custom scrollbar for Lab history */
+    scrollbar-width: thin;
+    scrollbar-color: var(--border2) transparent;
+}
+
+.lab-history-list::-webkit-scrollbar { width: 6px; }
+.lab-history-list::-webkit-scrollbar-track { background: transparent; }
+.lab-history-list::-webkit-scrollbar-thumb { 
+    background: var(--border2); 
+    border-radius: 10px; 
+    border: 1px solid transparent;
+    background-clip: content-box;
+}
+
 .deduction-entry {
     background: var(--surface2);
     border-radius: var(--radius-sm);
     padding: 8px 10px;
-    margin-bottom: 6px;
     display: flex;
     gap: 8px;
     align-items: flex-start;
+    position: relative;
+}
+
+.deduction-count {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    background: var(--blue);
+    color: var(--bg);
+    font-size: 0.75rem;
+    font-weight: 600;
+    min-width: 24px;
+    height: 18px;
+    padding: 0 4px 2px 4px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--surface);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.4);
+    z-index: 1;
 }
 
 .deduction-entry.key {
@@ -1343,6 +1394,25 @@ button:focus-visible {
     margin-bottom: 10px;
 }
 
+.picker-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 12px;
+    gap: 12px;
+}
+
+.evidence-counter {
+    font-size: 0.68rem;
+    font-family: var(--font-mono);
+    color: var(--text-muted);
+}
+
+.picker-btns {
+    display: flex;
+    gap: 8px;
+}
+
 .challenge-result {
     margin-top: 10px;
     animation: fadeSlide 0.2s var(--ease-out);
@@ -1432,17 +1502,16 @@ button:focus-visible {
     border-color: var(--blue);
     color: var(--blue);
 }
-
-.cancel-btn {
+.cancel-btn, .confirm-show-btn {
     background: transparent;
     color: var(--text-muted);
     font-size: 0.78rem;
-    padding: 6px 12px;
-    margin-right: 10px;
+    padding: 8px 14px;
     border: 1px solid var(--border2);
     border-radius: var(--radius-sm);
-    box-sizing: border-box;
 }
+
+
 
 .cancel-btn:hover:not([aria-disabled='true']) {
     background: var(--surface3);
@@ -1457,27 +1526,42 @@ button:focus-visible {
     cursor: not-allowed;
 }
 
-.confirm-show-btn {
+  .confirm-picker-btn {
     background: var(--blue);
     color: var(--bg);
-    font-size: 0.78rem;
-    font-weight: 700;
-    padding: 8px 16px;
+    font-size: 0.82rem;
+    font-weight: 800;
+    padding: 10px 20px;
     border-radius: var(--radius-sm);
     margin-left: auto;
+    transition: all 0.2s var(--ease-out);
+    box-shadow: 0 4px 12px rgba(79, 163, 232, 0.2);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
 }
 
-.confirm-show-btn:hover:not([aria-disabled='true']) {
-    background: var(--text-muted);
+.confirm-picker-btn:hover:not(:disabled) {
+    filter: brightness(1.1);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(79, 163, 232, 0.3);
 }
 
-.confirm-show-btn:active:not([aria-disabled='true']) {
-    background: var(--surface);
+.confirm-picker-btn.mode-challenge {
+    background: var(--red);
+    box-shadow: 0 4px 12px rgba(244, 96, 96, 0.2);
 }
 
-.confirm-show-btn:disabled {
-    opacity: 0.4;
+.confirm-picker-btn.mode-challenge:hover:not(:disabled) {
+    box-shadow: 0 6px 16px rgba(244, 96, 96, 0.3);
+}
+
+.confirm-picker-btn:disabled {
+    opacity: 0.3;
+    background: var(--surface3);
+    color: var(--text-dim);
     cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
 }
 
 .npc-feed {
@@ -1500,6 +1584,12 @@ button:focus-visible {
     gap: 2px;
     margin-bottom: 10px;
     animation: fadeSlide 0.2s var(--ease-out);
+}
+
+.msg-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
 }
 
 .msg-speaker {
@@ -1532,7 +1622,9 @@ button:focus-visible {
 }
 
 .breakthrough-badge,
-.clue-badge {
+.clue-badge,
+.truth-badge,
+.evidence-tag-badge {
     display: inline-block;
     font-size: 0.65rem;
     font-weight: 700;
@@ -1546,6 +1638,17 @@ button:focus-visible {
 .clue-badge {
     background: rgba(79, 163, 232, 0.2);
     color: var(--blue);
+}
+
+.evidence-tag-badge {
+    background: var(--surface3);
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+}
+
+.truth-badge {
+    background: rgba(61, 214, 140, 0.2);
+    color: var(--green);
 }
 
 /* ─── Accusation panel ─── */
@@ -1600,6 +1703,20 @@ button:focus-visible {
     transform: scale(0.97);
 }
 
+.suspect-btn.locked {
+    opacity: 0.4;
+    filter: grayscale(1);
+    cursor: not-allowed;
+    border-style: dashed;
+    background: var(--surface);
+}
+
+.suspect-btn .lock-icon {
+    font-size: 0.85rem;
+    margin-left: 12px;
+    color: var(--text-dim);
+}
+
 .suspect-btn-avatar {
     font-size: 1.6rem;
 }
@@ -1646,7 +1763,7 @@ button:focus-visible {
     text-align: center;
     max-width: 480px;
     width: 100%;
-    height: 80%;
+    height: 75vh;
     display: flex;
     flex-direction: column;
 }
@@ -1675,7 +1792,9 @@ button:focus-visible {
     font-size: 0.82rem;
     color: var(--text-muted);
     line-height: 1.6;
-    margin: 16px 0;
+    margin: 16px 0 32px 0;
+    justify-content:left;
+    text-align: left;
 }
 
 .result-lesson {
@@ -1684,6 +1803,7 @@ button:focus-visible {
     padding: 10px 14px;
     border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
     font-size: 0.78rem;
+
     color: var(--text-muted);
     text-align: left;
     margin-bottom: 16px;
@@ -1734,6 +1854,15 @@ button:focus-visible {
 /* ─── A11y panel ─── */
 #screen-a11y {
     background: var(--bg);
+    width: 60vw;
+    min-width: 360px;
+    height: 70vh;
+    min-height: 640px;
+    margin: auto;
+    inset: 0;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
 }
 
 .a11y-scroll {
@@ -2179,6 +2308,20 @@ button:focus-visible {
     border: 1px solid var(--border2);
 }
 
+.scroll-hint {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    margin: 6px 0;
+    animation: hint-float 3s ease-in-out infinite;
+    transition: opacity 0.4s ease;
+}
+
+.scroll-hint-hidden {
+    opacity: 0 !important;
+    pointer-events: none;
+}
+
 
 /* Custom scrollbar styles */
 .scrollable {
@@ -2216,4 +2359,9 @@ button:focus-visible {
 .scrollable::-webkit-scrollbar-thumb:hover {
     background: #888;
     background-clip: content-box;
+}
+
+@keyframes hint-float {
+    0%, 100% { transform: translateY(0); opacity: 0.5; }
+    50% { transform: translateY(4px); opacity: 1; }
 }

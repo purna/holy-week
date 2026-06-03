@@ -34,6 +34,12 @@ This reference manual structures all 25 narrative archetypes into the 12 distinc
 * **Identity:** A city dweller resentful of holiday price inflation and suspicious of rural Galilean fanaticism.
 * **Linguistic Style:** Terse, direct, and laden with sharp urban idioms.
 
+#### 5. Eleazar ben Simon (Sadducean Noble)
+* **Dialogue File:** [sadducee_opposition.json](sadducee_opposition.json)
+* **Identity:** A wealthy aristocrat focused on maintaining the status quo and preventing Roman intervention.
+* **Linguistic Style:** Haughty, dismissive of 'peasants', and prone to exaggerating 'threats' to justify police action.
+* **Reliability:** UNRELIABLE. Embellishes events to suit a political narrative.
+
 ---
 
 ## 🏛️ ACT 2: THE EVIDENCE OF ANOMALIES

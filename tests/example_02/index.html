@@ -417,7 +417,6 @@
       constructor() {
         // Initialize historical narrative database and inject raw case files
         this.cm = new CaseManager();
-        this.registerAllCases();
 
         // Load or initialize persistent configuration and accessibility matrices
         this.a11y = new AccessibilityManager();
@@ -429,7 +428,10 @@
         this.de = new DeductionEngine(this.cm, this.es);
         this.ls = new LocationSystem(this.cm);
         this.audio = new AudioManager();
-        this.dm = new DialogueManager();
+        this.dm = new DialogueManager(this.audio);
+
+        // Register cases now that all dependencies (cm, dm) are initialized
+        this.registerAllCases();
 
         // Primary runtime environment state properties
         this.activeCaseId = null;
@@ -1519,6 +1521,26 @@
             blipContainer.appendChild(blip);
           }
         });
+
+        // Map relative locked items (clues mentioned in case data but not yet revealed in dialogue)
+        if (this.lockedEvidence) {
+          Object.values(this.lockedEvidence).forEach(ev => {
+            if (!ev.pos) return;
+            const deltaX = ev.pos[0] - this.pPos.x;
+            const deltaZ = ev.pos[2] - this.pPos.z;
+            const x = offset + (deltaX * scale);
+            const y = offset + (deltaZ * scale);
+
+            if (x >= 0 && x <= 110 && y >= 0 && y <= 110) {
+              const blip = document.createElement('div');
+              blip.className = 'minimap-blip locked-clue';
+              blip.style.left = `${x}px`;
+              blip.style.top = `${y}px`;
+              blip.title = "Unknown Clue (Interview NPCs to unlock)";
+              blipContainer.appendChild(blip);
+            }
+          });
+        }
       }
     }
 
@@ -1527,6 +1549,7 @@
     // ==========================================================================
     const game = new GameEngine();
     window.a11y = game.a11y;
+    window.audio = game.audio;
 
     (function domInit() {
       const settingsOverlay = document.getElementById('settings-overlay');
@@ -1687,7 +1710,6 @@
       constructor() {
         // Initialize historical narrative database and inject raw case files
         this.cm = new CaseManager();
-        this.registerAllCases();
 
         // Load or initialize persistent configuration and accessibility matrices
         this.a11y = new AccessibilityManager();

@@ -1,0 +1,181 @@
+{
+    "inkVersion": 21,
+    "root": [
+        [
+            {
+                "->": "sadducee_opposition"
+            },
+            [
+                "done",
+                {
+                    "#n": "g-0"
+                }
+            ],
+            null
+        ],
+        "done",
+        {
+            "sadducee_opposition": [
+                [
+                    "^Look at the state of these streets. Palm branches, mud, and Galileans shouting enough to wake the Governor in Caesarea.",
+                    {
+                        "*": ".^.c-0",
+                        "flg": 2,
+                        "s": [
+                            "^You seem displeased with the procession.",
+                            null
+                        ]
+                    },
+                    {
+                        "*": ".^.c-1",
+                        "flg": 2,
+                        "s": [
+                            "^I'm investigating the missing donkey from Bethphage.",
+                            null
+                        ]
+                    },
+                    null
+                ],
+                {
+                    "c-0": [
+                        {
+                            "->": "disdain"
+                        },
+                        null
+                    ],
+                    "c-1": [
+                        {
+                            "->": "donkey_claim"
+                        },
+                        null
+                    ]
+                }
+            ],
+            "disdain": [
+                [
+                    "^Displeased? It's a security tinderbox! And the \"King\" they're following? He's riding a stolen animal.",
+                    {
+                        "*": ".^.c-0",
+                        "flg": 2,
+                        "s": [
+                            "^Stolen? The owner says he lent it.",
+                            null
+                        ]
+                    },
+                    null
+                ],
+                {
+                    "c-0": [
+                        {
+                            "->": "donkey_claim"
+                        },
+                        null
+                    ]
+                }
+            ],
+            "donkey_claim": [
+                [
+                    "^Lent it? Hah! I saw two rough-looking men hacking at the tether with rusted knives. They practically dragged the poor beast over the wall while the owner cried out.",
+                    "#",
+                    "^reveal:noble_deposition",
+                    "/#",
+                    "\n",
+                    {
+                        "*": ".^.c-0",
+                        "flg": 2,
+                        "s": [
+                            "^The rope fibers don't show marks of hacking.",
+                            null
+                        ]
+                    },
+                    {
+                        "*": ".^.c-1",
+                        "flg": 2,
+                        "s": [
+                            "^The owner had a scroll of Zechariah.",
+                            null
+                        ]
+                    },
+                    null
+                ],
+                {
+                    "c-0": [
+                        {
+                            "->": "pressure"
+                        },
+                        null
+                    ],
+                    "c-1": [
+                        {
+                            "->": "fanatical"
+                        },
+                        null
+                    ]
+                }
+            ],
+            "pressure": [
+                [
+                    "^The light was poor at dawn! But I heard the owner shouting for help!",
+                    {
+                        "*": ".^.c-0",
+                        "flg": 2,
+                        "s": [
+                            "^The villager says he nodded and let them go.",
+                            null
+                        ]
+                    },
+                    null
+                ],
+                {
+                    "c-0": [
+                        {
+                            "->": "exposed"
+                        },
+                        null
+                    ]
+                }
+            ],
+            "fanatical": [
+                [
+                    "^The owner is a dreamer. He probably thinks every bird that flies over his field is an angel. His testimony is worthless.",
+                    {
+                        "*": ".^.c-0",
+                        "flg": 2,
+                        "s": [
+                            "^Continue.",
+                            null
+                        ]
+                    },
+                    null
+                ],
+                {
+                    "c-0": [
+                        {
+                            "->": "pressure"
+                        },
+                        null
+                    ]
+                }
+            ],
+            "exposed": [
+                [
+                    "^Fine! The owner is a fool who gave his property away. But we cannot have people claiming royal titles unvetted. I told the guards it was theft to ensure they would intervene. Order is more important than your \"truth.\"",
+                    {
+                        "->": "closing"
+                    },
+                    null
+                ],
+                null
+            ],
+            "closing": [
+                [
+                    "done",
+                    null
+                ],
+                null
+            ]
+        }
+    ],
+    "globals": {},
+    "listDefs": {}
+}

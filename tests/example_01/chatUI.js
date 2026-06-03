@@ -40,26 +40,6 @@ export class ChatUI {
     return msgs.slice(-20).map(m => this._renderMsg(m)).join("");
   }
 
-  showNotification(text, type = "info") {
-    const container = document.getElementById('app');
-    const toast = document.createElement('div');
-    toast.className = `game-notification ${type}`;
-    toast.style.cssText = `
-      position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
-      background: ${type === 'warning' ? '#ef4444' : '#34d399'};
-      color: white; padding: 12px 24px; border-radius: 8px; z-index: 10000;
-      font-weight: bold; box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-      pointer-events: none; animation: slideInDown 0.3s ease-out;
-    `;
-    toast.textContent = text;
-    container.appendChild(toast);
-    setTimeout(() => {
-      toast.style.opacity = '0';
-      toast.style.transition = 'opacity 0.5s ease';
-      setTimeout(() => toast.remove(), 500);
-    }, 3000);
-  }
-
   _renderMsg(m) {
     const cls = `msg msg-${m.type}`;
     const icon = m.type === "player" ? "🕵️" : m.type === "system" ? "📋" : "🗣";
@@ -121,8 +101,13 @@ export class ChatUI {
                       ${e.icon} ${e.name}
                     </button>`).join("")}
                 </div>
-                <button class="cancel-btn" data-npc="${npc.id}" aria-label="Cancel">Cancel</button>
-                <button class="confirm-show-btn" data-npc="${npc.id}" aria-label="Confirm selection" disabled>✓ Show Selected</button>
+                <div class="picker-footer">
+                  <span class="evidence-counter" data-npc-counter="${npc.id}">0 / ${this.es.getCollected().length} selected</span>
+                  <div class="picker-btns">
+                    <button class="cancel-btn" data-npc="${npc.id}" aria-label="Cancel">Cancel</button>
+                    <button class="confirm-show-btn" data-npc="${npc.id}" aria-label="Confirm selection" disabled>✓ Show Selected</button>
+                  </div>
+                </div>
               </div>
               <div class="challenge-result" data-npc-challenge="${npc.id}" hidden></div>
             </div>`;
@@ -145,7 +130,7 @@ export class ChatUI {
           const story = window.dm.createStory(npcId);
           if (story) {
             window.dm.openDialogue(npc, story, 
-              () => { // onClose
+              () => { // onClose callback
               if (npc.unlocksEvidence && npc.unlocksEvidence.length > 0) {
                 npc.unlocksEvidence.forEach(id => {
                   const unlocked = this.es.discover(id);
@@ -157,7 +142,7 @@ export class ChatUI {
               if (this.onAction) this.onAction({ type: "talk_complete", npcId });
               this._refreshNPCFeed(npcId, container);
             },
-            (text, type) => { // onMessage
+            (text, type) => { // onMessage callback
               const speaker = type === 'player' ? 'Investigator' : npc.name;
               this.addMessage(speaker, text, type, {}, npcId);
             });
@@ -199,6 +184,7 @@ export class ChatUI {
     container.querySelectorAll(".evidence-pick-btn").forEach(btn => {
       btn.addEventListener("click", () => {
         const npcId = btn.dataset.npc;
+        const npcCard = btn.closest(".npc-card");
         if (!npcId || npcId !== pendingNPC) return;
 
         const evId = btn.dataset.evidence;
@@ -220,6 +206,8 @@ export class ChatUI {
 
         const confirmBtn = container.querySelector(`.confirm-show-btn[data-npc="${npcId}"]`);
         if (confirmBtn) confirmBtn.disabled = pendingSelection.length === 0;
+
+        updatePickerCounter(npcId, container);
 
         const challengeBtn = container.querySelector(`[data-action="challenge"][data-npc="${npcId}"]`);
         if (challengeBtn) {
@@ -248,6 +236,8 @@ export class ChatUI {
         this._refreshNPCFeed(npcId, container);
         const picker = container.querySelector(`[data-npc-picker="${npcId}"]`);
         if (picker) picker.hidden = true;
+        const npcCard = btn.closest(".npc-card");
+        updateChallengeBtn(npcCard, true);
         pendingSelection = [];
         pendingNPC = null;
 
@@ -260,6 +250,8 @@ export class ChatUI {
         const npcId = btn.dataset.npc || pendingNPC;
         const picker = container.querySelector(`[data-npc-picker="${npcId}"]`);
         if (picker) picker.hidden = true;
+        const npcCard = btn.closest(".npc-card");
+        updateChallengeBtn(npcCard, true);
         pendingSelection = [];
         pendingNPC = null;
       });
@@ -293,14 +285,6 @@ export class ChatUI {
           this.addMessage(result.speaker, result.text, "npc", { breakthrough: result.breakthrough }, npcId);
           this._refreshNPCFeed(npcId, container);
         }
-
-        if (!result.breakthrough) {
-          this.showNotification("⚠️ Challenge Failed: Doubt +10, Reputation -15", "warning");
-          if (this.audio) this.audio.playError();
-        } else {
-          this.showNotification("⚡ Breakthrough! Evidence Connected.", "success");
-        }
-
         if (this.onAction) this.onAction({ type: "challenge", result, npcId });
       });
     });

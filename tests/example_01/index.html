@@ -36,7 +36,10 @@
         <div style="display:flex;gap:8px;align-items:center">
           <div class="header-score">0 pts</div>
           <div class="header-rank" id="hdr-rank">Rookie</div>
-          <button class="reset-btn" onclick="showResetModal()" title="Reset Game" aria-label="Reset all game progress"><i class="fas fa-undo"></i></button>
+          <button class="a11y-btn" onclick="showResetModal()" title="Reset Game" aria-label="Reset all game progress"><i class="fas fa-undo"></i></button>
+          
+          <button class="a11y-btn" onclick="showInstructionsModal()" title="Instructions" aria-label="View game instructions"><i class="fas fa-info-circle"></i></button>
+          
           <button class="a11y-btn" id="a11y-btn-map" onclick="showScreen('a11y')"
             aria-label="Accessibility settings"><i class="fa-solid fa-gear"></i></button>
         </div>
@@ -69,6 +72,8 @@
           <div class="header-title" id="cases-loc-name">Location</div>
           <div class="header-subtitle">Choose a case</div>
         </div>
+        <button class="a11y-btn" onclick="showInstructionsModal()" title="Instructions" aria-label="View game instructions"><i class="fas fa-info-circle"></i></button>
+
         <button class="a11y-btn" id="a11y-btn-cases" onclick="showScreen('a11y')"
           aria-label="Accessibility settings"><i class="fa-solid fa-gear"></i></button>
       </div>
@@ -89,6 +94,8 @@
           <div class="header-title" id="inv-case-title">Case</div>
           <div class="header-subtitle" id="inv-case-sub"></div>
         </div>
+        <button class="a11y-btn" onclick="showInstructionsModal()" title="Instructions" aria-label="View game instructions"><i class="fas fa-info-circle"></i></button>
+
         <button class="a11y-btn" id="a11y-btn-investigation" onclick="showScreen('a11y')"
           aria-label="Accessibility settings"><i class="fa-solid fa-gear"></i></button>
       </div>
@@ -264,6 +271,32 @@
             <div class="evidence-detail-label">🔎 Investigator Notes</div>
             <div class="evidence-detail-investigator-note"></div>
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="instructions-modal" class="screen" style="background: rgba(0,0,0,0.85); justify-content: center; align-items: center; z-index: 5000;">
+    <div class="evidence-detail-content" style="height: auto; max-width: 420px; position: relative;">
+      <button class="evidence-detail-close" onclick="window.closeInstructionsModal()" aria-label="Close">✕</button>
+      <div class="evidence-detail-inner">
+        <div id="instructions-logo" style="text-align: center; margin-bottom: 24px;">
+          <div class="header-title" style="font-size: 2.2rem; color: var(--gold); text-shadow: 0 0 15px rgba(245,200,66,0.4);">🔍 Holy Week</div>
+        </div>
+        <div class="evidence-detail-header">
+          <div class="evidence-detail-name">How to Play</div>
+        </div>
+        <div class="evidence-detail-body">
+          <div class="evidence-detail-desc">
+            <p>Welcome, Scribe. Your task is to investigate the events of Holy Week and uncover the truth 🕊️ behind the mysteries.</p>
+            <br>
+            <p><strong>1. 🗺️ Explore :</strong> Select a location from the map to view available cases.</p>
+            <p><strong>2. 🔎 Investigate :</strong> Visit the <strong>Scene</strong> to collect clues. Some evidence is only revealed through conversation!</p>
+            <p><strong>3. 🗣️ Interview :</strong> Talk to witnesses in the <strong>People</strong> tab. Show them evidence to gather reactions, or <strong>Challenge</strong> them if you find a contradiction.</p>
+            <p><strong>4. 🧪 Analyze :</strong> In the <strong>Lab</strong>, select two pieces of evidence and an operation to find new insights.</p>
+            <p><strong>5. ⚖️Accuse :</strong> Once you have enough proof, make your final verdict. Be careful—wrong guesses increase your <strong>Doubt</strong>.</p>
+          </div>
+          <button class="evidence-detail-confirm" onclick="window.closeInstructionsModal()">Start Investigation</button>
         </div>
       </div>
     </div>
@@ -623,11 +656,15 @@
       view.innerHTML = `
       <div class="accuse-panel" role="region" aria-label="Make an accusation">
         <div class="accuse-title">⚖️ Make Your Accusation</div>
-        <div class="accuse-subtitle">Choose carefully — you cannot undo this.</div>
+        <div class="accuse-subtitle">Identify the party responsible. Suspects are unlocked as you gather testimony and analysis.</div>
         <div class="suspect-list" role="list">
-          ${c.suspects.map(s => `
+          ${c.suspects.map(s => {
+            const prog = cm.getCaseProgress(c.id);
+            const isLocked = !(prog?.discoveredSuspects || []).includes(s.id);
+            return `
             <button
-              class="suspect-btn"
+              class="suspect-btn ${isLocked ? 'locked' : ''}"
+              ${isLocked ? 'disabled' : ''}
               role="listitem"
               aria-label="Accuse ${s.name}, ${s.role}"
               onclick="accuse('${s.id}')"
@@ -638,7 +675,9 @@
                 <div class="suspect-btn-role">${s.role}</div>
               </div>
               <span aria-hidden="true">→</span>
-            </button>`).join("")}
+              ${isLocked ? '<span class="lock-icon">🔒</span>' : ''}
+            </button>`;
+          }).join("")}
         </div>
       </div>
       `;
@@ -677,6 +716,11 @@
               📚 ${a11y.simplify(c.truth.lesson)}
             </div>
           </div>
+
+          <div class="scroll-hint" aria-hidden="true">
+            <i class="fas fa-chevron-down"></i> Scroll Down <i class="fas fa-chevron-down"></i>
+          </div>
+
           <div class="score-grid" aria-label="Your score breakdown">
             <div class="score-item"><div class="score-item-value">${result.score.evidence}</div><div class="score-item-label">Evidence</div></div>
             <div class="score-item"><div class="score-item-value">${result.score.deduction}</div><div class="score-item-label">Deductions</div></div>
@@ -690,6 +734,30 @@
         </div>
       </div>
       `;
+
+      const summary = document.querySelector('.result-summary');
+      const hint = document.querySelector('.scroll-hint');
+      if (summary && hint) {
+        // Function to update hint visibility based on scroll position
+        const updateScrollHintVisibility = () => {
+          if (summary.scrollTop > 0) {
+            hint.classList.add('scroll-hint-hidden');
+          } else {
+            hint.classList.remove('scroll-hint-hidden');
+          }
+        };
+
+        // Initial check for scrollability and visibility
+        if (summary.scrollHeight > summary.clientHeight) {
+          updateScrollHintVisibility(); // Set initial state
+        } else {
+          // If not scrollable, hide permanently
+          hint.classList.add('scroll-hint-hidden');
+        }
+
+        // Add scroll event listener
+        summary.addEventListener('scroll', updateScrollHintVisibility);
+      }
     }
 
     // ── A11y panel ───────────────────────────────────────────────
@@ -728,6 +796,15 @@
     renderMap();
     a11y.announce("Detective World loaded. Choose a location to begin.");
 
+    // Check for first-time play
+    const hasPlayed = localStorage.getItem("holy_week_first_play");
+    if (!hasPlayed) {
+      setTimeout(() => {
+        window.showInstructionsModal(true);
+        localStorage.setItem("holy_week_first_play", "true");
+      }, 800);
+    }
+
     document.getElementById("evidence-detail-modal").querySelector(".evidence-detail-close").addEventListener("click", window.closeEvidenceDetail);
     document.getElementById("evidence-detail-modal").addEventListener("click", function (e) {
       if (e.target.id === "evidence-detail-modal") window.closeEvidenceDetail();
@@ -760,6 +837,20 @@
       renderMap();
       a11y.announce("Game reset. All progress cleared. Choose a location to begin.");
     };
+
+    window.showInstructionsModal = function() {
+      document.getElementById("instructions-modal").classList.add("active");
+      if (window.audio && typeof window.audio.playHighStakes === 'function') {
+        window.audio.playHighStakes();
+      }
+      a11y.speak("Game instructions opened.");
+    }
+
+    window.closeInstructionsModal = function() {
+      document.getElementById("instructions-modal").classList.remove("active");
+      if (window.audio && typeof window.audio.play === 'function') window.audio.play('talk');
+    };
+
 
     window.showResetModal = function() {
       document.getElementById("reset-modal").classList.add("active");

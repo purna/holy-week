@@ -3,10 +3,10 @@
 // ============================================================
 
 export const OPERATIONS = {
-  COMPARE:     { id: "compare",     label: "Compare",     icon: "🔍", desc: "Are these consistent?" },
-  LINK:        { id: "link",        label: "Link",        icon: "🔗", desc: "Do they point to the same conclusion?" },
-  TIMELINE:    { id: "timeline",    label: "Timeline",    icon: "⏱", desc: "What happened first?" },
-  CONTRADICT:  { id: "contradict",  label: "Contradict",  icon: "⚡", desc: "Do these conflict?" },
+  COMPARE:     { id: "compare",     label: "Compare",     icon: '<i class="fa-solid fa-magnifying-glass"></i>', desc: "Are these consistent?" },
+  LINK:        { id: "link",        label: "Link",        icon: '<i class="fa-solid fa-link"></i>',        desc: "Do they point to the same conclusion?" },
+  TIMELINE:    { id: "timeline",    label: "Timeline",    icon: '<i class="fa-solid fa-clock"></i>',       desc: "What happened first?" },
+  CONTRADICT:  { id: "contradict",  label: "Contradict",  icon: '<i class="fa-solid fa-bolt"></i>',        desc: "Do these conflict?" },
 };
 
 export class DeductionEngine {
@@ -17,7 +17,10 @@ export class DeductionEngine {
   }
 
   loadCase() {
-    this.deductions = [];
+    // Load existing deductions from CaseManager to keep history across sessions
+    const caseId = this.caseManager.activeCaseId;
+    const p = this.caseManager.getCaseProgress(caseId);
+    this.deductions = p ? [...(p.deductionsMade || [])] : [];
   }
 
   canOperate() {
@@ -35,6 +38,11 @@ export class DeductionEngine {
 
     // Check for case-specific deduction
     const specific = c?.deductions?.[key]?.[operation] || c?.deductions?.[keyRev]?.[operation];
+
+    // Lab insights can reveal suspects (e.g. finding a hidden name)
+    if (specific && specific.revealsSuspect) {
+      this.caseManager.discoverSuspect(specific.revealsSuspect);
+    }
 
     let result;
     if (specific) {

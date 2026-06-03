@@ -46,6 +46,7 @@ mary_magdalene:     './story/mary_magdalene.json',
       simon_peter:        './story/peter_defense.json',
       centurion_longinus: './story/roman_assessment.json',
       temple_priest_pashhur: './story/caiaphas_priest.json',
+      eleazar:            './story/eleazar_sadducee.json',
 };
 /**
  * DialogueManager

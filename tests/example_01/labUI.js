@@ -12,6 +12,20 @@ export class LabUI {
   }
 
   render() {
+    const deductions = this.de.getDeductions();
+    const grouped = [];
+    const seen = new Map();
+
+    deductions.forEach(d => {
+      const key = `${d.operation}-${d.a}-${d.b}`;
+      if (seen.has(key)) {
+        grouped[seen.get(key)].count++;
+      } else {
+        seen.set(key, grouped.length);
+        grouped.push({ ...d, count: 1 });
+      }
+    });
+
     return `
       <div class="lab-panel" role="region" aria-label="Investigation Lab">
 
@@ -54,15 +68,18 @@ export class LabUI {
         </div>
 
         <div class="lab-history" role="region" aria-label="Previous deductions">
-          <h3 class="lab-history-title">Deductions (${this.de.getDeductions().length})</h3>
-          ${this.de.getDeductions().length === 0
-        ? `<p class="lab-empty">No deductions yet.</p>`
-        : this.de.getDeductions().slice(-3).reverse().map(d => `
-              <div class="deduction-entry ${d.isKeyDeduction ? 'key' : ''}" role="listitem">
-                <span class="deduction-op" aria-hidden="true">${OPERATIONS[d.operation?.toUpperCase()]?.icon || "🔍"}</span>
-                <span class="deduction-text">${this.a11y.simplify(d.text)}</span>
-                ${d.isKeyDeduction ? `<span class="key-badge" aria-label="Key deduction">★</span>` : ""}
-              </div>`).join("")}
+          <h3 class="lab-history-title">Deductions (${grouped.length})</h3>
+          <div class="lab-history-list">
+            ${grouped.length === 0
+              ? `<p class="lab-empty">No deductions yet.</p>`
+              : grouped.slice().reverse().map(d => `
+                  <div class="deduction-entry ${d.isKeyDeduction ? 'key' : ''}" role="listitem">
+                    ${d.count > 1 ? `<span class="deduction-count" aria-label="Tried ${d.count} times">${d.count}</span>` : ""}
+                    <span class="deduction-op" aria-hidden="true">${OPERATIONS[d.operation?.toUpperCase()]?.icon || "🔍"}</span>
+                    <span class="deduction-text">${this.a11y.simplify(d.text)}</span>
+                    ${d.isKeyDeduction ? `<span class="key-badge" aria-label="Key deduction">★</span>` : ""}
+                  </div>`).join("")}
+          </div>
         </div>
 
       </div>

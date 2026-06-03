@@ -359,6 +359,16 @@
     50%       { opacity: 0.35; }
 }
 
+.minimap-blip.locked-clue {
+    background: rgba(200, 150, 90, 0.15);
+    border: 1px dashed rgba(200, 150, 90, 0.4);
+    width: 6px;
+    height: 6px;
+    margin-left: -3px;
+    margin-top: -3px;
+    border-radius: 50%;
+}
+
 .evidence-ghost-hint {
     position: absolute;
     pointer-events: none;
