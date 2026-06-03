@@ -3,12 +3,13 @@
 // ============================================================
 
 export class ChatUI {
-  constructor(npcSystem, evidenceSystem, accessibility, onAction, audioManager) {
+  constructor(npcSystem, evidenceSystem, accessibility, onAction, audioManager, dialogueManager) {
     this.npcs  = npcSystem;
     this.es    = evidenceSystem;
     this.a11y  = accessibility;
     this.onAction = onAction;
     this.audio = audioManager;
+    this.dm = dialogueManager;
     this.messagesByNPC = {};
     this.challengeResultsByNPC = {};
   }
@@ -126,10 +127,10 @@ export class ChatUI {
         const npc = this.npcs.getNPC(npcId);
         this.pendingNPC = npcId;
 
-        if (window.dm && npc && npc.hasDialogue && npc.storyFile) {
-          const story = window.dm.createStory(npcId);
+        if (this.dm && npc && npc.hasDialogue && npc.storyFile) {
+          const story = this.dm.createStory(npcId);
           if (story) {
-            window.dm.openDialogue(npc, story, 
+            this.dm.openDialogue(npc, story, 
               () => { // onClose callback
               if (npc.unlocksEvidence && npc.unlocksEvidence.length > 0) {
                 npc.unlocksEvidence.forEach(id => {

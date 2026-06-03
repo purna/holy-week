@@ -351,6 +351,8 @@
     import { act3CaseA, act3CaseB, act3CaseC } from "./act3_case_improved.js";
     import { act4CaseA, act4CaseB } from "./act4_case_improved.js";
     import { AudioManager } from "./audioManager.js";
+    import { UIManager } from "./UIManager.js";
+    import { GameManager } from "./GameManager.js";
 
     // ── Bootstrap ──────────────────────────────────────────────
     const cm = new CaseManager();
@@ -813,7 +815,7 @@
       if (e.key === "Escape") window.closeEvidenceDetail();
     });
 
-    setTimeout(checkGameComplete, 100);
+    setTimeout(() => gm.checkGameComplete(), 100);
 
     document.addEventListener('click', function (e) {
       if (e.target.tagName.toLowerCase() === 'button' ||
