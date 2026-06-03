@@ -208,17 +208,47 @@ export class UIManager {
   renderResult(result) {
     const c = this.cm.getActiveCase();
     document.getElementById("result-content").innerHTML = `
+    <div class="container" role="region" aria-label="Case result details">
       <div class="result-card">
-        <div class="result-verdict">${result.correct ? "🏆" : "❌"}</div>
-        <div class="result-summary scrollable">
-          <div class="result-truth"><strong>The truth:</strong> ${this.a11y.simplify(c.truth.motive)}</div>
-          <div class="result-lesson">📚 ${this.a11y.simplify(c.truth.lesson)}</div>
+        <div class="result-verdict" aria-hidden="true">${result.correct ? "🏆" : "❌"}</div>
+        <div class="result-verdict-text ${result.correct ? 'correct' : 'wrong'}" role="heading" aria-level="1">
+          ${result.correct ? "Case Solved!" : "Wrong Accusation"}
         </div>
-        <div class="score-grid">
-           <div class="score-item"><div class="score-item-value">${result.score.total}</div><div class="score-item-label">Total Score</div></div>
+        <div class="result-summary scrollable" aria-label="Case summary">
+          <div class="result-truth">
+            <strong>The truth:</strong> ${this.a11y.simplify(c.truth.motive)} ${this.a11y.simplify(c.truth.method)}
+          </div>
+          <div class="result-lesson" aria-label="What you learned">
+            📚 ${this.a11y.simplify(c.truth.lesson)}
+          </div>
         </div>
-        <button class="result-continue-btn" onclick="showScreen('map')">Continue →</button>
-      </div>`;
+        <div class="scroll-hint" aria-hidden="true">
+          <i class="fas fa-chevron-down"></i> Scroll Down <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="score-grid" aria-label="Your score breakdown">
+          <div class="score-item"><div class="score-item-value">${result.score.evidence}</div><div class="score-item-label">Evidence</div></div>
+          <div class="score-item"><div class="score-item-value">${result.score.deduction}</div><div class="score-item-label">Deductions</div></div>
+          <div class="score-item"><div class="score-item-value">${result.score.challenge || 0}</div><div class="score-item-label">Challenges</div></div>
+          <div class="score-item" style="border: 1px solid var(--gold);"><div class="score-item-value" style="color:var(--green)">+${result.score.perfectBonus || 0}</div><div class="score-item-label">Perfect Bonus</div></div>
+          <div class="score-item"><div class="score-item-value">${result.score.accusation > 0 ? '+' : ''}${result.score.accusation}</div><div class="score-item-label">Accusation</div></div>
+          <div class="score-item"><div class="score-item-value" style="color:var(--red)">-${result.score.doubtPenalty}</div><div class="score-item-label">Doubt (x2)</div></div>
+          <div class="score-item"><div class="score-item-value">${result.score.total}</div><div class="score-item-label">Total</div></div>
+        </div>
+        <button class="result-continue-btn" onclick="showScreen('map')" aria-label="Continue to world map">Continue →</button>
+      </div>
+    </div>`;
+
+    const summary = document.querySelector('.result-summary');
+    const hint = document.querySelector('.scroll-hint');
+    if (summary && hint) {
+      const updateScrollHintVisibility = () => {
+        if (summary.scrollTop > 0) hint.classList.add('scroll-hint-hidden');
+        else hint.classList.remove('scroll-hint-hidden');
+      };
+      if (summary.scrollHeight > summary.clientHeight) updateScrollHintVisibility();
+      else hint.classList.add('scroll-hint-hidden');
+      summary.addEventListener('scroll', updateScrollHintVisibility);
+    }
   }
 
   renderA11yToggles() {

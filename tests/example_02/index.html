@@ -343,14 +343,28 @@
         <div id="settings-saved-label"
           style="height:1rem; color:var(--accent-success); font-size:0.75rem; letter-spacing:1px;"></div>
       </main>
-      <footer style="display:flex; justify-content:space-between; gap:10px; margin-top:10px; padding:0 4px;">
-        <button id="btn-close-settings" class="terminal-btn">
-          <i class="fa-solid fa-xmark"></i> Cancel
-        </button>
-        <button id="btn-save-settings" class="terminal-btn"
-          style="background:var(--accent-primary); color:#000; border-color:var(--accent-primary);">
-          <i class="fa-solid fa-check"></i> Save
-        </button>
+      <footer style="display:flex; flex-direction:column; gap:10px; margin-top:10px; padding:0 4px;">
+        <!-- Game Persistence Controls -->
+        <div style="display:flex; gap:10px;">
+          <button id="btn-save-game" class="terminal-btn"
+            style="flex:1; border-color:var(--accent-success); color:var(--accent-success);">
+            <i class="fa-solid fa-floppy-disk"></i> Save Progress
+          </button>
+          <button id="btn-load-game" class="terminal-btn"
+            style="flex:1; border-color:var(--accent-primary); color:var(--accent-primary);">
+            <i class="fa-solid fa-upload"></i> Load Progress
+          </button>
+        </div>
+        <div style="border-top: 1px solid var(--border-subtle); margin: 5px 0;"></div>
+        <div style="display:flex; justify-content:space-between; gap:10px;">
+          <button id="btn-close-settings" class="terminal-btn" style="flex:1;">
+            <i class="fa-solid fa-xmark"></i> Cancel
+          </button>
+          <button id="btn-save-settings" class="terminal-btn"
+            style="flex:1; background:var(--accent-primary); color:#000; border-color:var(--accent-primary);">
+            <i class="fa-solid fa-check"></i> Save Settings
+          </button>
+        </div>
       </footer>
     </div>
   </div>
@@ -616,7 +630,14 @@
         this.es.collected.forEach(id => {
           delete this.lockedEvidence[id];
           const ev = this.es.getById(id);
-          if (ev) this.collectedEvidence.push({ label: ev.name, description: ev.desc || ev.description || '', icon: ev.icon, emoji: ev.emoji, iconFA: ev.iconFA });
+          if (ev) this.collectedEvidence.push({
+            id: ev.id,
+            label: ev.name,
+            description: ev.desc || ev.description || '',
+            icon: ev.icon,
+            emoji: ev.emoji,
+            iconFA: ev.iconFA
+          });
         });
 
         // Distribute case-specific NPC bounding boxes throughout coordinates
@@ -1200,6 +1221,106 @@
         this.updateHUD(caseData);
 
         if (caseData.quest.cur >= caseData.quest.tar) this.showAccusationScreen();
+        this.saveGame(); // Auto-save progress on state changes
+      }
+
+      /**
+       * @method saveGame
+       * @description Serializes the current investigation state to localStorage.
+       */
+      saveGame() {
+        if (!this.activeCaseId) return;
+
+        const saveData = {
+          activeCaseId: this.activeCaseId,
+          collectedIds: this.es.collected || [],
+          unlockedWorldIds: this.evidenceMeshes.map(m => m.userData.dataRef.id),
+          npcStates: this.ns.npcStates || {},
+          questCur: this.cm.cases[this.activeCaseId].quest.cur,
+          playerPos: { x: this.pPos.x, y: this.pPos.y, z: this.pPos.z },
+          camHeading: { x: this.camHeading.x, y: this.camHeading.y, z: this.camHeading.z },
+          time: this.envManager ? this.envManager.timeProgress : null
+        };
+
+        localStorage.setItem('holy_week_save_v1', JSON.stringify(saveData));
+        if (this.controls) this.controls.displayAlert("Investigation Progress Saved");
+      }
+
+      /**
+       * @method loadGame
+       * @description Restores investigation state from localStorage.
+       */
+      loadGame() {
+        const raw = localStorage.getItem('holy_week_save_v1');
+        if (!raw) {
+          if (this.controls) this.controls.displayAlert("No saved progress found.");
+          return;
+        }
+
+        try {
+          const data = JSON.parse(raw);
+
+          // 1. Load the case structure (this resets world meshes and logic buckets)
+          this.loadCase(data.activeCaseId);
+
+          // 2. Restore collected evidence (move from world to pocket)
+          if (data.collectedIds) {
+            data.collectedIds.forEach(id => {
+              const ev = this.es.getById(id);
+              if (ev) {
+                this.es.unlock(id);
+                delete this.lockedEvidence[id];
+                this.collectedEvidence.push({
+                  id: ev.id,
+                  label: ev.name,
+                  description: ev.desc || ev.description || '',
+                  icon: ev.icon,
+                  emoji: ev.emoji,
+                  iconFA: ev.iconFA
+                });
+              }
+            });
+          }
+
+          // 3. Restore unlocked but uncollected items (spawn spheres in world)
+          if (data.unlockedWorldIds) {
+            data.unlockedWorldIds.forEach(id => {
+              this._unlockEvidence(id);
+            });
+          }
+
+          // 4. Restore NPC moods and internal states
+          if (data.npcStates) {
+            this.ns.npcStates = data.npcStates;
+            this.npcMeshes.forEach(mesh => {
+              const state = this.ns.npcStates[mesh.userData.config.id];
+              if (state) {
+                mesh.userData.state = state.mood;
+                mesh.userData.npcState = state;
+              }
+            });
+          }
+
+          // 5. Restore Player spatial state and Quest progress
+          if (data.playerPos) {
+            this.pPos.set(data.playerPos.x, data.playerPos.y, data.playerPos.z);
+            if (this.playerMesh) this.playerMesh.position.copy(this.pPos);
+          }
+          if (data.camHeading) this.camHeading.set(data.camHeading.x, data.camHeading.y, data.camHeading.z);
+          this.cm.cases[this.activeCaseId].quest.cur = data.questCur;
+
+          // 6. Restore environment cycle
+          if (this.envManager && typeof data.time === 'number') {
+            this.envManager.timeProgress = data.time;
+            this.envManager.update(false);
+          }
+
+          this.updateHUD(this.cm.cases[this.activeCaseId]);
+          if (this.controls) this.controls.displayAlert("Progress Loaded");
+        } catch (e) {
+          console.error("Failed to load save:", e);
+          if (this.controls) this.controls.displayAlert("Error loading save data.");
+        }
       }
 
       /**
@@ -1423,6 +1544,7 @@
             const unlocked = this.es.unlock(data.id);
             if (unlocked) {
               this.collectedEvidence.push({
+                id: unlocked.id,
                 label: unlocked.name,
                 description: unlocked.desc || unlocked.description || '',
                 icon: unlocked.icon,
@@ -1610,6 +1732,17 @@
             settingsOverlay.classList.remove('active');
             settingsOverlay.style.display = 'none';
           }, 350);
+        };
+      }
+
+      if (document.getElementById('btn-save-game')) {
+        document.getElementById('btn-save-game').onclick = () => {
+          game.saveGame();
+        };
+      }
+      if (document.getElementById('btn-load-game')) {
+        document.getElementById('btn-load-game').onclick = () => {
+          game.loadGame();
         };
       }
 

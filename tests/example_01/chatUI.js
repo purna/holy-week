@@ -102,13 +102,8 @@ export class ChatUI {
                       ${e.icon} ${e.name}
                     </button>`).join("")}
                 </div>
-                <div class="picker-footer">
-                  <span class="evidence-counter" data-npc-counter="${npc.id}">0 / ${this.es.getCollected().length} selected</span>
-                  <div class="picker-btns">
-                    <button class="cancel-btn" data-npc="${npc.id}" aria-label="Cancel">Cancel</button>
-                    <button class="confirm-show-btn" data-npc="${npc.id}" aria-label="Confirm selection" disabled>✓ Show Selected</button>
-                  </div>
-                </div>
+                <button class="cancel-btn" data-npc="${npc.id}" aria-label="Cancel">Cancel</button>
+                <button class="confirm-show-btn" data-npc="${npc.id}" aria-label="Confirm selection" disabled>✓ Show Selected</button>
               </div>
               <div class="challenge-result" data-npc-challenge="${npc.id}" hidden></div>
             </div>`;
@@ -128,25 +123,27 @@ export class ChatUI {
         this.pendingNPC = npcId;
 
         if (this.dm && npc && npc.hasDialogue && npc.storyFile) {
-          const story = this.dm.createStory(npcId);
+          let story = null;
+          try { story = this.dm.createStory(npcId); } catch (e) { console.warn(e); }
           if (story) {
             this.dm.openDialogue(npc, story, 
               () => { // onClose callback
-              if (npc.unlocksEvidence && npc.unlocksEvidence.length > 0) {
-                npc.unlocksEvidence.forEach(id => {
-                  const unlocked = this.es.discover(id);
-                  if (unlocked) {
-                    this.addSystem(`🔓 New clue: ${unlocked.name}`, npcId);
-                  }
-                });
+                if (npc.unlocksEvidence && npc.unlocksEvidence.length > 0) {
+                  npc.unlocksEvidence.forEach(id => {
+                    const unlocked = this.es.discover(id);
+                    if (unlocked) {
+                      this.addSystem(`🔓 New clue: ${unlocked.name}`, npcId);
+                    }
+                  });
+                }
+                if (this.onAction) this.onAction({ type: "talk_complete", npcId });
+                this._refreshNPCFeed(npcId, container);
+              },
+              (text, type) => { // onMessage callback
+                const speaker = type === 'player' ? 'Investigator' : npc.name;
+                this.addMessage(speaker, text, type, {}, npcId);
               }
-              if (this.onAction) this.onAction({ type: "talk_complete", npcId });
-              this._refreshNPCFeed(npcId, container);
-            },
-            (text, type) => { // onMessage callback
-              const speaker = type === 'player' ? 'Investigator' : npc.name;
-              this.addMessage(speaker, text, type, {}, npcId);
-            });
+            );
             return;
           }
         }
@@ -185,7 +182,6 @@ export class ChatUI {
     container.querySelectorAll(".evidence-pick-btn").forEach(btn => {
       btn.addEventListener("click", () => {
         const npcId = btn.dataset.npc;
-        const npcCard = btn.closest(".npc-card");
         if (!npcId || npcId !== pendingNPC) return;
 
         const evId = btn.dataset.evidence;
@@ -207,8 +203,6 @@ export class ChatUI {
 
         const confirmBtn = container.querySelector(`.confirm-show-btn[data-npc="${npcId}"]`);
         if (confirmBtn) confirmBtn.disabled = pendingSelection.length === 0;
-
-        updatePickerCounter(npcId, container);
 
         const challengeBtn = container.querySelector(`[data-action="challenge"][data-npc="${npcId}"]`);
         if (challengeBtn) {
@@ -237,8 +231,6 @@ export class ChatUI {
         this._refreshNPCFeed(npcId, container);
         const picker = container.querySelector(`[data-npc-picker="${npcId}"]`);
         if (picker) picker.hidden = true;
-        const npcCard = btn.closest(".npc-card");
-        updateChallengeBtn(npcCard, true);
         pendingSelection = [];
         pendingNPC = null;
 
@@ -251,8 +243,6 @@ export class ChatUI {
         const npcId = btn.dataset.npc || pendingNPC;
         const picker = container.querySelector(`[data-npc-picker="${npcId}"]`);
         if (picker) picker.hidden = true;
-        const npcCard = btn.closest(".npc-card");
-        updateChallengeBtn(npcCard, true);
         pendingSelection = [];
         pendingNPC = null;
       });

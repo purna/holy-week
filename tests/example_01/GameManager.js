@@ -36,10 +36,33 @@ export class GameManager {
 
     if (result.correct) {
       this.ui.audio.playComplete();
+      const currentCase = this.cm.getActiveCase();
+      if (currentCase) this.checkActComplete(currentCase);
       this.checkGameComplete();
     } else {
       this.ui.audio.playError();
     }
+  }
+
+  /** Checks if all cases in the current act are solved and handles the transition. */
+  checkActComplete(caseData) {
+    const act = caseData.actLabel;
+    if (!act) return;
+
+    const allCases = this.cm.getAllCases();
+    const actCases = allCases.filter(c => c.actLabel === act);
+    const allSolved = actCases.every(c => this.cm.getCaseProgress(c.id)?.solved);
+
+    if (allSolved) {
+      this.nextAct(act);
+    }
+  }
+
+  /** Handles the narrative transition between Acts. */
+  nextAct(completedAct) {
+    if (this.ui.audio) this.ui.audio.playHighStakes();
+    this.ui.a11y.announce(`${completedAct} complete! New areas of Jerusalem are now accessible on the map.`, true);
+    this.ui.renderMap();
   }
 
   /** Evaluates if the entire Holy Week narrative has been resolved. */
