@@ -1,3 +1,13 @@
+// ============================================================
+// CHARACTER: Market Informant / Bribe-Taker
+// ACT: Act IV
+// CASE: The Guard's Report
+// CASE ID: barabbas_choice
+// SOURCE: ORPHAN FILE (not referenced in any case file)
+// ------------------------------------------------------------
+// ============================================================
+//
+
 -> start
 === start ===
 Information has a price. Names have a price. Silence also has a price. The Galilean's gathering had a ledger before the sun went down. One of the twelve.

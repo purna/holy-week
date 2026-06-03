@@ -1,3 +1,13 @@
+// ============================================================
+// CHARACTER: Secret Visit
+// ACT: Act III
+// CASE: The Severed Ear
+// CASE ID: gethsemane_arrest
+// SOURCE: ORPHAN FILE (not referenced in any case file)
+// ------------------------------------------------------------
+// ============================================================
+//
+
 -> start
 === start ===
 It was too risky. A storm was rising faster than we could measure. I watched from the shadows. Whatever occurred there — in that house that night.

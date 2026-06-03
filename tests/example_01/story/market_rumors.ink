@@ -1,3 +1,13 @@
+// ============================================================
+// CHARACTER: Market Vendor
+// ACT: Act II
+// CASE: The Price of Life
+// CASE ID: lazarus_plot
+// SOURCE: ORPHAN FILE (not referenced in any case file)
+// ------------------------------------------------------------
+// ============================================================
+//
+
 -> start
 === start ===
 Good day! The market moves faster than news. People are saying strange things. What draws you to my stall?

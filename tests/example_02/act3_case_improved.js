@@ -206,6 +206,7 @@ export const act3CaseA = {
       id: "judas",
       name: "Judas Iscariot",
       role: "Disciple and Treasurer",
+      dialogueId: "judas_betrayal",
       avatar: "🪙",
       truthfulness: 0.3,
       bibleRef: "Matthew 26:14–16; John 13:27–30; Matthew 27:3–5",
@@ -227,6 +228,10 @@ export const act3CaseA = {
       contradictions: {
         "money_bag_impression+betrayal_dipped_bread": { exposed: "You want the truth? The truth is written in Psalm 41:9. 'My close friend, who ate my bread, has lifted his heel against me.' He quoted it. At the table. While I was sitting there. He knew. And he gave me the bread anyway. I don't expect you to understand that." },
         "cup_fragments+money_bag_impression": { exposed: "Thirty pieces of silver. That's what they gave me. I dropped the clay cup when I was leaving — my hands were shaking. Are you satisfied now? The chief priests are waiting." },
+        "money_bag_impression+new_covenant_declaration": {
+          exposed: "He spoke of a new covenant while I felt the weight of the silver in my hand. One represents a promise, the other a betrayal. Both are fulfilling what was written. He knew. He handed me the bread and told me to do what I must.",
+          breakthrough: true
+        },
       },
     },
   ],

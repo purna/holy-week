@@ -1,1 +1,72 @@
-{"inkVersion":21,"root":[[{"->":"start"},["done",{"#n":"g-0"}],null],"done",{"start":[["^The man who was healed \u2014 he was brought to the priests immediately.","^The elders questioned him closely. Not about the healing, but about the voice.",{"*":"closing","flg":2,"s":["^What did the elders do?",null]},{"*":"closing","flg":2,"s":["^What did he tell you?",null]},null],null],"closing":[["^-> DONE",null],null]}],"globals":{},"listDefs":{}}
+{
+    "inkVersion": 21,
+    "root": [
+        [
+            {
+                "->": "witness_healed"
+            },
+            [
+                "done",
+                {
+                    "#n": "g-0"
+                }
+            ],
+            null
+        ],
+        "done",
+        {
+            "witness_healed": [
+                [
+                    "^My brother Lazarus is home, but the road is watched. The High Priest is afraid of what he cannot explain.",
+                    {
+                        "*": ".^.c-0",
+                        "flg": 2,
+                        "s": [
+                            "^Is he truly restored?",
+                            null
+                        ]
+                    },
+                    {
+                        "*": ".^.c-1",
+                        "flg": 2,
+                        "s": [
+                            "^What did the guards ask?",
+                            null
+                        ]
+                    },
+                    null
+                ],
+                {
+                    "c-0": [
+                        "^He walked out of the tomb at the Teacher's command. He still carries the dust of the cave.",
+                        "#",
+                        "^reveal:grave_dirt",
+                        "/#",
+                        "\n",
+                        "^He is living proof of a power higher than the Sanhedrin.",
+                        {
+                            "->": "closing"
+                        },
+                        null
+                    ],
+                    "c-1": [
+                        "^They asked about the time, the crowd, and who moved the stone. They are hunting for any reason to deny it.",
+                        {
+                            "->": "closing"
+                        },
+                        null
+                    ]
+                }
+            ],
+            "closing": [
+                [
+                    "done",
+                    null
+                ],
+                null
+            ]
+        }
+    ],
+    "globals": {},
+    "listDefs": {}
+}

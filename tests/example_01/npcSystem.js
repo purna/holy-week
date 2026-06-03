@@ -69,7 +69,14 @@ getNPC(id) {
         this._updateMood(npcId, state);
       }
       this._addMemory(npcId, { type: "shown_evidence", evidenceId, reaction: reaction.text });
-      return { speaker: npc.name, text: reaction.text, mood: state.mood, revealedClue: reaction.revealedClue || null };
+      
+      let clue = reaction.revealedClue || null;
+      // Support mood-dependent clue revelation (e.g., revealedClue: { pressured: "id" })
+      if (clue && typeof clue === 'object') {
+        clue = clue[state.mood] || null;
+      }
+
+      return { speaker: npc.name, text: reaction.text, mood: state.mood, revealedClue: clue };
     }
 
     // Generic reaction by type

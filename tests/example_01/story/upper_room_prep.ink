@@ -1,3 +1,13 @@
+// ============================================================
+// CHARACTER: Upper Room Preparation
+// ACT: Act III
+// CASE: The Broken Cup
+// CASE ID: last_supper
+// SOURCE: ORPHAN FILE (not referenced in any case file)
+// ------------------------------------------------------------
+// ============================================================
+//
+
 -> start
 === start ===
 They have prepared the room for the evening meal. Whatever happened in the temple courts changed everything. The atmosphere in the upper city tonight is not celebration — it is something far heavier.

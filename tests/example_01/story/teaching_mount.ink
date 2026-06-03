@@ -1,3 +1,13 @@
+// ============================================================
+// CHARACTER: Teaching on the Mount
+// ACT: Act II
+// CASE: The Price of Life
+// CASE ID: lazarus_plot
+// SOURCE: ORPHAN FILE (not referenced in any case file)
+// ------------------------------------------------------------
+// ============================================================
+//
+
 -> start
 === start ===
 You walked up Mount Olivet. Most people approach Jerusalem and see only walls. He spoke in parables. People laughed, left, or argued. Then He asked the question.

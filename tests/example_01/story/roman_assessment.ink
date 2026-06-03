@@ -1,3 +1,13 @@
+// ============================================================
+// CHARACTER: Centurion Longinus
+// ACT: Act III/IV
+// CASE: The Curtain and the Cross
+// CASE EXPORT: crucifixion_det
+// SOURCE: act3_case_improved.js → NPC 'centurion_longinus'
+// ------------------------------------------------------------
+// ============================================================
+//
+
 -> start
 === start ===
 I am Claudius, centurion of the Antonia fortress. A Roman officer does not submit reports about Jewish prophets. But my servant lay dying, and the reports about this Galilean were consistent enough to investigate.

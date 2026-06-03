@@ -1,3 +1,13 @@
+// ============================================================
+// CHARACTER: Temple Priest Objection
+// ACT: Act II
+// CASE: The Silenced Teacher
+// CASE ID: authority_challenged
+// SOURCE: ORPHAN FILE (not referenced in any case file)
+// ------------------------------------------------------------
+// ============================================================
+//
+
 -> start
 === start ===
 I was on duty when it happened. I will tell you only what I witnessed — nothing more. Last Sabbath, outside the outer court — tables overturned, animals scattered, the crowd orange with excitement. He called it My Father's house. The merchants called it their living. I called it my afternoon.

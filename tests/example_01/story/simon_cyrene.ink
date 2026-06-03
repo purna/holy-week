@@ -1,3 +1,13 @@
+// ============================================================
+// CHARACTER: Simon of Cyrene
+// ACT: Act IV/V
+// CASE: The Road to Golgotha
+// CASE ID: via_dolorosa
+// SOURCE: ORPHAN FILE (not referenced in any case file)
+// ------------------------------------------------------------
+// ============================================================
+//
+
 -> start
 === start ===
 My friend, I was just walking home from the quarry when they seized me. I was carrying my own cross to the place of the skull. I did not know his name then.

@@ -11,6 +11,7 @@ export class NPCSystem {
 
   loadCase(caseData) {
     this.npcStates = {};
+    if (!caseData.npcs) return;
     caseData.npcs.forEach(npc => {
       this.npcStates[npc.id] = {
         mood: "neutral",        // neutral | cautious | pressured | exposed | friendly
@@ -74,11 +75,11 @@ export class NPCSystem {
 
     // Generic reaction by type
     const genericReactions = {
-      physical:      "Hmm. I'm not sure how that connects to me.",
-      testimonial:   "That's not what I said at all.",
-      digital:       "I don't know anything about that data.",
+      physical: "Hmm. I'm not sure how that connects to me.",
+      testimonial: "That's not what I said at all.",
+      digital: "I don't know anything about that data.",
       environmental: "The environment? Could be anyone.",
-      analytical:    "Numbers can be misleading, you know.",
+      analytical: "Numbers can be misleading, you know.",
     };
 
     const text = genericReactions[evidence.type] || "Interesting. So what?";
@@ -96,10 +97,13 @@ export class NPCSystem {
     const contradiction = npc.contradictions?.[key] || npc.contradictions?.[`${evidenceBId}+${evidenceAId}`];
 
     if (contradiction) {
-      state.pressureLevel = Math.min(100, state.pressureLevel + 40);
+      // Use custom breakthrough flag from data if provided, otherwise default to true for any matched contradiction
+      const isBreakthrough = contradiction.breakthrough !== false;
+      if (isBreakthrough) state.pressureLevel = Math.min(100, state.pressureLevel + 40);
+
       state.contradictions.push(key);
       this._updateMood(npcId, state);
-      return { speaker: npc.name, text: contradiction.exposed, mood: state.mood, breakthrough: true };
+      return { speaker: npc.name, text: contradiction.exposed, mood: state.mood, breakthrough: isBreakthrough };
     }
 
     return { speaker: npc.name, text: npc.dialogue.pressured || "You can't prove anything.", mood: state.mood, breakthrough: false };

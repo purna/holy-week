@@ -15,7 +15,10 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <!-- Howler.js: Spatialized web audio engine wrapper for ambient tracks and sound effects -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.4/howler.min.js"></script>
+  <script src="plugins/howler.min.js"></script>
+
+  <!-- Inkjs: Runtime for narrative scripting -->
+  <script src="https://unpkg.com/inkjs/dist/ink.js"></script>
 
   <!-- Google Fonts System:
        - Cinzel: Display serif typeface applied to major historical/thematic headers
@@ -288,8 +291,10 @@
     <div class="modal-panel" style="max-width: 960px; width: 94%; max-height: 86vh;">
       <header class="modal-header">
         <div>
-          <h2 class="modal-title" style="margin:0; font-size:1.05rem; color:var(--accent-primary); font-weight:700;">Investigation Map</h2>
-          <p class="modal-subtitle" style="margin:2px 0 0 0; font-size:0.8rem; color:var(--text-muted);">Select a case to investigate. Press E to chat with NPCs.</p>
+          <h2 class="modal-title" style="margin:0; font-size:1.05rem; color:var(--accent-primary); font-weight:700;">
+            Investigation Map</h2>
+          <p class="modal-subtitle" style="margin:2px 0 0 0; font-size:0.8rem; color:var(--text-muted);">Select a case
+            to investigate. Press E to chat with NPCs.</p>
         </div>
         <button id="btn-close-map" class="close-icon-btn" aria-label="Close">
           <i class="fa-solid fa-xmark"></i>
@@ -305,13 +310,15 @@
   <div id="settings-overlay" class="overlay-mask" style="display:none; z-index:1000;">
     <div class="settings-panel" style="max-width:420px;">
       <header class="modal-header">
-        <h2 style="margin:0; font-size:1.1rem; color:var(--accent-primary); font-family:'Cinzel',serif; letter-spacing:1px;">
+        <h2
+          style="margin:0; font-size:1.1rem; color:var(--accent-primary); font-family:'Cinzel',serif; letter-spacing:1px;">
           <i class="fa-solid fa-sliders" style="margin-right:8px;"></i>SYSTEM PREFERENCES
         </h2>
       </header>
       <main class="modal-body" style="padding:20px 10px;">
         <div style="margin-bottom:18px;">
-          <label for="setting-bible-version" style="color:var(--accent-primary); display:block; margin-bottom:8px; font-size:0.75rem; letter-spacing:2px; text-transform:uppercase; font-family:'Cinzel',serif;">
+          <label for="setting-bible-version"
+            style="color:var(--accent-primary); display:block; margin-bottom:8px; font-size:0.75rem; letter-spacing:2px; text-transform:uppercase; font-family:'Cinzel',serif;">
             Bible Translation
           </label>
           <select id="setting-bible-version"
@@ -327,18 +334,21 @@
         </div>
         <div style="border-top: 1px solid var(--border-subtle); margin: 18px 0;"></div>
         <div style="margin-bottom: 18px;">
-          <div style="color: var(--accent-primary); display: block; margin-bottom: 12px; font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; font-family: 'Cinzel', serif; font-weight: 700;">
+          <div
+            style="color: var(--accent-primary); display: block; margin-bottom: 12px; font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; font-family: 'Cinzel', serif; font-weight: 700;">
             Accessibility
           </div>
           <div id="a11y-settings-list" style="display: flex; flex-direction: column; gap: 8px;"></div>
         </div>
-        <div id="settings-saved-label" style="height:1rem; color:var(--accent-success); font-size:0.75rem; letter-spacing:1px;"></div>
+        <div id="settings-saved-label"
+          style="height:1rem; color:var(--accent-success); font-size:0.75rem; letter-spacing:1px;"></div>
       </main>
       <footer style="display:flex; justify-content:space-between; gap:10px; margin-top:10px; padding:0 4px;">
         <button id="btn-close-settings" class="terminal-btn">
           <i class="fa-solid fa-xmark"></i> Cancel
         </button>
-        <button id="btn-save-settings" class="terminal-btn" style="background:var(--accent-primary); color:#000; border-color:var(--accent-primary);">
+        <button id="btn-save-settings" class="terminal-btn"
+          style="background:var(--accent-primary); color:#000; border-color:var(--accent-primary);">
           <i class="fa-solid fa-check"></i> Save
         </button>
       </footer>
@@ -347,7 +357,8 @@
 
   <!-- Investigation Board Overlay - Evidence Comparison Interface -->
   <div id="inv-board-overlay" class="overlay-mask" style="z-index:1500;">
-    <div class="modal-panel" id="inv-board-panel" style="max-width:900px; width:95%; max-height:85vh; background:#1a0e04;">
+    <div class="modal-panel" id="inv-board-panel"
+      style="max-width:900px; width:95%; max-height:85vh; background:#1a0e04;">
       <header class="modal-header">
         <div>
           <h2 style="margin:0; font-size:1.1rem; color:var(--accent-primary); font-weight:700;">Investigation Board</h2>
@@ -371,7 +382,10 @@
   <!-- Bible Reader API Module: Handles asynchronous fetching and parsing of scriptural data -->
   <script type="module" src="./BibleReader2.js"></script>
 
-  <!-- Main Game Loop, 3D Scene Initialization, and System Pipeline Sub-module -->
+
+
+    <!-- Main Game Loop, 3D Scene Initialization, and System Pipeline Sub-module -->
+   
   <script type="module">
     import * as THREE from 'three';
 
@@ -415,6 +429,7 @@
         this.de = new DeductionEngine(this.cm, this.es);
         this.ls = new LocationSystem(this.cm);
         this.audio = new AudioManager();
+        this.dm = new DialogueManager();
 
         // Primary runtime environment state properties
         this.activeCaseId = null;
@@ -450,6 +465,9 @@
         this.cm.registerCase(act3CaseC);
         this.cm.registerCase(act4CaseA);
         this.cm.registerCase(act4CaseB);
+
+        // Register Ink library with DialogueManager
+        if (typeof inkjs !== 'undefined') this.dm.setInkLib(inkjs);
       }
 
       /**
@@ -497,7 +515,7 @@
         this.scene.add(ground);
 
         // Instantiate environment time-progression shaders and daylight loops
-        this.envManager = new EnvironmentManager(this.scene, this.sunLight, this.moonLight, this.torchLight);
+        this.envManager = new EnvironmentManager(this.scene, this.sunLight, this.moonLight, this.torchLight, this.audio);
 
         // Handle Audio Setting Hooks dynamically through accessibility layer proxies
         const originalToggle = this.a11y.toggle.bind(this.a11y);
@@ -507,40 +525,19 @@
           return result;
         };
 
-        this.audio.setEnabled(this.a11y.getAll().sound);
-        const audioBtn = document.getElementById('btn-audio-toggle');
-        if (!this.a11y.getAll().sound) {
-          this.audioActive = false;
-          audioBtn.classList.remove('active');
-          const icon = audioBtn.querySelector('i');
-          if (icon) icon.className = 'fa-solid fa-volume-xmark';
-        }
-
-        audioBtn.onclick = () => {
-          this.audioActive = !this.audioActive;
-          audioBtn.classList.toggle('active', this.audioActive);
-          const icon = audioBtn.querySelector('i');
-          if (icon) icon.className = this.audioActive ? 'fa-solid fa-volume-high' : 'fa-solid fa-volume-xmark';
-          this.a11y.toggle('sound');
-        };
-
-        // Bind core interface interactions
-        this.bindGlobalUIEvents();
-
         // Viewport Aspect-Ratio Mutation Calculation
         window.addEventListener('resize', () => {
           this.camera.aspect = window.innerWidth / window.innerHeight;
           this.camera.updateProjectionMatrix();
           this.renderer.setSize(window.innerWidth, window.innerHeight);
         });
+
+        this.bindGlobalUIEvents();
       }
 
-      /**
-       * @method bindGlobalUIEvents
-       * @description Hooks up event handlers to static persistent DOM elements.
-       */
       bindGlobalUIEvents() {
         document.getElementById('btn-open-map').onclick = () => {
+          this.audio.playUI();
           if (!this.mapModal) {
             this.mapModal = new OrbitalSelectMatrixModal(this.cm, (caseId) => this.loadCase(caseId));
           }
@@ -548,7 +545,7 @@
         };
 
         document.getElementById('btn-start').onclick = () => {
-          document.getElementById('wipe-overlay').classList.add('active');
+          this.audio.playUI();
           document.getElementById('wipe-overlay').classList.add('active');
           setTimeout(() => {
             document.getElementById('loading-screen').style.display = 'none';
@@ -556,7 +553,7 @@
               this.mapModal = new OrbitalSelectMatrixModal(this.cm, (caseId) => this.loadCase(caseId));
             }
             this.mapModal.open();
-            game.animate();
+            this.animate();
           }, 1000);
         };
       }
@@ -572,39 +569,53 @@
 
         this.activeCaseId = caseId;
         this.nearestNPC = null;
+        this.inDialogue = false;
+
+        // Reset player physics and position to starting defaults for the new investigation
+        this.pPos.set(0, 1, 15);
+        this.pVelocity.set(0, 0, 0);
+        if (this.playerMesh) this.playerMesh.position.copy(this.pPos);
+
+        // Reset environmental lighting cycle to dawn (0.25)
+        if (this.envManager) {
+          this.envManager.timeProgress = 0.25;
+          this.envManager.wasDay = null; // force audio state update
+          this.envManager.update(false);
+        }
 
         this.cm.startCase(caseId);
         this.es.loadCase(caseData);
+        this.ns.loadCase(caseData);
 
-        // Build a forensic evidence display hierarchy derived from the active case file.
+        // Pre-load Ink stories for NPCs in this case
+        if (caseData.npcs) {
+          caseData.npcs.forEach(npc => {
+            if (npc.dialogueId || npc.storyFile) {
+              this.dm.loadStoryForNPC(npc);
+            }
+          });
+        }
+
+        // Reset UI trackers and flush legacy meshes from the scene
         this.collectedEvidence = [];
-        // All evidence in the locked pool is NOT yet available for selection
         this.lockedEvidence = {};
-        caseData.evidencePool.forEach(item => {
-          this.lockedEvidence[item.id] = item;
-        });
-
-        // Evidence already in collected[] (from saved progress) counts as unlocked
-        this.es.collected.forEach(id => {
-          delete this.lockedEvidence[id];
-          const ev = this.es.getById(id);
-          if (ev) {
-            this.collectedEvidence.push({
-              label: ev.name,
-              description: ev.desc || ev.description || '',
-              icon: ev.icon,
-              emoji: ev.emoji,
-              iconFA: ev.iconFA
-            });
-          }
-        });
-
-        // Garbage collection: Flush legacy meshes from WebGL memory
         this.npcMeshes.forEach(m => this.scene.remove(m));
         this.npcMeshes = [];
         this.evidenceMeshes.forEach(m => this.scene.remove(m));
         this.evidenceMeshes = [];
-        this.lockedEvidence = {};
+
+        // Populate the evidence pool for this case.
+        // Evidence starts LOCKED — only spawned into 3D world after an NPC unlocks it via dialogue.
+        caseData.evidencePool.forEach(item => {
+          this.lockedEvidence[item.id] = item;
+        });
+
+        // Sync with EvidenceSystem (ensures UI reflects current internal state)
+        this.es.collected.forEach(id => {
+          delete this.lockedEvidence[id];
+          const ev = this.es.getById(id);
+          if (ev) this.collectedEvidence.push({ label: ev.name, description: ev.desc || ev.description || '', icon: ev.icon, emoji: ev.emoji, iconFA: ev.iconFA });
+        });
 
         // Distribute case-specific NPC bounding boxes throughout coordinates
         (caseData.npcs || []).forEach(npc => {
@@ -614,16 +625,6 @@
           box.userData = { config: npc, type: 'npc', state: 'neutral' };
           this.scene.add(box);
           this.npcMeshes.push(box);
-        });
-
-        // Evidence starts LOCKED — only spawned into 3D world after an NPC unlocks it via dialogue.
-        caseData.evidencePool.forEach(item => {
-          this.lockedEvidence[item.id] = item;
-        });
-
-        // Any evidence already in collected[] (from saved progress) is not locked
-        this.es.collected.forEach(id => {
-          delete this.lockedEvidence[id];
         });
 
         this.updateHUD(caseData);
@@ -654,12 +655,30 @@
           div.className = 'prophecy-item';
           if (typeof p === 'object') {
             const reference = p.reference;
-            const apiReference = reference.toUpperCase().replace(/ /g, '_').replace(/:/g, '_').replace(/[^A-Z0-9_]/g, '');
-            div.innerHTML = `<strong class="clickable-reference" data-reference="${apiReference}">${reference}</strong>: ${p.text}`;
-            div.querySelector('.clickable-reference').onclick = (e) => {
-              e.preventDefault();
-              window.BibleReader.displayPassage(apiReference);
-            };
+            const apiReference = (function buildApiReference(raw) {
+              const compact = raw
+                .trim()
+                .toLowerCase()
+                .replace(/[\s_+-]+/g, ' ')
+                .replace(/[–-]/g, ':')
+                .replace(/[:]/g, ' ')
+                .replace(/\s+/g, ' ')
+                .trim();
+              const m = compact.match(/^(.+?)\s+(\d+)(?:\s+(\d+(?:[-,]\d+)*))?$/);
+              if (!m) return compact.replace(/\s+/g, '+');
+              const book = m[1].trim();
+              const chapter = m[2].trim();
+              const verses = m[3] ? ':' + m[3].trim() : '';
+              return `${book}+${chapter}${verses}`;
+            })(reference);
+            div.innerHTML = `<p><strong>${reference}</strong>: ${p.text} <br/><button class="clickable-reference" data-reference="${apiReference}">Read More</button></p>`;
+            const refBtn = div.querySelector('.clickable-reference');
+            if (refBtn) {
+              refBtn.onclick = (e) => {
+                e.preventDefault();
+                window.BibleReader.displayPassage(apiReference);
+              };
+            }
           } else {
             div.innerText = p;
           }
@@ -676,6 +695,7 @@
        * @description Evaluates spatial proximities to regenerate context-sensitive operation menus.
        * @param {Object} caseData - The currently active case data object structure.
        */
+      inversionMenus(caseData) { /* alias pointer sync */ }
       updateActions(caseData) {
         const actWrap = document.getElementById('actions-container');
         actWrap.innerHTML = '';
@@ -686,6 +706,7 @@
         challengeBtn.innerHTML = `<span><i class="fa-solid fa-bolt" style="margin-right:6px;"></i> Challenge</span><small>[${this.es.selectedA?.name || 'A'}+${this.es.selectedB?.name || 'B'}]</small>`;
         challengeBtn.disabled = !canChallenge;
         challengeBtn.onclick = () => {
+          this.audio.playUI();
           if (this.nearestNPC) {
             this._playerChallengedNPC(this.nearestNPC.userData.config, this.es.selectedA?.id, this.es.selectedB?.id);
           }
@@ -697,13 +718,17 @@
           const talkBtn = document.createElement('button');
           talkBtn.className = 'action-btn talk-prompt-highlight';
           talkBtn.innerHTML = `<span><i class="fa-solid fa-comments" style="margin-right:6px;"></i> Talk to ${n.name}</span><small>[E]</small>`;
-          talkBtn.onclick = () => this.startDialogue(n);
+          talkBtn.onclick = () => {
+            this.audio.playUI();
+            this.startDialogue(n);
+          };
           actWrap.appendChild(talkBtn);
         }
 
         const collectBtn = document.createElement('button');
         collectBtn.className = 'action-btn';
         collectBtn.innerHTML = `<span>Collect Evidence</span><small>[Approach Items]</small>`;
+        collectBtn.onclick = () => this.audio.playUI();
         actWrap.appendChild(collectBtn);
       }
 
@@ -717,9 +742,10 @@
 
         for (let i = 0; i < 8; i++) {
           const slot = document.createElement('div');
-          slot.className = 'evidence-slot-btn ' + (this.collectedEvidence[i] ? 'filled' : '');
+          const filled = !!this.collectedEvidence[i];
+          slot.className = 'evidence-slot-btn ' + (filled ? 'filled' : '');
 
-          if (this.collectedEvidence[i]) {
+          if (filled) {
             if (this.currentDisplayPreference === 'emojis') {
               slot.textContent = this.collectedEvidence[i].emoji || this.collectedEvidence[i].icon || '🛡️';
               slot.style.fontSize = '1.5rem';
@@ -730,9 +756,11 @@
               slot.appendChild(iconNode);
             }
 
-            slot.dataset.evidenceIndex = i;
+            const ev = this.collectedEvidence[i];
+            if (this.es.selectedA && this.es.selectedA.id === ev.id) slot.classList.add('sel-a');
+            if (this.es.selectedB && this.es.selectedB.id === ev.id) slot.classList.add('sel-b');
+
             slot.onclick = () => {
-              const ev = this.collectedEvidence[i];
               const selectedA = this.es.selectedA;
               const selectedB = this.es.selectedB;
 
@@ -793,6 +821,20 @@
        * @param {Object} npcConfig - NPC config object with .dialogue, .reactions, .avatar, .name
        */
       startDialogue(npcConfig) {
+        // Use Ink Story if a dialogueId is present and the story is loaded
+        if (npcConfig.dialogueId && this.dm.getStory(npcConfig.id)) {
+          const story = this.dm.createStory(npcConfig.id);
+          this.dm.openDialogue(npcConfig, story, () => {
+            this.inDialogue = false;
+            this.updateActions(this.cm.cases[this.activeCaseId]);
+          }, (tag) => {
+            if (tag.startsWith('reveal:')) {
+              this._unlockEvidence(tag.split(':')[1]);
+            }
+          });
+          return;
+        }
+
         this.inDialogue = true;
         this.pVelocity.set(0, 0, 0);
 
@@ -810,7 +852,10 @@
 
         // Wire up close button
         const closeBtn = document.getElementById('vn-close-btn');
-        closeBtn.onclick = () => this._closeDialogue(npcConfig);
+        closeBtn.onclick = () => {
+          this.audio.playUI();
+          this._closeDialogue(npcConfig);
+        };
 
         // Show overlay
         const overlay = document.getElementById('vn-overlay');
@@ -958,22 +1003,20 @@
         const ev = this.es.getById(evidenceId);
         this._addMsg(`${ev ? ev.icon + ' ' : ''}Show: ${ev ? ev.name : evidenceId}`, 'player');
 
-        const reaction = npcConfig.reactions?.[evidenceId];
-        const reactionText = reaction?.text || npcConfig.dialogue.repeat || 'I have nothing to add about that.';
-        const revealedClue = reaction?.revealedClue || null;
-
         setTimeout(() => {
           this._npcTypeThen(() => {
-            this._addMsg(reactionText, 'npc');
-            if (revealedClue) {
-              setTimeout(() => this._unlockEvidence(revealedClue), 500);
-            }
-            // Update NPC pressure if it was a lie
-            if (reaction?.isLie && this.nearestNPC) {
-              const state = this.nearestNPC.userData.npcState || { pressureLevel: 0 };
-              state.pressureLevel = Math.min(100, (state.pressureLevel || 0) + 25);
-              this.nearestNPC.userData.npcState = state;
-              if (state.pressureLevel >= 50) this.nearestNPC.userData.state = 'pressured';
+            const result = this.ns.showEvidence(npcConfig.id, evidenceId);
+            if (result) {
+              this._addMsg(result.text, 'npc');
+              if (result.revealedClue) {
+                setTimeout(() => this._unlockEvidence(result.revealedClue), 500);
+              }
+              // Sync internal NPCSystem state to 3D world mesh metadata
+              if (this.nearestNPC) {
+                const internalState = this.ns.getState(npcConfig.id);
+                this.nearestNPC.userData.state = internalState.mood;
+                this.nearestNPC.userData.npcState = internalState;
+              }
             }
             setTimeout(() => this._renderChoices(npcConfig, 'followup'), 500);
           }, npcConfig.name);
@@ -993,14 +1036,12 @@
               this._addMsg(result.text, result.breakthrough ? 'breakthrough' : 'npc');
               if (result.breakthrough) {
                 this.audio.playComplete();
-                // Update pressure on nearestNPC mesh if applicable
-                if (this.nearestNPC) {
-                  const npcState = this.nearestNPC.userData.npcState || { pressureLevel: 0 };
-                  npcState.pressureLevel = Math.min(100, (npcState.pressureLevel || 0) + 40);
-                  this.nearestNPC.userData.npcState = npcState;
-                  if (npcState.pressureLevel >= 50) this.nearestNPC.userData.state = 'pressured';
-                  if (npcState.pressureLevel >= 80) this.nearestNPC.userData.state = 'exposed';
-                }
+              }
+              // Sync internal NPCSystem state to 3D world mesh metadata
+              if (this.nearestNPC) {
+                const internalState = this.ns.getState(npcConfig.id);
+                this.nearestNPC.userData.state = internalState.mood;
+                this.nearestNPC.userData.npcState = internalState;
               }
             }
             setTimeout(() => this._renderChoices(npcConfig, 'followup'), 500);
@@ -1008,18 +1049,14 @@
         }, 300);
       }
 
-      /** 
+      /** 
        * Unlock a piece of evidence: registers it as unlocked, then spawns a glowing sphere
        * in the 3D world at its defined position. The player must walk to it to pick it up.
        */
       _unlockEvidence(evidenceId) {
         const ev = this.lockedEvidence?.[evidenceId];
-        if (!ev) return;                                      // already unlocked or unknown
-        if (this.es.isCollected(evidenceId)) return;          // already collected
-
-        // Register unlock in evidenceSystem (syncs lockedEvidence, collected, HUD)
-        const unlocked = this.es.unlock(evidenceId);
-        if (!unlocked) return;
+        if (!ev) return;                                      // already unlocked or unknown
+        if (this.es.isCollected(evidenceId)) return;          // already collected
 
         // Remove from locked registry
         delete this.lockedEvidence[evidenceId];
@@ -1245,8 +1282,13 @@
       animate() {
         requestAnimationFrame(() => this.animate());
 
-        // Halt positional transformations if a modal dashboard or active conversation blocks focus
-        if (!document.getElementById('modal-overlay').classList.contains('active') && !this.inDialogue) {
+        // Determine if ANY blocking UI is currently active
+        const modalActive = document.getElementById('modal-overlay').classList.contains('active') ||
+          document.getElementById('settings-overlay').classList.contains('active') ||
+          document.getElementById('inv-board-overlay').classList.contains('active');
+
+        // Halt physics, collection, and interaction checks if menus or dialogue are open
+        if (!modalActive && !this.inDialogue) {
           this.movePlayer();
           this.collectEvidence();
           this.findNPC();
@@ -1509,6 +1551,306 @@
           const pressed = enabled ? 'true' : 'false';
           const iconLabel = r.icon ? 'Toggle ' + r.label : r.label;
           return `<label style="display:flex; align-items:center; justify-content:space-between; padding:10px 12px; background:rgba(200,150,90,0.04); border:1px solid var(--border-subtle); border-radius:var(--radius); cursor:pointer;">
+            <span>
+              <span style="font-weight:700; font-size:0.95rem;">${r.label}</span>
+              <span style="display:block; font-size:0.8rem; color:var(--text-muted);">${r.desc}</span>
+            </span>
+            <button type="button" class="toggle-btn" role="switch" aria-checked="${pressed}" data-feature="${r.key}" aria-label="${iconLabel}" aria-pressed="${pressed}" style="margin-left:12px;">${iconHtml}</button>
+          </label>`;
+        }).join('');
+        Array.from(list.querySelectorAll('.toggle-btn')).forEach(btn => {
+          btn.addEventListener('click', e => {
+            e.preventDefault();
+            const feature = btn.dataset.feature;
+            const state = game.a11y.toggle(feature);
+            btn.setAttribute('aria-checked', state ? 'true' : 'false');
+            btn.setAttribute('aria-pressed', state ? 'true' : 'false');
+          });
+        });
+      }
+
+      if (document.getElementById('btn-open-settings')) {
+        document.getElementById('btn-open-settings').onclick = () => {
+          game.audio.playUI();
+          buildA11yList();
+          settingsOverlay.style.display = 'block';
+          settingsOverlay.classList.add('active');
+          setTimeout(() => settingsOverlay.classList.add('fade-in-complete'), 50);
+        };
+      }
+
+      if (document.getElementById('btn-close-settings')) {
+        document.getElementById('btn-close-settings').onclick = () => {
+          game.audio.playUI();
+          settingsOverlay.classList.remove('fade-in-complete');
+          setTimeout(() => {
+            settingsOverlay.classList.remove('active');
+            settingsOverlay.style.display = 'none';
+          }, 350);
+        };
+      }
+
+      if (document.getElementById('btn-save-settings')) {
+        document.getElementById('btn-save-settings').onclick = () => {
+          game.audio.playUI();
+          const bibleVersionSelect = document.getElementById('setting-bible-version');
+          if (window.BibleReader && typeof window.BibleReader.updateTranslation === 'function') {
+            window.BibleReader.updateTranslation(bibleVersionSelect.value);
+            const savedLabel = document.getElementById('settings-saved-label');
+            if (savedLabel) {
+              savedLabel.textContent = 'Saved';
+              setTimeout(() => { savedLabel.textContent = ''; }, 1500);
+            }
+          }
+          settingsOverlay.classList.remove('fade-in-complete');
+          setTimeout(() => {
+            settingsOverlay.classList.remove('active');
+            settingsOverlay.style.display = 'none';
+          }, 350);
+        };
+      }
+
+      const invBoardOverlay = document.getElementById('inv-board-overlay');
+      const invBoardContent = document.getElementById('inv-board-content');
+      const btnInvBoardToggle = document.getElementById('btn-inv-board-toggle');
+      const btnCloseInvBoard = document.getElementById('btn-close-inv-board');
+
+      btnInvBoardToggle.onclick = () => {
+        game.audio.playUI();
+        invBoardOverlay.style.display = 'flex';
+        setTimeout(() => invBoardOverlay.classList.add('active'), 10);
+        setTimeout(() => invBoardOverlay.classList.add('fade-in-complete'), 50);
+        if (typeof window.renderInvestigationBoard === 'function') {
+          window.renderInvestigationBoard();
+        }
+      };
+      btnCloseInvBoard.onclick = () => {
+        game.audio.playUI();
+        invBoardOverlay.classList.remove('fade-in-complete');
+        setTimeout(() => {
+          invBoardOverlay.classList.remove('active');
+          invBoardOverlay.style.display = 'none';
+        }, 350);
+      };
+      window.renderInvestigationBoard = function () {
+        if (!invBoardContent) return;
+        const labUI = new LabUI(game.de, game.es, game.a11y, (result) => {
+          if (result && result.type === 'selection') {
+            window.renderInvestigationBoard();
+          }
+        });
+        invBoardContent.innerHTML = labUI.render();
+        labUI.bindEvents(invBoardContent);
+      };
+      window.BibleReader = window.BibleReader || {
+        displayPassage() { },
+        updateTranslation() { },
+        closeOverlay() { }
+      };
+    })();
+
+    game.init();
+    // Show start button when game is loaded
+    document.getElementById('loading-screen').classList.add('ready');
+  </script>
+
+
+  <!--
+  <script type="module">
+    import * as THREE from 'three';
+
+    // Application Subsystem Module Imports
+    import { CaseManager } from "./caseManager.js";
+    import { EvidenceSystem } from "./evidenceSystem.js";
+    import { NPCSystem } from "./npcSystem.js";
+    import { DeductionEngine } from "./deductionEngine.js";
+    import { LocationSystem } from "./locationSystem.js";
+    import { AccessibilityManager } from "./accessibility.js";
+    import { LabUI } from "./labUI.js";
+    import { ChatUI } from "./chatUI.js";
+    import { AudioManager } from "./audioManager.js";
+    import { ControlsManager } from "./controls.js";
+    import { EnvironmentManager } from "./environment.js";
+    import { OrbitalSelectMatrixModal } from "./mapModal.js";
+
+    // Narrative Case File Data Struct Imports
+    import { act1CaseA, act1CaseB } from "./act1_case_improved.js";
+    import { act2CaseA, act2CaseB } from "./act2_case_improved.js";
+    import { act3CaseA, act3CaseB, act3CaseC } from "./act3_case_improved.js";
+    import { act4CaseA, act4CaseB } from "./act4_case_improved.js";
+
+    /**
+     * @class GameEngine
+     * @description Orchestrates the central WebGL 3D context, manages subsystems, handles physics loops, and synchronization.
+     */
+    class GameEngine {
+      constructor() {
+        // Initialize historical narrative database and inject raw case files
+        this.cm = new CaseManager();
+        this.registerAllCases();
+
+        // Load or initialize persistent configuration and accessibility matrices
+        this.a11y = new AccessibilityManager();
+        this.a11y.restorePreferences();
+
+        // Instantiate isolated decoupling logical subsystems
+        this.es = new EvidenceSystem(this.cm);
+        this.ns = new NPCSystem(this.cm, this.es);
+        this.de = new DeductionEngine(this.cm, this.es);
+        this.ls = new LocationSystem(this.cm);
+        this.audio = new AudioManager();
+
+        // Primary runtime environment state properties
+        this.activeCaseId = null;
+        this.pPos = new THREE.Vector3(0, 1, 15);
+        this.pVelocity = new THREE.Vector3();
+        this.camHeading = new THREE.Vector3(0, 0, -1);
+        this.isGrounded = true;
+        this.nearestNPC = null;
+        this.inDialogue = false;
+        this.collectedEvidence = [];
+        this.npcMeshes = [];
+        this.evidenceMeshes = [];
+        this.audioActive = true;
+        this.currentDisplayPreference = 'emojis';
+        this.lockedEvidence = {};
+        this.challengeSelection = [];
+
+        // Load the hardware/keyboard peripheral controller manager
+        this.controls = new ControlsManager(this);
+      }
+
+      /**
+       * @method registerAllCases
+       * @description Populates the CaseManager registry with separated historical chapter modules.
+       */
+      registerAllCases() {
+        this.cm.registerCase(act1CaseA);
+        this.cm.registerCase(act1CaseB);
+        this.cm.registerCase(act2CaseA);
+        this.cm.registerCase(act2CaseB);
+        this.cm.registerCase(act3CaseA);
+        this.cm.registerCase(act3CaseB);
+        this.cm.registerCase(act3CaseC);
+        this.cm.registerCase(act4CaseA);
+        this.cm.registerCase(act4CaseB);
+      }
+
+/**
+       * @method init
+       * @description Bootstrap routine establishing the Three.js viewport pipeline, lighting matrices, and global hooks.
+       */
+      init() {
+        const container = document.getElementById('canvas-container');
+        this.scene = new THREE.Scene();
+        this.scene.background = new THREE.Color(0x020306);
+        this.scene.fog = new THREE.FogExp2(0x020306, 0.015);
+
+        // Camera & WebGL Renderer Init Architecture
+        this.camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1500);
+        this.renderer = new THREE.WebGLRenderer({ antialias: true });
+        this.renderer.setSize(window.innerWidth, window.innerHeight);
+        this.renderer.shadowMap.enabled = true;
+        container.appendChild(this.renderer.domElement);
+
+        // Environmental Light Rig Setup
+        const ambient = new THREE.AmbientLight(0xffffff, 0.2);
+        this.scene.add(ambient);
+
+        this.sunLight = new THREE.DirectionalLight(0xffffff, 1.0);
+        this.sunLight.castShadow = true;
+        this.scene.add(this.sunLight);
+
+        this.moonLight = new THREE.DirectionalLight(0x5588ff, 0.4);
+        this.scene.add(this.moonLight);
+
+        // Initialize Player Visual Geometry Proxy
+        const geo = new THREE.ConeGeometry(0.6, 2.2, 8);
+        geo.rotateX(Math.PI / 2);
+        this.playerMesh = new THREE.Mesh(geo, new THREE.MeshStandardMaterial({ color: 0x00a884, roughness: 0.3, emissive: 0x002211 }));
+        this.playerMesh.position.copy(this.pPos);
+        this.scene.add(this.playerMesh);
+
+        // Attach a dynamic point light directly to the player proxy object
+        this.torchLight = new THREE.PointLight(0x00f2ff, 0, 25, 1.5);
+        this.playerMesh.add(this.torchLight);
+
+        // Ground Floor Floor Configuration
+        const ground = new THREE.Mesh(new THREE.PlaneGeometry(500, 500), new THREE.MeshStandardMaterial({ color: 0x14181e }));
+        ground.rotation.x = -Math.PI / 2;
+        this.scene.add(ground);
+
+        // Instantiate environment time-progression shaders and daylight loops
+        this.envManager = new EnvironmentManager(this.scene, this.sunLight, this.moonLight, this.torchLight);
+
+        // Handle Audio Setting Hooks dynamically through accessibility layer proxies
+        const originalToggle = this.a11y.toggle.bind(this.a11y);
+        this.a11y.toggle = (feature) => {
+          const result = originalToggle(feature);
+          if (feature === 'sound') this.audio.setEnabled(this.a11y.getAll().sound);
+          return result;
+        };
+
+        this.bindGlobalUIEvents();
+
+        // Viewport Aspect-Ratio Mutation Calculation
+        window.addEventListener('resize', () => {
+          this.camera.aspect = window.innerWidth / window.innerHeight;
+          this.camera.updateProjectionMatrix();
+          this.renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+      }
+
+      bindGlobalUIEvents() {
+        document.getElementById('btn-open-map').onclick = () => {
+          if (!this.mapModal) {
+            this.mapModal = new OrbitalSelectMatrixModal(this.cm, (caseId) => this.loadCase(caseId));
+          }
+          this.mapModal.open();
+        };
+
+        document.getElementById('btn-start').onclick = () => {
+          document.getElementById('wipe-overlay').classList.add('active');
+          setTimeout(() => {
+            document.getElementById('loading-screen').style.display = 'none';
+            if (!this.mapModal) {
+              this.mapModal = new OrbitalSelectMatrixModal(this.cm, (caseId) => game.loadCase(caseId));
+            }
+            this.mapModal.open();
+          }, 1000);
+        };
+      }
+    }
+    // ==========================================================================
+    // 14. SETTINGS ENGINE INITIALIZATION HOOKS
+    // ==========================================================================
+    const game = new GameEngine();
+    game.init();
+    window.a11y = game.a11y;
+
+    (function domInit() {
+      const settingsOverlay = document.getElementById('settings-overlay');
+      const bibleVersionSelect = document.getElementById('setting-bible-version');
+
+      function buildA11yList() {
+        const list = document.getElementById('a11y-settings-list');
+        if (!list) return;
+        const settings = game.a11y.getAll();
+        const rows = [
+          { key: 'high_contrast', label: '👁 High Contrast', desc: 'Stronger borders, brighter text' },
+          { key: 'large_text', label: '🔠 Large Text', desc: 'Increase text size throughout' },
+          { key: 'tts', label: '🔊 Read Aloud (TTS)', desc: 'Speaks dialogue and results' },
+          { key: 'slow_speech', label: '🐢 Slow Speech', desc: 'Slower reading speed' },
+          { key: 'sound', label: '🔊 Sound', desc: 'Background ambience and effects', icon: 'fa-volume-up' },
+          { key: 'simple_mode', label: '📖 Simple Language', desc: 'Uses easier, shorter words' },
+          { key: 'reduce_motion', label: '⏸ Reduce Motion', desc: 'Removes animations' },
+        ];
+        list.innerHTML = rows.map(r => {
+          const enabled = !!settings[r.key];
+          const iconHtml = r.icon ? `<i class="fas ${r.icon}" aria-hidden="true"></i>` : '';
+          const pressed = enabled ? 'true' : 'false';
+          const iconLabel = r.icon ? 'Toggle ' + r.label : r.label;
+          return `<label style="display:flex; align-items:center; justify-content:space-between; padding:10px 12px; background:rgba(200,150,90,0.04); border:1px solid var(--border-subtle); border-radius:var(--radius); cursor:pointer;">
             <span>
               <span style="font-weight:700; font-size:0.95rem;">${r.label}</span>
               <span style="display:block; font-size:0.8rem; color:var(--text-muted);">${r.desc}</span>
@@ -1571,34 +1913,13 @@
       const btnCloseInvBoard = document.getElementById('btn-close-inv-board');
 
       btnInvBoardToggle.onclick = () => {
-        const overlay = invBoardOverlay;
-        const panel = overlay.querySelector('.modal-panel');
-        overlay.style.setProperty('display', 'flex', 'important');
-        overlay.style.setProperty('visibility', 'visible', 'important');
-        overlay.style.setProperty('opacity', '1', 'important');
-        overlay.style.setProperty('z-index', '9999', 'important');
-        if (panel) {
-          panel.style.setProperty('opacity', '1', 'important');
-          panel.style.setProperty('background', '#1a0e04', 'important');
-        }
-        console.log('board toggle:', {
-          overlayFound: !!overlay,
-          panelFound: !!panel,
-          overlayDisplay: getComputedStyle(overlay).display,
-          overlayOpacity: getComputedStyle(overlay).opacity,
-          panelDisplay: panel ? getComputedStyle(panel).display : null,
-          panelOpacity: panel ? getComputedStyle(panel).opacity : null
-        });
-        overlay.classList.add('active');
-        setTimeout(() => overlay.classList.add('fade-in-complete'), 10);
-        try {
+        invBoardOverlay.style.display = 'flex';
+        setTimeout(() => invBoardOverlay.classList.add('active'), 10);
+        setTimeout(() => invBoardOverlay.classList.add('fade-in-complete'), 50);
+        if (typeof window.renderInvestigationBoard === 'function') {
           window.renderInvestigationBoard();
-          console.log('renderInvestigationBoard done, htmlLen:', invBoardContent?.innerHTML?.length);
-        } catch (e) {
-          console.warn('renderInvestigationBoard failed', e);
         }
       };
-
       btnCloseInvBoard.onclick = () => {
         invBoardOverlay.classList.remove('fade-in-complete');
         setTimeout(() => {
@@ -1606,7 +1927,6 @@
           invBoardOverlay.style.display = 'none';
         }, 350);
       };
-
       window.renderInvestigationBoard = function () {
         if (!invBoardContent) return;
         const labUI = new LabUI(game.de, game.es, game.a11y, (result) => {
@@ -1617,13 +1937,18 @@
         invBoardContent.innerHTML = labUI.render();
         labUI.bindEvents(invBoardContent);
       };
+      window.BibleReader = window.BibleReader || {
+        displayPassage() {},
+        updateTranslation() {},
+        closeOverlay() {}
+      };
     })();
 
     game.init();
     // Show start button when game is loaded
     document.getElementById('loading-screen').classList.add('ready');
   </script>
-
+-->
 </body>
 
 </html>

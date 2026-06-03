@@ -203,6 +203,12 @@ Without a nation, there is no altar. Without an altar, there is no law. Order is
 
 * [Acknowledge: you chose the Law over the man.] -> closing
 * [Challenge: blood money is not order.] -> exposed
+* [What happened in the Sanctuary today?] -> temple_signs
+
+=== temple_signs ===
+The afternoon tremor was... unexpected. They say the inner veil tore from top to bottom. Tectonic rifts in the limestone, nothing more.
+
+* [Continue.] -> trial
 
 === pressure ===
 Plotting? There is no plot. There is a calculation. Every year, Rome sends a procurator. Every year, we assess the temperament. Pilate is weak. Herod is a puppet. This year, the card is ours.
@@ -228,7 +234,7 @@ We will hear them all. The truth will reveal itself, but the public safety verdi
 * [Challenge: Pilate saw through you.] -> exposed
 
 === exposed ===
-The night we condemned an innocent man, I knew we had made an error. But by then, the Pharisees' crowd had turned into a mob. The die was cast. Not because it was right. Because we were too proud to admit we were wrong.
+The night we condemned an innocent man, I knew we had made an error. But when the ground split and the Temple curtain failed, I realized our old monopoly over the presence of God had collapsed in three seconds. We were too proud to admit we were wrong.
 
 * [Move forward.] -> closing
 
@@ -255,7 +261,7 @@ He did not curse us like the others. He said, 'Father, forgive them.' It felt li
 * [Challenge: how can you forgive a soldier?] -> exposed
 
 === guard ===
-We are posted here until the bodies are broken and taken down. No one wants to sit in this darkness, but orders are orders.
+We are posted here until the bodies are broken and taken down. We dropped our torches when the tremor hit. No one wants to sit in this darkness, but orders are orders.
 
 * [Probe deeper: why is the Centurion unsettled?] -> deep_probe
 * [Soften: you are just following orders.] -> closing
@@ -272,7 +278,7 @@ At the moment he died, the sky turned black in the middle of the day. The curtai
 * [Move forward.] -> closing
 
 === exposed ===
-The curtain tore. If that does not tell you God was present in that execution, nothing else will. The old agreement was over. A new one was starting. And we were the ones hammering the nails into its door.
+The curtain tore, and someone left a fine linen wrapper caught in the branches nearby. If that does not tell you God was present, nothing else will. The old agreement was over. And we were the ones hammering the nails.
 
 * [Acknowledge: you are witnesses.] -> closing
 
@@ -696,4 +702,3 @@ They do not understand that a woman freed from seven demons is not the same woma
 print("Templates written for 16 files. Need 20 more.")
 with open("/tmp/ink_16.txt", "w") as f:
     f.write(list(ink_contents.keys())[-1] + "\n")
-

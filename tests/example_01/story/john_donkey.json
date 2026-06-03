@@ -1,0 +1,31 @@
+{
+  "start": {
+    "content": "We have just come down from the Mount of Olives. The crowd was massive! I have never heard so many people shouting the same thing at once. I was busy recording the names of the witnesses for my own account.",
+    "choices": [
+      {
+        "text": "Tell me about the crowd's testimony.",
+        "destination": "testimony"
+      },
+      {
+        "text": "Did you see which way the donkey went?",
+        "destination": "tracks"
+      }
+    ]
+  },
+  "testimony": {
+    "content": "They were shouting 'Hosanna!' from the tops of their lungs. I saw the Pharisees scribbling down complaints. I'm keeping a record of their written threats; it's significant evidence of their rejection.",
+    "choices": [
+      { "text": "What about the donkey?", "destination": "tracks" }
+    ]
+  },
+  "tracks": {
+    "content": "The donkey tracks lead right down the western slope. We followed them all the way. A villager near the gate stopped us and asked why we were untying it, but he let us go once we spoke the words.",
+    "choices": [
+      { "text": "Continue.", "destination": "closing" }
+    ]
+  },
+  "closing": {
+    "content": "Everything is happening as it was written. We are just witnesses.",
+    "choices": []
+  }
+}

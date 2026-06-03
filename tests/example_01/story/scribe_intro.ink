@@ -1,3 +1,13 @@
+// ============================================================
+// CHARACTER: Senior Scribe - Intro
+// ACT: Global / Board
+// CASE: Investigation Board
+// CASE ID: investigation_board
+// SOURCE: ORPHAN FILE (not referenced in any case file)
+// ------------------------------------------------------------
+// ============================================================
+//
+
 -> start
 === start ===
 I am Master Scribe. The archives hold testimony — not opinion. Many have walked these stones carrying questions no scroll could answer.

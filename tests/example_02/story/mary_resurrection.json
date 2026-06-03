@@ -1,0 +1,77 @@
+{
+    "inkVersion": 21,
+    "root": [
+        [
+            {
+                "->": "mary_resurrection"
+            },
+            [
+                "done",
+                {
+                    "#n": "g-0"
+                }
+            ],
+            null
+        ],
+        "done",
+        {
+            "mary_resurrection": [
+                [
+                    "^I came to the garden while it was still dark. I expected to find a sealed tomb and a heavy heart. Instead, I found the world had changed.",
+                    {
+                        "*": ".^.c-0",
+                        "flg": 2,
+                        "s": [
+                            "^The stone was already moved?",
+                            null
+                        ]
+                    },
+                    {
+                        "*": ".^.c-1",
+                        "flg": 2,
+                        "s": [
+                            "^Did you look inside?",
+                            null
+                        ]
+                    },
+                    null
+                ],
+                {
+                    "c-0": [
+                        "^Yes. Rolled away like a pebble. I ran for the others, certain that someone had stolen the body. How could the tomb be empty?",
+                        "#",
+                        "^reveal:empty_tomb",
+                        "/#",
+                        "\n",
+                        "^I didn't understand then that life doesn't need to steal what it already owns.",
+                        {
+                            "->": "closing"
+                        },
+                        null
+                    ],
+                    "c-1": [
+                        "^Later, I looked in and saw the linens. They weren't torn or scattered. They were just... there. Empty.",
+                        "#",
+                        "^reveal:burial_linen",
+                        "/#",
+                        "\n",
+                        "^He had passed through them, leaving death behind like an old cloak.",
+                        {
+                            "->": "closing"
+                        },
+                        null
+                    ]
+                }
+            ],
+            "closing": [
+                [
+                    "done",
+                    null
+                ],
+                null
+            ]
+        }
+    ],
+    "globals": {},
+    "listDefs": {}
+}

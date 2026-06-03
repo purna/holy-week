@@ -25,6 +25,8 @@ import { ActionManager } from './gameplay/actionManager.js';
 import { ModelManager } from './core/modelManager.js';
 import { GameLevelManager } from './GameLevelManager.js';
 import { VFXSystem } from './core/VFXSystem.js';
+import { investigationManager } from './InvestigationManager.js';
+import { evidenceSystem } from './EvidenceSystem.js';
 import { locations as legacyLocations, ICON_SYSTEM } from './config.js';
 
 // Locations are now loaded from level data - use empty array as fallback
@@ -764,10 +766,19 @@ async function init() {
 function setupInputs() {
     window.addEventListener('keydown', e => {
         keys[e.code] = true;
-        if (e.code === 'Space' && started && !appState.isDialogueOpen) {
-            e.preventDefault();
-            e.stopPropagation();
-            if (player.jump()) playBeep(300, "sine", 0.05);
+        if (started && !appState.isDialogueOpen) {
+            if (e.code === 'Space') {
+                e.preventDefault();
+                e.stopPropagation();
+                if (player.jump()) playBeep(300, "sine", 0.05);
+            }
+
+            // Contextual NPC Actions (E, Q, R)
+            if (activeNpc) {
+                if (e.code === 'KeyE') handleNpcInteraction('talk');
+                if (e.code === 'KeyQ') handleNpcInteraction('challenge');
+                if (e.code === 'KeyR') handleNpcInteraction('accuse');
+            }
         }
     });
 
@@ -921,7 +932,23 @@ function setupUIHandlers() {
         }
     });
 
-    elWorldPrompt.onclick = startDialogue;
+    elWorldPrompt.onclick = null;
+}
+
+/**
+ * Handles contextual interaction with NPCs (Talk, Challenge, Accuse)
+ */
+function handleNpcInteraction(mode) {
+    if (!activeNpc) return;
+    // Map current level index (0-9) to Act (1-5) for Investigation Logic
+    const currentAct = Math.ceil((levelManager.currentLevelIndex + 1) / 2);
+    const modes = investigationManager.getModes(activeNpc.data.id, currentAct);
+
+    if (modes.some(m => m.id === mode)) {
+        // Tag the interaction type so DialogueManager can jump to correct knot
+        activeNpc.data._interactionType = mode;
+        startDialogue();
+    }
 }
 
 // Main game loop
@@ -976,15 +1003,40 @@ function gameLoop() {
     npcSystem.setActiveNPC(nearestNpc);
     activeNpc = nearestNpc;
 
-    // NPC interaction prompt
+    // NPC interaction prompt (Multi-modal: Talk, Challenge, Accuse)
+    // This now evaluates available modes every frame to support dynamic evidence discovery
     if (activeNpc && !appState.isDialogueOpen && activeNpc.data.hasDialogue) {
-        elWorldPrompt.style.display = 'block';
-        elWorldPrompt.innerText = `CONNECT_TO_${activeNpc.data.name}`;
-        if (activeNpc.data.questId !== undefined) {
-            const _npcQuest = activeQuests.find(q => q.id === activeNpc.data.questId);
-            if (_npcQuest && _npcQuest.cur < _npcQuest.tar) {
-                elWorldPrompt.innerHTML = `CONNECT_TO_${activeNpc.data.name} <span style="color:var(--accent-success)"> [QUEST]</span>`;
-            }
+        const currentAct = Math.ceil((levelManager.currentLevelIndex + 1) / 2);
+        const modes = investigationManager.getModes(activeNpc.data.id, currentAct);
+
+        // Logic Signature: Only rebuild the UI elements if the set of available actions changes
+        const modesSignature = modes.map(m => m.id).sort().join('|');
+        if (activeNpc._lastModesSignature !== modesSignature) {
+            activeNpc._lastModesSignature = modesSignature;
+
+            elWorldPrompt.style.display = 'flex';
+            elWorldPrompt.style.flexDirection = 'row';
+            elWorldPrompt.style.gap = '10px';
+            elWorldPrompt.style.pointerEvents = 'auto';
+            elWorldPrompt.innerHTML = ''; 
+
+            modes.forEach(mode => {
+                const pill = document.createElement('div');
+                pill.className = 'interaction-pill';
+                pill.style.background = 'rgba(0, 0, 0, 0.7)';
+                pill.style.border = mode.id === 'talk' ? '1px solid #00f2ff' : '1px solid #ffaa00';
+                pill.style.padding = '6px 14px';
+                pill.style.borderRadius = '20px';
+                pill.style.cursor = 'pointer';
+                pill.style.fontSize = '0.75em';
+                pill.style.color = '#fff';
+                pill.innerText = mode.label;
+                pill.onclick = (e) => {
+                    e.stopPropagation();
+                    handleNpcInteraction(mode.id);
+                };
+                elWorldPrompt.appendChild(pill);
+            });
         }
 
         const sPos = activeNpc.getScreenPosition(sceneMgr.camera, worldMgr.planetR);
@@ -997,6 +1049,7 @@ function gameLoop() {
         }
     } else {
         elWorldPrompt.style.display = 'none';
+        if (activeNpc) activeNpc._lastModesSignature = null; // Reset cache when moving away
         if (lastNearNpcId !== null && !appState.isDialogueOpen) {
             audio.playNpcSound(lastNearNpcId, 'exit');
             lastNearNpcId = null;
@@ -1048,6 +1101,10 @@ function gameLoop() {
     // Pickup collection
     worldMgr.updatePickupCollection(pPos, (itemName) => {
         inventory.push(itemName);
+
+        // Dynamic Investigation Update: Register the pickup in the narrative evidence system
+        evidenceSystem.collect(itemName);
+
         if (itemName.startsWith('CELL') && activeQuests[1]?.cur < (activeQuests[1]?.tar ?? 0)) {
             activeQuests[1].cur++;
             if (activeQuests[1].cur === activeQuests[1].tar) audio.playQuestComplete();

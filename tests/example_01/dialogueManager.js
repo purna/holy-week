@@ -40,7 +40,7 @@ mary_magdalene:     './story/mary_magdalene.json',
       marcus:             './story/execution_soldier.json',
       joseph:             './story/joseph_arimathea.json',
       john_mark:          './story/john_disciple.json',
-      servant:            './story/jerusalem_local.json',
+      servant:            './story/rhoda_servant.json',
       judas:              './story/judas_iscariot.json',
       malchus_servant:    './story/execution_soldier.json',
       simon_peter:        './story/peter_defense.json',
@@ -70,6 +70,7 @@ export class DialogueManager {
         this.inkLib = null;
         this.activeNpc = null;
         this.onCloseCallback = null;
+        this.onMessageCallback = null;
 
         // Cache DOM refs once
         this._bubScroll = null;
@@ -80,6 +81,7 @@ export class DialogueManager {
 
     setInkLib(lib) { this.inkLib = lib; }
     setActiveNPC(npc) { this.activeNpc = npc; }
+    setOnMessage(cb) { this.onMessageCallback = cb; }
     setDialogueOpen(state) { this.isDialogueOpen = state; }
 
     // ── Story loading ────────────────────────────────────────────────────────
@@ -148,6 +150,9 @@ export class DialogueManager {
         const atBottom = bubScroll.scrollHeight - bubScroll.scrollTop - bubScroll.clientHeight < 120;
         if (atBottom) {
             bubScroll.scrollTop = bubScroll.scrollHeight;
+        }
+        if (this.onMessageCallback && (type === 'npc' || type === 'player')) {
+            this.onMessageCallback(text, type);
         }
     }
 
@@ -222,8 +227,9 @@ export class DialogueManager {
      * @param {object}   npc       — NPC config object with .name, .id, .unlocksEvidence
      * @param {object}   inkStory  — Active inkjs Story instance
      * @param {Function} onClose   — Called when the player ends the conversation
+     * @param {Function} onMessage — Optional callback for each message added
      */
-    openDialogue(npc, inkStory, onClose) {
+    openDialogue(npc, inkStory, onClose, onMessage) {
         // Close sidebar panels
         ['panel-quest', 'panel-inv', 'panel-actions'].forEach(id => {
             document.getElementById(id)?.classList.remove('open');
@@ -234,6 +240,7 @@ export class DialogueManager {
 
         this.setActiveNPC(npc);
         this.onCloseCallback = onClose;
+        this.onMessageCallback = onMessage;
         this.setDialogueOpen(true);
 
         // Populate header
@@ -267,6 +274,7 @@ export class DialogueManager {
         
         const cb = this.onCloseCallback || onClose;
         this.onCloseCallback = null;
+        this.onMessageCallback = null;
         if (typeof cb === 'function') cb();
     }
 

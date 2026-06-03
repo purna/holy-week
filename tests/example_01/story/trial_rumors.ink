@@ -1,3 +1,13 @@
+// ============================================================
+// CHARACTER: Trial Rumors
+// ACT: Act II
+// CASE: The Price of Life
+// CASE ID: lazarus_plot
+// SOURCE: ORPHAN FILE (not referenced in any case file)
+// ------------------------------------------------------------
+// ============================================================
+//
+
 -> start
 === start ===
 The council chamber was closed to many of us tonight. Whatever decisions were made inside, they were final.

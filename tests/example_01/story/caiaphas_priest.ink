@@ -1,3 +1,13 @@
+// ============================================================
+// CHARACTER: Pashhur (Temple Priest on Shift)
+// ACT: Act III/IV
+// CASE: The Curtain and the Cross
+// CASE EXPORT: crucifixion_det
+// SOURCE: act3_case_improved.js → NPC 'temple_priest_pashhur'
+// ------------------------------------------------------------
+// ============================================================
+//
+
 -> start
 === start ===
 I am Joseph ben Caiaphas. I have served as High Priest since the eighteenth year of Tiberius. The Romans appointed me; I serve at their pleasure. The man from Galilee is testing everything that keeps this city from burning.

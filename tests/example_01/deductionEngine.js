@@ -39,6 +39,7 @@ export class DeductionEngine {
     let result;
     if (specific) {
       result = {
+        deductionId: specific.id || key,
         operation,
         a: a.name,
         b: b.name,

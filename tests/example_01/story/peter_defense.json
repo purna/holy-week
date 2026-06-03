@@ -9,6 +9,10 @@
       {
         "text": "What happened with the rope at the tethering post?",
         "destination": "rope"
+      },
+      {
+        "text": "Tell me about the incident in the garden.",
+        "destination": "garden_incident"
       }
     ]
   },
@@ -46,6 +50,19 @@
         "destination": "cloak_detail"
       }
     ]
+  },
+  "garden_incident": {
+    "content": "The garden was dark. I saw the torches coming and I panicked. I drew my blade and struck the first person I saw — a man named Malchus. I cut off his ear — I still have the blood-stained scarf from where it happened.",
+    "choices": [
+      {
+        "text": "And Jesus healed him?",
+        "destination": "healing_reveal"
+      }
+    ]
+  },
+  "healing_reveal": {
+    "content": "He touched the man and the flesh was whole again. Then he looked at me and said those who take the sword die by the sword. I dropped the bloodied scarf in the dirt and ran. I couldn't understand why he wouldn't fight.",
+    "choices": [{ "text": "Continue.", "destination": "closing" }]
   },
   "rope_lie": {
     "content": "Alright \u2014 I cut the rope. Not to steal anything, but the knot had been tied extra tight and I was in a hurry. We were supposed to be back before the main crowd arrived. Everything else happened exactly as Jesus said.",

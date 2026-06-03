@@ -175,6 +175,7 @@ export const act1CaseA = {
     {
       id: "peter",
       name: "Peter",
+      dialogueId: "peter_defense",
       role: "Disciple of Jesus",
       avatar: "👨‍🦰",
       color: 0xffaa44,
@@ -542,5 +543,9 @@ export const act1CaseB = {
     lesson: "The temple cleansing showed that God values genuine, accessible worship for all people over cold, corrupt religious performance. It sealed Jesus's fate with the religious elite, who immediately began plotting His death.",
     prophesyFulfilled: ["Malachi 3:1", "Isaiah 56:7", "Jeremiah 7:11"],
     furtherReading: ["Mark 11:15–19", "John 2:13–22"],
+
+
+
+
   },
 };

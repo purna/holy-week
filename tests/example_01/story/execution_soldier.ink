@@ -1,3 +1,13 @@
+// ============================================================
+// CHARACTER: Marcus (Execution Soldier)
+// ACT: Act III/IV
+// CASE: The Curtain and the Cross
+// CASE EXPORT: crucifixion_det
+// SOURCE: act4_case_improved.js → NPC 'marcus'
+// ------------------------------------------------------------
+// ============================================================
+//
+
 -> start
 === start ===
 I am Marcus. I was on duty. I will read this scene plainly and let you draw your own conclusions. Last Sabbath, outside the outer court — tables overturned, animals scattered, the crowd orange with excitement. He called it My Father's house. The merchants called it their living. I called it my afternoon.

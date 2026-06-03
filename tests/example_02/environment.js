@@ -2,12 +2,14 @@
 import * as THREE from 'three';
 
 export class EnvironmentManager {
-    constructor(scene, sunLight, moonLight, torchLight) {
+    constructor(scene, sunLight, moonLight, torchLight, audio) {
         this.scene = scene;
         this.sunLight = sunLight;
         this.moonLight = moonLight;
         this.torchLight = torchLight;
+        this.audio = audio;
         this.timeProgress = 0.25;
+        this.wasDay = null; // track state to trigger audio transitions
     }
 
     update(autoCycle) {
@@ -18,6 +20,20 @@ export class EnvironmentManager {
         this.moonLight.position.set(Math.cos(rad + Math.PI) * 400, Math.sin(rad + Math.PI) * 400, 0);
 
         const dayMix = Math.max(0, Math.min(1, (Math.sin(rad) + 0.2) / 0.4));
+
+        // Handle audio transitions based on day/night cycle
+        if (this.audio) {
+            const isDay = dayMix > 0.5;
+            if (isDay !== this.wasDay) {
+                if (isDay) {
+                    this.audio.playMorningAmbience();
+                } else {
+                    this.audio.playOutdoorAmbience();
+                }
+                this.wasDay = isDay;
+            }
+        }
+
         const dayColor = new THREE.Color(0x87ceeb);
         const nightColor = new THREE.Color(0x020205);
 

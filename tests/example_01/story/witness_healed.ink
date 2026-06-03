@@ -1,3 +1,13 @@
+// ============================================================
+// CHARACTER: Witness to Healing
+// ACT: Act II
+// CASE: The Price of Life
+// CASE ID: lazarus_plot
+// SOURCE: ORPHAN FILE (not referenced in any case file)
+// ------------------------------------------------------------
+// ============================================================
+//
+
 -> start
 === start ===
 The man who was healed — he was brought to the priests immediately. The elders questioned him closely. Not about the healing, but about the voice.

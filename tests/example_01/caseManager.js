@@ -7,6 +7,8 @@ export class CaseManager {
     this.cases = {};
     this.activeCaseId = null;
     this.progress = this._loadProgress();
+    // Refresh HUD values on load
+    setTimeout(() => this._refreshMetricsUI(), 100);
   }
 
   registerCase(caseData) {
@@ -34,6 +36,8 @@ export class CaseManager {
         solved: false,
         evidenceFound: [],
         deductionsMade: [],
+        breakthroughs: [],
+        failedChallenges: 0,
         accusation: null,
         score: null,
       };
@@ -62,35 +66,150 @@ export class CaseManager {
     }
   }
 
+  recordBreakthrough(npcId, evidenceKey) {
+    const p = this.progress.cases[this.activeCaseId];
+    if (p) {
+      if (!p.breakthroughs) p.breakthroughs = [];
+      if (!p.breakthroughs.includes(evidenceKey)) {
+        p.breakthroughs.push(evidenceKey);
+        this._saveProgress();
+        if (window.audio && typeof window.audio.playClue === 'function') window.audio.playClue();
+      }
+    }
+  }
+
+  hasDeduction(deductionId) {
+    const p = this.progress.cases[this.activeCaseId];
+    if (!p || !p.deductionsMade) return false;
+    return p.deductionsMade.some(d => d.deductionId === deductionId);
+  }
+
+  recordFailedChallenge() {
+    const p = this.progress.cases[this.activeCaseId];
+    if (p) {
+      p.failedChallenges = (p.failedChallenges || 0) + 1;
+      this._saveProgress();
+    }
+  }
+
+  updateDoubt(amount) {
+    this.progress.doubt = Math.max(0, (this.progress.doubt || 0) + amount);
+    this._saveProgress();
+    this._refreshMetricsUI();
+  }
+
+  updateReputation(faction, amount) {
+    if (!this.progress.reputations) {
+      this.progress.reputations = { scribes: 100, temple: 100, roman: 100, local: 100 };
+    }
+    const current = this.progress.reputations[faction] !== undefined ? this.progress.reputations[faction] : 100;
+    this.progress.reputations[faction] = Math.max(0, Math.min(100, current + amount));
+    this._saveProgress();
+    this._refreshMetricsUI();
+
+    // Play distinct bonus sound if reputation is awarded
+    if (amount > 0 && window.audio && typeof window.audio.playBonus === 'function') {
+      window.audio.playBonus();
+    }
+  }
+
+  _refreshMetricsUI() {
+    if (typeof document === 'undefined') return;
+    
+    const doubtEls = document.querySelectorAll('.val-doubt');
+    const repEls = document.querySelectorAll('.val-reputation');
+    const scoreEls = document.querySelectorAll('.header-score');
+    
+    // Handle Doubt
+    const newDoubt = this.progress.doubt || 0;
+    doubtEls.forEach(el => {
+      const oldVal = parseInt(el.textContent) || 0;
+      if (oldVal !== newDoubt) {
+        el.textContent = newDoubt;
+        if (newDoubt > oldVal) {
+          el.classList.remove('bump');
+          void el.offsetWidth;
+          el.classList.add('bump');
+          if (window.audio && typeof window.audio.playRumble === 'function') window.audio.playRumble();
+        }
+      }
+    });
+    
+    // Handle Score
+    const newScore = `${this.progress.totalScore || 0} pts`;
+    scoreEls.forEach(el => {
+      if (el.textContent !== newScore) {
+        el.textContent = newScore;
+        el.classList.remove('bump');
+        void el.offsetWidth;
+        el.classList.add('bump');
+      }
+    });
+    
+    // Handle Reputation
+    if (this.progress.reputations) {
+      // Display the average standing across all factions in the global HUD
+      const reps = Object.values(this.progress.reputations);
+      const avg = Math.round(reps.reduce((a, b) => a + b, 0) / reps.length);
+      repEls.forEach(el => {
+        const oldVal = parseInt(el.textContent) || 0;
+        if (oldVal !== avg) {
+          el.textContent = avg;
+          if (avg > oldVal) {
+            el.classList.remove('bump');
+            void el.offsetWidth;
+            el.classList.add('bump');
+          }
+        }
+      });
+    }
+  }
+
   submitAccusation(suspectId) {
     const c = this.getActiveCase();
     const p = this.progress.cases[this.activeCaseId];
     if (!c || !p) return null;
 
     const correct = suspectId === c.truth.culprit;
-    const totalEvidence = c.evidencePool.length;
-    const foundEvidence = p.evidenceFound.length;
-    const deductionScore = Math.min(p.deductionsMade.length * 10, 40);
-    const evidenceScore = Math.round((foundEvidence / totalEvidence) * 40);
-    const accusationScore = correct ? 20 : 0;
-    const total = deductionScore + evidenceScore + accusationScore;
+    
+    // Scoring Strategy: Evidence (5/ea), Key Deductions (15/ea), Breakthroughs (10/ea)
+    const evidenceScore = (p.evidenceFound || []).length * 5;
+    const deductionScore = (p.deductionsMade || []).filter(d => d.isKeyDeduction).length * 15;
+    const challengeScore = (p.breakthroughs || []).length * 10;
+    const baseAccusationScore = correct ? 50 : -25;
+    const currentDoubt = this.progress.doubt || 0;
+    const doubtPenalty = currentDoubt * 2;
+    const perfectBonus = (correct && (p.failedChallenges || 0) === 0) ? 25 : 0;
+
+    const total = Math.max(0, (evidenceScore + deductionScore + challengeScore + baseAccusationScore + perfectBonus) - doubtPenalty);
 
     const result = {
       correct,
       suspectId,
       truth: c.truth,
-      score: { deduction: deductionScore, evidence: evidenceScore, accusation: accusationScore, total },
+      score: { 
+        evidence: evidenceScore, 
+        deduction: deductionScore, 
+        challenge: challengeScore,
+        accusation: baseAccusationScore,
+        perfectBonus: perfectBonus,
+        doubtPenalty: doubtPenalty,
+        total 
+      },
     };
 
     p.accusation = suspectId;
     p.solved = correct;
     p.score = result.score;
 
+    this.progress.totalScore = Math.max(0, (this.progress.totalScore || 0) + total);
+    
     if (correct) {
       this.progress.rank = this._calcRank(total);
-      this.progress.totalScore = (this.progress.totalScore || 0) + total;
+    } else {
+      this.updateDoubt(25); // Failed accusation significantly increases doubt
     }
-
+    this._refreshMetricsUI();
     this._saveProgress();
     return result;
   }
@@ -117,9 +236,19 @@ export class CaseManager {
   _loadProgress() {
     try {
       const raw = localStorage.getItem("detective_progress");
-      return raw ? JSON.parse(raw) : { cases: {}, totalScore: 0, rank: "Rookie" };
+      const data = raw ? JSON.parse(raw) : { 
+        cases: {}, 
+        totalScore: 0, 
+        rank: "Rookie", 
+        doubt: 0, 
+        reputations: { scribes: 100, temple: 100, roman: 100, local: 100 } 
+      };
+      // Ensure new metrics exist for returning players
+      if (data.doubt === undefined) data.doubt = 0;
+      if (!data.reputations) data.reputations = { scribes: 100, temple: 100, roman: 100, local: 100 };
+      return data;
     } catch {
-      return { cases: {}, totalScore: 0, rank: "Rookie" };
+      return { cases: {}, totalScore: 0, rank: "Rookie", doubt: 0, reputations: { scribes: 100, temple: 100, roman: 100, local: 100 } };
     }
   }
 
@@ -131,6 +260,7 @@ export class CaseManager {
 
   resetProgress() {
     localStorage.removeItem("detective_progress");
-    this.progress = { cases: {}, totalScore: 0, rank: "Rookie" };
+    this.progress = { cases: {}, totalScore: 0, rank: "Rookie", doubt: 0, reputations: { scribes: 100, temple: 100, roman: 100, local: 100 } };
+    this._refreshMetricsUI();
   }
 }

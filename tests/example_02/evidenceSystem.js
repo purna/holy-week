@@ -32,7 +32,7 @@ export class EvidenceSystem {
   }
 
   getCollected() {
-    return this.getEvidencePool().filter(e => this.collected.includes(e.id) && this.unlockedIds.has(e.id));
+    return this.getEvidencePool().filter(e => this.collected.includes(e.id));
   }
 
   getById(id) {

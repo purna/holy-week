@@ -1,3 +1,13 @@
+// ============================================================
+// CHARACTER: Pilate's Secretary
+// ACT: Act IV
+// CASE: The Guard's Report
+// CASE ID: barabbas_choice
+// SOURCE: ORPHAN FILE (not referenced in any case file)
+// ------------------------------------------------------------
+// ============================================================
+//
+
 -> start
 === start ===
 I am in the Praetorium this morning, formatting the official titulus for the crossbeam. The charge must be written clearly in Latin, Greek, and Hebrew so every traveller passing the main road reads it. The Prefect ordered it to read: "Jesus of Nazareth, King of the Jews." The priests are complaining about the phrasing.

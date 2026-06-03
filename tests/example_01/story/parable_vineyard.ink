@@ -1,3 +1,13 @@
+// ============================================================
+// CHARACTER: Thomas (Parable of the Vineyard)
+// ACT: Act II
+// CASE: The Silenced Teacher
+// CASE ID: authority_challenged
+// SOURCE: ORPHAN FILE (not referenced in any case file)
+// ------------------------------------------------------------
+// ============================================================
+//
+
 -> start
 === start ===
 I am a merchant from Tyre. I trade in spices and stories — both travel well along the Roman roads. I heard the Galilean tell the story of the vineyard in the Temple courtyard.

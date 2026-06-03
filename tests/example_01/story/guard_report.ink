@@ -1,3 +1,32 @@
+// ============================================================
+// CHARACTER: Marcus (Roman Garrison Guard)
+// ACT: Act I
+// CASE: The Overturned Tables
+// CASE EXPORT: temple_cleansing
+// SOURCE: act1_case_improved.js → NPC 'garrison_guard'
+// BACKGROUND: A working-class Roman auxiliary stationed on the high outer wall walkways. He views the regional theological squabbles with complete military detachment.
+// BIBLE REFERENCE: Luke 19:47-48
+// ------------------------------------------------------------
+// PROPHECIES FULFILLED IN THIS CASE:
+//   - Malachi 3:1
+//     Gospel: Matthew 21:12
+//     Insight: Malachi predicted the Messiah would come not as a political puppet for the temple establishment, but as a refining fire to purify it.
+//   - Isaiah 56:7
+//     Gospel: Mark 11:17
+//     Insight: By converting the Court of the Gentiles into a noisy, crowded marketplace, the leaders made it impossible for non-Jewish seekers to worship.
+// ------------------------------------------------------------
+// BIBLICAL CONTEXT:
+//   Summary: On Monday morning, Jesus entered the Temple courts and forcefully drove out those who were buying and selling. He overturned the tables of the moneychangers and the benches of those selling doves, declaring: "My house wi...
+//   Historicalnote: The moneychangers exchanged common Roman and Greek coins for high-purity Tyrian shekels—the only currency accepted for the mandatory temple tax. The currency exchange rates and high costs of sacrificial animals created m...
+//   Significance: By halting the commercial exploitation in the Court of the Gentiles, Jesus disrupted the high-priestly financial monopoly. More importantly, He acted out a prophetic sign of judgment against an institutional temple syste...
+// ------------------------------------------------------------
+// CASE FACTS (Truth Object):
+//   culprit: none
+//   motive: There was no crime. Jesus acted within His rightful authority as the Son of God purifying His Father's house, executing a calculated prophetic sign.
+//   method: Jesus entered the Court of the Gentiles, manufactured a symbolic whip out of local rushes, and cleared out the illegal and predatory commercial stands. The religious authorities were too paralyzed by His moral clarity an...
+// ============================================================
+//
+
 -> start
 === start ===
 I was on duty. I will read this scene plainly and let you draw your own conclusions. Last Sabbath, outside the outer court — tables overturned, animals scattered, the crowd orange with excitement. He called it My Father's house. The merchants called it their living. I called it my afternoon.

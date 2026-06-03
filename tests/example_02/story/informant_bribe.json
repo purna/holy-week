@@ -1,1 +1,57 @@
-{"inkVersion":21,"root":[[{"->":"start"},["done",{"#n":"g-0"}],null],"done",{"start":[["^Information has a price. Names have a price. Silence also has a price.","^The Galilean's gathering had a ledger before the sun went down. One of the twelve",{"*":"closing","flg":2,"s":["^For how much was Judas paid?",null]},{"*":"closing","flg":2,"s":["^What account is being kept and by whom?",null]},null],null],"closing":[["^-> DONE",null],null]}],"globals":{},"listDefs":{}}
+{
+    "inkVersion": 21,
+    "root": [
+        [
+            {
+                "->": "informant_bribe"
+            },
+            [
+                "done",
+                {
+                    "#n": "g-0"
+                }
+            ],
+            null
+        ],
+        "done",
+        {
+            "informant_bribe": [
+                [
+                    "^I watch the gates. Information has a price. You want to know where the people are going?",
+                    {
+                        "*": ".^.c-0",
+                        "flg": 2,
+                        "s": [
+                            "^What do the ledgers say?",
+                            null
+                        ]
+                    },
+                    null
+                ],
+                {
+                    "c-0": [
+                        "^Every night, more pilgrims slip toward Bethany. They are all asking for the same house.",
+                        "#",
+                        "^reveal:crowd_report",
+                        "/#",
+                        "\n",
+                        "^The High Priest wants a record of every name. I have the manifest hidden near the eastern gate.",
+                        {
+                            "->": "closing"
+                        },
+                        null
+                    ]
+                }
+            ],
+            "closing": [
+                [
+                    "done",
+                    null
+                ],
+                null
+            ]
+        }
+    ],
+    "globals": {},
+    "listDefs": {}
+}

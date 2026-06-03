@@ -161,6 +161,7 @@ export const act4CaseA = {
     {
       id: "mary_magdalene",
       name: "Mary Magdalene",
+      dialogueId: "mary_resurrection",
       role: "Disciple, First Witness",
       avatar: "👩",
       truthfulness: 0.98,

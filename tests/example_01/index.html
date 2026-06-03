@@ -8,7 +8,12 @@
   <meta name="description"
     content="A mobile-first educational detective game. Collect clues, interview suspects and solve mysteries." />
 
+     <!-- FontAwesome 6: Vector icon library used globally for interface badges and markers -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
+
   <link
     href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Space+Mono:wght@400;700&display=swap"
     rel="stylesheet" />
@@ -29,9 +34,18 @@
           <div class="header-subtitle" id="hdr-subtitle">Choose an location</div>
         </div>
         <div style="display:flex;gap:8px;align-items:center">
+          <div class="header-score">0 pts</div>
           <div class="header-rank" id="hdr-rank">Rookie</div>
+          <button class="reset-btn" onclick="showResetModal()" title="Reset Game" aria-label="Reset all game progress"><i class="fas fa-undo"></i></button>
           <button class="a11y-btn" id="a11y-btn-map" onclick="showScreen('a11y')"
-            aria-label="Accessibility settings">♿</button>
+            aria-label="Accessibility settings"><i class="fa-solid fa-gear"></i></button>
+        </div>
+      </div>
+      <div class="metrics-bar" style="display:flex; justify-content: space-around; background: rgba(0,0,0,0.2); padding: 8px; font-size: 0.8rem; border-bottom: 1px solid rgba(255,255,255,0.1);">
+        <div class="metric-item">🏛 Reputation: <span class="val-reputation">100</span></div>
+        <div class="metric-item">❓ Doubt: <span class="val-doubt">0</span></div>
+      </div>
+      <div class="map-scroll" role="list" aria-label="Locations">
         </div>
       </div>
       <div class="map-scroll" role="list" aria-label="Locations">
@@ -56,10 +70,16 @@
           <div class="header-subtitle">Choose a case</div>
         </div>
         <button class="a11y-btn" id="a11y-btn-cases" onclick="showScreen('a11y')"
-          aria-label="Accessibility settings">♿</button>
+          aria-label="Accessibility settings"><i class="fa-solid fa-gear"></i></button>
       </div>
-      <button class="back-btn" id="back-btn-map" onclick="showScreen('map')" aria-label="Back to city events">← Events
-        Map</button>
+      <div class="nav-status-bar">
+        <button class="back-btn" id="back-btn-map" onclick="showScreen('map')" aria-label="Back to city events">← Events Map</button>
+        <div class="header-metrics-group">
+          <div class="header-metric">🏛 <span class="val-reputation">100</span></div>
+          <div class="header-metric">❓ <span class="val-doubt">0</span></div>
+          <div class="header-score">0 pts</div>
+        </div>
+      </div>
       <div class="cases-scroll" id="cases-scroll"></div>
     </div>
 
@@ -70,10 +90,16 @@
           <div class="header-subtitle" id="inv-case-sub"></div>
         </div>
         <button class="a11y-btn" id="a11y-btn-investigation" onclick="showScreen('a11y')"
-          aria-label="Accessibility settings">♿</button>
+          aria-label="Accessibility settings"><i class="fa-solid fa-gear"></i></button>
       </div>
-      <button class="back-btn" id="back-btn-cases" onclick="showScreen('cases')" aria-label="Back to case list">←
-        Cases</button>
+      <div class="nav-status-bar">
+        <button class="back-btn" id="back-btn-cases" onclick="showScreen('cases')" aria-label="Back to case list">← Cases</button>
+        <div class="header-metrics-group">
+          <div class="header-metric">🏛 <span class="val-reputation">100</span></div>
+          <div class="header-metric">❓ <span class="val-doubt">0</span></div>
+          <div class="header-score">0 pts</div>
+        </div>
+      </div>
 
       <nav class="inv-tabs" role="tablist" aria-label="Investigation sections">
         <button class="inv-tab active" role="tab" aria-selected="true" data-tab="scene" aria-controls="inv-scene"
@@ -239,6 +265,20 @@
             <div class="evidence-detail-investigator-note"></div>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="reset-modal" class="screen" style="background: rgba(0,0,0,0.85); justify-content: center; align-items: center; z-index: 5000;">
+    <div class="result-card" style="height: auto; max-width: 340px;">
+      <div class="result-verdict">⚠️</div>
+      <div class="result-verdict-text" style="color: var(--text);">Reset Progress?</div>
+      <div class="result-truth">
+        This will permanently clear all your solved cases and career points.
+      </div>
+      <div style="display: flex; gap: 12px; margin-top: 10px;">
+        <button class="result-continue-btn" style="background: var(--surface3); color: var(--text);" onclick="closeResetModal()">Cancel</button>
+        <button class="result-continue-btn" style="background: var(--red); color: white;" onclick="playAgain()">Reset All</button>
       </div>
     </div>
   </div>
@@ -513,7 +553,7 @@
       const container = document.getElementById("inv-scene");
 
       container.innerHTML = `
-      <p class="scene-intro" aria-live="polite">${a11y.simplify(c.intro)}</p>
+      <p class="scene-intro" aria-live="polite">${a11y.simplify(c.intro || c.subtitle || "Investigate the area to find clues.")}</p>
       <p class="collection-progress" role="status">Clues found: ${es.getCollected().length} / ${es.getEvidencePool().length}</p>
       <h2 class="section-title">Evidence at Scene</h2>
       <div class="evidence-grid" role="list" aria-label="Evidence at scene">
@@ -640,6 +680,10 @@
           <div class="score-grid" aria-label="Your score breakdown">
             <div class="score-item"><div class="score-item-value">${result.score.evidence}</div><div class="score-item-label">Evidence</div></div>
             <div class="score-item"><div class="score-item-value">${result.score.deduction}</div><div class="score-item-label">Deductions</div></div>
+            <div class="score-item"><div class="score-item-value">${result.score.challenge || 0}</div><div class="score-item-label">Challenges</div></div>
+            <div class="score-item" style="border: 1px solid var(--gold);"><div class="score-item-value" style="color:var(--green)">+${result.score.perfectBonus || 0}</div><div class="score-item-label">Perfect Bonus</div></div>
+            <div class="score-item"><div class="score-item-value">${result.score.accusation > 0 ? '+' : ''}${result.score.accusation}</div><div class="score-item-label">Accusation</div></div>
+            <div class="score-item"><div class="score-item-value" style="color:var(--red)">-${result.score.doubtPenalty}</div><div class="score-item-label">Doubt (x2)</div></div>
             <div class="score-item"><div class="score-item-value">${result.score.total}</div><div class="score-item-label">Total</div></div>
           </div>
           <button class="result-continue-btn" onclick="showScreen('map')" aria-label="Continue to world map">Continue →</button>
@@ -712,8 +756,21 @@
     window.playAgain = function () {
       cm.resetProgress();
       document.getElementById("game-complete-modal").classList.remove("active");
+      document.getElementById("reset-modal").classList.remove("active");
       renderMap();
       a11y.announce("Game reset. All progress cleared. Choose a location to begin.");
+    };
+
+    window.showResetModal = function() {
+      document.getElementById("reset-modal").classList.add("active");
+      if (window.audio && typeof window.audio.playHighStakes === 'function') {
+        window.audio.playHighStakes();
+      }
+      a11y.speak("Are you sure you want to reset the game? This will clear all progress.");
+    };
+
+    window.closeResetModal = function() {
+      document.getElementById("reset-modal").classList.remove("active");
     };
 
     window.closeGameComplete = function () {

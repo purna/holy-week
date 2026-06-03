@@ -225,13 +225,13 @@ export const act2CaseA = {
 
   deductions: {
     "lazarus_status+secret_decree": {
-    link: {
-      text: "The targeted hit list highlights their panic; they aren't looking for justice, but political damage control.",
-      insight: "Lazarus didn't do anything political; his mere existence as a living miracle is the threat. The Sanhedrin must destroy the evidence of the miracle to neutralize the prophet.",
-      isKey: true,
-      bibleRef: "John 12:11",
-     },
-   },
+      link: {
+        text: "The targeted hit list highlights their panic; they aren't looking for justice, but political damage control.",
+        insight: "Lazarus didn't do anything political; his mere existence as a living miracle is the threat. The Sanhedrin must destroy the evidence of the miracle to neutralize the prophet.",
+        isKey: true,
+        bibleRef: "John 12:11",
+      },
+    },
     "question_scroll+witness_scroll": {
       compare: {
         text: "The formal authority challenge and the eyewitness account together confirm the scope of what happened: three separate factions (priests, Pharisees-Herodians, Sadducees) attempted coordinated challenges across one morning — and all were silenced.",
@@ -351,6 +351,7 @@ export const act2CaseB = {
       id: "nicodemus_secret",
       name: "Nicodemus",
       role: "Conflicted Sanhedrin Member",
+      dialogueId: "secret_visit",
       avatar: "👴",
       color: 0x88cc88,
       pos: [15, 0, 5],
@@ -367,6 +368,7 @@ export const act2CaseB = {
       },
     },
     { id: "caiaphas", name: "Caiaphas", role: "High Priest, Sadducee", avatar: "👨‍⚖️", color: 0xcc8888, pos: [-15, 0, 5], bibleRef: "John 11:49–52; Matthew 26:57–68" },
+    { id: "none", name: "No One", role: "Divine Miracle", avatar: "❓", bibleRef: null }
   ],
 
   npcs: [
@@ -374,6 +376,7 @@ export const act2CaseB = {
       id: "temple_spy",
       name: "Maluch",
       role: "Temple Informant / Spy",
+      dialogueId: "informant_bribe",
       avatar: "👤",
       truthfulness: 0.60,
       bibleRef: "John 18:10; Luke 22:52",
@@ -396,6 +399,7 @@ export const act2CaseB = {
       id: "annas_patriarch",
       name: "Annas",
       role: "High Priest Emeritus",
+      dialogueId: "priest_objection",
       avatar: "🦅",
       truthfulness: 0.35,
       bibleRef: "John 18:13; Luke 3:2; Acts 4:6",
@@ -420,6 +424,7 @@ export const act2CaseB = {
       id: "martha_bethany",
       name: "Martha",
       role: "Sister of Lazarus",
+      dialogueId: "witness_healed",
       avatar: "🧺",
       truthfulness: 0.95,
       bibleRef: "John 11:1–44; John 12:1–2",

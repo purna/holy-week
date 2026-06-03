@@ -1,19 +1,32 @@
 {
   "start": {
-    "content": "The candles are burning down, and He keeps speaking about washing feet and breaking bread like it is a farewell. I looked across the table at Judas \u2014 his eyes were tracking the doorway the entire evening. Something is fracturing inside our circle tonight, and I do not think words can mend it.",
+    "content": "The candles are burning down, and He keeps speaking about washing feet and breaking bread like it is a farewell. I've been sitting on the stairs, trying to keep a written record of His words. Something is fracturing inside our circle tonight; I saw Judas spill the wine at the third cup.",
     "choices": [
       {
-        "text": "You saw Judas watching the door?",
-        "destination": "judas"
+        "text": "What are you writing there?",
+        "destination": "declaration"
       },
       {
-        "text": "What happened at the table?",
+        "text": "Did you see the bread on the table?",
+        "destination": "table"
+      },
+      {
+        "text": "Tell me about Judas.",
+        "destination": "judas"
+      }
+    ]
+  },
+  "declaration": {
+    "content": "I am writing down His summary. He said this cup is the New Covenant in His blood. I want to make sure the declaration is perfect before the night is over.",
+    "choices": [
+      {
+        "text": "Continue.",
         "destination": "table"
       }
     ]
   },
   "judas": {
-    "content": "His eyes kept moving. Not like he was worried about being caught \u2014 like he had somewhere else to be. Something urgent. Then Jesus gave him a piece of bread, dipped in the bitter herbs. \"Do quickly,\" He said. Judas left immediately. It was night.",
+    "content": "His eyes kept moving. Then Jesus gave him a piece of bread, dipped in the bitter herbs \u2014 I think I saw a fragment of it fall near the door. He said, \"What you do, do quickly.\" Judas left immediately.",
     "choices": [
       {
         "text": "You knew what was happening.",
@@ -22,7 +35,7 @@
     ]
   },
   "table": {
-    "content": "Jesus took the bread and broke it. \"This is my body.\" Then the cup: \"This cup is the new covenant in my blood.\" We didn't understand. We were still thinking in terms of kingdoms and swords. He was speaking of something far greater \u2014 and far more terrible.",
+    "content": "Jesus took the bread and broke it. I saw the crumbs scatter as He blessed it. Then the cup... we didn't understand. We were still thinking in terms of kingdoms and swords. He was speaking of something far greater \u2014 and far more terrible.",
     "choices": [
       {
         "text": "You wrote it down.",

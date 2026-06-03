@@ -1,30 +1,30 @@
-import { levels } from '../levels.js'; // Import levels definition instead
-
 /**
  * Maps dialogueId (from levels.js NPCs) to their Ink JSON story file paths.
  * NPCs in levels.js use dialogueId instead of storyFile / hasDialogue.
  * This map bridges that gap so loadStoryForNPC can normalise the path.
  */
 const DIALOGUE_ID_MAP = {
-    scribe_intro:       './assets/dialogue/story/scribe_intro.json',
-    market_rumors:      './assets/dialogue/story/market_rumors.json',
-    rumor_whisper:      './assets/dialogue/story/rumor_whisper.json',
-    witness_healed:     './assets/dialogue/story/witness_healed.json',
-    priest_objection:   './assets/dialogue/story/priest_objection.json',
-    guard_report:       './assets/dialogue/story/guard_report.json',
-    peter_defense:      './assets/dialogue/story/peter_defense.json',
-    roman_assessment:   './assets/dialogue/story/roman_assessment.json',
-    secret_visit:       './assets/dialogue/story/secret_visit.json',
-    upper_room_prep:    './assets/dialogue/story/upper_room_prep.json',
-    informant_bribe:    './assets/dialogue/story/informant_bribe.json',
-    teaching_mount:     './assets/dialogue/story/teaching_mount.json',
-    pharisee_critique:  './assets/dialogue/story/pharisee_critique.json',
-    parable_vineyard:   './assets/dialogue/story/parable_vineyard.json',
-    parable_meaning:    './assets/dialogue/story/parable_meaning.json',
-    board_review:       './assets/dialogue/story/board_review.json',
-    board_debate:       './assets/dialogue/story/board_debate.json',
-    trial_rumors:       './assets/dialogue/story/trial_rumors.json',
-    peter_denial:       './assets/dialogue/story/peter_denial.json',
+    scribe_intro: './story/scribe_intro.json',
+    market_rumors: './story/market_rumors.json',
+    rumor_whisper: './story/rumor_whisper.json',
+    witness_healed: './story/witness_healed.json',
+    priest_objection: './story/priest_objection.json',
+    guard_report: './story/guard_report.json',
+    peter_defense: './story/peter_defense.json',
+    roman_assessment: './story/roman_assessment.json',
+    secret_visit: './story/secret_visit.json',
+    upper_room_prep: './story/upper_room_prep.json',
+    informant_bribe: './story/informant_bribe.json',
+    teaching_mount: './story/teaching_mount.json',
+    pharisee_critique: './story/pharisee_critique.json',
+    parable_vineyard: './story/parable_vineyard.json',
+    parable_meaning: './story/parable_meaning.json',
+    board_review: './story/board_review.json',
+    board_debate: './story/board_debate.json',
+    trial_rumors: './story/trial_rumors.json',
+    judas_betrayal: './story/judas_betrayal.json',
+    mary_resurrection: './story/mary_resurrection.json',
+    peter_denial: './story/peter_denial.json',
 };
 /**
  * DialogueManager
@@ -54,21 +54,6 @@ export class DialogueManager {
         this._barChoices = null;
     }
 
-    loadAllStories() {
-        // Collect every single unique NPC profile configured across all 10 stages
-        const allDynamicNpcs = [];
-        levels.forEach(lvl => {
-            lvl.npcs.forEach(npc => {
-                if (!allDynamicNpcs.some(existing => existing.id === npc.id)) {
-                    allDynamicNpcs.push(npc);
-                }
-            });
-        });
-
-        // Pre-load ink assets uniformly
-        return Promise.all(allDynamicNpcs.map(npc => this.loadStoryForNPC(npc)));
-    }
-
     // ── Public init helpers ──────────────────────────────────────────────────
 
     setInkLib(lib) { this.inkLib = lib; }
@@ -83,7 +68,7 @@ export class DialogueManager {
         const storyFile = npc.storyFile
             || (npc.dialogueId != null ? DIALOGUE_ID_MAP[npc.dialogueId] : null);
 
-        if (!npc.hasDialogue || !storyFile) {
+        if (!storyFile) {
             console.log('[DialogueManager] NPC has no dialogue or storyFile:', npc.id, npc.name,
                 '| hasDialogue:', npc.hasDialogue, '| storyFile:', npc.storyFile,
                 '| dialogueId:', npc.dialogueId);
@@ -194,8 +179,9 @@ export class DialogueManager {
      * @param {object}   npc       — NPC config object with .name and .id
      * @param {object}   inkStory  — Active inkjs Story instance
      * @param {Function} onClose   — Called when the player ends the conversation
+     * @param {Function} onTag     — Called when a tag (e.g., reveal:id) is encountered
      */
-    openDialogue(npc, inkStory, onClose) {
+    openDialogue(npc, inkStory, onClose, onTag) {
         // Close sidebar panels
         ['panel-quest', 'panel-inv', 'panel-actions'].forEach(id => {
             document.getElementById(id)?.classList.remove('open');
@@ -208,7 +194,7 @@ export class DialogueManager {
         this.setDialogueOpen(true);
 
         // Populate header
-        const nameEl = document.getElementById('npc-name-display');
+        const nameEl = document.getElementById('vn-speaker-name');
         if (nameEl) nameEl.innerText = npc.name ?? npc.id;
 
         // Clear previous messages
@@ -217,15 +203,15 @@ export class DialogueManager {
         this.showChoices(null, () => { });
 
         // Show the box
-        document.getElementById('local-dialogue-box').style.display = 'flex';
+        document.getElementById('vn-overlay').classList.add('active');
 
         // System handshake message, then start story
         this.addMsg('SECURE CONNECTION ESTABLISHED.', 'system');
-        this._stepStory(inkStory, onClose);
+        this._stepStory(inkStory, onClose, onTag);
     }
 
     closeDialogue(onClose) {
-        document.getElementById('local-dialogue-box').style.display = 'none';
+        document.getElementById('vn-overlay').classList.remove('active');
         const { bubScroll } = this._getEls();
         bubScroll.innerHTML = '';
         this.showChoices(null, () => { });
@@ -244,8 +230,9 @@ export class DialogueManager {
      *
      * @param {object}   inkStory
      * @param {Function} onClose
+     * @param {Function} onTag
      */
-    _stepStory(inkStory, onClose) {
+    _stepStory(inkStory, onClose, onTag) {
         const { barChoices } = this._getEls();
 
         // Hide choices while processing
@@ -256,7 +243,12 @@ export class DialogueManager {
         // it ever touches the Typewriter or WhatsApp bubble DOM elements.
         // This prevents raw syntax flashing on screen.
         let raw = '';
-        while (inkStory.canContinue) raw += inkStory.Continue();
+        while (inkStory.canContinue) {
+            raw += inkStory.Continue();
+            if (inkStory.currentTags && typeof onTag === 'function') {
+                inkStory.currentTags.forEach(tag => onTag(tag));
+            }
+        }
         const sanitizedLine = this.stripInkMarkers(raw).trim();
 
         // Show typing, then NPC bubble + filler + choices
@@ -288,7 +280,7 @@ export class DialogueManager {
                     this.showChoices(choices, (c) => {
                         this.addMsg(c.text, 'player');
                         inkStory.ChooseChoiceIndex(c.index);
-                        setTimeout(() => this._stepStory(inkStory, onClose), 400);
+                        setTimeout(() => this._stepStory(inkStory, onClose, onTag), 400);
                     });
                 } else {
                     // End of story — offer close button

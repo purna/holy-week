@@ -1,3 +1,13 @@
+// ============================================================
+// CHARACTER: Rumor Whisperer
+// ACT: Act II
+// CASE: The Price of Life
+// CASE ID: lazarus_plot
+// SOURCE: ORPHAN FILE (not referenced in any case file)
+// ------------------------------------------------------------
+// ============================================================
+//
+
 -> start
 === start ===
 (A nervous citizen glances sideways before leaning close.) Last Sabbath a man blind from birth walked out of the Pool of Bethesda and now says he sees. The Pharisees asked for details. He said, "I was blind. Now I can see." I will not say my name, but you should find him and ask.

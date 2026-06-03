@@ -1,3 +1,13 @@
+// ============================================================
+// CHARACTER: Senior Scribe - Review
+// ACT: Global / Board
+// CASE: Investigation Board
+// CASE ID: investigation_board
+// SOURCE: ORPHAN FILE (not referenced in any case file)
+// ------------------------------------------------------------
+// ============================================================
+//
+
 -> start
 === start ===
 I have watched your investigation board grow. You have evidence that changes conclusions and evidence you are keeping out of affection. Can you tell the difference yet?

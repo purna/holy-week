@@ -11,18 +11,22 @@ export class ControlsManager {
         window.addEventListener('keydown', (e) => {
             this.keys[e.code] = true;
 
-            if (e.code === 'Space' && this.engine.isGrounded && !this.engine.inDialogue) {
+            // Prevent jumping if in dialogue OR if any modal is active
+            const modalActive = document.querySelector('.overlay-mask.active, .modal-overlay.active');
+            if (e.code === 'Space' && this.engine.isGrounded && !this.engine.inDialogue && !modalActive) {
                 this.engine.pVelocity.y = 16.5;
                 this.engine.isGrounded = false;
             }
             if (e.code === 'KeyE' && this.engine.nearestNPC && !this.engine.inDialogue) {
                 this.engine.startDialogue(this.engine.nearestNPC.userData.config);
             }
-            if (e.code === 'KeyM') {
+            // Prevent opening the map if already in a menu or dialogue
+            if (e.code === 'KeyM' && !this.engine.inDialogue && !modalActive) {
                 if (this.engine.mapModal) this.engine.mapModal.open();
             }
-            if (e.code === 'KeyR') {
-                if (document.getElementById('modal-overlay').classList.contains('active')) return;
+            // Prevent toggling time-cycle while menus are open
+            if (e.code === 'KeyR' && !this.engine.inDialogue) {
+                if (modalActive) return;
                 this.autoCycle = !this.autoCycle;
                 this.displayAlert(this.autoCycle ? "Auto day/night enabled" : "Celestial timeline frozen");
             }

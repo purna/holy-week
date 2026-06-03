@@ -178,8 +178,9 @@ export const act4CaseA = {
       },
       reactions: {
         burial_linen: { text: "The grave cloths were lying there, shaped like a body but empty. Peter went straight in and stood there, confused. But John went in after him and he saw and believed. I think the cloths told him something the rest of us weren't ready to understand yet.", isLie: false },
-        angelic_witness: { text: "Two figures — like bright light. They asked me, 'Woman, why are you weeping?' I said, 'They have taken my Lord, and I don't know where they have laid him.' And then I turned around.", isLie: false },
-        spice_jars: { text: "I set them down when I saw the stone was moved. I didn't need them anymore — but I didn't know that yet. I just stood there staring.", isLie: false },
+        angelic_witness: { text: "Two figures — like bright light. They asked me, 'Woman, why are you weeping?' I said, 'They have taken my Lord, and I don't know where they have laid him.' And then I turned around.", isLie: false, revealedClue: "burial_linen" },
+        spice_jars: { text: "I set them down when I saw the stone was moved. I didn't need them anymore — but I didn't know that yet. I just stood there staring.", isLie: false, revealedClue: "empty_tomb" },
+        rolled_stone: { text: "I was so worried about the stone. It's so heavy! But it was already pushed aside. That's when I saw the tomb was open and empty.", isLie: false, revealedClue: "empty_tomb" },
         mary_encounter: { text: "He called my name. That's all it took. 'Mary.' I knew His voice. I knew it the way I knew my own name. Three years I'd been with this man. He was dead — I watched Him die — and there He stood. What would you have done?", isLie: false },
       },
 contradictions: {},
@@ -413,8 +414,12 @@ export const act4CaseB = {
       },
       reactions: {
         bribe_shekels: { text: "That pouch belongs to the Temple inner treasury, not Rome. The priests weighed it out to us directly in the Sanhedrin chamber. It’s... a security stipend. For our silence.", isLie: true },
-        broken_imperial_seal: { text: "The Governor’s seal was snapped clear through. It wasn't chipped or pried off with tools; it exploded off the limestone face during the tremors.", isLie: false },
-        shattered_spear: { text: "That is my primary pilum. The ash shaft split from extreme structural compression when the concussive shock knocked us down. No rebel sword made that fracture.", isLie: false },
+        broken_imperial_seal: { 
+          text: "The Governor’s seal was snapped clear through. It wasn't chipped or pried off with tools; it exploded off the limestone face during the tremors.", 
+          isLie: false, 
+          revealedClue: { requiredDeduction: "Payoff", clueId: "bribe_shekels" } 
+        },
+        shattered_spear: { text: "That is my primary pilum. The ash shaft split from extreme structural compression when the concussive shock knocked us down. No rebel sword made that fracture.", isLie: false, revealedClue: "broken_imperial_seal" },
       },
       contradictions: {},
     },
@@ -460,7 +465,11 @@ export const act4CaseB = {
       reactions: {
         bribe_shekels: { text: "This silver did not originate from our imperial mints. This is pure Temple coinage. It proves a financial transaction occurred between the Sanhedrin and our auxiliary line.", isLie: false },
         broken_imperial_seal: { text: "The structural fracture on this clay seal shows zero scrape marks from metal tools. It was sheared off by a singular percussive impact wave.", isLie: false },
-        shattered_spear: { text: "A standard-issue pilum from our armory. The impact split the wood grains from top to bottom, indicating severe kinetic displacement.", isLie: false },
+        shattered_spear: { 
+          text: "A standard-issue pilum from our armory. The impact split the wood grains from top to bottom, indicating severe kinetic displacement.", 
+          isLie: false,
+          revealedClue: { pressured: "bribe_shekels", exposed: "bribe_shekels" }
+        },
       },
       contradictions: {},
     },
@@ -477,6 +486,7 @@ export const act4CaseB = {
     },
     "broken_imperial_seal+shattered_spear": {
       link: {
+        id: "Payoff",
         text: "The physical damage at the scene points to structural and environmental trauma, not a stealthy grave robbery.",
         insight: "Thieves do not fracture weapons and shatter seals with concussive force while leaving the valuable burial linens perfectly intact inside.",
         isKey: false,

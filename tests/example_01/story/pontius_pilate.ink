@@ -1,3 +1,13 @@
+// ============================================================
+// CHARACTER: Pontius Pilate
+// ACT: Act IV
+// CASE: The Guard's Report
+// CASE ID: barabbas_choice
+// SOURCE: ORPHAN FILE (not referenced in any case file)
+// ------------------------------------------------------------
+// ============================================================
+//
+
 -> start
 === start ===
 Am I an expert in your laws, Judean? Your priests drag this man to my praetorium at dawn and expect me to sign a death warrant for words. They say he claims to be a king. If he is a king without an army, he is a fool. If he has an army, let him show his banners.

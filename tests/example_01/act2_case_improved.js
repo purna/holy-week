@@ -224,14 +224,6 @@ export const act2CaseA = {
   ],
 
   deductions: {
-    "lazarus_status+secret_decree": {
-    link: {
-      text: "The targeted hit list highlights their panic; they aren't looking for justice, but political damage control.",
-      insight: "Lazarus didn't do anything political; his mere existence as a living miracle is the threat. The Sanhedrin must destroy the evidence of the miracle to neutralize the prophet.",
-      isKey: true,
-      bibleRef: "John 12:11",
-     },
-   },
     "question_scroll+witness_scroll": {
       compare: {
         text: "The formal authority challenge and the eyewitness account together confirm the scope of what happened: three separate factions (priests, Pharisees-Herodians, Sadducees) attempted coordinated challenges across one morning — and all were silenced.",

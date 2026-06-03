@@ -1,3 +1,13 @@
+// ============================================================
+// CHARACTER: Joseph of Arimathea
+// ACT: Act III/IV
+// CASE: The Curtain and the Cross
+// CASE EXPORT: crucifixion_det
+// SOURCE: act3_case_improved.js → NPC 'joseph_arimathea'
+// ------------------------------------------------------------
+// ============================================================
+//
+
 -> start
 === start ===
 I have the means to secure the remains from the governor's staff, but it requires using up all my political leverage. Conscience is an expensive thing to buy back when you have kept silent for too long.

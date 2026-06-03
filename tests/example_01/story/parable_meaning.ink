@@ -1,3 +1,13 @@
+// ============================================================
+// CHARACTER: Thomas (Parable Meaning)
+// ACT: Act II
+// CASE: The Silenced Teacher
+// CASE ID: authority_challenged
+// SOURCE: ORPHAN FILE (not referenced in any case file)
+// ------------------------------------------------------------
+// ============================================================
+//
+
 -> start
 === start ===
 I am Thomas. Ask more questions than I answer. The honest ones. Jesus told a story about tenants who kept killing the servants the owner sent. Eventually they killed the owner's son. I heard it in the Temple courtyard.

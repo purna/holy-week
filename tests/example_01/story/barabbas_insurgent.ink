@@ -1,3 +1,13 @@
+// ============================================================
+// CHARACTER: Barabbas the Insurgent
+// ACT: Act IV
+// CASE: The Guard's Report
+// CASE ID: barabbas_choice
+// SOURCE: ORPHAN FILE (not referenced in any case file)
+// ------------------------------------------------------------
+// ============================================================
+//
+
 -> start
 === start ===
 (A heavy chain rattles against the stone floor of the lower cell as he laughs roughly.) The crowd wants an assassin, scribe! They do not want a teacher who tells them to love the legions. Rome only understands the edge of a curved blade, and the people out there know it. My hands are stained with Roman blood, and today, that makes me a hero.

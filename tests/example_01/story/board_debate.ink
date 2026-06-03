@@ -1,3 +1,13 @@
+// ============================================================
+// CHARACTER: Senior Scribe - Debate
+// ACT: Global / Board
+// CASE: Investigation Board
+// CASE ID: investigation_board
+// SOURCE: ORPHAN FILE (not referenced in any case file)
+// ------------------------------------------------------------
+// ============================================================
+//
+
 -> start
 === start ===
 Apprentice Scribe Maluch — you add something to the piece that was missing when I first read your draft. You have the witness from the pool, the Roman record from Rome, the accounts from Mark's house, the Galilean who frightened the chief priests. But the real question is not about the man. It is about what scares people most about Him.

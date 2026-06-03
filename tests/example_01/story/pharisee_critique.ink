@@ -1,3 +1,13 @@
+// ============================================================
+// CHARACTER: Nathanael (Pharisee)
+// ACT: Act II
+// CASE: The Silenced Teacher
+// CASE ID: authority_challenged
+// SOURCE: ORPHAN FILE (not referenced in any case file)
+// ------------------------------------------------------------
+// ============================================================
+//
+
 -> start
 === start ===
 I am Simon the Pharisee. I return from the synagogue and for some this town calls it conversation. For those who respect the Law, this matter is not as straightforward as the crowds claim. A man heals on the Sabbath and claims authority over the Law. Torah asks the question. The crowd needs an answer.

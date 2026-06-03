@@ -22,7 +22,7 @@
     ]
   },
   "popularity": {
-    "content": "A crowd that shouts \"Hosanna\" on Sunday will shout something entirely different by Friday if the narrative shifts. Popularity is water \u2014 it finds the lowest level and erodes everything it touches. The Galilean must be stopped before Passover ends.",
+    "content": "A crowd that shouts \"Hosanna\" on Sunday will shout something entirely different by Friday if the narrative shifts. Popularity is water \u2014 it finds the lowest level and erodes everything it touches. We saw the palm branches and the disciples' cloaks on the road. The Galilean must be stopped before Passover ends.",
     "choices": [
       {
         "text": "So there is a plan against Him.",
@@ -31,7 +31,7 @@
     ]
   },
   "decree_reveal": {
-    "content": "The council is reviewing its options. When a man can raise the dead and the people respond by abandoning the Temple, we have a structural problem that requires structural solutions. The Sanhedrin does not act hastily.",
+    "content": "The council is reviewing its options. I have drafted a memorandum \u2014 a secret decree to handle this structural problem. When a man can raise the dead, the Sanhedrin does not act hastily, but it does act decisively.",
     "choices": [
       {
         "text": "But Lazarus is alive \u2014 you can't undo that.",
@@ -40,7 +40,8 @@
     ]
   },
   "exposed": {
-    "content": "You think a dynamic miracle justifies civic chaos? If a man is raised from the dead but his existence sparks a war that levels Jerusalem, his life is an unacceptable expense. The security of the temple requires the eradication of the asset.",
+    "content": "You think a dynamic miracle justifies civic chaos? If a man is raised from the dead after four days, and you find his empty shroud strips in a tomb in Bethany, his existence sparks a war that levels Jerusalem. His life is an unacceptable expense. The security of the temple requires the eradication of the asset.",
+    "content": "You think a dynamic miracle justifies civic chaos? If a man is raised from the dead after four days, and you find trace limestone dust from a Bethany tomb on our own courthouse floor, his existence sparks a war that levels Jerusalem. His life is an unacceptable expense. The security of the temple requires the eradication of the asset.",
     "choices": [
       {
         "text": "You're planning to kill Lazarus.",

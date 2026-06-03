@@ -15,6 +15,9 @@ export class AudioManager {
     this.playComplete = this.playComplete.bind(this);
     this.playTalk = this.playTalk.bind(this);
     this.playError = this.playError.bind(this);
+    this.playRumble = this.playRumble.bind(this);
+    this.playBonus = this.playBonus.bind(this);
+    this.playHighStakes = this.playHighStakes.bind(this);
   }
 
   _initAudioContext() {
@@ -183,6 +186,26 @@ export class AudioManager {
         gain.gain.exponentialRampToValueAtTime(0.001, now + 0.2);
         break;
         
+      case 'rumble':
+        // Low-frequency rumble
+        oscillator.type = 'sine';
+        oscillator.frequency.setValueAtTime(50, now);
+        oscillator.frequency.exponentialRampToValueAtTime(30, now + 0.4);
+        gain.gain.setValueAtTime(0, now);
+        gain.gain.linearRampToValueAtTime(this.volume * 0.7, now + 0.1);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.5);
+        break;
+        
+      case 'highStakes':
+        // Dramatic low descending sweep for critical moments
+        oscillator.type = 'sawtooth';
+        oscillator.frequency.setValueAtTime(150, now);
+        oscillator.frequency.exponentialRampToValueAtTime(40, now + 0.6);
+        gain.gain.setValueAtTime(0, now);
+        gain.gain.linearRampToValueAtTime(this.volume * 0.4, now + 0.05);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.6);
+        break;
+
       default:
         oscillator.disconnect();
         gain.disconnect();
@@ -200,6 +223,9 @@ export class AudioManager {
   playComplete() { this.play('complete'); }
   playTalk() { this.play('talk'); }
   playError() { this.play('error'); }
+  playRumble() { this.play('rumble'); }
+  playBonus() { this.play('bonus'); }
+  playHighStakes() { this.play('highStakes'); }
 
   // Ambience controls
   playMorningAmbience() {
