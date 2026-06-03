@@ -1167,13 +1167,6 @@ button:focus-visible {
     z-index: 1;
 }
 
-.deduction-evidence-tags {
-    display: flex;
-    gap: 4px;
-    margin-top: 4px;
-    flex-wrap: wrap;
-}
-
 .deduction-entry.key {
     border-left: 3px solid var(--gold);
 }
@@ -1599,12 +1592,6 @@ button:focus-visible {
     gap: 4px;
 }
 
-.msg-badges {
-    display: flex;
-    gap: 4px;
-    flex-wrap: wrap;
-}
-
 .msg-speaker {
     font-size: 0.68rem;
     font-weight: 700;
@@ -1657,15 +1644,6 @@ button:focus-visible {
     background: var(--surface3);
     color: var(--text-muted);
     border: 1px solid var(--border);
-    font-size: 0.85rem;
-    padding: 2px 6px;
-    cursor: help;
-}
-
-.evidence-tag-badge.key {
-    border-color: var(--gold);
-    background: rgba(245, 200, 66, 0.15);
-    box-shadow: 0 0 8px rgba(245, 200, 66, 0.3);
 }
 
 .truth-badge {

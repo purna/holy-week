@@ -301,17 +301,54 @@ export class UIManager {
     const e = this.es.getById(evidenceId);
     if (!e) return;
     const typeInfo = this.es.getTypeInfo(e.type);
+
     modal.querySelector(".evidence-detail-icon").textContent = e.icon;
     modal.querySelector(".evidence-detail-name").textContent = e.name;
-    modal.querySelector(".evidence-detail-desc").textContent = e.desc || e.description;
-    
+    modal.querySelector(".evidence-detail-type").textContent = typeInfo.label || e.type;
+
+    const descEl = modal.querySelector(".evidence-detail-desc");
+    descEl.textContent = e.desc || e.description || "";
+
+    const locationEl = modal.querySelector(".evidence-detail-location");
+    if (locationEl) {
+      locationEl.textContent = e.location || "";
+      locationEl.parentElement.hidden = !e.location;
+    }
+
     const bibleRefEl = modal.querySelector(".evidence-detail-bible-ref");
-    const bibleReadMoreBtn = modal.querySelector(".read-more-btn");
-    const bibleVerseContent = modal.querySelector(".verse-content");
+    const bibleReadMoreBtn = modal.querySelector(".read-more-btn[data-target='bible-verse-content']");
+    const bibleVerseContent = modal.querySelector(".verse-content[data-target='bible-verse-content']");
 
     if (e.bibleRef) {
       bibleRefEl.textContent = e.bibleRef;
-      bibleReadMoreBtn.onclick = () => this.fetchVerseInline(e.bibleRef, bibleVerseContent, bibleReadMoreBtn);
+      if (bibleReadMoreBtn) {
+        bibleReadMoreBtn.hidden = false;
+        bibleReadMoreBtn.onclick = () => this.fetchVerseInline(e.bibleRef, bibleVerseContent, bibleReadMoreBtn);
+      }
+      bibleRefEl.closest(".evidence-detail-section").hidden = false;
+    } else {
+      bibleRefEl.closest(".evidence-detail-section").hidden = true;
+    }
+
+    const prophetLinkEl = modal.querySelector(".evidence-detail-prophetic-link");
+    const prophetReadMoreBtn = modal.querySelector(".read-more-btn[data-target='prophecy-verse-content']");
+    const prophetVerseContent = modal.querySelector(".verse-content[data-target='prophecy-verse-content']");
+
+    if (e.prophecy || e.propheticLink) {
+      prophetLinkEl.textContent = e.prophecy || e.propheticLink || "";
+      if (prophetReadMoreBtn && e.bibleRef) {
+        prophetReadMoreBtn.hidden = false;
+        prophetReadMoreBtn.onclick = () => this.fetchVerseInline(e.bibleRef, prophetVerseContent, prophetReadMoreBtn);
+      }
+      prophetLinkEl.closest(".evidence-detail-section").hidden = false;
+    } else {
+      prophetLinkEl.closest(".evidence-detail-section").hidden = true;
+    }
+
+    const investigatorNoteEl = modal.querySelector(".evidence-detail-investigator-note");
+    if (investigatorNoteEl) {
+      investigatorNoteEl.textContent = e.investigatorNote || e.investigator_note || "";
+      investigatorNoteEl.parentElement.hidden = !(e.investigatorNote || e.investigator_note);
     }
 
     modal.hidden = false;

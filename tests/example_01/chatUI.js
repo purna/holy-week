@@ -46,10 +46,15 @@ export class ChatUI {
     const icon = m.type === "player" ? "🕵️" : m.type === "system" ? "📋" : "🗣";
     return `
       <div class="${cls}" role="listitem" aria-label="${m.speaker}: ${m.text}">
-        <span class="msg-speaker" aria-hidden="true">${icon} ${m.speaker}</span>
-        <span class="msg-text">${this.a11y.simplify(m.text)}</span>
-        ${m.extra?.breakthrough ? `<span class="breakthrough-badge" aria-label="Breakthrough!">⚡ Breakthrough</span>` : ""}
-        ${m.extra?.revealedClue ? `<span class="clue-badge" aria-label="New clue found">🔍 New clue found</span>` : ""}
+      <span class="msg-speaker-badge" aria-hidden="true">${icon} ${m.speaker}</span>
+
+      <span class="msg-text">${this.a11y.simplify(m.text)}</span>
+        <div class="msg-badges">
+          ${m.extra?.evidenceTag ? `<span class="evidence-tag-badge ${m.extra.isKey ? 'key' : ''}" title="${m.extra.evidenceNames || m.extra.evidenceName || ''}">${m.extra.evidenceTag} &nbsp;  ${m.extra.evidenceName}</span>` : ""}
+          ${m.extra?.breakthrough ? `<span class="breakthrough-badge" aria-label="Breakthrough!">⚡ Breakthrough</span>` : ""}
+          ${m.extra?.revealedClue ? `<span class="clue-badge" aria-label="New clue found">🔍 New clue found</span>` : ""}
+          ${m.extra?.wasCorrected ? `<span class="truth-badge" aria-label="Corrected truth">✨ Truth</span>` : ""}
+        </div>
       </div>`;
   }
 
@@ -150,7 +155,7 @@ export class ChatUI {
 
         const result = this.npcs.talk(npcId);
         if (result) {
-          this.addMessage(result.speaker, result.text, "npc", {}, npcId);
+          this.addMessage(result.speaker, result.text, "npc", { wasCorrected: result.wasCorrected }, npcId);
           this._refreshNPCFeed(npcId, container);
         }
       });
@@ -220,7 +225,12 @@ export class ChatUI {
         pendingSelection.forEach(evId => {
           const result = this.npcs.showEvidence(npcId, evId);
           if (result) {
-            this.addMessage(result.speaker, result.text, "npc", { revealedClue: result.revealedClue }, npcId);
+            const evidence = this.es.getById(evId);
+            this.addMessage(result.speaker, result.text, "npc", { 
+              revealedClue: result.revealedClue,
+              evidenceTag: evidence ? (evidence.icon || "🔍") : null,
+              evidenceName: evidence ? evidence.name : null
+            }, npcId);
             if (result.revealedClue) {
               this.es.discover(result.revealedClue);
               this.addSystem(`New evidence found: ${this.es.getById(result.revealedClue)?.name}`, npcId);
