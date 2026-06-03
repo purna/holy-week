@@ -1,7 +1,7 @@
 # Character Dialogue Profiles by Investigation Phase
 ## Systemic Script Parameters & Linguistic Casting
 
-This reference manual structures all 25 narrative archetypes into the 12 distinct, linear investigation phases established in the dynamic player interface board.
+This reference manual structures all 36 narrative archetypes into the 12 distinct, linear investigation phases established in the dynamic player interface board.
 
 ---
 
@@ -34,11 +34,10 @@ This reference manual structures all 25 narrative archetypes into the 12 distinc
 * **Identity:** A city dweller resentful of holiday price inflation and suspicious of rural Galilean fanaticism.
 * **Linguistic Style:** Terse, direct, and laden with sharp urban idioms.
 
-#### 5. Eleazar ben Simon (Sadducean Noble)
-* **Dialogue File:** [sadducee_opposition.json](sadducee_opposition.json)
-* **Identity:** A wealthy aristocrat focused on maintaining the status quo and preventing Roman intervention.
-* **Linguistic Style:** Haughty, dismissive of 'peasants', and prone to exaggerating 'threats' to justify police action.
-* **Reliability:** UNRELIABLE. Embellishes events to suit a political narrative.
+#### 5. Eleazar ben Simon (Sadducee Noble)
+* **Dialogue File:** [eleazar_sadducee.ink](eleazar_sadducee.ink)
+* **Identity:** A wealthy Sadducean aristocrat from Bethphage who filed a false deposition claiming the donkey was stolen, creating legal grounds for Roman intervention.
+* **Linguistic Style:** Aristocratic, dismissive, and calculating — uses legal language to justify opposition.
 
 ---
 
@@ -56,15 +55,25 @@ This reference manual structures all 25 narrative archetypes into the 12 distinc
 * **Linguistic Style:** Formal, legalistic, and defensive.
 
 ### Phase 4: The Cleansed Temple
-#### 7. The Roman Garrison Guard
+#### 6b. The Roman Garrison Guard
 * **Source Dialogue:** [guard_report.json](guard_report.json)
 * **Identity:** A working-class auxiliary soldier policing the high Temple outer courts.
 * **Linguistic Style:** Vulgar, highly sensory, and dismissive.
 
-#### 8. The Temple Money Changer
+#### 7b. The Temple Money Changer
 * **Dialogue File:** [money_changer.ink](money_changer.ink)
 * **Identity:** A licensed commercial merchant whose business relies on authorized sacrificial currency exchange setups.
 * **Linguistic Style:** Strictly metric, fiscal, and contractual.
+
+#### 8b. The Corrupt Animal Seller
+* **Dialogue File:** [corrupt_seller.ink](corrupt_seller.ink)
+* **Identity:** A temple merchant selling sacrificial animals with dishonest weights and blemished offerings.
+* **Linguistic Style:** Defensive, profit-focused, and quick to claim priestly authority as cover.
+
+#### 9b. The Upset Pilgrim Buyer
+* **Dialogue File:** [upset_buyer.ink](upset_buyer.ink)
+* **Identity:** A devout pilgrim from distant lands who discovered the sellers' dishonesty firsthand.
+* **Linguistic Style:** Righteous indignation mixed with sorrow for the defilement of God's house.
 
 ### Phase 5: Whispers About Lazarus
 #### 9. The Temple Spy
@@ -98,6 +107,21 @@ This reference manual structures all 25 narrative archetypes into the 12 distinc
 * **Identity:** The elder statesman and former High Priest; the hidden kingmaker.
 * **Linguistic Style:** Quiet, indirect, and highly diplomatic.
 
+#### 13b. Herod’s Servant (Chuza)
+* **Dialogue File:** [herods_servant.ink](herods_servant.ink)
+* **Identity:** A household official who witnessed the Baptist's end and Jesus's silence.
+* **Linguistic Style:** Nervous, superstitious, and secretive.
+
+#### 13c. Pashhur the Priest
+* **Dialogue File:** [temple_curtain.ink](temple_curtain.ink)
+* **Identity:** A Temple priest on duty when the veil tore and the earthquake struck.
+* **Linguistic Style:** Ritualistic, panicked, and defensive of the Temple's honor.
+
+#### 13d. Centurion Longinus
+* **Dialogue File:** [centurion_witness.ink](centurion_witness.ink)
+* **Identity:** The Roman officer who oversaw the execution and delivered the spear thrust.
+* **Linguistic Style:** Military, medical, and clinical, shifting into profound awe.
+
 ### Phase 8: Stories With Hidden Meanings
 #### 14. Thomas the Twin
 * **Source Dialogue:** [parable_vineyard.json](parable_vineyard.json)
@@ -130,6 +154,11 @@ This reference manual structures all 25 narrative archetypes into the 12 distinc
 * **Identity:** The active High Priest running native civil governance and managing the fragile treaty with Rome.
 * **Linguistic Style:** Coldly rational and utilitarian.
 
+#### 18b. Malchus the Servant (Severed Ear)
+* **Dialogue File:** [secret_visit.ink](secret_visit.ink)
+* **Identity:** The high priest's servant whose ear was miraculously healed when Peter cut it off in the Garden of Gethsemane.
+* **Linguistic Style:** Reverent, testimonial, and matter-of-fact about witnessing divine healing firsthand.
+
 ### Phase 11: The Imperial Legality
 #### 19. Pontius Pilate
 * **Dialogue File:** [pontius_pilate.ink](pontius_pilate.ink)
@@ -140,6 +169,11 @@ This reference manual structures all 25 narrative archetypes into the 12 distinc
 * **Dialogue File:** [pilates_secretary.ink](pilates_secretary.ink)
 * **Identity:** An educated Roman administrative recorder responsible for tracking judicial files.
 * **Linguistic Style:** Rigidly formulaic, procedural, and archival.
+
+#### 20b. Claudia Procula (Pilate’s Wife)
+* **Dialogue File:** [pontius_pilate.ink](pontius_pilate.ink) (Integrated)
+* **Identity:** A Roman noblewoman haunted by a prophetic dream regarding the innocence of the prisoner.
+* **Linguistic Style:** Atmospheric, heavy with dread, and morally urgent.
 
 #### 21. Barabbas the Insurgent
 * **Dialogue File:** [barabbas_insurgent.ink](barabbas_insurgent.ink)
@@ -175,3 +209,43 @@ This reference manual structures all 25 narrative archetypes into the 12 distinc
 * **Dialogue File:** [joseph_arimathea.ink](joseph_arimathea.ink)
 * **Identity:** A wealthy, aristocratic council member who breaks his long-term silent complicity to secure legal custody of the target's remains.
 * **Linguistic Style:** Formal, restrained, yet resolute.
+
+#### 27. Judas Iscariot (Betrayal Echo)
+* **Dialogue File:** [judas_betrayal.ink](judas_betrayal.ink)
+* **Identity:** The fallen disciple whose silver payment still weighs heavy in the aftermath of the crucifixion.
+* **Linguistic Style:** Guilt-ridden, defensive, and filled with rationalizations for his actions.
+
+#### 28. Mary of Magdala (Garden Witness)
+* **Dialogue File:** [mary_resurrection.ink](mary_resurrection.ink)
+* **Identity:** First witness at the empty tomb, a former demoniac who saw the risen Christ in the garden.
+* **Linguistic Style:** Intimate, reverent, and matter-of-fact about the impossible thing she saw.
+
+#### 29. Peter (Donkey Retrieval)
+* **Dialogue File:** [peter_donkey.ink](peter_donkey.ink)
+* **Identity:** One of the two disciples sent to retrieve the colt, defending his actions against accusations of theft.
+* **Linguistic Style:** Defensive, impulsive, yet faithful to the mission given by Jesus.
+
+#### 30. John (Donkey Witness)
+* **Dialogue File:** [john_donkey.ink](john_donkey.ink)
+* **Identity:** The Gospel author who witnessed the triumphal entry and recorded the crowd's response.
+* **Linguistic Style:** Observational, careful, and already thinking in historical terms.
+
+---
+
+## 🕊️ ACT 6: REVELATION DIALOGUE FILES (ORPHAN/NON-REFERENCED)
+
+### Standalone Character Echoes
+#### Rhoda the Servant
+* **Dialogue File:** [rhoda_servant.ink](rhoda_servant.ink)
+* **Identity:** A household servant who witnessed the silver transaction before the Last Supper.
+* **Linguistic Style:** Observant, domestic, and childlike in wonder.
+
+#### Thomas (Parable Seeker)
+* **Dialogue File:** [parable_meaning.ink](parable_meaning.ink)
+* **Identity:** The skeptical disciple who seeks direct answers about Jesus's vineyard parable.
+* **Linguistic Style:** Questioning, analytical, yet ready to believe.
+
+#### Teaching on the Mount
+* **Dialogue File:** [teaching_mount.ink](teaching_mount.ink)
+* **Identity:** A collective voice representing the crowd's perspective on Jesus's Olivet discourse.
+* **Linguistic Style:** Observational, somewhat confused, yet attentive to prophetic implications.

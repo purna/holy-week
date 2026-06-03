@@ -1,1 +1,44 @@
-{"inkVersion":21,"root":[[{"->":"start"},["done",{"#n":"g-0"}],null],"done",{"start":[["^You trace my steps with your ink and your parchment, little scribe. You think you are tracking a simple exchange of silver.","^You have no understanding of what it means to watch three years of momentum evaporate into poetry and feet-washing.","^We were supposed to hold the gates of the city! Now he speaks of tombs and broken bread. Someone must force his hand to action.",{"*":"motives","flg":2,"s":["^Is it silver or disappointment that drives you to the temple gates?",null]},{"*":"suspicion","flg":2,"s":["^The others cross the table are watching you, Judas.",null]},null],null],"motives":[["^Silver is a ledger entry. Disappointment is a fire. If he is the King, the soldiers will not be able to bind him in the garden. Let the system test him.","^-> closing",null],null],"suspicion":[["^Let them look. John dreams of symbols, and Peter dreams of swords. Neither of them sees the net closing over this upper room before the sun rises.","^-> closing",null],null],"closing":[["^-> DONE",null],null]}],"globals":{},"listDefs":{}}
+{
+  "start": {
+    "content": "You look at me and you see the treasurer. I've carried the group's bag for three years, accounting for every mite and denarius while the others dreamed of thrones. But tonight, the weight of the silver is different.",
+    "choices": [
+      {
+        "text": "What were you counting at the preparation table?",
+        "destination": "money_bag"
+      },
+      {
+        "text": "Tell me about the bread Jesus gave you.",
+        "destination": "sop_bread"
+      }
+    ]
+  },
+  "money_bag": {
+    "content": "I set the bag down on the preparation table for only a moment to confirm the weight. If it left an impression in the dust, it is because thirty pieces of Temple silver weigh more than a man's conscience. It was the price they offered — the price of a slave.",
+    "choices": [
+      {
+        "text": "Why thirty pieces?",
+        "destination": "prophecy_link"
+      },
+      {
+        "text": "And the bread?",
+        "destination": "sop_bread"
+      }
+    ]
+  },
+  "sop_bread": {
+    "content": "He dipped the bread in the bitter herbs and handed it to me. The seat of honor. He knew what was in my heart, yet He gave me the guest's portion anyway. 'Do quickly,' He said. I dropped a fragment of it by the door as I fled. I couldn't stay in that light any longer.",
+    "choices": [
+      { "text": "Continue.", "destination": "closing" }
+    ]
+  },
+  "prophecy_link": {
+    "content": "Zechariah spoke of it centuries ago. They weighed out my wages — thirty pieces of silver. I am just a gear in a machine that was built before I was born. Let the priests have their man.",
+    "choices": [
+      { "text": "Continue.", "destination": "closing" }
+    ]
+  },
+  "closing": {
+    "content": "The transaction is nearly complete. The Chief Priests are waiting for the signal. It is night, and there is no turning back now.",
+    "choices": []
+  }
+}

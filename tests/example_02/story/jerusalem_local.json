@@ -1,1 +1,54 @@
-{"inkVersion":21,"root":[[{"->":"start"},["done",{"#n":"g-0"}],null],"done",{"start":[["^Every year it is the same. Passover comes, the prices double, and the streets fill up with shouting provincials.","^This Galilean rabble is going to get the entire eastern market burnt to the ground if they keep calling him a king.","^Rome does not take jokes well, especially not during feast week.",{"*":"critique","flg":2,"s":["^Is there no hope in what he claims?",null]},{"*":"trade","flg":2,"s":["^How are the merchants reacting?",null]},null],null],"critique":[["^Hope does not pay the temple tax or stop a legionary shield wall. We need peace, not another failed uprising.","^-> closing",null],null],"trade":[["^They are nervous. When tables flip, coins roll into the drainage cracks. No one wins when the peace breaks.","^-> closing",null],null],"closing":[["^-> DONE",null],null]}],"globals":{},"listDefs":{}}
+{
+  "start": {
+    "content": "The whole city is in an uproar because of these country pilgrims. They're tracking mud everywhere and throwing their clothes in the middle of the road!",
+    "choices": [
+      {
+        "text": "Who do you think this Galilean is?",
+        "destination": "who_is_he"
+      },
+      {
+        "text": "The crowds are very devoted.",
+        "destination": "crowd_reaction"
+      }
+    ]
+  },
+  "who_is_he": {
+    "content": "Everyone is yelling \"Hosanna\" like the Romans aren't watching from the Antonia tower. This Galilean teacher \u2014 who does He think He is? David? Nothing good comes from Nazareth, I'll tell you that much.",
+    "choices": [
+      {
+        "text": "You think this is dangerous?",
+        "destination": "danger_path"
+      },
+      {
+        "text": "At least people have hope.",
+        "destination": "closing"
+      }
+    ]
+  },
+  "crowd_reaction": {
+    "content": "People were hacking palm branches off the trees out toward Jericho and dragging them all the way up the path. It's a miracle someone wasn't blinded by them. And the cloaks \u2014 whose garments are those? Left right in the dirt!",
+    "choices": [
+      {
+        "text": "That seems disrespectful.",
+        "destination": "closing"
+      },
+      {
+        "text": "Maybe it's intentional.",
+        "destination": "who_is_he"
+      }
+    ]
+  },
+  "danger_path": {
+    "content": "Look, I just want to buy my grain without a mob blocking the eastern valley gate. They're calling Him a prophet, but prophets don't usually ride into town with an unauthorised parade. The noise was deafening. If the crowd doesn't calm down, the Roman garrison will come down from the walls to quiet us themselves.",
+    "choices": [
+      {
+        "text": "So the Pharisees do have reason to worry.",
+        "destination": "closing"
+      }
+    ]
+  },
+  "closing": {
+    "content": "Go ask the pilgrims with the green hands. I have work to do. The Passover crowds always bring trouble \u2014 this year just seems worse than usual.",
+    "choices": []
+  }
+}

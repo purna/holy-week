@@ -439,6 +439,92 @@ export const act2CaseB = {
       },
       contradictions: {},
     },
+,
+    {
+      id: "parable_meaning",
+      name: "Thomas (Parable)",
+      role: "Analytical Disciple",
+      avatar: "🤔",
+      truthfulness: 0.9,
+      bibleRef: "Matthew 13:10-17",
+      hasDialogue: true,
+      storyFile: "./story/parable_meaning.json",
+      background: "An inner-circle follower distinguished by analytical, skeptical mindset. Asks hard questions about parables.",
+      dialogue: {
+        neutral: "Tell me what you know.",
+      },
+      reactions: {
+        default: { text: "I have nothing more to add.", isLie: false },
+      },
+    },
+    {
+      id: "parable_vineyard",
+      name: "Thomas (Vineyard)",
+      role: "Analytical Disciple",
+      avatar: "🧐",
+      truthfulness: 0.9,
+      bibleRef: "Mark 12:1-12 (Parable of the Tenants)",
+      hasDialogue: true,
+      storyFile: "./story/parable_vineyard.json",
+      background: "Thomas wrestling with the Vineyard Parable. Sees the dangerous implications for religious authorities.",
+      dialogue: {
+        neutral: "Tell me what you know.",
+      },
+      reactions: {
+        default: { text: "I have nothing more to add.", isLie: false },
+      },
+    },
+    {
+      id: "trial_rumors",
+      name: "Trial Rumors",
+      role: "Court Observer",
+      avatar: "👁️",
+      truthfulness: 0.4,
+      bibleRef: "Matthew 26:59-68",
+      hasDialogue: true,
+      storyFile: "./story/trial_rumors.json",
+      background: "Present at or near the trial. Part accurate, part distorted version of events.",
+      dialogue: {
+        neutral: "Tell me what you know.",
+      },
+      reactions: {
+        default: { text: "I have nothing more to add.", isLie: false },
+      },
+    },
+    {
+      id: "witness_healed",
+      name: "Bethesda Witness",
+      role: "Eyewitness",
+      avatar: "👁️",
+      truthfulness: 0.85,
+      bibleRef: "John 5:1-15",
+      hasDialogue: true,
+      storyFile: "./story/witness_healed.json",
+      background: "Witnessed the healing at Bethesda. Confirms Jesus power.",
+      dialogue: {
+        neutral: "Tell me what you know.",
+      },
+      reactions: {
+        default: { text: "I have nothing more to add.", isLie: false },
+      },
+    },
+    {
+      id: "teaching_mount",
+      name: "Mount Teacher",
+      role: "Disciple",
+      avatar: "📖",
+      truthfulness: 0.8,
+      bibleRef: "Matthew 5-7 (Sermon on the Mount)",
+      hasDialogue: true,
+      storyFile: "./story/teaching_mount.json",
+      background: "Heard Jesus teaching on the Mount of Olives. Shares wisdom from the gatherings.",
+      dialogue: {
+        neutral: "Tell me what you know.",
+      },
+      reactions: {
+        default: { text: "I have nothing more to add.", isLie: false },
+      },
+    },
   ],
 
   deductions: {

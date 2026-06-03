@@ -1,1 +1,37 @@
-{"inkVersion":21,"root":[[{"->":"start"},["done",{"#n":"g-0"}],null],"done",{"start":[["^You walked up Mount Olivet. Most people approach Jerusalem and see only walls.","^He spoke in parables. People laughed, left, or argued. Then he asked the question.",{"*":"closing","flg":2,"s":["^What does the mustard seed teach?",null]},{"*":"closing","flg":2,"s":["^How does a lost coin become a kingdom?",null]},null],null],"closing":[["^-> DONE",null],null]}],"globals":{},"listDefs":{}}
+{
+  "start": {
+    "content": "You walked up Mount Olivet. Most people approach Jerusalem and see only walls. He spoke in parables. People laughed, left, or argued. Then He asked the question.",
+    "choices": [
+      {
+        "text": "What question?",
+        "destination": "question"
+      },
+      {
+        "text": "The crowd's reaction?",
+        "destination": "crowd_reaction"
+      }
+    ]
+  },
+  "question": {
+    "content": "He asked about the stone the builders rejected. The stone that becomes the cornerstone. The crowd was silent after that. Some looked confused. Some looked... afraid.",
+    "choices": [
+      {
+        "text": "Afraid of what?",
+        "destination": "closing"
+      }
+    ]
+  },
+  "crowd_reaction": {
+    "content": "People laughed, then left, or argued. The parables were not comfortable. They were mirrors. Each person saw themselves \u2014 and didn't always like what they saw.",
+    "choices": [
+      {
+        "text": "And then?",
+        "destination": "closing"
+      }
+    ]
+  },
+  "closing": {
+    "content": "He spoke as someone who owned the Law, not merely interpreted it. That was the most unsettling thing of all.",
+    "choices": []
+  }
+}

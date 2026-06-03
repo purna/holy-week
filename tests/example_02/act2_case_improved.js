@@ -147,7 +147,7 @@ export const act2CaseA = {
     },
   ],
 
-  npcs: [
+npcs: [
     {
       id: "chief_priest",
       name: "Caiaphas",
@@ -155,7 +155,7 @@ export const act2CaseA = {
       avatar: "👨‍⚖️",
       truthfulness: 0.55,
       bibleRef: "Matthew 21:23; John 11:49–52; Matthew 26:57–68",
-      background: "Joseph ben Caiaphas has been High Priest since AD 18 — appointed by the Roman prefect, dependent on Roman goodwill to remain in office. He is theologically Sadducean (denies resurrection, angels, and spirits — Acts 23:8) and politically calculating. He famously said it was 'better for one man to die for the people than for the whole nation to perish' (John 11:50) — not realising he was prophesying.",
+      background: "Joseph ben Caiaphas has been High Priest since AD 18 — appointed by the Roman prefect, dependent on Roman goodwill to remain in office. He is theologically Sadducean (denies resurrection, angels, and spirits — Acts 23:8) and politically calculating. He famously said it was 'better for one man to die for the people' (John 11:50) — not realising he was prophesying.",
       dialogue: {
         neutral: "We asked a legitimate question. A teacher claiming this level of authority in the Temple has an obligation to present his credentials.",
         cautious: "The Temple is the domain of the priesthood, established by Mosaic Law. Anyone teaching here is subject to our oversight.",
@@ -180,7 +180,7 @@ export const act2CaseA = {
       avatar: "📜",
       truthfulness: 0.85,
       bibleRef: "Mark 12:28–34",
-      background: "A Temple scribe trained in meticulous recording of legal proceedings and scriptural interpretation. Pharisaic background — unlike the Sadducean priests, he believes in resurrection and angels. He actually asked Jesus about the greatest commandment and received an answer that genuinely moved him.",
+      background: "A Temple scribe trained in meticulous recording and scriptural interpretation. Pharisaic background — he actually asked Jesus about the greatest commandment and received an answer that moved him.",
       dialogue: {
         neutral: "I was tasked with recording the morning's proceedings. I was also, I confess, listening with more than professional interest.",
         cautious: "The authority challenge was politically motivated. I'm a scribe — I deal in words, not politics. What He said about the commandments was... remarkable.",
@@ -189,8 +189,8 @@ export const act2CaseA = {
         repeat: "I believe I've shared all that is relevant to your inquiry.",
       },
       reactions: {
-        coin_of_caesar: { text: "That was the Herodians' question — about paying taxes to Caesar. His answer was remarkable: 'Give to Caesar what is Caesar's, and to God what is God's.' He split the trap perfectly.", isLie: false },
-        witness_scroll: { text: "The Alexandrian's account is accurate. I was there for all of it. By the end, the crowd was silent and the leaders were defeated. Verse by verse, question by question.", isLie: false, revealedClue: "fig_leaf_withered" },
+        coin_of_caesar: { text: "We brought that coin deliberately. You can't pay the Temple tax with a denarius — it has a graven image on it. We thought bringing it would humiliate him.", isLie: false },
+        witness_scroll: { text: "That is my account. I was there for all of it. By the end, the crowd was silent and the leaders were defeated. Verse by verse, question by question.", isLie: false, revealedClue: "fig_leaf_withered" },
         parable_fragments: { text: "The vineyard parable was Isaiah 5 rewritten for the present day. Anyone schooled in Scripture recognised the source. The leaders certainly did — Matthew records they wanted to arrest Him immediately.", isLie: false },
         cornerstone_carving: { text: "Psalm 118:22. 'The stone the builders rejected.' He quoted it while standing in the Temple the builders were maintaining. The irony was devastating.", isLie: false },
       },
@@ -203,7 +203,7 @@ export const act2CaseA = {
       avatar: "🧣",
       truthfulness: 0.4,
       bibleRef: "Matthew 22:15–22 — the Pharisee-Herodian coalition",
-      background: "A Pharisee who has formed an unlikely alliance with the Herodians — normally political rivals — specifically to trap Jesus on the tax question. The Pharisees hated Roman taxation on nationalist grounds; the Herodians supported it. Normally they would never cooperate. The threat Jesus posed united them.",
+      background: "A Pharisee who formed an unlikely alliance with the Herodians specifically to trap Jesus on the tax question. Normally political rivals, the threat Jesus posed united them.",
       dialogue: {
         neutral: "We asked a straightforward legal question about taxation. Any teacher should be able to answer a question about Roman law.",
         cautious: "My political affiliations are my own business. I came here as a representative of the Pharisaic council.",
@@ -220,6 +220,25 @@ export const act2CaseA = {
       contradictions: {
         "coin_of_caesar+widow_two_coins": { exposed: "You want to know what broke the coalition? His answer about the coin. We expected a political answer. Instead He talked about image — Caesar's image on the coin, God's image on people. The Herodians thought He'd sided with Rome. I thought He'd sidestepped completely. Neither of us could attack the answer. We just... walked away." },
       },
+    },
+    {
+      id: "woman_cloak",
+      name: "The Woman Healed",
+      role: "Healed by Jesus's Cloak",
+      dialogueId: "woman_cloak",
+      avatar: "👩",
+      truthfulness: 0.95,
+      bibleRef: "Matthew 9:20–22; Mark 5:25–34; Luke 8:43–48",
+      background: "A woman who had suffered chronic bleeding for twelve years. She pushed through the crowd to touch Jesus's garment and was healed immediately. She stands as witness to another miracle of Jesus's power.",
+      dialogue: {
+        neutral: "I did not come here to argue doctrine. I only know that when I touched the hem of His garment, the flow of blood stopped instantly.",
+        cautious: "I was ritually unclean. Anyone who touched me would be defiled. Yet He turned — not to condemn me, but to call me 'daughter.'",
+        pressured: "His disciples were irritated. 'If this is what You want, why not let the whole crowd rush in on You?' But He stood there and waited for me to come forward.",
+        exposed: "When I confessed the truth, He didn't rebuke me. 'Your faith has healed you,' He said. 'Go in peace.' I felt cured in my body and known in my soul. That is all I have to say.",
+        repeat: "I have said enough. I am only a woman who believed.",
+      },
+      reactions: {},
+      contradictions: {},
     },
   ],
 

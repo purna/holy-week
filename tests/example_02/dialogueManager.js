@@ -26,6 +26,12 @@ const DIALOGUE_ID_MAP = {
     mary_resurrection: './story/mary_resurrection.json',
     sadducee_opposition: './story/sadducee_opposition.json',
     peter_denial: './story/peter_denial.json',
+    herods_servant: './story/herods_servant.json',
+    temple_curtain: './story/temple_curtain.json',
+    centurion_witness: './story/centurion_witness.json',
+    pontius_pilate: './story/pontius_pilate.json',
+    woman_cloak: './story/woman_cloak.json',
+    joseph_arimathea: './story/joseph_arimathea.json',
 };
 /**
  * DialogueManager
@@ -92,8 +98,18 @@ export class DialogueManager {
     createStory(npcId) {
         if (!this.inkLib) throw new Error('Ink runtime not loaded');
         const data = this.npcStories[npcId];
-        if (!data) throw new Error('Story data not found for ' + npcId);
-        return new this.inkLib.Story(data);
+        if (!data || typeof data !== 'object' || !data.inkVersion) {
+            throw new Error(`[DialogueManager] Invalid or missing story data for: ${npcId}`);
+        }
+        try {
+            return new this.inkLib.Story(data);
+        } catch (err) {
+            console.error(`[DialogueManager] inkjs failed to parse story for ${npcId}. 
+                Engine version: ${this.inkLib.Story.inkVersionCurrent}
+                Story version: ${data.inkVersion}
+                Error:`, err);
+            throw err;
+        }
     }
 
     getStory(npcId) {
@@ -178,11 +194,16 @@ export class DialogueManager {
      * Also closes any open sidebar panels (mirrors vn.html startDialogue behaviour).
      *
      * @param {object}   npc       — NPC config object with .name and .id
-     * @param {object}   inkStory  — Active inkjs Story instance
+     * @param {object|null} inkStory — Active inkjs Story instance
      * @param {Function} onClose   — Called when the player ends the conversation
      * @param {Function} onTag     — Called when a tag (e.g., reveal:id) is encountered
      */
     openDialogue(npc, inkStory, onClose, onTag) {
+        if (!inkStory) {
+            console.warn(`[DialogueManager] Aborting dialogue for ${npc.name}: Story instantiation failed.`);
+            return;
+        }
+
         // Close sidebar panels
         ['panel-quest', 'panel-inv', 'panel-actions'].forEach(id => {
             document.getElementById(id)?.classList.remove('open');

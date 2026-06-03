@@ -1,0 +1,43 @@
+{
+  "start": {
+    "content": "You are wasting your time with these questions, scribe. I am Eleazar. I saw the whole 'procession' from my villa's upper terrace. It was nothing more than a band of lawless Galileans causing a disturbance.",
+    "choices": [
+      {
+        "text": "What exactly did you see at the tethering post?",
+        "destination": "theft_claim"
+      },
+      {
+        "text": "The people were celebrating, not rioting.",
+        "destination": "aristocrat_view"
+      }
+    ]
+  },
+  "theft_claim": {
+    "content": "I saw two of them — likely the ones they call the 'sons of thunder' given the noise they were making. They drew a blade, hacked through the rope, and made off with the colt. The owner was clearly terrified.",
+    "choices": [
+      {
+        "text": "The rope fibers don't look hacked.",
+        "destination": "rope_evasion"
+      }
+    ]
+  },
+  "aristocrat_view": {
+    "content": "They went toward the gate, dragging the beast along. They were throwing their dirty cloaks in the mud as if the street were a palace floor. It is an insult to the dignity of Jerusalem.",
+    "choices": [
+      {
+        "text": "Why do you dislike this teacher so much?",
+        "destination": "threat_path"
+      }
+    ]
+  },
+  "rope_evasion": {
+    "content": "Hacked, cut, untied — what does it matter? The animal was removed without a proper transaction. In the eyes of the Law, that is theft.",
+    "choices": [
+      { "text": "Continue.", "destination": "closing" }
+    ]
+  },
+  "closing": {
+    "content": "Keep your notes, scribe. But remember: a movement built on a borrowed donkey will not last the week. The Sanhedrin will handle this.",
+    "choices": []
+  }
+}

@@ -473,6 +473,76 @@ export const act4CaseB = {
       },
       contradictions: {},
     },
+,
+    {
+      id: "mary_resurrection",
+      name: "Mary (Resurrection)",
+      role: "First Witness",
+      avatar: "👩",
+      truthfulness: 0.98,
+      bibleRef: "John 20:1-18",
+      hasDialogue: true,
+      storyFile: "./story/mary_resurrection.json",
+      background: "Mary Magdalene, first witness to the risen Jesus. Her testimony became the foundation of the resurrection claim.",
+      dialogue: {
+        neutral: "Tell me what you know.",
+      },
+      reactions: {
+        default: { text: "I have nothing more to add.", isLie: false },
+      },
+    },
+    {
+      id: "judas_betrayal",
+      name: "Judas (Betrayal)",
+      role: "Betrayer",
+      avatar: "😈",
+      truthfulness: 0.3,
+      bibleRef: "Matthew 26:14-16,47-50; Mark 14:10-11,43-45",
+      hasDialogue: true,
+      storyFile: "./story/judas_betrayal.json",
+      background: "The disciple who betrayed Jesus for thirty pieces of silver. His motives remain debated — greed, disillusionment, or something darker.",
+      dialogue: {
+        neutral: "Tell me what you know.",
+      },
+      reactions: {
+        default: { text: "I have nothing more to add.", isLie: false },
+      },
+    },
+,
+    {
+      id: "herods_servant",
+      name: "Herod's Servant",
+      role: "Royal Household",
+      avatar: "👑",
+      truthfulness: 0.5,
+      bibleRef: "Luke 23:6-12 (Herod and Pilate)",
+      hasDialogue: true,
+      storyFile: "./story/herods_servant.json",
+      background: "Served in Herod Antipas household. Saw the political maneuvering around Jesus — Herod wanted a miracle, got silence instead.",
+      dialogue: {
+        neutral: "Tell me what you know.",
+      },
+      reactions: {
+        default: { text: "I have nothing more to add.", isLie: false },
+      },
+    },
+    {
+      id: "peter_restored",
+      name: "Peter (Restored)",
+      role: "Restored Disciple",
+      avatar: "🕊️",
+      truthfulness: 0.9,
+      bibleRef: "John 21:15-19 (Restoration of Peter)",
+      hasDialogue: true,
+      storyFile: "./story/peter_restored.json",
+      background: "Peter after the resurrection. Restored by Jesus three times to match his three denials. Now a bold witness.",
+      dialogue: {
+        neutral: "Tell me what you know.",
+      },
+      reactions: {
+        default: { text: "I have nothing more to add.", isLie: false },
+      },
+    },
   ],
 
   deductions: {

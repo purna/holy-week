@@ -1827,3 +1827,82 @@ body.reduce-motion * {
 /* Minimap grid circles */
 .minimap-grid-circle.grid-small { width: 30px; height: 30px; }
 .minimap-grid-circle.grid-large { width: 65px; height: 65px; }
+
+/* ==========================================================================
+   REFACTORED INTERFACE STYLES (FROM INLINE)
+   ========================================================================== */
+
+/* Modal and Panel Specific Layouts */
+.settings-panel { max-width: 420px; }
+.map-modal-panel { max-width: 960px; width: 94%; max-height: 86vh; }
+.inv-board-panel { max-width: 900px; width: 95%; max-height: 85vh; background: #1a0e04 !important; }
+
+#settings-overlay { z-index: 1000; }
+#inv-board-overlay { z-index: 1500; }
+
+.modal-body-flush { padding: 0; display: flex; flex-direction: column; gap: 0; }
+.settings-modal-body { padding: 20px 10px; }
+
+/* Header Text Components */
+.modal-title-settings { margin: 0; font-size: 1.1rem; color: var(--accent-primary); font-family: 'Cinzel', serif; letter-spacing: 1px; }
+.modal-title-map { margin: 0; font-size: 1.05rem; color: var(--accent-primary); font-weight: 700; }
+.modal-subtitle-custom { margin: 2px 0 0 0; font-size: 0.8rem; color: var(--text-muted); }
+.header-icon-spacer { margin-right: 8px; }
+
+/* Settings Elements */
+.settings-group { margin-bottom: 18px; }
+.settings-label-custom {
+    color: var(--accent-primary);
+    display: block;
+    margin-bottom: 8px;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-family: 'Cinzel', serif;
+}
+.settings-a11y-label {
+    color: var(--accent-primary);
+    display: block;
+    margin-bottom: 12px;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+}
+.settings-select-custom {
+    width: 100%;
+    background: #0b141a;
+    color: var(--text-main);
+    border: 1px solid rgba(100, 255, 218, 0.2);
+    padding: 10px 14px;
+    border-radius: 3px;
+    font-family: 'Source Code Pro', monospace;
+    font-size: 0.9rem;
+    appearance: none;
+    cursor: pointer;
+}
+.settings-hint-custom { color: var(--text-muted); font-size: 0.7rem; margin-top: 6px; font-style: italic; }
+.settings-divider-custom { border-top: 1px solid var(--border-subtle); margin: 18px 0; }
+.settings-divider-small { border-top: 1px solid var(--border-subtle); margin: 5px 0; }
+.settings-saved-label { height: 1rem; color: var(--accent-success); font-size: 0.75rem; letter-spacing: 1px; }
+.settings-a11y-list { display: flex; flex-direction: column; gap: 8px; }
+
+/* Settings Footer & Buttons */
+.settings-footer-layout { display: flex; flex-direction: column; gap: 10px; margin-top: 10px; padding: 0 4px; }
+.persistence-btn-row { display: flex; gap: 10px; }
+.modal-action-row { display: flex; justify-content: space-between; gap: 10px; }
+.btn-flex { flex: 1; }
+.btn-save-game-accent { border-color: var(--accent-success); color: var(--accent-success); }
+.btn-load-game-accent { border-color: var(--accent-primary); color: var(--accent-primary); }
+.btn-save-settings-accent { background: var(--accent-primary); color: #000; border-color: var(--accent-primary); }
+
+/* JS Generated A11y Rows */
+.a11y-setting-row {
+    display: flex; align-items: center; justify-content: space-between; padding: 10px 12px;
+    background: rgba(200, 150, 90, 0.04); border: 1px solid var(--border-subtle);
+    border-radius: var(--radius); cursor: pointer;
+}
+.a11y-label-main { font-weight: 700; font-size: 0.95rem; }
+.a11y-label-desc { display: block; font-size: 0.8rem; color: var(--text-muted); }
+.a11y-btn-spacer { margin-left: 12px; }

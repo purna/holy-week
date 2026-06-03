@@ -10,6 +10,11 @@ ink_contents = {}
 # --- CASE B: BETHANY / LAZARUS CONSPIRACY NPCs ---
 
 ink_contents["annas_highpriest.ink"] = """\
+// STORY: Act II - The Lazarus Conspiracy and the 'Price of Life' decree.
+// CHARACTERS: Annas (High Priest Emeritus).
+// BIBLE VERSES: John 11:45-53; John 18:13-24.
+// PROPHECIES: Psalm 2:1-2 ('Why do the nations conspire?').
+
 -> start
 === start ===
 Governments are not built on passion, scribe. They are built on stone and historical continuity. I have watched procurators come and go, but the Temple remains. This Lazarus business is a theological contamination we cannot ignore. A man who stops being dead is a monument to a power we do not control.
@@ -58,6 +63,11 @@ You want the full truth? The evidence of the resurrection was undeniable. That i
 """
 
 ink_contents["martha_bethany.ink"] = """\
+// STORY: Act II - Witnessing the miracle of Lazarus.
+// CHARACTERS: Martha of Bethany.
+// BIBLE VERSES: John 11:17-44; Luke 10:38-42.
+// PROPHECIES: Isaiah 26:19 ('Your dead will live, LORD; their bodies will rise').
+
 -> start
 === start ===
 The kitchen is full, the road is watched, and my brother is a target. I saw the stone roll away. I smelled the spices of burial on him as he walked out. I do not need a scribe to tell me what my own eyes have seen.
@@ -100,6 +110,11 @@ I saw Nicodemus come here at midnight. He warned us. He said the vote in the San
 """
 
 ink_contents["nicodemus_conflicted.ink"] = """\
+// STORY: Act II - The secret search for truth from within the Sanhedrin.
+// CHARACTERS: Nicodemus (The Pharisee).
+// BIBLE VERSES: John 3:1-21; John 7:50-52; John 19:39.
+// PROPHECIES: Jeremiah 29:13 ('You will seek me and find me').
+
 -> start
 === start ===
 I prefer the shadows of the evening. The Sanhedrin is a bright, loud place where truth is often shouted down. I have been watching the Nazarene. I have spoken to him when the city was asleep. He doesn't speak like a revolutionary... he speaks like the Law itself.
@@ -142,6 +157,11 @@ I was the one who leaked the location of the guards to Martha. I couldn't let th
 """
 
 ink_contents["simon_leper.ink"] = """\
+// STORY: Act II - Testimony of social healing and preparation for burial.
+// CHARACTERS: Simon the Leper.
+// BIBLE VERSES: Matthew 26:6-13; Mark 14:3-9.
+// PROPHECIES: Isaiah 53:3-4 ('Surely he took up our pain and bore our suffering').
+
 -> start
 === start ===
 My house was a place of exclusion once. Now, it is a place where the Son of God eats. The perfume Mary poured on him... the scent is still in the rafters. The disciples grumbled about the cost, but Jesus saw it as a preparation.

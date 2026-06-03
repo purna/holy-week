@@ -1,0 +1,28 @@
+{
+  "start": {
+    "content": "I saw Him on the beach. We had fished all night and caught nothing. Then He stood there \u2014 alive. He spoke to me about love. Three times He asked, and three times I answered.",
+    "choices": [
+      {
+        "text": "Tell me more.",
+        "destination": "more"
+      },
+      {
+        "text": "That is enough.",
+        "destination": "closing"
+      }
+    ]
+  },
+  "more": {
+    "content": "I have more to say on this matter.",
+    "choices": [
+      {
+        "text": "Go on.",
+        "destination": "closing"
+      }
+    ]
+  },
+  "closing": {
+    "content": "That is all I can tell you.",
+    "choices": []
+  }
+}

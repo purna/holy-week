@@ -1,18 +1,32 @@
 // ============================================================
-// CHARACTER: Pontius Pilate
+// CHARACTER: Pontius Pilate (and the warning of Claudia Procula)
 // ACT: Act IV
-// CASE: The Guard's Report
-// CASE ID: barabbas_choice
-// SOURCE: ORPHAN FILE (not referenced in any case file)
+// CASE: The Imperial Legality
+// CASE ID: roman_trial
+// BIBLE REFERENCE: Matthew 27:11-26; John 18:28-40
 // ------------------------------------------------------------
+// PROPHECIES FULFILLED IN THIS CASE:
+//   - Isaiah 53:7
+//     Gospel: Matthew 27:12-14
+//     Insight: The silence of the prisoner before his accusers unnerved Pilate, fulfilling the description of the Lamb led to slaughter.
 // ============================================================
 //
 
 -> start
 === start ===
-Am I an expert in your laws, Judean? Your priests drag this man to my praetorium at dawn and expect me to sign a death warrant for words. They say he claims to be a king. If he is a king without an army, he is a fool. If he has an army, let him show his banners.
+Am I an expert in your laws, Judean? Your priests drag this man to my praetorium at dawn and expect me to sign a death warrant for words. But the disturbance is not only in the streets; it has entered my own sleeping chambers. 
+* [Your wife sent a message?] -> wifes_warning
 * [You don't see Him as a threat?] -> threat
 * [The crowd wants Barabbas.] -> barabbas
+
+=== wifes_warning ===
+She is a Roman of noble blood, not given to the superstitions of this province. Yet she sent a frantic note to the judgement seat: 'Have nothing to do with that righteous man.' She has suffered a great deal in a dream today because of him. She sees a guilt in this room that my ledgers cannot account for.
+* [Does her dream worry you?] -> truth_question
+
+=== truth_question ===
+What is truth to a man holding three legions? I asked him the same. He spoke of a kingdom not of this world. My wife sees a righteous man; the Sanhedrin sees a rebel. I see a man who makes the silence heavier than a shield wall.
+* [But you will execute Him.] -> crowd_response
+
 === threat ===
 What is truth to a man holding three legions? A man who heals the blind and raises the dead is not a military threat. He is a philosophical problem. And Rome does not execute philosophers.
 * [But you will execute Him.] -> crowd_response

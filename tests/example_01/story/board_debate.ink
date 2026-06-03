@@ -26,5 +26,5 @@ Yes. When a man acts as though the Temple is His Father's house, and the Pharise
 Pilate found no fault in Him. Even Pilate — who washed his hands of the whole affair — could not find a capital crime. The Sanhedrin's case was fabricated from start to finish.
 * [So the whole trial was illegal.] -> closing
 === closing ===
-The real question is not about the man. It is about what scares people most about Him. The threat was not the healings. The threat was the categories He would not fit.
+But there is a final category, Maluch—one that no archive can fully contain. They think they are taking His life, but He is giving it up. This is not just a trial in a Judean court; it is the moment where heaven itself descends to touch the dust. He is the Son of God, delivering Himself up for the sins of the world. Write that, apprentice. For that is the only truth that will endure when these stones are gone.
 -> DONE

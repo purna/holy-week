@@ -587,6 +587,212 @@ export const act1CaseB = {
         "broken_cages+scattered_shekels": { exposed: "The priests tried to frame this as an armed insurrection to Pilate. But we logged it as a domestic religious cleanup. The Galilean wasn't fighting Rome; He was fighting the merchants' corruption." }
       }
     }
+,
+    {
+      id: "barabbas_insurgent",
+      name: "Barabbas",
+      role: "Insurgent",
+      avatar: "⚔️",
+      truthfulness: 0.3,
+      bibleRef: "Mark 15:6-15; Luke 23:18-19; John 18:40",
+      hasDialogue: true,
+      storyFile: "./story/barabbas_insurgent.json",
+      background: "A revolutionary zealot imprisoned for violent insurrection. The crowd chooses him over Jesus — a commentary on popular hopes for a military messiah vs the reality of a spiritual kingdom.",
+      dialogue: {
+        neutral: "Tell me what you know.",
+      },
+      reactions: {
+        default: { text: "I have nothing more to add.", isLie: false },
+      },
+    },
+    {
+      id: "informant_bribe",
+      name: "Market Informant",
+      role: "Street Informant",
+      avatar: "💰",
+      truthfulness: 0.4,
+      bibleRef: "Matthew 26:14-16; John 13:29",
+      hasDialogue: true,
+      storyFile: "./story/informant_bribe.json",
+      background: "A street-level informant who sells information. He knows the inner circle movements and can be bought.",
+      dialogue: {
+        neutral: "Tell me what you know.",
+      },
+      reactions: {
+        default: { text: "I have nothing more to add.", isLie: false },
+      },
+    },
+    {
+      id: "market_rumors",
+      name: "Market Vendor",
+      role: "Street Merchant",
+      avatar: "🏪",
+      truthfulness: 0.7,
+      bibleRef: "Mark 11:15-19 (Temple market)",
+      hasDialogue: true,
+      storyFile: "./story/market_rumors.json",
+      background: "A merchant in the Court of the Gentiles. He sees everyone and hears everything — useful for gathering rumors.",
+      dialogue: {
+        neutral: "Tell me what you know.",
+      },
+      reactions: {
+        default: { text: "I have nothing more to add.", isLie: false },
+      },
+    },
+    {
+      id: "pontius_pilate",
+      name: "Pontius Pilate",
+      role: "Roman Prefect",
+      avatar: "🏛️",
+      truthfulness: 0.5,
+      bibleRef: "Luke 23:1-25; John 18:28-19:16",
+      hasDialogue: true,
+      storyFile: "./story/pontius_pilate.json",
+      background: "The Roman governor of Judea. Politically ruthless but personally conflicted — finds no fault in Jesus but yields to the crowd.",
+      dialogue: {
+        neutral: "Tell me what you know.",
+      },
+      reactions: {
+        default: { text: "I have nothing more to add.", isLie: false },
+      },
+    },
+    {
+      id: "pilates_secretary",
+      name: "Pilate's Secretary",
+      role: "Administrative Recorder",
+      avatar: "📋",
+      truthfulness: 0.6,
+      bibleRef: "John 19:19-22 (INRI inscription)",
+      hasDialogue: true,
+      storyFile: "./story/pilates_secretary.json",
+      background: "An educated Roman clerk who drafted the charge hung on the cross. He records official documents.",
+      dialogue: {
+        neutral: "Tell me what you know.",
+      },
+      reactions: {
+        default: { text: "I have nothing more to add.", isLie: false },
+      },
+    },
+    {
+      id: "pharisee_critique",
+      name: "Simon the Pharisee",
+      role: "Local Civic Judge",
+      avatar: "⚖️",
+      truthfulness: 0.6,
+      bibleRef: "Luke 18:9-14 (Pharisee and Tax Collector); Luke 7:36-50",
+      hasDialogue: true,
+      storyFile: "./story/pharisee_critique.json",
+      background: "A Pharisee who trusted in his own righteousness. His critique of Jesus reveals his own spiritual blindness. Invited Jesus to dinner but was horrified when a sinful woman anointed Him.",
+      dialogue: {
+        neutral: "Tell me what you know.",
+      },
+      reactions: {
+        default: { text: "I have nothing more to add.", isLie: false },
+      },
+    },
+    {
+      id: "priest_objection",
+      name: "Temple Priest Objector",
+      role: "Sadducean Aristocrat",
+      avatar: "🙅",
+      truthfulness: 0.5,
+      bibleRef: "Acts 4:1-3; Acts 5:17-42",
+      hasDialogue: true,
+      storyFile: "./story/priest_objection.json",
+      background: "An elite Sadducean priest who views any popular religious movement as a threat. Objects to teaching on resurrection.",
+      dialogue: {
+        neutral: "Tell me what you know.",
+      },
+      reactions: {
+        default: { text: "I have nothing more to add.", isLie: false },
+      },
+    },
+    {
+      id: "rumor_whisper",
+      name: "Rumor Whisperer",
+      role: "City Gossip",
+      avatar: "🗣️",
+      truthfulness: 0.3,
+      bibleRef: "Luke 4:22 (Initially spoke well of Him...)",
+      hasDialogue: true,
+      storyFile: "./story/rumor_whisper.json",
+      background: "An ordinary resident spreading whispers. Partly informed, mostly distorted. Reflects popular confusion.",
+      dialogue: {
+        neutral: "Tell me what you know.",
+      },
+      reactions: {
+        default: { text: "I have nothing more to add.", isLie: false },
+      },
+    },
+    {
+      id: "upset_buyer",
+      name: "Upset Temple Buyer",
+      role: "Displaced Merchant",
+      avatar: "😤",
+      truthfulness: 0.7,
+      bibleRef: "Mark 11:15-18 (Jesus drives out merchants)",
+      hasDialogue: true,
+      storyFile: "./story/upset_buyer.json",
+      background: "A dove or livestock seller ejected from the Temple courts. Resentful but not entirely without cause.",
+      dialogue: {
+        neutral: "Tell me what you know.",
+      },
+      reactions: {
+        default: { text: "I have nothing more to add.", isLie: false },
+      },
+    },
+    {
+      id: "woman_cloak",
+      name: "Woman Who Gave Her Cloak",
+      role: "Devout Follower",
+      avatar: "🧕",
+      truthfulness: 0.9,
+      bibleRef: "Luke 8:1-3 (Women who supported Jesus)",
+      hasDialogue: true,
+      storyFile: "./story/woman_cloak.json",
+      background: "A woman from the crowd who spread her cloak on the road. Spontaneous devotion — part of the Hosanna movement.",
+      dialogue: {
+        neutral: "Tell me what you know.",
+      },
+      reactions: {
+        default: { text: "I have nothing more to add.", isLie: false },
+      },
+    },
+    {
+      id: "sadducee_opposition",
+      name: "Sadducee Opposer",
+      role: "Sadducean Authority",
+      avatar: "🏛️",
+      truthfulness: 0.4,
+      bibleRef: "Acts 23:6-8 (Sadducees deny resurrection)",
+      hasDialogue: true,
+      storyFile: "./story/sadducee_opposition.json",
+      background: "An elite Sadducean who denies resurrection, angels, and spirits. Opposes the movement.",
+      dialogue: {
+        neutral: "Tell me what you know.",
+      },
+      reactions: {
+        default: { text: "I have nothing more to add.", isLie: false },
+      },
+    },
+,
+    {
+      id: "corrupt_seller",
+      name: "Corrupt Seller",
+      role: "Temple Merchant",
+      avatar: "💴",
+      truthfulness: 0.4,
+      bibleRef: "Mark 11:15-19",
+      hasDialogue: true,
+      storyFile: "./story/corrupt_seller.json",
+      background: "A Temple merchant who sold sacrificial animals. Profited from the Temple system. Ejected by Jesus during the cleansing.",
+      dialogue: {
+        neutral: "Tell me what you know.",
+      },
+      reactions: {
+        default: { text: "I have nothing more to add.", isLie: false },
+      },
+    },
   ],
 
   deductions: {

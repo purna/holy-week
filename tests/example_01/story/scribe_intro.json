@@ -1,4 +1,10 @@
 {
+  "_comments": {
+    "story": "Act I - Initial encounter with the Guardian of the Archives.",
+    "characters": ["Master Scribe"],
+    "bible_verses": "John 8:32 ('The truth will set you free'); Psalm 119:160",
+    "prophecies": "N/A - Thematic introduction to the search for objective truth."
+  },
   "start": {
     "content": "I am Master Scribe. The archives hold testimony \u2014 not opinion. Many have walked these stones carrying questions no scroll could answer.",
     "choices": [

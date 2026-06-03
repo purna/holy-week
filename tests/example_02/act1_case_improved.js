@@ -493,7 +493,7 @@ export const act1CaseB = {
     { id: "none", name: "No One", role: "Not Stolen", avatar: "❓", bibleRef: null },
   ],
 
-  npcs: [
+npcs: [
     {
       id: "money_changer",
       name: "Malachi",
@@ -507,9 +507,6 @@ export const act1CaseB = {
       dialogue: {
         neutral: "Look at my stall! Upended! This isn't reform, it's financial sabotage! I have a civic permit from the Sanhedrin itself.",
         cautious: "The man is dangerous. He speaks about the Temple as if He owns the deeds. The crowd was backing Him up, that's the only reason we ran.",
-        pressured: "Alright, look—our markup rates are set by the families of Annas. We don't keep all the profits. We just enforce the exchange standard.",
-        exposed: "He didn't steal a single coin. That's what unnerves me. A zealot or a thief takes the silver. He just scattered it, like it was nothing but dirt under His feet.",
-        repeat: "I am still counting my structural losses. Go bother the dove merchants.",
       },
       reactions: {
         scattered_shekels: { text: "Those are high-purity Tyrian silvers. The only legal currency for the Sanctuary tax. He dumped them right into the courtyard dust!", isLie: false },
@@ -531,11 +528,8 @@ export const act1CaseB = {
       bibleRef: "Luke 19:47-48",
       background: "A working-class Roman auxiliary stationed on the high outer wall walkways. He views the regional theological squabbles with complete military detachment.",
       dialogue: {
-        neutral: "He called it 'My Father's House.' The merchants called it their living. I called it my afternoon duty shift.",
-        cautious: "Our orders from the Centurion were clear: do not intervene unless a full political rebellion begins. Flipped tables don't violate Roman civil law.",
-        pressured: "The temple priests were furious that we didn't send in the cohorts. But why should Roman blood protect their currency exchange booths?",
-        exposed: "I watched the whole thing from the parapet. The Galilean had total control over that crowd. One word from Him, and they would have taken the fortress gates.",
-        repeat: "Shift's almost over. Talk to the merchants if you want complaints.",
+        neutral: "Our orders from the Centurion were clear: do not intervene unless a full political rebellion begins. Flipped tables don't violate Roman civil law.",
+        cautious: "The temple priests were furious that we didn't send in the cohorts. But why should Roman blood protect their currency exchange booths?",
       },
       reactions: {
         whip_of_cords: { text: "I saw Him braided that out of livestock bedding. Clever, really. It wouldn't stop a legionary, but it scared the sheep out of the gates fast enough.", isLie: false },
@@ -545,7 +539,28 @@ export const act1CaseB = {
       contradictions: {
         "broken_cages+scattered_shekels": { exposed: "The priests tried to frame this as an armed insurrection to Pilate. But we logged it as a domestic religious cleanup. The Galilean wasn't fighting Rome; He was fighting the merchants' corruption." }
       }
-    }
+    },
+    {
+      id: "woman_cloak",
+      name: "The Woman Healed",
+      role: "Crowd Witness",
+      dialogueId: "woman_cloak",
+      avatar: "👩",
+      color: 0xff99cc,
+      pos: [5, 0, -3],
+      truthfulness: 0.95,
+      bibleRef: "Matthew 9:20–22; Mark 5:25–34; Luke 8:43–48",
+      background: "A woman who had suffered chronic bleeding for twelve years. She had pushed through the crowd to touch Jesus's garment and was healed immediately. She witnessed the Temple cleansing from among the crowd.",
+      dialogue: {
+        neutral: "I had heard reports of this Teacher's healings. When He entered the Temple courts, I was there — not because I understood politics, but because I had felt His power myself.",
+        cautious: "The merchants were shouting, the tables were flying. But I saw His eyes — they held authority, yes, but also... sadness. Like He was grieving over something deeper than money.",
+        pressured: "I had touched His cloak once. My bleeding stopped instantly. I knew then — this was no ordinary teacher. Whatever He was cleansing in the Temple, I trusted Him.",
+        exposed: "When He spoke of God's house being called a house of prayer, I understood. He was not just angry about commerce. He was restoring what had been lost for centuries.",
+        repeat: "I have nothing more to add. The Teacher's actions spoke clearly.",
+      },
+      reactions: {},
+      contradictions: {},
+    },
   ],
 
   deductions: {

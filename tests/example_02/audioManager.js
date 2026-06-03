@@ -4,14 +4,14 @@ export class AudioManager {
     this.enabled = true;
     this.volume = 0.5;
     this.sounds = {
-      collect: 'https://actions.google.com/sounds/v1/impacts/silver_coins_drop.ogg',
-      clue: 'https://actions.google.com/sounds/v1/foley/magic_wand.ogg',
-      complete: 'https://actions.google.com/sounds/v1/human_voices/applause.ogg',
-      talk: 'https://actions.google.com/sounds/v1/foley/notification.ogg',
-      error: 'https://actions.google.com/sounds/v1/alarms/beep_short.ogg',
-      ui: 'https://actions.google.com/sounds/v1/foley/button_click.ogg',
-      morning: 'https://actions.google.com/sounds/v1/ambiences/morning_birds.ogg',
-      outdoor: 'https://actions.google.com/sounds/v1/ambiences/farm_animal_sounds.ogg'
+      collect: 'https://threejs.org/examples/sounds/ping_pong.mp3',
+      clue: 'https://threejs.org/examples/sounds/376737__re_build__sfx-magic.mp3',
+      complete: 'https://assets.mixkit.co/active_storage/sfx/1435/1435-preview.mp3',
+      talk: 'https://assets.mixkit.co/active_storage/sfx/2358/2561-preview.mp3',
+      error: 'https://assets.mixkit.co/active_storage/sfx/2572/2572-preview.mp3',
+      ui: 'https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3',
+      morning: 'https://assets.mixkit.co/active_storage/sfx/15/15-preview.mp3',
+      outdoor: 'https://assets.mixkit.co/active_storage/sfx/29/29-preview.mp3'
     };
     this._howls = {};
     this.currentAmbient = null;
