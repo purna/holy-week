@@ -687,11 +687,13 @@
     transition: opacity 0.35s ease;
     pointer-events: none;
 }
+
 .overlay-mask.active {
     display: flex;
     opacity: 1;
     pointer-events: auto;
 }
+
 .overlay-mask.fade-in-complete {
     opacity: 1;
     pointer-events: auto;
@@ -1614,10 +1616,11 @@
     left: 50%;
     transform: translateX(-50%);
     z-index: 5000;
-    display: flex;
+    display: none;
     flex-direction: column;
     gap: 8px;
     align-items: center;
+    opacity: 0;
     pointer-events: none;
     background: rgba(22, 13, 5, 0.97);
     border: 1px solid var(--accent-primary);
@@ -1632,6 +1635,11 @@
     animation: alertIn 0.25s ease-out;
     white-space: nowrap;
     border-radius: 2px;
+}
+
+#screen-alert.active {
+    display: flex;
+    opacity: 1;
 }
 
 /* Screen alert for case title - centered */
@@ -1659,12 +1667,15 @@
     0% {
         opacity: 0;
     }
+
     15% {
         opacity: 1;
     }
+
     85% {
         opacity: 1;
     }
+
     100% {
         opacity: 0;
     }
@@ -2253,10 +2264,13 @@ body.reduce-motion * {
 }
 
 @keyframes caseTitlePulse {
-    0%, 100% {
+
+    0%,
+    100% {
         box-shadow: 0 0 15px rgba(200, 150, 90, 0.2);
         transform: scale(1);
     }
+
     50% {
         box-shadow: 0 0 25px rgba(200, 150, 90, 0.4);
         transform: scale(1.02);
