@@ -49,11 +49,12 @@ export class AudioManager {
       this._howls[event] = new Howl({
         src: [src],
         loop: loop,
-        // Use a fixed baseline volume (1.0 for SFX, 0.6 for Ambience).
-        // The global Howler.volume() acts as the master slider, ensuring all 
-        // sounds scale proportionally and consistently regardless of when they were first played.
         volume: loop ? 0.6 : 1.0,
-        html5: loop
+        html5: loop,
+        onloaderror: () => {
+          console.warn(`[Audio] Failed to load sound: ${event} (${src})`);
+          delete this._howls[event];
+        }
       });
     }
     if (loop && this._howls[event].playing()) return;

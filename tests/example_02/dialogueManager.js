@@ -1,9 +1,11 @@
+import { PROFILE_ID_MAP } from './npcSystem.js';
+
 /**
  * Maps dialogueId (from levels.js NPCs) to their Ink JSON story file paths.
  * NPCs in levels.js use dialogueId instead of storyFile / hasDialogue.
  * This map bridges that gap so loadStoryForNPC can normalise the path.
  */
-const DIALOGUE_ID_MAP = {
+export const DIALOGUE_ID_MAP = {
     scribe_intro: './story/scribe_intro.json',
     market_rumors: './story/market_rumors.json',
     rumor_whisper: './story/rumor_whisper.json',
@@ -51,17 +53,7 @@ const DIALOGUE_ID_MAP = {
     simon_leper: './story/simon_leper.json',
 };
 
-/**
- * Maps profileId to their character JSON file paths.
- */
-export const PROFILE_ID_MAP = {
-    caiaphas: './characters/caiaphas.json',
-    peter: './characters/peter.json',
-    ananias_witness: './characters/ananias_witness.json',
-    thomas: './characters/thomas.json',
-    mary_magdalene: './characters/mary_magdalene.json',
-    nathanael_disciple: './characters/nathanael_disciple.json',
-};
+
 
 /**
  * Helper to resolve a path from a potentially shorthand ID reference.
@@ -86,12 +78,13 @@ export function getProfilePath(ref) {
  *       #bar-choices          ← choice pill buttons (.hide when empty)
  */
 export class DialogueManager {
-    constructor() {
+    constructor(audio) {
         this.inkStory = null;
         this.isDialogueOpen = false;
         this.npcStories = {};
         this.inkLib = null;
         this.activeNpc = null;
+        this.audio = audio;
 
         // Cache DOM refs once
         this._bubScroll = null;
@@ -126,9 +119,12 @@ export class DialogueManager {
                 return r.json();
             })
             .then(data => {
-                if (!data.inkVersion) throw new Error('Invalid Ink JSON: missing inkVersion');
                 this.npcStories[npc.id] = data;
-                console.log(`[DialogueManager] Loaded story for ${npc.name} (Ink v${data.inkVersion})`);
+                if (data.inkVersion) {
+                    console.log(`[DialogueManager] Loaded Ink story for ${npc.name} (v${data.inkVersion})`);
+                } else if (data.start) {
+                    console.log(`[DialogueManager] Loaded Simple JSON story for ${npc.name}`);
+                }
             })
             .catch(e => console.error(`[DialogueManager] Failed to load story for ${npc.name}:`, e));
     }
@@ -137,7 +133,7 @@ export class DialogueManager {
         if (!this.inkLib) throw new Error('Ink runtime not loaded');
         const data = this.npcStories[npcId];
         if (!data || typeof data !== 'object' || !data.inkVersion) {
-            throw new Error(`[DialogueManager] Invalid or missing story data for: ${npcId}`);
+            return null;
         }
         try {
             return new this.inkLib.Story(data);
@@ -177,7 +173,9 @@ export class DialogueManager {
         const { bubScroll } = this._getEls();
         const el = document.createElement('div');
         el.className = 'msg ' + type;
-        el.textContent = text;
+        let displayStr = text;
+        if (typeof text === 'object' && text !== null) displayStr = text.text || JSON.stringify(text);
+        el.textContent = displayStr;
         bubScroll.appendChild(el);
         bubScroll.scrollTop = bubScroll.scrollHeight;
     }
@@ -185,17 +183,18 @@ export class DialogueManager {
     /**
      * Show an animated typing indicator, then call cb() after ~600–800 ms.
      * @param {Function} cb
+     * @param {string} [npcName]
      */
-    addTyping(cb) {
+    addTyping(cb, npcName) {
         const { bubScroll } = this._getEls();
-        const npcName = this.activeNpc?.name ?? 'NPC';
+        const displayName = npcName ?? this.activeNpc?.name ?? 'NPC';
         const row = document.createElement('div');
         row.className = 'typing-row';
         row.innerHTML =
             '<div class="dot"></div>' +
             '<div class="dot"></div>' +
             '<div class="dot"></div>' +
-            `<span class="typing-lbl">${npcName} is typing…</span>`;
+            `<span class="typing-lbl">${displayName} is typing…</span>`;
         bubScroll.appendChild(row);
         bubScroll.scrollTop = bubScroll.scrollHeight;
         setTimeout(() => {
@@ -237,8 +236,11 @@ export class DialogueManager {
      * @param {Function} onTag     — Called when a tag (e.g., reveal:id) is encountered
      */
     openDialogue(npc, inkStory, onClose, onTag) {
-        if (!inkStory) {
-            console.warn(`[DialogueManager] Aborting dialogue for ${npc.name}: Story instantiation failed.`);
+        const storyData = this.npcStories[npc.id];
+        const isSimple = storyData && !!storyData.start;
+
+        if (!inkStory && !isSimple) {
+            console.warn(`[DialogueManager] Aborting dialogue for ${npc.name}: No valid story found (Ink or Simple JSON).`);
             return;
         }
 
@@ -254,6 +256,12 @@ export class DialogueManager {
         this.setDialogueOpen(true);
 
         // Populate header
+        const avatarEl = document.getElementById('vn-avatar');
+        if (avatarEl) avatarEl.innerText = npc.avatar ?? '?';
+        const statusEl = document.getElementById('vn-status');
+        if (statusEl) statusEl.textContent = '● ONLINE';
+
+        // Populate header
         const nameEl = document.getElementById('vn-speaker-name');
         if (nameEl) nameEl.innerText = npc.name ?? npc.id;
 
@@ -265,9 +273,15 @@ export class DialogueManager {
         // Show the box
         document.getElementById('vn-overlay').classList.add('active');
 
+        if (this.audio) this.audio.playTalk();
+
         // System handshake message, then start story
         this.addMsg('SECURE CONNECTION ESTABLISHED.', 'system');
-        this._stepStory(inkStory, onClose, onTag);
+        if (inkStory) {
+            this._stepStory(inkStory, onClose, onTag);
+        } else {
+            this._stepSimpleJson(storyData, 'start', onClose, onTag);
+        }
     }
 
     closeDialogue(onClose) {
@@ -345,6 +359,54 @@ export class DialogueManager {
                 );
             }
         }
+    }
+
+    /**
+     * Interpreter for non-Ink simple JSON branching dialogue.
+     */
+    _stepSimpleJson(data, nodeId, onClose, onTag) {
+        const node = data[nodeId];
+        if (!node) {
+            this.closeDialogue(onClose);
+            return;
+        }
+
+        this.showChoices(null, () => { });
+
+        this.addTyping(() => {
+            const text = node.content || node.text || '';
+            if (text) {
+                this.addMsg(text, 'npc');
+            }
+
+            // Handle reveal: tags in text (common in custom JSON format)
+            if (text.includes('# reveal:')) {
+                const tag = text.split('# reveal:')[1]?.trim();
+                if (tag && typeof onTag === 'function') onTag('reveal:' + tag);
+            }
+
+            // Process manual tags array
+            if (node.tags && Array.isArray(node.tags)) {
+                node.tags.forEach(t => onTag(t));
+            }
+
+            setTimeout(() => {
+                const choices = node.choices || [];
+                if (choices.length > 0) {
+                    this.showChoices(choices, (choice) => {
+                        this.addMsg(choice.text, 'player');
+                        // Recursively move to the destination node
+                        setTimeout(() => this._stepSimpleJson(data, choice.destination, onClose, onTag), 300);
+                    });
+                } else {
+                    // End of simple story
+                    this.showChoices(
+                        [{ text: '🔄 [ CLOSE CONNECTION ]', destination: null }],
+                        () => this.closeDialogue(onClose)
+                    );
+                }
+            }, 600);
+        });
     }
 
     continueStory(inkStory, onClose, onTag) {

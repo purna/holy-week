@@ -1,66 +1,89 @@
-{
-  "inkVersion": 21,
-  "root": [
-    [
+ {
+  "start": {
+    "content": "Two men came for my donkey colt this morning. They said \"The Lord needs it.\" I knew exactly what that meant. I've had Zechariah 9:9 on my wall for twenty years. \"Your king comes, riding on a donkey.\" You think I was going to say no?",
+    "choices": [
       {
-        "->": "start"
+        "text": "Why did you keep the colt untrained?",
+        "destination": "set_apart"
       },
-      [
-        "done",
-        {
-          "#n": "g-0"
-        }
-      ],
-      null
-    ],
-    "done",
-    {
-      "start": [
-        [
-          "^We followed him all the way from the Jordan. They say he is the one promised to break the yoke. But the soldiers are watching like wolves.",
-          {
-            "*": "perspective",
-            "flg": 2,
-            "s": [
-              "^Do you think he has come to fight Rome?"
-            ]
-          },
-          {
-            "*": "signs",
-            "flg": 2,
-            "s": [
-              "^What did you see him do in Galilee?"
-            ]
-          },
-          null
-        ],
-        null
-      ],
-      "perspective": [
-        [
-          "^He speaks of a kingdom, but his hands hold no iron. We will see.",
-          "^-> closing",
-          null
-        ],
-        null
-      ],
-      "signs": [
-        [
-          "^I saw five thousand men sit on a hillside hungry, and walk away full. You do not forget that.",
-          "^-> closing",
-          null
-        ],
-        null
-      ],
-      "closing": [
-        [
-          "^-> DONE",
-          null
-        ],
-        null
-      ]
-    }
-  ],
-  "globals": {},
-  "listDefs": {}
+      {
+        "text": "The rope was cut, not untied.",
+        "destination": "rope_question"
+      }
+    ]
+  },
+  "set_apart": {
+    "content": "I've had that colt set apart since it was born. Never let anyone ride it. Some things you hold in reserve for the right moment.",
+    "choices": [
+      {
+        "text": "And this was the moment.",
+        "destination": "palm_reveal"
+      },
+      {
+        "text": "What about the cloaks?",
+        "destination": "cloak_reveal"
+      }
+    ]
+  },
+  "rope_question": {
+    "content": "The rope was cut? I didn't cut it \u2014 I untied the knot myself and handed the colt to them. Someone else must have cut it after. I wasn't watching the post after they left.",
+    "choices": [
+      {
+        "text": "Then who?",
+        "destination": "palm_reveal"
+      },
+      {
+        "text": "You seem very certain about the prophecy.",
+        "destination": "set_apart"
+      }
+    ]
+  },
+  "cloak_reveal": {
+    "content": "I saw those cloaks go by \u2014 they used them as a saddle. That's also from the old accounts. When kings are anointed, people give what they have. It's an act of honour.",
+    "choices": [
+      {
+        "text": "And the palm branches?",
+        "destination": "palm_reveal"
+      },
+      {
+        "text": "That confirms royal intention.",
+        "destination": "scroll_reveal"
+      }
+    ]
+  },
+  "scroll_reveal": {
+    "content": "That scroll fragment in the tent? It's mine. My grandfather gave it to me. Zechariah 9:9 \u2014 we always believed that a day would come when those words walked off the page and into history. I believe today was that day.",
+    "choices": [
+      {
+        "text": "Tell me about the crowd's reaction.",
+        "destination": "crowd_reveal"
+      }
+    ]
+  },
+  "palm_reveal": {
+    "content": "The palms \u2014 that brought tears to my eyes. In the days of the Maccabees, palms meant liberation. Those people understood the language of what was happening.",
+    "choices": [
+      {
+        "text": "And the cloaks?",
+        "destination": "cloak_reveal"
+      },
+      {
+        "text": "This wasn't random.",
+        "destination": "scroll_reveal"
+      }
+    ]
+  },
+  "crowd_reveal": {
+    "content": "The Pharisees' complaint says \"the whole world has gone after him.\" If even they say that \u2014 perhaps they're right. Perhaps they just don't know what to do with it.",
+    "choices": [
+      {
+        "text": "But you do.",
+        "destination": "closing"
+      }
+    ]
+  },
+  "closing": {
+    "content": "When they said those words, I felt it in my chest. This was the day. I told them: \"Take him. Give him whatever he needs.\" Then I walked down to the road to watch, and I wept. This was not a theft. This was the fulfilment of what I've been waiting for my entire life.",
+    "choices": []
+  }
 }

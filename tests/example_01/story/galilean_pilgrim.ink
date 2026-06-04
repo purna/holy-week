@@ -31,6 +31,7 @@
 //   method: Jesus gave His disciples precise instructions, including a pre-arranged phrase ('The Lord needs it') that would signal the owner to release the colt. The colt — which had never been ridden, meeting the Jewish requirement...
 // ============================================================
 //
+->start
 
 === start ===
 Two men came for my donkey colt this morning. They said "The Lord needs it." I knew exactly what that meant. I've had Zechariah 9:9 on my wall for twenty years. "Your king comes, riding on a donkey." You think I was going to say no?

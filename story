@@ -1,0 +1,1 @@
+/Users/nigelmorris/Documents/GitHub/Miracle Maker/tests/example_02/story

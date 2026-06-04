@@ -80,7 +80,11 @@ export class ControlsManager {
     displayAlert(msg) {
         const el = document.getElementById('screen-alert');
         el.innerText = msg;
+        el.classList.toggle('case-title-alert', msg.startsWith('Case:'));
         el.style.display = 'block';
-        setTimeout(() => el.style.display = 'none', 3500);
+        setTimeout(() => {
+            el.style.display = 'none';
+            el.classList.remove('case-title-alert');
+        }, msg.startsWith('Case:') ? 3000 : 3500);
     }
 }

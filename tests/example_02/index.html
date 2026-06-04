@@ -169,6 +169,12 @@
         </button>
 
 
+        <button class="hud-row-btn" onclick="showResetModal()" title="Reset Game"
+          aria-label="Reset all game progress"><i class="fas fa-undo"></i></button>
+
+        <button class="hud-row-btn" onclick="showInstructionsModal()" title="Instructions"
+          aria-label="View game instructions"><i class="fas fa-info-circle"></i></button>
+
         <!-- Configuration Preferences Panel Trigger -->
         <button id="btn-open-settings" class="hud-row-btn" type="button" title="Settings">
           <i class="fa-solid fa-gear"></i>
@@ -369,6 +375,55 @@
     </div>
   </div>
 
+
+  <!-- Instructions Overlay -->
+  <div id="instructions-modal" class="overlay-mask">
+    <div class="modal-panel" style="max-width: 420px;">
+      <button class="close-icon-btn" onclick="window.closeInstructionsModal()" aria-label="Close">✕</button>
+      <div id="instructions-logo" style="text-align: center; margin-bottom: 24px;">
+        <div class="modal-title-settings" style="font-size: 1.4rem; color: var(--accent-primary);">🔍 Holy Week</div>
+      </div>
+      <div class="modal-body">
+        <div class="modal-subtitle-custom" style="font-weight: 700; margin-bottom: 12px;">How to Play</div>
+        <div class="modal-subtitle-custom" style="line-height: 1.6;">
+          <p>Welcome, Scribe. Investigate the events of Holy Week and uncover the truth 🕊️ behind the mysteries.</p>
+          <br>
+          <p><strong>1. 🗺️ Explore :</strong> Select a location from the map to view available cases.</p>
+          <p><strong>2. 🔎 Investigate :</strong> Visit the <strong>Scene</strong> to collect clues. Some evidence is
+            only revealed through conversation!</p>
+          <p><strong>3. 🗣️ Interview :</strong> Talk to witnesses in the <strong>People</strong> tab. Show them
+            evidence to gather reactions, or <strong>Challenge</strong> them if you find a contradiction.</p>
+          <p><strong>4. 🧪 Analyze :</strong> In the <strong>Lab</strong>, select two pieces of evidence and an
+            operation to find new insights.</p>
+          <p><strong>5. ⚖️ Accuse :</strong> Once you have enough proof, make your final verdict.</p>
+        </div>
+        <div class="modal-action-row" style="margin-top: 18px;">
+          <button class="terminal-btn btn-flex btn-save-settings-accent" onclick="window.closeInstructionsModal()">Start
+            Investigation</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Reset Progress Overlay -->
+  <div id="reset-modal" class="overlay-mask">
+    <div class="modal-panel" style="max-width: 340px;">
+      <button class="close-icon-btn" onclick="window.closeResetModal()" aria-label="Close">✕</button>
+      <div class="modal-body" style="text-align: center;">
+        <div style="font-size: 2rem; margin-bottom: 10px;">⚠️</div>
+        <div class="modal-title-settings">Reset Progress?</div>
+        <div class="modal-subtitle-custom" style="margin: 10px 0 18px;">
+          This will permanently clear all your solved cases and career points.
+        </div>
+        <div class="modal-action-row">
+          <button class="terminal-btn btn-flex" onclick="window.closeResetModal()">Cancel</button>
+          <button class="terminal-btn btn-flex btn-save-settings-accent" onclick="window.resetProgress()">Reset
+            All</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- ==========================================================================
       9. CORE APPLICATION SCRIPTS & INITIALIZATION LIFECYCLE
       ========================================================================== -->
@@ -386,14 +441,14 @@
     // Application Subsystem Module Imports
     import { CaseManager } from "./caseManager.js";
     import { EvidenceSystem } from "./evidenceSystem.js";
-    import { NPCSystem } from "./npcSystem.js";
+    import { NPCSystem, PROFILE_ID_MAP } from "./NPCSystem.js";
     import { DeductionEngine } from "./deductionEngine.js";
     import { LocationSystem } from "./locationSystem.js";
     import { AccessibilityManager } from "./accessibility.js";
     import { LabUI } from "./labUI.js";
     import { ChatUI } from "./chatUI.js";
     import { AudioManager } from "./audioManager.js";
-    import { DialogueManager } from "./dialogueManager.js";
+    import { DialogueManager, DIALOGUE_ID_MAP } from "./dialogueManager.js";
     import { ControlsManager } from "./controls.js";
     import { EnvironmentManager } from "./environment.js";
     import { OrbitalSelectMatrixModal } from "./mapModal.js";
@@ -409,6 +464,23 @@
     const CONFIG = {
       unlockAllCases: false // Set to true to bypass case requirements for testing
     };
+
+    // ── Bootstrap ──────────────────────────────────────────────
+    const cm = new CaseManager();
+
+    const cases = [
+      act1CaseA, act1CaseB,
+      act2CaseA, act2CaseB,
+      act3CaseA, act3CaseB, act3CaseC, act3CaseD, act3CaseE,
+      act4CaseA, act4CaseB, act4CaseC
+    ];
+
+    cases.forEach(c => {
+      if (CONFIG.unlockAllCases) {
+        c.requires = null;
+      }
+      cm.registerCase(c);
+    });
 
     /**
      * @class GameEngine
@@ -543,9 +615,18 @@
         this.bindGlobalUIEvents();
       }
 
-      bindGlobalUIEvents() {
-        document.getElementById('btn-open-map').onclick = () => {
-          this.audio.playUI();
+bindGlobalUIEvents() {
+         document.getElementById('btn-audio-toggle').onclick = () => {
+           const btn = document.getElementById('btn-audio-toggle');
+           const icon = btn.querySelector('i');
+           this.audioActive = !this.audioActive;
+           this.audio.setEnabled(this.audioActive);
+           btn.classList.toggle('active', this.audioActive);
+           icon.className = this.audioActive ? 'fa-solid fa-volume-high' : 'fa-solid fa-volume-xmark';
+         };
+
+         document.getElementById('btn-open-map').onclick = () => {
+           this.audio.playUI();
           if (!this.mapModal) {
             this.mapModal = new OrbitalSelectMatrixModal(this.cm, this.ls, (caseId) => this.loadCase(caseId));
           }
@@ -651,12 +732,15 @@
        * @description Re-renders strings, progress bars, and linked Bible references inside the 2D panel overlay deck.
        * @param {Object} caseData - The currently active case data object structure.
        */
-      updateHUD(caseData) {
-        document.getElementById('loc-name').innerText = caseData.location;
-        document.getElementById('act-name').innerText = caseData.actLabel;
-        document.getElementById('level-title').innerText = caseData.title;
+updateHUD(caseData) {
+         document.getElementById('loc-name').innerText = caseData.location;
+         document.getElementById('act-name').innerText = caseData.actLabel;
+         const levelTitle = document.getElementById('level-title');
+         levelTitle.innerText = caseData.title;
+         levelTitle.classList.add('case-loading');
+         setTimeout(() => levelTitle.classList.remove('case-loading'), 3000);
 
-        const q = caseData.quest;
+         const q = caseData.quest;
         document.getElementById('quest-title').innerText = q.name;
         document.getElementById('quest-task').innerText =
           `${q.task} (${q.cur}/${q.tar}) — Talk to NPCs to reveal evidence`;
@@ -836,245 +920,47 @@
        * @param {Object} npcConfig - NPC config object with .dialogue, .reactions, .avatar, .name
        */
       startDialogue(npcConfig) {
-        // Use Ink Story if a dialogueId is present and the story is loaded
-        if (npcConfig.dialogueId && this.dm.getStory(npcConfig.id)) {
-          const story = this.dm.createStory(npcConfig.id);
-          this.dm.openDialogue(npcConfig, story, () => {
-            this.inDialogue = false;
-            this.updateActions(this.cm.cases[this.activeCaseId]);
-          }, (tag) => {
-            if (tag.startsWith('reveal:')) {
-              this._unlockEvidence(tag.split(':')[1]);
-            }
-          });
+        // Priority: Use Ink Story via DialogueManager if loaded
+        const storyData = this.dm.getStory(npcConfig.id);
+        if (storyData) {
+          try {
+            const story = this.dm.createStory(npcConfig.id);
+            this.inDialogue = true;
+            this.pVelocity.set(0, 0, 0);
+
+            this.dm.openDialogue(npcConfig, story, () => {
+              if (npcConfig.unlocksEvidence) {
+                npcConfig.unlocksEvidence.forEach(id => this._unlockEvidence(id));
+              }
+              this.inDialogue = false;
+              this.updateActions(this.cm.cases[this.activeCaseId]);
+            }, (tag) => {
+              if (tag.startsWith('reveal:')) {
+                this._unlockEvidence(tag.split(':')[1]);
+              }
+            });
+          } catch (err) {
+            console.error(`[GameEngine] Failed to initialize Ink story for ${npcConfig.name}:`, err);
+          }
           return;
         }
 
-        this.inDialogue = true;
-        this.pVelocity.set(0, 0, 0);
-
-        // Populate header
-        document.getElementById('vn-speaker-name').innerText = npcConfig.name;
-        document.getElementById('vn-avatar').innerText = npcConfig.avatar || '?';
-        document.getElementById('vn-status').textContent = '● ONLINE';
-
-        // Reset chat feed
-        const scroll = document.getElementById('bub-scroll');
-        const choices = document.getElementById('bar-choices');
-        scroll.innerHTML = '';
-        choices.innerHTML = '';
-        choices.classList.add('hide');
-
-        // Wire up close button
-        const closeBtn = document.getElementById('vn-close-btn');
-        closeBtn.onclick = () => {
-          this.audio.playUI();
-          this._closeDialogue(npcConfig);
-        };
-
-        // Show overlay
-        const overlay = document.getElementById('vn-overlay');
-        overlay.classList.add('active');
-
-        if (this.audio) this.audio.playTalk();
-
-        // System handshake then first NPC line
-        setTimeout(() => {
-          this._addMsg('SECURE CONNECTION ESTABLISHED.', 'system');
-          setTimeout(() => this._npcTypeThen(() => {
-            // NPC opens with neutral line
-            const openLine = npcConfig.dialogue.neutral || 'I have nothing to say.';
-            this._addMsg(openLine, 'npc');
-            setTimeout(() => this._renderChoices(npcConfig, 'initial'), 400);
-          }, npcConfig.name), 400);
-        }, 300);
+        console.warn(`[GameEngine] No Ink story found for NPC ${npcConfig.id} (${npcConfig.name}). Check storyFile or dialogueId.`);
       }
 
-      /**
-       * Build the choice buttons for a given conversation stage.
-       * Stages: 'initial' → ask about evidence → 'followup' → deeper probing → 'closing'
-       */
-      _renderChoices(npcConfig, stage) {
-        const choices = document.getElementById('bar-choices');
-        choices.innerHTML = '';
-        choices.classList.remove('hide');
-
-        const caseData = this.cm.cases[this.activeCaseId];
-        const npcState = this.nearestNPC ? (this.nearestNPC.userData.state || 'neutral') : 'neutral';
-
-        if (stage === 'initial') {
-          // Build options from dialogue keys (cautious / pressured / exposed) + evidence reactions
-          const dialogueOptions = Object.keys(npcConfig.dialogue)
-            .filter(k => !['neutral', 'repeat'].includes(k))
-            .slice(0, 2)
-            .map(k => ({
-              label: this._dialogueKeyLabel(k),
-              action: () => this._playerChoosesDialogue(npcConfig, k)
-            }));
-
-          // Add "Ask about evidence" options for each unlocked-but-not-yet-collected evidence item this NPC reacts to
-          const reactionEvidenceIds = Object.keys(npcConfig.reactions || {});
-          const availableIds = reactionEvidenceIds.filter(eid => !this.lockedEvidence[eid]);
-          const askOptions = availableIds
-            .slice(0, 2)
-            .map(eid => {
-              const ev = this.es.getById(eid);
-              return {
-                label: `Show ${ev ? ev.name : eid}`,
-                evidenceHint: ev ? ev.icon : '🔍',
-                action: () => this._playerShowsEvidence(npcConfig, eid)
-              };
-            });
-
-          const allOptions = [...dialogueOptions, ...askOptions];
-
-          if (allOptions.length === 0) {
-            this._addCloseBtn(npcConfig);
-            return;
-          }
-
-          allOptions.forEach(opt => {
-            const btn = document.createElement('button');
-            btn.className = 'choice-btn';
-            btn.innerHTML = `→ ${opt.label}${opt.evidenceHint ? `<span class="evidence-hint">${opt.evidenceHint} Show evidence</span>` : ''}`;
-            btn.onclick = () => {
-              choices.classList.add('hide');
-              opt.action();
-            };
-            choices.appendChild(btn);
-          });
-
-          // Always offer a way to probe deeper or close
-          const probeBtn = document.createElement('button');
-          probeBtn.className = 'choice-btn';
-          probeBtn.innerHTML = '→ Press harder';
-          probeBtn.onclick = () => {
-            choices.classList.add('hide');
-            this._playerChoosesDialogue(npcConfig, 'pressured');
-          };
-          choices.appendChild(probeBtn);
-
-        } else if (stage === 'followup') {
-          // After NPC has been pressed: offer to show remaining evidence or close
-          const reactionEvidenceIds = Object.keys(npcConfig.reactions || {});
-          const allPoolIds = (caseData?.evidencePool || []).map(e => e.id);
-          // Show options for evidence the NPC reacts to that's in the pool but NOT yet collected
-          const uncollected = reactionEvidenceIds
-            .filter(eid => allPoolIds.includes(eid) && !this.es.getCollected().some(e => e.id === eid))
-            .slice(0, 3);
-
-          if (uncollected.length > 0) {
-            const hint = document.createElement('div');
-            hint.className = 'msg system';
-            hint.textContent = `${npcConfig.name} might know something about nearby evidence...`;
-            document.getElementById('bub-scroll').appendChild(hint);
-          }
-
-          // Deep-press option → exposed state
-          if (npcConfig.dialogue.exposed && npcState !== 'exposed') {
-            const deepBtn = document.createElement('button');
-            deepBtn.className = 'choice-btn';
-            deepBtn.innerHTML = '→ I think you\'re hiding something';
-            deepBtn.onclick = () => {
-              choices.classList.add('hide');
-              this._playerChoosesDialogue(npcConfig, 'exposed');
-            };
-            choices.appendChild(deepBtn);
-          }
-
-          this._addCloseBtn(npcConfig);
-
-        } else {
-          this._addCloseBtn(npcConfig);
-        }
-      }
-
-      /** Player picks a dialogue branch → NPC responds, possible evidence unlock */
-      _playerChoosesDialogue(npcConfig, key) {
-        const playerLine = this._playerLineForKey(key);
-        this._addMsg(playerLine, 'player');
-
-        if (this.nearestNPC) this.nearestNPC.userData.state = key;
-
-        const npcLine = npcConfig.dialogue[key] || npcConfig.dialogue.neutral;
-
-        // Check if this response reveals a clue via reactions
-        // Some dialogues have a revealedClue on a matching reaction
-        const revealedFromDialogue = this._checkDialogueReveal(npcConfig, key);
-
-        setTimeout(() => {
-          this._npcTypeThen(() => {
-            this._addMsg(npcLine, 'npc');
-            if (revealedFromDialogue) {
-              setTimeout(() => this._unlockEvidence(revealedFromDialogue), 400);
-            }
-            setTimeout(() => this._renderChoices(npcConfig, 'followup'), 500);
-          }, npcConfig.name);
-        }, 300);
-      }
-
-      /** Player shows a piece of collected evidence to NPC → reaction + possible new evidence unlock */
-      _playerShowsEvidence(npcConfig, evidenceId) {
-        const ev = this.es.getById(evidenceId);
-        this._addMsg(`${ev ? ev.icon + ' ' : ''}Show: ${ev ? ev.name : evidenceId}`, 'player');
-
-        setTimeout(() => {
-          this._npcTypeThen(() => {
-            const result = this.ns.showEvidence(npcConfig.id, evidenceId);
-            if (result) {
-              this._addMsg(result.text, 'npc');
-              if (result.revealedClue) {
-                setTimeout(() => this._unlockEvidence(result.revealedClue), 500);
-              }
-              // Sync internal NPCSystem state to 3D world mesh metadata
-              if (this.nearestNPC) {
-                const internalState = this.ns.getState(npcConfig.id);
-                this.nearestNPC.userData.state = internalState.mood;
-                this.nearestNPC.userData.npcState = internalState;
-              }
-            }
-            setTimeout(() => this._renderChoices(npcConfig, 'followup'), 500);
-          }, npcConfig.name);
-        }, 300);
-      }
-
-      /** Player challenges NPC with two evidence items */
-      _playerChallengedNPC(npcConfig, evidenceAId, evidenceBId) {
-        const evA = this.es.getById(evidenceAId);
-        const evB = this.es.getById(evidenceBId);
-        this._addMsg(`⚡ Challenging ${npcConfig.name} with: ${evA?.icon || ''} ${evA?.name || evidenceAId} + ${evB?.icon || ''} ${evB?.name || evidenceBId}`, 'player');
-
-        setTimeout(() => {
-          this._npcTypeThen(() => {
-            const result = this.ns.challenge(npcConfig.id, evidenceAId, evidenceBId);
-            if (result) {
-              this._addMsg(result.text, result.breakthrough ? 'breakthrough' : 'npc');
-              if (result.breakthrough) {
-                this.audio.playComplete();
-              }
-              // Sync internal NPCSystem state to 3D world mesh metadata
-              if (this.nearestNPC) {
-                const internalState = this.ns.getState(npcConfig.id);
-                this.nearestNPC.userData.state = internalState.mood;
-                this.nearestNPC.userData.npcState = internalState;
-              }
-            }
-            setTimeout(() => this._renderChoices(npcConfig, 'followup'), 500);
-          }, npcConfig.name);
-        }, 300);
-      }
-
-      /** 
+      /** 
        * Unlock a piece of evidence: registers it as unlocked, then spawns a glowing sphere
        * in the 3D world at its defined position. The player must walk to it to pick it up.
        */
       _unlockEvidence(evidenceId) {
-        const ev = this.lockedEvidence?.[evidenceId];
+        // Handle object notation for revealed clues (clueId vs direct ID string)
+        const id = (typeof evidenceId === 'object' && evidenceId.clueId) ? evidenceId.clueId : evidenceId;
+        const ev = this.lockedEvidence?.[id];
         if (!ev) return;                                      // already unlocked or unknown
-        if (this.es.isCollected(evidenceId)) return;          // already collected
+        if (this.es.isCollected(id)) return;          // already collected
 
         // Remove from locked registry
-        delete this.lockedEvidence[evidenceId];
+        delete this.lockedEvidence[id];
 
         // Spawn the glowing sphere at the evidence's world position
         const sphere = new THREE.Mesh(
@@ -1102,7 +988,7 @@
         requestAnimationFrame(pulseFn);
 
         // Show unlock notification in chat
-        this._addMsg(`🔍 EVIDENCE REVEALED: ${ev.icon} ${ev.name} — go collect it in the world!`, 'evidence-unlock');
+        this.dm.addMsg(`🔍 EVIDENCE REVEALED: ${ev.icon} ${ev.name} — go collect it in the world!`, 'evidence-unlock');
 
         // Screen alert
         this.controls?.displayAlert(`Evidence revealed: ${ev.name}`);
@@ -1112,101 +998,6 @@
           window.renderInvestigationBoard();
         }
       }
-
-      /** Add a close-conversation button */
-      _addCloseBtn(npcConfig) {
-        const choices = document.getElementById('bar-choices');
-        choices.classList.remove('hide');
-        const btn = document.createElement('button');
-        btn.className = 'choice-btn';
-        btn.innerHTML = '→ End conversation';
-        btn.onclick = () => this._closeDialogue(npcConfig);
-        choices.appendChild(btn);
-      }
-
-      /** Close the dialogue modal */
-      _closeDialogue(npcConfig) {
-        const overlay = document.getElementById('vn-overlay');
-        overlay.classList.remove('active');
-        setTimeout(() => {
-          document.getElementById('bub-scroll').innerHTML = '';
-          document.getElementById('bar-choices').innerHTML = '';
-          document.getElementById('bar-choices').classList.add('hide');
-        }, 300);
-        this.inDialogue = false;
-        this.updateActions(this.cm.cases[this.activeCaseId]);
-      }
-
-      // ── Dialogue helpers ─────────────────────────────────────────────────────
-
-      /** Add a bubble to #bub-scroll */
-      _addMsg(text, type) {
-        const scroll = document.getElementById('bub-scroll');
-        const el = document.createElement('div');
-        el.className = 'msg ' + type;
-        el.textContent = text;
-        scroll.appendChild(el);
-        scroll.scrollTop = scroll.scrollHeight;
-      }
-
-      /** Show typing dots then call cb() after short delay */
-      _npcTypeThen(cb, npcName) {
-        const scroll = document.getElementById('bub-scroll');
-        const row = document.createElement('div');
-        row.className = 'typing-row';
-        row.innerHTML =
-          '<div class="dot"></div><div class="dot"></div><div class="dot"></div>' +
-          `<span class="typing-lbl">${npcName || 'NPC'} is typing…</span>`;
-        scroll.appendChild(row);
-        scroll.scrollTop = scroll.scrollHeight;
-        setTimeout(() => { row.remove(); cb(); }, 650 + Math.random() * 300);
-      }
-
-      /** Friendly label for dialogue state keys */
-      _dialogueKeyLabel(key) {
-        const map = {
-          cautious: 'Ask a careful question',
-          pressured: 'Press for more details',
-          exposed: 'Confront them directly',
-          friendly: 'Speak warmly',
-        };
-        return map[key] || key.charAt(0).toUpperCase() + key.slice(1);
-      }
-
-      /** What does the player say when choosing a branch */
-      _playerLineForKey(key) {
-        const map = {
-          cautious: 'Can you tell me more about what happened?',
-          pressured: 'I need the full truth. Something doesn\'t add up.',
-          exposed: 'I believe you\'re not being entirely honest with me.',
-          friendly: 'Thank you — I appreciate your honesty.',
-        };
-        return map[key] || `Ask about: ${key}`;
-      }
-
-      /**
-       * Some dialogue branches have implicit evidence reveals baked into reactions.
-       * Scan reactions for any that have revealedClue tied to this dialogue key context.
-       */
-      _checkDialogueReveal(npcConfig, key) {
-        // Look through reactions for one matching this dialogue key as a hint
-        const reactions = npcConfig.reactions || {};
-        for (const [eid, reaction] of Object.entries(reactions)) {
-          if (reaction.revealedClue && reaction._dialogueTrigger === key) {
-            return reaction.revealedClue;
-          }
-        }
-        // For 'exposed' state: automatically surface the first un-collected reaction evidence
-        if (key === 'exposed') {
-          for (const [eid, reaction] of Object.entries(reactions)) {
-            if (reaction.revealedClue && !this.es.collected.includes(reaction.revealedClue)) {
-              return reaction.revealedClue;
-            }
-          }
-        }
-        return null;
-      }
-
       advanceQuest(amount) {
         const caseData = this.cm.cases[this.activeCaseId];
         caseData.quest.cur = Math.min(caseData.quest.tar, caseData.quest.cur + amount);
@@ -1333,8 +1124,10 @@
         choices.innerHTML = '';
         choices.classList.remove('hide');
 
-        this._addMsg("SECURE CONNECTION ESTABLISHED.", 'system');
-        this._addMsg("All evidence collected. Who do you accuse?", 'npc');
+        this.dm.addMsg("SECURE CONNECTION ESTABLISHED.", 'system');
+        this.dm.addTyping(() => {
+          this.dm.addMsg("All evidence collected. Who do you accuse?", 'npc');
+        }, "Investigation System");
 
         caseData.suspects.forEach(s => {
           const btn = document.createElement('button');
@@ -1369,8 +1162,8 @@
         choices.innerHTML = '';
         choices.classList.remove('hide');
 
-        this._addMsg(message, correct ? 'evidence-unlock' : 'npc');
-        this._addMsg(caseData.truth.lesson, 'system');
+        this.dm.addMsg(message, correct ? 'evidence-unlock' : 'npc');
+        this.dm.addMsg(caseData.truth.lesson, 'system');
 
         if (correct) this.audio.playComplete();
         else this.audio.playError();
@@ -1790,6 +1583,34 @@
         invBoardContent.innerHTML = labUI.render();
         labUI.bindEvents(invBoardContent);
       };
+
+      window.showInstructionsModal = function (isFirstPlay) {
+        const logo = document.getElementById('instructions-logo');
+        if (logo) logo.style.display = isFirstPlay ? 'block' : 'none';
+        document.getElementById('instructions-modal').classList.add('active');
+        if (game.audio) game.audio.playUI();
+      };
+
+      window.closeInstructionsModal = function () {
+        document.getElementById('instructions-modal').classList.remove('active');
+      };
+
+      window.showResetModal = function () {
+        document.getElementById('reset-modal').classList.add('active');
+        if (game.audio) game.audio.playUI();
+      };
+
+      window.closeResetModal = function () {
+        document.getElementById('reset-modal').classList.remove('active');
+      };
+
+      window.resetProgress = function () {
+        if (game.cm && typeof game.cm.resetProgress === 'function') {
+          game.cm.resetProgress();
+        }
+        location.reload();
+      };
+
       window.BibleReader = window.BibleReader || {
         displayPassage() { },
         updateTranslation() { },

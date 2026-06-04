@@ -40,8 +40,8 @@
     overflow: hidden;
     /* Stone texture: subtle crosshatch via repeating gradient */
     background-image:
-        linear-gradient(rgba(200,150,90,0.025) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(200,150,90,0.025) 1px, transparent 1px);
+        linear-gradient(rgba(200, 150, 90, 0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(200, 150, 90, 0.025) 1px, transparent 1px);
     background-size: 24px 24px;
     background-color: var(--panel-bg);
 }
@@ -49,7 +49,7 @@
 /* Right sidebar panels: flexible scaling */
 #right-sidebar .hud-panel {
     flex: 1 1 auto;
-    min-height: 100px;
+    min-height: 200px;
     overflow: hidden;
 }
 
@@ -62,9 +62,9 @@
     /* Imperial purple-red top stripe */
     border-top: 3px solid var(--accent-primary);
     background-image:
-        linear-gradient(to bottom, rgba(200,150,90,0.08) 0%, transparent 60%),
-        linear-gradient(rgba(200,150,90,0.02) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(200,150,90,0.02) 1px, transparent 1px);
+        linear-gradient(to bottom, rgba(200, 150, 90, 0.08) 0%, transparent 60%),
+        linear-gradient(rgba(200, 150, 90, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(200, 150, 90, 0.02) 1px, transparent 1px);
     background-size: auto, 24px 24px, 24px 24px;
     background-color: var(--panel-bg);
     padding: 0 20px;
@@ -93,6 +93,8 @@
     transition: opacity 0.25s ease, transform 0.25s ease;
     height: 100%;
     min-height: 0;
+    position: relative;
+    z-index: 12;
 }
 
 /* Bottom Control Deck */
@@ -102,6 +104,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
+    z-index: 15;
 }
 
 /* Panel Toggle Buttons */
@@ -156,7 +160,7 @@
    CONTROL GROUP RIGHT — HUD UTILITY BUTTONS
    ========================================================================== */
 
-   
+
 .control-group-right {
     display: flex;
     gap: 10px;
@@ -164,7 +168,7 @@
 }
 
 
- .hud-row-btn  {
+.hud-row-btn {
     background: rgba(200, 150, 90, 0.1);
     color: var(--accent-secondary);
     border: 1px solid var(--border-gold);
@@ -178,18 +182,18 @@
     font-size: 0.72rem;
     display: flex;
 
-        width: auto;
+    width: auto;
     min-width: 42px;
     height: 42px;
     align-items: center;
     justify-content: center;
     gap: 6px;
     transition: all 0.2s;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
 }
 
 
- .hud-row-btn:hover {
+.hud-row-btn:hover {
     background: rgba(200, 150, 90, 0.15);
     color: var(--accent-primary);
     border-color: var(--border-gold);
@@ -197,72 +201,86 @@
 }
 
 /* Active State */
- .hud-row-btn.active {
+.hud-row-btn.active {
     color: var(--accent-secondary);
     border-color: var(--border-gold);
     background: rgba(232, 197, 106, 0.12);
 }
 
 
- /* Verse block */
-        .verse-block {
-            padding: 10px 0;
-            border-bottom: 1px solid rgba(92,74,42,0.1);
-            display: flex;
-            gap: 14px;
-            align-items: baseline;
-            animation: verseIn 0.35s ease both;
-        }
-        @keyframes verseIn {
-            from { opacity: 0; transform: translateY(6px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .verse-block.anchor-verse {
-            background: rgba(184,134,11,0.06);
-            margin: 0 -10px;
-            padding: 10px 10px;
-            border-radius: 2px;
-            border-bottom: 1px solid rgba(184,134,11,0.15);
-        }
-        .verse-num {
-            font-family: 'Cinzel', serif;
-            font-size: 0.7rem;
-            color: var(--gold);
-            font-weight: 600;
-            min-width: 20px;
-            text-align: right;
-            padding-top: 2px;
-            flex-shrink: 0;
-        }
-        .verse-text {
-            font-size: 1.1rem;
-            line-height: 1.75;
-            color: var(--ink);
-            margin-top: 12px;
-        }
-        .verse-block.prev-verse .verse-text {
-            color: var(--sepia);
-        }
+/* Verse block */
+.verse-block {
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(92, 74, 42, 0.1);
+    display: flex;
+    gap: 14px;
+    align-items: baseline;
+    animation: verseIn 0.35s ease both;
+}
 
-        /* Load more strip */
-        .load-more-strip {
-            padding: 14px 0 18px;
-            text-align: center;
-            border-top: 1px dashed var(--parchment-dark);
-            margin: 10px auto;
-        }
-        .load-more-strip:hover {
-            background: rgba(200, 150, 90, 0.08);
-            cursor: pointer;
-        }
+@keyframes verseIn {
+    from {
+        opacity: 0;
+        transform: translateY(6px);
+    }
 
-          /* Load previous button strip */
-        .load-prev-strip {
-            padding: 14px 0 10px;
-            text-align: center;
-            border-bottom: 1px dashed var(--parchment-dark);
-        }
-        .load-prev-strip:hover {
-            background: rgba(200, 150, 90, 0.08);
-            cursor: pointer;
-        }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.verse-block.anchor-verse {
+    background: rgba(184, 134, 11, 0.06);
+    margin: 0 -10px;
+    padding: 10px 10px;
+    border-radius: 2px;
+    border-bottom: 1px solid rgba(184, 134, 11, 0.15);
+}
+
+.verse-num {
+    font-family: 'Cinzel', serif;
+    font-size: 0.7rem;
+    color: var(--gold);
+    font-weight: 600;
+    min-width: 20px;
+    text-align: right;
+    padding-top: 2px;
+    flex-shrink: 0;
+}
+
+.verse-text {
+    font-size: 1.1rem;
+    line-height: 1.75;
+    color: var(--ink);
+    margin-top: 12px;
+}
+
+.verse-block.prev-verse .verse-text {
+    color: var(--sepia);
+}
+
+/* Load more strip */
+.load-more-strip {
+    padding: 14px 0 18px;
+    text-align: center;
+    border-top: 1px dashed var(--parchment-dark);
+    margin: 10px auto;
+}
+
+.load-more-strip:hover {
+    background: rgba(200, 150, 90, 0.08);
+    cursor: pointer;
+}
+
+/* Load previous button strip */
+.load-prev-strip {
+    padding: 14px 0 10px;
+    text-align: center;
+    border-bottom: 1px dashed var(--parchment-dark);
+}
+
+.load-prev-strip:hover {
+    background: rgba(200, 150, 90, 0.08);
+    cursor: pointer;
+}

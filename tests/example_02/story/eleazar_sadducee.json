@@ -13,7 +13,7 @@
     ]
   },
   "theft_claim": {
-    "content": "I saw two of them — likely the ones they call the 'sons of thunder' given the noise they were making. They drew a blade, hacked through the rope, and made off with the colt. The owner was clearly terrified.",
+    "content": "I saw two of them \u2014 likely the ones they call the 'sons of thunder' given the noise they were making. They drew a blade, hacked through the rope, and made off with the colt. The owner was clearly terrified.",
     "choices": [
       {
         "text": "The rope fibers don't look hacked.",
@@ -31,7 +31,7 @@
     ]
   },
   "rope_evasion": {
-    "content": "Hacked, cut, untied — what does it matter? The animal was removed without a proper transaction. In the eyes of the Law, that is theft.",
+    "content": "Hacked, cut, untied \u2014 what does it matter? The animal was removed without a proper transaction. In the eyes of the Law, that is theft.",
     "choices": [
       { "text": "Continue.", "destination": "closing" }
     ]

@@ -64,7 +64,7 @@ export class EvidenceSystem {
   selectEvidence(evidenceId) {
     const e = this.getById(evidenceId);
     if (!e) return;
-    if (!this.isUnlocked(evidenceId)) return;
+    if (!this.isCollected(evidenceId)) return;
     if (!this.selectedA || (this.selectedA && this.selectedB)) {
       this.selectedA = e;
       this.selectedB = null;
