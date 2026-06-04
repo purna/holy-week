@@ -4,7 +4,7 @@
  * This map bridges that gap so loadStoryForNPC can normalise the path.
  * Also includes case file NPCs with their respective story files.
  */
-const DIALOGUE_ID_MAP = {
+export const DIALOGUE_ID_MAP = {
     // Legacy levels.js mappings
     scribe_intro:       './story/scribe_intro.json',
     market_rumors:      './story/market_rumors.json',
@@ -25,28 +25,29 @@ const DIALOGUE_ID_MAP = {
     board_debate:       './story/board_debate.json',
     trial_rumors:       './story/trial_rumors.json',
     peter_denial:       './story/peter_denial.json',
-// Case file NPC mappings
-     peter:              './story/peter_defense.json',
-     john:               './story/john_disciple.json',
-     owner:              './story/galilean_pilgrim.json',
-     local_skeptic:      './story/jerusalem_local.json',
-     money_changer:      './story/money_changer.json',
-     garrison_guard:     './story/guard_report.json',
-     merchant_jadan:     './story/parable_vineyard.json',
-     temple_spy:         './story/temple_spy.json',
-     annas_patriarch:    './story/annas_patriarch.json',
-     martha_bethany:     './story/martha_bethany.json',
-mary_magdalene:     './story/mary_magdalene.json',
-      marcus:             './story/execution_soldier.json',
-      joseph:             './story/joseph_arimathea.json',
-      john_mark:          './story/john_disciple.json',
-      servant:            './story/rhoda_servant.json',
-      judas:              './story/judas_iscariot.json',
-      malchus_servant:    './story/execution_soldier.json',
-      simon_peter:        './story/peter_defense.json',
-      centurion_longinus: './story/roman_assessment.json',
-      temple_priest_pashhur: './story/caiaphas_priest.json',
-      eleazar:            './story/eleazar_sadducee.json',
+    nicodemus_conflicted: './story/nicodemus_conflicted.json',
+    simon_leper:          './story/simon_leper.json',
+    annas_patriarch:      './story/annas_patriarch.json',
+    martha_bethany:       './story/martha_bethany.json',
+    temple_spy:           './story/temple_spy.json',
+    caiaphas_priest:      './story/caiaphas_priest.json',
+    pilates_secretary:    './story/pilates_secretary.json',
+    barabbas_insurgent:   './story/barabbas_insurgent.json',
+    mary_magdalene:       './story/mary_magdalene.json',
+    john_disciple:        './story/john_disciple.json',
+    galilean_pilgrim:     './story/galilean_pilgrim.json',
+    jerusalem_local:      './story/jerusalem_local.json',
+    money_changer:        './story/money_changer.json',
+    execution_soldier:    './story/execution_soldier.json',
+    rhoda_servant:        './story/rhoda_servant.json',
+    judas_iscariot:       './story/judas_iscariot.json',
+    temple_curtain:       './story/temple_curtain.json',
+    eleazar_sadducee:     './story/eleazar_sadducee.json',
+    peter_restored:       './story/peter_restored.json',
+    peter_donkey:         './story/peter_donkey.json',
+    john_donkey:          './story/john_donkey.json',
+    mary_resurrection:    './story/mary_resurrection.json',
+    herods_servant:       './story/herods_servant.json',
 };
 /**
  * DialogueManager
@@ -88,15 +89,21 @@ export class DialogueManager {
     // ── Story loading ────────────────────────────────────────────────────────
 
     loadStoryForNPC(npc) {
-        // NPCs from config.js use storyFile / hasDialogue directly.
-        // NPCs from levels.js use dialogueId plus this DIALOGUE_ID_MAP.
-        const storyFile = npc.storyFile
-            || (npc.dialogueId != null ? DIALOGUE_ID_MAP[npc.dialogueId] : null);
+        let storyFile = npc.storyFile;
+
+        // If storyFile is an ID reference (no directory path or extension)
+        if (storyFile && !storyFile.includes('/') && !storyFile.endsWith('.json')) {
+            storyFile = DIALOGUE_ID_MAP[storyFile];
+        }
+
+        // Fallback for legacy dialogueId
+        if (!storyFile && npc.dialogueId) {
+            storyFile = DIALOGUE_ID_MAP[npc.dialogueId];
+        }
 
         if (!npc.hasDialogue || !storyFile) {
             console.log('[DialogueManager] NPC has no dialogue or storyFile:', npc.id, npc.name,
-                '| hasDialogue:', npc.hasDialogue, '| storyFile:', npc.storyFile,
-                '| dialogueId:', npc.dialogueId);
+                '| hasDialogue:', npc.hasDialogue, '| storyFile:', npc.storyFile);
             return Promise.resolve();
         }
         console.log('[DialogueManager] Loading story for NPC', npc.id, npc.name, 'from', storyFile);
@@ -115,7 +122,9 @@ export class DialogueManager {
     createStory(npcId) {
         const data = this.npcStories[npcId];
         if (!data) throw new Error('Story data not found for ' + npcId);
-        // Return the simple STORY format (same as vn.html)
+        if (this.inkLib && this.inkLib.Story) {
+            return new this.inkLib.Story(data);
+        }
         return data;
     }
 
@@ -239,6 +248,8 @@ export class DialogueManager {
             document.getElementById(id)?.classList.remove('active');
         });
 
+        console.log(`[DialogueManager] Initializing dialogue for ${npc.name} (${npc.id}). Reference: ${npc.storyFile || 'none'}`);
+
         this.setActiveNPC(npc);
         this.onCloseCallback = onClose;
         this.onMessageCallback = onMessage;
@@ -260,7 +271,7 @@ export class DialogueManager {
 
         // System handshake message, then start story
         this.addMsg('SECURE CONNECTION ESTABLISHED.', 'system');
-        this._stepStory(inkStory, 'start', onClose);
+        this._stepStory(inkStory, onClose);
     }
 
     closeDialogue(onClose) {
@@ -288,30 +299,33 @@ export class DialogueManager {
       *   3. Show ambient filler lines.
       *   4. Render choice buttons (or a [CLOSE] button at story end).
       *
-      * @param {object}   inkStory
+      * @param {object}   story - inkjs.Story instance
       * @param {Function} onClose
       */
-_stepStory(story, nodeId, onClose) {
-        const node = story[nodeId];
-        if (!node) {
-            this.showChoices(
-                [{ text: 'End Conversation', index: -1 }],
-                () => this.closeDialogue(onClose)
-            );
+_stepStory(story, onClose) {
+        if (!story) return;
+
+        // If the story is at the end, show closing button
+        if (!story.canContinue && (!story.currentChoices || story.currentChoices.length === 0)) {
+            this.showChoices([{ text: 'End Conversation', index: -1 }], () => this.closeDialogue(onClose));
             return;
         }
 
         this.addTyping(() => {
-            // Display NPC content
-            if (node.content) {
-                this.addMsg(node.content, 'npc');
+            let text = "";
+            while (story.canContinue) {
+                text += story.Continue();
             }
 
-            // Show choices or close button
-            if (node.choices && node.choices.length > 0) {
-                this.showChoices(node.choices.map((c, i) => ({ text: c.text, index: i, destination: c.destination })), (c) => {
-                    this.addMsg(c.text, 'player');
-                    setTimeout(() => this._stepStory(story, c.destination, onClose), 400);
+            if (text.trim()) {
+                this.addMsg(this.stripInkMarkers(text), 'npc');
+            }
+
+            if (story.currentChoices && story.currentChoices.length > 0) {
+                this.showChoices(story.currentChoices, (choice) => {
+                    this.addMsg(choice.text, 'player');
+                    story.ChooseChoiceIndex(choice.index);
+                    setTimeout(() => this._stepStory(story, onClose), 400);
                 });
             } else {
                 this.showChoices(
@@ -334,7 +348,7 @@ _stepStory(story, nodeId, onClose) {
      * @param {Function} onClose
      */
     continueStory(inkStory, appendMessage, showFiller, choiceEl, uiSounds, onClose) {
-        this._stepStory(inkStory, 'start', onClose);
+        this._stepStory(inkStory, onClose);
     }
 
     // ── Ink text utilities ───────────────────────────────────────────────────

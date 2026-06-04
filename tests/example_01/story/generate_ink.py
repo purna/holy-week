@@ -1,6 +1,6 @@
 import os
 
-story_dir = "/Users/nigelmorris/Documents/GitHub/Miracle Maker/tests/example_02/story"
+story_dir = "/Users/nigelmorris/Documents/GitHub/Miracle Maker/tests/example_01/story"
 
 if not os.path.exists(story_dir):
     os.makedirs(story_dir)
@@ -9,11 +9,30 @@ ink_contents = {}
 
 # --- CASE B: BETHANY / LAZARUS CONSPIRACY NPCs ---
 
-ink_contents["annas_highpriest.ink"] = """\
-// STORY: Act II - The Lazarus Conspiracy and the 'Price of Life' decree.
-// CHARACTERS: Annas (High Priest Emeritus).
-// BIBLE VERSES: John 11:45-53; John 18:13-24.
-// PROPHECIES: Psalm 2:1-2 ('Why do the nations conspire?').
+ink_contents["annas_patriarch.ink"] = """\
+// ============================================================
+// CHARACTER: Annas (High Priest Emeritus)
+// ACT: Act II
+// CASE: The Lazarus Conspiracy
+// CASE EXPORT: lazarus_plot
+// SOURCE: act2_case_2d.js → NPC 'annas_patriarch'
+// BACKGROUND: Former High Priest and patriarch of the family controlling the Temple. He views Jesus' miracles not as divine signs, but as political threats to the fragile peace with Rome.
+// BIBLE REFERENCE: John 11:45-53; John 18:13-24
+// ------------------------------------------------------------
+// PROPHECIES FULFILLED IN THIS CASE:
+//   - Psalm 2:1-2
+//     Insight: Annas embodies the conspiracy of rulers against the Lord's Anointed, prioritizing institutional stability over the manifest power of God.
+// ------------------------------------------------------------
+// BIBLICAL CONTEXT:
+//   Summary: After the raising of Lazarus, the chief priests and Pharisees called a meeting of the Sanhedrin. They feared that Jesus' popularity would lead to Roman intervention.
+//   Historical Note: The 'Price of Life' refers to the decision that it was 'expedient that one man should die for the people' to save the nation from Roman wrath.
+//   Significance: This miracle was the catalyst for the final decision to execute Jesus, as it proved He could not be ignored or easily discredited.
+// ------------------------------------------------------------
+// CASE FACTS (Truth Object):
+//   culprit: The Sanhedrin (Caiaphas/Annas)
+//   motive: Political expediency and fear of Roman reprisal.
+//   method: Issuing a secret decree to eliminate the witness (Lazarus) and arrest the Healer (Jesus) before the Passover crowds gathered.
+// ============================================================
 
 -> start
 === start ===
@@ -63,10 +82,29 @@ You want the full truth? The evidence of the resurrection was undeniable. That i
 """
 
 ink_contents["martha_bethany.ink"] = """\
-// STORY: Act II - Witnessing the miracle of Lazarus.
-// CHARACTERS: Martha of Bethany.
-// BIBLE VERSES: John 11:17-44; Luke 10:38-42.
-// PROPHECIES: Isaiah 26:19 ('Your dead will live, LORD; their bodies will rise').
+// ============================================================
+// CHARACTER: Martha of Bethany
+// ACT: Act II
+// CASE: The Lazarus Conspiracy
+// CASE EXPORT: lazarus_plot
+// SOURCE: act2_case_2d.js → NPC 'martha_bethany'
+// BACKGROUND: A practical and devoted follower who witnessed the resurrection of her brother in Bethany. She now guards her household against growing Temple surveillance.
+// BIBLE REFERENCE: John 11:17-44; Luke 10:38-42
+// ------------------------------------------------------------
+// PROPHECIES FULFILLED IN THIS CASE:
+//   - Isaiah 26:19
+//     Insight: 'Your dead will live, LORD; their bodies will rise.' Martha witnessed the literal fulfillment of the promise of resurrection power through Jesus.
+// ------------------------------------------------------------
+// BIBLICAL CONTEXT:
+//   Summary: Martha's brother Lazarus had been dead four days when Jesus arrived. Her profession of faith—'I know he will rise again in the resurrection at the last day'—was met with the revelation 'I am the resurrection and the life.'
+//   Historical Note: Bethany was close enough to Jerusalem (about 2 miles) that word of the miracle reached the Sanhedrin almost immediately, sparking the final plot.
+//   Significance: Martha's testimony provides the intimate family perspective on a miracle that terrified the religious establishment.
+// ------------------------------------------------------------
+// CASE FACTS (Truth Object):
+//   culprit: The Sanhedrin (Caiaphas/Annas)
+//   motive: Political expediency and fear of Roman reprisal.
+//   method: Issuing a secret decree to eliminate the witness (Lazarus) and arrest the Healer (Jesus) before the Passover crowds gathered.
+// ============================================================
 
 -> start
 === start ===
@@ -110,10 +148,29 @@ I saw Nicodemus come here at midnight. He warned us. He said the vote in the San
 """
 
 ink_contents["nicodemus_conflicted.ink"] = """\
-// STORY: Act II - The secret search for truth from within the Sanhedrin.
-// CHARACTERS: Nicodemus (The Pharisee).
-// BIBLE VERSES: John 3:1-21; John 7:50-52; John 19:39.
-// PROPHECIES: Jeremiah 29:13 ('You will seek me and find me').
+// ============================================================
+// CHARACTER: Nicodemus (The Pharisee)
+// ACT: Act II
+// CASE: The Lazarus Conspiracy
+// CASE EXPORT: lazarus_plot
+// SOURCE: act2_case_2d.js → NPC 'nicodemus'
+// BACKGROUND: A Pharisee and member of the Sanhedrin who seeks the truth in secret. He is torn between his position in the Council and his growing conviction that Jesus is from God.
+// BIBLE REFERENCE: John 3:1-21; John 7:50-52; John 19:39
+// ------------------------------------------------------------
+// PROPHECIES FULFILLED IN THIS CASE:
+//   - Jeremiah 29:13
+//     Insight: 'You will seek me and find me when you seek me with all your heart.' Nicodemus' nighttime search represents the honest seeker within a corrupt system.
+// ------------------------------------------------------------
+// BIBLICAL CONTEXT:
+//   Summary: Nicodemus first came to Jesus by night. Later, he attempted to defend Jesus' right to a fair hearing before the Sanhedrin, facing ridicule from his peers.
+//   Historical Note: As a 'ruler of the Jews,' Nicodemus risked his entire social and political standing by associating with the Nazarene.
+//   Significance: Nicodemus provides the 'insider' view of the Sanhedrin's deliberations and the growing legal conspiracy against Jesus.
+// ------------------------------------------------------------
+// CASE FACTS (Truth Object):
+//   culprit: The Sanhedrin (Caiaphas/Annas)
+//   motive: Political expediency and fear of Roman reprisal.
+//   method: Issuing a secret decree to eliminate the witness (Lazarus) and arrest the Healer (Jesus) before the Passover crowds gathered.
+// ============================================================
 
 -> start
 === start ===
@@ -157,10 +214,29 @@ I was the one who leaked the location of the guards to Martha. I couldn't let th
 """
 
 ink_contents["simon_leper.ink"] = """\
-// STORY: Act II - Testimony of social healing and preparation for burial.
-// CHARACTERS: Simon the Leper.
-// BIBLE VERSES: Matthew 26:6-13; Mark 14:3-9.
-// PROPHECIES: Isaiah 53:3-4 ('Surely he took up our pain and bore our suffering').
+// ============================================================
+// CHARACTER: Simon the Leper
+// ACT: Act II
+// CASE: The Lazarus Conspiracy
+// CASE EXPORT: lazarus_plot
+// SOURCE: act2_case_2d.js → NPC 'simon_leper'
+// BACKGROUND: Once an outcast, now a host. His house in Bethany became a refuge for Jesus and a place where the preparation for His burial began through Mary's anointing.
+// BIBLE REFERENCE: Matthew 26:6-13; Mark 14:3-9
+// ------------------------------------------------------------
+// PROPHECIES FULFILLED IN THIS CASE:
+//   - Isaiah 53:3-4
+//     Insight: 'Surely he took up our pain and bore our suffering.' Simon's healing from leprosy is a direct manifestation of the Messiah's role as the Great Physician.
+// ------------------------------------------------------------
+// BIBLICAL CONTEXT:
+//   Summary: Six days before the Passover, Jesus arrived in Bethany. A dinner was given in His honor at the home of Simon the Leper. During the meal, Mary anointed Jesus' feet with expensive perfume.
+//   Historical Note: Hosting a dinner for Jesus and Lazarus made Simon's house a focal point for Temple spies tracking the movement.
+//   Significance: Simon represents those restored from the margins of society who offer hospitality to the King, contrasting with the hostility of the elites.
+// ------------------------------------------------------------
+// CASE FACTS (Truth Object):
+//   culprit: The Sanhedrin (Caiaphas/Annas)
+//   motive: Political expediency and fear of Roman reprisal.
+//   method: Issuing a secret decree to eliminate the witness (Lazarus) and arrest the Healer (Jesus) before the Passover crowds gathered.
+// ============================================================
 
 -> start
 === start ===
@@ -199,6 +275,53 @@ The Temple spy left a silver coin on the table. A bribe to tell them when Jesus 
 * [Move forward.] -> closing
 
 === closing ===
+-> DONE
+"""
+
+ink_contents["teaching_mount.ink"] = """\
+// ============================================================
+// CHARACTER: Teacher from the Mount
+// ACT: Act II
+// CASE: The Lazarus Conspiracy
+// CASE EXPORT: lazarus_plot
+// SOURCE: act2_case_2d.js → NPC 'teaching_mount'
+// BACKGROUND: A teacher from the Mount of Olives area who heard Jesus's direct teaching. They share wisdom from the gatherings.
+// BIBLE REFERENCE: Matthew 5-7 (Sermon on the Mount)
+// ------------------------------------------------------------
+// PROPHECIES FULFILLED IN THIS CASE:
+//   - Psalm 118:22–23
+//     Insight: The stone the builders rejected has become the cornerstone.
+// ------------------------------------------------------------
+// BIBLICAL CONTEXT:
+//   Summary: Jesus taught on the Mount of Olives, often using parables to challenge the religious status quo.
+//   Historical Note: The Mount of Olives provided a natural amphitheater for large crowds.
+//   Significance: These teachings established Jesus's authority over the Law.
+// ------------------------------------------------------------
+// CASE FACTS (Truth Object):
+//   culprit: The Sanhedrin (Caiaphas/Annas)
+//   motive: Political expediency and fear of Roman reprisal.
+//   method: Issuing a secret decree to eliminate the witness (Lazarus) and arrest the Healer (Jesus) before the Passover crowds gathered.
+// ============================================================
+
+-> start
+=== start ===
+You walked up Mount Olivet. Most people approach Jerusalem and see only walls. He spoke in parables. People laughed, left, or argued. Then He asked the question.
+
+* [What question?] -> question
+* [The crowd's reaction?] -> crowd_reaction
+
+=== question ===
+He asked about the stone the builders rejected. The stone that becomes the cornerstone. The crowd was silent after that. Some looked confused. Some looked... afraid.
+
+* [Afraid of what?] -> closing
+
+=== crowd_reaction ===
+People laughed, then left, or argued. The parables were not comfortable. They were mirrors. Each person saw themselves — and didn't always like what they saw.
+
+* [And then?] -> closing
+
+=== closing ===
+He spoke as someone who owned the Law, not merely interpreted it. That was the most unsettling thing of all.
 -> DONE
 """
 

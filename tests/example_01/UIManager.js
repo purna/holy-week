@@ -127,6 +127,7 @@ export class UIManager {
                   onclick="${c.isLocked ? '' : `startCase('${c.id}')`}">
             <div class="case-title">${c.title}</div>
             <div class="case-subtitle">${c.subtitle}</div>
+            ${c.eventLocation ? `<div class="case-event-location">📍 ${c.eventLocation}</div>` : ''}
             <span class="case-status-label">${prog?.solved ? `✅ Solved — ${prog.score?.total} pts` : c.isLocked ? "🔒 Locked" : "🔍 Open"}</span>
           </div>`;
         }).join("")}

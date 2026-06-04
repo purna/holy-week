@@ -38,7 +38,7 @@ const LOCATIONS = {
     color: "#a78bfa",
     fact: "Jesus rose from the dead on the third day, defeating death.",
     ambiance: "The tomb is empty, and angels announce Jesus is alive."
-  }
+  },
 };
 
 export class LocationSystem {

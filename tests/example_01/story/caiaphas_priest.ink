@@ -3,7 +3,7 @@
 // ACT: Act III/IV
 // CASE: The Curtain and the Cross
 // CASE EXPORT: crucifixion_det
-// SOURCE: act3_case_improved.js → NPC 'temple_priest_pashhur'
+// SOURCE: act3_case_2d.js → NPC 'temple_priest_pashhur'
 // ------------------------------------------------------------
 // ============================================================
 //

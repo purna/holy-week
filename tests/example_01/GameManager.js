@@ -12,14 +12,14 @@ export class GameManager {
   }
 
   /** Starts a specific case and prepares all sub-systems. */
-  startCase(caseId) {
+  async startCase(caseId) {
     this.cm.startCase(caseId);
     const c = this.cm.getCase(caseId);
     if (!c) return;
 
     // Initialize sub-system states for the new case
     this.es.loadCase(c);
-    this.ns.loadCase(c);
+    await this.ns.loadCase(c);
     this.de.loadCase();
 
     // Direct UI to prepare the investigation environment

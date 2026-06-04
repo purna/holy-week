@@ -38,6 +38,15 @@ const LOCATIONS = {
     color: "#a78bfa",
     fact: "Jesus rose from the dead on the third day, defeating death.",
     ambiance: "The tomb is empty, and angels announce Jesus is alive."
+  },
+  galilee: {
+    id: "galilee",
+    name: "🌊 The Sea of Galilee",
+    region: "Galilee",
+    icon: "🐟",
+    color: "#38bdf8",
+    fact: "Jesus appeared to the disciples by the sea and reinstated Peter.",
+    ambiance: "The sound of waves and a charcoal fire on the shore."
   }
 };
 

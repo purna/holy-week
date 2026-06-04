@@ -3,7 +3,7 @@
 // ACT: Act IV/V
 // CASE: The Empty Tomb
 // CASE EXPORT: resurrection
-// SOURCE: act4_case_improved.js → NPC 'mary_magdalene' (dialogueId: mary_resurrection)
+// SOURCE: act4_case_3d.js → NPC 'mary_magdalene' (dialogueId: mary_resurrection)
 // BIBLE REFERENCE: John 20:1–18; Mark 16:9–11
 // ------------------------------------------------------------
 // PROPHECIES FULFILLED IN THIS CASE:

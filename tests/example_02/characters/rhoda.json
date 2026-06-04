@@ -1,0 +1,10 @@
+{
+  "id": "rhoda",
+  "name": "Rhoda",
+  "role": "Household Servant",
+  "avatar": "👧",
+  "truthfulness": 0.9,
+  "bibleRef": "Acts 12:13-15",
+  "background": "A young servant in the household of Mary. She is earnest, perceptive, and loyal to the movement.",
+  "factions": ["local"]
+}

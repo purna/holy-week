@@ -3,7 +3,7 @@
 // ACT: Act I
 // CASE: The Missing Donkey
 // CASE EXPORT: triumphal_entry
-// SOURCE: act1_case_improved.js → NPC 'local_skeptic'
+// SOURCE: act1_case_3d.js → NPC 'local_skeptic'
 // BIBLE REFERENCE: Matthew 21:10-11
 // ------------------------------------------------------------
 // PROPHECIES FULFILLED IN THIS CASE:

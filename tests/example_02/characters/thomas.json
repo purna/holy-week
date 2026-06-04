@@ -1,0 +1,10 @@
+{
+  "id": "thomas",
+  "name": "Thomas",
+  "role": "Analytical Disciple",
+  "avatar": "🤔",
+  "truthfulness": 0.9,
+  "bibleRef": "John 20:24-29; John 21:2",
+  "background": "Called 'the Twin.' He is distinguished by his analytical and skeptical mindset, requiring evidence before confirming his faith.",
+  "factions": ["disciples"]
+}

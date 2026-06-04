@@ -3,7 +3,7 @@
 // ACT: Act III
 // CASE: The Severed Ear
 // CASE EXPORT: gethsemane_arrest
-// SOURCE: act3_case_improved.js → NPC 'simon_peter'
+// SOURCE: act3_case_2d.js → NPC 'simon_peter'
 // BACKGROUND: The informal leader of the inner circle[cite: 1]. He is currently hidden in the shadows outside the high priest's courthouse, deeply traumatized, defensive, and swinging violently between ra...
 // BIBLE REFERENCE: John 18:10-11; Matthew 26:51-54
 // ------------------------------------------------------------

@@ -3,7 +3,7 @@
 // ACT: Act I
 // CASE: The Missing Donkey
 // CASE EXPORT: triumphal_entry
-// SOURCE: act1_case_improved.js → NPC 'owner'
+// SOURCE: act1_case_2d.js → NPC 'owner'
 // BIBLE REFERENCE: Mark 11:3–6 (unnamed owner)
 // ------------------------------------------------------------
 // PROPHECIES FULFILLED IN THIS CASE:

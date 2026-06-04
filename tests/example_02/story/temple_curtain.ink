@@ -3,6 +3,9 @@
 // ACT: Act III
 // CASE: The Curtain and the Cross
 // CASE ID: crucifixion_site
+// CASE EXPORT: crucifixion_site
+// SOURCE: temple_curtain.ink
+// BACKGROUND: A Temple priest on duty when the veil tore and the earthquake struck.
 // BIBLE REFERENCE: Matthew 27:45-54; Mark 15:33-39; Luke 23:44-49
 // ------------------------------------------------------------
 // PROPHECIES FULFILLED IN THIS CASE:
@@ -17,6 +20,9 @@
 //   Summary: At the moment of Jesus's death, the heavy curtain (Parokhet) shielding the Holy of Holies was torn in half from top to bottom. This was accompanied by a localized earthquake and a three-hour darkness that began at noon.
 //   Significance: The top-down tear signifies that the barrier between God and man was removed by God Himself, not by human effort.
 // ------------------------------------------------------------
+// CASE FACTS (Truth Object):
+//   Culprit: none
+//   Motive: Structural and spiritual transformation at the moment of sacrifice.
 //
 
 -> start

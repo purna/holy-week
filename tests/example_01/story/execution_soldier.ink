@@ -1,9 +1,9 @@
 // ============================================================
 // CHARACTER: Marcus (Execution Soldier)
-// ACT: Act III/IV
+// ACT: Act III
 // CASE: The Curtain and the Cross
 // CASE EXPORT: crucifixion_det
-// SOURCE: act4_case_improved.js → NPC 'marcus'
+// SOURCE: act4_case_2d.js → NPC 'marcus'
 // ------------------------------------------------------------
 // ============================================================
 //

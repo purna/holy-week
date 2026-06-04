@@ -3,7 +3,7 @@
 // ACT: Act I
 // CASE: The Missing Donkey
 // CASE EXPORT: triumphal_entry
-// SOURCE: act1_case_improved.js → SUSPECT 'sadducee_noble' (Eleazar ben Simon)
+// SOURCE: act1_case_2d.js → SUSPECT 'sadducee_noble' (Eleazar ben Simon)
 // BIBLE REFERENCE: Acts 5:17 (Sadducean opposition context)
 // ------------------------------------------------------------
 // PROPHECIES FULFILLED IN THIS CASE:

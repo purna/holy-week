@@ -3,7 +3,7 @@
 // ACT: Act II
 // CASE: The Price of Life
 // CASE EXPORT: lazarus_plot
-// SOURCE: act2_case_improved.js → NPC 'temple_spy'
+// SOURCE: act2_case_2d.js → NPC 'temple_spy'
 // BACKGROUND: An administrative operative and courier under the payroll of the high priest's household, tasked with logging suspicious crowd densities, tracking routes, and profiling revolutionary movemen...
 // BIBLE REFERENCE: John 18:10; Luke 22:52
 // ------------------------------------------------------------

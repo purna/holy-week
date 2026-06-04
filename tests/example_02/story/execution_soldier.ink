@@ -3,7 +3,7 @@
 // ACT: Act III/IV
 // CASE: The Curtain and the Cross
 // CASE EXPORT: crucifixion_det
-// SOURCE: act4_case_improved.js → NPC 'marcus'
+// SOURCE: act4_case_3d.js → NPC 'marcus'
 // ------------------------------------------------------------
 // ============================================================
 //

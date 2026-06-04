@@ -10,10 +10,22 @@ ink_contents = {}
 # --- CASE B: BETHANY / LAZARUS CONSPIRACY NPCs ---
 
 ink_contents["annas_highpriest.ink"] = """\
+// ============================================================
+// CHARACTER: Annas (High Priest Emeritus)
+// ACT: Act II
+// CASE: The Lazarus Conspiracy
+// CASE EXPORT: lazarus_plot
+// SOURCE: annas_highpriest.ink
+// BACKGROUND: The elder statesman and former High Priest; the hidden kingmaker.
 // STORY: Act II - The Lazarus Conspiracy and the 'Price of Life' decree.
 // CHARACTERS: Annas (High Priest Emeritus).
 // BIBLE VERSES: John 11:45-53; John 18:13-24.
+// BIBLE REFERENCE: John 18:13
 // PROPHECIES: Psalm 2:1-2 ('Why do the nations conspire?').
+// PROPHECIES FULFILLED IN THIS CASE: Psalm 2:1-2
+// BIBLICAL CONTEXT: Summary: The Sanhedrin's response to the resurrection of Lazarus.
+// CASE FACTS (Truth Object): Culprit: none (institutional decision). Motive: Security preservation.
+// ============================================================
 
 -> start
 === start ===

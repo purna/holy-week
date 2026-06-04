@@ -399,10 +399,16 @@
     import { OrbitalSelectMatrixModal } from "./mapModal.js";
 
     // Narrative Case File Data Struct Imports
-    import { act1CaseA, act1CaseB } from "./act1_case_improved.js";
-    import { act2CaseA, act2CaseB } from "./act2_case_improved.js";
-    import { act3CaseA, act3CaseB, act3CaseC } from "./act3_case_improved.js";
-    import { act4CaseA, act4CaseB } from "./act4_case_improved.js";
+    import { act1CaseA, act1CaseB } from "./act1_case.js";
+    import { act2CaseA, act2CaseB } from "./act2_case.js";
+    import { act3CaseA, act3CaseB, act3CaseC, act3CaseD, act3CaseE } from "./act3_case.js";
+    import { act4CaseA, act4CaseB, act4CaseC } from "./act4_case.js";
+
+
+    // ── Configuration ──────────────────────────────────────────
+    const CONFIG = {
+      unlockAllCases: false // Set to true to bypass case requirements for testing
+    };
 
     /**
      * @class GameEngine
@@ -453,15 +459,20 @@
        * @description Populates the CaseManager registry with separated historical chapter modules.
        */
       registerAllCases() {
-        this.cm.registerCase(act1CaseA);
-        this.cm.registerCase(act1CaseB);
-        this.cm.registerCase(act2CaseA);
-        this.cm.registerCase(act2CaseB);
-        this.cm.registerCase(act3CaseA);
-        this.cm.registerCase(act3CaseB);
-        this.cm.registerCase(act3CaseC);
-        this.cm.registerCase(act4CaseA);
-        this.cm.registerCase(act4CaseB);
+        const allCases = [
+          act1CaseA, act1CaseB,
+          act2CaseA, act2CaseB,
+          act3CaseA, act3CaseB, act3CaseC, act3CaseD,
+          act4CaseA, act4CaseB, act4CaseC
+        ];
+
+        allCases.forEach(caseData => {
+          // Apply God-mode unlock if configuration is enabled
+          if (CONFIG.unlockAllCases) {
+            caseData.requires = null;
+          }
+          this.cm.registerCase(caseData);
+        });
 
         // Register Ink library with DialogueManager
         if (typeof inkjs !== 'undefined') this.dm.setInkLib(inkjs);
@@ -536,7 +547,7 @@
         document.getElementById('btn-open-map').onclick = () => {
           this.audio.playUI();
           if (!this.mapModal) {
-            this.mapModal = new OrbitalSelectMatrixModal(this.cm, (caseId) => this.loadCase(caseId));
+            this.mapModal = new OrbitalSelectMatrixModal(this.cm, this.ls, (caseId) => this.loadCase(caseId));
           }
           this.mapModal.open();
         };
@@ -547,7 +558,7 @@
           setTimeout(() => {
             document.getElementById('loading-screen').style.display = 'none';
             if (!this.mapModal) {
-              this.mapModal = new OrbitalSelectMatrixModal(this.cm, (caseId) => this.loadCase(caseId));
+              this.mapModal = new OrbitalSelectMatrixModal(this.cm, this.ls, (caseId) => this.loadCase(caseId));
             }
             this.mapModal.open();
             this.animate();

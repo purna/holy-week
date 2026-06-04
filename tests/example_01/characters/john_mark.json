@@ -1,0 +1,10 @@
+{
+  "id": "john_mark",
+  "name": "John Mark",
+  "role": "Son of the House Owner",
+  "avatar": "👨‍🦰",
+  "truthfulness": 0.75,
+  "bibleRef": "Acts 12:12; Mark 14:51-52",
+  "background": "The teenage son of Mary, owner of the Upper Room. He is observant and later records the Gospel of Mark based on Peter's accounts.",
+  "factions": ["local", "scribes"]
+}

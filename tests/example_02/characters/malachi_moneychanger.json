@@ -1,0 +1,10 @@
+{
+  "id": "money_changer",
+  "name": "Malachi",
+  "role": "Temple Money Changer",
+  "avatar": "🤑",
+  "truthfulness": 0.5,
+  "bibleRef": "Mark 11:15",
+  "background": "A licensed merchant operating under Sanhedrin authorization. He specializes in high-margin currency exchange for pilgrims requiring Tyrian shekels.",
+  "factions": ["temple"]
+}

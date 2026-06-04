@@ -26,13 +26,50 @@ const DIALOGUE_ID_MAP = {
     mary_resurrection: './story/mary_resurrection.json',
     sadducee_opposition: './story/sadducee_opposition.json',
     peter_denial: './story/peter_denial.json',
+    mary_magdalene: './story/mary_magdalene.json',
     herods_servant: './story/herods_servant.json',
     temple_curtain: './story/temple_curtain.json',
     centurion_witness: './story/centurion_witness.json',
     pontius_pilate: './story/pontius_pilate.json',
     woman_cloak: './story/woman_cloak.json',
     joseph_arimathea: './story/joseph_arimathea.json',
+    temple_spy: './story/temple_spy.json',
+    galilean_pilgrim: './story/galilean_pilgrim.json',
+    jerusalem_local: './story/jerusalem_local.json',
+    money_changer: './story/money_changer.json',
+    execution_soldier: './story/execution_soldier.json',
+    annas_patriarch: './story/annas_patriarch.json',
+    caiaphas_priest: './story/caiaphas_priest.json',
+    barabbas_insurgent: './story/barabbas_insurgent.json',
+    pilates_secretary: './story/pilates_secretary.json',
+    judas_iscariot: './story/judas_iscariot.json',
+    john_disciple: './story/john_disciple.json',
+    jesus_reinstatement: './story/jesus_reinstatement.json',
+    peter_reinstated: './story/peter_reinstated.json',
+    false_witness: './story/false_witness.json',
+    nicodemus_conflicted: './story/nicodemus_conflicted.json',
+    simon_leper: './story/simon_leper.json',
 };
+
+/**
+ * Maps profileId to their character JSON file paths.
+ */
+export const PROFILE_ID_MAP = {
+    caiaphas: './characters/caiaphas.json',
+    peter: './characters/peter.json',
+    ananias_witness: './characters/ananias_witness.json',
+    thomas: './characters/thomas.json',
+    mary_magdalene: './characters/mary_magdalene.json',
+    nathanael_disciple: './characters/nathanael_disciple.json',
+};
+
+/**
+ * Helper to resolve a path from a potentially shorthand ID reference.
+ */
+export function getProfilePath(ref) {
+    return PROFILE_ID_MAP[ref] || ref;
+}
+
 /**
  * DialogueManager
  *
@@ -72,8 +109,9 @@ export class DialogueManager {
     loadStoryForNPC(npc) {
         // NPCs from config.js use storyFile / hasDialogue directly.
         // NPCs from levels.js use dialogueId plus this DIALOGUE_ID_MAP.
-        const storyFile = npc.storyFile
-            || (npc.dialogueId != null ? DIALOGUE_ID_MAP[npc.dialogueId] : null);
+        // We now allow storyFile to be an ID reference.
+        const storyRef = npc.storyFile || npc.dialogueId;
+        const storyFile = DIALOGUE_ID_MAP[storyRef] || storyRef;
 
         if (!storyFile) {
             console.log('[DialogueManager] NPC has no dialogue or storyFile:', npc.id, npc.name,
@@ -255,94 +293,61 @@ export class DialogueManager {
      * @param {Function} onTag
      */
     _stepStory(inkStory, onClose, onTag) {
-        const { barChoices } = this._getEls();
-
-        // Hide choices while processing
+        // Ensure the choices bar is hidden while text lines are still arriving
         this.showChoices(null, () => { });
 
-        // ── Raw collection + sanitization pipeline ──────────────────────────────
-        // All raw ink text is stripped of Wikilink markers (#, ^, /#) before
-        // it ever touches the Typewriter or WhatsApp bubble DOM elements.
-        // This prevents raw syntax flashing on screen.
-        let raw = '';
-        while (inkStory.canContinue) {
-            raw += inkStory.Continue();
-            if (inkStory.currentTags && typeof onTag === 'function') {
-                inkStory.currentTags.forEach(tag => onTag(tag));
+        if (inkStory.canContinue) {
+            this.addTyping(() => {
+                // ink-js runtime: story.Continue() handles the JSON traversal and returns plain text.
+                // This avoids manual JSON parsing or flattening.
+                const rawLine = inkStory.Continue();
+                const line = (rawLine || '').trim();
+
+                if (line) {
+                    this.addMsg(line, 'npc');
+
+                    // process line tags immediately (e.g. # reveal:evidence_id)
+                    if (inkStory.currentTags && typeof onTag === 'function') {
+                        inkStory.currentTags.forEach(tag => onTag(tag));
+                    }
+
+                    // Narrative flavor: occasionally show detective system processing messages
+                    const fillers = [
+                        '⚠️ Hyper-vigilance index spiking...',
+                        '🔍 Scanning social tone subtext...',
+                        '📉 Risk assessment: vulnerability widening.',
+                        '🔒 Defensive parsing subroutines active...',
+                    ];
+                    if (Math.random() > 0.8) {
+                        this.addMsg(fillers[Math.floor(Math.random() * fillers.length)], 'npc-filler');
+                    }
+                }
+
+                // Recurse to handle the next line, or move to choices if finished
+                setTimeout(() => this._stepStory(inkStory, onClose, onTag), line ? 450 : 0);
+            });
+        } else {
+            // No more lines. Retrieve choices from the runtime state.
+            const choices = inkStory.currentChoices;
+
+            if (choices && choices.length > 0) {
+                this.showChoices(choices, (choice) => {
+                    this.addMsg(choice.text, 'player');
+                    // ink-js: story.ChooseChoiceIndex(index) updates the internal state machine
+                    inkStory.ChooseChoiceIndex(choice.index);
+                    setTimeout(() => this._stepStory(inkStory, onClose, onTag), 300);
+                });
+            } else {
+                // Terminal node (-> END or -> DONE)
+                this.showChoices(
+                    [{ text: '🔄 [ CLOSE CONNECTION ]', index: -1 }],
+                    () => this.closeDialogue(onClose)
+                );
             }
         }
-        const sanitizedLine = this.stripInkMarkers(raw).trim();
-
-        // Show typing, then NPC bubble + filler + choices
-        this.addTyping(() => {
-            if (sanitizedLine) this.addMsg(sanitizedLine, 'npc');
-
-            const fillers = [
-                '⚠️ Hyper-vigilance index spiking...',
-                '🔍 Scanning social tone subtext...',
-                '📉 Risk assessment: vulnerability widening.',
-                '🧠 Anxious thought-loop running worst-case models.',
-                '🔒 Defensive parsing subroutines active...',
-                '💓 Autonomic heart-rate variation trace active...',
-            ];
-            const fillerCount = sanitizedLine ? 2 : 0;
-            const delay = 350;
-
-            for (let i = 0; i < fillerCount; i++) {
-                setTimeout(() => {
-                    const msg = fillers[Math.floor(Math.random() * fillers.length)];
-                    this.addMsg(msg, 'npc-filler');
-                }, (i + 1) * delay);
-            }
-
-            setTimeout(() => {
-                const choices = inkStory.currentChoices;
-
-                if (choices.length > 0) {
-                    this.showChoices(choices, (c) => {
-                        this.addMsg(c.text, 'player');
-                        inkStory.ChooseChoiceIndex(c.index);
-                        setTimeout(() => this._stepStory(inkStory, onClose, onTag), 400);
-                    });
-                } else {
-                    // End of story — offer close button
-                    this.showChoices(
-                        [{ text: '🔄 [ CLOSE CONNECTION ]', index: -1 }],
-                        () => this.closeDialogue(onClose)
-                    );
-                }
-            }, (fillerCount + 1) * delay);
-        });
     }
 
-    /**
-     * Legacy public entry-point kept for compatibility with existing callers.
-     * Prefer openDialogue() for new code.
-     *
-     * @param {object}   inkStory
-     * @param {Function} appendMessage  — ignored (addMsg used internally now)
-     * @param {Function} showFiller     — ignored
-     * @param {Element}  choiceEl       — ignored
-     * @param {object}   uiSounds       — ignored
-     * @param {Function} onClose
-     */
-    continueStory(inkStory, appendMessage, showFiller, choiceEl, uiSounds, onClose) {
-        this._stepStory(inkStory, onClose);
-    }
-
-    // ── Ink text utilities ───────────────────────────────────────────────────
-
-    stripInkMarkers(s) {
-        if (!s) return '';
-        return s.split(/\r?\n/)
-            .map(line => {
-                let l = (line || '').trim();
-                if (l === '#' || l === '/#') return '';
-                if (l.startsWith('^')) l = l.slice(1).trim();
-                if (l.startsWith('#')) l = l.slice(1).trim();
-                return l;
-            })
-            .filter(Boolean)
-            .join('\n');
+    continueStory(inkStory, onClose, onTag) {
+        this._stepStory(inkStory, onClose, onTag);
     }
 }

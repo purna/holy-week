@@ -3,7 +3,7 @@
 // ACT: Act II
 // CASE: The Price of Life
 // CASE EXPORT: lazarus_plot
-// SOURCE: act2_case_improved.js → NPC 'annas_patriarch'
+// SOURCE: act2_case_2d.js → NPC 'annas_patriarch'
 // BACKGROUND: The elderly patriarch of the ruling Sadducean family. Though Rome formally deposed him years ago, he remains the true systemic power behind the high priesthood, controlling his sons and son-...
 // BIBLE REFERENCE: John 18:13; Luke 3:2; Acts 4:6
 // ------------------------------------------------------------

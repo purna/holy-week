@@ -13,7 +13,7 @@
 
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
     href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Space+Mono:wght@400;700&display=swap"
     rel="stylesheet" />
@@ -35,6 +35,7 @@
   <link rel="stylesheet" href="css/game-complete.css">
   <link rel="stylesheet" href="css/misc.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
 </head>
 
@@ -51,20 +52,20 @@
         <div style="display:flex;gap:8px;align-items:center">
           <div class="header-score">0 pts</div>
           <div class="header-rank" id="hdr-rank">Rookie</div>
+
+          <div class="navbar">
           <button class="a11y-btn" onclick="showResetModal()" title="Reset Game" aria-label="Reset all game progress"><i class="fas fa-undo"></i></button>
           
           <button class="a11y-btn" onclick="showInstructionsModal()" title="Instructions" aria-label="View game instructions"><i class="fas fa-info-circle"></i></button>
           
           <button class="a11y-btn" id="a11y-btn-map" onclick="showScreen('a11y')"
             aria-label="Accessibility settings"><i class="fa-solid fa-gear"></i></button>
+          </div>
         </div>
       </div>
       <div class="metrics-bar" style="display:flex; justify-content: space-around; background: rgba(0,0,0,0.2); padding: 8px; font-size: 0.8rem; border-bottom: 1px solid rgba(255,255,255,0.1);">
         <div class="metric-item">🏛 Reputation: <span class="val-reputation">100</span></div>
         <div class="metric-item">❓ Doubt: <span class="val-doubt">0</span></div>
-      </div>
-      <div class="map-scroll" role="list" aria-label="Locations">
-        </div>
       </div>
       <div class="map-scroll" role="list" aria-label="Locations">
         <p class="map-intro" id="map-intro">Your detective agency has received reports from across the city. Where will
@@ -87,10 +88,12 @@
           <div class="header-title" id="cases-loc-name">Location</div>
           <div class="header-subtitle">Choose a case</div>
         </div>
+        <div class="navbar">
         <button class="a11y-btn" onclick="showInstructionsModal()" title="Instructions" aria-label="View game instructions"><i class="fas fa-info-circle"></i></button>
 
         <button class="a11y-btn" id="a11y-btn-cases" onclick="showScreen('a11y')"
           aria-label="Accessibility settings"><i class="fa-solid fa-gear"></i></button>
+          </div>
       </div>
       <div class="nav-status-bar">
         <button class="back-btn" id="back-btn-map" onclick="showScreen('map')" aria-label="Back to city events">← Events Map</button>
@@ -109,11 +112,14 @@
           <div class="header-title" id="inv-case-title">Case</div>
           <div class="header-subtitle" id="inv-case-sub"></div>
         </div>
+        <div class="navbar">
         <button class="a11y-btn" onclick="showInstructionsModal()" title="Instructions" aria-label="View game instructions"><i class="fas fa-info-circle"></i></button>
 
-        <button class="a11y-btn" id="a11y-btn-investigation" onclick="showScreen('a11y')"
-          aria-label="Accessibility settings"><i class="fa-solid fa-gear"></i></button>
+          <button class="a11y-btn" id="a11y-btn-investigation" onclick="showScreen('a11y')"
+            aria-label="Accessibility settings"><i class="fa-solid fa-gear"></i></button>
+        </div>
       </div>
+
       <div class="nav-status-bar">
         <button class="back-btn" id="back-btn-cases" onclick="showScreen('cases')" aria-label="Back to case list">← Cases</button>
         <div class="header-metrics-group">
@@ -166,7 +172,7 @@
           <div class="header-subtitle">Adjust for your needs</div>
         </div>
       </div>
-      <button class="back-btn" id="a11y-back-btn" aria-label="Back">← Back</button>
+      <button class="back-btn" id="a11y-back-btn" onclick="showScreen('map')" aria-label="Back">← Back</button>
       <div class="a11y-scroll">
 
         <div class="a11y-section-title">Vision</div>
@@ -354,32 +360,42 @@
   <script type="module">
     import { CaseManager } from "./caseManager.js";
     import { EvidenceSystem } from "./evidenceSystem.js";
-    import { NPCSystem } from "./npcSystem.js";
+    import { NPCSystem, PROFILE_ID_MAP } from "./NPCSystem.js";
     import { DeductionEngine } from "./deductionEngine.js";
     import { LocationSystem } from "./locationSystem.js";
     import { AccessibilityManager } from "./accessibility.js";
     import { LabUI } from "./labUI.js";
     import { ChatUI } from "./chatUI.js";
-    import { DialogueManager } from "./dialogueManager.js";
-    import { act1CaseA, act1CaseB } from "./act1_case_improved.js";
-    import { act2CaseA, act2CaseB } from "./act2_case_improved.js";
-    import { act3CaseA, act3CaseB, act3CaseC } from "./act3_case_improved.js";
-    import { act4CaseA, act4CaseB } from "./act4_case_improved.js";
+    import { DialogueManager, DIALOGUE_ID_MAP } from "./dialogueManager.js";
+    import { act1CaseA, act1CaseB } from "./act1_case.js";
+    import { act2CaseA, act2CaseB } from "./act2_case.js";
+    import { act3CaseA, act3CaseB, act3CaseC,  act3CaseD, act3CaseE} from "./act3_case.js";
+    import { act4CaseA, act4CaseB, act4CaseC } from "./act4_case.js";
     import { AudioManager } from "./audioManager.js";
     import { UIManager } from "./UIManager.js";
     import { GameManager } from "./GameManager.js";
 
+    // ── Configuration ──────────────────────────────────────────
+    const CONFIG = {
+      unlockAllCases: false // Set to true to bypass case requirements for testing
+    };
+
     // ── Bootstrap ──────────────────────────────────────────────
     const cm = new CaseManager();
-    cm.registerCase(act1CaseA);
-    cm.registerCase(act1CaseB);
-    cm.registerCase(act2CaseA);
-    cm.registerCase(act2CaseB);
-    cm.registerCase(act3CaseA);
-    cm.registerCase(act3CaseB);
-    cm.registerCase(act3CaseC);
-    cm.registerCase(act4CaseA);
-    cm.registerCase(act4CaseB);
+
+    const cases = [
+      act1CaseA, act1CaseB,
+      act2CaseA, act2CaseB,
+      act3CaseA, act3CaseB, act3CaseC, act3CaseD, act3CaseE,
+      act4CaseA, act4CaseB, act4CaseC
+    ];
+
+    cases.forEach(c => {
+      if (CONFIG.unlockAllCases) {
+        c.requires = null;
+      }
+      cm.registerCase(c);
+    });
 
     const a11y = new AccessibilityManager();
     a11y.restorePreferences();
@@ -413,19 +429,34 @@
     window.playAgain = gm.resetGame.bind(gm);
     window.closeGameComplete = ui.closeGameComplete.bind(ui);
 
-    // Preload all NPC stories
+    // Preload all NPC stories and character profiles
     const allNPCs = [];
+    const profileUrls = new Set();
     cm.getAllCases().forEach(c => {
       (c.npcs || []).forEach(npc => {
-        if (npc.hasDialogue && npc.storyFile && !allNPCs.some(existing => existing.id === npc.id)) {
+        let pFile = npc.profileFile;
+        if (pFile && !pFile.includes('/') && !pFile.endsWith('.json')) {
+          pFile = PROFILE_ID_MAP[pFile];
+        }
+        if (pFile) profileUrls.add(pFile);
+
+        let sFile = npc.storyFile || (npc.dialogueId ? DIALOGUE_ID_MAP[npc.dialogueId] : null);
+        if (sFile && !sFile.includes('/') && !sFile.endsWith('.json')) {
+          sFile = DIALOGUE_ID_MAP[sFile];
+        }
+
+        if (npc.hasDialogue && sFile && !allNPCs.some(existing => existing.id === npc.id)) {
           allNPCs.push(npc);
         }
       });
     });
 
-    // Load stories in background
-    Promise.all(allNPCs.map(npc => dm.loadStoryForNPC(npc))).then(() => {
-      console.log('[Game] Loaded', allNPCs.length, 'NPC dialogue stories');
+    // Load stories and profiles in background
+    const storyLoads = allNPCs.map(npc => dm.loadStoryForNPC(npc));
+    const profileLoads = Array.from(profileUrls).map(url => ns.loader.loadProfile(url));
+
+    Promise.all([...storyLoads, ...profileLoads]).then(() => {
+      console.log('[Game] Loaded', allNPCs.length, 'stories and', profileUrls.size, 'profiles');
     }).catch(e => console.warn('[Game] Some stories failed to load:', e));
 
     // ── Global Events ────────────────────────────────────────────

@@ -3,7 +3,7 @@
 // ACT: Act I
 // CASE: The Overturned Tables
 // CASE EXPORT: temple_cleansing
-// SOURCE: act1_case_improved.js → NPC 'garrison_guard'
+// SOURCE: act1_case_2d.js → NPC 'garrison_guard'
 // BACKGROUND: A working-class Roman auxiliary stationed on the high outer wall walkways. He views the regional theological squabbles with complete military detachment.
 // BIBLE REFERENCE: Luke 19:47-48
 // ------------------------------------------------------------

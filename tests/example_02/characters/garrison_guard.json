@@ -1,0 +1,10 @@
+{
+  "id": "roman_guard",
+  "name": "Legionary Guard",
+  "role": "Antonia Fortress Auxiliary",
+  "avatar": "🛡️",
+  "truthfulness": 0.7,
+  "bibleRef": "Matthew 27:54; Matthew 28:2-4",
+  "background": "Professional infantrymen stationed in Jerusalem. They view regional religious dynamics with cynicism until supernatural events force a change in perspective.",
+  "factions": ["roman"]
+}

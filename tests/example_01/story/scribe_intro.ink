@@ -1,6 +1,6 @@
 // ============================================================
 // CHARACTER: Senior Scribe - Intro
-// ACT: Global / Board
+// ACT: II
 // CASE: Investigation Board
 // CASE ID: investigation_board
 // SOURCE: ORPHAN FILE (not referenced in any case file)

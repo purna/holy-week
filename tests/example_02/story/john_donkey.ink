@@ -1,7 +1,24 @@
+// ============================================================
 // STORY: Act I - Tracking the path of the Triumphal Entry.
 // CHARACTERS: John the Apostle.
+// ACT: Act I
+// CASE: The Missing Donkey
+// CASE EXPORT: triumphal_entry
+// SOURCE: john_donkey.ink
+// BACKGROUND: The Gospel author who witnessed the triumphal entry and recorded the crowd's response.
 // BIBLE VERSES: Matthew 21:1-11; Mark 11:1-11; Luke 19:28-44; John 12:12-19.
+// BIBLE REFERENCE: John 12:12-19
+// ------------------------------------------------------------
 // PROPHECIES: Zechariah 9:9 ('See, your king comes to you... gentle and riding on a donkey').
+// PROPHECIES FULFILLED IN THIS CASE: Zechariah 9:9
+// ------------------------------------------------------------
+// BIBLICAL CONTEXT:
+//   Summary: The fulfillment of the King's arrival in Jerusalem as witnessed by the inner circle.
+// ------------------------------------------------------------
+// CASE FACTS (Truth Object):
+//   Culprit: none
+//   Motive: Prophetic fulfillment of the humble king.
+// ============================================================
 
 -> start
 === start ===

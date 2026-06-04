@@ -2,8 +2,9 @@
 import * as THREE from 'three';
 
 export class OrbitalSelectMatrixModal {
-    constructor(caseManager, loadCaseCallback) {
+    constructor(caseManager, locationSystem, loadCaseCallback) {
         this.cm = caseManager;
+        this.ls = locationSystem;
         this.loadCase = loadCaseCallback;
         this.scene = null;
         this.camera = null;
@@ -64,9 +65,9 @@ export class OrbitalSelectMatrixModal {
         tree.className = 'lsm-tree';
         const panel = this.overlay.querySelector('.modal-panel');
         if (panel) {
-          panel.appendChild(tree);
+            panel.appendChild(tree);
         } else {
-          this.overlay.appendChild(tree);
+            this.overlay.appendChild(tree);
         }
         this.treeEl = tree;
 
@@ -165,39 +166,9 @@ export class OrbitalSelectMatrixModal {
 
     showAllCasesOnGlobe() {
         this.hideAllMarkers();
-        this.cm.getAllCases().forEach((c, index) => {
-            const total = this.cm.getAllCases().length;
-            const phi = Math.PI / 2;
-            const theta = (index / total) * Math.PI * 2;
-
-            const marker = new THREE.Mesh(
-                new THREE.SphereGeometry(0.45, 16, 16),
-                new THREE.MeshStandardMaterial({ color: c.color, emissive: c.color, emissiveIntensity: 1.8 })
-            );
-            marker.position.set(
-                Math.sin(phi) * Math.cos(theta) * 7,
-                Math.sin(phi) * Math.sin(theta) * 7,
-                Math.cos(phi) * 7
-            );
-            this.core.add(marker);
-            this.markers.push(marker);
-
-            const dot = document.createElement('div');
-            dot.className = 'map-node-dot';
-            dot.style.backgroundColor = c.color ? `#${c.color.toString(16).padStart(6, '0')}` : '#60a5fa';
-
-            const label = document.createElement('div');
-            label.className = 'map-node-label';
-            label.innerText = c.title;
-
-            this.wrapper.appendChild(dot);
-            this.wrapper.appendChild(label);
-            this.labels.push({ dot, label });
-
-            dot.onclick = () => {
-                this.close();
-                this.loadCase(c.id);
-            };
+        const allCases = this.cm.getAllCases();
+        allCases.forEach((c, index) => {
+            this._renderMarkerForCase(c, index, allCases.length);
         });
     }
 
@@ -205,39 +176,54 @@ export class OrbitalSelectMatrixModal {
         this.hideAllMarkers();
         const actCases = this.actGroups[actLabel] || [];
         actCases.forEach((c, index) => {
-            const total = actCases.length;
-            const phi = Math.PI / 2;
-            const theta = (index / total) * Math.PI * 2;
-
-            const marker = new THREE.Mesh(
-                new THREE.SphereGeometry(0.45, 16, 16),
-                new THREE.MeshStandardMaterial({ color: c.color, emissive: c.color, emissiveIntensity: 1.8 })
-            );
-            marker.position.set(
-                Math.sin(phi) * Math.cos(theta) * 7,
-                Math.sin(phi) * Math.sin(theta) * 7,
-                Math.cos(phi) * 7
-            );
-            this.core.add(marker);
-            this.markers.push(marker);
-
-            const dot = document.createElement('div');
-            dot.className = 'map-node-dot';
-            dot.style.backgroundColor = c.color ? `#${c.color.toString(16).padStart(6, '0')}` : '#60a5fa';
-
-            const label = document.createElement('div');
-            label.className = 'map-node-label';
-            label.innerText = c.title;
-
-            this.wrapper.appendChild(dot);
-            this.wrapper.appendChild(label);
-            this.labels.push({ dot, label });
-
-            dot.onclick = () => {
-                this.close();
-                this.loadCase(c.id);
-            };
+            this._renderMarkerForCase(c, index, actCases.length);
         });
+    }
+
+    _renderMarkerForCase(c, index, total) {
+        const phi = Math.PI / 2;
+        const theta = (index / total) * Math.PI * 2;
+
+        const marker = new THREE.Mesh(
+            new THREE.SphereGeometry(0.45, 16, 16),
+            new THREE.MeshStandardMaterial({
+                color: c.color,
+                emissive: c.color,
+                emissiveIntensity: 1.8
+            })
+        );
+        marker.position.set(
+            Math.sin(phi) * Math.cos(theta) * 7,
+            Math.sin(phi) * Math.sin(theta) * 7,
+            Math.cos(phi) * 7
+        );
+        this.core.add(marker);
+        this.markers.push(marker);
+
+        const dot = document.createElement('div');
+        dot.className = 'map-node-dot';
+        dot.style.backgroundColor = c.color ? `#${c.color.toString(16).padStart(6, '0')}` : '#60a5fa';
+
+        const label = document.createElement('div');
+        label.className = 'map-node-label';
+
+        // Lookup location metadata from the system
+        const loc = this.ls ? this.ls.getLocation(c.location) : null;
+        const locDisplay = loc ? loc.name.replace(/^[^a-zA-Z0-9]*/, '') : (c.location || 'Unknown');
+
+        label.innerHTML = `
+            <div class="map-node-loc">${locDisplay}</div>
+            <div class="map-node-title">${c.title}</div>
+        `;
+
+        this.wrapper.appendChild(dot);
+        this.wrapper.appendChild(label);
+        this.labels.push({ dot, label });
+
+        dot.onclick = () => {
+            this.close();
+            this.loadCase(c.id);
+        };
     }
 
     hideAllMarkers() {
@@ -280,7 +266,7 @@ export class OrbitalSelectMatrixModal {
         this.overlay.classList.add('active');
         const panel = this.overlay.querySelector('.modal-panel');
         if (this.treeEl && panel) {
-          panel.appendChild(this.treeEl);
+            panel.appendChild(this.treeEl);
         }
         this.showAllCasesOnGlobe();
         this.loop();

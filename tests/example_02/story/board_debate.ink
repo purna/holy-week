@@ -2,9 +2,21 @@
 // CHARACTER: Senior Scribe - Debate
 // ACT: Global / Board
 // CASE: Investigation Board
-// CASE ID: investigation_board
+// CASE EXPORT: investigation_board
+// SOURCE: board_debate.ink
+// BACKGROUND: An aging Judean archival compiler monitoring the player.
 // SOURCE: ORPHAN FILE (not referenced in any case file)
+// BIBLE REFERENCE: Isaiah 5, Jeremiah 31:31-34
 // ------------------------------------------------------------
+// PROPHECIES FULFILLED IN THIS CASE:
+//   - N/A (Analytical Summary)
+// ------------------------------------------------------------
+// BIBLICAL CONTEXT:
+//   Summary: A synthesis of the evidence uncovering the deeper theological implications of the trial.
+// ------------------------------------------------------------
+// CASE FACTS (Truth Object):
+//   Culprit: N/A
+//   Motive: Finalization of the investigative record.
 // ============================================================
 //
 
