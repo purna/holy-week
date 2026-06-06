@@ -2,7 +2,7 @@
 export class AudioManager {
   constructor() {
     this.enabled = true;
-    this.volume = 0.5;
+    this.volume = 0.3;
     this.sounds = {
       collect: 'audio/ping_pong.mp3',
       clue: 'audio/ping_pong.mp3',
@@ -86,7 +86,7 @@ export class AudioManager {
     this.currentActLabel = actLabel;
 
     const nextTrackPath = this.actMusicMap[actLabel];
-    const fadeTime = 2000;
+    const fadeTime = 4000;
 
     const startNext = () => {
       if (!nextTrackPath) {
