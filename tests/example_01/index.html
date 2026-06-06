@@ -27,6 +27,7 @@
   <link rel="stylesheet" href="css/cases.css">
   <link rel="stylesheet" href="css/evidence-cards.css">
   <link rel="stylesheet" href="css/lab.css">
+  <link rel="stylesheet" href="css/codex.css">
   <link rel="stylesheet" href="css/npc-chat.css">
   <link rel="stylesheet" href="css/dialogue-modal.css">
   <link rel="stylesheet" href="css/accusation.css">
@@ -54,6 +55,13 @@
           <div class="header-rank" id="hdr-rank">Rookie</div>
 
           <div class="navbar">
+
+
+             <!-- Audio Management Toggle -->
+          <button onclick="toggleAudio()" class="a11y-btn active" type="button" title="Toggle Sound">
+            <i class="fa-solid fa-volume-high"></i>
+          </button>
+          
           <button class="a11y-btn" onclick="showResetModal()" title="Reset Game" aria-label="Reset all game progress"><i class="fas fa-undo"></i></button>
           
           <button class="a11y-btn" onclick="showInstructionsModal()" title="Instructions" aria-label="View game instructions"><i class="fas fa-info-circle"></i></button>
@@ -145,6 +153,11 @@
           <span class="inv-tab-icon" aria-hidden="true">🧪</span>Lab
         </button>
 
+        <button class="inv-tab" role="tab" aria-selected="false" data-tab="codex" aria-controls="inv-codex"
+          onclick="switchInvTab('codex')">
+          <span class="inv-tab-icon" aria-hidden="true">📜</span>Codex
+        </button>
+
         <button class="inv-tab" role="tab" aria-selected="false" data-tab="accuse" aria-controls="inv-accuse"
           onclick="switchInvTab('accuse')">
           <span class="inv-tab-icon" aria-hidden="true">⚖️</span>Accuse
@@ -153,6 +166,10 @@
 
       <div id="inv-scene" class="inv-view active" role="tabpanel" aria-label="Crime scene"></div>
       <div id="inv-lab" class="inv-view" role="tabpanel" aria-label="Analysis lab"></div>
+      <div id="inv-codex" class="inv-view" role="tabpanel" aria-label="Biblical background and prophecies">
+        <h3 class="section-title">Case Codex</h3>
+        <div id="codex-grid" class="codex-grid"></div>
+      </div>
       <div id="inv-people" class="inv-view" role="tabpanel" aria-label="People to interview">
         <div id="npc-panel"></div>
         <h3 class="section-title" style="margin-top:14px">Conversation</h3>
@@ -415,6 +432,7 @@
     const gm = new GameManager(cm, ui, es, ns, de);
 
     // Export to global scope for HTML onclick attributes
+    window.cm = cm;
     window.showScreen = ui.showScreen.bind(ui);
     window.switchInvTab = ui.switchInvTab.bind(ui);
     window.openLocation = ui.openLocation.bind(ui);
@@ -428,6 +446,7 @@
     window.closeResetModal = ui.closeResetModal.bind(ui);
     window.playAgain = gm.resetGame.bind(gm);
     window.closeGameComplete = ui.closeGameComplete.bind(ui);
+    window.showProphecyDetail = ui.showProphecyDetail.bind(ui);
 
     // Preload all NPC stories and character profiles
     const allNPCs = [];
@@ -461,8 +480,9 @@
 
     // ── Global Events ────────────────────────────────────────────
     document.addEventListener('click', (e) => {
-      if (e.target.tagName.toLowerCase() === 'button' || (e.target.tagName.toLowerCase() === 'input' && (e.target.type === 'button' || e.target.type === 'submit'))) {
-        if (audio && audio.enabled) audio.playTalk();
+      const btn = e.target.closest('button, input[type="button"], input[type="submit"]');
+      if (btn) {
+        if (audio && audio.enabled) audio.playUI();
       }
     });
 
@@ -483,7 +503,25 @@
       }, 800);
     }
 
+    // Export audio to global scope for toggleAudio
+    window.audio = audio;
+    
     setTimeout(() => gm.checkGameComplete(), 100);
+  </script>
+
+  <script>
+    // Global toggleAudio function for header button
+    window.toggleAudio = function() {
+      if (window.audio) {
+        const newState = !window.audio.enabled;
+        window.audio.setEnabled(newState);
+        const btn = document.querySelector('[onclick="toggleAudio()"]');
+        if (btn) {
+          const icon = btn.querySelector('i');
+          icon.className = newState ? 'fa-solid fa-volume-high' : 'fa-solid fa-volume-xmark';
+        }
+      }
+    };
   </script>
 
   <script>

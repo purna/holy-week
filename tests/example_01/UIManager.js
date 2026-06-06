@@ -40,8 +40,9 @@ export class UIManager {
 
     if (tab === "lab") this.renderLab();
     if (tab === "people") this.renderPeople();
-    if (tab === "accuse") this.renderAccuse();
+    if (tab === "codex") this.renderCodex();
     if (tab === "scene") this.renderScene();
+    if (tab === "accuse") this.renderAccuse();
 
     this.a11y.announce(`${tab} tab open`);
   }
@@ -154,6 +155,7 @@ export class UIManager {
     if (!c || !container) return;
     container.innerHTML = `
       <p class="scene-intro">${this.a11y.simplify(c.intro || c.subtitle)}</p>
+      ${!this.cm.getCaseProgress(c.id)?.sceneViewed ? `<button class="lets-investigate-btn" onclick="this.style.display='none'; const p=window.cm.getCaseProgress(window.cm.activeCaseId); if(p) p.sceneViewed=true; window.cm._saveProgress(); switchInvTab('people')">Let's investigate</button>` : ''}
       <div class="evidence-grid">
         ${c.evidencePool.map(e => {
           const col = this.es.collected.includes(e.id);
@@ -185,6 +187,82 @@ export class UIManager {
   onChatAction(result) {
     this.renderPeople();
     if (result?.type === "talk_complete" && result.unlocked > 0) { this.renderScene(); this.renderLab(); }
+  }
+
+  renderCodex() {
+    const c = this.cm.getActiveCase();
+    const view = document.getElementById("inv-codex");
+    if (!c || !view) return;
+    
+    const propheciesWithStatus = this.es.getPropheciesWithStatus();
+    const completion = this.es.getProphecyCompletionPercent();
+    
+    view.innerHTML = `
+      <div class="codex-panel">
+        <div class="codex-header">
+          <div class="codex-title">🔮 Prophecy Codex</div>
+          <div class="codex-progress">${completion}% Complete</div>
+        </div>
+        <div class="prophecy-list">
+          ${propheciesWithStatus.map(p => `
+            <div class="prophecy-card ${p.discovered ? 'discovered' : 'locked'}" 
+                 onclick="${p.discovered ? `showProphecyDetail('${p.id || p.reference}')` : ''}">
+              <div class="prophecy-card-icon">${p.icon || '🔮'}</div>
+              <div class="prophecy-card-info">
+                <div class="prophecy-card-reference">${p.reference}</div>
+                <div class="prophecy-card-desc">${p.discovered ? (p.fulfilledBy || p.desc || '').substring(0, 60) + '...' : '???'}</div>
+              </div>
+              ${p.discovered ? '<div class="prophecy-card-status">✅</div>' : '<div class="prophecy-card-status">🔒</div>'}
+            </div>
+          `).join("")}
+        </div>
+      </div>`;
+  }
+
+  showProphecyDetail(prophecyId) {
+    // Convert reference to id if needed
+    const normalizedId = prophecyId.replace(/\s/, "_").toLowerCase();
+    const modal = document.getElementById("evidence-detail-modal");
+    const p = this.es.getProphecyById(prophecyId);
+    if (!p) return;
+
+    modal.querySelector(".evidence-detail-icon").textContent = p.icon || "🔮";
+    modal.querySelector(".evidence-detail-name").textContent = p.reference || "Prophecy";
+    modal.querySelector(".evidence-detail-type").textContent = "Prophecy";
+
+    const descEl = modal.querySelector(".evidence-detail-desc");
+    descEl.textContent = p.text || "";
+
+    const locationEl = modal.querySelector(".evidence-detail-location");
+    if (locationEl) {
+      locationEl.textContent = p.location || "";
+      locationEl.parentElement.hidden = !p.location;
+    }
+
+    const bibleRefEl = modal.querySelector(".evidence-detail-bible-ref");
+    const bibleReadMoreBtn = modal.querySelector(".read-more-btn[data-target='bible-verse-content']");
+    const bibleVerseContent = modal.querySelector(".verse-content[data-target='bible-verse-content']");
+
+    if (p.bibleRef) {
+      bibleRefEl.textContent = p.bibleRef;
+      if (bibleReadMoreBtn) {
+        bibleReadMoreBtn.hidden = false;
+        bibleReadMoreBtn.onclick = () => this.fetchVerseInline(p.bibleRef, bibleVerseContent, bibleReadMoreBtn);
+      }
+      bibleRefEl.closest(".evidence-detail-section").hidden = false;
+    } else {
+      bibleRefEl.closest(".evidence-detail-section").hidden = true;
+    }
+
+    const prophetLinkEl = modal.querySelector(".evidence-detail-prophetic-link");
+    prophetLinkEl.textContent = p.insight || "";
+    prophetLinkEl.closest(".evidence-detail-section").hidden = false;
+
+    const investigatorNoteEl = modal.querySelector(".evidence-detail-investigator-note");
+    investigatorNoteEl.parentElement.hidden = true;
+
+    modal.hidden = false;
+    requestAnimationFrame(() => modal.classList.add("active"));
   }
 
   renderAccuse() {
@@ -230,6 +308,7 @@ export class UIManager {
           <div class="score-item"><div class="score-item-value">${result.score.evidence}</div><div class="score-item-label">Evidence</div></div>
           <div class="score-item"><div class="score-item-value">${result.score.deduction}</div><div class="score-item-label">Deductions</div></div>
           <div class="score-item"><div class="score-item-value">${result.score.challenge || 0}</div><div class="score-item-label">Challenges</div></div>
+          <div class="score-item"><div class="score-item-value">${result.score.prophecy || 0}</div><div class="score-item-label">Prophecies</div></div>
           <div class="score-item" style="border: 1px solid var(--gold);"><div class="score-item-value" style="color:var(--green)">+${result.score.perfectBonus || 0}</div><div class="score-item-label">Perfect Bonus</div></div>
           <div class="score-item"><div class="score-item-value">${result.score.accusation > 0 ? '+' : ''}${result.score.accusation}</div><div class="score-item-label">Accusation</div></div>
           <div class="score-item"><div class="score-item-value" style="color:var(--red)">-${result.score.doubtPenalty}</div><div class="score-item-label">Doubt (x2)</div></div>

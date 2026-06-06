@@ -34,6 +34,7 @@ export class CaseManager {
         solved: false,
         evidenceFound: [],
         deductionsMade: [],
+        unlockedSuspects: [],
         accusation: null,
         score: null,
       };
@@ -60,6 +61,24 @@ export class CaseManager {
       p.deductionsMade.push(deduction);
       this._saveProgress();
     }
+  }
+
+  unlockSuspect(suspectId) {
+    const p = this.progress.cases[this.activeCaseId];
+    if (p) {
+      if (!p.unlockedSuspects) p.unlockedSuspects = [];
+      if (!p.unlockedSuspects.includes(suspectId)) {
+        p.unlockedSuspects.push(suspectId);
+        this._saveProgress();
+        return true;
+      }
+    }
+    return false;
+  }
+
+  isSuspectUnlocked(suspectId) {
+    const p = this.progress.cases[this.activeCaseId];
+    return p ? (p.unlockedSuspects || []).includes(suspectId) : false;
   }
 
   submitAccusation(suspectId) {
@@ -126,7 +145,7 @@ export class CaseManager {
   _saveProgress() {
     try {
       localStorage.setItem("detective_progress", JSON.stringify(this.progress));
-    } catch {}
+    } catch { }
   }
 
   resetProgress() {

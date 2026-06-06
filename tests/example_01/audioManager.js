@@ -3,6 +3,29 @@ export class AudioManager {
   constructor() {
     this.enabled = true;
     this.volume = 0.5;
+    this.bgMusic = null;  // Howler for background music
+    this.timeAmbience = null;  // Day/night Howl instance
+    this.currentAct = null;
+
+    this.sounds = {
+      collect: 'audio/ping_pong.mp3',
+      clue: 'audio/ping_pong.mp3',
+      complete: 'audio/ping_pong.mp3',
+      talk: 'audio/ping_pong.mp3',
+      error: 'audio/ping_pong.mp3',
+      ui: 'audio/ping_pong.mp3',
+      day: 'audio/day.mp3',
+      night: 'audio/day.mp3'
+    };
+
+    
+    // Background music tracks for each act
+    this.bgTracks = {
+      'Act I': 'audio/act1_sunlight_on_marble.mp3',
+      'Act II': 'audio/act2_shackles_on_the_stone.mp3',
+      'Act III': 'audio/act3_laurel_and_iron.mp3',
+      'Act IV': 'audio/act4_victory_at_the_sunlit_gate.mp3'
+    };
     this.audioContext = null;
     this.ambienceSources = {};
     
@@ -18,6 +41,7 @@ export class AudioManager {
     this.playTalk = this.playTalk.bind(this);
     this.playError = this.playError.bind(this);
     this.playRumble = this.playRumble.bind(this);
+    this.playUI = this.playUI.bind(this);
     this.playBonus = this.playBonus.bind(this);
     this.playHighStakes = this.playHighStakes.bind(this);
   }
@@ -95,6 +119,8 @@ export class AudioManager {
           source.active = false;
         }
       });
+      // Stop background music
+      this.stopBackgroundMusic();
     }
   }
 
@@ -111,112 +137,41 @@ export class AudioManager {
   }
 
   play(event) {
-    if (!this.enabled || !this.audioContext || this.audioContext.state === 'suspended') return;
+    if (!this.enabled) return;
     
-    // Create different sounds for different events
+    // Use Howler sounds if available, otherwise fall back to oscillator
+    if (this.sounds[event]) {
+      const sound = new Howl({
+        src: [this.sounds[event]],
+        volume: this.volume * 0.5
+      });
+      sound.play();
+      return;
+    }
+    
+    // Fallback to oscillator for events without sound files
+    if (!this.audioContext || this.audioContext.state === 'suspended') return;
     const now = this.audioContext.currentTime;
     const oscillator = this.audioContext.createOscillator();
     const gain = this.audioContext.createGain();
-    
-    // Connect oscillator to gain to destination
     oscillator.connect(gain);
     gain.connect(this.audioContext.destination);
-    
-    // Configure based on event type
     switch(event) {
-      case 'collect':
-        // Pleasant high chirp
+      case 'bonus':
         oscillator.type = 'sine';
-        oscillator.frequency.setValueAtTime(800, now);
-        oscillator.frequency.exponentialRampToValueAtTime(1000, now + 0.1);
+        oscillator.frequency.setValueAtTime(500, now);
+        oscillator.frequency.exponentialRampToValueAtTime(1000, now + 0.2);
         gain.gain.setValueAtTime(0, now);
         gain.gain.linearRampToValueAtTime(this.volume * 0.3, now + 0.01);
         gain.gain.exponentialRampToValueAtTime(0.001, now + 0.3);
         break;
-        
-      case 'clue':
-        // Rising arpeggio
-        oscillator.type = 'triangle';
-        oscillator.frequency.setValueAtTime(400, now);
-        oscillator.frequency.exponentialRampToValueAtTime(600, now + 0.1);
-        oscillator.frequency.exponentialRampToValueAtTime(800, now + 0.2);
-        gain.gain.setValueAtTime(0, now);
-        gain.gain.linearRampToValueAtTime(this.volume * 0.2, now + 0.01);
-        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.4);
-        break;
-        
-      case 'complete':
-        // Triumphant chord (three notes)
-        const playChord = (baseFreq, delay) => {
-          setTimeout(() => {
-            if (!this.enabled || !this.audioContext) return;
-            const osc = this.audioContext.createOscillator();
-            const g = this.audioContext.createGain();
-            osc.type = 'square';
-            osc.frequency.setValueAtTime(baseFreq, now + delay);
-            osc.frequency.exponentialRampToValueAtTime(baseFreq * 1.5, now + delay + 0.2);
-            g.gain.setValueAtTime(0, now + delay);
-            g.gain.linearRampToValueAtTime(this.volume * 0.2, now + delay + 0.01);
-            g.gain.exponentialRampToValueAtTime(0.001, now + delay + 0.3);
-            osc.connect(g);
-            g.connect(this.audioContext.destination);
-            osc.start(now + delay);
-            osc.stop(now + delay + 0.5);
-          }, delay * 1000);
-        };
-        
-        playChord(220, 0);   // A3
-        playChord(277, 0.2); // C#4
-        playChord(330, 0.4); // E4
-        break;
-        
-      case 'talk':
-        // Soft blip
-        oscillator.type = 'sine';
-        oscillator.frequency.setValueAtTime(600, now);
-        gain.gain.setValueAtTime(0, now);
-        gain.gain.linearRampToValueAtTime(this.volume * 0.1, now + 0.01);
-        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.2);
-        break;
-        
-      case 'error':
-        // Harsh buzz
-        oscillator.type = 'sawtooth';
-        oscillator.frequency.setValueAtTime(100, now);
-        gain.gain.setValueAtTime(0, now);
-        gain.gain.linearRampToValueAtTime(this.volume * 0.4, now + 0.01);
-        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.2);
-        break;
-        
-      case 'rumble':
-        // Low-frequency rumble
-        oscillator.type = 'sine';
-        oscillator.frequency.setValueAtTime(50, now);
-        oscillator.frequency.exponentialRampToValueAtTime(30, now + 0.4);
-        gain.gain.setValueAtTime(0, now);
-        gain.gain.linearRampToValueAtTime(this.volume * 0.7, now + 0.1);
-        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.5);
-        break;
-        
-      case 'highStakes':
-        // Dramatic low descending sweep for critical moments
-        oscillator.type = 'sawtooth';
-        oscillator.frequency.setValueAtTime(150, now);
-        oscillator.frequency.exponentialRampToValueAtTime(40, now + 0.6);
-        gain.gain.setValueAtTime(0, now);
-        gain.gain.linearRampToValueAtTime(this.volume * 0.4, now + 0.05);
-        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.6);
-        break;
-
       default:
         oscillator.disconnect();
         gain.disconnect();
         return;
     }
-    
-    // Start and stop the sound
     oscillator.start(now);
-    oscillator.stop(now + 0.5); // Auto-stop after 0.5 seconds
+    oscillator.stop(now + 0.5);
   }
 
   // Convenience methods for specific events
@@ -281,6 +236,82 @@ export class AudioManager {
       source.gain.gain.linearRampToValueAtTime(this.volume * 0.1, this.audioContext.currentTime + 0.1);
       
       source.active = true;
+    }
+  }
+
+
+  // Background music with crossfade between acts
+  fadeToAct(actLabel, duration = 2) {
+    if (!this.enabled || !this.bgTracks[actLabel] || actLabel === this.currentAct) return;
+    
+    const fadeTime = duration * 500; // ms
+    
+    // Fade out current track
+    if (this.bgMusic) {
+      this.bgMusic.fade(this.bgMusic.volume(), 0, fadeTime);
+      setTimeout(() => {
+        if (this.bgMusic) {
+          this.bgMusic.stop();
+          this.bgMusic = null;
+        }
+      }, fadeTime);
+    }
+    
+    // Fade in new track
+    this.bgMusic = new Howl({
+      src: [this.bgTracks[actLabel]],
+      volume: 0,
+      loop: true
+    });
+    
+    this.bgMusic.play();
+    this.bgMusic.fade(0, this.volume * 0.8, fadeTime * 1.6);
+    this.currentAct = actLabel;
+  }
+
+  stopBackgroundMusic() {
+    if (this.bgMusic) {
+      this.bgMusic.fade(this.bgMusic.volume(), 0, 300);
+      setTimeout(() => {
+        if (this.bgMusic) {
+          this.bgMusic.stop();
+          this.bgMusic = null;
+        }
+      }, 300);
+    }
+  }
+
+  playUI() {
+    if (!this.enabled) return;
+    if (this.sounds.ui) {
+      const sound = new Howl({ src: [this.sounds.ui], volume: this.volume * 0.3 });
+      sound.play();
+    }
+  }
+
+  // Day/night ambient based on case timeOfDay
+  playTimeAmbience(timeOfDay) {
+    if (!this.enabled) return;
+    const key = timeOfDay === 'night' ? 'night' : 'day';
+    if (!this.sounds[key]) return;
+    this.stopTimeAmbience();
+    this.timeAmbience = new Howl({
+      src: [this.sounds[key]],
+      volume: this.volume * 0.4,
+      loop: true
+    });
+    this.timeAmbience.play();
+  }
+
+  stopTimeAmbience() {
+    if (this.timeAmbience) {
+      this.timeAmbience.fade(this.timeAmbience.volume(), 0, 300);
+      setTimeout(() => {
+        if (this.timeAmbience) {
+          this.timeAmbience.stop();
+          this.timeAmbience = null;
+        }
+      }, 300);
     }
   }
 

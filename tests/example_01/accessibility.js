@@ -118,7 +118,7 @@ export class AccessibilityManager {
         case '1': window.__switchTab?.('evidence');  break;
         case '2': window.__switchTab?.('npcs');      break;
         case '3': window.__switchTab?.('lab');       break;
-        case '4': window.__switchTab?.('chat');      break;
+        case '4': window.__switchTab?.('codex');     break;
         case '5': window.__switchTab?.('accuse');    break;
         case 'Escape': this._handleEscape();         break;
         case 'Tab':    this._manageFocus(e);         break;

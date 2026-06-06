@@ -51,6 +51,11 @@ export class ChatUI {
           const state = this.npcs.getState(npc.id);
           const moodColor = this.npcs.getMoodColor(state?.mood || "neutral");
           const moodLabel = this.npcs.getMoodLabel(state?.mood || "neutral");
+          
+          const activeCase = this.npcs.caseManager.getActiveCase();
+          const isSuspect = activeCase?.suspects.some(s => s.id === npc.id);
+          const isUnlocked = this.npcs.caseManager.isSuspectUnlocked(npc.id);
+
           return `
             <div class="npc-card" role="listitem">
               <div class="npc-header">
@@ -62,18 +67,32 @@ export class ChatUI {
                 <span class="npc-mood" style="color:${moodColor}" aria-label="Mood: ${moodLabel}">${moodLabel}</span>
               </div>
               <div class="npc-actions" role="group" aria-label="Actions with ${npc.name}">
-                <button class="npc-btn" data-action="talk" data-npc="${npc.id}" aria-label="Talk to ${npc.name}">
-                  💬 Talk
-                </button>
-                <button class="npc-btn" data-action="show" data-npc="${npc.id}" aria-label="Show evidence to ${npc.name}">
-                  🔍 Show Evidence
-                </button>
-                <button class="npc-btn npc-btn-challenge" data-action="challenge" data-npc="${npc.id}"
-                  aria-label="Challenge ${npc.name} with a contradiction"
-                  ${!this.es.selectedA || !this.es.selectedB ? "aria-disabled='true'" : ""}>
-                  ⚡ Challenge
-                </button>
+                ${npc.hasDialogue !== false ? `
+                  <button class="npc-btn" data-action="talk" data-npc="${npc.id}" aria-label="Talk to ${npc.name}">
+                    💬 Talk
+                  </button>
+                  <button class="npc-btn" data-action="show" data-npc="${npc.id}" aria-label="Show evidence to ${npc.name}">
+                    🔍 Show Evidence
+                  </button>
+                  <button class="npc-btn npc-btn-challenge" data-action="challenge" data-npc="${npc.id}"
+                    aria-label="Challenge ${npc.name} with a contradiction"
+                    ${!this.es.selectedA || !this.es.selectedB ? "aria-disabled='true'" : ""}>
+                    ⚡ Challenge
+                  </button>
+                ` : ''}
+                ${isSuspect && isUnlocked ? `
+                  <button class="npc-btn npc-btn-accuse" data-action="accuse" data-npc="${npc.id}"
+                    aria-label="Accuse ${npc.name}">
+                    ⚖️ Accuse
+                  </button>
+                ` : ''}
               </div>
+    container.querySelectorAll("[data-action='accuse']").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const npcId = btn.dataset.npc;
+        if (this.onAction) this.onAction({ type: "accuse", npcId });
+      });
+    });
               ${state?.pressureLevel > 0 ? `
                 <div class="pressure-bar" role="progressbar" aria-valuenow="${state.pressureLevel}" aria-valuemin="0" aria-valuemax="100" aria-label="Pressure level: ${state.pressureLevel}%">
                   <div class="pressure-fill" style="width:${state.pressureLevel}%"></div>

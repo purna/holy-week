@@ -1,7 +1,8 @@
 # Biblical Verse Reference Guide
 ## All Seven Cases — Evidence, Prophecy & Deduction Links
 
-This document maps every Bible verse referenced across the seven improved case files, organized by case, then by type: **Prophecy** (Old Testament $ightarrow$ fulfillment), **Evidence** (Gospel verses), and **Deep Dives** (epistles, context passages for investigators who want to go further).
+This document maps every Bible verse referenced across the seven improved case files, organized by case, then by type: **Prophecy** (Old Testament $
+ightarrow$ fulfillment), **Evidence** (Gospel verses), and **Deep Dives** (epistles, context passages for investigators who want to go further).
 
 ---
 
@@ -29,10 +30,14 @@ This document maps every Bible verse referenced across the seven improved case f
 | Pharisee complaint | Luke 19:39–40; John 12:19 |
 
 #### Key Deduction Links
-* **Cloaks + Prophecy Scroll** $ightarrow$ Matthew 21:4–5; Mark 11:7; Zechariah 9:9
-* **Tracks + Witness** $ightarrow$ Mark 11:1–6; Luke 19:31–34
-* **Scroll + Palm** $ightarrow$ John 12:12–13; Zechariah 9:9; 1 Maccabees 13:51
-* **Crowd Complaint + Witness** $ightarrow$ John 12:19; Luke 19:39–40
+* **Cloaks + Prophecy Scroll** $
+ightarrow$ Matthew 21:4–5; Mark 11:7; Zechariah 9:9
+* **Tracks + Witness** $
+ightarrow$ Mark 11:1–6; Luke 19:31–34
+* **Scroll + Palm** $
+ightarrow$ John 12:12–13; Zechariah 9:9; 1 Maccabees 13:51
+* **Crowd Complaint + Witness** $
+ightarrow$ John 12:19; Luke 19:39–40
 
 ### Case B: The Overturned Tables (Temple Cleansing)
 #### Prophecies Fulfilled
@@ -50,8 +55,10 @@ This document maps every Bible verse referenced across the seven improved case f
 | Discarded Whip of Cords | John 2:15 (makeshift scourge woven from livestock floor-rushes) |
 
 #### Key Deduction Links
-* **Broken Cages + Whip of Cords** $ightarrow$ John 2:15 (Controlled prophetic exile using the environment of the corruption itself)
-* **Scattered Shekels + Whip of Cords** $ightarrow$ Luke 19:47–48 (Immediate financial disruption paralyzing legal counter-charges due to public scandal)
+* **Broken Cages + Whip of Cords** $
+ightarrow$ John 2:15 (Controlled prophetic exile using the environment of the corruption itself)
+* **Scattered Shekels + Whip of Cords** $
+ightarrow$ Luke 19:47–48 (Immediate financial disruption paralyzing legal counter-charges due to public scandal)
 
 ---
 
@@ -80,9 +87,12 @@ This document maps every Bible verse referenced across the seven improved case f
 | Young scribe's written summary | Luke 22:19–20; 1 Corinthians 11:24–25 |
 
 #### Key Deduction Links
-* **Dipped Bread + Money Bag** $ightarrow$ John 13:26–30; Matthew 26:14–16; Zechariah 11:12–13
-* **Wine Stain + Written Record** $ightarrow$ Luke 22:20; Jeremiah 31:31–34
-* **Money Bag + Written Record** $ightarrow$ Zechariah 11:12–13; Matthew 27:3–10; Jeremiah 31:31
+* **Dipped Bread + Money Bag** $
+ightarrow$ John 13:26–30; Matthew 26:14–16; Zechariah 11:12–13
+* **Wine Stain + Written Record** $
+ightarrow$ Luke 22:20; Jeremiah 31:31–34
+* **Money Bag + Written Record** $
+ightarrow$ Zechariah 11:12–13; Matthew 27:3–10; Jeremiah 31:31
 
 ### Case B: The Severed Ear (Gethsemane Arrest)
 #### Prophecies Fulfilled
@@ -99,8 +109,10 @@ This document maps every Bible verse referenced across the seven improved case f
 | Bloodied Scarf Fragment | Luke 22:50–51; John 18:10 (Peter amputating Malchus's ear; immediate divine restoration) |
 
 #### Key Deduction Links
-* **Dropped Torch + Severed Ear Wrap** $ightarrow$ Luke 22:51; John 18:10 (Peter's messy tactical defense immediately neutralized by an enemy-healing miracle)
-* **Abandoned Linen + Dropped Torch** $ightarrow$ Mark 14:50 (Epicenter of tactical shock splitting the paths of panicked disciples and off-balance soldiers)
+* **Dropped Torch + Severed Ear Wrap** $
+ightarrow$ Luke 22:51; John 18:10 (Peter's messy tactical defense immediately neutralized by an enemy-healing miracle)
+* **Abandoned Linen + Dropped Torch** $
+ightarrow$ Mark 14:50 (Epicenter of tactical shock splitting the paths of panicked disciples and off-balance soldiers)
 
 ---
 
@@ -127,11 +139,15 @@ This document maps every Bible verse referenced across the seven improved case f
 | Blackened withered fig leaf | Mark 11:20–21; Micah 7:1; Jeremiah 8:13 (barren piety) |
 | Two bronze leptons (Widow's mites) | Mark 12:41–44; 1 Samuel 16:7 (100% surrender vs. surplus) |
 | Alexandrian witness transcript | Matthew 22:46; absolute rhetorical triumph documented |
+| Teaching on the Mount | Matthew 5–7; Divine authority over the Law |
 
 #### Key Deduction Links
-* **Authority Challenge + Witness** $ightarrow$ Matthew 22:46; Isaiah 11:2
-* **Parable Fragments + Cornerstone** $ightarrow$ Matthew 21:33–42; Isaiah 5:1–7; Psalm 118:22
-* **Caesar Coin + Widow's Coins** $ightarrow$ Matthew 22:20–21; Mark 12:44; Genesis 1:26
+* **Authority Challenge + Witness** $
+ightarrow$ Matthew 22:46; Isaiah 11:2
+* **Parable Fragments + Cornerstone** $
+ightarrow$ Matthew 21:33–42; Isaiah 5:1–7; Psalm 118:22
+* **Caesar Coin + Widow's Coins** $
+ightarrow$ Matthew 22:20–21; Mark 12:44; Genesis 1:26
 
 ### Case B: The Price of Life (The Lazarus Conspiracy)
 #### Prophecies Fulfilled
@@ -148,8 +164,10 @@ This document maps every Bible verse referenced across the seven improved case f
 | Intercepted Sadducean Decree | John 12:10–11 ("So the chief priests made plans to put Lazarus to death as well") |
 
 #### Key Deduction Links
-* **Crowd Report + Secret Decree** $ightarrow$ John 12:11 (The mere existence of a living monument forces the corrupt elite to execute the evidence of the miracle)
-* **Grave Dirt + Secret Decree** $ightarrow$ John 11:48 (Verification of the tomb's reality triggers political damage control over theological truth)
+* **Crowd Report + Secret Decree** $
+ightarrow$ John 12:11 (The mere existence of a living monument forces the corrupt elite to execute the evidence of the miracle)
+* **Grave Dirt + Secret Decree** $
+ightarrow$ John 11:48 (Verification of the tomb's reality triggers political damage control over theological truth)
 
 ---
 
@@ -179,9 +197,12 @@ This document maps every Bible verse referenced across the seven improved case f
 | Mary Magdalene's firsthand log | John 20:11–18; Isaiah 43:1 (Called by name; inadmissible legal witness) |
 
 #### Key Deduction Links
-* **Rolled Stone + Guard Report** $ightarrow$ Matthew 28:2–4; 28:11–15 (Bribery proves institutional cover-up of a catastrophic security bypass)
-* **Empty Tomb + Burial Linen** $ightarrow$ John 20:6–8; Psalm 16:10 (Structured, undisturbed linen formation explicitly rules out erratic grave theft)
-* **Mary's Encounter + Guard Report** $ightarrow$ Matthew 28:2–4; John 20:14–17 (Authentic testimonial divergence: cosmic terror vs. intimate conversation)
+* **Rolled Stone + Guard Report** $
+ightarrow$ Matthew 28:2–4; 28:11–15 (Bribery proves institutional cover-up of a catastrophic security bypass)
+* **Empty Tomb + Burial Linen** $
+ightarrow$ John 20:6–8; Psalm 16:10 (Structured, undisturbed linen formation explicitly rules out erratic grave theft)
+* **Mary's Encounter + Guard Report** $
+ightarrow$ Matthew 28:2–4; John 20:14–17 (Authentic testimonial divergence: cosmic terror vs. intimate conversation)
 
 ### Case B: The Guard's Report (The Roman Inquiry)
 #### Prophecies Fulfilled
@@ -197,7 +218,8 @@ This document maps every Bible verse referenced across the seven improved case f
 | Shattered Wood Pilum Spear | Matthew 28:2 (High-impact compression structural weapon failure matching the kinetic earthquake wave) |
 
 #### Key Deduction Links
-* **Bribe Shekels + Broken Imperial Seal** $ightarrow$ Matthew 28:11–12 (The religious treasury directly financing state military cover-ups, legally validating the reality of the empty tomb)
+* **Bribe Shekels + Broken Imperial Seal** $
+ightarrow$ Matthew 28:11–12 (The religious treasury directly financing state military cover-ups, legally validating the reality of the empty tomb)
 
 ---
 

@@ -601,7 +601,7 @@
         const originalToggle = this.a11y.toggle.bind(this.a11y);
         this.a11y.toggle = (feature) => {
           const result = originalToggle(feature);
-          if (feature === 'sound') this.audio.setEnabled(this.a11y.getAll().sound);
+          if (feature === 'sound') this.audio.setEnabled(result);
           return result;
         };
 
@@ -615,18 +615,18 @@
         this.bindGlobalUIEvents();
       }
 
-bindGlobalUIEvents() {
-         document.getElementById('btn-audio-toggle').onclick = () => {
-           const btn = document.getElementById('btn-audio-toggle');
-           const icon = btn.querySelector('i');
-           this.audioActive = !this.audioActive;
-           this.audio.setEnabled(this.audioActive);
-           btn.classList.toggle('active', this.audioActive);
-           icon.className = this.audioActive ? 'fa-solid fa-volume-high' : 'fa-solid fa-volume-xmark';
-         };
+      bindGlobalUIEvents() {
+        document.getElementById('btn-audio-toggle').onclick = () => {
+          const btn = document.getElementById('btn-audio-toggle');
+          const icon = btn.querySelector('i');
+          this.audioActive = !this.audioActive;
+          this.audio.setEnabled(this.audioActive);
+          btn.classList.toggle('active', this.audioActive);
+          icon.className = this.audioActive ? 'fa-solid fa-volume-high' : 'fa-solid fa-volume-xmark';
+        };
 
-         document.getElementById('btn-open-map').onclick = () => {
-           this.audio.playUI();
+        document.getElementById('btn-open-map').onclick = () => {
+          this.audio.playUI();
           if (!this.mapModal) {
             this.mapModal = new OrbitalSelectMatrixModal(this.cm, this.ls, (caseId) => this.loadCase(caseId));
           }
@@ -657,6 +657,7 @@ bindGlobalUIEvents() {
         if (!caseData) return;
 
         this.activeCaseId = caseId;
+        this.audio.updateActMusic(caseData.actLabel);
         this.nearestNPC = null;
         this.inDialogue = false;
 
@@ -732,15 +733,15 @@ bindGlobalUIEvents() {
        * @description Re-renders strings, progress bars, and linked Bible references inside the 2D panel overlay deck.
        * @param {Object} caseData - The currently active case data object structure.
        */
-updateHUD(caseData) {
-         document.getElementById('loc-name').innerText = caseData.location;
-         document.getElementById('act-name').innerText = caseData.actLabel;
-         const levelTitle = document.getElementById('level-title');
-         levelTitle.innerText = caseData.title;
-         levelTitle.classList.add('case-loading');
-         setTimeout(() => levelTitle.classList.remove('case-loading'), 3000);
+      updateHUD(caseData) {
+        document.getElementById('loc-name').innerText = caseData.location;
+        document.getElementById('act-name').innerText = caseData.actLabel;
+        const levelTitle = document.getElementById('level-title');
+        levelTitle.innerText = caseData.title;
+        levelTitle.classList.add('case-loading');
+        setTimeout(() => levelTitle.classList.remove('case-loading'), 3000);
 
-         const q = caseData.quest;
+        const q = caseData.quest;
         document.getElementById('quest-title').innerText = q.name;
         document.getElementById('quest-task').innerText =
           `${q.task} (${q.cur}/${q.tar}) — Talk to NPCs to reveal evidence`;

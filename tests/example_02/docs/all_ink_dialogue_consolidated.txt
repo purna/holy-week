@@ -261,19 +261,46 @@ Both are definitions of something the crowds are not ready to name yet.
 --- annas_patriarch.ink ---
 -> start
 === start ===
-Governments are not built on passion, young man. They are built on stone and historical continuity.
-I have watched procurators come and go. They all think they command Judea, but the temple remains.
-This Galilean speaks well, but he does not recognize that systems outlive prophets.
+Governments are not built on passion, scribe. They are built on stone and historical continuity. I have watched procurators come and go, but the Temple remains. This Lazarus business is a theological contamination we cannot ignore. A man who stops being dead is a monument to a power we do not control.
+
 * [Why bring him in at midnight instead of open day?] -> mechanics
-* [Do you fear his popularity among the crowd?] -> popularity
+* [Do you fear his popularity after the Bethany miracle?] -> popularity
+* [What evidence did your spies gather at Simon's house?] -> evidence_request
+* [Press: The 'Price of Life' decree was your idea.] -> pressure
+* [Change angle: Nicodemus seems divided.] -> pivot
 
 === mechanics ===
-Daylight belongs to the crowds, and crowds are easily confused by noise. Silence allows for careful administrative evaluation.
--> closing
+Daylight belongs to the crowds. Silence allows for careful administrative evaluation. We needed a verdict on the Lazarus 'incident' before the city woke for Passover.
+
+* [Press harder: Who sleeps while a miracle breathes?] -> pressure
+* [Soften: I understand the need for order.] -> popularity
 
 === popularity ===
-A crowd that shouts 'Hosanna' on Sunday will shout something entirely different by Friday if the narrative shifts. Popularity is water.
--> closing
+A crowd that shouts 'Hosanna' for a healer will shout something entirely different by Friday if the narrative shifts. Popularity is water. We simply redirected the flow.
+
+* [Accept: You are redirecting history.] -> closing
+* [Challenge: That makes you a manipulator.] -> exposed
+
+=== evidence_request ===
+My household reported that when the Galilean called him out, not a single witness called for the legions. They called for the priests. That tells me where authority truly lives.
+
+* [Continue.] -> mechanics
+
+=== pressure ===
+Caiaphas said it was expedient. One man dies, the nation survives. We all understood the arithmetic. The 'Price of Life' was decided at sunset. We needed the tomb closed again.
+
+* [Acknowledge: You voted for a second death.] -> closing
+* [Challenge: History will judge this calculation.] -> exposed
+
+=== pivot ===
+Nicodemus likes to walk in the dark and ask about 'mercy.' He forgets that procedure is the shield of the weak. He is a seeker of signs; I am a guardian of the Law.
+
+* [Continue.] -> pressure
+
+=== exposed ===
+You want the full truth? The evidence of the resurrection was undeniable. That is exactly why it was dangerous. A living miracle ruins a political consensus. We had to manufacture a contradiction before the truth burned the Temple down.
+
+* [Move forward.] -> closing
 
 === closing ===
 -> DONE
@@ -318,22 +345,83 @@ I go back to the hills. The knives are already sharpened. The Galilean goes to t
 === closing ===
 -> DONE
 
---- joseph_arimathea.ink ---
+--- nicodemus_conflicted.ink ---
 -> start
 === start ===
-It is dangerous to speak here. The council chamber was closed to many of us tonight, but the decision was made before the candles were lit.
-I have the means to secure the remains from the governor's staff, but it requires using up all my political leverage.
-Conscience is an expensive thing to buy back when you have kept silent for too long.
-* [Will the rest of the Sanhedrin oppose your request to Pilate?] -> council
-* [Where will you lay him?] -> tomb
+I prefer the shadows of the evening. The Sanhedrin is a bright, loud place where truth is often shouted down. I have been watching the Nazarene. I have spoken to him when the city was asleep. He doesn't speak like a revolutionary... he speaks like the Law itself.
 
-=== council ===
-They want the matter forgotten. A public tomb means a public memory. They will not be pleased, but the Roman law allows for family burial petitions.
--> closing
+* [Why did you go to him at night?] -> night_visit
+* [What is the mood of the Council regarding Lazarus?] -> council_mood
+* [Press: You are afraid to stand for him openly.] -> pressure
+* [Probe: What is the 'Secret Decree'?] -> probe_decree
 
-=== tomb ===
-I have a new vault cut out of the bedrock near the execution hill. It is secure, clean, and empty.
--> closing
+=== night_visit ===
+Because I am a teacher of Israel, and I had questions that daylight could not answer. He told me I must be born again. I am still trying to understand what that means for a man of my age and standing.
+
+* [Accept: It is a difficult teaching.] -> closing
+* [Ask follow-up: Did he mention the Temple?] -> council_mood
+
+=== council_mood ===
+They are in a panic. Caiaphas sees only the Romans. Annas sees only power. The miracle at Bethany has forced their hand. They cannot argue with a man who was dead, so they intend to silence him.
+
+* [Acknowledge: The conspiracy is deep.] -> closing
+* [Challenge: You are part of that Council.] -> exposed
+
+=== pressure ===
+I am a coward, is that what you think? Perhaps. I have my position, my family, my reputation. But I have also seen the light in his eyes. I am trying to work from within, but the walls are closing in.
+
+* [Acknowledge: You are in a difficult position.] -> closing
+* [Challenge: At some point, you must choose.] -> exposed
+
+=== probe_decree ===
+The decree is a stain on our history. It targets Lazarus specifically. They want to eliminate the witness to the miracle before the Passover begins. I have seen the draft in Annas's study.
+
+* [Move forward.] -> pressure
+
+=== exposed ===
+I was the one who leaked the location of the guards to Martha. I couldn't let them take him in the dark. I am a member of the Sanhedrin, yes, but I am first a seeker of the Truth. And the Truth is currently eating bread in Bethany.
+
+* [Move forward.] -> closing
+
+=== closing ===
+-> DONE
+
+--- simon_leper.ink ---
+-> start
+=== start ===
+My house was a place of exclusion once. Now, it is a place where the Son of God eats. The perfume Mary poured on him... the scent is still in the rafters. The disciples grumbled about the cost, but Jesus saw it as a preparation.
+
+* [Why do the disciples grumble?] -> grumbling
+* [What happened to your leprosy?] -> healing
+* [Press: Was the High Priest's man here?] -> pressure
+* [Probe: What did Jesus say about his burial?] -> probe_burial
+
+=== grumbling ===
+They think in coins. They see a year's wages spilled on the floor. They don't see that he is giving a life's worth of love in return. Judas was the loudest. He has a ledger where his heart should be.
+
+* [Accept: Love cannot be measured in silver.] -> closing
+* [Challenge: Judas has a point about the poor.] -> exposed
+
+=== healing ===
+He touched me. Nobody touches a leper. The Law says I am unclean, but his touch made the Law irrelevant. I am clean because he willed it. My house is his house now.
+
+* [Continue.] -> grumbling
+
+=== pressure ===
+A man in a Temple robe came to the door yesterday. He didn't come to eat. He came to count the guests. He asked if Lazarus was here. I told him the King's table is open to all, but his eyes were cold.
+
+* [Acknowledge: The Temple is monitoring you.] -> closing
+* [Challenge: You should have turned him away.] -> exposed
+
+=== probe_burial ===
+He said she was anointing him for his burial. He said it so calmly, while we were all laughing and eating. It was as if he was already looking past the cross.
+
+* [Move forward.] -> pressure
+
+=== exposed ===
+The Temple spy left a silver coin on the table. A bribe to tell them when Jesus leaves for the Garden. I threw it into the street. I have been clean long enough to know the smell of corruption.
+
+* [Move forward.] -> closing
 
 === closing ===
 -> DONE
@@ -341,19 +429,40 @@ I have a new vault cut out of the bedrock near the execution hill. It is secure,
 --- martha_bethany.ink ---
 -> start
 === start ===
-There are thirteen extra mouths to feed tonight, and the road to Jerusalem is monitored by patrols.
-Mary sits at his feet listening, but someone must handle the bread, the water, and the structural security of this house.
-We are hiding people who have prices on their heads.
-* [Is Lazarus safe here?] -> lazarus
-* [How long can your provisions hold out?] -> storage
+The kitchen is full, the road is watched, and my brother is a target. I saw the stone roll away. I smelled the spices of burial on him as he walked out. I do not need a scribe to tell me what my own eyes have seen.
 
-=== lazarus ===
-He is the proof they want to destroy. A man who was dead four days walking around is a living problem for the Sadducees. We keep him out of sight.
--> closing
+* [What was Lazarus like when he first came out?] -> the_miracle
+* [Are the High Priest's spies watching this house?] -> spies
+* [Press: Tell me about the 'Price of Life' decree.] -> pressure
+* [Soften: You have carried a heavy burden.] -> comfort
 
-=== storage ===
-We have dried grain and oil for three days. If he does not enter the city openly soon, we will run out of cover.
--> closing
+=== the_miracle ===
+He was wrapped in linen, blinking at the sun like a newborn. He didn't speak for an hour. He just looked at Jesus. There was a peace in the yard that the Temple guards could never understand.
+
+* [Accept: It was a divine moment.] -> closing
+* [Ask follow-up: What did the crowd do?] -> spies
+
+=== spies ===
+They sit at the edge of the olive grove. They think they are invisible, but I see them every time I draw water. They aren't looking for Jesus; they are looking for Lazarus. They want to bury the evidence.
+
+* [Accept: You are protecting the proof.] -> closing
+* [Challenge: Why not run?] -> pressure
+
+=== pressure ===
+They sent a scroll. A 'Secret Decree.' It said the presence of Lazarus was 'theological contamination.' That's a fancy way of saying they want my brother back in the ground.
+
+* [Acknowledge: The conspiracy is real.] -> closing
+* [Challenge: Will you testify?] -> exposed
+
+=== comfort ===
+I do what I must. Mary listens, I serve, and Lazarus lives. That is enough for today. But the shadows on the road are growing longer.
+
+* [Move forward.] -> closing
+
+=== exposed ===
+I saw Nicodemus come here at midnight. He warned us. He said the vote in the Sanhedrin was already weighted. He risked his life to tell us to hide Lazarus. If a man like Nicodemus is afraid, we should all be.
+
+* [Move forward.] -> closing
 
 === closing ===
 -> DONE
@@ -540,7 +649,68 @@ But the real question is not about the man. It is about what scares people most 
 -> DONE
 
 === ACT III - THE BROKEN CUP ===
-(No ink dialogue files found for this case)
+
+--- temple_curtain.ink ---
+-> start
+=== start ===
+It was three in the afternoon, yet I had to carry a lamp to see my own feet. The darkness wasn't just a shadow; it was a weight that choked the breath out of the city. I was preparing the evening incense when the foundations of the Temple began to groan.
+* [Tell me about the darkness.] -> darkness
+* [What happened to the Temple curtain?] -> curtain
+
+=== darkness ===
+The sun vanished at midday. For three hours, the city was silent, save for the sound of weeping and the rattling of Roman armor. No eclipse lasts that long, scribe. It felt as if the Creator had turned His face away from the world. And then, the earth itself broke.
+* [Was it just a tremor?] -> tombs
+
+=== curtain ===
+The Parokhet—the great inner curtain—is as thick as a man's palm. It would take a team of oxen to pull it apart. But when the ground shook, I heard a sound like a great sail ripping in a gale. I looked up, and it was gone. Torn clean in two, from the top down to the floor.
+* [Top to bottom?] -> exposed
+
+=== tombs ===
+The limestone rifts split the valley outside the walls. My brothers came running from the eastern gate, white as ghosts. They said the ancient tombs broke open. Figures were seen... shadows in the dust that shouldn't have been there. They say the holy ones of old are walking toward the city even now.
+* [Continue.] -> closing
+
+=== exposed ===
+To tear from the top... that is the hand of God, not the hands of men. The Holy of Holies was laid bare to the sky. The secret place was secret no longer. It felt as though the boundary between the common and the Divine had simply ceased to exist.
+* [Continue.] -> closing
+
+=== closing ===
+The sacrifice was finished. The man on the hill died, and the Temple's heart broke. I cannot unsee the empty space behind that curtain. The High Priest will call it a structural failure, but I have seen the record of the rocks. Go and write what I have told you.
+-> DONE
 
 === ACT IV - THE EMPTY TOMB ===
-(No ink dialogue files found for this case)
+
+--- joseph_arimathea.ink ---
+-> start
+=== start ===
+I went to the tomb early on the first day of the week. The stone was rolled away, and the grave clothes lay there — but the body was gone. After Peter had examined the linen wrappings, I took them. I could not leave them exposed.
+* [This was your tomb?] -> my_tomb
+* [You kept the grave clothes?] -> examination
+* [What did you see?] -> empty_tomb
+
+=== my_tomb ===
+It was my new tomb. Never used. Cut from the rock for myself. When I asked for His body, I broke ranks with the council. I was a secret disciple — but I could not let them leave Him to the dogs or the scavengers. That tomb had never held the dead before His body entered it.
+* [Why take the risk?] -> risk_taken
+
+=== risk_taken ===
+The soldiers knew Pilate's permission was secured. They had no choice but to let me take the corpse. I brought fine linens and the spices we had prepared. Nicodemus came too — he who had visited Him by night. We wrapped Him together, two men who had hidden their faith now exposed by love.
+* [After the burial?] -> examination
+
+=== examination ===
+Peter entered first, stooping to look inside. We saw the strips of linen, the face cloth — but no body. The bindings were not undone. They lay as if He had simply passed through them. Peter counted the grave clothes separately, noting the sudarium was not with the main wrappings but rolled up by itself.
+* [What did you take?] -> shroud_kept
+
+=== shroud_kept ===
+I took them all. The main burial cloths, the face cloth. I wrapped them carefully. But when I unfolded the sudarium later... His image was there. Forged into the linen itself. Not painted, not pressed. The very countenance of the Lord, imprinted as if by some power beyond dying flesh.
+* [His image on the cloth?] -> image_revealed
+
+=== empty_tomb ===
+The tomb was open. The stone rolled away. The guards had fled. And there, in the burial niche — the linen wrappings lay empty. This was no theft. No grave robber would unwrap a body with such reverence, leaving the clothes in precise folds.
+* [Peter examined them?] -> examination
+
+=== image_revealed ===
+I saw His face. The thorn marks circling His brow. The scars from the whip. I thought the grave clothes were empty, but this — this retained His very form. The image does not fade, and I have kept it wrapped in secrecy. Who would believe such a thing?
+* [Continue.] -> closing
+
+=== closing ===
+The shroud I kept hidden. But I have examined it many times since. The image does not fade. He is not here. He has risen. And the cloth that once covered His face now bears His likeness for all to see.
+-> DONE

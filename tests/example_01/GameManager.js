@@ -22,6 +22,15 @@ export class GameManager {
     await this.ns.loadCase(c);
     this.de.loadCase();
 
+    // Play act-specific background music with fade
+    if (this.ui.audio && c.actLabel) {
+      this.ui.audio.fadeToAct(c.actLabel);
+      // Play day/night ambient based on case timeOfDay
+      if (c.timeOfDay) {
+        this.ui.audio.playTimeAmbience(c.timeOfDay);
+      }
+    }
+
     // Direct UI to prepare the investigation environment
     this.ui.setupInvestigation(c);
   }

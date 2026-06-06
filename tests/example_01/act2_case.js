@@ -42,6 +42,8 @@ export const act2CaseA = {
   prophecies: [
     {
       reference: "Psalm 118:22–23",
+      id: "psalm_118_22_23",
+      icon: "🔮",
       text: `"The stone the builders rejected has become the cornerstone; the LORD has done this, and it is marvellous in our eyes."`,
       written: "~1000 BC",
       fulfilledBy: "Jesus quoting this Psalm directly against the religious leaders after the Parable of the Wicked Tenants",
@@ -50,6 +52,8 @@ export const act2CaseA = {
     },
     {
       reference: "Isaiah 5:1–7",
+      id: "isaiah_5_1_7",
+      icon: "🔮",
       text: `"My beloved had a vineyard on a very fertile hill... He looked for it to yield grapes, but it yielded wild grapes... The vineyard of the LORD Almighty is the nation of Israel."`,
       written: "~700 BC",
       fulfilledBy: "The Parable of the Wicked Tenants (Matthew 21:33–46), which deliberately echoed Isaiah's Song of the Vineyard",
@@ -58,6 +62,8 @@ export const act2CaseA = {
     },
     {
       reference: "Daniel 7:13–14",
+      id: "daniel_7_13_14",
+      icon: "🔮",
       text: `"There before me was one like a son of man, coming with the clouds of heaven... He was given authority, glory and sovereign power; all nations and peoples of every language worshipped him."`,
       written: "~550 BC",
       fulfilledBy: "Jesus's implicit claim to be the 'Son of Man' with divine authority — the title He used throughout the Gospels",
@@ -66,6 +72,8 @@ export const act2CaseA = {
     },
     {
       reference: "Malachi 3:1",
+      id: "malachi_3_1",
+      icon: "🔮",
       text: `"I will send my messenger, who will prepare the way before me. Then suddenly the Lord you are seeking will come to his temple; the messenger of the covenant, whom you desire, will come."`,
       written: "~430 BC",
       fulfilledBy: "Jesus's presence and teaching authority in the Temple",
@@ -330,6 +338,8 @@ export const act2CaseB = {
   prophecies: [
     {
       reference: "Isaiah 25:8",
+      id: "isaiah_25_8",
+      icon: "🔮",
       text: `"He will swallow up death forever; and the Lord GOD will wipe away tears from all faces, and the reproach of his people he will take away from all the earth."`,
       written: "~700 BC",
       fulfilledBy: "Jesus demonstrating complete authority over the grave at Bethany",

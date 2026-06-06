@@ -1,0 +1,10 @@
+{
+  "id": "upset_buyer",
+  "name": "Upset Temple Buyer",
+  "role": "Displaced Merchant",
+  "avatar": "😤",
+  "truthfulness": 0.7,
+  "bibleRef": "Mark 11:15-18",
+  "background": "A dove or livestock seller ejected from the Temple courts. Resentful but not entirely without cause.",
+  "factions": ["temple"]
+}

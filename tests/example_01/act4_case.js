@@ -28,6 +28,8 @@ export const act4CaseA = {
   prophecies: [
     {
       reference: "Psalm 16:10",
+      id: "psalm_16_10",
+      icon: "🔮",
       text: `"For you will not abandon my soul to Sheol, or let your holy one see corruption."`,
       written: "~1000 BC",
       fulfilledBy: "Jesus rising before His body could decay, leaving only the burial linens",
@@ -36,6 +38,8 @@ export const act4CaseA = {
     },
     {
       reference: "Hosea 6:2",
+      id: "hosea_6_2",
+      icon: "🔮",
       text: `"After two days he will revive us; on the third day he will restore us, that we may live in his presence."`,
       written: "~750 BC",
       fulfilledBy: "Jesus rising on the third day after crucifixion",
@@ -44,6 +48,8 @@ export const act4CaseA = {
     },
     {
       reference: "Jonah 1:17 / Matthew 12:40",
+      id: "jonah_1_17___matthew_12_40",
+      icon: "🔮",
       text: `"For just as Jonah was three days and three nights in the belly of the great fish, so will the Son of Man be three days and three nights in the heart of the earth."`,
       written: "~800 BC / AD 28",
       fulfilledBy: "Jesus's three days in the tomb, followed by resurrection",
@@ -52,6 +58,8 @@ export const act4CaseA = {
     },
     {
       reference: "Isaiah 53:10–11",
+      id: "isaiah_53_10_11",
+      icon: "🔮",
       text: `"Yet it was the will of the LORD to crush him; he has put him to grief; when his soul makes an offering for guilt, he shall see his offspring and prolong his days... After his anguish he shall see light and be satisfied."`,
       written: "~700 BC",
       fulfilledBy: "Jesus's resurrection — 'prolonging his days' after the sacrifice; 'seeing light' after death",
@@ -60,6 +68,8 @@ export const act4CaseA = {
     },
     {
       reference: "Psalm 22:1–31",
+      id: "psalm_22_1_31",
+      icon: "🔮",
       text: `"My God, my God, why have you forsaken me?... They will come and proclaim his righteousness, declaring to a people yet unborn: He has done it!"`,
       written: "~1000 BC",
       fulfilledBy: "Psalm 22 begins with the crucifixion cry (v.1, quoted by Jesus from the cross) and ends with resurrection proclamation (v.31)",
@@ -334,6 +344,8 @@ export const act4CaseB = {
   prophecies: [
     {
       reference: "Psalm 2:1–2",
+      id: "psalm_2_1_2",
+      icon: "🔮",
       text: `"Why do the nations conspire and the peoples plot in vain? The kings of the earth rise up and the rulers band together against the LORD and against his anointed."`,
       written: "~1000 BC",
       fulfilledBy: "The Roman military and Jewish Sanhedrin combining forces to suppress the resurrection",
@@ -611,6 +623,8 @@ export const act4CaseC = {
   prophecies: [
     {
       reference: "Zechariah 13:7",
+      id: "zechariah_13_7",
+      icon: "🔮",
       text: `"Strike the shepherd, and the sheep will be scattered. I will turn my hand against the little ones."`,
       written: "~520 BC",
       fulfilledBy: "Peter's denial and scattering, followed by restoration",
@@ -619,6 +633,8 @@ export const act4CaseC = {
     },
     {
       reference: "Ezekiel 34:11-16",
+      id: "ezekiel_34_11-16",
+      icon: "🔮",
       text: `"For thus says the Lord GOD: I will seek my sheep... I will rescue them... I will feed them... I will bind up the injured... I will bring back the strayed."`,
       written: "~580 BC",
       fulfilledBy: "Jesus seeking, rescuing, and commissioning Peter to feed His sheep",

@@ -2,6 +2,8 @@
 // CHAT UI — NPC conversations, dialogue feed
 // ============================================================
 
+import { DIALOGUE_ID_MAP } from "./dialogueManager.js";
+
 export class ChatUI {
   constructor(npcSystem, evidenceSystem, accessibility, onAction, audioManager, dialogueManager) {
     this.npcs  = npcSystem;
@@ -59,7 +61,7 @@ export class ChatUI {
   }
 
   renderNPCPanel() {
-    const npcs = this.npcs.getNPCs();
+    const npcs = this.npcs.getNPCs().filter(npc => npc.hasDialogue !== false);
     return `
       <div class="npc-list" role="list" aria-label="People to interview">
         ${npcs.map(npc => {
@@ -127,20 +129,38 @@ export class ChatUI {
         const npc = this.npcs.getNPC(npcId);
         this.pendingNPC = npcId;
 
+        // Helper to process evidence and suspect unlocks when an interaction completes
+        const handleUnlocks = () => {
+          if (npc.unlocksEvidence && npc.unlocksEvidence.length > 0) {
+            npc.unlocksEvidence.forEach(id => {
+              const unlocked = this.es.discover(id);
+              if (unlocked) this.addSystem(`🔓 New clue: ${unlocked.name}`, npcId);
+            });
+          }
+          if (npc.unlocksSuspects && npc.unlocksSuspects.length > 0) {
+            npc.unlocksSuspects.forEach(sId => {
+              this.npcs.unlockSuspect(sId);
+              if (this.onAction) this.onAction({ type: "reveal_suspect", suspectId: sId, npcId });
+              const s = this.npcs.getNPC(sId);
+              this.addSystem(`⚖️ New suspect identified: ${s ? s.name : sId}`, npcId);
+            });
+          }
+        };
+
+        // Log story file resolution for debugging
+        let sFile = npc.storyFile || (npc.dialogueId ? DIALOGUE_ID_MAP[npc.dialogueId] : null);
+        if (sFile && !sFile.includes('/') && !sFile.endsWith('.json')) {
+            sFile = DIALOGUE_ID_MAP[sFile];
+        }
+        console.log(`[Talk] Opening dialogue for NPC: ${npcId} using story file: ${sFile}`);
+
         if (this.dm && npc && npc.hasDialogue && npc.storyFile) {
           let story = null;
           try { story = this.dm.createStory(npcId); } catch (e) { console.warn(e); }
           if (story) {
             this.dm.openDialogue(npc, story, 
               () => { // onClose callback
-                if (npc.unlocksEvidence && npc.unlocksEvidence.length > 0) {
-                  npc.unlocksEvidence.forEach(id => {
-                    const unlocked = this.es.discover(id);
-                    if (unlocked) {
-                      this.addSystem(`🔓 New clue: ${unlocked.name}`, npcId);
-                    }
-                  });
-                }
+                handleUnlocks();
                 if (this.onAction) this.onAction({ type: "talk_complete", npcId });
                 this._refreshNPCFeed(npcId, container);
               },
@@ -155,6 +175,7 @@ export class ChatUI {
 
         const result = this.npcs.talk(npcId);
         if (result) {
+          handleUnlocks();
           this.addMessage(result.speaker, result.text, "npc", { wasCorrected: result.wasCorrected }, npcId);
           this._refreshNPCFeed(npcId, container);
         }

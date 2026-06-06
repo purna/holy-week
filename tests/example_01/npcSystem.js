@@ -29,11 +29,24 @@ export const PROFILE_ID_MAP = {
   jemimah: "./characters/jemimah.json",
   eleazar: "./characters/eleazar.json",
   malachi_moneychanger: "./characters/malachi_moneychanger.json",
-  ananias_witness: "./characters/ananias_witness.json",
   trial_rumors: "./characters/trial_rumors.json",
   samuel_scribe: "./characters/samuel_scribe.json",
   nathanael_pharisee: "./characters/nathanael_pharisee.json",
-  caiaphas: "./characters/caiaphas.json"
+  caiaphas: "./characters/caiaphas.json",
+  market_informant: "./characters/market_informant.json",
+  market_vendor: "./characters/market_vendor.json",
+  pontius_pilate: "./characters/pontius_pilate.json",
+  simon_pharisee: "./characters/simon_pharisee.json",
+  temple_priest: "./characters/temple_priest.json",
+  city_gossip: "./characters/city_gossip.json",
+  displaced_merchant: "./characters/displaced_merchant.json",
+  devout_follower: "./characters/devout_follower.json",
+  sadducee_authority: "./characters/sadducee_authority.json",
+  ananias_witness: "./characters/ananias_witness.json",
+  temple_merchant: "./characters/temple_merchant.json",
+  upper_room_prep: "./characters/upper_room_prep.json",
+  secret_visit: "./characters/secret_visit.json",
+  simon_cyrene: "./characters/simon_cyrene.json"
 };
 
 class CharacterLoader {
@@ -67,7 +80,11 @@ export class NPCSystem {
   async loadCase(caseData) {
     this.npcStates = {};
 
-    for (const npc of (caseData.npcs || [])) {
+    const allNPCs = [...(caseData.npcs || [])];
+    const progress = this.caseManager.getCaseProgress(caseData.id);
+    const discovered = progress ? progress.discoveredSuspects : ["none"];
+
+    for (const npc of allNPCs) {
       let pFile = npc.profileFile;
       // Resolve ID reference if it doesn't look like a direct path
       if (pFile && !pFile.includes('/') && !pFile.endsWith('.json')) {
@@ -88,7 +105,27 @@ export class NPCSystem {
         memory: [],
         hasFailedChallenge: false,
         correctedLies: [],
+        isSuspect: npc.isSuspect || false,
+        isSuspectUnlocked: npc.isSuspectUnlocked || discovered.includes(npc.id) || npc.id === "none"
       };
+    }
+
+    // Ensure all suspects have state even if not in NPCs array
+    if (caseData.suspects) {
+      caseData.suspects.forEach(s => {
+        if (s.id && !this.npcStates[s.id]) {
+          this.npcStates[s.id] = {
+            mood: "neutral",
+            pressureLevel: 0,
+            contradictions: [],
+            memory: [],
+            hasFailedChallenge: false,
+            correctedLies: [],
+            isSuspect: true,
+            isSuspectUnlocked: discovered.includes(s.id) || s.id === "none"
+          };
+        }
+      });
     }
   }
 
@@ -97,19 +134,26 @@ export class NPCSystem {
     return c ? c.npcs : [];
   }
 
-getNPC(id) {
-     return this.getNPCs().find(n => n.id === id) || null;
-   }
+ getNPC(id) {
+    return this.getNPCs().find(n => n.id === id) || null;
+  }
 
-   getState(npcId) {
+  getState(npcId) {
     return this.npcStates[npcId] || null;
+  }
+
+  unlockSuspect(npcId) {
+    const state = this.getState(npcId);
+    if (state) {
+      state.isSuspectUnlocked = true;
+    }
   }
 
   // Basic greeting / question response
   talk(npcId) {
     const npc = this.getNPC(npcId);
     const state = this.getState(npcId);
-    if (!npc || !state) return null;
+    if (!npc || !state || !npc.dialogue) return null;
 
     const mood = state.mood;
     const node = npc.dialogue[mood] || npc.dialogue.neutral;
@@ -154,8 +198,14 @@ getNPC(id) {
         state.pressureLevel = Math.min(100, state.pressureLevel + 25);
         this._updateMood(npcId, state);
       }
+      
+      // Check for prophecy unlock in reaction
+      if (reaction.revealsProphecy) {
+        this.caseManager.recordProphecyFound(reaction.revealsProphecy);
+      }
+      
       this._addMemory(npcId, { type: "shown_evidence", evidenceId, reaction: reaction.text });
-      return { speaker: npc.name, text: reaction.text, mood: state.mood, revealedClue: reaction.revealedClue || null };
+      return { speaker: npc.name, text: reaction.text, mood: state.mood, revealedClue: reaction.revealedClue || null, revealedProphecy: reaction.revealsProphecy || null };
     }
 
     // Generic reaction by type
@@ -165,6 +215,7 @@ getNPC(id) {
       digital:       "I don't know anything about that data.",
       environmental: "The environment? Could be anyone.",
       analytical:    "Numbers can be misleading, you know.",
+      prophecy:      "A prophecy fulfilled? I see the connection now.",
     };
 
     const text = genericReactions[evidence.type] || "Interesting. So what?";
@@ -193,6 +244,11 @@ getNPC(id) {
         correctedNode = contradiction.corrects;
       }
 
+      // Check for prophecy unlock in contradiction
+      if (contradiction.revealsProphecy) {
+        this.caseManager.recordProphecyFound(contradiction.revealsProphecy);
+      }
+
       // Reputation Bonus for precise investigation
       if (!state.hasFailedChallenge && npc.faction) {
         this.caseManager.updateReputation(npc.faction, 5);
@@ -205,7 +261,8 @@ getNPC(id) {
         text: contradiction.exposed, 
         mood: state.mood, 
         breakthrough: true,
-        correctedNode 
+        correctedNode,
+        revealedProphecy: contradiction.revealsProphecy || null
       };
     }
 

@@ -27,6 +27,8 @@ export const act3CaseA = {
   prophecies: [
     {
       reference: "Exodus 12:1–14",
+      id: "exodus_12_1_14",
+      icon: "🔮",
       text: `"The blood shall be a sign for you, on the houses where you are... when I see the blood, I will pass over you, and no plague will befall you to destroy you."`,
       written: "~1400 BC",
       fulfilledBy: "Jesus, as the Passover Lamb, whose blood provides protection from judgement",
@@ -35,6 +37,8 @@ export const act3CaseA = {
     },
     {
       reference: "Jeremiah 31:31–34",
+      id: "jeremiah_31_31_34",
+      icon: "🔮",
       text: `"Behold, the days are coming, declares the LORD, when I will make a new covenant with the house of Israel... I will put my law within them, and I will write it on their hearts."`,
       written: "~627 BC",
       fulfilledBy: "Jesus declaring 'This cup is the new covenant in my blood' at the Last Supper",
@@ -43,6 +47,8 @@ export const act3CaseA = {
     },
     {
       reference: "Psalm 41:9",
+      id: "psalm_41_9",
+      icon: "🔮",
       text: `"Even my close friend in whom I trusted, who ate my bread, has lifted his heel against me."`,
       written: "~1000 BC",
       fulfilledBy: "Judas Iscariot betraying Jesus after eating with Him at the Last Supper",
@@ -51,6 +57,8 @@ export const act3CaseA = {
     },
     {
       reference: "Zechariah 11:12–13",
+      id: "zechariah_11_12_13",
+      icon: "🔮",
       text: `"So they weighed out as my wages thirty pieces of silver... and I threw it into the house of the LORD — to the potter."`,
       written: "~520 BC",
       fulfilledBy: "Judas receiving 30 silver coins for betraying Jesus, later thrown into the Temple",
@@ -59,6 +67,8 @@ export const act3CaseA = {
     },
     {
       reference: "Isaiah 53:12",
+      id: "isaiah_53_12",
+      icon: "🔮",
       text: `"He poured out his soul to death and was numbered with the transgressors; yet he bore the sin of many, and makes intercession for the transgressors."`,
       written: "~700 BC",
       fulfilledBy: "Jesus's prayer for His disciples and for those who would betray and crucify Him (John 17)",
@@ -335,6 +345,8 @@ export const act3CaseB = {
   prophecies: [
     {
       reference: "Isaiah 53:7",
+      id: "isaiah_53_7",
+      icon: "🔮",
       text: `"He was oppressed, and he was afflicted, yet he opened not his mouth; like a lamb that is led to the slaughter, and like a sheep that before its shearers is silent, so he opened not his mouth."`,
       written: "~700 BC",
       fulfilledBy: "Jesus refusing to defend Himself or let His disciples fight",
@@ -544,6 +556,8 @@ export const act3CaseC = {
   prophecies: [
     {
       reference: "Isaiah 50:6",
+      id: "isaiah_50_6",
+      icon: "🔮",
       text: `"I offered my back to those who beat me, my cheeks to those who pulled out my beard; I did not hide my face from mocking and spitting."`,
       written: "~700 BC",
       fulfilledBy: "The guards and Sanhedrin members striking and spitting on Jesus after the verdict",
@@ -552,6 +566,8 @@ export const act3CaseC = {
     },
     {
       reference: "Micah 5:1",
+      id: "micah_5_1",
+      icon: "🔮",
       text: `"Out of you will come one ruler to rule over a people... Yet I will come to the firstborn of the exiles of Moab, to the one who has been spared among the dry bones."`,
       written: "~700 BC",
       fulfilledBy: "Jesus remaining silent during His false trial, fulfilling the role of the innocent sufferer",
@@ -804,6 +820,8 @@ export const act3CaseE = {
   prophecies: [
     {
       reference: "Psalm 22:16–18",
+      id: "psalm_22_16_18",
+      icon: "🔮",
       text: `"They have pierced my hands and my feet... they divide my garments among them and cast lots for my clothing."`,
       written: "~1000 BC",
       fulfilledBy: "Roman soldiers nailing Jesus to the cross and gambling for His seamless garment",
@@ -812,6 +830,8 @@ export const act3CaseE = {
     },
     {
       reference: "Amos 8:9",
+      id: "amos_8_9",
+      icon: "🔮",
       text: `"'In that day,' declares the Sovereign LORD, 'I will make the sun go down at noon and darken the earth in broad daylight.'"`,
       written: "~750 BC",
       fulfilledBy: "The supernatural three-hour darkness blanketing Judea from noon until 3:00 PM",
@@ -820,6 +840,8 @@ export const act3CaseE = {
     },
     {
       reference: "Isaiah 53:9",
+      id: "isaiah_53_9",
+      icon: "🔮",
       text: `"He was assigned a grave with the wicked, and with the rich in his death, though he had done no violence."`,
       written: "~700 BC",
       fulfilledBy: "Jesus dying alongside criminals but being buried in the clean, private rock-cut tomb of wealthy Joseph of Arimathea",
@@ -828,6 +850,8 @@ export const act3CaseE = {
     },
     {
       reference: "Zechariah 12:10",
+      id: "zechariah_12_10",
+      icon: "🔮",
       text: `"They will look on me, the one they have pierced, and they will mourn for him as one mourns for an only child."`,
       written: "~520 BC",
       fulfilledBy: "The legionary piercing Jesus's side with a spear, and the surrounding crowd departing in deep grief",

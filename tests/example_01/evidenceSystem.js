@@ -8,6 +8,7 @@ export const EVIDENCE_TYPES = {
   DIGITAL:       { id: "digital",       label: "Digital",       icon: "💻", color: "#34d399" },
   ENVIRONMENTAL: { id: "environmental", label: "Environmental", icon: "🌿", color: "#a78bfa" },
   ANALYTICAL:    { id: "analytical",    label: "Analytical",    icon: "🔬", color: "#f472b6" },
+  PROPHECY:      { id: "prophecy",      label: "Prophecy",      icon: "🔮", color: "#facc15" },
 };
 
 export class EvidenceSystem {
@@ -30,6 +31,11 @@ export class EvidenceSystem {
     return c ? c.evidencePool : [];
   }
 
+  getProphecyPool() {
+    const c = this.caseManager.getActiveCase();
+    return c ? (c.prophecies || []) : [];
+  }
+
   getCollected() {
     return this.getEvidencePool().filter(e => this.collected.includes(e.id));
   }
@@ -49,6 +55,11 @@ export class EvidenceSystem {
 
   getById(id) {
     return this.getEvidencePool().find(e => e.id === id) || null;
+  }
+
+  getProphecyById(id) {
+    const pool = this.getProphecyPool();
+    return pool.find(p => p.id === id || p.reference === id) || null;
   }
 
   selectEvidence(evidenceId) {
@@ -82,9 +93,30 @@ export class EvidenceSystem {
     return groups;
   }
 
+  // Returns prophecies with discovery status
+  getPropheciesWithStatus() {
+    const c = this.caseManager.getActiveCase();
+    const found = this.caseManager.getCaseProgress(c?.id)?.propheciesFound || [];
+    return this.getProphecyPool().map(p => {
+      const propId = p.id || p.reference;
+      return {
+        ...p,
+        id: propId,
+        discovered: found.includes(propId)
+      };
+    });
+  }
+
   getCompletionPercent() {
     const pool = this.getEvidencePool();
     if (!pool.length) return 0;
     return Math.round((this.collected.length / pool.length) * 100);
+  }
+
+  getProphecyCompletionPercent() {
+    const pool = this.getProphecyPool();
+    if (!pool.length) return 0;
+    const found = this.caseManager.getCaseProgress(this.caseManager.activeCaseId)?.propheciesFound || [];
+    return Math.round((found.length / pool.length) * 100);
   }
 }

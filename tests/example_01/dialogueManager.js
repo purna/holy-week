@@ -5,51 +5,86 @@
  * Also includes case file NPCs with their respective story files.
  */
 export const DIALOGUE_ID_MAP = {
-    scribe_intro: './story/scribe_intro.json',
-    market_rumors: './story/market_rumors.json',
-    rumor_whisper: './story/rumor_whisper.json',
-    witness_healed: './story/witness_healed.json',
-    priest_objection: './story/priest_objection.json',
-    guard_report: './story/guard_report.json',
-    peter_defense: './story/peter_defense.json',
-    roman_assessment: './story/roman_assessment.json',
-    secret_visit: './story/secret_visit.json',
-    upper_room_prep: './story/upper_room_prep.json',
-    informant_bribe: './story/informant_bribe.json',
-    teaching_mount: './story/teaching_mount.json',
-    pharisee_critique: './story/pharisee_critique.json',
-    parable_vineyard: './story/parable_vineyard.json',
-    parable_meaning: './story/parable_meaning.json',
-    board_review: './story/board_review.json',
-    board_debate: './story/board_debate.json',
-    trial_rumors: './story/trial_rumors.json',
-    judas_betrayal: './story/judas_betrayal.json',
-    mary_resurrection: './story/mary_resurrection.json',
-    sadducee_opposition: './story/sadducee_opposition.json',
-    peter_denial: './story/peter_denial.json',
-    mary_magdalene: './story/mary_magdalene.json',
-    herods_servant: './story/herods_servant.json',
-    temple_curtain: './story/temple_curtain.json',
-    centurion_witness: './story/centurion_witness.json',
-    pontius_pilate: './story/pontius_pilate.json',
-    woman_cloak: './story/woman_cloak.json',
-    joseph_arimathea: './story/joseph_arimathea.json',
-    temple_spy: './story/temple_spy.json',
+    // --- Act I: Jerusalem Confrontations ---
+    // Case A: The Missing Donkey (Triumphal Entry)
+    peter_donkey: './story/peter_donkey.json',
+    john_donkey: './story/john_donkey.json',
     galilean_pilgrim: './story/galilean_pilgrim.json',
     jerusalem_local: './story/jerusalem_local.json',
+    eleazar_sadducee: './story/eleazar_sadducee.json',
+    sadducee_opposition: './story/sadducee_opposition.json',
+
+    // Case B: The Overturned Tables (Temple Cleansing)
     money_changer: './story/money_changer.json',
-    execution_soldier: './story/execution_soldier.json',
-    annas_patriarch: './story/annas_patriarch.json',
-    caiaphas_priest: './story/caiaphas_priest.json',
+    guard_report: './story/guard_report.json',
     barabbas_insurgent: './story/barabbas_insurgent.json',
+    informant_bribe: './story/informant_bribe.json',
+    market_rumors: './story/market_rumors.json',
+    pontius_pilate: './story/pontius_pilate.json',
     pilates_secretary: './story/pilates_secretary.json',
-    judas_iscariot: './story/judas_iscariot.json',
-    john_disciple: './story/john_disciple.json',
-    jesus_reinstatement: './story/jesus_reinstatement.json',
-    peter_reinstated: './story/peter_reinstated.json',
-    false_witness: './story/false_witness.json',
+    pharisee_critique: './story/pharisee_critique.json',
+    priest_objection: './story/priest_objection.json',
+    rumor_whisper: './story/rumor_whisper.json',
+    woman_cloak: './story/woman_cloak.json',
+
+    // --- Act II: The Plots ---
+    // Case A: The Silenced Teacher (Temple Authority)
+    scribe_intro: './story/scribe_intro.json',
+    parable_meaning: './story/parable_meaning.json',
+    parable_vineyard: './story/parable_vineyard.json',
+    witness_healed: './story/witness_healed.json',
+    teaching_mount: './story/teaching_mount.json',
+
+    // Case B: The Price of Life (Lazarus Conspiracy)
+    temple_spy: './story/temple_spy.json',
+    annas_patriarch: './story/annas_patriarch.json',
+    martha_bethany: './story/martha_bethany.json',
     nicodemus_conflicted: './story/nicodemus_conflicted.json',
     simon_leper: './story/simon_leper.json',
+
+    // --- Act III: The Passion ---
+    // Case A: The Broken Cup (Last Supper)
+    john_disciple: './story/john_disciple.json',
+    rhoda_servant: './story/rhoda_servant.json',
+    judas_iscariot: './story/judas_iscariot.json',
+    upper_room_prep: './story/upper_room_prep.json',
+
+    // Case B: The Severed Ear (Gethsemane)
+    peter_defense: './story/peter_defense.json',
+    secret_visit: './story/secret_visit.json',
+    peter_defense_simple: './story/peter_defense_simple.json',
+
+    // Case C: The Midnight Tribunal (Sanhedrin Trial)
+    caiaphas_priest: './story/caiaphas_priest.json',
+    peter_denial: './story/peter_denial.json',
+    false_witness: './story/false_witness.json',
+    trial_rumors: './story/trial_rumors.json',
+
+    // Case E: The Final Sacrifice (Crucifixion)
+    roman_assessment: './story/roman_assessment.json',
+    simon_cyrene: './story/simon_cyrene.json',
+    temple_curtain: './story/temple_curtain.json',
+    centurion_witness: './story/centurion_witness.json',
+
+    // --- Act IV: Dawn of the New Age ---
+    // Case A: The Empty Tomb (Resurrection)
+    mary_magdalene: './story/mary_magdalene.json',
+    execution_soldier: './story/execution_soldier.json',
+    joseph_arimathea: './story/joseph_arimathea.json',
+
+    // Case B: The Guard's Report (Roman Inquiry)
+    mary_resurrection: './story/mary_resurrection.json',
+    judas_betrayal: './story/judas_betrayal.json',
+    herods_servant: './story/herods_servant.json',
+
+    // Case C: Peter's Restoration (Sea of Galilee)
+    peter_restored: './story/peter_restored.json',
+    jesus_reinstatement: './story/jesus_reinstatement.json',
+    peter_reinstated: './story/peter_reinstated.json',
+
+    // --- System & Metadata ---
+    board_review: './story/board_review.json',
+    board_debate: './story/board_debate.json'
 };
 /**
  * DialogueManager
@@ -124,10 +159,10 @@ export class DialogueManager {
     createStory(npcId) {
         const data = this.npcStories[npcId];
         if (!data) throw new Error('Story data not found for ' + npcId);
-        if (this.inkLib && this.inkLib.Story) {
+        if (this.inkLib && this.inkLib.Story && data.inkVersion) {
             return new this.inkLib.Story(data);
         }
-        return data;
+        return null;
     }
 
     getStory(npcId) {
@@ -205,6 +240,7 @@ export class DialogueManager {
         if (!bubble) return;
         bubble.textContent = message;
         bubble.classList.remove('typing-bubble');
+        const { bubScroll } = this._getEls();
         bubScroll.scrollTop = bubScroll.scrollHeight;
     }
 

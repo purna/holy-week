@@ -1,9 +1,9 @@
 /* ─── A11y panel ─── */
 #screen-a11y {
     background: var(--bg);
-    width: 70vw;
+    width: auto;
     min-width: 360px;
-    height: 70vh;
+    height: auto;
     min-height: 640px;
     margin: auto;
     inset: 0;

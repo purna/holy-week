@@ -4,16 +4,27 @@ export class AudioManager {
     this.enabled = true;
     this.volume = 0.5;
     this.sounds = {
-      collect: 'https://threejs.org/examples/sounds/ping_pong.mp3',
-      clue: 'https://threejs.org/examples/sounds/376737__re_build__sfx-magic.mp3',
-      complete: 'https://assets.mixkit.co/active_storage/sfx/1435/1435-preview.mp3',
-      talk: 'https://assets.mixkit.co/active_storage/sfx/2358/2561-preview.mp3',
-      error: 'https://assets.mixkit.co/active_storage/sfx/2572/2572-preview.mp3',
-      ui: 'https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3',
-      morning: 'https://assets.mixkit.co/active_storage/sfx/15/15-preview.mp3',
-      outdoor: 'https://assets.mixkit.co/active_storage/sfx/29/29-preview.mp3'
+      collect: 'audio/ping_pong.mp3',
+      clue: 'audio/ping_pong.mp3',
+      complete: 'audio/ping_pong.mp3',
+      talk: 'audio/ping_pong.mp3',
+      error: 'audio/ping_pong.mp3',
+      ui: 'audio/ping_pong.mp3',
+      morning: 'audio/day.mp3',
+      outdoor: 'audio/day.mp3'
     };
+
+    // Background music tracks for each act
+    this.actMusicMap = {
+      'Act I': 'audio/act1_sunlight_on_marble.mp3',
+      'Act II': 'audio/act2_shackles_on_the_stone.mp3',
+      'Act III': 'audio/act3_laurel_and_iron.mp3',
+      'Act IV': 'audio/act4_victory_at_the_sunlit_gate.mp3'
+    };
+
     this._howls = {};
+    this.bgMusic = null;
+    this.currentActLabel = null;
     this.currentAmbient = null;
 
     // Sync Howler global state with initial manager settings immediately
@@ -27,6 +38,15 @@ export class AudioManager {
     this.enabled = enabled;
     if (typeof Howler !== 'undefined') {
       Howler.mute(!enabled);
+      if (this.bgMusic) {
+        if (enabled) {
+          if (!this.bgMusic.playing()) this.bgMusic.play();
+          this.bgMusic.fade(0, 0.3, 1000);
+        } else {
+          this.bgMusic.fade(this.bgMusic.volume() || 0, 0, 1000);
+          setTimeout(() => { if (this.bgMusic) this.bgMusic.pause(); }, 1000);
+        }
+      }
     }
   }
 
@@ -59,6 +79,43 @@ export class AudioManager {
     }
     if (loop && this._howls[event].playing()) return;
     this._howls[event].play();
+  }
+
+  updateActMusic(actLabel) {
+    if (this.currentActLabel === actLabel) return;
+    this.currentActLabel = actLabel;
+
+    const nextTrackPath = this.actMusicMap[actLabel];
+    const fadeTime = 2000;
+
+    const startNext = () => {
+      if (!nextTrackPath) {
+        this.bgMusic = null;
+        return;
+      }
+      this.bgMusic = new Howl({
+        src: [nextTrackPath],
+        loop: true,
+        volume: 0,
+        html5: true,
+        onloaderror: (id, err) => console.error(`[Audio] Failed to load ${nextTrackPath}.`, err)
+      });
+      if (this.enabled) {
+        this.bgMusic.play();
+        this.bgMusic.fade(0, 0.3, fadeTime);
+      }
+    };
+
+    if (this.bgMusic) {
+      this.bgMusic.fade(this.bgMusic.volume() || 0, 0, fadeTime);
+      const old = this.bgMusic;
+      setTimeout(() => {
+        old.stop();
+        startNext();
+      }, fadeTime);
+    } else {
+      startNext();
+    }
   }
 
   playCollect() { this.play('collect'); }

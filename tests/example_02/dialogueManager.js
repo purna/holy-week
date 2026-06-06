@@ -1,77 +1,81 @@
-import { PROFILE_ID_MAP } from './npcSystem.js';
-
-/**
- * Maps dialogueId (from levels.js NPCs) to their Ink JSON story file paths.
- * NPCs in levels.js use dialogueId instead of storyFile / hasDialogue.
- * This map bridges that gap so loadStoryForNPC can normalise the path.
+/* 
+NPCs in levels.js use dialogueId instead of storyFile / hasDialogue.
+This map bridges that gap so loadStoryForNPC can normalise the path.
  */
 export const DIALOGUE_ID_MAP = {
+    // === ACT I: TRIUMPHAL ENTRY & TEMPLE CLEANSING ===
+    // Case A: The Missing Donkey
     scribe_intro: './story/scribe_intro.json',
-    market_rumors: './story/market_rumors.json',
-    rumor_whisper: './story/rumor_whisper.json',
-    witness_healed: './story/witness_healed.json',
-    priest_objection: './story/priest_objection.json',
-    guard_report: './story/guard_report.json',
-    peter_defense: './story/peter_defense.json',
-    roman_assessment: './story/roman_assessment.json',
-    secret_visit: './story/secret_visit.json',
-    upper_room_prep: './story/upper_room_prep.json',
-    informant_bribe: './story/informant_bribe.json',
-    teaching_mount: './story/teaching_mount.json',
-    pharisee_critique: './story/pharisee_critique.json',
-    parable_vineyard: './story/parable_vineyard.json',
-    parable_meaning: './story/parable_meaning.json',
-    board_review: './story/board_review.json',
-    board_debate: './story/board_debate.json',
-    trial_rumors: './story/trial_rumors.json',
-    judas_betrayal: './story/judas_betrayal.json',
-    mary_resurrection: './story/mary_resurrection.json',
-    sadducee_opposition: './story/sadducee_opposition.json',
-    peter_denial: './story/peter_denial.json',
-    mary_magdalene: './story/mary_magdalene.json',
-    herods_servant: './story/herods_servant.json',
-    temple_curtain: './story/temple_curtain.json',
-    centurion_witness: './story/centurion_witness.json',
-    pontius_pilate: './story/pontius_pilate.json',
-    woman_cloak: './story/woman_cloak.json',
-    joseph_arimathea: './story/joseph_arimathea.json',
-    temple_spy: './story/temple_spy.json',
+    peter_donkey: './story/peter_donkey.json',
+    john_donkey: './story/john_donkey.json',
+    eleazar_sadducee: './story/eleazar_sadducee.json',
     galilean_pilgrim: './story/galilean_pilgrim.json',
     jerusalem_local: './story/jerusalem_local.json',
+    sadducee_opposition: './story/sadducee_opposition.json',
+
+    // Case B: The Overturned Tables
     money_changer: './story/money_changer.json',
-    execution_soldier: './story/execution_soldier.json',
-    annas_patriarch: './story/annas_patriarch.json',
-    caiaphas_priest: './story/caiaphas_priest.json',
+    guard_report: './story/guard_report.json',
+    market_rumors: './story/market_rumors.json',
+    woman_cloak: './story/woman_cloak.json',
+    informant_bribe: './story/informant_bribe.json',
     barabbas_insurgent: './story/barabbas_insurgent.json',
+    pontius_pilate: './story/pontius_pilate.json',
     pilates_secretary: './story/pilates_secretary.json',
-    judas_iscariot: './story/judas_iscariot.json',
-    john_disciple: './story/john_disciple.json',
-    jesus_reinstatement: './story/jesus_reinstatement.json',
-    peter_reinstated: './story/peter_reinstated.json',
-    false_witness: './story/false_witness.json',
+    pharisee_critique: './story/pharisee_critique.json',
+    priest_objection: './story/priest_objection.json',
+    rumor_whisper: './story/rumor_whisper.json',
+    upset_buyer: './story/upset_buyer.json',
+    corrupt_seller: './story/corrupt_seller.json',
+
+    // === ACT II: THE SILENCED TEACHER & LAZARUS CONSPIRACY ===
+    // Case A: The Silenced Teacher
+    caiaphas_priest: './story/caiaphas_priest.json',
+    parable_meaning: './story/parable_meaning.json',
+    parable_vineyard: './story/parable_vineyard.json',
+    trial_rumors: './story/trial_rumors.json',
+    witness_healed: './story/witness_healed.json',
+    teaching_mount: './story/teaching_mount.json',
+
+    // Case B: The Price of Life (Lazarus Conspiracy)
+    temple_spy: './story/temple_spy.json',
+    annas_patriarch: './story/annas_patriarch.json',
+    martha_bethany: './story/martha_bethany.json',
     nicodemus_conflicted: './story/nicodemus_conflicted.json',
     simon_leper: './story/simon_leper.json',
+
+    // === ACT III: THE BROKEN CUP, ARREST & CRUCIFIXION ===
+    // Case A: The Broken Cup
+    judas_iscariot: './story/judas_iscariot.json',
+    rhoda_servant: './story/rhoda_servant.json',
+    john_disciple: './story/john_disciple.json',
+    secret_visit: './story/secret_visit.json',
+    upper_room_prep: './story/upper_room_prep.json',
+    // Case B: The Severed Ear / Case C: Midnight Tribunal
+    peter_defense: './story/peter_defense.json',
+    peter_denial: './story/peter_denial.json',
+    false_witness: './story/false_witness.json',
+    // Case E: The Final Sacrifice (Crucifixion)
+    roman_assessment: './story/roman_assessment.json',
+    temple_curtain: './story/temple_curtain.json',
+    centurion_witness: './story/centurion_witness.json',
+    joseph_arimathea: './story/joseph_arimathea.json',
+
+    // === ACT IV: THE EMPTY TOMB & RESTORATION ===
+    mary_magdalene: './story/mary_magdalene.json',
+    execution_soldier: './story/execution_soldier.json',
+    jesus_reinstatement: './story/jesus_reinstatement.json',
+    peter_reinstated: './story/peter_reinstated.json',
+    judas_betrayal: './story/judas_betrayal.json',
+    mary_resurrection: './story/mary_resurrection.json',
+    herods_servant: './story/herods_servant.json',
+
+    // === META & SYSTEM ===
+    board_review: './story/board_review.json',
+    board_debate: './story/board_debate.json',
 };
 
-
-
-/**
- * Helper to resolve a path from a potentially shorthand ID reference.
- */
-export function getProfilePath(ref) {
-    return PROFILE_ID_MAP[ref] || ref;
-}
-
-/**
- * DialogueManager
- *
- * Handles loading Ink story JSON files and driving the WhatsApp-style
- * chat-bubble dialogue UI (vn.html pattern).
- *
- * UI structure expected in index.html:
- *   #local-dialogue-box  (flex container, display:none → flex when open)
- *     #chat-panel
- *       .chat-hdr
+/**       .chat-hdr
  *         #npc-name-display   ← NPC name
  *         .st                 ← "● ONLINE" status line
  *       #bub-scroll           ← scrollable message list
@@ -107,25 +111,14 @@ export class DialogueManager {
         const storyFile = DIALOGUE_ID_MAP[storyRef] || storyRef;
 
         if (!storyFile) {
-            console.log('[DialogueManager] NPC has no dialogue or storyFile:', npc.id, npc.name,
-                '| hasDialogue:', npc.hasDialogue, '| storyFile:', npc.storyFile,
-                '| dialogueId:', npc.dialogueId);
             return Promise.resolve();
         }
-        console.log('[DialogueManager] Loading story for NPC', npc.id, npc.name, 'from', storyFile);
         return fetch(storyFile)
             .then(r => {
                 if (!r.ok) throw new Error(`HTTP ${r.status}`);
                 return r.json();
             })
-            .then(data => {
-                this.npcStories[npc.id] = data;
-                if (data.inkVersion) {
-                    console.log(`[DialogueManager] Loaded Ink story for ${npc.name} (v${data.inkVersion})`);
-                } else if (data.start) {
-                    console.log(`[DialogueManager] Loaded Simple JSON story for ${npc.name}`);
-                }
-            })
+            .then(data => { this.npcStories[npc.id] = data; })
             .catch(e => console.error(`[DialogueManager] Failed to load story for ${npc.name}:`, e));
     }
 
@@ -323,17 +316,6 @@ export class DialogueManager {
                     // process line tags immediately (e.g. # reveal:evidence_id)
                     if (inkStory.currentTags && typeof onTag === 'function') {
                         inkStory.currentTags.forEach(tag => onTag(tag));
-                    }
-
-                    // Narrative flavor: occasionally show detective system processing messages
-                    const fillers = [
-                        '⚠️ Hyper-vigilance index spiking...',
-                        '🔍 Scanning social tone subtext...',
-                        '📉 Risk assessment: vulnerability widening.',
-                        '🔒 Defensive parsing subroutines active...',
-                    ];
-                    if (Math.random() > 0.8) {
-                        this.addMsg(fillers[Math.floor(Math.random() * fillers.length)], 'npc-filler');
                     }
                 }
 

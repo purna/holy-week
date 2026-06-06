@@ -27,6 +27,8 @@ export const act1CaseA = {
   prophecies: [
     {
       reference: "Zechariah 9:9",
+      id: "zechariah_9_9",
+      icon: "🔮",
       text: `"Rejoice greatly, O daughter of Zion! Shout aloud, O daughter of Jerusalem! Behold, your king is coming to you; righteous and having salvation is he, humble and mounted on a donkey, on a colt, the foal of a donkey."`,
       written: "~520 BC",
       fulfilledBy: "Jesus riding a donkey colt into Jerusalem",
@@ -35,6 +37,8 @@ export const act1CaseA = {
     },
     {
       reference: "Psalm 118:25–26",
+      id: "psalm_118_25_26",
+      icon: "🔮",
       text: `"Save us, we pray, O LORD! O LORD, we pray, give us success! Blessed is he who comes in the name of the LORD!"`,
       written: "~1000 BC",
       fulfilledBy: "The crowds shouting 'Hosanna! Blessed is he who comes in the name of the Lord!'",
@@ -43,6 +47,8 @@ export const act1CaseA = {
     },
     {
       reference: "Genesis 49:10–11",
+      id: "genesis_49_10_11",
+      icon: "🔮",
       text: `"The scepter shall not depart from Judah... binding his foal to the vine and his donkey's colt to the choice vine."`,
       written: "~1400 BC",
       fulfilledBy: "A king from Judah arriving on a donkey colt",
@@ -51,6 +57,8 @@ export const act1CaseA = {
     },
     {
       reference: "Malachi 3:1",
+      id: "malachi_3_1",
+      icon: "🔮",
       text: `"Behold, I send my messenger, and he will prepare the way before me. And the Lord whom you seek will suddenly come to his temple."`,
       written: "~430 BC",
       fulfilledBy: "Jesus's arrival in Jerusalem preceding His Temple visit (Mark 11:11)",
@@ -117,6 +125,7 @@ export const act1CaseA = {
     },
     {
       id: "prophecy_scroll",
+       relatedProphecy: "zechariah_9_9",
       name: "Zechariah 9:9 Scroll Fragment",
       type: "analytical",
       icon: "📜",
@@ -131,6 +140,7 @@ export const act1CaseA = {
     },
     {
       id: "palm_branch",
+       relatedProphecy: "psalm_118_25_26",
       name: "Fresh-Cut Palm Branch",
       type: "environmental",
       icon: "🌴",
@@ -447,6 +457,8 @@ export const act1CaseB = {
   prophecies: [
     {
       reference: "Malachi 3:1",
+      id: "malachi_3_1",
+      icon: "🔮",
       text: `"And the Lord whom you seek will suddenly come to his temple; and the messenger of the covenant in whom you delight, behold, he is coming, says the LORD of hosts."`,
       written: "~430 BC",
       fulfilledBy: "Jesus unexpectedly arriving to judge the temple's sacrificial practices",
@@ -455,6 +467,8 @@ export const act1CaseB = {
     },
     {
       reference: "Isaiah 56:7",
+      id: "isaiah_56_7",
+      icon: "🔮",
       text: `"These I will bring to my holy mountain... for my house shall be called a house of prayer for all nations."`,
       written: "~700 BC",
       fulfilledBy: "Jesus clearing the outer court—the only area open to non-Jews",

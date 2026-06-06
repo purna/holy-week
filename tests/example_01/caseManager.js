@@ -34,7 +34,9 @@ export class CaseManager {
       this.progress.cases[id] = {
         started: true,
         solved: false,
+        sceneViewed: false,
         evidenceFound: [],
+        propheciesFound: [],
         deductionsMade: [],
         breakthroughs: [],
         failedChallenges: 0,
@@ -66,6 +68,14 @@ export class CaseManager {
     }
   }
 
+  recordProphecyFound(prophecyId) {
+    const p = this.progress.cases[this.activeCaseId];
+    if (p && !p.propheciesFound.includes(prophecyId)) {
+      p.propheciesFound.push(prophecyId);
+      this._saveProgress();
+    }
+  }
+
   recordDeduction(deduction) {
     const p = this.progress.cases[this.activeCaseId];
     if (p) {
@@ -91,6 +101,7 @@ export class CaseManager {
     if (p && !p.discoveredSuspects.includes(suspectId)) {
       p.discoveredSuspects.push(suspectId);
       this._saveProgress();
+      this._refreshMetricsUI();
     }
   }
 
@@ -188,16 +199,17 @@ export class CaseManager {
 
     const correct = suspectId === c.truth.culprit;
     
-    // Scoring Strategy: Evidence (5/ea), Key Deductions (15/ea), Breakthroughs (10/ea)
+    // Scoring Strategy: Evidence (5/ea), Key Deductions (15/ea), Breakthroughs (10/ea), Prophecies (10/ea)
     const evidenceScore = (p.evidenceFound || []).length * 5;
     const deductionScore = (p.deductionsMade || []).filter(d => d.isKeyDeduction).length * 15;
     const challengeScore = (p.breakthroughs || []).length * 10;
+    const prophecyScore = (p.propheciesFound || []).length * 10;
     const baseAccusationScore = correct ? 50 : -25;
     const currentDoubt = this.progress.doubt || 0;
     const doubtPenalty = currentDoubt * 2;
     const perfectBonus = (correct && (p.failedChallenges || 0) === 0) ? 25 : 0;
 
-    const total = Math.max(0, (evidenceScore + deductionScore + challengeScore + baseAccusationScore + perfectBonus) - doubtPenalty);
+    const total = Math.max(0, (evidenceScore + deductionScore + challengeScore + prophecyScore + baseAccusationScore + perfectBonus) - doubtPenalty);
 
     const result = {
       correct,
@@ -207,6 +219,7 @@ export class CaseManager {
         evidence: evidenceScore, 
         deduction: deductionScore, 
         challenge: challengeScore,
+        prophecy: prophecyScore,
         accusation: baseAccusationScore,
         perfectBonus: perfectBonus,
         doubtPenalty: doubtPenalty,

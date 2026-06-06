@@ -33,7 +33,7 @@ export const PROFILE_ID_MAP = {
   trial_rumors: "./characters/trial_rumors.json",
   samuel_scribe: "./characters/samuel_scribe.json",
   nathanael_pharisee: "./characters/nathanael_pharisee.json",
-  caiaphas: "./characters/caiaphas.json"
+  caiaphas: "./characters/caiaphas.json",
 };
 
 class CharacterLoader {
@@ -72,7 +72,7 @@ export class NPCSystem {
       let pFile = npc.profileFile;
       // Resolve ID reference if it doesn't look like a direct path
       if (pFile && !pFile.includes('/') && !pFile.endsWith('.json')) {
-        pFile = PROFILE_ID_MAP[pFile];
+        pFile = PROFILE_ID_MAP[pFile] || pFile;
       }
       if (pFile) {
         const profile = await this.loader.loadProfile(pFile);
@@ -115,6 +115,11 @@ export class NPCSystem {
     const mood = state.mood;
     const node = npc.dialogue[mood] || npc.dialogue.neutral;
 
+    // Automatically unlock suspects associated with this NPC upon talking
+    if (npc.unlocksSuspects) {
+      npc.unlocksSuspects.forEach(sid => this.caseManager.unlockSuspect(sid));
+    }
+
     // Handle object-based dialogue with lie/correction logic
     if (node && typeof node === 'object' && node.text) {
       const isCorrected = state.correctedLies.includes(mood);
@@ -151,6 +156,11 @@ export class NPCSystem {
     // Look for a specific reaction
     const reaction = npc.reactions?.[evidenceId];
     if (reaction) {
+      // Reactions can also trigger suspect unlocks
+      if (reaction.unlocksSuspects) {
+        reaction.unlocksSuspects.forEach(sid => this.caseManager.unlockSuspect(sid));
+      }
+
       if (reaction.isLie && npc.id === this.caseManager.getActiveCase()?.truth?.culprit) {
         state.pressureLevel = Math.min(100, state.pressureLevel + 25);
         this._updateMood(npcId, state);
