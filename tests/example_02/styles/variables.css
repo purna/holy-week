@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&display=swap');
+
 /* ==========================================================================
    VARIABLES & CORE CONFIGURATION — Roman/Antiquity Theme
    ========================================================================== */
@@ -80,8 +82,6 @@
     margin: 0;
     padding: 0;
 }
-
-@import url('https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&display=swap');
 
 html, body {
     width: 100%;

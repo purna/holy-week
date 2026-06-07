@@ -59,6 +59,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    overflow: visible !important;
     /* Imperial purple-red top stripe */
     border-top: 3px solid var(--accent-primary);
     background-image:
