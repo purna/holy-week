@@ -266,6 +266,9 @@ export class DialogueManager {
         // Show the box
         document.getElementById('vn-overlay').classList.add('active');
 
+        const closeBtn = document.getElementById('vn-close-btn');
+        if (closeBtn) closeBtn.onclick = () => this.closeDialogue(onClose);
+
         if (this.audio) this.audio.playTalk();
 
         // System handshake message, then start story

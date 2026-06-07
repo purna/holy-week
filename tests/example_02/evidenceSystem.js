@@ -17,6 +17,11 @@ export class EvidenceSystem {
     this.selectedA = null;
     this.selectedB = null;
     this.unlockedIds = new Set(); // only IDs revealed this session
+
+    // Codex Matching State
+    this.selectedCodexEvidenceId = null;
+    this.selectedCodexProphecyId = null;
+    this.discoveredProphecies = new Set();
   }
 
   loadCase(caseData) {
@@ -25,6 +30,10 @@ export class EvidenceSystem {
     this.unlockedIds = new Set();
     this.selectedA = null;
     this.selectedB = null;
+
+    this.selectedCodexEvidenceId = null;
+    this.selectedCodexProphecyId = null;
+    this.discoveredProphecies = new Set();
   }
 
   getEvidencePool() {
@@ -96,5 +105,31 @@ export class EvidenceSystem {
     const pool = this.getEvidencePool();
     if (!pool.length) return 0;
     return Math.round((this.getCollected().length / pool.length) * 100);
+  }
+
+  getProphecyById(id) {
+    return this.caseManager.getActiveCase()?.prophecies.find(p => p.reference === id);
+  }
+
+  getPropheciesWithStatus() {
+    const caseData = this.caseManager.getActiveCase();
+    if (!caseData) return [];
+    return caseData.prophecies.map(p => ({
+      ...p,
+      id: p.reference,
+      discovered: this.discoveredProphecies.has(p.reference)
+    }));
+  }
+
+  attemptProphecyMatch() {
+    if (!this.selectedCodexEvidenceId || !this.selectedCodexProphecyId) return null;
+    const ev = this.getById(this.selectedCodexEvidenceId);
+    const prop = this.getProphecyById(this.selectedCodexProphecyId);
+    const isMatch = ev.bibleRef?.includes(prop.reference) || ev.propheticLink?.includes(prop.reference);
+    if (isMatch) {
+      this.discoveredProphecies.add(prop.reference);
+      return { success: true, message: `Prophecy Linked: ${prop.reference}` };
+    }
+    return { success: false, message: "This evidence does not fulfill this prophecy." };
   }
 }

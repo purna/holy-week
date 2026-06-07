@@ -42,6 +42,8 @@ export const act2CaseA = {
   prophecies: [
     {
       reference: "Psalm 118:22–23",
+      id: "psalm_118_22_23",
+      icon: "🔮",
       text: `"The stone the builders rejected has become the cornerstone; the LORD has done this, and it is marvellous in our eyes."`,
       written: "~1000 BC",
       fulfilledBy: "Jesus quoting this Psalm directly against the religious leaders after the Parable of the Wicked Tenants",
@@ -50,6 +52,8 @@ export const act2CaseA = {
     },
     {
       reference: "Isaiah 5:1–7",
+      id: "isaiah_5_1_7",
+      icon: "🔮",
       text: `"My beloved had a vineyard on a very fertile hill... He looked for it to yield grapes, but it yielded wild grapes... The vineyard of the LORD Almighty is the nation of Israel."`,
       written: "~700 BC",
       fulfilledBy: "The Parable of the Wicked Tenants (Matthew 21:33–46), which deliberately echoed Isaiah's Song of the Vineyard",
@@ -58,6 +62,8 @@ export const act2CaseA = {
     },
     {
       reference: "Daniel 7:13–14",
+      id: "daniel_7_13_14",
+      icon: "🔮",
       text: `"There before me was one like a son of man, coming with the clouds of heaven... He was given authority, glory and sovereign power; all nations and peoples of every language worshipped him."`,
       written: "~550 BC",
       fulfilledBy: "Jesus's implicit claim to be the 'Son of Man' with divine authority — the title He used throughout the Gospels",
@@ -66,6 +72,8 @@ export const act2CaseA = {
     },
     {
       reference: "Malachi 3:1",
+      id: "malachi_3_1",
+      icon: "🔮",
       text: `"I will send my messenger, who will prepare the way before me. Then suddenly the Lord you are seeking will come to his temple; the messenger of the covenant, whom you desire, will come."`,
       written: "~430 BC",
       fulfilledBy: "Jesus's presence and teaching authority in the Temple",
@@ -89,6 +97,7 @@ export const act2CaseA = {
       id: "question_scroll",
       name: "The Formal Authority Challenge",
       type: "analytical",
+      relatedProphecy: "malachi_3_1",
       icon: "📜",
       location: "Temple East Portico",
       desc: "A written record of the formal challenge: 'By what authority do you do these things? Who gave you this authority?' Signed with three priestly seals. This was an official delegated challenge, not a spontaneous question.",
@@ -100,6 +109,7 @@ export const act2CaseA = {
       id: "parable_fragments",
       name: "Sketch of the Vineyard Parable",
       type: "physical",
+      relatedProphecy: "isaiah_5_1_7",
       icon: "🏺",
       location: "Temple West Portico, Ground",
       desc: "Pieces of broken pottery with rough sketches scratched into them — a vineyard, a watchtower, figures being thrown out. A bystander was illustrating what they were hearing to someone who couldn't see. The Isaiah 5 imagery is unmistakable.",
@@ -111,6 +121,7 @@ export const act2CaseA = {
       id: "cornerstone_carving",
       name: "Rejected Cornerstone Fragment",
       type: "physical",
+      relatedProphecy: "psalm_118_22_23",
       icon: "🪨",
       location: "Temple South Wall, Construction Debris",
       desc: "A piece of rejected limestone — the kind cut, shaped, and discarded during the Temple's renovation. Workers have been leaving such stones for years. But on this piece, someone has carved the Hebrew word 'pinnah' — 'cornerstone.' It is from Psalm 118:22.",
@@ -170,7 +181,8 @@ export const act2CaseA = {
       name: "Caiaphas",
       role: "High Priest, Sadducee",
       avatar: "👨‍⚖️",
-      profileFile: "caiaphas",
+      unlocksSuspects: ["chief_priest"],
+      profileFile: "./characters/caiaphas.json",
       truthfulness: 0.55,
       bibleRef: "Matthew 21:23; John 11:49–52; Matthew 26:57–68",
       background: "Joseph ben Caiaphas has been High Priest since AD 18 — appointed by the Roman prefect, dependent on Roman goodwill to remain in office. He is theologically Sadducean (denies resurrection, angels, and spirits — Acts 23:8) and politically calculating. He famously said it was 'better for one man to die for the people than for the whole nation to perish' (John 11:50) — not realising he was prophesying.",
@@ -196,7 +208,8 @@ export const act2CaseA = {
       name: "Samuel",
       role: "Temple Scribe, Pharisee",
       avatar: "📜",
-      profileFile: "samuel_scribe",
+      unlocksSuspects: ["scribe"],
+      profileFile: "./characters/samuel_scribe.json",
       truthfulness: 0.85,
       bibleRef: "Mark 12:28–34",
       background: "A Temple scribe trained in meticulous recording of legal proceedings and scriptural interpretation. Pharisaic background — unlike the Sadducean priests, he believes in resurrection and angels. He actually asked Jesus about the greatest commandment and received an answer that genuinely moved him.",
@@ -220,7 +233,8 @@ export const act2CaseA = {
       name: "Nathanael",
       role: "Pharisee, Herodian ally",
       avatar: "🧣",
-      profileFile: "nathanael_pharisee",
+      unlocksSuspects: ["pharisee"],
+      profileFile: "./characters/nathanael_pharisee.json",
       truthfulness: 0.4,
       bibleRef: "Matthew 22:15–22 — the Pharisee-Herodian coalition",
       background: "A Pharisee who has formed an unlikely alliance with the Herodians — normally political rivals — specifically to trap Jesus on the tax question. The Pharisees hated Roman taxation on nationalist grounds; the Herodians supported it. Normally they would never cooperate. The threat Jesus posed united them.",
@@ -330,6 +344,8 @@ export const act2CaseB = {
   prophecies: [
     {
       reference: "Isaiah 25:8",
+      id: "isaiah_25_8",
+      icon: "🔮",
       text: `"He will swallow up death forever; and the Lord GOD will wipe away tears from all faces, and the reproach of his people he will take away from all the earth."`,
       written: "~700 BC",
       fulfilledBy: "Jesus demonstrating complete authority over the grave at Bethany",
@@ -353,6 +369,7 @@ export const act2CaseB = {
     {
       id: "grave_dirt",
       name: "Bethany Limestone Dust",
+      relatedProphecy: "isaiah_25_8",
       type: "physical",
       icon: "🪨",
       pos: [-3, 3, 0],
@@ -395,7 +412,7 @@ export const act2CaseB = {
       },
     },
     { id: "caiaphas", name: "Caiaphas", role: "High Priest, Sadducee", avatar: "👨‍⚖️", color: 0xcc8888, pos: [-15, 0, 5], bibleRef: "John 11:49–52; Matthew 26:57–68" },
-    
+
   ],
 
   npcs: [
@@ -404,11 +421,11 @@ export const act2CaseB = {
       name: "Maluch",
       role: "Temple Informant / Spy",
       avatar: "👤",
-      profileFile: "maluch",
+      profileFile: "./characters/maluch.json",
       truthfulness: 0.60,
       bibleRef: "John 18:10; Luke 22:52",
       hasDialogue: true,
-      storyFile: "temple_spy",
+      storyFile: "./story/temple_spy.json",
       unlocksSuspects: ["caiaphas"],
       unlocksEvidence: ["crowd_report"],
       background: "An administrative operative and courier under the payroll of the high priest's household, tasked with logging suspicious crowd densities, tracking routes, and profiling revolutionary movement between Jerusalem and Bethany.",
@@ -431,12 +448,11 @@ export const act2CaseB = {
       name: "Annas",
       role: "High Priest Emeritus",
       avatar: "🦅",
-      profileFile: "annas",
+      profileFile: "./characters/annas.json",
       truthfulness: 0.35,
       bibleRef: "John 18:13; Luke 3:2; Acts 4:6",
       hasDialogue: true,
-      storyFile: "annas_patriarch",
-      unlocksSuspects: ["caiaphas"],
+      storyFile: "./story/annas_patriarch.json",
       unlocksEvidence: ["secret_decree"],
       background: "The elderly patriarch of the ruling Sadducean family. Though Rome formally deposed him years ago, he remains the true systemic power behind the high priesthood, controlling his sons and son-in-law Caiaphas. He values political continuity and institutional risk management above all else.",
       dialogue: {
@@ -460,11 +476,11 @@ export const act2CaseB = {
       name: "Martha",
       role: "Sister of Lazarus",
       avatar: "🧺",
-      profileFile: "martha",
+      profileFile: "./characters/martha.json",
       truthfulness: 0.95,
       bibleRef: "John 11:1–44; John 12:1–2",
       hasDialogue: true,
-      storyFile: "martha_bethany",
+      storyFile: "./story/martha_bethany.json",
       unlocksSuspects: ["nicodemus_secret"],
       unlocksEvidence: ["grave_dirt"],
       background: "The practical, protective head of the Bethany household. Having witnessed her brother's descent into death and subsequent revival, she is now trapped in a terrifying surveillance grid, managing family survival while shadow operatives monitor her home.",
@@ -482,7 +498,7 @@ export const act2CaseB = {
       },
       contradictions: {},
     },
-,
+    ,
     {
       id: "parable_meaning",
       name: "Thomas (Parable)",
@@ -609,22 +625,6 @@ export const act2CaseB = {
         default: { text: "I have nothing more to add.", isLie: false },
       },
     },
-    {
-      id: "nicodemus_secret",
-      name: "Nicodemus",
-      role: "Conflicted Sanhedrin Member",
-      avatar: "👴",
-      bibleRef: "John 7:50–51, John 19:39",
-      hasDialogue: false
-    },
-    {
-      id: "caiaphas",
-      name: "Caiaphas",
-      role: "High Priest, Sadducee",
-      avatar: "👨‍⚖️",
-      bibleRef: "John 11:49–52; Matthew 26:57–68",
-      hasDialogue: false
-    }
   ],
 
   deductions: {

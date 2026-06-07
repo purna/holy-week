@@ -2,7 +2,7 @@
 // CHARACTER: Simon Peter (Denial)
 // ACT: Act III
 // CASE: The Last Supper
-// CASE ID: peter_denial
+// CASE ID: last_supper
 // SOURCE: ORPHAN FILE - Peter's denial before the crucifixion
 // BIBLE REFERENCE: John 18:15-27; Luke 22:56-62
 // ------------------------------------------------------------

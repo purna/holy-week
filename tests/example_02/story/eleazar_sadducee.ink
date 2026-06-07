@@ -3,7 +3,7 @@
 // ACT: Act I
 // CASE: The Missing Donkey
 // CASE EXPORT: triumphal_entry
-// SOURCE: Orphan file - referenced in act1_case_3d.js as suspect 'sadducee_noble'
+// SOURCE: Orphan file - referenced in act1_case_2d.js as suspect 'sadducee_noble'
 // BIBLE REFERENCE: Acts 5:17 (Sadducean opposition context)
 // ------------------------------------------------------------
 // PROPHECIES FULFILLED IN THIS CASE:

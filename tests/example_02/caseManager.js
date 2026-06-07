@@ -63,6 +63,17 @@ export class CaseManager {
     }
   }
 
+  recordBreakthrough(npcId, contradictionKey) {
+    const p = this.progress.cases[this.activeCaseId];
+    if (p) {
+      if (!p.breakthroughs) p.breakthroughs = [];
+      if (!p.breakthroughs.includes(contradictionKey)) {
+        p.breakthroughs.push(contradictionKey);
+        this._saveProgress();
+      }
+    }
+  }
+
   unlockSuspect(suspectId) {
     const p = this.progress.cases[this.activeCaseId];
     if (p) {

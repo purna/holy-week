@@ -4,9 +4,9 @@
 
 export class ChatUI {
   constructor(npcSystem, evidenceSystem, accessibility, onAction) {
-    this.npcs  = npcSystem;
-    this.es    = evidenceSystem;
-    this.a11y  = accessibility;
+    this.npcs = npcSystem;
+    this.es = evidenceSystem;
+    this.a11y = accessibility;
     this.onAction = onAction;
     this.messages = [];
   }
@@ -33,13 +33,43 @@ export class ChatUI {
 
   _renderMsg(m) {
     const cls = `msg msg-${m.type}`;
-    const icon = m.type === "player" ? "🕵️" : m.type === "system" ? "📋" : "🗣";
+    const iconMap = {
+      player: '<i class="fa-solid fa-user-secret"></i>',
+      system: '<i class="fa-solid fa-terminal"></i>',
+      npc: '<i class="fa-solid fa-comment-dots"></i>',
+      verdict: '<i class="fa-solid fa-scale-balanced"></i>'
+    };
+    const icon = iconMap[m.type] || iconMap.npc;
     return `
       <div class="${cls}" role="listitem" aria-label="${m.speaker}: ${m.text}">
         <span class="msg-speaker" aria-hidden="true">${icon} ${m.speaker}</span>
         <span class="msg-text">${this.a11y.simplify(m.text)}</span>
         ${m.extra?.breakthrough ? `<span class="breakthrough-badge" aria-label="Breakthrough!">⚡ Breakthrough</span>` : ""}
         ${m.extra?.revealedClue ? `<span class="clue-badge" aria-label="New clue found">🔍 New clue found</span>` : ""}
+        ${m.type === 'verdict' ? this._renderVerdict(m.extra.result) : ""}
+      </div>`;
+  }
+
+  _renderVerdict(res) {
+    const s = res.score;
+    return `
+      <div class="verdict-card ${res.correct ? 'verdict-correct' : 'verdict-wrong'}">
+        <div class="verdict-header">
+          ${res.correct ? '<i class="fa-solid fa-trophy"></i> CASE SOLVED' : '<i class="fa-solid fa-circle-xmark"></i> INCORRECT ACCUSATION'}
+        </div>
+        <div class="verdict-score-grid">
+          <div class="score-row"><span><i class="fa-solid fa-lightbulb"></i> Deductions:</span> <span>+${s.breakdown.deductionScore}</span></div>
+          <div class="score-row"><span><i class="fa-solid fa-magnifying-glass"></i> Evidence:</span> <span>+${s.breakdown.evidenceScore}</span></div>
+          <div class="score-row"><span><i class="fa-solid fa-gavel"></i> Accusation:</span> <span>+${s.breakdown.accusationScore}</span></div>
+          <div class="score-total"><span><i class="fa-solid fa-star"></i> Total Score:</span> <span>${s.total}</span></div>
+        </div>
+        <div class="verdict-rank"><i class="fa-solid fa-medal"></i> Rank: ${s.rank}</div>
+        <div class="verdict-truth">
+          <h4><i class="fa-solid fa-scroll"></i> The Truth:</h4>
+          <p><strong><i class="fa-solid fa-bullseye"></i> Motive:</strong> ${res.truth.motive}</p>
+          <p><strong><i class="fa-solid fa-hammer"></i> Method:</strong> ${res.truth.method}</p>
+          <p><strong><i class="fa-solid fa-book-open"></i> Lesson:</strong> ${res.truth.lesson}</p>
+        </div>
       </div>`;
   }
 
@@ -48,15 +78,16 @@ export class ChatUI {
     return `
       <div class="npc-list" role="list" aria-label="People to interview">
         ${npcs.map(npc => {
-          const state = this.npcs.getState(npc.id);
-          const moodColor = this.npcs.getMoodColor(state?.mood || "neutral");
-          const moodLabel = this.npcs.getMoodLabel(state?.mood || "neutral");
-          
-          const activeCase = this.npcs.caseManager.getActiveCase();
-          const isSuspect = activeCase?.suspects.some(s => s.id === npc.id);
-          const isUnlocked = this.npcs.caseManager.isSuspectUnlocked(npc.id);
+      const state = this.npcs.getState(npc.id);
+      const moodColor = this.npcs.getMoodColor(state?.mood || "neutral");
+      const moodLabel = this.npcs.getMoodLabel(state?.mood || "neutral");
 
-          return `
+      const activeCase = this.npcs.caseManager.getActiveCase();
+      const isSuspect = activeCase?.suspects.some(s => s.id === npc.id);
+      const isUnlocked = this.npcs.caseManager.isSuspectUnlocked(npc.id);
+      const questComplete = activeCase?.quest && activeCase.quest.cur >= activeCase.quest.tar;
+
+      return `
             <div class="npc-card" role="listitem">
               <div class="npc-header">
                 <span class="npc-avatar" aria-hidden="true">${npc.avatar}</span>
@@ -79,27 +110,21 @@ export class ChatUI {
                     ${!this.es.selectedA || !this.es.selectedB ? "aria-disabled='true'" : ""}>
                     ⚡ Challenge
                   </button>
-                ` : ''}
-                ${isSuspect && isUnlocked ? `
+                ` : ""}
+                ${isSuspect && isUnlocked && questComplete ? `
                   <button class="npc-btn npc-btn-accuse" data-action="accuse" data-npc="${npc.id}"
                     aria-label="Accuse ${npc.name}">
                     ⚖️ Accuse
                   </button>
                 ` : ''}
               </div>
-    container.querySelectorAll("[data-action='accuse']").forEach(btn => {
-      btn.addEventListener("click", () => {
-        const npcId = btn.dataset.npc;
-        if (this.onAction) this.onAction({ type: "accuse", npcId });
-      });
-    });
               ${state?.pressureLevel > 0 ? `
                 <div class="pressure-bar" role="progressbar" aria-valuenow="${state.pressureLevel}" aria-valuemin="0" aria-valuemax="100" aria-label="Pressure level: ${state.pressureLevel}%">
                   <div class="pressure-fill" style="width:${state.pressureLevel}%"></div>
                 </div>` : ""}
               <div class="npc-challenge-result" data-npc-challenge="${npc.id}" hidden></div>
             </div>`;
-        }).join("")}
+    }).join("")}
       </div>
 
       <div class="show-evidence-picker" id="evidencePicker" aria-label="Evidence to show" hidden>
@@ -144,6 +169,13 @@ export class ChatUI {
           this._refreshFeed(feedContainer);
           if (this.onAction) this.onAction({ type: "challenge", result });
         }
+      });
+    });
+
+    container.querySelectorAll("[data-action='accuse']").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const npcId = btn.dataset.npc;
+        if (this.onAction) this.onAction({ type: "accuse", npcId });
       });
     });
 

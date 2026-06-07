@@ -84,6 +84,7 @@ export const act1CaseA = {
       id: "cloaks",
       name: "Two Disciples' Cloaks",
       relatedProphecy: "genesis_49_10_11",
+      revealsSuspect: "peter",
       type: "physical",
       icon: "👕",
       emoji: "👕",
@@ -126,7 +127,7 @@ export const act1CaseA = {
     },
     {
       id: "prophecy_scroll",
-       relatedProphecy: "zechariah_9_9",
+      relatedProphecy: "zechariah_9_9",
       revealsSuspect: "none",
       name: "Zechariah 9:9 Scroll Fragment",
       type: "analytical",
@@ -142,7 +143,7 @@ export const act1CaseA = {
     },
     {
       id: "palm_branch",
-       relatedProphecy: "psalm_118_25_26",
+      relatedProphecy: "psalm_118_25_26",
       name: "Fresh-Cut Palm Branch",
       type: "environmental",
       icon: "🌴",
@@ -201,13 +202,14 @@ export const act1CaseA = {
       bibleRef: "Mark 11:1–7",
       hasDialogue: true,
       storyFile: "./story/peter_donkey.json",
+      unlocksSuspects: ["peter"],
       unlocksEvidence: ["cloaks", "rope_fibers"],
       background: "Simon Peter, a fisherman from Galilee, is one of the inner circle of three disciples (along with James and John). Passionate and impulsive, he speaks before thinking. He was one of the two sent to find the donkey.",
       dialogue: {
-        neutral: { 
-          text: "Peter and I untied the rope carefully, just as the owner asked. Everything was done according to the Law.", 
-          isLie: true, 
-          correction: "I'll be honest—the knot was tight and I was in a hurry to get back to the Teacher, so I cut the rope with my fish-knife." 
+        neutral: {
+          text: "Peter and I untied the rope carefully, just as the owner asked. Everything was done according to the Law.",
+          isLie: true,
+          correction: "I'll be honest—the knot was tight and I was in a hurry to get back to the Teacher, so I cut the rope with my fish-knife."
         },
         cautious: "We weren't stealing anything! The Lord had authorised this. It's all perfectly within the Law.",
         pressured: "Alright — yes, we showed the owner a scroll of Zechariah. He understood immediately. He was actually glad to help.",
@@ -240,6 +242,7 @@ export const act1CaseA = {
       bibleRef: "Luke 19:29–35",
       hasDialogue: true,
       storyFile: "./story/john_donkey.json",
+      unlocksSuspects: ["john"],
       unlocksEvidence: ["donkey_tracks", "crowd_testimony", "witness_account"],
       background: "John son of Zebedee — later called 'the disciple Jesus loved' — is meticulous, observant, and the most likely to recall precise details. He would later write a Gospel account of this very event (John 12:12–19).",
       dialogue: {
@@ -271,6 +274,7 @@ export const act1CaseA = {
       bibleRef: "Mark 11:3–6 (the unnamed owner who releases the colt)",
       hasDialogue: true,
       storyFile: "./story/galilean_pilgrim.json",
+      unlocksSuspects: ["owner"],
       unlocksEvidence: ["prophecy_scroll", "palm_branch"],
       background: "An unnamed man in Scripture — here called Tobias — who owns the colt. Mark 11:6 simply records that he let the disciples go without resistance. His ownership of the Zechariah scroll suggests he was a devout Jew who had been watching for the Messiah.",
       dialogue: {
@@ -304,6 +308,7 @@ export const act1CaseA = {
       bibleRef: "Matthew 21:10-11 (The city asking 'Who is this?')",
       hasDialogue: true,
       storyFile: "./story/jerusalem_local.json",
+      unlocksSuspects: ["local_skeptic"],
       unlocksEvidence: [],
       background: "A local city resident managing her household. Irritated by the Passover overcrowding, she is naturally suspicious of Galilean zeal and views the disruptive procession with typical urban cynicism.",
       dialogue: {
@@ -358,9 +363,9 @@ export const act1CaseA = {
         witness_account: { text: "The villager is likely a sympathizer. His word means nothing compared to a member of the Sanhedrin.", isLie: false }
       },
       contradictions: {
-        "rope_fibers+witness_account": { 
-          exposed: "Fine. The rope wasn't hacked. And the owner Tobias practically handed it to them. But don't you see? This 'fulfillment' is a match to a tinderbox.", 
-          corrects: "neutral" 
+        "rope_fibers+witness_account": {
+          exposed: "Fine. The rope wasn't hacked. And the owner Tobias practically handed it to them. But don't you see? This 'fulfillment' is a match to a tinderbox.",
+          corrects: "neutral"
         }
       }
     }
@@ -538,6 +543,7 @@ export const act1CaseB = {
       background: "A local trader licensed directly by the Sanhedrin to operate a booth inside the royal stOA.",
       dialogue: {
         neutral: "My entire inventory flew away into the rafters! Who is going to pay for my ruined cages?",
+        unlocksSuspects: ["merchant_jadan"],
         cautious: "The guards did nothing to stop Him. He had an intensity in His eyes that made the bravest men back away. No one dared raise a hand.",
       },
       contradictions: {
@@ -616,7 +622,7 @@ export const act1CaseB = {
         "broken_cages+scattered_shekels": { exposed: "The priests tried to frame this as an armed insurrection to Pilate. But we logged it as a domestic religious cleanup. The Galilean wasn't fighting Rome; He was fighting the merchants' corruption." }
       }
     }
-,
+    ,
     {
       id: "barabbas_insurgent",
       name: "Barabbas",
@@ -804,7 +810,7 @@ export const act1CaseB = {
         default: { text: "I have nothing more to add.", isLie: false },
       },
     },
-,
+    ,
     {
       id: "corrupt_seller",
       name: "Corrupt Seller",

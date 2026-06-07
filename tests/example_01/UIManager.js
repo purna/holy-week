@@ -6,7 +6,7 @@ import { ChatUI } from "./chatUI.js";
  * modal interactions, and the rendering of game states to the DOM.
  */
 export class UIManager {
-  constructor(cm, es, ns, de, ls, a11y, audio, dm) {
+  constructor(cm, es, ns, de, ls, a11y, audio, dm, app) {
     this.cm = cm;
     this.es = es;
     this.ns = ns;
@@ -15,6 +15,7 @@ export class UIManager {
     this.a11y = a11y;
     this.audio = audio;
     this.dm = dm;
+    this.app = app;
 
     this.labUI = null;
     this.chatUI = null;
@@ -27,10 +28,9 @@ export class UIManager {
   }
 
   showScreen(name) {
-    document.querySelectorAll(".screen").forEach(s => s.classList.remove("active"));
-    const target = document.getElementById(`screen-${name}`);
-    if (target) target.classList.add("active");
-    
+    // Delegate screen switching to the mobile app shell
+    this.app.showScreen(`screen-${name}`);
+
     if (name === "map") this.renderMap();
     if (name === "a11y") this.renderA11yToggles();
   }
@@ -60,7 +60,7 @@ export class UIManager {
 
     const hdrRank = document.getElementById("hdr-rank");
     if (hdrRank) hdrRank.textContent = progress.rank || "Rookie";
-    
+
     // Refresh all scores in the UI
     const scoreValEls = document.querySelectorAll('.val-score');
     scoreValEls.forEach(el => el.textContent = progress.totalScore || 0);
@@ -68,7 +68,7 @@ export class UIManager {
     const pct = total ? Math.round((solved / total) * 100) : 0;
     const progressFill = document.getElementById("progress-fill");
     if (progressFill) progressFill.style.width = pct + "%";
-    
+
     const progressTrack = document.getElementById("progress-track");
     if (progressTrack) progressTrack.setAttribute("aria-valuenow", pct);
 
@@ -129,15 +129,15 @@ export class UIManager {
       <div class="act-section">
         <div class="act-label">${act}</div>
         ${actCases.map(c => {
-          const prog = this.cm.getCaseProgress(c.id);
-          return `<div class="case-card ${prog?.solved ? 'solved' : ''} ${c.isLocked ? 'locked' : ''}" 
+      const prog = this.cm.getCaseProgress(c.id);
+      return `<div class="case-card ${prog?.solved ? 'solved' : ''} ${c.isLocked ? 'locked' : ''}" 
                   onclick="${c.isLocked ? '' : `startCase('${c.id}')`}">
             <div class="case-title">${c.title}</div>
             <div class="case-subtitle">${c.subtitle}</div>
             ${c.eventLocation ? `<div class="case-event-location">📍 ${c.eventLocation}</div>` : ''}
             <span class="case-status-label">${prog?.solved ? `✅ Solved — ${prog.score?.total} pts` : c.isLocked ? "🔒 Locked" : "🔍 Open"}</span>
           </div>`;
-        }).join("")}
+    }).join("")}
       </div>`).join("");
   }
 
@@ -164,13 +164,13 @@ export class UIManager {
       ${!this.cm.getCaseProgress(c.id)?.sceneViewed ? `<button class="lets-investigate-btn" onclick="this.style.display='none'; const p=window.cm.getCaseProgress(window.cm.activeCaseId); if(p) p.sceneViewed=true; window.cm._saveProgress(); switchInvTab('people')">Let's investigate</button>` : ''}
       <div class="evidence-grid">
         ${c.evidencePool.map(e => {
-          const col = this.es.collected.includes(e.id);
-          return `<div class="evidence-card ${col ? 'collected' : 'locked'}" 
+      const col = this.es.collected.includes(e.id);
+      return `<div class="evidence-card ${col ? 'collected' : 'locked'}" 
                    onclick="${col ? `openEvidenceDetail('${e.id}')` : ''}">
             <div class="evidence-card-icon">${e.icon}</div>
             <div class="evidence-card-name">${e.name}</div>
           </div>`;
-        }).join("")}
+    }).join("")}
       </div>`;
   }
 
@@ -237,10 +237,10 @@ export class UIManager {
           <h3 class="section-title">1. Your Evidence</h3>
           <div class="picker-grid" style="grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));">
         ${collectedEvidence.length === 0
-          ? `<p class="picker-empty">Collect evidence from the scene first.</p>`
-          : collectedEvidence.map(e => {
-              const isSelected = this.selectedCodexEvidenceId === e.id;
-              return `
+        ? `<p class="picker-empty">Collect evidence from the scene first.</p>`
+        : collectedEvidence.map(e => {
+          const isSelected = this.selectedCodexEvidenceId === e.id;
+          return `
                 <button
                   class="picker-card ${isSelected ? 'selected-a' : ''}"
                   data-evidence-id="${e.id}"
@@ -252,18 +252,18 @@ export class UIManager {
                   <span class="picker-name">${e.name}</span>
                   ${isSelected ? `<span class="sel-badge" aria-hidden="true">A</span>` : ""}
                 </button>`;
-            }).join("")}
+        }).join("")}
           </div>
         </div>
 
         <div>
           <h3 class="section-title">2. Locked Prophecies</h3>
           <div class="picker-grid" style="grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));">
-            ${lockedProps.length === 0 
-              ? `<p class="picker-empty">All current prophecies matched!</p>`
-              : lockedProps.map(p => {
-                  const isSelected = this.selectedCodexProphecyId === p.id;
-                  return `
+            ${lockedProps.length === 0
+        ? `<p class="picker-empty">All current prophecies matched!</p>`
+        : lockedProps.map(p => {
+          const isSelected = this.selectedCodexProphecyId === p.id;
+          return `
                     <button
                       class="picker-card ${isSelected ? 'selected-b' : ''}"
                       onclick="window.ui.selectProphecyForMatching('${p.id}')"
@@ -274,7 +274,7 @@ export class UIManager {
                       <span class="picker-name">${p.reference}</span>
                       ${isSelected ? `<span class="sel-badge" aria-hidden="true">B</span>` : ""}
                     </button>`;
-                }).join("")}
+        }).join("")}
           </div>
         </div>
       </div>
@@ -409,13 +409,13 @@ export class UIManager {
     view.innerHTML = `<div class="accuse-panel">
       <div class="suspect-list">
         ${c.suspects.map(s => {
-          const isLocked = !(prog?.discoveredSuspects || []).includes(s.id);
-          return `<button class="suspect-btn ${isLocked ? 'locked' : ''}" ${isLocked ? 'disabled' : ''} onclick="accuse('${s.id}')">
+      const isLocked = !(prog?.discoveredSuspects || []).includes(s.id);
+      return `<button class="suspect-btn ${isLocked ? 'locked' : ''}" ${isLocked ? 'disabled' : ''} onclick="accuse('${s.id}')">
             <span class="suspect-btn-avatar">${s.avatar}</span>
             <div class="suspect-btn-info"><div class="suspect-btn-name">${s.name}</div></div>
             ${isLocked ? '🔒' : '→'}
           </button>`;
-        }).join("")}
+    }).join("")}
       </div>
     </div>`;
   }
@@ -470,12 +470,29 @@ export class UIManager {
   renderA11yToggles() {
     const settings = this.a11y.getAll();
     document.querySelectorAll(".toggle-btn[data-feature]").forEach(btn => {
-      const on = !!settings[btn.dataset.feature];
+      const feature = btn.dataset.feature;
+      const on = !!settings[feature];
+
       btn.setAttribute("aria-pressed", String(on));
-      if (btn.dataset.feature === 'sound') {
+      btn.setAttribute("aria-checked", String(on)); // Essential for role="switch"
+
+      if (feature === 'sound') {
         const icon = btn.querySelector('i');
-        if (icon) icon.className = on ? 'fas fa-volume-up' : 'fas fa-volume-mute';
+        if (icon) icon.className = on ? 'fa-solid fa-volume-high' : 'fa-solid fa-volume-xmark';
       }
+
+      // Attach the click handler to actually perform the toggle
+      btn.onclick = () => {
+        const newState = this.a11y.toggle(feature);
+        this.renderA11yToggles(); // Refresh this screen's state
+
+        if (feature === 'sound') {
+          this.audio.setEnabled(newState);
+          // Sync the main navbar sound button icon
+          const navBtnIcon = document.querySelector('[onclick="toggleAudio()"] i');
+          if (navBtnIcon) navBtnIcon.className = newState ? 'fa-solid fa-volume-high' : 'fa-solid fa-volume-xmark';
+        }
+      };
     });
   }
 

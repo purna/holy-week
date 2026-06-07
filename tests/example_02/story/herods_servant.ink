@@ -2,9 +2,6 @@
 // CHARACTER: Chuza (Herod's Servant)
 // ACT: Act III
 // CASE: The Tetrarch's Court
-// CASE EXPORT: herods_servant
-// SOURCE: herods_servant.ink
-// BACKGROUND: A household official in Herod Antipas’s court who witnessed the Baptist’s execution and Jesus’s interrogation.
 // BIBLE REFERENCE: Luke 23:6-12; Matthew 14:1-12; Luke 8:3
 // ------------------------------------------------------------
 // PROPHECIES FULFILLED IN THIS CASE:
@@ -15,12 +12,6 @@
 //     Gospel: Luke 23:9
 //     Insight: Jesus 'opened not his mouth' before Herod's questioning, fulfilling the prophecy of the silent Lamb.
 // ------------------------------------------------------------
-// BIBLICAL CONTEXT:
-//   Summary: Herod Antipas, superstitious and fearful of John the Baptist's ghost, interrogate Jesus during the trial phase.
-// ------------------------------------------------------------
-// CASE FACTS (Truth Object):
-//   Culprit: none
-//   Motive: Political and spiritual curiosity leading to mockery and rejection.
 //
 
 -> start

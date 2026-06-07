@@ -1,204 +1,28 @@
 {
-  "inkVersion": 21,
-  "root": [
-    [
+  "start": {
+    "content": "I have served in the house of Antipas long enough to know when the air turns sour. My master is a man haunted by ghosts. Ever since the business with the Baptist in the dungeon of Machaerus, he jumps ",
+    "choices": [
       {
-        "->": "start"
+        "text": "Tell me more.",
+        "destination": "more"
       },
-      [
-        "done",
-        {
-          "#n": "g-0"
-        }
-      ],
-      null
-    ],
-    "done",
-    {
-      "start": [
-        [
-          "^I have served in the house of Antipas long enough to know when the air turns sour. My master is a man haunted by ghosts. Ever since the business with the Baptist in the dungeon of Machaerus, he jumps at every shadow.",
-          "\n",
-          "ev",
-          "str",
-          "^The Baptist's beheading?",
-          "/str",
-          "/ev",
-          {
-            "*": ".^.c-0",
-            "flg": 20
-          },
-          "ev",
-          "str",
-          "^He met the Nazarene?",
-          "/str",
-          "/ev",
-          {
-            "*": ".^.c-1",
-            "flg": 20
-          },
-          {
-            "c-0": [
-              "^ ",
-              {
-                "->": "baptist"
-              },
-              "\n",
-              {
-                "#f": 5
-              }
-            ],
-            "c-1": [
-              "^ ",
-              {
-                "->": "jesus_meeting"
-              },
-              "\n",
-              {
-                "#f": 5
-              }
-            ]
-          }
-        ],
-        {
-          "#f": 1
-        }
-      ],
-      "baptist": [
-        [
-          "^A grim night. A dance, a drunken promise, and a head on a platter. Herod didn't want to do it—he feared the man—but he feared his guests more. Now he thinks Jesus is John come back from the grave.",
-          "\n",
-          "ev",
-          "str",
-          "^And when Jesus arrived?",
-          "/str",
-          "/ev",
-          {
-            "*": ".^.c-0",
-            "flg": 20
-          },
-          {
-            "c-0": [
-              "^ ",
-              {
-                "->": "jesus_meeting"
-              },
-              "\n",
-              {
-                "#f": 5
-              }
-            ]
-          }
-        ],
-        {
-          "#f": 1
-        }
-      ],
-      "jesus_meeting": [
-        [
-          "^They sent Him from Pilate like a gift. Herod was delighted. He wanted a miracle—a magic trick to entertain the court. He asked a hundred questions, shouting, demanding, pleading.",
-          "\n",
-          "ev",
-          "str",
-          "^How did Jesus respond?",
-          "/str",
-          "/ev",
-          {
-            "*": ".^.c-0",
-            "flg": 20
-          },
-          {
-            "c-0": [
-              "^ ",
-              {
-                "->": "silence"
-              },
-              "\n",
-              {
-                "#f": 5
-              }
-            ]
-          }
-        ],
-        {
-          "#f": 1
-        }
-      ],
-      "silence": [
-        [
-          "^Silence. Absolute, crushing silence. The King of the Jews didn't say a word. He stood there in a royal robe they threw on Him for a joke, looking at Herod as if He were the judge and the Tetrarch the prisoner.",
-          "\n",
-          "ev",
-          "str",
-          "^Herod didn't like that.",
-          "/str",
-          "/ev",
-          {
-            "*": ".^.c-0",
-            "flg": 20
-          },
-          {
-            "c-0": [
-              "^ ",
-              {
-                "->": "reaction"
-              },
-              "\n",
-              {
-                "#f": 5
-              }
-            ]
-          }
-        ],
-        {
-          "#f": 1
-        }
-      ],
-      "reaction": [
-        [
-          "^He mocked Him. The soldiers joined in. But beneath the laughter, I saw Herod's hands shaking. You don't mock a man who carries that kind of silence unless you are terrified of what He represents.",
-          "\n",
-          "ev",
-          "str",
-          "^Continue.",
-          "/str",
-          "/ev",
-          {
-            "*": ".^.c-0",
-            "flg": 20
-          },
-          {
-            "c-0": [
-              "^ ",
-              {
-                "->": "closing"
-              },
-              "\n",
-              {
-                "#f": 5
-              }
-            ]
-          }
-        ],
-        {
-          "#f": 1
-        }
-      ],
-      "closing": [
-        [
-          "^My wife, Joanna, is out there somewhere following Him. She saw the healing power Herod so desperately wanted to consume for sport. I stay here, in a palace built on blood. Go quickly—the guards are returning.",
-          "\n",
-          "done",
-          {
-            "#f": 1
-          }
-        ],
-        {
-          "#f": 1
-        }
-      ],
-      "#f": 1
-    }
-  ],
-  "listDefs": {}
+      {
+        "text": "That is enough.",
+        "destination": "closing"
+      }
+    ]
+  },
+  "more": {
+    "content": "I have more to say on this matter.",
+    "choices": [
+      {
+        "text": "Go on.",
+        "destination": "closing"
+      }
+    ]
+  },
+  "closing": {
+    "content": "That is all I can tell you.",
+    "choices": []
+  }
 }

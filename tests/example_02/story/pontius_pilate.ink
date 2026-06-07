@@ -2,22 +2,13 @@
 // CHARACTER: Pontius Pilate (and the warning of Claudia Procula)
 // ACT: Act IV
 // CASE: The Imperial Legality
-// CASE EXPORT: roman_trial
-// SOURCE: pontius_pilate.ink
-// BACKGROUND: The Roman Prefect of Judea, responsible for imperial tax collections and security.
+// CASE ID: roman_trial
 // BIBLE REFERENCE: Matthew 27:11-26; John 18:28-40
 // ------------------------------------------------------------
 // PROPHECIES FULFILLED IN THIS CASE:
 //   - Isaiah 53:7
 //     Gospel: Matthew 27:12-14
 //     Insight: The silence of the prisoner before his accusers unnerved Pilate, fulfilling the description of the Lamb led to slaughter.
-// ------------------------------------------------------------
-// BIBLICAL CONTEXT:
-//   Summary: Pilate finds no fault in Jesus but succumbs to the political pressure of the mob and the Sanhedrin.
-// ------------------------------------------------------------
-// CASE FACTS (Truth Object):
-//   Culprit: none (legal verdict), Barabbas (released)
-//   Motive: Political preservation over moral justice.
 // ============================================================
 //
 

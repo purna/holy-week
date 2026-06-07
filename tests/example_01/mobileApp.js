@@ -9,6 +9,13 @@ export class MobileApp {
     this.simpleMode = false;
     this.highContrast = false;
     this.ttsEnabled = false;
+    
+    // Initialize announce region immediately
+    this._ensureAnnounceRegion();
+  }
+
+  _ensureAnnounceRegion() {
+    if (!document.getElementById('sr-announce')) this.announce("");
   }
 
   renderTabs(containerId) {

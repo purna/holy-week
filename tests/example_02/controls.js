@@ -30,51 +30,36 @@ export class ControlsManager {
                 this.autoCycle = !this.autoCycle;
                 this.displayAlert(this.autoCycle ? "Auto day/night enabled" : "Celestial timeline frozen");
             }
+
+            // Menu navigation with Tab / Shift+Tab
+            if (e.code === 'Tab') {
+                e.preventDefault();
+                const menuButtonIds = [
+                    'btn-mobile-quest',
+                    'btn-mobile-evidence',
+                    'btn-mobile-actions',
+                    'btn-mobile-codex',
+                    'btn-mobile-keys',
+                    'btn-mobile-analysis'
+                ];
+                
+                let activeIndex = menuButtonIds.findIndex(id => {
+                    const el = document.getElementById(id);
+                    return el && el.classList.contains('active');
+                });
+
+                if (e.shiftKey) {
+                    activeIndex = (activeIndex <= 0) ? menuButtonIds.length - 1 : activeIndex - 1;
+                } else {
+                    activeIndex = (activeIndex + 1) % menuButtonIds.length;
+                }
+
+                const targetBtn = document.getElementById(menuButtonIds[activeIndex]);
+                if (targetBtn) targetBtn.click();
+            }
         });
 
         window.addEventListener('keyup', (e) => this.keys[e.code] = false);
-
-        // Sidebar panel toggling
-        const leftPanel = document.getElementById('left-sidebar');
-        const rightPanel = document.getElementById('right-sidebar');
-        const leftBtn = document.getElementById('toggle-left-btn');
-        const rightBtn = document.getElementById('toggle-right-btn');
-
-        let leftVisible = true;
-        let rightVisible = true;
-
-
-        function updateLeftBtn() {
-            leftBtn.innerHTML = leftVisible
-                ? '<i class="fa-solid fa-chevron-left"></i>'
-                : '<i class="fa-solid fa-chevron-right"></i>';
-            leftBtn.title = leftVisible ? 'Hide Left Panel' : 'Show Left Panel';
-            // Reposition button to hug the visible edge
-            leftBtn.style.left = leftVisible ? 'calc(320px + 20px + 4px)' : '24px';
-        }
-
-        function updateRightBtn() {
-            rightBtn.innerHTML = rightVisible
-                ? '<i class="fa-solid fa-chevron-right"></i>'
-                : '<i class="fa-solid fa-chevron-left"></i>';
-            rightBtn.title = rightVisible ? 'Hide Right Panel' : 'Show Right Panel';
-            rightBtn.style.right = rightVisible ? 'calc(340px + 20px + 4px)' : '24px';
-        }
-
-        leftBtn.addEventListener('click', () => {
-            leftVisible = !leftVisible;
-            leftPanel.classList.toggle('panel-hidden', !leftVisible);
-            updateLeftBtn();
-        });
-
-        rightBtn.addEventListener('click', () => {
-            rightVisible = !rightVisible;
-            rightPanel.classList.toggle('panel-hidden', !rightVisible);
-            updateRightBtn();
-        });
-
-        updateLeftBtn();
-        updateRightBtn();
     }
 
     displayAlert(msg) {

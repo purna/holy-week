@@ -1,45 +1,23 @@
 // accessibility.js — full accessibility layer: screen reader, keyboard nav, focus management
 
 export class AccessibilityManager {
-  constructor({ chatUI, onTTSChange } = {}) {
+  constructor({ chatUI, onTTSChange, app } = {}) {
     this.chatUI = chatUI;
-    this.onTTSChange = onTTSChange || (() => {});
+    this.onTTSChange = onTTSChange || (() => { });
+    this.app = app;
     this.ttsEnabled = false;
     this.highContrast = false;
     this.simpleMode = false;
     this.largeText = false;
     this.soundEnabled = true; // default sound on
-    this._ensureLiveRegion();
     this._bindKeyboard();
   }
 
-  // ── LIVE REGION (screen readers) ──────────────────────
-  _ensureLiveRegion() {
-    if (document.getElementById('sr-announce')) return;
-    const el = document.createElement('div');
-    el.id = 'sr-announce';
-    el.setAttribute('role', 'status');
-    el.setAttribute('aria-live', 'polite');
-    el.setAttribute('aria-atomic', 'true');
-    el.className = 'sr-only';
-    document.body.appendChild(el);
-
-    // Assertive region for urgent alerts
-    const urgent = document.createElement('div');
-    urgent.id = 'sr-urgent';
-    urgent.setAttribute('role', 'alert');
-    urgent.setAttribute('aria-live', 'assertive');
-    urgent.setAttribute('aria-atomic', 'true');
-    urgent.className = 'sr-only';
-    document.body.appendChild(urgent);
-  }
-
   announce(text, urgent = false) {
-    const id = urgent ? 'sr-urgent' : 'sr-announce';
-    const region = document.getElementById(id);
-    if (!region) return;
-    region.textContent = '';
-    setTimeout(() => { region.textContent = text; }, 50);
+    // Utilize the generic announcer from MobileApp
+    if (this.app) {
+      this.app.announce(text);
+    }
     if (this.ttsEnabled) this._speak(text);
   }
 
@@ -112,16 +90,16 @@ export class AccessibilityManager {
   _bindKeyboard() {
     document.addEventListener('keydown', (e) => {
       // Skip if typing in an input
-      if (['INPUT','TEXTAREA','SELECT'].includes(e.target.tagName)) return;
+      if (['INPUT', 'TEXTAREA', 'SELECT'].includes(e.target.tagName)) return;
 
       switch (e.key) {
-        case '1': window.__switchTab?.('evidence');  break;
-        case '2': window.__switchTab?.('npcs');      break;
-        case '3': window.__switchTab?.('lab');       break;
-        case '4': window.__switchTab?.('codex');     break;
-        case '5': window.__switchTab?.('accuse');    break;
-        case 'Escape': this._handleEscape();         break;
-        case 'Tab':    this._manageFocus(e);         break;
+        case '1': window.__switchTab?.('evidence'); break;
+        case '2': window.__switchTab?.('npcs'); break;
+        case '3': window.__switchTab?.('lab'); break;
+        case '4': window.__switchTab?.('codex'); break;
+        case '5': window.__switchTab?.('accuse'); break;
+        case 'Escape': this._handleEscape(); break;
+        case 'Tab': this._manageFocus(e); break;
       }
     });
   }
@@ -143,7 +121,7 @@ export class AccessibilityManager {
     );
     if (focusable.length === 0) return;
     const first = focusable[0];
-    const last  = focusable[focusable.length - 1];
+    const last = focusable[focusable.length - 1];
     if (e.shiftKey && document.activeElement === first) {
       e.preventDefault(); last.focus();
     } else if (!e.shiftKey && document.activeElement === last) {
@@ -165,8 +143,8 @@ export class AccessibilityManager {
   // ── RESTORE SAVED PREFERENCES ────────────────────────
   restorePreferences() {
     if (localStorage.getItem('a11y-contrast') === 'true') this.enableHighContrast(true);
-    if (localStorage.getItem('a11y-simple')   === 'true') this.enableSimpleMode(true);
-    if (localStorage.getItem('a11y-large')    === 'true') this.enableLargeText(true);
+    if (localStorage.getItem('a11y-simple') === 'true') this.enableSimpleMode(true);
+    if (localStorage.getItem('a11y-large') === 'true') this.enableLargeText(true);
     const soundSaved = localStorage.getItem('a11y-sound');
     if (soundSaved !== null) {
       this.enableSound(soundSaved === 'true');
@@ -179,11 +157,11 @@ export class AccessibilityManager {
     if (!container) return;
 
     const tools = [
-      { id: 'btn-tts',      icon: '🔊', label: 'Text to Speech',  action: () => this.toggleTTS() },
-      { id: 'btn-contrast', icon: '🌓', label: 'High Contrast',   action: () => this.toggleHighContrast() },
-      { id: 'btn-simple',   icon: '🅰',  label: 'Simple Text',    action: () => this.toggleSimpleMode() },
-      { id: 'btn-large',    icon: '🔠', label: 'Large Text',      action: () => this.toggleLargeText() },
-      { id: 'btn-reset',    icon: '↺',  label: 'Reset Progress',  action: () => window.__resetProgress?.() }
+      { id: 'btn-tts', icon: '🔊', label: 'Text to Speech', action: () => this.toggleTTS() },
+      { id: 'btn-contrast', icon: '🌓', label: 'High Contrast', action: () => this.toggleHighContrast() },
+      { id: 'btn-simple', icon: '🅰', label: 'Simple Text', action: () => this.toggleSimpleMode() },
+      { id: 'btn-large', icon: '🔠', label: 'Large Text', action: () => this.toggleLargeText() },
+      { id: 'btn-reset', icon: '↺', label: 'Reset Progress', action: () => window.__resetProgress?.() }
     ];
 
     container.innerHTML = `
@@ -214,7 +192,7 @@ export class AccessibilityManager {
       font-weight:700; z-index:9999; transition:top 0.2s;
     `;
     link.addEventListener('focus', () => { link.style.top = '0'; });
-    link.addEventListener('blur',  () => { link.style.top = '-40px'; });
+    link.addEventListener('blur', () => { link.style.top = '-40px'; });
     document.body.prepend(link);
   }
 
@@ -279,9 +257,9 @@ export class AccessibilityManager {
       large_text: () => this.toggleLargeText(),
       tts: () => this.toggleTTS(),
       sound: () => this.toggleSound(),
-      slow_speech: () => {},
+      slow_speech: () => { },
       simple_mode: () => this.toggleSimpleMode(),
-      reduce_motion: () => {}
+      reduce_motion: () => { }
     };
     const fn = toggles[feature];
     if (fn) fn();

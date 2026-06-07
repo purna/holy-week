@@ -1,6 +1,6 @@
 // ============================================================
 // CHARACTER: Simon of Cyrene
-// ACT: Act IV/V
+// ACT: Act III
 // CASE: The Road to Golgotha
 // CASE ID: via_dolorosa
 // SOURCE: ORPHAN FILE (not referenced in any case file)

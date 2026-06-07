@@ -2,9 +2,6 @@
 // CHARACTER: Centurion Longinus (Roman Executioner)
 // ACT: Act III
 // CASE: The Curtain and the Cross
-// CASE EXPORT: crucifixion_site
-// SOURCE: centurion_witness.ink
-// BACKGROUND: The Roman officer who oversaw the execution and delivered the spear thrust.
 // BIBLE REFERENCE: Matthew 27:45-54; John 19:28-37; Luke 23:36-47; Matthew 27:52-53
 // ------------------------------------------------------------
 // PROPHECIES FULFILLED IN THIS CASE:

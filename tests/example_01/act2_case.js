@@ -181,6 +181,7 @@ export const act2CaseA = {
       name: "Caiaphas",
       role: "High Priest, Sadducee",
       avatar: "👨‍⚖️",
+      unlocksSuspects: ["chief_priest"],
       profileFile: "./characters/caiaphas.json",
       truthfulness: 0.55,
       bibleRef: "Matthew 21:23; John 11:49–52; Matthew 26:57–68",
@@ -207,6 +208,7 @@ export const act2CaseA = {
       name: "Samuel",
       role: "Temple Scribe, Pharisee",
       avatar: "📜",
+      unlocksSuspects: ["scribe"],
       profileFile: "./characters/samuel_scribe.json",
       truthfulness: 0.85,
       bibleRef: "Mark 12:28–34",
@@ -231,6 +233,7 @@ export const act2CaseA = {
       name: "Nathanael",
       role: "Pharisee, Herodian ally",
       avatar: "🧣",
+      unlocksSuspects: ["pharisee"],
       profileFile: "./characters/nathanael_pharisee.json",
       truthfulness: 0.4,
       bibleRef: "Matthew 22:15–22 — the Pharisee-Herodian coalition",
@@ -409,7 +412,7 @@ export const act2CaseB = {
       },
     },
     { id: "caiaphas", name: "Caiaphas", role: "High Priest, Sadducee", avatar: "👨‍⚖️", color: 0xcc8888, pos: [-15, 0, 5], bibleRef: "John 11:49–52; Matthew 26:57–68" },
-    
+
   ],
 
   npcs: [
@@ -423,6 +426,7 @@ export const act2CaseB = {
       bibleRef: "John 18:10; Luke 22:52",
       hasDialogue: true,
       storyFile: "./story/temple_spy.json",
+      unlocksSuspects: ["caiaphas"],
       unlocksEvidence: ["crowd_report"],
       background: "An administrative operative and courier under the payroll of the high priest's household, tasked with logging suspicious crowd densities, tracking routes, and profiling revolutionary movement between Jerusalem and Bethany.",
       dialogue: {
@@ -477,6 +481,7 @@ export const act2CaseB = {
       bibleRef: "John 11:1–44; John 12:1–2",
       hasDialogue: true,
       storyFile: "./story/martha_bethany.json",
+      unlocksSuspects: ["nicodemus_secret"],
       unlocksEvidence: ["grave_dirt"],
       background: "The practical, protective head of the Bethany household. Having witnessed her brother's descent into death and subsequent revival, she is now trapped in a terrifying surveillance grid, managing family survival while shadow operatives monitor her home.",
       dialogue: {
@@ -493,7 +498,7 @@ export const act2CaseB = {
       },
       contradictions: {},
     },
-,
+    ,
     {
       id: "parable_meaning",
       name: "Thomas (Parable)",

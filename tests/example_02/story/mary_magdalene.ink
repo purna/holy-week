@@ -1,9 +1,9 @@
 // ============================================================
 // CHARACTER: Mary Magdalene
-// ACT: Act IV/V
+// ACT: Act IV
 // CASE: The Empty Tomb
 // CASE EXPORT: resurrection
-// SOURCE: act4_case_3d.js → NPC 'mary_magdalene'
+// SOURCE: act4_case_2d.js → NPC 'mary_magdalene'
 // BIBLE REFERENCE: John 20:1–18; Mark 16:9
 // ------------------------------------------------------------
 // PROPHECIES FULFILLED IN THIS CASE:

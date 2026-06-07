@@ -1,1 +1,11 @@
-{}
+{
+  "id": "pharisee",
+  "name": "Nathanael",
+  "role": "Pharisee, Herodian ally",
+  "avatar": "🧣",
+  "truthfulness": 0.4,
+  "bibleRef": "Matthew 22:15–22",
+  "background": "A Pharisee who has formed an unlikely alliance with the Herodians — normally political rivals — specifically to trap Jesus on the tax question. The threat Jesus posed to their relative power united them.",
+  "factions": ["pharisees", "herodians"],
+  "storyFile": "pharisee_critique"
+}

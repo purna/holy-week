@@ -4,18 +4,16 @@
 
 .hud-layer {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    inset: 0;
     z-index: 1000;
     pointer-events: none;
+
     display: grid;
-    grid-template-columns: 300px 1fr 320px;
-    grid-template-rows: 58px 1fr 108px;
-    padding: 16px;
-    padding-bottom: 6px;
-    gap: 14px;
+    grid-template-columns: var(--sidebar-w) 1fr var(--sidebar-w);
+    grid-template-rows: var(--topbar-h) 1fr var(--bottombar-h);
+    padding: var(--gap);
+    padding-bottom: calc(var(--gap) * 0.5);
+    gap: var(--gap);
 }
 
 
@@ -79,11 +77,14 @@
     display: flex;
     flex-direction: column;
     gap: 12px;
-    transition: opacity 0.25s ease, transform 0.25s ease;
+    transition: opacity 0.5s ease, transform 0.5s ease, visibility 0.5s;
     position: relative;
     z-index: 12;
     height: 100%;
     min-height: 0;
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
 }
 
 #right-sidebar {
@@ -92,11 +93,22 @@
     display: flex;
     flex-direction: column;
     gap: 12px;
-    transition: opacity 0.25s ease, transform 0.25s ease;
+    transition: opacity 0.5s ease, transform 0.5s ease, visibility 0.5s;
     height: 100%;
     min-height: 0;
     position: relative;
     z-index: 12;
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+}
+
+/* Show sidebars when case is active/selected */
+#left-sidebar.active,
+#right-sidebar.active {
+    opacity: 1;
+    pointer-events: auto;
+    visibility: visible;
 }
 
 /* Bottom Control Deck */
@@ -111,22 +123,21 @@
 }
 
 /* Panel Toggle Buttons */
+/* Panel Toggle Buttons */
 .panel-toggle-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
+    position: fixed;
     z-index: 20;
     background: var(--panel-bg);
     border: 1px solid var(--border-accent);
     color: var(--accent-primary);
-    width: 20px;
-    height: 48px;
+    width: 18px;
+    height: 44px;
     border-radius: 2px;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 0.65rem;
+    font-size: 0.6rem;
     transition: background 0.2s, border-color 0.2s, color 0.2s;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
 }
@@ -138,25 +149,70 @@
 }
 
 #toggle-left-btn {
-    left: calc(300px + 16px + 4px);
+    left: 0;
+    bottom: 180px; /* Centered vertically with the mobile d-pad */
+    border-left: none;
+    border-radius: 0 4px 4px 0;
 }
 
 #toggle-right-btn {
-    right: calc(320px + 16px + 4px);
+    right: 0;
+    bottom: 180px; /* Centered vertically with the minimap radar */
+    border-right: none;
+    border-radius: 4px 0 0 4px;
+}
+
+@media (max-width: 639px) {
+    #toggle-right-btn {
+        bottom: 180px; /* Adjusted for the raised mobile minimap position */
+    }
 }
 
 #left-sidebar.panel-hidden {
     opacity: 0;
     pointer-events: none;
     transform: translateX(-18px);
+    visibility: hidden;
 }
 
 #right-sidebar.panel-hidden {
     opacity: 0;
     pointer-events: none;
     transform: translateX(18px);
+    visibility: hidden;
 }
 
+/* Mobile Close Button Styling */
+.modal-close-btn {
+    background: rgba(20, 12, 4, 0.4);
+    border: 1px solid var(--accent-error);
+    color: var(--accent-error);
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 2px;
+    cursor: pointer;
+    font-size: 1rem;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 1001;
+    transition: all 0.2s;
+}
+
+.modal-close-btn:hover {
+    background: var(--accent-error);
+    color: #fff;
+    transform: scale(1.1);
+}
+
+@media (max-width: 639px) {
+    .modal-close-btn {
+        background: rgba(20, 12, 4, 1);
+    }
+}
 /* ==========================================================================
    RESPONSIVE HUD LAYOUT (Breakpoint: < 640px)
    ========================================================================== */
@@ -167,7 +223,7 @@
     #left-sidebar,
     #right-sidebar,
     .panel-toggle-btn {
-        display: none;
+       /* display: none; */
     }
 
 
@@ -365,6 +421,8 @@
     .mobile-only {
         display: flex;
     }
+
+
 }
 
 
@@ -375,7 +433,7 @@
     border: 1px solid var(--border-gold);
     font-weight: 700;
     font-family: 'Cinzel', serif;
-    padding: 4px 8px;
+    padding: 8px 8px;
     border-radius: 2px;
     cursor: pointer;
     text-transform: uppercase;
@@ -385,13 +443,25 @@
 
     width: auto;
     min-width: 42px;
-    height: 42px;
+    height: auto;
     align-items: center;
     justify-content: center;
     gap: 6px;
     transition: all 0.2s;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
 }
+
+@media (max-width: 639px) {
+
+
+    .mobile-nav-btn {
+        padding: 8px 2px;
+        gap: 2px;
+
+    }
+
+}
+
 
 
 .mobile-nav-btn:hover {
@@ -412,7 +482,7 @@
 
 #mobile-ctrl {
     position: fixed;
-    bottom: 100px;
+    bottom: 120px;
     /* Raised to clear the mobile nav bar */
     left: 40px;
     width: 160px;

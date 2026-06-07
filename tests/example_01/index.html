@@ -8,7 +8,7 @@
   <meta name="description"
     content="A mobile-first educational detective game. Collect clues, interview suspects and solve mysteries." />
 
-     <!-- FontAwesome 6: Vector icon library used globally for interface badges and markers -->
+  <!-- FontAwesome 6: Vector icon library used globally for interface badges and markers -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 
@@ -48,25 +48,60 @@
       font-size: 0.95rem;
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
-    #inv-people .section-title { margin-top: 14px; }
-    #instructions-modal, #reset-modal {
+
+    #inv-people .section-title {
+      margin-top: 14px;
+    }
+
+    #instructions-modal,
+    #reset-modal {
       background: rgba(0, 0, 0, 0.85);
       justify-content: center;
       align-items: center;
       z-index: 5000;
     }
-    #instructions-modal .evidence-detail-content { height: auto; max-width: 420px; position: relative; }
-    #instructions-logo { text-align: center; margin-bottom: 24px; }
+
+    #instructions-modal .evidence-detail-content {
+      height: auto;
+      max-width: 420px;
+      position: relative;
+    }
+
+    #instructions-logo {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
     #instructions-logo .header-title {
       font-size: 2.2rem;
       color: var(--gold);
       text-shadow: 0 0 15px rgba(245, 200, 66, 0.4);
     }
-    #reset-modal .result-card { height: auto; max-width: 340px; }
-    #reset-modal .result-verdict-text { color: var(--text); }
-    #reset-modal .modal-buttons-group { display: flex; gap: 12px; margin-top: 10px; }
-    .btn-cancel { background: var(--surface3); color: var(--text); }
-    .btn-reset { background: var(--red); color: white; }
+
+    #reset-modal .result-card {
+      height: auto;
+      max-width: 340px;
+    }
+
+    #reset-modal .result-verdict-text {
+      color: var(--text);
+    }
+
+    #reset-modal .modal-buttons-group {
+      display: flex;
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .btn-cancel {
+      background: var(--surface3);
+      color: var(--text);
+    }
+
+    .btn-reset {
+      background: var(--red);
+      color: white;
+    }
 
     /* Codex Matching UI */
     .codex-selection-area {
@@ -78,6 +113,7 @@
       border-radius: var(--radius);
       margin-bottom: 20px;
     }
+
     .selection-slot {
       flex: 1;
       height: 60px;
@@ -92,16 +128,68 @@
       cursor: pointer;
       transition: background 0.2s, border-color 0.2s;
     }
-    .selection-slot:hover { background: var(--surface3); }
-    .selection-slot.active { border-color: var(--gold); border-style: solid; color: var(--text); }
-    .selection-arrow { font-size: 1.2rem; color: var(--text-muted); }
-    .prophecy-lab-intro { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 12px; font-style: italic; }
-    #btn-match-prophecy { margin-top: 0; white-space: nowrap; width: auto; padding: 0 16px; height: 60px; }
-    .codex-feedback { margin-bottom: 20px; min-height: 40px; }
-    .codex-feedback-msg { padding: 12px; border-radius: var(--radius-sm); font-size: 0.85rem; font-weight: 600; text-align: center; animation: fadeSlide 0.2s ease-out; }
-    .codex-feedback-msg.success { background: rgba(52, 211, 153, 0.15); color: var(--green); border: 1px solid var(--green); }
-    .codex-feedback-msg.error { background: rgba(239, 68, 68, 0.15); color: var(--red); border: 1px solid var(--red); }
-    #btn-match-prophecy.is-disabled { opacity: 0.5; filter: grayscale(1); cursor: not-allowed; }
+
+    .selection-slot:hover {
+      background: var(--surface3);
+    }
+
+    .selection-slot.active {
+      border-color: var(--gold);
+      border-style: solid;
+      color: var(--text);
+    }
+
+    .selection-arrow {
+      font-size: 1.2rem;
+      color: var(--text-muted);
+    }
+
+    .prophecy-lab-intro {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+      font-style: italic;
+    }
+
+    #btn-match-prophecy {
+      margin-top: 0;
+      white-space: nowrap;
+      width: auto;
+      padding: 0 16px;
+      height: 60px;
+    }
+
+    .codex-feedback {
+      margin-bottom: 20px;
+      min-height: 40px;
+    }
+
+    .codex-feedback-msg {
+      padding: 12px;
+      border-radius: var(--radius-sm);
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-align: center;
+      animation: fadeSlide 0.2s ease-out;
+    }
+
+    .codex-feedback-msg.success {
+      background: rgba(52, 211, 153, 0.15);
+      color: var(--green);
+      border: 1px solid var(--green);
+    }
+
+    .codex-feedback-msg.error {
+      background: rgba(239, 68, 68, 0.15);
+      color: var(--red);
+      border: 1px solid var(--red);
+    }
+
+    #btn-match-prophecy.is-disabled {
+      opacity: 0.5;
+      filter: grayscale(1);
+      cursor: not-allowed;
+    }
 
     /* Layout Fixes for Investigation Views to prevent clipping and enable scrolling */
     .inv-view {
@@ -110,9 +198,10 @@
       overflow-y: auto;
       padding: 16px;
       /* Added padding at the bottom to ensure content is reachable above the floating navbar */
-      padding-bottom: 120px; 
+      padding-bottom: 120px;
       -webkit-overflow-scrolling: touch;
     }
+
     .inv-view.active {
       display: block;
     }
@@ -144,25 +233,87 @@
       width: 100%;
     }
 
-    .picker-card.selected-a { border-color: var(--blue); background: rgba(96, 165, 250, 0.15); border-width: 2px; }
-    .picker-card.selected-b { border-color: var(--gold); background: rgba(245, 158, 11, 0.15); border-width: 2px; }
-    .picker-icon { font-size: 1.8rem; pointer-events: none; color: var(--text-muted); }
-    .picker-name { font-size: 0.75rem; font-weight: 600; text-align: center; color: var(--text); line-height: 1.2; pointer-events: none; }
-    .sel-badge { position: absolute; top: -6px; right: -6px; background: var(--blue); color: white; width: 22px; height: 22px; border-radius: 50%; font-size: 0.75rem; display: flex; align-items: center; justify-content: center; font-weight: bold; border: 2px solid var(--bg); box-shadow: 0 2px 4px rgba(0,0,0,0.3); z-index: 2; }
-    .picker-card.selected-b .sel-badge { background: var(--gold); }
+    .picker-card.selected-a {
+      border-color: var(--blue);
+      background: rgba(96, 165, 250, 0.15);
+      border-width: 2px;
+    }
+
+    .picker-card.selected-b {
+      border-color: var(--gold);
+      background: rgba(245, 158, 11, 0.15);
+      border-width: 2px;
+    }
+
+    .picker-icon {
+      font-size: 1.8rem;
+      pointer-events: none;
+      color: var(--text-muted);
+    }
+
+    .picker-name {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-align: center;
+      color: var(--text);
+      line-height: 1.2;
+      pointer-events: none;
+    }
+
+    .sel-badge {
+      position: absolute;
+      top: -6px;
+      right: -6px;
+      background: var(--blue);
+      color: white;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      font-size: 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      border: 2px solid var(--bg);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      z-index: 2;
+    }
+
+    .picker-card.selected-b .sel-badge {
+      background: var(--gold);
+    }
   </style>
   <style>
     /* Additional styles for header metrics */
-    .hidden { display: none; }
-    .metric-icon {
-        font-size: 1.2rem; /* Increased icon size */
-        margin-right: 4px; /* Space between icon and value */
+    .hidden {
+      display: none;
     }
-    .metric-icon.fa-building-columns { color: var(--blue); }
-    .metric-icon.fa-cross { color: var(--red); }
-    .metric-icon.fa-shield { color: var(--gold); }
-    
-    .header-metric, .header-score { font-size: 1rem; display: flex; align-items: center; }
+
+    .metric-icon {
+      font-size: 1.2rem;
+      /* Increased icon size */
+      margin-right: 4px;
+      /* Space between icon and value */
+    }
+
+    .metric-icon.fa-building-columns {
+      color: var(--blue);
+    }
+
+    .metric-icon.fa-cross {
+      color: var(--red);
+    }
+
+    .metric-icon.fa-shield {
+      color: var(--gold);
+    }
+
+    .header-metric,
+    .header-score {
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+    }
   </style>
 </head>
 
@@ -173,23 +324,26 @@
 
     <!-- Screen: World Map (Location Selection) - The entry point for selecting investigation sites -->
     <div id="screen-map" class="screen active" aria-label="Event Map">
-       <!-- Top branding and current status section -->
-       <div class="app-header">
-         <!-- Wrapper for title and visual context -->
-         <div>
-           <div class="header-title">🔍 Holy Week</div> <!-- Main game title -->
-           <div class="header-subtitle" id="hdr-subtitle">Choose an location</div> <!-- Instructional prompt -->
-         </div>
-       </div>
-       <!-- Global status bar for player Reputation and Doubt levels -->
+      <!-- Top branding and current status section -->
+      <div class="app-header">
+        <!-- Wrapper for title and visual context -->
+        <div>
+          <div class="header-title">🔍 Holy Week</div> <!-- Main game title -->
+          <div class="header-subtitle" id="hdr-subtitle">Choose an location</div> <!-- Instructional prompt -->
+        </div>
+      </div>
+      <!-- Global status bar for player Reputation and Doubt levels -->
       <div class="metrics-bar">
-         <div class="metric-item"><i class="fa-solid fa-building-columns metric-icon"></i> <span class="hidden">Honor:</span> <span class="val-reputation">100</span></div> <!-- Current player standing -->
-         <div class="metric-item"><i class="fa-solid fa-cross metric-icon"></i> <span class="hidden">Doubt:</span> <span class="val-doubt">0</span></div> <!-- Accumulated penalties from wrong guesses -->
-         <div class="metric-item"><i class="fa-solid fa-shield metric-icon"></i> <span class="hidden">Score:</span> <span class="val-score">0</span> pts</div> <!-- Player score -->
+        <div class="metric-item"><i class="fa-solid fa-building-columns metric-icon"></i> <span
+            class="hidden">Honor:</span> <span class="val-reputation">100</span></div> <!-- Current player standing -->
+        <div class="metric-item"><i class="fa-solid fa-cross metric-icon"></i> <span class="hidden">Doubt:</span> <span
+            class="val-doubt">0</span></div> <!-- Accumulated penalties from wrong guesses -->
+        <div class="metric-item"><i class="fa-solid fa-shield metric-icon"></i> <span class="hidden">Score:</span> <span
+            class="val-score">0</span> pts</div> <!-- Player score -->
 
-       </div>
-       <!-- Main scrollable region containing interactive map location cards -->
-       <div class="map-scroll" role="list" aria-label="Locations">
+      </div>
+      <!-- Main scrollable region containing interactive map location cards -->
+      <div class="map-scroll" role="list" aria-label="Locations">
         <p class="map-intro" id="map-intro">Your detective agency has received reports from across the city. Where will
           you investigate first?</p>
         <div class="map-locations" id="map-locations"></div> <!-- Dynamic target for rendered location cards -->
@@ -208,19 +362,25 @@
 
     <!-- Sub-menu showing cases available at the selected location -->
     <div id="screen-cases" class="screen" aria-label="Cases at location">
-       <div class="app-header"> <!-- Header area with location identification -->
-         <!-- Wrapper for location title and prompt -->
-         <div>
-           <div class="header-title" id="cases-loc-name">Location</div> <!-- Chosen location display -->
-           <div class="header-subtitle">Choose a case</div> <!-- Subtitle prompt -->
-         </div>
-       </div>
-       <div class="nav-status-bar"> <!-- Secondary navigation bar with stats -->
-        <button class="back-btn" id="back-btn-map" onclick="showScreen('map')" aria-label="Back to city events">← Events Map</button>
+      <div class="app-header"> <!-- Header area with location identification -->
+        <!-- Wrapper for location title and prompt -->
+        <div>
+          <div class="header-title" id="cases-loc-name">Location</div> <!-- Chosen location display -->
+          <div class="header-subtitle">Choose a case</div> <!-- Subtitle prompt -->
+        </div>
+      </div>
+      <div class="nav-status-bar"> <!-- Secondary navigation bar with stats -->
+        <button class="back-btn" id="back-btn-map" onclick="showScreen('map')" aria-label="Back to city events">← Events
+          Map</button>
         <div class="header-metrics-group"> <!-- Compact metrics container -->
-          <div class="header-metric"><i class="fa-solid fa-building-columns metric-icon"></i> <span class="hidden">Honor:</span> <span class="val-reputation">100</span></div> <!-- Reputation stat -->
-          <div class="header-metric"><i class="fa-solid fa-cross metric-icon"></i> <span class="hidden">Doubt:</span> <span class="val-doubt">0</span></div> <!-- Doubt stat -->
-          <div class="header-score"><i class="fa-solid fa-shield metric-icon"></i> <span class="hidden">Score:</span> <span class="val-score">0</span> pts</div> <!-- Player score -->
+          <div class="header-metric"><i class="fa-solid fa-building-columns metric-icon"></i> <span
+              class="hidden">Honor:</span> <span class="val-reputation">100</span></div> <!-- Reputation stat -->
+          <div class="header-metric"><i class="fa-solid fa-cross metric-icon"></i> <span class="hidden">Doubt:</span>
+            <span class="val-doubt">0</span>
+          </div> <!-- Doubt stat -->
+          <div class="header-score"><i class="fa-solid fa-shield metric-icon"></i> <span class="hidden">Score:</span>
+            <span class="val-score">0</span> pts
+          </div> <!-- Player score -->
         </div>
       </div>
       <div class="cases-scroll" id="cases-scroll"></div> <!-- Container for dynamic list of case cards -->
@@ -228,20 +388,26 @@
 
     <!-- Screen: Investigation - Main gameplay loop with evidence, interviews, and deductions -->
     <div id="screen-investigation" class="screen" aria-label="Investigation">
-       <div class="app-header"> <!-- Case-specific identification header -->
-         <!-- Wrapper for case title and summary -->
-         <div>
-           <div class="header-title" id="inv-case-title">Case</div> <!-- Active case title -->
-           <div class="header-subtitle" id="inv-case-sub"></div> <!-- Case mystery overview -->
-         </div>
-       </div>
+      <div class="app-header"> <!-- Case-specific identification header -->
+        <!-- Wrapper for case title and summary -->
+        <div>
+          <div class="header-title" id="inv-case-title">Case</div> <!-- Active case title -->
+          <div class="header-subtitle" id="inv-case-sub"></div> <!-- Case mystery overview -->
+        </div>
+      </div>
 
-       <div class="nav-status-bar"> <!-- Investigation status bar -->
-        <button class="back-btn" id="back-btn-cases" onclick="showScreen('cases')" aria-label="Back to case list">← Cases</button>
+      <div class="nav-status-bar"> <!-- Investigation status bar -->
+        <button class="back-btn" id="back-btn-cases" onclick="showScreen('cases')" aria-label="Back to case list">←
+          Cases</button>
         <div class="header-metrics-group"> <!-- Stats grouping -->
-          <div class="header-metric"><i class="fa-solid fa-building-columns metric-icon"></i> <span class="hidden">Honor:</span> <span class="val-reputation">100</span></div> <!-- Current Honor -->
-          <div class="header-metric"><i class="fa-solid fa-cross metric-icon"></i> <span class="hidden">Doubt:</span> <span class="val-doubt">0</span></div> <!-- Current Doubt -->
-          <div class="header-score"><i class="fa-solid fa-shield metric-icon"></i> <span class="hidden">Score:</span> <span class="val-score">0</span> pts</div> <!-- Current score -->
+          <div class="header-metric"><i class="fa-solid fa-building-columns metric-icon"></i> <span
+              class="hidden">Honor:</span> <span class="val-reputation">100</span></div> <!-- Current Honor -->
+          <div class="header-metric"><i class="fa-solid fa-cross metric-icon"></i> <span class="hidden">Doubt:</span>
+            <span class="val-doubt">0</span>
+          </div> <!-- Current Doubt -->
+          <div class="header-score"><i class="fa-solid fa-shield metric-icon"></i> <span class="hidden">Score:</span>
+            <span class="val-score">0</span> pts
+          </div> <!-- Current score -->
         </div>
       </div>
 
@@ -273,10 +439,12 @@
         </button>
       </nav>
 
-      <div id="inv-scene" class="inv-view active" role="tabpanel" aria-label="Crime scene"></div> <!-- Scene View: Evidence collection grid -->
-      <div id="inv-lab" class="inv-view" role="tabpanel" aria-label="Analysis lab"></div> <!-- Lab View: Deduction board interface -->
+      <div id="inv-scene" class="inv-view active" role="tabpanel" aria-label="Crime scene"></div>
+      <!-- Scene View: Evidence collection grid -->
+      <div id="inv-lab" class="inv-view" role="tabpanel" aria-label="Analysis lab"></div>
+      <!-- Lab View: Deduction board interface -->
       <!-- Codex View: Prophecy and historical reference view -->
-      <div id="inv-codex" class="inv-view" role="tabpanel" aria-label="Biblical background and prophecies"> 
+      <div id="inv-codex" class="inv-view" role="tabpanel" aria-label="Biblical background and prophecies">
         <h3 class="section-title">Prophecy Matching</h3>
         <div class="prophecy-lab-intro">
           Select evidence from your collection, then choose a locked prophecy below to attempt a link.
@@ -290,7 +458,8 @@
           <div class="selection-slot" id="codex-prophecy-slot">
             <span>Locked Prophecy</span>
           </div>
-          <button id="btn-match-prophecy" class="evidence-detail-confirm" disabled onclick="window.attemptProphecyMatch()">Match</button>
+          <button id="btn-match-prophecy" class="evidence-detail-confirm" disabled
+            onclick="window.attemptProphecyMatch()">Match</button>
         </div>
 
         <h3 class="section-title">Your Evidence</h3>
@@ -301,12 +470,14 @@
         <div id="codex-grid" class="codex-grid"></div> <!-- Grid layout for prophecy cards -->
       </div>
       <!-- People View: Witness profiles and conversation summary view -->
-      <div id="inv-people" class="inv-view" role="tabpanel" aria-label="People to interview"> 
+      <div id="inv-people" class="inv-view" role="tabpanel" aria-label="People to interview">
         <div id="npc-panel"></div> <!-- NPC interaction cards -->
         <h3 class="section-title">Conversation</h3>
-        <div class="chat-feed" id="chat-feed" role="log" aria-live="polite" aria-label="Conversation log"></div> <!-- Summary history of interview results -->
+        <div class="chat-feed" id="chat-feed" role="log" aria-live="polite" aria-label="Conversation log"></div>
+        <!-- Summary history of interview results -->
       </div>
-      <div id="inv-accuse" class="inv-view" role="tabpanel" aria-label="Make an accusation"></div> <!-- Accuse View: Verdict selection area -->
+      <div id="inv-accuse" class="inv-view" role="tabpanel" aria-label="Make an accusation"></div>
+      <!-- Accuse View: Verdict selection area -->
     </div>
 
     <!-- Screen: Result - Post-case summary and score breakdown -->
@@ -390,7 +561,7 @@
         </div>
 
       </div>
-  </div>
+    </div>
 
     <!-- Fixed bottom navbar (always visible) -->
     <div id="fixed-navbar" aria-label="Navigation">
@@ -400,7 +571,8 @@
       <button class="a11y-btn" onclick="showResetModal()" title="Reset Game" aria-label="Reset all game progress">
         <i class="fas fa-undo"></i><br><span class="hidden">Reset</span>
       </button>
-      <button class="a11y-btn" onclick="showInstructionsModal()" title="Instructions" aria-label="View game instructions">
+      <button class="a11y-btn" onclick="showInstructionsModal()" title="Instructions"
+        aria-label="View game instructions">
         <i class="fas fa-info-circle"></i><br><span class="hidden">Info</span>
       </button>
       <button class="a11y-btn" id="a11y-btn-navbar" onclick="showScreen('a11y')" aria-label="Accessibility settings">
@@ -417,7 +589,8 @@
             <div class="st">● ONLINE</div> <!-- Decorative status branding -->
           </div>
         </div>
-        <div id="bub-scroll" role="log" aria-live="polite" aria-label="Dialogue messages"></div> <!-- Container for scrollable chat bubbles -->
+        <div id="bub-scroll" role="log" aria-live="polite" aria-label="Dialogue messages"></div>
+        <!-- Container for scrollable chat bubbles -->
         <div id="bar-choices" class="hide"></div> <!-- Bottom bar for interactive player responses -->
       </div>
     </div>
@@ -427,294 +600,315 @@
       <div class="evidence-detail-content"> <!-- Modal sizing and overflow wrapper -->
         <button class="evidence-detail-close" onclick="window.closeEvidenceDetail()" aria-label="Close">✕</button>
         <div class="evidence-detail-inner"> <!-- Internal layout container -->
-        <div class="evidence-detail-header"> <!-- Identification section -->
-          <span class="evidence-detail-icon" aria-hidden="true"></span> <!-- Visual icon display -->
-          <div> <!-- Name and classification group -->
-            <div class="evidence-detail-name"></div> <!-- Item name display -->
-            <div class="evidence-detail-type"></div> <!-- Item type (e.g., Physical, Testimonial) -->
+          <div class="evidence-detail-header"> <!-- Identification section -->
+            <span class="evidence-detail-icon" aria-hidden="true"></span> <!-- Visual icon display -->
+            <div> <!-- Name and classification group -->
+              <div class="evidence-detail-name"></div> <!-- Item name display -->
+              <div class="evidence-detail-type"></div> <!-- Item type (e.g., Physical, Testimonial) -->
+            </div>
           </div>
-        </div>
-        <div class="evidence-detail-body"> <!-- Primary informational sections -->
-          <div class="evidence-detail-section"> <!-- Section: General Description -->
-            <div class="evidence-detail-label">Description</div>
-            <div class="evidence-detail-desc"></div>
-          </div>
-          <div class="evidence-detail-section"> <!-- Section: Discovery Location -->
-            <div class="evidence-detail-label">Location Found</div>
-            <div class="evidence-detail-location"></div>
-          </div>
-          <div class="evidence-detail-section prophecy-section" hidden> <!-- Section: Scriptural Reference -->
-            <div class="evidence-detail-label">📜 Bible Reference</div>
-            <div class="evidence-detail-bible-ref"></div>
-            <button class="read-more-btn" data-target="bible-verse-content" data-ref="">📖 Read Full Verse</button>
-            <div class="verse-content" data-target="bible-verse-content" hidden></div> <!-- API target for fetched verse -->
-          </div>
-          <div class="evidence-detail-section prophecy-section" hidden> <!-- Section: Fulfillment Insight -->
-            <div class="evidence-detail-label">✨ Prophecy & Fulfilment</div>
-            <div class="evidence-detail-prophetic-link"></div>
-            <button class="read-more-btn" data-target="prophecy-verse-content" data-ref="">📖 Read Full Verse</button>
-            <div class="verse-content" data-target="prophecy-verse-content" hidden></div> <!-- API target for fetched prophecy text -->
-          </div>
-          <div class="evidence-detail-section"> <!-- Section: Detective's Analysis -->
-            <div class="evidence-detail-label">🔎 Investigator Notes</div>
-            <div class="evidence-detail-investigator-note"></div>
+          <div class="evidence-detail-body"> <!-- Primary informational sections -->
+            <div class="evidence-detail-section"> <!-- Section: General Description -->
+              <div class="evidence-detail-label">Description</div>
+              <div class="evidence-detail-desc"></div>
+            </div>
+            <div class="evidence-detail-section"> <!-- Section: Discovery Location -->
+              <div class="evidence-detail-label">Location Found</div>
+              <div class="evidence-detail-location"></div>
+            </div>
+            <div class="evidence-detail-section prophecy-section" hidden> <!-- Section: Scriptural Reference -->
+              <div class="evidence-detail-label">📜 Bible Reference</div>
+              <div class="evidence-detail-bible-ref"></div>
+              <button class="read-more-btn" data-target="bible-verse-content" data-ref="">📖 Read Full Verse</button>
+              <div class="verse-content" data-target="bible-verse-content" hidden></div>
+              <!-- API target for fetched verse -->
+            </div>
+            <div class="evidence-detail-section prophecy-section" hidden> <!-- Section: Fulfillment Insight -->
+              <div class="evidence-detail-label">✨ Prophecy & Fulfilment</div>
+              <div class="evidence-detail-prophetic-link"></div>
+              <button class="read-more-btn" data-target="prophecy-verse-content" data-ref="">📖 Read Full Verse</button>
+              <div class="verse-content" data-target="prophecy-verse-content" hidden></div>
+              <!-- API target for fetched prophecy text -->
+            </div>
+            <div class="evidence-detail-section"> <!-- Section: Detective's Analysis -->
+              <div class="evidence-detail-label">🔎 Investigator Notes</div>
+              <div class="evidence-detail-investigator-note"></div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-    </div>
 
-  <!-- Overlay Screen: Tutorial/How to Play instructions -->
-  <div id="instructions-modal" class="screen"> 
-    <div class="evidence-detail-content"> <!-- Instruction box -->
-      <button class="evidence-detail-close" onclick="window.closeInstructionsModal()" aria-label="Close">✕</button>
-      <div class="evidence-detail-inner"> <!-- Internal padding -->
-        <div id="instructions-logo"> <!-- Branding area -->
-          <div class="header-title">🔍 Holy Week</div> <!-- Styled app title -->
-        </div>
-        <div class="evidence-detail-header"> <!-- Header for tutorial modal -->
-          <div class="evidence-detail-name">How to Play</div>
-        </div>
-        <div class="evidence-detail-body"> <!-- Container for instructional text blocks -->
-          <div class="evidence-detail-desc"> <!-- Detailed gameplay overview -->
-            <p>Welcome, Scribe. Your task is to investigate the events of Holy Week and uncover the truth 🕊️ behind the mysteries.</p>
-            <br>
-            <p><strong>1. 🗺️ Explore :</strong> Select a location from the map to view available cases.</p>
-            <p><strong>2. 🔎 Investigate :</strong> Visit the <strong>Scene</strong> to collect clues. Some evidence is only revealed through conversation!</p>
-            <p><strong>3. 🗣️ Interview :</strong> Talk to witnesses in the <strong>People</strong> tab. Show them evidence to gather reactions, or <strong>Challenge</strong> them if you find a contradiction.</p>
-            <p><strong>4. 🧪 Analyze :</strong> In the <strong>Lab</strong>, select two pieces of evidence and an operation to find new insights.</p>
-            <p><strong>5. ⚖️Accuse :</strong> Once you have enough proof, make your final verdict. Be careful—wrong guesses increase your <strong>Doubt</strong>.</p>
+    <!-- Overlay Screen: Tutorial/How to Play instructions -->
+    <div id="instructions-modal" class="screen">
+      <div class="evidence-detail-content"> <!-- Instruction box -->
+        <button class="evidence-detail-close" onclick="window.closeInstructionsModal()" aria-label="Close">✕</button>
+        <div class="evidence-detail-inner"> <!-- Internal padding -->
+          <div id="instructions-logo"> <!-- Branding area -->
+            <div class="header-title">🔍 Holy Week</div> <!-- Styled app title -->
           </div>
-          <button class="evidence-detail-confirm" onclick="window.closeInstructionsModal()">Start Investigation</button>
+          <div class="evidence-detail-header"> <!-- Header for tutorial modal -->
+            <div class="evidence-detail-name">How to Play</div>
+          </div>
+          <div class="evidence-detail-body"> <!-- Container for instructional text blocks -->
+            <div class="evidence-detail-desc"> <!-- Detailed gameplay overview -->
+              <p>Welcome, Scribe. Your task is to investigate the events of Holy Week and uncover the truth 🕊️ behind
+                the mysteries.</p>
+              <br>
+              <p><strong>1. 🗺️ Explore :</strong> Select a location from the map to view available cases.</p>
+              <p><strong>2. 🔎 Investigate :</strong> Visit the <strong>Scene</strong> to collect clues. Some evidence
+                is only revealed through conversation!</p>
+              <p><strong>3. 🗣️ Interview :</strong> Talk to witnesses in the <strong>People</strong> tab. Show them
+                evidence to gather reactions, or <strong>Challenge</strong> them if you find a contradiction.</p>
+              <p><strong>4. 🧪 Analyze :</strong> In the <strong>Lab</strong>, select two pieces of evidence and an
+                operation to find new insights.</p>
+              <p><strong>5. ⚖️Accuse :</strong> Once you have enough proof, make your final verdict. Be careful—wrong
+                guesses increase your <strong>Doubt</strong>.</p>
+            </div>
+            <button class="evidence-detail-confirm" onclick="window.closeInstructionsModal()">Start
+              Investigation</button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- Overlay Screen: Confirmation prompt for destructive game reset -->
-  <div id="reset-modal" class="screen"> 
-    <div class="result-card"> <!-- Cautionary warning card -->
-      <div class="result-verdict">⚠️</div>
-      <div class="result-verdict-text">Reset Progress?</div> <!-- Caution title -->
-      <div class="result-truth"> <!-- Descriptive warning text -->
-        This will permanently clear all your solved cases and career points.
-      </div>
-      <div class="modal-buttons-group"> <!-- Button layout grouping -->
-        <button class="result-continue-btn btn-cancel" onclick="closeResetModal()">Cancel</button>
-        <button class="result-continue-btn btn-reset" onclick="playAgain()">Reset All</button>
+    <!-- Overlay Screen: Confirmation prompt for destructive game reset -->
+    <div id="reset-modal" class="screen">
+      <div class="result-card"> <!-- Cautionary warning card -->
+        <div class="result-verdict">⚠️</div>
+        <div class="result-verdict-text">Reset Progress?</div> <!-- Caution title -->
+        <div class="result-truth"> <!-- Descriptive warning text -->
+          This will permanently clear all your solved cases and career points.
+        </div>
+        <div class="modal-buttons-group"> <!-- Button layout grouping -->
+          <button class="result-continue-btn btn-cancel" onclick="closeResetModal()">Cancel</button>
+          <button class="result-continue-btn btn-reset" onclick="playAgain()">Reset All</button>
+        </div>
       </div>
     </div>
-  </div>
 
-  <!-- Overlay Screen: Final game victory summary -->
-  <div id="game-complete-modal" aria-label="Game Complete"> 
-    <div class="game-complete-content"> <!-- Completion details wrapper -->
-      <div class="game-complete-title">🏆 Game Complete!</div> <!-- Victory title -->
-      <div class="game-complete-subtitle">All Holy Week mysteries solved</div> <!-- Achievement subtitle -->
-      <div class="final-score-display"> <!-- achievement card summary -->
-        <div class="final-score-label">Your Final Score</div>
-        <div class="final-score-value" id="final-score-value">0</div> <!-- Total performance score -->
-        <div class="final-score-rank" id="final-score-rank">Rookie Detective</div> <!-- Career rank achieved -->
-      </div>
-      <div class="game-complete-actions"> <!-- navigation controls for post-game -->
-        <button class="play-again-btn" onclick="playAgain()" id="play-again-btn" aria-label="Play again">Play
-          Again</button>
-        <button class="game-complete-btn" onclick="closeGameComplete()" aria-label="Return to map">Continue
-          Exploring</button>
-      </div>
-    </div> <!-- End of game-complete-content -->
-  </div>
+    <!-- Overlay Screen: Final game victory summary -->
+    <div id="game-complete-modal" aria-label="Game Complete">
+      <div class="game-complete-content"> <!-- Completion details wrapper -->
+        <div class="game-complete-title">🏆 Game Complete!</div> <!-- Victory title -->
+        <div class="game-complete-subtitle">All Holy Week mysteries solved</div> <!-- Achievement subtitle -->
+        <div class="final-score-display"> <!-- achievement card summary -->
+          <div class="final-score-label">Your Final Score</div>
+          <div class="final-score-value" id="final-score-value">0</div> <!-- Total performance score -->
+          <div class="final-score-rank" id="final-score-rank">Rookie Detective</div> <!-- Career rank achieved -->
+        </div>
+        <div class="game-complete-actions"> <!-- navigation controls for post-game -->
+          <button class="play-again-btn" onclick="playAgain()" id="play-again-btn" aria-label="Play again">Play
+            Again</button>
+          <button class="game-complete-btn" onclick="closeGameComplete()" aria-label="Return to map">Continue
+            Exploring</button>
+        </div>
+      </div> <!-- End of game-complete-content -->
+    </div>
 
-  <script src="./plugins/ink.js"></script>
+    <script src="./plugins/ink.js"></script>
 
-  <script type="module">
-    import { CaseManager } from "./caseManager.js";
-    import { EvidenceSystem } from "./evidenceSystem.js";
-    import { NPCSystem, PROFILE_ID_MAP } from "./NPCSystem.js";
-    import { DeductionEngine } from "./deductionEngine.js";
-    import { LocationSystem } from "./locationSystem.js";
-    import { AccessibilityManager } from "./accessibility.js";
-    import { LabUI } from "./labUI.js";
-    import { ChatUI } from "./chatUI.js";
-    import { DialogueManager, DIALOGUE_ID_MAP } from "./dialogueManager.js";
-    import { act1CaseA, act1CaseB } from "./act1_case.js";
-    import { act2CaseA, act2CaseB } from "./act2_case.js";
-    import { act3CaseA, act3CaseB, act3CaseC,  act3CaseD, act3CaseE} from "./act3_case.js";
-    import { act4CaseA, act4CaseB, act4CaseC } from "./act4_case.js";
-    import { AudioManager } from "./audioManager.js";
-    import { UIManager } from "./UIManager.js";
-    import { GameManager } from "./GameManager.js";
+    <script type="module">
+      import { MobileApp } from "./mobileApp.js";
+      import { CaseManager } from "./caseManager.js";
+      import { EvidenceSystem } from "./evidenceSystem.js";
+      import { NPCSystem, PROFILE_ID_MAP } from "./npcSystem.js";
+      import { DeductionEngine } from "./deductionEngine.js";
+      import { LocationSystem } from "./locationSystem.js";
+      import { AccessibilityManager } from "./accessibility.js";
+      import { LabUI } from "./labUI.js";
+      import { ChatUI } from "./chatUI.js";
+      import { DialogueManager, DIALOGUE_ID_MAP } from "./dialogueManager.js";
+      import { act1CaseA, act1CaseB } from "./act1_case.js";
+      import { act2CaseA, act2CaseB } from "./act2_case.js";
+      import { act3CaseA, act3CaseB, act3CaseC, act3CaseD, act3CaseE } from "./act3_case.js";
+      import { act4CaseA, act4CaseB, act4CaseC } from "./act4_case.js";
+      import { AudioManager } from "./audioManager.js";
+      import { UIManager } from "./UIManager.js";
+      import { GameManager } from "./GameManager.js";
 
-    // ── Configuration ──────────────────────────────────────────
-    const CONFIG = {
-      unlockAllCases: false // Set to true to bypass case requirements for testing
-    };
+      // ── Configuration ──────────────────────────────────────────
+      const CONFIG = {
+        unlockAllCases: false // Set to true to bypass case requirements for testing
+      };
 
-    // ── Bootstrap ──────────────────────────────────────────────
-    const cm = new CaseManager();
+      // ── Bootstrap ──────────────────────────────────────────────
+      const cm = new CaseManager();
 
-    const cases = [
-      act1CaseA, act1CaseB,
-      act2CaseA, act2CaseB,
-      act3CaseA, act3CaseB, act3CaseC, act3CaseD, act3CaseE,
-      act4CaseA, act4CaseB, act4CaseC
-    ];
+      const cases = [
+        act1CaseA, act1CaseB,
+        act2CaseA, act2CaseB,
+        act3CaseA, act3CaseB, act3CaseC, act3CaseD, act3CaseE,
+        act4CaseA, act4CaseB, act4CaseC
+      ];
 
-    cases.forEach(c => {
-      if (CONFIG.unlockAllCases) {
-        c.requires = null;
-      }
-      cm.registerCase(c);
-    });
-
-    const a11y = new AccessibilityManager();
-    a11y.restorePreferences();
-
-    const es = new EvidenceSystem(cm);
-    const ns = new NPCSystem(cm, es);
-    const de = new DeductionEngine(cm, es);
-    const ls = new LocationSystem(cm);
-    const audio = new AudioManager();
-
-    // ── DialogueManager (Ink narrative system) ───────────────────────
-    const dm = new DialogueManager();
-    dm.setInkLib(window.inkjs);
-
-    // ── Orchestration Layer ─────────────────────────────────────
-    const ui = new UIManager(cm, es, ns, de, ls, a11y, audio, dm);
-    const gm = new GameManager(cm, ui, es, ns, de);
-
-    // Export to global scope for HTML onclick attributes
-    window.cm = cm;
-    window.ui = ui;
-    window.showScreen = ui.showScreen.bind(ui);
-    window.switchInvTab = ui.switchInvTab.bind(ui);
-    window.openLocation = ui.openLocation.bind(ui);
-    window.startCase = gm.startCase.bind(gm);
-    window.accuse = gm.accuse.bind(gm);
-    window.openEvidenceDetail = ui.openEvidenceDetail.bind(ui);
-    window.closeEvidenceDetail = ui.closeEvidenceDetail.bind(ui);
-    window.showInstructionsModal = ui.showInstructionsModal.bind(ui);
-    window.closeInstructionsModal = ui.closeInstructionsModal.bind(ui);
-    window.showResetModal = ui.showResetModal.bind(ui);
-    window.closeResetModal = ui.closeResetModal.bind(ui);
-    window.playAgain = gm.resetGame.bind(gm);
-    window.closeGameComplete = ui.closeGameComplete.bind(ui);
-    window.showProphecyDetail = ui.showProphecyDetail.bind(ui);
-
-
-    // Preload all NPC stories and character profiles
-    const allNPCs = [];
-    const profileUrls = new Set();
-    cm.getAllCases().forEach(c => {
-      (c.npcs || []).forEach(npc => {
-        let pFile = npc.profileFile;
-        if (pFile && !pFile.includes('/') && !pFile.endsWith('.json')) {
-          pFile = PROFILE_ID_MAP[pFile];
+      cases.forEach(c => {
+        if (CONFIG.unlockAllCases) {
+          c.requires = null;
         }
-        if (pFile) profileUrls.add(pFile);
+        cm.registerCase(c);
+      });
 
-        let sFile = npc.storyFile || (npc.dialogueId ? DIALOGUE_ID_MAP[npc.dialogueId] : null);
-        if (sFile && !sFile.includes('/') && !sFile.endsWith('.json')) {
-          sFile = DIALOGUE_ID_MAP[sFile];
-        }
+      // Initialize the Mobile App shell for routing and shared UI utilities
+      const app = new MobileApp({
+        tabs: [
+          { id: 'scene', label: 'Scene', icon: '🔎' },
+          { id: 'people', label: 'People', icon: '🗣' },
+          { id: 'lab', label: 'Lab', icon: '🧪' },
+          { id: 'codex', label: 'Codex', icon: '📜' },
+          { id: 'accuse', label: 'Accuse', icon: '⚖️' }
+        ],
+        views: ['scene', 'people', 'lab', 'codex', 'accuse']
+      });
 
-        if (npc.hasDialogue && sFile && !allNPCs.some(existing => existing.id === npc.id)) {
-          allNPCs.push(npc);
+      const a11y = new AccessibilityManager({ app });
+      a11y.restorePreferences();
+
+      const es = new EvidenceSystem(cm);
+      const ns = new NPCSystem(cm, es);
+      const de = new DeductionEngine(cm, es);
+      const ls = new LocationSystem(cm);
+      const audio = new AudioManager();
+
+      // ── DialogueManager (Ink narrative system) ───────────────────────
+      const dm = new DialogueManager();
+      dm.setInkLib(window.inkjs);
+
+      // ── Orchestration Layer ─────────────────────────────────────
+      const ui = new UIManager(cm, es, ns, de, ls, a11y, audio, dm, app);
+      const gm = new GameManager(cm, ui, es, ns, de);
+
+      // Export to global scope for HTML onclick attributes
+      window.cm = cm;
+      window.ui = ui;
+      window.showScreen = ui.showScreen.bind(ui);
+      window.switchInvTab = ui.switchInvTab.bind(ui);
+      window.openLocation = ui.openLocation.bind(ui);
+      window.startCase = gm.startCase.bind(gm);
+      window.accuse = gm.accuse.bind(gm);
+      window.openEvidenceDetail = ui.openEvidenceDetail.bind(ui);
+      window.closeEvidenceDetail = ui.closeEvidenceDetail.bind(ui);
+      window.showInstructionsModal = ui.showInstructionsModal.bind(ui);
+      window.closeInstructionsModal = ui.closeInstructionsModal.bind(ui);
+      window.showResetModal = ui.showResetModal.bind(ui);
+      window.closeResetModal = ui.closeResetModal.bind(ui);
+      window.playAgain = gm.resetGame.bind(gm);
+      window.attemptProphecyMatch = ui.attemptProphecyMatch.bind(ui);
+      window.closeGameComplete = ui.closeGameComplete.bind(ui);
+      window.showProphecyDetail = ui.showProphecyDetail.bind(ui);
+
+
+      // Preload all NPC stories and character profiles
+      const allNPCs = [];
+      const profileUrls = new Set();
+      cm.getAllCases().forEach(c => {
+        (c.npcs || []).forEach(npc => {
+          let pFile = npc.profileFile;
+          if (pFile && !pFile.includes('/') && !pFile.endsWith('.json')) {
+            pFile = PROFILE_ID_MAP[pFile];
+          }
+          if (pFile) profileUrls.add(pFile);
+
+          let sFile = npc.storyFile || (npc.dialogueId ? DIALOGUE_ID_MAP[npc.dialogueId] : null);
+          if (sFile && !sFile.includes('/') && !sFile.endsWith('.json')) {
+            sFile = DIALOGUE_ID_MAP[sFile];
+          }
+
+          if (npc.hasDialogue && sFile && !allNPCs.some(existing => existing.id === npc.id)) {
+            allNPCs.push(npc);
+          }
+        });
+      });
+
+      // Load stories and profiles in background
+      const storyLoads = allNPCs.map(npc => dm.loadStoryForNPC(npc));
+      const profileLoads = Array.from(profileUrls).map(url => ns.loader.loadProfile(url));
+
+      Promise.all([...storyLoads, ...profileLoads]).then(() => {
+        console.log('[Game] Loaded', allNPCs.length, 'stories and', profileUrls.size, 'profiles');
+      }).catch(e => console.warn('[Game] Some stories failed to load:', e));
+
+      // ── Global Events ────────────────────────────────────────────
+      document.addEventListener('click', (e) => {
+        const btn = e.target.closest('button, input[type="button"], input[type="submit"]');
+        if (btn) {
+          if (audio && audio.enabled) audio.playUI();
         }
       });
-    });
 
-    // Load stories and profiles in background
-    const storyLoads = allNPCs.map(npc => dm.loadStoryForNPC(npc));
-    const profileLoads = Array.from(profileUrls).map(url => ns.loader.loadProfile(url));
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") ui.closeEvidenceDetail();
+      });
 
-    Promise.all([...storyLoads, ...profileLoads]).then(() => {
-      console.log('[Game] Loaded', allNPCs.length, 'stories and', profileUrls.size, 'profiles');
-    }).catch(e => console.warn('[Game] Some stories failed to load:', e));
+      // ── Initial State ────────────────────────────────────────────
+      ui.renderMap();
+      audio.setEnabled(a11y.getAll().sound);
+      audio.playMorningAmbience();
 
-    // ── Global Events ────────────────────────────────────────────
-    document.addEventListener('click', (e) => {
-      const btn = e.target.closest('button, input[type="button"], input[type="submit"]');
-      if (btn) {
-        if (audio && audio.enabled) audio.playUI();
-      }
-    });
-
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") ui.closeEvidenceDetail();
-    });
-
-    // ── Initial State ────────────────────────────────────────────
-    ui.renderMap();
-    audio.setEnabled(a11y.getAll().sound);
-    audio.playMorningAmbience();
-
-    const hasPlayed = localStorage.getItem("holy_week_first_play");
-    if (!hasPlayed) {
+      // Always open the instructions modal when the game first starts (loads)
       setTimeout(() => {
         ui.showInstructionsModal(true);
-        localStorage.setItem("holy_week_first_play", "true");
       }, 800);
-    }
 
-    // Export audio to global scope for toggleAudio
-    window.audio = audio;
-    
-    setTimeout(() => gm.checkGameComplete(), 100);
-  </script>
+      // Export audio to global scope for toggleAudio
+      window.audio = audio;
 
-  <script>
-    // Global toggleAudio function for header button
-    window.toggleAudio = function() {
-      if (window.audio) {
-        const newState = !window.audio.enabled;
-        window.audio.setEnabled(newState);
-        const btn = document.querySelector('[onclick="toggleAudio()"]');
-        if (btn) {
-          const icon = btn.querySelector('i');
-          icon.className = newState ? 'fa-solid fa-volume-high' : 'fa-solid fa-volume-xmark';
-        }
-      }
-    };
-  </script>
+      setTimeout(() => gm.checkGameComplete(), 100);
+    </script>
 
-  <script>
-    // <![CDATA[  <-- For SVG support
-    if ('WebSocket' in window) {
-      (function () {
-        function refreshCSS() {
-          var sheets = [].slice.call(document.getElementsByTagName("link"));
-          var head = document.getElementsByTagName("head")[0];
-          for (var i = 0; i < sheets.length; ++i) {
-            var elem = sheets[i];
-            var parent = elem.parentElement || head;
-            parent.removeChild(elem);
-            var rel = elem.rel;
-            if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
-              var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
-              elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
-            }
-            parent.appendChild(elem);
+    <script>
+      // Global toggleAudio function for header button
+      window.toggleAudio = function () {
+        if (window.audio) {
+          const newState = !window.audio.enabled;
+          window.audio.setEnabled(newState);
+          const btn = document.querySelector('[onclick="toggleAudio()"]');
+          if (btn) {
+            const icon = btn.querySelector('i');
+            icon.className = newState ? 'fa-solid fa-volume-high' : 'fa-solid fa-volume-xmark';
           }
+          // Ensure the accessibility screen toggles are in sync
+          if (window.ui) window.ui.renderA11yToggles();
         }
-        var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
-        var address = protocol + window.location.host + window.location.pathname + '/ws';
-        var socket = new WebSocket(address);
-        socket.onmessage = function (msg) {
-          if (msg.data == 'reload') window.location.reload();
-          else if (msg.data == 'refreshcss') refreshCSS();
-        };
-        if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
-          console.log('Live reload enabled.');
-          sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
-        }
-      })();
-    } else {
-      console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
-    }
-    // ]]>
-  </script>
+      };
+    </script>
+
+    <script>
+      // <![CDATA[  <-- For SVG support
+      if ('WebSocket' in window) {
+        (function () {
+          function refreshCSS() {
+            var sheets = [].slice.call(document.getElementsByTagName("link"));
+            var head = document.getElementsByTagName("head")[0];
+            for (var i = 0; i < sheets.length; ++i) {
+              var elem = sheets[i];
+              var parent = elem.parentElement || head;
+              parent.removeChild(elem);
+              var rel = elem.rel;
+              if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+                var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+                elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+              }
+              parent.appendChild(elem);
+            }
+          }
+          var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+          var address = protocol + window.location.host + window.location.pathname + '/ws';
+          var socket = new WebSocket(address);
+          socket.onmessage = function (msg) {
+            if (msg.data == 'reload') window.location.reload();
+            else if (msg.data == 'refreshcss') refreshCSS();
+          };
+          if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+            console.log('Live reload enabled.');
+            sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+          }
+        })();
+      } else {
+        console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+      }
+      // ]]>
+    </script>
 </body>
 
 </html>

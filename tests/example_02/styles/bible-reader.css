@@ -1,26 +1,13 @@
 /* ==========================================================================
    BIBLE READER — Scripture Reader Styles
+   NOTE: This file is loaded ONLY on the standalone bible-reader page.
+   The game app imports variables.css which already defines all shared tokens.
    ========================================================================== */
 
-:root {
-    --reader-ink: #1a1208;
-    --reader-parchment: #f5ecd7;
-    --reader-parchment-dark: #ede0c4;
-    --reader-parchment-mid: #f0e6cc;
-    --reader-gold: #b8860b;
-    --reader-gold-light: #d4a017;
-    --reader-gold-pale: #e8d5a0;
-    --reader-rust: #8b3a1c;
-    --reader-sepia: #5c4a2a;
-    --reader-shadow: rgba(26,18,8,0.18);
-    --reader-panel-w: 680px;
-}
-
-* { box-sizing: border-box; margin: 0; padding: 0; }
-
-body {
+/* Standalone-page overrides (only apply when NOT inside the game) */
+.bible-reader-standalone body {
     min-height: 100vh;
-    background: var(--reader-ink);
+    background: var(--ink);
     background-image:
         radial-gradient(ellipse at 30% 20%, #2d1e0a 0%, transparent 60%),
         radial-gradient(ellipse at 70% 80%, #1a120a 0%, transparent 50%);
@@ -28,24 +15,28 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    padding: 40px 20px 60px;
+    padding: clamp(20px, 4vw, 60px) clamp(12px, 4vw, 24px);
     font-family: 'EB Garamond', Georgia, serif;
+    overflow: auto;
 }
 
+/* ── Page header ─────────────────────────────────────────── */
 .page-header {
     text-align: center;
-    margin-bottom: 32px;
+    margin-bottom: 28px;
     animation: fadeDown 0.6s ease both;
 }
+
 .page-header h1 {
     font-family: 'Cinzel', serif;
-    font-size: clamp(1.4rem, 3vw, 2rem);
+    font-size: clamp(1.2rem, 3vw, 2rem);
     font-weight: 600;
     color: var(--reader-gold-light);
     letter-spacing: 0.12em;
     text-transform: uppercase;
     text-shadow: 0 2px 8px rgba(180,130,10,0.3);
 }
+
 .page-header .subtitle {
     font-family: 'EB Garamond', serif;
     font-style: italic;
@@ -54,6 +45,7 @@ body {
     font-size: 1rem;
     margin-top: 4px;
 }
+
 .ornament {
     color: var(--reader-gold);
     font-size: 1.2rem;
@@ -62,31 +54,30 @@ body {
     margin: 6px 0;
 }
 
+/* ── Controls bar ────────────────────────────────────────── */
 .controls-bar {
     display: flex;
-    gap: 12px;
+    gap: 10px;
     align-items: center;
     flex-wrap: wrap;
     justify-content: center;
-    margin-bottom: 28px;
+    margin-bottom: 24px;
     animation: fadeDown 0.6s 0.1s ease both;
 }
 
-.select-wrap {
-    position: relative;
-}
+.select-wrap { position: relative; }
 .select-wrap::after {
     content: '\f078';
     font-family: 'Font Awesome 6 Free';
     font-weight: 900;
     position: absolute;
-    right: 12px;
-    top: 50%;
+    right: 12px; top: 50%;
     transform: translateY(-50%);
     color: var(--reader-gold);
     font-size: 0.65rem;
     pointer-events: none;
 }
+
 select {
     appearance: none;
     background: rgba(245,236,215,0.08);
@@ -101,22 +92,20 @@ select {
     transition: border-color 0.2s;
 }
 select:focus { border-color: var(--reader-gold-light); }
-select option { background: #2a1e0a; color: var(--reader-parchment); }
+select option { background: #2a1e0a; color: var(--parchment); }
 
-.ref-input-wrap {
-    display: flex;
-    gap: 0;
-}
+.ref-input-wrap { display: flex; gap: 0; }
+
 .ref-input {
     background: rgba(245,236,215,0.08);
     border: 1px solid rgba(184,134,11,0.4);
     border-right: none;
-    color: var(--reader-parchment);
+    color: var(--parchment);
     padding: 8px 14px;
     border-radius: 4px 0 0 4px;
     font-family: 'EB Garamond', serif;
     font-size: 0.95rem;
-    width: 180px;
+    width: clamp(140px, 20vw, 200px);
     outline: none;
     transition: border-color 0.2s;
 }
@@ -126,8 +115,8 @@ select option { background: #2a1e0a; color: var(--reader-parchment); }
 .go-btn {
     background: var(--reader-gold);
     border: 1px solid var(--reader-gold);
-    color: var(--reader-ink);
-    padding: 8px 18px;
+    color: var(--ink);
+    padding: 8px 16px;
     border-radius: 0 4px 4px 0;
     font-family: 'Cinzel', serif;
     font-size: 0.75rem;
@@ -135,13 +124,15 @@ select option { background: #2a1e0a; color: var(--reader-parchment); }
     letter-spacing: 0.08em;
     cursor: pointer;
     transition: background 0.2s;
+    white-space: nowrap;
 }
 .go-btn:hover { background: var(--reader-gold-light); }
 
+/* ── Reader panel ────────────────────────────────────────── */
 .reader-panel {
     width: 100%;
-    max-width: var(--reader-panel-w);
-    background: var(--reader-parchment);
+    max-width: clamp(320px, 90vw, 680px);
+    background: var(--parchment);
     border-radius: 2px;
     box-shadow:
         0 0 0 1px rgba(184,134,11,0.25),
@@ -171,102 +162,72 @@ select option { background: #2a1e0a; color: var(--reader-parchment); }
     background: linear-gradient(90deg, transparent, var(--reader-gold), var(--reader-gold-light), var(--reader-gold), transparent);
 }
 
+/* ── Panel header ────────────────────────────────────────── */
 .panel-header {
     position: relative;
     z-index: 2;
-    padding: 20px 28px 14px;
-    border-bottom: 1px solid var(--reader-parchment-dark);
+    padding: 18px 24px 12px;
+    border-bottom: 1px solid var(--parchment-dark);
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 12px;
 }
+
 .panel-ref {
     font-family: 'Cinzel', serif;
-    font-size: 1rem;
+    font-size: clamp(0.85rem, 2vw, 1rem);
     color: var(--reader-rust);
     font-weight: 600;
     letter-spacing: 0.06em;
 }
+
 .panel-version {
     font-family: 'EB Garamond', serif;
     font-size: 0.8rem;
-    color: var(--reader-sepia);
-    background: var(--reader-parchment-dark);
+    color: var(--sepia);
+    background: var(--parchment-dark);
     padding: 2px 8px;
     border-radius: 2px;
     border: 1px solid rgba(92,74,42,0.2);
     text-transform: uppercase;
     letter-spacing: 0.1em;
+    white-space: nowrap;
 }
 
+/* ── Verses area ─────────────────────────────────────────── */
 .verses-area {
     position: relative;
     z-index: 2;
-    padding: 0 28px;
-    min-height: 200px;
+    padding: 0 clamp(14px, 4%, 28px);
+    min-height: 160px;
 }
 
-.load-prev-strip {
-    padding: 14px 0 10px;
-    text-align: center;
-    border-bottom: 1px dashed var(--reader-parchment-dark);
-}
+/* load-prev/load-more strips — shared in variables, extended here */
+.load-prev-strip { padding: 14px 0 10px; }
+.load-more-strip { padding: 14px 0 18px; }
 
-.load-prev-strip .passage-end-msg {
+.passage-end-msg {
     font-family: 'EB Garamond', serif;
     font-style: italic;
-    color: var(--reader-sepia);
+    color: var(--sepia);
     font-size: 0.82rem;
     opacity: 0.5;
 }
 
+/* ── Verse block (standalone reader variant) ─────────────── */
 .verse-block {
-    padding: 10px 0;
-    border-bottom: 1px solid rgba(92,74,42,0.1);
-    display: flex;
-    gap: 14px;
-    align-items: baseline;
-    animation: verseIn 0.35s ease both;
+    color: var(--ink);
 }
-@keyframes verseIn {
-    from { opacity: 0; transform: translateY(6px); }
-    to { opacity: 1; transform: translateY(0); }
-}
+.verse-num { color: var(--reader-gold); }
+.verse-text { color: var(--ink); }
+.verse-block.prev-verse .verse-text { color: var(--sepia); }
 .verse-block.anchor-verse {
     background: rgba(184,134,11,0.06);
-    margin: 0 -10px;
-    padding: 10px 10px;
-    border-radius: 2px;
-    border-bottom: 1px solid rgba(184,134,11,0.15);
-}
-.verse-num {
-    font-family: 'Cinzel', serif;
-    font-size: 0.7rem;
-    color: var(--reader-gold);
-    font-weight: 600;
-    min-width: 20px;
-    text-align: right;
-    padding-top: 2px;
-    flex-shrink: 0;
-}
-.verse-text {
-    font-size: 1.1rem;
-    line-height: 1.75;
-    color: var(--reader-ink);
-    margin-top: 12px;
-}
-.verse-block.prev-verse .verse-text {
-    color: var(--reader-sepia);
+    border-bottom-color: rgba(184,134,11,0.15);
 }
 
-.load-more-strip {
-    padding: 14px 0 18px;
-    text-align: center;
-    border-top: 1px dashed var(--reader-parchment-dark);
-    margin: 10px auto;
-}
-
+/* ── Buttons ─────────────────────────────────────────────── */
 .parchment-btn {
     font-family: 'Cinzel', serif;
     font-size: 0.72rem;
@@ -276,7 +237,7 @@ select option { background: #2a1e0a; color: var(--reader-parchment); }
     color: var(--reader-rust);
     background: transparent;
     border: 1px solid rgba(139,58,28,0.35);
-    padding: 7px 18px;
+    padding: 7px 16px;
     border-radius: 2px;
     cursor: pointer;
     transition: all 0.2s;
@@ -284,44 +245,37 @@ select option { background: #2a1e0a; color: var(--reader-parchment); }
     align-items: center;
     gap: 7px;
 }
+
 .parchment-btn:hover:not(:disabled) {
     background: rgba(139,58,28,0.07);
     border-color: var(--reader-rust);
 }
-.parchment-btn:disabled {
-    opacity: 0.35;
-    cursor: not-allowed;
-}
-.parchment-btn .fa {
-    font-size: 0.75rem;
+
+.parchment-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+.parchment-btn .fa { font-size: 0.75rem; }
+
+/* ── State box ───────────────────────────────────────────── */
+.state-box {
+    padding: clamp(30px, 8vw, 60px) 28px;
+    text-align: center;
+    color: var(--sepia);
 }
 
-.state-box {
-    padding: 60px 28px;
-    text-align: center;
-    color: var(--reader-sepia);
-}
 .state-box .icon {
     font-size: 2rem;
     color: var(--reader-gold);
     opacity: 0.5;
     margin-bottom: 14px;
 }
-.state-box p {
-    font-style: italic;
-    font-size: 1rem;
-    line-height: 1.6;
-}
-.state-box small {
-    display: block;
-    margin-top: 6px;
-    font-size: 0.82rem;
-    opacity: 0.6;
-}
 
+.state-box p       { font-style: italic; font-size: 1rem; line-height: 1.6; }
+.state-box small   { display: block; margin-top: 6px; font-size: 0.82rem; opacity: 0.6; }
+
+/* ── Spinner ─────────────────────────────────────────────── */
 .spin { animation: spin 0.8s linear infinite; display: inline-block; }
 @keyframes spin { to { transform: rotate(360deg); } }
 
+/* ── Animations ──────────────────────────────────────────── */
 @keyframes fadeDown {
     from { opacity: 0; transform: translateY(-10px); }
     to   { opacity: 1; transform: translateY(0); }
@@ -330,7 +284,12 @@ select option { background: #2a1e0a; color: var(--reader-parchment); }
     from { opacity: 0; transform: translateY(14px); }
     to   { opacity: 1; transform: translateY(0); }
 }
+@keyframes verseIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
 
+/* ── Suggestion chips ────────────────────────────────────── */
 .suggestions {
     display: flex;
     gap: 8px;
@@ -339,6 +298,7 @@ select option { background: #2a1e0a; color: var(--reader-parchment); }
     margin-bottom: 20px;
     animation: fadeDown 0.6s 0.2s ease both;
 }
+
 .sug-chip {
     font-family: 'EB Garamond', serif;
     font-size: 0.85rem;
@@ -351,16 +311,4 @@ select option { background: #2a1e0a; color: var(--reader-parchment); }
     transition: all 0.2s;
     background: transparent;
 }
-.sug-chip:hover {
-    opacity: 1;
-    background: rgba(184,134,11,0.1);
-    border-color: var(--reader-gold);
-}
-
-.load-more-strip .passage-end-msg {
-    font-family: 'EB Garamond', serif;
-    font-style: italic;
-    color: var(--reader-sepia);
-    font-size: 0.82rem;
-    opacity: 0.5;
-}
+.sug-chip:hover { opacity: 1; background: rgba(184,134,11,0.1); border-color: var(--reader-gold); }

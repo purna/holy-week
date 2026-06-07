@@ -99,10 +99,13 @@ export class CaseManager {
 
   discoverSuspect(suspectId) {
     const p = this.progress.cases[this.activeCaseId];
-    if (p && !p.discoveredSuspects.includes(suspectId)) {
-      p.discoveredSuspects.push(suspectId);
-      this._saveProgress();
-      this._refreshMetricsUI();
+    if (p) {
+      if (!p.discoveredSuspects) p.discoveredSuspects = [];
+      if (!p.discoveredSuspects.includes(suspectId)) {
+        p.discoveredSuspects.push(suspectId);
+        this._saveProgress();
+        this._refreshMetricsUI();
+      }
     }
   }
 
@@ -276,6 +279,17 @@ export class CaseManager {
       // Ensure new metrics exist for returning players
       if (data.doubt === undefined) data.doubt = 0;
       if (!data.reputations) data.reputations = { scribes: 100, temple: 100, roman: 100, local: 100 };
+      if (data.cases) {
+        for (const id in data.cases) {
+          const c = data.cases[id];
+          if (!c.evidenceFound) c.evidenceFound = [];
+          if (!c.propheciesFound) c.propheciesFound = [];
+          if (!c.deductionsMade) c.deductionsMade = [];
+          if (!c.breakthroughs) c.breakthroughs = [];
+          if (!c.discoveredSuspects) c.discoveredSuspects = [];
+          if (c.failedChallenges === undefined) c.failedChallenges = 0;
+        }
+      }
       return data;
     } catch {
       return { cases: {}, totalScore: 0, rank: "Rookie", doubt: 0, reputations: { scribes: 100, temple: 100, roman: 100, local: 100 } };
@@ -290,6 +304,7 @@ export class CaseManager {
 
   resetProgress() {
     localStorage.removeItem("detective_progress");
+    localStorage.removeItem("holy_week_first_play");
     this.progress = { cases: {}, totalScore: 0, rank: "Rookie", doubt: 0, reputations: { scribes: 100, temple: 100, roman: 100, local: 100 } };
     this._refreshMetricsUI();
   }

@@ -1,6 +1,6 @@
 // ============================================================
 // CHARACTER: Joseph of Arimathea
-// ACT: Act IV/V
+// ACT: Act III
 // CASE: The Empty Tomb Witness
 // CASE EXPORT: resurrection_det
 // SOURCE: ORPHAN FILE - Witness to the resurrection

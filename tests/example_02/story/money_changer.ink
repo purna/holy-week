@@ -3,7 +3,7 @@
 // ACT: Act I
 // CASE: The Overturned Tables
 // CASE EXPORT: temple_cleansing
-// SOURCE: act1_case_3d.js → NPC 'none'
+// SOURCE: act1_case_2d.js → NPC 'none'
 // BACKGROUND: A licensed merchant operating under high-priestly authorization. His business scales on demanding steep transaction rates to exchange foreign pilgrim coins into Tyrian shekels.
 // BIBLE REFERENCE: Mark 11:15
 // ------------------------------------------------------------
@@ -17,7 +17,7 @@
 // ------------------------------------------------------------
 // BIBLICAL CONTEXT:
 //   Summary: On Monday morning, Jesus entered the Temple courts and forcefully drove out those who were buying and selling. He overturned the tables of the moneychangers and the benches of those selling doves, declaring: "My house wi...
-//   Historicalnote: The moneychangers exchanged common Roman and Greek coins for high-purity Tyrian shekels—the only currency accepted for the mandatory temple tax. The currency exchange rates and high costs of sacrificial animals created m...
+//   Historical note: The moneychangers exchanged common Roman and Greek coins for high-purity Tyrian shekels—the only currency accepted for the mandatory temple tax. The currency exchange rates and high costs of sacrificial animals created m...
 //   Significance: By halting the commercial exploitation in the Court of the Gentiles, Jesus disrupted the high-priestly financial monopoly. More importantly, He acted out a prophetic sign of judgment against an institutional temple syste...
 // ------------------------------------------------------------
 // CASE FACTS (Truth Object):

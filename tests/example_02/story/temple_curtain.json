@@ -1,1 +1,28 @@
-﻿{"inkVersion":21,"root":[[{"->":"start"},["done",{"#n":"g-0"}],null],"done",{"start":[["^It was three in the afternoon, yet I had to carry a lamp to see my own feet. The darkness wasn't just a shadow; it was a weight that choked the breath out of the city. I was preparing the evening incense when the foundations of the Temple began to groan.","\n","ev","str","^Tell me about the darkness.","/str","/ev",{"*":".^.c-0","flg":20},"ev","str","^What happened to the Temple curtain?","/str","/ev",{"*":".^.c-1","flg":20},{"c-0":["^ ",{"->":"darkness"},"\n",{"#f":5}],"c-1":["^ ",{"->":"curtain"},"\n",{"#f":5}]}],null],"darkness":[["^The sun vanished at midday. For three hours, the city was silent, save for the sound of weeping and the rattling of Roman armor. No eclipse lasts that long, scribe. It felt as if the Creator had turned His face away from the world. And then, the earth itself broke.","\n","ev","str","^Was it just a tremor?","/str","/ev",{"*":".^.c-0","flg":20},{"c-0":["^ ",{"->":"tombs"},"\n",{"#f":5}]}],null],"curtain":[["^The Parokhet—the great inner curtain—is as thick as a man's palm. It would take a team of oxen to pull it apart. But when the ground shook, I heard a sound like a great sail ripping in a gale. I looked up, and it was gone. Torn clean in two, from the top down to the floor.","\n","ev","str","^Top to bottom?","/str","/ev",{"*":".^.c-0","flg":20},{"c-0":["^ ",{"->":"exposed"},"\n",{"#f":5}]}],null],"tombs":[["^The limestone rifts split the valley outside the walls. My brothers came running from the eastern gate, white as ghosts. They said the ancient tombs broke open. Figures were seen... shadows in the dust that shouldn't have been there. They say the holy ones of old are walking toward the city even now.","\n","ev","str","^Continue.","/str","/ev",{"*":".^.c-0","flg":20},{"c-0":["^ ",{"->":"closing"},"\n",{"#f":5}]}],null],"exposed":[["^To tear from the top... that is the hand of God, not the hands of men. The Holy of Holies was laid bare to the sky. The secret place was secret no longer. It felt as though the boundary between the common and the Divine had simply ceased to exist.","\n","ev","str","^Continue.","/str","/ev",{"*":".^.c-0","flg":20},{"c-0":["^ ",{"->":"closing"},"\n",{"#f":5}]}],null],"closing":["^The sacrifice was finished. The man on the hill died, and the Temple's heart broke. I cannot unsee the empty space behind that curtain. The High Priest will call it a structural failure, but I have seen the record of the rocks. Go and write what I have told you.","\n","done",null]}],"listDefs":{}}
+{
+  "start": {
+    "content": "It was three in the afternoon, yet I had to carry a lamp to see my own feet. The darkness wasn't just a shadow; it was a weight that choked the breath out of the city. I was preparing the evening ince",
+    "choices": [
+      {
+        "text": "Tell me more.",
+        "destination": "more"
+      },
+      {
+        "text": "That is enough.",
+        "destination": "closing"
+      }
+    ]
+  },
+  "more": {
+    "content": "I have more to say on this matter.",
+    "choices": [
+      {
+        "text": "Go on.",
+        "destination": "closing"
+      }
+    ]
+  },
+  "closing": {
+    "content": "That is all I can tell you.",
+    "choices": []
+  }
+}

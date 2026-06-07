@@ -46,6 +46,7 @@ export class DeductionEngine {
         insight: specific.insight || null,
         isKeyDeduction: specific.isKey || false,
         score: specific.isKey ? 15 : 8,
+        revealsSuspect: specific.revealsSuspect || null,
       };
     } else {
       result = this._genericDeduction(operation, a, b);

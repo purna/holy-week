@@ -39,11 +39,6 @@ This reference manual structures all 36 narrative archetypes into the 12 distinc
 * **Identity:** A wealthy Sadducean aristocrat from Bethphage who filed a false deposition claiming the donkey was stolen, creating legal grounds for Roman intervention.
 * **Linguistic Style:** Aristocratic, dismissive, and calculating — uses legal language to justify opposition.
 
-#### 5b. The Woman with the Cloak
-* **Dialogue File:** [woman_cloak.ink](woman_cloak.ink)
-* **Identity:** A witness who touched the hem of the Galilean’s garment and was restored; she follows Him now at a distance.
-* **Linguistic Style:** Reverent, quiet, and intensely personal.
-
 ---
 
 ## 🏛️ ACT 2: THE EVIDENCE OF ANOMALIES
@@ -166,7 +161,7 @@ This reference manual structures all 36 narrative archetypes into the 12 distinc
 
 ### Phase 11: The Imperial Legality
 #### 19. Pontius Pilate
-* **Dialogue File:** [pontius_pilate.ink](pontius_pilate.ink) (Updated with Claudia Procula's Dream)
+* **Dialogue File:** [pontius_pilate.ink](pontius_pilate.ink)
 * **Identity:** The Roman Prefect of Judea, responsible for imperial tax collections, security, and deterrence executions.
 * **Linguistic Style:** Imperious, analytical, and secular.
 

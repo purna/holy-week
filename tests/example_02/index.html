@@ -64,9 +64,9 @@
       <p id="loading-text" class="loading-text loading-subtitle">
         Loading investigation environment and evidence archives...
       </p>
-
+      
       <p class="sub hidden">Jerusalem Investigation</p>
-      <button id="btn-start" class="btn-primary hidden">Begin Investigation</button>
+      <button id="btn-start" class="btn-primary">Begin Investigation</button>
       <p class="hint">WASD / Arrow Keys to move · Click to approach · Space to jump</p>
 
       <!-- Animated CSS Spinner -->
@@ -152,18 +152,35 @@
 
       <div id="level-title">Detective HQ</div>
 
-      <div class="control-group-right">
-        <!-- Investigation Matrix / Progress Map Modal Toggle -->
-        <button id="btn-open-map" class="hud-row-btn" type="button" title="Investigation Map">
-          <i class="fa-solid fa-map-location-dot"></i> <span class="desktop-only">Act Map</span>
+      <div class="header-menu-container">
+        <button id="btn-header-hamburger" class="hamburger-btn" type="button" title="Menu">
+          <div class="hamburger-icon">
+            <span></span><span></span><span></span>
+          </div>
         </button>
-
-        <!-- Configuration Preferences Panel Trigger -->
-        <button id="btn-open-settings" class="hud-row-btn" type="button" title="Settings">
-          <i class="fa-solid fa-gear"></i> <span class="desktop-only">System</span>
-        </button>
+        <div id="header-dropdown" class="header-dropdown-menu">
+          <button id="btn-open-map" class="dropdown-item">
+            <i class="fa-solid fa-map-location-dot"></i> <span>Act Map</span>
+          </button>
+          <button id="btn-open-settings" class="dropdown-item">
+            <i class="fa-solid fa-gear"></i> <span>System</span>
+          </button>
+          <button id="btn-toggle-audio" class="dropdown-item">
+            <i class="fa-solid fa-volume-high"></i> <span>Audio: On</span>
+          </button>
+        </div>
       </div>
     </header>
+
+    <!-- Global metrics bar for investigation status -->
+    <div class="metrics-bar">
+      <div class="metric-item"><i class="fa-solid fa-building-columns metric-icon"></i> <span
+          class="hidden">Honor:</span> <span class="val-reputation">100</span></div>
+      <div class="metric-item"><i class="fa-solid fa-cross metric-icon"></i> <span class="hidden">Doubt:</span> <span
+          class="val-doubt">0</span></div>
+      <div class="metric-item"><i class="fa-solid fa-shield metric-icon"></i> <span class="hidden">Score:</span> <span
+          class="val-score">0</span> pts</div>
+    </div>
 
     <!-- Left Column: Manages active quest state progression and logged item portfolios -->
     <aside id="left-sidebar">
@@ -219,16 +236,18 @@
 
     <!-- Footer Row: Holds the 2D vector coordinate radar/minimap tracker -->
     <footer id="bottom-bar">
-      <!-- Mobile Navigation Bar -->
-      <nav id="mobile-nav-menu" class="mobile-only control-group-right">
+      <!-- Modern Navigation Bar styled like a mobile menu -->
+      <nav id="mobile-nav-menu" class="footer-nav-menu">
         <button id="btn-mobile-quest" class="mobile-nav-btn"><i class="fa-solid fa-star"></i><span>Case</span></button>
         <button id="btn-mobile-evidence" class="mobile-nav-btn"><i
             class="fa-solid fa-folder-open"></i><span>Clues</span></button>
         <button id="btn-mobile-actions" class="mobile-nav-btn"><i
             class="fa-solid fa-bolt"></i><span>Actions</span></button>
+        <button id="btn-mobile-codex" class="mobile-nav-btn"><i
+            class="fa-solid fa-book-open"></i><span>Codex</span></button>
         <button id="btn-mobile-keys" class="mobile-nav-btn"><i class="fa-solid fa-key"></i><span>Keys</span></button>
         <button id="btn-mobile-analysis" class="mobile-nav-btn"><i
-            class="fa-solid fa-clipboard-list"></i><span>Analysis</span></button>
+            class="fa-solid fa-flask"></i><span>Lab</span></button>
       </nav>
 
       <div id="minimap" class="minimap-panel">
@@ -287,6 +306,138 @@
     </div>
   </div>
 
+  <!-- ══════════════ Accuse Modal (from Example 01) ══════════════ -->
+  <div id="accuse-modal" class="overlay-mask">
+    <div class="modal-panel" style="max-width: 540px; width: 95%;">
+      <header class="modal-header">
+        <div>
+          <h2 class="modal-title-settings">Final Accusation</h2>
+          <p class="modal-subtitle-custom">Select the suspect responsible for the mystery</p>
+        </div>
+        <button class="close-icon-btn" onclick="document.getElementById('accuse-modal').classList.remove('active')">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </header>
+      <main class="modal-body" id="accuse-suspect-list" style="padding: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; overflow-y: auto; max-height: 60vh;">
+      </main>
+    </div>
+  </div>
+
+  <!-- ══════════════ People & Case Summary Modal ══════════════ -->
+  <div id="people-modal" class="overlay-mask">
+    <div class="modal-panel" style="max-width: 850px; width: 95%;">
+      <header class="modal-header">
+        <div>
+          <h2 class="modal-title-settings">Case Participants</h2>
+          <p class="modal-subtitle-custom">Review conversations and person-specific clues</p>
+        </div>
+        <button class="close-icon-btn" onclick="document.getElementById('people-modal').classList.remove('active')">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </header>
+      <main class="modal-body people-modal-layout" id="people-modal-body">
+        <!-- Populated via JS -->
+      </main>
+    </div>
+  </div>
+
+  <!-- ══════════════ Evidence Detail Modal (from Example 01) ══════════════ -->
+  <div id="evidence-detail-modal" class="overlay-mask">
+    <div class="modal-panel evidence-detail-panel" style="max-width: 600px; width: 95%;">
+      <header class="modal-header">
+        <div class="evidence-detail-header">
+          <span class="evidence-detail-icon">🛡️</span>
+          <div>
+            <div class="evidence-detail-name">Evidence Name</div>
+            <div class="evidence-detail-type">Type</div>
+          </div>
+        </div>
+        <button class="close-icon-btn"
+          onclick="document.getElementById('evidence-detail-modal').classList.remove('active')">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </header>
+      <main class="modal-body evidence-detail-inner" style="overflow-y: auto; max-height: 70vh;">
+        <div class="evidence-detail-section">
+          <div class="evidence-detail-label">Description</div>
+          <div class="evidence-detail-desc"></div>
+        </div>
+        <div class="evidence-detail-section">
+          <div class="evidence-detail-label">Location Found</div>
+          <div class="evidence-detail-location"></div>
+        </div>
+        <div class="evidence-detail-section prophecy-section" id="detail-prophecy-area" hidden>
+          <div class="evidence-detail-label">📜 Bible Reference</div>
+          <div class="evidence-detail-bible-ref"></div>
+          <button class="read-more-btn" data-target="bible-verse-content">📖 Read Full Verse</button>
+          <div class="verse-content" id="bible-verse-content" hidden></div>
+
+          <div style="margin-top:20px;">
+            <div class="evidence-detail-label">✨ Prophecy & Fulfilment</div>
+            <div class="evidence-detail-prophetic-link"></div>
+            <button class="read-more-btn" data-target="prophecy-verse-content">📖 Read Full Verse</button>
+            <div class="verse-content" id="prophecy-verse-content" hidden></div>
+          </div>
+        </div>
+        <div class="evidence-detail-section">
+          <div class="evidence-detail-label">🔎 Investigator Notes</div>
+          <div class="evidence-detail-investigator-note"></div>
+        </div>
+        <button id="btn-open-codex-from-detail" class="terminal-btn" style="width:100%; margin-top:12px;">
+          <i class="fa-solid fa-link"></i> Prophecy Matcher
+        </button>
+      </main>
+    </div>
+  </div>
+
+  <!-- ══════════════ Codex Matching Modal (from Example 01) ══════════════ -->
+  <div id="codex-modal" class="overlay-mask">
+    <div class="modal-panel" style="max-width: 800px; width: 95%;">
+      <header class="modal-header">
+        <div>
+          <h2 class="modal-title-settings">Prophecy Codex</h2>
+          <p class="modal-subtitle-custom">Link evidence to ancient prophecies</p>
+        </div>
+        <button class="close-icon-btn" onclick="document.getElementById('codex-modal').classList.remove('active')">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </header>
+      <main class="modal-body" style="padding: 20px; overflow-y: auto; max-height: 70vh;">
+        <div class="prophecy-lab-intro" style="margin-bottom: 20px; color: var(--text-muted); font-size: 0.85rem;">
+          Select evidence from your collection, then choose a locked prophecy below to attempt a link.
+        </div>
+
+        <div class="codex-selection-area">
+          <div class="selection-slot" id="codex-evidence-slot">
+            <span>Select Evidence...</span>
+          </div>
+          <div class="selection-arrow">➕</div>
+          <div class="selection-slot" id="codex-prophecy-slot">
+            <span>Select Prophecy...</span>
+          </div>
+          <button id="btn-match-prophecy" class="evidence-detail-confirm" disabled>Match</button>
+        </div>
+
+        <!-- Dedicated Evidence Info Area in Codex -->
+        <div id="codex-evidence-preview" class="codex-preview-panel" hidden>
+          <div class="preview-header"><span id="codex-preview-name"></span></div>
+          <div id="codex-preview-desc" class="preview-body"></div>
+        </div>
+
+        <h3 class="picker-title">Your Evidence</h3>
+        <div id="codex-evidence-grid" class="picker-grid" style="margin-bottom: 24px;">
+          <!-- Evidence cards will be rendered here by UIManager.js -->
+        </div>
+        <h3 class="picker-title">Bible Prophecies</h3>
+        <div id="codex-prophecy-grid" class="codex-grid"></div>
+
+        <h3 class="picker-title" style="margin-top:24px;">Discovered Truths</h3>
+        <div id="codex-discovered-grid" class="codex-grid"></div>
+        <div id="codex-feedback" class="codex-feedback"></div>
+      </main>
+    </div>
+  </div>
+
   <!-- Main Investigation Progress / Chapter Level Selection Matrix Modal -->
   <div id="modal-overlay" class="modal-overlay">
     <div class="modal-panel map-modal-panel">
@@ -307,57 +458,58 @@
 
   <!-- Settings Configuration Engine Management Panel -->
   <div id="settings-overlay" class="overlay-mask">
-    <div class="settings-panel">
+    <div class="modal-panel" style="max-width: 500px; width: 90%;">
       <button class="settings-close-btn" id="btn-close-settings-x">✕</button>
       <header class="modal-header">
         <h2 class="modal-title-settings">
-          <i class="fa-solid fa-sliders header-icon-spacer"></i>System
+          <i class="fa-solid fa-sliders header-icon-spacer"></i>System Configuration
         </h2>
       </header>
-      <main class="modal-body settings-modal-body">
-        <div class="settings-grid">
-          <div class="settings-group">
-            <label for="setting-bible-version" class="settings-label-custom">Bible Translation</label>
+      <main class="modal-body">
+        <section class="settings-section">
+          <h3 class="picker-title">Interface & Gameplay</h3>
+          <div class="a11y-setting-row">
+            <span><span class="a11y-label-main">Minimap</span><span class="a11y-label-desc">Toggle the vector radar</span></span>
+            <button type="button" class="toggle-btn active" id="toggle-ui-minimap" aria-checked="true"></button>
+          </div>
+          <div class="a11y-setting-row">
+            <span><span class="a11y-label-main">Mobile Controls</span><span class="a11y-label-desc">Toggle the on-screen D-pad</span></span>
+            <button type="button" class="toggle-btn active" id="toggle-ui-controls" aria-checked="true"></button>
+          </div>
+        </section>
+
+        <section class="settings-section" style="margin-top: 20px;">
+          <h3 class="picker-title">Scripture Options</h3>
+          <div class="settings-row">
+            <label class="settings-label-custom">Translation</label>
             <select id="setting-bible-version" class="settings-select-custom">
-              <option value="web">World English (WEB)</option>
-              <option value="kjv">King James (KJV)</option>
-              <option value="bbe">Basic English (BBE)</option>
-              <option value="oeb-us">Open English (OEB)</option>
+                <option value="web">World English (WEB)</option>
+                <option value="kjv">King James (KJV)</option>
+                <option value="bbe">Basic English (BBE)</option>
+                <option value="oeb-us">Open English (OEB)</option>
             </select>
           </div>
-          <div class="settings-group">
-            <div class="settings-a11y-label">Audio</div>
-            <button id="settings-audio-toggle" class="terminal-btn btn-flex"><i class="fa-solid fa-volume-high"></i>
-              Toggle Sound</button>
-          </div>
-        </div>
-        <div id="settings-saved-label" class="settings-saved-label"></div>
+        </section>
 
-        <div class="settings-divider-custom"></div>
-        <div id="a11y-settings-list" class="settings-a11y-list"></div>
+        <section class="settings-section" style="margin-top: 20px;">
+          <h3 class="picker-title">Accessibility & Sound</h3>
+          <div id="a11y-settings-list" class="settings-a11y-list"></div>
+          <div class="a11y-setting-row" style="margin-top:8px;">
+             <span><span class="a11y-label-main">Audio</span><span class="a11y-label-desc">Toggle background ambience</span></span>
+             <button id="settings-audio-toggle" class="toggle-btn" aria-checked="true" type="button"></button>
+          </div>
+        </section>
       </main>
-      <footer class="settings-footer-layout">
+      <footer class="modal-footer" style="padding: 20px; border-top: 1px solid var(--border-subtle);">
         <div class="persistence-btn-row">
-          <button onclick="showInstructionsModal()" class="terminal-btn btn-flex"><i
-              class="fa-solid fa-circle-info"></i> Guide</button>
-          <button id="btn-save-game" class="terminal-btn btn-flex btn-save-game-accent">
-            <i class="fa-solid fa-floppy-disk"></i> Save
-          </button>
-          <button id="btn-load-game" class="terminal-btn btn-flex btn-load-game-accent">
-            <i class="fa-solid fa-upload"></i> Load
-          </button>
+          <button onclick="window.showInstructionsModal()" class="terminal-btn btn-flex">Guide</button>
+          <button id="btn-save-game" class="terminal-btn btn-flex">Save</button>
+          <button id="btn-load-game" class="terminal-btn btn-flex">Load</button>
         </div>
-        <div class="settings-divider-small"></div>
         <div class="modal-action-row">
-          <button id="btn-close-settings" class="terminal-btn btn-flex">
-            <i class="fa-solid fa-xmark"></i> Cancel
-          </button>
-          <button id="btn-save-settings" class="terminal-btn btn-flex btn-save-settings-accent">
-            <i class="fa-solid fa-check"></i> Apply
-          </button>
-          <button onclick="showResetModal()" class="terminal-btn btn-flex" style="color: var(--color-error)">
-            <i class="fa-solid fa-trash-can"></i> Reset
-          </button>
+          <button id="btn-close-settings" class="terminal-btn btn-flex">Close</button>
+          <button id="btn-save-settings" class="terminal-btn btn-flex btn-save-settings-accent">Apply</button>
+          <button onclick="window.showResetModal()" class="terminal-btn" style="color: var(--color-error); border-color: var(--color-error);">Reset Progress</button>
         </div>
       </footer>
     </div>
@@ -368,8 +520,8 @@
     <div class="modal-panel inv-board-panel" id="inv-board-panel">
       <header class="modal-header">
         <div>
-          <h2 class="modal-title-settings">Investigation Board</h2>
-          <p class="modal-subtitle-custom">Compare evidence to uncover deductions</p>
+          <h2 class="modal-title-settings">Investigation Lab</h2>
+          <p class="modal-subtitle-custom">Analyze evidence to uncover deeper truths</p>
         </div>
         <button id="btn-close-inv-board" class="close-icon-btn">
           <i class="fa-solid fa-xmark"></i>
@@ -452,1321 +604,8 @@
 
   <!-- Bible Reader API Module: Handles asynchronous fetching and parsing of scriptural data -->
   <script type="module" src="./BibleReader2.js"></script>
-
-
-
-    <!-- Main Game Loop, 3D Scene Initialization, and System Pipeline Sub-module -->
-   
-  <script type="module">
-    import * as THREE from 'three';
-
-    // Application Subsystem Module Imports
-    import { CaseManager } from "./caseManager.js";
-    import { EvidenceSystem } from "./evidenceSystem.js";
-    import { NPCSystem, PROFILE_ID_MAP } from "./NPCSystem.js";
-    import { DeductionEngine } from "./deductionEngine.js";
-    import { LocationSystem } from "./locationSystem.js";
-    import { AccessibilityManager } from "./accessibility.js";
-    import { LabUI } from "./labUI.js";
-    import { ChatUI } from "./chatUI.js";
-    import { AudioManager } from "./audioManager.js";
-    import { DialogueManager, DIALOGUE_ID_MAP } from "./dialogueManager.js";
-    import { ControlsManager } from "./controls.js";
-    import { EnvironmentManager } from "./environment.js";
-    import { OrbitalSelectMatrixModal } from "./mapModal.js";
-
-    // Narrative Case File Data Struct Imports
-    import { act1CaseA, act1CaseB } from "./act1_case.js";
-    import { act2CaseA, act2CaseB } from "./act2_case.js";
-    import { act3CaseA, act3CaseB, act3CaseC, act3CaseD, act3CaseE } from "./act3_case.js";
-    import { act4CaseA, act4CaseB, act4CaseC } from "./act4_case.js";
-
-
-    // ── Configuration ──────────────────────────────────────────
-    const CONFIG = {
-      unlockAllCases: false // Set to true to bypass case requirements for testing
-    };
-
-    // ── Bootstrap ──────────────────────────────────────────────
-    const cm = new CaseManager();
-
-    const cases = [
-      act1CaseA, act1CaseB,
-      act2CaseA, act2CaseB,
-      act3CaseA, act3CaseB, act3CaseC, act3CaseD, act3CaseE,
-      act4CaseA, act4CaseB, act4CaseC
-    ];
-
-    cases.forEach(c => {
-      if (CONFIG.unlockAllCases) {
-        c.requires = null;
-      }
-      cm.registerCase(c);
-    });
-
-    /**
-     * @class GameEngine
-     * @description Orchestrates the central WebGL 3D context, manages subsystems, handles physics loops, and synchronization.
-     */
-    class GameEngine {
-      constructor() {
-        // Initialize historical narrative database and inject raw case files
-        this.cm = new CaseManager();
-
-        // Load or initialize persistent configuration and accessibility matrices
-        this.a11y = new AccessibilityManager();
-        this.a11y.restorePreferences();
-
-        // Instantiate isolated decoupling logical subsystems
-        this.es = new EvidenceSystem(this.cm);
-        this.ns = new NPCSystem(this.cm, this.es);
-        this.de = new DeductionEngine(this.cm, this.es);
-        this.ls = new LocationSystem(this.cm);
-        this.audio = new AudioManager();
-        this.dm = new DialogueManager(this.audio);
-
-        // Register cases now that all dependencies (cm, dm) are initialized
-        this.registerAllCases();
-
-        // Primary runtime environment state properties
-        this.activeCaseId = null;
-        this.pPos = new THREE.Vector3(0, 1, 15);
-        this.pVelocity = new THREE.Vector3();
-        this.camHeading = new THREE.Vector3(0, 0, -1);
-        this.isGrounded = true;
-        this.nearestNPC = null;
-        this.inDialogue = false;
-        this.collectedEvidence = [];
-        this.npcMeshes = [];
-        this.evidenceMeshes = [];
-        this.audioActive = true;
-        this.currentDisplayPreference = 'emojis';
-        this.lockedEvidence = {};
-        this.challengeSelection = [];
-
-        // Load the hardware/keyboard peripheral controller manager
-        this.controls = new ControlsManager(this);
-      }
-
-      /**
-       * @method registerAllCases
-       * @description Populates the CaseManager registry with separated historical chapter modules.
-       */
-      registerAllCases() {
-        const allCases = [
-          act1CaseA, act1CaseB,
-          act2CaseA, act2CaseB,
-          act3CaseA, act3CaseB, act3CaseC, act3CaseD,
-          act4CaseA, act4CaseB, act4CaseC
-        ];
-
-        allCases.forEach(caseData => {
-          // Apply God-mode unlock if configuration is enabled
-          if (CONFIG.unlockAllCases) {
-            caseData.requires = null;
-          }
-          this.cm.registerCase(caseData);
-        });
-
-        // Register Ink library with DialogueManager
-        if (typeof inkjs !== 'undefined') this.dm.setInkLib(inkjs);
-      }
-
-      /**
-       * @method init
-       * @description Bootstrap routine establishing the Three.js viewport pipeline, lighting matrices, and global hooks.
-       */
-      init() {
-        const container = document.getElementById('canvas-container');
-        this.scene = new THREE.Scene();
-        this.scene.background = new THREE.Color(0x020306);
-        this.scene.fog = new THREE.FogExp2(0x020306, 0.015);
-
-        // Camera & WebGL Renderer Init Architecture
-        this.camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1500);
-        this.renderer = new THREE.WebGLRenderer({ antialias: true });
-        this.renderer.setSize(window.innerWidth, window.innerHeight);
-        this.renderer.shadowMap.enabled = true;
-        container.appendChild(this.renderer.domElement);
-
-        // Mobile UI and Controls Initialization
-        {
-          const leftSidebar = document.getElementById('left-sidebar');
-          const rightSidebar = document.getElementById('right-sidebar');
-
-          // Only target panels inside sidebars to avoid hiding the top bar or other HUD elements
-          const sidebarPanels = document.querySelectorAll('aside .hud-panel');
-          const mobileNavBtns = document.querySelectorAll('.mobile-nav-btn');
-
-          const closeAllModals = () => {
-            leftSidebar?.classList.remove('active');
-            rightSidebar?.classList.remove('active');
-            sidebarPanels.forEach(p => p.classList.add('mobile-hidden'));
-            setMobileActive(null);
-          };
-
-          document.querySelectorAll('.modal-close-btn').forEach(btn => {
-            btn.onclick = (e) => {
-              e.stopPropagation();
-              closeAllModals();
-            };
-          });
-
-          const setMobileActive = (btnId) => {
-            mobileNavBtns.forEach(b => b.classList.remove('active'));
-            if (btnId) document.getElementById(btnId)?.classList.add('active');
-          };
-
-          const togglePanel = (sidebarId, panelClass, btnId) => {
-            const sidebar = document.getElementById(sidebarId);
-            const targetPanel = sidebar?.querySelector('.' + panelClass);
-            if (!sidebar || !targetPanel) return;
-
-            const wasActive = sidebar.classList.contains('active') && !targetPanel.classList.contains('mobile-hidden');
-
-            // Reset all
-            rightSidebar?.classList.remove('active');
-            leftSidebar?.classList.remove('active');
-            sidebarPanels.forEach(p => p.classList.add('mobile-hidden'));
-
-            if (!wasActive) {
-              sidebar.classList.add('active');
-              targetPanel.classList.remove('mobile-hidden');
-              setMobileActive(btnId);
-            } else {
-              setMobileActive(null);
-            }
-          };
-
-          document.getElementById('btn-mobile-quest').onclick = () => togglePanel('left-sidebar', 'quest-panel', 'btn-mobile-quest');
-          document.getElementById('btn-mobile-evidence').onclick = () => togglePanel('left-sidebar', 'evidence-panel', 'btn-mobile-evidence');
-          document.getElementById('btn-mobile-actions').onclick = () => togglePanel('right-sidebar', 'actions-panel', 'btn-mobile-actions');
-          document.getElementById('btn-mobile-keys').onclick = () => togglePanel('right-sidebar', 'prophecies-panel', 'btn-mobile-keys');
-
-          document.getElementById('btn-mobile-analysis').onclick = () => {
-            closeAllModals();
-            if (window.openAnalysis) window.openAnalysis();
-          };
-
-          // Simple touch-to-close for sidebars
-          window.addEventListener('click', (e) => {
-            if (leftSidebar.classList.contains('active') && !leftSidebar.contains(e.target)) {
-              leftSidebar.classList.remove('active');
-            }
-            if (rightSidebar.classList.contains('active') && !rightSidebar.contains(e.target)) {
-              rightSidebar.classList.remove('active');
-            }
-          }, true);
-
-          // D-Pad Controller Logic
-          const bindControl = (id, key) => {
-            const btn = document.getElementById(id);
-            if (!btn) return;
-
-            btn.oncontextmenu = (e) => e.preventDefault(); // Block context menu on mobile
-
-            const press = (e) => {
-              e.preventDefault();
-              this.controls.keys[key] = true;
-            };
-            const release = (e) => {
-              if (e.cancelable) e.preventDefault();
-              this.controls.keys[key] = false;
-            };
-
-            btn.addEventListener('pointerdown', press, { passive: false });
-            btn.addEventListener('pointerup', release, { passive: false });
-            btn.addEventListener('pointercancel', release, { passive: false });
-            btn.addEventListener('pointerleave', release, { passive: false });
-          };
-
-          bindControl('ctrl-up', 'KeyW');
-          bindControl('ctrl-down', 'KeyS');
-          bindControl('ctrl-left', 'KeyA');
-          bindControl('ctrl-right', 'KeyD');
-          bindControl('ctrl-jump', 'Space');
-
-          document.getElementById('ctrl-interact').onclick = () => {
-            if (this.nearestNPC) this.startDialogue(this.nearestNPC.userData.config);
-          };
-        }
-
-        // Environmental Light Rig Setup
-        const ambient = new THREE.AmbientLight(0xffffff, 0.2);
-        this.scene.add(ambient);
-
-        this.sunLight = new THREE.DirectionalLight(0xffffff, 1.0);
-        this.sunLight.castShadow = true;
-        this.scene.add(this.sunLight);
-
-        this.moonLight = new THREE.DirectionalLight(0x5588ff, 0.4);
-        this.scene.add(this.moonLight);
-
-        // Initialize Player Visual Geometry Proxy
-        const geo = new THREE.ConeGeometry(0.6, 2.2, 8);
-        geo.rotateX(Math.PI / 2);
-        this.playerMesh = new THREE.Mesh(geo, new THREE.MeshStandardMaterial({ color: 0x00a884, roughness: 0.3, emissive: 0x002211 }));
-        this.playerMesh.position.copy(this.pPos);
-        this.scene.add(this.playerMesh);
-
-        // Attach a dynamic point light directly to the player proxy object
-        this.torchLight = new THREE.PointLight(0x00f2ff, 0, 25, 1.5);
-        this.playerMesh.add(this.torchLight);
-
-        // Ground Floor Floor Configuration
-        const ground = new THREE.Mesh(new THREE.PlaneGeometry(500, 500), new THREE.MeshStandardMaterial({ color: 0x14181e }));
-        ground.rotation.x = -Math.PI / 2;
-        this.scene.add(ground);
-
-        // Instantiate environment time-progression shaders and daylight loops
-        this.envManager = new EnvironmentManager(this.scene, this.sunLight, this.moonLight, this.torchLight, this.audio);
-
-        // Handle Audio Setting Hooks dynamically through accessibility layer proxies
-        const originalToggle = this.a11y.toggle.bind(this.a11y);
-        this.a11y.toggle = (feature) => {
-          const result = originalToggle(feature);
-          if (feature === 'sound') this.audio.setEnabled(result);
-          return result;
-        };
-
-        // Viewport Aspect-Ratio Mutation Calculation
-        window.addEventListener('resize', () => {
-          this.camera.aspect = window.innerWidth / window.innerHeight;
-          this.camera.updateProjectionMatrix();
-          this.renderer.setSize(window.innerWidth, window.innerHeight);
-        });
-
-        this.bindGlobalUIEvents();
-      }
-
-      bindGlobalUIEvents() {
-        // Consolidated System Controls
-        const settingsAudioBtn = document.getElementById('settings-audio-toggle');
-        if (settingsAudioBtn) {
-          settingsAudioBtn.onclick = () => {
-            this.audioActive = !this.audioActive;
-            this.audio.setEnabled(this.audioActive);
-            settingsAudioBtn.innerHTML = this.audioActive
-              ? '<i class="fa-solid fa-volume-high"></i> Audio On'
-              : '<i class="fa-solid fa-volume-xmark"></i> Audio Off';
-          };
-        }
-
-        document.getElementById('btn-open-map').onclick = () => {
-          this.audio.playUI();
-          if (!this.mapModal) {
-            this.mapModal = new OrbitalSelectMatrixModal(this.cm, this.ls, (caseId) => this.loadCase(caseId));
-          }
-          this.mapModal.open();
-        };
-
-        document.getElementById('btn-start').onclick = () => {
-          this.audio.playUI();
-          document.getElementById('wipe-overlay').classList.add('active');
-          setTimeout(() => {
-            document.getElementById('loading-screen').style.display = 'none';
-            if (!this.mapModal) {
-              this.mapModal = new OrbitalSelectMatrixModal(this.cm, this.ls, (caseId) => this.loadCase(caseId));
-            }
-            this.mapModal.open();
-            this.animate();
-          }, 1000);
-        };
-      }
-
-      /**
-       * @method loadCase
-       * @description Flushes old session nodes and populates 3D space with fresh structural components from a new case file.
-       * @param {string} caseId - Unique identifier key mapping to the case dictionary entry.
-       */
-      loadCase(caseId) {
-        const caseData = this.cm.cases[caseId];
-        if (!caseData) return;
-
-        this.activeCaseId = caseId;
-        this.audio.updateActMusic(caseData.actLabel);
-        this.nearestNPC = null;
-        this.inDialogue = false;
-
-        // Reveal mobile UI elements
-        document.body.classList.add('case-active');
-
-        // Reset player physics and position to starting defaults for the new investigation
-        this.pPos.set(0, 1, 15);
-        this.pVelocity.set(0, 0, 0);
-        if (this.playerMesh) this.playerMesh.position.copy(this.pPos);
-
-        // Reset environmental lighting cycle to dawn (0.25)
-        if (this.envManager) {
-          this.envManager.timeProgress = 0.25;
-          this.envManager.wasDay = null; // force audio state update
-          this.envManager.update(false);
-        }
-
-        this.cm.startCase(caseId);
-        this.es.loadCase(caseData);
-        this.ns.loadCase(caseData);
-
-        // Pre-load Ink stories for NPCs in this case
-        if (caseData.npcs) {
-          caseData.npcs.forEach(npc => {
-            if (npc.dialogueId || npc.storyFile) {
-              this.dm.loadStoryForNPC(npc);
-            }
-          });
-        }
-
-        // Reset UI trackers and flush legacy meshes from the scene
-        this.collectedEvidence = [];
-        this.lockedEvidence = {};
-        this.npcMeshes.forEach(m => this.scene.remove(m));
-        this.npcMeshes = [];
-        this.evidenceMeshes.forEach(m => this.scene.remove(m));
-        this.evidenceMeshes = [];
-
-        // Populate the evidence pool for this case.
-        // Evidence starts LOCKED — only spawned into 3D world after an NPC unlocks it via dialogue.
-        caseData.evidencePool.forEach(item => {
-          this.lockedEvidence[item.id] = item;
-        });
-
-        // Sync with EvidenceSystem (ensures UI reflects current internal state)
-        this.es.collected.forEach(id => {
-          delete this.lockedEvidence[id];
-          const ev = this.es.getById(id);
-          if (ev) this.collectedEvidence.push({
-            id: ev.id,
-            label: ev.name,
-            description: ev.desc || ev.description || '',
-            icon: ev.icon,
-            emoji: ev.emoji,
-            iconFA: ev.iconFA
-          });
-        });
-
-        // Distribute case-specific NPC bounding boxes throughout coordinates
-        (caseData.npcs || []).forEach(npc => {
-          if (!Array.isArray(npc.pos) || npc.pos.length < 3) return;
-          const box = new THREE.Mesh(new THREE.BoxGeometry(1.2, 2, 1.2), new THREE.MeshStandardMaterial({ color: npc.color }));
-          box.position.set(npc.pos[0], npc.pos[1], npc.pos[2]);
-          box.userData = { config: npc, type: 'npc', state: 'neutral' };
-          this.scene.add(box);
-          this.npcMeshes.push(box);
-        });
-
-        this.updateHUD(caseData);
-        this.controls.displayAlert(`Case: ${caseData.title}`);
-      }
-
-      /**
-       * @method updateHUD
-       * @description Re-renders strings, progress bars, and linked Bible references inside the 2D panel overlay deck.
-       * @param {Object} caseData - The currently active case data object structure.
-       */
-      updateHUD(caseData) {
-        document.getElementById('loc-name').innerText = caseData.location;
-        document.getElementById('act-name').innerText = caseData.actLabel;
-        const levelTitle = document.getElementById('level-title');
-        levelTitle.innerText = caseData.title;
-        levelTitle.classList.add('case-loading');
-        setTimeout(() => levelTitle.classList.remove('case-loading'), 3000);
-
-        const q = caseData.quest;
-        document.getElementById('quest-title').innerText = q.name;
-        document.getElementById('quest-task').innerText =
-          `${q.task} (${q.cur}/${q.tar}) — Talk to NPCs to reveal evidence`;
-        document.getElementById('quest-progress').style.width = `${(q.cur / q.tar) * 100}%`;
-
-        // Parse and render historical texts with attached BibleReader module API action triggers
-        const propWrap = document.getElementById('prophecies-container');
-        propWrap.innerHTML = '';
-        caseData.prophecies.forEach(p => {
-          const div = document.createElement('div');
-          div.className = 'prophecy-item';
-          if (typeof p === 'object') {
-            const reference = p.reference;
-            const apiReference = (function buildApiReference(raw) {
-              const compact = raw
-                .trim()
-                .toLowerCase()
-                .replace(/[\s_+-]+/g, ' ')
-                .replace(/[–-]/g, ':')
-                .replace(/[:]/g, ' ')
-                .replace(/\s+/g, ' ')
-                .trim();
-              const m = compact.match(/^(.+?)\s+(\d+)(?:\s+(\d+(?:[-,]\d+)*))?$/);
-              if (!m) return compact.replace(/\s+/g, '+');
-              const book = m[1].trim();
-              const chapter = m[2].trim();
-              const verses = m[3] ? ':' + m[3].trim() : '';
-              return `${book}+${chapter}${verses}`;
-            })(reference);
-            div.innerHTML = `<p><strong>${reference}</strong>: ${p.text} <br/><button class="clickable-reference" data-reference="${apiReference}">Read More</button></p>`;
-            const refBtn = div.querySelector('.clickable-reference');
-            if (refBtn) {
-              refBtn.onclick = (e) => {
-                e.preventDefault();
-                window.BibleReader.displayPassage(apiReference);
-              };
-            }
-          } else {
-            div.innerText = p;
-          }
-          propWrap.appendChild(div);
-        });
-
-        this.updateActions(caseData);
-        this.updateEvidenceGrid();
-        this.updateChallengeButton();
-      }
-
-      /**
-       * @method updateActions
-       * @description Evaluates spatial proximities to regenerate context-sensitive operation menus.
-       * @param {Object} caseData - The currently active case data object structure.
-       */
-      inversionMenus(caseData) { /* alias pointer sync */ }
-      updateActions(caseData) {
-        const actWrap = document.getElementById('actions-container');
-        actWrap.innerHTML = '';
-
-        const canChallenge = this.es.selectedA && this.es.selectedB;
-        const challengeBtn = document.createElement('button');
-        challengeBtn.className = 'action-btn challenge-action-btn';
-        challengeBtn.innerHTML = '<span><i class="fa-solid fa-bolt action-icon"></i> Challenge</span><small>[' + (this.es.selectedA ? this.es.selectedA.name : 'A') + '+' + (this.es.selectedB ? this.es.selectedB.name : 'B') + ']</small>';
-        challengeBtn.disabled = !canChallenge;
-        challengeBtn.onclick = () => {
-          this.audio.playUI();
-          if (this.nearestNPC) {
-            this._playerChallengedNPC(this.nearestNPC.userData.config, this.es.selectedA?.id, this.es.selectedB?.id);
-          }
-        };
-        actWrap.appendChild(challengeBtn);
-
-        if (this.nearestNPC && !this.inDialogue) {
-          const n = this.nearestNPC.userData.config;
-          const talkBtn = document.createElement('button');
-          talkBtn.className = 'action-btn talk-prompt-highlight';
-          talkBtn.innerHTML = '<span><i class="fa-solid fa-comments action-icon"></i> Talk to ' + n.name + '</span><small>[E]</small>';
-          talkBtn.onclick = () => {
-            this.audio.playUI();
-            this.startDialogue(n);
-          };
-          actWrap.appendChild(talkBtn);
-        }
-
-        const collectBtn = document.createElement('button');
-        collectBtn.className = 'action-btn';
-        collectBtn.innerHTML = `<span>Collect Evidence</span><small>[Approach Items]</small>`;
-        collectBtn.onclick = () => this.audio.playUI();
-        actWrap.appendChild(collectBtn);
-      }
-
-      /**
-       * @method updateEvidenceGrid
-       * @description Populates inventory item slots — only shows evidence that has been unlocked and collected this session.
-       */
-      updateEvidenceGrid() {
-        const grid = document.getElementById('evidence-slots-grid');
-        grid.innerHTML = '';
-
-        for (let i = 0; i < 8; i++) {
-          const slot = document.createElement('div');
-          const filled = !!this.collectedEvidence[i];
-          slot.className = 'evidence-slot-btn ' + (filled ? 'filled' : '');
-
-          if (filled) {
-            if (this.currentDisplayPreference === 'emojis') {
-              slot.textContent = this.collectedEvidence[i].emoji || this.collectedEvidence[i].icon || '🛡️';
-              slot.style.fontSize = '1.5rem';
-            } else {
-              const iconNode = document.createElement('i');
-              const iconClasses = (this.collectedEvidence[i].iconFA || 'fa-solid fa-file-invoice').split(' ');
-              iconNode.classList.add(...iconClasses);
-              slot.appendChild(iconNode);
-            }
-
-            const ev = this.collectedEvidence[i];
-            if (this.es.selectedA && this.es.selectedA.id === ev.id) slot.classList.add('sel-a');
-            if (this.es.selectedB && this.es.selectedB.id === ev.id) slot.classList.add('sel-b');
-
-            slot.onclick = () => {
-              const selectedA = this.es.selectedA;
-              const selectedB = this.es.selectedB;
-
-              if (selectedA && selectedA.id === ev.id) {
-                this.es.deselectAll();
-              } else if (selectedB && selectedB.id === ev.id) {
-                this.es.selectedB = null;
-              } else if (selectedA && selectedB) {
-                this.es.selectedA = ev;
-                this.es.selectedB = null;
-              } else if (selectedA) {
-                this.es.selectedB = ev;
-              } else {
-                this.es.selectedA = ev;
-              }
-
-              this.updateEvidenceGrid();
-              this.updateChallengeButton();
-              if (typeof window.renderInvestigationBoard === 'function') {
-                window.renderInvestigationBoard();
-              }
-            };
-          } else {
-            slot.innerHTML = '<i class="fa-solid fa-folder"></i>';
-          }
-
-          grid.appendChild(slot);
-        }
-      }
-
-      updateChallengeButton() {
-        const selA = this.es.selectedA;
-        const selB = this.es.selectedB;
-        const challengeBtn = document.querySelector('.challenge-action-btn');
-        if (challengeBtn) {
-          const nameA = selA?.name || 'A';
-          const nameB = selB?.name || 'B';
-          challengeBtn.innerHTML = `<span><i class="fa-solid fa-bolt" style="margin-right:6px;"></i> Challenge</span><small>[${nameA}+${nameB}]</small>`;
-          challengeBtn.disabled = !(selA && selB);
-        }
-      }
-
-      showEvidencePopup(title, desc, emoji) {
-        document.getElementById('popup-evidence-title').innerHTML = '<i class="fa-solid fa-file-shield popup-evidence-icon"></i> ' + (emoji || '') + ' ' + title;
-        document.getElementById('popup-evidence-body').innerText = desc;
-        document.getElementById('evidence-popup-card').style.display = 'block';
-      }
-
-      showEvidenceDetail(index) {
-        const evidence = this.collectedEvidence[index];
-        if (evidence) this.showEvidencePopup(evidence.label, evidence.description, evidence.emoji);
-      }
-
-      /**
-       * @method startDialogue
-       * @description Opens the WhatsApp-style chat modal for an NPC and begins the conversation.
-       * Conversations are branching: each player choice can unlock evidence items.
-       * @param {Object} npcConfig - NPC config object with .dialogue, .reactions, .avatar, .name
-       */
-      startDialogue(npcConfig) {
-        // Priority: Use Ink Story via DialogueManager if loaded
-        const storyData = this.dm.getStory(npcConfig.id);
-        if (storyData) {
-          try {
-            const story = this.dm.createStory(npcConfig.id);
-            this.inDialogue = true;
-            this.pVelocity.set(0, 0, 0);
-
-            this.dm.openDialogue(npcConfig, story, () => {
-              if (npcConfig.unlocksEvidence) {
-                npcConfig.unlocksEvidence.forEach(id => this._unlockEvidence(id));
-              }
-              this.inDialogue = false;
-              this.updateActions(this.cm.cases[this.activeCaseId]);
-            }, (tag) => {
-              if (tag.startsWith('reveal:')) {
-                this._unlockEvidence(tag.split(':')[1]);
-              }
-            });
-          } catch (err) {
-            console.error(`[GameEngine] Failed to initialize Ink story for ${npcConfig.name}:`, err);
-          }
-          return;
-        }
-
-        console.warn(`[GameEngine] No Ink story found for NPC ${npcConfig.id} (${npcConfig.name}). Check storyFile or dialogueId.`);
-      }
-
-      /** 
-       * Unlock a piece of evidence: registers it as unlocked, then spawns a glowing sphere
-       * in the 3D world at its defined position. The player must walk to it to pick it up.
-       */
-      _unlockEvidence(evidenceId) {
-        // Handle object notation for revealed clues (clueId vs direct ID string)
-        const id = (typeof evidenceId === 'object' && evidenceId.clueId) ? evidenceId.clueId : evidenceId;
-        const ev = this.lockedEvidence?.[id];
-        if (!ev) return;                                      // already unlocked or unknown
-        if (this.es.isCollected(id)) return;          // already collected
-
-        // Remove from locked registry
-        delete this.lockedEvidence[id];
-
-        // Spawn the glowing sphere at the evidence's world position
-        const sphere = new THREE.Mesh(
-          new THREE.SphereGeometry(0.5, 16, 16),
-          new THREE.MeshStandardMaterial({
-            color: 0x00ffaa,
-            emissive: 0x00ffaa,
-            emissiveIntensity: 0.8,
-          })
-        );
-        sphere.position.set(ev.pos[0], ev.pos[1], ev.pos[2]);
-        sphere.userData = { dataRef: ev, newlyUnlocked: true };
-        this.scene.add(sphere);
-        this.evidenceMeshes.push(sphere);
-
-        // Pulse animation: briefly scale up then normalise
-        let pulse = 0;
-        const pulseFn = () => {
-          pulse++;
-          const s = 1 + Math.sin(pulse * 0.15) * 0.3;
-          sphere.scale.setScalar(s);
-          if (pulse < 80) requestAnimationFrame(pulseFn);
-          else sphere.scale.setScalar(1);
-        };
-        requestAnimationFrame(pulseFn);
-
-        // Show unlock notification in chat
-        this.dm.addMsg(`🔍 EVIDENCE REVEALED: ${ev.icon} ${ev.name} — go collect it in the world!`, 'evidence-unlock');
-
-        // Screen alert
-        this.controls?.displayAlert(`Evidence revealed: ${ev.name}`);
-
-        // If investigation board is open, refresh it so the new evidence appears immediately
-        if (typeof window.renderInvestigationBoard === 'function') {
-          window.renderInvestigationBoard();
-        }
-      }
-      advanceQuest(amount) {
-        const caseData = this.cm.cases[this.activeCaseId];
-        caseData.quest.cur = Math.min(caseData.quest.tar, caseData.quest.cur + amount);
-        this.updateHUD(caseData);
-
-        if (caseData.quest.cur >= caseData.quest.tar) this.showAccusationScreen();
-        this.saveGame(); // Auto-save progress on state changes
-      }
-
-      /**
-       * @method saveGame
-       * @description Serializes the current investigation state to localStorage.
-       */
-      saveGame() {
-        if (!this.activeCaseId) return;
-
-        const saveData = {
-          activeCaseId: this.activeCaseId,
-          collectedIds: this.es.collected || [],
-          unlockedWorldIds: this.evidenceMeshes.map(m => m.userData.dataRef.id),
-          npcStates: this.ns.npcStates || {},
-          questCur: this.cm.cases[this.activeCaseId].quest.cur,
-          playerPos: { x: this.pPos.x, y: this.pPos.y, z: this.pPos.z },
-          camHeading: { x: this.camHeading.x, y: this.camHeading.y, z: this.camHeading.z },
-          time: this.envManager ? this.envManager.timeProgress : null
-        };
-
-        localStorage.setItem('holy_week_save_v1', JSON.stringify(saveData));
-        if (this.controls) this.controls.displayAlert("Investigation Progress Saved");
-      }
-
-      /**
-       * @method loadGame
-       * @description Restores investigation state from localStorage.
-       */
-      loadGame() {
-        const raw = localStorage.getItem('holy_week_save_v1');
-        if (!raw) {
-          if (this.controls) this.controls.displayAlert("No saved progress found.");
-          return;
-        }
-
-        try {
-          const data = JSON.parse(raw);
-
-          // 1. Load the case structure (this resets world meshes and logic buckets)
-          this.loadCase(data.activeCaseId);
-
-          // 2. Restore collected evidence (move from world to pocket)
-          if (data.collectedIds) {
-            data.collectedIds.forEach(id => {
-              const ev = this.es.getById(id);
-              if (ev) {
-                this.es.unlock(id);
-                delete this.lockedEvidence[id];
-                this.collectedEvidence.push({
-                  id: ev.id,
-                  label: ev.name,
-                  description: ev.desc || ev.description || '',
-                  icon: ev.icon,
-                  emoji: ev.emoji,
-                  iconFA: ev.iconFA
-                });
-              }
-            });
-          }
-
-          // 3. Restore unlocked but uncollected items (spawn spheres in world)
-          if (data.unlockedWorldIds) {
-            data.unlockedWorldIds.forEach(id => {
-              this._unlockEvidence(id);
-            });
-          }
-
-          // 4. Restore NPC moods and internal states
-          if (data.npcStates) {
-            this.ns.npcStates = data.npcStates;
-            this.npcMeshes.forEach(mesh => {
-              const state = this.ns.npcStates[mesh.userData.config.id];
-              if (state) {
-                mesh.userData.state = state.mood;
-                mesh.userData.npcState = state;
-              }
-            });
-          }
-
-          // 5. Restore Player spatial state and Quest progress
-          if (data.playerPos) {
-            this.pPos.set(data.playerPos.x, data.playerPos.y, data.playerPos.z);
-            if (this.playerMesh) this.playerMesh.position.copy(this.pPos);
-          }
-          if (data.camHeading) this.camHeading.set(data.camHeading.x, data.camHeading.y, data.camHeading.z);
-          this.cm.cases[this.activeCaseId].quest.cur = data.questCur;
-
-          // 6. Restore environment cycle
-          if (this.envManager && typeof data.time === 'number') {
-            this.envManager.timeProgress = data.time;
-            this.envManager.update(false);
-          }
-
-          this.updateHUD(this.cm.cases[this.activeCaseId]);
-          if (this.controls) this.controls.displayAlert("Progress Loaded");
-        } catch (e) {
-          console.error("Failed to load save:", e);
-          if (this.controls) this.controls.displayAlert("Error loading save data.");
-        }
-      }
-
-      /**
-       * @method showAccusationScreen
-       * @description Displays the final deduction choice layout when the player fulfills case goals.
-       */
-      showAccusationScreen() {
-        const caseData = this.cm.cases[this.activeCaseId];
-        const overlay = document.getElementById('vn-overlay');
-        const scroll = document.getElementById('bub-scroll');
-        const choices = document.getElementById('bar-choices');
-
-        document.getElementById('vn-speaker-name').innerText = "Make Accusation";
-        document.getElementById('vn-avatar').innerText = "⚖️";
-        document.getElementById('vn-status').textContent = '● JUDGEMENT';
-
-        scroll.innerHTML = '';
-        choices.innerHTML = '';
-        choices.classList.remove('hide');
-
-        this.dm.addMsg("SECURE CONNECTION ESTABLISHED.", 'system');
-        this.dm.addTyping(() => {
-          this.dm.addMsg("All evidence collected. Who do you accuse?", 'npc');
-        }, "Investigation System");
-
-        caseData.suspects.forEach(s => {
-          const btn = document.createElement('button');
-          btn.className = 'choice-btn';
-          btn.innerHTML = '<span>' + (s.avatar || '👤') + ' ' + s.name + '</span><small class="suspect-role">' + s.role + '</small>';
-          btn.onclick = () => {
-            const correct = s.id === caseData.truth.culprit;
-            this.endInvestigation(correct, s.name);
-          };
-          choices.appendChild(btn);
-        });
-
-        this.inDialogue = true;
-        overlay.classList.add('active');
-      }
-
-      /**
-       * @method endInvestigation
-       * @description Evaluates truth accuracy and outputs the corresponding resolution overview panel.
-       * @param {boolean} correct - Represents whether the chosen suspect ID matches the master culprit key.
-       * @param {string} accusedName - Name value of the selected suspect block.
-       */
-      endInvestigation(correct, accusedName) {
-        const caseData = this.cm.cases[this.activeCaseId];
-        const message = correct
-          ? `Correct! ${accusedName} was guilty.`
-          : `${accusedName} was innocent. The real culprit was ${caseData.truth.culprit}.`;
-
-        const scroll = document.getElementById('bub-scroll');
-        const choices = document.getElementById('bar-choices');
-
-        choices.innerHTML = '';
-        choices.classList.remove('hide');
-
-        this.dm.addMsg(message, correct ? 'evidence-unlock' : 'npc');
-        this.dm.addMsg(caseData.truth.lesson, 'system');
-
-        if (correct) this.audio.playComplete();
-        else this.audio.playError();
-
-        const restartBtn = document.createElement('button');
-        restartBtn.className = 'choice-btn';
-        restartBtn.innerText = '→ New Investigation';
-        restartBtn.onclick = () => {
-          const overlay = document.getElementById('vn-overlay');
-          overlay.classList.remove('active');
-          setTimeout(() => {
-            this.inDialogue = false;
-            document.getElementById('end-screen').style.display = 'flex';
-            setTimeout(() => document.getElementById('end-screen').style.opacity = '1', 50);
-          }, 300);
-        };
-        choices.appendChild(restartBtn);
-      }
-
-      /**
-       * @method animate
-       * @description Main animation tick cycle running inside WebGL RequestAnimationFrame.
-       */
-      animate() {
-        requestAnimationFrame(() => this.animate());
-
-        // Determine if ANY blocking UI is currently active
-        const modalActive = document.getElementById('modal-overlay').classList.contains('active') ||
-          document.getElementById('settings-overlay').classList.contains('active') ||
-          document.getElementById('inv-board-overlay').classList.contains('active');
-
-        // Halt physics, collection, and interaction checks if menus or dialogue are open
-        if (!modalActive && !this.inDialogue) {
-          this.movePlayer();
-          this.collectEvidence();
-          this.findNPC();
-        }
-
-        if (this.envManager) this.envManager.update(this.controls.autoCycle);
-        this.updateMinimap();
-        this.updateInWorldTags();
-        this.renderer.render(this.scene, this.camera);
-      }
-
-      /**
-       * @method updateInWorldTags
-       * @description Projects 3D object positions into absolute 2D screen coordinates to position html indicators.
-       */
-      updateInWorldTags() {
-        const npcPrompt = document.getElementById('inworld-npc-prompt');
-        if (this.nearestNPC && !this.inDialogue) {
-          const screenPos = this.nearestNPC.position.clone().project(this.camera);
-          const x = (screenPos.x * 0.5 + 0.5) * window.innerWidth;
-          const y = (screenPos.y * -0.5 + 0.5) * window.innerHeight;
-          npcPrompt.style.left = `${x}px`;
-          npcPrompt.style.top = `${y}px`;
-          npcPrompt.style.display = 'flex';
-
-          const npcBtn = document.getElementById('inworld-npc-btn');
-          const npcName = this.nearestNPC.userData.config?.name || 'NPC';
-          npcBtn.innerHTML = `<i class="fa-solid fa-comments"></i> Talk to <strong>${npcName}</strong> <small>[E]</small>`;
-          npcBtn.onclick = () => this.startDialogue(this.nearestNPC.userData.config);
-        } else {
-          npcPrompt.style.display = 'none';
-        }
-
-        const collPrompt = document.getElementById('inworld-collectable-prompt');
-        let nearestItem = null;
-        let minDist = 6.5;
-        this.evidenceMeshes.forEach(item => {
-          const d = this.pPos.distanceTo(item.position);
-          if (d < minDist) {
-            minDist = d;
-            nearestItem = item;
-          }
-        });
-
-        if (nearestItem && minDist > 2) {
-          const screenPos = nearestItem.position.clone().project(this.camera);
-          const x = (screenPos.x * 0.5 + 0.5) * window.innerWidth;
-          const y = (screenPos.y * -0.5 + 0.5) * window.innerHeight;
-          collPrompt.style.left = `${x}px`;
-          collPrompt.style.top = `${y}px`;
-          collPrompt.style.display = 'flex';
-          const data = nearestItem.userData.dataRef;
-          document.getElementById('inworld-collectable-msg').textContent =
-            (nearestItem.userData.newlyUnlocked ? '✨ NEW — ' : '') + (data.name || 'NEARBY COLLECTABLE');
-        } else {
-          collPrompt.style.display = 'none';
-        }
-      }
-
-      /**
-       * @method movePlayer
-       * @description Calculates delta frame inputs to modify vectors, compute gravity, and interpolate smooth third-person camera tracks.
-       */
-      movePlayer() {
-        const move = new THREE.Vector3();
-        const camFwd = new THREE.Vector3(0, 0, -1).applyQuaternion(this.camera.quaternion).projectOnPlane(new THREE.Vector3(0, 1, 0)).normalize();
-        const camRgt = new THREE.Vector3(1, 0, 0).applyQuaternion(this.camera.quaternion).projectOnPlane(new THREE.Vector3(0, 1, 0)).normalize();
-
-        const keys = this.controls.keys;
-        if (keys['KeyW'] || keys['ArrowUp']) move.add(camFwd);
-        if (keys['KeyS'] || keys['ArrowDown']) move.sub(camFwd);
-        if (keys['KeyA'] || keys['ArrowLeft']) move.sub(camRgt);
-        if (keys['KeyD'] || keys['ArrowRight']) move.add(camRgt);
-
-        if (move.length() > 0) {
-          move.normalize();
-          this.camHeading.lerp(move, 0.1).normalize();
-          this.pVelocity.x = move.x * 18;
-          this.pVelocity.z = move.z * 18;
-        } else {
-          this.pVelocity.x = 0;
-          this.pVelocity.z = 0;
-        }
-
-        // Jump logic execution
-        if (keys['Space'] && this.isGrounded) {
-          this.pVelocity.y = 15; // Vertical impulse
-          this.isGrounded = false;
-        }
-
-        // Apply gravitational acceleration down when not grounded
-        if (!this.isGrounded) this.pVelocity.y += -42 * (1 / 60);
-
-        this.pPos.addScaledVector(this.pVelocity, 1 / 60);
-
-        // Simple bounding floor limit check
-        if (this.pPos.y <= 1) {
-          this.pPos.y = 1;
-          this.pVelocity.y = 0;
-          this.isGrounded = true;
-        }
-
-        this.playerMesh.position.copy(this.pPos);
-        this.playerMesh.lookAt(this.pPos.clone().add(this.camHeading.projectOnPlane(new THREE.Vector3(0, 1, 0)).normalize()));
-
-        // Smoothly interpolate (lerp) trailing camera rigging behind player vector position
-        const camPos = this.pPos.clone().add(this.camHeading.clone().multiplyScalar(-30)).add(new THREE.Vector3(0, 16, 0));
-        this.camera.position.lerp(camPos, 0.05);
-        this.camera.lookAt(this.pPos.clone().add(this.camHeading.clone().multiplyScalar(5)));
-      }
-
-      /**
-       * @method collectEvidence
-       * @description AABB/Proximity intersection loop — only collects evidence that has been
-       * unlocked via NPC dialogue. Locked evidence does not exist as a sphere in the scene.
-       * Shows a hint when the player is near a locked evidence spot.
-       */
-      collectEvidence() {
-        // Check for nearby locked evidence spots — show a ghost hint
-        if (this.lockedEvidence && Object.keys(this.lockedEvidence).length > 0) {
-          for (const [eid, ev] of Object.entries(this.lockedEvidence)) {
-            if (!ev.pos) continue;
-            const evPos = new THREE.Vector3(ev.pos[0], ev.pos[1], ev.pos[2]);
-            const dist = this.pPos.distanceTo(evPos);
-            if (dist < 3.5) {
-              this.controls.displayAlert(`🔒 Locked — talk to NPCs to reveal: ${ev.name}`, 3000);
-              break;
-            }
-          }
-        }
-
-        for (let i = this.evidenceMeshes.length - 1; i >= 0; i--) {
-          const item = this.evidenceMeshes[i];
-          if (this.pPos.distanceTo(item.position) < 2) {
-            const data = item.userData.dataRef;
-            const unlocked = this.es.unlock(data.id);
-            if (unlocked) {
-              this.collectedEvidence.push({
-                id: unlocked.id,
-                label: unlocked.name,
-                description: unlocked.desc || unlocked.description || '',
-                icon: unlocked.icon,
-                emoji: unlocked.emoji,
-                iconFA: unlocked.iconFA
-              });
-            }
-            this.scene.remove(item);
-            this.evidenceMeshes.splice(i, 1);
-            this.showEvidencePopup(data.name, data.desc || data.description || '', data.emoji || data.icon);
-            this.audio.playCollect();
-            this.advanceQuest(1);
-            this.updateEvidenceGrid();
-          }
-        }
-      }
-
-      /**
-       * @method findNPC
-       * @description Scans active entity objects to flag nearby interactions and apply obstacle barriers.
-       */
-      findNPC() {
-        let closest = null, minDist = 6.5;
-        this.npcMeshes.forEach(npc => {
-          const d = this.pPos.distanceTo(npc.position);
-          if (d < minDist) {
-            minDist = d;
-            closest = npc;
-          }
-        });
-
-        if (closest !== this.nearestNPC) {
-          this.nearestNPC = closest;
-          this.updateActions(this.cm.cases[this.activeCaseId]);
-        }
-
-        // Hard collision barrier: Restricts moving directly through the NPC object space
-        if (this.nearestNPC && minDist < 2) {
-          this.pPos.addScaledVector(this.pVelocity, -2 / 60);
-        }
-      }
-
-      /**
-       * @method updateMinimap
-       * @description Computes relative directional offsets to project vector blips on the 2D radar UI grid.
-       */
-      updateMinimap() {
-        const blipContainer = document.getElementById('minimap-blips-container');
-        if (!blipContainer) return;
-        blipContainer.innerHTML = '';
-
-        const scale = 0.55, offset = 55;
-
-        // Render fixed player center anchor
-        const pBlip = document.createElement('div');
-        pBlip.className = 'minimap-blip player';
-        pBlip.style.left = `${offset}px`;
-        pBlip.style.top = `${offset}px`;
-        blipContainer.appendChild(pBlip);
-
-        // Map relative NPC positions to radar bounds
-        this.npcMeshes.forEach(npc => {
-          const deltaX = npc.position.x - this.pPos.x;
-          const deltaZ = npc.position.z - this.pPos.z;
-          const x = offset + (deltaX * scale);
-          const y = offset + (deltaZ * scale);
-
-          if (x >= 0 && x <= 110 && y >= 0 && y <= 110) {
-            const blip = document.createElement('div');
-            blip.className = 'minimap-blip npc';
-            blip.style.left = `${x}px`;
-            blip.style.top = `${y}px`;
-            blip.title = npc.userData.config.name;
-            blipContainer.appendChild(blip);
-          }
-        });
-
-        // Map relative collectible items to radar bounds
-        this.evidenceMeshes.forEach(item => {
-          const deltaX = item.position.x - this.pPos.x;
-          const deltaZ = item.position.z - this.pPos.z;
-          const x = offset + (deltaX * scale);
-          const y = offset + (deltaZ * scale);
-
-          if (x >= 0 && x <= 110 && y >= 0 && y <= 110) {
-            const blip = document.createElement('div');
-            const isNew = item.userData.newlyUnlocked;
-            blip.className = 'minimap-blip collectable' + (isNew ? ' newly-unlocked' : '');
-            blip.style.left = `${x}px`;
-            blip.style.top = `${y}px`;
-            blip.title = item.userData.dataRef?.name || 'Evidence';
-            if (isNew) {
-              blip.textContent = 'NEW';
-              blip.classList.add('new-unlocked');
-            }
-            blipContainer.appendChild(blip);
-          }
-        });
-
-        // Map relative locked items (clues mentioned in case data but not yet revealed in dialogue)
-        if (this.lockedEvidence) {
-          Object.values(this.lockedEvidence).forEach(ev => {
-            if (!ev.pos) return;
-            const deltaX = ev.pos[0] - this.pPos.x;
-            const deltaZ = ev.pos[2] - this.pPos.z;
-            const x = offset + (deltaX * scale);
-            const y = offset + (deltaZ * scale);
-
-            if (x >= 0 && x <= 110 && y >= 0 && y <= 110) {
-              const blip = document.createElement('div');
-              blip.className = 'minimap-blip locked-clue';
-              blip.style.left = `${x}px`;
-              blip.style.top = `${y}px`;
-              blip.title = "Unknown Clue (Interview NPCs to unlock)";
-              blipContainer.appendChild(blip);
-            }
-          });
-        }
-      }
-    }
-
-    // ==========================================================================
-    // 14. SETTINGS ENGINE INITIALIZATION HOOKS
-    // ==========================================================================
-    const game = new GameEngine();
-    window.a11y = game.a11y;
-    window.audio = game.audio;
-
-    (function domInit() {
-      const settingsOverlay = document.getElementById('settings-overlay');
-      const bibleVersionSelect = document.getElementById('setting-bible-version');
-
-      function buildA11yList() {
-        const list = document.getElementById('a11y-settings-list');
-        if (!list) return;
-        const settings = game.a11y.getAll();
-        const rows = [
-          { key: 'high_contrast', label: '👁 High Contrast', desc: 'Stronger borders, brighter text' },
-          { key: 'large_text', label: '🔠 Large Text', desc: 'Increase text size throughout' },
-          { key: 'tts', label: '🔊 Read Aloud (TTS)', desc: 'Speaks dialogue and results' },
-          { key: 'slow_speech', label: '🐢 Slow Speech', desc: 'Slower reading speed' },
-          { key: 'sound', label: '🔊 Sound', desc: 'Background ambience and effects', icon: 'fa-volume-up' },
-          { key: 'simple_mode', label: '📖 Simple Language', desc: 'Uses easier, shorter words' },
-          { key: 'reduce_motion', label: '⏸ Reduce Motion', desc: 'Removes animations' },
-        ];
-        list.innerHTML = rows.map(r => {
-          const enabled = !!settings[r.key];
-          const iconHtml = r.icon ? `<i class="fas ${r.icon}" aria-hidden="true"></i>` : '';
-          const pressed = enabled ? 'true' : 'false';
-          const iconLabel = r.icon ? 'Toggle ' + r.label : r.label;
-          return `<label class="a11y-setting-row">
-            <span>
-              <span class="a11y-label-main">${r.label}</span>
-              <span class="a11y-label-desc">${r.desc}</span>
-            </span>
-            <button type="button" class="toggle-btn a11y-btn-spacer" role="switch" aria-checked="${pressed}" data-feature="${r.key}" aria-label="${iconLabel}" aria-pressed="${pressed}">${iconHtml}</button>
-          </label>`;
-        }).join('');
-        Array.from(list.querySelectorAll('.toggle-btn')).forEach(btn => {
-          btn.addEventListener('click', e => {
-            e.preventDefault();
-            const feature = btn.dataset.feature;
-            const state = game.a11y.toggle(feature);
-            btn.setAttribute('aria-checked', state ? 'true' : 'false');
-            btn.setAttribute('aria-pressed', state ? 'true' : 'false');
-          });
-        });
-      }
-
-      if (document.getElementById('btn-open-settings')) {
-        document.getElementById('btn-open-settings').onclick = () => {
-          game.audio.playUI();
-          buildA11yList();
-          settingsOverlay.style.display = 'block';
-          settingsOverlay.classList.add('active');
-          setTimeout(() => settingsOverlay.classList.add('fade-in-complete'), 50);
-        };
-      }
-
-      if (document.getElementById('btn-close-settings')) {
-        document.getElementById('btn-close-settings').onclick = () => {
-          game.audio.playUI();
-          settingsOverlay.classList.remove('fade-in-complete');
-          setTimeout(() => {
-            settingsOverlay.classList.remove('active');
-            settingsOverlay.style.display = 'none';
-          }, 350);
-        };
-        document.getElementById('btn-close-settings-x').onclick = () => {
-          settingsOverlay.classList.remove('fade-in-complete');
-          setTimeout(() => {
-            settingsOverlay.classList.remove('active');
-            settingsOverlay.style.display = 'none';
-          }, 350);
-        };
-      }
-
-      if (document.getElementById('btn-save-game')) {
-        document.getElementById('btn-save-game').onclick = () => {
-          game.saveGame();
-        };
-      }
-      if (document.getElementById('btn-load-game')) {
-        document.getElementById('btn-load-game').onclick = () => {
-          game.loadGame();
-        };
-      }
-
-      if (document.getElementById('btn-save-settings')) {
-        document.getElementById('btn-save-settings').onclick = () => {
-          game.audio.playUI();
-          const bibleVersionSelect = document.getElementById('setting-bible-version');
-          if (window.BibleReader && typeof window.BibleReader.updateTranslation === 'function') {
-            window.BibleReader.updateTranslation(bibleVersionSelect.value);
-            const savedLabel = document.getElementById('settings-saved-label');
-            if (savedLabel) {
-              savedLabel.textContent = 'Saved';
-              setTimeout(() => { savedLabel.textContent = ''; }, 1500);
-            }
-          }
-          settingsOverlay.classList.remove('fade-in-complete');
-          setTimeout(() => {
-            settingsOverlay.classList.remove('active');
-            settingsOverlay.style.display = 'none';
-          }, 350);
-        };
-      }
-
-      const invBoardOverlay = document.getElementById('inv-board-overlay');
-      const invBoardContent = document.getElementById('inv-board-content');
-      const btnCloseInvBoard = document.getElementById('btn-close-inv-board');
-
-      window.openAnalysis = () => {
-        game.audio.playUI();
-        invBoardOverlay.style.display = 'flex';
-        setTimeout(() => invBoardOverlay.classList.add('active'), 10);
-        setTimeout(() => invBoardOverlay.classList.add('fade-in-complete'), 50);
-        if (typeof window.renderInvestigationBoard === 'function') {
-          window.renderInvestigationBoard();
-        }
-      };
-      btnCloseInvBoard.onclick = () => {
-        game.audio.playUI();
-        invBoardOverlay.classList.remove('fade-in-complete');
-        setTimeout(() => {
-          invBoardOverlay.classList.remove('active');
-          invBoardOverlay.style.display = 'none';
-        }, 350);
-      };
-      window.renderInvestigationBoard = function () {
-        if (!invBoardContent) return;
-        const labUI = new LabUI(game.de, game.es, game.a11y, (result) => {
-          if (result && result.type === 'selection') {
-            window.renderInvestigationBoard();
-          }
-        });
-        invBoardContent.innerHTML = labUI.render();
-        labUI.bindEvents(invBoardContent);
-      };
-
-      window.showInstructionsModal = function (isFirstPlay) {
-        const logo = document.getElementById('instructions-logo');
-        if (logo) logo.style.display = isFirstPlay ? 'block' : 'none';
-        document.getElementById('instructions-modal').classList.add('active');
-        if (game.audio) game.audio.playUI();
-      };
-
-      window.closeInstructionsModal = function () {
-        document.getElementById('instructions-modal').classList.remove('active');
-      };
-
-      window.showResetModal = function () {
-        document.getElementById('reset-modal').classList.add('active');
-        if (game.audio) game.audio.playUI();
-      };
-
-      window.closeResetModal = function () {
-        document.getElementById('reset-modal').classList.remove('active');
-      };
-
-      window.resetProgress = function () {
-        if (game.cm && typeof game.cm.resetProgress === 'function') {
-          game.cm.resetProgress();
-        }
-        location.reload();
-      };
-
-      window.BibleReader = window.BibleReader || {
-        displayPassage() { },
-        updateTranslation() { },
-        closeOverlay() { }
-      };
-    })();
-
-    game.init();
-    // Show start button when game is loaded
-    document.getElementById('loading-screen').classList.add('ready');
-  </script>
-
-
+  <!-- Main Application Entry Point -->
+  <script type="module" src="./main.js"></script>
 </body>
 
 </html>
