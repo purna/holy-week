@@ -101,7 +101,7 @@ export class EvidenceSystem {
       const propId = p.id || p.reference;
       return {
         ...p,
-        id: propId,
+        id: propId, // Ensure ID is always present for consistent lookup
         discovered: found.includes(propId)
       };
     });

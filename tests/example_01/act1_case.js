@@ -83,6 +83,7 @@ export const act1CaseA = {
     {
       id: "cloaks",
       name: "Two Disciples' Cloaks",
+      relatedProphecy: "genesis_49_10_11",
       type: "physical",
       icon: "👕",
       emoji: "👕",
@@ -118,7 +119,7 @@ export const act1CaseA = {
       pos: [-5, 0, -20],
       location: "Bethphage Village Square",
       desc: "A local villager reports seeing two men untying the colt at dawn. When challenged — 'Why are you untying it?' — they answered: 'The Lord needs it.' The owner then nodded and let them go.",
-      revealsSuspect: "villager",
+      revealsSuspect: "none",
       bibleRef: "Mark 11:3–6 — 'They answered as Jesus had told them to, and the people let them go.'",
       propheticLink: "Jesus's foreknowledge of the exact response to give is consistent with His omniscience, and mirrors how the Passover lamb was 'set apart' by divine instruction (Exodus 12:3–6).",
       investigatorNote: "Both the gospel accounts of Mark and Luke confirm this exchange happened exactly as predicted. This is not a theft.",
@@ -126,6 +127,7 @@ export const act1CaseA = {
     {
       id: "prophecy_scroll",
        relatedProphecy: "zechariah_9_9",
+      revealsSuspect: "none",
       name: "Zechariah 9:9 Scroll Fragment",
       type: "analytical",
       icon: "📜",
@@ -170,6 +172,7 @@ export const act1CaseA = {
     {
       id: "crowd_testimony",
       name: "Pharisee's Written Complaint",
+      relatedProphecy: "malachi_3_1",
       type: "analytical",
       icon: "⚖️",
       emoji: "⚖️",
@@ -481,6 +484,7 @@ export const act1CaseB = {
     {
       id: "broken_cages",
       name: "Shattered Dove Cages",
+      relatedProphecy: "isaiah_56_7",
       type: "physical",
       icon: "🕊️",
       emoji: "🕊️",
@@ -495,6 +499,7 @@ export const act1CaseB = {
     {
       id: "scattered_shekels",
       name: "Scattered Tyrian Shekels",
+      relatedProphecy: "malachi_3_1",
       type: "physical",
       icon: "🪙",
       emoji: "🪙",
@@ -509,6 +514,7 @@ export const act1CaseB = {
     {
       id: "whip_of_cords",
       name: "Discarded Whip of Cords",
+      relatedProphecy: "malachi_3_1",
       type: "physical",
       icon: "🪢",
       emoji: "🪢",

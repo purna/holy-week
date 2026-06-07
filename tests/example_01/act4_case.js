@@ -76,6 +76,15 @@ export const act4CaseA = {
       gospelLink: "Matthew 27:46 (crucifixion); the closing verses of Psalm 22 look beyond the suffering to vindication",
       insight: "Psalm 22 is a remarkable document: it begins with abandonment and describes crucifixion details (hands and feet pierced, v.16; garments divided by lots, v.18) before ending in triumphant proclamation. The Psalm is both a lament and a resurrection song — which is why Jesus quoted its opening from the cross, perhaps pointing His listeners to its ending.",
     },
+    {
+      reference: "Isaiah 26:19",
+      id: "isaiah_26_19",
+      icon: "🔮",
+      text: `"Your dead will live, LORD; their bodies will rise — let those who dwell in the dust wake up and shout for joy."`,
+      written: "~700 BC",
+      fulfilledBy: "The supernatural opening of the tomb allowing witnesses to see the resurrection result",
+      insight: "The stone was not moved to let Jesus out, but to let the world look in. This fulfilled the promise of the dead rising to bring joy to those dwelling in the dust.",
+    },
   ],
 
   intro: `It is early Sunday morning, Nisan 17. Three women — Mary Magdalene, Mary the mother of James, and Salome — have come to the garden tomb at first light to complete the anointing of Jesus's body. They were worried about who would roll the stone away. But when they arrive: the stone is already moved. The Roman guard post is abandoned. The tomb is open, and empty. Two strange figures in white are inside. And then — Mary Magdalene sees someone she mistakes for the gardener, until He speaks her name. You are the investigative scribe. What happened here? And can the evidence in this garden account for the most important claim in history?`,
@@ -93,6 +102,7 @@ export const act4CaseA = {
       id: "rolled_stone",
       name: "The Displaced Sealing Stone",
       type: "physical",
+      relatedProphecy: "isaiah_26_19",
       icon: "🗿",
       location: "Tomb Entrance, Garden of Joseph",
       desc: "A massive circular limestone stone — estimated at 1–2 tonnes — has been rolled away from the tomb entrance and sits to the side, not rolled down the slope but resting beside it. The sealing wax from the Roman official seal is broken.",
@@ -103,7 +113,9 @@ export const act4CaseA = {
     {
       id: "empty_tomb",
       name: "The Empty Burial Chamber",
+      revealsSuspect: "none",
       type: "physical",
+      relatedProphecy: "psalm_16_10",
       icon: "🕳️",
       location: "Interior of Joseph's Tomb",
       desc: "The tomb is completely empty except for the burial wrappings. No body, no signs of struggle, no disturbance of the surrounding grave goods. The shelf where Jesus lay is bare. The wall niches are untouched.",
@@ -115,6 +127,7 @@ export const act4CaseA = {
       id: "burial_linen",
       name: "Folded Burial Linens",
       type: "physical",
+      relatedProphecy: "psalm_16_10",
       icon: "🧻",
       location: "Burial Shelf, Inside the Tomb",
       desc: "The linen strips that wrapped Jesus's body are still present, lying where the body was — not unwrapped and discarded, but apparently lying in the exact shape the body had been, as if it had simply passed through them. The face cloth is separately folded and placed to one side.",
@@ -126,6 +139,7 @@ export const act4CaseA = {
       id: "angelic_witness",
       name: "The Angelic Proclamation",
       type: "testimonial",
+      relatedProphecy: "psalm_16_10",
       icon: "✨",
       location: "Inside the Tomb / Seated on the Stone",
       desc: "Multiple witnesses independently report seeing one or two figures in white — described as 'like lightning' in appearance — at or inside the tomb. Each gives a consistent message: 'He is not here. He has risen, just as he said. Come and see the place where he lay.'",
@@ -136,7 +150,9 @@ export const act4CaseA = {
     {
       id: "guard_report",
       name: "The Soldiers' Broken Report",
+      revealsSuspect: "none",
       type: "analytical",
+      relatedProphecy: "hosea_6_2",
       icon: "📋",
       location: "Roman Guard Post, Outer Garden",
       desc: "A shattered wax tablet from the guard log — only partially legible: '...seismos... phos... ekphobothesan... nekroi...' ('earthquake... light... we became as dead men...'). The soldiers have fled their post. An official report was filed later — but the chief priests are paying the soldiers to alter their account.",
@@ -159,6 +175,7 @@ export const act4CaseA = {
       id: "mary_encounter",
       name: "Mary Magdalene's Testimony",
       type: "testimonial",
+      relatedProphecy: "isaiah_53_10_11",
       icon: "👁️",
       location: "Garden, Near the Tomb Entrance",
       desc: "Mary Magdalene's first-person account, recorded by John: 'I saw the Lord.' She had initially mistaken the risen Jesus for the gardener. He said one word — her name: 'Mary.' She turned and recognised Him. 'Rabboni!' He told her not to cling to Him, for He had not yet ascended to the Father, and sent her to tell the disciples.",
@@ -358,6 +375,7 @@ export const act4CaseB = {
     {
       id: "bribe_shekels",
       name: "High-Grade Sanctuary Coins",
+      relatedProphecy: "psalm_2_1_2",
       type: "physical",
       icon: "💰",
       pos: [-2, 5, 0],
@@ -369,6 +387,7 @@ export const act4CaseB = {
     {
       id: "broken_imperial_seal",
       name: "Snapped Clay Roman Seal",
+      relatedProphecy: "psalm_2_1_2",
       type: "physical",
       icon: "🏷️",
       pos: [4, -2, 0],
@@ -380,6 +399,7 @@ export const act4CaseB = {
     {
       id: "shattered_spear",
       name: "Shattered Pilum Shaft",
+      relatedProphecy: "psalm_2_1_2",
       type: "physical",
       icon: "🗡️",
       pos: [0, -4, 0],
@@ -654,6 +674,7 @@ export const act4CaseC = {
     {
       id: "charcoal_fire",
       name: "The Charcoal Fire",
+      relatedProphecy: "zechariah_13_7",
       type: "physical",
       icon: "🔥",
       location: "Shoreline, Sea of Galilee",
@@ -665,6 +686,7 @@ export const act4CaseC = {
     {
       id: "miraculous_catch",
       name: "The Miraculous Catch",
+      relatedProphecy: "ezekiel_34_11-16",
       type: "physical",
       icon: "🐟",
       location: "Nets on the Beach",
@@ -676,6 +698,7 @@ export const act4CaseC = {
     {
       id: "bread_breakfast",
       name: "Bread and Fish Breakfast",
+      relatedProphecy: "ezekiel_34_11-16",
       type: "physical",
       icon: "🍞",
       location: "Shoreline Meal",
@@ -687,6 +710,8 @@ export const act4CaseC = {
     {
       id: "threefold_commission",
       name: "The Threefold Commission",
+      revealsSuspect: "none",
+      relatedProphecy: "ezekiel_34_11-16",
       type: "testimonial",
       icon: "📜",
       location: "Dialogue with Peter",

@@ -8,17 +8,23 @@
     --panel-bg: rgba(28, 18, 8, 0.94);
 
     /* Accents — terracotta, ochre, gilded bronze, aged gold */
-    --accent-primary: #c8965a;      /* warm bronze */
-    --accent-secondary: #e8c56a;    /* antique gold */
-    --accent-success: #8fbf6a;      /* olive green */
-    --accent-error: #c94040;        /* roman red */
-    --accent-blue: #7aa8c0;         /* faded fresco blue */
+    --accent-primary: #c8965a;
+    /* warm bronze */
+    --accent-secondary: #e8c56a;
+    /* antique gold */
+    --accent-success: #8fbf6a;
+    /* olive green */
+    --accent-error: #c94040;
+    /* roman red */
+    --accent-blue: #7aa8c0;
+    /* faded fresco blue */
     --accent: #c8965a;
     --gold: #e8c56a;
     --red: #c94040;
     --dim: #7a6a52;
 
     /* Text & Typography — parchment, aged ink */
+    --text: #e9edef;
     --text-main: #f0e6ce;
     --text-muted: #9a8870;
     --font-stack: "Cinzel", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
@@ -29,12 +35,18 @@
     --bubble-in: rgba(240, 230, 206, 0.06);
 
     /* Borders — aged bronze, cracked stone */
+    --border: rgba(100, 255, 218, 0.18);
     --border-subtle: rgba(200, 150, 90, 0.18);
     --border-accent: rgba(200, 150, 90, 0.45);
     --border-gold: rgba(232, 197, 106, 0.5);
 
     /* Panel inner shadow / texture */
-    --panel-inset: inset 0 1px 0 rgba(240, 230, 206, 0.06), inset 0 -1px 0 rgba(0,0,0,0.3);
+    --panel-inset: inset 0 1px 0 rgba(240, 230, 206, 0.06), inset 0 -1px 0 rgba(0, 0, 0, 0.3);
+
+
+    --glow-sm: 0 0 10px rgba(100, 255, 218, 0.25);
+    --glow-md: 0 0 22px rgba(100, 255, 218, 0.5);
+    --btn-sz: clamp(44px, 10vmin, 56px);
 }
 
 /* Base Resets */
@@ -62,7 +74,9 @@ html {
 }
 
 /* Typography Overrides */
-h1, h2, h3 {
+h1,
+h2,
+h3 {
     font-family: 'Cinzel', serif;
     letter-spacing: 0.08em;
 }
@@ -71,13 +85,16 @@ h1, h2, h3 {
 ::-webkit-scrollbar {
     width: 5px;
 }
+
 ::-webkit-scrollbar-track {
-    background: rgba(0,0,0,0.2);
+    background: rgba(0, 0, 0, 0.2);
 }
+
 ::-webkit-scrollbar-thumb {
     background: rgba(200, 150, 90, 0.3);
     border-radius: 2px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
     background: rgba(200, 150, 90, 0.55);
 }

@@ -40,7 +40,7 @@ export class CaseManager {
         deductionsMade: [],
         breakthroughs: [],
         failedChallenges: 0,
-        discoveredSuspects: ["none"], // "No One" is always an option
+        discoveredSuspects: [], 
         accusation: null,
         score: null,
       };
@@ -72,6 +72,7 @@ export class CaseManager {
     const p = this.progress.cases[this.activeCaseId];
     if (p && !p.propheciesFound.includes(prophecyId)) {
       p.propheciesFound.push(prophecyId);
+      this.updateScore(10); // Prophecy discovery also adds to score
       this._saveProgress();
     }
   }
@@ -145,7 +146,7 @@ export class CaseManager {
     
     const doubtEls = document.querySelectorAll('.val-doubt');
     const repEls = document.querySelectorAll('.val-reputation');
-    const scoreEls = document.querySelectorAll('.header-score');
+    const scoreValEls = document.querySelectorAll('.val-score');
     
     // Handle Doubt
     const newDoubt = this.progress.doubt || 0;
@@ -163,10 +164,10 @@ export class CaseManager {
     });
     
     // Handle Score
-    const newScore = `${this.progress.totalScore || 0} pts`;
-    scoreEls.forEach(el => {
-      if (el.textContent !== newScore) {
-        el.textContent = newScore;
+    const newScoreNum = this.progress.totalScore || 0;
+    scoreValEls.forEach(el => {
+      if (el.textContent !== String(newScoreNum)) {
+        el.textContent = newScoreNum;
         el.classList.remove('bump');
         void el.offsetWidth;
         el.classList.add('bump');

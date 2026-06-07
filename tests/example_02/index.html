@@ -153,37 +153,21 @@
       <div id="level-title">Detective HQ</div>
 
       <div class="control-group-right">
-        <!-- Audio Management Toggle -->
-        <button id="btn-audio-toggle" class="hud-row-btn active" type="button" title="Toggle Sound">
-          <i class="fa-solid fa-volume-high"></i>
-        </button>
-
         <!-- Investigation Matrix / Progress Map Modal Toggle -->
         <button id="btn-open-map" class="hud-row-btn" type="button" title="Investigation Map">
-          <i class="fa-solid fa-map-location-dot"></i> Act Map
+          <i class="fa-solid fa-map-location-dot"></i> <span class="desktop-only">Act Map</span>
         </button>
-
-        <!-- Investigation Board Toggle -->
-        <button id="btn-inv-board-toggle" class="hud-row-btn" type="button" title="Investigation Board">
-          <i class="fa-solid fa-clipboard-list"></i> Analysis
-        </button>
-
-
-        <button class="hud-row-btn" onclick="showResetModal()" title="Reset Game"
-          aria-label="Reset all game progress"><i class="fas fa-undo"></i></button>
-
-        <button class="hud-row-btn" onclick="showInstructionsModal()" title="Instructions"
-          aria-label="View game instructions"><i class="fas fa-info-circle"></i></button>
 
         <!-- Configuration Preferences Panel Trigger -->
         <button id="btn-open-settings" class="hud-row-btn" type="button" title="Settings">
-          <i class="fa-solid fa-gear"></i>
+          <i class="fa-solid fa-gear"></i> <span class="desktop-only">System</span>
         </button>
       </div>
     </header>
 
     <!-- Left Column: Manages active quest state progression and logged item portfolios -->
     <aside id="left-sidebar">
+      <button class="modal-close-btn mobile-only">✕</button>
       <!-- Active Case Tracking Card -->
       <section class="hud-panel quest-panel">
         <div class="panel-header"><i class="fa-solid fa-star"></i> Current Case</div>
@@ -219,14 +203,15 @@
 
     <!-- Right Column: Contextual action executions and scriptural/historical clue logs -->
     <aside id="right-sidebar">
+      <button class="modal-close-btn mobile-only">✕</button>
       <!-- Context Actions Panel -->
-      <section class="hud-panel sidebar-panel-fill">
+      <section class="hud-panel sidebar-panel-fill actions-panel">
         <div class="panel-header">Actions</div>
         <div id="actions-container" class="actions-container"></div>
       </section>
 
       <!-- Historical Discoveries & Scriptural Prophecies Log Window -->
-      <section class="hud-panel sidebar-panel-fill">
+      <section class="hud-panel sidebar-panel-fill prophecies-panel">
         <div class="panel-header">Key Discoveries</div>
         <div id="prophecies-container" class="prophecies-container"></div>
       </section>
@@ -234,6 +219,18 @@
 
     <!-- Footer Row: Holds the 2D vector coordinate radar/minimap tracker -->
     <footer id="bottom-bar">
+      <!-- Mobile Navigation Bar -->
+      <nav id="mobile-nav-menu" class="mobile-only control-group-right">
+        <button id="btn-mobile-quest" class="mobile-nav-btn"><i class="fa-solid fa-star"></i><span>Case</span></button>
+        <button id="btn-mobile-evidence" class="mobile-nav-btn"><i
+            class="fa-solid fa-folder-open"></i><span>Clues</span></button>
+        <button id="btn-mobile-actions" class="mobile-nav-btn"><i
+            class="fa-solid fa-bolt"></i><span>Actions</span></button>
+        <button id="btn-mobile-keys" class="mobile-nav-btn"><i class="fa-solid fa-key"></i><span>Keys</span></button>
+        <button id="btn-mobile-analysis" class="mobile-nav-btn"><i
+            class="fa-solid fa-clipboard-list"></i><span>Analysis</span></button>
+      </nav>
+
       <div id="minimap" class="minimap-panel">
         <div class="minimap-radar-line"></div>
         <div class="minimap-grid-circle grid-small"></div>
@@ -311,37 +308,43 @@
   <!-- Settings Configuration Engine Management Panel -->
   <div id="settings-overlay" class="overlay-mask">
     <div class="settings-panel">
+      <button class="settings-close-btn" id="btn-close-settings-x">✕</button>
       <header class="modal-header">
         <h2 class="modal-title-settings">
-          <i class="fa-solid fa-sliders header-icon-spacer"></i>SYSTEM PREFERENCES
+          <i class="fa-solid fa-sliders header-icon-spacer"></i>System
         </h2>
       </header>
       <main class="modal-body settings-modal-body">
-        <div class="settings-group">
-          <label for="setting-bible-version" class="settings-label-custom">Bible Translation</label>
-          <select id="setting-bible-version" class="settings-select-custom">
-            <option value="web">World English Bible (WEB)</option>
-            <option value="kjv">King James Version (KJV)</option>
-            <option value="bbe">Bible in Basic English (BBE)</option>
-            <option value="oeb-us">Open English Bible (OEB)</option>
-          </select>
-          <p class="settings-hint-custom">Select translation for all scripture references</p>
-        </div>
-        <div class="settings-divider-custom"></div>
-        <div class="settings-group">
-          <div class="settings-a11y-label">Accessibility</div>
-          <div id="a11y-settings-list" class="settings-a11y-list"></div>
+        <div class="settings-grid">
+          <div class="settings-group">
+            <label for="setting-bible-version" class="settings-label-custom">Bible Translation</label>
+            <select id="setting-bible-version" class="settings-select-custom">
+              <option value="web">World English (WEB)</option>
+              <option value="kjv">King James (KJV)</option>
+              <option value="bbe">Basic English (BBE)</option>
+              <option value="oeb-us">Open English (OEB)</option>
+            </select>
+          </div>
+          <div class="settings-group">
+            <div class="settings-a11y-label">Audio</div>
+            <button id="settings-audio-toggle" class="terminal-btn btn-flex"><i class="fa-solid fa-volume-high"></i>
+              Toggle Sound</button>
+          </div>
         </div>
         <div id="settings-saved-label" class="settings-saved-label"></div>
+
+        <div class="settings-divider-custom"></div>
+        <div id="a11y-settings-list" class="settings-a11y-list"></div>
       </main>
       <footer class="settings-footer-layout">
-        <!-- Game Persistence Controls -->
         <div class="persistence-btn-row">
+          <button onclick="showInstructionsModal()" class="terminal-btn btn-flex"><i
+              class="fa-solid fa-circle-info"></i> Guide</button>
           <button id="btn-save-game" class="terminal-btn btn-flex btn-save-game-accent">
-            <i class="fa-solid fa-floppy-disk"></i> Save Progress
+            <i class="fa-solid fa-floppy-disk"></i> Save
           </button>
           <button id="btn-load-game" class="terminal-btn btn-flex btn-load-game-accent">
-            <i class="fa-solid fa-upload"></i> Load Progress
+            <i class="fa-solid fa-upload"></i> Load
           </button>
         </div>
         <div class="settings-divider-small"></div>
@@ -350,14 +353,17 @@
             <i class="fa-solid fa-xmark"></i> Cancel
           </button>
           <button id="btn-save-settings" class="terminal-btn btn-flex btn-save-settings-accent">
-            <i class="fa-solid fa-check"></i> Save Settings
+            <i class="fa-solid fa-check"></i> Apply
+          </button>
+          <button onclick="showResetModal()" class="terminal-btn btn-flex" style="color: var(--color-error)">
+            <i class="fa-solid fa-trash-can"></i> Reset
           </button>
         </div>
       </footer>
     </div>
   </div>
 
-  <!-- Investigation Board Overlay - Evidence Comparison Interface -->
+  <!-- ══════════════ Investigation Board Overlay - Evidence Comparison Interface ══════════════ -->
   <div id="inv-board-overlay" class="overlay-mask">
     <div class="modal-panel inv-board-panel" id="inv-board-panel">
       <header class="modal-header">
@@ -376,7 +382,7 @@
   </div>
 
 
-  <!-- Instructions Overlay -->
+  <!-- ══════════════  Instructions Overlay ══════════════ -->
   <div id="instructions-modal" class="overlay-mask">
     <div class="modal-panel" style="max-width: 420px;">
       <button class="close-icon-btn" onclick="window.closeInstructionsModal()" aria-label="Close">✕</button>
@@ -405,7 +411,7 @@
     </div>
   </div>
 
-  <!-- Reset Progress Overlay -->
+  <!-- ══════════════  Reset Progress Overlay ══════════════ -->
   <div id="reset-modal" class="overlay-mask">
     <div class="modal-panel" style="max-width: 340px;">
       <button class="close-icon-btn" onclick="window.closeResetModal()" aria-label="Close">✕</button>
@@ -423,6 +429,22 @@
       </div>
     </div>
   </div>
+
+  <!-- ══════════════ MOBILE CONTROLLER ══════════════ -->
+  <div id="mobile-ctrl">
+    <div class="mobile-movement">
+      <button id="ctrl-up" class="ui-toggle"><i class="fas fa-chevron-up"></i></button>
+      <button id="ctrl-left" class="ui-toggle"><i class="fas fa-chevron-left"></i></button>
+      <button id="ctrl-down" class="ui-toggle"><i class="fas fa-chevron-down"></i></button>
+      <button id="ctrl-right" class="ui-toggle"><i class="fas fa-chevron-right"></i></button>
+    </div>
+    <div class="mobile-actions">
+      <button id="ctrl-interact" class="ui-toggle action-btn-alt" title="Interact"><i
+          class="fas fa-comments"></i></button>
+      <button id="ctrl-jump" class="ui-toggle action-btn-main" title="Jump"><i class="fas fa-circle"></i></button>
+    </div>
+  </div>
+
 
   <!-- ==========================================================================
       9. CORE APPLICATION SCRIPTS & INITIALIZATION LIFECYCLE
@@ -567,6 +589,108 @@
         this.renderer.shadowMap.enabled = true;
         container.appendChild(this.renderer.domElement);
 
+        // Mobile UI and Controls Initialization
+        {
+          const leftSidebar = document.getElementById('left-sidebar');
+          const rightSidebar = document.getElementById('right-sidebar');
+
+          // Only target panels inside sidebars to avoid hiding the top bar or other HUD elements
+          const sidebarPanels = document.querySelectorAll('aside .hud-panel');
+          const mobileNavBtns = document.querySelectorAll('.mobile-nav-btn');
+
+          const closeAllModals = () => {
+            leftSidebar?.classList.remove('active');
+            rightSidebar?.classList.remove('active');
+            sidebarPanels.forEach(p => p.classList.add('mobile-hidden'));
+            setMobileActive(null);
+          };
+
+          document.querySelectorAll('.modal-close-btn').forEach(btn => {
+            btn.onclick = (e) => {
+              e.stopPropagation();
+              closeAllModals();
+            };
+          });
+
+          const setMobileActive = (btnId) => {
+            mobileNavBtns.forEach(b => b.classList.remove('active'));
+            if (btnId) document.getElementById(btnId)?.classList.add('active');
+          };
+
+          const togglePanel = (sidebarId, panelClass, btnId) => {
+            const sidebar = document.getElementById(sidebarId);
+            const targetPanel = sidebar?.querySelector('.' + panelClass);
+            if (!sidebar || !targetPanel) return;
+
+            const wasActive = sidebar.classList.contains('active') && !targetPanel.classList.contains('mobile-hidden');
+
+            // Reset all
+            rightSidebar?.classList.remove('active');
+            leftSidebar?.classList.remove('active');
+            sidebarPanels.forEach(p => p.classList.add('mobile-hidden'));
+
+            if (!wasActive) {
+              sidebar.classList.add('active');
+              targetPanel.classList.remove('mobile-hidden');
+              setMobileActive(btnId);
+            } else {
+              setMobileActive(null);
+            }
+          };
+
+          document.getElementById('btn-mobile-quest').onclick = () => togglePanel('left-sidebar', 'quest-panel', 'btn-mobile-quest');
+          document.getElementById('btn-mobile-evidence').onclick = () => togglePanel('left-sidebar', 'evidence-panel', 'btn-mobile-evidence');
+          document.getElementById('btn-mobile-actions').onclick = () => togglePanel('right-sidebar', 'actions-panel', 'btn-mobile-actions');
+          document.getElementById('btn-mobile-keys').onclick = () => togglePanel('right-sidebar', 'prophecies-panel', 'btn-mobile-keys');
+
+          document.getElementById('btn-mobile-analysis').onclick = () => {
+            closeAllModals();
+            if (window.openAnalysis) window.openAnalysis();
+          };
+
+          // Simple touch-to-close for sidebars
+          window.addEventListener('click', (e) => {
+            if (leftSidebar.classList.contains('active') && !leftSidebar.contains(e.target)) {
+              leftSidebar.classList.remove('active');
+            }
+            if (rightSidebar.classList.contains('active') && !rightSidebar.contains(e.target)) {
+              rightSidebar.classList.remove('active');
+            }
+          }, true);
+
+          // D-Pad Controller Logic
+          const bindControl = (id, key) => {
+            const btn = document.getElementById(id);
+            if (!btn) return;
+
+            btn.oncontextmenu = (e) => e.preventDefault(); // Block context menu on mobile
+
+            const press = (e) => {
+              e.preventDefault();
+              this.controls.keys[key] = true;
+            };
+            const release = (e) => {
+              if (e.cancelable) e.preventDefault();
+              this.controls.keys[key] = false;
+            };
+
+            btn.addEventListener('pointerdown', press, { passive: false });
+            btn.addEventListener('pointerup', release, { passive: false });
+            btn.addEventListener('pointercancel', release, { passive: false });
+            btn.addEventListener('pointerleave', release, { passive: false });
+          };
+
+          bindControl('ctrl-up', 'KeyW');
+          bindControl('ctrl-down', 'KeyS');
+          bindControl('ctrl-left', 'KeyA');
+          bindControl('ctrl-right', 'KeyD');
+          bindControl('ctrl-jump', 'Space');
+
+          document.getElementById('ctrl-interact').onclick = () => {
+            if (this.nearestNPC) this.startDialogue(this.nearestNPC.userData.config);
+          };
+        }
+
         // Environmental Light Rig Setup
         const ambient = new THREE.AmbientLight(0xffffff, 0.2);
         this.scene.add(ambient);
@@ -616,14 +740,17 @@
       }
 
       bindGlobalUIEvents() {
-        document.getElementById('btn-audio-toggle').onclick = () => {
-          const btn = document.getElementById('btn-audio-toggle');
-          const icon = btn.querySelector('i');
-          this.audioActive = !this.audioActive;
-          this.audio.setEnabled(this.audioActive);
-          btn.classList.toggle('active', this.audioActive);
-          icon.className = this.audioActive ? 'fa-solid fa-volume-high' : 'fa-solid fa-volume-xmark';
-        };
+        // Consolidated System Controls
+        const settingsAudioBtn = document.getElementById('settings-audio-toggle');
+        if (settingsAudioBtn) {
+          settingsAudioBtn.onclick = () => {
+            this.audioActive = !this.audioActive;
+            this.audio.setEnabled(this.audioActive);
+            settingsAudioBtn.innerHTML = this.audioActive
+              ? '<i class="fa-solid fa-volume-high"></i> Audio On'
+              : '<i class="fa-solid fa-volume-xmark"></i> Audio Off';
+          };
+        }
 
         document.getElementById('btn-open-map').onclick = () => {
           this.audio.playUI();
@@ -660,6 +787,9 @@
         this.audio.updateActMusic(caseData.actLabel);
         this.nearestNPC = null;
         this.inDialogue = false;
+
+        // Reveal mobile UI elements
+        document.body.classList.add('case-active');
 
         // Reset player physics and position to starting defaults for the new investigation
         this.pPos.set(0, 1, 15);
@@ -1282,6 +1412,12 @@
           this.pVelocity.z = 0;
         }
 
+        // Jump logic execution
+        if (keys['Space'] && this.isGrounded) {
+          this.pVelocity.y = 15; // Vertical impulse
+          this.isGrounded = false;
+        }
+
         // Apply gravitational acceleration down when not grounded
         if (!this.isGrounded) this.pVelocity.y += -42 * (1 / 60);
 
@@ -1519,6 +1655,13 @@
             settingsOverlay.style.display = 'none';
           }, 350);
         };
+        document.getElementById('btn-close-settings-x').onclick = () => {
+          settingsOverlay.classList.remove('fade-in-complete');
+          setTimeout(() => {
+            settingsOverlay.classList.remove('active');
+            settingsOverlay.style.display = 'none';
+          }, 350);
+        };
       }
 
       if (document.getElementById('btn-save-game')) {
@@ -1554,10 +1697,9 @@
 
       const invBoardOverlay = document.getElementById('inv-board-overlay');
       const invBoardContent = document.getElementById('inv-board-content');
-      const btnInvBoardToggle = document.getElementById('btn-inv-board-toggle');
       const btnCloseInvBoard = document.getElementById('btn-close-inv-board');
 
-      btnInvBoardToggle.onclick = () => {
+      window.openAnalysis = () => {
         game.audio.playUI();
         invBoardOverlay.style.display = 'flex';
         setTimeout(() => invBoardOverlay.classList.add('active'), 10);

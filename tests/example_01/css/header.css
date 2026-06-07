@@ -98,3 +98,32 @@
     align-items: center;
     gap: 8px;
 }
+
+/* ── Fixed bottom navbar ── */
+#fixed-navbar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    max-width: 480px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 4px;
+    padding: 8px 12px;
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    z-index: 100;
+}
+
+#fixed-navbar .a11y-btn {
+    flex: 1;
+    padding: 10px 8px;
+    font-size: 0.85rem;
+    min-width: 0;
+}
+
+#fixed-navbar .a11y-btn.active {
+    color: var(--gold);
+}
