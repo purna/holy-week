@@ -13,6 +13,12 @@
     <meta name="robots" content="index, follow">
     <meta name="theme-color" content="#000000">
     <title>Miracle Maker</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Source+Code+Pro:wght@300;400;600&display=swap"
+    rel="stylesheet">
+
     <!-- Three.js -->
     <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
     <!-- Howler.js for audio -->
@@ -45,6 +51,67 @@
             console.log('SVG icons enabled');
         }
     </script>
+
+    <style>
+        /* ═══════════════════════════════════════════
+           MOBILE CONTROLLER STYLES
+        ═══════════════════════════════════════════ */
+        :root {
+            --btn-sz: clamp(44px, 10vmin, 56px);
+        }
+
+        #mobile-ctrl {
+            position: fixed;
+            bottom: 40px;
+            left: 40px;
+            width: 160px;
+            height: 160px;
+            z-index: 1000;
+            pointer-events: auto;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(100, 255, 218, 0.05);
+            border-radius: 50%;
+            display: none; /* Hidden on desktop by default */
+        }
+
+        @media (max-width: 1024px) {
+            #mobile-ctrl.visible { display: block; }
+        }
+
+        #mobile-ctrl .ui-toggle {
+            position: absolute;
+            pointer-events: auto;
+            margin: 0;
+            width: var(--btn-sz);
+            height: var(--btn-sz);
+            background: rgba(8, 6, 4, 0.85);
+            border: 1px solid rgba(100, 255, 218, 0.18);
+            color: #64ffda;
+            cursor: pointer;
+            font-size: 1.15em;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all .2s;
+            box-shadow: 0 0 10px rgba(100, 255, 218, 0.25);
+        }
+
+        #ctrl-up { top: 0; left: calc(50% - (var(--btn-sz) / 2)); }
+        #ctrl-down { bottom: 0; left: calc(50% - (var(--btn-sz) / 2)); }
+        #ctrl-left { left: 0; top: calc(50% - (var(--btn-sz) / 2)); }
+        #ctrl-right { right: 0; top: calc(50% - (var(--btn-sz) / 2)); }
+        #ctrl-jump { 
+            top: calc(50% - (var(--btn-sz) / 2)); 
+            left: calc(50% - (var(--btn-sz) / 2)); 
+            background: rgba(100, 255, 218, 0.15); 
+        }
+
+        #mobile-ctrl .ui-toggle.active {
+            background: rgba(100, 255, 218, 0.2);
+            border-color: #64ffda;
+        }
+    </style>
 </head>
 
 <body>
@@ -130,6 +197,15 @@
         <div id="minimap-player-indicator" class="minimap-blip player"></div>
     </div>
 
+      <!-- ══════════════ MOBILE CONTROLLER ══════════════ -->
+  <div id="mobile-ctrl">
+    <button id="ctrl-up" class="ui-toggle"><i class="fas fa-chevron-up"></i></button>
+    <button id="ctrl-left" class="ui-toggle"><i class="fas fa-chevron-left"></i></button>
+    <button id="ctrl-jump" class="ui-toggle"><i class="fas fa-circle"></i></button>
+    <button id="ctrl-down" class="ui-toggle"><i class="fas fa-chevron-down"></i></button>
+    <button id="ctrl-right" class="ui-toggle"><i class="fas fa-chevron-right"></i></button>
+  </div>
+
     <div id="npc-indicator-container">
         <div id="world-prompt" class="interact-prompt">CONNECT_TO_ECHO</div>
     </div>
@@ -176,6 +252,77 @@
 
     <!-- Main Application Module -->
     <script type="module" src="js/main.js?v=20260521b"></script>
-</body>
 
+    <script type="module">
+        // Mobile control setup and Point-and-Click integration
+        // Derived from tests/mobile.html to bridge the UI with main game logic
+        
+        window.gameKeys = window.gameKeys || {};
+
+        window.setupMobileControls = () => {
+            const ctrl = document.getElementById('mobile-ctrl');
+            if (ctrl) ctrl.classList.add('visible');
+
+            if (!window.gameKeys) window.gameKeys = {};
+            const bind = (id, code) => {
+                const el = document.getElementById(id);
+                if (!el) return;
+                const start = (e) => { 
+                    e.preventDefault(); e.stopPropagation(); 
+                    if(window.gameKeys) window.gameKeys[code] = true; 
+                    el.classList.add('active'); 
+                };
+                const end = (e) => { 
+                    e.preventDefault(); e.stopPropagation(); 
+                    if(window.gameKeys) delete window.gameKeys[code]; 
+                    el.classList.remove('active'); 
+                };
+                el.addEventListener('touchstart', start); el.addEventListener('touchend', end);
+                el.addEventListener('mousedown', start); el.addEventListener('mouseup', end); el.addEventListener('mouseleave', end);
+            };
+            
+            bind('ctrl-up', 'KeyW'); bind('ctrl-down', 'KeyS');
+            bind('ctrl-left', 'KeyA'); bind('ctrl-right', 'KeyD');
+
+            const jEl = document.getElementById('ctrl-jump');
+            if (jEl) {
+                const jumpStart = (e) => { 
+                    e.preventDefault(); e.stopPropagation(); 
+                    if(window.gameKeys) window.gameKeys['Space'] = true; 
+                    window.dispatchEvent(new CustomEvent('game-jump'));
+                    jEl.classList.add('active'); 
+                };
+                const jumpEnd = (e) => { 
+                    e.preventDefault(); e.stopPropagation(); 
+                    if(window.gameKeys) delete window.gameKeys['Space']; 
+                    jEl.classList.remove('active'); 
+                };
+                jEl.addEventListener('touchstart', jumpStart);
+                jEl.addEventListener('touchend', jumpEnd);
+                jEl.addEventListener('mousedown', jumpStart);
+                jEl.addEventListener('mouseup', jumpEnd);
+            }
+        };
+
+        // Point and Click Interaction Logic
+        const handleInteraction = (x, y, target) => {
+            // Filter out interactions on UI overlays or buttons
+            if (target.closest('button, a, .ui-toggle, .panel, .overlay, .interact-prompt, .npc-bubble, #local-dialogue-box, #board-overlay, #level-select-overlay, #mobile-ctrl')) return;
+            
+            // Dispatch event for main.js to perform raycasting against the planet
+            window.dispatchEvent(new CustomEvent('world-click', { detail: { x, y } }));
+        };
+
+        window.addEventListener('mousedown', e => handleInteraction(e.clientX, e.clientY, e.target));
+        window.addEventListener('touchstart', e => {
+            if (e.touches.length > 0) handleInteraction(e.touches[0].clientX, e.touches[0].clientY, e.target);
+        }, { passive: false });
+
+        // Auto-initialize when START button is clicked
+        document.getElementById('btn-start')?.addEventListener('click', () => {
+            // Delay slightly to match the start transition timing
+            setTimeout(window.setupMobileControls, 1000);
+        });
+    </script>
+</body>
 </html>

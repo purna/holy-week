@@ -42,7 +42,8 @@ let activeLoc = null;
 let locTimeout = null;
 let locCooldownUntil = 0;
 let locNameTypewriter = null;
-const keys = {};
+window.gameKeys = window.gameKeys || {};
+const keys = window.gameKeys;
 
 // Systems
 let sceneMgr = null;
@@ -58,6 +59,9 @@ let modelMgr = null;
 let vfx = null;
 let toonShader = null;
 let dayNight = null;
+
+const raycaster = new THREE.Raycaster();
+const mouse = new THREE.Vector2();
 
 // Inventory
 let inventory = [];
@@ -786,8 +790,26 @@ function setupInputs() {
         keys[e.code] = false;
     });
 
+    // Raycaster and mouse for interaction
     const raycaster = new THREE.Raycaster();
     const mouse = new THREE.Vector2();
+
+    // Listen for custom mobile/interaction events
+    window.addEventListener('world-click', e => {
+        if (!started || appState.isDialogueOpen) return;
+        const { x, y } = e.detail;
+        mouse.x = (x / window.innerWidth) * 2 - 1;
+        mouse.y = -(y / window.innerHeight) * 2 + 1;
+        raycaster.setFromCamera(mouse, sceneMgr.camera);
+        const hits = raycaster.intersectObject(worldMgr.planet);
+        if (hits.length) mouseTarget = hits[0].point;
+    });
+
+    window.addEventListener('game-jump', () => {
+        if (started && !appState.isDialogueOpen && player) {
+            if (player.jump()) playBeep(300, "sine", 0.05);
+        }
+    });
 
     // Mouse-drag orbit camera (left-click and drag to look around)
     let isDragging = false;
@@ -1153,6 +1175,9 @@ function gameLoop() {
         const headingFlat = player.camHeading.clone();
         if (keys['KeyW'] || keys['ArrowUp']) moveDir.add(headingFlat);
         if (keys['KeyS'] || keys['ArrowDown']) moveDir.sub(headingFlat);
+
+        // Override point-and-click target if manual movement keys are pressed
+        if (moveDir.lengthSq() > 0) mouseTarget = null;
 
         if (mouseTarget) {
             const toMouse = mouseTarget.clone().sub(pPos).projectOnPlane(up);

@@ -983,8 +983,7 @@
       margin-left: 23px;
     }
 
-
-     /* ═══════════════════════════════════════════
+    /* ═══════════════════════════════════════════
        MOBILE COMPASS CONTROLLER
     ═══════════════════════════════════════════ */
     #mobile-ctrl {
@@ -998,10 +997,6 @@
       background: rgba(255, 255, 255, 0.03);
       border: 1px solid rgba(100, 255, 218, 0.05);
       border-radius: 50%;
-      display: none;
-    }
-    @media (max-width: 1024px) {
-      #mobile-ctrl { display: block; }
     }
 
     #mobile-ctrl .ui-toggle {
@@ -1127,6 +1122,15 @@
     </div>
   </div>
 
+  <!-- ══════════════ MOBILE CONTROLLER ══════════════ -->
+  <div id="mobile-ctrl">
+    <button id="ctrl-up" class="ui-toggle"><i class="fas fa-chevron-up"></i></button>
+    <button id="ctrl-left" class="ui-toggle"><i class="fas fa-chevron-left"></i></button>
+    <button id="ctrl-jump" class="ui-toggle"><i class="fas fa-circle"></i></button>
+    <button id="ctrl-down" class="ui-toggle"><i class="fas fa-chevron-down"></i></button>
+    <button id="ctrl-right" class="ui-toggle"><i class="fas fa-chevron-right"></i></button>
+  </div>
+
   <!-- ══════════════ EVIDENCE BOARD ══════════════ -->
   <div id="board-overlay">
     <div id="inv-board">
@@ -1138,16 +1142,6 @@
 
   <!-- ══════════════ WIPE ══════════════ -->
   <div id="wipe-overlay"></div>
-
-
-    <!-- ══════════════ MOBILE CONTROLLER ══════════════ -->
-  <div id="mobile-ctrl">
-    <button id="ctrl-up" class="ui-toggle"><i class="fas fa-chevron-up"></i></button>
-    <button id="ctrl-left" class="ui-toggle"><i class="fas fa-chevron-left"></i></button>
-    <button id="ctrl-jump" class="ui-toggle"><i class="fas fa-circle"></i></button>
-    <button id="ctrl-down" class="ui-toggle"><i class="fas fa-chevron-down"></i></button>
-    <button id="ctrl-right" class="ui-toggle"><i class="fas fa-chevron-right"></i></button>
-  </div>
 
   <script type="importmap">
 { "imports": { "three": "https://unpkg.com/three@0.160.0/build/three.module.js", "cannon": "https://unpkg.com/cannon-es@0.20.0/dist/cannon-es.js" } }
@@ -2518,19 +2512,7 @@
         }
         if (moveDir.length() > 0) {
           moveDir.normalize(); camHeading.lerp(moveDir, 0.1).normalize();
-          
-          // Detect device type and apply corresponding speed
-          const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-          const currentSpeed = isTouch ? SPEED_MOBILE : SPEED_DESKTOP;
-
-          // Preserve radial velocity (jump/gravity) so it isn't cancelled by movement
-          const radialVel = new THREE.Vector3().copy(pBody.velocity).dot(up);
-          const tangentVel = moveDir.clone().multiplyScalar(currentSpeed);
-          pBody.velocity.set(
-            tangentVel.x + up.x * radialVel,
-            tangentVel.y + up.y * radialVel,
-            tangentVel.z + up.z * radialVel
-          );
+          pBody.velocity.set(moveDir.x * 18, moveDir.y * 18, moveDir.z * 18);
         }
       } else {
         pBody.velocity.set(0, 0, 0);
