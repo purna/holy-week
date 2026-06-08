@@ -325,11 +325,10 @@
     box-shadow: 0 12px 40px rgba(0,0,0,0.9);
     z-index: 5001;
 
-    /* Slide Animation from Right */
+    /* Container appears instantly, items will stagger slide */
     opacity: 0;
     visibility: hidden;
-    transform: translateX(30px);
-    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    transition: opacity 0.2s ease, visibility 0.2s ease;
 }
 
 .header-dropdown-menu.active {
@@ -337,7 +336,6 @@
     visibility: visible;
     transform: translateX(0);
 }
-
 .dropdown-item {
     background: transparent;
     border: none;

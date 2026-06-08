@@ -165,6 +165,12 @@
           <button id="btn-open-settings" class="dropdown-item">
             <i class="fa-solid fa-gear"></i> <span>System</span>
           </button>
+          <button onclick="window.showInstructionsModal()" class="dropdown-item">
+            <i class="fa-solid fa-circle-info"></i> <span>Help Guide</span>
+          </button>
+          <button onclick="window.showResetModal()" class="dropdown-item" style="color: var(--accent-error);">
+            <i class="fa-solid fa-trash-can"></i> <span>Reset Progress</span>
+          </button>
           <button id="btn-toggle-audio" class="dropdown-item">
             <i class="fa-solid fa-volume-high"></i> <span>Audio: On</span>
           </button>
@@ -502,14 +508,12 @@
       </main>
       <footer class="modal-footer" style="padding: 20px; border-top: 1px solid var(--border-subtle);">
         <div class="persistence-btn-row">
-          <button onclick="window.showInstructionsModal()" class="terminal-btn btn-flex">Guide</button>
           <button id="btn-save-game" class="terminal-btn btn-flex">Save</button>
           <button id="btn-load-game" class="terminal-btn btn-flex">Load</button>
         </div>
         <div class="modal-action-row">
           <button id="btn-close-settings" class="terminal-btn btn-flex">Close</button>
           <button id="btn-save-settings" class="terminal-btn btn-flex btn-save-settings-accent">Apply</button>
-          <button onclick="window.showResetModal()" class="terminal-btn" style="color: var(--color-error); border-color: var(--color-error);">Reset Progress</button>
         </div>
       </footer>
     </div>

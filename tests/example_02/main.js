@@ -70,7 +70,7 @@ window.audio = game.audio;
       if (headerDropdown.classList.contains('active')) updateMenuAudioLabel();
     };
     window.addEventListener('click', (e) => {
-      if (!hamburgerBtn.contains(e.target) && !headerDropdown.contains(e.target)) {
+      if (!hamburgerBtn.contains(e.target)) {
         headerDropdown.classList.remove('active');
         hamburgerBtn.parentElement.classList.remove('is-open');
       }
