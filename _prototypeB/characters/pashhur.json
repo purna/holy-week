@@ -1,0 +1,10 @@
+{
+  "id": "pashhur",
+  "name": "Pashhur",
+  "role": "Temple Priest",
+  "avatar": "🕌",
+  "truthfulness": 0.4,
+  "bibleRef": "Luke 23:45; Matthew 27:51",
+  "background": "A serving priest who was inside the Sanctuary when the Temple veil tore from top to bottom at 3:00 PM.",
+  "factions": ["temple"]
+}

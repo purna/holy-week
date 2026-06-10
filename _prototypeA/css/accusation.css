@@ -1,0 +1,98 @@
+/* ─── Accusation panel ─── */
+
+/* ── Full-screen accusation mode ── */
+.accuse-panel {
+    background: var(--surface2);
+    border: 1px solid var(--border2);
+    border-radius: var(--radius);
+    padding: 14px;
+    margin-top: 4px;
+}
+
+.accuse-title {
+    font-size: 0.9rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+.accuse-subtitle {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    margin-bottom: 14px;
+    font-family: var(--font-mono);
+}
+
+.suspect-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.suspect-btn {
+    background: var(--surface3);
+    border: 1.5px solid var(--border2);
+    border-radius: var(--radius);
+    padding: 12px 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--text);
+    font-size: 0.88rem;
+    font-weight: 600;
+    transition: border-color 0.15s, transform 0.12s;
+    width: 100%;
+    text-align: left;
+}
+
+.suspect-btn:hover:not([aria-disabled='true']) {
+    background: var(--surface2);
+}
+
+.suspect-btn:active:not([aria-disabled='true']) {
+    transform: scale(0.97);
+}
+
+.suspect-btn.locked {
+    opacity: 0.4;
+    filter: grayscale(1);
+    cursor: not-allowed;
+    border-style: dashed;
+    background: var(--surface);
+}
+
+.suspect-btn .lock-icon {
+    font-size: 0.85rem;
+    margin-left: 12px;
+    color: var(--text-dim);
+}
+
+.suspect-btn-avatar {
+    font-size: 1.6rem;
+}
+
+.suspect-btn-info {
+    flex: 1;
+}
+
+.suspect-btn-name {
+    font-weight: 700;
+}
+
+.suspect-btn-role {
+    font-size: 0.68rem;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+}
+
+
+.container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    /* horizontal */
+    align-items: center;
+    /* vertical */
+}
+
+
+

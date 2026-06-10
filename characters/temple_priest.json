@@ -1,0 +1,10 @@
+{
+  "id": "priest_objection",
+  "name": "Temple Priest Objector",
+  "role": "Sadducean Aristocrat",
+  "avatar": "🙅",
+  "truthfulness": 0.5,
+  "bibleRef": "Acts 4:1-3; Acts 5:17-42",
+  "background": "An elite Sadducean priest who views any popular religious movement as a threat. Objects to teaching on resurrection.",
+  "factions": ["temple"]
+}

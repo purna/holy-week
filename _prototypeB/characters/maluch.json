@@ -1,0 +1,10 @@
+{
+  "id": "maluch",
+  "name": "Maluch",
+  "role": "Temple Informant / Spy",
+  "avatar": "👤",
+  "truthfulness": 0.60,
+  "bibleRef": "John 18:10; Luke 22:52",
+  "background": "An administrative operative and courier under the payroll of the high priest's household, tasked with logging suspicious crowd densities and profiling revolutionary movement.",
+  "factions": ["temple"]
+}

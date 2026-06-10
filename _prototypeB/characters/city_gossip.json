@@ -1,0 +1,10 @@
+{
+  "id": "rumor_whisper",
+  "name": "Rumor Whisperer",
+  "role": "City Gossip",
+  "avatar": "🗣️",
+  "truthfulness": 0.3,
+  "bibleRef": "Luke 4:22",
+  "background": "An ordinary resident spreading whispers. Partly informed, mostly distorted. Reflects popular confusion.",
+  "factions": ["local"]
+}

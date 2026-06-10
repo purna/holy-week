@@ -1,0 +1,10 @@
+{
+  "id": "informant_bribe",
+  "name": "Market Informant",
+  "role": "Street Informant",
+  "avatar": "💰",
+  "truthfulness": 0.4,
+  "bibleRef": "Matthew 26:14-16; John 13:29",
+  "background": "A street-level informant who sells information. He knows the inner circle movements and can be bought.",
+  "factions": ["local"]
+}

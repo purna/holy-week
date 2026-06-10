@@ -1,0 +1,10 @@
+{
+  "id": "pharisee_critique",
+  "name": "Simon the Pharisee",
+  "role": "Local Civic Judge",
+  "avatar": "⚖️",
+  "truthfulness": 0.6,
+  "bibleRef": "Luke 18:9-14; Luke 7:36-50",
+  "background": "A Pharisee who trusted in his own righteousness. His critique of Jesus reveals his own spiritual blindness. Invited Jesus to dinner but was horrified when a sinful woman anointed Him.",
+  "factions": ["pharisees"]
+}

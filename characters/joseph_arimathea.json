@@ -1,0 +1,10 @@
+{
+  "id": "joseph_arimathea",
+  "name": "Joseph of Arimathea",
+  "role": "Secret Disciple & Council Member",
+  "avatar": "📜",
+  "truthfulness": 0.9,
+  "bibleRef": "Luke 23:50–53; John 19:38",
+  "background": "A wealthy and prominent member of the Sanhedrin who secretly looked for the Kingdom of God. He risked his status to provide a burial for Jesus.",
+  "factions": ["sanhedrin", "scribes"]
+}

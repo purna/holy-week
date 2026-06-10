@@ -1,0 +1,10 @@
+{
+  "id": "teaching_mount",
+  "name": "Mount Teacher",
+  "role": "Disciple",
+  "avatar": "📖",
+  "truthfulness": 0.8,
+  "bibleRef": "Matthew 5-7 (Sermon on the Mount)",
+  "background": "A teacher from the Mount of Olives area who heard Jesus's direct teaching and shares wisdom from the gatherings.",
+  "factions": ["disciples"]
+}

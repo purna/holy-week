@@ -1,0 +1,10 @@
+{
+  "id": "simon_cyrene",
+  "name": "Simon of Cyrene",
+  "role": "Passerby",
+  "avatar": "🪢",
+  "truthfulness": 0.9,
+  "bibleRef": "Matthew 27:32",
+  "background": "Compelled to carry the crossbeam when the condemned man could go no further.",
+  "factions": ["galilean"]
+}

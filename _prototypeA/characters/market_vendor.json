@@ -1,0 +1,10 @@
+{
+  "id": "market_rumors",
+  "name": "Market Vendor",
+  "role": "Street Merchant",
+  "avatar": "🏪",
+  "truthfulness": 0.7,
+  "bibleRef": "Mark 11:15-19 (Temple market)",
+  "background": "A merchant in the Court of the Gentiles. He sees everyone and hears everything — useful for gathering rumors.",
+  "factions": ["local"]
+}

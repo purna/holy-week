@@ -1,0 +1,10 @@
+{
+  "id": "annas",
+  "name": "Annas",
+  "role": "High Priest Emeritus",
+  "avatar": "🦅",
+  "truthfulness": 0.35,
+  "bibleRef": "John 18:13; Luke 3:2; Acts 4:6",
+  "background": "Former High Priest and patriarch of the family controlling the Temple. He views Jesus' miracles not as divine signs, but as political threats to the fragile peace with Rome.",
+  "factions": ["temple", "sanhedrin"]
+}
