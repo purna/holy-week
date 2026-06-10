@@ -234,4 +234,164 @@ This document tracks the narrative flow and content of the Ink stories used in t
 
 ---
 
+## Caiaphas the High Priest (`caiaphas_priest.json`)
+
+> **Background:** The ruling High Priest and son-in-law of Annas. He is pragmatically focused on preserving the Temple's autonomy and the nation's safety under Roman occupation, even at the cost of justice.
+> **Act/Case:** Act II, III, IV | The Lazarus Conspiracy / The Midnight Tribunal / The Roman Inquiry
+> **Bible Reference:** Matthew 26:57–68; John 11:47–53; John 18:12–28
+> **Prophecy:** Malachi 3:1 (Lord coming suddenly to His temple); Psalm 2:1–2 (Rulers plot in vain)
+
+**Node: start**
+> "The peace of Jerusalem is a fragile vessel. I do not have the luxury of debating theology when the Legions are looking for an excuse to dismantle our nation. This Nazarene brings fire, and I am the one who must prevent the city from burning."
+*   **Choice:** "Was the Temple cleansing a provocation?" &rarr; `temple_cleansing`
+*   **Choice:** "Explain your 'one man should die' policy." &rarr; `expediency`
+*   **Choice:** "Press: The Sanhedrin fund paid for the silence of the guards." &rarr; `bribe`
+
+**Node: temple_cleansing**
+> "He disrupted the sacred commerce of the Almighty. Those shekels weren't just coins; they were the engine of our worship. To scatter them was to declare war on the priesthood itself."
+*   **Choice:** "Continue." &rarr; `expediency`
+
+**Node: expediency**
+> "Better that one man perish than the whole nation be lost. It is a simple calculation of survival. History will thank me for the blood that wasn't spilled in the streets."
+*   **Choice:** "Challenge: And what of the innocent blood?" &rarr; `exposed`
+*   **Choice:** "Accept: You chose the lesser of two evils." &rarr; `closing`
+
+**Node: bribe**
+> "Security costs money. If the soldiers needed encouragement to report a 'theft' instead of a phantom earthquake, that is merely the price of maintaining order. The tomb is empty; the narrative must be filled."
+*   **Choice:** "Acknowledge: The cover-up is documented." &rarr; `closing`
+
+**Node: exposed**
+> "You think your scrolls can undo the weight of the Law? The evidence of the empty tomb is a nightmare we are working to forget. If he has risen, then my authority is dust. Therefore, for the sake of the Temple, he has not risen."
+*   **Choice:** "Move forward." &rarr; `closing`
+
+**Node: closing**
+*   *Status: Conversation ends.*
+
+---
+
+## Mary Magdalene (`mary_magdalene.json`)
+
+> **Background:** A devoted follower of Jesus who was delivered from seven demons. She was the first witness to the resurrection at the empty tomb on Sunday morning.
+> **Act/Case:** Act IV | The Empty Tomb
+> **Bible Reference:** John 20:1–18; Matthew 28:1–10
+> **Prophecy:** Psalm 16:10 (The Holy One will not see corruption)
+
+**Node: start**
+> "I went there to finish the work. We had the spices, the jars... we expected a cold stone and a colder body. But the earth moved, and the light was too bright for human eyes."
+*   **Choice:** "Tell me about the garden." &rarr; `the_garden`
+*   **Choice:** "Why were the linens left behind?" &rarr; `linens`
+*   **Choice:** "Press: The guards say the disciples stole him." &rarr; `guard_lie`
+
+**Node: the_garden**
+> "I thought he was the gardener. I asked where they had taken my Lord. Then he said my name. Just one word: 'Mary.' And I knew. Death had no hold on him."
+*   **Choice:** "Accept: A witness of the Risen Lord." &rarr; `closing`
+
+**Node: linens**
+> "They were collapsed, as if the body had simply passed through them. The head cloth was folded separately. Thieves do not stop to fold laundry."
+*   **Choice:** "Acknowledge: The evidence rules out theft." &rarr; `closing`
+
+**Node: guard_lie**
+> "The guards were paralyzed with terror. I saw them fall like dead men when the stone moved. Any story they tell now of 'theft' was bought with Temple silver."
+*   **Choice:** "Challenge: Can you prove the bribery?" &rarr; `exposed`
+
+**Node: exposed**
+> "I saw the centurion's spear snapped like a twig. I saw the seal of Pilate shattered. The power that opened that tomb didn't use human hands. I have seen the Light, and the shadows of the Sanhedrin cannot hide it."
+*   **Choice:** "Move forward." &rarr; `closing`
+
+**Node: closing**
+*   *Status: Conversation ends.*
+
+---
+
+## The Roman Guard (Marcus/Lucas) (`guard_report.json`)
+
+> **Background:** A Roman legionary or Temple guard assigned to secure the tomb of Jesus. He witnessed the supernatural events of Sunday morning and was later bribed to provide a false report.
+> **Act/Case:** Act IV | The Guard's Report
+> **Bible Reference:** Matthew 27:62–66; 28:2–4, 11–15
+> **Prophecy:** Psalm 2:1–2 (Kings and rulers plot in vain)
+
+**Node: start**
+> "It wasn't an insurgent raid. No group of Galilean fishermen could have broken an Imperial seal with us standing there. What happened at dawn... that wasn't human. My pilum was crushed like a reed."
+*   **Choice:** "Tell me about the bribe." &rarr; `the_bribe`
+*   **Choice:** "What did you see when the stone moved?" &rarr; `the_event`
+*   **Choice:** "Press: You abandoned your post." &rarr; `pressure`
+
+**Node: the_event**
+> "The ground shifted—a kinetic wave like I've never felt. Then a figure, like lightning, simply walked through the stone. We weren't sleeping. we were... erased. Undone."
+*   **Choice:** "Continue." &rarr; `the_bribe`
+
+**Node: the_bribe**
+> "The priests gave us enough silver to buy our silence and our lives. 'Say the disciples stole him while you slept,' they said. If Pilate hears we slept, we're dead. The silver is our only shield now."
+*   **Choice:** "Acknowledge: Institutional cover-up confirmed." &rarr; `closing`
+*   **Choice:** "Challenge: The silver won't wash away what you saw." &rarr; `pressure`
+
+**Node: pressure**
+> "I'm a soldier, not a martyr. I follow the money and the orders. But every time I close my eyes, I still see that stone rolling uphill. You want the truth? The Nazarene is gone, and no amount of Roman steel could have kept him there."
+*   **Choice:** "Move forward." &rarr; `closing`
+
+**Node: closing**
+*   *Status: Conversation ends.*
+
+---
+
+## Joseph of Arimathea (`joseph_arimathea.json`)
+
+> **Background:** A wealthy member of the Sanhedrin and a secret disciple of Jesus. He provided his own newly hewn tomb for the burial of Jesus, fulfilling prophecy regarding the Messiah's association with the rich in death.
+> **Act/Case:** Act IV | The Empty Tomb
+> **Bible Reference:** Matthew 27:57–60; John 19:38–42; Mark 15:42–47
+> **Prophecy:** Isaiah 53:9 (Assigned a rich man's tomb)
+
+**Node: start**
+> "I have spent my life building a reputation in the Council, only to find it was a house of sand. I went to Pilate myself. I couldn't let his body be thrown into a common pit. He deserved the honors of a King, even in the silence of the grave."
+*   **Choice:** "Why did you keep your discipleship secret?" &rarr; `secrecy`
+*   **Choice:** "Tell me about the tomb's security." &rarr; `security`
+*   **Choice:** "Press: You provided the evidence of the burial yourself." &rarr; `evidence`
+
+**Node: secrecy**
+> "Fear is a powerful warden. I watched the others plot, and I said nothing. But when I saw him on that cross, the fear died. I realized that my wealth and my tomb were actually for Him."
+*   **Choice:** "Acknowledge: A late but vital stand." &rarr; `closing`
+
+**Node: security**
+> "It was my own tomb, never before used. I saw the stone rolled into place. I saw the Temple guards set their watch. There was no way to get in or out without force."
+*   **Choice:** "Continue." &rarr; `evidence`
+
+**Node: evidence**
+> "I have the records of the purchase. I have the witnesses who helped me wrap him in linen. The tomb was occupied on Friday; it was empty on Sunday. My own property has become the greatest proof of his victory."
+*   **Choice:** "Accept: Testimony of a Council member." &rarr; `closing`
+
+**Node: closing**
+*   *Status: Conversation ends.*
+
+---
+
+## Judas Iscariot (`judas_iscariot.json`)
+
+> **Background:** One of the twelve disciples who betrayed Jesus to the religious authorities for thirty pieces of silver. His dialogue reflects his internal conflict and the realization of the magnitude of his actions.
+> **Act/Case:** Act II, III | The Broken Cup / The Midnight Tribunal
+> **Bible Reference:** Matthew 26:14–16, 26:47–50; Matthew 27:3–10
+> **Prophecy:** Zechariah 11:12–13 (30 silver pieces thrown to potter); Psalm 41:9 (Close friend lifts his heel)
+
+**Node: start**
+> "You look at me and see a traitor. The others see a thief. But I saw a kingdom that wasn't coming fast enough. I thought I could force his hand—make him show his power. Instead, I just showed my own darkness."
+*   **Choice:** "Why thirty pieces of silver?" &rarr; `silver`
+*   **Choice:** "Was it the money or the politics?" &rarr; `motivation`
+*   **Choice:** "Press: You shared the bread before you left." &rarr; `the_supper`
+
+**Node: silver**
+> "The price of a slave. That's what they valued him at. I took it, thinking it was just a token. But the silver feels like lead in my bag now. It burns."
+*   **Choice:** "Continue." &rarr; `motivation`
+
+**Node: motivation**
+> "I wanted a Messiah with a sword. He talked of crosses. I thought I could sell the information to the priests and use the coin to fund the resistance. I was a fool. I sold the Light for a shadow."
+*   **Choice:** "Challenge: You betrayed a friend with a kiss." &rarr; `exposed`
+
+**Node: exposed**
+> "I am the son of perdition. I have the blood of an innocent man on my hands. No amount of regret can undo what I've done. The silver is going back to the Temple, even if it has to be thrown at their feet."
+*   **Choice:** "Move forward." &rarr; `closing`
+
+**Node: closing**
+*   *Status: Conversation ends.*
+
+---
+
 *Last updated: Compiled from Ink JSON Source*

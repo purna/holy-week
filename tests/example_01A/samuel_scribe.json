@@ -1,0 +1,11 @@
+{
+  "id": "scribe",
+  "name": "Samuel",
+  "role": "Temple Scribe, Pharisee",
+  "avatar": "📜",
+  "truthfulness": 0.85,
+  "bibleRef": "Mark 12:28–34",
+  "background": "A Temple scribe trained in meticulous recording of legal proceedings and scriptural interpretation. Unlike the Sadducean priests, he believes in resurrection and angels. He asked Jesus about the greatest commandment and received an answer that genuinely moved him.",
+  "factions": ["scribes", "pharisees"],
+  "storyFile": "./story/scribe_intro.json"
+}

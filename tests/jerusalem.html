@@ -2105,11 +2105,12 @@
 
     /* ═══ PHYSICS ═══ */
     const world = new CANNON.World();
+    world.gravity.set(0, 0, 0);
     world.solver.iterations = 12;
     world.addBody(new CANNON.Body({ mass: 0, shape: new CANNON.Sphere(planetR) }));
 
-    const pBody = new CANNON.Body({ mass: 1, shape: new CANNON.Box(new CANNON.Vec3(0.5, 1, 0.5)), fixedRotation: true, linearDamping: 0.88 });
-    pBody.position.set(0, planetR + 10, 0);
+    const pBody = new CANNON.Body({ mass: 1, shape: new CANNON.Box(new CANNON.Vec3(0.5, 1, 0.5)), fixedRotation: true, linearDamping: 0.1 });
+    pBody.position.set(planetR + 3, 0, 0);
     world.addBody(pBody);
 
     const playerMesh = new THREE.Group();
@@ -2171,9 +2172,9 @@
       lb.style.display = 'block'; setTimeout(() => lb.style.display = 'none', 4000);
     }
 
-    /* ═══════════════════════════════════════════════════════════════
-       GAME STATE
-    ═══════════════════════════════════════════════════════════════ */
+/* ═══════════════════════════════════════════════════════════════
+        GAME STATE
+     ═══════════════════════════════════════════════════════════════ */
     let started = false, hasWon = false;
     let isDialogueOpen = false, activeNpc = null;
     let levelMgr = null, levelModal = null;
@@ -2452,7 +2453,7 @@
       const dt = 1 / 60;
 
       vfx.update(dt, pPos, pVel, canJump);
-      pBody.applyForce(up.clone().multiplyScalar(-75), pBody.position);
+      world.gravity.set(up.x * -9.82, up.y * -9.82, up.z * -9.82);
       if (pPos.length() < planetR + 1.7) canJump = true;
 
       if (!started) { renderer.render(scene, camera); return; }
@@ -2501,7 +2502,7 @@
 
       // Movement
       if (!isDialogueOpen) {
-        const camFwd = pPos.clone().sub(camera.position).projectOnPlane(up).normalize();
+        const camFwd = new THREE.Vector3().copy(up).cross(camHeading).normalize();
         const camRgt = new THREE.Vector3().crossVectors(up, camFwd).normalize();
         let moveDir = new THREE.Vector3();
         if (keys['KeyW'] || keys['ArrowUp']) moveDir.add(camFwd);
@@ -2517,28 +2518,17 @@
           if (tm.length() > 2) moveDir.add(tm.normalize()); else mouseTarget = null;
         }
         if (moveDir.length() > 0) {
-          moveDir.normalize(); camHeading.lerp(moveDir, 0.1).normalize();
-          
-          // Detect device type and apply corresponding speed
-          const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-          const currentSpeed = isTouch ? SPEED_MOBILE : SPEED_DESKTOP;
-
-          // Preserve radial velocity (jump/gravity) so it isn't cancelled by movement
-          const radialVel = new THREE.Vector3().copy(pBody.velocity).dot(up);
-          const tangentVel = moveDir.clone().multiplyScalar(currentSpeed);
-          pBody.velocity.set(
-            tangentVel.x + up.x * radialVel,
-            tangentVel.y + up.y * radialVel,
-            tangentVel.z + up.z * radialVel
-          );
+          moveDir.normalize();
+          camHeading.lerp(moveDir.projectOnPlane(up).normalize(), 0.15).normalize();
+          const moveForce = 120;
+          pBody.applyForce(new CANNON.Vec3(moveDir.x * moveForce, moveDir.y * moveForce, moveDir.z * moveForce), pBody.position);
         }
       } else {
         pBody.velocity.set(0, 0, 0);
       }
 
       playerMesh.position.copy(pPos); playerMesh.up.copy(up);
-      const lt = pPos.clone().add(camHeading.projectOnPlane(up).normalize());
-      if (!isNaN(lt.x)) playerMesh.lookAt(lt);
+      playerMesh.lookAt(pPos.clone().add(camHeading.projectOnPlane(up).normalize()));
 
       camera.up.copy(up);
       const tCam = pPos.clone().add(camHeading.clone().multiplyScalar(-30)).add(up.clone().multiplyScalar(16));

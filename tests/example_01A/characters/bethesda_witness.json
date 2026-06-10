@@ -1,0 +1,10 @@
+{
+  "id": "witness_healed",
+  "name": "Bethesda Witness",
+  "role": "Eyewitness",
+  "avatar": "👁️",
+  "truthfulness": 0.85,
+  "bibleRef": "John 5:1-15",
+  "background": "An ordinary resident who witnessed the healing at the Pool of Bethesda. Their testimony about the anomaly confirms the power of the Healer.",
+  "factions": ["local"]
+}

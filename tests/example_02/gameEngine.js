@@ -10,6 +10,7 @@ import { DialogueManager } from "./dialogueManager.js";
 import { ControlsManager } from "./controls.js";
 import { EnvironmentManager } from "./environment.js";
 import { OrbitalSelectMatrixModal } from "./mapModal.js";
+import { GLTFLoader } from 'three/loaders/GLTFLoader';
 
 import { act1CaseA, act1CaseB } from "./act1_case.js";
 import { act2CaseA, act2CaseB } from "./act2_case.js";
@@ -33,7 +34,13 @@ export class GameEngine {
     this.registerAllCases();
 
     this.activeCaseId = null;
-    this.pPos = new THREE.Vector3(0, 1, 15);
+
+    // --- WORLD DIMENSIONS ---
+    this.planetRadius = 10000; // The visual scale of the earth.glb
+    this.surfaceRadius = 9000; // The actual radius where characters stand. Lower this to sink them in.
+    
+    // Further increased radius for an even more expansive world feel
+    this.pPos = new THREE.Vector3(0, this.surfaceRadius + 1.1, 0); // 1.1 is half of player height (2.2)
     this.pVelocity = new THREE.Vector3();
     this.camHeading = new THREE.Vector3(0, 0, -1);
     this.isGrounded = true;
@@ -47,6 +54,7 @@ export class GameEngine {
     this.uiVisibility = { minimap: true, controls: true };
     this.lockedEvidence = {};
     this.controls = new ControlsManager(this);
+    this.worldEarth = null;
   }
 
   registerAllCases() {
@@ -64,7 +72,7 @@ export class GameEngine {
     this.scene.background = new THREE.Color(0x020306);
     this.scene.fog = new THREE.FogExp2(0x020306, 0.015);
 
-    this.camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1500);
+    this.camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 5000);
     this.renderer = new THREE.WebGLRenderer({ antialias: true });
     this.renderer.setSize(window.innerWidth, window.innerHeight);
     this.renderer.shadowMap.enabled = true;
@@ -75,12 +83,27 @@ export class GameEngine {
     const ambient = new THREE.AmbientLight(0xffffff, 0.2);
     this.scene.add(ambient);
 
+    // HemisphereLight provides a natural sky/ground fill, essential for seeing detail on a spherical world
+    this.hemiLight = new THREE.HemisphereLight(0xffffff, 0x444444, 0.5);
+    this.scene.add(this.hemiLight);
+
     this.sunLight = new THREE.DirectionalLight(0xffffff, 1.0);
     this.sunLight.castShadow = true;
     this.scene.add(this.sunLight);
 
     this.moonLight = new THREE.DirectionalLight(0x5588ff, 0.4);
     this.scene.add(this.moonLight);
+
+    // Physical Ground Sphere (The surface the player "loads" on)
+    const groundGeo = new THREE.SphereGeometry(this.surfaceRadius, 128, 128);
+    const groundMat = new THREE.MeshStandardMaterial({ 
+      color: 0x0a0a0a, 
+      roughness: 1, 
+      metalness: 0 
+    });
+    this.groundSphere = new THREE.Mesh(groundGeo, groundMat);
+    this.groundSphere.receiveShadow = true;
+    this.scene.add(this.groundSphere);
 
     const geo = new THREE.ConeGeometry(0.6, 2.2, 8);
     geo.rotateX(Math.PI / 2);
@@ -90,10 +113,6 @@ export class GameEngine {
 
     this.torchLight = new THREE.PointLight(0x00f2ff, 0, 25, 1.5);
     this.playerMesh.add(this.torchLight);
-
-    const ground = new THREE.Mesh(new THREE.PlaneGeometry(500, 500), new THREE.MeshStandardMaterial({ color: 0x14181e }));
-    ground.rotation.x = -Math.PI / 2;
-    this.scene.add(ground);
 
     this.envManager = new EnvironmentManager(this.scene, this.sunLight, this.moonLight, this.torchLight, this.audio);
 
@@ -242,7 +261,8 @@ export class GameEngine {
 
   _openMapModal() {
     if (!this.mapModal) {
-      this.mapModal = new OrbitalSelectMatrixModal(this.cm, this.ls, (id) => this.loadCase(id));
+      // You can pass a custom globeScale value here (e.g., 15)
+      this.mapModal = new OrbitalSelectMatrixModal(this.cm, this.ls, (id) => this.loadCase(id), 11);
     }
     this.mapModal.open();
   }
@@ -255,10 +275,8 @@ export class GameEngine {
     this.nearestNPC = null;
     this.inDialogue = false;
 
-    // Reset player
-    this.pPos.set(0, 1, 15);
+    // Reset player velocity
     this.pVelocity.set(0, 0, 0);
-    if (this.playerMesh) this.playerMesh.position.copy(this.pPos);
 
     // Reset environmental lighting
     if (this.envManager) {
@@ -283,6 +301,39 @@ export class GameEngine {
     this.npcMeshes = [];
     this.evidenceMeshes.forEach(m => this.scene.remove(m));
     this.evidenceMeshes = [];
+    if (this.worldEarth) this.scene.remove(this.worldEarth);
+
+    // Load the Act's specific world model (defaulting to earth.glb)
+    const loader = new GLTFLoader();
+    const modelPath = caseData.worldModel || 'models/earth.glb';
+    
+    loader.load(modelPath, (gltf) => {
+        this.worldEarth = gltf.scene;
+        
+        const box = new THREE.Box3().setFromObject(this.worldEarth);
+        const size = box.getSize(new THREE.Vector3());
+        const scaleFactor = (this.planetRadius * 2) / Math.max(size.x, size.y, size.z);
+        this.worldEarth.scale.set(scaleFactor, scaleFactor, scaleFactor);
+
+        // Center the sphere at (0,0,0) for easier spherical gravity math
+        this.worldEarth.position.set(0, 0, 0);
+
+        this.worldEarth.traverse(node => {
+            if (node.isMesh) {
+                node.receiveShadow = true;
+                node.material = new THREE.MeshToonMaterial({
+                    color: node.material.color,
+                    map: node.material.map
+                });
+            }
+        });
+        this.scene.add(this.worldEarth);
+        
+        // Set initial player position on top of the sphere
+        this.pPos.set(0, this.surfaceRadius + 1.1, 0);
+        this.pVelocity.set(0, 0, 0);
+    });
+
     this.collectedEvidence = [];
     this.lockedEvidence = {};
 
@@ -293,7 +344,17 @@ export class GameEngine {
     (caseData.npcs || []).forEach(npc => {
       if (!Array.isArray(npc.pos) || npc.pos.length < 3) return;
       const box = new THREE.Mesh(new THREE.BoxGeometry(1.2, 2, 1.2), new THREE.MeshStandardMaterial({ color: npc.color }));
-      box.position.set(npc.pos[0], npc.pos[1], npc.pos[2]);
+      
+      // Project the defined position onto the sphere surface cluster around the North Pole
+      const offset = new THREE.Vector3(npc.pos[0], 0, npc.pos[2]);
+      const pos = new THREE.Vector3(0, this.surfaceRadius + 1, 0).add(offset);
+      pos.normalize().multiplyScalar(this.surfaceRadius + 1);
+      box.position.copy(pos);
+
+      // Align NPC to surface normal
+      const up = pos.clone().normalize();
+      box.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), up);
+
       box.userData = { config: npc, type: 'npc', state: 'neutral' };
       this.scene.add(box);
       this.npcMeshes.push(box);
@@ -748,7 +809,10 @@ export class GameEngine {
       new THREE.SphereGeometry(0.5, 16, 16),
       new THREE.MeshStandardMaterial({ color: 0x00ffaa, emissive: 0x00ffaa, emissiveIntensity: 0.8 })
     );
-    sphere.position.set(ev.pos[0], ev.pos[1], ev.pos[2]);
+    const offset = new THREE.Vector3(ev.pos[0], 0, ev.pos[2]);
+    const pos = new THREE.Vector3(0, this.planetRadius + 1, 0).add(offset);
+    pos.normalize().multiplyScalar(this.planetRadius + 1);
+    sphere.position.copy(pos);
     sphere.userData = { dataRef: ev, newlyUnlocked: true };
     this.scene.add(sphere);
     this.evidenceMeshes.push(sphere);
@@ -792,43 +856,62 @@ export class GameEngine {
   }
 
   movePlayer() {
+    // 1. Calculate the 'Up' vector (surface normal)
+    const up = this.pPos.clone().normalize();
+    
     const move = new THREE.Vector3();
+    
+    // 2. Calculate movement directions relative to the sphere's surface
+    // Forward is the projection of camera forward onto the tangent plane
     const camFwd = new THREE.Vector3(0, 0, -1).applyQuaternion(this.camera.quaternion);
-    camFwd.y = 0; camFwd.normalize();
-    const camRgt = new THREE.Vector3(1, 0, 0).applyQuaternion(this.camera.quaternion);
-    camRgt.y = 0; camRgt.normalize();
+    const dot = camFwd.dot(up);
+    const moveFwd = camFwd.clone().sub(up.clone().multiplyScalar(dot)).normalize();
+    const moveRgt = new THREE.Vector3().crossVectors(up, moveFwd);
 
     const keys = this.controls.keys;
-    if (keys['KeyW'] || keys['ArrowUp']) move.add(camFwd);
-    if (keys['KeyS'] || keys['ArrowDown']) move.sub(camFwd);
-    if (keys['KeyA'] || keys['ArrowLeft']) move.sub(camRgt);
-    if (keys['KeyD'] || keys['ArrowRight']) move.add(camRgt);
+    if (keys['KeyW'] || keys['ArrowUp']) move.add(moveFwd);
+    if (keys['KeyS'] || keys['ArrowDown']) move.sub(moveFwd);
+    if (keys['KeyA'] || keys['ArrowLeft']) move.sub(moveRgt);
+    if (keys['KeyD'] || keys['ArrowRight']) move.add(moveRgt);
 
     if (move.length() > 0) {
       move.normalize();
       this.camHeading.lerp(move, 0.1).normalize();
-      this.pVelocity.x = move.x * 18;
-      this.pVelocity.z = move.z * 18;
-    } else {
-      this.pVelocity.x = 0; this.pVelocity.z = 0;
+      // Tangential velocity
+      const speed = 18;
+      const targetVel = move.multiplyScalar(speed);
+      this.pVelocity.copy(targetVel);
     }
 
-    if (keys['Space'] && this.isGrounded) {
-      this.pVelocity.y = 15;
-      this.isGrounded = false;
-    }
-
-    if (!this.isGrounded) this.pVelocity.y += -42 * (1 / 60);
+    // 3. Spherical Gravity & Grounding
+    const gravityStrength = 42;
+    // Apply gravity force towards center (0,0,0)
+    this.pVelocity.addScaledVector(up, -gravityStrength * (1 / 60));
+    
+    // Integrator
     this.pPos.addScaledVector(this.pVelocity, 1 / 60);
 
-    if (this.pPos.y <= 1) { this.pPos.y = 1; this.pVelocity.y = 0; this.isGrounded = true; }
+    const currentDist = this.pPos.length();
+    if (currentDist <= this.surfaceRadius + 1.1) {
+        this.pPos.setLength(this.surfaceRadius + 1.1);
+        this.isGrounded = true;
+        // Zero out velocity components pointing into the planet
+        const normalVelocity = this.pVelocity.dot(up);
+        if (normalVelocity < 0) this.pVelocity.sub(up.clone().multiplyScalar(normalVelocity));
+    } else {
+        this.isGrounded = false;
+    }
 
+    // 4. Update Mesh Orientation
     this.playerMesh.position.copy(this.pPos);
-    this.playerMesh.lookAt(this.pPos.clone().add(this.camHeading));
+    this.playerMesh.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), up);
 
-    const camPos = this.pPos.clone().add(this.camHeading.clone().multiplyScalar(-30)).add(new THREE.Vector3(0, 16, 0));
+    // 5. Update Camera
+    const camOffset = up.clone().multiplyScalar(16).add(this.camHeading.clone().multiplyScalar(-30));
+    const camPos = this.pPos.clone().add(camOffset);
+    this.camera.up.copy(up); // Crucial: camera stays upright relative to planet
     this.camera.position.lerp(camPos, 0.05);
-    this.camera.lookAt(this.pPos.clone().add(this.camHeading.clone().multiplyScalar(5)));
+    this.camera.lookAt(this.pPos);
   }
 
   findNPC() {
@@ -889,11 +972,23 @@ export class GameEngine {
     if (!container) return;
     container.innerHTML = '';
     const offset = 55, scale = 0.55;
+    
+    const up = this.pPos.clone().normalize();
+    const fwd = this.camHeading.clone().normalize();
+    const rgt = new THREE.Vector3().crossVectors(up, fwd);
+
     this.npcMeshes.forEach(npc => {
+      const rel = npc.position.clone().sub(this.pPos);
+      const dist = rel.length();
+      if (dist > 100) return;
+
+      const dx = rel.dot(rgt);
+      const dz = -rel.dot(fwd);
+
       const blip = document.createElement('div');
       blip.className = 'minimap-blip npc';
-      blip.style.left = (offset + (npc.position.x - this.pPos.x) * scale) + 'px';
-      blip.style.top = (offset + (npc.position.z - this.pPos.z) * scale) + 'px';
+      blip.style.left = (offset + dx * scale) + 'px';
+      blip.style.top = (offset + dz * scale) + 'px';
       container.appendChild(blip);
     });
   }

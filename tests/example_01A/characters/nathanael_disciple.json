@@ -1,0 +1,10 @@
+{
+  "id": "nathanael_disciple",
+  "name": "Nathanael",
+  "role": "Honest Disciple",
+  "avatar": "👨‍🌾",
+  "truthfulness": 0.9,
+  "bibleRef": "John 1:45-51; John 21:2",
+  "background": "An Israelite in whom there is no guile. He was a witness to both the early ministry and the post-resurrection restoration.",
+  "factions": ["disciples"]
+}

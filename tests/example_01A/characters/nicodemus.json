@@ -1,0 +1,10 @@
+{
+  "id": "nicodemus",
+  "name": "Nicodemus",
+  "role": "Conflicted Pharisee",
+  "avatar": "🌙",
+  "truthfulness": 0.8,
+  "bibleRef": "John 3:1-21; John 7:50-52; John 19:39",
+  "background": "A Pharisee and member of the Sanhedrin who seeks the truth in secret. He is torn between his position in the Council and his growing conviction that Jesus is from God.",
+  "factions": ["sanhedrin", "pharisees"]
+}

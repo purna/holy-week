@@ -1,0 +1,28 @@
+{
+  "start": {
+    "content": "You think this is about birds and coins? Look around you! I provide what the Law requires \u2014 unblemished offerings for the pilgrims. Without me, how would a woman from Alexandria bring her dove?",
+    "choices": [
+      {
+        "text": "Tell me more.",
+        "destination": "more"
+      },
+      {
+        "text": "That is enough.",
+        "destination": "closing"
+      }
+    ]
+  },
+  "more": {
+    "content": "I have more to say on this matter.",
+    "choices": [
+      {
+        "text": "Go on.",
+        "destination": "closing"
+      }
+    ]
+  },
+  "closing": {
+    "content": "That is all I can tell you.",
+    "choices": []
+  }
+}

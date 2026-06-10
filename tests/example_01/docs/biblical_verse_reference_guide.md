@@ -85,6 +85,7 @@ ightarrow$ Luke 19:47–48 (Immediate financial disruption paralyzing legal coun
 | Money bag impression | John 13:29; Matthew 26:14–16 |
 | Fragment of dipped sop | John 13:26–30; Psalm 41:9 |
 | Young scribe's written summary | Luke 22:19–20; 1 Corinthians 11:24–25 |
+| Judas’s remorse and the Potter’s Field | Matthew 27:3–10 |
 
 #### Key Deduction Links
 * **Dipped Bread + Money Bag** $
@@ -154,6 +155,9 @@ ightarrow$ Matthew 22:20–21; Mark 12:44; Genesis 1:26
 | Prophecy | Reference | Written | Fulfillment in Case |
 | :--- | :--- | :--- | :--- |
 | Swallowing up death forever | **Isaiah 25:8** | ~700 BC | Demonstrating unchecked resurrecting dominion over the grave at Bethany |
+| The dead will live / bodies rise | **Isaiah 26:19** | ~700 BC | Martha’s confession of hope before the raising of Lazarus |
+| Seeking and finding the Lord | **Jeremiah 29:13** | ~600 BC | Nicodemus searching for truth in the council shadows |
+| Bore our pain and suffering | **Isaiah 53:3–4** | ~700 BC | The social and physical restoration of Simon the Leper |
 | Not abandoning the soul to Sheol | **Psalm 16:10** | ~1000 BC | Previewing the localized reversal of decay before Holy Week culminates |
 
 #### Evidence — Gospel Verses
@@ -184,6 +188,7 @@ ightarrow$ John 11:48 (Verification of the tomb's reality triggers political dam
 | Servant prolongs days after anguish | **Isaiah 53:10–11** | ~700 BC | Seeing the light of vindication post-offering |
 | Abandonment up to triumph arc | **Psalm 22:1–31** | ~1000 BC | Pierced hands (v.16) transforming into global celebration (v.31) |
 | Living bodies rising from dust | **Isaiah 26:19** | ~700 BC | Earth splitting open as life returns |
+| Assigned a rich man's tomb | **Isaiah 53:9** | ~700 BC | Joseph of Arimathea providing the honorable burial |
 
 #### Evidence — Gospel Verses
 | Evidence Item | Verse |
@@ -194,7 +199,8 @@ ightarrow$ John 11:48 (Verification of the tomb's reality triggers political dam
 | Independent angelic accounts | Matthew 28:2–7; Luke 24:4–7; John 20:12–13 |
 | Roman guard broken log tablet | Matthew 28:2–4; 28:11–15 |
 | Unopened women's spice jars | Mark 16:1; John 19:39–40; Isaiah 53:9 |
-| Mary Magdalene's firsthand log | John 20:11–18; Isaiah 43:1 (Called by name; inadmissible legal witness) |
+| Mary Magdalene's firsthand log | John 20:1–18; Matthew 28:1–10; Isaiah 43:1 (Witness to the Risen Lord) |
+| Joseph of Arimathea’s burial record | Matthew 27:57–60; John 19:38–42; Mark 15:42–47 (A secret disciple goes public) |
 
 #### Key Deduction Links
 * **Rolled Stone + Guard Report** $

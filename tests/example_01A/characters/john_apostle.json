@@ -1,0 +1,10 @@
+{
+  "id": "john_apostle",
+  "name": "John",
+  "role": "Disciple of Jesus",
+  "avatar": "👨‍🦰",
+  "truthfulness": 0.9,
+  "bibleRef": "Luke 19:29–35; John 12:12–19",
+  "background": "John son of Zebedee — the 'beloved disciple.' Meticulous and observant, he often recalls precise details and would later author a Gospel account of these events.",
+  "factions": ["disciples", "scribes"]
+}

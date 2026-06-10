@@ -11,12 +11,7 @@ export class ControlsManager {
         window.addEventListener('keydown', (e) => {
             this.keys[e.code] = true;
 
-            // Prevent jumping if in dialogue OR if any modal is active
             const modalActive = document.querySelector('.overlay-mask.active, .modal-overlay.active');
-            if (e.code === 'Space' && this.engine.isGrounded && !this.engine.inDialogue && !modalActive) {
-                this.engine.pVelocity.y = 16.5;
-                this.engine.isGrounded = false;
-            }
             if (e.code === 'KeyE' && this.engine.nearestNPC && !this.engine.inDialogue) {
                 this.engine.startDialogue(this.engine.nearestNPC.userData.config);
             }
