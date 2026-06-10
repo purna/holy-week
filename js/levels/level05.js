@@ -3,7 +3,7 @@
  * Loop step: "Collect evidence items"
  */
 
-const baseNPCPath = './assets/dialogue/';
+const baseNPCPath = './story/extras/';
 
 export default {
     phase:    5,

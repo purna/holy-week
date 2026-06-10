@@ -1,0 +1,9 @@
+{
+  "id": "local_traveler",
+  "name": "Local Traveler",
+  "role": "Roadside Witness",
+  "faction": "local",
+  "avatar": "🚶",
+  "color": "0x9ca3af",
+  "background": "A common traveler on the road between Bethany and Jerusalem, who observed the fig tree both on Monday and Tuesday morning."
+}

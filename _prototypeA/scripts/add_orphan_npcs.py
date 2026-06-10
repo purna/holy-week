@@ -109,6 +109,23 @@ ORPHAN_NPCS = {
         "background": "A woman from the crowd who spread her cloak on the road. Her act was spontaneous devotion — part of the Hosanna movement.",
         "story_file": "./story/woman_cloak.json",
     },
+    "nathan_fig_tree": {
+        "act": "act1", "case_export": "act1CaseC", "case_id": "fig_tree_incident",
+        "npc_id": "nathan_gardener", "name": "Nathan the Gardener",
+        "role": "Local Landowner", "avatar": "🌳", "truthfulness": 0.8,
+        "bible_ref": "Matthew 21:18–22; Mark 11:12–14, 20–25",
+        "background": "A bewildered gardener who witnessed the fig tree wither instantly. He provides testimony on the literal speed of the transformation.",
+        "story_file": "./story/nathan_fig_tree.json",
+    },
+    # ── Act II ──────────────────────────────────────────────────────────────
+    "andrew_olivet": {
+        "act": "act2", "case_export": "act2CaseA", "case_id": "olivet_discourse",
+        "npc_id": "andrew_disciple", "name": "Andrew",
+        "role": "Disciple", "avatar": "⛪", "truthfulness": 0.95,
+        "bible_ref": "Matthew 24; Mark 13; Luke 21",
+        "background": "One of the inner circle who heard the prophecy concerning the Temple's destruction and the signs of the end times.",
+        "story_file": "./story/andrew_olivet.json",
+    },
     # ── Act II ──────────────────────────────────────────────────────────────
     "parable_meaning": {
         "act": "act2", "case_export": "act2CaseA", "case_id": "authority_challenged",

@@ -2,87 +2,100 @@
 NPCs in levels.js use dialogueId instead of storyFile / hasDialogue.
 This map bridges that gap so loadStoryForNPC can normalise the path.
  */
+
+ const path = './../story';
+
 export const DIALOGUE_ID_MAP = {
- // --- Act I: Jerusalem Confrontations ---
+  // --- Act I: Jerusalem Confrontations ---
     // Case A: The Missing Donkey (Triumphal Entry)
-    peter_donkey: './story/act1/case_a_missing_donkey/peter_donkey.json',
-    john_donkey: './story/act1/case_a_missing_donkey/john_donkey.json',
-    galilean_pilgrim: './story/act1/case_a_missing_donkey/galilean_pilgrim.json',
-    jerusalem_local: './story/act1/case_a_missing_donkey/jerusalem_local.json',
-    eleazar_sadducee: './story/act1/case_a_missing_donkey/eleazar_sadducee.json',
-    sadducee_opposition: './story/act1/case_a_missing_donkey/sadducee_opposition.json',
+    peter_donkey: path + '/act1/case_a_missing_donkey/peter_donkey.json',
+    john_donkey: path + '/act1/case_a_missing_donkey/john_donkey.json',
+    galilean_pilgrim: path + '/act1/case_a_missing_donkey/galilean_pilgrim.json',
+    jerusalem_local: path + '/act1/case_a_missing_donkey/jerusalem_local.json',
+    eleazar_sadducee: path + '/act1/case_a_missing_donkey/eleazar_sadducee.json',
+    sadducee_opposition: path + '/act1/case_a_missing_donkey/sadducee_opposition.json',
 
     // Case B: The Overturned Tables (Temple Cleansing)
-    money_changer: './story/act1/case_b_overturned_tables/money_changer.json',
-    guard_report: './story/act1/case_b_overturned_tables/guard_report.json',
-    barabbas_insurgent: './story/act1/case_b_overturned_tables/barabbas_insurgent.json',
-    informant_bribe: './story/act1/case_b_overturned_tables/informant_bribe.json',
-    market_rumors: './story/act1/case_b_overturned_tables/market_rumors.json',
-    pontius_pilate: './story/act1/case_b_overturned_tables/pontius_pilate.json',
-    pilates_secretary: './story/act1/case_b_overturned_tables/pilates_secretary.json',
-    pharisee_critique: './story/act1/case_b_overturned_tables/pharisee_critique.json',
-    priest_objection: './story/act1/case_b_overturned_tables/priest_objection.json',
-    rumor_whisper: './story/act1/case_b_overturned_tables/rumor_whisper.json',
-    woman_cloak: './story/act1/case_b_overturned_tables/woman_cloak.json',
+    money_changer: path + '/act1/case_b_overturned_tables/money_changer.json',
+    guard_report: path + '/act1/case_b_overturned_tables/guard_report.json',
+    barabbas_insurgent: path + '/act1/case_b_overturned_tables/barabbas_insurgent.json',
+    informant_bribe: path + '/act1/case_b_overturned_tables/informant_bribe.json',
+    market_rumors: path + '/act1/case_b_overturned_tables/market_rumors.json',
+    pontius_pilate: path + '/act1/case_b_overturned_tables/pontius_pilate.json',
+    pilates_secretary: path + '/act1/case_b_overturned_tables/pilates_secretary.json',
+    pharisee_critique: path + '/act1/case_b_overturned_tables/pharisee_critique.json',
+    priest_objection: path + '/act1/case_b_overturned_tables/priest_objection.json',
+    rumor_whisper: path + '/act1/case_b_overturned_tables/rumor_whisper.json',
+    woman_cloak: path + '/act1/case_b_overturned_tables/woman_cloak.json',
+
+    // Act I Case C: The Barren Fig Tree
+    nathan_fig_tree: path + '/extras/nathan_fig_tree.json',
+    local_traveler: path + '/extras/local_traveler.json',
 
     // --- Act II: The Plots ---
     // Case A: The Silenced Teacher (Temple Authority)
-    scribe_intro: './story/act2/case_a_silenced_teacher/scribe_intro.json',
-    parable_meaning: './story/act2/case_a_silenced_teacher/parable_meaning.json',
-    parable_vineyard: './story/act2/case_a_silenced_teacher/parable_vineyard.json',
-    witness_healed: './story/act2/case_a_silenced_teacher/witness_healed.json',
-    teaching_mount: './story/act2/case_a_silenced_teacher/teaching_mount.json',
+    scribe_intro: path + '/act2/case_a_silenced_teacher/scribe_intro.json',
+    parable_meaning: path + '/act2/case_a_silenced_teacher/parable_meaning.json',
+    parable_vineyard: path + '/act2/case_a_silenced_teacher/parable_vineyard.json',
+    witness_healed: path + '/act2/case_a_silenced_teacher/witness_healed.json',
+    teaching_mount: path + '/act2/case_a_silenced_teacher/teaching_mount.json',
 
     // Case B: The Price of Life (Lazarus Conspiracy)
-    temple_spy: './story/act2/case_b_lazarus_conspiracy/temple_spy.json',
-    annas_patriarch: './story/act2/case_b_lazarus_conspiracy/annas_patriarch.json',
-    martha_bethany: './story/act2/case_b_lazarus_conspiracy/martha_bethany.json',
-    nicodemus_conflicted: './story/act2/case_b_lazarus_conspiracy/nicodemus_conflicted.json',
-    simon_leper: './story/act2/case_b_lazarus_conspiracy/simon_leper.json',
+    temple_spy: path + '/act2/case_b_lazarus_conspiracy/temple_spy.json',
+    annas_patriarch: path + '/act2/case_b_lazarus_conspiracy/annas_patriarch.json',
+    martha_bethany: path + '/act2/case_b_lazarus_conspiracy/martha_bethany.json',
+    nicodemus_conflicted: path + '/act2/case_b_lazarus_conspiracy/nicodemus_conflicted.json',
+    simon_leper: path + '/act2/case_b_lazarus_conspiracy/simon_leper.json',
+
+    // Case C: The End of the Age (Olivet Discourse)
+    andrew_olivet: path + '/extras/andrew_olivet.json',
 
     // --- Act III: The Passion ---
     // Case A: The Broken Cup (Last Supper)
-    john_disciple: './story/act3/case_a_broken_cup/john_disciple.json',
-    rhoda_servant: './story/act3/case_a_broken_cup/rhoda_servant.json',
-    judas_iscariot: './story/act3/case_a_broken_cup/judas_iscariot.json',
-    upper_room_prep: './story/act3/case_a_broken_cup/upper_room_prep.json',
+
+    // --- Act III: The Passion ---
+    // Case A: The Broken Cup (Last Supper)
+    john_disciple: path + '/act3/case_a_broken_cup/john_disciple.json',
+    rhoda_servant: path + '/act3/case_a_broken_cup/rhoda_servant.json',
+    judas_iscariot: path + '/act3/case_a_broken_cup/judas_iscariot.json',
+    upper_room_prep: path + '/act3/case_a_broken_cup/upper_room_prep.json',
 
     // Case B: The Severed Ear (Gethsemane)
-    peter_defense: './story/act3/case_b_severed_ear/peter_defense.json',
-    secret_visit: './story/act3/case_b_severed_ear/secret_visit.json',
-    peter_defense_simple: './story/act3/case_b_severed_ear/peter_defense_simple.json',
+    peter_defense: path + '/act3/case_b_severed_ear/peter_defense.json',
+    secret_visit: path + '/act3/case_b_severed_ear/secret_visit.json',
+    peter_defense_simple: path + '/act3/case_b_severed_ear/peter_defense_simple.json',
 
     // Case C: The Midnight Tribunal (Sanhedrin Trial)
-    caiaphas_priest: './story/act3/case_c_midnight_tribunal/caiaphas_priest.json',
-    peter_denial: './story/act3/case_c_midnight_tribunal/peter_denial.json',
-    false_witness: './story/act3/case_c_midnight_tribunal/false_witness.json',
-    trial_rumors: './story/act3/case_c_midnight_tribunal/trial_rumors.json',
+    caiaphas_priest: path + '/act3/case_c_midnight_tribunal/caiaphas_priest.json',
+    peter_denial: path + '/act3/case_c_midnight_tribunal/peter_denial.json',
+    false_witness: path + '/act3/case_c_midnight_tribunal/false_witness.json',
+    trial_rumors: path + '/act3/case_c_midnight_tribunal/trial_rumors.json',
 
     // Case E: The Final Sacrifice (Crucifixion)
-    roman_assessment: './story/act3/case_e_final_sacrifice/roman_assessment.json',
-    simon_cyrene: './story/act3/case_e_final_sacrifice/simon_cyrene.json',
-    temple_curtain: './story/act3/case_e_final_sacrifice/temple_curtain.json',
-    centurion_witness: './story/act3/case_e_final_sacrifice/centurion_witness.json',
+    roman_assessment: path + '/act3/case_e_final_sacrifice/roman_assessment.json',
+    simon_cyrene: path + '/act3/case_e_final_sacrifice/simon_cyrene.json',
+    temple_curtain: path + '/act3/case_e_final_sacrifice/temple_curtain.json',
+    centurion_witness: path + '/act3/case_e_final_sacrifice/centurion_witness.json',
 
     // --- Act IV: Dawn of the New Age ---
     // Case A: The Empty Tomb (Resurrection)
-    mary_magdalene: './story/act4/case_a_empty_tomb/mary_magdalene.json',
-    execution_soldier: './story/act4/case_a_empty_tomb/execution_soldier.json',
-    joseph_arimathea: './story/act4/case_a_empty_tomb/joseph_arimathea.json',
+    mary_magdalene: path + '/act4/case_a_empty_tomb/mary_magdalene.json',
+    execution_soldier: path + '/act4/case_a_empty_tomb/execution_soldier.json',
+    joseph_arimathea: path + '/act4/case_a_empty_tomb/joseph_arimathea.json',
 
     // Case B: The Guard's Report (Roman Inquiry)
-    mary_resurrection: './story/act4/case_b_guards_report/mary_resurrection.json',
-    judas_betrayal: './story/act4/case_b_guards_report/judas_betrayal.json',
-    herods_servant: './story/act4/case_b_guards_report/herods_servant.json',
+    mary_resurrection: path + '/act4/case_b_guards_report/mary_resurrection.json',
+    judas_betrayal: path + '/act4/case_b_guards_report/judas_betrayal.json',
+    herods_servant: path + '/act4/case_b_guards_report/herods_servant.json',
 
     // Case C: Peter's Restoration (Sea of Galilee)
-    peter_restored: './story/act4/case_c_peters_restoration/peter_restored.json',
-    jesus_reinstatement: './story/act4/case_c_peters_restoration/jesus_reinstatement.json',
-    peter_reinstated: './story/act4/case_c_peters_restoration/peter_reinstated.json',
+    peter_restored: path + '/act4/case_c_peters_restoration/peter_restored.json',
+    jesus_reinstatement: path + '/act4/case_c_peters_restoration/jesus_reinstatement.json',
+    peter_reinstated: path + '/act4/case_c_peters_restoration/peter_reinstated.json',
 
     // --- System & Metadata ---
-    board_review: './story/system/board_review.json',
-    board_debate: './story/system/board_debate.json'
+    board_review: path + '/system/board_review.json',
+    board_debate: path + '/system/board_debate.json'
 };
 
 /**       .chat-hdr

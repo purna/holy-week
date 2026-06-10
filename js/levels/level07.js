@@ -3,7 +3,7 @@
  * Loop step: "Attend public teachings"
  */
 
-const baseNPCPath = './assets/dialogue/';
+const baseNPCPath = './story/extras/';
 
 export default {
     phase:    7,
@@ -42,7 +42,7 @@ export default {
             name:        'Annas the Patriarch',
             color:       0xffaa00,
             pos:         [18, 10],
-            storyFile:   baseNPCPath + 'annas_patriarch.ink',
+            storyFile:   baseNPCPath + 'annas_patriarch.json',
             hasDialogue: true,
             bubbleMsg:   'Governments are not built on passion. They are built on stone and historical continuity.',
             dialogueEvidence: ['sadducean_absolute_policy'],

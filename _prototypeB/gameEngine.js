@@ -12,8 +12,8 @@ import { EnvironmentManager } from "./environment.js";
 import { OrbitalSelectMatrixModal } from "./mapModal.js";
 import { GLTFLoader } from 'three/loaders/GLTFLoader';
 
-import { act1CaseA, act1CaseB } from "./act1_case.js";
-import { act2CaseA, act2CaseB } from "./act2_case.js";
+import { act1CaseA, act1CaseB, act1CaseC } from "./act1_case.js";
+import { act2CaseA, act2CaseB, act2CaseC } from "./act2_case.js";
 import { act3CaseA, act3CaseB, act3CaseC, act3CaseD, act3CaseE } from "./act3_case.js";
 import { act4CaseA, act4CaseB, act4CaseC } from "./act4_case.js";
 
@@ -57,8 +57,8 @@ export class GameEngine {
     this.worldEarth = null;
   }
 
-  registerAllCases() {
-    const cases = [act1CaseA, act1CaseB, act2CaseA, act2CaseB, act3CaseA, act3CaseB, act3CaseC, act3CaseD, act3CaseE, act4CaseA, act4CaseB, act4CaseC];
+registerAllCases() {
+    const cases = [act1CaseA, act1CaseB, act1CaseC, act2CaseA, act2CaseB, act2CaseC, act3CaseA, act3CaseB, act3CaseC, act3CaseD, act3CaseE, act4CaseA, act4CaseB, act4CaseC];
     cases.forEach(c => {
       if (CONFIG.unlockAllCases) c.requires = null;
       this.cm.registerCase(c);

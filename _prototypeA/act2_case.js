@@ -655,3 +655,239 @@ export const act2CaseB = {
     furtherReading: ["John 11:45–57", "John 12:9–11"],
   },
 };
+
+// ============================================================
+// CASE: The End of the Age  — difficulty 3 — Mount of Olives
+// BIBLICAL FOCUS: Matthew 24-25, Mark 13, Luke 21
+// PROPHECY: Daniel 9:27 | Joel 2:30-31 | Isaiah 13:10
+// ============================================================
+
+export const act2CaseC = {
+  id: "olivet_discourse",
+  title: "The End of the Age",
+  subtitle: "Overlooking Jerusalem, Jesus delivers a profound prophecy about the Temple's destruction and the signs of His return.",
+  location: "temple",
+  eventLocation: "Mount of Olives, overlooking Jerusalem",
+  timeOfDay: "day",
+  difficulty: 3,
+  requires: "lazarus_plot",
+  actLabel: "Act II",
+  color: 0x8b5cf6, // A deep blue/purple color
+  quest: { name: "End Times Prophecy", task: "Understand the signs of the end", cur: 0, tar: 7 },
+
+  // ── BIBLICAL CONTEXT ──────────────────────────────────────────────
+  biblicalContext: {
+    summary: `On Tuesday afternoon, after leaving the Temple courts, Jesus sat on the Mount of Olives with His disciples, overlooking Jerusalem. They asked Him about the destruction of the Temple and the signs of His coming and the end of the age. In response, Jesus delivered a lengthy and complex discourse, warning them of false messiahs, wars, famines, earthquakes, and persecutions, and urging them to be watchful and ready. He also taught parables like the Ten Virgins and the Talents, emphasizing preparedness and faithful stewardship.`,
+    significance: `The Olivet Discourse is Jesus's most extensive teaching on eschatology (the study of end times). It provides crucial insights into the future, blending prophecies about the destruction of Jerusalem (fulfilled in AD 70) with prophecies about His second coming. It emphasizes the need for spiritual vigilance and perseverance amidst tribulation.`,
+    historicalNote: `The Mount of Olives offered a panoramic view of the Temple and Jerusalem, providing a dramatic backdrop for Jesus's prophecies about its destruction. The disciples' questions were likely prompted by Jesus's earlier declaration that not one stone of the Temple would be left upon another (Matthew 24:2).`,
+  },
+
+  prophecies: [
+    {
+      reference: "Daniel 9:27",
+      id: "daniel_9_27",
+      icon: "🔮",
+      text: `"He will confirm a covenant with many for one 'seven.' In the middle of the 'seven' he will put an end to sacrifice and offering. And at the temple he will set up an abomination that causes desolation."`,
+      written: "~530 BC",
+      fulfilledBy: "Jesus's prophecy of the Temple's destruction and the 'abomination that causes desolation'",
+      gospelLink: "Matthew 24:15",
+      insight: "Jesus directly referenced Daniel's prophecy, linking it to the future destruction of the Temple and the desecration that would precede it, a warning to His disciples about the coming tribulation.",
+    },
+    {
+      reference: "Joel 2:30–31",
+      id: "joel_2_30_31",
+      icon: "🔮",
+      text: `"I will show wonders in the heavens and on the earth, blood and fire and billows of smoke. The sun will be turned to darkness and the moon to blood before the coming of the great and dreadful day of the LORD."`,
+      written: "~800 BC",
+      fulfilledBy: "Jesus's prophecy of cosmic signs preceding His return",
+      gospelLink: "Matthew 24:29",
+      insight: "Jesus incorporated ancient prophetic imagery of cosmic disturbances into His discourse, indicating that His return would be heralded by dramatic celestial events, fulfilling Joel's vision.",
+    },
+    {
+      reference: "Isaiah 13:10",
+      id: "isaiah_13_10",
+      icon: "🔮",
+      text: `"The stars of heaven and their constellations will not show their light. The rising sun will be darkened and the moon will not give its light."`,
+      written: "~700 BC",
+      fulfilledBy: "Jesus's description of the darkening of the sun and moon as signs of the end",
+      gospelLink: "Mark 13:24–25",
+      insight: "Isaiah's prophecy of cosmic darkness is echoed by Jesus, emphasizing the dramatic and unmistakable nature of the signs that will precede the end of the age and His glorious return.",
+    },
+  ],
+
+  intro: `It is Tuesday afternoon. Jesus has left the Temple, and as He sits on the Mount of Olives, His disciples approach Him privately. They are troubled by His words about the Temple's destruction and eager to know when these things will happen, and what signs will precede His coming and the end of the age. The air is thick with anticipation as Jesus begins to unveil future events, a complex tapestry of prophecy and warning.`,
+
+  suspects: [
+    { id: "none", name: "No One", role: "Divine Teaching", avatar: "❓", bibleRef: null },
+  ],
+
+  evidencePool: [
+    {
+      id: "temple_overlook_view",
+      name: "View of the Temple from Olivet",
+      type: "environmental",
+      icon: "🏛️",
+      location: "Mount of Olives",
+      desc: "The majestic view of the Jerusalem Temple complex, gleaming in the afternoon sun. Its grandeur makes Jesus's prophecy of its destruction all the more startling.",
+      bibleRef: "Matthew 24:1–2",
+      propheticLink: "The physical setting directly inspired the disciples' questions about the Temple's fate, linking Jesus's words to the tangible structure before them.",
+      investigatorNote: "The disciples' awe of the Temple's stones and buildings contrasts sharply with Jesus's prediction of its utter demolition.",
+    },
+    {
+      id: "disciples_questions_notes",
+      name: "Disciples' Questions (Written Notes)",
+      type: "analytical",
+      icon: "📝",
+      location: "Mount of Olives",
+      desc: "Notes scribbled by a disciple, detailing the three main questions posed to Jesus: 'When will these things be? What will be the sign of your coming? And of the end of the age?'",
+      bibleRef: "Matthew 24:3",
+      propheticLink: "These questions frame the entire discourse, revealing the disciples' immediate concerns about timing and signs, which Jesus then addresses with detailed prophecies.",
+      investigatorNote: "The disciples' questions show their expectation of a clear timeline and visible indicators for future events.",
+    },
+    {
+      id: "parable_of_virgins_notes",
+      name: "Parable of the Ten Virgins (Notes)",
+      type: "analytical",
+      icon: "🕯️",
+      location: "Mount of Olives",
+      desc: "A summary of the Parable of the Ten Virgins, emphasizing the need for preparedness and vigilance for the bridegroom's (Jesus's) return.",
+      bibleRef: "Matthew 25:1–13",
+      propheticLink: "This parable underscores the theme of watchfulness, a recurring motif in eschatological prophecies, urging believers to be ready for the unexpected timing of the Lord's return.",
+      investigatorNote: "The parable highlights the personal responsibility of each individual to be spiritually prepared.",
+    },
+    {
+      id: "cosmic_signs_references",
+      name: "Old Testament Cosmic Sign References",
+      type: "analytical",
+      relatedProphecy: "joel_2_30_31",
+      icon: "🌌",
+      location: "Mount of Olives",
+      desc: "A collection of Old Testament verses (e.g., Joel 2:30-31, Isaiah 13:10) that speak of the sun darkening, the moon turning to blood, and stars falling, which Jesus referenced in His discourse.",
+      bibleRef: "Matthew 24:29",
+      propheticLink: "Jesus's use of these ancient prophecies demonstrates the continuity of God's plan and the fulfillment of long-foretold cosmic disturbances as signs of the end.",
+      investigatorNote: "The consistency between Jesus's words and ancient prophecies reinforces the divine origin of His message.",
+    },
+  ],
+
+  npcs: [
+    {
+      id: "peter_olivet",
+      name: "Peter",
+      role: "Disciple, Questioner",
+      faction: "scribes",
+      avatar: "👨\u200d🦰",
+      profileFile: "peter",
+      color: 0xffaa44,
+      pos: [-10, 0, -5],
+      truthfulness: 0.8,
+      bibleRef: "Matthew 24:3",
+      hasDialogue: true,
+      storyFile: null, // Using inline dialogue
+      unlocksSuspects: ["peter_olivet"],
+      unlocksEvidence: ["disciples_questions_notes"],
+      background: "Simon Peter, ever eager for answers, was one of the disciples who privately asked Jesus about the timing of the Temple's destruction and the signs of His coming.",
+      dialogue: {
+        neutral: "We had just left the Temple. He said not one stone would be left. How could we not ask when?",
+        cautious: "He spoke of wars, famines, earthquakes... it sounded terrifying. But also of the gospel being preached to all nations.",
+        pressured: "He warned us about false prophets and deceivers. It makes you wonder who to trust in these last days.",
+        exposed: "He told us to be ready, like the wise virgins. To keep watch. It's a heavy burden, but a necessary one.",
+        repeat: "The future is in His hands. Our job is to be faithful.",
+      },
+      reactions: {
+        temple_overlook_view: { text: "Look at it! So grand, so solid. And He said it would all come down. It's hard to imagine.", isLie: false },
+        disciples_questions_notes: { text: "Yes, those were our questions. We wanted to know the 'when' and the 'how'. He gave us much more than we expected.", isLie: false },
+        parable_of_virgins_notes: { text: "The oil for our lamps... it's about being prepared, isn't it? Not just for the end, but for every day.", isLie: false },
+      },
+      contradictions: {},
+    },
+    {
+      id: "john_olivet",
+      name: "John",
+      role: "Disciple, Observer",
+      faction: "scribes",
+      avatar: "👨\u200d🦰",
+      profileFile: "john_apostle",
+      color: 0x66aaff,
+      pos: [10, 0, -8],
+      truthfulness: 0.9,
+      bibleRef: "Matthew 24:3",
+      hasDialogue: true,
+      storyFile: null, // Using inline dialogue
+      unlocksSuspects: ["john_olivet"],
+      unlocksEvidence: ["temple_overlook_view"],
+      background: "John, son of Zebedee, was among the inner circle who heard Jesus's Olivet Discourse. His Gospel often emphasizes themes of light, darkness, and the coming of Christ.",
+      dialogue: {
+        neutral: "He spoke of the end, but also of hope. The gospel must be proclaimed to all the world before the end comes.",
+        cautious: "The signs He described... wars, earthquakes, famines. These things have always happened. But He said they would intensify.",
+        pressured: "He spoke of a time of great tribulation, unlike any before. But also that those who endure to the end will be saved.",
+        exposed: "The destruction of the Temple was a warning. A physical sign of a spiritual reality. The end of one age, the beginning of another.",
+        repeat: "We must watch and pray. That was His command.",
+      },
+      reactions: {
+        temple_overlook_view: { text: "It's beautiful, isn't it? But He said its beauty would be shattered. A sobering thought.", isLie: false },
+        disciples_questions_notes: { text: "We wanted to understand. He gave us wisdom, not just dates.", isLie: false },
+        cosmic_signs_references: { text: "The sun darkened, the moon not giving its light... these are ancient prophecies. He confirmed they would come to pass.", isLie: false },
+      },
+      contradictions: {},
+    },
+    {
+      id: "thomas_olivet",
+      name: "Thomas",
+      role: "Disciple, Analytical",
+      faction: "scribes",
+      avatar: "🤔",
+      profileFile: "thomas",
+      color: 0x99ccff,
+      pos: [0, 0, 5],
+      truthfulness: 0.85,
+      bibleRef: "Matthew 24:3",
+      hasDialogue: true,
+      storyFile: null, // Using inline dialogue
+      unlocksSuspects: ["thomas_olivet"],
+      unlocksEvidence: ["parable_of_virgins_notes", "cosmic_signs_references"],
+      background: "Thomas, known for his analytical mind, would have carefully considered Jesus's prophecies, seeking to understand the practical implications of such profound teachings.",
+      dialogue: {
+        neutral: "He spoke of many things. The destruction of the Temple, the signs of His coming, the judgment of the nations.",
+        cautious: "The parables He told, like the Ten Virgins and the Talents, were about being prepared. It's not enough to just hear the words.",
+        pressured: "He said no one knows the day or hour, not even the angels. Only the Father. That makes planning difficult.",
+        exposed: "The most important thing is not to predict the exact moment, but to live faithfully in the present, doing what He has commanded, until He returns.",
+        repeat: "We must be ready. That is the essence of it.",
+      },
+      reactions: {
+        disciples_questions_notes: { text: "We wanted a clear timeline. He gave us principles for living in the meantime.", isLie: false },
+        parable_of_virgins_notes: { text: "The oil in the lamps... it's about our spiritual readiness, our inner life. Not just outward show.", isLie: false },
+        cosmic_signs_references: { text: "These signs are not for us to fear, but to recognize. To know that His coming is near.", isLie: false },
+      },
+      contradictions: {},
+    },
+  ],
+
+  deductions: {
+    "temple_overlook_view+disciples_questions_notes": {
+      link: {
+        text: "The physical view of the Temple from the Mount of Olives directly prompted the disciples' questions about its destruction and the end of the age.",
+        insight: "Jesus used the immediate context of the magnificent Temple to launch into profound prophecies about its future demolition and the broader eschatological timeline, connecting the visible present with the unseen future.",
+        isKey: true,
+        bibleRef: "Matthew 24:1–3",
+      },
+    },
+    "parable_of_virgins_notes+cosmic_signs_references": {
+      compare: {
+        text: "Jesus's parables emphasize preparedness and faithful living, while His references to cosmic signs highlight the dramatic, undeniable nature of His return.",
+        insight: "The discourse balances two aspects of end-times teaching: the personal responsibility to be ready (parables) and the grand, cosmic events that will signal the culmination of history (prophecies).",
+        isKey: true,
+        bibleRef: "Matthew 25:1–13; Matthew 24:29",
+      },
+    },
+  },
+
+  truth: {
+    culprit: "none",
+    motive: "The Olivet Discourse was Jesus's comprehensive teaching to His disciples, preparing them for future events, including the destruction of Jerusalem and His second coming, and urging them to live in constant readiness and faithfulness.",
+    method: "Sitting on the Mount of Olives, Jesus responded to His disciples' questions by delivering a detailed prophecy that interwove predictions about the fall of Jerusalem with signs of the end of the age. He used parables to illustrate the importance of vigilance, perseverance, and wise stewardship.",
+    lesson: "The Olivet Discourse teaches that while the timing of the end is unknown, the signs will be clear, and believers are called to be watchful, faithful, and productive. It underscores Jesus's authority as a prophet who accurately foretold future events, providing both warning and hope.",
+    prophesyFulfilled: ["Daniel 9:27", "Joel 2:30–31", "Isaiah 13:10"],
+    furtherReading: ["Matthew 24:1–51", "Matthew 25:1–46", "Mark 13:1–37", "Luke 21:5–36"],
+  },
+};
+

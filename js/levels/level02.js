@@ -3,7 +3,7 @@
  * Loop step: "Hear rumours and pick up quests"
  */
 
-const baseNPCPath = './assets/dialogue/';
+const baseNPCPath = './story/extras/';
 
 export default {
     phase:    2,

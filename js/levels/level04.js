@@ -3,7 +3,7 @@
  * Loop step: "Complete tasks/actions"
  */
 
-const baseNPCPath = './assets/dialogue/';
+const baseNPCPath = './story/extras/';
 
 export default {
     phase:    4,

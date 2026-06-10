@@ -3,7 +3,7 @@
  * Loop step: "Unlock deeper conversations"
  */
 
-const baseNPCPath = './assets/dialogue/';
+const baseNPCPath = './story/extras/';
 
 export default {
     phase:    6,
