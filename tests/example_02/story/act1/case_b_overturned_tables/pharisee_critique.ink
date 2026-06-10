@@ -4,6 +4,7 @@
 // CASE: The Silenced Teacher
 // CASE ID: authority_challenged
 // SOURCE: ORPHAN FILE (not referenced in any case file)
+// BIBLE: John 9 - Blind man instructed him to wash in the Pool of Siloam, Mark 12:34 , Daniel 7:13
 // ------------------------------------------------------------
 // ============================================================
 //
@@ -25,6 +26,11 @@ He quoted Daniel 7:13 — the Son of Man coming with the clouds of heaven. He cl
 === exposed ===
 I asked Him about the greatest commandment — truly asked. I wanted to trap Him. Instead He answered with a simplicity that shattered my categories. "Love God with all your heart, soul, mind, and strength, and your neighbour as yourself. On these two commands hang all the Law and the Prophets."
 * [That stopped you.] -> closing
+* [What happened.] -> violence
+=== violence ===
+A rich young man hread his words but went away said. He couldn't give up all his wealth.
+
+-> closing
 === closing ===
-You are not far from the kingdom of God. Those were His words to me. I have thought about nothing else since.
+You are not far from the kingdom of God (Mark 12:34). Those were His words to me. I have thought about nothing else since.
 -> DONE

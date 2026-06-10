@@ -44,8 +44,8 @@ You trace my steps with your ink and your parchment, little scribe. You think yo
 Thirty pieces of silver. The price of a slave. That is what the Temple assessed the Son of God to be worth. And they paid me to deliver Him.
 * [Why did you take it?] -> regret
 === regret ===
-I watched three years of expectation curdle into disappointment. The Messiah was supposed to be a king. Instead He washed feet. Instead He spoke of dying. The Zealots wanted a general. I wanted a winner. I was wrong.
+I watched three years of expectation curdle into disappointment. The Messiah was supposed to be a king. Riding on a donkey and not on a horse. Instead He washed feet. Instead He spoke of dying. The Zealots wanted a general. I wanted a winner. I was wrong.
 * [What happened to the money?] -> closing
 === closing ===
-Silver is a ledger entry. Disappointment is a fire. The Temple priests counted it out. I took it. And then I saw Him look at me from across the courtyard. I threw the silver at them and ran.
+The love of money is the route of all evil. The Temple priests counted it out. I took it. And then I saw Him look at me from across the courtyard. I threw the silver at them and ran. I can now longer live with what I have done.
 -> DONE

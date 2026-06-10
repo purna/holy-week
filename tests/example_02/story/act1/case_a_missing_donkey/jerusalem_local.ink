@@ -42,7 +42,7 @@ Everyone is yelling "Hosanna" like the Romans aren't watching from the Antonia t
 * [You think this is dangerous?] -> danger_path
 * [At least people have hope.] -> closing
 === crowd_reaction ===
-People were hacking palm branches off the trees out toward Jericho and dragging them all the way up the path. It's a miracle someone wasn't blinded by them. And the cloaks — whose garments are those? Left right in the dirt!
+People were hacking palm branches off the trees out toward Jericho and dragging them all the way up the path. It's a miracle someone wasn't blinded by them. And the cloaks — whose garments are those? Left right in the dirt! They were laying thier clocks on the ground. Welocmeing the kinginto the city. This was a man who had raised a man from the dead. Who as ever done such a thing before!
 * [That seems disrespectful.] -> closing
 * [Maybe it's intentional.] -> who_is_he
 === danger_path ===

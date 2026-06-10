@@ -34,7 +34,7 @@
 ->start
 
 === start ===
-Two men came for my donkey colt this morning. They said "The Lord needs it." I knew exactly what that meant. I've had Zechariah 9:9 on my wall for twenty years. "Your king comes, riding on a donkey." You think I was going to say no?
+Two men came for my donkey colt this morning. They said "The Lord needs it." I knew exactly what that meant. I've had the words of Zechariah 9:9 on my wall for twenty years. "Your king comes, riding on a donkey." You think I was going to say no?
 * [Why did you keep the colt untrained?] -> set_apart
 * [The rope was cut, not untied.] -> rope_question
 
@@ -49,7 +49,7 @@ The rope was cut? I didn't cut it — I untied the knot myself and handed the co
 * [You seem very certain about the prophecy.] -> set_apart
 
 === cloak_reveal ===
-I saw those cloaks go by — they used them as a saddle. That's also from the old accounts. When kings are anointed, people give what they have. It's an act of honour.
+I saw those cloaks go by — they used them as a saddle. That's also from the old accounts. When kings are anointed, people give what they have. It's an act of honour. The people were laying thier clocks on the grouns.
 * [And the palm branches?] -> palm_reveal
 * [That confirms royal intention.] -> scroll_reveal
 
@@ -58,7 +58,7 @@ That scroll fragment in the tent? It's mine. My grandfather gave it to me. Zecha
 * [Tell me about the crowd's reaction.] -> crowd_reveal
 
 === palm_reveal ===
-The palms — that brought tears to my eyes. In the days of the Maccabees, palms meant liberation. Those people understood the language of what was happening.
+The palms. People waving them as Jesus went by on the donkey.  — that brought tears to my eyes. In the days of the Maccabees, palms meant liberation. Those people understood the language of what was happening.
 * [And the cloaks?] -> cloak_reveal
 * [This wasn't random.] -> scroll_reveal
 

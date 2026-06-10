@@ -29,11 +29,24 @@ export const PROFILE_ID_MAP = {
   jemimah: "./characters/jemimah.json",
   eleazar: "./characters/eleazar.json",
   malachi_moneychanger: "./characters/malachi_moneychanger.json",
-  ananias_witness: "./characters/ananias_witness.json",
   trial_rumors: "./characters/trial_rumors.json",
   samuel_scribe: "./characters/samuel_scribe.json",
   nathanael_pharisee: "./characters/nathanael_pharisee.json",
   caiaphas: "./characters/caiaphas.json",
+  market_informant: "./characters/market_informant.json",
+  market_vendor: "./characters/market_vendor.json",
+  pontius_pilate: "./characters/pontius_pilate.json",
+  simon_pharisee: "./characters/simon_pharisee.json",
+  temple_priest: "./characters/temple_priest.json",
+  city_gossip: "./characters/city_gossip.json",
+  displaced_merchant: "./characters/displaced_merchant.json",
+  devout_follower: "./characters/devout_follower.json",
+  sadducee_authority: "./characters/sadducee_authority.json",
+  ananias_witness: "./characters/ananias_witness.json",
+  temple_merchant: "./characters/temple_merchant.json",
+  upper_room_prep: "./characters/upper_room_prep.json",
+  secret_visit: "./characters/secret_visit.json",
+  simon_cyrene: "./characters/simon_cyrene.json"
 };
 
 class CharacterLoader {
