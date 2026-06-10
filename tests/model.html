@@ -89,6 +89,79 @@
       50%  { transform: translateX(0); }
       100% { transform: translateX(100%); }
     }
+
+    /* ═══════════════════════════════════════════
+       MOBILE COMPASS CONTROLLER
+    ═══════════════════════════════════════════ */
+    #mobile-ctrl {
+      position: fixed;
+      bottom: 40px;
+      left: 40px;
+      width: 160px;
+      height: 160px;
+      z-index: 1000;
+      pointer-events: auto;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(0, 242, 255, 0.05);
+      border-radius: 50%;
+    }
+
+    #mobile-ctrl .ui-toggle {
+      position: absolute;
+      pointer-events: auto;
+      margin: 0;
+      width: clamp(44px, 10vmin, 56px);
+      height: clamp(44px, 10vmin, 56px);
+      min-width: 44px;
+      min-height: 44px;
+      background: rgba(0, 10, 20, 0.8);
+      border: 1px solid #00f2ff;
+      color: #00f2ff;
+      cursor: pointer;
+      font-size: 1.15em;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all .2s;
+      box-shadow: 0 0 10px rgba(0, 242, 255, 0.25);
+    }
+
+    #mobile-ctrl .ui-toggle:active {
+      transform: scale(.9);
+    }
+
+    #mobile-ctrl .ui-toggle.active {
+      background: rgba(0, 242, 255, 0.2);
+      border-color: #00f2ff;
+      color: #00f2ff;
+    }
+
+    #ctrl-up {
+      top: 0;
+      left: calc(50% - (clamp(44px, 10vmin, 56px) / 2));
+    }
+
+    #ctrl-down {
+      bottom: 0;
+      left: calc(50% - (clamp(44px, 10vmin, 56px) / 2));
+    }
+
+    #ctrl-left {
+      left: 0;
+      top: calc(50% - (clamp(44px, 10vmin, 56px) / 2));
+    }
+
+    #ctrl-right {
+      right: 0;
+      top: calc(50% - (clamp(44px, 10vmin, 56px) / 2));
+    }
+
+    #ctrl-jump {
+      top: calc(50% - (clamp(44px, 10vmin, 56px) / 2));
+      left: calc(50% - (clamp(44px, 10vmin, 56px) / 2));
+      background: rgba(0, 242, 255, 0.15);
+    }
   </style>
 </head>
 <body>
@@ -100,6 +173,15 @@
 
   <div id="info">LOADING ARTWORK/earth.glb &amp; artwork/city.glb ...</div>
   <div id="wipe-overlay"></div>
+
+  <!-- ══════════════ MOBILE CONTROLLER ══════════════ -->
+  <div id="mobile-ctrl">
+    <button id="ctrl-up" class="ui-toggle"><i class="fas fa-chevron-up"></i></button>
+    <button id="ctrl-left" class="ui-toggle"><i class="fas fa-chevron-left"></i></button>
+    <button id="ctrl-jump" class="ui-toggle"><i class="fas fa-circle"></i></button>
+    <button id="ctrl-down" class="ui-toggle"><i class="fas fa-chevron-down"></i></button>
+    <button id="ctrl-right" class="ui-toggle"><i class="fas fa-chevron-right"></i></button>
+  </div>
 
   <script type="importmap">
     {
@@ -163,7 +245,7 @@
       mass: 1,
       shape: new CANNON.Sphere(0.6),
       fixedRotation: true,
-      linearDamping: 0.1
+      linearDamping: 0.9
     });
     world.addBody(pBody);
 
@@ -356,27 +438,24 @@
       }
 
       let moveDir = new THREE.Vector3(0, 0, 0);
-      const playerSpeed = 24;
-      const moveForce = 120;
       const up = pPos.clone().sub(planetCenter).normalize();
 
-      const camFwd = new THREE.Vector3().copy(up).cross(camHeading).normalize();
+      const camFwd = pPos.clone().sub(camera.position).projectOnPlane(up).normalize();
       const camRgt = new THREE.Vector3().crossVectors(up, camFwd).normalize();
-
       if (keys['KeyW'] || keys['ArrowUp']) moveDir.add(camFwd);
       if (keys['KeyS'] || keys['ArrowDown']) moveDir.sub(camFwd);
       if (keys['KeyA'] || keys['ArrowLeft']) moveDir.add(camRgt);
       if (keys['KeyD'] || keys['ArrowRight']) moveDir.sub(camRgt);
+      if (mouseTarget) {
+        const toMouse = mouseTarget.clone().sub(pPos).projectOnPlane(up);
+        if (toMouse.length() > 2) moveDir.add(toMouse.normalize());
+        else mouseTarget = null;
+      }
 
-      if (started && moveDir.lengthSq() > 0) {
+      if (started && moveDir.length() > 0) {
         moveDir.normalize();
-        camHeading.lerp(moveDir.clone().projectOnPlane(up).normalize(), 0.15).normalize();
-        const force = new CANNON.Vec3(
-          moveDir.x * moveForce,
-          moveDir.y * moveForce,
-          moveDir.z * moveForce
-        );
-        pBody.applyForce(force, pBody.position);
+        camHeading.lerp(moveDir, 0.1).normalize();
+        pBody.velocity.set(moveDir.x * 18, moveDir.y * 18, moveDir.z * 18);
       }
 
       playerMesh.position.copy(pBody.position);
