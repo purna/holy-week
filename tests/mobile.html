@@ -1043,6 +1043,8 @@
     <p class="hint">WASD / Arrow Keys to move · Click to approach · Space to jump</p>
   </div>
 
+  <div id="info" style="display:none"></div>
+
   <!-- ══════════════ WIN SCREEN ══════════════ -->
   <div id="win-screen" class="overlay hidden">
     <h1>Investigation Complete</h1>
@@ -1143,14 +1145,27 @@
   <!-- ══════════════ WIPE ══════════════ -->
   <div id="wipe-overlay"></div>
 
-<script type="importmap">
-{ "imports": { "three": "https://unpkg.com/three@0.160.0/build/three.module.js", "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/", "cannon-es": "https://unpkg.com/cannon-es@0.20.0/dist/cannon-es.js" } }
-</script>
+  <script type="importmap">
+  { "imports": { "three": "https://unpkg.com/three@0.160.0/build/three.module.js", "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/", "cannon-es": "https://unpkg.com/cannon-es@0.20.0/dist/cannon-es.js" } }
+  </script>
 
-   <script type="module">
-     import * as THREE from 'three';
-     import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
-     import * as CANNON from 'cannon-es';
+  <script type="module">
+    import * as THREE from 'three';
+    import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+    import * as CANNON from 'cannon-es';
+
+    /* ═══════════════════════════════════════════════════════════════
+       PLAYER CONFIG
+    ═══════════════════════════════════════════════════════════════ */
+    const PLAYER_CONFIG = {
+      forwardSpeed: 160,
+      backwardSpeed: 18,
+      strafeSpeed: 22,
+      turnSpeed: 0.1,
+      jumpImpulse: 15,
+      gravity: -80,
+      jumpBuffer: 1.7
+    };
 
     /* ═══════════════════════════════════════════════════════════════
        LEVEL DATA — 10 Phases with inline NPC stories
@@ -1742,12 +1757,12 @@
        LEVEL SELECT MODAL  (adapted from LevelSelectModal.js)
     ═══════════════════════════════════════════════════════════════ */
     class LevelSelectModal {
-      constructor(lm) { this.lm = lm; this.overlay = null; this.renderer = null; this.scene = null; this.camera = null; this._raf = null; this._nodes3D = []; this._htmlNodes = []; this._dragging = false; this._lastMouse = { x: 0, y: 0 }; this._sph = { theta: 0.3, phi: Math.PI / 4, radius: 210 }; this._tSph = { ...this._sph }; this._tooltip = null; this._built = false; this._cityR = 80; }
-      open() { if (!this._built) this._build(); this.overlay.style.display = 'flex'; this._startRender(); this._syncStates(); }
+      constructor(lm) { this.lm = lm; this.overlay = null; this.renderer = null; this.scene = null; this.camera = null; this._raf = null; this._nodes3D = []; this._htmlNodes = []; this._dragging = false; this._lastMouse = { x: 0, y: 0 }; this._sph = { theta: 0.3, phi: Math.PI / 4, radius: 210 }; this._tSph = { ...this._sph }; this._tooltip = null; this._built = false; this._cityR = 80; this._cityEarth = null; this._cityModel = null; this._cityReady = false; }
+      async open() { if (!this._built) await this._build(); this.overlay.style.display = 'flex'; this._startRender(); this._syncStates(); }
       close() { if (this.overlay) this.overlay.style.display = 'none'; this._stopRender(); }
       refresh() { if (this._built) this._syncStates(); }
 
-      _build() {
+      async _build() {
         this._built = true;
         const ov = document.createElement('div');
         ov.id = 'level-select-overlay';
@@ -1805,10 +1820,57 @@
         this.scene.add(new THREE.AmbientLight(0x334455, 0.8));
         const rim = new THREE.DirectionalLight(0x64ffda, 0.5); rim.position.set(100, 150, 80); this.scene.add(rim);
         const warm = new THREE.DirectionalLight(0xffaa44, 0.4); warm.position.set(-80, 60, -100); this.scene.add(warm);
-        this._buildStars(); this._buildCity(); this._buildNodes3D(); this._buildHTMLNodes();
+      
+        await this._reuseOuterModels();
+        if (!this._cityReady) this._buildProceduralCity();
+        this._buildStars();
+        this._buildNodes3D();
+        this._buildHTMLNodes();
         this._buildTreeSidebar();
         this._bindControls(cw);
         window.addEventListener('resize', () => this._onResize());
+      }
+
+      _measureMesh(obj) {
+        const box = new THREE.Box3().setFromObject(obj);
+        const size = box.getSize(new THREE.Vector3());
+        const center = box.getCenter(new THREE.Vector3());
+        const maxDim = Math.max(size.x, size.y, size.z);
+        return { box, size, center, diameter: maxDim, radius: maxDim / 2 };
+      }
+
+      _useLoadedModels(earthModel, cityModel) {
+        let sphereMesh = null;
+        earthModel.traverse((c) => { if (c.isMesh && (!c.name || c.name === '' || c.name === 'Sphere.001')) sphereMesh = c; });
+        if (!sphereMesh) earthModel.traverse((c) => { if (c.isMesh && !sphereMesh) sphereMesh = c; });
+        if (!sphereMesh) return;
+        const m = this._measureMesh(sphereMesh);
+        this._cityR = m.radius * 0.3;
+        this.scene.children = this.scene.children.filter(c => !(c.isMesh && c.geometry && c.geometry.type === 'IcosahedronGeometry'));
+        const earthClone = earthModel.clone();
+        earthClone.scale.setScalar(0.3);
+        this.scene.add(earthClone);
+        if (cityModel) {
+          const cityClone = cityModel.clone();
+          cityClone.scale.setScalar(0.3);
+          this.scene.add(cityClone);
+          this._cityModel = cityClone;
+        }
+        this._cityReady = true;
+        this._nodes3D = [];
+        const existingNodes = this._canvasWrap.querySelectorAll('.lsm-node-dot, .lsm-node-label');
+        existingNodes.forEach(n => n.remove());
+        this._htmlNodes = [];
+        this._buildNodes3D();
+        this._buildHTMLNodes();
+        this._buildTreeSidebar();
+        this._syncStates();
+        this._bindControls(this._canvasWrap);
+      }
+
+      _reuseOuterModels() {
+        if (!earthModel) return;
+        this._useLoadedModels(earthModel, cityModel);
       }
 
       _buildStars() {
@@ -1817,7 +1879,7 @@
         geo.setAttribute('position', new THREE.Float32BufferAttribute(p, 3));
         this.scene.add(new THREE.Points(geo, new THREE.PointsMaterial({ color: 0x88aacc, size: 1.1, transparent: true, opacity: 0.65 })));
       }
-      _buildCity() {
+      _buildProceduralCity() {
         const R = this._cityR;
         this.scene.add(new THREE.Mesh(new THREE.IcosahedronGeometry(R, 4), new THREE.MeshStandardMaterial({ color: 0x8B7355, roughness: 0.95 })));
         const bCols = [0xc4a882, 0xb8956a, 0xd4b896, 0xa08060, 0xc8aa78];
@@ -2052,12 +2114,13 @@
       getCurrentData() { return this.currentData; }
     }
 
-/* ═══════════════════════════════════════════════════════════════
-        THREE.JS SCENE SETUP — GLB Loading
-     ═══════════════════════════════════════════════════════════════ */
+    /* ═══════════════════════════════════════════════════════════════
+       THREE.JS SCENE SETUP
+    ═══════════════════════════════════════════════════════════════ */
+    let planetR = 50;
     const scene = new THREE.Scene();
     scene.background = new THREE.Color(0x080604);
-    scene.fog = new THREE.FogExp2(0x080604, 0.0011);
+    scene.fog = new THREE.Fog(0x080604, 22, 90);
 
     const camera = new THREE.PerspectiveCamera(65, window.innerWidth / window.innerHeight, 0.1, 5000);
     const renderer = new THREE.WebGLRenderer({ antialias: true });
@@ -2076,18 +2139,22 @@
     sun.shadow.mapSize.width = 2048; sun.shadow.mapSize.height = 2048;
     scene.add(sun);
 
-    let planetR = null;
+    // Stars
+    const starGeo = new THREE.BufferGeometry();
+    const starPos = [];
+    for (let i = 0; i < 1500; i++) { const v = new THREE.Vector3().randomDirection().multiplyScalar(Math.random() * 2000 + 100); starPos.push(v.x, v.y, v.z); }
+    starGeo.setAttribute('position', new THREE.Float32BufferAttribute(starPos, 3));
+    scene.add(new THREE.Points(starGeo, new THREE.PointsMaterial({ color: 0xcc9966, size: 1.4, transparent: true, opacity: 0.6 })));
+
+    let nativePlanetRadius = null;
     let planetBody = null;
+
+    // ───────────── Load earth.glb ─────────────
+    const info = document.getElementById('info') || { innerText: '' };
+    const loader = new GLTFLoader();
     let earthModel = null;
     let cityModel = null;
-
-    const info = document.createElement('div');
-    info.id = 'info';
-    info.style.cssText = 'position:fixed;top:16px;left:0;width:100%;text-align:center;color:#64ffda;font-family:\'Source Code Pro\',monospace;font-size:.75rem;pointer-events:none;z-index:100;';
-    info.textContent = 'Loading artwork/earth.glb...';
-    document.body.appendChild(info);
-
-    const loader = new GLTFLoader();
+    let glbReady = false;
 
     function measureMesh(obj) {
       const box = new THREE.Box3().setFromObject(obj);
@@ -2098,8 +2165,9 @@
     }
 
     loader.load('../artwork/earth.glb', (gltfEarth) => {
-      info.textContent = 'artwork/earth.glb loaded — loading city...';
+      info.innerText = 'artwork/earth.glb LOADED — measuring...';
       earthModel = gltfEarth.scene;
+      earthModel.traverse((c) => { c.castShadow = true; c.receiveShadow = true; });
       scene.add(earthModel);
       earthModel.updateMatrixWorld(true);
 
@@ -2114,58 +2182,119 @@
       }
 
       const m = measureMesh(sphereMesh);
-      planetR = m.radius;
+      nativePlanetRadius = m.radius;
+      planetR = nativePlanetRadius;
+      console.log('[earth] center:', m.center.toArray().map(v => v.toFixed(4)).join(', '));
+      console.log('[earth] size:', m.size.toArray().map(v => v.toFixed(4)).join(', '));
 
-      planetBody = new CANNON.Body({ mass: 0, shape: new CANNON.Sphere(planetR) });
+      info.innerText = `EARTH measured — native radius = ${nativePlanetRadius.toFixed(4)} units. Loading city...`;
+
+      // Replace simple sphere with accurate mesh collider
+      const earthGeom = sphereMesh.geometry.clone();
+      sphereMesh.updateWorldMatrix(true, false);
+      earthGeom.applyMatrix4(sphereMesh.matrixWorld);
+      earthGeom.computeVertexNormals();
+      const earthPos = earthGeom.attributes.position;
+      const earthIdx = earthGeom.index;
+      const earthVerts = new Float32Array(earthPos.count * 3);
+      for (let i = 0; i < earthPos.count * 3; i++) {
+        earthVerts[i] = earthPos.array[i];
+      }
+      const earthTriMesh = new CANNON.Trimesh(earthVerts, new Uint32Array(earthIdx.array));
+      planetBody = new CANNON.Body({ mass: 0 });
+      planetBody.addShape(earthTriMesh);
       world.addBody(planetBody);
+      console.log(`[earth] Trimesh collider: ${earthPos.count} vertices`);
 
       loader.load('../artwork/city.glb', (gltfCity) => {
-        info.textContent = 'artwork/city.glb loaded — ready';
+        info.innerText = 'artwork/city.glb LOADED — building trimesh colliders';
         cityModel = gltfCity.scene;
+        cityModel.traverse((child) => { child.castShadow = true; child.receiveShadow = true; });
         cityModel.updateMatrixWorld(true);
         scene.add(cityModel);
+
+        let colliderCount = 0;
+        let totalVerts = 0;
 
         cityModel.traverse((child) => {
           if (!child.isMesh) return;
           const geom = child.geometry;
-          if (!geom.index) return;
-
+          if (!geom.index) {
+            console.warn('City mesh missing index, skipping:', child.name);
+            return;
+          }
           const baked = geom.clone();
           child.updateWorldMatrix(true, false);
           baked.applyMatrix4(child.matrixWorld);
           baked.computeVertexNormals();
-
           const pos = baked.attributes.position;
           const idx = baked.index;
+          totalVerts += pos.count;
           const verts = new Float32Array(pos.count * 3);
-          for (let i = 0; i < pos.count * 3; i++) verts[i] = pos.array[i];
-
+          for (let i = 0; i < pos.count * 3; i++) {
+            verts[i] = pos.array[i];
+          }
           const triMesh = new CANNON.Trimesh(verts, new Uint32Array(idx.array));
           const body = new CANNON.Body({ mass: 0 });
           body.addShape(triMesh);
           world.addBody(body);
+          colliderCount++;
         });
 
-        setTimeout(() => { info.remove(); }, 1500);
-        animate();
+        console.log(`[city] ${colliderCount} Trimesh colliders, ${totalVerts} total vertices`);
+
+        // ── Choose a safe spawn point on the planet surface ──
+        const raycaster2 = new THREE.Raycaster();
+        const outward = new THREE.Vector3();
+
+        function isSurfaceClear(candidate) {
+          outward.copy(candidate).normalize();
+          raycaster2.set(candidate, outward);
+          raycaster2.near = 2;
+          raycaster2.far = 25;
+          const hits = raycaster2.intersectObjects(cityModel.children, true);
+          return hits.length === 0;
+        }
+
+        const candidates = [];
+        const numCandidates = 48;
+        const phi = Math.PI * (3 - Math.sqrt(5));
+        for (let i = 0; i < numCandidates; i++) {
+          const y = 1 - (i / (numCandidates - 1)) * 2;
+          const rAtY = Math.sqrt(1 - y * y);
+          const theta = phi * i;
+          candidates.push(new THREE.Vector3(
+            Math.cos(theta) * rAtY, y, Math.sin(theta) * rAtY
+          ).multiplyScalar(nativePlanetRadius));
+        }
+
+        let startPos = candidates[0];
+        for (const cand of candidates) {
+          if (isSurfaceClear(cand)) { startPos = cand; break; }
+        }
+        startPos.normalize().multiplyScalar(nativePlanetRadius + 3);
+        pBody.position.set(startPos.x, startPos.y, startPos.z);
+        playerMesh.position.copy(startPos);
+        console.log('[spawn] player start:', startPos.toArray().map(v => v.toFixed(4)).join(', '));
+
+        vfx.planetR = planetR;
+        info.innerText = 'READY — click START to walk the Earth & explore the city';
+        glbReady = true;
       }, undefined, (err) => {
         console.error('city.glb load failed:', err);
-        info.textContent = 'ERROR loading city.glb';
+        info.innerText = 'ERROR loading city.glb — check console';
       });
     }, undefined, (err) => {
       console.error('earth.glb load failed:', err);
-      info.textContent = 'ERROR loading earth.glb';
+      info.innerText = 'ERROR loading earth.glb — check console';
     });
 
+    /* ═══ PHYSICS ═══ */
     const world = new CANNON.World();
     world.gravity.set(0, 0, 0);
     world.solver.iterations = 12;
-    world.gravity.set(0, 0, 0);
-    world.solver.iterations = 12;
-    world.addBody(new CANNON.Body({ mass: 0, shape: new CANNON.Sphere(planetR) }));
 
-    const pBody = new CANNON.Body({ mass: 1, shape: new CANNON.Box(new CANNON.Vec3(0.5, 1, 0.5)), fixedRotation: true, linearDamping: 0.1 });
-    pBody.position.set(planetR + 3, 0, 0);
+    const pBody = new CANNON.Body({ mass: 1, shape: new CANNON.Sphere(0.6), fixedRotation: true, linearDamping: 0.9 });
     world.addBody(pBody);
 
     const playerMesh = new THREE.Group();
@@ -2394,7 +2523,7 @@
       keys[e.code] = true;
       if (e.code === 'Space' && canJump && started) {
         const up = new THREE.Vector3().copy(pBody.position).normalize();
-        pBody.applyImpulse(new CANNON.Vec3(up.x * 12, up.y * 12, up.z * 12), pBody.position);
+        pBody.applyImpulse(new CANNON.Vec3(up.x * 15, up.y * 15, up.z * 15), pBody.position);
         canJump = false; beep(320, 'sine', 0.05);
       }
       if (e.code === 'Escape' && isDialogueOpen) closeDialogue();
@@ -2410,7 +2539,7 @@
       mouse2.x = (x / window.innerWidth) * 2 - 1;
       mouse2.y = -(y / window.innerHeight) * 2 + 1;
       raycaster.setFromCamera(mouse2, camera);
-      const hits = raycaster.intersectObject(planet);
+      const hits = raycaster.intersectObject(earthModel);
       if (hits.length) mouseTarget = hits[0].point;
     };
 
@@ -2466,7 +2595,7 @@
         e.preventDefault(); e.stopPropagation(); jEl.classList.add('active');
         if (canJump && started && !isDialogueOpen) {
           const up = new THREE.Vector3().copy(pBody.position).normalize();
-          pBody.applyImpulse(new CANNON.Vec3(up.x * 12, up.y * 12, up.z * 12), pBody.position);
+          pBody.applyImpulse(new CANNON.Vec3(up.x * 15, up.y * 15, up.z * 15), pBody.position);
           canJump = false; beep(320, 'sine', 0.05);
         }
       };
@@ -2479,6 +2608,7 @@
        START
     ═══════════════════════════════════════════════════════════════ */
     document.getElementById('btn-start').onclick = () => {
+      if (!glbReady) { info.innerText = 'LOADING... please wait'; return; }
       audioCtx.resume();
       const w = document.getElementById('wipe-overlay');
       w.classList.add('active');
@@ -2508,7 +2638,7 @@
       const dt = 1 / 60;
 
       vfx.update(dt, pPos, pVel, canJump);
-      world.gravity.set(up.x * -9.82, up.y * -9.82, up.z * -9.82);
+      world.gravity.set(up.x * -40, up.y * -40, up.z * -40);
       if (pPos.length() < planetR + 1.7) canJump = true;
 
       if (!started) { renderer.render(scene, camera); return; }
@@ -2555,28 +2685,29 @@
         if (lastNearId) lastNearId = null;
       }
 
-      // Movement
+      // Movement (fog.html style: camera-relative, velocity-based, point-and-click)
       if (!isDialogueOpen) {
-        const camFwd = new THREE.Vector3().copy(up).cross(camHeading).normalize();
+        const camFwd = pPos.clone().sub(camera.position).projectOnPlane(up).normalize();
         const camRgt = new THREE.Vector3().crossVectors(up, camFwd).normalize();
-        let moveDir = new THREE.Vector3();
+        let moveDir = new THREE.Vector3(0, 0, 0);
         if (keys['KeyW'] || keys['ArrowUp']) moveDir.add(camFwd);
         if (keys['KeyS'] || keys['ArrowDown']) moveDir.sub(camFwd);
         if (keys['KeyA'] || keys['ArrowLeft']) moveDir.add(camRgt);
         if (keys['KeyD'] || keys['ArrowRight']) moveDir.sub(camRgt);
-
-        // Override point-and-click target if manual movement keys are pressed
-        if (moveDir.lengthSq() > 0) mouseTarget = null;
-
         if (mouseTarget) {
-          const tm = mouseTarget.clone().sub(pPos).projectOnPlane(up);
-          if (tm.length() > 2) moveDir.add(tm.normalize()); else mouseTarget = null;
+          const toMouse = mouseTarget.clone().sub(pPos).projectOnPlane(up);
+          if (toMouse.length() > 2) moveDir.add(toMouse.normalize());
+          else mouseTarget = null;
         }
         if (moveDir.length() > 0) {
           moveDir.normalize();
-          camHeading.lerp(moveDir.projectOnPlane(up).normalize(), 0.15).normalize();
-          const moveForce = 120;
-          pBody.applyForce(new CANNON.Vec3(moveDir.x * moveForce, moveDir.y * moveForce, moveDir.z * moveForce), pBody.position);
+          camHeading.lerp(moveDir, 0.1).normalize();
+          const fwdSpeed = 28;
+          const backSpeed = 18;
+          const isForward = (keys['KeyW'] || keys['ArrowUp']) && !(keys['KeyS'] || keys['ArrowDown']);
+          const isBackward = (keys['KeyS'] || keys['ArrowDown']) && !(keys['KeyW'] || keys['ArrowUp']);
+          const speed = isForward ? fwdSpeed : isBackward ? backSpeed : 22;
+          pBody.velocity.set(moveDir.x * speed, moveDir.y * speed, moveDir.z * speed);
         }
       } else {
         pBody.velocity.set(0, 0, 0);
@@ -2586,8 +2717,18 @@
       playerMesh.lookAt(pPos.clone().add(camHeading.projectOnPlane(up).normalize()));
 
       camera.up.copy(up);
-      const tCam = pPos.clone().add(camHeading.clone().multiplyScalar(-30)).add(up.clone().multiplyScalar(16));
-      if (!isNaN(tCam.x)) camera.position.lerp(tCam, 0.05);
+      const baseTarget = pPos.clone()
+        .add(camHeading.clone().multiplyScalar(-30))
+        .add(up.clone().multiplyScalar(16));
+      
+      let camLerpSpeed = 0.05;
+      if (cityModel && earthModel) {
+        const occluderRay = new THREE.Raycaster(pPos, camera.position.clone().sub(pPos).normalize(), 0, 50);
+        const hits = occluderRay.intersectObject(cityModel, true);
+        const isOccluded = hits.length > 0 && hits[0].distance < pPos.distanceTo(camera.position);
+        camLerpSpeed = isOccluded ? 0.35 : 0.03;
+      }
+      camera.position.lerp(baseTarget, camLerpSpeed);
       camera.lookAt(pPos.clone().add(camHeading.clone().multiplyScalar(5)));
 
       renderer.render(scene, camera);

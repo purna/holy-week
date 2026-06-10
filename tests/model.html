@@ -532,9 +532,40 @@
       setTimeout(() => { document.getElementById('start-screen').style.display = 'none'; }, 500);
       setTimeout(() => {
         started = true;
+        setupMobileControls();
         info.innerText = 'EXPLORE: WASD walk, SPACE jump, click to move';
       }, 1000);
     };
+
+    /* ═══════════════════════════════════════════
+       MOBILE CONTROLS HELPERS
+    ═══════════════════════════════════════════ */
+    function setupMobileControls() {
+      const bind = (id, code) => {
+        const el = document.getElementById(id);
+        const start = (e) => { e.preventDefault(); e.stopPropagation(); keys[code] = true; el.classList.add('active'); };
+        const end = (e) => { e.preventDefault(); e.stopPropagation(); delete keys[code]; el.classList.remove('active'); };
+        el.addEventListener('touchstart', start); el.addEventListener('touchend', end);
+        el.addEventListener('mousedown', start); el.addEventListener('mouseup', end); el.addEventListener('mouseleave', end);
+      };
+      bind('ctrl-up', 'KeyW'); bind('ctrl-down', 'KeyS');
+      bind('ctrl-left', 'KeyA'); bind('ctrl-right', 'KeyD');
+
+      const jEl = document.getElementById('ctrl-jump');
+      const jStart = (e) => {
+        e.preventDefault(); e.stopPropagation(); jEl.classList.add('active');
+        if (canJump && started) {
+          const pPos = new THREE.Vector3(pBody.position.x, pBody.position.y, pBody.position.z);
+          const planetCenter = planetBody.position;
+          const up = pPos.clone().sub(planetCenter).normalize();
+          pBody.applyImpulse(new CANNON.Vec3(up.x * 15, up.y * 15, up.z * 15), pBody.position);
+          canJump = false; playBeep(300, 'sine', 0.05);
+        }
+      };
+      const jEnd = (e) => { e.preventDefault(); e.stopPropagation(); jEl.classList.remove('active'); };
+      jEl.addEventListener('touchstart', jStart); jEl.addEventListener('touchend', jEnd);
+      jEl.addEventListener('mousedown', jStart); jEl.addEventListener('mouseup', jEnd); jEl.addEventListener('mouseleave', jEnd);
+    }
   </script>
 </body>
 </html>
