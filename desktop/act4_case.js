@@ -517,7 +517,6 @@ export const act4CaseB = {
       },
       contradictions: {},
     },
-,
     {
       id: "mary_resurrection",
       name: "Mary (Resurrection)",
@@ -552,7 +551,6 @@ export const act4CaseB = {
         default: { text: "I have nothing more to add.", isLie: false },
       },
     },
-,
     {
       id: "herods_servant",
       name: "Herod's Servant",

@@ -20,16 +20,16 @@ export const DIALOGUE_ID_MAP = {
     money_changer: path + '/act1/case_b_overturned_tables/money_changer.json',
     guard_report: path + '/act1/case_b_overturned_tables/guard_report.json',
     barabbas_insurgent: path + '/act1/case_b_overturned_tables/barabbas_insurgent.json',
-    local_traveler: path + '/local_traveler.json',
+    local_traveler: path + '/extras/local_traveler.json',
     informant_bribe: path + '/act1/case_b_overturned_tables/informant_bribe.json',
     market_rumors: path + '/act1/case_b_overturned_tables/market_rumors.json',
     pontius_pilate: path + '/act1/case_b_overturned_tables/pontius_pilate.json',
     pilates_secretary: path + '/act1/case_b_overturned_tables/pilates_secretary.json',
     pharisee_critique: path + '/act1/case_b_overturned_tables/pharisee_critique.json',
     priest_objection: path + '/act1/case_b_overturned_tables/priest_objection.json',
-    
+
     // Case C: The Barren Fig Tree
-    nathan_fig_tree: path + '/nathan_fig_tree.json', // Assuming direct under story/
+    nathan_fig_tree: path + '/act1/case_c_fig_tree_incident/nathan_fig_tree.json', // Assuming direct under story/
     rumor_whisper: path + '/act1/case_b_overturned_tables/rumor_whisper.json',
     woman_cloak: path + '/act1/case_b_overturned_tables/woman_cloak.json',
 
@@ -50,7 +50,7 @@ export const DIALOGUE_ID_MAP = {
     simon_leper: path + '/act2/case_b_lazarus_conspiracy/simon_leper.json',
 
     // Case C: The End of the Age (Olivet Discourse)
-    andrew_olivet: path + '/andrew_olivet.json', // Assuming direct under story/
+    andrew_olivet: path + '/act2/case_c_end_of_the_age/andrew_olivet.json', // Assuming direct under story/
 
 
     // --- Act III: The Passion ---

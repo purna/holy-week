@@ -35,9 +35,9 @@ export class EnvironmentManager {
         }
 
         const dayColor = new THREE.Color(0x87ceeb);
-        const nightColor = new THREE.Color(0x020205);
+        const nightColor = new THREE.Color(0x050a15); // Deep navy instead of pure black
 
         this.scene.background.copy(nightColor.lerp(dayColor, dayMix));
-        this.torchLight.intensity = (1 - dayMix) * 4;
+        this.torchLight.intensity = (1 - dayMix) * 5; // Slightly stronger torch for visibility
     }
 }

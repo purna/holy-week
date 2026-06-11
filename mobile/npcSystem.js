@@ -2,10 +2,10 @@
 // NPC SYSTEM — state machines, dialogue, contradiction tracking
 // ============================================================
 
- const path = './../characters';
+const path = './../characters';
 
 export const PROFILE_ID_MAP = {
-  annas: path +"/annas.json",
+  annas: path + "/annas.json",
   martha: path + "/martha.json",
   nicodemus: path + "/nicodemus.json",
   peter: path + "/peter.json",
@@ -139,7 +139,7 @@ export class NPCSystem {
     return c ? c.npcs : [];
   }
 
- getNPC(id) {
+  getNPC(id) {
     return this.getNPCs().find(n => n.id === id) || null;
   }
 
@@ -167,14 +167,14 @@ export class NPCSystem {
     if (node && typeof node === 'object' && node.text) {
       const isCorrected = state.correctedLies.includes(mood);
       const text = isCorrected ? (node.correction || node.text) : node.text;
-      
+
       this._addMemory(npcId, { type: "talk", mood, isLie: node.isLie && !isCorrected });
-      return { 
-        speaker: npc.name, 
-        text, 
-        mood, 
-        isLie: node.isLie && !isCorrected, 
-        wasCorrected: isCorrected 
+      return {
+        speaker: npc.name,
+        text,
+        mood,
+        isLie: node.isLie && !isCorrected,
+        wasCorrected: isCorrected
       };
     }
 
@@ -203,24 +203,24 @@ export class NPCSystem {
         state.pressureLevel = Math.min(100, state.pressureLevel + 25);
         this._updateMood(npcId, state);
       }
-      
+
       // Check for prophecy unlock in reaction
       if (reaction.revealsProphecy) {
         this.caseManager.recordProphecyFound(reaction.revealsProphecy);
       }
-      
+
       this._addMemory(npcId, { type: "shown_evidence", evidenceId, reaction: reaction.text });
       return { speaker: npc.name, text: reaction.text, mood: state.mood, revealedClue: reaction.revealedClue || null, revealedProphecy: reaction.revealsProphecy || null };
     }
 
     // Generic reaction by type
     const genericReactions = {
-      physical:      "Hmm. I'm not sure how that connects to me.",
-      testimonial:   "That's not what I said at all.",
-      digital:       "I don't know anything about that data.",
+      physical: "Hmm. I'm not sure how that connects to me.",
+      testimonial: "That's not what I said at all.",
+      digital: "I don't know anything about that data.",
       environmental: "The environment? Could be anyone.",
-      analytical:    "Numbers can be misleading, you know.",
-      prophecy:      "A prophecy fulfilled? I see the connection now.",
+      analytical: "Numbers can be misleading, you know.",
+      prophecy: "A prophecy fulfilled? I see the connection now.",
     };
 
     const text = genericReactions[evidence.type] || "Interesting. So what?";
@@ -261,10 +261,10 @@ export class NPCSystem {
 
       this.caseManager.recordBreakthrough(npcId, key);
 
-      return { 
-        speaker: npc.name, 
-        text: contradiction.exposed, 
-        mood: state.mood, 
+      return {
+        speaker: npc.name,
+        text: contradiction.exposed,
+        mood: state.mood,
         breakthrough: true,
         correctedNode,
         revealedProphecy: contradiction.revealsProphecy || null

@@ -53,7 +53,7 @@ export class OrbitalSelectMatrixModal {
 
         // Load Earth Model
         const loader = new GLTFLoader();
-        loader.load('models/earth.glb', (gltf) => {
+        loader.load('../assets/models/earth.glb', (gltf) => {
             const model = gltf.scene;
 
             // Auto-scale normalization to ensure earth is solid and visible

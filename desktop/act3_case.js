@@ -1030,7 +1030,6 @@ export const act3CaseE = {
       },
       contradictions: {},
     },
-    ,
     {
       id: "upper_room_prep",
       name: "Upper Room Prep",

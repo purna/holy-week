@@ -7,24 +7,25 @@ export class AudioManager {
     this.timeAmbience = null;  // Day/night Howl instance
     this.currentAct = null;
 
+    const basePath = './../audio/';
     this.sounds = {
-      collect: 'audio/ping_pong.mp3',
-      clue: 'audio/ping_pong.mp3',
-      complete: 'audio/ping_pong.mp3',
-      talk: 'audio/ping_pong.mp3',
-      error: 'audio/ping_pong.mp3',
-      ui: 'audio/ping_pong.mp3',
-      day: 'audio/day.mp3',
-      night: 'audio/day.mp3'
+      collect: basePath + 'ping_pong.mp3',
+      clue: basePath + 'ping_pong.mp3',
+      complete: basePath + 'ping_pong.mp3',
+      talk: basePath + 'ping_pong.mp3',
+      error: basePath + 'ping_pong.mp3',
+      ui: basePath + 'ping_pong.mp3',
+      day: basePath + 'day.mp3',
+      night: basePath + 'day.mp3'
     };
 
     
     // Background music tracks for each act
     this.bgTracks = {
-      'Act I': 'audio/act1_sunlight_on_marble.mp3',
-      'Act II': 'audio/act2_shackles_on_the_stone.mp3',
-      'Act III': 'audio/act3_laurel_and_iron.mp3',
-      'Act IV': 'audio/act4_victory_at_the_sunlit_gate.mp3'
+      'Act I': basePath + 'act1_sunlight_on_marble.mp3',
+      'Act II': basePath + 'act2_shackles_on_the_stone.mp3',
+      'Act III': basePath + 'act3_laurel_and_iron.mp3',
+      'Act IV': basePath + 'act4_victory_at_the_sunlit_gate.mp3'
     };
     this.audioContext = null;
     this.ambienceSources = {};

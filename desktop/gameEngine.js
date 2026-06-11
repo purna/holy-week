@@ -36,13 +36,12 @@ export class GameEngine {
     this.activeCaseId = null;
 
     // --- WORLD DIMENSIONS ---
-    this.planetRadius = 10000; // The visual scale of the earth.glb
-    this.surfaceRadius = 9000; // The actual radius where characters stand. Lower this to sink them in.
+    this.planetRadius = 500; 
+    this.surfaceRadius = 500; // Sync with planet radius to prevent objects being buried
     
-    // Further increased radius for an even more expansive world feel
-    this.pPos = new THREE.Vector3(0, this.surfaceRadius + 1.1, 0); // 1.1 is half of player height (2.2)
+    this.pPos = new THREE.Vector3(0, this.surfaceRadius + 1.2, 0); 
     this.pVelocity = new THREE.Vector3();
-    this.camHeading = new THREE.Vector3(0, 0, -1);
+    this.camHeading = new THREE.Vector3(0, 0, -1); // Player looks towards the "north pole" where NPCs are clustered
     this.isGrounded = true;
     this.nearestNPC = null;
     this.inDialogue = false;
@@ -55,6 +54,11 @@ export class GameEngine {
     this.lockedEvidence = {};
     this.controls = new ControlsManager(this);
     this.worldEarth = null;
+
+    // Effects & World Objects
+    this.trailParticles = [];
+    this.worldObjects = [];
+    this.ambientParticles = null;
   }
 
 registerAllCases() {
@@ -69,10 +73,10 @@ registerAllCases() {
   init() {
     const container = document.getElementById('canvas-container');
     this.scene = new THREE.Scene();
-    this.scene.background = new THREE.Color(0x020306);
-    this.scene.fog = new THREE.FogExp2(0x020306, 0.015);
+    this.scene.background = new THREE.Color(0xADD8E6); // Light Blue
+    this.scene.fog = new THREE.FogExp2(0xADD8E6, 0.0015);
 
-    this.camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 5000);
+    this.camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 10000);
     this.renderer = new THREE.WebGLRenderer({ antialias: true });
     this.renderer.setSize(window.innerWidth, window.innerHeight);
     this.renderer.shadowMap.enabled = true;
@@ -80,39 +84,41 @@ registerAllCases() {
 
     this._initMobileUI();
 
-    const ambient = new THREE.AmbientLight(0xffffff, 0.2);
+    const ambient = new THREE.AmbientLight(0xffffff, 0.5); // Increased ambient light
     this.scene.add(ambient);
 
     // HemisphereLight provides a natural sky/ground fill, essential for seeing detail on a spherical world
-    this.hemiLight = new THREE.HemisphereLight(0xffffff, 0x444444, 0.5);
+    this.hemiLight = new THREE.HemisphereLight(0xffffff, 0x888888, 0.8); // Increased intensity
     this.scene.add(this.hemiLight);
 
-    this.sunLight = new THREE.DirectionalLight(0xffffff, 1.0);
+    this.sunLight = new THREE.DirectionalLight(0xffffff, 1.5); // Increased sun intensity
     this.sunLight.castShadow = true;
     this.scene.add(this.sunLight);
 
-    this.moonLight = new THREE.DirectionalLight(0x5588ff, 0.4);
+    this.moonLight = new THREE.DirectionalLight(0x5588ff, 0.8); // Increased moon intensity
     this.scene.add(this.moonLight);
 
     // Physical Ground Sphere (The surface the player "loads" on)
     const groundGeo = new THREE.SphereGeometry(this.surfaceRadius, 128, 128);
     const groundMat = new THREE.MeshStandardMaterial({ 
-      color: 0x0a0a0a, 
-      roughness: 1, 
+      color: 0x556655, // Visible forest green/grey ground
+      roughness: 0.9, 
       metalness: 0 
     });
     this.groundSphere = new THREE.Mesh(groundGeo, groundMat);
     this.groundSphere.receiveShadow = true;
     this.scene.add(this.groundSphere);
 
-    const geo = new THREE.ConeGeometry(0.6, 2.2, 8);
-    geo.rotateX(Math.PI / 2);
-    this.playerMesh = new THREE.Mesh(geo, new THREE.MeshStandardMaterial({ color: 0x00a884, roughness: 0.3, emissive: 0x002211 }));
+    const geo = (typeof THREE.CapsuleGeometry !== 'undefined') ? new THREE.CapsuleGeometry(0.5, 1.2, 4, 8) : new THREE.CylinderGeometry(0.5, 0.5, 2.2, 16);
+    this.playerMesh = new THREE.Mesh(geo, new THREE.MeshStandardMaterial({ color: 0x00a884, roughness: 0.5 }));
+    this.playerMesh.castShadow = true;
     this.playerMesh.position.copy(this.pPos);
     this.scene.add(this.playerMesh);
 
     this.torchLight = new THREE.PointLight(0x00f2ff, 0, 25, 1.5);
     this.playerMesh.add(this.torchLight);
+
+    this._initAmbientParticles();
 
     this.envManager = new EnvironmentManager(this.scene, this.sunLight, this.moonLight, this.torchLight, this.audio);
 
@@ -275,12 +281,17 @@ registerAllCases() {
     this.nearestNPC = null;
     this.inDialogue = false;
 
-    // Reset player velocity
+    // 1. Reset player and camera state for the new level
     this.pVelocity.set(0, 0, 0);
+    this.pPos.set(0, this.surfaceRadius + 1.2, 0); // Player starts at the "north pole"
+    this.camHeading.set(0, 0, -1);
 
-    // Reset environmental lighting
+    // 2. Map level time to environmental progress (as seen in mobile.html)
+    const timeMap = { 'day': 0.25, 'morning': 0.18, 'afternoon': 0.35, 'night': 0.6, 'dawn': 0.15 };
+    const startTime = timeMap[caseData.timeOfDay] || 0.25;
+
     if (this.envManager) {
-      this.envManager.timeProgress = 0.25;
+      this.envManager.timeProgress = startTime;
       this.envManager.wasDay = null; 
       this.envManager.update(false);
     }
@@ -297,15 +308,43 @@ registerAllCases() {
     }
 
     // Clean and rebuild world meshes
-    this.npcMeshes.forEach(m => this.scene.remove(m));
+    this.npcMeshes.forEach(m => (m.parent ? m.parent.remove(m) : this.scene.remove(m)));
     this.npcMeshes = [];
-    this.evidenceMeshes.forEach(m => this.scene.remove(m));
+    this.evidenceMeshes.forEach(m => (m.parent ? m.parent.remove(m) : this.scene.remove(m)));
     this.evidenceMeshes = [];
-    if (this.worldEarth) this.scene.remove(this.worldEarth);
+    this.worldObjects.forEach(m => (m.parent ? m.parent.remove(m) : this.scene.remove(m)));
+    this.worldObjects = [];
 
-    // Load the Act's specific world model (defaulting to earth.glb)
+    if (this.worldEarth) {
+      this.scene.remove(this.worldEarth); 
+      // Memory cleanup for mobile performance optimization
+      this.worldEarth.traverse(node => {
+        if (node.isMesh) {
+          node.geometry.dispose();
+          if (node.material.map) node.material.map.dispose();
+          node.material.dispose();
+        }
+      });
+    }
+
+    // 3. Load the specific environment model for this location
     const loader = new GLTFLoader();
-    const modelPath = caseData.worldModel || 'models/earth.glb';
+    let modelPath = caseData.worldModel;
+
+    if (!modelPath) {
+      const loc = (caseData.location || '').toLowerCase();
+      const assetsPath = '../assets/models/'; 
+      if (loc.includes('jerusalem')) modelPath = assetsPath + 'jerusalem.glb';
+      else if (loc.includes('garden')) modelPath = assetsPath + 'garden.glb';
+      else if (loc.includes('temple')) modelPath = assetsPath + 'temple.glb';
+      else if (loc.includes('upperroom')) modelPath = assetsPath + 'upper_room.glb';
+      else if (loc.includes('galilee')) modelPath = assetsPath + 'galilee.glb';
+      else modelPath = assetsPath + 'earth.glb'; // Fallback to earth.glb if specific model missing
+    }
+
+    // Transition UI for loading state
+    const wipeOverlay = document.getElementById('wipe-overlay');
+    if (wipeOverlay) wipeOverlay.classList.add('active');
     
     loader.load(modelPath, (gltf) => {
         this.worldEarth = gltf.scene;
@@ -315,23 +354,30 @@ registerAllCases() {
         const scaleFactor = (this.planetRadius * 2) / Math.max(size.x, size.y, size.z);
         this.worldEarth.scale.set(scaleFactor, scaleFactor, scaleFactor);
 
+        // Center the geometry to ensure the surface projection matches the visual mesh
+        const center = box.getCenter(new THREE.Vector3());
+        this.worldEarth.traverse(node => { if (node.isMesh) node.position.sub(center); });
+
         // Center the sphere at (0,0,0) for easier spherical gravity math
         this.worldEarth.position.set(0, 0, 0);
 
         this.worldEarth.traverse(node => {
             if (node.isMesh) {
                 node.receiveShadow = true;
-                node.material = new THREE.MeshToonMaterial({
-                    color: node.material.color,
-                    map: node.material.map
-                });
+                if (node.material) {
+                  node.material.roughness = 0.8;
+                  node.material.metalness = 0.1;
+                }
             }
         });
         this.scene.add(this.worldEarth);
-        
-        // Set initial player position on top of the sphere
-        this.pPos.set(0, this.surfaceRadius + 1.1, 0);
-        this.pVelocity.set(0, 0, 0);
+
+        // Populate level details ONLY after the terrain is ready to prevent occlusion
+        this._populateWorldPrimitives();
+        this._addLocationMarkers();
+        this._placeNPCs(caseData);
+
+        if (wipeOverlay) setTimeout(() => wipeOverlay.classList.remove('active'), 500);
     });
 
     this.collectedEvidence = [];
@@ -341,30 +387,207 @@ registerAllCases() {
       this.lockedEvidence[item.id] = item;
     });
 
-    (caseData.npcs || []).forEach(npc => {
-      if (!Array.isArray(npc.pos) || npc.pos.length < 3) return;
-      const box = new THREE.Mesh(new THREE.BoxGeometry(1.2, 2, 1.2), new THREE.MeshStandardMaterial({ color: npc.color }));
-      
-      // Project the defined position onto the sphere surface cluster around the North Pole
-      const offset = new THREE.Vector3(npc.pos[0], 0, npc.pos[2]);
-      const pos = new THREE.Vector3(0, this.surfaceRadius + 1, 0).add(offset);
-      pos.normalize().multiplyScalar(this.surfaceRadius + 1);
-      box.position.copy(pos);
-
-      // Align NPC to surface normal
-      const up = pos.clone().normalize();
-      box.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), up);
-
-      box.userData = { config: npc, type: 'npc', state: 'neutral' };
-      this.scene.add(box);
-      this.npcMeshes.push(box);
-    });
-
     this.updateHUD(caseData);
     this.controls.displayAlert(`Case: ${caseData.title}`);
 
     // Auto-open instructions for the case
     setTimeout(() => { if (window.showInstructionsModal) window.showInstructionsModal(); }, 1500);
+  }
+
+  _placeNPCs(caseData) {
+    (caseData.npcs || []).forEach(npc => {
+      if (!Array.isArray(npc.pos) || npc.pos.length < 3) return;
+      const npcGeo = new THREE.BoxGeometry(1.2, 2.2, 1.2);
+      const npcMat = new THREE.MeshStandardMaterial({ 
+        color: npc.color || 0x444444, 
+        emissive: npc.color, 
+        emissiveIntensity: 0.2 
+      });
+      const box = new THREE.Mesh(npcGeo, npcMat);
+      
+      const pos = this._projectToSurface(npc.pos[0], npc.pos[2], 1.1);
+      box.position.copy(pos);
+      box.castShadow = true;
+      box.receiveShadow = true;
+      this._alignToSurface(box);
+      box.userData = { config: npc, type: 'npc', state: 'neutral' };
+      this.npcMeshes.push(box);
+    });
+  }
+
+  // Helper to project local case coordinates onto the global spherical surface
+  _projectToSurface(x, z, surfaceOffset = 0) { // Renamed heightOffset to surfaceOffset for clarity
+    const pos = new THREE.Vector3(x, this.surfaceRadius, z); 
+    pos.normalize().multiplyScalar(this.surfaceRadius + surfaceOffset);
+    return pos;
+  }
+
+  // Helper to orient an object vertically relative to the planet's center
+  _alignToSurface(mesh) {
+    // Get world-space direction for 'up'
+    const up = mesh.position.clone().normalize(); 
+    mesh.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), up);
+
+    if (this.worldEarth) {
+      // Parent to the world model so it is "inside" the sphere object
+      mesh.position.divide(this.worldEarth.scale);
+      this.worldEarth.add(mesh);
+    } else {
+      this.scene.add(mesh);
+    }
+  }
+
+  _initAmbientParticles() {
+    const geo = new THREE.BufferGeometry();
+    const vertices = [];
+    for (let i = 0; i < 1500; i++) {
+      vertices.push((Math.random() - 0.5) * 400, (Math.random() - 0.5) * 400, (Math.random() - 0.5) * 400);
+    }
+    geo.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
+    this.ambientParticles = new THREE.Points(geo, new THREE.PointsMaterial({ color: 0xffffff, size: 0.4, transparent: true, opacity: 0.3 }));
+    this.scene.add(this.ambientParticles);
+  }
+
+  _populateWorldPrimitives() {
+    const gltfLoader = new GLTFLoader();
+
+    // --- Custom GLB Models from assets folder ---
+    // Assuming the 'assets' folder is at the same level as '_prototypeB'
+    const customModels = [
+        { path: '../assets/models/building_tall.glb', scale: 5, count: 5 },
+        { path: '../assets/models/building_short.glb', scale: 3, count: 10 },
+        { path: '../assets/models/tree_palm.glb', scale: 2, count: 15 },
+        { path: '../assets/models/archway.glb', scale: 4, count: 3 }
+    ];
+
+    customModels.forEach(modelDef => {
+        for (let i = 0; i < modelDef.count; i++) {
+            const x = (Math.random() - 0.5) * 180; // Wider spread for models
+            const z = (Math.random() - 0.5) * 180;
+            // Ensure we don't spawn directly on the center
+            if (Math.abs(x) < 10 && Math.abs(z) < 10) continue; // Avoid spawning too close to origin
+
+            gltfLoader.load(modelDef.path, (gltf) => {
+                const model = gltf.scene;
+                // Calculate height offset based on model's bounding box
+                const bbox = new THREE.Box3().setFromObject(model);
+                const height = bbox.max.y - bbox.min.y;
+                // Place the base of the model on the surface
+                const worldHeight = height * modelDef.scale;
+                const pos = this._projectToSurface(x, z, worldHeight / 2);
+                model.position.copy(pos);
+                this._alignToSurface(model); 
+                // Account for parent scale
+                const localScale = modelDef.scale / (this.worldEarth ? this.worldEarth.scale.x : 1);
+                model.scale.setScalar(localScale);
+                model.castShadow = true;
+                model.receiveShadow = true;
+                this.worldObjects.push(model);
+            }, undefined, (error) => {
+                console.warn(`Failed to load custom model ${modelDef.path}:`, error);
+                // Fallback to a primitive if GLB fails
+                const fallbackGeo = new THREE.BoxGeometry(modelDef.scale, modelDef.scale * 2, modelDef.scale);
+                const fallbackMat = new THREE.MeshStandardMaterial({ color: 0x888888 });
+                const fallbackMesh = new THREE.Mesh(fallbackGeo, fallbackMat);
+                const fallbackPos = this._projectToSurface(x, z, (modelDef.scale * 2) / 2);
+                fallbackMesh.position.copy(fallbackPos);
+                const localScale = 1 / (this.worldEarth ? this.worldEarth.scale.x : 1);
+                fallbackMesh.scale.setScalar(localScale);
+                this._alignToSurface(fallbackMesh);
+                fallbackMesh.castShadow = true;
+                fallbackMesh.receiveShadow = true;
+                this.worldObjects.push(fallbackMesh);
+            });
+        }
+    });
+
+    // --- Primitive Boxes/Cylinders for additional variety ---
+    const mat = new THREE.MeshStandardMaterial({ color: 0x333333 });
+    const boxGeo = new THREE.BoxGeometry(2, 2, 2);
+    const cylGeo = new THREE.CylinderGeometry(1, 1, 4, 12);
+
+    for (let i = 0; i < 30; i++) { // Fewer primitives now that custom models are added
+        const h = 5 + Math.random() * 10;
+        const w = 3 + Math.random() * 5;
+        const m = new THREE.Mesh(Math.random() > 0.5 ? new THREE.BoxGeometry(w, h, w) : new THREE.CylinderGeometry(w/2, w/2, h, 12), mat);
+        
+        const x = (Math.random() - 0.5) * 200; // Wider spread
+        const z = (Math.random() - 0.5) * 200;
+        if (Math.abs(x) < 10 && Math.abs(z) < 10) continue;
+
+        const pos = this._projectToSurface(x, z, h / 2);
+        m.position.copy(pos);
+        this._alignToSurface(m);
+        m.castShadow = true; m.receiveShadow = true;
+        this.worldObjects.push(m);
+    }
+
+    // --- Global golden collectibles (unchanged) ---
+    const collectGeo = new THREE.OctahedronGeometry(0.7);
+    const collectMat = new THREE.MeshStandardMaterial({ color: 0xffd700, emissive: 0xffaa00, emissiveIntensity: 0.5 });
+    for (let i = 0; i < 20; i++) {
+      const item = new THREE.Mesh(collectGeo, collectMat);
+      const pos = new THREE.Vector3().setFromSphericalCoords(this.surfaceRadius + 1.2, Math.random() * Math.PI, Math.random() * Math.PI * 2);
+      item.position.copy(pos);
+      item.userData = { type: 'collectable' };
+      this.scene.add(item);
+      this.worldObjects.push(item);
+    }
+  }
+
+  _addLocationMarkers() {
+    this.ls.getAllLocations().forEach(loc => {
+      const canvas = document.createElement('canvas');
+      canvas.width = 128; canvas.height = 32;
+      const ctx = canvas.getContext('2d');
+      ctx.fillStyle = 'rgba(0,0,0,0.7)'; ctx.fillRect(0,0,128,32);
+      ctx.fillStyle = 'cyan'; ctx.font = '16px monospace'; ctx.textAlign = 'center';
+      ctx.fillText(loc.id.toUpperCase(), 64, 22);
+      
+      const sprite = new THREE.Sprite(new THREE.SpriteMaterial({ map: new THREE.CanvasTexture(canvas), transparent: true }));
+      sprite.scale.set(12, 3, 1);
+      const hash = loc.id.length * 7;
+      sprite.position.setFromSphericalCoords(this.surfaceRadius + 30, (hash % 10)/10 * Math.PI, (hash % 20)/20 * Math.PI * 2);
+      this.scene.add(sprite);
+      this.worldObjects.push(sprite);
+    });
+  }
+
+  _clearWorldObjects() {
+    this.worldObjects.forEach(o => this.scene.remove(o));
+    this.worldObjects = [];
+  }
+
+  _updateEffects() {
+    // Trail effect
+    if (this.pVelocity.length() > 2 && this.isGrounded) {
+      const p = new THREE.Mesh(new THREE.SphereGeometry(0.15, 4, 4), new THREE.MeshBasicMaterial({ color: 0x443322, transparent: true, opacity: 0.5 }));
+      p.position.copy(this.pPos).add(new THREE.Vector3(0, -0.8, 0).applyQuaternion(this.playerMesh.quaternion));
+      this.scene.add(p);
+      this.trailParticles.push({ mesh: p, life: 1.0 });
+    }
+    for (let i = this.trailParticles.length - 1; i >= 0; i--) {
+      const t = this.trailParticles[i]; t.life -= 0.03;
+      t.mesh.scale.setScalar(t.life); t.mesh.material.opacity = t.life;
+      if (t.life <= 0) { this.scene.remove(t.mesh); this.trailParticles.splice(i, 1); }
+    }
+
+    if (this.ambientParticles) this.ambientParticles.position.copy(this.pPos);
+
+    this.worldObjects.forEach(obj => {
+      if (obj.userData?.type === 'collectable') {
+        obj.rotation.y += 0.03; obj.rotation.z += 0.01;
+      }
+    });
+
+    // Collect primitives
+    for (let i = this.worldObjects.length - 1; i >= 0; i--) {
+      const obj = this.worldObjects[i];
+      if (obj.userData?.type === 'collectable' && this.pPos.distanceTo(obj.position) < 2) {
+        this.scene.remove(obj); this.worldObjects.splice(i, 1);
+        this.audio.playCollect();
+      }
+    }
   }
 
   updateHUD(caseData) {
@@ -809,12 +1032,12 @@ registerAllCases() {
       new THREE.SphereGeometry(0.5, 16, 16),
       new THREE.MeshStandardMaterial({ color: 0x00ffaa, emissive: 0x00ffaa, emissiveIntensity: 0.8 })
     );
-    const offset = new THREE.Vector3(ev.pos[0], 0, ev.pos[2]);
-    const pos = new THREE.Vector3(0, this.planetRadius + 1, 0).add(offset);
-    pos.normalize().multiplyScalar(this.planetRadius + 1);
+    
+    const pos = this._projectToSurface(ev.pos[0], ev.pos[2], 1);
     sphere.position.copy(pos);
+    this._alignToSurface(sphere);
+    
     sphere.userData = { dataRef: ev, newlyUnlocked: true };
-    this.scene.add(sphere);
     this.evidenceMeshes.push(sphere);
     this.controls.displayAlert(`Evidence revealed: ${ev.name}`);
   }
@@ -882,6 +1105,19 @@ registerAllCases() {
       const targetVel = move.multiplyScalar(speed);
       this.pVelocity.copy(targetVel);
     }
+    else {
+      // Apply friction damping when no keys are pressed
+      const friction = this.isGrounded ? 0.75 : 0.98;
+      this.pVelocity.multiplyScalar(friction);
+      
+      if (this.isGrounded) {
+          // Kill tangential drift faster when standing
+          const tangentVel = this.pVelocity.clone().sub(up.clone().multiplyScalar(this.pVelocity.dot(up)));
+          if (tangentVel.length() < 0.5) {
+              this.pVelocity.set(0, 0, 0);
+          }
+      }
+    }
 
     // 3. Spherical Gravity & Grounding
     const gravityStrength = 42;
@@ -907,7 +1143,7 @@ registerAllCases() {
     this.playerMesh.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), up);
 
     // 5. Update Camera
-    const camOffset = up.clone().multiplyScalar(16).add(this.camHeading.clone().multiplyScalar(-30));
+    const camOffset = up.clone().multiplyScalar(12).add(this.camHeading.clone().multiplyScalar(-25));
     const camPos = this.pPos.clone().add(camOffset);
     this.camera.up.copy(up); // Crucial: camera stays upright relative to planet
     this.camera.position.lerp(camPos, 0.05);
@@ -1001,6 +1237,7 @@ registerAllCases() {
       this.collectEvidence();
       this.updateMinimap();
       this.updateInWorldTags();
+      this._updateEffects();
     }
     if (this.envManager) this.envManager.update(this.controls.autoCycle);
     this.renderer.render(this.scene, this.camera);

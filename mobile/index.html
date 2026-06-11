@@ -565,7 +565,7 @@
 
     <!-- Fixed bottom navbar (always visible) -->
     <div id="fixed-navbar" aria-label="Navigation">
-      <button onclick="toggleAudio()" class="a11y-btn active" type="button" title="Toggle Sound">
+      <button id="nav-toggle-audio" onclick="toggleAudio()" class="a11y-btn active" type="button" title="Toggle Sound">
         <i class="fa-solid fa-volume-high"></i><br><span class="hidden">Sound</span>
       </button>
       <button class="a11y-btn" onclick="showResetModal()" title="Reset Game" aria-label="Reset all game progress">
@@ -862,7 +862,7 @@
         if (window.audio) {
           const newState = !window.audio.enabled;
           window.audio.setEnabled(newState);
-          const btn = document.querySelector('[onclick="toggleAudio()"]');
+          const btn = document.getElementById('nav-toggle-audio');
           if (btn) {
             const icon = btn.querySelector('i');
             icon.className = newState ? 'fa-solid fa-volume-high' : 'fa-solid fa-volume-xmark';

@@ -498,7 +498,6 @@ export const act2CaseB = {
       },
       contradictions: {},
     },
-    ,
     {
       id: "parable_meaning",
       name: "Thomas (Parable)",
