@@ -51,186 +51,6 @@
     }
   </script>
 
-  <style>
-
-    /* Responsive Fixes for  Screens (< 768) */
-    @media (max-width: 768px) {
-
-      map-node-info-panel {
-        width: 200px !important;
-      }
-    }
-
-    /* Responsive Fixes for Small Screens (< 480px) */
-    @media (max-width: 640px) {
-
-      .modal-header-map-custom {
-        padding: 15px 20px !important;
-      }
-
-      .modal-body-flush {
-        flex-direction: column !important;
-        overflow-y: auto !important;
-      }
-
-      #modal-canvas-wrap {
-        height: 40vh !important;
-        min-height: 300px;
-        width: 100% !important;
-        order: 1;
-        flex: none !important;
-      }
-
-      #map-node-info-panel {
-        width: 100% !important;
-        height: auto !important;
-        border-left: none !important; 
-        padding: 20px !important;
-        order: 2;
-        background: transparent !important;
-      }
-
-      .map-legend {
-        order: 3;
-        padding: 20px !important;
-        border-top: 1px solid var(--border-subtle);
-      }
-
-      #header-dropdown {
-        width: calc(100% - 20px) !important;
-        left: 10px !important;
-        right: 10px !important;
-      }
-
-      #lsm-tree {
-        position: relative !important;
-        width: 100% !important;
-        height: 300px !important;
-        margin: 0 !important;
-        border-radius: 0 !important;
-        order: 2;
-      }
-
-      .map-modal-panel {
-        flex-direction: column !important;
-        width: 100% !important;
-        height: 100% !important;
-        max-height: 100vh !important;
-        margin: 0 !important;
-        border-radius: 0 !important;
-        /* Allow the panel to expand vertically if content needs more space */
-        overflow-y: visible !important;
-      }
-
-      .modal-body-flush {
-        flex-direction: column !important;
-        overflow-y: visible !important; /* Prevent scrollbar on main content area */
-        flex: none !important; /* Allow content to define height, don't take up remaining space */
-        height: auto !important; /* Explicitly set height to auto */
-        order: 1; /* Place main content (globe + info) after header */
-      }
-
-      #modal-canvas-wrap {
-        height: 40vh !important;
-        min-height: 300px;
-        width: 100% !important;
-        order: 1; /* Globe first within main.modal-body-flush */
-        flex: none !important;
-      }
-
-      #map-node-info-panel {
-        width: 100% !important;
-        height: auto !important; /* Allow to expand to fit content */
-        border-left: none !important;
-        padding: 20px !important;
-        order: 2; /* Place info panel after globe within main.modal-body-flush */
-        background: transparent !important;
-        overflow-y: visible !important; /* Prevent scrollbar on info panel itself */
-      }
-
-      #lsm-tree {
-        position: relative !important;
-        width: 100% !important;
-        height: 300px !important;
-        margin: 0 !important;
-        border-radius: 0 !important;
-        order: 2; /* Place tree view after main.modal-body-flush */
-      }
-
-      .map-legend {
-        order: 3; /* Place legend last */
-        padding: 20px !important;
-        border-top: 1px solid var(--border-subtle);
-      }
-    }
-
-    /* Map Modal Node Styling */
-    .map-node-dot {
-      position: absolute;
-      width: 16px;
-      height: 16px;
-      border-radius: 50%;
-      background: var(--accent-primary);
-      box-shadow: 0 0 15px var(--accent-primary);
-      cursor: pointer;
-      z-index: 100;
-      pointer-events: auto;
-      border: 2px solid #fff;
-      transition: transform 0.2s, background-color 0.2s;
-      display: block;
-      transform: translate(-50%, -50%);
-    }
-
-    @keyframes nodePulse {
-      0%, 100% { transform: translate(-50%, -50%) scale(1); box-shadow: 0 0 15px var(--accent-primary); opacity: 0.8; }
-      50% { transform: translate(-50%, -50%) scale(1.3); box-shadow: 0 0 25px var(--accent-primary); opacity: 1; }
-    }
-    .map-node-dot.pulse {
-      animation: nodePulse 2s ease-in-out infinite;
-    }
-
-    .map-node-dot:hover {
-      background-color: #fff !important;
-      transform: translate(-50%, -50%) scale(1.4) !important;
-      z-index: 120;
-    }
-    .map-node-dot.locked {
-      background: #444 !important;
-      box-shadow: none !important;
-      border-color: #666;
-      cursor: not-allowed;
-    }
-
-    .map-node-label {
-      position: absolute;
-      pointer-events: none;
-      z-index: 110;
-      color: #fff;
-      font-family: 'Source Code Pro', monospace;
-      text-transform: uppercase;
-      white-space: nowrap;
-      background: rgba(0,0,0,0.85);
-      padding: 6px 12px;
-      border-left: 3px solid var(--accent-primary);
-      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-      transform: translate(-50%, -100%);
-    }
-    .map-node-loc {
-      font-size: 0.55rem;
-      color: var(--accent-primary);
-      opacity: 0.9;
-      font-weight: 700;
-      letter-spacing: 1px;
-    }
-    .map-node-title {
-      font-size: 0.85rem;
-      font-weight: 600;
-      letter-spacing: 1px;
-    }
-  </style>
 </head>
 
 <body>
@@ -343,37 +163,37 @@
         <div id="header-dropdown" class="header-dropdown-menu">
           <button id="btn-open-map" class="dropdown-item">
             <i class="fa-solid fa-map-location-dot"></i>
-            <div class="dropdown-text-group" style="display: flex; flex-direction: column; text-align: left; line-height: 1.2;">
-              <span class="dropdown-label" style="font-weight: 600;">Act Map</span>
-              <span class="dropdown-desc" style="font-size: 0.65rem; opacity: 0.7; font-weight: 400;">Explore locations & chapters</span>
+            <div class="dropdown-text-group">
+              <span class="dropdown-label">Act Map</span>
+              <span class="dropdown-desc">Explore locations & chapters</span>
             </div>
           </button>
           <button id="btn-open-settings" class="dropdown-item">
             <i class="fa-solid fa-gear"></i>
-            <div class="dropdown-text-group" style="display: flex; flex-direction: column; text-align: left; line-height: 1.2;">
-              <span class="dropdown-label" style="font-weight: 600;">System</span>
-              <span class="dropdown-desc" style="font-size: 0.65rem; opacity: 0.7; font-weight: 400;">Audio & interface settings</span>
+            <div class="dropdown-text-group">
+              <span class="dropdown-label">System</span>
+              <span class="dropdown-desc">Audio & interface settings</span>
             </div>
           </button>
           <button onclick="window.showInstructionsModal()" class="dropdown-item">
             <i class="fa-solid fa-circle-info"></i>
-            <div class="dropdown-text-group" style="display: flex; flex-direction: column; text-align: left; line-height: 1.2;">
-              <span class="dropdown-label" style="font-weight: 600;">Help Guide</span>
-              <span class="dropdown-desc" style="font-size: 0.65rem; opacity: 0.7; font-weight: 400;">How to play the investigation</span>
+            <div class="dropdown-text-group">
+              <span class="dropdown-label">Help Guide</span>
+              <span class="dropdown-desc">How to play the investigation</span>
             </div>
           </button>
-          <button onclick="window.showResetModal()" class="dropdown-item" style="color: var(--accent-error);">
+          <button onclick="window.showResetModal()" class="dropdown-item dropdown-item-error">
             <i class="fa-solid fa-trash-can"></i>
-            <div class="dropdown-text-group" style="display: flex; flex-direction: column; text-align: left; line-height: 1.2;">
-              <span class="dropdown-label" style="font-weight: 600;">Reset Progress</span>
-              <span class="dropdown-desc" style="font-size: 0.65rem; opacity: 0.7; font-weight: 400;">Clear all save data</span>
+            <div class="dropdown-text-group">
+              <span class="dropdown-label">Reset Progress</span>
+              <span class="dropdown-desc">Clear all save data</span>
             </div>
           </button>
           <button id="btn-toggle-audio" class="dropdown-item">
             <i class="fa-solid fa-volume-high"></i>
-            <div class="dropdown-text-group" style="display: flex; flex-direction: column; text-align: left; line-height: 1.2;">
-              <span class="dropdown-label" style="font-weight: 600;">Audio Control</span>
-              <span class="dropdown-desc" style="font-size: 0.65rem; opacity: 0.7; font-weight: 400;">Toggle environmental sounds</span>
+            <div class="dropdown-text-group">
+              <span class="dropdown-label">Audio Control</span>
+              <span class="dropdown-desc">Toggle environmental sounds</span>
             </div>
           </button>
         </div>
@@ -506,7 +326,7 @@
         <span id="passage-ref-title">Loading scripture…</span>
         <span id="passage-version-lbl" class="badge">WEB</span>
         </div>
-      <div style="display: flex; align-items: center; gap: 10px;">
+      <div class="passage-header-actions">
         <button id="btn-passage-day-night" class="close-icon-btn" title="Toggle Day/Night Mode">
           <i class="fa-solid fa-moon"></i>
         </button>
@@ -520,7 +340,7 @@
 
   <!-- ══════════════ Accuse Modal (from Example 01) ══════════════ -->
   <div id="accuse-modal" class="overlay-mask">
-    <div class="modal-panel" style="max-width: 540px; width: 95%;">
+    <div class="modal-panel accuse-modal-panel">
       <header class="modal-header">
         <div>
           <h2 class="modal-title-settings">Final Accusation</h2>
@@ -530,14 +350,14 @@
           <i class="fa-solid fa-xmark"></i>
         </button>
       </header>
-      <main class="modal-body" id="accuse-suspect-list" style="padding: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; overflow-y: auto; max-height: 60vh;">
+      <main class="modal-body accuse-suspect-list" id="accuse-suspect-list">
       </main>
     </div>
   </div>
 
   <!-- ══════════════ People & Case Summary Modal ══════════════ -->
   <div id="people-modal" class="overlay-mask">
-    <div class="modal-panel" style="max-width: 850px; width: 95%;">
+    <div class="modal-panel people-modal-panel">
       <header class="modal-header">
         <div>
           <h2 class="modal-title-settings">Case Participants</h2>
@@ -555,7 +375,7 @@
 
   <!-- ══════════════ Evidence Detail Modal (from Example 01) ══════════════ -->
   <div id="evidence-detail-modal" class="overlay-mask">
-    <div class="modal-panel evidence-detail-panel" style="max-width: 600px; width: 95%;">
+    <div class="modal-panel evidence-detail-panel">
       <header class="modal-header">
         <div class="evidence-detail-header">
           <span class="evidence-detail-icon">🛡️</span>
@@ -569,7 +389,7 @@
           <i class="fa-solid fa-xmark"></i>
         </button>
       </header>
-      <main class="modal-body evidence-detail-inner" style="overflow-y: auto; max-height: 70vh;">
+      <main class="modal-body evidence-detail-inner">
         <div class="evidence-detail-section">
           <div class="evidence-detail-label">Description</div>
           <div class="evidence-detail-desc"></div>
@@ -584,7 +404,7 @@
           <button class="read-more-btn" data-target="bible-verse-content">📖 Read Full Verse</button>
           <div class="verse-content" id="bible-verse-content" hidden></div>
 
-          <div style="margin-top:20px;">
+          <div class="prophecy-section-spacer">
             <div class="evidence-detail-label">✨ Prophecy & Fulfilment</div>
             <div class="evidence-detail-prophetic-link"></div>
             <button class="read-more-btn" data-target="prophecy-verse-content">📖 Read Full Verse</button>
@@ -595,7 +415,7 @@
           <div class="evidence-detail-label">🔎 Investigator Notes</div>
           <div class="evidence-detail-investigator-note"></div>
         </div>
-        <button id="btn-open-codex-from-detail" class="terminal-btn" style="width:100%; margin-top:12px;">
+        <button id="btn-open-codex-from-detail" class="terminal-btn btn-full-width">
           <i class="fa-solid fa-link"></i> Prophecy Matcher
         </button>
       </main>
@@ -604,7 +424,7 @@
 
   <!-- ══════════════ Codex Matching Modal (from Example 01) ══════════════ -->
   <div id="codex-modal" class="overlay-mask">
-    <div class="modal-panel" style="max-width: 800px; width: 95%;">
+    <div class="modal-panel codex-modal-panel">
       <header class="modal-header">
         <div>
           <h2 class="modal-title-settings">Prophecy Codex</h2>
@@ -614,8 +434,8 @@
           <i class="fa-solid fa-xmark"></i>
         </button>
       </header>
-      <main class="modal-body" style="padding: 20px; overflow-y: auto; max-height: 70vh;">
-        <div class="prophecy-lab-intro" style="margin-bottom: 20px; color: var(--text-muted); font-size: 0.85rem;">
+      <main class="modal-body codex-modal-body">
+        <div class="prophecy-lab-intro">
           Select evidence from your collection, then choose a locked prophecy below to attempt a link.
         </div>
 
@@ -637,13 +457,13 @@
         </div>
 
         <h3 class="picker-title">Your Evidence</h3>
-        <div id="codex-evidence-grid" class="picker-grid" style="margin-bottom: 24px;">
+        <div id="codex-evidence-grid" class="picker-grid codex-evidence-grid">
           <!-- Evidence cards will be rendered here by UIManager.js -->
         </div>
         <h3 class="picker-title">Bible Prophecies</h3>
         <div id="codex-prophecy-grid" class="codex-grid"></div>
 
-        <h3 class="picker-title" style="margin-top:24px;">Discovered Truths</h3>
+        <h3 class="picker-title picker-title-margin-top">Discovered Truths</h3>
         <div id="codex-discovered-grid" class="codex-grid"></div>
         <div id="codex-feedback" class="codex-feedback"></div>
       </main>
@@ -652,75 +472,75 @@
 
   <!-- Main Investigation Progress / Chapter Level Selection Matrix Modal -->
   <div id="modal-overlay" class="modal-overlay">
-    <div class="modal-panel map-modal-panel" style="width: 96vw; height: 92vh; max-width: 1500px; display: flex; flex-direction: column; background: #080808; border: 1px solid var(--border-subtle); overflow: hidden; box-shadow: 0 0 50px rgba(0,0,0,0.9);">
-      <header class="modal-header modal-header-map-custom" style="flex-shrink: 0; border-bottom: 1px solid rgba(255,255,255,0.1); background: linear-gradient(to right, #111, #080808);">
+    <div class="modal-panel map-modal-panel">
+      <header class="modal-header modal-header-map-custom">
         <div>
-          <h2 class="modal-title modal-title-map" style="font-size: 1.25rem; letter-spacing: 4px; color: var(--accent-primary); font-family: 'Source Code Pro', monospace;">WORLD_VIEW_SATELLITE</h2>
-          <h4 class="modal-subtitle modal-subtitle-custom" style="font-size: 0.6rem; opacity: 0.5; letter-spacing: 1px;">ORBITAL CASE SYNCHRONIZATION // ARCHIVE ACCESS GRANTED</h4>
+          <h2 class="modal-title modal-title-map">WORLD_VIEW_SATELLITE</h2>
+          <h4 class="modal-subtitle modal-subtitle-custom">ORBITAL CASE SYNCHRONIZATION // ARCHIVE ACCESS GRANTED</h4>
         </div>
         <button id="btn-close-map" class="close-icon-btn" aria-label="Close">
           <i class="fa-solid fa-xmark"></i>
         </button>
       </header>
 
-      <main class="modal-body modal-body-flush" style="display: flex; flex-direction: row; flex: 1; min-height: 0;">
+      <main class="modal-body modal-body-flush">
         <!-- Primary Globe Viewport (The 'Glode') -->
-        <div id="modal-canvas-wrap" style="flex: 1; position: relative; background: radial-gradient(circle at center, #0a0a0a 0%, #000 100%); cursor: grab; display: flex; align-items: center; justify-content: center; border-right: 1px solid rgba(255,255,255,0.05);">
+        <div id="modal-canvas-wrap">
           <!-- Satellite Overlay UI -->
-          <div style="position: absolute; top: 20px; left: 20px; pointer-events: none; opacity: 0.7;">
-             <div style="font-size: 0.6rem; color: var(--accent-primary); letter-spacing: 2px; margin-bottom: 5px;">GRID_OS_VER_4.2</div>
-             <div style="font-size: 0.8rem; font-family: 'Source Code Pro'; color: #fff;">SCANNING_FOR_UNLOCKED_NODES...</div>
+          <div class="satellite-overlay satellite-overlay-top">
+             <div class="satellite-grid-ver">GRID_OS_VER_4.2</div>
+             <div class="satellite-scan-text">SCANNING_FOR_UNLOCKED_NODES...</div>
           </div>
-          <div style="position: absolute; bottom: 20px; right: 20px; pointer-events: none; text-align: right; opacity: 0.5;">
-             <div style="font-size: 0.55rem; font-family: 'Source Code Pro';">COORD_X: 31.7683° N</div>
-             <div style="font-size: 0.55rem; font-family: 'Source Code Pro';">COORD_Y: 35.2137° E</div>
+          <div class="satellite-overlay satellite-overlay-bottom">
+             <div class="satellite-coord">COORD_X: 31.7683° N</div>
+             <div class="satellite-coord">COORD_Y: 35.2137° E</div>
           </div>
         </div>
 
         <!-- Investigation Dossier Sidebar -->
-        <div id="map-node-info-panel" style="width: 420px; background: #0c0c0c; display: flex; flex-direction: column; border-left: 1px solid var(--border-subtle); overflow-y: auto;">
+        <div id="map-node-info-panel">
           
           <!-- Active Intel Header -->
-          <div style="padding: 30px; border-bottom: 1px solid rgba(255,255,255,0.05); background: rgba(255,255,255,0.02);">
-            <div style="display: flex; align-items: center; gap: 20px; margin-bottom: 15px;">
-              <div id="map-node-emoji" style="font-size: 2.2rem; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.5); border: 1px solid var(--border-subtle); border-radius: 4px; box-shadow: inset 0 0 10px rgba(0,0,0,0.8);">📍</div>
-              <h3 id="map-node-title" style="margin: 0; font-family: 'Cinzel', serif; font-size: 1.2rem; color: var(--text-main); letter-spacing: 1px;">SELECT_NODE</h3>
+          <div class="map-node-intel-header">
+            <div class="map-node-header-row">
+              <div id="map-node-emoji">📍</div>
+              <h3 id="map-node-title">SELECT_NODE</h3>
             </div>
-            <div id="map-node-location" style="font-size: 0.7rem; color: var(--accent-secondary); text-transform: uppercase; letter-spacing: 2px; font-weight: 700;">Satellite Sync Required</div>
+            <div id="map-node-location">Satellite Sync Required</div>
           </div>
 
           <!-- Dossier Content -->
-          <div style="padding: 30px; flex: 1; display: flex; flex-direction: column; gap: 25px;">
+          <div class="map-node-dossier">
             <div class="dossier-section">
-              <div style="font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase; margin-bottom: 10px; font-weight: 600;">Intelligence Brief</div>
-              <p id="map-node-description" style="font-size: 0.85rem; line-height: 1.7; margin: 0; font-family: 'Source Code Pro', monospace; color: var(--text-main); opacity: 0.8;">Interact with pins on the orbital map to view localized case summaries and historical context. Unlocked cases are highlighted in primary green.</p>
+              <div class="dossier-section-label">Intelligence Brief</div>
+              <p id="map-node-description">Interact with pins on the orbital map to view localized case summaries and historical context. Unlocked cases are highlighted in primary green.</p>
             </div>
             
-            <div id="map-act-description" style="padding: 20px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.05); border-left: 3px solid var(--accent-secondary); font-size: 0.8rem; color: var(--text-muted); font-style: italic; line-height: 1.6;">Mission objectives will populate here upon node synchronization.</div>
+            <div id="map-act-description">Mission objectives will populate here upon node synchronization.</div>
 
             <!-- Load Scene Action -->
-            <div id="map-node-action-container" style="display: none;">
-              <button id="btn-load-node-scene" class="terminal-btn" style="width: 100%; justify-content: center; padding: 15px; margin: 0;">
-                <i class="fa-solid fa-play" style="margin-right: 10px;"></i> INITIALIZE INVESTIGATION
+            <div id="map-node-action-container">
+              <button id="btn-load-node-scene" class="terminal-btn">
+                <i class="fa-solid fa-play"></i> INITIALIZE INVESTIGATION
               </button>
             </div>
 
             <!-- Completed Archives -->
             <div id="completed-cases-section">
-              <div style="font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; font-weight: 600;">
+              <div id="completed-cases-section-label">
                 <i class="fa-solid fa-database"></i> Resolved Archives
               </div>
-              <div id="completed-cases-list" style="font-size: 0.75rem; color: #e2b13c; font-family: 'Source Code Pro'; display: flex; flex-direction: column; gap: 5px;">
-                <span style="opacity: 0.5; font-style: italic;">Sifting data for completed investigations...</span>
+              <div id="completed-cases-list">
+                <span class="completed-cases-placeholder">Sifting data for completed investigations...</span>
               </div>
             </div>
           </div>
 
           <!-- Status Legend -->
-          <div class="map-legend" style="padding: 25px 30px; border-top: 1px solid var(--border-subtle); background: rgba(0,0,0,0.2); display: flex; flex-direction: column; gap: 12px;">
-            <span style="color: var(--accent-primary); font-size: 0.6rem; display: flex; align-items: center; gap: 10px; letter-spacing: 2px; text-transform: uppercase;"><i class="fa-solid fa-circle-dot" style="font-size: 8px;"></i> Unlocked</span>
-            <span style="color: #e2b13c; font-size: 0.6rem; display: flex; align-items: center; gap: 10px; letter-spacing: 2px; text-transform: uppercase;"><i class="fa-solid fa-circle-check" style="font-size: 9px;"></i> Completed</span>
-            <span style="opacity: 0.3; font-size: 0.6rem; display: flex; align-items: center; gap: 10px; letter-spacing: 2px; text-transform: uppercase;"><i class="fa-solid fa-lock" style="font-size: 9px;"></i> Locked</span>
+          <div class="map-legend">
+            <span class="map-legend-item"><i class="fa-solid fa-circle-dot map-legend-icon-sm"></i> Unlocked</span>
+            <span class="map-legend-item completed"><i class="fa-solid fa-circle-check map-legend-icon-md"></i> Completed</span>
+            <span class="map-legend-item locked"><i class="fa-solid fa-lock map-legend-icon-md"></i> Locked</span>
           </div>
         </div>
       </main>
@@ -729,7 +549,7 @@
 
   <!-- Settings Configuration Engine Management Panel -->
   <div id="settings-overlay" class="overlay-mask">
-    <div class="modal-panel" style="max-width: 500px; width: 90%;">
+    <div class="modal-panel settings-modal-panel">
       <button class="settings-close-btn" id="btn-close-settings-x">✕</button>
       <header class="modal-header">
         <h2 class="modal-title-settings">
@@ -749,7 +569,7 @@
           </div>
         </section>
 
-        <section class="settings-section" style="margin-top: 20px;">
+        <section class="settings-section settings-section-scripture">
           <h3 class="picker-title">Scripture Options</h3>
           <div class="settings-row">
             <label class="settings-label-custom">Translation</label>
@@ -762,16 +582,16 @@
           </div>
         </section>
 
-        <section class="settings-section" style="margin-top: 20px;">
+        <section class="settings-section settings-section-a11y">
           <h3 class="picker-title">Accessibility & Sound</h3>
           <div id="a11y-settings-list" class="settings-a11y-list"></div>
-          <div class="a11y-setting-row" style="margin-top:8px;">
+          <div class="a11y-setting-row a11y-setting-row-audio">
              <span><span class="a11y-label-main">Audio</span><span class="a11y-label-desc">Toggle background ambience</span></span>
              <button id="settings-audio-toggle" class="toggle-btn" aria-checked="true" type="button"></button>
           </div>
         </section>
       </main>
-      <footer class="modal-footer" style="padding: 20px; border-top: 1px solid var(--border-subtle);">
+      <footer class="modal-footer">
         <div class="persistence-btn-row">
           <button id="btn-save-game" class="terminal-btn btn-flex">Save</button>
           <button id="btn-load-game" class="terminal-btn btn-flex">Load</button>
@@ -805,14 +625,14 @@
 
   <!-- ══════════════  Instructions Overlay ══════════════ -->
   <div id="instructions-modal" class="overlay-mask">
-    <div class="modal-panel" style="max-width: 420px;">
+    <div class="modal-panel instructions-modal-panel">
       <button class="close-icon-btn" onclick="window.closeInstructionsModal()" aria-label="Close">✕</button>
-      <div id="instructions-logo" style="text-align: center; margin-bottom: 24px;">
-        <div class="modal-title-settings" style="font-size: 1.4rem; color: var(--accent-primary);">🔍 Holy Week</div>
+      <div class="instructions-logo">
+        <div class="modal-title-settings instructions-title">🔍 Holy Week</div>
       </div>
       <div class="modal-body">
-        <h4 class="modal-subtitle-custom" style="font-weight: 700; margin-bottom: 12px;">How to Play</h4>
-        <div class="modal-subtitle-custom" style="line-height: 1.6;">
+        <h4 class="modal-subtitle-custom instructions-subtitle">How to Play</h4>
+        <div class="modal-subtitle-custom instructions-body">
           <p>Welcome, Scribe. Investigate the events of Holy Week and uncover the truth 🕊️ behind the mysteries.</p>
           <br>
           <p><strong>1. 🗺️ Explore :</strong> Select a location from the map to view available cases.</p>
@@ -824,7 +644,7 @@
             operation to find new insights.</p>
           <p><strong>5. ⚖️ Accuse :</strong> Once you have enough proof, make your final verdict.</p>
         </div>
-        <div class="modal-action-row" style="margin-top: 18px;">
+        <div class="modal-action-row instructions-actions">
           <button class="terminal-btn btn-flex btn-save-settings-accent" onclick="window.closeInstructionsModal()">Start
             Investigation</button>
         </div>
@@ -834,12 +654,12 @@
 
   <!-- ══════════════  Reset Progress Overlay ══════════════ -->
   <div id="reset-modal" class="overlay-mask">
-    <div class="modal-panel" style="max-width: 340px;">
+    <div class="modal-panel reset-modal-panel">
       <button class="close-icon-btn" onclick="window.closeResetModal()" aria-label="Close">✕</button>
-      <div class="modal-body" style="text-align: center;">
-        <div style="font-size: 2rem; margin-bottom: 10px;">⚠️</div>
+      <div class="modal-body reset-modal-body">
+        <div class="reset-icon">⚠️</div>
         <h2 class="modal-title-settings">Reset Progress?</h2>
-        <div class="modal-subtitle-custom" style="margin: 10px 0 18px;">
+        <div class="modal-subtitle-custom reset-subtitle">
           This will permanently clear all your solved cases and career points.
         </div>
         <div class="modal-action-row">
