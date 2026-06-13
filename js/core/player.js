@@ -25,7 +25,7 @@ export class Player {
             mass: 1,
             shape: new CANNON.Box(new CANNON.Vec3(0.5, 1, 0.5)),
             fixedRotation: true,
-            linearDamping: 0.9
+            linearDamping: 0.1
         });
         this.pBody.position.set(0, this.planetR + 10, 0);
         this.world.addBody(this.pBody);
@@ -138,10 +138,17 @@ export class Player {
     applyMovement(moveDir) {
         if (moveDir.length() > 0) {
             moveDir.normalize();
+            const speed = 18;
+
+            // Preserve radial (upward) velocity so jumping isn't interrupted by horizontal movement
+            const pPos = this.getPosition();
+            const up = pPos.clone().normalize();
+            const radialVel = this.pBody.velocity.dot(new CANNON.Vec3(up.x, up.y, up.z));
+
             this.pBody.velocity.set(
-                moveDir.x * 18,
-                moveDir.y * 18,
-                moveDir.z * 18
+                moveDir.x * speed + up.x * radialVel,
+                moveDir.y * speed + up.y * radialVel,
+                moveDir.z * speed + up.z * radialVel
             );
         }
     }
@@ -150,7 +157,10 @@ export class Player {
         // Apply gravity (towards planet center)
         const pPos = this.getPosition();
         const up = pPos.clone().normalize();
-        this.pBody.applyForce(up.clone().multiplyScalar(-75), this.pBody.position);
+
+        // Apply a constant downward force towards the planet center
+        const gravity = new CANNON.Vec3(up.x * -75, up.y * -75, up.z * -75);
+        this.pBody.applyForce(gravity, this.pBody.position);
 
         // Ground check for jump and landing detection
         const isGrounded = pPos.length() < this.planetR + 1.6;
@@ -174,11 +184,13 @@ export class Player {
     jump() {
         if (this.canJump) {
             const up = this.getPosition().clone().normalize();
+            this.pBody.wakeUp();
             this.pBody.applyImpulse(
-                new CANNON.Vec3(up.x * 12, up.y * 12, up.z * 12),
+                new CANNON.Vec3(up.x * 15, up.y * 15, up.z * 15),
                 this.pBody.position
             );
             this.canJump = false;
+            this.wasGrounded = true; // Mark as having been on ground to trigger 'land' later
             return true;
         }
         return false;
@@ -222,4 +234,3 @@ export class Player {
     }
 
 }
-

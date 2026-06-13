@@ -189,3 +189,41 @@ button#btn-replay { background:#00ffaa; color:#000; }
   max-height: 70vh;
   overflow-y: auto;
 }
+
+/* ===== MOBILE RESPONSIVE LAYOUT ===== */
+@media (max-width: 768px) {
+    /* Position Right Sidebar at the bottom as a row */
+    #right-sidebar {
+        width: 100%;
+        height: auto;
+        top: auto;
+        bottom: 0;
+        flex-direction: row;
+        padding: 10px;
+        background: var(--panel-bg);
+        pointer-events: auto;
+        border-top: 1px solid var(--accent-primary);
+    }
+
+    #sidebar-top, #sidebar-bottom {
+        flex-direction: row;
+        align-items: center;
+        margin-bottom: 0;
+        gap: 15px;
+    }
+
+    /* Adjusting Left Sidebar (referenced in logic) to the top as a row */
+    #left-sidebar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: row;
+        padding: 10px;
+        background: var(--panel-bg);
+        z-index: 500;
+        border-bottom: 1px solid var(--accent-primary);
+    }
+}

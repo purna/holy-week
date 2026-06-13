@@ -208,7 +208,7 @@ export class VFXSystem {
             this.scene.add(mesh);
 
             // Random point on a sphere at target altitude
-            const dir = new THREE.Vector3().randomDirection();
+            const dir = new THREE.Vector3(Math.random() - 0.5, Math.random() - 0.5, Math.random() - 0.5).normalize();
             mesh.position.copy(dir.clone().multiplyScalar(this.planetR + 30));
 
             // Tangential velocity: cross with a random axis gives a direction
@@ -235,7 +235,7 @@ export class VFXSystem {
     _loadDecalTexture() {
         const loader = new THREE.TextureLoader();
         loader.load(
-            './assets/gfx/dirt.svg',
+            '../assets/gfx/dirt.svg',
             (tex) => {
                 this.decalMat = this._buildDecalMaterial(tex);
             },
@@ -254,6 +254,9 @@ export class VFXSystem {
             transparent: true,
             depthWrite: false,
             depthTest: true,
+            alphaTest: 0.5,
+            polygonOffset: true,
+            polygonOffsetFactor: -4,
             opacity: 0.8,
             color: new THREE.Color(COLORS.white), // White base, will be tinted in getDecalMaterial
         });
@@ -304,7 +307,7 @@ export class VFXSystem {
     updateTrail(dt = 1 / 60) {
         for (let i = this.trailParticles.length - 1; i >= 0; i--) {
             const p = this.trailParticles[i];
-            p.life -= dt * 0.015;
+            p.life -= dt * 1.5; // Increased fade speed (approx 0.7s lifetime)
             const scale = Math.max(0.1, p.life);
             p.mesh.scale.setScalar(scale);
             p.mesh.material.opacity = Math.max(0, p.life);
@@ -327,7 +330,8 @@ export class VFXSystem {
     updateMovementTrail(playerPos, playerVel, isGrounded) {
         if (playerPos && playerVel && isGrounded && playerVel.lengthSq() > 10) {
             const up = playerPos.clone().normalize();
-            const trailPos = playerPos.clone().sub(up.clone().multiplyScalar(1.2));
+            // Offset adjusted to sit exactly at the player's feet (approx 1.0 units below center)
+            const trailPos = playerPos.clone().sub(up.clone().multiplyScalar(0.95));
             this.spawnTrail(trailPos);
         }
     }
@@ -401,8 +405,8 @@ export class VFXSystem {
             ? new THREE.Color(COLORS.cyan)
             : new THREE.Color(COLORS.brown);
 
-        const vel = new THREE.Vector3()
-            .randomDirection()
+        const vel = new THREE.Vector3(Math.random() - 0.5, Math.random() - 0.5, Math.random() - 0.5)
+            .normalize()
             .multiplyScalar(0.5)
             .add(up.clone().multiplyScalar(0.2));
 
@@ -418,8 +422,8 @@ export class VFXSystem {
     emitDust(pos, up) {
         const color = new THREE.Color(COLORS.dust);
         for (let i = 0; i < 2; i++) {
-            const vel = new THREE.Vector3()
-                .randomDirection()
+            const vel = new THREE.Vector3(Math.random() - 0.5, Math.random() - 0.5, Math.random() - 0.5)
+                .normalize()
                 .multiplyScalar(3)
                 .add(up.clone().multiplyScalar(2));
 
@@ -440,10 +444,10 @@ export class VFXSystem {
     emitAmbientDust(playerPos) {
         if (Math.random() > 0.1) return; // Back to normal spawn rate
         const color = new THREE.Color(COLORS.cyan);
-        const offset = new THREE.Vector3()
-            .randomDirection()
+        const offset = new THREE.Vector3(Math.random() - 0.5, Math.random() - 0.5, Math.random() - 0.5)
+            .normalize()
             .multiplyScalar(15 + Math.random() * 10);
-        const vel = new THREE.Vector3().randomDirection().multiplyScalar(0.5);
+        const vel = new THREE.Vector3(Math.random() - 0.5, Math.random() - 0.5, Math.random() - 0.5).normalize().multiplyScalar(0.5);
         this.spawnParticle(
             playerPos.clone().add(offset),
             vel,
@@ -469,8 +473,8 @@ export class VFXSystem {
         const origin = pos.clone().add(up.clone().multiplyScalar(6));
 
         for (let i = 0; i < 200; i++) {
-            const vel = new THREE.Vector3()
-                .randomDirection()
+            const vel = new THREE.Vector3(Math.random() - 0.5, Math.random() - 0.5, Math.random() - 0.5)
+                .normalize()
                 .multiplyScalar(15 + Math.random() * 20);
             this.spawnParticle(origin, vel, color, 1.5 + Math.random() * 1.5);
         }
@@ -493,17 +497,23 @@ export class VFXSystem {
 
         if (hits.length > 0) {
             const hit = hits[0];
+            // Fallback for older Three.js versions or non-mesh intersections
+            const normal = hit.normal || (hit.face ? hit.face.normal : up);
+            
             const size = new THREE.Vector3(
                 VFX.landingDecal.size,
                 VFX.landingDecal.size,
-                VFX.landingDecal.size
+                VFX.landingDecal.size * 2 // Deepen projection box to handle curvature
             );
 
             const m = new THREE.Matrix4();
             let dummyUp = new THREE.Vector3(0, 1, 0);
-            if (Math.abs(hit.normal.dot(dummyUp)) > 0.9) dummyUp.set(1, 0, 0);
-            m.lookAt(hit.point, hit.point.clone().add(hit.normal), dummyUp);
+            if (Math.abs(normal.dot(dummyUp)) > 0.9) dummyUp.set(1, 0, 0);
+            m.lookAt(hit.point, hit.point.clone().add(normal), dummyUp);
+            
             const orientation = new THREE.Euler().setFromRotationMatrix(m);
+            // Randomize spin for organic 'splat' look like the prototype
+            orientation.z = Math.random() * Math.PI * 2;
 
             const geom = new DecalGeometry(this.planetMesh, hit.point, orientation, size);
             const mat = this.getDecalMaterial();

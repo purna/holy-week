@@ -45,15 +45,25 @@
   <script type="importmap">
     {
       "imports": {
-        "three": "https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.module.js",
-        "three/loaders/GLTFLoader": "https://cdn.jsdelivr.net/npm/three@0.128.0/examples/jsm/loaders/GLTFLoader.js"
+        "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
       }
     }
   </script>
 
   <style>
+
+    /* Responsive Fixes for  Screens (< 768) */
+    @media (max-width: 768px) {
+
+      map-node-info-panel {
+        width: 200px !important;
+      }
+    }
+
     /* Responsive Fixes for Small Screens (< 480px) */
-    @media (max-width: 480px) {
+    @media (max-width: 640px) {
+
       .modal-header-map-custom {
         padding: 15px 20px !important;
       }
@@ -92,13 +102,133 @@
         right: 10px !important;
       }
 
+      #lsm-tree {
+        position: relative !important;
+        width: 100% !important;
+        height: 300px !important;
+        margin: 0 !important;
+        border-radius: 0 !important;
+        order: 2;
+      }
+
       .map-modal-panel {
+        flex-direction: column !important;
         width: 100% !important;
         height: 100% !important;
         max-height: 100vh !important;
         margin: 0 !important;
         border-radius: 0 !important;
+        /* Allow the panel to expand vertically if content needs more space */
+        overflow-y: visible !important;
       }
+
+      .modal-body-flush {
+        flex-direction: column !important;
+        overflow-y: visible !important; /* Prevent scrollbar on main content area */
+        flex: none !important; /* Allow content to define height, don't take up remaining space */
+        height: auto !important; /* Explicitly set height to auto */
+        order: 1; /* Place main content (globe + info) after header */
+      }
+
+      #modal-canvas-wrap {
+        height: 40vh !important;
+        min-height: 300px;
+        width: 100% !important;
+        order: 1; /* Globe first within main.modal-body-flush */
+        flex: none !important;
+      }
+
+      #map-node-info-panel {
+        width: 100% !important;
+        height: auto !important; /* Allow to expand to fit content */
+        border-left: none !important;
+        padding: 20px !important;
+        order: 2; /* Place info panel after globe within main.modal-body-flush */
+        background: transparent !important;
+        overflow-y: visible !important; /* Prevent scrollbar on info panel itself */
+      }
+
+      #lsm-tree {
+        position: relative !important;
+        width: 100% !important;
+        height: 300px !important;
+        margin: 0 !important;
+        border-radius: 0 !important;
+        order: 2; /* Place tree view after main.modal-body-flush */
+      }
+
+      .map-legend {
+        order: 3; /* Place legend last */
+        padding: 20px !important;
+        border-top: 1px solid var(--border-subtle);
+      }
+    }
+
+    /* Map Modal Node Styling */
+    .map-node-dot {
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--accent-primary);
+      box-shadow: 0 0 15px var(--accent-primary);
+      cursor: pointer;
+      z-index: 100;
+      pointer-events: auto;
+      border: 2px solid #fff;
+      transition: transform 0.2s, background-color 0.2s;
+      display: block;
+      transform: translate(-50%, -50%);
+    }
+
+    @keyframes nodePulse {
+      0%, 100% { transform: translate(-50%, -50%) scale(1); box-shadow: 0 0 15px var(--accent-primary); opacity: 0.8; }
+      50% { transform: translate(-50%, -50%) scale(1.3); box-shadow: 0 0 25px var(--accent-primary); opacity: 1; }
+    }
+    .map-node-dot.pulse {
+      animation: nodePulse 2s ease-in-out infinite;
+    }
+
+    .map-node-dot:hover {
+      background-color: #fff !important;
+      transform: translate(-50%, -50%) scale(1.4) !important;
+      z-index: 120;
+    }
+    .map-node-dot.locked {
+      background: #444 !important;
+      box-shadow: none !important;
+      border-color: #666;
+      cursor: not-allowed;
+    }
+
+    .map-node-label {
+      position: absolute;
+      pointer-events: none;
+      z-index: 110;
+      color: #fff;
+      font-family: 'Source Code Pro', monospace;
+      text-transform: uppercase;
+      white-space: nowrap;
+      background: rgba(0,0,0,0.85);
+      padding: 6px 12px;
+      border-left: 3px solid var(--accent-primary);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      transform: translate(-50%, -100%);
+    }
+    .map-node-loc {
+      font-size: 0.55rem;
+      color: var(--accent-primary);
+      opacity: 0.9;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+    .map-node-title {
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 1px;
     }
   </style>
 </head>
@@ -373,9 +503,13 @@
     <div class="modal-panel" onclick="event.stopPropagation()">
       <header class="modal-header">
         <div>
-          <span id="passage-ref-title">Verse Reference</span>
-          <span id="passage-version-lbl" class="badge">NIV</span>
+        <span id="passage-ref-title">Loading scripture…</span>
+        <span id="passage-version-lbl" class="badge">WEB</span>
         </div>
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <button id="btn-passage-day-night" class="close-icon-btn" title="Toggle Day/Night Mode">
+          <i class="fa-solid fa-moon"></i>
+        </button>
         <button class="close-icon-btn" onclick="window.BibleReader.closeOverlay(null)">
           <i class="fa-solid fa-xmark"></i>
         </button>
@@ -390,7 +524,7 @@
       <header class="modal-header">
         <div>
           <h2 class="modal-title-settings">Final Accusation</h2>
-          <p class="modal-subtitle-custom">Select the suspect responsible for the mystery</p>
+          <h4 class="modal-subtitle-custom">Select the suspect responsible for the mystery</h4>
         </div>
         <button class="close-icon-btn" onclick="document.getElementById('accuse-modal').classList.remove('active')">
           <i class="fa-solid fa-xmark"></i>
@@ -407,7 +541,7 @@
       <header class="modal-header">
         <div>
           <h2 class="modal-title-settings">Case Participants</h2>
-          <p class="modal-subtitle-custom">Review conversations and person-specific clues</p>
+          <h4 class="modal-subtitle-custom">Review conversations and person-specific clues</h4>
         </div>
         <button class="close-icon-btn" onclick="document.getElementById('people-modal').classList.remove('active')">
           <i class="fa-solid fa-xmark"></i>
@@ -474,7 +608,7 @@
       <header class="modal-header">
         <div>
           <h2 class="modal-title-settings">Prophecy Codex</h2>
-          <p class="modal-subtitle-custom">Link evidence to ancient prophecies</p>
+          <h4 class="modal-subtitle-custom">Link evidence to ancient prophecies</h4>
         </div>
         <button class="close-icon-btn" onclick="document.getElementById('codex-modal').classList.remove('active')">
           <i class="fa-solid fa-xmark"></i>
@@ -522,7 +656,7 @@
       <header class="modal-header modal-header-map-custom" style="flex-shrink: 0; border-bottom: 1px solid rgba(255,255,255,0.1); background: linear-gradient(to right, #111, #080808);">
         <div>
           <h2 class="modal-title modal-title-map" style="font-size: 1.25rem; letter-spacing: 4px; color: var(--accent-primary); font-family: 'Source Code Pro', monospace;">WORLD_VIEW_SATELLITE</h2>
-          <p class="modal-subtitle modal-subtitle-custom" style="font-size: 0.6rem; opacity: 0.5; letter-spacing: 1px;">ORBITAL CASE SYNCHRONIZATION // ARCHIVE ACCESS GRANTED</p>
+          <h4 class="modal-subtitle modal-subtitle-custom" style="font-size: 0.6rem; opacity: 0.5; letter-spacing: 1px;">ORBITAL CASE SYNCHRONIZATION // ARCHIVE ACCESS GRANTED</h4>
         </div>
         <button id="btn-close-map" class="close-icon-btn" aria-label="Close">
           <i class="fa-solid fa-xmark"></i>
@@ -550,7 +684,7 @@
           <div style="padding: 30px; border-bottom: 1px solid rgba(255,255,255,0.05); background: rgba(255,255,255,0.02);">
             <div style="display: flex; align-items: center; gap: 20px; margin-bottom: 15px;">
               <div id="map-node-emoji" style="font-size: 2.2rem; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.5); border: 1px solid var(--border-subtle); border-radius: 4px; box-shadow: inset 0 0 10px rgba(0,0,0,0.8);">📍</div>
-              <h3 id="map-node-title" style="margin: 0; font-family: 'Cinzel', serif; font-size: 1.5rem; color: var(--text-main); letter-spacing: 1px;">SELECT_NODE</h3>
+              <h3 id="map-node-title" style="margin: 0; font-family: 'Cinzel', serif; font-size: 1.2rem; color: var(--text-main); letter-spacing: 1px;">SELECT_NODE</h3>
             </div>
             <div id="map-node-location" style="font-size: 0.7rem; color: var(--accent-secondary); text-transform: uppercase; letter-spacing: 2px; font-weight: 700;">Satellite Sync Required</div>
           </div>
@@ -563,6 +697,13 @@
             </div>
             
             <div id="map-act-description" style="padding: 20px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.05); border-left: 3px solid var(--accent-secondary); font-size: 0.8rem; color: var(--text-muted); font-style: italic; line-height: 1.6;">Mission objectives will populate here upon node synchronization.</div>
+
+            <!-- Load Scene Action -->
+            <div id="map-node-action-container" style="display: none;">
+              <button id="btn-load-node-scene" class="terminal-btn" style="width: 100%; justify-content: center; padding: 15px; margin: 0;">
+                <i class="fa-solid fa-play" style="margin-right: 10px;"></i> INITIALIZE INVESTIGATION
+              </button>
+            </div>
 
             <!-- Completed Archives -->
             <div id="completed-cases-section">
@@ -649,7 +790,7 @@
       <header class="modal-header">
         <div>
           <h2 class="modal-title-settings">Investigation Lab</h2>
-          <p class="modal-subtitle-custom">Analyze evidence to uncover deeper truths</p>
+          <h4 class="modal-subtitle-custom">Analyze evidence to uncover deeper truths</h4>
         </div>
         <button id="btn-close-inv-board" class="close-icon-btn">
           <i class="fa-solid fa-xmark"></i>
@@ -670,7 +811,7 @@
         <div class="modal-title-settings" style="font-size: 1.4rem; color: var(--accent-primary);">🔍 Holy Week</div>
       </div>
       <div class="modal-body">
-        <div class="modal-subtitle-custom" style="font-weight: 700; margin-bottom: 12px;">How to Play</div>
+        <h4 class="modal-subtitle-custom" style="font-weight: 700; margin-bottom: 12px;">How to Play</h4>
         <div class="modal-subtitle-custom" style="line-height: 1.6;">
           <p>Welcome, Scribe. Investigate the events of Holy Week and uncover the truth 🕊️ behind the mysteries.</p>
           <br>
@@ -697,7 +838,7 @@
       <button class="close-icon-btn" onclick="window.closeResetModal()" aria-label="Close">✕</button>
       <div class="modal-body" style="text-align: center;">
         <div style="font-size: 2rem; margin-bottom: 10px;">⚠️</div>
-        <div class="modal-title-settings">Reset Progress?</div>
+        <h2 class="modal-title-settings">Reset Progress?</h2>
         <div class="modal-subtitle-custom" style="margin: 10px 0 18px;">
           This will permanently clear all your solved cases and career points.
         </div>

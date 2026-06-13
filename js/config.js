@@ -182,7 +182,7 @@ export const MODELS = {
 
 // Model scale factors (apply when loading GLB)
 export const MODEL_SCALES = {
-    planet: 0.5,        // earth.glb already at radius 50
+    planet: 2  ,      // earth.glb already at radius 50
     player: 1,
     npcEcho: 1,
     npcHorizon: 1,
@@ -198,8 +198,10 @@ export const MODEL_SCALES = {
 // Scene configuration
 export const SCENE = {
     background: COLORS.deepSpaceBlack,        // Dark background
-    fogColor: COLORS.deepSpaceBlack,          // Fog color
-    fogDensity: 0.02,           // Fog density
+    fogColor: 0x050a1a,                       // Atmospheric deep blue/grey
+    fogDensity: 0.005,                        // Lower density for better depth
+    fogNear: 20,                              // Linear fog start
+    fogFar: 180,                             // Linear fog end (opaque)
     ambientLight: COLORS.deepSpaceBlack,      // Ambient light color
     ambientIntensity: 0.1,       // Ambient light strength
     sunColor: COLORS.white,          // Sunlight color
@@ -269,7 +271,11 @@ export const actions = [
 // Legacy npcs, quests, collectables deprecated - now in level*.js files
 // Locations are now loaded dynamically from level data
 
-export const locations = [];
+export const locations = [
+    { name: 'LOC_NORTH_SPIRE', pos: [0.1, 0.2], r: 15, questId: 0 },
+    { name: 'LOC_FORGOTTEN_GARDEN', pos: [0.4, 0.5], r: 20, questId: 1 },
+    { name: 'LOC_TEMPLE_RUINS', pos: [0.8, 0.1], r: 18, questId: 2 }
+];
 
 // ============================================================================
 // DIALOGUE SYSTEM CONFIGURATION
@@ -319,13 +325,20 @@ export const VFX = {
         dayColor: COLORS.brown,                 // Brownish by day
         nightColor: COLORS.cyan,               // Cyan by night
         lifetime: 1.0                       // Seconds
+    },
+    birds: {
+        enabled: true,
+        count: 20,
+        altitude: 80,
+        speed: 15,
+        color: COLORS.cyan
     }
 };
 
 // Day/Night configuration
 export const DAY_NIGHT = {
     autoCycle: true,                        //自动时间推进
-    cycleSpeed: 0.0001,                     // timeProgress increment per frame
+    cycleSpeed: 0.00002,                    // Slowed down (5x slower)
     dayPosition: 0.25,                      // timeProgress value for full day
     nightPosition: 0.75,                    // timeProgress value for full night
     sky: {

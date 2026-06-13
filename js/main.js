@@ -27,10 +27,7 @@ import { GameLevelManager } from './GameLevelManager.js';
 import { VFXSystem } from './core/VFXSystem.js';
 import { investigationManager } from './InvestigationManager.js';
 import { evidenceSystem } from './EvidenceSystem.js';
-import { locations as legacyLocations, ICON_SYSTEM } from './config.js';
-
-// Locations are now loaded from level data - use empty array as fallback
-const locations = [];
+import { locations, ICON_SYSTEM } from './config.js';
 
 // Global state — centralized via appState single-point-of-truth
 let started = false;
@@ -933,6 +930,17 @@ function setupUIHandlers() {
         updateCycleIcon();
     };
 
+    // Mobile Jump Button (Center Button)
+    const btnMobileJump = document.getElementById('ctrl-jump');
+    if (btnMobileJump) {
+        btnMobileJump.addEventListener('pointerdown', (e) => {
+            e.preventDefault();
+            if (started && !appState.isDialogueOpen && player) {
+                if (player.jump()) playBeep(300, "sine", 0.05);
+            }
+        });
+    }
+
     elActionsList.addEventListener('click', (e) => {
         const actionDiv = e.target.closest('.item');
         if (!actionDiv) return;
@@ -989,21 +997,6 @@ function gameLoop() {
 
     // Update VFX system (particles, decals, birds)
     vfx.update(1 / 60, pPos, player.getVelocity ? player.getVelocity() : new THREE.Vector3(), pPos.length() < worldMgr.planetR + 1.6);
-
-    // Update trail particles (fade and remove)
-    for (let i = vfx.trailParticles.length - 1; i >= 0; i--) {
-        const p = vfx.trailParticles[i];
-        p.life -= 0.015; // Slow fade rate
-        const scale = Math.max(0.1, p.life);
-        p.mesh.scale.setScalar(scale);
-        p.mesh.material.opacity = Math.max(0, p.life);
-        if (p.life <= 0) {
-            sceneMgr.scene.remove(p.mesh);
-            if (p.mesh.geometry) p.mesh.geometry.dispose();
-            if (p.mesh.material) p.mesh.material.dispose();
-            vfx.trailParticles.splice(i, 1);
-        }
-    }
 
     if (!started) {
         sceneMgr.render();

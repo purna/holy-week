@@ -11,6 +11,7 @@
     width: 100%;
     height: 100%;
     z-index: 1;
+    filter: brightness(0.82) contrast(1.05); /* Reduces 3D world brightness */
 }
 
 /* ==========================================================================
@@ -90,7 +91,8 @@
 
 .loading-screen .btn-primary,
 .loading-screen .hint {
-    display: inline-block;
+    display: none; /* Hide until engine is ready */
+    opacity: 0;
 }
 
 .loading-screen.ready .spinner,
@@ -101,6 +103,7 @@
 .loading-screen.ready .btn-primary,
 .loading-screen.ready .hint {
     display: block;
+    animation: fadeIn 1.2s ease forwards; /* Fade in start button */
 }
 
 /* Master Buttons */
@@ -823,18 +826,23 @@
     position: relative;
 }
 
+
 #lsm-tree {
     position: absolute;
     left: 0;
-    top: 0;
-    width: 240px;
+    top: 100px;
+    width: 260px;
     flex-shrink: 0;
     background: rgba(12, 7, 2, 0.85);
     border-right: 1px solid var(--border-subtle);
     overflow-y: auto;
-    padding: 14px 0;
+    padding: 14px;
     z-index: 10;
+    justify-content: center;
 }
+
+
+
 
 #modal-overlay.active {
     display: flex;
@@ -951,19 +959,6 @@
 }
 
 
-#lsm-tree {
-    position: absolute;
-    left: 0;
-    top: 100px;
-    width: 260px;
-    flex-shrink: 0;
-    background: rgba(12, 7, 2, 0.85);
-    border-right: 1px solid var(--border-subtle);
-    overflow-y: auto;
-    padding: 14px;
-    z-index: 10;
-    justify-content: center;
-}
 
 .overlay-mask {
     opacity: 0;
@@ -1771,7 +1766,9 @@
 }
 
 .picker-card {
+    font-family: var(--font-body);
     background: rgba(200, 150, 90, 0.04);
+    color: var(--text-muted);
     border: 1px solid var(--border-subtle);
     border-radius: 2px;
     padding: 11px 8px;
@@ -1788,6 +1785,7 @@
 
 .picker-card.selected-a,
 .picker-card.selected-b {
+    color: var(--text-main);
     background: rgba(200, 150, 90, 0.14);
     border-color: var(--accent-primary);
 }
@@ -1808,7 +1806,6 @@
 
 .picker-name {
     font-size: 0.72rem;
-    color: var(--text-main);
     display: block;
 }
 
@@ -2478,7 +2475,7 @@ body.reduce-motion * {
     background: var(--gold);
 }
 
-.tree-dot.locked {
+.tree-item.locked .tree-dot {
     background: var(--dim);
 }
 
@@ -2494,6 +2491,10 @@ body.reduce-motion * {
     border: 1px solid var(--border-subtle);
     border-radius: 2px;
     padding: 4px 8px;
+}
+
+.tree-item.locked .tree-title {
+    color: var(--text-muted);
 }
 
 /* Loading screen header text */
@@ -2801,10 +2802,18 @@ body.reduce-motion * {
     font-weight: 700;
 }
 
+h4.modal-subtitle-custom {
+    font-size: 1rem;
+    text-transform: uppercase;
+    text-align: center;
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+}
 .modal-subtitle-custom {
     margin: 2px 0 0 0;
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     color: var(--text-muted);
+
 }
 
 .header-icon-spacer {

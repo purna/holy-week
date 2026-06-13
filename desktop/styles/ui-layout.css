@@ -338,7 +338,7 @@
 .verse-text {
     font-size: 1.1rem;
     line-height: 1.75;
-    color: var(--ink);
+    color: var(--text-main);
     margin-top: 12px;
 }
 

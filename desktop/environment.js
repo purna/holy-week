@@ -10,14 +10,24 @@ export class EnvironmentManager {
         this.audio = audio;
         this.timeProgress = 0.25;
         this.wasDay = null; // track state to trigger audio transitions
+
+        // Ensure light targets are in the scene graph so their world matrices update
+        this.scene.add(this.sunLight.target);
+        this.scene.add(this.moonLight.target);
     }
 
-    update(autoCycle) {
+    update(autoCycle, playerPos) {
         if (autoCycle) this.timeProgress = (this.timeProgress + 0.00027) % 1;
 
         const rad = this.timeProgress * Math.PI * 2;
-        this.sunLight.position.set(Math.cos(rad) * 400, Math.sin(rad) * 400, 0);
-        this.moonLight.position.set(Math.cos(rad + Math.PI) * 400, Math.sin(rad + Math.PI) * 400, 0);
+        this.sunLight.position.set(Math.cos(rad) * 1500, Math.sin(rad) * 1500, 0);
+        this.moonLight.position.set(Math.cos(rad + Math.PI) * 1500, Math.sin(rad + Math.PI) * 1500, 0);
+
+        // Move shadow camera targets to follow the player
+        if (playerPos) {
+            this.sunLight.target.position.copy(playerPos);
+            this.moonLight.target.position.copy(playerPos);
+        }
 
         const dayMix = Math.max(0, Math.min(1, (Math.sin(rad) + 0.2) / 0.4));
 

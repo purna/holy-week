@@ -1,11 +1,12 @@
 // mapModal.js
 import * as THREE from 'three';
-import { GLTFLoader } from 'three/loaders/GLTFLoader';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
 export class OrbitalSelectMatrixModal {
-    constructor(caseManager, locationSystem, loadCaseCallback, globeScale = 11) {
+    constructor(caseManager, locationSystem, audio, loadCaseCallback, globeScale = 11) {
         this.cm = caseManager;
         this.ls = locationSystem;
+        this.audio = audio;
         this.loadCase = loadCaseCallback;
         this.scene = null;
         this.camera = null;
@@ -36,16 +37,13 @@ export class OrbitalSelectMatrixModal {
         this.renderer = new THREE.WebGLRenderer({ antialias: true });
         this.renderer.setPixelRatio(window.devicePixelRatio);
         this.wrapper.appendChild(this.renderer.domElement);
-
-        const sun = new THREE.DirectionalLight(0xffffff, 1.2);
+        // yellow 
+        const sun = new THREE.DirectionalLight(0xffff00, 0.2);
         sun.position.set(5, 3, 5);
         this.scene.add(sun);
-        this.scene.add(new THREE.AmbientLight(0xffffff, 0.4));
+        this.scene.add(new THREE.AmbientLight(0xffffff, 0.2));
 
-        // Add a secondary teal fill light to give the satellite view a high-tech "rim" glow
-        this.rimLight = new THREE.PointLight(0x00ffaa, 0.8, 100);
-        this.rimLight.position.set(-10, 5, -10);
-        this.scene.add(this.rimLight);
+        this.scene.add(new THREE.HemisphereLight(0xffffff, 0x444444, 0.4));
 
         // Initialize core group (this will hold the earth and markers)
         this.core = new THREE.Group();
@@ -60,21 +58,23 @@ export class OrbitalSelectMatrixModal {
             const box = new THREE.Box3().setFromObject(model);
             const size = box.getSize(new THREE.Vector3());
             const maxDim = Math.max(size.x, size.y, size.z);
-            const scale = this.globeScale / maxDim; 
+            const scale = this.globeScale / maxDim;
             model.scale.set(scale, scale, scale);
 
-            // Apply Toon Shader adjustment to reduce reflections
+            // Sync material properties with in-game engine to ensure correct color and reduced reflections
             model.traverse((node) => {
-                if (node.isMesh) {
-                    const oldMat = node.material;
-                    node.material = new THREE.MeshToonMaterial({
-                        color: oldMat.color,
-                        map: oldMat.map,
-                        gradientMap: null // Can be set for stepped shading
+                if (node.isMesh && node.material) {
+                    const materials = Array.isArray(node.material) ? node.material : [node.material];
+                    materials.forEach(mat => {
+                        if (mat.color) {
+                            mat.color.set(0xffd700);
+                        }
+                        mat.roughness = 0.9;
+                        mat.metalness = 0.0;
                     });
                 }
             });
-            
+
             this.core.add(model);
         }, undefined, (error) => {
             console.error("Error loading earth.glb, falling back to wireframe.", error);
@@ -93,6 +93,71 @@ export class OrbitalSelectMatrixModal {
         });
 
         this.renderActTree();
+    }
+
+    _renderMarkerForCase(c, index, total) {
+        // Distribute markers somewhat realistically around the sphere
+        // This logic can be refined for more precise geographical placement if needed.
+        const p = (index / total) * Math.PI * 2; // Angle around the equator
+        const t = (index % 2 === 0 ? 0.3 : -0.3) + Math.PI / 2; // Angle from the pole (latitude-like)
+
+        // Create the 3D marker (sphere)
+        const marker = new THREE.Mesh(
+            new THREE.SphereGeometry(0.45, 16, 16),
+            new THREE.MeshStandardMaterial({
+                color: c.color || 0x00ffaa,
+                emissive: c.color,
+                emissiveIntensity: 2.0
+            })
+        );
+        marker.position.setFromSphericalCoords(7.2, t, p); // Position on the globe
+        marker.userData.caseId = c.id; // Store caseId for raycasting
+
+        this.core.add(marker);
+        this.markers.push(marker);
+
+        // --- Create HTML Label and Dot ---
+        const dot = document.createElement('div');
+        dot.className = 'map-node-dot';
+        dot.classList.add('pulse');
+        dot.style.backgroundColor = c.color ? `#${c.color.toString(16).padStart(6, '0')}` : '#60a5fa';
+        dot.style.left = '0';
+        dot.style.top = '0';
+
+        const locked = c.isLocked || (c.requires && !this.cm.getCaseProgress(c.requires)?.solved);
+        if (locked) {
+            dot.classList.add('locked');
+            dot.innerHTML = '<i class="fa-solid fa-lock" style="font-size: 8px; display: block;"></i>';
+            dot.style.display = 'flex';
+            dot.style.alignItems = 'center';
+            dot.style.justifyContent = 'center';
+        }
+
+        const label = document.createElement('div');
+        label.className = 'map-node-label';
+        label.style.left = '0';
+        label.style.top = '0';
+
+        // Lookup location metadata from the system for a cleaner display name
+        const loc = this.ls ? this.ls.getLocation(c.location) : null;
+        // Remove leading non-alphanumeric characters (like emojis) for cleaner display
+        const locDisplay = loc ? loc.name.replace(/^[^a-zA-Z0-9]*/, '') : (c.location || 'Unknown');
+
+        label.innerHTML = `
+            <div class="map-node-loc">${locDisplay}</div>
+            <div class="map-node-title">${c.title}</div>
+        `;
+
+        this.wrapper.appendChild(dot); // Add HTML dot to the wrapper
+        this.wrapper.appendChild(label); // Add HTML label to the wrapper
+        this.labels.push({ dot, label, marker }); // Store references for positioning in loop
+
+        const select = () => {
+            this.updateSidebarDetails(c);
+        };
+
+        dot.onclick = select; // Make the HTML dot clickable
+        marker.callback = select; // Attach callback to 3D marker for raycasting
     }
 
     renderActTree() {
@@ -161,12 +226,28 @@ export class OrbitalSelectMatrixModal {
                 const dot = document.createElement('div');
                 dot.className = `tree-dot ${locked ? 'locked' : solved ? 'solved' : 'available'}`;
 
+                if (locked) {
+                    dot.innerHTML = '<i class="fa-solid fa-lock" style="font-size: 5px; display: block;"></i>';
+                    dot.style.display = 'flex';
+                    dot.style.alignItems = 'center';
+                    dot.style.justifyContent = 'center';
+                }
+
                 const info = document.createElement('div');
                 info.className = 'tree-info';
 
                 const title = document.createElement('div');
                 title.className = 'tree-title';
-                title.textContent = c.title;
+                if (locked) {
+                    const lock = document.createElement('i');
+                    lock.className = 'fa-solid fa-lock';
+                    lock.style.marginRight = '6px';
+                    lock.style.color = '#e2b13c';
+                    title.appendChild(lock);
+                }
+                const titleText = document.createElement('span');
+                titleText.textContent = c.title;
+                title.appendChild(titleText);
 
                 info.appendChild(title);
                 item.appendChild(dot);
@@ -197,10 +278,20 @@ export class OrbitalSelectMatrixModal {
                     this.activeAct = act;
                     list.style.display = 'block';
                     chevron.textContent = '▼';
-                    this.showActCasesOnGlobe(act);
+                    // We no longer call showActCasesOnGlobe(act) here so nodes don't disappear
                 }
             };
         });
+    }
+
+    hideAllMarkers() {
+        this.markers.forEach(m => this.core.remove(m));
+        this.labels.forEach(l => {
+            if (l.dot.parentNode) l.dot.remove();
+            if (l.label.parentNode) l.label.remove();
+        });
+        this.markers = [];
+        this.labels = [];
     }
 
     showAllCasesOnGlobe() {
@@ -222,80 +313,39 @@ export class OrbitalSelectMatrixModal {
         });
     }
 
-    _renderMarkerForCase(c, index, total) {
-        // Distribute markers somewhat realistically around the sphere
-        const p = (index / total) * Math.PI * 2;
-        const t = (index % 2 === 0 ? 0.3 : -0.3) + Math.PI / 2;
-
-        const marker = new THREE.Mesh(
-            new THREE.SphereGeometry(0.45, 16, 16),
-            new THREE.MeshStandardMaterial({
-                color: c.color || 0x00ffaa,
-                emissive: c.color,
-                emissiveIntensity: 2.0
-            })
-        );
-        marker.position.setFromSphericalCoords(7.2, t, p);
-        
-        this.core.add(marker);
-        this.markers.push(marker);
-
-        const dot = document.createElement('div');
-        dot.className = 'map-node-dot';
-        dot.style.backgroundColor = c.color ? `#${c.color.toString(16).padStart(6, '0')}` : '#60a5fa';
-
-        const label = document.createElement('div');
-        label.className = 'map-node-label';
-
-        // Lookup location metadata from the system
-        const loc = this.ls ? this.ls.getLocation(c.location) : null;
-        const locDisplay = loc ? loc.name.replace(/^[^a-zA-Z0-9]*/, '') : (c.location || 'Unknown');
-
-        label.innerHTML = `
-            <div class="map-node-loc">${locDisplay}</div>
-            <div class="map-node-title">${c.title}</div>
-        `;
-
-        this.wrapper.appendChild(dot);
-        this.wrapper.appendChild(label);
-        this.labels.push({ dot, label, marker });
-
-        const select = () => {
-            this.updateSidebarDetails(c);
-        };
-
-        dot.onclick = select;
-        marker.callback = select; // Optional: for raycasting if added later
-    }
-
-    hideAllMarkers() {
-        this.markers.forEach(m => this.core.remove(m));
-        this.labels.forEach(l => {
-            if (l.dot.parentNode) l.dot.remove();
-            if (l.label.parentNode) l.label.remove();
-        });
-        this.markers = [];
-        this.labels = [];
-    }
-
     updateSidebarDetails(c) {
         const title = document.getElementById('map-node-title');
         const emoji = document.getElementById('map-node-emoji');
         const desc = document.getElementById('map-node-description');
         const loc = document.getElementById('map-node-location');
         const actDesc = document.getElementById('map-act-description');
+        const actionContainer = document.getElementById('map-node-action-container');
+        const loadBtn = document.getElementById('btn-load-node-scene');
 
         if (title) title.textContent = c.title;
         if (emoji) emoji.textContent = c.emoji || '📍';
         if (desc) desc.textContent = c.description || 'No detailed intel available for this sector.';
         if (loc) loc.textContent = c.location || 'Unknown Coordinates';
         if (actDesc) actDesc.textContent = `ACT_OBJECTIVE: ${c.actLabel || 'Phase I'} - investigation parameters synchronized.`;
+
+        if (actionContainer && loadBtn) {
+            const locked = c.isLocked || (c.requires && !this.cm.getCaseProgress(c.requires)?.solved);
+            if (!locked) {
+                actionContainer.style.display = 'block';
+                loadBtn.onclick = () => {
+                    if (this.audio) this.audio.playUI();
+                    this.selectCase(c.id);
+                };
+            } else {
+                actionContainer.style.display = 'none';
+            }
+        }
     }
 
     updateResolvedArchives() {
         const list = document.getElementById('completed-cases-list');
         if (!list) return;
-        
+
         const solved = this.cm.getAllCases().filter(c => this.cm.getCaseProgress(c.id)?.solved);
         if (solved.length === 0) {
             list.innerHTML = `<span style="opacity: 0.4; font-style: italic;">NO_RESOLVED_DATA</span>`;
@@ -312,9 +362,13 @@ export class OrbitalSelectMatrixModal {
     bind() {
         document.getElementById('btn-close-map').onclick = () => this.close();
 
+        let moveThreshold = 5;
+        let startPos = { x: 0, y: 0 };
+
         this.wrapper.addEventListener('mousedown', (e) => {
             this.dragging = true;
             this.prev = { x: e.clientX, y: e.clientY };
+            startPos = { x: e.clientX, y: e.clientY };
         });
 
         this.wrapper.addEventListener('mousemove', (e) => {
@@ -326,13 +380,39 @@ export class OrbitalSelectMatrixModal {
             this.prev = { x: e.clientX, y: e.clientY };
         });
 
-        this.wrapper.addEventListener('mouseup', () => this.dragging = false);
+        this.wrapper.addEventListener('mouseup', (e) => {
+            this.dragging = false;
+            
+            const dist = Math.sqrt(Math.pow(e.clientX - startPos.x, 2) + Math.pow(e.clientY - startPos.y, 2));
+            if (dist < moveThreshold) {
+                this._handleRaycast(e);
+            }
+        });
+
         this.wrapper.addEventListener('mouseleave', () => this.dragging = false);
+    }
+
+    _handleRaycast(e) {
+        const rect = this.wrapper.getBoundingClientRect();
+        const mouse = new THREE.Vector2(
+            ((e.clientX - rect.left) / rect.width) * 2 - 1,
+            -((e.clientY - rect.top) / rect.height) * 2 + 1
+        );
+
+        const raycaster = new THREE.Raycaster();
+        raycaster.setFromCamera(mouse, this.camera);
+        const intersects = raycaster.intersectObjects(this.markers);
+
+        if (intersects.length > 0) {
+            const m = intersects[0].object;
+            if (m.callback) m.callback();
+            if (this.audio) this.audio.playUI();
+        }
     }
 
     open() {
         this.overlay.classList.add('active');
-        
+
         // Small delay to ensure the DOM has rendered the modal dimensions
         setTimeout(() => {
             const width = this.wrapper.clientWidth;
@@ -348,8 +428,9 @@ export class OrbitalSelectMatrixModal {
         if (this.treeEl && panel) {
             panel.appendChild(this.treeEl);
         }
-        
+
         this.hideAllMarkers(); // Start with a clean globe
+        this.showAllCasesOnGlobe(); // Automatically show cases on open
         this.updateResolvedArchives();
         this.loop();
     }
@@ -363,35 +444,42 @@ export class OrbitalSelectMatrixModal {
 
     loop() {
         this.raf = requestAnimationFrame(() => this.loop());
-        this.camera.position.setFromSphericalCoords(24, this.phi, this.theta);
+        this.camera.position.setFromSphericalCoords(21, this.phi, this.theta);
         this.camera.lookAt(0, 0, 0);
-        
+
         // Significantly slowed rotation for cinematic effect
         if (!this.dragging && this.core) this.core.rotation.y += 0.0005;
-        
+
         this.renderer.render(this.scene, this.camera);
 
-        const w = this.wrapper.offsetWidth;
-        const h = this.wrapper.offsetHeight;
+        const w = this.wrapper.clientWidth;
+        const h = this.wrapper.clientHeight;
 
         this.labels.forEach((item) => {
-            // Create a vector from the marker's local position to world position
-            const vector = new THREE.Vector3();
-            item.marker.getWorldPosition(vector);
-            
-            // Project to 2D
-            vector.project(this.camera);
+            // Get world position of the marker
+            const worldPos = new THREE.Vector3();
+            item.marker.getWorldPosition(worldPos);
+
+            // Project world position to screen space
+            const vector = worldPos.clone().project(this.camera);
+
+            // Determine occlusion: Node is behind the globe if it faces away from the camera
+            // Since globe is at origin, worldPos is the normal from center to node.
+            const isBehind = worldPos.dot(this.camera.position) < 0;
 
             const x = (vector.x * 0.5 + 0.5) * w;
-            const y = (vector.y * -0.5 + 0.5) * h;
+            const y = (vector.y * -0.5 + 0.5) * h; // Invert Y for screen coordinates
 
-            item.dot.style.transform = `translate(-50%, -50%) translate(${x}px, ${y}px)`;
-            item.label.style.transform = `translate(-50%, -100%) translate(${x}px, ${y - 20}px)`;
-            
-            // Hide if behind the globe
-            const isBehind = vector.z > 1;
+            // Use left/top for base position so CSS transform is free for animations/hover
+            item.dot.style.left = `${x}px`;
+            item.dot.style.top = `${y}px`;
+
+            item.label.style.left = `${x}px`;
+            item.label.style.top = `${y - 25}px`;
+
             item.dot.style.opacity = isBehind ? '0' : '1';
             item.label.style.opacity = isBehind ? '0' : '1';
+            item.dot.style.pointerEvents = isBehind ? 'none' : 'auto';
         });
     }
 }

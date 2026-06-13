@@ -127,6 +127,7 @@ export class AudioManager {
   playTalk() { this.play('talk'); }
   playError() { this.play('error'); }
   playUI() { this.play('ui'); }
+  playJump() { this.play('ui'); }
 
   playMorningAmbience() {
     this.stopAllAmbience();

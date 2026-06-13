@@ -1,7 +1,14 @@
 import { GameEngine } from "./gameEngine.js";
 import { LabUI } from "./labUI.js";
 
-const game = new GameEngine();
+
+    // ── Configuration ──────────────────────────────────────────
+    const CONFIG = {
+      unlockAllCases: false // Set to true to bypass case requirements for testing
+    };
+
+
+const game = new GameEngine(CONFIG); // Pass the CONFIG object to the GameEngine
 window.gameEngine = game;
 window.a11y = game.a11y;
 window.audio = game.audio;
@@ -98,6 +105,11 @@ window.audio = game.audio;
       game.audio.playUI();
       buildA11yList();
 
+      // Sync day/night toggle state
+      const dayNightToggle = document.getElementById('toggle-day-night');
+      if (dayNightToggle) {
+        dayNightToggle.classList.toggle('active', game.controls.autoCycle);
+      }
       // Sync audio toggle visual state with actual engine state when opening
       if (audioToggle) {
           const isEnabled = game.a11y.soundEnabled;
@@ -154,6 +166,9 @@ window.audio = game.audio;
 
   window.closeInstructionsModal = () => {
     document.getElementById('instructions-modal').classList.remove('active');
+    if (game.controls) {
+      game.controls.displayAlert(`Case: ${game.activeCaseId ? game.cm.cases[game.activeCaseId].title : ''}`);
+    }
   };
 
   window.showResetModal = () => {

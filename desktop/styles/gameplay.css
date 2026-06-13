@@ -101,7 +101,6 @@
     margin-bottom: 6px;
     color: var(--accent-success);
     border-left: 3px solid var(--accent-primary);
-    font-style: italic;
     line-height: 1.4;
 }
 

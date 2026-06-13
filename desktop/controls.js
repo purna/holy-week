@@ -3,7 +3,7 @@ export class ControlsManager {
     constructor(gameEngine) {
         this.engine = gameEngine;
         this.keys = {};
-        this.autoCycle = true;
+        this.autoCycle = false;
         this.init();
     }
 
