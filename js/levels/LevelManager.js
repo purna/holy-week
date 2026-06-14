@@ -5,16 +5,7 @@
  * Each phase maps to a level data file (level01.js … level10.js).
  *
  * Phase map:
- *  1  – Explore Jerusalem          (level01)
- *  2  – Hear rumours / pick quests (level02)
- *  3  – Talk to witnesses          (level03)
- *  4  – Complete tasks / actions   (level04)
- *  5  – Collect evidence items     (level05)
- *  6  – Unlock deeper convos       (level06)
- *  7  – Attend public teachings    (level07)
- *  8  – Learn parables             (level08)
- *  9  – Build investigation board  (level09)
- * 10  – Reach conclusion / Trial   (level10)
+
  *
  * Each level module exports a default object matching the LevelData schema
  * defined at the bottom of this file.

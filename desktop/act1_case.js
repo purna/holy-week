@@ -83,7 +83,7 @@ export const act1CaseA = {
     {
       id: "cloaks",
       name: "Two Disciples' Cloaks",
-      relatedProphecy: "genesis_49_10_11",
+      relatedProphecy: "2kings_9_13",
       revealsSuspect: "peter",
       type: "physical",
       icon: "👕",
@@ -99,6 +99,7 @@ export const act1CaseA = {
     },
     {
       id: "donkey_tracks",
+      relatedProphecy: "ezekiel_44_1_3",
       name: "Fresh Hoofprints",
       type: "physical",
       icon: "👣",
@@ -114,6 +115,7 @@ export const act1CaseA = {
     },
     {
       id: "witness_account",
+      relatedProphecy: "exodus_12_3_6",
       name: "Villager's Testimony",
       type: "testimonial",
       icon: "👂",
@@ -163,6 +165,7 @@ export const act1CaseA = {
     },
     {
       id: "rope_fibers",
+      relatedProphecy: "numbers_19_2",
       name: "Cut Rope at the Tethering Post",
       type: "physical",
       icon: "🧵",

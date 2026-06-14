@@ -8,18 +8,10 @@
  * Each level is imported here at build time, typed as LevelData.
  */
 
-import level01 from './levels/level01.js';
-import level02 from './levels/level02.js';
-import level03 from './levels/level03.js';
-import level04 from './levels/level04.js';
-import level05 from './levels/level05.js';
-import level06 from './levels/level06.js';
-import level07 from './levels/level07.js';
-import level08 from './levels/level08.js';
-import level09 from './levels/level09.js';
-import level10 from './levels/level10.js';
-import level11 from './levels/level11.js';
-import level12 from './levels/level12.js';
+import level01 from './levels/act1_case.js';
+import level02 from './levels/act2_case.js';
+import level03 from './levels/act3_case.js';
+import level04 from './levels/act4_case.js';
 
 /**
  * @type {import('../levels/LevelManager.js').LevelData[]}
@@ -29,12 +21,5 @@ export const levelRegistry = [
     level02,
     level03,
     level04,
-    level05,
-    level06,
-    level07,
-    level08,
-    level09,
-    level10,
-    level11,
-    level12,
+
 ];

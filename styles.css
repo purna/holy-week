@@ -17,13 +17,22 @@
 }
 
 /* ===== BASE ===== */
-body {
+html, body {
     margin: 0;
+    padding: 0;
     overflow: hidden;
     background: var(--bg-main);
     font-family: 'Courier New', monospace;
     text-transform: uppercase;
     user-select: none;
+    width: 100%;
+    height: 100%;
+}
+
+canvas {
+    display: block;
+    width: 100vw;
+    height: 100vh;
 }
 
 /* ===== BUTTONS ===== */
@@ -43,14 +52,35 @@ body {
     align-items: center;
     justify-content: center;
 }
-#btn-quest-toggle {
+
+#btn-quest-toggle,
+#btn-inv-toggle,
+#btn-actions-toggle,
+#btn-sound-toggle,
+#btn-cycle-toggle {
     width: 48px;
     height: 48px;
     padding: 0;
     display: flex;
     align-items: center;
     justify-content: center;
+}
 
+/* Smaller buttons on mobile */
+@media (max-width: 480px) {
+    .ui-toggle {
+        width: 44px;
+        height: 44px;
+    }
+
+    #btn-quest-toggle,
+    #btn-inv-toggle,
+    #btn-actions-toggle,
+    #btn-sound-toggle,
+    #btn-cycle-toggle {
+        width: 44px;
+        height: 44px;
+    }
 }
 .ui-toggle:hover {
     background: rgba(0,242,255,0.2);
@@ -117,9 +147,19 @@ h3 {
 
 /* ===== OVERLAY SCREENS ===== */
 .overlay {
-    position: absolute; top:0; left:0; width:100%; height:100%;
-    display:flex; flex-direction:column; align-items:center; justify-content:center;
-    color:white; z-index:1000; text-align:center; background:rgba(0,0,0,0.95);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    z-index: 1000;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.95);
 }
 #start-screen h1 {
     color: var(--accent-secondary);
@@ -186,44 +226,6 @@ button#btn-replay { background:#00ffaa; color:#000; }
 }
 
 .result-card {
-  max-height: 70vh;
-  overflow-y: auto;
-}
-
-/* ===== MOBILE RESPONSIVE LAYOUT ===== */
-@media (max-width: 768px) {
-    /* Position Right Sidebar at the bottom as a row */
-    #right-sidebar {
-        width: 100%;
-        height: auto;
-        top: auto;
-        bottom: 0;
-        flex-direction: row;
-        padding: 10px;
-        background: var(--panel-bg);
-        pointer-events: auto;
-        border-top: 1px solid var(--accent-primary);
-    }
-
-    #sidebar-top, #sidebar-bottom {
-        flex-direction: row;
-        align-items: center;
-        margin-bottom: 0;
-        gap: 15px;
-    }
-
-    /* Adjusting Left Sidebar (referenced in logic) to the top as a row */
-    #left-sidebar {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: auto;
-        display: flex;
-        flex-direction: row;
-        padding: 10px;
-        background: var(--panel-bg);
-        z-index: 500;
-        border-bottom: 1px solid var(--accent-primary);
-    }
+    max-height: 70vh;
+    overflow-y: auto;
 }

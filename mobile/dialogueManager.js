@@ -27,6 +27,7 @@ export const DIALOGUE_ID_MAP = {
     pilates_secretary: path + '/act1/case_b_overturned_tables/pilates_secretary.json',
     pharisee_critique: path + '/act1/case_b_overturned_tables/pharisee_critique.json',
     priest_objection: path + '/act1/case_b_overturned_tables/priest_objection.json',
+    upset_buyer: path + '/act1/case_b_overturned_tables/money_changer.json',
 
     // Case C: The Barren Fig Tree
     nathan_fig_tree: path + '/act1/case_c_fig_tree_incident/nathan_fig_tree.json', // Assuming direct under story/
@@ -36,6 +37,7 @@ export const DIALOGUE_ID_MAP = {
     // --- Act II: The Plots ---
     // Case A: The Silenced Teacher (Temple Authority)
     scribe_intro: path + '/act2/case_a_silenced_teacher/scribe_intro.json',
+    caiaphas_priest: path + '/act2/case_a_silenced_teacher/caiaphas_priest.json',
     parable_meaning: path + '/act2/case_a_silenced_teacher/parable_meaning.json',
     parable_vineyard: path + '/act2/case_a_silenced_teacher/parable_vineyard.json',
     witness_healed: path + '/act2/case_a_silenced_teacher/witness_healed.json',
@@ -168,12 +170,17 @@ export class DialogueManager {
     }
 
     createStory(npcId) {
+        if (!this.inkLib) throw new Error('Ink runtime not loaded');
         const data = this.npcStories[npcId];
         if (!data) throw new Error('Story data not found for ' + npcId);
-        if (this.inkLib && this.inkLib.Story && data.inkVersion) {
+
+        // Detect if this is an Ink story or our simpler JSON format
+        if (data.inkVersion) {
             return new this.inkLib.Story(data);
         }
-        return null;
+
+        // If it's a simple JSON, wrap it in an adapter so the UI logic works identically
+        return new SimpleStoryAdapter(data);
     }
 
     getStory(npcId) {
@@ -325,8 +332,10 @@ export class DialogueManager {
 
     closeDialogue(onClose) {
         const box = document.getElementById('local-dialogue-box');
-        if (box) box.classList.remove('active');
-        else document.getElementById('local-dialogue-box').style.display = 'none';
+        if (box) {
+            box.classList.remove('active');
+            box.style.display = 'none';
+        }
 
         const { bubScroll } = this._getEls();
         bubScroll.innerHTML = '';
@@ -354,16 +363,17 @@ export class DialogueManager {
     _stepStory(story, onClose) {
         if (!story) return;
 
-        // If the story is at the end, show closing button
-        if (!story.canContinue && (!story.currentChoices || story.currentChoices.length === 0)) {
-            this.showChoices([{ text: 'End Conversation', index: -1 }], () => this.closeDialogue(onClose));
-            return;
-        }
-
         this.addTyping(() => {
             let text = "";
-            while (story.canContinue) {
-                text += story.Continue();
+            // Ink can have content that results in empty strings (tags/diverts).
+            // We loop until we either hit actual text OR we have choices to present.
+            let safety = 0;
+            while (story.canContinue && safety < 20) {
+                let chunk = story.Continue();
+                text += chunk;
+                // If we found text or choices, we have enough to show the user
+                if (text.trim() || story.currentChoices.length > 0) break;
+                safety++;
             }
 
             if (text.trim()) {
@@ -372,9 +382,13 @@ export class DialogueManager {
 
             if (story.currentChoices && story.currentChoices.length > 0) {
                 this.showChoices(story.currentChoices, (choice) => {
-                    this.addMsg(choice.text, 'player');
-                    story.ChooseChoiceIndex(choice.index);
-                    setTimeout(() => this._stepStory(story, onClose), 400);
+                    if (choice.index !== -1) {
+                        this.addMsg(choice.text, 'player');
+                        story.ChooseChoiceIndex(choice.index);
+                        setTimeout(() => this._stepStory(story, onClose), 400);
+                    } else {
+                        this.closeDialogue(onClose);
+                    }
                 });
             } else {
                 this.showChoices(
@@ -414,5 +428,41 @@ export class DialogueManager {
             })
             .filter(Boolean)
             .join('\n');
+    }
+}
+
+/**
+ * Adapter for non-Ink simple JSON dialogues (content/choices format).
+ * Mimics the inkjs Story API so DialogueManager can use them interchangeably.
+ */
+class SimpleStoryAdapter {
+    constructor(data) {
+        this.data = data;
+        // Standardize entry point
+        this.currentNode = data.start || data.root || Object.values(data)[0];
+        this.canContinue = !!this.currentNode;
+        this.currentChoices = [];
+    }
+
+    Continue() {
+        if (!this.currentNode) return "";
+        const txt = this.currentNode.content || "";
+        // Transform choices to match Ink format { text, index }
+        this.currentChoices = (this.currentNode.choices || []).map((c, i) => ({
+            text: c.text,
+            index: i,
+            destination: c.destination
+        }));
+        this.canContinue = false;
+        return txt;
+    }
+
+    ChooseChoiceIndex(idx) {
+        const choice = this.currentChoices[idx];
+        if (choice && choice.destination && this.data[choice.destination]) {
+            this.currentNode = this.data[choice.destination];
+            this.canContinue = true;
+            this.currentChoices = [];
+        }
     }
 }

@@ -54,6 +54,13 @@ export class GameLevelManager {
         // 5. Overwrite global active quests and NPCs for the current framework
         this.app.updateActiveLevelData(levelData.quests, levelData.npcs);
 
+        // Load stories for the new level's NPCs so interaction buttons work immediately
+        if (levelData.npcs && this.app.dialogueMgr) {
+            levelData.npcs.forEach(npc => {
+                this.app.dialogueMgr.loadStoryForNPC(npc);
+            });
+        }
+
         // 6. Spawn Pickups/Evidence and rebuild NPC meshes into the scene
         this.app.worldMgr.spawnLevelAssets(levelData);
 

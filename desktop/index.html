@@ -66,7 +66,7 @@
       <p id="loading-text" class="loading-text loading-subtitle">
         Loading investigation environment and evidence archives...
       </p>
-      
+
       <p class="sub hidden">Jerusalem Investigation</p>
       <button id="btn-start" class="btn-primary">Begin Investigation</button>
       <p class="hint">WASD / Arrow Keys to move · Click to approach · Space to jump</p>
@@ -82,13 +82,27 @@
   <!-- End Game / Case Resolution Screen: Displayed upon a definitive investigation completion -->
   <div id="end-screen" class="end-screen">
     <div class="end-inner">
-      <i class="fa-solid fa-circle-check end-icon"></i>
-      <h1 class="end-title">CASE CLOSED</h1>
-      <p class="end-text">
-        All evidence collected and mysteries solved. Ready for the next investigation.
-      </p>
+      <div id="result-verdict" class="end-icon">🏆</div>
+      <h1 id="result-verdict-text" class="end-title">CASE CLOSED</h1>
+
+      <div class="result-breakdown">
+        <div class="result-truth-box">
+          <div class="result-label">The Truth</div>
+          <p id="result-truth" class="end-text">All evidence collected and mysteries solved. Ready for the next
+            investigation.</p>
+        </div>
+
+        <div class="final-score-display">
+          <div class="final-score-label">Final Investigation Score</div>
+          <div class="final-score-value" id="final-score-value">0</div>
+          <div id="final-score-rank" class="final-score-rank">Rookie Detective</div>
+        </div>
+      </div>
+
       <div class="end-btn-row">
-        <button class="terminal-btn" onclick="window.location.reload();">Start New Investigation</button>
+        <button class="terminal-btn" onclick="window.location.reload();">New Investigation</button>
+        <button class="terminal-btn" onclick="document.getElementById('end-screen').classList.remove('active')">Continue
+          Exploring</button>
       </div>
     </div>
   </div>
@@ -323,16 +337,16 @@
     <div class="modal-panel" onclick="event.stopPropagation()">
       <header class="modal-header">
         <div>
-        <span id="passage-ref-title">Loading scripture…</span>
-        <span id="passage-version-lbl" class="badge">WEB</span>
+          <span id="passage-ref-title">Loading scripture…</span>
+          <span id="passage-version-lbl" class="badge">WEB</span>
         </div>
-      <div class="passage-header-actions">
-        <button id="btn-passage-day-night" class="close-icon-btn" title="Toggle Day/Night Mode">
-          <i class="fa-solid fa-moon"></i>
-        </button>
-        <button class="close-icon-btn" onclick="window.BibleReader.closeOverlay(null)">
-          <i class="fa-solid fa-xmark"></i>
-        </button>
+        <div class="passage-header-actions">
+          <button id="btn-passage-day-night" class="close-icon-btn" title="Toggle Day/Night Mode">
+            <i class="fa-solid fa-moon"></i>
+          </button>
+          <button class="close-icon-btn" onclick="window.BibleReader.closeOverlay(null)">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
       </header>
       <main id="passage-text-content" class="modal-body"></main>
     </div>
@@ -488,18 +502,18 @@
         <div id="modal-canvas-wrap">
           <!-- Satellite Overlay UI -->
           <div class="satellite-overlay satellite-overlay-top">
-             <div class="satellite-grid-ver">GRID_OS_VER_4.2</div>
-             <div class="satellite-scan-text">SCANNING_FOR_UNLOCKED_NODES...</div>
+            <div class="satellite-grid-ver">GRID_OS_VER_4.2</div>
+            <div class="satellite-scan-text">SCANNING_FOR_UNLOCKED_NODES...</div>
           </div>
           <div class="satellite-overlay satellite-overlay-bottom">
-             <div class="satellite-coord">COORD_X: 31.7683° N</div>
-             <div class="satellite-coord">COORD_Y: 35.2137° E</div>
+            <div class="satellite-coord">COORD_X: 31.7683° N</div>
+            <div class="satellite-coord">COORD_Y: 35.2137° E</div>
           </div>
         </div>
 
         <!-- Investigation Dossier Sidebar -->
         <div id="map-node-info-panel">
-          
+
           <!-- Active Intel Header -->
           <div class="map-node-intel-header">
             <div class="map-node-header-row">
@@ -513,9 +527,10 @@
           <div class="map-node-dossier">
             <div class="dossier-section">
               <div class="dossier-section-label">Intelligence Brief</div>
-              <p id="map-node-description">Interact with pins on the orbital map to view localized case summaries and historical context. Unlocked cases are highlighted in primary green.</p>
+              <p id="map-node-description">Interact with pins on the orbital map to view localized case summaries and
+                historical context. Unlocked cases are highlighted in primary green.</p>
             </div>
-            
+
             <div id="map-act-description">Mission objectives will populate here upon node synchronization.</div>
 
             <!-- Load Scene Action -->
@@ -539,7 +554,8 @@
           <!-- Status Legend -->
           <div class="map-legend">
             <span class="map-legend-item"><i class="fa-solid fa-circle-dot map-legend-icon-sm"></i> Unlocked</span>
-            <span class="map-legend-item completed"><i class="fa-solid fa-circle-check map-legend-icon-md"></i> Completed</span>
+            <span class="map-legend-item completed"><i class="fa-solid fa-circle-check map-legend-icon-md"></i>
+              Completed</span>
             <span class="map-legend-item locked"><i class="fa-solid fa-lock map-legend-icon-md"></i> Locked</span>
           </div>
         </div>
@@ -560,11 +576,13 @@
         <section class="settings-section">
           <h3 class="picker-title">Interface & Gameplay</h3>
           <div class="a11y-setting-row">
-            <span><span class="a11y-label-main">Minimap</span><span class="a11y-label-desc">Toggle the vector radar</span></span>
+            <span><span class="a11y-label-main">Minimap</span><span class="a11y-label-desc">Toggle the vector
+                radar</span></span>
             <button type="button" class="toggle-btn active" id="toggle-ui-minimap" aria-checked="true"></button>
           </div>
           <div class="a11y-setting-row">
-            <span><span class="a11y-label-main">Mobile Controls</span><span class="a11y-label-desc">Toggle the on-screen D-pad</span></span>
+            <span><span class="a11y-label-main">Mobile Controls</span><span class="a11y-label-desc">Toggle the on-screen
+                D-pad</span></span>
             <button type="button" class="toggle-btn active" id="toggle-ui-controls" aria-checked="true"></button>
           </div>
         </section>
@@ -574,10 +592,10 @@
           <div class="settings-row">
             <label class="settings-label-custom">Translation</label>
             <select id="setting-bible-version" class="settings-select-custom">
-                <option value="web">World English (WEB)</option>
-                <option value="kjv">King James (KJV)</option>
-                <option value="bbe">Basic English (BBE)</option>
-                <option value="oeb-us">Open English (OEB)</option>
+              <option value="web">World English (WEB)</option>
+              <option value="kjv">King James (KJV)</option>
+              <option value="bbe">Basic English (BBE)</option>
+              <option value="oeb-us">Open English (OEB)</option>
             </select>
           </div>
         </section>
@@ -586,8 +604,9 @@
           <h3 class="picker-title">Accessibility & Sound</h3>
           <div id="a11y-settings-list" class="settings-a11y-list"></div>
           <div class="a11y-setting-row a11y-setting-row-audio">
-             <span><span class="a11y-label-main">Audio</span><span class="a11y-label-desc">Toggle background ambience</span></span>
-             <button id="settings-audio-toggle" class="toggle-btn" aria-checked="true" type="button"></button>
+            <span><span class="a11y-label-main">Audio</span><span class="a11y-label-desc">Toggle background
+                ambience</span></span>
+            <button id="settings-audio-toggle" class="toggle-btn" aria-checked="true" type="button"></button>
           </div>
         </section>
       </main>

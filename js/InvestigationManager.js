@@ -10,7 +10,10 @@ export class InvestigationManager {
         this.challengeMatrix = {
             'merchant': 'temple_corruption',
             'simon_pharisee': 'healing_testimony',
-            'centurion_claudius': 'prophecy_fulfilled'
+            'centurion_claudius': 'prophecy_fulfilled',
+            'centurion_witness': 'pierced_spear',
+            'sentry_lucas': 'bribe_shekels',
+            'healed_man': 'healing_testimony'
         };
     }
 
@@ -19,7 +22,7 @@ export class InvestigationManager {
      */
     getModes(npcId, currentAct) {
         const modes = [
-            { id: 'talk', label: '[E] CONNECT', key: 'e' }
+            { id: 'talk', label: '[E] TALK', key: 'e' }
         ];
 
         // Check for Challenge availability
@@ -28,8 +31,8 @@ export class InvestigationManager {
             modes.push({ id: 'challenge', label: '[Q] CHALLENGE', key: 'q' });
         }
 
-        // Accuse is only enabled in Act 5
-        if (currentAct === 5) {
+        // Enable Accuse for all active investigation acts (Acts 1 through 10)
+        if (currentAct >= 1 && currentAct <= 10) {
             modes.push({ id: 'accuse', label: '[R] ACCUSE', key: 'r' });
         }
 

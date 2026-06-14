@@ -1,11 +1,16 @@
 /* ===== PANELS ===== */
 .panel {
+    position: fixed;
+    top: 20px;
+    right: 78px;
     color: var(--text-main);
     background: var(--panel-bg);
     padding: 12px;
     border: 1px solid var(--accent-primary);
     backdrop-filter: blur(10px);
     width: 200px;
+    max-height: calc(100vh - 40px);
+    overflow-y: auto;
     transform-origin: right center;
     transform: scale(0.85);
     opacity: 0;
@@ -20,26 +25,40 @@
     pointer-events: auto;
 }
 
+/* Scrollbar styling so long lists never overflow the panel box */
+.panel::-webkit-scrollbar {
+    width: 6px;
+}
+
+.panel::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.panel::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 3px;
+}
+
+/* ===== PANEL ANCHORS (desktop) =====
+   Each panel is fixed to the viewport near its own toggle button so
+   its size/content can never push the sidebar buttons around.
+   #panel-quest sits in #sidebar-top (near the top of the screen);
+   #panel-inv and #panel-actions sit in #sidebar-bottom (anchored
+   to the bottom of the screen, in button order: inv, actions). */
 #panel-quest {
     border-right: 4px solid var(--accent-primary);
+    top: 20px;
+    bottom: auto;
 }
 
 #panel-inv {
     border-right: 4px solid var(--accent-secondary);
-}
-
-#panel-actions {
-    border-right: 4px solid var(--accent-secondary);
+    top: auto;
+    bottom: 234px;
 }
 
 #inv-anchor {
     position: relative;
-}
-
-#panel-inv {
-    position: absolute;
-    bottom: calc(100% + 10px);
-    right: calc(100% + 8px);
 }
 
 /* ===== INVENTORY ITEMS ===== */
@@ -60,15 +79,44 @@
     background: rgba(0, 242, 255, 0.1);
 }
 
-.item:hover {
-    background: rgba(0, 242, 255, 0.1);
-}
-
 .item i,
 .item svg {
     font-size: 1em;
     color: var(--accent-primary);
     flex-shrink: 0;
+}
+
+/* ===== ACTION BUTTONS (inside #panel-actions) =====
+   Solid accent color on hover and when selected/active, instead of
+   the translucent hover used for inventory items. */
+#actions-list .item,
+#actions-list .action-item,
+#actions-list button {
+    cursor: pointer;
+    border-radius: 2px;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+#actions-list .item:hover,
+#actions-list .action-item:hover,
+#actions-list button:hover,
+#actions-list .item.selected,
+#actions-list .action-item.selected,
+#actions-list .item.active,
+#actions-list .action-item.active,
+#actions-list button.selected,
+#actions-list button.active {
+    background: var(--accent-secondary);
+    color: #000;
+}
+
+#actions-list .item:hover i,
+#actions-list .item:hover svg,
+#actions-list .item.selected i,
+#actions-list .item.selected svg,
+#actions-list .item.active i,
+#actions-list .item.active svg {
+    color: #000;
 }
 
 /* ===== QUEST LIST ===== */

@@ -53,6 +53,67 @@
     </script>
 
     <style>
+        /* Compact Action Buttons Styling */
+        #panel-actions {
+            position: fixed !important;
+            bottom: 33.33vh;
+            left: 50%;
+            top: auto !important;
+            right: auto !important;
+            background: none !important;
+            backdrop-filter: none !important;
+            border: none !important;
+            box-shadow: none !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            overflow: visible !important;
+            width: auto !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+            transform: translateX(-50%) scale(0.9) !important;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s ease;
+            z-index: 1100;
+        }
+        #panel-actions.open {
+            opacity: 1;
+            transform: translateX(-50%) scale(1) !important;
+            pointer-events: auto;
+        }
+        #panel-actions h3 {
+            display: none; /* Hide 'ACTIONS' title to keep it clean */
+        }
+        #actions-list {
+            display: flex;
+            
+            flex-direction: row;
+            gap: 8px;
+            padding: 0;
+        }
+        .action-item-btn {
+            width: 48px;
+            height: 48px;
+            position: relative;
+            background: var(--panel-bg);
+            border: 1px solid rgba(100, 255, 218, 0.4);
+            color: #64ffda;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 0 15px rgba(100, 255, 218, 0.1);
+        }
+        .action-item-btn:hover {
+            background: rgba(100, 255, 218, 0.2);
+            border-color: #64ffda;
+            transform: translateY(-2px);
+        }
+
         /* ═══════════════════════════════════════════
            MOBILE CONTROLLER STYLES
         ═══════════════════════════════════════════ */
@@ -76,6 +137,14 @@
 
         @media (max-width: 1024px) {
             #mobile-ctrl.visible { display: block; }
+        }
+
+        @media (max-width: 480px) {
+            #mobile-ctrl {
+                left: auto;
+                right: 20px;
+                bottom: 80px;
+            }
         }
 
         #mobile-ctrl .ui-toggle {
@@ -141,7 +210,7 @@
     <div id="right-sidebar">
         <!-- TOP: Quest button + panel -->
         <div id="sidebar-top">
-            <div class="sidebar-row">
+            <div class="sidebar-row" id="quest-anchor">
                 <div id="panel-quest" class="panel">
                     <h3>MISSION</h3>
                     <div id="quest-list"></div>
@@ -150,13 +219,10 @@
                     <i class="fas fa-list-check"></i>
                 </button>
             </div>
-        </div>
 
-        <!-- BOTTOM: Inventory, Actions, Sound, Day/Night -->
-        <div id="sidebar-bottom">
             <div class="sidebar-row" id="inv-anchor">
                 <div id="panel-inv" class="panel">
-                    <h3>STORAGE</h3>
+                    <h3>EVIDENCE</h3>
                     <div id="inv-list">0_CELLS</div>
                 </div>
                 <button id="btn-inv-toggle" class="ui-toggle" title="Toggle Inventory">
@@ -165,14 +231,15 @@
             </div>
 
             <div class="sidebar-row" id="actions-anchor">
-                <div id="panel-actions" class="panel">
-                    <h3>ACTIONS</h3>
-                    <div id="actions-list"></div>
-                </div>
                 <button id="btn-actions-toggle" class="ui-toggle" title="Toggle Actions">
-                    <i class="fas fa-list"></i>
+                    <i class="fas fa-bolt"></i>
                 </button>
             </div>
+        </div>
+
+        <!-- BOTTOM: Inventory, Actions, Sound, Day/Night -->
+        <div id="sidebar-bottom">
+     
 
             <div class="sidebar-row">
                 <button id="btn-sound-toggle" class="ui-toggle" title="Toggle Music">
@@ -232,6 +299,11 @@
         </div>
     </div>
 
+    <!-- Floating Action Panel (moved from sidebar) -->
+    <div id="panel-actions" class="panel">
+        <div id="actions-list"></div>
+    </div>
+
     <!-- Wipe transition overlay -->
     <div id="wipe-overlay"></div>
 
@@ -276,6 +348,8 @@
                     e.preventDefault(); e.stopPropagation(); 
                     if(window.gameKeys) delete window.gameKeys[code]; 
                     el.classList.remove('active'); 
+                    // Stop any point-and-click movement when WASD interaction stops
+                    window.mouseTarget = null;
                 };
                 el.addEventListener('touchstart', start); el.addEventListener('touchend', end);
                 el.addEventListener('mousedown', start); el.addEventListener('mouseup', end); el.addEventListener('mouseleave', end);
@@ -308,7 +382,7 @@
         const handleInteraction = (x, y, target) => {
             // Filter out interactions on UI overlays or buttons
             if (target.closest('button, a, .ui-toggle, .panel, .overlay, .interact-prompt, .npc-bubble, #local-dialogue-box, #board-overlay, #level-select-overlay, #mobile-ctrl')) return;
-            
+
             // Dispatch event for main.js to perform raycasting against the planet
             window.dispatchEvent(new CustomEvent('world-click', { detail: { x, y } }));
         };

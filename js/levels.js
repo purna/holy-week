@@ -5,29 +5,38 @@
 export const levels = [
     {
         id: 1,
-        name: "1. Explore Jerusalem",
+        name: "ACT 1: THE DONKEY KING",
         modelPath: "./assets/models/jerusalem_gate.glb",
         spawnPoint: { x: 0, y: 52, z: 0 },
         npcs: [
             { 
-                id: "scribe_master", 
-                name: "Master Scribe", 
+                id: "excited_child_donkey", 
+                name: "Excited Child", 
                 position: { x: 5, y: 50, z: 5 }, 
                 color: 0xCCAA77,
-                dialogueId: "scribe_intro",
+                dialogueId: "excited_child_donkey",
                 hasDialogue: true,
-                data: { questId: "RUMOR" } 
+                data: { questId: "DONKEY_KING" } 
+            },
+            { 
+                id: "guard_entry", 
+                name: "Roman Guard", 
+                position: { x: -5, y: 50, z: 10 }, 
+                color: 0x888888,
+                dialogueId: "guard_entry",
+                hasDialogue: true,
+                data: { questId: "DONKEY_KING" } 
             }
         ],
         quests: [
-            { id: "RUMOR", name: "Entering the Gates", task: "Explore the market plaza and listen for rumors", cur: 0, tar: 1, completed: false }
+            { id: "DONKEY_KING", name: "The Donkey King", task: "Interrogate the witnesses near the East Gate", cur: 0, tar: 2, completed: false }
         ],
         evidence: []
     },
     {
         id: 2,
-        name: "2. Hear Rumours & Quests",
-        modelPath: "./assets/models/jerusalem_market.glb",
+        name: "ACT 1: THE OVERTURNED TABLES",
+        modelPath: "./assets/models/jerusalem_gate.glb",
         spawnPoint: { x: 10, y: 52, z: -10 },
         npcs: [
             { 
@@ -35,7 +44,7 @@ export const levels = [
                 name: "Market Vendor", 
                 position: { x: -2, y: 50, z: 12 }, 
                 color: 0xDDAa55,
-                dialogueId: "market_rumors",
+                dialogueId: "money_changer",
                 hasDialogue: true,
                 data: { questId: "RUMOR" }
             },
@@ -44,21 +53,21 @@ export const levels = [
                 name: "Passerby", 
                 position: { x: 15, y: 50, z: 0 }, 
                 color: 0xaaaaaa,
-                dialogueId: "rumor_whisper",
+                dialogueId: "guard_report",
                 hasDialogue: true,
                 data: { questId: "RUMOR" }
             }
         ],
         quests: [
-            { id: "RUMOR", name: "Whispers in the Crowd", task: "Listen to the marketplace rumors regarding His arrival", cur: 0, tar: 2, completed: false }
+            { id: "RUMOR", name: "Temple Cleanup", task: "Investigate the disturbance in the Court of Gentiles", cur: 0, tar: 2, completed: false }
         ],
         evidence: [
-            { id: "token_rumor_1", name: "Temple Scroll Fragment", position: { x: 3, y: 50, z: 3 } }
+            { id: "token_rumor_1", name: "Scattered Shekels", position: { x: 3, y: 50, z: 3 } }
         ]
     },
     {
         id: 3,
-        name: "3. Talk to Witnesses",
+        name: "ACT 2: THE HEALING INQUIRY",
         modelPath: "./assets/models/bethesda_pool.glb",
         spawnPoint: { x: -5, y: 52, z: 20 },
         npcs: [
@@ -88,7 +97,7 @@ export const levels = [
     },
     {
         id: 4,
-        name: "4. Complete Tasks & Actions",
+        name: "ACT 2: COURT DISRUPTION",
         modelPath: "./assets/models/temple_court.glb",
         spawnPoint: { x: 25, y: 52, z: 25 },
         npcs: [
@@ -120,7 +129,7 @@ export const levels = [
     },
     {
         id: 5,
-        name: "5. Collect Evidence Items",
+        name: "ACT 2: THE PRICE OF LIFE",
         modelPath: "./assets/models/antonia_fortress.glb",
         spawnPoint: { x: 0, y: 52, z: -40 },
         npcs: [

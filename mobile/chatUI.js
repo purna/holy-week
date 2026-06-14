@@ -154,7 +154,8 @@ export class ChatUI {
         }
         console.log(`[Talk] Opening dialogue for NPC: ${npcId} using story file: ${sFile}`);
 
-        if (this.dm && npc && npc.hasDialogue && npc.storyFile) {
+        const loadedStory = this.dm.getStory(npcId);
+        if (this.dm && npc && npc.hasDialogue && loadedStory) {
           let story = null;
           try { story = this.dm.createStory(npcId); } catch (e) { console.warn(e); }
           if (story) {

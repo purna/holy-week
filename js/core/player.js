@@ -25,7 +25,7 @@ export class Player {
             mass: 1,
             shape: new CANNON.Box(new CANNON.Vec3(0.5, 1, 0.5)),
             fixedRotation: true,
-            linearDamping: 0.1
+            linearDamping: 0.3 // Increased to stop movement when input ends
         });
         this.pBody.position.set(0, this.planetR + 10, 0);
         this.world.addBody(this.pBody);
@@ -136,19 +136,32 @@ export class Player {
     }
 
     applyMovement(moveDir) {
-        if (moveDir.length() > 0) {
+        const pPos = this.getPosition();
+        const up = pPos.clone().normalize();
+
+        if (moveDir.lengthSq() > 0) {
             moveDir.normalize();
             const speed = 18;
 
             // Preserve radial (upward) velocity so jumping isn't interrupted by horizontal movement
-            const pPos = this.getPosition();
-            const up = pPos.clone().normalize();
             const radialVel = this.pBody.velocity.dot(new CANNON.Vec3(up.x, up.y, up.z));
 
             this.pBody.velocity.set(
                 moveDir.x * speed + up.x * radialVel,
                 moveDir.y * speed + up.y * radialVel,
                 moveDir.z * speed + up.z * radialVel
+            );
+        } else {
+            // Stop horizontal velocity when no input
+            const vel = this.pBody.velocity;
+            const upVec = new THREE.Vector3(up.x, up.y, up.z);
+            const hVel = new THREE.Vector3(vel.x, vel.y, vel.z);
+            const horizontalVel = hVel.projectOnPlane(upVec);
+            // Remove horizontal component, keep only radial velocity
+            this.pBody.velocity.set(
+                up.x * hVel.dot(upVec),
+                up.y * hVel.dot(upVec),
+                up.z * hVel.dot(upVec)
             );
         }
     }

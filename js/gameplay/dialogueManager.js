@@ -5,7 +5,52 @@ import { levels } from '../levels.js'; // Import levels definition instead
  * NPCs in levels.js use dialogueId instead of storyFile / hasDialogue.
  * This map bridges that gap so loadStoryForNPC can normalise the path.
  */
-const DIALOGUE_ID_MAP = {
+export const DIALOGUE_ID_MAP = {
+    // Act I - Triumphal Entry / Temple
+    peter_donkey:       './story/extras/peter_defense.json',
+    john_donkey:        './story/extras/john_disciple.json',
+    galilean_pilgrim:   './story/extras/galilean_pilgrim.json',
+    jerusalem_local:    './story/extras/jerusalem_local.json',
+    eleazar_sadducee:   './story/extras/eleazar_sadducee.json',
+    corrupt_seller:     './story/extras/corrupt_seller.json',
+    money_changer:      './story/extras/money_changer.json',
+    nathan_fig_tree:    './story/extras/nathan_fig_tree.json',
+    local_traveler:     './story/extras/local_traveler.json',
+
+    // Act II - Challenges / Lazarus
+    caiaphas_priest:    './story/extras/caiaphas_priest.json',
+    samuel_scribe:      './story/extras/samuel_scribe.json',
+    nathanael_pharisee: './story/extras/nathanael_pharisee.json',
+    nicodemus_conflicted: './story/extras/nicodemus_conflicted.json',
+    martha_bethany:     './story/extras/martha_bethany.json',
+    temple_spy:         './story/extras/temple_spy.json',
+    annas_patriarch:    './story/extras/annas_patriarch.json',
+    simon_leper:        './story/extras/simon_leper.json',
+
+    // Act III - Passion / Trial
+    john_disciple:      './story/extras/john_disciple.json',
+    rhoda_servant:      './story/extras/rhoda_servant.json',
+    judas_iscariot:     './story/extras/judas_iscariot.json',
+    malchus:            './story/extras/malchus.json',
+    false_witness:      './story/extras/false_witness.json',
+    barabbas_insurgent: './story/extras/barabbas_insurgent.json',
+    pontius_pilate:     './story/extras/pontius_pilate.json',
+    pilates_secretary:  './story/extras/pilates_secretary.json',
+    temple_curtain:     './story/extras/temple_curtain.json',
+    centurion_witness:  './story/extras/centurion_witness.json',
+    simon_cyrene:       './story/extras/simon_cyrene.json',
+
+    // Act IV - Resurrection
+    mary_magdalene:     './story/extras/mary_magdalene.json',
+    execution_soldier:  './story/extras/execution_soldier.json',
+    joseph_arimathea:   './story/extras/joseph_arimathea.json',
+    mary_resurrection:  './story/extras/mary_resurrection.json',
+    judas_betrayal:     './story/extras/judas_betrayal.json',
+    herods_servant:     './story/extras/herods_servant.json',
+    peter_restored:     './story/extras/peter_restored.json',
+    nathanael_disciple: './story/extras/nathanael_disciple.json',
+
+    // Common/Extras
     scribe_intro:       './story/extras/scribe_intro.json',
     market_rumors:      './story/extras/market_rumors.json',
     rumor_whisper:      './story/extras/rumor_whisper.json',
@@ -80,8 +125,13 @@ export class DialogueManager {
     loadStoryForNPC(npc) {
         // NPCs from config.js use storyFile / hasDialogue directly.
         // NPCs from levels.js use dialogueId plus this DIALOGUE_ID_MAP.
-        const storyFile = npc.storyFile
+        let storyFile = npc.storyFile
             || (npc.dialogueId != null ? DIALOGUE_ID_MAP[npc.dialogueId] : null);
+
+        // Resolve ID if it doesn't look like a direct path or URL
+        if (storyFile && typeof storyFile === 'string' && !storyFile.includes('/') && !storyFile.endsWith('.json')) {
+            storyFile = DIALOGUE_ID_MAP[storyFile] || storyFile;
+        }
 
         if (!npc.hasDialogue || !storyFile) {
             console.log('[DialogueManager] NPC has no dialogue or storyFile:', npc.id, npc.name,

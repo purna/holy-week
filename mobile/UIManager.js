@@ -569,9 +569,12 @@ export class UIManager {
 
     if (e.prophecy || e.propheticLink) {
       prophetLinkEl.textContent = e.prophecy || e.propheticLink || "";
-      if (prophetReadMoreBtn && e.bibleRef) {
-        prophetReadMoreBtn.hidden = false;
-        prophetReadMoreBtn.onclick = () => this.fetchVerseInline(e.bibleRef, prophetVerseContent, prophetReadMoreBtn);
+      if (prophetReadMoreBtn && e.relatedProphecy) {
+        const prophecy = this.es.getProphecyById(e.relatedProphecy);
+        if (prophecy) {
+          prophetReadMoreBtn.hidden = false;
+          prophetReadMoreBtn.onclick = () => this.fetchVerseInline(prophecy.reference, prophetVerseContent, prophetReadMoreBtn);
+        }
       }
       prophetLinkEl.closest(".evidence-detail-section").hidden = false;
     } else {
@@ -598,9 +601,9 @@ export class UIManager {
     targetEl.innerHTML = `⏳ Loading…`;
     targetEl.hidden = false;
     try {
-      const bookIds = { "Matthew": "MAT", "Mark": "MRK", "Luke": "LUK", "John": "JHN" }; // truncated for brevity
       const parts = refString.match(/([A-Za-z]+)\s(\d+):(\d+)/);
-      const apiRef = `${bookIds[parts[1]].toLowerCase()}+${parts[2]}:${parts[3]}`;
+      if (!parts) throw new Error('Could not parse reference');
+      const apiRef = `${parts[1].toLowerCase()}+${parts[2]}:${parts[3]}`;
       const r = await fetch(`https://bible-api.com/${apiRef}?translation=web`);
       const j = await r.json();
       targetEl.innerHTML = `<div class="verse-ref">${j.reference}</div><div>${j.verses[0].text}</div>`;

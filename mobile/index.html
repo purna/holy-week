@@ -284,6 +284,13 @@
     }
   </style>
   <style>
+
+    .dialogue-close-btn {
+        background: var(--surface3);
+        color: var(--text);
+    }
+
+
     /* Additional styles for header metrics */
     .hidden {
       display: none;
@@ -583,6 +590,7 @@
     <!-- Modal: Direct conversation interface (WhatsApp/Chat style) -->
     <div id="local-dialogue-box" role="dialog" aria-label="Conversation" aria-modal="true">
       <div id="chat-panel"> <!-- UI Shell for active direct interactions -->
+        <button class="dialogue-close-btn" onclick="window.ui.dm.closeDialogue()" aria-label="Close dialogue">✕</button>
         <div class="chat-hdr"> <!-- Header bar showing witness status -->
           <div> <!-- Witness details grouping -->
             <div class="chr" id="npc-name-display">NPC</div> <!-- Active witness name -->
@@ -729,7 +737,7 @@
 
       // ── Configuration ──────────────────────────────────────────
       const CONFIG = {
-        unlockAllCases: false // Set to true to bypass case requirements for testing
+        unlockAllCases: true // Set to true to bypass case requirements for testing
       };
 
       // ── Bootstrap ──────────────────────────────────────────────

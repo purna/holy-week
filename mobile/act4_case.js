@@ -164,6 +164,7 @@ export const act4CaseA = {
       id: "spice_jars",
       name: "Unused Burial Spices",
       type: "physical",
+      relatedProphecy: "isaiah_53_9",
       icon: "🧴",
       location: "Entrance to the Tomb Garden",
       desc: "Three clay jars of prepared burial spices — myrrh, aloe, and cinnamon — set down at the garden entrance, unopened. The women brought them to complete the anointing of the body, but they were never used.",
@@ -517,7 +518,6 @@ export const act4CaseB = {
       },
       contradictions: {},
     },
-,
     {
       id: "mary_resurrection",
       name: "Mary (Resurrection)",
@@ -552,7 +552,6 @@ export const act4CaseB = {
         default: { text: "I have nothing more to add.", isLie: false },
       },
     },
-,
     {
       id: "herods_servant",
       name: "Herod's Servant",
@@ -728,6 +727,7 @@ export const act4CaseC = {
       id: "galilean_apparition",
       name: "Risen Appearance",
       type: "testimonial",
+      relatedProphecy: "",
       icon: "👁️",
       location: "Shoreline Recognition",
       desc: "The disciples' recognition moment—how they knew this was Jesus. He had been dead, and now stood before them alive.",
@@ -784,6 +784,7 @@ export const act4CaseC = {
       truthfulness: 0.9,
       bibleRef: "John 21:2; John 14:5, 20:24-29",
       hasDialogue: true,
+      storyFile: "parable_meaning",
       background: "Thomas, called 'the Twin,' would later be known as 'Doubting Thomas'—but here he stands as witness to the restoration.",
       dialogue: {
         neutral: "I was here. I saw it all. It's one thing to see him die. It's another to see him eat breakfast with us.",
@@ -842,6 +843,7 @@ export const act4CaseC = {
       truthfulness: 0.9,
       bibleRef: "John 21:2; John 1:47",
       hasDialogue: true,
+      storyFile: "nathanael_disciple",
       background: "Nathanael, whom Jesus called 'an Israelite in whom there is no guile,' was present as a witness to this restoration.",
       dialogue: {
         neutral: "I came from Cana that morning. They told me about the catch, about the fire. I saw Peter's face.",

@@ -45,7 +45,19 @@
     letter-spacing: 0.03em;
 }
 
-/* ===== CHAT PANEL (full-width, single column) ===== */
+/* Fullscreen dialogue on very small screens */
+@media (max-width: 480px) {
+    #local-dialogue-box {
+        top: 0;
+        left: 0;
+        transform: none;
+        width: 100vw;
+        height: 100vh;
+        max-width: none;
+        border-radius: 0;
+        border: none;
+    }
+}
 #chat-panel {
     flex: 1;
     display: flex;

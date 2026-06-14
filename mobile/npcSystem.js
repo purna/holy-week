@@ -90,6 +90,7 @@ export class NPCSystem {
     const discovered = (progress && progress.discoveredSuspects) || [];
 
     for (const npc of allNPCs) {
+      if (!npc) continue;
       let pFile = npc.profileFile;
       // Resolve ID reference if it doesn't look like a direct path
       if (pFile && !pFile.includes('/') && !pFile.endsWith('.json')) {

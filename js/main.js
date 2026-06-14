@@ -34,7 +34,7 @@ let started = false;
 let activeNpc = null;
 let visitedNpcs = new Set();
 let lastNearNpcId = null;
-let mouseTarget = null;
+window.mouseTarget = null;
 let activeLoc = null;
 let locTimeout = null;
 let locCooldownUntil = 0;
@@ -123,6 +123,7 @@ const levelManager = new GameLevelManager({
     get worldMgr() { return worldMgr; },
     get player() { return player; },
     get npcSystem() { return npcSystem; },
+    get dialogueMgr() { return dialogueMgr; },
     get world() { return worldMgr ? worldMgr.world : null; },
     get scene() { return sceneMgr ? sceneMgr.scene : null; },
     get camera() { return sceneMgr ? sceneMgr.camera : null; },
@@ -245,11 +246,13 @@ const FILLER_LINES = [
 
 // UI update
 function updateUI() {
-    // Inventory list
+    // Evidence / Inventory list
     elInvList.innerHTML = inventory.length ? inventory.map(i => {
-        let iconType = 'circle';
-        if (i.includes('CELL')) iconType = 'memory';
-        else if (i.includes('SHARD')) iconType = 'gem';
+        // Map evidence items to specific investigation icons
+        let iconType = 'file-shield';
+        if (i.includes('PROPHECY')) iconType = 'scroll';
+        else if (i.includes('TESTIMONY')) iconType = 'comments';
+        else if (i.includes('DONKEY')) iconType = 'horse';
 
         if (ICON_SYSTEM === 'svg') {
             const iconEl = iconMgr.createIconElement(iconType, { size: '1em' });
@@ -257,33 +260,60 @@ function updateUI() {
             div.className = 'item';
             div.appendChild(iconEl);
             const span = document.createElement('span');
-            span.textContent = i;
+            span.textContent = i.replace(/_/g, ' ');
             div.appendChild(span);
             return div.outerHTML;
         } else {
-            return `<div class="item"><i class="fas fa-${iconType}"></i> ${i}</div>`;
+            return `<div class="item"><i class="fas fa-${iconType}"></i> ${i.replace(/_/g, ' ')}</div>`;
         }
-    }).join('') : "0_CELLS";
+    }).join('') : "NO EVIDENCE COLLECTED";
 
-    // Actions list
-    const actions = actionMgr.getActions();
-    elActionsList.innerHTML = actions.length ?
-        actions.map(a => {
-            const iconEl = iconMgr.createIconElement(a.iconType || a.icon, { size: '1.2em' });
+    // Actions list: merge actionManager actions with current NPC investigation modes
+    let availableActions = [...actionMgr.getActions()];
+    
+    if (activeNpc) {
+        const currentLevel = levelManager.getCurrentLevel();
+        const actMatch = currentLevel?.name?.match(/ACT (\d+)/);
+        const currentAct = actMatch ? parseInt(actMatch[1]) : 1;
+
+        const modes = investigationManager.getModes(activeNpc.data.id, currentAct);
+        const invActions = modes.map(m => ({
+            name: m.label.includes('] ') ? m.label.split('] ')[1] : m.label, // "TALK", "ACCUSE"
+            id: m.id, 
+            iconType: m.id === 'talk' ? 'comments' : (m.id === 'accuse' ? 'gavel' : 'bolt'),
+            isInvestigation: true
+        }));
+        availableActions = [...invActions, ...availableActions];
+    }
+
+    elActionsList.innerHTML = availableActions.length ?
+        availableActions.map(a => {
+            const iconEl = iconMgr.createIconElement(a.iconType || a.icon, { size: '1.4em' });
             const div = document.createElement('div');
-            div.className = 'item';
+            div.className = 'action-item-btn';
+            div.dataset.actionId = a.id; // Use ID for reliable lookup
+            div.title = a.name; // Show name on hover
             div.appendChild(iconEl);
-            const span = document.createElement('span');
-            span.textContent = a.name;
-            div.appendChild(span);
-            if (a.uses !== undefined) {
-                const usesEl = document.createElement('small');
-                usesEl.style.marginLeft = '0.5em';
-                usesEl.textContent = a.uses === -1 ? '∞' : `(${a.uses})`;
-                div.appendChild(usesEl);
+
+            // Restore 'uses' indicator as a badge if applicable
+            if (a.uses !== undefined && a.uses !== -1) {
+                const badge = document.createElement('div');
+                badge.className = 'action-badge';
+                badge.textContent = a.uses;
+                badge.style.position = 'absolute';
+                badge.style.bottom = '-4px';
+                badge.style.right = '-4px';
+                badge.style.fontSize = '10px';
+                badge.style.background = 'var(--accent-primary)';
+                badge.style.color = '#000';
+                badge.style.padding = '2px 4px';
+                badge.style.borderRadius = '4px';
+                badge.style.fontWeight = 'bold';
+                div.appendChild(badge);
             }
+
             return div.outerHTML;
-        }).join('') : "NO_ACTIONS";
+        }).join('') : "";
 
     // Quest list
     elQuestList.innerHTML = activeQuests.map(q => {
@@ -327,7 +357,7 @@ function checkWinCondition() {
 function triggerWinSequence() {
     appState.isDialogueOpen = true;
     player.sleep();
-    mouseTarget = null;
+    window.mouseTarget = null;
     elLocalDialogueBox.style.display = 'none';
     panelInv.classList.remove('open');
     panelQuest.classList.remove('open');
@@ -460,10 +490,10 @@ function continueStory() {
                     if (activeNpc) audio.playNpcSound(activeNpc.data.id, 'onExit');
                 };
                 elBubbleChoices.appendChild(b);
-            }           // ← just close the if block
-        }, renderDelay); // ← then close the setTimeout
+            }
+        }, renderDelay);
     } else {
-        // Edge case: no text but there are choices (immediate choice)
+        // Handle choice-only segments
         const renderDelay = DIALOGUE.messageDelay + (3 * DIALOGUE.fillerDelay) + 100;
         setTimeout(() => {
             elBubbleChoices.innerHTML = "";
@@ -497,7 +527,7 @@ function startDialogue() {
     }
 
     player.sleep();
-    mouseTarget = null;
+    window.mouseTarget = null;
 
     if (activeNpc.data.questId !== undefined && !visitedNpcs.has(activeNpc.data.id)) {
         visitedNpcs.add(activeNpc.data.id);
@@ -663,7 +693,7 @@ function togglePanel(panel, btn, otherBtn1, otherBtn2, otherPanel1, otherPanel2)
 function applyUIIcons() {
     setButtonIcon(btnQuest, 'quest');
     setButtonIcon(btnInv, 'inventory');
-    setButtonIcon(btnActions, 'actions');
+    setButtonIcon(btnActions, 'bolt'); // Changed from 'actions' to 'bolt'
     updateSoundIcon();
     updateCycleIcon();
 }
@@ -722,6 +752,7 @@ async function init() {
     await iconMgr.init();
 
     player = new Player(worldMgr.world, sceneMgr.scene, modelMgr, toonShader);
+    window.player = player; // Expose for mobile controls
     worldMgr._playerBody = player.pBody; // protect player body from level clears
     npcSystem = new NPCSystem(activeNpcsData, worldMgr.planetR, sceneMgr.scene, modelMgr, toonShader);
     actionMgr = new ActionManager(iconMgr);
@@ -759,7 +790,11 @@ async function init() {
     });
 
     // Load Level 1 quests and NPCs so updateUI / gameLoop have data immediately
-    levelManager.loadLevel(levelManager.getCurrentLevel());
+    // Specifically force Act 1 Case 1: The Donkey King
+    levelManager.loadLevel(levelManager.getCurrentLevel()); 
+    
+    // Initialize Evidence System with Act 1 metadata
+    evidenceSystem.loadCase?.('act1_case_1');
 
     gameLoop();
 }
@@ -799,7 +834,7 @@ function setupInputs() {
         mouse.y = -(y / window.innerHeight) * 2 + 1;
         raycaster.setFromCamera(mouse, sceneMgr.camera);
         const hits = raycaster.intersectObject(worldMgr.planet);
-        if (hits.length) mouseTarget = hits[0].point;
+        if (hits.length) window.mouseTarget = hits[0].point;
     });
 
     window.addEventListener('game-jump', () => {
@@ -830,7 +865,7 @@ function setupInputs() {
             mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
             raycaster.setFromCamera(mouse, sceneMgr.camera);
             const hits = raycaster.intersectObject(worldMgr.planet);
-            if (hits.length) mouseTarget = hits[0].point;
+            if (hits.length) window.mouseTarget = hits[0].point;
         }
     });
 
@@ -942,11 +977,22 @@ function setupUIHandlers() {
     }
 
     elActionsList.addEventListener('click', (e) => {
-        const actionDiv = e.target.closest('.item');
-        if (!actionDiv) return;
-        const actions = actionMgr.getActions();
-        const actionName = actionDiv.querySelector('span')?.textContent?.trim();
-        const action = actions.find(a => a.name === actionName);
+        const actionBtn = e.target.closest('.action-item-btn');
+        if (!actionBtn) return;
+        const actionId = actionBtn.dataset.actionId;
+
+        // Try investigation interaction first
+        if (activeNpc) {
+            const currentAct = Math.ceil((levelManager.currentLevelIndex + 1) / 2);
+            const modes = investigationManager.getModes(activeNpc.data.id, currentAct);
+            const mode = modes.find(m => m.id === actionId);
+            if (mode) {
+                handleNpcInteraction(mode.id);
+                return;
+            }
+        }
+
+        const action = actionMgr.getActions().find(a => a.id === actionId || a.name === actionId);
         if (action) {
             audio.playUI('click');
             const questCompleted = actionMgr.executeAction(
@@ -970,8 +1016,10 @@ function setupUIHandlers() {
  */
 function handleNpcInteraction(mode) {
     if (!activeNpc) return;
-    // Map current level index (0-9) to Act (1-5) for Investigation Logic
-    const currentAct = Math.ceil((levelManager.currentLevelIndex + 1) / 2);
+    const currentLevel = levelManager.getCurrentLevel();
+    const actMatch = currentLevel?.name?.match(/ACT (\d+)/);
+    const currentAct = actMatch ? parseInt(actMatch[1]) : 1;
+
     const modes = investigationManager.getModes(activeNpc.data.id, currentAct);
 
     if (modes.some(m => m.id === mode)) {
@@ -1016,6 +1064,11 @@ function gameLoop() {
         }
     }
     npcSystem.setActiveNPC(nearestNpc);
+
+    if (activeNpc !== nearestNpc) {
+        activeNpc = nearestNpc;
+        updateUI();
+    }
     activeNpc = nearestNpc;
 
     // NPC interaction prompt (Multi-modal: Talk, Challenge, Accuse)
@@ -1038,14 +1091,27 @@ function gameLoop() {
             modes.forEach(mode => {
                 const pill = document.createElement('div');
                 pill.className = 'interaction-pill';
-                pill.style.background = 'rgba(0, 0, 0, 0.7)';
-                pill.style.border = mode.id === 'talk' ? '1px solid #00f2ff' : '1px solid #ffaa00';
-                pill.style.padding = '6px 14px';
-                pill.style.borderRadius = '20px';
+                pill.style.width = '38px';
+                pill.style.height = '38px';
+                pill.style.display = 'flex';
+                pill.style.alignItems = 'center';
+                pill.style.justifyContent = 'center';
+                pill.style.background = 'rgba(0, 0, 0, 0.85)';
+                
+                let iconType = 'comments';
+                let color = '#00f2ff';
+                if (mode.id === 'accuse') { iconType = 'gavel'; color = '#ff4444'; }
+                if (mode.id === 'challenge') { iconType = 'bolt'; color = '#ffaa00'; }
+
+                pill.style.border = `1px solid ${color}`;
+                pill.style.borderRadius = '50%';
                 pill.style.cursor = 'pointer';
-                pill.style.fontSize = '0.75em';
-                pill.style.color = '#fff';
-                pill.innerText = mode.label;
+                pill.style.color = color;
+                pill.title = mode.label;
+
+                const iconEl = iconMgr.createIconElement(iconType, { size: '1.2em' });
+                pill.appendChild(iconEl);
+
                 pill.onclick = (e) => {
                     e.stopPropagation();
                     handleNpcInteraction(mode.id);
@@ -1170,12 +1236,12 @@ function gameLoop() {
         if (keys['KeyS'] || keys['ArrowDown']) moveDir.sub(headingFlat);
 
         // Override point-and-click target if manual movement keys are pressed
-        if (moveDir.lengthSq() > 0) mouseTarget = null;
+        if (moveDir.lengthSq() > 0) window.mouseTarget = null;
 
-        if (mouseTarget) {
-            const toMouse = mouseTarget.clone().sub(pPos).projectOnPlane(up);
+        if (window.mouseTarget) {
+            const toMouse = window.mouseTarget.clone().sub(pPos).projectOnPlane(up);
             if (toMouse.length() > 2) moveDir.add(toMouse.normalize());
-            else mouseTarget = null;
+            else window.mouseTarget = null;
         }
     }
 
@@ -1196,8 +1262,7 @@ function gameLoop() {
 window.addEventListener('load', () => {
     setTimeout(() => {
         document.getElementById('loading-screen').style.display = 'none';
-        document.getElementById('start-screen').style.display = 'flex';
-    }, 1500);
+        if (elStartScreen) elStartScreen.style.display = 'flex';
+        init();
+    }, 1000);
 });
-
-window.addEventListener('DOMContentLoaded', init);
