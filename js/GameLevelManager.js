@@ -3,7 +3,7 @@ import { levels } from './levels.js';
 
 export class GameLevelManager {
     constructor(mainApp) {
-        this.app = mainApp; // Keep a reference to main.js variables/systems
+        this.app = mainApp;
         this.currentLevelIndex = 0;
         this.elWipeOverlay = document.getElementById('wipe-overlay');
     }
@@ -12,22 +12,18 @@ export class GameLevelManager {
         return levels[this.currentLevelIndex];
     }
 
-    /**
-     * Advances the game to the next loop level with a visual transition
-     */
     nextLevel() {
         if (this.currentLevelIndex >= levels.length - 1) {
-            this.app.showGameWinScreen(); // Final conclusion reached
+            this.app.triggerWinSequence();
             return;
         }
 
-        // 1. Trigger wipe/fade animation
-        this.elWipeOverlay.classList.add('active'); // CSS should transition opacity to 1
+        this.elWipeOverlay.classList.add('active');
 
         setTimeout(() => {
             this.currentLevelIndex++;
             this.loadLevel(this.getCurrentLevel());
-        }, 1000); // Sync timing with CSS fade transition duration
+        }, 1000);
     }
 
     /**
@@ -39,34 +35,22 @@ export class GameLevelManager {
         // 1. Purge asset trees
         this.app.worldMgr.clearCurrentWorld();
 
-        // 2. Clear old physical bounds to prevent entity memory leak tracking
-        if (this.app.colliderManager) {
-            this.app.colliderManager.clearLevelColliders();
-        }
-
         // 3. Set up new Level Environment (.glb model loading)
         this.app.worldMgr.setupLevelEnvironment(levelData.modelPath);
 
         // 4. Teleport Player to level spawn point
-        this.app.player.pBody.position.copy(levelData.spawnPoint);
+        this.app.player.pBody.position.set(levelData.spawnPoint.x, levelData.spawnPoint.y, levelData.spawnPoint.z);
         this.app.player.pBody.velocity.set(0, 0, 0);
 
         // 5. Overwrite global active quests and NPCs for the current framework
         this.app.updateActiveLevelData(levelData.quests, levelData.npcs);
 
-        // Load stories for the new level's NPCs so interaction buttons work immediately
-        if (levelData.npcs && this.app.dialogueMgr) {
-            levelData.npcs.forEach(npc => {
-                this.app.dialogueMgr.loadStoryForNPC(npc);
-            });
-        }
-
-        // 6. Spawn Pickups/Evidence and rebuild NPC meshes into the scene
+        // 6. Spawn Pickups/Evidence
         this.app.worldMgr.spawnLevelAssets(levelData);
 
-        // 7. Rebuild NPC meshes from the freshly populated activeNpcs
-        if (this.app.npcSystem) {
-            this.app.npcSystem.rebuildFromData();
+        // 7. Build NPC meshes from the freshly populated activeNpcs
+        if (this.app.npcSystem && levelData.npcs) {
+            this.app.npcSystem.rebuildFromData(levelData.npcs);
         }
 
         // 8. Update UI headers & panels

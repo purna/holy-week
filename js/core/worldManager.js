@@ -8,7 +8,7 @@ export class WorldManager {
         this.world = world;
         this.modelMgr = modelMgr;
         this.toonShader = toonShader;
-        this.planetR = 50;
+        this.planetR = 100; // Doubled world size
         this.planet = null;
         this.planetMesh = null; // The actual mesh for decal operations
         this.pickups = [];

@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!--
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' https: 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: https:; font-src 'self' data: https:; connect-src 'self' https:;">
+    -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A 3D interactive experience with modular architecture and dynamic lighting.">
+    <meta name="keywords" content="3D, interactive, web, game, modular, architecture">
+    <meta name="author" content="Pixelagent">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#000000">
+    <title>Miracle Maker</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Source+Code+Pro:wght@300;400;600&display=swap"
+    rel="stylesheet">
+
+    <!-- Three.js -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+    <!-- Howler.js for audio -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.4/howler.min.js"></script>
+    <!-- CSS -->
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../css/dialogue.css">
+    <link rel="stylesheet" href="../css/panels.css">
+    <link rel="stylesheet" href="../css/actions.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="../favicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="../favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+    <link rel="shortcut icon" href="../favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png" />
+    <link rel="manifest" href="./site.webmanifest" />
+
+    <!-- Conditionally load FontAwesome if using FA icon system -->
+    <script type="module">
+        import { ICON_SYSTEM } from '../js/config.js';
+        if (ICON_SYSTEM === 'fontawesome') {
+            const link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css';
+            document.head.appendChild(link);
+            console.log('FontAwesome icons enabled');
+        } else {
+            console.log('SVG icons enabled');
+        }
+    </script>
+
+    <style>
+        /* Compact Action Buttons Styling */
+        #panel-actions {
+            position: fixed !important;
+            bottom: 33.33vh;
+            left: 50%;
+            top: auto !important;
+            right: auto !important;
+            background: none !important;
+            backdrop-filter: none !important;
+            border: none !important;
+            box-shadow: none !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            overflow: visible !important;
+            width: auto !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+            transform: translateX(-50%) scale(0.9) !important;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s ease;
+            z-index: 1100;
+        }
+        #panel-actions.open {
+            opacity: 1;
+            transform: translateX(-50%) scale(1) !important;
+            pointer-events: auto;
+        }
+        #panel-actions h3 {
+            display: none; /* Hide 'ACTIONS' title to keep it clean */
+        }
+        #actions-list {
+            display: flex;
+            
+            flex-direction: row;
+            gap: 8px;
+            padding: 0;
+        }
+        .action-item-btn {
+            width: 48px;
+            height: 48px;
+            position: relative;
+            background: var(--panel-bg);
+            border: 1px solid rgba(100, 255, 218, 0.4);
+            color: #64ffda;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 0 15px rgba(100, 255, 218, 0.1);
+        }
+        .action-item-btn:hover {
+            background: rgba(100, 255, 218, 0.2);
+            border-color: #64ffda;
+            transform: translateY(-2px);
+        }
+
+        /* ═══════════════════════════════════════════
+           MOBILE CONTROLLER STYLES
+        ═══════════════════════════════════════════ */
+        :root {
+            --btn-sz: clamp(44px, 10vmin, 56px);
+        }
+
+        #mobile-ctrl {
+            position: fixed;
+            bottom: 40px;
+            left: 40px;
+            width: 160px;
+            height: 160px;
+            z-index: 1000;
+            pointer-events: auto;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(100, 255, 218, 0.05);
+            border-radius: 50%;
+            display: none; /* Hidden on desktop by default */
+        }
+
+        @media (max-width: 1024px) {
+            #mobile-ctrl.visible { display: block; }
+        }
+
+        @media (max-width: 480px) {
+            #mobile-ctrl {
+                left: auto;
+                right: 20px;
+                bottom: 80px;
+            }
+        }
+
+        #mobile-ctrl .ui-toggle {
+            position: absolute;
+            pointer-events: auto;
+            margin: 0;
+            width: var(--btn-sz);
+            height: var(--btn-sz);
+            background: rgba(8, 6, 4, 0.85);
+            border: 1px solid rgba(100, 255, 218, 0.18);
+            color: #64ffda;
+            cursor: pointer;
+            font-size: 1.15em;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all .2s;
+            box-shadow: 0 0 10px rgba(100, 255, 218, 0.25);
+        }
+
+        #ctrl-up { top: 0; left: calc(50% - (var(--btn-sz) / 2)); }
+        #ctrl-down { bottom: 0; left: calc(50% - (var(--btn-sz) / 2)); }
+        #ctrl-left { left: 0; top: calc(50% - (var(--btn-sz) / 2)); }
+        #ctrl-right { right: 0; top: calc(50% - (var(--btn-sz) / 2)); }
+        #ctrl-jump { 
+            top: calc(50% - (var(--btn-sz) / 2)); 
+            left: calc(50% - (var(--btn-sz) / 2)); 
+            background: rgba(100, 255, 218, 0.15); 
+        }
+
+        #mobile-ctrl .ui-toggle.active {
+            background: rgba(100, 255, 218, 0.2);
+            border-color: #64ffda;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="overlay">
+        <div class="spinner"></div>
+        <p>INITIALIZING HISTORICAL DATA...</p>
+    </div>
+
+    <!-- Start Screen -->
+    <div id="start-screen" class="overlay" style="display:none;">
+        <h1>Miracle Maker</h1>
+        <p>WHO WAS HE?</p>
+        <button id="btn-start">START</button>
+    </div>
+
+    <!-- Win / Mission Complete Screen -->
+    <div id="win-screen" class="overlay hidden" style="display:none;">
+        <div id="win-content">
+            <h1>MISSION COMPLETE</h1>
+            <p>All objectives fulfilled. Signal delivered.</p>
+            <button id="btn-replay">REINITIALIZE</button>
+        </div>
+    </div>
+
+    <!-- Right sidebar: flex column, top/bottom sections -->
+    <div id="right-sidebar">
+        <!-- TOP: Quest button + panel -->
+        <div id="sidebar-top">
+            <div class="sidebar-row" id="quest-anchor">
+                <div id="panel-quest" class="panel">
+                    <h3>MISSION</h3>
+                    <div id="quest-list"></div>
+                </div>
+                <button id="btn-quest-toggle" class="ui-toggle" title="Toggle Quest Log">
+                    <i class="fas fa-list-check"></i>
+                </button>
+            </div>
+
+            <div class="sidebar-row" id="inv-anchor">
+                <div id="panel-inv" class="panel">
+                    <h3>EVIDENCE</h3>
+                    <div id="inv-list">0_CELLS</div>
+                </div>
+                <button id="btn-inv-toggle" class="ui-toggle" title="Toggle Inventory">
+                    <i class="fas fa-boxes-stacked"></i>
+                </button>
+            </div>
+
+            <div class="sidebar-row" id="actions-anchor">
+                <button id="btn-actions-toggle" class="ui-toggle" title="Toggle Actions">
+                    <i class="fas fa-bolt"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- BOTTOM: Inventory, Actions, Sound, Day/Night -->
+        <div id="sidebar-bottom">
+     
+
+            <div class="sidebar-row">
+                <button id="btn-sound-toggle" class="ui-toggle" title="Toggle Music">
+                    <i class="fas fa-volume-up"></i>
+                </button>
+            </div>
+
+            <div class="sidebar-row">
+                <button id="btn-cycle-toggle" class="ui-toggle" title="Toggle Day/Night">
+                    <i class="fas fa-sun"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Minimap tracker -->
+    <div id="minimap" class="minimap-panel">
+        <div class="minimap-radar-line"></div>
+        <div class="minimap-grid-circle" style="width:30px; height:30px;"></div>
+        <div class="minimap-grid-circle" style="width:65px; height:65px;"></div>
+        <div id="minimap-blips-container"></div>
+        <div id="minimap-player-indicator" class="minimap-blip player"></div>
+    </div>
+
+      <!-- ══════════════ MOBILE CONTROLLER ══════════════ -->
+  <div id="mobile-ctrl">
+    <button id="ctrl-up" class="ui-toggle"><i class="fas fa-chevron-up"></i></button>
+    <button id="ctrl-left" class="ui-toggle"><i class="fas fa-chevron-left"></i></button>
+    <button id="ctrl-jump" class="ui-toggle"><i class="fas fa-circle"></i></button>
+    <button id="ctrl-down" class="ui-toggle"><i class="fas fa-chevron-down"></i></button>
+    <button id="ctrl-right" class="ui-toggle"><i class="fas fa-chevron-right"></i></button>
+  </div>
+
+    <div id="npc-indicator-container">
+        <div id="world-prompt" class="interact-prompt">CONNECT_TO_ECHO</div>
+    </div>
+
+    <!-- Location name display -->
+    <div id="loc-box">
+        <h2 id="loc-name">LOC_NAME</h2>
+    </div>
+
+    <!-- Simple bubble for non-dialogue NPCs -->
+    <div id="npc-bubble" class="npc-bubble"></div>
+
+    <!-- Dialogue box — WhatsApp-style chat panel (vn.html pattern) -->
+    <div id="local-dialogue-box">
+        <div id="chat-panel">
+            <div class="chat-hdr">
+                <div>
+                    <div class="chr" id="npc-name-display">NAME_ID</div>
+                    <div class="st">● ONLINE</div>
+                </div>
+            </div>
+            <div id="bub-scroll"></div>
+            <div id="bar-choices" class="hide"></div>
+        </div>
+    </div>
+
+    <!-- Floating Action Panel (moved from sidebar) -->
+    <div id="panel-actions" class="panel">
+        <div id="actions-list"></div>
+    </div>
+
+    <!-- Wipe transition overlay -->
+    <div id="wipe-overlay"></div>
+
+    <!-- External Libraries -->
+    <script src="https://unpkg.com/inkjs@2.2.1/dist/ink.js"></script>
+    <script>console.log('Ink runtime loaded:', !!window.ink, !!window.inkjs);</script>
+
+    <!-- Import Map for Three.js and Cannon-es -->
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+            "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/",
+            "cannon": "https://unpkg.com/cannon-es@0.20.0/dist/cannon-es.js"
+        }
+    }
+    </script>
+
+    <!-- Main Application Module -->
+    <script type="module" src="../js/main.js"></script>
+
+    <script type="module">
+        // Mobile control setup and Point-and-Click integration
+        // Derived from tests/mobile.html to bridge the UI with main game logic
+        
+        window.gameKeys = window.gameKeys || {};
+
+        window.setupMobileControls = () => {
+            const ctrl = document.getElementById('mobile-ctrl');
+            if (ctrl) ctrl.classList.add('visible');
+
+            if (!window.gameKeys) window.gameKeys = {};
+            const bind = (id, code) => {
+                const el = document.getElementById(id);
+                if (!el) return;
+                const start = (e) => { 
+                    e.preventDefault(); e.stopPropagation(); 
+                    if(window.gameKeys) window.gameKeys[code] = true; 
+                    el.classList.add('active'); 
+                };
+                const end = (e) => { 
+                    e.preventDefault(); e.stopPropagation(); 
+                    if(window.gameKeys) delete window.gameKeys[code]; 
+                    el.classList.remove('active'); 
+                    // Stop any point-and-click movement when WASD interaction stops
+                    window.mouseTarget = null;
+                };
+                el.addEventListener('touchstart', start); el.addEventListener('touchend', end);
+                el.addEventListener('mousedown', start); el.addEventListener('mouseup', end); el.addEventListener('mouseleave', end);
+            };
+            
+            bind('ctrl-up', 'KeyW'); bind('ctrl-down', 'KeyS');
+            bind('ctrl-left', 'KeyA'); bind('ctrl-right', 'KeyD');
+
+            const jEl = document.getElementById('ctrl-jump');
+            if (jEl) {
+                const jumpStart = (e) => { 
+                    e.preventDefault(); e.stopPropagation(); 
+                    if(window.gameKeys) window.gameKeys['Space'] = true; 
+                    window.dispatchEvent(new CustomEvent('game-jump'));
+                    jEl.classList.add('active'); 
+                };
+                const jumpEnd = (e) => { 
+                    e.preventDefault(); e.stopPropagation(); 
+                    if(window.gameKeys) delete window.gameKeys['Space']; 
+                    jEl.classList.remove('active'); 
+                };
+                jEl.addEventListener('touchstart', jumpStart);
+                jEl.addEventListener('touchend', jumpEnd);
+                jEl.addEventListener('mousedown', jumpStart);
+                jEl.addEventListener('mouseup', jumpEnd);
+            }
+        };
+
+        // Point and Click Interaction Logic
+        const handleInteraction = (x, y, target) => {
+            // Filter out interactions on UI overlays or buttons
+            if (target.closest('button, a, .ui-toggle, .panel, .overlay, .interact-prompt, .npc-bubble, #local-dialogue-box, #board-overlay, #level-select-overlay, #mobile-ctrl')) return;
+
+            // Dispatch event for main.js to perform raycasting against the planet
+            window.dispatchEvent(new CustomEvent('world-click', { detail: { x, y } }));
+        };
+
+        window.addEventListener('mousedown', e => handleInteraction(e.clientX, e.clientY, e.target));
+        window.addEventListener('touchstart', e => {
+            if (e.touches.length > 0) handleInteraction(e.touches[0].clientX, e.touches[0].clientY, e.target);
+        }, { passive: false });
+
+        // Auto-initialize when START button is clicked
+        document.getElementById('btn-start')?.addEventListener('click', () => {
+            // Delay slightly to match the start transition timing
+            setTimeout(window.setupMobileControls, 1000);
+        });
+    </script>
+</body>
+</html>

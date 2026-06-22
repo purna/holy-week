@@ -8,10 +8,10 @@
  * Each level is imported here at build time, typed as LevelData.
  */
 
-import level01 from './levels/act1_case.js';
-import level02 from './levels/act2_case.js';
-import level03 from './levels/act3_case.js';
-import level04 from './levels/act4_case.js';
+import level01 from './../js/act1_case.js';
+import level02 from './../js/act2_case.js';
+import level03 from './../js/act3_case.js';
+import level04 from './../js/act4_case.js';
 
 /**
  * @type {import('../levels/LevelManager.js').LevelData[]}

@@ -1,5 +1,6 @@
 // mapModal.js
 import * as THREE from 'three';
+import { MODELS } from '../js/config.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
 export class OrbitalSelectMatrixModal {
@@ -51,7 +52,7 @@ export class OrbitalSelectMatrixModal {
 
         // Load Earth Model
         const loader = new GLTFLoader();
-        loader.load('../assets/models/earth.glb', (gltf) => {
+        loader.load(MODELS.planet, (gltf) => {
             const model = gltf.scene;
 
             // Auto-scale normalization to ensure earth is solid and visible
@@ -74,6 +75,12 @@ export class OrbitalSelectMatrixModal {
                     });
                 }
             });
+
+            // Ensure the city layer is visible for the map modal
+            const cityLayer = model.getObjectByName('cities');
+            if (cityLayer) {
+                cityLayer.visible = true;
+            }
 
             this.core.add(model);
         }, undefined, (error) => {

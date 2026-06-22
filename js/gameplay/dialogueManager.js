@@ -1,76 +1,10 @@
-import { levels } from '../levels.js'; // Import levels definition instead
-
 /**
- * Maps dialogueId (from levels.js NPCs) to their Ink JSON story file paths.
+ * Maps dialogueId to their Ink JSON story file paths.
  * NPCs in levels.js use dialogueId instead of storyFile / hasDialogue.
  * This map bridges that gap so loadStoryForNPC can normalise the path.
+ * Also includes case file NPCs with their respective story files.
  */
-export const DIALOGUE_ID_MAP = {
-    // Act I - Triumphal Entry / Temple
-    peter_donkey:       './story/extras/peter_defense.json',
-    john_donkey:        './story/extras/john_disciple.json',
-    galilean_pilgrim:   './story/extras/galilean_pilgrim.json',
-    jerusalem_local:    './story/extras/jerusalem_local.json',
-    eleazar_sadducee:   './story/extras/eleazar_sadducee.json',
-    corrupt_seller:     './story/extras/corrupt_seller.json',
-    money_changer:      './story/extras/money_changer.json',
-    nathan_fig_tree:    './story/extras/nathan_fig_tree.json',
-    local_traveler:     './story/extras/local_traveler.json',
-
-    // Act II - Challenges / Lazarus
-    caiaphas_priest:    './story/extras/caiaphas_priest.json',
-    samuel_scribe:      './story/extras/samuel_scribe.json',
-    nathanael_pharisee: './story/extras/nathanael_pharisee.json',
-    nicodemus_conflicted: './story/extras/nicodemus_conflicted.json',
-    martha_bethany:     './story/extras/martha_bethany.json',
-    temple_spy:         './story/extras/temple_spy.json',
-    annas_patriarch:    './story/extras/annas_patriarch.json',
-    simon_leper:        './story/extras/simon_leper.json',
-
-    // Act III - Passion / Trial
-    john_disciple:      './story/extras/john_disciple.json',
-    rhoda_servant:      './story/extras/rhoda_servant.json',
-    judas_iscariot:     './story/extras/judas_iscariot.json',
-    malchus:            './story/extras/malchus.json',
-    false_witness:      './story/extras/false_witness.json',
-    barabbas_insurgent: './story/extras/barabbas_insurgent.json',
-    pontius_pilate:     './story/extras/pontius_pilate.json',
-    pilates_secretary:  './story/extras/pilates_secretary.json',
-    temple_curtain:     './story/extras/temple_curtain.json',
-    centurion_witness:  './story/extras/centurion_witness.json',
-    simon_cyrene:       './story/extras/simon_cyrene.json',
-
-    // Act IV - Resurrection
-    mary_magdalene:     './story/extras/mary_magdalene.json',
-    execution_soldier:  './story/extras/execution_soldier.json',
-    joseph_arimathea:   './story/extras/joseph_arimathea.json',
-    mary_resurrection:  './story/extras/mary_resurrection.json',
-    judas_betrayal:     './story/extras/judas_betrayal.json',
-    herods_servant:     './story/extras/herods_servant.json',
-    peter_restored:     './story/extras/peter_restored.json',
-    nathanael_disciple: './story/extras/nathanael_disciple.json',
-
-    // Common/Extras
-    scribe_intro:       './story/extras/scribe_intro.json',
-    market_rumors:      './story/extras/market_rumors.json',
-    rumor_whisper:      './story/extras/rumor_whisper.json',
-    witness_healed:     './story/extras/witness_healed.json',
-    priest_objection:   './story/extras/priest_objection.json',
-    guard_report:       './story/extras/guard_report.json',
-    peter_defense:      './story/extras/peter_defense.json',
-    roman_assessment:   './story/extras/roman_assessment.json',
-    secret_visit:       './story/extras/secret_visit.json',
-    upper_room_prep:    './story/extras/upper_room_prep.json',
-    informant_bribe:    './story/extras/informant_bribe.json',
-    teaching_mount:     './story/extras/teaching_mount.json',
-    pharisee_critique:  './story/extras/pharisee_critique.json',
-    parable_vineyard:   './story/extras/parable_vineyard.json',
-    parable_meaning:    './story/extras/parable_meaning.json',
-    board_review:       './story/extras/board_review.json',
-    board_debate:       './story/extras/board_debate.json',
-    trial_rumors:       './story/extras/trial_rumors.json',
-    peter_denial:       './story/extras/peter_denial.json',
-};
+import { DIALOGUE_ID_MAP } from './dialogueMaps.js';
 /**
  * DialogueManager
  *
@@ -88,55 +22,65 @@ export const DIALOGUE_ID_MAP = {
  */
 export class DialogueManager {
     constructor() {
-        this.inkStory = null;
+        this.basePath = ''; 
         this.isDialogueOpen = false;
         this.npcStories = {};
         this.inkLib = null;
         this.activeNpc = null;
+        this.onCloseCallback = null;
+        this.onMessageCallback = null;
 
         // Cache DOM refs once
         this._bubScroll = null;
         this._barChoices = null;
     }
 
-    loadAllStories() {
-        // Collect every single unique NPC profile configured across all 10 stages
-        const allDynamicNpcs = [];
-        levels.forEach(lvl => {
-            lvl.npcs.forEach(npc => {
-                if (!allDynamicNpcs.some(existing => existing.id === npc.id)) {
-                    allDynamicNpcs.push(npc);
-                }
-            });
-        });
-
-        // Pre-load ink assets uniformly
-        return Promise.all(allDynamicNpcs.map(npc => this.loadStoryForNPC(npc)));
-    }
-
     // ── Public init helpers ──────────────────────────────────────────────────
 
+    setBasePath(path) { this.basePath = path; }
     setInkLib(lib) { this.inkLib = lib; }
     setActiveNPC(npc) { this.activeNpc = npc; }
+    setOnMessage(cb) { this.onMessageCallback = cb; }
     setDialogueOpen(state) { this.isDialogueOpen = state; }
 
     // ── Story loading ────────────────────────────────────────────────────────
 
-    loadStoryForNPC(npc) {
-        // NPCs from config.js use storyFile / hasDialogue directly.
-        // NPCs from levels.js use dialogueId plus this DIALOGUE_ID_MAP.
-        let storyFile = npc.storyFile
-            || (npc.dialogueId != null ? DIALOGUE_ID_MAP[npc.dialogueId] : null);
+/**
+      * Preload all dialogue stories from the DIALOGUE_ID_MAP.
+      * Called once at game initialization to ensure stories are cached.
+      */
+    async loadAllStories() {
+        const promises = Object.entries(DIALOGUE_ID_MAP).map(([npcId, storyPath]) => {
+            // storyPath is already root-relative, e.g., '/story/act1/...'
+            // No further path adjustments needed here.
 
-        // Resolve ID if it doesn't look like a direct path or URL
-        if (storyFile && typeof storyFile === 'string' && !storyFile.includes('/') && !storyFile.endsWith('.json')) {
-            storyFile = DIALOGUE_ID_MAP[storyFile] || storyFile;
+            return fetch(storyPath)
+                .then(r => {
+                    if (!r.ok) throw new Error(`HTTP ${r.status}`);
+                    return r.json();
+                })
+                .then(data => {
+                    this.npcStories[npcId] = data;
+                    console.log(`[DialogueManager] Preloaded story for ${npcId}`);
+                })
+                .catch(e => {
+                    console.warn(`[DialogueManager] Failed to preload story for ${npcId}:`, e.message);
+                });
+        });
+        await Promise.all(promises);
+        console.log(`[DialogueManager] Loaded ${Object.keys(this.npcStories).length} stories`);
+    }
+
+    loadStoryForNPC(npc) {
+        // Resolve storyFile using DIALOGUE_ID_MAP, falling back to npc.id if storyFile/dialogueId are not direct paths
+        const storyFile = DIALOGUE_ID_MAP[npc.storyFile || npc.dialogueId || npc.id];
+        if (!storyFile) { // If no mapping found, and it's not a direct path
+            return Promise.resolve();
         }
 
         if (!npc.hasDialogue || !storyFile) {
             console.log('[DialogueManager] NPC has no dialogue or storyFile:', npc.id, npc.name,
-                '| hasDialogue:', npc.hasDialogue, '| storyFile:', npc.storyFile,
-                '| dialogueId:', npc.dialogueId);
+                '| hasDialogue:', npc.hasDialogue, '| storyFile:', npc.storyFile);
             return Promise.resolve();
         }
         console.log('[DialogueManager] Loading story for NPC', npc.id, npc.name, 'from', storyFile);
@@ -146,9 +90,8 @@ export class DialogueManager {
                 return r.json();
             })
             .then(data => {
-                if (!data.inkVersion) throw new Error('Invalid Ink JSON: missing inkVersion');
                 this.npcStories[npc.id] = data;
-                console.log(`[DialogueManager] Loaded story for ${npc.name} (Ink v${data.inkVersion})`);
+                console.log(`[DialogueManager] Loaded story for ${npc.name}`);
             })
             .catch(e => console.error(`[DialogueManager] Failed to load story for ${npc.name}:`, e));
     }
@@ -157,7 +100,14 @@ export class DialogueManager {
         if (!this.inkLib) throw new Error('Ink runtime not loaded');
         const data = this.npcStories[npcId];
         if (!data) throw new Error('Story data not found for ' + npcId);
-        return new this.inkLib.Story(data);
+
+        // Detect if this is an Ink story or our simpler JSON format
+        if (data.inkVersion) {
+            return new this.inkLib.Story(data);
+        }
+
+        // If it's a simple JSON, wrap it in an adapter so the UI logic works identically
+        return new SimpleStoryAdapter(data);
     }
 
     getStory(npcId) {
@@ -189,29 +139,54 @@ export class DialogueManager {
         el.className = 'msg ' + type;
         el.textContent = text;
         bubScroll.appendChild(el);
-        bubScroll.scrollTop = bubScroll.scrollHeight;
+        const atBottom = bubScroll.scrollHeight - bubScroll.scrollTop - bubScroll.clientHeight < 120;
+        if (atBottom) {
+            bubScroll.scrollTop = bubScroll.scrollHeight;
+        }
+        if (this.onMessageCallback && (type === 'npc' || type === 'player')) {
+            this.onMessageCallback(text, type);
+        }
     }
 
     /**
-     * Show an animated typing indicator, then call cb() after ~600–800 ms.
-     * @param {Function} cb
-     */
+      * Show an animated typing indicator, then call cb() after the delay.
+      * @param {Function} cb
+      */
     addTyping(cb) {
         const { bubScroll } = this._getEls();
         const npcName = this.activeNpc?.name ?? 'NPC';
         const row = document.createElement('div');
         row.className = 'typing-row';
+        row.setAttribute('aria-label', `${npcName} is typing`);
         row.innerHTML =
             '<div class="dot"></div>' +
             '<div class="dot"></div>' +
             '<div class="dot"></div>' +
-            `<span class="typing-lbl">${npcName} is typing…</span>`;
+            `<span class="typing-lbl">${npcName} is typing</span>`;
         bubScroll.appendChild(row);
-        bubScroll.scrollTop = bubScroll.scrollHeight;
+        const delay = 1200 + Math.random() * 600;
         setTimeout(() => {
             row.remove();
             cb();
-        }, 600 + Math.random() * 200);
+        }, delay);
+    }
+
+    addTypingBubble(message) {
+        const { bubScroll } = this._getEls();
+        const bubble = document.createElement('div');
+        bubble.className = 'msg npc typing-bubble';
+        bubble.textContent = '...';
+        bubScroll.appendChild(bubble);
+        bubScroll.scrollTop = bubScroll.scrollHeight;
+        return bubble;
+    }
+
+    replaceTypingBubble(bubble, message) {
+        if (!bubble) return;
+        bubble.textContent = message;
+        bubble.classList.remove('typing-bubble');
+        const { bubScroll } = this._getEls();
+        bubScroll.scrollTop = bubScroll.scrollHeight;
     }
 
     /**
@@ -229,7 +204,10 @@ export class DialogueManager {
             const b = document.createElement('button');
             b.className = 'choice-btn';
             b.textContent = '→ ' + c.text;
-            b.onclick = () => onPick(c);
+            b.onclick = () => {
+                barChoices.classList.add('hide');
+                setTimeout(() => onPick(c), 120);
+            };
             barChoices.appendChild(b);
         });
     }
@@ -239,13 +217,12 @@ export class DialogueManager {
     /**
      * Open the dialogue box for an NPC and start the Ink story from the top.
      *
-     * Also closes any open sidebar panels (mirrors vn.html startDialogue behaviour).
-     *
-     * @param {object}   npc       — NPC config object with .name and .id
+     * @param {object}   npc       — NPC config object with .name, .id, .unlocksEvidence
      * @param {object}   inkStory  — Active inkjs Story instance
      * @param {Function} onClose   — Called when the player ends the conversation
+     * @param {Function} onMessage — Optional callback for each message added
      */
-    openDialogue(npc, inkStory, onClose) {
+    openDialogue(npc, inkStory, onClose, onMessage) {
         // Close sidebar panels
         ['panel-quest', 'panel-inv', 'panel-actions'].forEach(id => {
             document.getElementById(id)?.classList.remove('open');
@@ -254,11 +231,15 @@ export class DialogueManager {
             document.getElementById(id)?.classList.remove('active');
         });
 
+        console.log(`[DialogueManager] Initializing dialogue for ${npc.name} (${npc.id}). Reference: ${npc.storyFile || 'none'}`);
+
         this.setActiveNPC(npc);
+        this.onCloseCallback = onClose;
+        this.onMessageCallback = onMessage;
         this.setDialogueOpen(true);
 
         // Populate header
-        const nameEl = document.getElementById('npc-name-display');
+        const nameEl = document.getElementById('npc-name-display') || document.getElementById('vn-speaker-name');
         if (nameEl) nameEl.innerText = npc.name ?? npc.id;
 
         // Clear previous messages
@@ -266,8 +247,14 @@ export class DialogueManager {
         bubScroll.innerHTML = '';
         this.showChoices(null, () => { });
 
-        // Show the box
-        document.getElementById('local-dialogue-box').style.display = 'flex';
+        // Show the modal
+        const box = document.getElementById('local-dialogue-box') || document.getElementById('vn-overlay');
+        if (box) {
+            box.classList.add('active');
+            if (window.getComputedStyle(box).display === 'none') {
+                box.style.display = 'flex';
+            }
+        }
 
         // System handshake message, then start story
         this.addMsg('SECURE CONNECTION ESTABLISHED.', 'system');
@@ -275,79 +262,71 @@ export class DialogueManager {
     }
 
     closeDialogue(onClose) {
-        document.getElementById('local-dialogue-box').style.display = 'none';
+        const box = document.getElementById('local-dialogue-box') || document.getElementById('vn-overlay');
+        if (box) {
+            box.classList.remove('active');
+            box.style.display = 'none';
+        }
+
         const { bubScroll } = this._getEls();
         bubScroll.innerHTML = '';
         this.showChoices(null, () => { });
         this.setDialogueOpen(false);
-        if (typeof onClose === 'function') onClose();
+
+        const cb = this.onCloseCallback || onClose;
+        this.onCloseCallback = null;
+        this.onMessageCallback = null;
+        if (typeof cb === 'function') cb();
     }
 
     // ── Story stepping ───────────────────────────────────────────────────────
 
     /**
-     * Advance the Ink story one beat:
-     *   1. Collect all pending text lines.
-     *   2. Show typing indicator → display NPC bubble(s).
-     *   3. Show ambient filler lines.
-     *   4. Render choice buttons (or a [CLOSE] button at story end).
-     *
-     * @param {object}   inkStory
-     * @param {Function} onClose
-     */
-    _stepStory(inkStory, onClose) {
-        const { barChoices } = this._getEls();
+      * Advance the Ink story one beat:
+      *   1. Collect all pending text lines.
+      *   2. Show typing indicator → display NPC bubble(s).
+      *   3. Show ambient filler lines.
+      *   4. Render choice buttons (or a [CLOSE] button at story end).
+      *
+      * @param {object}   story - inkjs.Story instance
+      * @param {Function} onClose
+      */
+    _stepStory(story, onClose) {
+        if (!story) return;
 
-        // Hide choices while processing
-        this.showChoices(null, () => { });
-
-        // ── Raw collection + sanitization pipeline ──────────────────────────────
-        // All raw ink text is stripped of Wikilink markers (#, ^, /#) before
-        // it ever touches the Typewriter or WhatsApp bubble DOM elements.
-        // This prevents raw syntax flashing on screen.
-        let raw = '';
-        while (inkStory.canContinue) raw += inkStory.Continue();
-        const sanitizedLine = this.stripInkMarkers(raw).trim();
-
-        // Show typing, then NPC bubble + filler + choices
         this.addTyping(() => {
-            if (sanitizedLine) this.addMsg(sanitizedLine, 'npc');
-
-            const fillers = [
-                '⚠️ Hyper-vigilance index spiking...',
-                '🔍 Scanning social tone subtext...',
-                '📉 Risk assessment: vulnerability widening.',
-                '🧠 Anxious thought-loop running worst-case models.',
-                '🔒 Defensive parsing subroutines active...',
-                '💓 Autonomic heart-rate variation trace active...',
-            ];
-            const fillerCount = sanitizedLine ? 2 : 0;
-            const delay = 350;
-
-            for (let i = 0; i < fillerCount; i++) {
-                setTimeout(() => {
-                    const msg = fillers[Math.floor(Math.random() * fillers.length)];
-                    this.addMsg(msg, 'npc-filler');
-                }, (i + 1) * delay);
+            let text = "";
+            // Ink can have content that results in empty strings (tags/diverts).
+            // We loop until we either hit actual text OR we have choices to present.
+            let safety = 0;
+            while (story.canContinue && safety < 20) {
+                let chunk = story.Continue();
+                text += chunk;
+                // If we found text or choices, we have enough to show the user
+                if (text.trim() || story.currentChoices.length > 0) break;
+                safety++;
             }
 
-            setTimeout(() => {
-                const choices = inkStory.currentChoices;
+            if (text.trim()) {
+                this.addMsg(this.stripInkMarkers(text), 'npc');
+            }
 
-                if (choices.length > 0) {
-                    this.showChoices(choices, (c) => {
-                        this.addMsg(c.text, 'player');
-                        inkStory.ChooseChoiceIndex(c.index);
-                        setTimeout(() => this._stepStory(inkStory, onClose), 400);
-                    });
-                } else {
-                    // End of story — offer close button
-                    this.showChoices(
-                        [{ text: '🔄 [ CLOSE CONNECTION ]', index: -1 }],
-                        () => this.closeDialogue(onClose)
-                    );
-                }
-            }, (fillerCount + 1) * delay);
+            if (story.currentChoices && story.currentChoices.length > 0) {
+                this.showChoices(story.currentChoices, (choice) => {
+                    if (choice.index !== -1) {
+                        this.addMsg(choice.text, 'player');
+                        story.ChooseChoiceIndex(choice.index);
+                        setTimeout(() => this._stepStory(story, onClose), 400);
+                    } else {
+                        this.closeDialogue(onClose);
+                    }
+                });
+            } else {
+                this.showChoices(
+                    [{ text: 'End Conversation', index: -1 }],
+                    () => this.closeDialogue(onClose)
+                );
+            }
         });
     }
 
@@ -380,5 +359,41 @@ export class DialogueManager {
             })
             .filter(Boolean)
             .join('\n');
+    }
+}
+
+/**
+ * Adapter for non-Ink simple JSON dialogues (content/choices format).
+ * Mimics the inkjs Story API so DialogueManager can use them interchangeably.
+ */
+class SimpleStoryAdapter {
+    constructor(data) {
+        this.data = data;
+        // Standardize entry point
+        this.currentNode = data.start || data.root || Object.values(data)[0];
+        this.canContinue = !!this.currentNode;
+        this.currentChoices = [];
+    }
+
+    Continue() {
+        if (!this.currentNode) return "";
+        const txt = this.currentNode.content || "";
+        // Transform choices to match Ink format { text, index }
+        this.currentChoices = (this.currentNode.choices || []).map((c, i) => ({
+            text: c.text,
+            index: i,
+            destination: c.destination
+        }));
+        this.canContinue = false;
+        return txt;
+    }
+
+    ChooseChoiceIndex(idx) {
+        const choice = this.currentChoices[idx];
+        if (choice && choice.destination && this.data[choice.destination]) {
+            this.currentNode = this.data[choice.destination];
+            this.canContinue = true;
+            this.currentChoices = [];
+        }
     }
 }

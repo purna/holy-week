@@ -6,7 +6,7 @@
 
 **Example 02** is the visual evolution — a 3D spatial environment with proximity-based interaction, day/night cycles, and modular architecture. However, it has **regressed** in several gameplay systems.
 
-**Critical Finding:** 02 is NOT missing evidence items. Both versions share identical `evidencePool` data in their case files. The regression is in **how** evidence is unlocked, how dialogues work, and how the accusation/challenge systems function.
+**Critical Finding:** 02 is NOT missing evidence items. Both versions share identical `evidencePool` data in their case files (consolidated in `/js/act1_case.js`, etc.). The regression is in **how** evidence is unlocked, how dialogues work, and how the accusation/challenge systems function.
 
 ---
 
@@ -108,7 +108,7 @@ if (npc.unlocksEvidence && npc.unlocksEvidence.length > 0) {
 ```
 
 **Port Actions Required:**
-1. **Add `unlocksEvidence` array to all NPCs in 02's case files**
+1. **Add `unlocksEvidence` array to all NPCs in the `/js/` act files**
 2. **In `_playerChoosesDialogue()` or `_closeDialogue()`, trigger unlocks:**
    ```javascript
    if (npcConfig.unlocksEvidence) {
@@ -190,8 +190,8 @@ deductions: {
 ```
 
 **Port Actions Required:**
-1. **Add full `contradictions{}` objects to all NPCs in 02's act files**
-2. **Add full `deductions{}` objects to all cases in 02's act files**
+1. **Add full `contradictions{}` objects to all NPCs in `/js/act1_case.js`, etc.**
+2. **Add full `deductions{}` objects to all cases in the `/js/` act files**
 3. **Verify `npcSystem.challenge()` reads contradictions correctly** (already implemented, just needs data)
 
 **Priority: HIGH** — Without contradictions, the Challenge system is meaningless.
@@ -331,10 +331,10 @@ endInvestigation(correct, accusedName) {
 
 | File | Changes Needed |
 |---|---|
-| `act1_case_improved.js` | Add `hasDialogue`, `storyFile`, `unlocksEvidence` to all NPCs; add full `contradictions`; add full `deductions` |
-| `act2_case_improved.js` | Same as above |
-| `act3_case_improved.js` | Same as above |
-| `act4_case_improved.js` | Same as above |
+| `js/act1_case.js` | Add `hasDialogue`, `storyFile`, `unlocksEvidence` to all NPCs; add full `contradictions`; add full `deductions` |
+| `js/act2_case.js` | Same as above |
+| `js/act3_case.js` | Same as above |
+| `js/act4_case.js` | Same as above |
 | `index.html` | Enable DialogueManager preloading; add score/rank display in accusation; enhance evidence popup |
 | `npcSystem.js` | Add `updatePressure()`, `getMood()`, `getState()` enhancements |
 | `evidenceSystem.js` | Verify `unlock()` properly syncs with 3D spawning |

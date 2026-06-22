@@ -3,20 +3,33 @@ import * as CANNON from 'cannon';
 import * as CONFIG from './../config.js';
 
 export class SceneManager {
-    constructor() {
+    constructor(container) {
         this.scene = new THREE.Scene();
         this.scene.background = new THREE.Color(CONFIG.SCENE.background);
         this.scene.fog = new THREE.FogExp2(CONFIG.SCENE.fogColor, CONFIG.SCENE.fogDensity);
+        this.canvasContainer = null;
+        this.planetR = 100;
 
-        this.camera = new THREE.PerspectiveCamera(65, window.innerWidth / window.innerHeight, 0.1, 5000);
-        this.camera.position.set(0, 80, 150);
+        // Get container dimensions for embedded view
+        // Use fallback if container not yet visible (tab not active)
+        const width = container && container.clientWidth ? container.clientWidth : window.innerWidth;
+        const height = container && container.clientHeight ? container.clientHeight : window.innerHeight;
+        
+        this.camera = new THREE.PerspectiveCamera(65, width / height, 0.1, 8000);
+        // Camera will be repositioned by setPlanetRadius
+        this.camera.position.set(0, 250, 280);
         this.camera.lookAt(0, 0, 0);
 
         this.renderer = new THREE.WebGLRenderer({ antialias: true });
-        this.renderer.setSize(window.innerWidth, window.innerHeight);
+        this.renderer.setSize(width, height);
         this.renderer.shadowMap.enabled = true;
         this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-        document.body.appendChild(this.renderer.domElement);
+        if (container) {
+            container.appendChild(this.renderer.domElement);
+            this.canvasContainer = container;
+        } else {
+            document.body.appendChild(this.renderer.domElement);
+        }
 
         // Physics world
         this.world = new CANNON.World();
@@ -24,6 +37,12 @@ export class SceneManager {
 
         this.setupLights();
         this.setupStarField();
+    }
+
+    setPlanetRadius(r) {
+        this.planetR = r;
+        // Reposition camera based on planet radius - closer for better view
+        this.camera.position.set(0, r * 2 + 50, r * 2 + 80);
     }
 
     setupLights() {
@@ -50,8 +69,10 @@ export class SceneManager {
     }
 
     handleResize() {
-        const width = window.innerWidth;
-        const height = window.innerHeight;
+        const width = this.canvasContainer ? this.canvasContainer.clientWidth : window.innerWidth;
+        const height = this.canvasContainer ? this.canvasContainer.clientHeight : window.innerHeight;
+        // Skip if no valid dimensions yet
+        if (width === 0 || height === 0) return;
         this.renderer.setSize(width, height);
         this.camera.aspect = width / height;
         this.camera.updateProjectionMatrix();

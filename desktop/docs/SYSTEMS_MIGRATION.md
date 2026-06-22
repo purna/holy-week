@@ -6,7 +6,7 @@ This document outlines the strategy for porting the complex deduction, interroga
 Example 01 has a much richer data structure for evidence, including prophecies and detailed investigator notes.
 
 ### Migration Steps:
-- **Data Merge:** Copy the `prophecies` and `contradictions` objects from `example_01/actX_case_2d.js` into your `example_02/actX_case_3d.js` case files.
+- **Data Merge:** Copy the `prophecies` and `contradictions` objects from `js/act1_case.js` (and subsequent act files) into your consolidated case files.
 - **Detail Modal Port:** Port the HTML structure for `#evidence-detail-modal` and its associated CSS. 
 - **Bible Integration:** Update `BibleReader2.js` in Example 02 to accept the `bibleRef` from your evidence metadata. Use the `fetchVerse()` logic from Example 01 to populate the "Read Full Verse" section of the codex.
 - **UI Trigger:** In Example 02, clicking an evidence slot in the sidebar should open this rich modal instead of a simple alert or small popup.
@@ -58,7 +58,7 @@ Accusation moves from a menu button to a deliberate world interaction.
 ## 6. Technical Checklist
 
 1. [ ] **Copy Styles:** Move `.evidence-detail-modal`, `.mood-indicator`, and `.pressure-bar` styles to `css/components.css`.
-2. [ ] **Update Case Files:** Ensure `act3_case_3d.js` contains the `contradictions` mapping for `npcSystem.challenge()`.
+2. [ ] **Update Case Files:** Ensure `js/act3_case.js` contains the `contradictions` mapping for `npcSystem.challenge()`.
 3. [ ] **Refactor Controls:** Update `controls.js` to manage the "Challenge" and "Accuse" button visibility based on `nearestNPC`.
 4. [ ] **Port Scoring:** Move the `submitAccusation` logic from Example 01's `caseManager.js` to Example 02 to handle result screens and ranks.
 5. [ ] **Unify Audio:** Ensure breakthrough sound effects (`breakthrough.mp3`) are triggered via the `AudioManager` in Example 02 during successful challenges.

@@ -1,10 +1,16 @@
 {
-  "id": "jemimah",
   "name": "Jemimah",
-  "role": "Jerusalem Local",
+  "role": "Temple Flower Seller",
+  "faction": "local",
   "avatar": "👩‍🌾",
-  "truthfulness": 0.8,
-  "bibleRef": "Matthew 21:10-11",
-  "background": "A local resident managing her household. Irritated by the Passover overcrowding, she is suspicious of Galilean zeal and views the disruptive procession with urban cynicism.",
-  "factions": ["local"]
+  "mood": "neutral",
+  "background": "A young woman who sells fragrant spices and flowers near the Temple courtyard. She observes much from her flower stall.",
+  "dialogue": {
+    "neutral": "Fresh myrtle for the Passover! The lamb must be robed in fragrant herbs!",
+    "cautious": "I don't involve myself in these matters. I'm just a flower seller.",
+    "pressured": "I heard the crowd moving through the garden late at night.",
+    "exposed": "They came with torches and ropes! And one young man ran off in only his skin!"
+  },
+  "reactions": {},
+  "contradictions": {}
 }

@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <!-- Howler.js: Spatialized web audio engine wrapper for ambient tracks and sound effects -->
-  <script src="plugins/howler.min.js"></script>
+  <script src="../js/plugins/howler.min.js"></script>
 
   <!-- Inkjs: Runtime for narrative scripting -->
   <script src="https://unpkg.com/inkjs@2.2.1/dist/ink.js"></script>
@@ -46,7 +46,8 @@
     {
       "imports": {
         "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
-        "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+        "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/",
+        "cannon": "https://unpkg.com/cannon-es@0.20.0/dist/cannon-es.js"
       }
     }
   </script>
@@ -226,7 +227,7 @@
 
     <!-- Left Column: Manages active quest state progression and logged item portfolios -->
     <aside id="left-sidebar">
-      <button class="modal-close-btn mobile-only">✕</button>
+      <button class="modal-close-btn" title="Close Panel">✕</button>
       <!-- Active Case Tracking Card -->
       <section class="hud-panel quest-panel">
         <div class="panel-header"><i class="fa-solid fa-star"></i> Current Case</div>
@@ -262,7 +263,7 @@
 
     <!-- Right Column: Contextual action executions and scriptural/historical clue logs -->
     <aside id="right-sidebar">
-      <button class="modal-close-btn mobile-only">✕</button>
+      <button class="modal-close-btn" title="Close Panel">✕</button>
       <!-- Context Actions Panel -->
       <section class="hud-panel sidebar-panel-fill actions-panel">
         <div class="panel-header">Actions</div>
@@ -280,6 +281,8 @@
     <footer id="bottom-bar">
       <!-- Modern Navigation Bar styled like a mobile menu -->
       <nav id="mobile-nav-menu" class="footer-nav-menu">
+        <button id="btn-mobile-scene" class="mobile-nav-btn active"><i
+            class="fa-solid fa-mountain-sun"></i><span>Scene</span></button>
         <button id="btn-mobile-quest" class="mobile-nav-btn"><i class="fa-solid fa-star"></i><span>Case</span></button>
         <button id="btn-mobile-evidence" class="mobile-nav-btn"><i
             class="fa-solid fa-folder-open"></i><span>Clues</span></button>

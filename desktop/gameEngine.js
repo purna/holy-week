@@ -1,22 +1,26 @@
 import * as THREE from 'three';
-import { CaseManager } from "./caseManager.js";
-import { EvidenceSystem } from "./evidenceSystem.js";
-import { NPCSystem } from "./NPCSystem.js";
-import { DeductionEngine } from "./deductionEngine.js";
-import { LocationSystem } from "./locationSystem.js";
-import { AccessibilityManager } from "./accessibility.js";
-import { AudioManager } from "./audioManager.js";
+import { CaseManager } from "../js/gameplay/caseManager.js";
+import { EvidenceSystem } from "../js/gameplay/evidenceSystem.js";
+import { NPCSystem, PROFILE_ID_MAP } from "./NPCSystem.js";
+import { DeductionEngine } from "../js/gameplay/deductionEngine.js";
+import { LocationSystem } from "../js/gameplay/locationSystem.js";
+import { AccessibilityManager } from "../js/ui/AccessibilityManager.js";
+import { LabUI } from "../js/ui/LabUI.js";  
+import { ChatUI } from "../js/ui/ChatUI.js";
+import { AudioManager } from "./audioManager.js"; // Desktop uses its own AudioManager
 import { DialogueManager } from "./dialogueManager.js";
+
 import { ControlsManager } from "./controls.js";
 import { EnvironmentManager } from "./environment.js";
 import { OrbitalSelectMatrixModal } from "./mapModal.js";
-import { GLTFLoader } from './plugins/GLTFLoader.js';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { MODELS } from '../js/config.js';
 import { iVFXSystem } from "./iVFXSystem.js";
 
-import { act1CaseA, act1CaseB, act1CaseC } from "./act1_case.js";
-import { act2CaseA, act2CaseB, act2CaseC } from "./act2_case.js";
-import { act3CaseA, act3CaseB, act3CaseC, act3CaseD, act3CaseE } from "./act3_case.js";
-import { act4CaseA, act4CaseB, act4CaseC } from "./act4_case.js";
+import { act1CaseA, act1CaseB, act1CaseC } from "./../js/act1_case.js";
+import { act2CaseA, act2CaseB, act2CaseC } from "./../js/act2_case.js";
+import { act3CaseA, act3CaseB, act3CaseC, act3CaseD, act3CaseE } from "./../js/act3_case.js";
+import { act4CaseA, act4CaseB, act4CaseC } from "./../js/act4_case.js";
 
 export class GameEngine {
   constructor(config = {}) {
@@ -29,7 +33,7 @@ export class GameEngine {
     this.a11y = new AccessibilityManager();
     this.a11y.restorePreferences();
     this.es = new EvidenceSystem(this.cm);
-    this.ns = new NPCSystem(this.cm, this.es);
+    this.ns = new NPCSystem(this.cm, this.es, this.surfaceRadius);
     this.de = new DeductionEngine(this.cm, this.es);
     this.ls = new LocationSystem(this.cm);
     this.audio = new AudioManager();
@@ -56,6 +60,7 @@ export class GameEngine {
     this.currentDisplayPreference = 'emojis';
     this.uiVisibility = { minimap: true, controls: true };
     this.lockedEvidence = {};
+    this.gridSceneCache = {};
     this._lastTaggedNPC = null; // Track to prevent frame-rate click interference
     this.controls = new ControlsManager(this);
     this.worldEarth = null;
@@ -103,15 +108,75 @@ export class GameEngine {
     return dir.multiplyScalar(this.surfaceRadius + yOffset);
   }
 
-  // Loads object placements exported from grid-editor2.html and spawns them
-  // on the navmesh surface for the current case.
-  async _loadGridObjects(caseData) {
-    const gridFile = caseData.gridFile || '../assets/grids/earth-grid.json';
+  _mergeGridSceneData(caseData, data) {
+    if (!data || data.objects) return;
+
+    if (data.timeOfDay) caseData.timeOfDay = data.timeOfDay;
+
+    const caseNpcs = new Map((caseData.npcs || []).map(npc => [npc.id, npc]));
+    (data.npcs || []).forEach(gridNpc => {
+      const npc = caseNpcs.get(gridNpc.id);
+      if (!npc) return;
+      if (Array.isArray(gridNpc.pos)) npc.pos = [...gridNpc.pos];
+      if (gridNpc.color !== undefined) npc.color = gridNpc.color;
+      if (gridNpc.description && !npc.description) npc.description = gridNpc.description;
+      if (Array.isArray(gridNpc.unlocksEvidence)) npc.unlocksEvidence = gridNpc.unlocksEvidence;
+    });
+
+    const caseEvidence = new Map((caseData.evidencePool || []).map(evidence => [evidence.id, evidence]));
+    (data.evidence || []).forEach(gridEvidence => {
+      const evidence = caseEvidence.get(gridEvidence.id);
+      if (!evidence) return;
+      if (Array.isArray(gridEvidence.pos)) evidence.pos = [...gridEvidence.pos];
+      if (gridEvidence.model && !evidence.model) evidence.model = gridEvidence.model;
+    });
+  }
+
+  async _loadGridData(caseData) {
+    const gridFile = caseData.gridFile || `../assets/grids/${caseData.id}.json`;
+    const cacheKey = caseData.gridFile ? gridFile : caseData.id;
+
+    if (this.gridSceneCache[cacheKey] !== undefined) {
+      return this.gridSceneCache[cacheKey];
+    }
+
     try {
       const res = await fetch(gridFile);
-      if (!res.ok) return;
+      if (!res.ok) {
+        if (!caseData.gridFile) {
+          const fallback = await fetch('../assets/grids/earth-grid.json');
+          if (fallback.ok) {
+            const data = await fallback.json();
+            this.gridSceneCache[cacheKey] = data;
+            return data;
+          }
+        }
+        this.gridSceneCache[cacheKey] = null;
+        return null;
+      }
+
       const data = await res.json();
-      const { numLat, numLon } = data.grid;
+      this._mergeGridSceneData(caseData, data);
+      this.gridSceneCache[cacheKey] = data;
+      return data;
+    } catch (e) {
+      console.warn(`[Grid] Failed to load grid scene for ${caseData.id}:`, e);
+      this.gridSceneCache[cacheKey] = null;
+      return null;
+    }
+  }
+
+  // Loads grid placements from the shared assets/grids source and spawns them
+  // on the navmesh surface for the current case.
+  async _loadGridObjects(caseData) {
+    const data = await this._loadGridData(caseData);
+    if (!data) return;
+
+    if (!data.objects) return;
+
+    try {
+      const { numLat, numLon } = data.grid || {};
+      if (!numLat || !numLon) return;
       let npcIndex = 0;
 
       data.objects.forEach(o => {
@@ -234,7 +299,7 @@ export class GameEngine {
 
     // Load Earth Model as a visual layer scaled to match the sphere
     const loader = new GLTFLoader();
-    loader.load('../assets/models/earth.glb', (gltf) => {
+    loader.load(MODELS.planet, (gltf) => {
       this.worldEarth = gltf.scene;
       const earthModel = this.worldEarth;
 
@@ -307,7 +372,7 @@ export class GameEngine {
         // Check intersection with NPCs, Evidence, and World Markers (pins)
         const interactivePool = [...this.npcMeshes, ...this.evidenceMeshes, ...this.worldObjects];
         const hits = raycaster.intersectObjects(interactivePool, true);
-        
+
         if (hits.length > 0) {
           const hitObject = hits[0].object;
           // Traverse up the parent tree to find an object with case data (common for GLB models)
@@ -355,7 +420,19 @@ export class GameEngine {
         sidebar.classList.add('active');
         targetPanel.classList.remove('mobile-hidden');
         document.getElementById(btnId)?.classList.add('active');
+        // When a panel is open, the Scene button is no longer highlighted
+        document.getElementById('btn-mobile-scene')?.classList.remove('active');
+      } else {
+        // If we toggled a panel off, return focus to the Scene tab
+        document.getElementById('btn-mobile-scene')?.classList.add('active');
       }
+    };
+
+    // Navigation handler for the primary 3D Scene view
+    document.getElementById('btn-mobile-scene').onclick = () => {
+      closeAllSidebars();
+      this.audio.playUI();
+      document.getElementById('btn-mobile-scene')?.classList.add('active');
     };
 
     document.getElementById('btn-mobile-quest').onclick = () => { closeAllSidebars(); this.openPeopleModal(); };
@@ -378,7 +455,11 @@ export class GameEngine {
 
     // Bind close buttons inside sidebars
     document.querySelectorAll('.modal-close-btn').forEach(btn => {
-      btn.onclick = closeAllSidebars;
+      btn.onclick = () => {
+        closeAllSidebars();
+        // Returning to scene view highlights the Scene button
+        document.getElementById('btn-mobile-scene')?.classList.add('active');
+      };
     });
 
     const updateUIState = (prop, targetId, settingsBtnId) => {
@@ -436,9 +517,20 @@ export class GameEngine {
     bindControl('ctrl-right', 'KeyD');
     bindControl('ctrl-jump', 'Space');
 
-    document.getElementById('ctrl-interact').onclick = (e) => {
-      e.preventDefault();
-      if (this.nearestNPC) this.startDialogue(this.nearestNPC.userData.config);
+    const interactBtn = document.getElementById('ctrl-interact');
+    if (interactBtn) {
+      interactBtn.onclick = (e) => {
+        e.preventDefault();
+        if (this.nearestNPC) this.startDialogue(this.nearestNPC.userData.config);
+      };
+    }
+
+    // Method to update interact button disabled state
+    this.updateInteractButton = () => {
+      if (interactBtn) {
+        interactBtn.disabled = !this.nearestNPC;
+        interactBtn.style.opacity = this.nearestNPC ? '1' : '0.5';
+      }
     };
   }
 
@@ -467,9 +559,11 @@ export class GameEngine {
     this.mapModal.open();
   }
 
-  loadCase(caseId) {
+  async loadCase(caseId) {
     const caseData = this.cm.cases[caseId];
     if (!caseData) return;
+    await this._loadGridData(caseData);
+
     this.activeCaseId = caseId;
     this.audio.updateActMusic(caseData.actLabel);
     this.nearestNPC = null;
@@ -497,7 +591,7 @@ export class GameEngine {
     // Pre-load Ink stories
     if (caseData.npcs) {
       caseData.npcs.forEach(npc => {
-        if (npc.dialogueId || npc.storyFile) this.dm.loadStoryForNPC(npc);
+        if (npc.hasDialogue || npc.dialogueId || npc.storyFile) this.dm.loadStoryForNPC(npc);
       });
     }
 
@@ -526,18 +620,8 @@ export class GameEngine {
 
     // 3. Load the specific environment model for this location
     const loader = new GLTFLoader();
-    let modelPath = caseData.worldModel;
-
-    if (!modelPath) {
-      const loc = (caseData.location || '').toLowerCase();
-      const assetsPath = '../assets/models/';
-      if (loc.includes('jerusalem')) modelPath = assetsPath + 'jerusalem.glb';
-      else if (loc.includes('garden')) modelPath = assetsPath + 'garden.glb';
-      else if (loc.includes('temple')) modelPath = assetsPath + 'temple.glb';
-      else if (loc.includes('upperroom')) modelPath = assetsPath + 'upper_room.glb';
-      else if (loc.includes('galilee')) modelPath = assetsPath + 'galilee.glb';
-      else modelPath = assetsPath + 'earth.glb'; // Fallback to earth.glb if specific model missing
-    }
+    // Load the model specified in the case data.
+    const modelPath = caseData.worldModel;
 
     // Transition UI for loading state
     const wipeOverlay = document.getElementById('wipe-overlay');
@@ -574,6 +658,13 @@ export class GameEngine {
           }
         }
       });
+
+      // Add config to hide city layer for specific cases
+      const showCityLayer = caseData.showCityLayer !== false; // Default to true if not specified
+      const cityLayer = this.worldEarth.getObjectByName('cities'); // Assuming 'cities' is the name in the GLB
+      if (cityLayer) {
+        cityLayer.visible = showCityLayer;
+      }
       this.scene.add(this.worldEarth);
 
       this.pPos.setLength(this.surfaceRadius + 1.1);
@@ -684,9 +775,9 @@ export class GameEngine {
     // Create a vector using Y as the primary axis (up) so objects cluster near the starting pole
     let directionFromCenter = new THREE.Vector3(x, this.surfaceRadius, z);
     if (directionFromCenter.lengthSq() === 0) {
-        directionFromCenter.set(0, 1, 0); // Default to straight up from the pole
+      directionFromCenter.set(0, 1, 0); // Default to straight up from the pole
     } else {
-        directionFromCenter.normalize();
+      directionFromCenter.normalize();
     }
     // Scale it to the planet radius, and then add the y_offset_from_surface along that normal
     const worldPos = directionFromCenter.multiplyScalar(this.surfaceRadius + y_offset_from_surface);
@@ -776,7 +867,7 @@ export class GameEngine {
           model.position.copy(pos);
           this._alignToSurface(model);
           model.userData.collisionRadius = Math.max(size.x, size.z) * 0.5;
-          
+
           model.traverse(node => {
             if (node.isMesh) {
               node.castShadow = true;
@@ -851,7 +942,7 @@ export class GameEngine {
 
       const sprite = new THREE.Sprite(new THREE.SpriteMaterial({ map: new THREE.CanvasTexture(canvas), transparent: true }));
       sprite.scale.set(16, 4, 1);
-      
+
       // Distribute markers in a circle around the North Pole area so they are visible from the start
       const angle = (index / this.ls.getAllLocations().length) * Math.PI * 2;
       const dist = 40 + (index * 5); // Spread them out radially
@@ -1329,41 +1420,61 @@ export class GameEngine {
     }
   }
 
-  startDialogue(npcConfig) {
-    const storyData = this.dm.getStory(npcConfig.id);
+startDialogue(npcConfig) {
+     const storyData = this.dm.getStory(npcConfig.id);
 
-    if (storyData) {
-      const story = this.dm.createStory(npcConfig.id);
-      this.inDialogue = true;
-      this.pVelocity.set(0, 0, 0);
+     if (storyData) {
+       const story = this.dm.createStory(npcConfig.id);
+       if (!story && !storyData.start) {
+         console.warn('[startDialogue] No valid story for NPC:', npcConfig.id);
+         return;
+       }
+       this.inDialogue = true;
+       this.pVelocity.set(0, 0, 0);
 
-      // Capture dialogue into NPC memory for the people-modal instead of the sidebar
-      const originalAddMsg = this.dm.addMsg.bind(this.dm);
-      this.dm.addMsg = (text, type) => {
-        originalAddMsg(text, type);
-        if (type === 'npc' || type === 'player') {
-          this.ns._addMemory(npcConfig.id, {
-            type: 'talk',
-            reaction: text,
-            speaker: type === 'npc' ? npcConfig.name : 'You'
-          });
+       // Capture dialogue into NPC memory for the people-modal instead of the sidebar
+       const originalAddMsg = this.dm.addMsg.bind(this.dm);
+       const self = this;
+       this.dm.addMsg = function(text, type) {
+         originalAddMsg(text, type);
+         if (type === 'npc' || type === 'player') {
+           self.ns._addMemory(npcConfig.id, {
+             type: 'talk',
+             reaction: text,
+             speaker: type === 'npc' ? npcConfig.name : 'You'
+           });
+         }
+       };
+
+       this.dm.openDialogue(npcConfig, story, () => {
+         // Restore original addMsg
+         this.dm.addMsg = originalAddMsg;
+         if (npcConfig.unlocksEvidence) npcConfig.unlocksEvidence.forEach(id => this._unlockEvidence(id));
+         this.inDialogue = false;
+         this.updateActions(this.cm.getActiveCase());
+       }, (tag) => {
+         if (tag.startsWith('reveal:')) this._unlockEvidence(tag.split(':')[1]);
+       });
+    } else if (npcConfig.hasDialogue || npcConfig.dialogueId) {
+      // Fallback to simple talk when no Ink story is available
+      const result = this.ns.talk(npcConfig.id);
+      if (result) {
+        this.inDialogue = true;
+        this.pVelocity.set(0, 0, 0);
+        this.controls.displayAlert(result.text);
+        if (result.unlocksEvidence) {
+          result.unlocksEvidence.forEach(id => this._unlockEvidence(id));
         }
-      };
-
-      this.dm.openDialogue(npcConfig, story, () => {
-        if (npcConfig.unlocksEvidence) npcConfig.unlocksEvidence.forEach(id => this._unlockEvidence(id));
         this.inDialogue = false;
         this.updateActions(this.cm.getActiveCase());
-      }, (tag) => {
-        if (tag.startsWith('reveal:')) this._unlockEvidence(tag.split(':')[1]);
-      });
+      }
     }
   }
 
   _unlockEvidence(evidenceId) {
     const id = (typeof evidenceId === 'object') ? evidenceId.clueId : evidenceId;
     const ev = this.lockedEvidence[id];
-    if (!ev || this.es.isCollected(id)) return;
+    if (!ev || this.es.isCollected(id) || !ev.pos) return;
 
     delete this.lockedEvidence[id];
     const sphere = new THREE.Mesh(
@@ -1385,7 +1496,7 @@ export class GameEngine {
       new THREE.MeshBasicMaterial({ color: 0x00ffaa, transparent: true, opacity: 0.5, side: THREE.DoubleSide })
     );
     // Positioned slightly above the ground to be visible but distinct from NPC halos
-    halo.position.set(0, 1.2, 0); 
+    halo.position.set(0, 1.2, 0);
     halo.lookAt(0, 100, 0);
     sphere.add(halo);
 
@@ -1550,12 +1661,12 @@ export class GameEngine {
     const rayStart = this.pPos.clone().add(up.clone().multiplyScalar(1.5));
     const rayDir = desiredCamPos.clone().sub(rayStart).normalize();
     const rayDist = rayStart.distanceTo(desiredCamPos);
-    
+
     const raycaster = new THREE.Raycaster(rayStart, rayDir, 0.1, rayDist);
     raycaster.camera = this.camera; // Required for raycasting against sprites in worldObjects
     const collidables = [...this.worldObjects, this.groundSphere];
     const hits = raycaster.intersectObjects(collidables, true);
-    
+
     let finalCamPos = desiredCamPos;
     if (hits.length > 0) {
       // Move camera to the first hit point, pulled back slightly to avoid clipping
@@ -1586,6 +1697,7 @@ export class GameEngine {
     if (closest !== this.nearestNPC) {
       this.nearestNPC = closest;
       this.updateActions(this.cm.getActiveCase());
+      this.updateInteractButton();
     }
     if (this.nearestNPC && minDist < 2) this.pPos.addScaledVector(this.pVelocity, -2 / 60);
   }
@@ -1599,7 +1711,7 @@ export class GameEngine {
         const npcBtn = document.getElementById('inworld-npc-btn');
         const npcName = this.nearestNPC.userData.config?.name || 'NPC';
         npcBtn.innerHTML = `<i class="fa-solid fa-comments"></i> Talk to <strong>${npcName}</strong> <small>[E]</small>`;
-        
+
         // Re-bind only once per target change to ensure click reliability
         npcBtn.onclick = (e) => {
           e.stopPropagation();
@@ -1686,7 +1798,7 @@ export class GameEngine {
       const dz = -rel.dot(fwd);
 
       const blip = document.createElement('div');
-      blip.className = 'minimap-blip evidence'; 
+      blip.className = 'minimap-blip evidence';
       blip.style.left = (offset + dx * scale) + 'px';
       blip.style.top = (offset + dz * scale) + 'px';
       container.appendChild(blip);

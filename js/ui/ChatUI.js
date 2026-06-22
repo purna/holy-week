@@ -1,0 +1,180 @@
+import { DIALOGUE_ID_MAP } from "../gameplay/dialogueMaps.js";
+
+export class ChatUI {
+  constructor(npcSystem, evidenceSystem, accessibility, onAction, audioManager, dialogueManager) {
+    this.npcs = npcSystem;
+    this.es = evidenceSystem;
+    this.a11y = accessibility;
+    this.onAction = onAction;
+    this.audio = audioManager;
+    this.dm = dialogueManager;
+    this.messagesByNPC = {};
+    this.challengeResultsByNPC = {};
+  }
+
+  addMessage(speaker, text, type = "npc", extra = {}, npcId = null) {
+    const targetNPC = npcId || this.pendingNPC;
+    const msg = { speaker, text, type, extra, id: Date.now() };
+    if (targetNPC) {
+      if (!this.messagesByNPC[targetNPC]) this.messagesByNPC[targetNPC] = [];
+      this.messagesByNPC[targetNPC].push(msg);
+    }
+    this.a11y.speak(`${speaker}: ${text}`);
+    return msg;
+  }
+
+  addSystem(text, npcId = null) {
+    return this.addMessage("System", text, "system", {}, npcId);
+  }
+
+  _renderMsg(m) {
+    const cls = `msg msg-${m.type}`;
+    const icons = { player: "🕵️", system: "📋", verdict: "⚖️" };
+    const icon = icons[m.type] || "🗣";
+    return `
+      <div class="${cls}" role="listitem" aria-label="${m.speaker}: ${m.text}">
+        <span class="msg-speaker-badge" aria-hidden="true">${icon} ${m.speaker}</span>
+        <span class="msg-text">${this.a11y.simplify(m.text)}</span>
+        <div class="msg-badges">
+          ${m.extra?.evidenceTag ? `<span class="evidence-tag-badge ${m.extra.isKey ? 'key' : ''}">${m.extra.evidenceTag} ${m.extra.evidenceName || ''}</span>` : ""}
+          ${m.extra?.breakthrough ? `<span class="breakthrough-badge">⚡ Breakthrough</span>` : ""}
+          ${m.extra?.revealedClue ? `<span class="clue-badge">🔍 New clue</span>` : ""}
+        </div>
+        ${m.type === 'verdict' ? this._renderVerdict(m.extra.result) : ""}
+      </div>`;
+  }
+
+  _renderVerdict(res) {
+    const s = res.score;
+    return `
+      <div class="verdict-card ${res.correct ? 'verdict-correct' : 'verdict-wrong'}">
+        <div class="verdict-header">${res.correct ? '🏆 CASE SOLVED' : '❌ INCORRECT ACCUSATION'}</div>
+        <div class="verdict-score-grid">
+          <div class="score-row"><span>💡 Deductions:</span> <span>+${s.breakdown?.deductionScore || s.deduction}</span></div>
+          <div class="score-row"><span>🔍 Evidence:</span> <span>+${s.breakdown?.evidenceScore || s.evidence}</span></div>
+          <div class="score-total"><span>⭐ Total Score:</span> <span>${s.total}</span></div>
+        </div>
+      </div>`;
+  }
+
+  renderNPCPanel() {
+    const npcs = this.npcs.getNPCs().filter(npc => npc.hasDialogue !== false);
+    return `
+      <div class="npc-list" role="list">
+        ${npcs.map(npc => {
+          const state = this.npcs.getState(npc.id);
+          const moodColor = this.npcs.getMoodColor(state?.mood || "neutral");
+          const moodLabel = this.npcs.getMoodLabel(state?.mood || "neutral");
+          return `
+            <div class="npc-card">
+              <div class="npc-header">
+                <span class="npc-avatar">${npc.avatar}</span>
+                <div class="npc-info"><span class="npc-name">${npc.name}</span></div>
+                <span class="npc-mood" style="color:${moodColor}">${moodLabel}</span>
+              </div>
+              <div class="npc-feed" role="log" aria-live="polite">${this.messagesByNPC[npc.id]?.map(m => this._renderMsg(m)).join("") || ""}</div>
+              <div class="npc-actions">
+                <button class="npc-btn" data-action="talk" data-npc="${npc.id}">💬 Talk</button>
+                <button class="npc-btn" data-action="show" data-npc="${npc.id}">🔍 Evidence</button>
+                <button class="npc-btn" data-action="challenge" data-npc="${npc.id}" ${!this.es.selectedA ? "aria-disabled='true'" : ""}>⚡ Challenge</button>
+              </div>
+              <div class="challenge-result" data-npc-challenge="${npc.id}" ${this.challengeResultsByNPC[npc.id] ? '' : 'hidden'}>
+                ${this.challengeResultsByNPC[npc.id] || ''}
+              </div>
+              <div class="show-evidence-picker" data-npc-picker="${npc.id}" hidden>
+                <h3>Select evidence to show:</h3>
+                <div class="evidence-pick-list">
+                  ${this.es.getCollected().map(e => `<button class="evidence-pick-btn" data-evidence="${e.id}" data-npc="${npc.id}">${e.icon} ${e.name}</button>`).join("")}
+                </div>
+                <button class="cancel-btn" data-npc="${npc.id}">Cancel</button>
+              </div>
+            </div>`;
+        }).join("")}
+      </div>`;
+  }
+
+  bindNPCEvents(container) {
+    let pendingNPC = null;
+    let pendingSelection = [];
+
+    container.querySelectorAll("[data-action='talk']").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const npcId = btn.dataset.npc;
+        const npc = this.npcs.getNPC(npcId);
+        const loadedStory = this.dm.getStory(npcId);
+        if (this.dm && npc && loadedStory) {
+          const story = this.dm.createStory(npcId);
+          this.dm.openDialogue(npc, story, 
+            () => this._refreshNPCFeed(npcId, container),
+            (text, type) => this.addMessage(type === 'player' ? 'Investigator' : npc.name, text, type, {}, npcId)
+          );
+        } else {
+          const result = this.npcs.talk(npcId);
+          if (result) {
+            this.addMessage(result.speaker, result.text, "npc", { wasCorrected: result.wasCorrected }, npcId);
+            this._refreshNPCFeed(npcId, container);
+          }
+        }
+      });
+    });
+
+    container.querySelectorAll("[data-action='show']").forEach(btn => {
+      btn.addEventListener("click", () => {
+        pendingNPC = btn.dataset.npc;
+        pendingSelection = [];
+        container.querySelectorAll(".show-evidence-picker").forEach(p => p.hidden = true);
+        const picker = btn.closest(".npc-card").querySelector("[data-npc-picker]");
+        if (picker) picker.hidden = false;
+      });
+    });
+
+    container.querySelectorAll(".evidence-pick-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const npcId = btn.dataset.npc;
+        const evId = btn.dataset.evidence;
+        const result = this.npcs.showEvidence(npcId, evId);
+        if (result) {
+          const evidence = this.es.getById(evId);
+          this.addMessage(result.speaker, result.text, "npc", { 
+            revealedClue: result.revealedClue,
+            evidenceTag: evidence?.icon || "🔍",
+            evidenceName: evidence?.name
+          }, npcId);
+        }
+        this._refreshNPCFeed(npcId, container);
+        btn.closest(".show-evidence-picker").hidden = true;
+      });
+    });
+
+    container.querySelectorAll(".cancel-btn").forEach(btn => {
+      btn.addEventListener("click", () => btn.closest(".show-evidence-picker").hidden = true);
+    });
+
+    container.querySelectorAll("[data-action='challenge']").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const npcId = btn.dataset.npc;
+        const result = this.npcs.challenge(npcId, this.es.selectedA?.id, this.es.selectedB?.id);
+        if (result) {
+          const html = `
+            <div class="challenge-result-box ${result.breakthrough ? 'breakthrough' : ''}">
+              <div class="challenge-result-text">${result.text}</div>
+            </div>`;
+          const resultPanel = btn.closest(".npc-card").querySelector(`[data-npc-challenge="${npcId}"]`);
+          if (resultPanel) {
+            resultPanel.hidden = false;
+            resultPanel.innerHTML = html;
+            this.challengeResultsByNPC[npcId] = html;
+          } else {
+            this.addMessage(result.speaker, result.text, "npc", { breakthrough: result.breakthrough }, npcId);
+            this._refreshNPCFeed(npcId, container);
+          }
+        }
+      });
+    });
+  }
+
+  _refreshNPCFeed(npcId, container) {
+    const feed = container.querySelector(`.npc-card:has([data-npc="${npcId}"]) .npc-feed`);
+    if (feed) feed.innerHTML = this.messagesByNPC[npcId]?.map(m => this._renderMsg(m)).join("") || "";
+  }
+}

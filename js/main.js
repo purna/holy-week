@@ -248,11 +248,11 @@ const FILLER_LINES = [
 function updateUI() {
     // Evidence / Inventory list
     elInvList.innerHTML = inventory.length ? inventory.map(i => {
-        // Map evidence items to specific investigation icons
+        // Map Act 1 Case 1 evidence to specific investigation icons
         let iconType = 'file-shield';
-        if (i.includes('PROPHECY')) iconType = 'scroll';
-        else if (i.includes('TESTIMONY')) iconType = 'comments';
-        else if (i.includes('DONKEY')) iconType = 'horse';
+        if (i.includes('ZECHARIAH') || i.includes('SCROLL')) iconType = 'scroll';
+        else if (i.includes('TESTIMONY') || i.includes('ACCOUNT')) iconType = 'comments';
+        else if (i.includes('DONKEY') || i.includes('COLT')) iconType = 'horse';
 
         if (ICON_SYSTEM === 'svg') {
             const iconEl = iconMgr.createIconElement(iconType, { size: '1em' });
@@ -790,11 +790,10 @@ async function init() {
     });
 
     // Load Level 1 quests and NPCs so updateUI / gameLoop have data immediately
-    // Specifically force Act 1 Case 1: The Donkey King
     levelManager.loadLevel(levelManager.getCurrentLevel()); 
     
-    // Initialize Evidence System with Act 1 metadata
-    evidenceSystem.loadCase?.('act1_case_1');
+    // Initialize Evidence System with Act 1: The Donkey King
+    evidenceSystem.loadCase?.('triumphal_entry');
 
     gameLoop();
 }
@@ -917,7 +916,7 @@ function setupUIHandlers() {
     btnStart.onclick = () => {
         const wipe = document.getElementById('wipe-overlay');
         wipe.classList.add('active');
-        audio.resumeAudioContext(audioCtx);
+        if (audioCtx.state === 'suspended') audioCtx.resume();
         audio.playUI('click');
         setTimeout(() => elStartScreen.style.display = 'none', 500);
         setTimeout(() => {

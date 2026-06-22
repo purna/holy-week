@@ -4,7 +4,8 @@ export class AudioManager {
     this.enabled = true;
     this.volume = 0.3;
 
-    const basePath = '../audio/';
+    const basePath = './../assets/audio/';
+    const musicPath = './../assets/music/';
     this.sounds = {
       collect: basePath + 'ping_pong.mp3',
       clue: basePath + 'ping_pong.mp3',
@@ -19,10 +20,10 @@ export class AudioManager {
 
     // Background music tracks for each act
     this.actMusicMap = {
-      'Act I': basePath + 'act1_sunlight_on_marble.mp3',
-      'Act II': basePath + 'act2_shackles_on_the_stone.mp3',
-      'Act III': basePath + 'act3_laurel_and_iron.mp3',
-      'Act IV': basePath + 'act4_victory_at_the_sunlit_gate.mp3'
+      'Act I': musicPath + 'act1_sunlight_on_marble.mp3',
+      'Act II': musicPath + 'act2_shackles_on_the_stone.mp3',
+      'Act III': musicPath + 'act3_laurel_and_iron.mp3',
+      'Act IV': musicPath + 'act4_victory_at_the_sunlit_gate.mp3'
     };
 
     this._howls = {};

@@ -2,10 +2,10 @@ import { GameEngine } from "./gameEngine.js";
 import { LabUI } from "./labUI.js";
 
 
-    // ── Configuration ──────────────────────────────────────────
-    const CONFIG = {
-      unlockAllCases: false // Set to true to bypass case requirements for testing
-    };
+// ── Configuration ──────────────────────────────────────────
+const CONFIG = {
+  unlockAllCases: true // Set to true to bypass case requirements for testing
+};
 
 
 const game = new GameEngine(CONFIG); // Pass the CONFIG object to the GameEngine
@@ -13,12 +13,17 @@ window.gameEngine = game;
 window.a11y = game.a11y;
 window.audio = game.audio;
 
+// Set up inkjs library for dialogue system
+if (typeof inkjs !== 'undefined') {
+  game.dm.setInkLib(inkjs);
+}
+
 (function domInit() {
   const settingsOverlay = document.getElementById('settings-overlay');
   const hamburgerBtn = document.getElementById('btn-header-hamburger');
   const headerDropdown = document.getElementById('header-dropdown');
   const menuAudioBtn = document.getElementById('btn-toggle-audio');
-  
+
   // Get references to settings toggles
   const audioToggle = document.getElementById('settings-audio-toggle');
 
@@ -34,7 +39,7 @@ window.audio = game.audio;
       { key: 'simple_mode', label: '📖 Simple Language', desc: 'Uses easier, shorter words' },
       { key: 'reduce_motion', label: '⏸ Reduce Motion', desc: 'Removes animations' },
     ];
-    
+
     list.innerHTML = rows.map(r => {
       const enabled = !!settings[r.key];
       const pressed = enabled ? 'true' : 'false';
@@ -91,11 +96,11 @@ window.audio = game.audio;
       game.audio.setEnabled(state);
       updateMenuAudioLabel();
       game.audio.playUI();
-      
+
       // Sync audio toggle in settings modal if built
       if (audioToggle) {
-          audioToggle.classList.toggle('active', state);
-          audioToggle.setAttribute('aria-checked', state ? 'true' : 'false');
+        audioToggle.classList.toggle('active', state);
+        audioToggle.setAttribute('aria-checked', state ? 'true' : 'false');
       }
     };
   }
@@ -112,9 +117,9 @@ window.audio = game.audio;
       }
       // Sync audio toggle visual state with actual engine state when opening
       if (audioToggle) {
-          const isEnabled = game.a11y.soundEnabled;
-          audioToggle.classList.toggle('active', isEnabled);
-          audioToggle.setAttribute('aria-checked', isEnabled ? 'true' : 'false');
+        const isEnabled = game.a11y.soundEnabled;
+        audioToggle.classList.toggle('active', isEnabled);
+        audioToggle.setAttribute('aria-checked', isEnabled ? 'true' : 'false');
       }
 
       settingsOverlay.classList.add('active');
@@ -150,7 +155,7 @@ window.audio = game.audio;
     if (!invBoardContent) return;
     const labUI = new LabUI(game.de, game.es, game.a11y, (result) => {
       if (result && result.type === 'selection') window.renderInvestigationBoard();
-      
+
       if (result && result.revealsSuspect) {
         game.cm.unlockSuspect(result.revealsSuspect);
       }

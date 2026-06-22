@@ -8,15 +8,15 @@ export class Player {
         this.scene = scene;
         this.modelMgr = modelMgr;
         this.toonShader = toonShader;
-        this.planetR = 50;
+        this.planetR = 100;
         this.canJump = true;
-        this.wasGrounded = false; // Track previous grounded state for landing detection
+        this.wasGrounded = false;
         this.camHeading = new THREE.Vector3(0, 0, 1);
+        this.trailParticles = [];
 
         this.setupPhysics();
         this.setupMesh();
         this.setupTorch();
-
     }
  
 
@@ -31,7 +31,7 @@ export class Player {
         this.world.addBody(this.pBody);
     }
 
-    setupMesh() {
+setupMesh() {
         this.playerMesh = new THREE.Group();
 
         if (this.modelMgr && this.modelMgr.system === 'glb') {
@@ -42,35 +42,29 @@ export class Player {
                 // Update materials to toon
                 clonedModel.traverse((child) => {
                  if (child.isMesh && child.material) {
-                         child.material = this.toonShader.createToonMaterial(PRIMITIVE_CONFIG.player.color);
-                         // Store reference to main body material for VFX
-                         if (!this.bodyMaterial) {
-                             this.bodyMaterial = child.material;
-                         }
-                     }
+                        child.material = this.toonShader.createToonMaterial(PRIMITIVE_CONFIG.player.color);
+                        // Store reference to main body material for VFX
+                        if (!this.bodyMaterial) {
+                            this.bodyMaterial = child.material;
+                        }
+                    }
                 });
                 this.playerMesh.add(clonedModel);
             } else {
-             // Fallback to toon group
-             const playerToon = this.toonShader.createToonGroup(
-                 new THREE.BoxGeometry(1.2, 2, 1.2),
-                 PRIMITIVE_CONFIG.player.color,
-                 0.1
-             );
-                this.playerMesh.add(playerToon.group);
-                // Store reference to main body material for VFX
-                this.bodyMaterial = playerToon.mainMesh.material;
+             // Fallback to capsule mesh instead of box
+             const geometry = new THREE.CapsuleGeometry(0.5, 1.6, 4, 8);
+             const material = new THREE.MeshToonMaterial({ color: PRIMITIVE_CONFIG.player.color });
+             const mesh = new THREE.Mesh(geometry, material);
+             this.playerMesh.add(mesh);
+             this.bodyMaterial = material;
             }
         } else {
-            // Use toon shader for primitive models
-            const playerToon = this.toonShader.createToonGroup(
-                 new THREE.BoxGeometry(1.2, 2, 1.2),
-                 PRIMITIVE_CONFIG.player.color,
-                 0.1
-             );
-            this.playerMesh.add(playerToon.group);
+            // Use capsule mesh instead of box for toon shader
+            const geometry = new THREE.CapsuleGeometry(0.5, 1.6, 4, 8);
+            const toonGroup = this.toonShader.createToonGroup(geometry, PRIMITIVE_CONFIG.player.color, 0.05);
+            this.playerMesh.add(toonGroup.group);
             // Store reference to main body material for VFX
-            this.bodyMaterial = playerToon.mainMesh.material;
+            this.bodyMaterial = toonGroup.mainMesh.material;
         }
 
         // Scale/position adjustment if needed

@@ -1,5 +1,5 @@
 // ============================================================
-// LOCATION SYSTEM — world map, regions, unlocks, travel
+// LOCATION SYSTEM — Shared world map, regions, and travel logic
 // ============================================================
 
 const LOCATIONS = {
@@ -64,7 +64,6 @@ export class LocationSystem {
     return Object.values(LOCATIONS);
   }
 
-  // Returns locations with their unlock status + case assignment
   getMapData() {
     const allCases = this.caseManager.getAllCases();
     const unlocked = this.caseManager.getUnlockedCases().map(c => c.id);
@@ -90,13 +89,5 @@ export class LocationSystem {
     if (!loc) return null;
     this.currentLocation = loc;
     return loc;
-  }
-
-  getCasesAtLocation(locationId) {
-    return this.caseManager.getAllCases().filter(c => c.location === locationId);
-  }
-
-  getUnlockedCasesAtLocation(locationId) {
-    return this.caseManager.getUnlockedCases().filter(c => c.location === locationId);
   }
 }

@@ -17,7 +17,9 @@ export class DeductionEngine {
   }
 
   loadCase() {
-    this.deductions = [];
+    const caseId = this.caseManager.activeCaseId;
+    const p = this.caseManager.getCaseProgress(caseId);
+    this.deductions = p ? [...(p.deductionsMade || [])] : [];
   }
 
   canOperate() {
@@ -33,15 +35,17 @@ export class DeductionEngine {
     const key = `${a.id}+${b.id}`;
     const keyRev = `${b.id}+${a.id}`;
 
-    // Check for case-specific deduction
     const specific = c?.deductions?.[key]?.[operation] || c?.deductions?.[keyRev]?.[operation];
 
     let result;
     if (specific) {
       result = {
+        deductionId: specific.id || key,
         operation,
         a: a.name,
+        aIcon: a.icon || a.emoji,
         b: b.name,
+        bIcon: b.icon || b.emoji,
         text: specific.text,
         insight: specific.insight || null,
         isKeyDeduction: specific.isKey || false,
@@ -59,26 +63,10 @@ export class DeductionEngine {
 
   _genericDeduction(op, a, b) {
     const templates = {
-      compare: [
-        `Both ${a.name} and ${b.name} were found in the same location — worth noting.`,
-        `${a.name} and ${b.name} share characteristics that may be connected.`,
-        `Comparing ${a.name} with ${b.name} reveals no obvious link yet.`,
-      ],
-      link: [
-        `${a.name} could be connected to ${b.name} through the suspect's movements.`,
-        `Linking ${a.name} to ${b.name} suggests a deliberate action, not coincidence.`,
-        `These two pieces of evidence together point toward a motive.`,
-      ],
-      timeline: [
-        `${a.name} appears to precede ${b.name} — the sequence matters.`,
-        `If ${b.name} came first, then ${a.name} changes everything about the timeline.`,
-        `The timing of ${a.name} and ${b.name} needs further investigation.`,
-      ],
-      contradict: [
-        `${a.name} directly contradicts what ${b.name} implies.`,
-        `Someone is lying — ${a.name} and ${b.name} cannot both be true.`,
-        `The contradiction between ${a.name} and ${b.name} is significant.`,
-      ],
+      compare: [`Both ${a.name} and ${b.name} were found in the same location — worth noting.`],
+      link: [`Linking ${a.name} to ${b.name} suggests a deliberate action, not coincidence.`],
+      timeline: [`${a.name} appears to precede ${b.name} — the sequence matters.`],
+      contradict: [`Someone is lying — ${a.name} and ${b.name} cannot both be true.`],
     };
 
     const pool = templates[op] || [`Analysis of ${a.name} and ${b.name} complete.`];

@@ -942,7 +942,7 @@
 
         async function loadStartupGrid() {
             try {
-                const res = await fetch('earth-grid.json');
+                const res = await fetch('../assets/grids/earth-grid.json');
                 if (res.ok) {
                     const data = await res.json();
                     applyJsonPayload(data);

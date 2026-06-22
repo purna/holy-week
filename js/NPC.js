@@ -70,14 +70,20 @@ export class NPC {
         }
 
         // 2. Resolve flat Cartesian / legacy spherical position
-        if (this.data.position) {
-            // Explicitly format direct transform positions from levels.js layout
-            grp.position.set(this.data.position.x, this.data.position.y, this.data.position.z);
-            // Orient the node baseline relative to the planet mesh centre core
-            const upVector = grp.position.clone().normalize();
+        // Grid NPCs have Cartesian positions with hasDialogue from grid JSON
+        if (this.data.isGridNPC || (this.data.pos && this.data.pos.length === 3)) {
+            // Grid-style Cartesian positioning - use directly as flat scene position
+            grp.position.set(this.data.pos[0], this.data.pos[1] + 1.5, this.data.pos[2]);
+        } else if (this.data.position) {
+            // Explicitly format direct transform positions from case layout - Cartesian coords
+            grp.position.set(this.data.position.x, this.data.position.y + 1, this.data.position.z);
+            // Normalize to planet radius and orient
+            const pos = grp.position.clone().normalize().multiplyScalar(this.planetR);
+            grp.position.copy(pos);
+            const upVector = pos.clone().normalize();
             grp.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), upVector);
-        } else if (this.data.pos) {
-            // Fallback option processing for legacy normalized spherical coordinate arrays
+        } else if (this.data.pos && this.data.pos.length >= 2) {
+            // Legacy normalized spherical coordinate arrays [phi, theta]
             const p = new THREE.Vector3().setFromSphericalCoords(
                 this.planetR,
                 this.data.pos[0] * Math.PI,
@@ -115,6 +121,10 @@ export class NPC {
 
     getScreenPosition(camera, planetR) {
         const pPos = this.getWorldPosition();
+        // For grid NPCs, just use position directly; for planet NPCs, use normalized up vector
+        if (this.data.pos && this.data.pos.length === 3) {
+            return pPos.clone().add(new THREE.Vector3(0, 5, 0)).project(camera);
+        }
         const up = pPos.clone().normalize();
         return pPos.clone().add(up.clone().multiplyScalar(5)).project(camera);
     }
