@@ -58,7 +58,7 @@ That scroll fragment in the tent? It's mine. My grandfather gave it to me. Zecha
 * [Tell me about the crowd's reaction.] -> crowd_reveal
 
 === palm_reveal ===
-The palms. People waving them as Jesus went by on the donkey.  — that brought tears to my eyes. In the days of the Maccabees, palms meant liberation. Those people understood the language of what was happening.
+The palms. People waving them as Jesus went by on the donkey.  — this brought tears to my eyes. In the days of the Maccabees, palms meant liberation. Those people understood the language of what was happening.
 * [And the cloaks?] -> cloak_reveal
 * [This wasn't random.] -> scroll_reveal
 
