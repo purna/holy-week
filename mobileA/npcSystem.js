@@ -2,7 +2,7 @@
 // NPC SYSTEM — state machines, dialogue, contradiction tracking
 // ============================================================
 
-const profilePath = '/characters';
+const profilePath = '../characters';
 
 export const PROFILE_ID_MAP = {
   annas: profilePath + "/annas.json",

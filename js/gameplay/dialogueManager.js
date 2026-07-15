@@ -51,7 +51,7 @@ export class DialogueManager {
       */
     async loadAllStories() {
         const promises = Object.entries(DIALOGUE_ID_MAP).map(([npcId, storyPath]) => {
-            // storyPath is already root-relative, e.g., '/story/act1/...'
+            // storyPath is relative to the page directory, e.g., '../story/act1/...'
             // No further path adjustments needed here.
 
             return fetch(storyPath)

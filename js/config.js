@@ -1,8 +1,8 @@
 // Configuration object - npcs, locations, quests, actions, audio paths
-const basePath = '/assets/audio/';
-const baseNPCPath = '/assets/dialogue/exmaples/';
-const baseModelPath = '/assets/models/';
-const baseIconPath = '/assets/gfx/';
+const basePath = '../assets/audio/';
+const baseNPCPath = '../assets/dialogue/exmaples/';
+const baseModelPath = '../assets/models/';
+const baseIconPath = '../assets/gfx/';
 
 // ============================================================================
 // RENDERING SYSTEM CONFIGURATION
