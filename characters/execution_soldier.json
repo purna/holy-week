@@ -1,0 +1,11 @@
+{
+  "id": "execution_soldier",
+  "name": "Execution Detail Soldier",
+  "role": "Roman Infantryman",
+  "avatar": "⚔️",
+  "truthfulness": 0.6,
+  "faction": "roman",
+  "bibleRef": "Matthew 27:27–36; Mark 15:16–24; John 19:23–24",
+  "background": "A veteran Roman infantryman accustomed to public executions, stationed at the crucifixion site (Act III crucifixion_site). Initially detached, later unsettled by extraordinary events. Uses gallows humor and procedural language, gambling for the condemned's garments. Shows how even desensitized professionals are disrupted by the crucifixion.",
+  "factions": ["roman"]
+}

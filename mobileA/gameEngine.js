@@ -1,9 +1,9 @@
 import { MobileApp } from "./mobileApp.js";
-import { CaseManager } from "../js/gameplay/caseManager.js";
-import { EvidenceSystem } from "../js/gameplay/evidenceSystem.js";
-import { NPCSystem, PROFILE_ID_MAP } from "./npcSystem.js";
-import { DeductionEngine } from "../js/gameplay/deductionEngine.js";
-import { LocationSystem } from "../js/gameplay/locationSystem.js";
+import { CaseManager } from "./../js/gameplay/caseManager.js";
+import { EvidenceSystem } from './../js/gameplay/evidenceSystem.js';
+import { NPCSystem } from './npcSystem.js';
+import { DeductionEngine } from './../js/gameplay/deductionEngine.js';
+import { LocationSystem } from './../js/gameplay/locationSystem.js';
 import { AccessibilityManager } from "../js/ui/AccessibilityManager.js";
 import { LabUI } from "../js/ui/LabUI.js";
 import { ChatUI } from "../js/ui/ChatUI.js";
@@ -12,6 +12,7 @@ import { DialogueManager } from "./dialogueManager.js";
 
 import { UIManager } from "./UIManager.js";
 import { GameManager } from "./GameManager.js";
+import { PROFILE_ID_MAP } from './npcSystem.js';
 
 // Case Data Imports
 import { act1CaseA, act1CaseB, act1CaseC } from "./../js/act1_case.js";

@@ -2,6 +2,7 @@
 // CHARACTER: Corrupt Animal Seller (Temple Market)
 // ACT: Act I
 // CASE: The Overturned Tables
+// CASE ID: temple_cleansing
 // CASE EXPORT: temple_cleansing
 // SOURCE: Orphan file - new character for temple cleansing scene
 // BIBLE REFERENCE: Mark 11:15-18; John 2:13-21

@@ -1,0 +1,11 @@
+{
+  "id": "jerusalem_local",
+  "name": "Jerusalem Local",
+  "role": "City Resident",
+  "avatar": "🏠",
+  "truthfulness": 0.65,
+  "faction": "local",
+  "bibleRef": "Matthew 21:10–11; Luke 19:39–40",
+  "background": "A long-time resident frustrated by Passover overcrowding and suspicious of Galilean enthusiasm. Treats pilgrims as disruptions to city order, offering cynical observations that contrast local skepticism against provincial excitement. Appears during the Triumphal Entry and Temple Cleansing.",
+  "factions": ["local"]
+}

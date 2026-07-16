@@ -1,3 +1,12 @@
+// ============================================================
+// CHARACTER: Peter (Denial)
+// ACT: Act III
+// CASE: The Midnight Tribunal
+// CASE ID: sanhedrin_trial
+// SOURCE: js/act3_case.js -> NPC 'peter_denial_trial' (Denying Disciple)
+// ------------------------------------------------------------
+// ============================================================
+//
 -> start
 === start ===
 Peter. The one who denied him and wept. The only witness whose testimony began with failure.

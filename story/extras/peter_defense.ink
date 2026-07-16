@@ -1,3 +1,12 @@
+// ============================================================
+// CHARACTER: Simon Peter (Defense)
+// ACT: Act III
+// CASE: The Severed Ear
+// CASE ID: gethsemane_arrest
+// SOURCE: js/act3_case.js -> NPC 'simon_peter' (Galilean Disciple)
+// ------------------------------------------------------------
+// ============================================================
+//
 -> start
 === start ===
 I am Simon Peter. I do not count words when answers were never final.

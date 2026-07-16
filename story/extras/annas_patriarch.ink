@@ -1,5 +1,18 @@
+ 
+// ============================================================
+// CHARACTER: Annas
+ACT: Act II
+CASE: The Price of Life
+CASE ID: lazarus_plot
+SOURCE: js/act2_case.js -> NPC 'annas_patriarch' (High Priest Emeritus)
+// ------------------------------------------------------------
+// ============================================================
+//
+
 -> start
 === start ===
+
+
 Governments are not built on passion, young man. They are built on stone and historical continuity.
 I have watched procurators come and go. They all think they command Judea, but the temple remains.
 This Galilean speaks well, but he does not recognize that systems outlive prophets.

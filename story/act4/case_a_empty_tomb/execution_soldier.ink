@@ -2,6 +2,7 @@
 // CHARACTER: Marcus (Execution Soldier)
 // ACT: Act III
 // CASE: The Curtain and the Cross
+// CASE ID: resurrection
 // CASE EXPORT: crucifixion_det
 // SOURCE: act4_case_2d.js → NPC 'marcus'
 // ------------------------------------------------------------

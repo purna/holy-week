@@ -1,0 +1,11 @@
+{
+  "id": "senior_scribe",
+  "name": "Senior Scribe",
+  "role": "Investigative Mentor / Archivist",
+  "avatar": "📜",
+  "truthfulness": 0.9,
+  "faction": "scribes",
+  "bibleRef": "Luke 1:1–4; Acts 4:5",
+  "background": "An aging, highly literate Judean scholar and administrative mentor evaluating an apprentice scribe (Maluch). An intellectual gatekeeper who separates historical anomalies from theological bias. Exercises sharp editorial critique and epistemic precision rather than coercion. Acts as a narrative mirror for the player, presenting analytical queries that challenge integrity and force definition of structural anomalies (Acts IV–V board debates / case review).",
+  "factions": ["scribes"]
+}

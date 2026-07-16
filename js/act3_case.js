@@ -1,7 +1,9 @@
+import { formatIntro } from './utils.js';
+
 // ============================================================
 // CASE: The Missing Bread and Wine  — difficulty 3 — Last Supper
 // BIBLICAL FOCUS: Matthew 26:17–30, Mark 14:12–26, Luke 22:7–23, John 13
-// PROPHECY: Exodus 12, Jeremiah 31:31–34, Psalm 41:9, Zechariah 11:12–13
+// PROPHECY: Exodus 12:1–14 | Jeremiah 31:31–34 | Psalm 41:9
 // ============================================================
 
 export const act3CaseA = {
@@ -36,6 +38,7 @@ export const act3CaseA = {
       fulfilledBy: "Jesus, as the Passover Lamb, whose blood provides protection from judgement",
       gospelLink: "John 1:29; 1 Corinthians 5:7; Luke 22:15–20",
       insight: "The Passover lamb was to be 'without blemish' (Exodus 12:5). Jesus — declared righteous even by Pilate ('I find no fault in him', John 18:38) — perfectly fulfilled this requirement. The meal Jesus ate was the same meal that pointed to Him.",
+      explanation: "Jesus, the sinless Lamb of God, became the fulfillment of the 1,500-year-old Passover ritual on the very night He celebrated it.",
     },
     {
       reference: "Jeremiah 31:31–34",
@@ -46,6 +49,7 @@ export const act3CaseA = {
       fulfilledBy: "Jesus declaring 'This cup is the new covenant in my blood' at the Last Supper",
       gospelLink: "Luke 22:20; 1 Corinthians 11:25",
       insight: "Jeremiah prophesied a coming covenant that would be internal, not external — written on hearts, not stone tablets. Jesus announced its inauguration over a cup of wine at Passover. The old covenant was sealed with animal blood (Exodus 24:8); the new with His own.",
+      explanation: "Jesus inaugurated this New Covenant, foretold 600 years earlier, when He took the cup of wine and declared, 'This is my blood of the new covenant.'",
     },
     {
       reference: "Psalm 41:9",
@@ -56,6 +60,7 @@ export const act3CaseA = {
       fulfilledBy: "Judas Iscariot betraying Jesus after eating with Him at the Last Supper",
       gospelLink: "John 13:18 — Jesus quotes this Psalm directly at the supper",
       insight: "Jesus explicitly quoted Psalm 41:9 at the table (John 13:18), identifying the betrayal as prophetic fulfilment — not a surprise. In quoting it, He showed that even His betrayal was within God's foreknowledge.",
+      explanation: "Jesus quoted this Psalm at the table just before giving the dipped bread to Judas, showing that even the betrayal was part of God's foreknown plan.",
     },
     {
       reference: "Zechariah 11:12–13",
@@ -66,6 +71,7 @@ export const act3CaseA = {
       fulfilledBy: "Judas receiving 30 silver coins for betraying Jesus, later thrown into the Temple",
       gospelLink: "Matthew 26:15; Matthew 27:3–10",
       insight: "Thirty silver pieces was the price of a slave (Exodus 21:32) — the religious leaders effectively valued Jesus as the lowest possible commodity. Matthew records this fulfilled Zechariah's prophecy to the detail of the coins being thrown into the temple treasury.",
+      explanation: "Judas was paid exactly 30 pieces of silver, the price of a gored slave in the Old Testament, fulfilling Zechariah's prophecy about the rejected shepherd's paltry wages.",
     },
     {
       reference: "Isaiah 53:12",
@@ -76,10 +82,11 @@ export const act3CaseA = {
       fulfilledBy: "Jesus's prayer for His disciples and for those who would betray and crucify Him (John 17)",
       gospelLink: "John 17:1–26 (the High Priestly Prayer, delivered the same evening)",
       insight: "The farewell discourse (John 14–17), delivered after the meal, is the longest recorded prayer of Jesus. Isaiah described the Suffering Servant 'making intercession' — Jesus fulfilled this at the Last Supper by praying for His disciples, for future believers, and — as He would later do from the cross — even for His enemies.",
+      explanation: "The Suffering Servant was prophesied to make 'intercession for the transgressors.' Jesus fulfilled this by praying for His disciples and His enemies during the Last Supper and on the cross.",
     },
   ],
 
-  intro: `It is the evening of Nisan 14. In a large upper room in Jerusalem's southwestern quarter, Peter and John have spent all afternoon preparing for the Passover Seder. The unleavened bread is set. The cups of wine are poured. The Passover lamb is ready. But when Jesus and the twelve arrive for the meal, something is wrong: a cup has been broken, the wine from one goblet has been spilled across the tablecloth, and a portion of the unleavened bread is missing. Three people had access to the upper room that afternoon. Was this sabotage — or something far more significant?`,
+  intro: formatIntro(`It is the evening of Nisan 14. In a large upper room in Jerusalem's southwestern quarter, Peter and John have spent all afternoon preparing for the Passover Seder. The unleavened bread is set. The cups of wine are poured. The Passover lamb is ready. But when Jesus and the twelve arrive for the meal, something is wrong: a cup has been **broken**, the wine from one goblet has been **spilled**, and a portion of the unleavened bread is **missing**. Three people had access to the upper room that afternoon. Was this sabotage — or something _far more significant_?`),
 
   suspects: [
     { id: "john_mark", name: "John Mark", role: "Son of the House Owner", avatar: "👨‍🦰", bibleRef: "Acts 12:12 — later tradition links this house to Mary, John Mark's mother" },
@@ -180,6 +187,24 @@ export const act3CaseA = {
       propheticLink: "Jeremiah 31:31–34 promised a 'new covenant' that would supersede the Mosaic Law — written on hearts, not stone. Jesus announced its establishment at this very table. The young scribe recording His words was preserving the fulfilment of a 600-year-old prophecy.",
       investigatorNote: "John Mark was present. He was watching, listening, and writing. He knew everything that happened in that room.",
     },
+  ],
+
+  lab: [
+    {
+      evidence: "cup_fragments",
+      suspect: "john_mark",
+      result: "**Witness to Agitation** (Observed the event, but did not cause it)"
+    },
+    {
+      evidence: "water_jug",
+      suspect: "servant",
+      result: "**Witness to Haste** (Saw someone leaving in a hurry)"
+    },
+    {
+      evidence: "betrayal_dipped_bread",
+      suspect: "judas",
+      result: "**Implicated by Prophecy** (Links him to the betrayal)"
+    }
   ],
 
   npcs: [
@@ -374,9 +399,30 @@ export const act3CaseB = {
       fulfilledBy: "Jesus refusing to defend Himself or let His disciples fight",
       gospelLink: "Matthew 26:52–54",
       insight: "Though armies of angels were at His call, He voluntarily submitted to human bonds to fulfill the redemptive plan.",
+      explanation: "Jesus fulfilled this by refusing to let His disciples fight, healing His enemy, and surrendering peacefully, even though He had the power to call legions of angels.",
     },
+    {
+      reference: "Zechariah 13:7",
+      id: "zechariah_13_7",
+      icon: "🔮",
+      text: `"Strike the shepherd, and the sheep will be scattered."`,
+      written: "~520 BC",
+      explanation: "Jesus quoted this prophecy just before His arrest, predicting that His disciples would flee in fear, which they did.",
+    }
   ],
 
+  lab: [
+    {
+      evidence: "severed_ear_wrap",
+      suspect: "malchus_servant",
+      result: "**Identified as Victim** (He was healed, not an aggressor)"
+    },
+    {
+      evidence: "abandoned_linen", // Using the disciple's sword evidence
+      suspect: "simon_peter",
+      result: "**Implicated as Assailant** (He drew the sword)"
+    }
+  ],
   evidencePool: [
     {
       id: "abandoned_linen",
@@ -512,9 +558,9 @@ export const act3CaseB = {
       profileFile: "garrison_guard",
       truthfulness: 0.85,
       hasDialogue: true,
-      storyFile: "guard_report",
+      storyFile: "guard_report_gethsemane",
       bibleRef: "John 18:3; Matthew 26:47",
-      background: "A professional auxiliary infantryman stationed at the Antonia Fortress, assigned to reinforce the temple police for a high-risk night arrest[cite: 1]. He views the regional religious dynamics with absolute cynical detachment[cite: 1].",
+      background: "A Roman commander of the cohort sent to Gethsemane to arrest Jesus. He views the regional religious dynamics with absolute cynical detachment[cite: 1].",
       dialogue: {
         neutral: "We were ordered to secure the perimeter of an olive orchard. We hold the fortress, not local theological opinions[cite: 1].",
         cautious: "The operation was a logistical mess. Night deployments in heavy brush are always unpredictable.",
@@ -565,7 +611,7 @@ export const act3CaseB = {
 // ============================================================
 // CASE: The Curtain and the Cross  — difficulty 3 — Crucifixion
 // BIBLICAL FOCUS: Matthew 27:32–56, Mark 15:21–41, Luke 23:26–49, John 19:16–37
-// PROPHECY: Psalm 22:16-18, Isaiah 53:9, Zechariah 12:10, Amos 8:9
+// PROPHECY: Isaiah 50:6 | Micah 5:1 | Psalm 27:12 | Psalm 35:11
 // ============================================================
 
 export const act3CaseC = {
@@ -610,9 +656,44 @@ export const act3CaseC = {
       gospelLink: "Matthew 27:12-14",
       insight: "Though mocked as a criminal, Jesus fulfilled the prophecy of one who would rule from weakness.",
     },
+    {
+      reference: "Psalm 27:12",
+      id: "psalm_27_12",
+      icon: "🔮",
+      text: `"For false witnesses rise up against me, breathing out violence."`,
+      written: "~1000 BC",
+      explanation: "The Sanhedrin's trial was a sham, relying on hired accusers whose testimonies contradicted each other, fulfilling the psalmist's prediction.",
+    },
+    {
+      reference: "Psalm 35:11",
+      id: "psalm_35_11",
+      icon: "🔮",
+      text: `"Malicious witnesses rise up; they ask me of things that I do not know."`,
+      written: "~1000 BC",
+      explanation: "The Sanhedrin's trial was a sham, relying on hired accusers whose testimonies contradicted each other, fulfilling the psalmist's prediction.",
+    }
+
   ],
 
-  intro: `The moon has set behind the Temple Mount. In the courtyard of the High Priest's residence, a surreal scene unfolds: Jesus stands before a hastily assembled tribunal, accused of blasphemy. Inside, false witnesses testify against Him. Outside, by a charcoal fire, a certain disciple warms himself—for the moment. The rooster's crow will change everything.`,
+  lab: [
+    {
+      evidence: "torn_robe",
+      suspect: "chief_priest",
+      result: "**Implicated by Action** (His own gesture reveals his orchestration)"
+    },
+    {
+      evidence: "false_scroll",
+      suspect: "false_witness",
+      result: "**Discredited** (Revealed as a false witness)"
+    },
+    {
+      evidence: "rooster_feather",
+      suspect: "peter_denial",
+      result: "**Motive Established** (Fear and denial, not conspiracy)"
+    }
+  ],
+
+  intro: formatIntro(`The moon has set behind the Temple Mount. In the courtyard of the High Priest's residence, a surreal scene unfolds: Jesus stands before a hastily assembled tribunal, accused of blasphemy. Inside, false witnesses testify against Him. Outside, by a charcoal fire, a certain disciple warms himself—for the moment. **The rooster's crow will change everything.**`),
 
   suspects: [
     { id: "chief_priest", name: "Caiaphas", role: "High Priest", avatar: "👨‍⚖️", bibleRef: "Matthew 26:57" },
@@ -801,7 +882,7 @@ export const act3CaseC = {
 // ============================================================
 // CASE: The People's Choice  — difficulty 3 — The Trial
 // BIBLICAL FOCUS: Matthew 27:15–26, Mark 15:6–15, Luke 23:13–25, John 18:38–40
-// PROPHECY: Isaiah 53:3 | Psalm 2:1-2
+// PROPHECY: Isaiah 53:3
 // ============================================================
 
 export const act3CaseD = {
@@ -845,6 +926,25 @@ export const act3CaseD = {
       gospelLink: "Luke 23:12",
       insight: "Herod and Pilate became friends on this day, united in their handling of Jesus, fulfilling the pattern of rulers banding together against the Anointed One.",
     }
+  ],
+
+  lab: [
+    {
+      evidence: "barabbas_warrant",
+      suspect: "barabbas_insurgent",
+      result: "**Cleared** (He was the beneficiary, not the cause)"
+    },
+    {
+      evidence: "pilates_basin",
+      suspect: "pontius_pilate_trial", // Suspect ID from npcs list
+      result: "**Has Alibi** (Publicly washed his hands of the matter)"
+    }
+  ],
+  intro: formatIntro(`It is now early Friday morning. Pilate, seeking to avoid responsibility, has offered the crowd a Passover custom: the release of one prisoner. He presents them with Jesus, whom he has declared innocent, and **Barabbas**, a notorious insurrectionist and murderer. The chief priests stir up the crowd, and their choice will fulfill one of the most poignant prophecies about the Messiah.`),
+
+  suspects: [
+    { id: "barabbas_insurgent", name: "Barabbas", role: "Released Criminal", avatar: "⚔️", bibleRef: "Matthew 27:16" },
+    { id: "none", name: "No One", role: "Fulfillment", avatar: "❓", bibleRef: null }
   ],
 
   evidencePool: [
@@ -899,7 +999,7 @@ export const act3CaseD = {
       truthfulness: 0.5,
       bibleRef: "Luke 23:1-25; John 18:38-40",
       hasDialogue: true,
-      storyFile: "pontius_pilate",
+      storyFile: "pontius_pilate_barabbas",
       unlocksEvidence: ["pilates_basin", "wifes_letter"],
     },
     {
@@ -950,7 +1050,7 @@ export const act3CaseD = {
 // ============================================================
 // CASE: The Crucifixion — difficulty 3 — Golgotha
 // BIBLICAL FOCUS: Matthew 27:32–56, Mark 15:21–41, Luke 23:26–49, John 19:16–37
-// PROPHECY: Psalm 22:16-18, Isaiah 53:9, Zechariah 12:10, Amos 8:9
+// PROPHECY: Psalm 22:16-18 | Amos 8:9 | Isaiah 53:9 | Psalm 34:20
 // ============================================================
 
 export const act3CaseE = {
@@ -1015,9 +1115,26 @@ export const act3CaseE = {
       gospelLink: "John 19:34–37; Luke 23:48",
       insight: "To ensure death without breaking His legs (which would violate the Passover lamb protocol), a soldier delivered a post-mortem spear thrust[cite: 3]. The resulting discharge of blood and water clinically confirmed death by cardiac rupture or extreme physical trauma[cite: 6, 7].",
     },
+    {
+      reference: "Psalm 34:20",
+      id: "psalm_34_20",
+      icon: "🔮",
+      text: `"He protects all his bones; not one of them will be broken."`,
+      written: "~1000 BC",
+      explanation: "This prophecy, linked to the Passover lamb requirement (Exodus 12:46), was fulfilled when the soldiers pierced Jesus's side to confirm death instead of breaking His legs.",
+    },
+    {
+      reference: "Psalm 31:5",
+      id: "psalm_31_5",
+      icon: "🔮",
+      text: `"Into your hand I commit my spirit."`,
+      written: "~1000 BC",
+      explanation: "Jesus's final words from the cross were a direct quote from this Psalm, showing His willing surrender of His life into the Father's hands.",
+    }
+
   ],
 
-  intro: `The air over Golgotha is heavy with dust. The supernatural darkness that choked out the midday sun for three hours has finally lifted, revealing a scene of utter devastation. A violent tremor has split the limestone rifts of the hill, throwing down old tombs. Down in the city, panic has erupted over a structural disaster inside the Temple sanctuary itself. Up here, the execution detail stands frozen. Something unprecedented has just occurred—and the physical evidence left on this hill holds the answers.`,
+  intro: formatIntro(`The air over Golgotha is heavy with dust. The supernatural darkness that choked out the midday sun for three hours has finally lifted, revealing a scene of utter devastation. A violent tremor has split the limestone rifts of the hill, throwing down old tombs. Down in the city, panic has erupted over a structural disaster inside the Temple sanctuary itself. Up here, the execution detail stands frozen. Something **unprecedented** has just occurred—and the physical evidence left on this hill holds the answers.`),
 
   suspects: [
     { id: "centurion_longinus", name: "Longinus", role: "Roman Centurion", avatar: "🪖", bibleRef: "Matthew 27:54 — 'When the centurion... saw the earthquake and all that had happened, they were terrified, and said, \"Surely he was the Son of God!\"'" },
@@ -1089,6 +1206,24 @@ export const act3CaseE = {
       propheticLink: "Fulfills Isaiah 53:9[cite: 3, 5, 7]. Instead of being cast into the criminal dirt pits of Hinnom, Jesus was instantly reassigned to a wealthy man's private, rock-hewn garden tomb[cite: 3, 5, 7].",
       investigatorNote: "Joseph risked his entire aristocratic standing on the Sanhedrin by publicly claiming the body of a condemned man from Pilate[cite: 2, 7].",
     },
+  ],
+
+  lab: [
+    {
+      evidence: "split_dice",
+      suspect: "centurion_longinus",
+      result: "**Motive Questioned** (Was a participant, not an instigator)"
+    },
+    {
+      evidence: "torn_veil_thread",
+      suspect: "temple_priest_pashhur",
+      result: "**Identified as Witness** (Witnessed the divine event in the Temple)"
+    },
+    {
+      evidence: "linen_shroud_receipt",
+      suspect: "joseph_arimathea",
+      result: "**Motive Clarified** (Acted out of respect, not conspiracy)"
+    }
   ],
 
   npcs: [
@@ -1268,9 +1403,27 @@ export const act3CaseE = {
       avatar: "🏛️",
       truthfulness: 0.9,
       hasDialogue: true,
-      storyFile: "temple_curtain",
+      storyFile: "priest_objection_crucifixion",
       bibleRef: "Matthew 27:51",
-      background: "Witnessed the Temple curtain tearing at Jesus death — the ultimate sign that the old covenant ended.",
+      background: "A priest of the course of Abijah who witnessed the Temple curtain tearing at Jesus' death — the ultimate sign that the old covenant ended.",
+      dialogue: {
+        neutral: "Tell me what you know.",
+      },
+      reactions: {
+        default: { text: "I have nothing more to add.", isLie: false },
+      },
+    },
+    {
+      id: "execution_guard",
+      name: "Crucifixion Guard",
+      role: "Roman Execution Detail",
+      faction: "roman",
+      avatar: "💂",
+      truthfulness: 0.85,
+      bibleRef: "Matthew 27:36; John 19:23-24",
+      hasDialogue: true,
+      storyFile: "guard_report_crucifixion",
+      background: "A Roman soldier on the crucifixion detail at Golgotha. He executed many men but was shaken by what he witnessed at Jesus' death.",
       dialogue: {
         neutral: "Tell me what you know.",
       },

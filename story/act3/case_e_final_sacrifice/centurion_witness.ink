@@ -2,6 +2,8 @@
 // CHARACTER: Centurion Longinus (Roman Executioner)
 // ACT: Act III
 // CASE: The Curtain and the Cross
+// CASE ID: crucifixion_site
+// SOURCE: ORPHAN FILE - crucifixion witness account (not wired into linear case)
 // BIBLE REFERENCE: Matthew 27:45-54; John 19:28-37; Luke 23:36-47; Matthew 27:52-53
 // ------------------------------------------------------------
 // PROPHECIES FULFILLED IN THIS CASE:

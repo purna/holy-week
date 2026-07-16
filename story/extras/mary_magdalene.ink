@@ -1,3 +1,12 @@
+// ============================================================
+// CHARACTER: Mary Magdalene
+// ACT: Act IV
+// CASE: The Empty Tomb
+// CASE ID: resurrection
+// SOURCE: js/act4_case.js -> NPC 'mary_magdalene' (First Witness)
+// ------------------------------------------------------------
+// ============================================================
+//
 -> start
 === start ===
 They speak of him in the palaces as if he were a tactical problem to be mapped out and solved. 

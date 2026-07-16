@@ -1,3 +1,12 @@
+// ============================================================
+// CHARACTER: Market Informant / Bribe-Taker
+// ACT: Act I
+// CASE: The Overturned Tables
+// CASE ID: temple_cleansing
+// SOURCE: js/act1_case.js -> NPC 'informant_bribe' (Street Informant)
+// ------------------------------------------------------------
+// ============================================================
+//
 -> start
 === start ===
 Information has a price. Names have a price. Silence also has a price.

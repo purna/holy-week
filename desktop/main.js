@@ -1,5 +1,6 @@
 import { GameEngine } from "./gameEngine.js";
 import { LabUI } from "./labUI.js";
+import { AccessibilityManager } from "../mobileB/accessibility.js";
 
 
 // ── Configuration ──────────────────────────────────────────
@@ -10,7 +11,7 @@ const CONFIG = {
 
 const game = new GameEngine(CONFIG); // Pass the CONFIG object to the GameEngine
 window.gameEngine = game;
-window.a11y = game.a11y;
+window.a11y = new AccessibilityManager({ app: game });
 window.audio = game.audio;
 
 // Set up inkjs library for dialogue system

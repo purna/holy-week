@@ -2,6 +2,7 @@
 // CHARACTER: Joseph of Arimathea
 // ACT: Act III
 // CASE: The Empty Tomb Witness
+// CASE ID: resurrection
 // CASE EXPORT: resurrection_det
 // SOURCE: ORPHAN FILE - Witness to the resurrection
 // BIBLE REFERENCE: Matthew 27:57-61; 28:1-10; Mark 16:1-7; Luke 24:1-6; John 20:1-10

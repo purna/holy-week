@@ -1,3 +1,12 @@
+// ============================================================
+// CHARACTER: Martha of Bethany
+// ACT: Act II
+// CASE: The Price of Life
+// CASE ID: lazarus_plot
+// SOURCE: js/act2_case.js -> NPC 'martha_bethany' (Sister of Lazarus)
+// ------------------------------------------------------------
+// ============================================================
+//
 -> start
 === start ===
 There are thirteen extra mouths to feed tonight, and the road to Jerusalem is monitored by patrols.

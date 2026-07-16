@@ -1,3 +1,12 @@
+// ============================================================
+// CHARACTER: Bethesda Witness
+// ACT: Act II
+// CASE: The Price of Life
+// CASE ID: lazarus_plot
+// SOURCE: js/act2_case.js -> NPC 'witness_healed' (Eyewitness)
+// ------------------------------------------------------------
+// ============================================================
+//
 -> start
 === start ===
 The man who was healed — he was brought to the priests immediately.

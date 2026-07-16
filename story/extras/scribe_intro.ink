@@ -1,3 +1,12 @@
+// ============================================================
+// CHARACTER: Samuel (Temple Scribe)
+// ACT: Act II
+// CASE: The Silenced Teacher
+// CASE ID: authority_challenged
+// SOURCE: js/act2_case.js -> NPC 'scribe' (Temple Scribe, Pharisee)
+// ------------------------------------------------------------
+// ============================================================
+//
 -> start
 === start ===
 I am Master Scribe. The archives hold testimony — not opinion.

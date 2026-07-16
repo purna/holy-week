@@ -1,3 +1,12 @@
+// ============================================================
+// CHARACTER: Joseph of Arimathea
+// ACT: Act III
+// CASE: The Final Sacrifice
+// CASE ID: crucifixion_site
+// SOURCE: js/act3_case.js / js/act4_case.js -> NPC 'joseph_arimathea' / 'joseph' (Secret Disciple, Tomb Owner)
+// ------------------------------------------------------------
+// ============================================================
+//
 -> start
 === start ===
 It is dangerous to speak here. The council chamber was closed to many of us tonight, but the decision was made before the candles were lit.

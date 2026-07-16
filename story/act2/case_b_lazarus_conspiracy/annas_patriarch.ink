@@ -2,6 +2,7 @@
 // CHARACTER: Investigator Challenge
 // ACT: Act II
 // CASE: The Price of Life
+// CASE ID: lazarus_plot
 // CASE EXPORT: lazarus_plot
 // SOURCE: Derived from NPC 'annas_patriarch'
 // PURPOSE: Expose lies and moral corruption in Annas's account

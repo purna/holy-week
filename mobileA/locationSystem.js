@@ -5,7 +5,7 @@
 const LOCATIONS = {
   jerusalem: {
     id: "jerusalem",
-    name: "🌿 Triumphal Entry into Jerusalem",
+    name: "🌿 The Triumphal Entry",
     region: "Jerusalem",
     icon: "🐴",
     color: "#60a5fa",
@@ -14,7 +14,7 @@ const LOCATIONS = {
   },
   temple: {
     id: "temple",
-    name: "🕍 Temple Courts Confrontation",
+    name: "🕍 The Temple Courts",
     region: "Jerusalem",
     icon: "📜",
     color: "#f59e0b",

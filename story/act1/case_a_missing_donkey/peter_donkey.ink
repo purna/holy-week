@@ -2,6 +2,7 @@
 // CHARACTER: Simon Peter (Donkey Retrieval)
 // ACT: Act I
 // CASE: The Missing Donkey
+// CASE ID: triumphal_entry
 // CASE EXPORT: triumphal_entry
 // SOURCE: Orphan file - Peter's perspective on retrieving the colt
 // BIBLE REFERENCE: Mark 11:1-7; Luke 19:30-36

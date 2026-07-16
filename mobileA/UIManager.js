@@ -1,3 +1,5 @@
+import { getIntroHtml, getIntroText } from "../js/utils.js";
+
 /**
  * UIManager orchestrates the 2D interface, handling screen routing,
  * modal interactions, and the rendering of game states to the DOM.
@@ -142,23 +144,29 @@ export class UIManager {
     // Re-bind callbacks to the specific case context
     this.labUI.onResult = this.onLabAction.bind(this);
     this.chatUI.onAction = this.onChatAction.bind(this);
+    const introText = getIntroText(c.intro) || c.subtitle;
 
-    this.chatUI.addSystem(c.intro);
+    this.chatUI.addSystem(introText);
     document.getElementById("inv-case-title").textContent = c.title;
     document.getElementById("inv-case-sub").textContent = c.subtitle;
 
     this.switchInvTab("scene");
     this.showScreen("investigation");
     this.prevScreen = "cases";
-    this.a11y.speak(`Case started: ${c.title}. ${c.intro}`);
+    this.a11y.speak(`Case started: ${c.title}. ${introText}`);
   }
 
   renderScene() {
     const c = this.cm.getActiveCase();
     const container = document.getElementById("inv-scene");
     if (!c || !container) return;
+    const introText = getIntroText(c.intro) || c.subtitle;
+    const introMarkup = this.a11y.getAll().simple_mode
+      ? `<p class="scene-intro">${this.a11y.simplify(introText)}</p>`
+      : getIntroHtml(c.intro, c.subtitle);
+
     container.innerHTML = `
-      <p class="scene-intro">${this.a11y.simplify(c.intro || c.subtitle)}</p>
+      ${introMarkup}
       ${!this.cm.getCaseProgress(c.id)?.sceneViewed ? `<button class="lets-investigate-btn" onclick="this.style.display='none'; const p=window.cm.getCaseProgress(window.cm.activeCaseId); if(p) p.sceneViewed=true; window.cm._saveProgress(); switchInvTab('people')">Let's investigate</button>` : ''}
       <div class="evidence-grid">
         ${c.evidencePool.map(e => {

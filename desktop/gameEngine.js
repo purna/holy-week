@@ -1,9 +1,9 @@
 import * as THREE from 'three';
-import { CaseManager } from "../js/gameplay/caseManager.js";
-import { EvidenceSystem } from "../js/gameplay/evidenceSystem.js";
+import { CaseManager } from './../js/gameplay/caseManager.js';
+import { EvidenceSystem } from './../js/gameplay/evidenceSystem.js';
 import { NPCSystem, PROFILE_ID_MAP } from "./NPCSystem.js";
-import { DeductionEngine } from "../js/gameplay/deductionEngine.js";
-import { LocationSystem } from "../js/gameplay/locationSystem.js";
+import { DeductionEngine } from './../js/gameplay/deductionEngine.js';
+import { LocationSystem } from './../js/gameplay/locationSystem.js';
 import { AccessibilityManager } from "../js/ui/AccessibilityManager.js";
 import { LabUI } from "../js/ui/LabUI.js";  
 import { ChatUI } from "../js/ui/ChatUI.js";

@@ -2,6 +2,7 @@
 // CHARACTER: Marcus (Roman Garrison Guard)
 // ACT: Act I
 // CASE: The Overturned Tables
+// CASE ID: temple_cleansing
 // CASE EXPORT: temple_cleansing
 // SOURCE: act1_case_2d.js → NPC 'garrison_guard'
 // BACKGROUND: A working-class Roman auxiliary stationed on the high outer wall walkways. He views the regional theological squabbles with complete military detachment.

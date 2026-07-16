@@ -2,6 +2,7 @@
 // CHARACTER: Rhoda the Servant
 // ACT: Act IV
 // CASE: The Last Supper
+// CASE ID: last_supper
 // CASE EXPORT: last_supper
 // SOURCE: Orphan file - household servant witness to Judas's silver transaction
 // BIBLE REFERENCE: John 13:21-30 (indirect reference to household activities)

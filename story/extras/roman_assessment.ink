@@ -1,3 +1,12 @@
+// ============================================================
+// CHARACTER: Longinus (Roman Centurion)
+// ACT: Act III
+// CASE: The Final Sacrifice
+// CASE ID: crucifixion_site
+// SOURCE: js/act3_case.js -> NPC 'centurion_longinus' (Roman Centurion)
+// ------------------------------------------------------------
+// ============================================================
+//
 -> start
 === start ===
 I am Claudius. I hold the Antonia fortress. I do not hold opinions about every prophet.

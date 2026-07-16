@@ -1,3 +1,12 @@
+// ============================================================
+// CHARACTER: Rumor Whisperer (City Gossip)
+// ACT: Act I
+// CASE: The Overturned Tables
+// CASE ID: temple_cleansing
+// SOURCE: js/act1_case.js -> NPC 'rumor_whisper' (City Gossip)
+// ------------------------------------------------------------
+// ============================================================
+//
 -> start
 === start ===
 (A nervous citizen glances sideways before leaning close.)

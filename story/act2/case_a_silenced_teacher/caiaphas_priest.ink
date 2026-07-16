@@ -1,3 +1,12 @@
+// ============================================================
+// CHARACTER: Caiaphas the High Priest
+// ACT: Act II
+// CASE: The Silenced Teacher
+// CASE ID: authority_challenged
+// SOURCE: js/act2_case.js -> NPC 'chief_priest' (High Priest, Sadducee)
+// ------------------------------------------------------------
+// ============================================================
+//
 -> start
 === start ===
 You look at a single man, scribe, and you see a moral puzzle. I look at this city and I see an entire nation facing absolute erasure.

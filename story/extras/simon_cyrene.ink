@@ -1,3 +1,12 @@
+// ============================================================
+// CHARACTER: Simon of Cyrene
+// ACT: Act III
+// CASE: The Final Sacrifice
+// CASE ID: crucifixion_site
+// SOURCE: js/act3_case.js -> NPC 'simon_cyrene' (Cross-Bearer)
+// ------------------------------------------------------------
+// ============================================================
+//
 -> start
 === start ===
 My friend, I was just walking home when they seized this man.

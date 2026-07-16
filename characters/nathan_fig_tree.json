@@ -1,0 +1,11 @@
+{
+  "id": "nathan_fig_tree",
+  "name": "Nathan the Gardener",
+  "role": "Orchard Gardener",
+  "avatar": "🌳",
+  "truthfulness": 0.8,
+  "faction": "local",
+  "bibleRef": "Mark 11:12–14, 20–25",
+  "background": "A local gardener who maintains the orchards along the Bethany road and witnesses the fig tree's sudden withering. Speaks in simple, observational, botanical terms that highlight the unnatural speed of the event. Provides a neutral, third-party confirmation of the fig tree miracle (Act I fig_tree_incident).",
+  "factions": ["local"]
+}

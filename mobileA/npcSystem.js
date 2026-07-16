@@ -51,7 +51,8 @@ export const PROFILE_ID_MAP = {
   andrew_disciple: profilePath + "/andrew_disciple.json", // New
   secret_visit: profilePath + "/secret_visit.json",
   simon_cyrene: profilePath + "/simon_cyrene.json",
-  local_traveler: profilePath + "/local_traveler.json"
+  local_traveler: profilePath + "/local_traveler.json",
+  rich_young_ruler: profilePath + "/rich_young_ruler.json"
 };
 
 class CharacterLoader {

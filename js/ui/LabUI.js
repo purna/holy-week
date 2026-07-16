@@ -9,7 +9,7 @@ export class LabUI {
   }
 
   render() {
-    const deductions = this.de.getDeductions();
+    const deductions = this.de.getDeductions ? this.de.getDeductions() : (this.de.deductions || []);
     const historyList = deductions.slice().reverse();
 
     return `

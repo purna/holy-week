@@ -39,10 +39,10 @@ export class CaseManager {
         sceneViewed: false,
         evidenceFound: [],
         propheciesFound: [],
-        deductionsMade: [],
+        labDeductions: {}, // Stores evidence->suspect->result mappings
         breakthroughs: [],
         failedChallenges: 0,
-        unlockedSuspects: [],
+        suspects: this._initializeSuspects(this.cases[id]),
         accusation: null,
         score: null,
       };
@@ -51,38 +51,43 @@ export class CaseManager {
     return true;
   }
 
+  _initializeSuspects(caseData) {
+    const suspects = {};
+    // All characters in a case start as potential suspects with a 'Neutral' status
+    (caseData.suspects || []).forEach(s => {
+      suspects[s.id] = { status: 'Neutral', notes: '' };
+    });
+    return suspects;
+  }
+
   getCaseProgress(id) {
     return this.progress.cases[id] || null;
   }
 
   recordEvidenceFound(evidenceId) {
     const p = this.progress.cases[this.activeCaseId];
-    const c = this.getActiveCase();
-    if (p && c && !p.evidenceFound.includes(evidenceId)) {
+    if (p && !p.evidenceFound.includes(evidenceId)) {
       p.evidenceFound.push(evidenceId);
-      const ev = c.evidencePool.find(e => e.id === evidenceId);
-      if (ev && ev.revealsSuspect) {
-        this.unlockSuspect(ev.revealsSuspect);
-      }
+      // The old "revealsSuspect" logic is now handled by the Lab.
       this._saveProgress();
     }
   }
 
   recordProphecyFound(prophecyId) {
     const p = this.progress.cases[this.activeCaseId];
-    if (p && !p.propheciesFound.includes(prophecyId)) {
+    const c = this.getActiveCase();
+    if (p && c && !p.propheciesFound.includes(prophecyId)) {
       p.propheciesFound.push(prophecyId);
       this.progress.totalScore = (this.progress.totalScore || 0) + 10;
+
+      // Check if all prophecies are found to unlock final accusation
+      if (p.propheciesFound.length === (c.prophecies || []).length) {
+        // This is where you could trigger a UI event to unlock the final accusation
+        console.log(`All prophecies for case ${this.activeCaseId} found!`);
+      }
+
       this._saveProgress();
       this._refreshMetricsUI();
-    }
-  }
-
-  recordDeduction(deduction) {
-    const p = this.progress.cases[this.activeCaseId];
-    if (p) {
-      p.deductionsMade.push(deduction);
-      this._saveProgress();
     }
   }
 
@@ -98,23 +103,24 @@ export class CaseManager {
     }
   }
 
-  unlockSuspect(suspectId) {
+  /**
+   * Records a deduction made in the Lab, updating a suspect's status.
+   * @param {string} evidenceId - The ID of the evidence used.
+   * @param {string} suspectId - The ID of the suspect affected.
+   * @param {string} result - The deductive outcome (e.g., "Implicated", "Cleared").
+   */
+  recordLabDeduction(evidenceId, suspectId, result) {
     const p = this.progress.cases[this.activeCaseId];
-    if (p) {
-      if (!p.unlockedSuspects) p.unlockedSuspects = [];
-      if (!p.unlockedSuspects.includes(suspectId)) {
-        p.unlockedSuspects.push(suspectId);
-        this._saveProgress();
-        this._refreshMetricsUI();
-        return true;
-      }
-    }
-    return false;
+    if (!p || !p.suspects[suspectId]) return;
+
+    p.suspects[suspectId].status = result;
+    p.labDeductions[evidenceId] = { suspect: suspectId, result };
+    this._saveProgress();
   }
 
-  isSuspectUnlocked(suspectId) {
+  getSuspectStatus(suspectId) {
     const p = this.progress.cases[this.activeCaseId];
-    return p ? (p.unlockedSuspects || []).includes(suspectId) : (suspectId === "none");
+    return p?.suspects[suspectId] || { status: 'Unknown', notes: '' };
   }
 
   updateDoubt(amount) {
@@ -158,7 +164,7 @@ export class CaseManager {
     if (!c || !p) return null;
     const correct = suspectId === c.truth.culprit;
     const evidenceScore = (p.evidenceFound || []).length * 5;
-    const deductionScore = (p.deductionsMade || []).filter(d => d.isKeyDeduction).length * 15;
+    const deductionScore = Object.keys(p.labDeductions || {}).length * 15;
     const challengeScore = (p.breakthroughs || []).length * 10;
     const prophecyScore = (p.propheciesFound || []).length * 10;
     const baseAccusationScore = correct ? 50 : -25;

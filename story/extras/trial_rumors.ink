@@ -1,3 +1,12 @@
+// ============================================================
+// CHARACTER: Trial Rumors (Court Observer)
+// ACT: Act II
+// CASE: The Price of Life
+// CASE ID: lazarus_plot
+// SOURCE: js/act2_case.js -> NPC 'trial_rumors' (Court Observer)
+// ------------------------------------------------------------
+// ============================================================
+//
 -> start
 === start ===
 The council chamber was closed to many of us tonight.

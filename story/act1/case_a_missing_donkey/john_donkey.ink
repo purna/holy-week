@@ -1,3 +1,12 @@
+// ============================================================
+// CHARACTER: John (Donkey Witness)
+// ACT: Act I
+// CASE: The Missing Donkey
+// CASE ID: triumphal_entry
+// SOURCE: js/act1_case.js -> NPC 'john' (Disciple of Jesus)
+// ------------------------------------------------------------
+// ============================================================
+//
 // STORY: Act I - Tracking the path of the Triumphal Entry.
 // CHARACTERS: John the Apostle.
 // BIBLE VERSES: Matthew 21:1-11; Mark 11:1-11; Luke 19:28-44; John 12:12-19.

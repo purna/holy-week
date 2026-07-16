@@ -2,6 +2,7 @@
 // CHARACTER: Jesus at the Sea of Galilee
 // ACT: Act IV/V
 // CASE: The Reinstatement of Peter
+// CASE ID: peter_restoration
 // SOURCE: John 21:1-17
 // ------------------------------------------------------------
 // PROPHECIES FULFILLED IN THIS CASE:

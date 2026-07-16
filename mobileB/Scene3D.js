@@ -91,6 +91,7 @@ export class Scene3D {
         this.setupSceneIntro();
         this.setupLocOverlay();
         this.setupMobileControls();
+        this.setupKeyboardControls();
         
         // Load NPCs and evidence after scene is initialized
         const caseId = this.ui.cm.getActiveCase()?.id;
@@ -305,6 +306,36 @@ export class Scene3D {
             jumpBtn.addEventListener('mouseup', jumpEnd);
             jumpBtn.addEventListener('mouseleave', jumpEnd);
         }
+    }
+
+    setupKeyboardControls() {
+        const movementKeys = ['KeyW', 'KeyA', 'KeyS', 'KeyD', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'];
+        
+        const onKeyDown = (e) => {
+            if (e.repeat) return;
+            const code = e.code;
+            if (code === 'Space') {
+                e.preventDefault();
+                this.gameKeys['Space'] = true;
+                if (this.player) this.player.jump();
+            } else if (movementKeys.includes(code)) {
+                e.preventDefault();
+                this.gameKeys[code] = true;
+            }
+        };
+        
+        const onKeyUp = (e) => {
+            const code = e.code;
+            if (code === 'Space') {
+                delete this.gameKeys['Space'];
+            } else if (movementKeys.includes(code)) {
+                delete this.gameKeys[code];
+                this.mouseTarget = null;
+            }
+        };
+        
+        window.addEventListener('keydown', onKeyDown);
+        window.addEventListener('keyup', onKeyUp);
     }
 
     setupInteractions() {

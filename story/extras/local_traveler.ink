@@ -2,6 +2,7 @@
 // CHARACTER: Local Traveler
 // ACT: Act I
 // CASE: The Barren Fig Tree
+// CASE ID: fig_tree_incident
 // CASE EXPORT: fig_tree_incident
 // SOURCE: act1_case.js → NPC 'local_traveler'
 // BACKGROUND: A common traveler on the road between Bethany and Jerusalem, who observed the fig tree both on Monday and Tuesday morning.

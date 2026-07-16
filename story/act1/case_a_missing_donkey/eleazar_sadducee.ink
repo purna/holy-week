@@ -2,6 +2,7 @@
 // CHARACTER: Eleazar ben Simon (Sadducee Noble)
 // ACT: Act I
 // CASE: The Missing Donkey
+// CASE ID: triumphal_entry
 // CASE EXPORT: triumphal_entry
 // SOURCE: Orphan file - referenced in act1_case_2d.js as suspect 'sadducee_noble'
 // BIBLE REFERENCE: Acts 5:17 (Sadducean opposition context)

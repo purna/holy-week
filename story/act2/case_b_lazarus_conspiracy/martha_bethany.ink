@@ -2,6 +2,7 @@
 // CHARACTER: Martha of Bethany
 // ACT: Act II
 // CASE: The Price of Life
+// CASE ID: lazarus_plot
 // CASE EXPORT: lazarus_plot
 // SOURCE: act2_case_2d.js → NPC 'martha_bethany'
 // BACKGROUND: The practical, protective head of the Bethany household. Having witnessed her brother's descent into death and subsequent revival, she is now trapped in a terrifying surveillance grid, manag...

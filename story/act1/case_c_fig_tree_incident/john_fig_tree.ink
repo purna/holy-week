@@ -1,3 +1,12 @@
+// ============================================================
+// CHARACTER: John (Fig Tree Witness)
+// ACT: Act I
+// CASE: The Barren Fig Tree
+// CASE ID: fig_tree_incident
+// SOURCE: js/act1_case.js -> NPC 'john_fig_tree' (Disciple, Observer)
+// ------------------------------------------------------------
+// ============================================================
+//
 -> start
 
 === start ===

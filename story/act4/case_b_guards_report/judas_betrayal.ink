@@ -2,6 +2,7 @@
 // CHARACTER: Judas Iscariot (Betrayal Context)
 // ACT: Act III/IV
 // CASE: The Empty Tomb (Resurrection Investigation)
+// CASE ID: roman_inquiry
 // CASE EXPORT: resurrection
 // SOURCE: act4_case_2d.js → NPC 'judas' (dialogueId: judas_betrayal)
 // BIBLE REFERENCE: Matthew 26:14-16; Matthew 27:3-10

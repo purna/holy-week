@@ -1,0 +1,1 @@
+[{"role":"user","content":[{"type":"text","text":"review __docs/character_profiles_expanded.md and updat the /characters/ folder with any missing characters. \n\nthen check the /story/ folder and make an ink file for any json files that don't have a corresponding ink file."}],"ts":1784210869878}]

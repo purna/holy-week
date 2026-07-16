@@ -1,3 +1,12 @@
+// ============================================================
+// CHARACTER: Malachi (Temple Money Changer)
+// ACT: Act I
+// CASE: The Overturned Tables
+// CASE ID: temple_cleansing
+// SOURCE: js/act1_case.js -> NPC 'money_changer' (Temple Money Changer)
+// ------------------------------------------------------------
+// ============================================================
+//
 -> start
 === start ===
 Look at this mess! Ink spilled everywhere, ledgers torn, Tyrian shekels scattered into the filth!

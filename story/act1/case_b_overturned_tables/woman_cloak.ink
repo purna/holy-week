@@ -2,6 +2,8 @@
 // CHARACTER: The Woman with the Issue of Blood
 // ACT: Act II
 // CASE: The Healing in the Crowd
+// CASE ID: temple_cleansing
+// SOURCE: js/act1_case.js -> NPC 'woman_cloak' (Devout Follower)
 // BIBLE REFERENCE: Matthew 9:20-22; Mark 5:25-34; Luke 8:43-48
 // ------------------------------------------------------------
 // PROPHECIES FULFILLED IN THIS CASE:

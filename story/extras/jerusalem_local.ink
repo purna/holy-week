@@ -1,3 +1,12 @@
+// ============================================================
+// CHARACTER: Jemimah (Jerusalem Local)
+// ACT: Act I
+// CASE: The Missing Donkey
+// CASE ID: triumphal_entry
+// SOURCE: js/act1_case.js -> NPC 'local_skeptic' (Jerusalem Local)
+// ------------------------------------------------------------
+// ============================================================
+//
 -> start
 === start ===
 Every year it is the same. Passover comes, the prices double, and the streets fill up with shouting provincials.

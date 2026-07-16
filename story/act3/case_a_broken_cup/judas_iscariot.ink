@@ -2,6 +2,7 @@
 // CHARACTER: Judas Iscariot
 // ACT: Act III
 // CASE: The Broken Cup
+// CASE ID: last_supper
 // CASE EXPORT: last_supper
 // SOURCE: act3_case_2d.js → NPC 'judas'
 // BIBLE REFERENCE: John 13:29 — Judas kept the money bag; Luke 22:3–6 — already made his deal

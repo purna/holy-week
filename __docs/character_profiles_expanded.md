@@ -10,6 +10,7 @@ This document establishes the comprehensive character profiles for the speakers 
 
 #### 1. The Senior Scribe / Investigative Mentor
 * **Source Dialogues:** `board_debate.json`, `board_review.json`
+* **Acts / Cases:** Act IV–V (Case Review / Board Debates)
 * **Identity:** An aging, highly literate Judean scholar, archivist, or administrative mentor evaluating an apprentice scribe named Maluch. He serves as an intellectual gatekeeper who separates historical anomalies from theological bias.
 * **Social Status:** High institutional and intellectual status. He does not rely on physical or political coercion to command authority; his power lies entirely in sharp editorial critique and epistemic precision.
 * **Apparent Age:** Late 50s to mid-60s.
@@ -21,6 +22,7 @@ This document establishes the comprehensive character profiles for the speakers 
 
 #### 2. Thomas the Twin
 * **Source Dialogue:** `parable_vineyard.json`
+* **Acts / Cases:** Act II (`authority_challenged`), Act IV (`peter_restoration`)
 * **Identity:** A close follower of the Galilean movement, distinguished by a fiercely investigative mindset and a systemic refusal to accept simple allegories without inspecting their real-world consequences.
 * **Social Status:** Marginalized by religious and political authorities, yet holds substantial internal, organic authority within the emerging underground movement as an honest interrogator.
 * **Apparent Age:** Late 20s to mid-30s.
@@ -37,6 +39,7 @@ This document establishes the comprehensive character profiles for the speakers 
 
 #### 3. Simon the Pharisee
 * **Source Dialogue:** `pharisee_critique.json`
+* **Acts / Cases:** Act I (`temple_cleansing`), Act II (`authority_challenged`)
 * **Identity:** A localized civic scholar, synagogue elder, and community standard-bearer responsible for maintaining public moral boundaries and religious orthodoxy.
 * **Social Status:** High local social standing. He is respected by the community but vulnerable to shifts in populist sentiment.
 * **Apparent Age:** Mid-40s to early 50s.
@@ -48,6 +51,7 @@ This document establishes the comprehensive character profiles for the speakers 
 
 #### 4. The Temple Priest
 * **Source Dialogue:** `priest_objection.json`
+* **Acts / Cases:** Act I (`temple_cleansing`), Act III (`crucifixion_site`)
 * **Identity:** An elite Sadducean or aristocratic temple functionary concerned with cosmic law, ritual order, and the preservation of the covenant made at Sinai.
 * **Social Status:** Absolute institutional power. He outranks local Pharisees in wealth, political connection to the governor, and absolute religious authority.
 * **Apparent Age:** 50s.
@@ -64,6 +68,7 @@ This document establishes the comprehensive character profiles for the speakers 
 
 #### 5. Simon Peter
 * **Source Dialogues:** `peter_defense.json`, `peter_denial.json`
+* **Acts / Cases:** Act I (`triumphal_entry`, `fig_tree_incident`), Act II (`olivet_discourse`), Act III (`last_supper`, `gethsemane_arrest`, `sanhedrin_trial`), Act IV (`peter_restoration`)
 * **Identity:** The informal leader of the Galilean movement, living in the immediate aftermath of a public moral and psychological collapse.
 * **Social Status:** Internally revered by his remaining peers, but completely compromised in his own mind; an outlaw to the state and a coward to himself.
 * **Apparent Age:** Early 30s.
@@ -80,6 +85,7 @@ This document establishes the comprehensive character profiles for the speakers 
 
 #### 6. Claudius the Centurion
 * **Source Dialogue:** `roman_assessment.json`
+* **Acts / Cases:** Act III (`crucifixion_site`), Act IV–V (Case Review / Board Debates)
 * **Identity:** A seasoned Roman military commander stationed at the Antonia Fortress, responsible for imperial peacekeeping and tactical security in a volatile province.
 * **Social Status:** Dominant political authority as an officer of the empire, but a cultural outsider to local Judean domestic religion.
 * **Apparent Age:** Late 30s to mid-40s.
@@ -91,6 +97,7 @@ This document establishes the comprehensive character profiles for the speakers 
 
 #### 7. The Garrison Guard
 * **Source Dialogue:** `guard_report.json`
+* **Acts / Cases:** Act I (`temple_cleansing`), Act III (`gethsemane_arrest`, `crucifixion_site`), Act IV (`roman_inquiry`)
 * **Identity:** A working-class Roman auxiliary or conscripted guard stationed along the high outer walls of the Temple precinct during a public riot.
 * **Social Status:** Low individual social status, but backed by the immediate, lethal weight of the Roman standard.
 * **Apparent Age:** Early to mid-20s.
@@ -107,6 +114,7 @@ This document establishes the comprehensive character profiles for the speakers 
 
 #### 8. The Market Informant
 * **Source Dialogue:** `informant_bribe.json`
+* **Acts / Cases:** Act I (`temple_cleansing`)
 * **Identity:** A street-level opportunist, back-alley courier, or minor collaborator trading inside intelligence for physical safety and currency.
 * **Social Status:** Extremely low and precarious. He is vulnerable to immediate violence from both political factions and institutional enforcers.
 * **Apparent Age:** Variable (likely 30s).
@@ -118,6 +126,7 @@ This document establishes the comprehensive character profiles for the speakers 
 
 #### 9. The Nervous Citizen
 * **Source Dialogue:** `rumor_whisper.json`
+* **Acts / Cases:** Act I (`temple_cleansing`)
 * **Identity:** An ordinary resident of Jerusalem caught in the dangerous crossfire of a regional religious and political crackdown.
 * **Social Status:** Vulnerable lower-class citizen with zero systemic protection.
 * **Apparent Age:** Indeterminate.
@@ -129,6 +138,7 @@ This document establishes the comprehensive character profiles for the speakers 
 
 #### 10. The Market Vendor
 * **Source Dialogue:** `market_rumors.json`
+* **Acts / Cases:** Act I (`temple_cleansing`)
 * **Identity:** A local dry-goods or food merchant trying to leverage neighborhood gossip into increased stall foot traffic without drawing the eye of temple guards.
 * **Social Status:** Stable working-class merchant.
 * **Apparent Age:** 40s.
@@ -151,6 +161,7 @@ These additions expand the social, political, and emotional ecosystem surroundin
 ### Emotional, Reactive, Politically Unstable
 
 ## 11. The Galilean Pilgrim
+* **Acts / Cases:** Act I (`triumphal_entry`)
 * **Identity:** A rural traveler arriving in Jerusalem for Passover who already believes Jesus may be the promised deliverer.
 * **Social Status:** Poor agricultural laborer or fisherman.
 * **Apparent Age:** 20s–40s.
@@ -168,6 +179,7 @@ These additions expand the social, political, and emotional ecosystem surroundin
 ---
 
 ## 12. The Jerusalem Local
+* **Acts / Cases:** Act I (`triumphal_entry`, `temple_cleansing`)
 * **Identity:** A long-time resident frustrated by Passover overcrowding and suspicious of Galilean enthusiasm.
 * **Social Status:** Stable urban resident.
 * **Apparent Age:** 30s–50s.
@@ -185,6 +197,7 @@ These additions expand the social, political, and emotional ecosystem surroundin
 ---
 
 ## 13. The Temple Money Changer
+* **Acts / Cases:** Act I (`temple_cleansing`)
 * **Identity:** A licensed Temple merchant whose business depends on sacrificial exchange systems.
 * **Social Status:** Commercial class protected by priestly contracts.
 * **Apparent Age:** 40s–50s.
@@ -205,6 +218,7 @@ These additions expand the social, political, and emotional ecosystem surroundin
 ### Strategic, Manipulative, Survival-Oriented
 
 ## 14. Caiaphas the High Priest
+* **Acts / Cases:** Act II (`authority_challenged`), Act III (`sanhedrin_trial`), Act IV (`roman_inquiry`)
 * **Identity:** The acting High Priest responsible for preserving stability under Roman occupation.
 * **Social Status:** Supreme religious authority in Jerusalem.
 * **Apparent Age:** 50s–60s.
@@ -222,6 +236,7 @@ These additions expand the social, political, and emotional ecosystem surroundin
 ---
 
 ## 15. Annas the Patriarch
+* **Acts / Cases:** Act II (`lazarus_plot`)
 * **Identity:** Elder statesman and influential architect behind Temple power structures.
 * **Social Status:** Hidden political authority.
 * **Apparent Age:** Elderly.
@@ -238,6 +253,7 @@ These additions expand the social, political, and emotional ecosystem surroundin
 ---
 
 ## 16. Joseph of Arimathea
+* **Acts / Cases:** Act III (`crucifixion_site`), Act IV (`resurrection`)
 * **Identity:** Wealthy council member secretly sympathetic to Jesus.
 * **Social Status:** Elite and respected.
 * **Apparent Age:** 50s.
@@ -257,6 +273,7 @@ These additions expand the social, political, and emotional ecosystem surroundin
 ### Secretive, Fragmented, Dangerous
 
 ## 17. Judas Iscariot
+* **Acts / Cases:** Act III (`last_supper`, `gethsemane_arrest`), Act IV (`roman_inquiry`)
 * **Identity:** Trusted insider increasingly fractured by disappointment, greed, or ideological conflict.
 * **Social Status:** Member of the inner circle.
 * **Apparent Age:** 30s.
@@ -274,6 +291,7 @@ These additions expand the social, political, and emotional ecosystem surroundin
 ---
 
 ## 18. The Temple Spy
+* **Acts / Cases:** Act II (`lazarus_plot`)
 * **Identity:** Anonymous observer embedded among crowds to monitor suspicious activity.
 * **Social Status:** Disposable intelligence operative.
 * **Apparent Age:** Variable.
@@ -293,6 +311,7 @@ These additions expand the social, political, and emotional ecosystem surroundin
 ### Loyal, Fractured, Exhausted
 
 ## 19. John the Beloved Disciple
+* **Acts / Cases:** Act I (`triumphal_entry`), Act II (`olivet_discourse`), Act III (`last_supper`), Act IV (`peter_restoration`)
 * **Identity:** Emotionally perceptive disciple observing the collapse of the movement from within.
 * **Social Status:** Trusted member of the inner circle.
 * **Apparent Age:** Early 20s.
@@ -310,7 +329,8 @@ These additions expand the social, political, and emotional ecosystem surroundin
 ---
 
 ## 20. Mary Magdalene
-* **Identity:** Loyal follower remaining present through the movement’s public collapse.
+* **Acts / Cases:** Act III (`crucifixion_site`), Act IV (`resurrection`)
+* **Identity:** Loyal follower remaining present through the movement's public collapse.
 * **Social Status:** Marginalized but spiritually steadfast.
 * **Apparent Age:** 20s–40s.
 * **Immediate Stress Level:** Grief mixed with determination.
@@ -327,6 +347,7 @@ These additions expand the social, political, and emotional ecosystem surroundin
 ---
 
 ## 21. Martha of Bethany
+* **Acts / Cases:** Act II (`lazarus_plot`), Act III (`last_supper`)
 * **Identity:** Practical supporter managing hospitality and survival logistics.
 * **Social Status:** Respected household leader.
 * **Apparent Age:** 30s–40s.
@@ -346,6 +367,7 @@ These additions expand the social, political, and emotional ecosystem surroundin
 ### Bureaucratic, Detached, Violent When Necessary
 
 ## 22. Pontius Pilate
+* **Acts / Cases:** Act III (`barabbas_choice`)
 * **Identity:** Roman governor attempting to maintain order during a volatile festival week.
 * **Social Status:** Highest Roman authority in Judea.
 * **Apparent Age:** 40s–50s.
@@ -363,6 +385,7 @@ These additions expand the social, political, and emotional ecosystem surroundin
 ---
 
 ## 23. Pilate’s Secretary
+* **Acts / Cases:** Act III (`barabbas_choice`), Act IV (`roman_inquiry`)
 * **Identity:** Administrative recorder responsible for documenting legal charges and decrees.
 * **Social Status:** Educated Roman bureaucrat.
 * **Apparent Age:** 30s–40s.
@@ -378,10 +401,210 @@ These additions expand the social, political, and emotional ecosystem surroundin
 
 ---
 
+# 🏛️ Group 12: The Sanhedrin & Associates
+### Legalistic, Political, and Conflicted Authorities
+
+## 26. Samuel the Scribe
+* **Acts / Cases:** Act II (`authority_challenged`)
+* **Identity:** A Temple scribe and Pharisee, tasked with recording legal proceedings. He is more open-minded than his Sadducean counterparts and is genuinely impressed by Jesus's wisdom.
+* **Social Status:** Respected scholar within the Temple hierarchy.
+* **Apparent Age:** 40s.
+* **Immediate Stress Level:** Moderate intellectual and spiritual conflict.
+* **Linguistic Style:**
+  * Precise, respectful, and inquisitive.
+  * Asks genuine questions about the Law, not just traps.
+* **Dialogue Tree Function:** Represents the potential for intellectual honesty within the opposition, providing a more nuanced view of the Pharisees.
+
+## 27. Nathanael the Pharisee
+* **Acts / Cases:** Act II (`authority_challenged`), Act IV (`peter_restoration`)
+* **Identity:** A Pharisee who allies with the Herodians to trap Jesus. He is focused on political and nationalist concerns.
+* **Social Status:** Influential member of the Pharisaic council.
+* **Apparent Age:** 40s-50s.
+* **Immediate Stress Level:** High; his attempt to trap Jesus on taxation fails publicly.
+* **Linguistic Style:**
+  * Cunning and politically charged.
+  * Uses flattery before posing his trap question.
+* **Dialogue Tree Function:** Demonstrates the unholy alliances formed to oppose Jesus, uniting political rivals against a common perceived threat.
+
+## 28. Ananias the False Witness
+* **Acts / Cases:** Act III (`sanhedrin_trial`)
+* **Identity:** A man hired by the Sanhedrin to provide false testimony against Jesus during the illegal night trial.
+* **Social Status:** Low; a paid operative.
+* **Apparent Age:** Variable.
+* **Immediate Stress Level:** Low, until his testimony is shown to be inconsistent.
+* **Linguistic Style:**
+  * Recites a prepared story.
+  * Becomes flustered and contradictory under pressure.
+* **Dialogue Tree Function:** Exposes the corruption and desperation of the prosecution, showing they had to manufacture evidence.
+
+## 29. Nicodemus
+* **Acts / Cases:** Act II (`lazarus_plot`)
+* **Identity:** A prominent Pharisee and member of the Sanhedrin who is secretly a seeker of truth. He initially came to Jesus by night.
+* **Social Status:** High; a respected "ruler of the Jews."
+* **Apparent Age:** 50s-60s.
+* **Immediate Stress Level:** High moral conflict, torn between his position and his conscience.
+* **Linguistic Style:**
+  * Cautious, thoughtful, and questioning.
+  * Speaks in metaphors about light and darkness.
+* **Dialogue Tree Function:** Represents the "seeker" within the establishment, providing an insider's perspective on the Sanhedrin's fear and plotting.
+
+---
+
+# 👥 Group 13: The Disciples & Inner Circle
+### Loyal, Developing, and Diverse Followers
+
+## 30. Andrew the Disciple
+* **Acts / Cases:** Act II (`olivet_discourse`)
+* **Identity:** One of the twelve apostles, brother of Simon Peter. He is often portrayed as someone who brings others to Jesus.
+* **Social Status:** Galilean fisherman, part of the core group.
+* **Apparent Age:** 30s.
+* **Immediate Stress Level:** High, trying to comprehend the prophecies of destruction.
+* **Linguistic Style:**
+  * Direct and practical.
+  * Asks straightforward questions.
+* **Dialogue Tree Function:** Acts as a proxy for the player's direct questions about the future and the meaning of Jesus's prophecies.
+
+## 31. John Mark
+* **Acts / Cases:** Act III (`last_supper`)
+* **Identity:** The young son of the owner of the house with the Upper Room. He is an observant and educated youth who would later write the Gospel of Mark.
+* **Social Status:** Part of a well-to-do Jerusalem family.
+* **Apparent Age:** Teenager.
+* **Immediate Stress Level:** High, witnessing the tension and betrayal within Jesus's inner circle.
+* **Linguistic Style:**
+  * Perceptive and detailed.
+  * Records events with a scribe's eye for significance.
+* **Dialogue Tree Function:** Provides a "fly-on-the-wall" perspective of the Last Supper, noticing details others might miss.
+
+---
+
+# 🏘️ Group 14: Local Residents & Witnesses
+### The Everyday People of Judea
+
+## 32. Tobias the Donkey Owner
+* **Acts / Cases:** Act I (`triumphal_entry`)
+* **Identity:** The owner of the donkey colt from Bethphage. He is a devout man who understands the prophetic significance of the disciples' request.
+* **Social Status:** A villager, likely of modest means.
+* **Apparent Age:** 50s-60s.
+* **Immediate Stress Level:** Low; he is a willing participant in the event.
+* **Linguistic Style:**
+  * Pious, knowing, and calm.
+  * Speaks as someone who has been waiting for this moment.
+* **Dialogue Tree Function:** Confirms that the "taking" of the donkey was not a theft but a willing act of prophetic fulfillment.
+
+## 33. Jemimah the Skeptic
+* **Acts / Cases:** Act I (`triumphal_entry`)
+* **Identity:** A Jerusalem local who is cynical about the Triumphal Entry, viewing it as a dangerous political disturbance.
+* **Social Status:** Urban resident.
+* **Apparent Age:** 40s.
+* **Immediate Stress Level:** High irritation and fear of Roman reprisal.
+* **Linguistic Style:**
+  * Sarcastic, dismissive, and pragmatic.
+  * Focused on the potential for violence and disruption.
+* **Dialogue Tree Function:** Represents the cynical, non-religious viewpoint of a citizen caught in the middle of a messianic event.
+
+## 34. Malachi the Money Changer
+* **Acts / Cases:** Act I (`temple_cleansing`)
+* **Identity:** A licensed money changer whose table is overturned by Jesus. He is angry and financially motivated.
+* **Social Status:** Merchant class, protected by the Temple authorities.
+* **Apparent Age:** 40s.
+* **Immediate Stress Level:** High anger and financial panic.
+* **Linguistic Style:**
+  * Defensive and materialistic.
+  * Justifies his business as a necessary part of the Temple system.
+* **Dialogue Tree Function:** Provides the perspective of those who benefited from the Temple's corruption.
+
+## 35. Marcus the Garrison Guard
+* **Acts / Cases:** Act I (`temple_cleansing`), Act IV (`resurrection`)
+* **Identity:** A Roman soldier assigned to the tomb guard detail. He is a professional soldier caught in a supernatural event he cannot explain.
+* **Social Status:** Roman military.
+* **Apparent Age:** 30s.
+* **Immediate Stress Level:** Extreme; torn between military duty and the priests' bribe.
+* **Linguistic Style:**
+  * Initially official and guarded, becomes panicked and confessional.
+  * Uses military jargon.
+* **Dialogue Tree Function:** Acts as a key witness to the resurrection, whose testimony is suppressed by the authorities.
+
+## 36. Nathan the Gardener
+* **Acts / Cases:** Act I (`fig_tree_incident`)
+* **Identity:** A local gardener who maintains the orchards along the Bethany road and witnesses the fig tree's sudden withering.
+* **Social Status:** Working class.
+* **Apparent Age:** 40s-50s.
+* **Immediate Stress Level:** High confusion and awe.
+* **Linguistic Style:**
+  * Simple, observational, and grounded in nature.
+  * Describes the event in practical, botanical terms that highlight its unnatural speed.
+* **Dialogue Tree Function:** Provides a neutral, third-party confirmation of the fig tree miracle.
+
+## 37. Maluch the Temple Spy
+* **Acts / Cases:** Act II (`lazarus_plot`)
+* **Identity:** An operative working for Caiaphas, tasked with monitoring Jesus's movements and the crowd's reaction, especially concerning Lazarus.
+* **Social Status:** Covert agent of the Sanhedrin.
+* **Apparent Age:** 30s.
+* **Immediate Stress Level:** High vigilance.
+* **Linguistic Style:**
+  * Cautious, logistical, and focused on data (crowd sizes, routes).
+  * Avoids personal opinion.
+* **Dialogue Tree Function:** Represents the surveillance state and the institutional paranoia surrounding Jesus.
+
+## 38. Simon the Leper
+* **Acts / Cases:** Act II (`lazarus_plot`)
+* **Identity:** A resident of Bethany who was healed of leprosy by Jesus and hosts a dinner in His honor.
+* **Social Status:** Formerly an outcast, now a respected member of the community.
+* **Apparent Age:** 40s-50s.
+* **Immediate Stress Level:** Grateful but aware of the danger Jesus is in.
+* **Linguistic Style:**
+  * Full of gratitude and reverence.
+  * Contrasts his former life of exclusion with his new life of fellowship.
+* **Dialogue Tree Function:** Embodies the transformative power of Jesus's healing ministry.
+
+## 39. Rhoda the Servant
+* **Acts / Cases:** Act III (`last_supper`)
+* **Identity:** A young servant girl in the house where the Last Supper is held. She is observant and loyal.
+* **Social Status:** Lower class, household servant.
+* **Apparent Age:** Teenager.
+* **Immediate Stress Level:** Low, but perceptive of the underlying tension.
+* **Linguistic Style:**
+  * Simple, direct, and focused on her duties.
+  * Reports what she sees and hears without interpretation.
+* **Dialogue Tree Function:** Provides key details about the movements and conversations of the disciples before and during the meal.
+
+## 40. Malchus
+* **Acts / Cases:** Act III (`gethsemane_arrest`)
+* **Identity:** The personal assistant to the High Priest Caiaphas, whose ear is cut off by Peter during the arrest and subsequently healed by Jesus.
+* **Social Status:** High-ranking servant in the priestly household.
+* **Apparent Age:** 40s.
+* **Immediate Stress Level:** Extreme cognitive dissonance; he is the recipient of a miracle from the man he came to arrest.
+* **Linguistic Style:**
+  * Initially professional and authoritative, becomes confused and awestruck.
+  * Struggles to reconcile the violence of the arrest with the grace of his healing.
+* **Dialogue Tree Function:** A powerful witness who is an enemy, demonstrating Jesus's compassion even in the moment of betrayal.
+
+## 41. Barabbas
+* **Acts / Cases:** Act III (`barabbas_choice`)
+* **Identity:** A notorious prisoner, an insurrectionist and murderer, who is released by Pilate at the crowd's demand in place of Jesus.
+* **Social Status:** Criminal and revolutionary.
+* **Apparent Age:** 30s-40s.
+* **Immediate Stress Level:** Low; he is unexpectedly granted freedom.
+* **Linguistic Style:**
+  * Rough, cynical, and triumphant.
+  * Understands the world through violence and power.
+* **Dialogue Tree Function:** Serves as the starkest possible contrast to Jesus, highlighting the choice the crowd made between a violent revolutionary and a peaceful king.
+
+## 42. Lucas the Sentry
+* **Acts / Cases:** Act IV (`roman_inquiry`)
+* **Identity:** A Roman soldier from the tomb guard detail who takes the bribe from the chief priests to spread the story of the stolen body.
+* **Social Status:** Roman military.
+* **Apparent Age:** 30s.
+* **Immediate Stress Level:** High; caught between fear of execution for failure and the guilt of lying.
+* **Linguistic Style:**
+  * Officially recites the cover story, but his fear and awe are palpable under pressure.
+* **Dialogue Tree Function:** His testimony, especially when contradicted, proves the cover-up and points to a supernatural event at the tomb.
+
 # 🕯️ Group 11: Witnesses of the Crucifixion
 ### Shocked, Numb, Transformative
 
 ## 24. Simon of Cyrene
+* **Acts / Cases:** Act III (`crucifixion_site`)
 * **Identity:** Foreign pilgrim suddenly forced into participation during the execution procession.
 * **Social Status:** Outsider.
 * **Apparent Age:** 30s–50s.
@@ -398,6 +621,7 @@ These additions expand the social, political, and emotional ecosystem surroundin
 ---
 
 ## 25. The Execution Detail Soldier
+* **Acts / Cases:** Act III (`crucifixion_site`)
 * **Identity:** Veteran Roman infantryman accustomed to public executions.
 * **Social Status:** Hardened lower-ranking soldier.
 * **Apparent Age:** 20s–40s.

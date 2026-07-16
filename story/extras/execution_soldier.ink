@@ -1,5 +1,17 @@
+
+// ============================================================
+// CHARACTER: Roman Solider
+ACT: Act IV
+CASE: The Empty Tomb
+CASE ID: resurrection
+SOURCE: js/act4_case.js -> NPC 'marcus' (Roman Soldier, Guard Detail)
+// ------------------------------------------------------------
+// ============================================================
+//
+
 -> start
 === start ===
+
 We have done three of these already this month. It is heavy work hammering spikes through bone, but you get used to the rhythm.
 But this one... when the sky went pitch black at noon, the entire detail stopped gambling for the garments.
 Even the Centurion looks like he has seen a ghost. This is not a standard provincial execution.

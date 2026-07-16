@@ -1,3 +1,5 @@
+import { formatIntro } from './utils.js';
+
 // ============================================================
 // CASE: The Silenced Teacher  — difficulty 2 — Temple Courts
 // ACT: Act II
@@ -8,9 +10,9 @@
 // BIBLE REFERENCE: Matthew 21:23–22:46; Mark 11:27–12:44; Luke 20:1–21:4
 // ------------------------------------------------------------
 // PROPHECIES FULFILLED IN THIS CASE:
-//   - Psalm 118:22–23 (The Rejected Stone)
-//   - Isaiah 5:1–7 (Song of the Vineyard)
-//   - Daniel 7:13–14 (Son of Man authority)
+//   - Psalm 118:22–23 (The Rejected Stone becomes the Cornerstone)
+//   - Isaiah 5:1–7 (The Parable of the Wicked Tenants echoes the Song of the Vineyard)
+//   - Daniel 7:13–14 (Jesus's claim to be the 'Son of Man' with divine authority)
 // ------------------------------------------------------------
 // BIBLICAL CONTEXT:
 //   Summary: Religious leaders challenge Jesus's authority. He responds with parables that expose their motives and claims His identity as the Cornerstone.
@@ -51,6 +53,7 @@ export const act2CaseA = {
       fulfilledBy: "Jesus quoting this Psalm directly against the religious leaders after the Parable of the Wicked Tenants",
       gospelLink: "Matthew 21:42–44; Mark 12:10–11",
       insight: "The 'builders' were Israel's religious leaders, entrusted with building God's community. The 'stone' was Jesus, whom they were rejecting. Jesus used their own Scripture to declare their judgement — He was the very stone they were trying to remove, and His rejection would become the cornerstone of something entirely new: the Church.",
+      explanation: "Jesus quoted this coronation psalm directly at the religious leaders ('the builders'), identifying Himself as the cornerstone of God's new work, which they were in the process of rejecting.",
     },
     {
       reference: "Isaiah 5:1–7",
@@ -61,6 +64,7 @@ export const act2CaseA = {
       fulfilledBy: "The Parable of the Wicked Tenants (Matthew 21:33–46), which deliberately echoed Isaiah's Song of the Vineyard",
       gospelLink: "Matthew 21:33–45; Mark 12:1–12",
       insight: "When Jesus began His parable 'There was a landowner who planted a vineyard, set a hedge around it, dug a winepress...' — He was quoting Isaiah 5 almost word-for-word. Every Pharisee in the crowd recognised it immediately. The tenants who killed the owner's son were unmistakably them. Matthew records: 'When the chief priests and the Pharisees heard his parables, they perceived that he was speaking about them' (Matthew 21:45).",
+      explanation: "Jesus's Parable of the Wicked Tenants deliberately quoted Isaiah's 'Song of the Vineyard.' The religious leaders immediately recognized themselves as the unfaithful tenants.",
     },
     {
       reference: "Daniel 7:13–14",
@@ -71,6 +75,7 @@ export const act2CaseA = {
       fulfilledBy: "Jesus's implicit claim to be the 'Son of Man' with divine authority — the title He used throughout the Gospels",
       gospelLink: "Mark 14:62 — Jesus explicitly quotes Daniel 7:13 at His trial before Caiaphas",
       insight: "The title 'Son of Man' was Jesus's preferred self-designation — it is used over 80 times in the Gospels. It came from Daniel 7:13 and carried unmistakable divine authority claims. The religious leaders understood exactly what He was claiming — which is why the high priest tore his robes at Jesus's trial when He quoted it (Mark 14:62–64).",
+      explanation: "'Son of Man' was Jesus's preferred title for Himself. It was a direct claim to the divine authority described in Daniel's vision, a claim the High Priest understood as blasphemy.",
     },
     {
       reference: "Malachi 3:1",
@@ -81,10 +86,11 @@ export const act2CaseA = {
       fulfilledBy: "Jesus's presence and teaching authority in the Temple",
       gospelLink: "Matthew 11:10 (Jesus identifies John the Baptist as the 'messenger'); Mark 1:2",
       insight: "The authority challenge asked where Jesus's authority came from. Jesus's counter-question about John's authority was strategic — if John was God's messenger (Malachi 3:1), and John had publicly identified Jesus as the Coming One (John 1:29–34), then Jesus's authority derived from the very God who had sent His messenger ahead. The leaders were trapped.",
+      explanation: "Jesus's authority is linked to John the Baptist, the prophesied messenger who would prepare the way for the Lord's arrival at His temple.",
     },
   ],
 
-  intro: `It is Tuesday morning, Nisan 12. The Temple courts are packed with Passover pilgrims and local worshippers. Jesus is teaching when a delegation of chief priests, scribes, and elders arrives — formally and deliberately. Their challenge is direct: 'By what authority do you do these things? Who gave you this authority?' Three religious leaders were the primary challengers that morning, each representing a different faction. But as you gather evidence from the scene, a question emerges: who is really on trial here — Jesus, or them?`,
+  intro: formatIntro(`It is Tuesday morning, Nisan 12. The Temple courts are packed with Passover pilgrims and local worshippers. Jesus is teaching when a delegation of chief priests, scribes, and elders arrives — formally and deliberately. Their challenge is direct: **'By what authority do you do these things? Who gave you this authority?'** Three religious leaders were the primary challengers that morning, each representing a different faction. But as you gather evidence from the scene, a question emerges: _who is really on trial here_ — Jesus, or them?`),
 
   suspects: [
     { id: "chief_priest", name: "Caiaphas", role: "High Priest, Sadducee", avatar: "👨‍⚖️", bibleRef: "Matthew 21:23; John 11:49–52" },
@@ -195,6 +201,19 @@ export const act2CaseA = {
     },
   ],
 
+  lab: [
+    {
+      evidence: "parable_fragments",
+      suspect: "scribe",
+      result: "**Identified as Witness** (His record implicates the priests)"
+    },
+    {
+      evidence: "question_scroll",
+      suspect: "chief_priest",
+      result: "**Implicated by Parable** (The teaching was aimed at him)"
+    }
+  ],
+
   npcs: [
     {
       id: "chief_priest",
@@ -284,6 +303,25 @@ export const act2CaseA = {
         "coin_of_caesar+widow_two_coins": { exposed: "You want to know what broke the coalition? His answer about the coin. We expected a political answer. Instead He talked about image — Caesar's image on the coin, God's image on people. The Herodians thought He'd sided with Rome. I thought He'd sidestepped completely. Neither of us could attack the answer. We just... walked away." },
       },
     },
+    {
+      id: "rich_young_ruler",
+      name: "Thomas the Rich Young Ruler",
+      role: "Wealthy Seeker",
+      faction: "local",
+      avatar: "💰",
+      profileFile: "rich_young_ruler",
+      truthfulness: 0.7,
+      bibleRef: "Matthew 19:16-22; Mark 10:17-22; Luke 18:18-23",
+      hasDialogue: true,
+      storyFile: "rich_young_ruler",
+      background: "A young man of great wealth who ran up to Jesus and asked what he must do to inherit eternal life. He left grieving, unable to give up his riches.",
+      dialogue: {
+        neutral: "Tell me what you know.",
+      },
+      reactions: {
+        default: { text: "I have nothing more to add.", isLie: false },
+      },
+    },
   ],
 
   deductions: {
@@ -341,9 +379,8 @@ export const act2CaseA = {
 // BACKGROUND: The Sanhedrin's plotting in response to the resurrection of Lazarus.
 // BIBLE REFERENCE: John 11:45–57; John 12:9–11
 // ------------------------------------------------------------
-// PROPHECIES FULFILLED IN THIS CASE:
-//   - Isaiah 25:8 (Swallowing up death)
-//   - Psalm 16:10 (Not seeing corruption)
+// PROPHECIES FULFILLED IN THIS CASE: 
+//   - Isaiah 25:8 (Swallowing up death forever, previewed by Lazarus's revival)
 // ------------------------------------------------------------
 // CASE FACTS (Truth Object):
 //   Culprit: caiaphas
@@ -382,6 +419,7 @@ export const act2CaseB = {
       fulfilledBy: "Jesus demonstrating complete authority over the grave at Bethany",
       gospelLink: "John 11:25",
       insight: "Lazarus’s revival was a tactical, localized preview of the ultimate cosmic victory over death that was about to occur on Easter morning.",
+      explanation: "The resurrection of Lazarus served as a powerful, localized preview of the ultimate cosmic victory over death that this prophecy describes.",
     },
   ],
 
@@ -422,6 +460,19 @@ export const act2CaseB = {
       bibleRef: "John 12:10–11 explicitly validates this conspiracy: 'So the chief priests made plans to put Lazarus to death as well.'",
       investigatorNote: "Murdering a resurrected man is a fascinating logical absurdity. It reveals that the leadership doesn't doubt the miracle occurred—they simply care more about their institutional control than God's reality.",
     },
+  ],
+
+  lab: [
+    {
+      evidence: "secret_decree",
+      suspect: "caiaphas",
+      result: "**Implicated in Conspiracy** (Directly links him to the plot)"
+    },
+    {
+      evidence: "secret_decree", // Note: same evidence can affect multiple suspects
+      suspect: "nicodemus_secret",
+      result: "**Cleared** (Shows he was a dissenting voice)"
+    }
   ],
 
   suspects: [
@@ -729,6 +780,7 @@ export const act2CaseC = {
       fulfilledBy: "Jesus's prophecy of the Temple's destruction and the 'abomination that causes desolation'",
       gospelLink: "Matthew 24:15",
       insight: "Jesus directly referenced Daniel's prophecy, linking it to the future destruction of the Temple and the desecration that would precede it, a warning to His disciples about the coming tribulation.",
+      explanation: "Jesus directly quoted Daniel's prophecy, applying it to the future destruction of the Temple in Jerusalem as a warning to His disciples.",
     },
     {
       reference: "Joel 2:30–31",
@@ -739,6 +791,7 @@ export const act2CaseC = {
       fulfilledBy: "Jesus's prophecy of cosmic signs preceding His return",
       gospelLink: "Matthew 24:29",
       insight: "Jesus incorporated ancient prophetic imagery of cosmic disturbances into His discourse, indicating that His return would be heralded by dramatic celestial events, fulfilling Joel's vision.",
+      explanation: "Jesus incorporated this classic prophetic imagery of cosmic disturbances to describe the unmistakable signs that would herald His return.",
     },
     {
       reference: "Isaiah 13:10",
@@ -749,10 +802,11 @@ export const act2CaseC = {
       fulfilledBy: "Jesus's description of the darkening of the sun and moon as signs of the end",
       gospelLink: "Mark 13:24–25",
       insight: "Isaiah's prophecy of cosmic darkness is echoed by Jesus, emphasizing the dramatic and unmistakable nature of the signs that will precede the end of the age and His glorious return.",
+      explanation: "Jesus incorporated this classic prophetic imagery of cosmic disturbances to describe the unmistakable signs that would herald His return.",
     },
   ],
 
-  intro: `It is Tuesday afternoon. Jesus has left the Temple, and as He sits on the Mount of Olives, His disciples approach Him privately. They are troubled by His words about the Temple's destruction and eager to know when these things will happen, and what signs will precede His coming and the end of the age. The air is thick with anticipation as Jesus begins to unveil future events, a complex tapestry of prophecy and warning.`,
+  intro: formatIntro(`It is Tuesday afternoon. Jesus has left the Temple, and as He sits on the Mount of Olives, His disciples approach Him privately. They are troubled by His words about the Temple's destruction and eager to know **when** these things will happen, and what signs will precede His coming and the end of the age. The air is thick with anticipation as Jesus begins to unveil future events, a complex tapestry of _prophecy and warning_.`),
 
   suspects: [
     { id: "none", name: "No One", role: "Divine Teaching", avatar: "❓", bibleRef: null },
@@ -815,6 +869,14 @@ export const act2CaseC = {
       propheticLink: "Jesus's use of these ancient prophecies demonstrates the continuity of God's plan and the fulfillment of long-foretold cosmic disturbances as signs of the end.",
       investigatorNote: "The consistency between Jesus's words and ancient prophecies reinforces the divine origin of His message.",
     },
+  ],
+
+  lab: [
+    {
+      evidence: "disciples_questions_notes",
+      suspect: "peter_olivet",
+      result: "**Identified as Primary Witness** (He asked the initial question about the Temple's destruction)"
+    }
   ],
 
   npcs: [

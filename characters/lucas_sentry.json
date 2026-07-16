@@ -1,0 +1,11 @@
+{
+  "id": "lucas_sentry",
+  "name": "Lucas the Sentry",
+  "role": "Roman Tomb Guard",
+  "avatar": "💂",
+  "truthfulness": 0.4,
+  "faction": "roman",
+  "bibleRef": "Matthew 28:11–15; Matthew 27:62–66",
+  "background": "A Roman soldier from the tomb guard detail who takes the bribe from the chief priests to spread the story of the stolen body. Caught between fear of execution for failure and the guilt of lying; officially recites the cover story, but fear and awe are palpable under pressure. His contradicted testimony proves the cover-up and points to a supernatural event at the tomb (Act IV roman_inquiry).",
+  "factions": ["roman"]
+}

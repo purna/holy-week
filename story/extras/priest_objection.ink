@@ -1,3 +1,12 @@
+// ============================================================
+// CHARACTER: Temple Priest Objector
+// ACT: Act I
+// CASE: The Overturned Tables
+// CASE ID: temple_cleansing
+// SOURCE: js/act1_case.js -> NPC 'priest_objection' (Sadducean Aristocrat)
+// ------------------------------------------------------------
+// ============================================================
+//
 --> start
 
 -> start

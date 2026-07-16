@@ -2,6 +2,8 @@
 // CHARACTER: Chuza (Herod's Servant)
 // ACT: Act III
 // CASE: The Tetrarch's Court
+// CASE ID: roman_inquiry
+// SOURCE: js/act4_case.js -> NPC 'herods_servant' (Royal Household)
 // BIBLE REFERENCE: Luke 23:6-12; Matthew 14:1-12; Luke 8:3
 // ------------------------------------------------------------
 // PROPHECIES FULFILLED IN THIS CASE:

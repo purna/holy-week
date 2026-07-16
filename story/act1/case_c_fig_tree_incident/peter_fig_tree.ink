@@ -1,3 +1,12 @@
+// ============================================================
+// CHARACTER: Peter (Fig Tree Witness)
+// ACT: Act I
+// CASE: The Barren Fig Tree
+// CASE ID: fig_tree_incident
+// SOURCE: js/act1_case.js -> NPC 'peter_fig_tree' (Disciple, Witness to the Withering)
+// ------------------------------------------------------------
+// ============================================================
+//
 -> start
 
 === start ===

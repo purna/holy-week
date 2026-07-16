@@ -1,7 +1,9 @@
+import { formatIntro } from './utils.js';
+
 // ============================================================
 // CASE: The Missing Donkey  — difficulty 1 — Triumphal Entry
 // BIBLICAL FOCUS: Matthew 21:1–11, Mark 11:1–11, Luke 19:28–44, John 12:12–19
-// PROPHECY: Zechariah 9:9 | Psalm 118:25–26 | Genesis 49:10–11
+// PROPHECY: Zechariah 9:9 | Psalm 118:25–26 | Genesis 49:10–11 | Malachi 3:1
 // ============================================================
 
 export const act1CaseA = {
@@ -36,6 +38,7 @@ export const act1CaseA = {
       fulfilledBy: "Jesus riding a donkey colt into Jerusalem",
       gospelLink: "Matthew 21:4–5; John 12:14–15",
       insight: "The donkey was not a practical choice — Roman rulers rode horses. The donkey was a deliberate symbol of peace and humility, contrasted with conquering kings on warhorses.",
+      explanation: "This prophecy foretold that Israel's true king would arrive not as a conquering general on a warhorse, but as a humble servant of peace on a simple donkey.",
     },
     {
       reference: "Psalm 118:25–26",
@@ -46,6 +49,7 @@ export const act1CaseA = {
       fulfilledBy: "The crowds shouting 'Hosanna! Blessed is he who comes in the name of the Lord!'",
       gospelLink: "Matthew 21:9; Mark 11:9–10",
       insight: "'Hosanna' is the Greek transliteration of the Hebrew 'Hoshana' — a cry for salvation, not merely praise. The crowd was quoting this Psalm as a messianic greeting.",
+      explanation: "The crowd's cry of 'Hosanna!' was a direct quote from this messianic psalm. 'Hosanna' is a plea for salvation, meaning 'Save us now!', showing they saw Jesus as a deliverer.",
     },
     {
       reference: "Genesis 49:10–11",
@@ -56,6 +60,7 @@ export const act1CaseA = {
       fulfilledBy: "A king from Judah arriving on a donkey colt",
       gospelLink: "Matthew 21:1–9",
       insight: "Jacob's blessing over Judah, over 1,400 years before the event, described a royal figure arriving on a donkey colt. Early Jewish readers interpreted this as messianic.",
+      explanation: "Over 1,400 years earlier, Jacob's blessing over the tribe of Judah described a royal figure associated with a donkey colt, establishing an ancient precedent for this messianic entry.",
     },
     {
       reference: "Malachi 3:1",
@@ -66,10 +71,11 @@ export const act1CaseA = {
       fulfilledBy: "Jesus's arrival in Jerusalem preceding His Temple visit (Mark 11:11)",
       gospelLink: "Mark 11:11",
       insight: "The 'coming to the temple' link connects the triumphal entry with the Temple cleansing the following day — two acts that together announced prophetic fulfilment.",
+      explanation: "This prophecy connects the Triumphal Entry directly to the subsequent Temple visit, framing them as a single, authoritative act of the Messiah arriving at His house.",
     },
   ],
 
-  intro: `It is Palm Sunday morning, Nisan 10. Jesus and His disciples have spent the night in Bethany and are now walking toward Jerusalem. Two disciples were sent ahead to the village of Bethphage with specific instructions: untie a donkey colt they would find there, and if anyone challenged them, say only "The Lord needs it." But when you arrive at the tethering post — the colt is gone, a rope has been cut, and three people were seen in the area. Was it stolen? Or is something else entirely happening here?`,
+  intro: formatIntro(`It is Palm Sunday morning, Nisan 10. Jesus and His disciples have spent the night in Bethany and are now walking toward Jerusalem. Two disciples were sent ahead to the village of Bethphage with specific instructions: untie a donkey colt they would find there, and if anyone challenged them, say only **"The Lord needs it."** But when you arrive at the tethering post — the colt is gone, a rope has been cut, and three people were seen in the area. Was it stolen? Or is something else _entirely_ happening here?`),
 
   suspects: [
     { id: "peter", name: "Peter", role: "Disciple of Jesus", avatar: "👨‍🦰", bibleRef: "Mark 11:1–6" },
@@ -197,6 +203,18 @@ export const act1CaseA = {
     },
   ],
 
+  lab: [
+    {
+      evidence: "cloaks",
+      suspect: "peter",
+      result: "**Motive Clarified** (Acted on instruction, not as a thief)"
+    },
+    {
+      evidence: "prophecy_scroll",
+      suspect: "owner",
+      result: "**Cleared** (Confirmed he willingly lent the colt)"
+    }
+  ],
   npcs: [
     {
       id: "peter",
@@ -448,7 +466,7 @@ export const act1CaseA = {
 // ============================================================
 // CASE: The Overturned Tables  — difficulty 2 — Temple Cleansing
 // BIBLICAL FOCUS: Matthew 21:12–17, Mark 11:15–19, Luke 19:45–48, John 2:13–22
-// PROPHECY: Malachi 3:1 | Isaiah 56:7 | Jeremiah 7:11
+// PROPHECY: Malachi 3:1 | Isaiah 56:7 | Psalm 69:9
 // ============================================================
 
 export const act1CaseB = {
@@ -483,6 +501,7 @@ export const act1CaseB = {
       fulfilledBy: "Jesus unexpectedly arriving to judge the temple's sacrificial practices",
       gospelLink: "Matthew 21:12",
       insight: "Malachi predicted the Messiah would come not as a political puppet for the temple establishment, but as a refining fire to purify it.",
+      explanation: "Malachi predicted the Messiah would come not to endorse the Temple system, but to purify it with judgment, like a fire refining metal.",
     },
     {
       reference: "Isaiah 56:7",
@@ -493,6 +512,18 @@ export const act1CaseB = {
       fulfilledBy: "Jesus clearing the outer court—the only area open to non-Jews",
       gospelLink: "Mark 11:17",
       insight: "By converting the Court of the Gentiles into a noisy, crowded marketplace, the leaders made it impossible for non-Jewish seekers to worship.",
+      explanation: "By turning the Court of the Gentiles (the only area for non-Jews) into a marketplace, the leaders had blocked the nations from worship. Jesus's action restored the court to its intended purpose.",
+    },
+    {
+      reference: "Psalm 69:9",
+      id: "psalm_69_9",
+      icon: "🔮",
+      text: `"Zeal for your house will consume me; the insults of those who insult you have fallen on me."`,
+      written: "~1000 BC",
+      fulfilledBy: "Jesus's passionate action in the Temple, driving out those who had turned prayer into profit",
+      gospelLink: "John 2:17 — John explicitly notes that Jesus's disciples remembered this Psalm when He cleared the temple",
+      insight: "The disciples recognised the action as scriptural fulfillment. The Temple was meant to be a house of prayer, and Jesus's 'zeal' was not violent rage but covenant faithfulness — the same zeal that burned in David's heart for God's honour.",
+      explanation: "The disciples recognized that Jesus's action was not uncontrolled anger but a righteous, covenantal 'zeal' for God's honor, just as David had.",
     },
   ],
 
@@ -550,6 +581,18 @@ export const act1CaseB = {
     },
   ],
 
+  lab: [
+    {
+      evidence: "scattered_shekels",
+      suspect: "money_changer",
+      result: "**Identified as Victim** (Business was disrupted)"
+    },
+    {
+      evidence: "broken_cages",
+      suspect: "merchant_jadan",
+      result: "**Identified as Victim** (Wares were destroyed)"
+    }
+  ],
   suspects: [
     {
       id: "merchant_jadan",
@@ -620,7 +663,7 @@ export const act1CaseB = {
       truthfulness: 0.85,
       bibleRef: "Luke 19:47-48",
       hasDialogue: true,
-      storyFile: "guard_report",
+      storyFile: "guard_report_temple",
       unlocksEvidence: ["whip_of_cords"],
       background: "A working-class Roman auxiliary stationed on the high outer wall walkways. He views the regional theological squabbles with complete military detachment.",
       dialogue: {
@@ -699,7 +742,7 @@ export const act1CaseB = {
       truthfulness: 0.5,
       bibleRef: "Luke 23:1-25; John 18:28-19:16",
       hasDialogue: true,
-      storyFile: "pontius_pilate",
+      storyFile: "pontius_pilate_temple",
       background: "The Roman governor of Judea. Politically ruthless but personally conflicted — finds no fault in Jesus but yields to the crowd.",
       dialogue: {
         neutral: "Tell me what you know.",
@@ -750,7 +793,7 @@ export const act1CaseB = {
       truthfulness: 0.5,
       bibleRef: "Acts 4:1-3; Acts 5:17-42",
       hasDialogue: true,
-      storyFile: "priest_objection",
+      storyFile: "priest_objection_temple",
       background: "An elite Sadducean priest who views any popular religious movement as a threat. Objects to teaching on resurrection.",
       dialogue: {
         neutral: "Tell me what you know.",
@@ -880,7 +923,7 @@ export const act1CaseB = {
 // ============================================================
 // CASE: The Barren Fig Tree  — difficulty 2 — Bethany Road
 // BIBLICAL FOCUS: Matthew 21:18–22, Mark 11:12–14, 20–25
-// PROPHECY: Micah 7:1 | Jeremiah 8:13
+// PROPHECY: Micah 7:1 | Jeremiah 8:13 | Psalm 33:8–9 | Zechariah 4:6–7
 // ============================================================
 
 export const act1CaseC = {
@@ -915,6 +958,7 @@ export const act1CaseC = {
       fulfilledBy: "Jesus finding no fruit on the fig tree, symbolizing Israel's spiritual barrenness",
       gospelLink: "Mark 11:12–14",
       insight: "Micah lamented Israel's spiritual emptiness, comparing it to a harvest with no fruit. Jesus's action with the fig tree visually enacted this ancient prophetic lament, demonstrating God's disappointment with His people's unfruitfulness.",
+      explanation: "The prophet Micah used the image of a fruitless harvest to lament Israel's spiritual emptiness. Jesus's action with the fig tree was a living enactment of this prophetic disappointment.",
     },
     {
       reference: "Jeremiah 8:13",
@@ -925,6 +969,7 @@ export const act1CaseC = {
       fulfilledBy: "The fig tree withering after Jesus's curse, signifying judgment",
       gospelLink: "Mark 11:20–21",
       insight: "Jeremiah prophesied a time when God would remove the fruit and cause the leaves to wither as a sign of judgment. The fig tree's immediate withering after Jesus's word was a direct fulfillment, a visible sign of the spiritual judgment coming upon an unfruitful religious system.",
+      explanation: "Jeremiah prophesied that God would cause leaves to wither as a sign of judgment. The tree's immediate withering was a direct, visible fulfillment of this.",
     },
     {
       reference: "Psalm 33:8–9",
@@ -934,6 +979,7 @@ export const act1CaseC = {
       written: "~1000 BC",
       fulfilledBy: "The disciples witnessing the immediate and absolute power of Jesus's spoken word over creation",
       insight: "Peter's shock at the withered tree highlights the transition from seeing Jesus as a teacher to recognizing Him as the Author of Creation. The Psalm explicitly links God's command to the immediate response of the physical world.",
+      explanation: "The event demonstrated Jesus's absolute authority over creation, where His spoken word has immediate physical effect, fulfilling the Psalmist's description of God's power.",
     },
     {
       reference: "Zechariah 4:6–7",
@@ -943,10 +989,11 @@ export const act1CaseC = {
       written: "~520 BC",
       fulfilledBy: "Jesus teaching that faith in God provides authority to move mountains and overcome any obstacle",
       insight: "When Jesus spoke of moving mountains into the sea, He was using a familiar prophetic metaphor. Zechariah used the mountain to represent seemingly impossible obstacles to God's work that are removed through divine power, not human effort.",
+      explanation: "Jesus used the 'mountain-moving' metaphor, familiar from Zechariah, to teach that faith connects the believer to this same divine power that overcomes impossible obstacles.",
     },
   ],
 
-  intro: `It is Tuesday morning. As Jesus and His disciples walk from Bethany back to Jerusalem, Peter points to a fig tree they had passed yesterday. It was full of leaves then, but now it is completely withered from the roots. The disciples are astonished. Was this a mere coincidence, a natural phenomenon, or something far more profound? The withered tree stands as a silent witness, demanding an explanation.`,
+  intro: formatIntro(`It is Tuesday morning. As Jesus and His disciples walk from Bethany back to Jerusalem, Peter points to a fig tree they had passed yesterday. It was full of leaves then, but now it is **completely withered** from the roots. The disciples are astonished. Was this a mere coincidence, a natural phenomenon, or something _far more profound_? The withered tree stands as a silent witness, demanding an explanation.`),
 
   suspects: [
     { id: "peter_fig_tree", name: "Peter", role: "Disciple, Witness to the Withering", avatar: "👨‍🦰", bibleRef: "Mark 11:21" },
@@ -1008,6 +1055,13 @@ export const act1CaseC = {
     },
   ],
 
+  lab: [
+    {
+      evidence: "withered_fig_tree_state",
+      suspect: "peter_fig_tree",
+      result: "**Identified as Witness** (Observed the event, did not cause it)"
+    }
+  ],
   npcs: [
     {
       id: "peter_fig_tree",

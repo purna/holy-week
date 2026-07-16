@@ -1,3 +1,12 @@
+// ============================================================
+// CHARACTER: Judas Iscariot
+// ACT: Act III
+// CASE: The Broken Cup
+// CASE ID: last_supper
+// SOURCE: js/act3_case.js -> NPC 'judas' (Disciple and Treasurer)
+// ------------------------------------------------------------
+// ============================================================
+//
 -> start
 === start ===
 You trace my steps with your ink and your parchment, little scribe. You think you are tracking a simple exchange of silver.

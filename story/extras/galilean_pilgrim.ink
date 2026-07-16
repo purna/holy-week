@@ -1,5 +1,17 @@
+
+// ============================================================
+// CHARACTER: Pilgrim
+ACT: Act I
+CASE: The Missing Donkey
+CASE ID: triumphal_entry
+SOURCE: js/act1_case.js -> NPC 'owner' (Donkey Owner / Sympathiser)
+// ------------------------------------------------------------
+// ============================================================
+//
+
 -> start
 === start ===
+
 We followed him all the way from the Jordan. Our villages emptied out when he walked through.
 They say he is the one promised to break the yoke. Look at the gates—even the children are cutting palm leaves.
 But the soldiers on the battlements... they are watching us like wolves before a strike.

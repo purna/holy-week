@@ -1,3 +1,12 @@
+// ============================================================
+// CHARACTER: John the Disciple
+// ACT: Act II
+// CASE: The End of the Age
+// CASE ID: olivet_discourse
+// SOURCE: js/act2_case.js -> NPC 'john_olivet' (Disciple, Observer)
+// ------------------------------------------------------------
+// ============================================================
+//
 -> start
 === start ===
 The candles are burning down, and he keeps speaking about washing feet and breaking bread like it is a farewell.

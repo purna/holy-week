@@ -50,14 +50,16 @@ Miracle Maker is a collection of browser-based visual effect demos and UI exampl
 ├── artwork/               # Design assets, concept art, graphics
 ├── info/                  # Documentation and metadata
 ├── .kilo/                 # Kilo CLI configuration
-└── tests/                 # Interactive demo pages
+└── mobileA/               # Mobile Version A
+└── mobileB/               # Mobile Version B
+└── desktop/               # Desktop Version
+└── prototypes/           # Interactive demo pages
     ├── fog.html          # Fog effect demo
     ├── dust.html         # Dust particle demo
     ├── day_night.html    # Day/night cycle demo
     ├── landing.html      # Landing page demo
     ├── whatsapp.html     # WhatsApp-style UI demo
     └── test.html         # Test/development page
-```
 
 ## Commit Guidelines
 

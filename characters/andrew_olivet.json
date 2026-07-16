@@ -1,0 +1,11 @@
+{
+  "id": "andrew_olivet",
+  "name": "Andrew",
+  "role": "Disciple, Watcher",
+  "avatar": "👨‍🌾",
+  "truthfulness": 0.9,
+  "faction": "disciples",
+  "bibleRef": "Mark 13:3; John 1:40–42",
+  "background": "One of the twelve apostles, brother of Simon Peter, often portrayed as someone who brings others to Jesus. Sat with Peter, James, and John on the Mount of Olives during the Olivet discourse, focused on the signs of the end and the meaning of Jesus's prophecies of destruction. Acts as a proxy for the player's direct questions about the future.",
+  "factions": ["disciples"]
+}

@@ -1,9 +1,11 @@
 
+import { formatIntro } from './utils.js';
+
 
 // ============================================================
 // CASE: The Empty Tomb  — difficulty 3 — Garden
 // BIBLICAL FOCUS: Matthew 28:1–10, Mark 16:1–8, Luke 24:1–12, John 20:1–18
-// PROPHECY: Psalm 16:10, Hosea 6:2, Jonah 1:17/Matt 12:40, Isaiah 53:10–11
+// PROPHECY: Psalm 16:10 | Hosea 6:2 & Jonah 1:17 | Isaiah 53:10–11
 // ============================================================
 
 export const act4CaseA = {
@@ -37,6 +39,7 @@ export const act4CaseA = {
       fulfilledBy: "Jesus rising before His body could decay, leaving only the burial linens",
       gospelLink: "Acts 2:27–31 — Peter quotes Psalm 16:10 at Pentecost and explicitly applies it to Jesus's resurrection",
       insight: "David wrote Psalm 16 in first person, but Acts 2:29–31 records Peter explaining that David was a prophet who 'seeing what was ahead, spoke about the resurrection of the Messiah, that he was not abandoned to the realm of the dead, nor did his body see decay.' The empty tomb is the physical evidence of this 1,000-year-old promise kept.",
+      explanation: "The resurrection on the third day, before the body could begin to decay, is the ultimate fulfillment of this promise. The empty tomb is its physical proof.",
     },
     {
       reference: "Hosea 6:2",
@@ -47,6 +50,7 @@ export const act4CaseA = {
       fulfilledBy: "Jesus rising on the third day after crucifixion",
       gospelLink: "1 Corinthians 15:4 — Paul writes the resurrection happened 'according to the Scriptures,' citing the third-day pattern",
       insight: "Jesus predicted His own third-day resurrection three times in the Gospels (Matthew 16:21, 17:23, 20:19). He drew on the pattern of Hosea 6:2 and the sign of Jonah (Jonah 1:17, Matthew 12:40). Paul's use of 'according to the Scriptures' (1 Corinthians 15:3–4) is the earliest written attestation that the church understood the resurrection as prophetic fulfilment.",
+      explanation: "Jesus explicitly identified His resurrection with the 'sign of Jonah.' The timing—on the third day—was a consistent prophetic pattern.",
     },
     {
       reference: "Jonah 1:17 / Matthew 12:40",
@@ -57,6 +61,7 @@ export const act4CaseA = {
       fulfilledBy: "Jesus's three days in the tomb, followed by resurrection",
       gospelLink: "Matthew 12:40 — Jesus explicitly identifies Himself with Jonah when challenged for a sign",
       insight: "This is one of the most precise self-fulfilling prophecies in Scripture — Jesus named His own death and resurrection timing using the Jonah metaphor when challenged by Pharisees for miraculous proof. The empty tomb on the third day was the 'sign of Jonah' He had promised.",
+      explanation: "Jesus explicitly identified His resurrection with the 'sign of Jonah.' The timing—on the third day—was a consistent prophetic pattern.",
     },
     {
       reference: "Isaiah 53:10–11",
@@ -67,6 +72,7 @@ export const act4CaseA = {
       fulfilledBy: "Jesus's resurrection — 'prolonging his days' after the sacrifice; 'seeing light' after death",
       gospelLink: "John 20:11–18; Luke 24:13–35 — Jesus appears alive after the suffering",
       insight: "The Suffering Servant song of Isaiah 53 contains a remarkable internal paradox: the servant is 'cut off from the land of the living' (v.8), assigned a grave (v.9), and yet he 'shall see his offspring and prolong his days' (v.10). The only way to reconcile these statements is resurrection. Jesus's post-resurrection appearances fulfilled Isaiah's paradox.",
+      explanation: "This paradox within Isaiah's prophecy—a figure who is killed yet lives on—can only be resolved through resurrection.",
     },
     {
       reference: "Psalm 22:1–31",
@@ -77,6 +83,7 @@ export const act4CaseA = {
       fulfilledBy: "Psalm 22 begins with the crucifixion cry (v.1, quoted by Jesus from the cross) and ends with resurrection proclamation (v.31)",
       gospelLink: "Matthew 27:46 (crucifixion); the closing verses of Psalm 22 look beyond the suffering to vindication",
       insight: "Psalm 22 is a remarkable document: it begins with abandonment and describes crucifixion details (hands and feet pierced, v.16; garments divided by lots, v.18) before ending in triumphant proclamation. The Psalm is both a lament and a resurrection song — which is why Jesus quoted its opening from the cross, perhaps pointing His listeners to its ending.",
+      explanation: "The crucifixion psalm ends not in defeat, but in a proclamation of victory to be declared to future generations.",
     },
     {
       reference: "Isaiah 26:19",
@@ -86,10 +93,11 @@ export const act4CaseA = {
       written: "~700 BC",
       fulfilledBy: "The supernatural opening of the tomb allowing witnesses to see the resurrection result",
       insight: "The stone was not moved to let Jesus out, but to let the world look in. This fulfilled the promise of the dead rising to bring joy to those dwelling in the dust.",
+      explanation: "The stone was not moved to let Jesus out, but to let the world look in. This fulfilled the promise of the dead rising to bring joy to those dwelling in the dust.",
     },
   ],
 
-  intro: `It is early Sunday morning, Nisan 17. Three women — Mary Magdalene, Mary the mother of James, and Salome — have come to the garden tomb at first light to complete the anointing of Jesus's body. They were worried about who would roll the stone away. But when they arrive: the stone is already moved. The Roman guard post is abandoned. The tomb is open, and empty. Two strange figures in white are inside. And then — Mary Magdalene sees someone she mistakes for the gardener, until He speaks her name. You are the investigative scribe. What happened here? And can the evidence in this garden account for the most important claim in history?`,
+  intro: formatIntro(`It is early Sunday morning, Nisan 17. Three women — Mary Magdalene, Mary the mother of James, and Salome — have come to the garden tomb at first light to complete the anointing of Jesus's body. They were worried about who would roll the stone away. But when they arrive: the stone is already moved. The Roman guard post is abandoned. The tomb is open, and **empty**. Two strange figures in white are inside. And then — Mary Magdalene sees someone she mistakes for the gardener, until He speaks her name. You are the investigative scribe. What happened here? And can the evidence in this garden account for the _most important claim in history_?`),
 
   suspects: [
     { id: "mary_magdalene", name: "Mary Magdalene", role: "Disciple, First Witness", avatar: "👩", bibleRef: "John 20:1–18; Mark 16:9" },
@@ -186,6 +194,24 @@ export const act4CaseA = {
       propheticLink: "Isaiah 43:1 — 'I have called you by name; you are mine.' The risen Christ's first post-resurrection act was to call a woman by name — the same woman from whom He had cast seven demons (Luke 8:2). His resurrection announcement went first to the most socially marginalised witness — deliberate and counter-cultural. In a Roman court, a woman's testimony was inadmissible. If the disciples were fabricating a resurrection, they would not have made a woman — and a former demoniac — the primary witness.",
       investigatorNote: "The fact that Mary Magdalene is the primary resurrection witness is powerful evidence of authenticity. No first-century Jewish or Roman author inventing a resurrection story would choose a woman as the lead witness. This detail is counterproductive to fabrication — which is exactly why it's credible.",
     },
+  ],
+
+  lab: [
+    {
+      evidence: "burial_linen",
+      suspect: "mary_magdalene",
+      result: "**Identified as Witness** (Discovered the empty tomb)"
+    },
+    {
+      evidence: "rolled_stone",
+      suspect: "marcus",
+      result: "**Implicated in Failure** (The seal he guarded was broken)"
+    },
+    {
+      evidence: "spice_jars",
+      suspect: "joseph",
+      result: "**Cleared** (His intention was to anoint a body, not hide one)"
+    }
   ],
 
   npcs: [
@@ -342,7 +368,7 @@ contradictions: {},
 // ============================================================
 // CASE: The Guard's Report  — difficulty 3 — The Roman Inquiry
 // BIBLICAL FOCUS: Matthew 28:11–15
-// PROPHECY: Psalm 2:1–4 | Matthew 12:40
+// PROPHECY: Psalm 2:1–2
 // ============================================================
 
 export const act4CaseB = {
@@ -376,6 +402,7 @@ export const act4CaseB = {
       fulfilledBy: "The Roman military and Jewish Sanhedrin combining forces to suppress the resurrection",
       gospelLink: "Matthew 28:12–14",
       insight: "Human institutions frequently coordinate their efforts to lock down the truth, yet God laughs their conspiracies to scorn.",
+      explanation: "The Roman military and the Jewish Sanhedrin collaborating to create a cover-story for the empty tomb is a direct fulfillment of rulers conspiring to suppress God's truth.",
     },
   ],
 
@@ -418,6 +445,35 @@ export const act4CaseB = {
     },
   ],
 
+  evidencePool: [
+    {
+      id: "bribe_shekels",
+      name: "High-Grade Sanctuary Coins",
+      relatedProphecy: "psalm_2_1_2",
+      type: "physical",
+      icon: "💰",
+      desc: "A pouch of high-purity silver coins, the kind used for Temple taxes, found in a Roman guard's possession.",
+    },
+    {
+      id: "sanhedrin_report",
+      name: "Official Sanhedrin Report",
+      type: "analytical",
+      icon: "📜",
+      desc: "The official report filed by the Sanhedrin, claiming the disciples stole the body while the guards slept.",
+    },
+  ],
+  lab: [
+    {
+      evidence: "bribe_shekels",
+      suspect: "sentry_lucas",
+      result: "**Implicated in Bribery** (Possession of the coins links him to the cover-up)"
+    },
+    {
+      evidence: "broken_imperial_seal",
+      suspect: "caiaphas",
+      result: "**Implicated in Conspiracy** (Authored the false report)"
+    }
+  ],
   suspects: [
     {
       id: "sentry_lucas",
@@ -625,7 +681,7 @@ export const act4CaseB = {
 // ============================================================
 // CASE: Peter's Restoration  — difficulty 3 — Sea of Galilee
 // BIBLICAL FOCUS: John 21:1-19
-// PROPHECY: Zechariah 13:7 | Ezekiel 34:11-16
+// PROPHECY: Zechariah 13:7 & Ezekiel 34:11-16
 // ============================================================
 
 export const act4CaseC = {
@@ -659,6 +715,7 @@ export const act4CaseC = {
       fulfilledBy: "Peter's denial and scattering, followed by restoration",
       gospelLink: "Matthew 26:31; John 21:15-19",
       insight: "The scattering of the disciples after Jesus's arrest was prophesied. Peter's restoration shows that God's purposes stand even when human faithfulness fails.",
+      explanation: "Peter's denial was a fulfillment of the 'scattered sheep' prophecy. His restoration by the Sea of Galilee, where Jesus commissions him to 'feed my sheep,' is the fulfillment of the Good Shepherd gathering His flock.",
     },
     {
       reference: "Ezekiel 34:11-16",
@@ -669,10 +726,11 @@ export const act4CaseC = {
       fulfilledBy: "Jesus seeking, rescuing, and commissioning Peter to feed His sheep",
       gospelLink: "John 21:15-17",
       insight: "The imagery of shepherding is central—Jesus seeks Peter, binds his wounds, and commissions him to shepherd others.",
+      explanation: "Peter's denial was a fulfillment of the 'scattered sheep' prophecy. His restoration by the Sea of Galilee, where Jesus commissions him to 'feed my sheep,' is the fulfillment of the Good Shepherd gathering His flock.",
     },
   ],
 
-  intro: `It is the third morning after the resurrection. Seven disciples—including Peter, Thomas, and Nathanael—have returned to Galilee and spent the night fishing on the Sea. As dawn breaks, a figure on the shore calls out: 'Cast the net on the right side, and you will find something.' Reluctantly, they obeyed—and the catch was so large they could not haul it in. When they came ashore, they found the resurrected Jesus waiting with bread and fish. But this was not just breakfast—it was a divine appointment to restore a broken disciple.`,
+  intro: formatIntro(`It is the third morning after the resurrection. Seven disciples—including Peter, Thomas, and Nathanael—have returned to Galilee and spent the night fishing on the Sea. As dawn breaks, a figure on the shore calls out: **'Cast the net on the right side, and you will find something.'** Reluctantly, they obeyed—and the catch was so large they could not haul it in. When they came ashore, they found the resurrected Jesus waiting with bread and fish. But this was not just breakfast—it was a divine appointment to _restore a broken disciple_.`),
 
   suspects: [
     { id: "peter", name: "Peter", role: "Restored Apostle", avatar: "🕊️", bibleRef: "John 21:15-19" },
@@ -743,6 +801,18 @@ export const act4CaseC = {
     },
   ],
 
+  lab: [
+    {
+      evidence: "charcoal_fire",
+      suspect: "peter",
+      result: "**Motive Clarified** (Links his restoration to his earlier denial)"
+    },
+    {
+      evidence: "miraculous_catch",
+      suspect: "thomas",
+      result: "**Identified as Witness** (His doubt led to physical proof)"
+    }
+  ],
   npcs: [
     {
       id: "peter",

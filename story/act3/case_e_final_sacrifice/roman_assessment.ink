@@ -2,6 +2,7 @@
 // CHARACTER: Centurion Longinus
 // ACT: Act III
 // CASE: The Curtain and the Cross
+// CASE ID: crucifixion_site
 // CASE EXPORT: crucifixion_det
 // SOURCE: act3_case_2d.js → NPC 'centurion_longinus'
 // ------------------------------------------------------------

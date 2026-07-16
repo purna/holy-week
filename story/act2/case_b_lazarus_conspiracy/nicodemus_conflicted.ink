@@ -2,6 +2,7 @@
 // CHARACTER: Nicodemus (Conflicted Pharisee)
 // ACT: Act II
 // CASE: The Price of Life
+// CASE ID: lazarus_plot
 // CASE EXPORT: lazarus_plot
 // SOURCE: nicodemus_conflicted.ink
 // BACKGROUND: A member of the Sanhedrin who seeks the truth in secret. He is torn between his position and his growing conviction.

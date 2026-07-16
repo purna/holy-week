@@ -1,5 +1,17 @@
+
+// ============================================================
+// CHARACTER: Caiaphas
+ACT: Act III
+CASE: The Midnight Tribunal
+CASE ID: sanhedrin_trial
+SOURCE: js/act3_case.js -> NPC 'chief_priest' (High Priest)
+// ------------------------------------------------------------
+// ============================================================
+//
+
 -> start
 === start ===
+
 You look at a single man, scribe, and you see a moral puzzle. I look at this city and I see an entire nation facing absolute erasure.
 If the legions move to clear these courts, Sinai becomes a memory. It is expedient that one man should die for the people.
 Do you understand the weight of this chair?

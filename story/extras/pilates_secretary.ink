@@ -1,3 +1,12 @@
+// ============================================================
+// CHARACTER: Pilate's Secretary
+// ACT: Act I
+// CASE: The Overturned Tables
+// CASE ID: temple_cleansing
+// SOURCE: js/act1_case.js -> NPC 'pilates_secretary' (Administrative Recorder)
+// ------------------------------------------------------------
+// ============================================================
+//
 -> start
 === start ===
 State your name and business for the archives, scribe. I am formatting the official titulus for the crossbeam.

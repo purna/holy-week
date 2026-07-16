@@ -2,6 +2,7 @@
 // CHARACTER: Tobias (Galilean Pilgrim / Donkey Owner)
 // ACT: Act I
 // CASE: The Missing Donkey
+// CASE ID: triumphal_entry
 // CASE EXPORT: triumphal_entry
 // SOURCE: act1_case_2d.js → NPC 'owner'
 // BIBLE REFERENCE: Mark 11:3–6 (unnamed owner)

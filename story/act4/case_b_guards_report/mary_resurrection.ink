@@ -2,6 +2,7 @@
 // CHARACTER: Mary (at the Tomb)
 // ACT: Act IV
 // CASE: The Empty Tomb
+// CASE ID: roman_inquiry
 // CASE EXPORT: resurrection
 // SOURCE: act4_case_2d.js → NPC 'mary_magdalene' (dialogueId: mary_resurrection)
 // BIBLE REFERENCE: John 20:1–18; Mark 16:9–11

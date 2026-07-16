@@ -2,6 +2,7 @@
 // CHARACTER: John Mark
 // ACT: Act III
 // CASE: The Broken Cup
+// CASE ID: last_supper
 // CASE EXPORT: last_supper
 // SOURCE: act3_case_2d.js → NPC 'john_mark'
 // BIBLE REFERENCE: Acts 12:12 — later tradition links this house to Mary, John Mark's mother

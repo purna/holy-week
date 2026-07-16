@@ -1,3 +1,12 @@
+// ============================================================
+// CHARACTER: Market Vendor
+// ACT: Act I
+// CASE: The Overturned Tables
+// CASE ID: temple_cleansing
+// SOURCE: js/act1_case.js -> NPC 'market_rumors' (Street Merchant)
+// ------------------------------------------------------------
+// ============================================================
+//
 -> start
 === start ===
 Good day! The market moves faster than news. People are saying strange things.

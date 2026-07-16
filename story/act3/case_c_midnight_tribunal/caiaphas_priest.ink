@@ -2,6 +2,7 @@
 // CHARACTER: Pashhur (Temple Priest on Shift)
 // ACT: Act III/IV
 // CASE: The Curtain and the Cross
+// CASE ID: sanhedrin_trial
 // CASE EXPORT: crucifixion_det
 // SOURCE: act3_case_2d.js → NPC 'temple_priest_pashhur'
 // BIBLE" Matthew 21:42–46, Mark 12:10–12, and Luke 20:17–19.

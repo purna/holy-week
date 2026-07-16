@@ -3,6 +3,7 @@
 // ACT: Act IV
 // CASE: The Imperial Legality
 // CASE ID: roman_trial
+// SOURCE: js/act1_case.js -> NPC 'pontius_pilate' (Roman Prefect)
 // BIBLE REFERENCE: Matthew 27:11-26; John 18:28-40
 // ------------------------------------------------------------
 // PROPHECIES FULFILLED IN THIS CASE:

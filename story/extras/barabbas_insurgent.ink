@@ -1,3 +1,16 @@
+
+// ============================================================
+// CHARACTER: Barabbas
+ACT: Act III
+CASE: The People's Choice
+CASE ID: barabbas_choice
+SOURCE: js/act3_case.js -> NPC 'barabbas_insurgent' / 'barabbas_insurgent_trial' (Released Criminal)
+// ------------------------------------------------------------
+// ============================================================
+//
+
+
+
 -> start
 === start ===
 (A heavy chain rattles against the stone floor of the lower cell as he laughs roughly.)

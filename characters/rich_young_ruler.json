@@ -1,0 +1,10 @@
+{
+  "id": "rich_young_ruler",
+  "name": "Thomas the Rich Young Ruler",
+  "role": "Wealthy Seeker",
+  "avatar": "💰",
+  "truthfulness": 0.7,
+  "bibleRef": "Matthew 19:16-22; Mark 10:17-22; Luke 18:18-23",
+  "background": "A young man of great wealth who ran up to Jesus and asked what he must do to inherit eternal life. He left grieving, unable to give up his riches.",
+  "factions": ["local"]
+}

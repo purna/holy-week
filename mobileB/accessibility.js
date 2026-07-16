@@ -26,6 +26,67 @@ export class AccessibilityManager {
     this.announce(text, urgent === true || urgent === "assertive");
   }
 
+  speakAndHighlight(text, element) {
+    if (!this.ttsEnabled || !('speechSynthesis' in window) || !element) {
+      if (this.ttsEnabled) this._speak(text);
+      return;
+    }
+
+    window.speechSynthesis.cancel();
+
+    // Prepare text by wrapping words in spans
+    const words = text.split(/\s+/);
+    element.innerHTML = '';
+    const wordSpans = [];
+    words.forEach(word => {
+      if (word.trim() !== '') {
+        const span = document.createElement('span');
+        span.textContent = word;
+        element.appendChild(span);
+        element.appendChild(document.createTextNode(' '));
+        wordSpans.push(span);
+      }
+    });
+
+    const utterance = new SpeechSynthesisUtterance(text);
+    let lastHighlightedSpan = null;
+
+    utterance.onboundary = (event) => {
+      if (event.name === 'word') {
+        if (lastHighlightedSpan) {
+          lastHighlightedSpan.classList.remove('highlight');
+        }
+
+        let charCounter = 0;
+        for (const span of wordSpans) {
+          const wordLength = span.textContent.length;
+          if (event.charIndex >= charCounter && event.charIndex < charCounter + wordLength) {
+            span.classList.add('highlight');
+            lastHighlightedSpan = span;
+            break;
+          }
+          charCounter += wordLength + 1; // +1 for space
+        }
+      }
+    };
+
+    utterance.onend = () => {
+      if (lastHighlightedSpan) {
+        lastHighlightedSpan.classList.remove('highlight');
+      }
+    };
+
+    // Optional: Find a better voice
+    const voices = speechSynthesis.getVoices();
+    const desiredVoice = voices.find(voice => voice.name.includes('Google US English') || voice.name.includes('Samantha'));
+    if (desiredVoice) {
+      utterance.voice = desiredVoice;
+    }
+
+    speechSynthesis.speak(utterance);
+  }
+
+
   // ── TEXT-TO-SPEECH ────────────────────────────────────
   _speak(text, rate = 0.9) {
     if (!('speechSynthesis' in window)) return;

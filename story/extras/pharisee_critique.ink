@@ -1,3 +1,12 @@
+// ============================================================
+// CHARACTER: Simon the Pharisee
+// ACT: Act I
+// CASE: The Overturned Tables
+// CASE ID: temple_cleansing
+// SOURCE: js/act1_case.js -> NPC 'pharisee_critique' (Local Civic Judge)
+// ------------------------------------------------------------
+// ============================================================
+//
 -> start
 === start ===
 I am Simon the Pharisee. I return from the synagogue and for some this town calls it conversation.

@@ -1,5 +1,30 @@
 // This file centralizes the DIALOGUE_ID_MAP for all DialogueManager instances.
 // Paths are relative to the project root (e.g., ../story/act1/...)
+
+export const PROFILE_ID_MAP = {
+    "annas": "annas_the_patriarch",
+    "caiaphas": "caiaphas_the_high_priest",
+    "centurion_longinus": "the_execution_detail_soldier",
+    "garrison_guard": "the_execution_detail_soldier",
+    "galilean_pilgrim": "galilean_pilgrim",
+    "jemimah": "jerusalem_local",
+    "judas": "judas_iscariot",
+    "malachi_moneychanger": "temple_money_changer",
+    "maluch": "temple_spy",
+    "pilate_secretary": "pilates_secretary",
+    "pontius_pilate": "pontius_pilate",
+    "rich_young_ruler": "rich_young_ruler",
+    "simon_cyrene": "simon_of_cyrene",
+    "ananias_witness": "ananias_the_false_witness",
+    "barabbas": "barabbas",
+    "john_mark": "john_mark",
+    "joseph_arimathea": "joseph_of_arimathea",
+    "martha": "martha_of_bethany",
+    "mary_magdalene": "mary_magdalene",
+    "nicodemus": "nicodemus",
+    "pashhur": "pashhur_the_priest",
+};
+
 export const DIALOGUE_ID_MAP = {
     // --- Act I: Jerusalem Confrontations ---
     // Case A: The Missing Donkey (Triumphal Entry)
@@ -23,6 +48,9 @@ export const DIALOGUE_ID_MAP = {
     pilates_secretary: '../story/act1/case_b_overturned_tables/pilates_secretary.json',
     pharisee_critique: '../story/act1/case_b_overturned_tables/pharisee_critique.json',
     priest_objection: '../story/act1/case_b_overturned_tables/priest_objection.json',
+    priest_objection_temple: '../story/act1/case_b_overturned_tables/priest_objection_temple.json',
+    guard_report_temple: '../story/act1/case_b_overturned_tables/guard_report_temple.json',
+    pontius_pilate_temple: '../story/act1/case_b_overturned_tables/pontius_pilate_temple.json',
     upset_buyer: '../story/act1/case_b_overturned_tables/money_changer.json',
     rumor_whisper: '../story/act1/case_b_overturned_tables/rumor_whisper.json',
     woman_cloak: '../story/act1/case_b_overturned_tables/woman_cloak.json',
@@ -69,6 +97,7 @@ export const DIALOGUE_ID_MAP = {
     malchus: '../story/act3/case_b_severed_ear/malchus.json',
     secret_visit: '../story/act3/case_b_severed_ear/secret_visit.json',
     peter_defense_simple: '../story/act3/case_b_severed_ear/peter_defense_simple.json',
+    guard_report_gethsemane: '../story/act3/case_b_severed_ear/guard_report_gethsemane.json',
 
     // Case C: The Midnight Tribunal (Sanhedrin Trial)
     caiaphas_midnight: '../story/act3/case_c_midnight_tribunal/caiaphas_priest.json',
@@ -81,11 +110,14 @@ export const DIALOGUE_ID_MAP = {
     pilate_secretary: '../story/act3/case_d_roman_interrogation/pilates_secretary.json',
     roman_soldier: '../story/act3/case_d_roman_interrogation/roman_soldier.json',
     roman_council: '../story/act3/case_d_roman_interrogation/roman_council.json',
+    pontius_pilate_barabbas: '../story/act3/case_d_roman_interrogation/pontius_pilate_barabbas.json',
 
     // Case E: The Final Sacrifice (Crucifixion)
     roman_assessment: '../story/act3/case_e_final_sacrifice/roman_assessment.json',
     simon_cyrene: '../story/act3/case_e_final_sacrifice/simon_cyrene.json',
     temple_curtain: '../story/act3/case_e_final_sacrifice/temple_curtain.json',
+    priest_objection_crucifixion: '../story/act3/case_e_final_sacrifice/priest_objection_crucifixion.json',
+    guard_report_crucifixion: '../story/act3/case_e_final_sacrifice/guard_report_crucifixion.json',
     centurion_witness: '../story/act3/case_e_final_sacrifice/centurion_witness.json',
 
     // --- Act IV: Dawn of the New Age ---
@@ -107,5 +139,8 @@ export const DIALOGUE_ID_MAP = {
 
     // --- System & Metadata ---
     board_review: '../story/system/board_review.json',
-    board_debate: '../story/system/board_debate.json'
+    board_debate: '../story/system/board_debate.json',
+
+    // --- Extras / Extra Encounters ---
+    rich_young_ruler: '../story/extras/rich_young_ruler.json'
 };

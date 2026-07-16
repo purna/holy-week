@@ -2,6 +2,7 @@
 // CHARACTER: Jemimah (Jerusalem Local)
 // ACT: Act I
 // CASE: The Missing Donkey
+// CASE ID: triumphal_entry
 // CASE EXPORT: triumphal_entry
 // SOURCE: act1_case_2d.js → NPC 'local_skeptic'
 // BIBLE REFERENCE: Matthew 21:10-11

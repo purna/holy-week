@@ -1,3 +1,12 @@
+// ============================================================
+// CHARACTER: Pontius Pilate
+// ACT: Act I
+// CASE: The Overturned Tables
+// CASE ID: temple_cleansing
+// SOURCE: js/act1_case.js -> NPC 'pontius_pilate' (Roman Prefect)
+// ------------------------------------------------------------
+// ============================================================
+//
 -> start
 === start ===
 Am Am I an expert in your laws, Judean? Your priests drag this man to my praetorium at dawn and expect me to sign a death warrant for words.

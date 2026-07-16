@@ -1,3 +1,12 @@
+// ============================================================
+// CHARACTER: Thomas (Vineyard Parable)
+// ACT: Act II
+// CASE: The Price of Life
+// CASE ID: lazarus_plot
+// SOURCE: js/act2_case.js -> NPC 'parable_vineyard' (Analytical Disciple)
+// ------------------------------------------------------------
+// ============================================================
+//
 -> start
 === start ===
 Thomas. Ask more questions than I answer. The honest ones.

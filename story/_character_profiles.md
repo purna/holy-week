@@ -249,3 +249,44 @@ This reference manual structures all 36 narrative archetypes into the 12 distinc
 * **Dialogue File:** [teaching_mount.ink](teaching_mount.ink)
 * **Identity:** A collective voice representing the crowd's perspective on Jesus's Olivet discourse.
 * **Linguistic Style:** Observational, somewhat confused, yet attentive to prophetic implications.
+
+---
+
+# 🔍 Cross-Reference: Character Profiles vs. `js/act*_case.js`
+
+Generated audit of `characters/*.json` against `profileFile` references in `js/act1_case.js`, `js/act2_case.js`, `js/act3_case.js`, and `js/act4_case.js`.
+
+* **Character JSON files present:** 54
+* **Distinct `profileFile` references used:** 34
+* **Character files NOT referenced by any act case (unused):** 20
+
+## Unused Character Profiles (present in `/characters/` but not referenced in `act*_case.js`)
+
+| Character JSON | Identity | Likely Role / Source |
+|---|---|---|
+| `andrew_disciple` | Andrew the Disciple | Act II olivet_discourse (brother of Peter) |
+| `andrew_olivet` | Andrew (Olivet) | Act II olivet_discourse watcher (referenced via `storyFile`, profile unused) |
+| `city_gossip` | City Gossip | Street-level rumor source |
+| `devout_follower` | Devout Follower | Supporter / witness |
+| `displaced_merchant` | Displaced Merchant | Temple cleansing casualty |
+| `execution_soldier` | Execution Detail Soldier | Act III crucifixion_site (added from expanded roster) |
+| `galilean_pilgrim` | Galilean Pilgrim | Act I triumphal_entry (added from expanded roster) |
+| `jerusalem_local` | Jerusalem Local | Act I triumphal_entry / temple_cleansing (added from expanded roster) |
+| `lucas_sentry` | Lucas the Sentry | Act IV roman_inquiry tomb-guard bribe (added from expanded roster) |
+| `market_informant` | Market Informant / Bribe-Taker | Act I/IV transactional informant |
+| `market_vendor` | Market Vendor | Act I temple_cleansing gossip node |
+| `nathan_fig_tree` | Nathan the Gardener (fig tree) | Act I fig_tree_incident (profile duplicated with `nathan_gardener`) |
+| `sadducee_authority` | Sadducean Authority | Temple/Sanhedrin opposition |
+| `secret_visit` | Secret Visit | Gethsemane healing of Malchus (`secret_visit.ink`) |
+| `senior_scribe` | Senior Scribe / Investigative Mentor | Acts IV–V board debate & review (added from expanded roster) |
+| `simon_cyrene` | Simon of Cyrene | Act III crucifixion_site cross-bearer |
+| `simon_pharisee` | Simon the Pharisee | Act I/II authority challenger |
+| `temple_merchant` | Temple Merchant | Temple economy figure |
+| `temple_priest` | The Temple Priest | Act I/III Sinai conservative objector |
+| `upper_room_prep` | Upper Room Prep | Last Supper hosting logistics |
+
+## Notes
+* Every `profileFile` referenced in `act*_case.js` resolves to an existing `characters/*.json` (no missing-profile errors).
+* `nathan_gardener` and `nathan_fig_tree` describe the same character (Nathan the Gardener); `nathan_fig_tree.json` was empty and has been populated.
+* `andrew_olivet.json` and `nathan_fig_tree.json` were empty (0 bytes) and have been populated with profiles.
+* `galilean_pilgrim`, `jerusalem_local`, `lucas_sentry`, `execution_soldier`, and `senior_scribe` were missing from `/characters/` and have been added from `__docs/character_profiles_expanded.md`.

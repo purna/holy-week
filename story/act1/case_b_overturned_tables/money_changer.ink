@@ -2,6 +2,7 @@
 // CHARACTER: Malachi (Money Changer)
 // ACT: Act I
 // CASE: The Overturned Tables
+// CASE ID: temple_cleansing
 // CASE EXPORT: temple_cleansing
 // SOURCE: act1_case_2d.js → NPC 'none'
 // BACKGROUND: A licensed merchant operating under high-priestly authorization. His business scales on demanding steep transaction rates to exchange foreign pilgrim coins into Tyrian shekels.
