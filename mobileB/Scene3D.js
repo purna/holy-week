@@ -626,12 +626,27 @@ export class Scene3D {
                 const c = this.ui.cm.getActiveCase();
                 const prog = this.ui.cm.getCaseProgress(c?.id);
                 if (prog) {
-                    if (!prog.collectedEvidence) prog.collectedEvidence = [];
-                    if (!prog.collectedEvidence.includes(pickup.id)) {
-                        prog.collectedEvidence.push(pickup.id);
-                        // Award 5 points per evidence collected
-                        this.ui.cm.progress.totalScore = (this.ui.cm.progress.totalScore || 0) + 5;
-                        this.ui.es.collect(pickup.id);
+                    const isNewSceneCollect = this.ui.cm.recordSceneCollectedEvidence
+                        ? this.ui.cm.recordSceneCollectedEvidence(pickup.id, c?.id)
+                        : (() => {
+                            if (!prog.collectedEvidence) prog.collectedEvidence = [];
+                            if (prog.collectedEvidence.includes(pickup.id)) return false;
+                            prog.collectedEvidence.push(pickup.id);
+                            if (typeof this.ui.cm._saveProgress === "function") this.ui.cm._saveProgress();
+                            return true;
+                        })();
+
+                    if (isNewSceneCollect) {
+                        // Award 5 points per evidence collected (persisted)
+                        if (typeof this.ui.cm.addScore === "function") {
+                            this.ui.cm.addScore(5);
+                        } else {
+                            this.ui.cm.progress.totalScore = (this.ui.cm.progress.totalScore || 0) + 5;
+                            if (typeof this.ui.cm._saveProgress === "function") this.ui.cm._saveProgress();
+                            if (typeof this.ui.cm._refreshMetricsUI === "function") this.ui.cm._refreshMetricsUI();
+                        }
+                        if (typeof this.ui.es.collect === "function") this.ui.es.collect(pickup.id);
+                        else if (typeof this.ui.es.discover === "function") this.ui.es.discover(pickup.id);
                         this.ui.renderLab();
                         this.ui.renderPeople();
                     }

@@ -124,7 +124,7 @@ export const act3CaseA = {
     {
       id: "cup_fragments",
       name: "Shattered Clay Cup",
-      relatedProphecy: "jeremiah_19_10_11",
+      relatedProphecy: "",
       icon: "🍷",
       type: "physical",
       icon: "🥃",
@@ -138,7 +138,7 @@ export const act3CaseA = {
     {
       id: "water_jug",
       name: "Large Stone Water Jug",
-      relatedProphecy: "isaiah_52_4_5",
+      relatedProphecy: "",
       type: "physical",
       icon: "🫙",
       location: "Upper Room Entrance Landing",
@@ -221,6 +221,7 @@ export const act3CaseA = {
       hasDialogue: true,
       storyFile: "john_disciple",
       unlocksEvidence: ["bread_crumbs", "new_covenant_declaration", "betrayal_dipped_bread"],
+      revealsProphecy: "jeremiah_31_31_34",
       background: "John Mark is the teenage son of Mary, the owner of this Jerusalem house. He is educated, observant, and later travels with Paul before writing the Gospel of Mark — which scholars believe contains Peter's eyewitness accounts. He was in and out of the upper room all afternoon.",
       dialogue: {
         neutral: "My mother's house was chosen for this meal. I was helping prepare the room all afternoon.",
@@ -252,6 +253,7 @@ export const act3CaseA = {
       hasDialogue: true,
       storyFile: "rhoda_servant",
       unlocksEvidence: ["water_jug", "cup_fragments"],
+      revealsProphecy: "exodus_12_1_14",
       background: "Rhoda is a young servant in the household — the same Rhoda who will later be so astonished at Peter's miraculous release from prison that she forgets to open the door (Acts 12:13–15). She is earnest, perceptive, and loyal to the household.",
       dialogue: {
         neutral: "I prepared the room from midday. Everything was in order when Jesus and his twelve arrived.",
@@ -315,6 +317,7 @@ export const act3CaseA = {
         text: "The two pieces of evidence form a timeline: Judas received payment from the priests before the meal. He sat at the table with Jesus — who gave him the honoured sop, making his betrayal explicit. He then left.",
         insight: "Psalm 41:9, quoted by Jesus at the table, was written 1,000 years earlier. The entire sequence — eating together, the betrayal, the coins — was prophesied.",
         isKey: true,
+        revealsProphecy: "psalm_41_9",
         bibleRef: "Psalm 41:9; John 13:18; Zechariah 11:12–13",
       },
     },
@@ -505,6 +508,7 @@ export const act3CaseB = {
       hasDialogue: true,
       storyFile: "malchus",
       unlocksEvidence: ["abandoned_linen", "dropped_torch"],
+      revealsProphecy: "isaiah_53_7",
       background: "The confidential agent of Caiaphas[cite: 1]. He was at the front of the line holding the warrant when Simon Peter drawing a hidden blade ambushed him in the dark. He is dealing with acute cognitive dissonance after an enemy healed his wound[cite: 1].",
       dialogue: {
         neutral: "The tactical entry succeeded. The prisoner surrendered without demanding a siege.",
@@ -583,6 +587,7 @@ export const act3CaseB = {
         text: "The placement of the dropped torch and the abandoned linen show a split path of panic.",
         insight: "While the arresting party was knocked off balance, the younger followers of Jesus scattered into the darkness in utter terror, leaving their belongings behind.",
         isKey: false,
+        revealsProphecy: "zechariah_13_7",
         bibleRef: "Mark 14:50",
       },
     },
@@ -732,7 +737,7 @@ export const act3CaseC = {
     {
       id: "false_scroll",
       name: "Conflicting Depositions",
-      relatedProphecy: "",
+      relatedProphecy: "psalm_27_12",
       type: "analytical",
       icon: "📜",
       location: "Council Chamber",
@@ -849,13 +854,31 @@ export const act3CaseC = {
     },
   ],
 
-  deductions: {
+   deductions: {
     "rooster_feather+torn_robe": {
       timeline: {
         text: "Peter's third denial coincided with the High Priest's dramatic tear of his robes—two moments of judgment on the same night.",
         insight: "While the tribunal pronounced condemnation on the Son of God, a disciple pronounced condemnation on himself through denial.",
         isKey: true,
         bibleRef: "Matthew 26:74-75; 26:65",
+      },
+    },
+    "torn_robe+false_scroll": {
+      link: {
+        text: "The torn high-priestly robe and the conflicting witness testimonies together reveal the orchestrated nature of the trial.",
+        insight: "Caiaphas's own actions—tearing his robes at the 'right' moment—combined with Ananias's paid testimony, expose the pre-planned condemnation of Jesus.",
+        isKey: true,
+        revealsProphecy: "isaiah_50_6",
+        bibleRef: "Matthew 26:59-68; Isaiah 50:6",
+      },
+    },
+    "false_scroll+torn_robe": {
+      compare: {
+        text: "The false scroll's contradictory testimonies are laid bare against the torn robe's evidence of the High Priest's emotional manipulation.",
+        insight: "Psalm 27:12 and Psalm 35:11 both warn of malicious witnesses rising up. Ananias's paid testimony, exposed as inconsistent, is a direct fulfillment of these warnings.",
+        isKey: true,
+        revealsProphecy: "psalm_27_12",
+        bibleRef: "Matthew 26:59-61; Psalm 27:12; Psalm 35:11",
       },
     },
     "false_scroll+charcoal_remains": {
@@ -974,7 +997,7 @@ export const act3CaseD = {
       id: "barabbas_warrant",
       name: "The Insurgent's Dossier",
       type: "analytical",
-      relatedProphecy: "",
+      relatedProphecy: "isaiah_53_3",
       icon: "⚔️",
       location: "Antonia Fortress Record Room",
       desc: "A Roman arrest record for 'Jesus Barabbas.' Charges include insurrection, murder, and robbery. He is an ultra-nationalist zealot.",
@@ -1013,6 +1036,7 @@ export const act3CaseD = {
        bibleRef: "Mark 15:6-15",
        hasDialogue: true,
        storyFile: "barabbas_insurgent",
+       unlocksSuspects: ["barabbas_insurgent"],
        unlocksEvidence: ["barabbas_warrant"],
     }
   ],
@@ -1031,6 +1055,7 @@ export const act3CaseD = {
         text: "Rome's dossier on Barabbas and Pilate's public disavowal reveal the ultimate legal irony.",
         insight: "The state released a proven enemy of Rome (Barabbas) while executing one they admitted was innocent (Jesus) to appease a crowd.",
         isKey: true,
+        revealsProphecy: "isaiah_53_3",
         bibleRef: "Mark 15:7, 14",
       }
     }
@@ -1172,7 +1197,7 @@ export const act3CaseE = {
       id: "shattered_limestone",
       name: "Shattered Limestone Fragment",
       type: "physical",
-      icon: "🪨",
+      relatedProphecy: "psalm_34_20",
       location: "Golgotha Basal Rift",
       desc: "A freshly sheared section of Jerusalem limestone showing a sharp, jagged vertical fracture path triggered by a massive, sudden seismic wave.",
       bibleRef: "Matthew 27:51 — 'The earth shook, the rocks split and the tombs broke open.'",
@@ -1240,6 +1265,7 @@ export const act3CaseE = {
       hasDialogue: true,
       storyFile: "roman_assessment",
       unlocksEvidence: ["split_dice", "pierced_spear"],
+      revealsProphecy: "psalm_34_20",
       background: "A battle-hardened Roman officer assigned to the Antonia Fortress[cite: 1]. He has supervised dozens of routine public deterrence executions[cite: 2]. He stood directly in front of the central cross all afternoon and ordered the final spear thrust[cite: 3].",
       dialogue: {
         neutral: "The execution details were carried out according to imperial protocols. The prisoner is dead.",
@@ -1265,8 +1291,10 @@ export const act3CaseE = {
       truthfulness: 0.4,
       bibleRef: "Luke 23:45; Matthew 27:51",
       hasDialogue: true,
-      storyFile: "caiaphas_priest",
+      storyFile: "temple_curtain",
+      unlocksSuspects: ["temple_priest_pashhur"],
       unlocksEvidence: ["torn_veil_thread", "shattered_limestone"],
+      revealsProphecy: "amos_8_9",
       background: "A serving priest from the course of Abijah, responsible for maintaining ritual protocols inside the Holy Place on the afternoon of Passover Eve[cite: 2, 5]. He was inside the Sanctuary when the earthquake struck at 3:00 PM[cite: 3, 5, 7].",
       dialogue: {
         neutral: "The Passover sacrifices proceeded in the inner court without structural delay. The Temple remains secure.",
@@ -1296,6 +1324,7 @@ export const act3CaseE = {
       hasDialogue: true,
       storyFile: "joseph_arimathea",
       unlocksEvidence: ["linen_shroud_receipt"],
+      revealsProphecy: "isaiah_53_9",
       background: "A prominent, wealthy member of the Sanhedrin council who secretly looked for the Kingdom of God[cite: 2, 7]. He opposed the late-night illegal tribunal of Caiaphas but remained silent until the crucifixion forced him to act[cite: 2, 7].",
       dialogue: {
         neutral: "I have provided a legal, clean resting place for the teacher's body in my own garden estate.",
@@ -1439,6 +1468,7 @@ export const act3CaseE = {
         text: "The combination of the soldiers' gambling dice and the dynamic spear wound documents the calculated mechanical nature of Roman execution protocol running directly into a sudden medical paradox.",
         insight: "While the guards routinely parsed out His garments to fulfill Psalm 22:18, the sudden water and blood discharge clinically proved that Jesus died of a ruptured heart before His legs could be broken, preserving the Passover Lamb motif.",
         isKey: true,
+        revealsProphecy: "psalm_22_16_18",
         bibleRef: "John 19:23–34; Psalm 22:18; Exodus 12:46",
       },
     },
@@ -1447,6 +1477,7 @@ export const act3CaseE = {
         text: "The split limestone on Golgotha and the torn threads of the inner sanctuary veil form a perfectly synchronized tectonic and theological timeline.",
         insight: "At exactly 3:00 PM, the localized seismic wave that fractured the rocks of Golgotha simultaneously struck the Temple foundations, ripping the palm-thick veil from top to bottom to signify that access to God's presence was now completely open.",
         isKey: true,
+        revealsProphecy: "amos_8_9",
         bibleRef: "Matthew 27:51; Luke 23:45; Mishnah Shekalim 8:5",
       },
     },
@@ -1455,6 +1486,7 @@ export const act3CaseE = {
         text: "The soldiers gambling for cheap garments at the foot of the cross sits in stark contrast with a wealthy counselor paying a premium price for a fine linen shroud.",
         insight: "This structural transition directly bridges the binary paradox of Isaiah 53:9—moving Jesus instantly from the lowest status of a disgraced criminal to the high-society burial honors of a rich man's private garden estate.",
         isKey: true,
+        revealsProphecy: "isaiah_53_9",
         bibleRef: "Isaiah 53:9; Mark 15:46; Matthew 27:57",
       },
     },

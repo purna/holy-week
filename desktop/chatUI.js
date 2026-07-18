@@ -39,6 +39,7 @@ export class ChatUI {
           ${m.extra?.evidenceTag ? `<span class="evidence-tag-badge ${m.extra.isKey ? 'key' : ''}">${m.extra.evidenceTag} ${m.extra.evidenceName || ''}</span>` : ""}
           ${m.extra?.breakthrough ? `<span class="breakthrough-badge">⚡ Breakthrough</span>` : ""}
           ${m.extra?.revealedClue ? `<span class="clue-badge">🔍 New clue</span>` : ""}
+          ${m.extra?.revealedProphecy ? `<span class="prophecy-badge">🔮 Prophecy Revealed</span>` : ""}
         </div>
         ${m.type === 'verdict' ? this._renderVerdict(m.extra.result) : ""}
       </div>`;
@@ -101,18 +102,69 @@ export class ChatUI {
       btn.addEventListener("click", () => {
         const npcId = btn.dataset.npc;
         const npc = this.npcs.getNPC(npcId);
+
+        const handleUnlocks = () => {
+          let count = 0;
+
+          if (Array.isArray(npc?.unlocksEvidence)) {
+            npc.unlocksEvidence.forEach(id => {
+              const alreadyCollected = typeof this.es.isCollected === "function" ? this.es.isCollected(id) : false;
+              if (alreadyCollected) return;
+              const discovered = this.es.discover(id);
+              const evidence = discovered || (typeof this.es.getById === "function" ? this.es.getById(id) : null);
+              this.addSystem(`🔓 New clue: ${evidence?.name || id}`, npcId);
+              count++;
+            });
+          }
+
+          if (Array.isArray(npc?.unlocksSuspects)) {
+            npc.unlocksSuspects.forEach(suspectId => {
+              const wasUnlocked = typeof this.npcs.caseManager?.isSuspectUnlocked === "function"
+                ? this.npcs.caseManager.isSuspectUnlocked(suspectId)
+                : !!this.npcs.getState?.(suspectId)?.isSuspectUnlocked;
+
+              if (typeof this.npcs.unlockSuspect === "function") {
+                this.npcs.unlockSuspect(suspectId);
+              } else if (typeof this.npcs.caseManager?.unlockSuspect === "function") {
+                this.npcs.caseManager.unlockSuspect(suspectId);
+              }
+              if (this.onAction) this.onAction({ type: "reveal_suspect", suspectId, npcId });
+
+              const isUnlocked = typeof this.npcs.caseManager?.isSuspectUnlocked === "function"
+                ? this.npcs.caseManager.isSuspectUnlocked(suspectId)
+                : !!this.npcs.getState?.(suspectId)?.isSuspectUnlocked;
+              if (!isUnlocked || wasUnlocked) return;
+
+              const suspect = this.npcs.getNPC(suspectId);
+              this.addSystem(`⚖️ New suspect identified: ${suspect ? suspect.name : suspectId}`, npcId);
+              count++;
+            });
+          }
+
+          return count;
+        };
+
         const loadedStory = this.dm.getStory(npcId);
         if (this.dm && npc && loadedStory) {
           const story = this.dm.createStory(npcId);
-          this.dm.openDialogue(npc, story, 
-            () => this._refreshNPCFeed(npcId, container),
+          this.dm.openDialogue(npc, story,
+            () => {
+              const unlocked = handleUnlocks();
+              if (this.onAction) this.onAction({ type: "talk_complete", npcId, unlocked });
+              this._refreshNPCFeed(npcId, container);
+            },
             (text, type) => this.addMessage(type === 'player' ? 'Investigator' : npc.name, text, type, {}, npcId)
           );
         } else {
-          const result = this.npcs.talk(npcId);
+          const talkFn =
+            (typeof this.npcs.talkProgressive === "function" && this.npcs.talkProgressive.bind(this.npcs)) ||
+            (typeof this.npcs.talk === "function" && this.npcs.talk.bind(this.npcs));
+          const result = talkFn ? talkFn(npcId) : null;
           if (result) {
+            const unlocked = handleUnlocks();
             this.addMessage(result.speaker, result.text, "npc", { wasCorrected: result.wasCorrected }, npcId);
             this._refreshNPCFeed(npcId, container);
+            if (this.onAction) this.onAction({ type: "talk_complete", npcId, unlocked });
           }
         }
       });
@@ -137,6 +189,7 @@ export class ChatUI {
           const evidence = this.es.getById(evId);
           this.addMessage(result.speaker, result.text, "npc", { 
             revealedClue: result.revealedClue,
+            revealedProphecy: result.revealedProphecy,
             evidenceTag: evidence?.icon || "🔍",
             evidenceName: evidence?.name
           }, npcId);
@@ -165,7 +218,7 @@ export class ChatUI {
             resultPanel.innerHTML = html;
             this.challengeResultsByNPC[npcId] = html;
           } else {
-            this.addMessage(result.speaker, result.text, "npc", { breakthrough: result.breakthrough }, npcId);
+            this.addMessage(result.speaker, result.text, "npc", { breakthrough: result.breakthrough, revealedProphecy: result.revealedProphecy }, npcId);
             this._refreshNPCFeed(npcId, container);
           }
         }

@@ -7,6 +7,7 @@
     border-radius: var(--radius);
     padding: 14px;
     margin-top: 4px;
+    margin-bottom: 24px;
 }
 
 .accuse-title {
@@ -55,7 +56,6 @@
 .suspect-btn.locked {
     opacity: 0.4;
     filter: grayscale(1);
-    cursor: not-allowed;
     border-style: dashed;
     background: var(--surface);
 }
@@ -92,6 +92,100 @@
     /* horizontal */
     align-items: center;
     /* vertical */
+}
+
+.suspect-accordion {
+    margin-bottom: 8px;
+}
+
+.suspect-details {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+    background: var(--surface);
+    border: 1.5px solid var(--border2);
+    border-top: none;
+    border-radius: 0 0 var(--radius) var(--radius);
+    padding: 0 14px;
+}
+
+.suspect-accordion.expanded .suspect-details {
+    max-height: 300px;
+    padding: 12px 14px;
+}
+
+.suspect-details-content {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.suspect-detail-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8rem;
+}
+
+.suspect-detail-label {
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+}
+
+.suspect-detail-value {
+    font-weight: 600;
+}
+
+.suspect-detail-notes {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    font-style: italic;
+    padding: 8px;
+    background: var(--surface2);
+    border-radius: var(--radius);
+}
+
+.suspect-action-row {
+    margin-top: 4px;
+}
+
+.accuse-btn {
+    width: 100%;
+    padding: 10px 14px;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius);
+    font-size: 0.88rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: opacity 0.15s, transform 0.12s;
+}
+
+.accuse-btn:hover:not([disabled]) {
+    opacity: 0.9;
+}
+
+.accuse-btn:active:not([disabled]) {
+    transform: scale(0.97);
+}
+
+.accuse-btn.locked,
+.accuse-btn[disabled] {
+    background: var(--text-muted);
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.accordion-chevron {
+    margin-left: auto;
+    font-size: 0.7rem;
+    transition: transform 0.2s ease;
+    color: var(--text-muted);
+}
+
+.suspect-accordion.expanded .accordion-chevron {
+    transform: rotate(90deg);
 }
 
 

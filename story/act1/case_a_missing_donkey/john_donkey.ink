@@ -27,4 +27,6 @@ The donkey tracks lead right down the western slope. We followed them all the wa
 * [Continue.] -> closing
 
 === closing ===
-Everything is happening as it was written. We are just witnesses.-> DONE
+Everything is happening as it was written. We are just witnesses.
+
+-> DONE

@@ -112,6 +112,7 @@ export class NPCSystem {
         memory: [],
         hasFailedChallenge: false,
         correctedLies: [],
+        talkStep: 0,
         isSuspect: npc.isSuspect || false,
         isSuspectUnlocked: npc.isSuspectUnlocked || discovered.includes(npc.id) || npc.id === "none"
       };
@@ -128,6 +129,7 @@ export class NPCSystem {
             memory: [],
             hasFailedChallenge: false,
             correctedLies: [],
+            talkStep: 0,
             isSuspect: true,
             isSuspectUnlocked: discovered.includes(s.id) || s.id === "none"
           };
@@ -150,9 +152,17 @@ export class NPCSystem {
   }
 
   unlockSuspect(npcId) {
+    console.log(`[NPCSystem] unlockSuspect called for: ${npcId}, activeCaseId: ${this.caseManager?.activeCaseId}`);
     const state = this.getState(npcId);
     if (state) {
       state.isSuspectUnlocked = true;
+    }
+    if (typeof this.caseManager?.discoverSuspect === "function") {
+      console.log(`[NPCSystem] Calling caseManager.discoverSuspect for: ${npcId}`);
+      this.caseManager.discoverSuspect(npcId);
+    } else if (typeof this.caseManager?.unlockSuspect === "function") {
+      console.log(`[NPCSystem] Calling caseManager.unlockSuspect for: ${npcId}`);
+      this.caseManager.unlockSuspect(npcId);
     }
   }
 
@@ -182,6 +192,43 @@ export class NPCSystem {
 
     this._addMemory(npcId, { type: "talk", mood });
     return { speaker: npc.name, text: node, mood };
+  }
+
+  // Ordered dialogue stages used when no ink story is available.
+  // Each Talk click advances one stage; 'repeat' loops on itself.
+  static DIALOGUE_STAGES = ["neutral", "cautious", "pressured", "exposed", "repeat"];
+
+  /**
+   * Progressive talk for NPCs whose dialogue is supplied as a plain object
+   * (no ink story JSON). Advances one stage per Talk click. At the final
+   * 'repeat' stage it keeps repeating the same line.
+   */
+  talkProgressive(npcId) {
+    const npc = this.getNPC(npcId);
+    const state = this.getState(npcId);
+    if (!npc || !state || !npc.dialogue) return null;
+
+    const stages = NPCSystem.DIALOGUE_STAGES.filter(s => npc.dialogue[s] != null);
+    if (stages.length === 0) return null;
+
+    const step = Math.min(state.talkStep, stages.length - 1);
+    const stage = stages[step];
+    // Once we reach the last stage (repeat), stop advancing so it loops.
+    if (step < stages.length - 1) state.talkStep += 1;
+
+    const node = npc.dialogue[stage];
+    let text;
+    let wasCorrected = false;
+    if (node && typeof node === "object" && node.text) {
+      wasCorrected = state.correctedLies.includes(stage);
+      text = wasCorrected ? (node.correction || node.text) : node.text;
+      this._addMemory(npcId, { type: "talk", stage, isLie: node.isLie && !wasCorrected });
+    } else {
+      text = node;
+      this._addMemory(npcId, { type: "talk", stage });
+    }
+
+    return { speaker: npc.name, text, mood: stage, stage, wasCorrected };
   }
 
   // Show evidence to NPC — they react based on their role + truthfulness

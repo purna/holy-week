@@ -1,92 +1,31 @@
 {
-  "inkVersion": 21,
-  "_comments": {
-    "story": "Act I - The regret and resilience of Simon Peter after the denial.",
-    "characters": [
-      "Simon Peter"
-    ],
-    "bible_verses": "Matthew 26:33-35, 69-75; Luke 22:61-62",
-    "prophecies": "Zechariah 13:7 - 'Strike the shepherd, and the sheep will be scattered.'"
+  "start": {
+    "content": "I drew the sword when the guards came for Him in Gethsemane. I struck the servant of the high priest and cut off his ear. I was ready for a fight. He was not.",
+    "choices": [
+      { "text": "Why did you attack?", "destination": "why_attack" },
+      { "text": "What did Jesus do next?", "destination": "jesus_response" }
+    ]
   },
-  "root": [
-    [
-      {
-        "->": "start"
-      },
-      [
-        "done",
-        {
-          "#f": 5,
-          "#n": "g-0"
-        }
-      ],
-      null
-    ],
-    "done",
-    {
-      "start": [
-        [
-          "^I am Simon Peter. I do not count words when answers were never final.",
-          "\n",
-          "^I followed him for three years. I healed others, asked impossible things, and watched him do things no teacher should be able to do.",
-          "\n",
-          "^Then the rooster crowed. I denied him three times and left.",
-          "\n",
-          "^I am still here, which is either resilience or foolishness. You decide.",
-          "\n",
-          "ev",
-          "str",
-          "^What did the look mean?",
-          "/str",
-          "/ev",
-          {
-            "*": ".^.c-0",
-            "flg": 20
-          },
-          "ev",
-          "str",
-          "^How does failure start again?",
-          "/str",
-          "/ev",
-          {
-            "*": ".^.c-1",
-            "flg": 20
-          },
-          {
-            "c-0": [
-              "^ ",
-              {
-                "->": "closing"
-              },
-              "\n",
-              {
-                "#f": 5
-              }
-            ],
-            "c-1": [
-              "^ ",
-              {
-                "->": "closing"
-              },
-              "\n",
-              {
-                "#f": 5
-              }
-            ]
-          }
-        ],
-        {
-          "#f": 1
-        }
-      ],
-      "closing": [
-        "done",
-        {
-          "#f": 1
-        }
-      ],
-      "#f": 1
-    }
-  ],
-  "listDefs": {}
+  "why_attack": {
+    "content": "I thought this was the moment to defend Him. We had seen the crowd, the threats, the plotting. I believed force was the only language left.",
+    "choices": [
+      { "text": "And was it?", "destination": "not_the_way" }
+    ]
+  },
+  "jesus_response": {
+    "content": "He told me to put the sword away. Then He touched Malchus and healed the ear I had severed. In the middle of an arrest, He chose mercy over violence.",
+    "choices": [
+      { "text": "That changed everything.", "destination": "not_the_way" }
+    ]
+  },
+  "not_the_way": {
+    "content": "Yes. He said those who live by the sword die by the sword. I wanted to protect Him with steel, but He submitted to the Father's will and stopped the bloodshed.",
+    "choices": [
+      { "text": "So this was no rebellion.", "destination": "closing" }
+    ]
+  },
+  "closing": {
+    "content": "No rebellion. No insurrection. Only betrayal, fear, and a King who healed His enemy while being led away.",
+    "choices": []
+  }
 }

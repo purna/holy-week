@@ -51,13 +51,15 @@ export const DIALOGUE_ID_MAP = {
     priest_objection_temple: '../story/act1/case_b_overturned_tables/priest_objection_temple.json',
     guard_report_temple: '../story/act1/case_b_overturned_tables/guard_report_temple.json',
     pontius_pilate_temple: '../story/act1/case_b_overturned_tables/pontius_pilate_temple.json',
-    upset_buyer: '../story/act1/case_b_overturned_tables/money_changer.json',
+    upset_buyer: '../story/act1/case_b_overturned_tables/upset_buyer.json',
     rumor_whisper: '../story/act1/case_b_overturned_tables/rumor_whisper.json',
     woman_cloak: '../story/act1/case_b_overturned_tables/woman_cloak.json',
+    corrupt_seller: '../story/act1/case_b_overturned_tables/corrupt_seller.json',
 
     // Case C: The Barren Fig Tree
     nathan_fig_tree: '../story/act1/case_c_fig_tree_incident/nathan_fig_tree.json',
     local_traveler_fig_tree: '../story/act1/case_c_fig_tree_incident/local_traveler.json',
+    local_traveler: '../story/act1/case_c_fig_tree_incident/local_traveler.json',
     peter_fig_tree: '../story/act1/case_c_fig_tree_incident/peter_fig_tree.json',
     john_fig_tree: '../story/act1/case_c_fig_tree_incident/john_fig_tree.json',
 
@@ -66,7 +68,8 @@ export const DIALOGUE_ID_MAP = {
     // --- Act II: The Plots ---
     // Case A: The Silenced Teacher (Temple Authority)
     scribe_intro: '../story/act2/case_a_silenced_teacher/scribe_intro.json',
-    nathanael_pharisee: '../story/act2/case_a_silenced_teacher/nathanael_pharisee.json',
+    nathanael_pharisee: '../story/act2/case_a_silenced_teacher/simon_pharisee_authority.json',
+    simon_pharisee_authority: '../story/act2/case_a_silenced_teacher/simon_pharisee_authority.json',
     caiaphas_temple: '../story/act2/case_a_silenced_teacher/caiaphas_priest.json',
     parable_meaning: '../story/act2/case_a_silenced_teacher/parable_meaning.json',
     parable_vineyard: '../story/act2/case_a_silenced_teacher/parable_vineyard.json',
@@ -84,6 +87,8 @@ export const DIALOGUE_ID_MAP = {
 
     // Case C: The End of the Age (Olivet Discourse)
     andrew_olivet: '../story/act2/case_c_olivet_discourse/andrew_olivet.json',
+    peter_olivet: '../story/act2/case_c_olivet_discourse/peter_olivet.json',
+    john_olivet: '../story/act2/case_c_olivet_discourse/john_olivet.json',
 
     // --- Act III: The Passion ---
     // Case A: The Broken Cup (Last Supper)
@@ -101,6 +106,7 @@ export const DIALOGUE_ID_MAP = {
 
     // Case C: The Midnight Tribunal (Sanhedrin Trial)
     caiaphas_midnight: '../story/act3/case_c_midnight_tribunal/caiaphas_priest.json',
+    caiaphas_priest: '../story/act3/case_c_midnight_tribunal/caiaphas_priest.json',
     peter_denial: '../story/act3/case_c_midnight_tribunal/peter_denial.json',
     false_witness: '../story/act3/case_c_midnight_tribunal/false_witness.json',
     trial_rumors: '../story/act3/case_c_midnight_tribunal/trial_rumors.json',
@@ -130,17 +136,19 @@ export const DIALOGUE_ID_MAP = {
     mary_resurrection: '../story/act4/case_b_guards_report/mary_resurrection.json',
     judas_betrayal: '../story/act4/case_b_guards_report/judas_betrayal.json',
     herods_servant: '../story/act4/case_b_guards_report/herods_servant.json',
+    sentry_lucas: '../story/act4/case_b_guards_report/sentry_lucas.json',
 
     // Case C: Peter's Restoration (Sea of Galilee)
     nathanael_disciple: '../story/act4/case_c_peters_restoration/nathanael_disciple.json',
     peter_restored: '../story/act4/case_c_peters_restoration/peter_restored.json',
     jesus_reinstatement: '../story/act4/case_c_peters_restoration/jesus_reinstatement.json',
     peter_reinstated: '../story/act4/case_c_peters_restoration/peter_reinstated.json',
+    thomas_restoration: '../story/act4/case_c_peters_restoration/thomas_restoration.json',
 
     // --- System & Metadata ---
     board_review: '../story/system/board_review.json',
     board_debate: '../story/system/board_debate.json',
 
-    // --- Extras / Extra Encounters ---
-    rich_young_ruler: '../story/extras/rich_young_ruler.json'
+    // --- Extra Encounters ---
+    rich_young_ruler: '../story/act2/case_a_silenced_teacher/rich_young_ruler.json'
 };

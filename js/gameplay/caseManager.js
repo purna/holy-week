@@ -39,9 +39,13 @@ export class CaseManager {
         sceneViewed: false,
         evidenceFound: [],
         propheciesFound: [],
-        labDeductions: {}, // Stores evidence->suspect->result mappings
+        deductionsMade: [],
+        scoredDeductions: [],
+        labDeductions: {},
+        chatMessagesByNpc: {},
         breakthroughs: [],
         failedChallenges: 0,
+        unlockedSuspects: [],
         suspects: this._initializeSuspects(this.cases[id]),
         accusation: null,
         score: null,
@@ -80,15 +84,89 @@ export class CaseManager {
       p.propheciesFound.push(prophecyId);
       this.progress.totalScore = (this.progress.totalScore || 0) + 10;
 
-      // Check if all prophecies are found to unlock final accusation
+      // Check if all prophecies are found to unlock the final accusation
+      // and the remaining accusable suspects for this case (per design).
       if (p.propheciesFound.length === (c.prophecies || []).length) {
-        // This is where you could trigger a UI event to unlock the final accusation
         console.log(`All prophecies for case ${this.activeCaseId} found!`);
+        const caseData = this.cases[this.activeCaseId];
+        (caseData?.suspects || []).forEach(s => {
+          this.discoverSuspect(s.id);
+        });
       }
 
       this._saveProgress();
       this._refreshMetricsUI();
     }
+  }
+
+  recordDeduction(deduction) {
+    const p = this.progress.cases[this.activeCaseId];
+    if (!p) return;
+
+    if (!Array.isArray(p.deductionsMade)) {
+      p.deductionsMade = [];
+    }
+    if (!Array.isArray(p.scoredDeductions)) {
+      p.scoredDeductions = [];
+    }
+
+    p.deductionsMade.push(deduction);
+
+    const scoreValue = Number.isFinite(deduction?.score) ? deduction.score : 0;
+    if (scoreValue > 0) {
+      const deductionKey = deduction?.deductionId
+        ? `${deduction.deductionId}:${deduction.operation || "op"}`
+        : `${deduction?.operation || "op"}:${deduction?.a || "a"}:${deduction?.b || "b"}`;
+      if (!p.scoredDeductions.includes(deductionKey)) {
+        p.scoredDeductions.push(deductionKey);
+        this.progress.totalScore = Math.max(0, (this.progress.totalScore || 0) + scoreValue);
+        this._refreshMetricsUI();
+      }
+    }
+
+    this._saveProgress();
+  }
+
+  canAttemptProphecyMatch(caseId = this.activeCaseId) {
+    const p = this.progress.cases[caseId];
+    if (!p) return false;
+    const deductionCount = (p.deductionsMade || []).length;
+    const prophecyCount = (p.propheciesFound || []).length;
+    return deductionCount > prophecyCount;
+  }
+
+  addScore(points) {
+    if (!Number.isFinite(points) || points === 0) return;
+    this.progress.totalScore = Math.max(0, (this.progress.totalScore || 0) + points);
+    this._saveProgress();
+    this._refreshMetricsUI();
+  }
+
+  recordSceneCollectedEvidence(evidenceId, caseId = this.activeCaseId) {
+    const p = this.progress.cases[caseId];
+    if (!p) return false;
+    if (!Array.isArray(p.collectedEvidence)) p.collectedEvidence = [];
+    if (p.collectedEvidence.includes(evidenceId)) return false;
+    p.collectedEvidence.push(evidenceId);
+    this._saveProgress();
+    return true;
+  }
+
+  getChatMessagesByNpc(caseId = this.activeCaseId) {
+    const p = this.progress.cases[caseId];
+    if (!p) return {};
+    if (!p.chatMessagesByNpc || typeof p.chatMessagesByNpc !== "object") {
+      p.chatMessagesByNpc = {};
+      this._saveProgress();
+    }
+    return p.chatMessagesByNpc;
+  }
+
+  setChatMessagesByNpc(messagesByNpc, caseId = this.activeCaseId) {
+    const p = this.progress.cases[caseId];
+    if (!p) return;
+    p.chatMessagesByNpc = messagesByNpc && typeof messagesByNpc === "object" ? messagesByNpc : {};
+    this._saveProgress();
   }
 
   recordBreakthrough(npcId, evidenceKey) {
@@ -121,6 +199,25 @@ export class CaseManager {
   getSuspectStatus(suspectId) {
     const p = this.progress.cases[this.activeCaseId];
     return p?.suspects[suspectId] || { status: 'Unknown', notes: '' };
+  }
+
+  discoverSuspect(suspectId) {
+    const p = this.progress.cases[this.activeCaseId];
+    if (p) {
+      if (!p.unlockedSuspects) p.unlockedSuspects = [];
+      if (!p.unlockedSuspects.includes(suspectId)) {
+        p.unlockedSuspects.push(suspectId);
+        this._saveProgress();
+        this._refreshMetricsUI();
+        return true;
+      }
+    }
+    return false;
+  }
+
+  isSuspectUnlocked(suspectId) {
+    const p = this.progress.cases[this.activeCaseId];
+    return p ? (p.unlockedSuspects || []).includes(suspectId) : (suspectId === "none");
   }
 
   updateDoubt(amount) {

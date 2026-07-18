@@ -100,7 +100,7 @@ export const act1CaseA = {
       pos: [-15, 0, -10],
       location: "Tethering Post, Bethphage Road",
       desc: "Two travelling cloaks left folded near the tethering post. The style matches garments worn by Galilean disciples.",
-      bibleRef: "Mark 11:7 — 'They brought the colt to Jesus and threw their cloaks over it.'",
+      bibleRef: "Mark 11:7 — 'They brought the colt to Jesus and threw their cloaks over it.'; 2 Kings 9:13 — cloaks spread before King Jehu as a royal honour",
       bibleLink: "mark_11_7",
       propheticLink: "This mirrors 2 Kings 9:13 where cloaks were spread before King Jehu — a royal gesture the disciples repeated on the road to Jerusalem.",
       investigatorNote: "If the cloaks belong to the disciples, they were here. Why leave them behind?",
@@ -231,6 +231,7 @@ export const act1CaseA = {
       storyFile: "peter_donkey",
       unlocksSuspects: ["peter"],
       unlocksEvidence: ["cloaks", "rope_fibers"],
+      revealsProphecy: "genesis_49_10_11",
       background: "Simon Peter, a fisherman from Galilee, is one of the inner circle of three disciples (along with James and John). Passionate and impulsive, he speaks before thinking. He was one of the two sent to find the donkey.",
       dialogue: {
         neutral: {
@@ -269,7 +270,7 @@ export const act1CaseA = {
       bibleRef: "Luke 19:29–35",
       hasDialogue: true,
       storyFile: "john_donkey",
-      unlocksSuspects: ["john"],
+      unlocksSuspects: ["john", "villager"],
       unlocksEvidence: ["donkey_tracks", "crowd_testimony", "witness_account"],
       background: "John son of Zebedee — later called 'the disciple Jesus loved' — is meticulous, observant, and the most likely to recall precise details. He would later write a Gospel account of this very event (John 12:12–19).",
       dialogue: {
@@ -301,8 +302,9 @@ export const act1CaseA = {
       bibleRef: "Mark 11:3–6 (the unnamed owner who releases the colt)",
       hasDialogue: true,
       storyFile: "galilean_pilgrim",
-      unlocksSuspects: ["owner"],
+      unlocksSuspects: ["owner", "villager"],
       unlocksEvidence: ["prophecy_scroll", "palm_branch"],
+      revealsProphecy: "psalm_118_25_26",
       background: "An unnamed man in Scripture — here called Tobias — who owns the colt. Mark 11:6 simply records that he let the disciples go without resistance. His ownership of the Zechariah scroll suggests he was a devout Jew who had been watching for the Messiah.",
       dialogue: {
         neutral: "Two men came for my donkey colt this morning. They said 'The Lord needs it.' I knew exactly what that meant.",
@@ -373,7 +375,9 @@ export const act1CaseA = {
       bibleRef: "Acts 5:17 (Sadducees filled with jealousy)",
       hasDialogue: true,
       storyFile: "eleazar_sadducee",
+      unlocksSuspects: ["pharisee"],
       unlocksEvidence: [],
+      revealsProphecy: "malachi_3_1",
       background: "A wealthy member of the priestly aristocracy. He views the Galilean movement as a threat to the status quo and his own influence.",
       dialogue: {
         neutral: {
@@ -404,6 +408,7 @@ export const act1CaseA = {
         text: "The disciples' cloaks were used as a saddle for the colt — an act of royal honour. The Zechariah scroll confirms this wasn't impulsive; it was a deliberate fulfilment of a written prophecy.",
         insight: "Zechariah 9:9 predicted a king arriving on a donkey. The disciples' actions — providing the colt, laying cloaks — were a conscious participation in prophecy fulfilment.",
         isKey: true,
+        revealsProphecy: "zechariah_9_9",
         bibleRef: "Matthew 21:4–5; Mark 11:7",
       },
       link: {
@@ -540,9 +545,9 @@ export const act1CaseB = {
       pos: [5, 0, -3],
       desc: "Splintered wood and feathers littering the stone floor.",
       description: "Benches belonging to dove-sellers were completely upended. Doves were the required offering for the poor who could not afford livestock.",
-      bibleRef: "Isaiah 56:7",
-      bibleLink: "isaiah_56_7",
-      propheticLink: "Leviticus 5:7 allows doves as a concession for poverty. Exploiting this legal requirement for exorbitant commercial markups directly triggered Jesus's anger.",
+      bibleRef: "Leviticus 5:7",
+      bibleLink: "leviticus_5_7",
+      propheticLink: "Isaiah 56:7 — 'My house shall be called a house of prayer for all nations' — is the prophecy Jesus explicitly quoted as He drove out the sellers. The dove trade was the clearest abuse of it: Leviticus 5:7 allows doves as a concession for poverty, yet the priests exploited this legal requirement with exorbitant commercial markups, locking the poor and the nations out of the very prayer court Isaiah said was for them. That exploitation directly triggered Jesus's anger.",
       investigatorNote: "The destruction was targeted. Only the commercial apparatus was overturned; the text notes He told the dove-sellers to 'take these things away,' showing controlled fury, not an out-of-control tantrum.",
     },
     {
@@ -557,8 +562,8 @@ export const act1CaseB = {
       pos: [-4, 0, 8],
       desc: "Dozens of high-purity silver coins left abandoned in the dirt near the overturned tables of the moneychangers.",
       description: "Silver coins stamped with the face of Melqart.",
-      bibleRef: "Malachi 3:1",
-      bibleLink: "malachi_3_1",
+      bibleRef: "Exodus 30:13",
+      bibleLink: "exodus_30_13",
       propheticLink: "Exodus 30:13 required a half-shekel temple offering. The priests exploited this by mandating Tyrian shekels, forcing pilgrims to pay massive exchange fees.",
       investigatorNote: "The fact that merchants left this silver behind in their rush to escape proves the authority and commanding presence Jesus exuded during the clearing.",
     },
@@ -574,8 +579,8 @@ export const act1CaseB = {
       pos: [0, 0, 2],
       desc: "A small, crudely fashioned whip woven from the floor-rushes used as bedding for cattle in the courtyard.",
       description: "A makeshift scourge braided out of common rushes.",
-      bibleRef: "Malachi 3:1",
-      bibleLink: "malachi_3_1",
+      bibleRef: "John 2:15",
+      bibleLink: "john_2_15",
       propheticLink: "John 2:15 specifically details Him weaving this instrument on the spot before initiating the cleansing.",
       investigatorNote: "A weapon made from reeds could not seriously injure a grown man. It was used as a symbolic driving tool for the livestock, signaling prophetic exile from the sacred space.",
     },
@@ -630,6 +635,7 @@ export const act1CaseB = {
       hasDialogue: true,
       storyFile: "money_changer",
       unlocksEvidence: ["scattered_shekels", "broken_cages"],
+      revealsProphecy: "malachi_3_1",
       background: "A licensed merchant operating under high-priestly authorization. His business scales on demanding steep transaction rates to exchange foreign pilgrim coins into Tyrian shekels.",
       dialogue: {
         neutral: {
@@ -1078,6 +1084,7 @@ export const act1CaseC = {
       storyFile: "peter_fig_tree",
       unlocksSuspects: ["peter_fig_tree"],
       unlocksEvidence: ["peter_astonishment", "disciples_faith_lesson"],
+      revealsProphecy: "jeremiah_8_13",
       background: "Simon Peter, one of Jesus's closest disciples. He was present when Jesus cursed the fig tree on Monday and was the first to point out its withered state on Tuesday.",
       dialogue: {
         neutral: "I couldn't believe my eyes! One day it's green, the next it's dead. Just like He said.",
@@ -1108,6 +1115,7 @@ export const act1CaseC = {
       storyFile: "john_fig_tree",
       unlocksSuspects: ["john_fig_tree"],
       unlocksEvidence: ["cursed_fig_tree_desc"],
+      revealsProphecy: "zechariah_4_6_7",
       background: "John, son of Zebedee, was present with Jesus and Peter during the fig tree incident. He observed the events and heard Jesus's teaching on faith.",
       dialogue: {
         neutral: "It was a powerful lesson. The tree had leaves, but no fruit. It promised something it couldn't deliver.",
@@ -1138,6 +1146,7 @@ export const act1CaseC = {
       storyFile: "nathan_fig_tree",
       unlocksSuspects: ["nathan_gardener"],
       unlocksEvidence: ["withered_fig_tree_state"],
+      revealsProphecy: "micah_7_1",
       background: "A bewildered gardener who maintains the orchards along the path from Bethany. He witnessed the sudden transition of the fig tree.",
       dialogue: {
         neutral: "I don't understand it, Scribe. That tree was lush yesterday morning. Now? It looks like it hasn't seen water in a decade.",
@@ -1164,6 +1173,7 @@ export const act1CaseC = {
       storyFile: "local_traveler", // Assuming a generic local_traveler story exists
       unlocksSuspects: ["local_traveler_fig_tree"],
       unlocksEvidence: ["withered_fig_tree_state"],
+      revealsProphecy: "psalm_33_8_9",
       background: "A common traveler on the road between Bethany and Jerusalem, who observed the fig tree both on Monday and Tuesday morning.",
       dialogue: {
         neutral: "I walk this road every day. I saw that fig tree yesterday, full of leaves. And this morning... well, you wouldn't believe it.",

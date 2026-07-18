@@ -3166,6 +3166,18 @@ h4.modal-subtitle-custom {
     transition: all 0.2s ease;
 }
 
+.codex-match-column .lab-slot {
+    width: 100%;
+    max-width: none;
+}
+
+.prophecy-people-intro,
+.prophecy-accuse-intro {
+    margin-bottom: 20px;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+}
+
 .codex-matching-columns .picker-card:hover {
     border-color: var(--accent-primary);
     background: rgba(0, 242, 255, 0.06);
@@ -4399,6 +4411,11 @@ h4.modal-subtitle-custom {
     border-color: #666;
     cursor: not-allowed;
 }
+
+.codex-matching-columns {
+    grid-template-columns: 1fr !important;
+}
+
 
 .map-node-label {
     position: absolute;

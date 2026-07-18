@@ -53,6 +53,14 @@ export class EvidenceSystem {
     return this.getEvidencePool().find(e => e.id === id) || null;
   }
 
+  // Looks up display info (label/icon/color) for an evidence type id (e.g. "physical").
+  // Falls back to a generic entry instead of returning undefined, so callers that read
+  // typeInfo.label / typeInfo.icon never crash on an unrecognized or missing type.
+  getTypeInfo(type) {
+    const key = typeof type === "string" ? type.toUpperCase() : "";
+    return EVIDENCE_TYPES[key] || { id: type, label: type || "Unknown", icon: "🔍", color: "#94a3b8" };
+  }
+
   getProphecyById(id) {
     const pool = this.getProphecyPool();
     return pool.find(p => p.id === id || p.reference === id) || null;
@@ -65,6 +73,18 @@ export class EvidenceSystem {
       this.selectedA = e;
       this.selectedB = null;
     } else {
+      this.selectedB = e;
+    }
+  }
+
+  selectForSlot(evidenceId, slot) {
+    const e = this.getById(evidenceId);
+    if (!e) return;
+    if (slot === "A") {
+      if (this.selectedB && this.selectedB.id === evidenceId) this.selectedB = null;
+      this.selectedA = e;
+    } else {
+      if (this.selectedA && this.selectedA.id === evidenceId) this.selectedA = null;
       this.selectedB = e;
     }
   }

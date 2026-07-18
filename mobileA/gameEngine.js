@@ -53,6 +53,9 @@ export class GameEngine {
     this.ui = new UIManager(this.cm, this.es, this.ns, this.de, this.ls, this.a11y, this.audio, this.dm, this.app, this.labUI, this.chatUI);
     this.gm = new GameManager(this.cm, this.ui, this.es, this.ns, this.de);
 
+    // Post-initialization dependency injection to resolve circular reference
+    this.chatUI.uiManager = this.ui;
+
     this.registerCases();
   }
 
@@ -72,6 +75,8 @@ export class GameEngine {
 
   async init() {
     this.a11y.restorePreferences();
+    if (window.inkjs) this.dm.setInkLib(window.inkjs);
+    this.ui.bindUICallbacks();
     
     // Global exports for HTML event handlers
     window.cm = this.cm;
@@ -82,6 +87,12 @@ export class GameEngine {
     window.openLocation = this.ui.openLocation.bind(this.ui);
     window.startCase = this.gm.startCase.bind(this.gm);
     window.accuse = this.gm.accuse.bind(this.gm);
+    window.toggleSuspect = function(btn) {
+        const accordion = btn.closest('.suspect-accordion');
+        if (!accordion) return;
+        const isExpanded = accordion.classList.toggle('expanded');
+        btn.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
+    };
     window.openEvidenceDetail = this.ui.openEvidenceDetail.bind(this.ui);
     window.closeEvidenceDetail = this.ui.closeEvidenceDetail.bind(this.ui);
     window.showInstructionsModal = this.ui.showInstructionsModal.bind(this.ui);
@@ -111,10 +122,10 @@ export class GameEngine {
     this.cm.getAllCases().forEach(c => {
       (c.npcs || []).forEach(npc => {
         if (npc.profileFile) profileUrls.add(PROFILE_ID_MAP[npc.profileFile] || npc.profileFile);
-        if (npc.hasDialogue) storyNpcs.push(npc);
+        if (npc.hasDialogue) storyNpcs.push({ caseId: c.id, npc });
       });
     });
-    const storyLoads = storyNpcs.map(n => this.dm.loadStoryForNPC(n));
+    const storyLoads = storyNpcs.map(({ caseId, npc }) => this.dm.loadStoryForNPC(npc, caseId));
     const profileLoads = Array.from(profileUrls).map(url => this.ns.loader.loadProfile(url));
     await Promise.all([...storyLoads, ...profileLoads]);
   }

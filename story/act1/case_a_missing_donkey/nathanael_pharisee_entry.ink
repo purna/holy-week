@@ -35,11 +35,6 @@ I know He is a teacher from Galilee who has accumulated a following large enough
 * [What evidence do you have?] -> evidence_question
 * [The entry itself is evidence.] -> entry_evidence
 
-=== palm_branches ===
-The last time Jerusalem waved palms in the streets was when Simon Maccabaeus liberated the city from the Seleucids. The crowd knows exactly what they are invoking. This is not a greeting — it is a coronation gesture. And the man on the donkey is letting them do it.
-* [So you see this as a political act.] -> political_act
-* [Is He claiming to be king?] -> king_claim
-
 === political_act ===
 Every symbol is a political act in this city at Passover. But yes — He is framing this entrance with deliberate precision. The donkey colt. The road from Bethany. The crowd from the city meeting pilgrims from the north. He could have arrived quietly by the north gate at dawn. He chose this road, this crowd, this hour.
 * [He is fulfilling prophecy.] -> prophecy_fulfil

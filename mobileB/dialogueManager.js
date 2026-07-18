@@ -27,6 +27,7 @@ export class DialogueManager {
         this.inkLib = null;
         this.npcStories = {};
         this.activeNpc = null;
+        this.activeCaseId = null;
         this.onCloseCallback = null;
         this.onMessageCallback = null;
 
@@ -50,7 +51,17 @@ export class DialogueManager {
         this.isDialogueOpen = state;
     }
 
-    loadStoryForNPC(npc) {
+    _storyKey(caseId, npcId) {
+        return caseId ? `${caseId}::${npcId}` : npcId;
+    }
+
+    // Set the currently active case so story lookups can resolve NPCs
+    // unambiguously even when callers pass a null caseId.
+    setActiveCase(caseId) {
+        this.activeCaseId = caseId || null;
+    }
+
+    loadStoryForNPC(npc, caseId = null) {
         // Resolve storyFile using DIALOGUE_ID_MAP, falling back to npc.id if storyFile/dialogueId are not direct paths
         const storyFile = DIALOGUE_ID_MAP[npc.storyFile || npc.dialogueId || npc.id];
         if (!storyFile) { // If no mapping found, and it's not a direct path
@@ -69,7 +80,10 @@ export class DialogueManager {
                 return r.json();
             })
             .then(data => {
-                this.npcStories[npc.id] = data;
+                // Store ONLY under the case-scoped key. Storing under a bare
+                // npcId causes collisions when the same NPC id appears across
+                // multiple cases (e.g. 'peter' in triumphal_entry vs peter_restoration).
+                this.npcStories[this._storyKey(caseId, npc.id)] = data;
                 console.log(`[DialogueManager] Loaded story for ${npc.name}`);
             })
             .catch(e => {
@@ -78,9 +92,9 @@ export class DialogueManager {
             });
     }
 
-    createStory(npcId) {
+    createStory(npcId, caseId = null) {
         if (!this.inkLib) throw new Error('Ink runtime not loaded');
-        const data = this.npcStories[npcId];
+        const data = this.getStory(npcId, caseId);
         if (!data) throw new Error('Story data not found for ' + npcId);
 
         // Detect if this is an Ink story or our simpler JSON format
@@ -92,10 +106,25 @@ export class DialogueManager {
         return new SimpleStoryAdapter(data);
     }
 
-    getStory(npcId) {
-        const story = this.npcStories[npcId];
+    getStory(npcId, caseId = null) {
+        const resolvedCase = caseId || this.activeCaseId || null;
+        const key = this._storyKey(resolvedCase, npcId);
+        let story = this.npcStories[key];
         if (!story) {
-            console.warn('[DialogueManager] No story for npcId:', npcId,
+            // Fallback: search any stored key ending with `::npcId`,
+            // preferring the active case to avoid cross-case collisions
+            // (e.g. 'peter' in triumphal_entry vs peter_restoration).
+            const candidates = Object.keys(this.npcStories).filter(k => k.endsWith('::' + npcId));
+            if (candidates.length) {
+                const activeKey = resolvedCase ? `${resolvedCase}::${npcId}` : null;
+                const chosen = (activeKey && candidates.includes(activeKey))
+                    ? activeKey
+                    : candidates[0];
+                story = this.npcStories[chosen];
+            }
+        }
+        if (!story) {
+            console.warn('[DialogueManager] No story for npcId:', npcId, 'caseId:', caseId,
                 '| Available:', Object.keys(this.npcStories));
         }
         return story;

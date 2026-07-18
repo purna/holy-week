@@ -44,6 +44,11 @@ export class DeductionEngine {
       this.caseManager.discoverSuspect(specific.revealsSuspect);
     }
 
+    // Lab insights can reveal prophecies
+    if (specific && specific.revealsProphecy) {
+      this.caseManager.recordProphecyFound(specific.revealsProphecy);
+    }
+
     let result;
     if (specific) {
       result = {
@@ -56,6 +61,7 @@ export class DeductionEngine {
         text: specific.text,
         insight: specific.insight || null,
         isKeyDeduction: specific.isKey || false,
+        revealsProphecy: specific.revealsProphecy || null,
         score: specific.isKey ? 15 : 8,
       };
     } else {

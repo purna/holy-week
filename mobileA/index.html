@@ -160,10 +160,31 @@
     }
 
     .prophecy-lab-intro {
-      font-size: 0.8rem;
-      color: var(--text-muted);
+      font-size: 0.78rem;
+      color: var(--text-dim);
       margin-bottom: 12px;
-      font-style: italic;
+      font-family: var(--font-mono);
+    }
+
+    .prophecy-people-intro {
+      font-size: 0.78rem;
+      color: var(--text-dim);
+      margin-bottom: 12px;
+      font-family: var(--font-mono);
+    }
+
+    .prophecy-scene-intro {
+      font-size: 0.78rem;
+      color: var(--text-dim);
+      margin-bottom: 12px;
+      font-family: var(--font-mono);
+    }
+
+    .prophecy-accuse-intro {
+      font-size: 0.78rem;
+      color: var(--text-dim);
+      margin-bottom: 12px;
+      font-family: var(--font-mono);
     }
 
     #btn-match-prophecy {
@@ -206,6 +227,37 @@
       cursor: not-allowed;
     }
 
+    .codex-match-column .selection-slot {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+
+    .codex-match-btn {
+      width: 100%;
+      height: 48px;
+      margin-top: 16px;
+    }
+
+    @media (max-width: 480px) {
+      .codex-matching-columns {
+        grid-template-columns: 1fr !important;
+      }
+    }
+    
+
+    .codex-selection-area .selection-arrow {
+      flex: 1 1 100%;
+      text-align: center;
+    }
+
+    #btn-match-prophecy {
+      flex: 1 1 100%;
+      width: 100%;
+      height: 48px;
+      margin-top: 4px;
+    }
+    
+
     /* Layout Fixes for Investigation Views to prevent clipping and enable scrolling */
     .inv-view {
       display: none;
@@ -219,6 +271,10 @@
 
     .inv-view.active {
       display: block;
+    }
+
+    .inv-view>*:last-child {
+      margin-bottom: 48px;
     }
 
     /* Responsive grid layout for evidence and prophecy pickers */
@@ -296,6 +352,149 @@
 
     .picker-card.selected-b .sel-badge {
       background: var(--gold);
+    }
+
+    /* Evidence Reaction Modal */
+    .modal-content #evidence-reaction-text {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      text-align: center;
+      color: var(--text-normal);
+      margin-bottom: 1.5rem;
+      font-style: italic;
+      border-left: 3px solid var(--accent);
+      padding-left: 1rem;
+    }
+
+    /* Modal shell for #evidence-reaction-modal / #challenge-result-modal.
+       These use class="modal" but no rule ever styled that class, so the
+       popup had no positioning/backdrop and rendered invisibly in normal
+       document flow instead of as an overlay. */
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 6000;
+      background: rgba(0, 0, 0, 0.85);
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+
+    .modal.active {
+      opacity: 1;
+    }
+
+    .modal .modal-content {
+      position: relative;
+      background: var(--surface2, #1e1e2e);
+      border: 1px solid var(--border-color, #444);
+      border-radius: 12px;
+      padding: 1.5rem;
+      max-width: 420px;
+      width: 90%;
+      max-height: 85vh;
+      overflow-y: auto;
+      transform: translateY(12px);
+      transition: transform 0.25s ease;
+    }
+
+    .modal.active .modal-content {
+      transform: translateY(0);
+    }
+
+    .modal .close-button {
+      position: absolute;
+      top: 10px;
+      right: 14px;
+      font-size: 1.4rem;
+      line-height: 1;
+      cursor: pointer;
+      color: var(--text-muted, #94a3b8);
+    }
+
+    .modal .close-button:hover {
+      color: var(--text, #fff);
+    }
+
+    .modal-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .modal-header h2 {
+      margin: 0;
+      font-size: 1.15rem;
+      font-family: 'Cinzel', serif;
+      color: var(--gold);
+    }
+
+    .modal-icon {
+      font-size: 1.8rem;
+    }
+
+    .challenge-header {
+      text-align: center;
+      font-size: 1.1rem;
+      font-weight: bold;
+      margin-bottom: 0.75rem;
+      padding: 0.5rem;
+      border-radius: 8px;
+    }
+
+    .challenge-header.breakthrough {
+      background: rgba(34, 197, 94, 0.15);
+      color: var(--success, #22c55e);
+    }
+
+    .challenge-header.failure {
+      background: rgba(239, 68, 68, 0.15);
+      color: var(--danger, #ef4444);
+    }
+
+    .scoring-feedback {
+      margin-top: 1rem;
+      border-top: 1px solid var(--border-color, #444);
+      padding-top: 1rem;
+    }
+
+    .feedback-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.9rem;
+      padding: 8px 0;
+      color: var(--text-muted);
+    }
+
+    .feedback-item span:last-child {
+      font-weight: bold;
+      font-family: 'Cinzel', serif;
+    }
+
+    .feedback-item.points span:last-child { color: var(--gold); }
+    .feedback-item.doubt span:last-child { color: var(--danger, #ef4444); }
+    .feedback-item .positive { color: var(--success, #22c55e); }
+    .feedback-item .negative { color: var(--danger, #ef4444); }
+
+    .clue-feedback {
+      margin-top: 1rem;
+      border-top: 1px solid var(--border-color, #444);
+      padding-top: 1rem;
+    }
+
+    .clue-feedback p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+    .picker-card.minimal {
+        flex-direction: row;
+        min-height: 0;
     }
   </style>
   <style>
@@ -386,7 +585,7 @@
       <div class="app-header"> <!-- Header area with location identification -->
         <!-- Wrapper for location title and prompt -->
         <div>
-          <div class="header-title" id="cases-loc-name">Location</div> <!-- Chosen location display -->
+          <div class="header-title" id="cases-loc-name">🔍 Holy Week</div> <!-- Chosen location display -->
           <div class="header-subtitle">Choose a case</div> <!-- Subtitle prompt -->
         </div>
       </div>
@@ -471,24 +670,26 @@
           Select evidence from your collection, then choose a locked prophecy below to attempt a link.
         </div>
 
-        <div class="codex-selection-area">
-          <div class="selection-slot" id="codex-evidence-slot">
-            <span>Select Evidence...</span>
+        <div class="codex-matching-columns">
+          <div class="codex-match-column">
+            <div class="selection-slot" id="codex-evidence-slot">
+              <span>Select Evidence...</span>
+            </div>
+            <h3 class="section-title">Your Evidence</h3>
+            <div class="picker-grid">
+              <!-- Evidence cards will be rendered here by UIManager.js -->
+            </div>
           </div>
-          <div class="selection-arrow">➕</div>
-          <div class="selection-slot" id="codex-prophecy-slot">
-            <span>Locked Prophecy</span>
+          <div class="codex-match-column">
+            <div class="selection-slot" id="codex-prophecy-slot">
+              <span>Locked Prophecy</span>
+            </div>
+            <h3 class="section-title">Locked Prophecies</h3>
+            <div id="codex-grid" class="codex-grid"></div> <!-- Grid layout for prophecy cards -->
           </div>
-          <button id="btn-match-prophecy" class="evidence-detail-confirm" disabled
-            onclick="window.attemptProphecyMatch()">Match</button>
         </div>
-
-        <h3 class="section-title">Your Evidence</h3>
-        <div class="picker-grid">
-          <!-- Evidence cards will be rendered here by UIManager.js -->
-        </div>
-        <h3 class="section-title">Bible Prophecies</h3>
-        <div id="codex-grid" class="codex-grid"></div> <!-- Grid layout for prophecy cards -->
+        <button id="btn-match-prophecy" class="evidence-detail-confirm codex-match-btn" disabled
+          onclick="window.attemptProphecyMatch()">Match</button>
       </div>
       <!-- People View: Witness profiles and conversation summary view -->
       <div id="inv-people" class="inv-view" role="tabpanel" aria-label="People to interview">
@@ -661,6 +862,47 @@
       </div>
     </div>
 
+    <!-- Evidence Reaction Modal -->
+    <div id="evidence-reaction-modal" class="modal" style="display: none;">
+      <div class="modal-content">
+        <span class="close-button">&times;</span>
+        <div class="modal-header">
+          <span id="reaction-modal-avatar" class="modal-icon"></span>
+          <h2 id="reaction-modal-npc-name"></h2>
+        </div>
+        <div id="evidence-reaction-content">
+          <p id="evidence-reaction-text"></p>
+          <div id="evidence-reaction-scoring" class="scoring-feedback">
+            <!-- Scoring changes will be injected here -->
+          </div>
+          <div id="evidence-reaction-clue" class="clue-feedback" style="display: none;">
+            <!-- New clue info will be injected here -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Challenge Result Modal -->
+    <div id="challenge-result-modal" class="modal" style="display: none;">
+      <div class="modal-content">
+        <span class="close-button">&times;</span>
+        <div class="modal-header">
+          <span id="challenge-modal-avatar" class="modal-icon"></span>
+          <h2 id="challenge-modal-npc-name"></h2>
+        </div>
+        <div id="challenge-result-content">
+          <div id="challenge-result-header" class="challenge-header"></div>
+          <p id="challenge-result-text"></p>
+          <div id="challenge-result-scoring" class="scoring-feedback">
+            <!-- Scoring changes will be injected here -->
+          </div>
+          <div id="challenge-result-clue" class="clue-feedback" style="display: none;">
+            <!-- New clue info will be injected here -->
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Overlay Screen: Tutorial/How to Play instructions -->
     <div id="instructions-modal" class="screen">
       <div class="evidence-detail-content"> <!-- Instruction box -->
@@ -684,7 +926,9 @@
                 evidence to gather reactions, or <strong>Challenge</strong> them if you find a contradiction.</p>
               <p><strong>4. 🧪 Analyze :</strong> In the <strong>Lab</strong>, select two pieces of evidence and an
                 operation to find new insights.</p>
-              <p><strong>5. ⚖️Accuse :</strong> Once you have enough proof, make your final verdict. Be careful—wrong
+              <p><strong>5. Prophecies :</strong> when you have revealed the prophecies in the <strong>Codex</strong>. 
+                Can you unlock them?</p>
+              <p><strong>6. ⚖️Accuse :</strong> Once you have enough proof, make your final verdict. Be careful—wrong
                 guesses increase your <strong>Doubt</strong>.</p>
             </div>
             <button class="evidence-detail-confirm" onclick="window.closeInstructionsModal()">Start
@@ -728,7 +972,7 @@
       </div> <!-- End of game-complete-content -->
     </div>
 
-      <!-- Bible Reader API Module: Handles asynchronous fetching and parsing of scriptural data -->
+    <!-- Bible Reader API Module: Handles asynchronous fetching and parsing of scriptural data -->
     <script type="module" src="./main.js"></script>
 
     <script>

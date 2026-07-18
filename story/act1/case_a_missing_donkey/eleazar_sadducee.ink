@@ -18,6 +18,7 @@
 // ------------------------------------------------------------
 //
 
+->start
 === start ===
 You are wasting your time with these questions, scribe. I am Eleazar. I saw the whole 'procession' from my villa's upper terrace. It was nothing more than a band of lawless Galileans causing a disturbance.
 * [What exactly did you see at the tethering post?] -> theft_claim
@@ -35,5 +36,10 @@ They went toward the gate, dragging the beast along. They were throwing their di
 Hacked, cut, untied — what does it matter? The animal was removed without a proper transaction. In the eyes of the Law, that is theft.
 * [Continue.] -> closing
 
+=== threat_path ===
+-> closing
+
 === closing ===
-Keep your notes, scribe. But remember: a movement built on a borrowed donkey will not last the week. The Sanhedrin will handle this.-> DONE
+Keep your notes, scribe. But remember: a movement built on a borrowed donkey will not last the week. The Sanhedrin will handle this.
+
+-> DONE

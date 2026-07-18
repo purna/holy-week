@@ -15,10 +15,13 @@ export const EVIDENCE_TYPES = {
 export class EvidenceSystem {
   constructor(caseManager) {
     this.caseManager = caseManager;
-    this.collected = [];    
+    this.collected = [];
+    this.prophecies = [];
+    this.prophecyStatus = {}; // { [prophecyId]: 'locked' | 'revealed' | 'linked' }
+    this.onProphecyReveal = null; // Callback for UI notifications
+
     this.selectedA = null;
     this.selectedB = null;
-    this.discoveredProphecies = new Set();
 
     // Codex Matching State
     this.selectedCodexEvidenceId = null;
@@ -26,11 +29,13 @@ export class EvidenceSystem {
   }
 
   loadCase(caseData) {
-    const saved = this.caseManager.getCaseProgress(caseData.id);
-    this.collected = saved?.evidenceFound ? [...saved.evidenceFound] : [];
-    this.discoveredProphecies = new Set(saved?.propheciesFound || []);
-    this.selectedA = null;
-    this.selectedB = null;
+    this.collected = this.caseManager.getCaseProgress(caseData.id)?.evidenceFound || [];
+    this.prophecies = caseData.prophecies || [];
+    this.prophecyStatus = {};
+    this.prophecies.forEach(p => {
+      // Initialize all prophecies for the case as 'locked'
+      this.prophecyStatus[p.id] = 'locked';
+    });
     this.selectedCodexEvidenceId = null;
     this.selectedCodexProphecyId = null;
   }
@@ -38,11 +43,6 @@ export class EvidenceSystem {
   getEvidencePool() {
     const c = this.caseManager.getActiveCase();
     return c ? c.evidencePool : [];
-  }
-
-  getProphecyPool() {
-    const c = this.caseManager.getActiveCase();
-    return c ? (c.prophecies || []) : [];
   }
 
   getCollected() {
@@ -70,13 +70,26 @@ export class EvidenceSystem {
     return this.getEvidencePool().find(e => e.id === id) || null;
   }
 
-  getProphecyById(id) {
-    const pool = this.getProphecyPool();
-    return pool.find(p => p.id === id || p.reference === id) || null;
+  getProphecyById(prophecyId) {
+    return this.prophecies.find(p => p.id === prophecyId);
   }
 
   getTypeInfo(typeId) {
     return EVIDENCE_TYPES[typeId?.toUpperCase()] || EVIDENCE_TYPES.PHYSICAL;
+  }
+
+  revealProphecy(prophecyId) {
+    if (prophecyId && this.prophecyStatus[prophecyId] === 'locked') {
+      this.prophecyStatus[prophecyId] = 'revealed';
+      console.log(`[EvidenceSystem] Prophecy Revealed: ${prophecyId}`);
+      // Trigger a UI notification via callback
+      if (this.onProphecyReveal) {
+        const prophecy = this.getProphecyById(prophecyId);
+        if (prophecy) this.onProphecyReveal(prophecy);
+      }
+      return true;
+    }
+    return false;
   }
 
   selectEvidence(evidenceId) {
@@ -90,17 +103,29 @@ export class EvidenceSystem {
     }
   }
 
+  selectForSlot(evidenceId, slot) {
+    const e = this.getById(evidenceId);
+    if (!e) return;
+    if (slot === "A") {
+      if (this.selectedB && this.selectedB.id === evidenceId) this.selectedB = null;
+      this.selectedA = e;
+    } else {
+      if (this.selectedA && this.selectedA.id === evidenceId) this.selectedA = null;
+      this.selectedB = e;
+    }
+  }
+
   deselectAll() {
     this.selectedA = null;
     this.selectedB = null;
   }
 
   getPropheciesWithStatus() {
-    const c = this.caseManager.getActiveCase();
-    const found = this.caseManager.getCaseProgress(c?.id)?.propheciesFound || [];
-    return this.getProphecyPool().map(p => ({
+    const linked = this.caseManager.getCaseProgress(this.caseManager.getActiveCase()?.id)?.propheciesFound || [];
+    return this.prophecies.map(p => ({
       ...p,
-      discovered: found.includes(p.id || p.reference)
+      status: linked.includes(p.id) ? 'linked' : (this.prophecyStatus[p.id] || 'locked'),
+      discovered: linked.includes(p.id || p.reference) // Keep for legacy UI compatibility
     }));
   }
 
@@ -113,6 +138,9 @@ export class EvidenceSystem {
 
   attemptProphecyMatch() {
     if (!this.selectedCodexEvidenceId || !this.selectedCodexProphecyId) return null;
+    if (typeof this.caseManager?.canAttemptProphecyMatch === "function" && !this.caseManager.canAttemptProphecyMatch()) {
+      return { success: false, message: "Run another Lab deduction before matching the next prophecy." };
+    }
     const ev = this.getById(this.selectedCodexEvidenceId);
     const prop = this.getProphecyById(this.selectedCodexProphecyId);
     const isMatch = ev.relatedProphecy === prop.id || ev.bibleRef?.includes(prop.reference) || ev.propheticLink?.includes(prop.reference);

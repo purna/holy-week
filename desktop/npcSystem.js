@@ -130,11 +130,6 @@ export class NPCSystem {
     const mood = state.mood;
     const node = npc.dialogue[mood] || npc.dialogue.neutral;
 
-    // Automatically unlock suspects associated with this NPC upon talking
-    if (npc.unlocksSuspects) {
-      npc.unlocksSuspects.forEach(sid => this.caseManager.unlockSuspect(sid));
-    }
-
     // Handle object-based dialogue with lie/correction logic
     if (node && typeof node === 'object' && node.text) {
       const isCorrected = state.correctedLies.includes(mood);

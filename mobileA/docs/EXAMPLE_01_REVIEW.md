@@ -143,23 +143,27 @@ total = (evidenceScore + deductionScore + challengeScore + (correct ? 50 : penal
 - No partial credit for narrowing suspects
 
 ---
-
-## System 3: Challenge System
+## System 3: Challenge & Trust System
 
 ### How It Works
 - Available in "People" tab for each NPC
 - Requires selecting two evidence items in "Lab" tab first
 - When Challenge button clicked:
   1. `npcSystem.challenge(npcId, evidenceA, evidenceB)` is called
-  2. System looks for case-specific contradiction in `npc.contradictions[key]`
-  3. If found: breakthrough! NPC pressure +40, mood updates, exposed text shown
-  4. If not found: generic "no contradiction" message, pressure +5
+  2. **On Success (Contradiction Found):**
+     - Breakthrough! NPC pressure +40, mood updates, exposed text shown.
+     - Player gains `+15 Trust` with factions that oppose the NPC's faction.
+     - `challengeScore` increases.
+  3. **On Failure (No Contradiction):**
+     - Generic "no contradiction" message shown.
+     - Player loses `-10 Trust` with the NPC's faction.
 - Results shown in per-NPC `challenge-result` panel within the card
 - Breakthroughs show ⚡ badge and increase pressure bar
 
-**Reputation & Doubt Impact:**
-- If a Challenge fails, the player's Reputation with that NPC's faction (Temple/Scribes) drops by 15.
-- High Doubt (>40) triggers "Hostile Environment" modifiers in the final trial, making NPCs less truthful.
+**Trust System Impact:**
+- **High Trust (>75):** Unlocks bonus dialogue, hints, and cooperation from a faction.
+- **Low Trust (<25):** Faction members become uncooperative, limiting interaction.
+- **Zero Trust (0):** Faction members refuse to speak for the remainder of the case.
 
 ### Key Data
 ```javascript

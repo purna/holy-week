@@ -1047,6 +1047,14 @@ export class GameEngine {
     this.updateEvidenceGrid();
     this.updateChallengeButton();
   }
+  
+  _revealProphecy(prophecyId) {
+    const wasRevealed = this.es.revealProphecy(prophecyId);
+    if (wasRevealed) {
+      this.controls.displayAlert(`Prophecy Revealed: ${this.es.getProphecyById(prophecyId)?.reference}`, 3000, 'var(--gold)');
+      this.updateHUD(this.cm.getActiveCase()); // Force a HUD refresh to update the codex
+    }
+  }
 
   updateMetrics() {
     const p = this.cm.getProgress();
@@ -1072,7 +1080,8 @@ export class GameEngine {
 
     const accuseBtn = document.createElement('button');
     accuseBtn.className = 'action-btn accuse-action-btn';
-    accuseBtn.style.borderLeft = '3px solid var(--accent-error)';
+    accuseBtn.style.borderLeft = '3px solid var(--gold)';
+    accuseBtn.style.background = 'rgba(255, 183, 77, 0.1)';
     accuseBtn.innerHTML = `<span><i class="fa-solid fa-scale-balanced"></i> Accuse</span> <small>[Verdict]</small>`;
     accuseBtn.onclick = () => {
       this.audio.playUI();
@@ -1144,6 +1153,9 @@ export class GameEngine {
     if (result) {
       if (result.breakthrough) {
         this.cm.recordDeduction(result);
+        if (result.revealsProphecy) {
+          this._revealProphecy(result.revealsProphecy);
+        }
         this.updateHUD(this.cm.getActiveCase());
       }
       this.controls.displayAlert(result.breakthrough ? "Breakthrough!" : "No contradiction found.");
@@ -1450,6 +1462,9 @@ startDialogue(npcConfig) {
          // Restore original addMsg
          this.dm.addMsg = originalAddMsg;
          if (npcConfig.unlocksEvidence) npcConfig.unlocksEvidence.forEach(id => this._unlockEvidence(id));
+         if (npcConfig.revealsProphecy) {
+           this._revealProphecy(npcConfig.revealsProphecy);
+         }
          this.inDialogue = false;
          this.updateActions(this.cm.getActiveCase());
        }, (tag) => {

@@ -34,27 +34,27 @@ export class UIManager {
     if (name === "a11y") this.renderA11yToggles();
   }
 
-switchInvTab(tab) {
-        document.querySelectorAll(".inv-tab").forEach(t => {
-          t.classList.toggle("active", t.dataset.tab === tab);
-          t.setAttribute("aria-selected", t.dataset.tab === tab);
-        });
-        document.querySelectorAll(".inv-view").forEach(v => v.classList.remove("active"));
-        document.getElementById(`inv-${tab}`).classList.add("active");
+  switchInvTab(tab) {
+    document.querySelectorAll(".inv-tab").forEach(t => {
+      t.classList.toggle("active", t.dataset.tab === tab);
+      t.setAttribute("aria-selected", t.dataset.tab === tab);
+    });
+    document.querySelectorAll(".inv-view").forEach(v => v.classList.remove("active"));
+    document.getElementById(`inv-${tab}`).classList.add("active");
 
-        if (tab === "lab") this.renderLab();
-        if (tab === "people") this.renderPeople();
-        if (tab === "codex") this.renderCodex();
-        if (tab === "scene") this.renderScene();
-        if (tab === "accuse") this.renderAccuse();
+    if (tab === "lab") this.renderLab();
+    if (tab === "people") this.renderPeople();
+    if (tab === "codex") this.renderCodex();
+    if (tab === "scene") this.renderScene();
+    if (tab === "accuse") this.renderAccuse();
 
-        // Resize canvas when Scene tab becomes visible (container may have 0 height before)
-        if (tab === "scene" && window.scene3d) {
-            setTimeout(() => window.scene3d.sceneMgr.handleResize(), 50);
-        }
-
-        this.a11y.announce(`${tab} tab open`);
+    // Resize canvas when Scene tab becomes visible (container may have 0 height before)
+    if (tab === "scene" && window.scene3d) {
+      setTimeout(() => window.scene3d.sceneMgr.handleResize(), 50);
     }
+
+    this.a11y.announce(`${tab} tab open`);
+  }
 
   renderMap() {
     const mapData = this.ls.getMapData();
@@ -104,7 +104,7 @@ switchInvTab(tab) {
     if (!loc) return;
     this.prevScreen = "map";
 
-    document.getElementById("cases-loc-name").textContent = `${loc.icon} ${loc.name}`;
+    document.getElementById("cases-loc-name").textContent = "🔍 Holy Week";
     const scroll = document.getElementById("cases-scroll");
 
     scroll.innerHTML = `
@@ -145,11 +145,15 @@ switchInvTab(tab) {
       </div>`).join("");
   }
 
-  setupInvestigation(c) {
+   setupInvestigation(c) {
     // Re-bind callbacks to the specific case context
     this.labUI.onResult = this.onLabAction.bind(this);
     this.chatUI.onAction = this.onChatAction.bind(this);
     const introText = getIntroText(c.intro) || c.subtitle;
+
+    // Tell the dialogue manager which case is active so story lookups
+    // resolve to the correct case-scoped NPC (avoids 'peter' collisions).
+    if (this.dm && this.dm.setActiveCase) this.dm.setActiveCase(c.id);
 
     this.chatUI.addSystem(introText);
     document.getElementById("inv-case-title").textContent = c.title;
@@ -161,60 +165,61 @@ switchInvTab(tab) {
     this.a11y.speak(`Case started: ${c.title}. ${introText}`);
   }
 
-renderScene() {
-        const c = this.cm.getActiveCase();
-        const container = document.getElementById("inv-scene");
-        if (!c || !container) return;
+  renderScene() {
+    const c = this.cm.getActiveCase();
+    const container = document.getElementById("inv-scene");
+    if (!c || !container) return;
 
-        // Initialize 3D scene if not already done
-        if (typeof window.scene3d === 'undefined') {
-            this.init3DScene(container);
-        }
-
-        // Show intro overlay if scene not yet viewed
-        if (!this.cm.getCaseProgress(c.id)?.sceneViewed) {
-            if (window.scene3d) window.scene3d.showIntro();
-        }
+    // Initialize 3D scene if not already done
+    if (typeof window.scene3d === 'undefined') {
+      this.init3DScene(container);
     }
 
-    async init3DScene(container) {
-        window.Scene3D = (await import('./Scene3D.js')).Scene3D;
-        window.scene3d = new window.Scene3D(this);
-        await window.scene3d.init('inv-scene');
+    // Show intro overlay if scene not yet viewed
+    if (!this.cm.getCaseProgress(c.id)?.sceneViewed) {
+      if (window.scene3d) window.scene3d.showIntro();
     }
+  }
 
-    handleNpcInteraction(mode) {
-        const activeNpc = window.sceneNPCs?.find(n => n.data && n.data.id);
-        if (activeNpc && this.dm) {
-            this.dm.setActiveNPC(activeNpc.data);
-            const c = this.cm.getActiveCase();
-            const loadedStory = this.dm.getStory(activeNpc.data.id);
-            
-            // Handle evidence unlocks for grid NPCs
-            const unlocks = activeNpc.data.unlocksEvidence || [];
-            if (unlocks.length > 0 && c) {
-                this.cm.unlockEvidenceForScene(c.id, unlocks);
-                this.renderLab();
-            }
-            
-            if (loadedStory) {
-                const story = this.dm.createStory(activeNpc.data.id);
-                this.dm.openDialogue(activeNpc.data, story,
-                    () => {
-                        this.renderPeople();
-                        // Spawn any newly unlocked evidence after dialogue
-                        if (window.scene3d) window.scene3d.spawnUnlockedEvidence();
-                    },
-                    (text, type) => this.chatUI.addMessage(type === 'player' ? 'Investigator' : activeNpc.data.name, text, type, {}, activeNpc.data.id)
-                );
-            } else {
-                // Grid NPC without story - show simple message
-                this.chatUI.addMessage(activeNpc.data.name || activeNpc.data.id, "I can tell you about this location.", 'npc', {}, activeNpc.data.id);
-                this.renderPeople();
-                if (window.scene3d) window.scene3d.spawnUnlockedEvidence();
-            }
-        }
+  async init3DScene(container) {
+    window.Scene3D = (await import('./Scene3D.js')).Scene3D;
+    window.scene3d = new window.Scene3D(this);
+    await window.scene3d.init('inv-scene');
+  }
+
+  handleNpcInteraction(mode) {
+    const activeNpc = window.sceneNPCs?.find(n => n.data && n.data.id);
+    if (activeNpc && this.dm) {
+      this.dm.setActiveNPC(activeNpc.data);
+      const c = this.cm.getActiveCase();
+      const caseId = c?.id || this.cm.activeCaseId || null;
+      const loadedStory = this.dm.getStory(activeNpc.data.id, caseId);
+
+      // Handle evidence unlocks for grid NPCs
+      const unlocks = activeNpc.data.unlocksEvidence || [];
+      if (unlocks.length > 0 && c) {
+        this.cm.unlockEvidenceForScene(c.id, unlocks);
+        this.renderLab();
+      }
+
+      if (loadedStory) {
+        const story = this.dm.createStory(activeNpc.data.id, caseId);
+        this.dm.openDialogue(activeNpc.data, story,
+          () => {
+            this.renderPeople();
+            // Spawn any newly unlocked evidence after dialogue
+            if (window.scene3d) window.scene3d.spawnUnlockedEvidence();
+          },
+          (text, type) => this.chatUI.addMessage(type === 'player' ? 'Investigator' : activeNpc.data.name, text, type, {}, activeNpc.data.id)
+        );
+      } else {
+        // Grid NPC without story - show simple message
+        this.chatUI.addMessage(activeNpc.data.name || activeNpc.data.id, "I can tell you about this location.", 'npc', {}, activeNpc.data.id);
+        this.renderPeople();
+        if (window.scene3d) window.scene3d.spawnUnlockedEvidence();
+      }
     }
+  }
 
   renderLab() {
     const view = document.getElementById("inv-lab");
@@ -225,6 +230,10 @@ renderScene() {
     if (result.type === "selection") this.renderPeople();
     else result.error ? this.audio.playError() : this.audio.playClue();
     this.renderLab();
+    if (!result?.error && result?.operation) {
+      const view = document.getElementById("inv-lab");
+      this.labUI.showActiveResultModal?.(view);
+    }
   }
 
   renderPeople() {
@@ -233,8 +242,9 @@ renderScene() {
   }
 
   onChatAction(result) {
+    console.log("[UIManager] onChatAction:", result);
     this.renderPeople();
-    if (result?.type === "talk_complete" && result.unlocked > 0) { this.renderScene(); this.renderLab(); }
+    if (result?.type === "talk_complete") { this.renderScene(); this.renderLab(); this.renderAccuse(); }
   }
 
   renderCodex() {
@@ -250,6 +260,11 @@ renderScene() {
     // Get selected items for matching
     const selectedEv = this.es.getById(this.selectedCodexEvidenceId);
     const selectedProp = this.es.getProphecyById(this.selectedCodexProphecyId);
+    const caseProgress = this.cm.getCaseProgress(c.id) || {};
+    const deductionCount = (caseProgress.deductionsMade || []).length;
+    const prophecyCount = (caseProgress.propheciesFound || []).length;
+    const hasLabInsightForNextProphecy = deductionCount > prophecyCount;
+    const canMatchNow = !!(selectedEv && selectedProp && hasLabInsightForNextProphecy);
 
     const completion = this.es.getProphecyCompletionPercent();
 
@@ -258,25 +273,20 @@ renderScene() {
       <div class="prophecy-lab-intro">
         Select evidence from your collection, then choose a locked prophecy below to attempt a link.
       </div>
-
-      <div class="codex-selection-area">
-        <div class="selection-slot ${selectedEv ? 'active' : ''}" id="codex-evidence-slot" onclick="window.ui.a11y.speak('Select evidence from your collection below.')">
-          ${selectedEv ? `<span class="slot-icon">${selectedEv.icon}</span><span class="slot-name">${selectedEv.name}</span>` : `<span>Select Evidence...</span>`}
-        </div>
-        <div class="selection-arrow">➕</div>
-        <div class="selection-slot ${selectedProp ? 'active' : ''}" id="codex-prophecy-slot" onclick="window.ui.a11y.speak('Select a locked prophecy to attempt a match.')">
-          ${selectedProp ? `<span class="slot-icon">${selectedProp.icon}</span><span class="slot-name">${selectedProp.reference}</span>` : `<span>Select Prophecy...</span>`}
-        </div>
-        <button id="btn-match-prophecy" class="evidence-detail-confirm ${!(selectedEv && selectedProp) ? 'is-disabled' : ''}" onclick="window.ui.attemptProphecyMatch()">Match</button>
+      <div class="prophecy-lab-intro">
+        Lab progress: ${deductionCount} deductions, ${prophecyCount} prophecies unlocked. Each new prophecy requires one additional Lab deduction.
       </div>
 
       <div id="codex-feedback" class="codex-feedback" ${!this.codexMatchFeedback ? 'hidden' : ''}>
         ${this.codexMatchFeedback || ''}
       </div>
 
-      <div class="codex-matching-columns" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-        <div>
-          <h3 class="section-title">1. Your Evidence</h3>
+      <div class="codex-matching-columns" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: start;">
+        <div class="codex-match-column">
+          <div class="selection-slot ${selectedEv ? 'active' : ''}" id="codex-evidence-slot" onclick="window.ui.a11y.speak('Select evidence from your collection below.')">
+            ${selectedEv ? `<span class="slot-icon">${selectedEv.icon}</span><span class="slot-name">${selectedEv.name}</span>` : `<span>Select Evidence...</span>`}
+          </div>
+          <h3 class="section-title">Your Evidence</h3>
           <div class="picker-grid" style="grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));">
         ${collectedEvidence.length === 0
         ? `<p class="picker-empty">Collect evidence from the scene first.</p>`
@@ -298,8 +308,11 @@ renderScene() {
           </div>
         </div>
 
-        <div>
-          <h3 class="section-title">2. Locked Prophecies</h3>
+        <div class="codex-match-column">
+          <div class="selection-slot ${selectedProp ? 'active' : ''}" id="codex-prophecy-slot" onclick="window.ui.a11y.speak('Select a locked prophecy to attempt a match.')">
+            ${selectedProp ? `<span class="slot-icon">${selectedProp.icon}</span><span class="slot-name">${selectedProp.reference}</span>` : `<span>Select Prophecy...</span>`}
+          </div>
+          <h3 class="section-title">Locked Prophecies</h3>
           <div class="picker-grid" style="grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));">
             ${lockedProps.length === 0
         ? `<p class="picker-empty">All current prophecies matched!</p>`
@@ -320,6 +333,8 @@ renderScene() {
           </div>
         </div>
       </div>
+
+      <button id="btn-match-prophecy" class="evidence-detail-confirm codex-match-btn ${!canMatchNow ? 'is-disabled' : ''}" ${!canMatchNow ? "aria-disabled='true'" : ""} onclick="window.ui.attemptProphecyMatch()">Match</button>
 
       <h3 class="section-title">Prophecy Library (${completion}% Complete)</h3>
       <div id="codex-grid" class="codex-grid">
@@ -356,9 +371,21 @@ renderScene() {
   attemptProphecyMatch() {
     const evidenceId = this.selectedCodexEvidenceId;
     const prophecyId = this.selectedCodexProphecyId;
+    const activeCaseId = this.cm.activeCaseId;
+    const caseProgress = this.cm.getCaseProgress(activeCaseId) || {};
+    const deductionCount = (caseProgress.deductionsMade || []).length;
+    const prophecyCount = (caseProgress.propheciesFound || []).length;
 
     if (!evidenceId || !prophecyId) {
       if (this.audio.enabled) this.audio.playError();
+      return;
+    }
+
+    if (deductionCount <= prophecyCount) {
+      if (this.audio.enabled) this.audio.playError();
+      this.codexMatchFeedback = `<div class="codex-feedback-msg error">🧪 Run another Lab deduction first<br><small>You need ${prophecyCount + 1} deductions to unlock prophecy #${prophecyCount + 1}.</small></div>`;
+      this.addSystemMessage(`🧪 Run another Lab deduction before matching the next prophecy.`, 'codex');
+      this.renderCodex();
       return;
     }
 
@@ -448,15 +475,34 @@ renderScene() {
     const view = document.getElementById("inv-accuse");
     if (!c || !view) return;
     const prog = this.cm.getCaseProgress(c.id);
-    view.innerHTML = `<div class="accuse-panel">
+    const unlockedSuspects = prog?.unlockedSuspects || prog?.discoveredSuspects || [];
+    console.log("[UIManager] renderAccuse for case:", c.id, "unlockedSuspects:", unlockedSuspects, "prog:", prog);
+    view.innerHTML = `<h3 class="section-title">Make Your Accusation</h3>
+      <div class="prophecy-accuse-intro">
+        When you have uncovered the truth, name the culprit. A wrong accusation costs you the case.
+      </div>
+      <div class="accuse-panel">
       <div class="suspect-list">
-        ${c.suspects.map(s => {
-      const isLocked = !(prog?.discoveredSuspects || []).includes(s.id);
-      return `<button class="suspect-btn ${isLocked ? 'locked' : ''}" ${isLocked ? 'disabled' : ''} onclick="accuse('${s.id}')">
-            <span class="suspect-btn-avatar">${s.avatar}</span>
-            <div class="suspect-btn-info"><div class="suspect-btn-name">${s.name}</div></div>
-            ${isLocked ? '🔒' : '→'}
-          </button>`;
+         ${c.suspects.map(s => {
+      const isLocked = !unlockedSuspects.includes(s.id);
+      const status = this.cm.getSuspectStatus(s.id);
+      return `<div class="suspect-accordion">
+        <button class="suspect-btn ${isLocked ? 'locked' : ''}" onclick="toggleSuspect(this)" aria-expanded="false">
+          <span class="suspect-btn-avatar">${s.avatar}</span>
+          <div class="suspect-btn-info"><div class="suspect-btn-name">${s.name}</div><div class="suspect-btn-role">${s.role}</div></div>
+          <span class="accordion-chevron" aria-hidden="true">▶</span>
+        </button>
+        <div class="suspect-details">
+          <div class="suspect-details-content">
+            <div class="suspect-detail-row"><span class="suspect-detail-label">Bible Reference</span><span class="suspect-detail-value">${s.bibleRef || '—'}</span></div>
+            <div class="suspect-detail-row"><span class="suspect-detail-label">Status</span><span class="suspect-detail-value">${status.status}</span></div>
+            ${status.notes ? `<div class="suspect-detail-notes">${status.notes}</div>` : ''}
+            <div class="suspect-action-row">
+              <button class="accuse-btn ${isLocked ? 'locked' : ''}" onclick="accuse('${s.id}')" ${isLocked ? 'disabled' : ''}>${isLocked ? '🔒 Locked' : 'Accuse →'}</button>
+            </div>
+          </div>
+        </div>
+      </div>`;
     }).join("")}
       </div>
     </div>`;
