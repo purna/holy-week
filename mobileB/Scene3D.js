@@ -361,10 +361,34 @@ export class Scene3D {
     loadNPCs() {
         const c = this.ui.cm.getActiveCase();
         if (!c) return;
-        
-        // Use grid data NPCs if available, otherwise fall back to case npcs
-        const npcs = this.gridData?.npcs || c.npcs;
-        if (!npcs) return;
+
+        const gridNPCs = this.gridData?.npcs || [];
+
+        // The People tab lists case npcs — make the Scene match it exactly so
+        // every witness you can interview also appears in the world. Skip
+        // non-people entries (e.g. the "none / No One" suspect) and NPCs that
+        // explicitly opt out of dialogue.
+        const caseNPCs = (c.npcs || []).filter(n =>
+            n && n.id && n.id !== 'none' && n.hasDialogue !== false
+        );
+
+        // Build a scene NPC list: prefer explicit grid positions/colors, otherwise
+        // auto-place in a ring so every people-tab NPC gets a spot in the world.
+        const placedPositions = [];
+        const npcs = caseNPCs.map((npc, i) => {
+            const gridMatch = gridNPCs.find(g => g.id === npc.id);
+            let pos = gridMatch?.pos;
+            let color = gridMatch?.color || npc.color;
+            if (!pos) {
+                // Ring layout around origin (flat scene, y = 0 ground)
+                const angle = (i / Math.max(1, caseNPCs.length)) * Math.PI * 2;
+                const radius = 8 + (i % 3) * 2;
+                pos = [Math.cos(angle) * radius, 0, Math.sin(angle) * radius];
+                placedPositions.push(pos);
+            }
+            return { ...npc, pos, color, hasDialogue: npc.hasDialogue !== false, isGridNPC: true };
+        });
+        if (!npcs.length) return;
 
         // Clear existing NPCs
         this.npcMeshes.forEach(n => {
@@ -373,13 +397,9 @@ export class Scene3D {
         this.npcMeshes = [];
 
         // Create NPCs for this case with proper positioning
-        // Grid NPCs are always interactive (they match case data)
-        const isGridNPCs = !!this.gridData?.npcs;
         npcs.forEach(npc => {
             if (npc) {
-                // Create NPC with Cartesian positioning (no normalization)
-                const npcData = { ...npc, hasDialogue: npc.hasDialogue !== false, isGridNPC: true }; // All grid NPCs are talkable
-                const mesh = new NPC(npcData, this.worldMgr.planetR, this.sceneMgr.scene, this.modelMgr, this.toonShader);
+                const mesh = new NPC(npc, this.worldMgr.planetR, this.sceneMgr.scene, this.modelMgr, this.toonShader);
                 this.npcMeshes.push(mesh);
                 this.addNPCButton(npc, mesh.mesh);
             }
@@ -469,6 +489,9 @@ export class Scene3D {
         btn.onclick = () => {
             const npcObj = this.npcMeshes.find(n => n.data && n.data.id === npc.id);
             if (npcObj) {
+                // Discover the NPC so it unlocks in the People tab
+                if (this.ui && this.ui.discoverNPC) this.ui.discoverNPC(npc.id);
+
                 // Handle evidence unlocks from grid NPC dialogue
                 const unlocks = npc.unlocksEvidence || [];
                 if (unlocks.length > 0) {
@@ -487,7 +510,7 @@ export class Scene3D {
                     this.ui.renderLab();
                     this.spawnUnlockedEvidence();
                 }
-                this.ui.handleNpcInteraction('talk');
+                this.ui.handleNpcInteraction('talk', npc.id);
             }
         };
         this.container.appendChild(btn);

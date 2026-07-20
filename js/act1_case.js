@@ -166,7 +166,7 @@ export const act1CaseA = {
       desc: "A freshly cut palm branch, still supple and green. Palms grew near Jericho, not on the Mount of Olives — someone carried this branch specifically for this occasion.",
       bibleRef: "John 12:13 — 'They took palm branches and went out to meet him, shouting, Hosanna! Blessed is the king of Israel!'",
       bibleLink: "john_12_13",
-      propheticLink: "In the Maccabean revolt (165 BC), palm branches were used to celebrate the Jewish people's liberation (1 Maccabees 13:51). The crowd was making a political and spiritual statement — this man is our king and deliverer.",
+      propheticLink: "In the Maccabean era, palm branches became a symbol of Jewish national liberation and celebration (1 Maccabees 13:51 — Simon Maccabeus's entry into the Jerusalem citadel, 141 BC). The crowd was making a political and spiritual statement — this man is our king and deliverer.",
       investigatorNote: "The crowd was prepared. This was not a spontaneous moment — it had been anticipated.",
     },
     {

@@ -450,23 +450,16 @@ export const act4CaseB = {
       propheticLink: "Matthew 28:2 states there was a violent earthquake, for an angel of the Lord came down from heaven and rolled back the stone.",
       investigatorNote: "This spear wasn't cut by a sword in combat; the wood fibers show high-impact compression failure, consistent with an external physical shockwave that knocked the sentries flat.",
     },
-  ],
-
-  evidencePool: [
-    {
-      id: "bribe_shekels",
-      name: "High-Grade Sanctuary Coins",
-      relatedProphecy: "psalm_2_1_2",
-      type: "physical",
-      icon: "💰",
-      desc: "A pouch of high-purity silver coins, the kind used for Temple taxes, found in a Roman guard's possession.",
-    },
     {
       id: "sanhedrin_report",
       name: "Official Sanhedrin Report",
+      relatedProphecy: "psalm_2_1_2",
       type: "analytical",
       icon: "📜",
       desc: "The official report filed by the Sanhedrin, claiming the disciples stole the body while the guards slept.",
+      bibleRef: "Matthew 28:11 — 'While the women were on their way, some of the guards went into the city and reported to the chief priests everything that had happened.'",
+      propheticLink: "This report is the paper trail of the conspiracy itself — the Sanhedrin's own internal record of receiving the guards' account and choosing to suppress rather than investigate it, matching the pattern of rulers plotting against God's anointed described in Psalm 2:1–2.",
+      investigatorNote: "The existence of a formal, internal report proves the Sanhedrin knew the guards' true account before they paid for a false one.",
     },
   ],
   lab: [

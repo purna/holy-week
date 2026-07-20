@@ -1,0 +1,1241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Case Tilemap Editor</title>
+<style>
+  :root{
+    --bg:        #17140f;
+    --panel:     #1f1b14;
+    --panel-2:   #262019;
+    --line:      #3a3226;
+    --paper:     #eee3ce;
+    --paper-dim: #b9ac93;
+    --amber:     #d4a373;
+    --amber-hi:  #e9c46a;
+    --red:       #b5493a;
+    --teal:      #4a7c74;
+    --font-mono: 'Courier New', ui-monospace, Menlo, monospace;
+  }
+  *{ box-sizing:border-box; }
+  html,body{ height:100%; }
+  body{
+    margin:0; background:var(--bg); color:var(--paper);
+    font-family:var(--font-mono);
+    display:flex; flex-direction:column;
+    min-height:100vh;
+  }
+  header{
+    padding:10px 16px; background:var(--panel);
+    border-bottom:2px solid var(--line);
+    display:flex; align-items:center; gap:14px; flex-wrap:wrap;
+  }
+  header h1{
+    font-size:15px; letter-spacing:2px; text-transform:uppercase;
+    color:var(--amber-hi); margin:0 18px 0 0; white-space:nowrap;
+  }
+  header h1 span{ color:var(--paper-dim); font-size:11px; letter-spacing:1px; display:block; text-transform:none; margin-top:2px;}
+  .field{ display:flex; align-items:center; gap:6px; font-size:11px; color:var(--paper-dim); }
+  .field label{ white-space:nowrap; }
+  select, input[type=number], input[type=text]{
+    background:var(--panel-2); color:var(--paper); border:1px solid var(--line);
+    padding:4px 6px; font-family:var(--font-mono); font-size:12px; border-radius:2px;
+  }
+  input[type=range]{ width:90px; }
+  button{
+    background:var(--panel-2); color:var(--paper); border:1px solid var(--line);
+    padding:5px 10px; font-family:var(--font-mono); font-size:11px; letter-spacing:.5px;
+    cursor:pointer; border-radius:2px; text-transform:uppercase;
+  }
+  button:hover{ border-color:var(--amber); color:var(--amber-hi); }
+  button.primary{ background:var(--amber); color:#241c12; border-color:var(--amber); font-weight:bold; }
+  button.primary:hover{ background:var(--amber-hi); color:#241c12; }
+  button.danger:hover{ border-color:var(--red); color:#ff9a86; }
+  button.small{ padding:2px 6px; font-size:10px; }
+
+  .body{ flex:1; display:flex; min-height:0; }
+  aside{
+    width:270px; flex:none; background:var(--panel);
+    border-right:2px solid var(--line); overflow-y:auto;
+    padding:12px;
+  }
+  main{
+    flex:1; overflow:auto; display:flex; align-items:flex-start; justify-content:center;
+    padding:24px; background:
+      linear-gradient(var(--bg),var(--bg));
+  }
+  .canvas-wrap{ background:#0f0d0a; padding:14px; border:1px solid var(--line); box-shadow:0 0 0 1px #000 inset; }
+  canvas{ display:block; image-rendering:pixelated; cursor:crosshair; }
+
+  .section-title{
+    font-size:10px; text-transform:uppercase; letter-spacing:1.5px; color:var(--paper-dim);
+    margin:16px 0 6px; border-bottom:1px solid var(--line); padding-bottom:4px;
+  }
+  .section-title:first-child{ margin-top:0; }
+
+  .layer-tab{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:7px 8px; margin-bottom:4px; border:1px solid var(--line); border-radius:2px;
+    cursor:pointer; font-size:12px; background:var(--panel-2);
+  }
+  .layer-tab.active{ border-color:var(--amber); background:#2c2415; color:var(--amber-hi); }
+  .layer-tab .lname{ display:flex; align-items:center; gap:8px; }
+  .layer-tab small{ color:var(--paper-dim); display:block; font-size:9px; }
+  .layer-tab input[type=checkbox]{ accent-color:var(--amber); }
+
+  .palette{ display:flex; flex-wrap:wrap; gap:6px; margin-top:6px; }
+  .swatch{
+    width:34px; height:34px; border:2px solid var(--line); border-radius:3px;
+    display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:bold;
+    cursor:pointer; position:relative; color:#fff; text-shadow:0 1px 2px rgba(0,0,0,.7);
+  }
+  .swatch.selected{ border-color:var(--amber-hi); box-shadow:0 0 0 2px var(--amber-hi); }
+  .swatch .del{
+    position:absolute; top:-6px; right:-6px; width:14px; height:14px; border-radius:50%;
+    background:var(--red); color:#fff; font-size:9px; line-height:14px; text-align:center;
+    display:none; cursor:pointer;
+  }
+  .swatch .edit{
+    position:absolute; top:-6px; left:-6px; width:14px; height:14px; border-radius:50%;
+    background:var(--teal); color:#fff; font-size:8px; line-height:14px; text-align:center;
+    display:none; cursor:pointer;
+  }
+  .swatch:hover .del, .swatch:hover .edit{ display:block; }
+  .swatch-name{ font-size:9px; color:var(--paper-dim); text-align:center; width:34px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .swatch-col{ display:flex; flex-direction:column; align-items:center; gap:2px; }
+
+  .add-tile-form{ margin-top:10px; padding:8px; background:var(--panel-2); border:1px dashed var(--line); border-radius:3px; }
+  .add-tile-form .row{ display:flex; gap:6px; margin-bottom:6px; align-items:center; }
+  .add-tile-form input[type=text]{ width:34px; text-align:center; text-transform:none; }
+  .add-tile-form input[type=text].wide{ width:100%; }
+  .add-tile-form input[type=color]{ width:34px; height:26px; padding:0; border:1px solid var(--line); background:none; }
+
+  .layer-actions{ display:flex; gap:6px; margin-top:8px; flex-wrap:wrap; }
+
+  .hint{ font-size:10px; color:var(--paper-dim); line-height:1.5; margin-top:6px; }
+
+  .npc-count-row{
+    display:flex; justify-content:space-between; font-size:11px; padding:3px 4px;
+    border-bottom:1px solid var(--line); color:var(--paper-dim);
+  }
+  .npc-count-row.current{ color:var(--amber-hi); font-weight:bold; background:#2c2415; }
+  .npc-count-row .n{ color:var(--paper); }
+  .npc-count-row.current .n{ color:var(--amber-hi); }
+
+  .modal-backdrop{
+    position:fixed; inset:0; background:rgba(0,0,0,.72); display:none;
+    align-items:center; justify-content:center; z-index:50; padding:30px;
+  }
+  .modal-backdrop.open{ display:flex; }
+  .modal{
+    background:var(--panel); border:1px solid var(--amber); width:min(760px,100%); max-height:88vh;
+    display:flex; flex-direction:column; border-radius:4px; overflow:hidden;
+  }
+  .modal header{ background:var(--panel-2); }
+  .modal-body{ padding:14px; overflow-y:auto; }
+  textarea{
+    width:100%; height:280px; background:#0f0d0a; color:var(--amber-hi); border:1px solid var(--line);
+    font-family:var(--font-mono); font-size:11px; padding:8px; resize:vertical; line-height:1.4;
+  }
+  .modal-actions{ display:flex; gap:8px; margin-top:10px; flex-wrap:wrap; }
+  .tabs-row{ display:flex; gap:6px; margin-bottom:10px; flex-wrap:wrap; }
+  button.on{ border-color:var(--amber); color:var(--amber-hi); background:#2c2415; }
+  .close-x{ margin-left:auto; }
+
+  ::-webkit-scrollbar{ width:10px; height:10px; }
+  ::-webkit-scrollbar-track{ background:var(--bg); }
+  ::-webkit-scrollbar-thumb{ background:var(--line); border-radius:5px; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Case Tilemap Editor<span>64&times;64 layered ASCII maps &middot; Passion Week case files</span></h1>
+
+  <div class="field">
+    <label>Case</label>
+    <select id="caseSelect"></select>
+  </div>
+  <div class="field">
+    <button id="addCaseBtn" class="small">+ New Case</button>
+  </div>
+
+  <div class="field" style="color:var(--amber-hi);">
+    NPCs in scene: <strong id="npcCountCurrent">0</strong>
+  </div>
+
+  <div class="field">
+    <label>Rows</label><input type="number" id="rowsInput" min="8" max="128" value="64" style="width:56px">
+    <label>Cols</label><input type="number" id="colsInput" min="8" max="128" value="64" style="width:56px">
+    <button id="resizeBtn" class="small">Apply Size</button>
+  </div>
+
+  <div class="field">
+    <label>Zoom</label>
+    <input type="range" id="zoomInput" min="5" max="22" value="11">
+  </div>
+
+  <div class="field">
+    <label>Brush</label>
+    <input type="range" id="brushSizeInput" min="1" max="9" value="1">
+    <span id="brushSizeLabel" style="color:var(--amber-hi); min-width:34px;">1×1</span>
+  </div>
+
+  <div class="field">
+    <label>Tool</label>
+    <button id="toolBrushBtn" class="small on">✎ Brush</button>
+    <button id="toolFillBtn" class="small">🪣 Fill Connected</button>
+  </div>
+  <div class="field" id="fillMatchField" style="display:none;">
+    <label>Match tiles on</label>
+    <select id="fillMatchLayer"></select>
+  </div>
+
+  <div class="field" style="margin-left:auto; gap:8px;">
+    <button id="importBtn">Import ASCII</button>
+    <button id="exportBtn" class="primary">Export</button>
+  </div>
+</header>
+
+<div class="body">
+  <aside>
+    <div class="section-title">Layers (click to paint on)</div>
+    <div id="layerTabs"></div>
+
+    <div class="section-title" id="paletteTitle">Background Palette</div>
+    <div class="hint">Click a tile to select it as your brush, then paint on the canvas. Right-click (or the Erase tile) clears a cell.</div>
+    <div class="palette" id="palette"></div>
+
+    <div class="add-tile-form">
+      <div class="row">
+        <input type="text" id="newChar" maxlength="1" placeholder="c">
+        <input type="text" id="newName" class="wide" placeholder="Tile name">
+      </div>
+      <div class="row">
+        <input type="color" id="newColor" value="#8a6d4b">
+        <button id="addTileBtn" style="flex:1;">Add Tile</button>
+      </div>
+      <div class="row" id="cancelEditRow" style="display:none;">
+        <button id="cancelEditBtn" class="small" style="flex:1;">Cancel Rename</button>
+      </div>
+    </div>
+
+    <div class="layer-actions">
+      <button id="fillBtn" class="small">Fill Layer w/ Brush</button>
+      <button id="clearBtn" class="small danger">Clear Layer</button>
+    </div>
+
+    <div class="section-title">NPC Counts (all cases)</div>
+    <div class="hint">Target = number of named suspects/witnesses in that case's <code>npcs:</code> array in the act*_case.js files. ⚠ = fewer placeholders painted than the case file lists.</div>
+    <div id="npcCountsList"></div>
+
+    <div class="section-title">Roster for Current Case</div>
+    <div class="hint">These are the specific named characters this case's dialogue expects — a guide for how many (and roughly who) your placeholder slots should cover. The NPC layer still just places generic type placeholders; the game picks who fills them.</div>
+    <div id="rosterList"></div>
+
+    <div class="section-title">Reference Data</div>
+    <div class="layer-actions">
+      <button id="loadSampleBtn" class="small">Load Sample defaultMap</button>
+    </div>
+    <div class="hint">Loads the provided <code>case_tilemaps.json</code> defaultMap into the Background layer of the current case as a starting point.</div>
+  </aside>
+
+  <main>
+    <div class="canvas-wrap">
+      <canvas id="grid"></canvas>
+    </div>
+  </main>
+</div>
+
+<!-- IMPORT MODAL -->
+<div class="modal-backdrop" id="importModal">
+  <div class="modal">
+    <header>
+      <strong style="color:var(--amber-hi); font-size:12px;">IMPORT ASCII &rarr; BACKGROUND LAYER</strong>
+      <button class="close-x small" data-close="importModal">Close</button>
+    </header>
+    <div class="modal-body">
+      <div class="hint">Paste an ASCII grid (one row per line, same character set as your Background palette). Unknown characters are auto-added to the palette with a placeholder color so nothing is lost. Rows/cols will be resized to match if they differ from the current grid size.</div>
+      <textarea id="importText" placeholder="################################...&#10;###.......................######...&#10;..."></textarea>
+      <div class="modal-actions">
+        <button id="doImportBtn" class="primary">Import into Current Case</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- EXPORT MODAL -->
+<div class="modal-backdrop" id="exportModal">
+  <div class="modal">
+    <header>
+      <strong style="color:var(--amber-hi); font-size:12px;">EXPORT</strong>
+      <button class="close-x small" data-close="exportModal">Close</button>
+    </header>
+    <div class="modal-body">
+      <div class="tabs-row" id="exportTabs"></div>
+      <textarea id="exportText" readonly></textarea>
+      <div class="modal-actions">
+        <button id="copyExportBtn">Copy to Clipboard</button>
+        <button id="downloadExportBtn" class="primary">Download File</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ---------------------------------------------------------------------
+   DATA
+--------------------------------------------------------------------- */
+const LAYERS = [
+  { key:'background',  label:'1 · Background',  hint:'Base ground tiles',              type:'tile' },
+  { key:'decoration',  label:'2 · Decoration',   hint:'Trees, bushes, props',           type:'tile' },
+  { key:'collider',    label:'3 · Collider',     hint:'Mark tiles as blocking',         type:'tile' },
+  { key:'npc',         label:'4 · NPC Spawns',   hint:'Placeholder slots (random pick)',type:'tile' },
+];
+
+// NOTE: case_tilemaps.json only listed 12 cases, but act1_case.js through
+// act4_case.js define 14 case `id`s. "temple_cleansing" and "fig_tree_incident"
+// (both from act1_case.js) were missing from the tilemap cases list, so
+// they've been added here.
+// Extracted directly from the `npcs: [...]` arrays inside act1_case.js
+// through act4_case.js — this is the actual roster of named suspects/
+// witnesses the case-file writer put in each scene, used as a target
+// guide for how many NPC placeholders that scene's map should have.
+const CASE_NPC_ROSTER = {
+  triumphal_entry: [
+    {id:"peter", name:"Peter"}, {id:"john", name:"John"}, {id:"owner", name:"Tobias"},
+    {id:"local_skeptic", name:"Jemimah"}, {id:"eleazar", name:"Eleazar"}
+  ],
+  temple_cleansing: [
+    {id:"money_changer", name:"Malachi"}, {id:"garrison_guard", name:"Marcus"},
+    {id:"barabbas_insurgent", name:"Barabbas"}, {id:"informant_bribe", name:"Market Informant"},
+    {id:"market_rumors", name:"Market Vendor"}, {id:"pontius_pilate", name:"Pontius Pilate"},
+    {id:"pilates_secretary", name:"Pilate's Secretary"}, {id:"pharisee_critique", name:"Simon the Pharisee"},
+    {id:"priest_objection", name:"Temple Priest Objector"}, {id:"rumor_whisper", name:"Rumor Whisperer"},
+    {id:"upset_buyer", name:"Upset Temple Buyer"}, {id:"woman_cloak", name:"Woman Who Gave Her Cloak"},
+    {id:"sadducee_opposition", name:"Sadducee Opposer"}, {id:"corrupt_seller", name:"Corrupt Seller"}
+  ],
+  fig_tree_incident: [
+    {id:"peter_fig_tree", name:"Peter"}, {id:"john_fig_tree", name:"John"},
+    {id:"nathan_gardener", name:"Nathan"}, {id:"local_traveler_fig_tree", name:"Local Traveler"}
+  ],
+  authority_challenged: [
+    {id:"chief_priest", name:"Caiaphas"}, {id:"scribe", name:"Samuel"},
+    {id:"pharisee", name:"Nathanael"}, {id:"rich_young_ruler", name:"Thomas the Rich Young Ruler"}
+  ],
+  lazarus_plot: [
+    {id:"temple_spy", name:"Maluch"}, {id:"annas_patriarch", name:"Annas"},
+    {id:"martha_bethany", name:"Martha"}, {id:"parable_meaning", name:"Thomas (Parable)"},
+    {id:"parable_vineyard", name:"Thomas (Vineyard)"}, {id:"trial_rumors", name:"Trial Rumors"},
+    {id:"witness_healed", name:"Bethesda Witness"}, {id:"teaching_mount", name:"Mount Teacher"},
+    {id:"nicodemus", name:"Nicodemus"}, {id:"simon_leper", name:"Simon the Leper"}
+  ],
+  olivet_discourse: [
+    {id:"peter_olivet", name:"Peter"}, {id:"john_olivet", name:"John"},
+    {id:"thomas_olivet", name:"Thomas"}, {id:"andrew_olivet", name:"Andrew"}
+  ],
+  last_supper: [
+    {id:"john_mark", name:"John Mark"}, {id:"servant", name:"Rhoda"}, {id:"judas", name:"Judas Iscariot"}
+  ],
+  gethsemane_arrest: [
+    {id:"malchus_servant", name:"Malchus"}, {id:"simon_peter", name:"Simon Peter"},
+    {id:"roman_soldier", name:"Garrison Guard"}
+  ],
+  sanhedrin_trial: [
+    {id:"caiaphas_trial", name:"Caiaphas"}, {id:"peter_denial_trial", name:"Peter"},
+    {id:"false_witness_trial", name:"Ananias"}
+  ],
+  barabbas_choice: [
+    {id:"pontius_pilate_trial", name:"Pontius Pilate"}, {id:"barabbas_insurgent_trial", name:"Barabbas"}
+  ],
+  crucifixion_site: [
+    {id:"centurion_longinus", name:"Centurion Longinus"}, {id:"temple_priest_pashhur", name:"Pashhur"},
+    {id:"joseph_arimathea", name:"Joseph of Arimathea"}, {id:"upper_room_prep", name:"Upper Room Prep"},
+    {id:"secret_visit", name:"Secret Visitor"}, {id:"peter_denial", name:"Peter (Denial)"},
+    {id:"peter_defense_simple", name:"Peter (Simple Defense)"}, {id:"simon_cyrene", name:"Simon of Cyrene"},
+    {id:"temple_curtain", name:"Temple Curtain Witness"}, {id:"execution_guard", name:"Crucifixion Guard"}
+  ],
+  resurrection: [
+    {id:"mary_magdalene", name:"Mary Magdalene"}, {id:"marcus", name:"Marcus"},
+    {id:"joseph", name:"Joseph of Arimathea"}
+  ],
+  roman_inquiry: [
+    {id:"sentry_lucas", name:"Lucas of the Tenth Legion"}, {id:"chief_priest_caiaphas", name:"Caiaphas"},
+    {id:"pilates_secretary", name:"Pilate’s Secretary"}, {id:"mary_resurrection", name:"Mary (Resurrection)"},
+    {id:"judas_betrayal", name:"Judas (Betrayal)"}, {id:"herods_servant", name:"Herod's Servant"},
+    {id:"peter_restored", name:"Peter (Restored)"}
+  ],
+  peter_restoration: [
+    {id:"peter", name:"Peter"}, {id:"thomas", name:"Thomas"},
+    {id:"mary_magdalene", name:"Mary Magdalene"}, {id:"nathanael", name:"Nathanael"}
+  ],
+};
+
+const CASE_NAMES = [
+  // Act 1
+  "triumphal_entry","temple_cleansing","fig_tree_incident",
+  // Act 2
+  "authority_challenged","lazarus_plot","olivet_discourse",
+  // Act 3
+  "last_supper","gethsemane_arrest","sanhedrin_trial","barabbas_choice","crucifixion_site",
+  // Act 4
+  "resurrection","roman_inquiry","peter_restoration"
+];
+
+const DEFAULT_PALETTES = {
+  background: [
+    {ch:'.', name:'Ground',  color:'#e9c46a'},
+    {ch:'~', name:'Water',   color:'#204859'},
+    {ch:'#', name:'Wall',    color:'#4a3b2c'},
+    {ch:'=', name:'Path',    color:'#cd7f60'},
+    {ch:'R', name:'Roof',    color:'#6e463b'},
+    {ch:'W', name:'Wall Fill', color:'#2e5d72'},
+    {ch:'B', name:'Boundary',color:'#588157'},
+  ],
+  decoration: [
+    {ch:'.', name:'None',    color:null},
+    {ch:'T', name:'Tree',    color:'#3a5a40'},
+    {ch:'P', name:'Palm',    color:'#a06a42'},
+    {ch:'U', name:'Bush',    color:'#588157'},
+    {ch:'K', name:'Rock',    color:'#6e6a5e'},
+    {ch:'J', name:'Jar/Pot', color:'#b06548'},
+  ],
+  collider: [
+    {ch:'.', name:'Open',      color:null},
+    {ch:'X', name:'Collider',  color:'#b5493a'},
+  ],
+  npc: [
+    {ch:'.', name:'None',     color:null},
+    {ch:'V', name:'Vendor',   color:'#d97757'},
+    {ch:'G', name:'Guard',    color:'#4a3b2c'},
+    {ch:'E', name:'Elder',    color:'#8a6d4b'},
+    {ch:'D', name:'Disciple', color:'#4a7c74'},
+    {ch:'C', name:'Child',    color:'#e9c46a'},
+    {ch:'B', name:'Beggar',   color:'#6e6a5e'},
+  ],
+};
+
+const SAMPLE_DEFAULT_MAP = [
+"################################################################",
+"###.......................######..........................######",
+"##.....=======.............####............=======.........#####",
+"##....==.....==.............##............==.....==.........####",
+"##...==.......==.........................==.......==.........###",
+"#...==.........==.......................==.........==..........#",
+"#...=...RRRR....=................-------=...RRRR....=..........#",
+"#...=...RWWWR...=...............---------=...RWWWR...=..........#",
+"#...=...RWWWR...=..............-----------=...RWWWR...=..........#",
+"#...==..RRRR...==.............-------------==..RRRR...==..........#",
+"##...==.......==.......#######~~~~~~~~~#####..==.......==..........##",
+"###...==.....==......###RRRRRR~~~~~~~~~RRR###...==.....==..........###",
+"####...=======......##RRRRRRRR~~~~~~~~~RRRRR##....=======..........####",
+"#####..............##RRRRRRRRR~~~~~~~~~RRRRRRR##...................#####",
+"######.............#RRRRRRRRRR~~~~~~~~~RRRRRRRR#...................######",
+"######.............#RRRRRRRRR~~~~~~~~~~~RRRRRRR#...................######",
+"######.............#RRRRRRRR~~~~~~~~~~~~~RRRRRR#...................######",
+"######.............#RRRRRRR~~~~~~~~~~~~~~~RRRRR#...................######",
+"######.............#RRRRRRR~~~~WWWWW~~~~~~RRRRR#...................######",
+"######.............#RRRRRRR~~~WWWWWWW~~~~~RRRRR#...................######",
+"######.............#RRRRRRR~~~WWWWWWW~~~~~RRRRR#...................######",
+"######.............#RRRRRRR~~~~WWWWW~~~~~~RRRRR#...................######",
+"######.............#RRRRRRR~~~~~~~~~~~~~~~RRRRR#...................######",
+"######.............#RRRRRRRR~~~~~~~~~~~~~RRRRRR#...................######",
+"######.............##RRRRRRRRR~~~~~~~~~RRRRRR##....................######",
+"#####...............##RRRRRRRRRRRRRRRRRRRRR##......................#####",
+"####.................###RRRRRRRRRRRRRRRRR###........................####",
+"###....................#####.=====.#####...........................###",
+"##..........................=.....=...............................##",
+"#...........................=.....=................................#",
+"#......======================.....======================...........#",
+"#.....==....................=.....=....................==..........#",
+"#....==.....................=.....=.....................==.........#",
+"#...==......................=.....=......................==........#",
+"#...=.......................=======.......................=........#",
+"#...=.....................................................=........#",
+"#...==...................................................==........#",
+"#....==.....................=======.....................==.........#",
+"#.....==....................=.....=....................==..........#",
+"#......======================.....======================...........#",
+"#...........................=.....=................................#",
+"#...........................=.....=................................#",
+"##..........................W.....W...............................##",
+"###........................WW.....WW..............................###",
+"####.....................####.....####.............................####",
+"#####...................#####.....#####............................#####",
+"######.................######.....######...........................######",
+"#######...............#######.....###..BBBBBBBBBBB.......#######",
+"########.............########.....##...B.........B......########",
+"#########...........#########.....#....B.........B.....#########",
+"##########.........##########..........B....R....B....##########",
+"###########.......###########..........B...RWR...B...###########",
+"############.....############..........B....R....B..############",
+"#############...#############..........B.........B.#############",
+"##############.##############..........BBBBBBBBBBB##############",
+"#############################..................#################",
+"############################....................################",
+"###########################......................###############",
+"##########################........................##############",
+"#########################..........................#############",
+"########################............................############",
+"#######################..............................###########",
+"######################................................##########",
+"################################################################"
+];
+
+/* ---------------------------------------------------------------------
+   STATE
+--------------------------------------------------------------------- */
+const state = {
+  rows: 64,
+  cols: 64,
+  cellSize: 11,
+  brushSize: 1,
+  tool: 'brush', // 'brush' | 'fill'
+  fillMatchLayer: 'background',
+  activeLayer: 'background',
+  currentCase: CASE_NAMES[0],
+  caseNames: [...CASE_NAMES],
+  palettes: JSON.parse(JSON.stringify(DEFAULT_PALETTES)),
+  brush: { background:'.', decoration:'.', collider:'.', npc:'.' },
+  cases: {}, // caseName -> {background:[rows], decoration:[rows], collider:[rows], npc:[rows]}
+  visible: { background:true, decoration:true, collider:true, npc:true },
+  painting: false,
+  eraseMode: false,
+  editingChar: null, // when set, the add-tile form is editing this tile instead of creating a new one
+};
+
+function blankGrid(rows, cols){
+  const row = '.'.repeat(cols);
+  return Array.from({length: rows}, () => row);
+}
+
+function ensureCase(name){
+  if (!state.cases[name]){
+    state.cases[name] = {
+      background: blankGrid(state.rows, state.cols),
+      decoration: blankGrid(state.rows, state.cols),
+      collider:   blankGrid(state.rows, state.cols),
+      npc:        blankGrid(state.rows, state.cols),
+    };
+  }
+  return state.cases[name];
+}
+CASE_NAMES.forEach(ensureCase);
+
+function resizeAllCases(rows, cols){
+  Object.keys(state.cases).forEach(name => {
+    const c = state.cases[name];
+    LAYERS.forEach(l => { c[l.key] = resizeGrid(c[l.key], rows, cols); });
+  });
+  state.rows = rows; state.cols = cols;
+}
+
+function resizeGrid(grid, rows, cols){
+  const out = [];
+  for (let r=0; r<rows; r++){
+    const src = grid[r] || '';
+    let row = src.slice(0, cols);
+    if (row.length < cols) row += '.'.repeat(cols - row.length);
+    out.push(row);
+  }
+  return out;
+}
+
+function setCell(layerKey, r, c, ch){
+  const grid = ensureCase(state.currentCase)[layerKey];
+  const row = grid[r];
+  if (row[c] === ch) return;
+  grid[r] = row.slice(0,c) + ch + row.slice(c+1);
+  if (layerKey === 'npc') renderNpcCounts();
+}
+
+function getPaletteEntry(layerKey, ch){
+  return state.palettes[layerKey].find(t => t.ch === ch);
+}
+
+function computeNpcCount(caseName){
+  const grid = ensureCase(caseName).npc;
+  let count = 0;
+  for (const row of grid) for (const ch of row) if (ch !== '.') count++;
+  return count;
+}
+
+function npcTarget(caseName){
+  const roster = CASE_NPC_ROSTER[caseName];
+  return roster ? roster.length : null;
+}
+
+function renderNpcCounts(){
+  const count = computeNpcCount(state.currentCase);
+  const target = npcTarget(state.currentCase);
+  document.getElementById('npcCountCurrent').textContent = target !== null ? `${count} / ${target}` : `${count}`;
+
+  const el = document.getElementById('npcCountsList');
+  if (el){
+    el.innerHTML = '';
+    state.caseNames.forEach(name => {
+      const c = computeNpcCount(name);
+      const t = npcTarget(name);
+      const row = document.createElement('div');
+      let cls = 'npc-count-row' + (name === state.currentCase ? ' current' : '');
+      let countText = t !== null ? `${c} / ${t}` : `${c}`;
+      row.className = cls;
+      if (t !== null){
+        row.title = 'Case-file roster: ' + CASE_NPC_ROSTER[name].map(n => n.name).join(', ');
+      }
+      row.innerHTML = `<span>${name}${t !== null && c < t ? ' ⚠' : ''}</span><span class="n">${countText}</span>`;
+      el.appendChild(row);
+    });
+  }
+
+  renderRoster();
+}
+
+function renderRoster(){
+  const el = document.getElementById('rosterList');
+  if (!el) return;
+  const roster = CASE_NPC_ROSTER[state.currentCase];
+  if (!roster){
+    el.innerHTML = '<div class="hint">No roster on file for this case — it may be a custom case you added.</div>';
+    return;
+  }
+  el.innerHTML = roster.map(n => `<div class="npc-count-row"><span>${n.name}</span><span class="n" style="color:var(--paper-dim);">${n.id}</span></div>`).join('');
+}
+
+/* ---------------------------------------------------------------------
+   DOM refs
+--------------------------------------------------------------------- */
+const canvas = document.getElementById('grid');
+const ctx = canvas.getContext('2d');
+const caseSelect = document.getElementById('caseSelect');
+const layerTabsEl = document.getElementById('layerTabs');
+const paletteEl = document.getElementById('palette');
+const paletteTitleEl = document.getElementById('paletteTitle');
+
+/* ---------------------------------------------------------------------
+   RENDER: case select
+--------------------------------------------------------------------- */
+function renderCaseSelect(){
+  caseSelect.innerHTML = '';
+  state.caseNames.forEach(name => {
+    const opt = document.createElement('option');
+    opt.value = name;
+    opt.textContent = name;
+    if (name === state.currentCase) opt.selected = true;
+    caseSelect.appendChild(opt);
+  });
+}
+
+/* ---------------------------------------------------------------------
+   RENDER: layer tabs
+--------------------------------------------------------------------- */
+function renderLayerTabs(){
+  layerTabsEl.innerHTML = '';
+  LAYERS.forEach(l => {
+    const div = document.createElement('div');
+    div.className = 'layer-tab' + (state.activeLayer === l.key ? ' active' : '');
+    div.innerHTML = `
+      <div class="lname">
+        <input type="checkbox" data-vis="${l.key}" ${state.visible[l.key] ? 'checked':''}>
+        <div>${l.label}<small>${l.hint}</small></div>
+      </div>
+    `;
+    div.addEventListener('click', (e) => {
+      if (e.target.tagName === 'INPUT') return;
+      state.activeLayer = l.key;
+      if (state.editingChar) cancelEditTile();
+      renderLayerTabs();
+      renderPalette();
+    });
+    div.querySelector('input').addEventListener('click', (e) => {
+      e.stopPropagation();
+      state.visible[l.key] = e.target.checked;
+      drawCanvas();
+    });
+    layerTabsEl.appendChild(div);
+  });
+}
+
+/* ---------------------------------------------------------------------
+   RENDER: palette
+--------------------------------------------------------------------- */
+function renderPalette(){
+  const layerDef = LAYERS.find(l => l.key === state.activeLayer);
+  paletteTitleEl.textContent = layerDef.label.replace(/^\d+ · /,'') + ' Palette';
+  paletteEl.innerHTML = '';
+  const list = state.palettes[state.activeLayer];
+  list.forEach(tile => {
+    const wrap = document.createElement('div');
+    wrap.className = 'swatch-col';
+    const sw = document.createElement('div');
+    sw.className = 'swatch' + (state.brush[state.activeLayer] === tile.ch ? ' selected' : '');
+    sw.style.background = tile.color || 'repeating-conic-gradient(#3a3226 0% 25%, #262019 0% 50%) 50% / 8px 8px';
+    sw.textContent = tile.ch === '.' ? '' : tile.ch;
+    sw.title = tile.name;
+    sw.addEventListener('click', () => {
+      state.brush[state.activeLayer] = tile.ch;
+      renderPalette();
+    });
+    if (tile.ch !== '.'){
+      const edit = document.createElement('div');
+      edit.className = 'edit';
+      edit.textContent = '✎';
+      edit.title = 'Rename / recolor tile';
+      edit.addEventListener('click', (e) => {
+        e.stopPropagation();
+        startEditTile(tile);
+      });
+      sw.appendChild(edit);
+
+      const del = document.createElement('div');
+      del.className = 'del';
+      del.textContent = '×';
+      del.title = 'Delete tile';
+      del.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (!confirm(`Delete tile "${tile.ch}" (${tile.name})? Cells already painted with it will keep the character until repainted.`)) return;
+        state.palettes[state.activeLayer] = state.palettes[state.activeLayer].filter(t => t.ch !== tile.ch);
+        if (state.brush[state.activeLayer] === tile.ch) state.brush[state.activeLayer] = '.';
+        if (state.editingChar === tile.ch) cancelEditTile();
+        renderPalette();
+      });
+      sw.appendChild(del);
+    }
+    const label = document.createElement('div');
+    label.className = 'swatch-name';
+    label.textContent = tile.name;
+    wrap.appendChild(sw);
+    wrap.appendChild(label);
+    paletteEl.appendChild(wrap);
+  });
+}
+
+/* ---------------------------------------------------------------------
+   CANVAS DRAW
+--------------------------------------------------------------------- */
+function drawCanvas(){
+  const cs = state.cellSize;
+  canvas.width = state.cols * cs;
+  canvas.height = state.rows * cs;
+  const c = ensureCase(state.currentCase);
+
+  // background
+  if (state.visible.background){
+    for (let r=0;r<state.rows;r++){
+      const row = c.background[r];
+      for (let col=0; col<state.cols; col++){
+        const ch = row[col];
+        const tile = getPaletteEntry('background', ch);
+        ctx.fillStyle = tile ? tile.color : '#ff00ff';
+        ctx.fillRect(col*cs, r*cs, cs, cs);
+      }
+    }
+  } else {
+    ctx.fillStyle = '#0f0d0a';
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+  }
+
+  // decoration
+  if (state.visible.decoration){
+    for (let r=0;r<state.rows;r++){
+      const row = c.decoration[r];
+      for (let col=0; col<state.cols; col++){
+        const ch = row[col];
+        if (ch === '.') continue;
+        const tile = getPaletteEntry('decoration', ch);
+        ctx.fillStyle = tile ? tile.color : '#ff00ff';
+        const pad = Math.max(1, cs*0.18);
+        ctx.beginPath();
+        ctx.arc(col*cs+cs/2, r*cs+cs/2, (cs-pad*2)/2, 0, Math.PI*2);
+        ctx.fill();
+      }
+    }
+  }
+
+  // collider
+  if (state.visible.collider){
+    for (let r=0;r<state.rows;r++){
+      const row = c.collider[r];
+      for (let col=0; col<state.cols; col++){
+        const ch = row[col];
+        if (ch === '.') continue;
+        const tile = getPaletteEntry('collider', ch);
+        ctx.fillStyle = (tile ? tile.color : '#ff00ff') + 'a0';
+        ctx.fillRect(col*cs, r*cs, cs, cs);
+        ctx.strokeStyle = 'rgba(0,0,0,.5)';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(col*cs, r*cs); ctx.lineTo(col*cs+cs, r*cs+cs);
+        ctx.moveTo(col*cs+cs, r*cs); ctx.lineTo(col*cs, r*cs+cs);
+        ctx.stroke();
+      }
+    }
+  }
+
+  // npc
+  if (state.visible.npc){
+    for (let r=0;r<state.rows;r++){
+      const row = c.npc[r];
+      for (let col=0; col<state.cols; col++){
+        const ch = row[col];
+        if (ch === '.') continue;
+        const tile = getPaletteEntry('npc', ch);
+        ctx.fillStyle = tile ? tile.color : '#ff00ff';
+        ctx.strokeStyle = '#fff';
+        ctx.lineWidth = 1;
+        const cx = col*cs+cs/2, cy = r*cs+cs/2, half = cs*0.38;
+        ctx.beginPath();
+        ctx.moveTo(cx, cy-half); ctx.lineTo(cx+half, cy); ctx.lineTo(cx, cy+half); ctx.lineTo(cx-half, cy);
+        ctx.closePath(); ctx.fill(); ctx.stroke();
+        if (cs >= 10){
+          ctx.fillStyle = '#000';
+          ctx.font = `bold ${Math.floor(cs*0.55)}px monospace`;
+          ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+          ctx.fillText(ch, cx, cy+1);
+        }
+      }
+    }
+  }
+
+  // grid lines (light, every cell if cell big enough, else every 8)
+  const step = cs >= 8 ? 1 : 8;
+  ctx.strokeStyle = 'rgba(0,0,0,0.25)';
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  for (let col=0; col<=state.cols; col+=step){
+    ctx.moveTo(col*cs+0.5, 0); ctx.lineTo(col*cs+0.5, canvas.height);
+  }
+  for (let r=0; r<=state.rows; r+=step){
+    ctx.moveTo(0, r*cs+0.5); ctx.lineTo(canvas.width, r*cs+0.5);
+  }
+  ctx.stroke();
+}
+
+/* ---------------------------------------------------------------------
+   PAINT INTERACTION
+--------------------------------------------------------------------- */
+function cellFromEvent(e){
+  const rect = canvas.getBoundingClientRect();
+  const scaleX = canvas.width / rect.width;
+  const scaleY = canvas.height / rect.height;
+  const x = (e.clientX - rect.left) * scaleX;
+  const y = (e.clientY - rect.top) * scaleY;
+  const col = Math.floor(x / state.cellSize);
+  const r = Math.floor(y / state.cellSize);
+  if (r < 0 || r >= state.rows || col < 0 || col >= state.cols) return null;
+  return {r, col};
+}
+
+function paintAt(e, forceErase){
+  const cell = cellFromEvent(e);
+  if (!cell) return;
+  const ch = forceErase ? '.' : state.brush[state.activeLayer];
+  const half = Math.floor((state.brushSize - 1) / 2);
+  for (let dr = -half; dr < state.brushSize - half; dr++){
+    for (let dc = -half; dc < state.brushSize - half; dc++){
+      const r = cell.r + dr, c = cell.col + dc;
+      if (r < 0 || r >= state.rows || c < 0 || c >= state.cols) continue;
+      setCell(state.activeLayer, r, c, ch);
+    }
+  }
+  drawCanvas();
+  drawBrushPreview(cell);
+}
+
+function drawBrushPreview(cell){
+  if (!cell) return;
+  const cs = state.cellSize;
+  const half = Math.floor((state.brushSize - 1) / 2);
+  const x = (cell.col - half) * cs;
+  const y = (cell.r - half) * cs;
+  const size = state.brushSize * cs;
+  ctx.save();
+  ctx.strokeStyle = '#ffffff';
+  ctx.lineWidth = 1.5;
+  ctx.strokeRect(x + 0.75, y + 0.75, size - 1.5, size - 1.5);
+  ctx.restore();
+}
+
+function floodFillAt(e, forceErase){
+  const cell = cellFromEvent(e);
+  if (!cell) return;
+  const targetLayer = state.activeLayer;
+  const matchLayer = state.fillMatchLayer;
+  const matchGrid = ensureCase(state.currentCase)[matchLayer];
+  const matchCh = matchGrid[cell.r][cell.col];
+  const ch = forceErase ? '.' : state.brush[targetLayer];
+
+  const rows = state.rows, cols = state.cols;
+  const visited = new Uint8Array(rows * cols);
+  const stack = [[cell.r, cell.col]];
+  visited[cell.r * cols + cell.col] = 1;
+  const region = [];
+
+  while (stack.length){
+    const [r, c] = stack.pop();
+    region.push([r, c]);
+    const neighbors = [[r-1,c],[r+1,c],[r,c-1],[r,c+1]];
+    for (const [nr, nc] of neighbors){
+      if (nr < 0 || nr >= rows || nc < 0 || nc >= cols) continue;
+      const idx = nr * cols + nc;
+      if (visited[idx]) continue;
+      if (matchGrid[nr][nc] !== matchCh) continue;
+      visited[idx] = 1;
+      stack.push([nr, nc]);
+    }
+  }
+
+  region.forEach(([r, c]) => setCell(targetLayer, r, c, ch));
+  drawCanvas();
+}
+
+function setTool(tool){
+  state.tool = tool;
+  document.getElementById('toolBrushBtn').classList.toggle('on', tool === 'brush');
+  document.getElementById('toolFillBtn').classList.toggle('on', tool === 'fill');
+  document.getElementById('fillMatchField').style.display = tool === 'fill' ? 'flex' : 'none';
+  canvas.style.cursor = tool === 'fill' ? 'copy' : 'crosshair';
+}
+
+document.getElementById('toolBrushBtn').addEventListener('click', () => setTool('brush'));
+document.getElementById('toolFillBtn').addEventListener('click', () => setTool('fill'));
+
+const fillMatchLayerSelect = document.getElementById('fillMatchLayer');
+LAYERS.forEach(l => {
+  const opt = document.createElement('option');
+  opt.value = l.key;
+  opt.textContent = l.label;
+  fillMatchLayerSelect.appendChild(opt);
+});
+fillMatchLayerSelect.value = state.fillMatchLayer;
+fillMatchLayerSelect.addEventListener('change', (e) => { state.fillMatchLayer = e.target.value; });
+
+canvas.addEventListener('mousedown', (e) => {
+  e.preventDefault();
+  if (state.tool === 'fill'){
+    floodFillAt(e, e.button === 2);
+    return;
+  }
+  state.painting = true;
+  paintAt(e, e.button === 2);
+});
+canvas.addEventListener('mousemove', (e) => {
+  const cell = cellFromEvent(e);
+  if (state.tool === 'fill'){
+    drawCanvas();
+    // simple single-cell highlight for fill targeting
+    if (cell){
+      const cs = state.cellSize;
+      ctx.save();
+      ctx.strokeStyle = '#ffffff';
+      ctx.lineWidth = 1.5;
+      ctx.strokeRect(cell.col*cs + 0.75, cell.r*cs + 0.75, cs - 1.5, cs - 1.5);
+      ctx.restore();
+    }
+    return;
+  }
+  if (state.painting){
+    paintAt(e, e.buttons === 2);
+  } else {
+    drawCanvas();
+    drawBrushPreview(cell);
+  }
+});
+canvas.addEventListener('mouseleave', () => { drawCanvas(); });
+window.addEventListener('mouseup', () => { state.painting = false; });
+canvas.addEventListener('contextmenu', (e) => e.preventDefault());
+
+/* ---------------------------------------------------------------------
+   TOP CONTROLS
+--------------------------------------------------------------------- */
+document.getElementById('rowsInput').value = state.rows;
+document.getElementById('colsInput').value = state.cols;
+document.getElementById('zoomInput').value = state.cellSize;
+
+document.getElementById('resizeBtn').addEventListener('click', () => {
+  const rows = Math.max(8, Math.min(128, parseInt(document.getElementById('rowsInput').value,10) || 64));
+  const cols = Math.max(8, Math.min(128, parseInt(document.getElementById('colsInput').value,10) || 64));
+  resizeAllCases(rows, cols);
+  drawCanvas();
+  renderNpcCounts();
+});
+
+document.getElementById('zoomInput').addEventListener('input', (e) => {
+  state.cellSize = parseInt(e.target.value,10);
+  drawCanvas();
+});
+
+document.getElementById('brushSizeInput').addEventListener('input', (e) => {
+  state.brushSize = parseInt(e.target.value,10);
+  document.getElementById('brushSizeLabel').textContent = `${state.brushSize}×${state.brushSize}`;
+});
+
+caseSelect.addEventListener('change', (e) => {
+  state.currentCase = e.target.value;
+  ensureCase(state.currentCase);
+  drawCanvas();
+  renderNpcCounts();
+});
+
+document.getElementById('addCaseBtn').addEventListener('click', () => {
+  const name = prompt('New case name (snake_case, matches your case_tilemaps.json "cases" keys):');
+  if (!name) return;
+  const clean = name.trim().replace(/\s+/g,'_');
+  if (!clean) return;
+  if (!state.caseNames.includes(clean)) state.caseNames.push(clean);
+  ensureCase(clean);
+  state.currentCase = clean;
+  renderCaseSelect();
+  drawCanvas();
+  renderNpcCounts();
+});
+
+function startEditTile(tile){
+  state.editingChar = tile.ch;
+  document.getElementById('newChar').value = tile.ch;
+  document.getElementById('newChar').disabled = true;
+  document.getElementById('newName').value = tile.name;
+  document.getElementById('newColor').value = tile.color || '#8a6d4b';
+  document.getElementById('addTileBtn').textContent = 'Update Tile';
+  document.getElementById('cancelEditRow').style.display = 'flex';
+  document.getElementById('newName').focus();
+}
+
+function cancelEditTile(){
+  state.editingChar = null;
+  document.getElementById('newChar').value = '';
+  document.getElementById('newChar').disabled = false;
+  document.getElementById('newName').value = '';
+  document.getElementById('addTileBtn').textContent = 'Add Tile';
+  document.getElementById('cancelEditRow').style.display = 'none';
+}
+
+document.getElementById('cancelEditBtn').addEventListener('click', cancelEditTile);
+
+document.getElementById('addTileBtn').addEventListener('click', () => {
+  const chInput = document.getElementById('newChar');
+  const nameInput = document.getElementById('newName');
+  const colorInput = document.getElementById('newColor');
+  const name = nameInput.value.trim() || 'Untitled';
+  const color = colorInput.value;
+
+  if (state.editingChar){
+    // rename / recolor existing tile (character itself stays fixed, since
+    // it's the key already painted into the grids)
+    const tile = state.palettes[state.activeLayer].find(t => t.ch === state.editingChar);
+    if (tile){ tile.name = name; tile.color = color; }
+    cancelEditTile();
+    renderPalette();
+    drawCanvas();
+    return;
+  }
+
+  const ch = chInput.value.trim();
+  if (!ch){ alert('Enter a single character for this tile.'); return; }
+  if (ch === '.'){ alert('"." is reserved for empty/erase.'); return; }
+  const list = state.palettes[state.activeLayer];
+  if (list.some(t => t.ch === ch)){ alert(`"${ch}" is already used in this layer's palette — click its ✎ icon to rename it instead.`); return; }
+  list.push({ch, name, color});
+  state.brush[state.activeLayer] = ch;
+  chInput.value = ''; nameInput.value = '';
+  renderPalette();
+});
+
+document.getElementById('fillBtn').addEventListener('click', () => {
+  const ch = state.brush[state.activeLayer];
+  const grid = ensureCase(state.currentCase)[state.activeLayer];
+  const row = ch.repeat(state.cols);
+  for (let r=0;r<state.rows;r++) grid[r] = row;
+  drawCanvas();
+  renderNpcCounts();
+});
+
+document.getElementById('clearBtn').addEventListener('click', () => {
+  if (!confirm(`Clear the ${state.activeLayer} layer for "${state.currentCase}"?`)) return;
+  const grid = ensureCase(state.currentCase)[state.activeLayer];
+  const row = '.'.repeat(state.cols);
+  for (let r=0;r<state.rows;r++) grid[r] = row;
+  drawCanvas();
+  renderNpcCounts();
+});
+
+document.getElementById('loadSampleBtn').addEventListener('click', () => {
+  if (!confirm('Load the sample defaultMap into the Background layer of the current case? This overwrites existing background data.')) return;
+  applyImport(SAMPLE_DEFAULT_MAP, 'background');
+});
+
+/* ---------------------------------------------------------------------
+   IMPORT
+--------------------------------------------------------------------- */
+function openModal(id){ document.getElementById(id).classList.add('open'); }
+function closeModal(id){ document.getElementById(id).classList.remove('open'); }
+document.querySelectorAll('[data-close]').forEach(btn => {
+  btn.addEventListener('click', () => closeModal(btn.dataset.close));
+});
+
+document.getElementById('importBtn').addEventListener('click', () => openModal('importModal'));
+
+document.getElementById('doImportBtn').addEventListener('click', () => {
+  const text = document.getElementById('importText').value;
+  const lines = text.split('\n').map(l => l.replace(/\r$/,'')).filter(l => l.length > 0);
+  if (!lines.length){ alert('Paste some ASCII rows first.'); return; }
+  applyImport(lines, 'background');
+  closeModal('importModal');
+});
+
+function applyImport(lines, layerKey){
+  const rows = lines.length;
+  const cols = Math.max(...lines.map(l => l.length));
+  if (rows !== state.rows || cols !== state.cols){
+    if (confirm(`Imported grid is ${rows}x${cols}, current grid is ${state.rows}x${state.cols}. Resize to match import?`)){
+      resizeAllCases(rows, cols);
+      document.getElementById('rowsInput').value = rows;
+      document.getElementById('colsInput').value = cols;
+    }
+  }
+  // collect unknown chars and auto-add to palette
+  const known = new Set(state.palettes[layerKey].map(t => t.ch));
+  const unknown = new Set();
+  lines.forEach(l => { for (const ch of l) if (!known.has(ch)) unknown.add(ch); });
+  const autoColors = ['#7a6a53','#5c4033','#8a6d4b','#6e6a5e','#9c8360','#4a4032'];
+  let i = 0;
+  unknown.forEach(ch => {
+    state.palettes[layerKey].push({ch, name:`Imported "${ch}"`, color: autoColors[i % autoColors.length]});
+    i++;
+  });
+  const grid = ensureCase(state.currentCase)[layerKey];
+  const padded = lines.map(l => l.length < state.cols ? l + '.'.repeat(state.cols - l.length) : l.slice(0, state.cols));
+  for (let r=0; r<state.rows; r++){
+    grid[r] = padded[r] !== undefined ? padded[r] : '.'.repeat(state.cols);
+  }
+  renderPalette();
+  drawCanvas();
+  renderNpcCounts();
+}
+
+/* ---------------------------------------------------------------------
+   EXPORT
+--------------------------------------------------------------------- */
+let exportMode = 'json';
+
+function buildLegend(layerKey){
+  const legend = {};
+  state.palettes[layerKey].forEach((t,i) => { legend[t.ch] = i; });
+  return legend;
+}
+
+function buildNpcSpawns(grid){
+  const spawns = [];
+  grid.forEach((row, r) => {
+    for (let c=0; c<row.length; c++){
+      const ch = row[c];
+      if (ch === '.') return;
+      const tile = getPaletteEntry('npc', ch);
+      spawns.push({ row:r, col:c, type: ch, label: tile ? tile.name : ch });
+    }
+  });
+  return spawns;
+}
+
+function buildFullExport(){
+  const cases = {};
+  state.caseNames.forEach(name => {
+    const c = ensureCase(name);
+    cases[name] = {
+      background: c.background,
+      decoration: c.decoration,
+      collider: c.collider,
+      npc: c.npc,
+      npcSpawns: buildNpcSpawns(c.npc),
+    };
+  });
+  return {
+    gridSize: { rows: state.rows, cols: state.cols },
+    tileLegend: buildLegend('background'),
+    decorationLegend: buildLegend('decoration'),
+    colliderLegend: buildLegend('collider'),
+    npcLegend: buildLegend('npc'),
+    paletteDetail: state.palettes,
+    cases,
+  };
+}
+
+function currentLayerAscii(){
+  return ensureCase(state.currentCase)[state.activeLayer].join('\n');
+}
+
+function renderExportTabs(){
+  const tabs = [
+    {id:'json', label:'Full JSON (all cases)'},
+    {id:'case-json', label:`This case only (${state.currentCase})`},
+    {id:'layer', label:`This layer as ASCII (${state.activeLayer})`},
+  ];
+  const el = document.getElementById('exportTabs');
+  el.innerHTML = '';
+  tabs.forEach(t => {
+    const b = document.createElement('button');
+    b.className = 'small' + (exportMode === t.id ? ' on' : '');
+    b.textContent = t.label;
+    b.addEventListener('click', () => { exportMode = t.id; renderExportTabs(); updateExportText(); });
+    el.appendChild(b);
+  });
+}
+
+function updateExportText(){
+  let text = '';
+  if (exportMode === 'json'){
+    text = JSON.stringify(buildFullExport(), null, 2);
+  } else if (exportMode === 'case-json'){
+    const c = ensureCase(state.currentCase);
+    text = JSON.stringify({
+      case: state.currentCase,
+      gridSize: { rows: state.rows, cols: state.cols },
+      background: c.background,
+      decoration: c.decoration,
+      collider: c.collider,
+      npc: c.npc,
+      npcSpawns: buildNpcSpawns(c.npc),
+    }, null, 2);
+  } else if (exportMode === 'layer'){
+    text = currentLayerAscii();
+  }
+  document.getElementById('exportText').value = text;
+}
+
+document.getElementById('exportBtn').addEventListener('click', () => {
+  renderExportTabs();
+  updateExportText();
+  openModal('exportModal');
+});
+
+document.getElementById('copyExportBtn').addEventListener('click', () => {
+  const ta = document.getElementById('exportText');
+  ta.select();
+  document.execCommand('copy');
+});
+
+document.getElementById('downloadExportBtn').addEventListener('click', () => {
+  const text = document.getElementById('exportText').value;
+  const ext = exportMode === 'layer' ? 'txt' : 'json';
+  const fname = exportMode === 'layer'
+    ? `${state.currentCase}_${state.activeLayer}.${ext}`
+    : (exportMode === 'case-json' ? `${state.currentCase}.${ext}` : `case_tilemaps_export.${ext}`);
+  const blob = new Blob([text], {type: exportMode === 'layer' ? 'text/plain' : 'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = fname;
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+});
+
+/* ---------------------------------------------------------------------
+   INIT
+--------------------------------------------------------------------- */
+renderCaseSelect();
+renderLayerTabs();
+renderPalette();
+drawCanvas();
+renderNpcCounts();
+</script>
+</body>
+</html>

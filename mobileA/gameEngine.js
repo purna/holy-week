@@ -5,8 +5,7 @@ import { NPCSystem } from './npcSystem.js';
 import { DeductionEngine } from './../js/gameplay/deductionEngine.js';
 import { LocationSystem } from './../js/gameplay/locationSystem.js';
 import { AccessibilityManager } from "../js/ui/AccessibilityManager.js";
-import { LabUI } from "../js/ui/LabUI.js";
-import { ChatUI } from "../js/ui/ChatUI.js";
+import { LabUI } from "../js/ui/LabUI.js"; 
 import { AudioManager } from "./audioManager.js"; // Mobile uses its own AudioManager
 import { DialogueManager } from "./dialogueManager.js";
 
@@ -48,13 +47,9 @@ export class GameEngine {
     if (window.inkjs) this.dm.setInkLib(window.inkjs);
 
     this.labUI = new LabUI(this.de, this.es, this.a11y);
-    this.chatUI = new ChatUI(this.ns, this.es, this.a11y, null, this.audio, this.dm);
 
-    this.ui = new UIManager(this.cm, this.es, this.ns, this.de, this.ls, this.a11y, this.audio, this.dm, this.app, this.labUI, this.chatUI);
+    this.ui = new UIManager(this.cm, this.es, this.ns, this.de, this.ls, this.a11y, this.audio, this.dm, this.app, this.labUI);
     this.gm = new GameManager(this.cm, this.ui, this.es, this.ns, this.de);
-
-    // Post-initialization dependency injection to resolve circular reference
-    this.chatUI.uiManager = this.ui;
 
     this.registerCases();
   }
@@ -76,7 +71,7 @@ export class GameEngine {
   async init() {
     this.a11y.restorePreferences();
     if (window.inkjs) this.dm.setInkLib(window.inkjs);
-    this.ui.bindUICallbacks();
+    if (this.ui.bindUICallbacks) this.ui.bindUICallbacks();
     
     // Global exports for HTML event handlers
     window.cm = this.cm;
@@ -93,14 +88,15 @@ export class GameEngine {
         const isExpanded = accordion.classList.toggle('expanded');
         btn.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
     };
-    window.openEvidenceDetail = this.ui.openEvidenceDetail.bind(this.ui);
-    window.closeEvidenceDetail = this.ui.closeEvidenceDetail.bind(this.ui);
+    window.goBack = () => this.ui.goBack();
+    window.openEvidenceDetail = (id) => this.ui.openEvidenceDetail(id);
+    window.closeEvidenceDetail = () => this.ui.closeEvidenceDetail();
     window.showInstructionsModal = this.ui.showInstructionsModal.bind(this.ui);
     window.closeInstructionsModal = this.ui.closeInstructionsModal.bind(this.ui);
     window.showResetModal = this.ui.showResetModal.bind(this.ui);
     window.closeResetModal = this.ui.closeResetModal.bind(this.ui);
     window.playAgain = this.gm.resetGame.bind(this.gm);
-    window.attemptProphecyMatch = this.ui.attemptProphecyMatch.bind(this.ui);
+    window.attemptProphecyMatch = this.ui.codexUI.attemptProphecyMatch.bind(this.ui.codexUI);
     window.closeGameComplete = this.ui.closeGameComplete.bind(this.ui);
     window.showProphecyDetail = this.ui.showProphecyDetail.bind(this.ui);
 

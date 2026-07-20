@@ -33,7 +33,12 @@ export class GameManager {
     }
 
     // Direct UI to prepare the investigation environment
-    this.ui.setupInvestigation(c);
+    await this.ui.setupInvestigation(c);
+
+    if (window.scene3d && window.scene3d.loadCase) {
+      await window.scene3d.loadCase(c.id);
+    }
+
     this.loadWorldModel(c);
   }
 

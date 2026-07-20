@@ -88,6 +88,7 @@ export class GameEngine {
         const isExpanded = accordion.classList.toggle('expanded');
         btn.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
     };
+    window.goBack = () => this.ui.goBack();
     window.openEvidenceDetail = this.ui.openEvidenceDetail.bind(this.ui);
     window.closeEvidenceDetail = this.ui.closeEvidenceDetail.bind(this.ui);
     window.showInstructionsModal = this.ui.showInstructionsModal.bind(this.ui);

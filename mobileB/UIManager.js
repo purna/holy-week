@@ -1,4 +1,8 @@
 import { getIntroText } from "../js/utils.js";
+import { PeopleUI } from "../js/ui/PeopleUI.js";
+import { SceneUI } from "../js/ui/SceneUI.js";
+import { AccuseUI } from "../js/ui/AccuseUI.js";
+import { CodexUI } from "../js/ui/CodexUI.js";
 
 /**
  * UIManager orchestrates the 2D interface, handling screen routing,
@@ -18,7 +22,14 @@ export class UIManager {
 
     this.labUI = labUI;
     this.chatUI = chatUI;
+    this.peopleUI = new PeopleUI(ns, es, a11y, this.onChatAction.bind(this), audio, dm);
+    this.sceneUI = new SceneUI(cm, es, a11y, this);
+    this.accuseUI = new AccuseUI(cm);
+    this.codexUI = new CodexUI(cm, es, a11y, audio);
     this.prevScreen = "map";
+
+    // NPCs discovered in the 3D Scene tab (gates People tab entries)
+    this.discoveredNPCs = new Set();
 
     // Prophecy Matching State
     this.selectedCodexEvidenceId = null;
@@ -54,6 +65,12 @@ export class UIManager {
     }
 
     this.a11y.announce(`${tab} tab open`);
+  }
+
+  goBack() {
+    if (this.prevScreen) {
+      this.showScreen(this.prevScreen);
+    }
   }
 
   renderMap() {
@@ -187,8 +204,10 @@ export class UIManager {
     await window.scene3d.init('inv-scene');
   }
 
-  handleNpcInteraction(mode) {
-    const activeNpc = window.sceneNPCs?.find(n => n.data && n.data.id);
+  handleNpcInteraction(mode, npcId = null) {
+    const activeNpc = (npcId
+      ? window.sceneNPCs?.find(n => n.data && n.data.id === npcId)
+      : window.sceneNPCs?.find(n => n.data && n.data.id)) || null;
     if (activeNpc && this.dm) {
       this.dm.setActiveNPC(activeNpc.data);
       const c = this.cm.getActiveCase();
@@ -198,7 +217,15 @@ export class UIManager {
       // Handle evidence unlocks for grid NPCs
       const unlocks = activeNpc.data.unlocksEvidence || [];
       if (unlocks.length > 0 && c) {
-        this.cm.unlockEvidenceForScene(c.id, unlocks);
+        unlocks.forEach(id => {
+          this.es.discover(id);
+          const prog = this.cm.getCaseProgress(c.id);
+          if (prog) {
+            if (!prog.unlockedEvidence) prog.unlockedEvidence = [];
+            if (!prog.unlockedEvidence.includes(id)) prog.unlockedEvidence.push(id);
+            if (typeof this.cm._saveProgress === "function") this.cm._saveProgress();
+          }
+        });
         this.renderLab();
       }
 
@@ -236,9 +263,15 @@ export class UIManager {
     }
   }
 
+  discoverNPC(npcId) {
+    if (npcId && !this.discoveredNPCs.has(npcId)) {
+      this.discoveredNPCs.add(npcId);
+    }
+  }
+
   renderPeople() {
     const npcPanel = document.getElementById("npc-panel");
-    if (npcPanel) { npcPanel.innerHTML = this.chatUI.renderNPCPanel(); this.chatUI.bindNPCEvents(npcPanel); }
+    if (npcPanel) { npcPanel.innerHTML = this.chatUI.renderNPCPanel(this.discoveredNPCs); this.chatUI.bindNPCEvents(npcPanel); }
   }
 
   onChatAction(result) {

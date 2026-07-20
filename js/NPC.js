@@ -47,33 +47,27 @@ export class NPC {
                     this.bodyMesh.userData.originalY = this.bodyMesh.position.y;
                 }
             } else {
-                // Fallback to toon group
-                const npcToon = this.toonShader.createToonGroup(
-                    new THREE.CapsuleGeometry(1, 2),
-                    this.data.color,
-                    0.1
-                );
-                npcToon.group.position.y = 1.5;
-                grp.add(npcToon.group);
-                this.bodyMesh = npcToon.mainMesh;
+                // Fallback to capsule + head sphere
+                this.bodyMesh = this.buildCapsuleBody(grp);
             }
         } else {
-            // Primitive fallback with toon shader
-            const npcToon = this.toonShader.createToonGroup(
-                new THREE.CapsuleGeometry(1, 2),
-                this.data.color,
-                0.1
-            );
-            npcToon.group.position.y = 1.5;
-            grp.add(npcToon.group);
-            this.bodyMesh = npcToon.mainMesh;
+            // Primitive fallback with toon shader: capsule body + head sphere
+            this.bodyMesh = this.buildCapsuleBody(grp);
         }
 
         // 2. Resolve flat Cartesian / legacy spherical position
-        // Grid NPCs have Cartesian positions with hasDialogue from grid JSON
+        // The world is a planet (radius this.planetR). Grid/scene data is authored
+        // in small flat Cartesian coords (x, 0, z), so project those onto the
+        // planet surface near the player's spawn pole (north pole) — otherwise the
+        // NPC would be buried at the planet's centre and never visible.
         if (this.data.isGridNPC || (this.data.pos && this.data.pos.length === 3)) {
-            // Grid-style Cartesian positioning - use directly as flat scene position
-            grp.position.set(this.data.pos[0], this.data.pos[1] + 1.5, this.data.pos[2]);
+            const x = this.data.pos[0];
+            const z = this.data.pos[2];
+            // Treat (x, planetR, z) as a direction and project onto the surface.
+            const dir = new THREE.Vector3(x, this.planetR, z).normalize();
+            const surfPos = dir.multiplyScalar(this.planetR);
+            grp.position.copy(surfPos);
+            grp.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), surfPos.clone().normalize());
         } else if (this.data.position) {
             // Explicitly format direct transform positions from case layout - Cartesian coords
             grp.position.set(this.data.position.x, this.data.position.y + 1, this.data.position.z);
@@ -95,7 +89,38 @@ export class NPC {
 
         this.scene.add(grp);
         this.mesh = grp;
-}
+    }
+
+    /**
+     * Builds a capsule body (radius 1, length 2) plus a head sphere on top,
+     * both shaded with the toon shader. Returns the body mesh reference used
+     * for bobbing. The whole body group is parented to `grp`.
+     */
+    buildCapsuleBody(grp) {
+        const bodyGroup = new THREE.Group();
+        bodyGroup.position.y = 1.5;
+
+        // Capsule body
+        const bodyToon = this.toonShader.createToonGroup(
+            new THREE.CapsuleGeometry(1, 2),
+            this.data.color,
+            0.1
+        );
+        bodyToon.mainMesh.userData.originalY = 0; // bodyGroup holds the y offset
+        bodyGroup.add(bodyToon.group);
+
+        // Head sphere (sits atop the capsule)
+        const headToon = this.toonShader.createToonGroup(
+            new THREE.SphereGeometry(0.8, 16, 16),
+            this.data.color,
+            0.1
+        );
+        headToon.group.position.y = 2.2;
+        bodyGroup.add(headToon.group);
+
+        grp.add(bodyGroup);
+        return bodyToon.mainMesh;
+    }
 
     getModelKey() {
         // Map NPC IDs to model keys matching MODELS config (camelCase)
@@ -121,10 +146,7 @@ export class NPC {
 
     getScreenPosition(camera, planetR) {
         const pPos = this.getWorldPosition();
-        // For grid NPCs, just use position directly; for planet NPCs, use normalized up vector
-        if (this.data.pos && this.data.pos.length === 3) {
-            return pPos.clone().add(new THREE.Vector3(0, 5, 0)).project(camera);
-        }
+        // NPCs live on the planet surface — offset the label along the surface normal.
         const up = pPos.clone().normalize();
         return pPos.clone().add(up.clone().multiplyScalar(5)).project(camera);
     }

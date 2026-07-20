@@ -368,7 +368,7 @@ export const act3CaseA = {
 // ============================================================
 // CASE: The Severed Ear  — difficulty 3 — Gethsemane
 // BIBLICAL FOCUS: Matthew 26:47–56, Mark 14:43–52, Luke 22:47–53, John 18:1–12
-// PROPHECY: Isaiah 53:7 | Zechariah 13:7
+// PROPHECY: Zechariah 13:7
 // ============================================================
 
 export const act3CaseB = {
@@ -393,17 +393,6 @@ export const act3CaseB = {
   },
 
   prophecies: [
-    {
-      reference: "Isaiah 53:7",
-      id: "isaiah_53_7",
-      icon: "🔮",
-      text: `"He was oppressed, and he was afflicted, yet he opened not his mouth; like a lamb that is led to the slaughter, and like a sheep that before its shearers is silent, so he opened not his mouth."`,
-      written: "~700 BC",
-      fulfilledBy: "Jesus refusing to defend Himself or let His disciples fight",
-      gospelLink: "Matthew 26:52–54",
-      insight: "Though armies of angels were at His call, He voluntarily submitted to human bonds to fulfill the redemptive plan.",
-      explanation: "Jesus fulfilled this by refusing to let His disciples fight, healing His enemy, and surrendering peacefully, even though He had the power to call legions of angels.",
-    },
     {
       reference: "Zechariah 13:7",
       id: "zechariah_13_7",
@@ -431,14 +420,14 @@ export const act3CaseB = {
       id: "abandoned_linen",
       name: "Abandoned Linen Wrapper",
       type: "physical",
-      relatedProphecy: "isaiah_53_7",
+      relatedProphecy: "zechariah_13_7",
       icon: "🧣",
       pos: [3, 4, 0],
       snippet: "A fine linen garment left caught in an olive branch.",
       description: "A high-quality linen cloak dropped in the brush, consistent with someone fleeing in an extreme hurry.",
       bibleRef: "Mark 14:51-52",
       bibleLink: "mark_14_51_52",
-      propheticLink: "Mark 14:51–52 records a young man who followed Jesus wearing only a linen cloth. When seized, he left the cloth behind and fled naked.",
+      propheticLink: "Zechariah 13:7 — 'Strike the shepherd, and the sheep will be scattered' — was quoted by Jesus himself just hours earlier (Matthew 26:31) as a prediction of this exact moment. The unnamed young man fleeing naked into the night, abandoning even his clothing, is the most vivid single image of the disciples' scattering the prophecy foretold.",
       investigatorNote: "The high grade of the linen suggests the owner was from a wealthy Jerusalem family, potentially John Mark acting as a secret night observer.",
     },
     {
@@ -508,8 +497,8 @@ export const act3CaseB = {
       hasDialogue: true,
       storyFile: "malchus",
       unlocksEvidence: ["abandoned_linen", "dropped_torch"],
-      revealsProphecy: "isaiah_53_7",
-      background: "The confidential agent of Caiaphas[cite: 1]. He was at the front of the line holding the warrant when Simon Peter drawing a hidden blade ambushed him in the dark. He is dealing with acute cognitive dissonance after an enemy healed his wound[cite: 1].",
+      revealsProphecy: "zechariah_13_7",
+      background: "The confidential agent of Caiaphas. He was at the front of the line holding the warrant when Simon Peter drawing a hidden blade ambushed him in the dark. He is dealing with acute cognitive dissonance after an enemy healed his wound.",
       dialogue: {
         neutral: "The tactical entry succeeded. The prisoner surrendered without demanding a siege.",
         cautious: "The blood on my tunic is real. The cut on my head covering is clean through. But my flesh... there isn't even a scar.",
@@ -536,7 +525,7 @@ export const act3CaseB = {
       hasDialogue: true,
       storyFile: "peter_defense",
       unlocksEvidence: ["severed_ear_wrap"],
-      background: "The informal leader of the inner circle[cite: 1]. He is currently hidden in the shadows outside the high priest's courthouse, deeply traumatized, defensive, and swinging violently between raw panic and profound shame[cite: 1].",
+      background: "The informal leader of the inner circle. He is currently hidden in the shadows outside the high priest's courthouse, deeply traumatized, defensive, and swinging violently between raw panic and profound shame.",
       dialogue: {
         neutral: "They came with swords and clubs as if hunting an insurgent. What did they expect us to do? Sit there?",
         cautious: "The garden was dark. Torches were moving through the trees. Everything happened in seconds.",
@@ -564,9 +553,9 @@ export const act3CaseB = {
       hasDialogue: true,
       storyFile: "guard_report_gethsemane",
       bibleRef: "John 18:3; Matthew 26:47",
-      background: "A Roman commander of the cohort sent to Gethsemane to arrest Jesus. He views the regional religious dynamics with absolute cynical detachment[cite: 1].",
+      background: "A Roman commander of the cohort sent to Gethsemane to arrest Jesus. He views the regional religious dynamics with absolute cynical detachment.",
       dialogue: {
-        neutral: "We were ordered to secure the perimeter of an olive orchard. We hold the fortress, not local theological opinions[cite: 1].",
+        neutral: "We were ordered to secure the perimeter of an olive orchard. We hold the fortress, not local theological opinions.",
         cautious: "The operation was a logistical mess. Night deployments in heavy brush are always unpredictable.",
         pressured: "The temple enforcers were nervous. They thought the Galilean had an armed cell waiting in the trees. Then one of the inner circle jumped from the shadows with a short sword.",
         exposed: "The old man Peter sliced Malchus. Standard tactical procedure would be to deploy lethal force against the entire cell. But the prisoner stopped it. He literally commanded His own rebel to stand down, touched the servant, and solved the injury. We just stood there with our spears low.",
@@ -606,7 +595,7 @@ export const act3CaseB = {
     motive: "There was no military insurgency. Jesus submitted voluntarily, refusing to allow His disciples to mount an armed rebellion against the legal authorities.",
     method: "Judas betrayed the location, and an armed force arrived. Peter panicked and struck Malchus. Jesus miraculously healed Malchus's ear on the spot, demanded peace, and surrendered Himself willingly to fulfill the Scriptures.",
     lesson: "The kingdom of Jesus does not advance by carnal weapons. His voluntary surrender proves that His death was an act of deliberate obedience, not a tactical failure.",
-    prophesyFulfilled: ["Isaiah 53:7", "Zechariah 13:7"],
+    prophesyFulfilled: ["Zechariah 13:7"],
     furtherReading: ["John 18:1–12", "Luke 22:47–53"],
   },
 };
@@ -711,14 +700,14 @@ export const act3CaseC = {
     {
       id: "rooster_feather",
       name: "Rooster Feather",
-      relatedProphecy: "micah_5_1",
+      relatedProphecy: "-",
       type: "physical",
       icon: "🪶",
       location: "Courtyard Floor",
       desc: "A small feather found near the charcoal fire where Peter stood. The sound of the crowing still echoes in the air.",
       bibleRef: "Matthew 26:74-75",
       bibleLink: "matthew_26_74_75",
-      propheticLink: "The third denial led to the third crowing, fulfilling Jesus's prediction of Peter's failure.",
+      propheticLink: "The third denial led to the third crowing, fulfilling Jesus's own prediction of Peter's failure (Matthew 26:34). Supporting/narrative evidence — not directly Codex-linkable to one of this case's four defined prophecies.",
       investigatorNote: "This feather marks the site of the most famous denial in history.",
     },
     {
@@ -1094,9 +1083,9 @@ export const act3CaseE = {
   quest: { name: "Golgotha Forensics", task: "Analyze the seismic and cosmic anomalies", cur: 0, tar: 3 },
 
   biblicalContext: {
-    summary: `On Friday morning, Nisan 14, Jesus was led out of Jerusalem to a rocky hill called Golgotha to be executed between two insurrectionists[cite: 3, 5, 7]. For three hours, an eerie, supernatural darkness covered the entire land[cite: 3, 5, 7]. At 3:00 PM, Jesus cried out and gave up His spirit[cite: 3, 5, 7]. Instantly, a localized earthquake ripped through Judea, splitting rocks, opening tombs, and tearing the massive Temple veil clean in two from top to bottom[cite: 3, 5, 7]. To accelerate burial before the Sabbath sunset, a Roman soldier pierced His side, yielding an unexpected flow of blood and water[cite: 3, 5].`,
-    significance: `This case records the ultimate paradox of the Passion Week: an execution meant to act as a public deterrent of Roman shame became the epic center of cosmic and theological transformation[cite: 2, 7]. The tearing of the heavy Temple curtain declared that the barrier between God and humanity had been permanently removed[cite: 3], while the unbroken bones identified Jesus as the true Passover Lamb[cite: 3].`,
-    historicalNote: `Crucifixion squads under Pontius Pilate were highly efficient, professional units[cite: 6, 7]. The execution details were tightly managed, making the accompanying seismic rifts, sudden midday darkness, and structural Temple failures deeply disruptive anomalies to veteran legionaries and Temple priests alike[cite: 6, 7].`,
+    summary: `On Friday morning, Nisan 14, Jesus was led out of Jerusalem to a rocky hill called Golgotha to be executed between two insurrectionists. For three hours, an eerie, supernatural darkness covered the entire land. At 3:00 PM, Jesus cried out and gave up His spirit. Instantly, a localized earthquake ripped through Judea, splitting rocks, opening tombs, and tearing the massive Temple veil clean in two from top to bottom. To accelerate burial before the Sabbath sunset, a Roman soldier pierced His side, yielding an unexpected flow of blood and water.`,
+    significance: `This case records the ultimate paradox of the Passion Week: an execution meant to act as a public deterrent of Roman shame became the epic center of cosmic and theological transformation. The tearing of the heavy Temple curtain declared that the barrier between God and humanity had been permanently removed, while the unbroken bones identified Jesus as the true Passover Lamb.`,
+    historicalNote: `Crucifixion squads under Pontius Pilate were highly efficient, professional units. The execution details were tightly managed, making the accompanying seismic rifts, sudden midday darkness, and structural Temple failures deeply disruptive anomalies to veteran legionaries and Temple priests alike.`,
   },
 
   prophecies: [
@@ -1108,7 +1097,7 @@ export const act3CaseE = {
       written: "~1000 BC",
       fulfilledBy: "Roman soldiers nailing Jesus to the cross and gambling for His seamless garment",
       gospelLink: "Matthew 27:35; John 19:23–24",
-      insight: "Crucifixion did not exist as a method of execution when David penned this Psalm[cite: 2]. Yet, the details match precisely down to the soldiers dividing His outer garments into four parts and casting lots for His single woven tunic[cite: 7].",
+      insight: "Crucifixion did not exist as a method of execution when David penned this Psalm. Yet, the details match precisely down to the soldiers dividing His outer garments into four parts and casting lots for His single woven tunic.",
     },
     {
       reference: "Amos 8:9",
@@ -1118,7 +1107,7 @@ export const act3CaseE = {
       written: "~750 BC",
       fulfilledBy: "The supernatural three-hour darkness blanketing Judea from noon until 3:00 PM",
       gospelLink: "Mark 15:33; Luke 23:44–45",
-      insight: "Passover always occurs during a full moon, making a natural solar eclipse astronomically impossible[cite: 6, 7]. The historical record of this prolonged noon darkness was so widely documented that non-Christian historians like Thallos and Phlegon actively tried to find natural explanations for it[cite: 6, 7].",
+      insight: "Passover always occurs during a full moon, making a natural solar eclipse astronomically impossible. The historical record of this prolonged noon darkness was so widely documented that non-Christian historians like Thallos and Phlegon actively tried to find natural explanations for it.",
     },
     {
       reference: "Isaiah 53:9",
@@ -1128,7 +1117,7 @@ export const act3CaseE = {
       written: "~700 BC",
       fulfilledBy: "Jesus dying alongside criminals but being buried in the clean, private rock-cut tomb of wealthy Joseph of Arimathea",
       gospelLink: "Matthew 27:57–60; John 19:38–42",
-      insight: "Executed criminals were routinely thrown into mass, unmarked graves or left to historical decay[cite: 7]. The sudden intervention of a wealthy Sanhedrin member fulfilled Isaiah's binary paradox to the letter[cite: 7].",
+      insight: "Executed criminals were routinely thrown into mass, unmarked graves or left to historical decay. The sudden intervention of a wealthy Sanhedrin member fulfilled Isaiah's binary paradox to the letter.",
     },
     {
       reference: "Zechariah 12:10",
@@ -1138,7 +1127,7 @@ export const act3CaseE = {
       written: "~520 BC",
       fulfilledBy: "The legionary piercing Jesus's side with a spear, and the surrounding crowd departing in deep grief",
       gospelLink: "John 19:34–37; Luke 23:48",
-      insight: "To ensure death without breaking His legs (which would violate the Passover lamb protocol), a soldier delivered a post-mortem spear thrust[cite: 3]. The resulting discharge of blood and water clinically confirmed death by cardiac rupture or extreme physical trauma[cite: 6, 7].",
+      insight: "To ensure death without breaking His legs (which would violate the Passover lamb protocol), a soldier delivered a post-mortem spear thrust. The resulting discharge of blood and water clinically confirmed death by cardiac rupture or extreme physical trauma.",
     },
     {
       reference: "Psalm 34:20",
@@ -1178,8 +1167,8 @@ export const act3CaseE = {
       location: "Foot of the Central Cross",
       desc: "Four crude bone gaming dice dropped in the dust near a pile of discarded ropes, right where the soldiers gambled for the victim's clothes.",
       bibleRef: "John 19:23–24 — 'Let’s not tear it,' they said to one another. 'Let’s decide by lot who will get it.' This happened that the scripture might be fulfilled...",
-      propheticLink: "Directly fulfills Psalm 22:18[cite: 3, 5, 7]. While the victim hung dying, the indifferent execution detail executed a routine lottery for a high-quality, seamless tunic woven from top to bottom[cite: 7].",
-      investigatorNote: "The dice indicate a standard, procedural execution routine—until the noon darkness disrupted their shifts[cite: 5, 7].",
+      propheticLink: "Directly fulfills Psalm 22:18. While the victim hung dying, the indifferent execution detail executed a routine lottery for a high-quality, seamless tunic woven from top to bottom.",
+      investigatorNote: "The dice indicate a standard, procedural execution routine—until the noon darkness disrupted their shifts.",
     },
     {
       id: "pierced_spear",
@@ -1190,20 +1179,20 @@ export const act3CaseE = {
       location: "Golgotha Guard Station",
       desc: "A heavy Roman iron spearhead stained with a clear, separated residue of deep red blood crust and transparent pericardial fluid.",
       bibleRef: "John 19:34 — 'Instead, one of the soldiers pierced Jesus’s side with a spear, bringing a sudden flow of blood and water.'",
-      propheticLink: "Fulfills Zechariah 12:10 ('the one they have pierced') and protects the Passover Lamb requirement of Exodus 12:46 ('not one bone shall be broken')[cite: 3, 5, 7]. The spear thrust proved the victim was already dead, making the leg-breaking unnecessary[cite: 3, 7].",
-      investigatorNote: "The fluid separation proves severe internal trauma. The medical signature matches a ruptured heart or extreme pleural effusion[cite: 6, 7].",
+      propheticLink: "Fulfills Zechariah 12:10 ('the one they have pierced') and protects the Passover Lamb requirement of Exodus 12:46 ('not one bone shall be broken'). The spear thrust proved the victim was already dead, making the leg-breaking unnecessary.",
+      investigatorNote: "The fluid separation proves severe internal trauma. The medical signature matches a ruptured heart or extreme pleural effusion.",
     },
     {
       id: "shattered_limestone",
       name: "Shattered Limestone Fragment",
       type: "physical",
-      relatedProphecy: "psalm_34_20",
+      relatedProphecy: "-",
       location: "Golgotha Basal Rift",
       desc: "A freshly sheared section of Jerusalem limestone showing a sharp, jagged vertical fracture path triggered by a massive, sudden seismic wave.",
       bibleRef: "Matthew 27:51 — 'The earth shook, the rocks split and the tombs broke open.'",
       bibleLink: "matthew_27_51",
-      propheticLink: "The earthquake, combined with the three hours of darkness (Amos 8:9), served as a macrocosmic response to the execution[cite: 3, 5, 7]. Recent Dead Sea sediment varve analyses confirm a major localized seismic event occurred in Judea during this exact decade[cite: 6, 7].",
-      investigatorNote: "The split is clean and deep, indicating a severe tectonic movement centered right through the execution hill[cite: 3, 7].",
+      propheticLink: "The earthquake, combined with the three hours of darkness described elsewhere in this case's evidence, served as a cosmic response to the execution. Supporting/narrative evidence — not directly tied to any single one of this case's six defined prophecies.",
+      investigatorNote: "The split is clean and deep, indicating a severe tectonic movement centered right through the execution hill.",
     },
     {
       id: "torn_veil_thread",
@@ -1215,8 +1204,8 @@ export const act3CaseE = {
       desc: "A heavy twist of woven blue, purple, and scarlet threads, ripped violently apart. The weave is a palm-width thick and incredibly dense.",
       bibleRef: "Luke 23:45 — 'The sun stopped shining. And the curtain of the temple was torn in two.'",
       bibleLink: "luke_23_45",
-      propheticLink: "The Parokhet curtain blocked access to the Holy of Holies[cite: 6, 7]. Its top-to-bottom tear structurally verified that the old covenant system had split wide open, granting direct access to the presence of God[cite: 3, 7].",
-      investigatorNote: "Brought out of the sanctuary by a panicked priest. No human hands could rip material this thick[cite: 6, 7]—and the tear started from the top down[cite: 3, 7].",
+      propheticLink: "The Parokhet curtain blocked access to the Holy of Holies. Its top-to-bottom tear structurally verified that the old covenant system had split wide open, granting direct access to the presence of God.",
+      investigatorNote: "Brought out of the sanctuary by a panicked priest. No human hands could rip material this thick—and the tear started from the top down.",
     },
     {
       id: "linen_shroud_receipt",
@@ -1228,8 +1217,8 @@ export const act3CaseE = {
       desc: "A hurried commercial receipt matching a purchase from a wealthy merchant: 'One piece of premium fine linen shroud, paid in full by Joseph, counselor of Arimathea.' Signed just before the city gates closed for Sabbath.",
       bibleRef: "Mark 15:46 — 'So Joseph bought some linen cloth, took down the body, wrapped it in the linen, and placed it in a tomb...'",
       bibleLink: "mark_15_46",
-      propheticLink: "Fulfills Isaiah 53:9[cite: 3, 5, 7]. Instead of being cast into the criminal dirt pits of Hinnom, Jesus was instantly reassigned to a wealthy man's private, rock-hewn garden tomb[cite: 3, 5, 7].",
-      investigatorNote: "Joseph risked his entire aristocratic standing on the Sanhedrin by publicly claiming the body of a condemned man from Pilate[cite: 2, 7].",
+      propheticLink: "Fulfills Isaiah 53:9. Instead of being cast into the criminal dirt pits of Hinnom, Jesus was instantly reassigned to a wealthy man's private, rock-hewn garden tomb.",
+      investigatorNote: "Joseph risked his entire aristocratic standing on the Sanhedrin by publicly claiming the body of a condemned man from Pilate.",
     },
   ],
 
@@ -1266,18 +1255,18 @@ export const act3CaseE = {
       storyFile: "roman_assessment",
       unlocksEvidence: ["split_dice", "pierced_spear"],
       revealsProphecy: "psalm_34_20",
-      background: "A battle-hardened Roman officer assigned to the Antonia Fortress[cite: 1]. He has supervised dozens of routine public deterrence executions[cite: 2]. He stood directly in front of the central cross all afternoon and ordered the final spear thrust[cite: 3].",
+      background: "A battle-hardened Roman officer assigned to the Antonia Fortress. He has supervised dozens of routine public deterrence executions. He stood directly in front of the central cross all afternoon and ordered the final spear thrust.",
       dialogue: {
         neutral: "The execution details were carried out according to imperial protocols. The prisoner is dead.",
-        cautious: "I have broken armies, citizen. I know when a man dies in despair. But this one... He didn't curse. He commanded His own spirit to depart. And then the sun vanished[cite: 3, 5, 7].",
-        pressured: "When the ground sheared beneath our boots, the rock rifts split open[cite: 3, 7]. My men panicked. We have crucified a philosopher before, but never one whose death made the earth itself scream[cite: 6, 7].",
-        exposed: "I told the governor myself—this was no ordinary provincial insurgent[cite: 6, 7]. When I looked at how He died under that black sky, I knew it[cite: 3, 7]. We didn't execute a criminal; we executed the Son of God[cite: 3, 7].",
-        repeat: "The record stands. I gave the final verification report to Pilate[cite: 3, 7].",
+        cautious: "I have broken armies, citizen. I know when a man dies in despair. But this one... He didn't curse. He commanded His own spirit to depart. And then the sun vanished.",
+        pressured: "When the ground sheared beneath our boots, the rock rifts split open. My men panicked. We have crucified a philosopher before, but never one whose death made the earth itself scream.",
+        exposed: "I told the governor myself—this was no ordinary provincial insurgent. When I looked at how He died under that black sky, I knew it. We didn't execute a criminal; we executed the Son of God.",
+        repeat: "The record stands. I gave the final verification report to Pilate.",
       },
       reactions: {
-        split_dice: { text: "My men were playing tabs for the garments. It's an old garrison habit to pass the grueling hours. But when the darkness hit at noon, they dropped the bone dice and fell flat on their faces[cite: 5, 7].", isLie: false },
-        pierced_spear: { text: "Yes, that's my unit's hasta[cite: 3]. I ordered the thrust because the priests wanted the legs smashed to clear the hill before Sabbath[cite: 3, 7]. But He was already gone. When the iron went in, blood and water came rushing out in distinct streams[cite: 3, 7]. No living body does that[cite: 6, 7].", isLie: false },
-        shattered_limestone: { text: "That limestone split right at the moment He breathed His last[cite: 3, 7]. The tectonic shock wave nearly knocked me off my feet[cite: 6, 7].", isLie: false },
+        split_dice: { text: "My men were playing tabs for the garments. It's an old garrison habit to pass the grueling hours. But when the darkness hit at noon, they dropped the bone dice and fell flat on their faces.", isLie: false },
+        pierced_spear: { text: "Yes, that's my unit's hasta. I ordered the thrust because the priests wanted the legs smashed to clear the hill before Sabbath. But He was already gone. When the iron went in, blood and water came rushing out in distinct streams. No living body does that.", isLie: false },
+        shattered_limestone: { text: "That limestone split right at the moment He breathed His last. The tectonic shock wave nearly knocked me off my feet.", isLie: false },
       },
       contradictions: {},
     },
@@ -1295,20 +1284,20 @@ export const act3CaseE = {
       unlocksSuspects: ["temple_priest_pashhur"],
       unlocksEvidence: ["torn_veil_thread", "shattered_limestone"],
       revealsProphecy: "amos_8_9",
-      background: "A serving priest from the course of Abijah, responsible for maintaining ritual protocols inside the Holy Place on the afternoon of Passover Eve[cite: 2, 5]. He was inside the Sanctuary when the earthquake struck at 3:00 PM[cite: 3, 5, 7].",
+      background: "A serving priest from the course of Abijah, responsible for maintaining ritual protocols inside the Holy Place on the afternoon of Passover Eve. He was inside the Sanctuary when the earthquake struck at 3:00 PM.",
       dialogue: {
         neutral: "The Passover sacrifices proceeded in the inner court without structural delay. The Temple remains secure.",
         cautious: "There was a... minor structural shifting due to the afternoon tremor. A routine maintenance issue in the sanctuary, nothing more.",
-        pressured: "You have no right to question the priesthood! The inner sanctuary is forbidden to outsiders. Whatever happened to the veil is an internal matter for the high priest to review[cite: 2].",
-        exposed: "It was terrifying! At the exact hour of the evening sacrifice—3:00 PM—the great rifts shook the stone floor[cite: 3, 5, 7]. Then, with a sound like a rushing wind, the massive inner curtain tore straight down the middle[cite: 3, 5, 7]! It didn't wear out; it ripped from the top down, exposing the Holy of Holies to the open air[cite: 3, 7]! The doors swung open by themselves[cite: 6, 7]!",
+        pressured: "You have no right to question the priesthood! The inner sanctuary is forbidden to outsiders. Whatever happened to the veil is an internal matter for the high priest to review.",
+        exposed: "It was terrifying! At the exact hour of the evening sacrifice—3:00 PM—the great rifts shook the stone floor. Then, with a sound like a rushing wind, the massive inner curtain tore straight down the middle! It didn't wear out; it ripped from the top down, exposing the Holy of Holies to the open air! The doors swung open by themselves!",
         repeat: "The sanctuary is closed. Go back to the lower city.",
       },
       reactions: {
-        torn_veil_thread: { text: "Where did you get that thread? Put it away! If the people find out the inner curtain split right down the center while that Galilean died, it will trigger an absolute religious panic[cite: 3, 7]!", isLie: true, revealedClue: "shattered_limestone" },
-        shattered_limestone: { text: "The earthquake was a generic natural coincidence. Tectonic shifts happen in the Rift valley all the time. It has nothing to do with the execution outside the city walls[cite: 6, 7].", isLie: true },
+        torn_veil_thread: { text: "Where did you get that thread? Put it away! If the people find out the inner curtain split right down the center while that Galilean died, it will trigger an absolute religious panic!", isLie: true, revealedClue: "shattered_limestone" },
+        shattered_limestone: { text: "The earthquake was a generic natural coincidence. Tectonic shifts happen in the Rift valley all the time. It has nothing to do with the execution outside the city walls.", isLie: true },
       },
       contradictions: {
-        "torn_veil_thread+shattered_limestone": { exposed: "Fine! The earthquake rifts directly struck the Temple foundations at the exact moment the man died on Golgotha[cite: 3, 5, 7]. The great doors slammed open, the massive veil split completely in two from top to bottom[cite: 3, 5, 7], and the sanctuary is left bare[cite: 6, 7]. Our old structural monopoly over the presence of God collapsed in three seconds[cite: 3, 6, 7]." },
+        "torn_veil_thread+shattered_limestone": { exposed: "Fine! The earthquake rifts directly struck the Temple foundations at the exact moment the man died on Golgotha. The great doors slammed open, the massive veil split completely in two from top to bottom, and the sanctuary is left bare. Our old structural monopoly over the presence of God collapsed in three seconds." },
       },
     },
     {
@@ -1325,17 +1314,17 @@ export const act3CaseE = {
       storyFile: "joseph_arimathea",
       unlocksEvidence: ["linen_shroud_receipt"],
       revealsProphecy: "isaiah_53_9",
-      background: "A prominent, wealthy member of the Sanhedrin council who secretly looked for the Kingdom of God[cite: 2, 7]. He opposed the late-night illegal tribunal of Caiaphas but remained silent until the crucifixion forced him to act[cite: 2, 7].",
+      background: "A prominent, wealthy member of the Sanhedrin council who secretly looked for the Kingdom of God. He opposed the late-night illegal tribunal of Caiaphas but remained silent until the crucifixion forced him to act.",
       dialogue: {
         neutral: "I have provided a legal, clean resting place for the teacher's body in my own garden estate.",
         cautious: "I had to act quickly. The Sabbath sunset was approaching fast, and it is against our Law to leave a body exposed overnight.",
-        pressured: "Yes, I went to Pilate directly[cite: 3, 7]. My colleagues on the council wanted Him thrown into the common criminal trenches to erase His memory[cite: 7]. I could not let that happen. I bought the linens myself[cite: 3, 7].",
-        exposed: "I spent three years hiding my devotion because I feared losing my seat on the high council[cite: 2]. But when I saw the darkness, the earthquake, and the way He died, my silence became an unbearable sin[cite: 2, 3, 7]. I used my wealth to buy His dignity. I buried Him like a king in a clean, pristine rock tomb[cite: 3, 5, 7].",
-        repeat: "He rests securely under a heavy stone seal[cite: 3, 7].",
+        pressured: "Yes, I went to Pilate directly. My colleagues on the council wanted Him thrown into the common criminal trenches to erase His memory. I could not let that happen. I bought the linens myself.",
+        exposed: "I spent three years hiding my devotion because I feared losing my seat on the high council. But when I saw the darkness, the earthquake, and the way He died, my silence became an unbearable sin. I used my wealth to buy His dignity. I buried Him like a king in a clean, pristine rock tomb.",
+        repeat: "He rests securely under a heavy stone seal.",
       },
       reactions: {
-        linen_shroud_receipt: { text: "Yes, that is my commercial signature. I bought the finest linen available in the lower markets[cite: 3, 7]. Nicodemus joined me with a massive weight of myrrh and aloes[cite: 3, 7]. We buried Him with the honor due to royalty[cite: 7].", isLie: false },
-        pierced_spear: { text: "When we took Him down from the timber, we saw the wound in His side[cite: 3, 7]. It was clean, deep, and already stopped bleeding[cite: 7]. The sacrifice was completely finished[cite: 3, 7].", isLie: false },
+        linen_shroud_receipt: { text: "Yes, that is my commercial signature. I bought the finest linen available in the lower markets. Nicodemus joined me with a massive weight of myrrh and aloes. We buried Him with the honor due to royalty.", isLie: false },
+        pierced_spear: { text: "When we took Him down from the timber, we saw the wound in His side. It was clean, deep, and already stopped bleeding. The sacrifice was completely finished.", isLie: false },
       },
       contradictions: {},
     },

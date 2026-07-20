@@ -447,7 +447,7 @@ export const act2CaseB = {
       pos: [-3, 3, 0],
       snippet: "Trace white dust contaminated with heavy burial aloes.",
       description: "Powdery white limestone scrapings mixed with residual traces of heavy myrrh and aloe resins, found dropped outside the high priest's council room.",
-      bibleRef: "John 11:39 notes that Lazarus had been dead four days, meaning the traditional aromatic burial preservation oils were heavily present.",
+      bibleRef: "John 11:39 records Martha's objection that after four days there would already be a bad odor — the natural expectation of decay this deep into a Judean burial, against which the raising of Lazarus stands out as a reversal.",
       investigatorNote: "This dust indicates that witnesses from the actual tomb site in Bethany have been brought into the inner chambers of the Sanhedrin for intense interrogation.",
     },
     {
