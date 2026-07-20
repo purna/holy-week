@@ -620,14 +620,15 @@ export class Scene2D {
             this.ctx.fillStyle = 'rgba(26, 20, 16, 0.4)';
             this.ctx.fillRect(nx + 4 - this.camera.x, ny + 28 - this.camera.y, TILE_SIZE - 8, 4);
             this._drawCustomPatternSprite(this.ctx, nx + 4, ny + 4, TILE_SIZE - 8, bounce, false, 'down', this.camera.x, this.camera.y);
-
-            if (n === activeTargetNPC) {
-                this._drawNPCNameTag(this.ctx, n, bounce, this.camera.x, this.camera.y);
-            }
         });
 
         let walkBounce = this.player.isMoving ? Math.abs(Math.sin(time * 0.015)) * 5 : 0;
         this._drawCustomPatternSprite(this.ctx, this.player.renderX + 4, this.player.renderY + 4, TILE_SIZE - 8, walkBounce, true, this.player.facing, this.camera.x, this.camera.y);
+
+        if (activeTargetNPC) {
+            let bounce = Math.abs(Math.sin((time / 200) + activeTargetNPC.animOffset)) * 4;
+            this._drawNPCNameTag(this.ctx, activeTargetNPC, bounce, this.camera.x, this.camera.y);
+        }
 
         this.ctx.fillStyle = '#dfb24c';
         this.particles.forEach(p => {

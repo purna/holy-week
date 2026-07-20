@@ -415,19 +415,25 @@
           <div class="evidence-detail-label">Location Found</div>
           <div class="evidence-detail-location"></div>
         </div>
-        <div class="evidence-detail-section prophecy-section" id="detail-prophecy-area" hidden>
-          <div class="evidence-detail-label">📜 Bible Reference</div>
-          <div class="evidence-detail-bible-ref"></div>
-          <button class="read-more-btn" data-target="bible-verse-content">📖 Read Full Verse</button>
-          <div class="verse-content" id="bible-verse-content" hidden></div>
+    
+   
 
-          <div class="prophecy-section-spacer">
-            <div class="evidence-detail-label">✨ Prophecy & Fulfilment</div>
-            <div class="evidence-detail-prophetic-link"></div>
-            <button class="read-more-btn" data-target="prophecy-verse-content">📖 Read Full Verse</button>
-            <div class="verse-content" id="prophecy-verse-content" hidden></div>
-          </div>
-        </div>
+          <div class="evidence-detail-section prophecy-section" id="detail-prophecy-area" hidden> <!-- Section: Scriptural Reference -->
+               <div class="evidence-detail-label">📜 Bible Reference</div>
+               <div class="evidence-detail-bible-ref"></div>
+               <div class="bible-read-more-container"></div>
+               <div class="verse-content" data-target="bible-verse-content" hidden></div>
+               <!-- API target for fetched verse -->
+            </div>
+            <div class="evidence-detail-section prophecy-section" id="detail-fulfillment-area"  hidden> <!-- Section: Fulfillment Insight -->
+               <div class="evidence-detail-label">✨ Prophecy & Fulfilment</div>
+               <div class="evidence-detail-prophetic-link"></div>
+               <div class="prophecy-read-more-container"></div>
+               <div class="verse-content" data-target="prophecy-verse-content" hidden></div>
+               <!-- API target for fetched prophecy text -->
+            </div>
+
+
         <div class="evidence-detail-section">
           <div class="evidence-detail-label">🔎 Investigator Notes</div>
           <div class="evidence-detail-investigator-note"></div>

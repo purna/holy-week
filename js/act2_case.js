@@ -101,6 +101,7 @@ export const act2CaseA = {
   ],
 
   evidencePool: [
+    
     {
       id: "question_scroll",
       name: "The Formal Authority Challenge",
@@ -113,6 +114,12 @@ export const act2CaseA = {
       description: "A written record of the formal challenge: 'By what authority do you do these things? Who gave you this authority?' Signed with three priestly seals. This was an official delegated challenge, not a spontaneous question.",
       bibleRef: "Matthew 21:23 — 'When he entered the temple, the chief priests and the elders of the people came up to him as he was teaching.'",
       propheticLink: "Malachi 3:1 predicted the Lord coming to His temple with authority. The irony of the challenge is that they were asking for credentials from the very One whose authority derived directly from God.",
+      bibleRefs: [
+      { ref: "Matthew 21:23", link: "matthew_2123" }
+    ],
+      propheticRefs: [
+      { ref: "Malachi 3:1", link: "malachi_31" }
+    ],
       investigatorNote: "Three seals: the High Priest, the Chief Scribe, the Council Elder. This was planned, not spontaneous.",
     },
     {
@@ -127,6 +134,12 @@ export const act2CaseA = {
       description: "Pieces of broken pottery with rough sketches scratched into them — a vineyard, a watchtower, figures being thrown out. A bystander was illustrating what they were hearing to someone who couldn't see. The Isaiah 5 imagery is unmistakable.",
       bibleRef: "Matthew 21:33–45 — the Parable of the Wicked Tenants",
       propheticLink: "Isaiah 5:1–7 is the Song of the Vineyard — God's lament over Israel's unfaithfulness. Jesus deliberately echoed it. The bystander sketching this recognised the connection immediately.",
+      bibleRefs: [
+      { ref: "Matthew 21:33-45", link: "matthew_213345" }
+    ],
+      propheticRefs: [
+      { ref: "Isaiah 5:1-7", link: "isaiah_517" }
+    ],
       investigatorNote: "These fragments show a bystander who understood the parable's OT reference. The religious leaders would have recognised it instantly — and been publicly shamed.",
     },
     {
@@ -141,6 +154,12 @@ export const act2CaseA = {
       description: "A piece of rejected limestone — the kind cut, shaped, and discarded during the Temple's renovation. Workers have been leaving such stones for years. But on this piece, someone has carved the Hebrew word 'pinnah' — 'cornerstone.' It is from Psalm 118:22.",
       bibleRef: "Matthew 21:42 — 'Jesus said to them, Have you never read in the Scriptures: The stone the builders rejected has become the cornerstone?'",
       propheticLink: "Psalm 118:22–23 was a coronation Psalm, used at Temple dedications. Jesus quoted it at the very Temple whose builders were rejecting Him. The rejected stone lying in the construction debris became a powerful object lesson for anyone listening.",
+      bibleRefs: [
+      { ref: "Matthew 21:42", link: "matthew_2142" }
+    ],
+      propheticRefs: [
+      { ref: "Psalm 118:22-23", link: "psalm_1182223" }
+    ],
       investigatorNote: "Someone scratched 'pinnah' onto a discarded stone and left it here. A disciple? A bystander who understood? Or was it already there — providentially?",
     },
     {
@@ -155,6 +174,12 @@ export const act2CaseA = {
       description: "A silver denarius coin bearing the image of Tiberius Caesar and the inscription 'TIBERIUS CAESAR, SON OF THE DIVINE AUGUSTUS.' A Pharisee dropped it — or left it deliberately — near the treasury entrance.",
       bibleRef: "Matthew 22:19–21 — 'Show me the coin used for paying the tax... Whose image is this? And whose inscription? Caesar's, he replied. Then he said to them, Give back to Caesar what is Caesar's, and to God what is God's.'",
       propheticLink: "The coin bore Caesar's image (imago). Jesus's answer pointed to something deeper: humanity bears God's image (Genesis 1:26–27, imago Dei). The coin question about taxation became a profound statement about identity and allegiance — Caesar's image on metal; God's image on people.",
+      bibleRefs: [
+      { ref: "Matthew 22:19-21", link: "matthew_221921" }
+    ],
+      propheticRefs: [
+      { ref: "Genesis 1:26-27", link: "genesis_12627" }
+    ],
       investigatorNote: "The Pharisees and Herodians brought this coin specifically to trap Him. They never expected His answer to turn the image question back onto every human being.",
     },
     {
@@ -169,6 +194,14 @@ export const act2CaseA = {
       description: "A withered, blackened fig leaf — from the tree Jesus cursed the previous morning. Peter had pointed it out earlier: 'Rabbi, look! The fig tree you cursed has withered.' The leaf has been kept as a testimony to what was seen.",
       bibleRef: "Mark 11:20–21 — 'In the morning, as they went along, they saw the fig tree withered from the roots.'",
       propheticLink: "Micah 7:1 and Jeremiah 8:13 both use a barren fig tree as a symbol for Israel's spiritual fruitlessness. Hosea 9:10 says 'Like grapes in the wilderness, I found Israel.' The withered tree was a living parable — the judgement Jesus described in His Temple parables had already begun in miniature on the roadside.",
+      bibleRefs: [
+      { ref: "Mark 11:20-21", link: "mark_112021" }
+    ],
+      propheticRefs: [
+      { ref: "Micah 7:1", link: "micah_71" },
+      { ref: "Jeremiah 8:13", link: "jeremiah_813" },
+      { ref: "Hosea 9:10", link: "hosea_910" }
+    ],
       investigatorNote: "The withered fig tree and the Temple parables interpret each other. Both speak of outward religious appearance with no real fruit.",
     },
     {
@@ -183,6 +216,12 @@ export const act2CaseA = {
       description: "Two tiny bronze lepton coins — the smallest denomination in circulation, worth a fraction of a penny. They were deposited in the Treasury by a widow, observed by Jesus and several disciples. The treasurer has logged them alongside substantial gifts from wealthy donors.",
       bibleRef: "Mark 12:41–44 — 'Calling his disciples to him, Jesus said, Truly I tell you, this poor widow has put more into the treasury than all the others.'",
       propheticLink: "1 Samuel 16:7 — 'Man looks at the outward appearance, but the LORD looks at the heart.' The widow's offering is the practical demonstration of everything Jesus had been teaching against the religious leaders' showy piety. She gave all she had (100%); the wealthy gave from their surplus.",
+      bibleRefs: [
+      { ref: "Mark 12:41-44", link: "mark_124144" }
+    ],
+      propheticRefs: [
+      { ref: "Samuel 16:7", link: "samuel_167" }
+    ],
       investigatorNote: "The widow's two coins appear after the Seven Woes against the Pharisees (Matthew 23). Jesus used her as a living counter-example: this is what genuine faith looks like, next to the performance the religious leaders were offering.",
     },
     {
@@ -197,8 +236,16 @@ export const act2CaseA = {
       description: "A written eyewitness account from a devout Jew who was present: 'He answered every question. The Pharisees about taxes. The Sadducees about resurrection. The scribes about the Law. At the end, He asked them whose son is the Christ — and not one of them could answer. Then no man dared question him again.' Signed: 'A God-fearer from Alexandria.'",
       bibleRef: "Matthew 22:46 — 'No one could say a word in reply, and from that day on no one dared to ask him any more questions.'",
       propheticLink: "Isaiah 11:2 promised the Messiah would have the 'Spirit of wisdom and understanding, the Spirit of counsel and might' — He would answer every challenge with perfect insight. The progressive silencing of each religious faction across one morning is the fulfilment of this promise made 700 years earlier. Daniel 7:13–14 foretold 'one like a son of man' coming with the clouds of heaven to receive an everlasting dominion — the title 'Son of Man' Jesus used for Himself throughout these exchanges.",
+      bibleRefs: [
+      { ref: "Matthew 22:46", link: "matthew_2246" }
+    ],
+      propheticRefs: [
+      { ref: "Isaiah 11:2", link: "isaiah_112" },
+      { ref: "Daniel 7:13-14", link: "daniel_71314" }
+    ],
       investigatorNote: "The witness is from Alexandria — an educated diaspora Jew well-versed in both Scripture and rhetoric. His assessment is clear: Jesus did not evade their questions. He answered them and won.",
     },
+  
   ],
 
   lab: [
@@ -426,6 +473,7 @@ export const act2CaseB = {
   ],
 
   evidencePool: [
+    
     {
       id: "crowd_report",
       name: "Bethany Pilgrim Manifest",
@@ -436,6 +484,10 @@ export const act2CaseB = {
       snippet: "A watchman's tally book monitoring the eastern gate traffic.",
       description: "A log recording unprecedented human crowds leaving the city gates toward Bethany after dusk, specifically asking for the house of Simon the Leper.",
       bibleRef: "John 12:9 notes that a large crowd found out Jesus was there and came not only because of Him, but also to see Lazarus, whom He had raised.",
+      bibleRefs: [
+      { ref: "John 12:9", link: "john_129" }
+    ],
+      propheticRefs: [],
       investigatorNote: "The exponential growth of these crowd tallies explains the absolute state of panic inside the Sanhedrin chambers.",
     },
     {
@@ -448,6 +500,10 @@ export const act2CaseB = {
       snippet: "Trace white dust contaminated with heavy burial aloes.",
       description: "Powdery white limestone scrapings mixed with residual traces of heavy myrrh and aloe resins, found dropped outside the high priest's council room.",
       bibleRef: "John 11:39 records Martha's objection that after four days there would already be a bad odor — the natural expectation of decay this deep into a Judean burial, against which the raising of Lazarus stands out as a reversal.",
+      bibleRefs: [
+      { ref: "John 11:39", link: "john_1139" }
+    ],
+      propheticRefs: [],
       investigatorNote: "This dust indicates that witnesses from the actual tomb site in Bethany have been brought into the inner chambers of the Sanhedrin for intense interrogation.",
     },
     {
@@ -460,8 +516,13 @@ export const act2CaseB = {
       snippet: "A sealed tablet bearing the administrative mark of the House of Annas.",
       description: "A secure internal brief detailing political damage control. It outlines plans to quietly eliminate a 'destabilizing living asset' currently residing in Bethany.",
       bibleRef: "John 12:10–11 explicitly validates this conspiracy: 'So the chief priests made plans to put Lazarus to death as well.'",
+      bibleRefs: [
+      { ref: "John 12:10-11", link: "john_121011" }
+    ],
+    propheticRefs: [],
       investigatorNote: "Murdering a resurrected man is a fascinating logical absurdity. It reveals that the leadership doesn't doubt the miracle occurred—they simply care more about their institutional control than God's reality.",
     },
+  
   ],
 
   lab: [
@@ -816,6 +877,7 @@ export const act2CaseC = {
   ],
 
   evidencePool: [
+    
     {
       id: "temple_overlook_view",
       name: "View of the Temple from Olivet",
@@ -828,6 +890,10 @@ export const act2CaseC = {
       description: "The majestic view of the Jerusalem Temple complex, gleaming in the afternoon sun. Its grandeur makes Jesus's prophecy of its destruction all the more startling.",
       bibleRef: "Matthew 24:1–2",
       propheticLink: "The physical setting directly inspired the disciples' questions about the Temple's fate, linking Jesus's words to the tangible structure before them.",
+      bibleRefs: [
+      { ref: "Matthew 24:1-2", link: "matthew_2412" }
+    ],
+      propheticRefs: [],
       investigatorNote: "The disciples' awe of the Temple's stones and buildings contrasts sharply with Jesus's prediction of its utter demolition.",
     },
     {
@@ -842,6 +908,11 @@ export const act2CaseC = {
       description: "Notes scribbled by a disciple, detailing the three main questions posed to Jesus: 'When will these things be? What will be the sign of your coming? And of the end of the age?'",
       bibleRef: "Matthew 24:3",
       propheticLink: "These questions frame the entire discourse, revealing the disciples' immediate concerns about timing and signs, which Jesus then addresses with detailed prophecies.",
+      bibleRefs: [
+      { ref: "Matthew 24:3", link: "matthew_243" }
+    ],
+      propheticRefs: [],
+
       investigatorNote: "The disciples' questions show their expectation of a clear timeline and visible indicators for future events.",
     },
     {
@@ -856,6 +927,11 @@ export const act2CaseC = {
       description: "A summary of the Parable of the Ten Virgins, emphasizing the need for preparedness and vigilance for the bridegroom's (Jesus's) return.",
       bibleRef: "Matthew 25:1–13",
       propheticLink: "This parable underscores the theme of watchfulness, a recurring motif in eschatological prophecies, urging believers to be ready for the unexpected timing of the Lord's return.",
+      bibleRefs: [
+      { ref: "Matthew 25:1-13", link: "matthew_25113" }
+    ],
+      propheticRefs: [],
+
       investigatorNote: "The parable highlights the personal responsibility of each individual to be spiritually prepared.",
     },
     {
@@ -870,8 +946,13 @@ export const act2CaseC = {
       description: "A collection of Old Testament verses (e.g., Joel 2:30-31, Isaiah 13:10) that speak of the sun darkening, the moon turning to blood, and stars falling, which Jesus referenced in His discourse.",
       bibleRef: "Matthew 24:29",
       propheticLink: "Jesus's use of these ancient prophecies demonstrates the continuity of God's plan and the fulfillment of long-foretold cosmic disturbances as signs of the end.",
+      bibleRefs: [
+      { ref: "Matthew 24:29", link: "matthew_2429" }
+    ],
+      propheticRefs: [],
       investigatorNote: "The consistency between Jesus's words and ancient prophecies reinforces the divine origin of His message.",
     },
+  
   ],
 
   lab: [

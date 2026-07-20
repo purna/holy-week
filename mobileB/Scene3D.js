@@ -395,6 +395,7 @@ export class Scene3D {
             if (n && n.mesh && n.mesh.parent) this.sceneMgr.scene.remove(n.mesh);
         });
         this.npcMeshes = [];
+        this.npcBodies = [];
 
         // Create NPCs for this case with proper positioning
         npcs.forEach(npc => {
@@ -402,6 +403,18 @@ export class Scene3D {
                 const mesh = new NPC(npc, this.worldMgr.planetR, this.sceneMgr.scene, this.modelMgr, this.toonShader);
                 this.npcMeshes.push(mesh);
                 this.addNPCButton(npc, mesh.mesh);
+
+                const body = new CANNON.Body({
+                    mass: 0,
+                    shape: new CANNON.Box(new CANNON.Vec3(1, 2, 1)),
+                    position: new CANNON.Vec3(
+                        mesh.mesh.position.x,
+                        mesh.mesh.position.y,
+                        mesh.mesh.position.z
+                    )
+                });
+                this.worldMgr.world.addBody(body);
+                this.npcBodies.push(body);
             }
         });
 
@@ -474,30 +487,26 @@ export class Scene3D {
     }
 
     addNPCButton(npc, mesh) {
-        // Create name tooltip
-        const tooltip = document.createElement('div');
-        tooltip.className = 'scene-npc-name-tooltip';
-        tooltip.dataset.npcName = npc.id;
-        tooltip.textContent = npc.name || npc.id;
-        this.container.appendChild(tooltip);
+        const overlay = document.createElement('div');
+        overlay.className = 'scene-npc-overlay';
+        overlay.dataset.npcId = npc.id;
 
-        // Create talk button
+        const nameEl = document.createElement('div');
+        nameEl.className = 'scene-npc-name-tooltip';
+        nameEl.textContent = npc.name || npc.id;
+
         const btn = document.createElement('button');
         btn.className = 'scene-npc-talk-btn';
-        btn.dataset.npcId = npc.id;
         btn.innerHTML = `<i class="fas fa-comment"></i> Talk`;
         btn.onclick = () => {
             const npcObj = this.npcMeshes.find(n => n.data && n.data.id === npc.id);
             if (npcObj) {
-                // Discover the NPC so it unlocks in the People tab
                 if (this.ui && this.ui.discoverNPC) this.ui.discoverNPC(npc.id);
 
-                // Handle evidence unlocks from grid NPC dialogue
                 const unlocks = npc.unlocksEvidence || [];
                 if (unlocks.length > 0) {
                     unlocks.forEach(id => {
                         this.ui.es.discover(id);
-                        // Add to unlocked evidence for scene spawning
                         const prog = this.ui.cm.getCaseProgress(this.ui.cm.getActiveCase()?.id);
                         if (prog) {
                             if (!prog.unlockedEvidence) prog.unlockedEvidence = [];
@@ -513,7 +522,10 @@ export class Scene3D {
                 this.ui.handleNpcInteraction('talk', npc.id);
             }
         };
-        this.container.appendChild(btn);
+
+        overlay.appendChild(nameEl);
+        overlay.appendChild(btn);
+        this.container.appendChild(overlay);
     }
 
     gameLoop() {
@@ -559,6 +571,7 @@ export class Scene3D {
         }
         
         this.player.applyMovement(moveDir);
+        this.resolveNPCCollisions();
         this.cameraCtrl.follow(pPos, this.player.camHeading, up);
         
         // Check for nearby NPCs and show talk button
@@ -586,32 +599,44 @@ export class Scene3D {
             }
         }
 
-        // Show talk button for nearest NPC when player is within range
-        this.container.querySelectorAll('.scene-npc-talk-btn').forEach(btn => btn.style.display = 'none');
-        if (nearestNpc) {
-            this.npcMeshes.forEach(n => {
-                if (!n || !n.data || !n.mesh) return;
-                // For grid NPCs on flat scene, just add Y offset; for planet NPCs use normalized vector
-                const npcPos = this.gridData?.npcs 
-                    ? n.mesh.position.clone().add(new THREE.Vector3(0, 5, 0))
-                    : n.mesh.position.clone().add(up.clone().multiplyScalar(4));
-                const screenPos = npcPos.project(this.sceneMgr.camera);
-                const btn = this.container.querySelector(`[data-npc-id="${n.data.id}"]`);
-                if (btn) {
-                    const isNearest = n.data.id === nearestNpc.data.id;
-                    btn.style.left = (screenPos.x * 0.5 + 0.5) * window.innerWidth + 'px';
-                    btn.style.top = (screenPos.y * -0.5 + 0.5) * window.innerHeight + 'px';
-                    btn.style.display = isNearest ? 'block' : 'none';
-                }
-                // Update name tooltip position
-                const nameTooltip = this.container.querySelector(`[data-npc-name="${n.data.id}"]`);
-                if (nameTooltip) {
-                    nameTooltip.style.left = (screenPos.x * 0.5 + 0.5) * window.innerWidth + 'px';
-                    nameTooltip.style.top = (screenPos.y * -0.5 + 0.5) * window.innerHeight - 60 + 'px';
-                    nameTooltip.style.display = n.data.hasDialogue !== false ? 'block' : 'none';
-                }
-            });
-        }
+        const rect = this.container.getBoundingClientRect();
+        const cw = rect.width;
+        const ch = rect.height;
+
+        this.container.querySelectorAll('.scene-npc-overlay').forEach(overlay => {
+            const npcId = overlay.dataset.npcId;
+            const npc = this.npcMeshes.find(n => n.data && n.data.id === npcId);
+            if (!npc || !npc.mesh) {
+                overlay.style.display = 'none';
+                return;
+            }
+
+            const npcPos = this.gridData?.npcs
+                ? npc.mesh.position.clone().add(new THREE.Vector3(0, 5, 0))
+                : npc.mesh.position.clone().add(up.clone().multiplyScalar(4));
+            const screenPos = npcPos.project(this.sceneMgr.camera);
+
+            if (screenPos.z > 1) {
+                overlay.style.display = 'none';
+                return;
+            }
+
+            const x = (screenPos.x * 0.5 + 0.5) * cw;
+            const y = (screenPos.y * -0.5 + 0.5) * ch;
+            overlay.style.left = x + 'px';
+            overlay.style.top = y + 'px';
+
+            const nameEl = overlay.querySelector('.scene-npc-name-tooltip');
+            const btn = overlay.querySelector('.scene-npc-talk-btn');
+            if (nameEl) {
+                nameEl.style.display = npc.data.hasDialogue !== false ? 'block' : 'none';
+            }
+            if (btn) {
+                btn.style.display = (nearestNpc && npc.data.id === nearestNpc.data.id) ? 'block' : 'none';
+            }
+
+            overlay.style.display = 'block';
+        });
     }
 
     checkLocationProximity(pPos) {
@@ -708,5 +733,39 @@ export class Scene3D {
 
     stop() {
         this.running = false;
+    }
+
+    resolveNPCCollisions() {
+        const pPos = this.player.getPosition();
+        const pBody = this.player.pBody;
+
+        this.npcBodies.forEach((body, i) => {
+            if (!body || !this.npcMeshes[i]) return;
+            
+            const dx = pBody.position.x - body.position.x;
+            const dy = pBody.position.y - body.position.y;
+            const dz = pBody.position.z - body.position.z;
+            const dist = Math.sqrt(dx * dx + dy * dy + dz * dz);
+            const minDist = 2.5;
+
+            if (dist < minDist && dist > 0.01) {
+                const nx = dx / dist;
+                const ny = dy / dist;
+                const nz = dz / dist;
+                const overlap = minDist - dist;
+                
+                pBody.position.x += nx * overlap;
+                pBody.position.y += ny * overlap;
+                pBody.position.z += nz * overlap;
+                
+                const vel = pBody.velocity;
+                const dot = vel.x * nx + vel.y * ny + vel.z * nz;
+                if (dot < 0) {
+                    pBody.velocity.x -= 1.5 * nx * dot;
+                    pBody.velocity.y -= 1.5 * ny * dot;
+                    pBody.velocity.z -= 1.5 * nz * dot;
+                }
+            }
+        });
     }
 }

@@ -51,6 +51,8 @@ export class GameEngine {
     this.chatUI = new ChatUI(this.ns, this.es, this.a11y, null, this.audio, this.dm);
 
     this.ui = new UIManager(this.cm, this.es, this.ns, this.de, this.ls, this.a11y, this.audio, this.dm, this.app, this.labUI, this.chatUI);
+    const introData = document.getElementById('prophecy-people-intro-data');
+    if (introData) this.ui.chatUI.peopleIntroHtml = introData.innerHTML;
     this.gm = new GameManager(this.cm, this.ui, this.es, this.ns, this.de);
 
     this.registerCases();

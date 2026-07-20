@@ -129,24 +129,18 @@
 
 /* NPC Name Tooltip */
 .scene-npc-name-tooltip {
-    position: absolute;
-    display: none;
     background: rgba(0, 0, 0, 0.8);
     color: var(--gold);
     padding: 4px 8px;
     border-radius: 4px;
     font-size: 0.75rem;
     white-space: nowrap;
-    z-index: 100;
-    transform: translate(-50%, -100%);
     border: 1px solid var(--gold);
     pointer-events: none;
 }
 
 /* NPC Talk Button */
 .scene-npc-talk-btn {
-    position: absolute;
-    display: none;
     background: rgba(0, 10, 20, 0.9);
     color: var(--accent-primary);
     border: 1px solid var(--accent-primary);
@@ -154,12 +148,26 @@
     border-radius: 4px;
     cursor: pointer;
     font-size: 0.8rem;
-    z-index: 100;
-    transform: translate(-50%, -150%);
+    margin-top: 6px;
 }
 
 .scene-npc-talk-btn:hover {
     background: rgba(0, 242, 255, 0.2);
+}
+
+/* Combined NPC overlay (name + talk button) */
+.scene-npc-overlay {
+    position: absolute;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    z-index: 100;
+    transform: translate(-50%, -100%);
+    pointer-events: none;
+}
+
+.scene-npc-overlay .scene-npc-talk-btn {
+    pointer-events: auto;
 }
 
 /* World Prompt - shows NPC name when near */
@@ -267,6 +275,13 @@
     border-color: var(--gold);
     z-index: 2;
 }
+
+#scene-ctrl-up:active {  background: var(--surface2, #2c2219); border-color: var(--gold);}
+#scene-ctrl-down:active {  background: var(--surface2, #2c2219); border-color: var(--gold);}
+#scene-ctrl-left:active {  background: var(--surface2, #2c2219); border-color: var(--gold);}
+#scene-ctrl-right:active {  background: var(--surface2, #2c2219); border-color: var(--gold);}
+#scene-ctrl-jump:active {  background: var(--surface2, #2c2219); border-color: var(--gold);}
+
 
 /* Loading screen for 3D scene */
 #scene-loading {

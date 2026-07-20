@@ -305,14 +305,11 @@ export class DialogueManager {
 
         this.addTyping(() => {
             let text = "";
-            // Ink can have content that results in empty strings (tags/diverts).
-            // We loop until we either hit actual text OR we have choices to present.
             let safety = 0;
             while (story.canContinue && safety < 20) {
                 let chunk = story.Continue();
                 text += chunk;
-                // If we found text or choices, we have enough to show the user
-                if (text.trim() || story.currentChoices.length > 0) break;
+                if (story.currentChoices.length > 0) break;
                 safety++;
             }
 

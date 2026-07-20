@@ -88,6 +88,7 @@ export const act1CaseA = {
   ],
 
   evidencePool: [
+    
     {
       id: "cloaks",
       name: "Two Disciples' Cloaks",
@@ -103,6 +104,13 @@ export const act1CaseA = {
       bibleRef: "Mark 11:7 — 'They brought the colt to Jesus and threw their cloaks over it.'; 2 Kings 9:13 — cloaks spread before King Jehu as a royal honour",
       bibleLink: "mark_11_7",
       propheticLink: "This mirrors 2 Kings 9:13 where cloaks were spread before King Jehu — a royal gesture the disciples repeated on the road to Jerusalem.",
+bibleRefs: [
+      { ref: "Mark 11:7", link: "mark_117" },
+      { ref: "2 Kings 9:13", link: "2kings_913" }
+    ],
+propheticRefs: [
+      { ref: "2 Kings 9:13", link: "2 kings_913" }
+    ],
       investigatorNote: "If the cloaks belong to the disciples, they were here. Why leave them behind?",
     },
     {
@@ -118,6 +126,12 @@ export const act1CaseA = {
       bibleRef: "Luke 19:35–36 — 'As he rode along, people spread their cloaks on the road.'",
       bibleLink: "luke_19_35_36",
       propheticLink: "The route from the Mount of Olives into Jerusalem through the eastern gate mirrors the processional route described in Ezekiel 44:1–3, associated with the glory of God entering the city.",
+bibleRefs: [
+      { ref: "Luke 19:35-36", link: "luke_193536" }
+    ],
+propheticRefs: [
+      { ref: "Ezekiel 44:1-3", link: "ezekiel_4413" }
+    ],
       investigatorNote: "The prints are heading directly toward the road that pilgrims take into the city for Passover.",
     },
     {
@@ -134,6 +148,12 @@ export const act1CaseA = {
       bibleRef: "Mark 11:3–6 — 'They answered as Jesus had told them to, and the people let them go.'",
       bibleLink: "mark_11_3_6",
       propheticLink: "Jesus's foreknowledge of the exact response to give is consistent with His omniscience, and mirrors how the Passover lamb was 'set apart' by divine instruction (Exodus 12:3–6).",
+bibleRefs: [
+      { ref: "Mark 11:3-6", link: "mark_1136" }
+    ],
+propheticRefs: [
+      { ref: "Exodus 12:3-6", link: "exodus_1236" }
+    ],
       investigatorNote: "Both the gospel accounts of Mark and Luke confirm this exchange happened exactly as predicted. This is not a theft.",
     },
     {
@@ -151,6 +171,12 @@ export const act1CaseA = {
       bibleRef: "Matthew 21:4–5 — 'This took place to fulfil what was spoken through the prophet.'",
       bibleLink: "matthew_21_4_5",
       propheticLink: "Zechariah 9:9 was written around 520 BC. Zechariah himself arrived back in Judah after the Babylonian exile — a people who desperately needed a king. His vision of a humble, donkey-riding king was a hope that Jesus publicly claimed.",
+bibleRefs: [
+      { ref: "Matthew 21:4-5", link: "matthew_2145" }
+    ],
+propheticRefs: [
+      { ref: "Zechariah 9:9", link: "zechariah_99" }
+    ],
       investigatorNote: "The owner kept this scroll. He knew this day might come. He was waiting.",
     },
     {
@@ -167,6 +193,12 @@ export const act1CaseA = {
       bibleRef: "John 12:13 — 'They took palm branches and went out to meet him, shouting, Hosanna! Blessed is the king of Israel!'",
       bibleLink: "john_12_13",
       propheticLink: "In the Maccabean era, palm branches became a symbol of Jewish national liberation and celebration (1 Maccabees 13:51 — Simon Maccabeus's entry into the Jerusalem citadel, 141 BC). The crowd was making a political and spiritual statement — this man is our king and deliverer.",
+bibleRefs: [
+      { ref: "John 12:13", link: "john_1213" }
+    ],
+propheticRefs: [
+      { ref: "Maccabees 13:51", link: "maccabees_1351" }
+    ],
       investigatorNote: "The crowd was prepared. This was not a spontaneous moment — it had been anticipated.",
     },
     {
@@ -182,6 +214,13 @@ export const act1CaseA = {
       bibleRef: "Mark 11:2 — 'You will find a colt tied there, which no one has ever ridden. Untie it and bring it here.'",
       bibleLink: "mark_11_2",
       propheticLink: "Jesus specified it must be a colt 'no one has ever ridden' — in Jewish law, an animal used for sacred purposes must be one that has not been used for common work (Numbers 19:2; Deuteronomy 21:3). This detail proves the act was religiously intentional, not criminal.",
+bibleRefs: [
+      { ref: "Mark 11:2", link: "mark_112" }
+    ],
+propheticRefs: [
+      { ref: "Numbers 19:2", link: "numbers_192" },
+      { ref: "Deuteronomy 21:3", link: "deuteronomy_213" }
+    ],
       investigatorNote: "A thief would cut a rope. A disciple would untie it carefully. The clean cut could go either way — unless you know the context.",
     },
     {
@@ -199,8 +238,15 @@ export const act1CaseA = {
       bibleRef: "Luke 19:39–40 — The Pharisees said, 'Teacher, rebuke your disciples!' Jesus replied, 'If they keep quiet, the stones will cry out.'",
       bibleLink: "luke_19_39_40",
       propheticLink: "The Pharisees recognised the messianic implication of the palm branches and shouts. John 12:19 records their panic: 'Look how the whole world has gone after him!'",
+bibleRefs: [
+      { ref: "Luke 19:39-40", link: "luke_193940" }
+    ],
+propheticRefs: [
+      { ref: "John 12:19", link: "john_1219" }
+    ],
       investigatorNote: "If the religious authorities were alarmed, this event was unmistakably public and significant. A stolen donkey doesn't cause this kind of reaction.",
     },
+  
   ],
 
   lab: [
@@ -533,6 +579,7 @@ export const act1CaseB = {
   ],
 
   evidencePool: [
+    
     {
       id: "broken_cages",
       name: "Shattered Dove Cages",
@@ -548,6 +595,13 @@ export const act1CaseB = {
       bibleRef: "Leviticus 5:7",
       bibleLink: "leviticus_5_7",
       propheticLink: "Isaiah 56:7 — 'My house shall be called a house of prayer for all nations' — is the prophecy Jesus explicitly quoted as He drove out the sellers. The dove trade was the clearest abuse of it: Leviticus 5:7 allows doves as a concession for poverty, yet the priests exploited this legal requirement with exorbitant commercial markups, locking the poor and the nations out of the very prayer court Isaiah said was for them. That exploitation directly triggered Jesus's anger.",
+bibleRefs: [
+      { ref: "Leviticus 5:7", link: "leviticus_57" }
+    ],
+propheticRefs: [
+      { ref: "Isaiah 56:7", link: "isaiah_567" },
+      { ref: "Leviticus 5:7", link: "leviticus_57" }
+    ],
       investigatorNote: "The destruction was targeted. Only the commercial apparatus was overturned; the text notes He told the dove-sellers to 'take these things away,' showing controlled fury, not an out-of-control tantrum.",
     },
     {
@@ -565,6 +619,12 @@ export const act1CaseB = {
       bibleRef: "Exodus 30:13",
       bibleLink: "exodus_30_13",
       propheticLink: "Exodus 30:13 required a half-shekel temple offering. The priests exploited this by mandating Tyrian shekels, forcing pilgrims to pay massive exchange fees.",
+bibleRefs: [
+      { ref: "Exodus 30:13", link: "exodus_3013" }
+    ],
+propheticRefs: [
+      { ref: "Exodus 30:13", link: "exodus_3013" }
+    ],
       investigatorNote: "The fact that merchants left this silver behind in their rush to escape proves the authority and commanding presence Jesus exuded during the clearing.",
     },
     {
@@ -582,8 +642,15 @@ export const act1CaseB = {
       bibleRef: "John 2:15",
       bibleLink: "john_2_15",
       propheticLink: "John 2:15 specifically details Him weaving this instrument on the spot before initiating the cleansing.",
+bibleRefs: [
+      { ref: "John 2:15", link: "john_215" }
+    ],
+propheticRefs: [
+      { ref: "John 2:15", link: "john_215" }
+    ],
       investigatorNote: "A weapon made from reeds could not seriously injure a grown man. It was used as a symbolic driving tool for the livestock, signaling prophetic exile from the sacred space.",
     },
+  
   ],
 
   lab: [
@@ -1007,6 +1074,7 @@ export const act1CaseC = {
   ],
 
   evidencePool: [
+    
     {
       id: "cursed_fig_tree_desc",
       name: "Description of the Fig Tree (Monday)",
@@ -1018,6 +1086,12 @@ export const act1CaseC = {
       bibleRef: "Mark 11:12–14",
       bibleLink: "mark_11_12_14",
       propheticLink: "The tree's appearance—leaves but no fruit—symbolized Israel's outward show of religiosity without genuine spiritual fruit, echoing prophetic laments like Micah 7:1.",
+bibleRefs: [
+      { ref: "Mark 11:12-14", link: "mark_111214" }
+    ],
+propheticRefs: [
+      { ref: "Micah 7:1", link: "micah_71" }
+    ],
       investigatorNote: "The tree's barrenness was noted before the curse, establishing the context for Jesus's action.",
     },
     {
@@ -1031,6 +1105,12 @@ export const act1CaseC = {
       bibleRef: "Mark 11:20–21",
       bibleLink: "mark_11_20_21",
       propheticLink: "The rapid, complete withering fulfilled prophecies of judgment on unfruitfulness, such as Jeremiah 8:13, where God threatens to remove fruit and wither leaves.",
+bibleRefs: [
+      { ref: "Mark 11:20-21", link: "mark_112021" }
+    ],
+propheticRefs: [
+      { ref: "Jeremiah 8:13", link: "jeremiah_813" }
+    ],
       investigatorNote: "The speed and totality of the withering are highly unusual for natural causes, especially overnight.",
     },
     {
@@ -1044,6 +1124,12 @@ export const act1CaseC = {
       bibleRef: "Mark 11:21",
       bibleLink: "mark_11_21",
       propheticLink: "Psalm 33:8-9 declares that all should stand in awe of Him because 'He spoke, and it came to be.' Peter’s reaction is the physical fulfillment of this reverence when confronted with divine command.",
+bibleRefs: [
+      { ref: "Mark 11:21", link: "mark_1121" }
+    ],
+propheticRefs: [
+      { ref: "Psalm 33:8-9", link: "psalm_3389" }
+    ],
       investigatorNote: "Peter specifically links the withering to Jesus's curse, indicating he understood it as a direct consequence.",
     },
     {
@@ -1057,8 +1143,15 @@ export const act1CaseC = {
       bibleRef: "Mark 11:22–24",
       bibleLink: "mark_11_22_24",
       propheticLink: "Zechariah 4:7 speaks of a 'mighty mountain' becoming 'level ground' by the Spirit. Jesus adopts this imagery to show that faith connects the believer to that same mountain-moving power.",
+bibleRefs: [
+      { ref: "Mark 11:22-24", link: "mark_112224" }
+    ],
+propheticRefs: [
+      { ref: "Zechariah 4:7", link: "zechariah_47" }
+    ],
       investigatorNote: "The lesson immediately following the miracle underscores its dual purpose: judgment and a call to radical faith.",
     },
+  
   ],
 
   lab: [

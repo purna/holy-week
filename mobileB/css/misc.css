@@ -247,6 +247,20 @@
     cursor: not-allowed;
 }
 
+.bible-read-more-container,
+.prophecy-read-more-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.bible-read-more-container .read-more-btn,
+.prophecy-read-more-container .read-more-btn {
+  margin-top: 0;
+  text-align: left;
+}
+
 .verse-content {
     margin-top: 10px;
     padding: 12px 14px;

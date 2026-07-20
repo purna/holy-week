@@ -56,6 +56,17 @@
 #btn-left { top: 40px; left: 0; }
 #btn-right { top: 40px; right: 0; }
 
+#btn-up:active {  background: var(--surface2, #2c2219); border-color: var(--gold);}
+#btn-down:active {  background: var(--surface2, #2c2219); border: 2px solid var(--gold);}
+#btn-left:active {  background: var(--surface2, #2c2219); border: 2px solid var(--gold);}
+#btn-right:active {  background: var(--surface2, #2c2219); border: 2px solid var(--gold); }
+
+
+#ui-controls-overlay .btn:hover {
+    background: rgba(0, 242, 255, 0.2);
+}
+
+
 /* Talk / Action button (bottom-right circular) */
 #btn-action {
     position: absolute;

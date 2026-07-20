@@ -49,6 +49,8 @@ export class GameEngine {
     this.labUI = new LabUI(this.de, this.es, this.a11y);
 
     this.ui = new UIManager(this.cm, this.es, this.ns, this.de, this.ls, this.a11y, this.audio, this.dm, this.app, this.labUI);
+    const introData = document.getElementById('prophecy-people-intro-data');
+    if (introData) this.ui.peopleUI.peopleIntroHtml = introData.innerHTML;
     this.gm = new GameManager(this.cm, this.ui, this.es, this.ns, this.de);
 
     this.registerCases();

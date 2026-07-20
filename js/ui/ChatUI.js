@@ -12,6 +12,8 @@ export class ChatUI {
     this.challengeResultsByNPC = {};
     this._loadedCaseId = null;
     this.activeModalResult = null;
+    this.peopleIntroHtml = "Talk to witnesses for clues, show them evidence, or challenge a contradiction once two clues are selected.";
+    this.evidencePickerIntro = "Choose evidence to present to this witness.";
   }
 
   addMessage(speaker, text, type = "npc", extra = {}, npcId = null) {
@@ -62,19 +64,34 @@ export class ChatUI {
       </div>`;
   }
 
-  renderNPCPanel() {
+  renderNPCPanel(discoveredNPCs = null) {
     this._ensureMessagesForActiveCase();
     const npcs = this.npcs.getNPCs().filter(npc => npc.hasDialogue !== false);
+    const isNPCUnlocked = (npc) => {
+      const state = this.npcs.getState(npc.id);
+      const discovered = discoveredNPCs instanceof Set ? discoveredNPCs.has(npc.id) : true;
+      return !!(state?.isSuspectUnlocked || discovered);
+    };
     return `
       <h3 class="section-title">Witnesses</h3>
-      <div class="prophecy-people-intro">
-        Talk to witnesses for clues, show them evidence, or challenge a contradiction once two clues are selected.
-      </div>
+      ${this.peopleIntroHtml ? `<div class="prophecy-people-intro">${this.peopleIntroHtml}</div>` : ""}
       <div class="npc-list" role="list">
         ${npcs.map(npc => {
           const state = this.npcs.getState(npc.id);
+          const unlocked = isNPCUnlocked(npc);
           const moodColor = this.npcs.getMoodColor(state?.mood || "neutral");
           const moodLabel = this.npcs.getMoodLabel(state?.mood || "neutral");
+          if (!unlocked) {
+            return `
+            <div class="npc-card locked" aria-disabled="true">
+              <div class="npc-header">
+                <span class="npc-avatar">${npc.avatar || "❓"}</span>
+                <div class="npc-info"><span class="npc-name">${npc.name}</span></div>
+                <span class="npc-lock" aria-hidden="true">🔒</span>
+              </div>
+              <div class="npc-locked-note">🔒 Find this person in the Scene tab to unlock.</div>
+            </div>`;
+          }
           return `
             <div class="npc-card">
               <div class="npc-header">
@@ -100,7 +117,7 @@ export class ChatUI {
         <div class="npc-result-modal-card" style="position:relative;z-index:1;background:var(--surface2,#1b2230);border:1px solid var(--border,#2e3a50);border-radius:12px;padding:20px;max-width:560px;width:100%;display:flex;flex-direction:column;gap:12px;box-shadow:0 10px 30px rgba(0,0,0,0.35);">
           <div data-npc-modal-picker>
             <h3 class="section-title" style="margin:0;">Select Evidence</h3>
-            <p class="prophecy-people-intro" style="margin:0 0 10px;">Choose evidence to present to this witness.</p>
+            ${this.evidencePickerIntro ? `<p class="prophecy-people-intro" style="margin:0 0 10px;">${this.evidencePickerIntro}</p>` : ""}
             <div class="evidence-pick-list" data-modal-picker-list>
               
             </div>

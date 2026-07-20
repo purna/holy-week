@@ -360,13 +360,16 @@ window.BibleReader = {
     if (parts.length < 2) throw new Error('Invalid reference');
 
     let bookRaw = parts[0];
+    if (/^\d+$/.test(bookRaw) && parts.length > 2) {
+      bookRaw = bookRaw + parts[1];
+    }
     if (bookRaw.length > 3) {
       const map = { PSALM: 'psalms', PSALMS: 'psalms', ZECHARIAH: 'zechariah' };
       bookRaw = map[bookRaw] || bookRaw;
     }
     const book = bookRaw.toLowerCase();
-    const chapter = parts[1];
-    const versePart = parts[2];
+    const chapter = /^\d+$/.test(parts[0]) && parts.length > 2 ? parts[2] : parts[1];
+    const versePart = /^\d+$/.test(parts[0]) && parts.length > 3 ? parts[3] : parts[2];
     let url = `https://bible-api.com/${book}+${chapter}`;
     if (versePart) url += `:${versePart}`;
     url += `?translation=${this.translation}`;

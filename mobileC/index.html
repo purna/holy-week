@@ -681,17 +681,17 @@
               <div class="evidence-detail-label">Location Found</div>
               <div class="evidence-detail-location"></div>
             </div>
-            <div class="evidence-detail-section prophecy-section" hidden> <!-- Section: Scriptural Reference -->
+            <div class="evidence-detail-section prophecy-section" id="detail-prophecy-area" hidden> <!-- Section: Scriptural Reference -->
               <div class="evidence-detail-label">📜 Bible Reference</div>
               <div class="evidence-detail-bible-ref"></div>
-              <button class="read-more-btn" data-target="bible-verse-content" data-ref="">📖 Read Full Verse</button>
+              <div class="bible-read-more-container"></div>
               <div class="verse-content" data-target="bible-verse-content" hidden></div>
               <!-- API target for fetched verse -->
             </div>
-            <div class="evidence-detail-section prophecy-section" hidden> <!-- Section: Fulfillment Insight -->
+            <div class="evidence-detail-section prophecy-section" id="detail-fulfillment-area"  hidden> <!-- Section: Fulfillment Insight -->
               <div class="evidence-detail-label">✨ Prophecy & Fulfilment</div>
               <div class="evidence-detail-prophetic-link"></div>
-              <button class="read-more-btn" data-target="prophecy-verse-content" data-ref="">📖 Read Full Verse</button>
+              <div class="prophecy-read-more-container"></div>
               <div class="verse-content" data-target="prophecy-verse-content" hidden></div>
               <!-- API target for fetched prophecy text -->
             </div>
@@ -829,6 +829,10 @@
       }
       // ]]>
     </script>
-</body>
+        <div id="prophecy-people-intro-data" hidden>Some witnesses are hidden until you find them. Explore the <strong>🔎 Scene</strong> tab and walk up to a person to discover them — they'll appear here unlocked. Once found, talk to witnesses for clues, show them evidence, or challenge a contradiction once two clues are selected.
+          <button class="people-intro-scene-btn" type="button" onclick="window.switchInvTab;window.switchInvTab('scene')">🔎 Go to Scene</button>
+        </div>
+
+  </body>
 
 </html>

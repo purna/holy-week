@@ -1250,6 +1250,11 @@ export class GameEngine {
     `;
   }
 
+  extractBibleReferences(text) {
+    if (!text) return [];
+    return Array.from(text.matchAll(/((?:\d\s)?[A-Za-z][^0-9]*\s\d+:\d+)/g)).map(m => m[1].trim());
+  }
+
   openEvidenceDetail(evidenceId) {
     const ev = this.es.getById(evidenceId);
     if (!ev) return;
@@ -1272,17 +1277,37 @@ export class GameEngine {
       modal.querySelector('.evidence-detail-prophetic-link').textContent = ev.propheticLink || '---';
 
       // Reset verse content visibility
-      modal.querySelectorAll('.verse-content').forEach(c => c.hidden = true);
+      modal.querySelectorAll('.verse-content').forEach(c => { c.hidden = true; c.innerHTML = ''; });
 
-      // Bind read more buttons
-      modal.querySelectorAll('.read-more-btn').forEach(btn => {
-        const targetId = btn.dataset.target;
-        const refText = targetId === 'bible-verse-content' ? ev.bibleRef : ev.propheticLink;
-        btn.onclick = (e) => {
-          e.preventDefault();
-          this.toggleVerseView(targetId, refText);
-        };
-      });
+      // Populate Bible read-more buttons
+      const bibleContainer = modal.querySelector('.bible-read-more-container');
+      if (bibleContainer) {
+        bibleContainer.innerHTML = '';
+        const bibleRefs = (ev.bibleRefs && ev.bibleRefs.length > 0) ? ev.bibleRefs.map(r => r.ref) : this.extractBibleReferences(ev.bibleRef);
+        const bibleVerseContent = modal.querySelector('.verse-content[data-target="bible-verse-content"]');
+        bibleRefs.forEach(ref => {
+          const btn = document.createElement('button');
+          btn.className = 'read-more-btn';
+          btn.textContent = `📖 Read ${ref}`;
+          btn.onclick = () => this.fetchVerseInline(ref, bibleVerseContent, btn);
+          bibleContainer.appendChild(btn);
+        });
+      }
+
+      // Populate Prophecy read-more buttons
+      const prophetContainer = modal.querySelector('.prophecy-read-more-container');
+      if (prophetContainer) {
+        prophetContainer.innerHTML = '';
+        const propheticRefs = (ev.propheticRefs && ev.propheticRefs.length > 0) ? ev.propheticRefs.map(r => r.ref) : this.extractBibleReferences(ev.propheticLink);
+        const prophetVerseContent = modal.querySelector('.verse-content[data-target="prophecy-verse-content"]');
+        propheticRefs.forEach(ref => {
+          const btn = document.createElement('button');
+          btn.className = 'read-more-btn';
+          btn.textContent = `📖 Read ${ref}`;
+          btn.onclick = () => this.fetchVerseInline(ref, prophetVerseContent, btn);
+          prophetContainer.appendChild(btn);
+        });
+      }
     } else {
       propArea.hidden = true;
     }
@@ -1296,27 +1321,20 @@ export class GameEngine {
     modal.classList.add('active');
   }
 
-  toggleVerseView(targetId, refText) {
-    const container = document.getElementById(targetId);
-    if (!container || !refText) return;
-
-    if (container.hidden) {
-      container.hidden = false;
-      container.innerHTML = `<span style="font-size:0.8rem; opacity:0.7;">Fetching verse...</span>`;
-
-      // Clean reference (extract part before the description dash)
-      const cleanRef = refText.split(/[—–-]/)[0].trim();
-
-      window.BibleReader.fetchVerse(window.BibleReader.formatRef(cleanRef))
-        .then(v => {
-          container.innerHTML = `<div style="margin-bottom:8px;">"${v.content}"</div>
-            <button class="read-more-btn" style="width:100%" onclick="window.BibleReader.displayPassage('${v.id}')">📖 Read Full Passage</button>`;
-        })
-        .catch(() => {
-          container.textContent = "Could not load verse.";
-        });
-    } else {
-      container.hidden = true;
+  async fetchVerseInline(refString, targetEl, btnEl) {
+    targetEl.innerHTML = `<span style="font-size:0.8rem; opacity:0.7;">Fetching verse...</span>`;
+    targetEl.hidden = false;
+    try {
+      const parts = refString.match(/((?:\d\s)?[A-Za-z][^0-9]*)\s(\d+):(\d+)/);
+      if (!parts) throw new Error('Could not parse reference');
+      const apiRef = `${parts[1].toLowerCase().replace(/\s/g, '')}+${parts[2]}:${parts[3]}`;
+      const r = await fetch(`https://bible-api.com/${apiRef}?translation=web`);
+      const j = await r.json();
+      targetEl.innerHTML = `<div style="margin-bottom:8px;">"${j.verses[0].text}"</div>
+        <button class="read-more-btn" style="width:100%" onclick="window.BibleReader.displayPassage('${j.id}')">📖 Read Full Passage</button>`;
+      this.audio.playClue();
+    } catch (err) {
+      targetEl.innerHTML = `Could not load verse.`;
     }
   }
 

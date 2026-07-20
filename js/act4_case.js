@@ -108,6 +108,7 @@ export const act4CaseA = {
   ],
 
   evidencePool: [
+    
     {
       id: "rolled_stone",
       name: "The Displaced Sealing Stone",
@@ -118,6 +119,13 @@ export const act4CaseA = {
       desc: "A massive circular limestone stone — estimated at 1–2 tonnes — has been rolled away from the tomb entrance and sits to the side, not rolled down the slope but resting beside it. The sealing wax from the Roman official seal is broken.",
       bibleRef: "Matthew 28:2 — 'There was a violent earthquake, for an angel of the Lord came down from heaven and, going to the tomb, rolled back the stone and sat on it.'",
       propheticLink: "Isaiah 26:19 — 'Your dead will live, LORD; their bodies will rise — let those who dwell in the dust wake up and shout for joy.' The removal of the stone was not to let Jesus out — a resurrected, glorified body passed through locked doors (John 20:19). The stone was rolled away so witnesses could look in.",
+      bibleRefs: [
+      { ref: "Matthew 28:2", link: "matthew_282" }
+    ],
+      propheticRefs: [
+      { ref: "Isaiah 26:19", link: "isaiah_2619" },
+      { ref: "John 20:19", link: "john_2019" }
+    ],
       investigatorNote: "A 2-tonne stone moved uphill, not downhill. No marks suggesting ropes or levers. The Roman guard seal is broken from outside the tomb.",
     },
     {
@@ -131,6 +139,13 @@ export const act4CaseA = {
       desc: "The tomb is completely empty except for the burial wrappings. No body, no signs of struggle, no disturbance of the surrounding grave goods. The shelf where Jesus lay is bare. The wall niches are untouched.",
       bibleRef: "Luke 24:3 — 'When they entered, they did not find the body of the Lord Jesus.'",
       propheticLink: "Psalm 16:10 — 'You will not let your holy one see corruption.' The empty tomb is the physical evidence that the Psalm's promise was kept. A body left long enough shows decomposition; no such evidence exists. Psalm 22:1–31 opens with the cry of abandonment Jesus spoke from the cross ('My God, my God, why have you forsaken me?') and closes in resurrection proclamation — the same psalm that describes His hands and feet pierced and His garments divided by lot.",
+      bibleRefs: [
+      { ref: "Luke 24:3", link: "luke_243" }
+    ],
+      propheticRefs: [
+      { ref: "Psalm 16:10", link: "psalm_1610" },
+      { ref: "Psalm 22:1-31", link: "psalm_22131" }
+    ],
       investigatorNote: "No disturbance to the grave goods. No signs of a struggle. No evidence of the organised haste a grave robbery would require. The space is orderly.",
     },
     {
@@ -143,6 +158,10 @@ export const act4CaseA = {
       desc: "The linen strips that wrapped Jesus's body are still present, lying where the body was — not unwrapped and discarded, but apparently lying in the exact shape the body had been, as if it had simply passed through them. The face cloth is separately folded and placed to one side.",
       bibleRef: "John 20:6–8 — 'He saw the strips of linen lying there, as well as the cloth that had been wrapped around Jesus' head. The cloth was still lying in its place, separate from the linen.'",
       propheticLink: "John's Gospel records that the 'other disciple' (John) 'saw and believed' specifically because of how the linens were arranged. A body stolen hastily would leave disordered linens or none at all. The orderly, structured arrangement of the grave cloths pointed to something other than grave robbery.",
+      bibleRefs: [
+      { ref: "John 20:6-8", link: "john_2068" }
+    ],
+    propheticRefs: [],
       investigatorNote: "If grave robbers unwrapped the body to carry it out more easily, why leave the wrappings so neatly? If they took the body still wrapped, why are the linens here at all? The linen arrangement defies theft as an explanation.",
     },
     {
@@ -155,6 +174,15 @@ export const act4CaseA = {
       desc: "Multiple witnesses independently report seeing one or two figures in white — described as 'like lightning' in appearance — at or inside the tomb. Each gives a consistent message: 'He is not here. He has risen, just as he said. Come and see the place where he lay.'",
       bibleRef: "Matthew 28:2–7; Mark 16:5–7; Luke 24:4–7; John 20:12–13",
       propheticLink: "Psalm 103:20 describes angels as those who 'do his bidding.' The angelic announcement at the tomb echoes the angelic announcements at the nativity — both bookend Jesus's earthly life with heavenly proclamation. The consistency of the message across all four Gospel accounts, with slight variations in detail (one angel or two?), reflects the characteristics of independent eyewitness testimony.",
+      bibleRefs: [
+      { ref: "Matthew 28:2-7", link: "matthew_2827" },
+      { ref: "Mark 16:5-7", link: "mark_1657" },
+      { ref: "Luke 24:4-7", link: "luke_2447" },
+      { ref: "John 20:12-13", link: "john_201213" }
+    ],
+      propheticRefs: [
+      { ref: "Psalm 103:20", link: "psalm_10320" }
+    ],
       investigatorNote: "Four independent accounts agree on the core message. The small variations (one angel/two angels; inside or outside) are consistent with the kind of variation seen in genuine eyewitness reports, not coordinated fabrication.",
     },
     {
@@ -168,6 +196,15 @@ export const act4CaseA = {
       desc: "A shattered wax tablet from the guard log — only partially legible: '...seismos... phos... ekphobothesan... nekroi...' ('earthquake... light... we became as dead men...'). The soldiers have fled their post. An official report was filed later — but the chief priests are paying the soldiers to alter their account.",
       bibleRef: "Matthew 28:2–4 — 'The guards shook for fear of him and became like dead men.' Matthew 28:11–15 — the chief priests bribed the guards to say the disciples had stolen the body.",
       propheticLink: "The bribe to the guards fulfils the pattern of institutional deception against God's purposes — similar to how the chief priests had bribed Judas (Matthew 26:14–16). The very people who guarded against resurrection were the first non-disciple witnesses of the supernatural event. Jonah 1:17 / Matthew 12:40 — Jesus named His own third-day resurrection the 'sign of Jonah,' the three days in the tomb mirroring Jonah's three days in the great fish.",
+      bibleRefs: [
+      { ref: "Matthew 28:2-4", link: "matthew_2824" },
+      { ref: "Matthew 28:11-15", link: "matthew_281115" }
+    ],
+      propheticRefs: [
+      { ref: "Matthew 26:14-16", link: "matthew_261416" },
+      { ref: "Jonah 1:17", link: "jonah_117" },
+      { ref: "Matthew 12:40", link: "matthew_1240" }
+    ],
       investigatorNote: "Soldiers asleep on duty faced execution under Roman military law. If they were asleep, they couldn't know what happened. If they were awake, they witnessed something they couldn't explain. The bribery is itself evidence that the authorities knew the disciples hadn't stolen the body.",
     },
     {
@@ -180,6 +217,13 @@ export const act4CaseA = {
       desc: "Three clay jars of prepared burial spices — myrrh, aloe, and cinnamon — set down at the garden entrance, unopened. The women brought them to complete the anointing of the body, but they were never used.",
       bibleRef: "Mark 16:1 — 'Mary Magdalene, Mary the mother of James, and Salome bought spices so that they might go to anoint Jesus's body.'",
       propheticLink: "Nicodemus had already brought 75 pounds of myrrh and aloes for the burial (John 19:39–40), fulfilling the wealthy burial of Isaiah 53:9. The women's additional spices were for the anointing ritual completed after the Sabbath — but there was no body to anoint. The unused jars are a symbol of an interrupted mourning, halted by resurrection.",
+      bibleRefs: [
+      { ref: "Mark 16:1", link: "mark_161" }
+    ],
+      propheticRefs: [
+      { ref: "John 19:39-40", link: "john_193940" },
+      { ref: "Isaiah 53:9", link: "isaiah_539" }
+    ],
       investigatorNote: "Women who had watched the crucifixion and burial now find the tomb empty. Their grief was real. Their testimony carries the weight of witnesses who had no reason to fabricate — and everything to lose by making the claim.",
     },
     {
@@ -192,8 +236,17 @@ export const act4CaseA = {
       desc: "Mary Magdalene's first-person account, recorded by John: 'I saw the Lord.' She had initially mistaken the risen Jesus for the gardener. He said one word — her name: 'Mary.' She turned and recognised Him. 'Rabboni!' He told her not to cling to Him, for He had not yet ascended to the Father, and sent her to tell the disciples.",
       bibleRef: "John 20:11–18 — the most detailed and intimate resurrection appearance account in Scripture. Isaiah 43:1 — 'I have called you by name; you are mine.'",
       propheticLink: "Isaiah 53:10–11 promised the Suffering Servant would 'see his offspring and prolong his days' after being crushed — a resurrection paradox. The risen Christ's first act was to call Mary by name (echoing Isaiah 43:1), sending her as the primary witness. In a Roman court a woman's testimony was inadmissible; making a former demoniac the lead witness is exactly the kind of counter-cultural detail that confirms authenticity rather than fabrication.",
+      bibleRefs: [
+      { ref: "John 20:11-18", link: "john_201118" },
+      { ref: "Isaiah 43:1", link: "isaiah_431" }
+    ],
+      propheticRefs: [
+      { ref: "Isaiah 53:10-11", link: "isaiah_531011" },
+      { ref: "Isaiah 43:1", link: "isaiah_431" }
+    ],
       investigatorNote: "The fact that Mary Magdalene is the primary resurrection witness is powerful evidence of authenticity. No first-century Jewish or Roman author inventing a resurrection story would choose a woman as the lead witness. This detail is counterproductive to fabrication — which is exactly why it's credible.",
     },
+  
   ],
 
   lab: [
@@ -414,6 +467,7 @@ export const act4CaseB = {
   ],
 
   evidencePool: [
+    
     {
       id: "bribe_shekels",
       name: "High-Grade Sanctuary Coins",
@@ -424,6 +478,10 @@ export const act4CaseB = {
       snippet: "A heavy canvas pouch filled with pristine Temple shekels.",
       description: "A large sum of silver coins found hidden inside a Roman legionary's standard gear locker inside the fortress. Roman soldiers were paid in imperial denarii, making this Jewish religious currency completely irregular.",
       propheticLink: "Matthew 28:12 records that the chief priests met with the elders and devised a plan, giving the soldiers a 'large sum of money.'",
+      propheticRefs: [
+      { ref: "Matthew 28:12", link: "matthew_2812" }
+    ],
+    
       investigatorNote: "The high transaction value indicates this wasn't common marketplace spending money. This is institutional hush money directly from the treasury.",
     },
     {
@@ -436,6 +494,9 @@ export const act4CaseB = {
       snippet: "Hardened clay fragments showing the stamp of the Roman Governor.",
       description: "Pieces of the structural sealing clay that tied the chord across the tomb door, cleanly fractured and thrown into the dirt.",
       propheticLink: "Matthew 27:66 notes they went and made the tomb secure by 'putting a seal on the stone and posting the guard.'",
+      propheticRefs: [
+      { ref: "Matthew 27:66", link: "matthew_2766" }
+    ],
       investigatorNote: "To break this seal without authorization was a high treasonous offense against Caesar himself. No thief would carefully snap the clay and leave it behind; it bears signs of a violent, percussive structural displacement.",
     },
     {
@@ -448,6 +509,9 @@ export const act4CaseB = {
       snippet: "An ash-wood Roman spear snapped cleanly down the middle.",
       description: "A heavy legionary spear fractured by clean kinetic force, left behind in the garden grass near the shifted rock.",
       propheticLink: "Matthew 28:2 states there was a violent earthquake, for an angel of the Lord came down from heaven and rolled back the stone.",
+      propheticRefs: [
+      { ref: "Matthew 28:2", link: "matthew_282" }
+    ],
       investigatorNote: "This spear wasn't cut by a sword in combat; the wood fibers show high-impact compression failure, consistent with an external physical shockwave that knocked the sentries flat.",
     },
     {
@@ -459,8 +523,15 @@ export const act4CaseB = {
       desc: "The official report filed by the Sanhedrin, claiming the disciples stole the body while the guards slept.",
       bibleRef: "Matthew 28:11 — 'While the women were on their way, some of the guards went into the city and reported to the chief priests everything that had happened.'",
       propheticLink: "This report is the paper trail of the conspiracy itself — the Sanhedrin's own internal record of receiving the guards' account and choosing to suppress rather than investigate it, matching the pattern of rulers plotting against God's anointed described in Psalm 2:1–2.",
+      bibleRefs: [
+      { ref: "Matthew 28:11", link: "matthew_2811" }
+    ],
+      propheticRefs: [
+      { ref: "Psalm 2:1-2", link: "psalm_212" }
+    ],
       investigatorNote: "The existence of a formal, internal report proves the Sanhedrin knew the guards' true account before they paid for a false one.",
     },
+  
   ],
   lab: [
     {
@@ -745,6 +816,7 @@ export const act4CaseC = {
   ],
 
   evidencePool: [
+    
     {
       id: "charcoal_fire",
       name: "The Charcoal Fire",
@@ -755,6 +827,9 @@ export const act4CaseC = {
       desc: "A small charcoal fire with coals still glowing, the only other charcoal fire mentioned in John's Gospel—the first was where Peter denied Jesus (John 18:18).",
       bibleRef: "John 21:9 — 'When they got out of the boat, they saw a fire of burning coals there with fish lying on it, and bread.'",
       propheticLink: "The fire triggers Peter's memory of his denial, but now transforms that shame into restoration around the risen Christ.",
+      bibleRefs: [
+      { ref: "John 21:9", link: "john_219" }
+    ],
       investigatorNote: "Peter had warmed himself at a charcoal fire on the night of Jesus's arrest. When he recognized this fire, he knew exactly who stood before him.",
     },
     {
@@ -767,6 +842,12 @@ export const act4CaseC = {
       desc: "The disciples' nets still contained 153 large fish—the same number they had caught at Jesus's command. The nets had not torn despite the enormous weight.",
       bibleRef: "John 21:10-11 — 'Bring some of the fish you have just caught... There were so many that the fisherman was not able to haul in the net, for it was torn.'",
       propheticLink: "This echoes the original calling of the disciples (Luke 5:1-11) and demonstrates that obedience to Christ yields supernatural results.",
+      bibleRefs: [
+      { ref: "John 21:10-11", link: "john_211011" }
+    ],
+      propheticRefs: [
+      { ref: "Luke 5:1-11", link: "luke_5111" }
+    ],
       investigatorNote: "The number 153 has been interpreted as representing the universality of the gospel—how all nations would come to faith through Peter's commission.",
     },
     {
@@ -779,6 +860,9 @@ export const act4CaseC = {
       desc: "Loaves of bread and grilled fish prepared by the risen Jesus Himself—simple fare for a divine meal.",
       bibleRef: "John 21:9 — 'Jesus said, \"Bring some of the fish you have just caught... and come and have breakfast.\"'",
       propheticLink: "The 'bread of life' (John 6) now eats bread with Peter—the broken bread that once condemned him now nourishes him.",
+      bibleRefs: [
+      { ref: "John 21:9", link: "john_219" }
+    ],
       investigatorNote: "Jesus ate with Peter again, as He had many times before. The intimacy of the meal signals complete restoration.",
     },
     {
@@ -792,6 +876,9 @@ export const act4CaseC = {
       desc: "Peter's account of being asked three times by Jesus: 'Simon, son of John, do you love me?' Each time Peter answered, Jesus responded: 'Feed my sheep.'",
       bibleRef: "John 21:15-17 — 'Feed my lambs... Feed my sheep... Tend my sheep.'",
       propheticLink: "Peter's three denials (crow, cock, fire) are met with three commissions (feed, tend, shepherd) showing prophetic reversal.",
+      bibleRefs: [
+      { ref: "John 21:15-17", link: "john_211517" }
+    ],
       investigatorNote: "The Greek words for 'love' and 'shepherd' carry deep theological weight—Jesus asks if Peter loves him with agape love, while Peter responds with phileo love. The commission transcends Peter's failure.",
     },
     {
@@ -804,8 +891,13 @@ export const act4CaseC = {
       desc: "The disciples' recognition moment—how they knew this was Jesus. He had been dead, and now stood before them alive.",
       bibleRef: "John 21:12 — 'Jesus said to them, \"Come and have breakfast.\" None of the disciples dared ask him, \"Who are you?\" because they knew it was the Lord.'",
       propheticLink: "Despite seeing Him die, the disciples knew—supernaturally—who stood before them. Faith recognized its Author.",
+      bibleRefs: [
+      { ref: "John 21:12", link: "john_2112" }
+    ],
+    propheticRefs: [],
       investigatorNote: "Their recognition was immediate. No debate, no rational explanation—just the certainty that comes from intimate relationship.",
     },
+  
   ],
 
   lab: [

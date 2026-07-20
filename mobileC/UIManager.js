@@ -28,9 +28,15 @@ export class UIManager {
     this.codexUI = new CodexUI(cm, es, a11y, audio);
 
     this.prevScreen = "map";
+
     this._scene2DInitialized = false;
     this._tilemapData = null;
     this.discoveredNPCs = new Set();
+  }
+
+  extractBibleReferences(text) {
+    if (!text) return [];
+    return Array.from(text.matchAll(/((?:\d\s)?[A-Za-z][^0-9]*\s\d+:\d+)/g)).map(m => m[1].trim());
   }
 
   showScreen(name) {
@@ -167,6 +173,30 @@ export class UIManager {
       </div>`).join("");
   }
 
+  renderEvidenceList() {
+    const collected = this.es.getCollected();
+    if (collected.length === 0) {
+      return `<div class="empty-state">
+        <div class="empty-icon">🎒</div>
+        <div>No evidence collected yet.</div>
+        <small>Explore the scene and talk to people to find clues.</small>
+      </div>`;
+    }
+
+    return `<div class="evidence-grid-container scrollable">
+      ${collected.map(e => {
+        const typeInfo = this.es.getTypeInfo(e.type);
+        return `
+          <div class="evidence-card-small" onclick="openEvidenceDetail('${e.id}')" role="button" tabindex="0" aria-label="View details for ${e.name}">
+            <div class="evidence-card-small-icon" style="background-color: ${typeInfo.color}">${e.icon}</div>
+            <div class="evidence-card-small-name">${e.name}</div>
+            <div class="evidence-card-small-type">${typeInfo.label}</div>
+          </div>
+        `;
+      }).join('')}
+    </div>`;
+  }
+
    async setupInvestigation(c) {
     // Re-bind callbacks to the specific case context
     this.labUI.onResult = this.onLabAction.bind(this);
@@ -298,23 +328,72 @@ export class UIManager {
     }
 
     const bibleRefEl = modal.querySelector(".evidence-detail-bible-ref");
-    const bibleReadMoreBtn = modal.querySelector(".read-more-btn[data-target='bible-verse-content']");
+    const bibleReadMoreContainer = modal.querySelector(".bible-read-more-container");
     const bibleVerseContent = modal.querySelector(".verse-content[data-target='bible-verse-content']");
 
     if (p.bibleRef) {
       bibleRefEl.textContent = p.bibleRef;
-      if (bibleReadMoreBtn) {
-        bibleReadMoreBtn.hidden = false;
-        bibleReadMoreBtn.onclick = () => this.fetchVerseInline(p.bibleRef, bibleVerseContent, bibleReadMoreBtn);
-      }
       bibleRefEl.closest(".evidence-detail-section").hidden = false;
+      
+      if (bibleReadMoreContainer) {
+        bibleReadMoreContainer.innerHTML = "";
+        const refs = this.extractBibleReferences(p.bibleRef);
+        refs.forEach(ref => {
+          const btn = document.createElement("button");
+          btn.className = "read-more-btn";
+          btn.textContent = `📖 Read ${ref}`;
+          btn.onclick = () => this.fetchVerseInline(ref, bibleVerseContent, btn);
+          bibleReadMoreContainer.appendChild(btn);
+        });
+      }
+      
+      if (bibleVerseContent) {
+        bibleVerseContent.innerHTML = "";
+        bibleVerseContent.hidden = true;
+      }
     } else {
       bibleRefEl.closest(".evidence-detail-section").hidden = true;
+      if (bibleReadMoreContainer) bibleReadMoreContainer.innerHTML = "";
+      if (bibleVerseContent) {
+        bibleVerseContent.innerHTML = "";
+        bibleVerseContent.hidden = true;
+      }
     }
 
     const prophetLinkEl = modal.querySelector(".evidence-detail-prophetic-link");
-    prophetLinkEl.textContent = p.insight || "";
-    prophetLinkEl.closest(".evidence-detail-section").hidden = false;
+    const prophetReadMoreContainer = modal.querySelector(".prophecy-read-more-container");
+    const prophetVerseContent = modal.querySelector(".verse-content[data-target='prophecy-verse-content']");
+
+    if (p.insight) {
+      prophetLinkEl.textContent = p.insight;
+      prophetLinkEl.closest(".evidence-detail-section").hidden = false;
+
+      if (prophetReadMoreContainer) {
+        prophetReadMoreContainer.innerHTML = "";
+        const refs = this.extractBibleReferences(p.insight);
+        refs.forEach(ref => {
+          const btn = document.createElement("button");
+          btn.className = "read-more-btn";
+          btn.textContent = `📖 Read ${ref}`;
+          btn.onclick = () => this.fetchVerseInline(ref, prophetVerseContent, btn);
+          prophetReadMoreContainer.appendChild(btn);
+        });
+      }
+
+      if (prophetVerseContent) {
+        prophetVerseContent.innerHTML = "";
+        prophetVerseContent.hidden = true;
+      }
+    } else {
+      prophetLinkEl.closest(".evidence-detail-section").hidden = true;
+      if (prophetReadMoreContainer) {
+        prophetReadMoreContainer.innerHTML = "";
+      }
+      if (prophetVerseContent) {
+        prophetVerseContent.innerHTML = "";
+        prophetVerseContent.hidden = true;
+      }
+    }
 
     const investigatorNoteEl = modal.querySelector(".evidence-detail-investigator-note");
     investigatorNoteEl.parentElement.hidden = true;
@@ -452,42 +531,72 @@ export class UIManager {
     }
 
     const bibleRefEl = modal.querySelector(".evidence-detail-bible-ref");
-    const bibleReadMoreBtn = modal.querySelector(".read-more-btn[data-target='bible-verse-content']");
+    const bibleReadMoreContainer = modal.querySelector(".bible-read-more-container");
     const bibleVerseContent = modal.querySelector(".verse-content[data-target='bible-verse-content']");
 
     if (e.bibleRef) {
       bibleRefEl.textContent = e.bibleRef;
-      if (bibleReadMoreBtn) {
-        bibleReadMoreBtn.hidden = false;
-        bibleReadMoreBtn.onclick = () => this.fetchVerseInline(e.bibleRef, bibleVerseContent, bibleReadMoreBtn);
-      }
       bibleRefEl.closest(".evidence-detail-section").hidden = false;
+      
+      if (bibleReadMoreContainer) {
+        bibleReadMoreContainer.innerHTML = "";
+        const refs = (e.bibleRefs && e.bibleRefs.length > 0) ? e.bibleRefs.map(r => r.ref) : this.extractBibleReferences(e.bibleRef);
+        refs.forEach(ref => {
+          const btn = document.createElement("button");
+          btn.className = "read-more-btn";
+          btn.textContent = `📖 Read ${ref}`;
+          btn.onclick = () => this.fetchVerseInline(ref, bibleVerseContent, btn);
+          bibleReadMoreContainer.appendChild(btn);
+        });
+      }
+      
+      if (bibleVerseContent) {
+        bibleVerseContent.innerHTML = "";
+        bibleVerseContent.hidden = true;
+      }
     } else {
       bibleRefEl.closest(".evidence-detail-section").hidden = true;
+      if (bibleReadMoreContainer) bibleReadMoreContainer.innerHTML = "";
+      if (bibleVerseContent) {
+        bibleVerseContent.innerHTML = "";
+        bibleVerseContent.hidden = true;
+      }
     }
 
     const prophetLinkEl = modal.querySelector(".evidence-detail-prophetic-link");
-    const prophetReadMoreBtn = modal.querySelector(".read-more-btn[data-target='prophecy-verse-content']");
+    const prophetReadMoreContainer = modal.querySelector(".prophecy-read-more-container");
     const prophetVerseContent = modal.querySelector(".verse-content[data-target='prophecy-verse-content']");
 
     if (e.prophecy || e.propheticLink) {
-      prophetLinkEl.textContent = e.prophecy || e.propheticLink || "";
-      if (prophetReadMoreBtn && e.relatedProphecy) {
-        const prophecy = this.es.getProphecyById(e.relatedProphecy);
-
-        // THIS IS THE FIX: Set the data-ref attribute on the button
-        if (prophetReadMoreBtn && e.relatedProphecy) {
-            prophetReadMoreBtn.dataset.ref = e.relatedProphecy;
-        }
-
-        if (prophecy) {
-          prophetReadMoreBtn.hidden = false;
-          prophetReadMoreBtn.onclick = () => this.fetchVerseInline(prophecy.reference, prophetVerseContent, prophetReadMoreBtn);
-        }
-      }
+      const propheticText = e.prophecy || e.propheticLink || "";
+      prophetLinkEl.textContent = propheticText;
       prophetLinkEl.closest(".evidence-detail-section").hidden = false;
+
+      if (prophetReadMoreContainer) {
+        prophetReadMoreContainer.innerHTML = "";
+        const refs = (e.propheticRefs && e.propheticRefs.length > 0) ? e.propheticRefs.map(r => r.ref) : this.extractBibleReferences(propheticText);
+        refs.forEach(ref => {
+          const btn = document.createElement("button");
+          btn.className = "read-more-btn";
+          btn.textContent = `📖 Read ${ref}`;
+          btn.onclick = () => this.fetchVerseInline(ref, prophetVerseContent, btn);
+          prophetReadMoreContainer.appendChild(btn);
+        });
+      }
+
+      if (prophetVerseContent) {
+        prophetVerseContent.innerHTML = "";
+        prophetVerseContent.hidden = true;
+      }
     } else {
       prophetLinkEl.closest(".evidence-detail-section").hidden = true;
+      if (prophetReadMoreContainer) {
+        prophetReadMoreContainer.innerHTML = "";
+      }
+      if (prophetVerseContent) {
+        prophetVerseContent.innerHTML = "";
+        prophetVerseContent.hidden = true;
+      }
     }
 
     const investigatorNoteEl = modal.querySelector(".evidence-detail-investigator-note");
@@ -510,9 +619,9 @@ export class UIManager {
     targetEl.innerHTML = `⏳ Loading…`;
     targetEl.hidden = false;
     try {
-      const parts = refString.match(/([A-Za-z]+)\s(\d+):(\d+)/);
+      const parts = refString.match(/((?:\d\s)?[A-Za-z][^0-9]*)\s(\d+):(\d+)/);
       if (!parts) throw new Error('Could not parse reference');
-      const apiRef = `${parts[1].toLowerCase()}+${parts[2]}:${parts[3]}`;
+      const apiRef = `${parts[1].toLowerCase().replace(/\s/g, '')}+${parts[2]}:${parts[3]}`;
       const r = await fetch(`https://bible-api.com/${apiRef}?translation=web`);
       const j = await r.json();
       targetEl.innerHTML = `<div class="verse-ref">${j.reference}</div><div>${j.verses[0].text}</div>`;

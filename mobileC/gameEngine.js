@@ -28,12 +28,13 @@ export class GameEngine {
     this.app = new MobileApp({
       tabs: [
         { id: 'scene', label: 'Scene', icon: '🔎' },
+        { id: 'evidence', label: 'Evidence', icon: '🎒' },
         { id: 'people', label: 'People', icon: '🗣' },
         { id: 'lab', label: 'Lab', icon: '🧪' },
         { id: 'codex', label: 'Codex', icon: '📜' },
         { id: 'accuse', label: 'Accuse', icon: '⚖️' }
       ],
-      views: ['scene', 'people', 'lab', 'codex', 'accuse']
+      views: ['scene', 'evidence', 'people', 'lab', 'codex', 'accuse']
     });
 
     this.a11y = new AccessibilityManager({ app: this.app });
@@ -49,6 +50,8 @@ export class GameEngine {
     this.labUI = new LabUI(this.de, this.es, this.a11y);
 
     this.ui = new UIManager(this.cm, this.es, this.ns, this.de, this.ls, this.a11y, this.audio, this.dm, this.app, this.labUI);
+    const introData = document.getElementById('prophecy-people-intro-data');
+    if (introData) this.ui.peopleUI.peopleIntroHtml = introData.innerHTML;
     this.gm = new GameManager(this.cm, this.ui, this.es, this.ns, this.de);
 
     this.registerCases();

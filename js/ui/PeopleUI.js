@@ -12,6 +12,8 @@ export class PeopleUI {
     this.challengeResultsByNPC = {};
     this._loadedCaseId = null;
     this.activeModalResult = null;
+    this.peopleIntroHtml = "Some witnesses are hidden until you find them. Explore the <strong>🔎 Scene</strong> tab and walk up to a person to discover them — they'll appear here unlocked. Once found, talk to witnesses for clues, show them evidence, or challenge a contradiction once two clues are selected.<button class=\"people-intro-scene-btn\" type=\"button\" onclick=\"window.switchInvTab && window.switchInvTab('scene')\">🔎 Go to Scene</button>";
+    this.evidencePickerIntro = "Choose evidence to present to this witness.";
   }
 
   addMessage(speaker, text, type = "npc", extra = {}, npcId = null) {
@@ -73,10 +75,7 @@ export class PeopleUI {
     };
     return `
       <h3 class="section-title">Witnesses</h3>
-      <div class="prophecy-people-intro">
-        Some witnesses are hidden until you find them. Explore the <strong>🔎 Scene</strong> tab and walk up to a person to discover them — they'll appear here unlocked. Once found, talk to witnesses for clues, show them evidence, or challenge a contradiction once two clues are selected.
-        <button class="people-intro-scene-btn" type="button" onclick="window.switchInvTab && window.switchInvTab('scene')">🔎 Go to Scene</button>
-      </div>
+      ${this.peopleIntroHtml ? `<div class="prophecy-people-intro">${this.peopleIntroHtml}</div>` : ""}
       <div class="npc-list" role="list">
         ${npcs.map(npc => {
           const state = this.npcs.getState(npc.id);
@@ -119,7 +118,7 @@ export class PeopleUI {
         <div class="npc-result-modal-card" style="position:relative;z-index:1;background:var(--surface2,#1b2230);border:1px solid var(--border,#2e3a50);border-radius:12px;padding:20px;max-width:560px;width:100%;display:flex;flex-direction:column;gap:12px;box-shadow:0 10px 30px rgba(0,0,0,0.35);">
           <div data-npc-modal-picker>
             <h3 class="section-title" style="margin:0;">Select Evidence</h3>
-            <p class="prophecy-people-intro" style="margin:0 0 10px;">Choose evidence to present to this witness.</p>
+            ${this.evidencePickerIntro ? `<p class="prophecy-people-intro" style="margin:0 0 10px;">${this.evidencePickerIntro}</p>` : ""}
             <div class="evidence-pick-list" data-modal-picker-list>
               
             </div>

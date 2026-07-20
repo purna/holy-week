@@ -95,6 +95,7 @@ export const act3CaseA = {
   ],
 
   evidencePool: [
+    
     {
       id: "bread_crumbs",
       name: "Unleavened Bread Crumbs",
@@ -106,6 +107,9 @@ export const act3CaseA = {
       bibleRef: "Matthew 26:26 — 'Jesus took bread, and after blessing it broke it and gave it to the disciples.'",
       bibleLink: "matthew_26_26",
       propheticLink: "The breaking of the matzah is called the 'afikomen' in the Passover Seder — traditionally hidden and later 'found' again. Early Christians saw this as a picture of Jesus's death and resurrection: broken, buried, and found alive.",
+bibleRefs: [
+      { ref: "Matthew 26:26", link: "matthew_2626" }
+    ],
       investigatorNote: "The crumbs suggest someone handled the bread before the meal. The question is whether they were testing its freshness, or hiding something.",
     },
     {
@@ -119,6 +123,12 @@ export const act3CaseA = {
       bibleRef: "Luke 22:20 — 'In the same way, after supper he took the cup, saying: This cup is the new covenant in my blood, which is poured out for you.'",
       bibleLink: "luke_22_20",
       propheticLink: "The Passover Seder uses four cups of wine (Exodus 6:6–7). The third cup — the Cup of Redemption — is the one Jesus transformed into the cup of the New Covenant. The spilled wine at this cup's position is theologically charged: 'blood poured out' was exactly the language He used.",
+bibleRefs: [
+      { ref: "Luke 22:20", link: "luke_2220" }
+    ],
+propheticRefs: [
+      { ref: "Exodus 6:6-7", link: "exodus_667" }
+    ],
       investigatorNote: "The stain is at the position of the third cup. Was this clumsiness, or deliberate disruption of this specific cup?",
     },
     {
@@ -133,6 +143,12 @@ export const act3CaseA = {
       bibleRef: "Matthew 26:27 — 'And he took a cup, and when he had given thanks he gave it to them, saying, Drink of it, all of you.'",
       bibleLink: "matthew_26_27",
       propheticLink: "Breaking pottery in the Jewish tradition was sometimes associated with mourning or the breaking of a covenant (see Jeremiah 19:10–11, where Jeremiah shattered a clay jar as a prophetic act of judgement). A broken cup at the Passover table carries heavy symbolic weight.",
+bibleRefs: [
+      { ref: "Matthew 26:27", link: "matthew_2627" }
+    ],
+propheticRefs: [
+      { ref: "Jeremiah 19:10-11", link: "jeremiah_191011" }
+    ],
       investigatorNote: "Galilean clay cup — not from Jerusalem. One of the disciples may have brought their own cup. Judas was from Kerioth in Judah; this cup isn't his.",
     },
     {
@@ -146,6 +162,12 @@ export const act3CaseA = {
       bibleRef: "John 13:4–5 — 'He rose from supper... then he poured water into a basin and began to wash the disciples' feet.'",
       bibleLink: "john_13_4_5",
       propheticLink: "Isaiah 52:13–15 describes the Servant who 'shall startle many nations' — and immediately before this, is described as one who acts in a way that astonishes because of His humility. Jesus washing feet with this water fulfilled the spirit of what Isaiah described: the exalted One taking the lowest role.",
+bibleRefs: [
+      { ref: "John 13:4-5", link: "john_1345" }
+    ],
+propheticRefs: [
+      { ref: "Isaiah 52:13-15", link: "isaiah_521315" }
+    ],
       investigatorNote: "Someone moved this jug. If it was Rhoda doing her preparation duties, the wet trail should lead to the washing basin. It leads toward the staircase instead.",
     },
     {
@@ -159,6 +181,13 @@ export const act3CaseA = {
       bibleRef: "John 13:29 — 'Since Judas had the money bag, some thought Jesus was telling him to buy what was needed for the feast, or give something to the poor.'",
       bibleLink: "john_13_29",
       propheticLink: "Judas carried the communal purse — and had recently agreed to betray Jesus for 30 silver coins (Matthew 26:14–16), fulfilling Zechariah 11:12. The presence of a money bag impression at the preparation table raises serious questions: what was Judas counting before the meal?",
+bibleRefs: [
+      { ref: "John 13:29", link: "john_1329" }
+    ],
+propheticRefs: [
+      { ref: "Matthew 26:14-16", link: "matthew_261416" },
+      { ref: "Zechariah 11:12", link: "zechariah_1112" }
+    ],
       investigatorNote: "The disciples' money bag was Judas's responsibility. Why was it here, in the food preparation area, before the meal?",
     },
     {
@@ -172,6 +201,13 @@ export const act3CaseA = {
       bibleRef: "John 13:26–30 — 'Jesus answered, It is he to whom I will give this morsel of bread when I have dipped it. So when he had dipped the morsel, he gave it to Judas... After he received the morsel, Satan entered into him. Jesus said, What you are going to do, do quickly.'",
       bibleLink: "john_13_26_30",
       propheticLink: "The giving of the dipped sop to Judas is the fulfilment of Psalm 41:9 ('even my close friend... who ate my bread has lifted his heel against me'). Jesus quoted this Psalm earlier that evening (John 13:18), identifying the traitor through an act of table fellowship.",
+bibleRefs: [
+      { ref: "John 13:26-30", link: "john_132630" }
+    ],
+propheticRefs: [
+      { ref: "Psalm 41:9", link: "psalm_419" },
+      { ref: "John 13:18", link: "john_1318" }
+    ],
       investigatorNote: "The dipped bread points to the seat of honour — and to one specific disciple. This is the most revealing piece of evidence in the room.",
     },
     {
@@ -185,8 +221,16 @@ export const act3CaseA = {
       bibleRef: "Luke 22:19–20; 1 Corinthians 11:24–25 — Paul records the same words, passed on 'from the Lord.'",
       bibleLink: "luke_22_19_20",
       propheticLink: "Jeremiah 31:31–34 promised a 'new covenant' that would supersede the Mosaic Law — written on hearts, not stone. Jesus announced its establishment at this very table. The young scribe recording His words was preserving the fulfilment of a 600-year-old prophecy.",
+bibleRefs: [
+      { ref: "Luke 22:19-20", link: "luke_221920" },
+      { ref: "Corinthians 11:24-25", link: "corinthians_112425" }
+    ],
+propheticRefs: [
+      { ref: "Jeremiah 31:31-34", link: "jeremiah_313134" }
+    ],
       investigatorNote: "John Mark was present. He was watching, listening, and writing. He knew everything that happened in that room.",
     },
+  
   ],
 
   lab: [
@@ -416,6 +460,7 @@ export const act3CaseB = {
     }
   ],
   evidencePool: [
+    
     {
       id: "abandoned_linen",
       name: "Abandoned Linen Wrapper",
@@ -428,6 +473,13 @@ export const act3CaseB = {
       bibleRef: "Mark 14:51-52",
       bibleLink: "mark_14_51_52",
       propheticLink: "Zechariah 13:7 — 'Strike the shepherd, and the sheep will be scattered' — was quoted by Jesus himself just hours earlier (Matthew 26:31) as a prediction of this exact moment. The unnamed young man fleeing naked into the night, abandoning even his clothing, is the most vivid single image of the disciples' scattering the prophecy foretold.",
+bibleRefs: [
+      { ref: "Mark 14:51-52", link: "mark_145152" }
+    ],
+propheticRefs: [
+      { ref: "Zechariah 13:7", link: "zechariah_137" },
+      { ref: "Matthew 26:31", link: "matthew_2631" }
+    ],
       investigatorNote: "The high grade of the linen suggests the owner was from a wealthy Jerusalem family, potentially John Mark acting as a secret night observer.",
     },
     {
@@ -442,6 +494,12 @@ export const act3CaseB = {
       bibleRef: "John 18:3",
       bibleLink: "john_18_3",
       propheticLink: "John 18:3 notes they arrived with torches and lanterns, expecting a deep-woods manhunt.",
+bibleRefs: [
+      { ref: "John 18:3", link: "john_183" }
+    ],
+propheticRefs: [
+      { ref: "John 18:3", link: "john_183" }
+    ],
       investigatorNote: "John 18:6 records that when Jesus stated 'I am he,' the entire detachment fell backward to the ground. This dropped torch marks the exact physical epicenter of that divine surge.",
     },
     {
@@ -456,8 +514,16 @@ export const act3CaseB = {
       bibleRef: "John 18:10",
       bibleLink: "john_18_10",
       propheticLink: "Luke 22:50–51 and John 18:10 document Peter cutting off Malchus's ear, which Jesus immediately healed.",
+bibleRefs: [
+      { ref: "John 18:10", link: "john_1810" }
+    ],
+propheticRefs: [
+      { ref: "Luke 22:50-51", link: "luke_225051" },
+      { ref: "John 18:10", link: "john_1810" }
+    ],
       investigatorNote: "This provides the supreme paradox: there is dynamic arterial blood indicating an amputation, but no victim at the scene lacks an ear.",
     },
+  
   ],
 
   suspects: [
@@ -697,6 +763,7 @@ export const act3CaseC = {
   ],
 
   evidencePool: [
+    
     {
       id: "rooster_feather",
       name: "Rooster Feather",
@@ -708,6 +775,12 @@ export const act3CaseC = {
       bibleRef: "Matthew 26:74-75",
       bibleLink: "matthew_26_74_75",
       propheticLink: "The third denial led to the third crowing, fulfilling Jesus's own prediction of Peter's failure (Matthew 26:34). Supporting/narrative evidence — not directly Codex-linkable to one of this case's four defined prophecies.",
+bibleRefs: [
+      { ref: "Matthew 26:74-75", link: "matthew_267475" }
+    ],
+propheticRefs: [
+      { ref: "Matthew 26:34", link: "matthew_2634" }
+    ],
       investigatorNote: "This feather marks the site of the most famous denial in history.",
     },
     {
@@ -721,6 +794,10 @@ export const act3CaseC = {
       bibleRef: "Matthew 26:65",
       bibleLink: "matthew_26_65",
       propheticLink: "Caiaphas tore his robes to signal blasphemy when Jesus affirmed His divinity.",
+bibleRefs: [
+      { ref: "Matthew 26:65", link: "matthew_2665" }
+    ],
+    propheticRefs: [],
       investigatorNote: "The tear was ritual declaration that Jesus had committed the unforgivable offense.",
     },
     {
@@ -734,6 +811,10 @@ export const act3CaseC = {
       bibleRef: "Mark 14:56-59",
       bibleLink: "mark_14_56_59",
       propheticLink: "The lack of consistent testimony exposes the trial as a fabrication.",
+bibleRefs: [
+      { ref: "Mark 14:56-59", link: "mark_145659" }
+    ],
+    propheticRefs: [],
       investigatorNote: "No single witness could agree—so they had to manufacture testimony.",
     },
     {
@@ -747,8 +828,13 @@ export const act3CaseC = {
       bibleRef: "John 18:18",
       bibleLink: "john_18_18",
       propheticLink: "Peter's denial by the fire fulfilled Jesus's prediction that he would deny three times.",
+bibleRefs: [
+      { ref: "John 18:18", link: "john_1818" }
+    ],
+    propheticRefs: [],
       investigatorNote: "The fire was a place of warmth—and of betrayal.",
     },
+  
   ],
 
   npcs: [
@@ -960,6 +1046,7 @@ export const act3CaseD = {
   ],
 
   evidencePool: [
+    
     {
       id: "pilates_basin",
       name: "The Governor's Silver Basin",
@@ -969,6 +1056,10 @@ export const act3CaseD = {
       location: "The Praetorium Bema",
       desc: "A silver basin containing clouded water. Pilate used it to wash his hands in front of the crowd, a symbolic act of disavowal.",
       bibleRef: "Matthew 27:24 — 'I am innocent of this man’s blood; see to it yourselves.'",
+bibleRefs: [
+      { ref: "Matthew 27:24", link: "matthew_2724" }
+    ],
+    propheticRefs: [],
       investigatorNote: "A Roman official using a Jewish ritual gesture. It shows his desperation to shift legal responsibility to the mob.",
     },
     {
@@ -980,6 +1071,10 @@ export const act3CaseD = {
       location: "Pilate's Private Quarters",
       desc: "A small piece of parchment sent by Pilate's wife. It warns: 'Don’t have anything to do with that innocent man, for I have suffered a great deal today in a dream because of him.'",
       bibleRef: "Matthew 27:19",
+bibleRefs: [
+      { ref: "Matthew 27:19", link: "matthew_2719" }
+    ],
+    propheticRefs: [],
       investigatorNote: "Divine warning reached the Roman household before the verdict. Pilate ignored the dream for political safety.",
     },
     {
@@ -991,8 +1086,14 @@ export const act3CaseD = {
       location: "Antonia Fortress Record Room",
       desc: "A Roman arrest record for 'Jesus Barabbas.' Charges include insurrection, murder, and robbery. He is an ultra-nationalist zealot.",
       bibleRef: "Mark 15:7; John 18:40",
+bibleRefs: [
+      { ref: "Mark 15:7", link: "mark_157" },
+      { ref: "John 18:40", link: "john_1840" }
+    ],
+    propheticRefs: [],
       investigatorNote: "Barabbas was the very thing Rome feared—a violent rebel. Yet the crowd chose him to be set free.",
     }
+  
   ],
 
   suspects: [
@@ -1158,6 +1259,7 @@ export const act3CaseE = {
   ],
 
   evidencePool: [
+    
     {
       id: "split_dice",
       name: "Soldiers' Casting Dice",
@@ -1168,6 +1270,12 @@ export const act3CaseE = {
       desc: "Four crude bone gaming dice dropped in the dust near a pile of discarded ropes, right where the soldiers gambled for the victim's clothes.",
       bibleRef: "John 19:23–24 — 'Let’s not tear it,' they said to one another. 'Let’s decide by lot who will get it.' This happened that the scripture might be fulfilled...",
       propheticLink: "Directly fulfills Psalm 22:18. While the victim hung dying, the indifferent execution detail executed a routine lottery for a high-quality, seamless tunic woven from top to bottom.",
+bibleRefs: [
+      { ref: "John 19:23-24", link: "john_192324" }
+    ],
+propheticRefs: [
+      { ref: "Psalm 22:18", link: "psalm_2218" }
+    ],
       investigatorNote: "The dice indicate a standard, procedural execution routine—until the noon darkness disrupted their shifts.",
     },
     {
@@ -1180,6 +1288,13 @@ export const act3CaseE = {
       desc: "A heavy Roman iron spearhead stained with a clear, separated residue of deep red blood crust and transparent pericardial fluid.",
       bibleRef: "John 19:34 — 'Instead, one of the soldiers pierced Jesus’s side with a spear, bringing a sudden flow of blood and water.'",
       propheticLink: "Fulfills Zechariah 12:10 ('the one they have pierced') and protects the Passover Lamb requirement of Exodus 12:46 ('not one bone shall be broken'). The spear thrust proved the victim was already dead, making the leg-breaking unnecessary.",
+bibleRefs: [
+      { ref: "John 19:34", link: "john_1934" }
+    ],
+propheticRefs: [
+      { ref: "Zechariah 12:10", link: "zechariah_1210" },
+      { ref: "Exodus 12:46", link: "exodus_1246" }
+    ],
       investigatorNote: "The fluid separation proves severe internal trauma. The medical signature matches a ruptured heart or extreme pleural effusion.",
     },
     {
@@ -1192,6 +1307,9 @@ export const act3CaseE = {
       bibleRef: "Matthew 27:51 — 'The earth shook, the rocks split and the tombs broke open.'",
       bibleLink: "matthew_27_51",
       propheticLink: "The earthquake, combined with the three hours of darkness described elsewhere in this case's evidence, served as a cosmic response to the execution. Supporting/narrative evidence — not directly tied to any single one of this case's six defined prophecies.",
+bibleRefs: [
+      { ref: "Matthew 27:51", link: "matthew_2751" }
+    ],
       investigatorNote: "The split is clean and deep, indicating a severe tectonic movement centered right through the execution hill.",
     },
     {
@@ -1205,6 +1323,10 @@ export const act3CaseE = {
       bibleRef: "Luke 23:45 — 'The sun stopped shining. And the curtain of the temple was torn in two.'",
       bibleLink: "luke_23_45",
       propheticLink: "The Parokhet curtain blocked access to the Holy of Holies. Its top-to-bottom tear structurally verified that the old covenant system had split wide open, granting direct access to the presence of God.",
+bibleRefs: [
+      { ref: "Luke 23:45", link: "luke_2345" }
+    ],
+    propheticRefs: [],
       investigatorNote: "Brought out of the sanctuary by a panicked priest. No human hands could rip material this thick—and the tear started from the top down.",
     },
     {
@@ -1218,8 +1340,15 @@ export const act3CaseE = {
       bibleRef: "Mark 15:46 — 'So Joseph bought some linen cloth, took down the body, wrapped it in the linen, and placed it in a tomb...'",
       bibleLink: "mark_15_46",
       propheticLink: "Fulfills Isaiah 53:9. Instead of being cast into the criminal dirt pits of Hinnom, Jesus was instantly reassigned to a wealthy man's private, rock-hewn garden tomb.",
+bibleRefs: [
+      { ref: "Mark 15:46", link: "mark_1546" }
+    ],
+propheticRefs: [
+      { ref: "Isaiah 53:9", link: "isaiah_539" }
+    ],
       investigatorNote: "Joseph risked his entire aristocratic standing on the Sanhedrin by publicly claiming the body of a condemned man from Pilate.",
     },
+  
   ],
 
   lab: [
