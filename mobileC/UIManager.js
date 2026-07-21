@@ -59,7 +59,7 @@ export class UIManager {
     if (tab === "people") { const view = document.getElementById("inv-people"); if (view) { view.innerHTML = this.peopleUI.renderNPCPanel(this.discoveredNPCs); this.peopleUI.bindNPCEvents(view); } }
     if (tab === "codex") { const view = document.getElementById("inv-codex"); if (view) { view.innerHTML = this.codexUI.render(); } }
     if (tab === "scene") { const view = document.getElementById("inv-scene"); if (view && !window.scene2d) { view.innerHTML = this.sceneUI.render(); } }
-    if (tab === "accuse") { const view = document.getElementById("inv-accuse"); if (view) { view.innerHTML = this.accuseUI.render(); } }
+    if (tab === "accuse") { this.cm.refreshUnlockedSuspects(); const view = document.getElementById("inv-accuse"); if (view) { view.innerHTML = this.accuseUI.render(); } }
 
     this.a11y.announce(`${tab} tab open`);
   }

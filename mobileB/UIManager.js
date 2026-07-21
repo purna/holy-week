@@ -558,6 +558,7 @@ export class UIManager {
   }
 
   renderAccuse() {
+    this.cm.refreshUnlockedSuspects();
     const c = this.cm.getActiveCase();
     const view = document.getElementById("inv-accuse");
     if (!c || !view) return;

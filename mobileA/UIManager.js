@@ -54,7 +54,7 @@ export class UIManager {
     if (tab === "people") { const view = document.getElementById("inv-people"); if (view) { view.innerHTML = this.peopleUI.renderNPCPanel(); this.peopleUI.bindNPCEvents(view); } }
     if (tab === "codex") { const view = document.getElementById("inv-codex"); if (view) { view.innerHTML = this.codexUI.render(); } }
     if (tab === "scene") { const view = document.getElementById("inv-scene"); if (view) { view.innerHTML = this.sceneUI.render(); } }
-    if (tab === "accuse") { const view = document.getElementById("inv-accuse"); if (view) { view.innerHTML = this.accuseUI.render(); } }
+    if (tab === "accuse") { this.cm.refreshUnlockedSuspects(); const view = document.getElementById("inv-accuse"); if (view) { view.innerHTML = this.accuseUI.render(); } }
 
     // Resize canvas when Scene tab becomes visible (container may have 0 height before)
     if (tab === "scene" && window.scene3d) {
@@ -62,6 +62,11 @@ export class UIManager {
     }
 
     this.a11y.announce(`${tab} tab open`);
+  }
+
+  renderPeople() {
+    const view = document.getElementById("inv-people");
+    if (view) { view.innerHTML = this.peopleUI.renderNPCPanel(); this.peopleUI.bindNPCEvents(view); }
   }
 
   goBack() {

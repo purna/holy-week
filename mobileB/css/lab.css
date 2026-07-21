@@ -182,13 +182,13 @@
 
     /* Custom scrollbar for Lab history */
     scrollbar-width: thin;
-    scrollbar-color: var(--border2) transparent;
+    scrollbar-color: var(--gold) transparent;
 }
 
 .lab-history-list::-webkit-scrollbar { width: 6px; }
 .lab-history-list::-webkit-scrollbar-track { background: transparent; }
 .lab-history-list::-webkit-scrollbar-thumb { 
-    background: var(--border2); 
+    background: var(--gold); 
     border-radius: 10px; 
     border: 1px solid transparent;
     background-clip: content-box;

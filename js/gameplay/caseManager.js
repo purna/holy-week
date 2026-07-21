@@ -32,7 +32,8 @@ export class CaseManager {
   startCase(id) {
     if (!this.cases[id]) return false;
     this.activeCaseId = id;
-    if (!this.progress.cases[id]) {
+    const isNew = !this.progress.cases[id];
+    if (isNew) {
       this.progress.cases[id] = {
         started: true,
         solved: false,
@@ -50,8 +51,26 @@ export class CaseManager {
         accusation: null,
         score: null,
       };
-      this._saveProgress();
     }
+    if (!isNew) {
+      const p = this.progress.cases[id];
+      const c = this.getActiveCase();
+      (p.evidenceFound || []).forEach(evId => {
+        const ev = c?.evidencePool.find(e => e.id === evId);
+        if (ev && ev.revealsSuspect && !p.unlockedSuspects.includes(ev.revealsSuspect)) {
+          p.unlockedSuspects.push(ev.revealsSuspect);
+        }
+        if (c?.lab) {
+          const labEntry = c.lab.find(l => l.evidence === evId);
+          if (labEntry && p.suspects[labEntry.suspect]) {
+            p.suspects[labEntry.suspect].status = labEntry.result;
+            p.suspects[labEntry.suspect].notes = labEntry.result;
+            p.labDeductions[evId] = { suspect: labEntry.suspect, result: labEntry.result };
+          }
+        }
+      });
+    }
+    this._saveProgress();
     return true;
   }
 
@@ -70,11 +89,46 @@ export class CaseManager {
 
   recordEvidenceFound(evidenceId) {
     const p = this.progress.cases[this.activeCaseId];
-    if (p && !p.evidenceFound.includes(evidenceId)) {
-      p.evidenceFound.push(evidenceId);
-      // The old "revealsSuspect" logic is now handled by the Lab.
+    const c = this.getActiveCase();
+    if (p && c) {
+      if (!p.evidenceFound.includes(evidenceId)) {
+        p.evidenceFound.push(evidenceId);
+        const ev = c.evidencePool.find(e => e.id === evidenceId);
+        if (ev && ev.revealsSuspect) {
+          this.discoverSuspect(ev.revealsSuspect);
+        }
+        if (c.lab) {
+          const labEntry = c.lab.find(l => l.evidence === evidenceId);
+          if (labEntry && p.suspects[labEntry.suspect]) {
+            p.suspects[labEntry.suspect].status = labEntry.result;
+            p.suspects[labEntry.suspect].notes = labEntry.result;
+            p.labDeductions[evidenceId] = { suspect: labEntry.suspect, result: labEntry.result };
+          }
+        }
+      }
       this._saveProgress();
     }
+  }
+
+  refreshUnlockedSuspects() {
+    const p = this.progress.cases[this.activeCaseId];
+    const c = this.getActiveCase();
+    if (!p || !c) return;
+    (p.evidenceFound || []).forEach(evId => {
+      const ev = c.evidencePool.find(e => e.id === evId);
+      if (ev && ev.revealsSuspect && !p.unlockedSuspects.includes(ev.revealsSuspect)) {
+        p.unlockedSuspects.push(ev.revealsSuspect);
+      }
+      if (c.lab) {
+        const labEntry = c.lab.find(l => l.evidence === evId);
+        if (labEntry && p.suspects[labEntry.suspect]) {
+          p.suspects[labEntry.suspect].status = labEntry.result;
+          p.suspects[labEntry.suspect].notes = labEntry.result;
+          p.labDeductions[evId] = { suspect: labEntry.suspect, result: labEntry.result };
+        }
+      }
+    });
+    this._saveProgress();
   }
 
   recordProphecyFound(prophecyId) {
@@ -190,8 +244,8 @@ export class CaseManager {
   recordLabDeduction(evidenceId, suspectId, result) {
     const p = this.progress.cases[this.activeCaseId];
     if (!p || !p.suspects[suspectId]) return;
-
     p.suspects[suspectId].status = result;
+    p.suspects[suspectId].notes = result;
     p.labDeductions[evidenceId] = { suspect: suspectId, result };
     this._saveProgress();
   }

@@ -17,10 +17,15 @@
     --green: #3dd68c;
     --red: #f46060;
     --purple: #a78bfa;
+    --accent-primary: #00f2ff;
+    --accent-secondary: #ffaa00;
+    --accent-success: #00ffaa;
 
     --text: #eef2f8;
     --text-muted: #7c8fa8;
     --text-dim: #4a5568;
+    --text-reverse: #080c14;
+
 
     --font-display: 'Syne', sans-serif;
     --font-mono: 'Space Mono', monospace;

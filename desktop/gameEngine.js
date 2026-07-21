@@ -1102,17 +1102,25 @@ export class GameEngine {
   openAccuseModal() {
     const caseData = this.cm.getActiveCase();
     if (!caseData) return;
+    this.cm.refreshUnlockedSuspects();
 
     const list = document.getElementById('accuse-suspect-list');
     list.innerHTML = '';
 
+    const prog = this.cm.getCaseProgress(caseData.id);
+    const unlockedSuspects = prog?.unlockedSuspects || [];
+
     caseData.suspects.forEach(s => {
+      if (!unlockedSuspects.includes(s.id)) return;
+      const status = this.cm.getSuspectStatus(s.id);
       const card = document.createElement('div');
       card.className = 'picker-card';
       card.innerHTML = `
         <span class="picker-icon">${s.avatar || '👤'}</span>
         <span class="picker-name">${s.name}</span>
-        <small style="display:block; font-size:0.6rem; opacity:0.7; margin-bottom:8px;">${s.role}</small>
+        <small style="display:block; font-size:0.6rem; opacity:0.7; margin-bottom:4px;">${s.role}</small>
+        <div style="font-size:0.65rem; margin-bottom:8px; opacity:0.85;">Status: <strong>${status.status}</strong></div>
+        <div style="font-size:0.6rem; margin-bottom:8px; opacity:0.7; line-height:1.3;">${status.notes || ''}</div>
         <button class="terminal-btn" style="width:100%; margin:0;">Accuse</button>
       `;
       card.querySelector('button').onclick = () => {

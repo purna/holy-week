@@ -88,6 +88,17 @@
     max-height: 85vh;
     overflow-y: auto;
     padding: 28px 24px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--gold) transparent;
+}
+
+.evidence-detail-inner::-webkit-scrollbar { width: 6px; }
+.evidence-detail-inner::-webkit-scrollbar-track { background: transparent; }
+.evidence-detail-inner::-webkit-scrollbar-thumb {
+    background: var(--gold);
+    border-radius: 10px;
+    border: 1px solid transparent;
+    background-clip: content-box;
 }
 
 .evidence-detail-close {

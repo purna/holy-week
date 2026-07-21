@@ -88,7 +88,7 @@ export class NPCSystem {
 
     const allNPCs = [...(caseData.npcs || [])];
     const progress = this.caseManager.getCaseProgress(caseData.id);
-    const discovered = (progress && progress.discoveredSuspects) || [];
+    const discovered = (progress && progress.unlockedSuspects) || [];
 
     for (const npc of allNPCs) {
       if (!npc) continue;

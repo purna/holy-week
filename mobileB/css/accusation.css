@@ -152,8 +152,8 @@
 .accuse-btn {
     width: 100%;
     padding: 10px 14px;
-    background: var(--accent);
-    color: #fff;
+    background: var(--gold);
+    color: var(--text-reverse);
     border: none;
     border-radius: var(--radius);
     font-size: 0.88rem;

@@ -150,6 +150,19 @@ Reputation is a faction-based trust meter that tracks how each major group in Je
 | Tobias | Talk | `Fresh-Cut Palm Branch`, `Zechariah Scroll` | Psalm 118:25–26 |
 | Eleazar | Talk | `Pharisee's Written Complaint` | Malachi 3:1 |
 
+##### Character Unlock Table
+
+| Character | ID | Type | Unlock Method | Unlockable |
+|---|---|---|---|---|
+| Peter | `peter` | NPC + Suspect | Talk to Peter; Collect `Two Disciples' Cloaks` | ✅ Yes |
+| John | `john` | NPC + Suspect | Talk to John | ✅ Yes |
+| Tobias | `owner` | NPC + Suspect | Talk to Tobias | ✅ Yes |
+| Jemimah | `local_skeptic` | NPC + Suspect | Talk to Jemimah | ✅ Yes |
+| Eleazar | `eleazar` | NPC only (not a suspect in this case) | Walk up in Scene tab | ✅ Yes (as NPC) |
+| Local Villager | `villager` | Suspect only | Talk to Peter, John, or Tobias | ✅ Yes |
+| Pharisee | `pharisee` | Suspect only | Talk to Eleazar | ✅ Yes |
+| No One | `none` | Suspect only | Collect `Villager's Testimony` or `Zechariah Scroll` | ✅ Yes |
+
 #### Lab
 
 | Evidence Pair | Operation | Result | Prophecy Revealed | Points | Reputation | Doubt |

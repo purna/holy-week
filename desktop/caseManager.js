@@ -28,19 +28,47 @@ export class CaseManager {
   startCase(id) {
     if (!this.cases[id]) return false;
     this.activeCaseId = id;
-    if (!this.progress.cases[id]) {
+    const isNew = !this.progress.cases[id];
+    if (isNew) {
       this.progress.cases[id] = {
         started: true,
         solved: false,
         evidenceFound: [],
         deductionsMade: [],
         unlockedSuspects: [],
+        suspects: this._initializeSuspects(this.cases[id]),
         accusation: null,
         score: null,
       };
-      this._saveProgress();
     }
+    if (!isNew) {
+      const p = this.progress.cases[id];
+      const c = this.getActiveCase();
+      if (!p.suspects) p.suspects = this._initializeSuspects(c);
+      (p.evidenceFound || []).forEach(evId => {
+        const ev = c?.evidencePool.find(e => e.id === evId);
+        if (ev && ev.revealsSuspect && !p.unlockedSuspects.includes(ev.revealsSuspect)) {
+          p.unlockedSuspects.push(ev.revealsSuspect);
+        }
+        if (c?.lab) {
+          const labEntry = c.lab.find(l => l.evidence === evId);
+          if (labEntry && p.suspects[labEntry.suspect]) {
+            p.suspects[labEntry.suspect].status = labEntry.result;
+            p.suspects[labEntry.suspect].notes = labEntry.result;
+          }
+        }
+      });
+    }
+    this._saveProgress();
     return true;
+  }
+
+  _initializeSuspects(caseData) {
+    const suspects = {};
+    (caseData.suspects || []).forEach(s => {
+      suspects[s.id] = { status: 'Neutral', notes: '' };
+    });
+    return suspects;
   }
 
   getCaseProgress(id) {
@@ -49,10 +77,45 @@ export class CaseManager {
 
   recordEvidenceFound(evidenceId) {
     const p = this.progress.cases[this.activeCaseId];
-    if (p && !p.evidenceFound.includes(evidenceId)) {
-      p.evidenceFound.push(evidenceId);
+    const c = this.getActiveCase();
+    if (p && c) {
+      if (!p.evidenceFound.includes(evidenceId)) {
+        p.evidenceFound.push(evidenceId);
+        const ev = c.evidencePool.find(e => e.id === evidenceId);
+        if (ev && ev.revealsSuspect) {
+          this.unlockSuspect(ev.revealsSuspect);
+        }
+        if (c.lab) {
+          const labEntry = c.lab.find(l => l.evidence === evidenceId);
+          if (labEntry && p.suspects[labEntry.suspect]) {
+            p.suspects[labEntry.suspect].status = labEntry.result;
+            p.suspects[labEntry.suspect].notes = labEntry.result;
+          }
+        }
+      }
       this._saveProgress();
     }
+  }
+
+  refreshUnlockedSuspects() {
+    const p = this.progress.cases[this.activeCaseId];
+    const c = this.getActiveCase();
+    if (!p || !c) return;
+    if (!p.suspects) p.suspects = this._initializeSuspects(c);
+    (p.evidenceFound || []).forEach(evId => {
+      const ev = c.evidencePool.find(e => e.id === evId);
+      if (ev && ev.revealsSuspect && !p.unlockedSuspects.includes(ev.revealsSuspect)) {
+        p.unlockedSuspects.push(ev.revealsSuspect);
+      }
+      if (c.lab) {
+        const labEntry = c.lab.find(l => l.evidence === evId);
+        if (labEntry && p.suspects[labEntry.suspect]) {
+          p.suspects[labEntry.suspect].status = labEntry.result;
+          p.suspects[labEntry.suspect].notes = labEntry.result;
+        }
+      }
+    });
+    this._saveProgress();
   }
 
   recordDeduction(deduction) {
@@ -90,6 +153,40 @@ export class CaseManager {
   isSuspectUnlocked(suspectId) {
     const p = this.progress.cases[this.activeCaseId];
     return p ? (p.unlockedSuspects || []).includes(suspectId) : false;
+  }
+
+  getSuspectStatus(suspectId) {
+    const p = this.progress.cases[this.activeCaseId];
+    return p?.suspects?.[suspectId] || { status: 'Unknown', notes: '' };
+  }
+
+  recordLabDeduction(evidenceId, suspectId, result) {
+    const p = this.progress.cases[this.activeCaseId];
+    if (!p || !p.suspects?.[suspectId]) return;
+    p.suspects[suspectId].status = result;
+    p.suspects[suspectId].notes = result;
+    this._saveProgress();
+  }
+
+  refreshUnlockedSuspects() {
+    const p = this.progress.cases[this.activeCaseId];
+    const c = this.getActiveCase();
+    if (!p || !c) return;
+    if (!p.suspects) p.suspects = this._initializeSuspects(c);
+    (p.evidenceFound || []).forEach(evId => {
+      const ev = c.evidencePool.find(e => e.id === evId);
+      if (ev && ev.revealsSuspect && !p.unlockedSuspects.includes(ev.revealsSuspect)) {
+        p.unlockedSuspects.push(ev.revealsSuspect);
+      }
+      if (c.lab) {
+        const labEntry = c.lab.find(l => l.evidence === evId);
+        if (labEntry && p.suspects[labEntry.suspect]) {
+          p.suspects[labEntry.suspect].status = labEntry.result;
+          p.suspects[labEntry.suspect].notes = labEntry.result;
+        }
+      }
+    });
+    this._saveProgress();
   }
 
   submitAccusation(suspectId) {
