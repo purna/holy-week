@@ -108,7 +108,8 @@ export const act3CaseA = {
       bibleLink: "matthew_26_26",
       propheticLink: "The breaking of the matzah is called the 'afikomen' in the Passover Seder — traditionally hidden and later 'found' again. Early Christians saw this as a picture of Jesus's death and resurrection: broken, buried, and found alive.",
 bibleRefs: [
-      { ref: "Matthew 26:26", link: "matthew_2626" }
+      { ref: "Matthew 26:26", link: "matthew_2626" },
+      { ref: "Exodus 12:1-14", link: "exodus_12114" }
     ],
       investigatorNote: "The crumbs suggest someone handled the bread before the meal. The question is whether they were testing its freshness, or hiding something.",
     },
@@ -124,10 +125,12 @@ bibleRefs: [
       bibleLink: "luke_22_20",
       propheticLink: "The Passover Seder uses four cups of wine (Exodus 6:6–7). The third cup — the Cup of Redemption — is the one Jesus transformed into the cup of the New Covenant. The spilled wine at this cup's position is theologically charged: 'blood poured out' was exactly the language He used.",
 bibleRefs: [
-      { ref: "Luke 22:20", link: "luke_2220" }
+      { ref: "Luke 22:20", link: "luke_2220" },
+      { ref: "Jeremiah 31:31-34", link: "jeremiah_313134" },
+      { ref: "Exodus 6:6-7", link: "exodus_667" }
     ],
 propheticRefs: [
-      { ref: "Exodus 6:6-7", link: "exodus_667" }
+      { ref: "Exodus 6:6-7", link: "exodus_6_6_7" }
     ],
       investigatorNote: "The stain is at the position of the third cup. Was this clumsiness, or deliberate disruption of this specific cup?",
     },
@@ -144,10 +147,11 @@ propheticRefs: [
       bibleLink: "matthew_26_27",
       propheticLink: "Breaking pottery in the Jewish tradition was sometimes associated with mourning or the breaking of a covenant (see Jeremiah 19:10–11, where Jeremiah shattered a clay jar as a prophetic act of judgement). A broken cup at the Passover table carries heavy symbolic weight.",
 bibleRefs: [
-      { ref: "Matthew 26:27", link: "matthew_2627" }
+      { ref: "Matthew 26:27", link: "matthew_2627" },
+      { ref: "Jeremiah 19:10-11", link: "jeremiah_191011" }
     ],
 propheticRefs: [
-      { ref: "Jeremiah 19:10-11", link: "jeremiah_191011" }
+      { ref: "Jeremiah 19:10-11", link: "jeremiah_19_10_11" }
     ],
       investigatorNote: "Galilean clay cup — not from Jerusalem. One of the disciples may have brought their own cup. Judas was from Kerioth in Judah; this cup isn't his.",
     },
@@ -163,10 +167,11 @@ propheticRefs: [
       bibleLink: "john_13_4_5",
       propheticLink: "Isaiah 52:13–15 describes the Servant who 'shall startle many nations' — and immediately before this, is described as one who acts in a way that astonishes because of His humility. Jesus washing feet with this water fulfilled the spirit of what Isaiah described: the exalted One taking the lowest role.",
 bibleRefs: [
-      { ref: "John 13:4-5", link: "john_1345" }
+      { ref: "John 13:4-5", link: "john_1345" },
+      { ref: "Isaiah 52:13-15", link: "isaiah_521315" }
     ],
 propheticRefs: [
-      { ref: "Isaiah 52:13-15", link: "isaiah_521315" }
+      { ref: "Isaiah 52:13-15", link: "isaiah_52_13_15" }
     ],
       investigatorNote: "Someone moved this jug. If it was Rhoda doing her preparation duties, the wet trail should lead to the washing basin. It leads toward the staircase instead.",
     },
@@ -182,11 +187,11 @@ propheticRefs: [
       bibleLink: "john_13_29",
       propheticLink: "Judas carried the communal purse — and had recently agreed to betray Jesus for 30 silver coins (Matthew 26:14–16), fulfilling Zechariah 11:12. The presence of a money bag impression at the preparation table raises serious questions: what was Judas counting before the meal?",
 bibleRefs: [
-      { ref: "John 13:29", link: "john_1329" }
+      { ref: "John 13:29", link: "john_13_29" }
     ],
 propheticRefs: [
-      { ref: "Matthew 26:14-16", link: "matthew_261416" },
-      { ref: "Zechariah 11:12", link: "zechariah_1112" }
+      { ref: "Matthew 26:14-16", link: "matthew_26_14_16" },
+      { ref: "Zechariah 11:12", link: "zechariah_11_12" }
     ],
       investigatorNote: "The disciples' money bag was Judas's responsibility. Why was it here, in the food preparation area, before the meal?",
     },
@@ -202,11 +207,11 @@ propheticRefs: [
       bibleLink: "john_13_26_30",
       propheticLink: "The giving of the dipped sop to Judas is the fulfilment of Psalm 41:9 ('even my close friend... who ate my bread has lifted his heel against me'). Jesus quoted this Psalm earlier that evening (John 13:18), identifying the traitor through an act of table fellowship.",
 bibleRefs: [
-      { ref: "John 13:26-30", link: "john_132630" }
+      { ref: "John 13:26-30", link: "john_13_26_30" }
     ],
 propheticRefs: [
-      { ref: "Psalm 41:9", link: "psalm_419" },
-      { ref: "John 13:18", link: "john_1318" }
+      { ref: "Psalm 41:9", link: "psalm_41_9" },
+      { ref: "John 13:18", link: "john_13_18" }
     ],
       investigatorNote: "The dipped bread points to the seat of honour — and to one specific disciple. This is the most revealing piece of evidence in the room.",
     },
@@ -230,6 +235,24 @@ propheticRefs: [
     ],
       investigatorNote: "John Mark was present. He was watching, listening, and writing. He knew everything that happened in that room.",
     },
+    {
+      id: "twelve_roll",
+      name: "List of the Twelve",
+      type: "analytical",
+      relatedProphecy: "isaiah_53_12",
+      icon: "📜",
+      location: "Upper Room",
+      desc: "A roll call of the disciples present at the meal, including Judas Iscariot, a known transgressor.",
+      bibleRef: "Luke 22:37",
+      propheticLink: "Jesus explicitly applies Isaiah 53:12 ('numbered with the transgressors') to Himself during the Last Supper.",
+      bibleRefs: [
+        { ref: "Luke 22:37", link: "luke_22_37" }
+      ],
+      propheticRefs: [
+        { ref: "Isaiah 53:12", link: "isaiah_53_12" }
+      ],
+      investigatorNote: "Jesus willingly associated with and ministered to His own betrayer, fulfilling the prophecy."
+    }
   
   ],
 
@@ -444,6 +467,17 @@ export const act3CaseB = {
       text: `"Strike the shepherd, and the sheep will be scattered."`,
       written: "~520 BC",
       explanation: "Jesus quoted this prophecy just before His arrest, predicting that His disciples would flee in fear, which they did.",
+    },
+    {
+      reference: "Isaiah 53:7",
+      id: "isaiah_53_7",
+      icon: "🔮",
+      text: `"He was oppressed, and he was afflicted, yet he opened not his mouth; like a lamb that is led to the slaughter."`,
+      written: "~700 BC",
+      fulfilledBy: "Jesus's silence and non-resistance during His arrest and trial",
+      gospelLink: "Matthew 26:52–54",
+      written: "~520 BC",
+      explanation: "Jesus quoted this prophecy just before His arrest, predicting that His disciples would flee in fear, which they did.",
     }
   ],
 
@@ -523,6 +557,24 @@ propheticRefs: [
     ],
       investigatorNote: "This provides the supreme paradox: there is dynamic arterial blood indicating an amputation, but no victim at the scene lacks an ear.",
     },
+    {
+      id: "prisoner_cord",
+      name: "Unresisting Prisoner's Cord",
+      type: "physical",
+      relatedProphecy: "isaiah_53_7",
+      icon: "⛓️",
+      location: "Gethsemane Garden",
+      desc: "A length of rope used to bind Jesus's hands, showing no signs of struggle or resistance.",
+      bibleRef: "Matthew 26:52–54",
+      propheticLink: "Jesus refuses armed resistance and willingly submits to arrest, embodying the silent Lamb led to slaughter as prophesied in Isaiah 53:7.",
+      bibleRefs: [
+        { ref: "Matthew 26:52-54", link: "matthew_26_52_54" }
+      ],
+      propheticRefs: [
+        { ref: "Isaiah 53:7", link: "isaiah_53_7" }
+      ],
+      investigatorNote: "The lack of fraying on the cord indicates a willing submission, not a capture after a fight."
+    }
   
   ],
 
@@ -776,7 +828,8 @@ export const act3CaseC = {
       bibleLink: "matthew_26_74_75",
       propheticLink: "The third denial led to the third crowing, fulfilling Jesus's own prediction of Peter's failure (Matthew 26:34). Supporting/narrative evidence — not directly Codex-linkable to one of this case's four defined prophecies.",
 bibleRefs: [
-      { ref: "Matthew 26:74-75", link: "matthew_267475" }
+      { ref: "Matthew 26:74-75", link: "matthew_267475" },
+      { ref: "Zechariah 13:7", link: "zechariah_137" }
     ],
 propheticRefs: [
       { ref: "Matthew 26:34", link: "matthew_2634" }
@@ -795,7 +848,8 @@ propheticRefs: [
       bibleLink: "matthew_26_65",
       propheticLink: "Caiaphas tore his robes to signal blasphemy when Jesus affirmed His divinity.",
 bibleRefs: [
-      { ref: "Matthew 26:65", link: "matthew_2665" }
+      { ref: "Matthew 26:65", link: "matthew_2665" },
+      { ref: "Isaiah 50:6", link: "isaiah_506" }
     ],
     propheticRefs: [],
       investigatorNote: "The tear was ritual declaration that Jesus had committed the unforgivable offense.",
@@ -812,7 +866,8 @@ bibleRefs: [
       bibleLink: "mark_14_56_59",
       propheticLink: "The lack of consistent testimony exposes the trial as a fabrication.",
 bibleRefs: [
-      { ref: "Mark 14:56-59", link: "mark_145659" }
+      { ref: "Mark 14:56-59", link: "mark_145659" },
+      { ref: "Psalm 27:12", link: "psalm_2712" }
     ],
     propheticRefs: [],
       investigatorNote: "No single witness could agree—so they had to manufacture testimony.",
@@ -834,6 +889,42 @@ bibleRefs: [
     propheticRefs: [],
       investigatorNote: "The fire was a place of warmth—and of betrayal.",
     },
+    {
+      id: "guard_reed",
+      name: "Guard's Reed",
+      type: "physical",
+      relatedProphecy: "micah_5_1",
+      icon: "🌿",
+      location: "Courtyard Floor",
+      desc: "A reed, similar to a staff, used by the guards to strike Jesus on the head in mockery.",
+      bibleRef: "Matthew 26:67–68",
+      propheticLink: "Micah 5:1 prophesied that Israel's ruler would be struck. The guards' mockery with the reed is a literal fulfillment of this humiliation.",
+      bibleRefs: [
+        { ref: "Matthew 26:67-68", link: "matthew_26_67_68" }
+      ],
+      propheticRefs: [
+        { ref: "Micah 5:1", link: "micah_5_1" }
+      ],
+      investigatorNote: "The reed was a symbol of kingship, used here to mock Jesus's claim to be a king."
+    },
+    {
+      id: "perjured_testimony",
+      name: "Perjured Witness Statement",
+      type: "analytical",
+      relatedProphecy: "psalm_35_11",
+      icon: "📜",
+      location: "Council Chamber",
+      desc: "A statement from a witness whose testimony was inconsistent with others, revealing the fabricated nature of the charges.",
+      bibleRef: "Mark 14:57–59",
+      propheticLink: "'Ruthless witnesses come forward' precisely matches the false testimony at the trial, as prophesied in Psalm 35:11.",
+      bibleRefs: [
+        { ref: "Mark 14:57-59", link: "mark_14_57_59" }
+      ],
+      propheticRefs: [
+        { ref: "Psalm 35:11", link: "psalm_35_11" }
+      ],
+      investigatorNote: "The desperation to find witnesses, any witnesses, shows the weakness of the prosecution's case."
+    }
   
   ],
 
@@ -1093,6 +1184,26 @@ bibleRefs: [
     propheticRefs: [],
       investigatorNote: "Barabbas was the very thing Rome feared—a violent rebel. Yet the crowd chose him to be set free.",
     }
+    ,
+    {
+      id: "joint_verdict",
+      name: "Joint Verdict Scroll",
+      type: "analytical",
+      relatedProphecy: "psalm_2_1_2",
+      icon: "📜",
+      location: "Praetorium Records",
+      desc: "A record showing that Herod and Pilate, once enemies, conferred and agreed on the verdict for Jesus.",
+      bibleRef: "Luke 23:12",
+      propheticLink: "Herod and Pilate become allies against God's Anointed, fulfilling Psalm 2's prophecy of rulers banding together against the LORD.",
+      bibleRefs: [
+        { ref: "Luke 23:12", link: "luke_23_12" },
+        { ref: "Psalm 2:1-2", link: "psalm_212" }
+      ],
+      propheticRefs: [
+        { ref: "Psalm 2:1-2", link: "psalm_2_1_2" }
+      ],
+      investigatorNote: "The political alliance formed over this single judicial case highlights the threat Jesus posed to both Roman and Jewish power structures."
+    }
   
   ],
 
@@ -1246,6 +1357,27 @@ export const act3CaseE = {
       written: "~1000 BC",
       explanation: "Jesus's final words from the cross were a direct quote from this Psalm, showing His willing surrender of His life into the Father's hands.",
     }
+    ,
+    {
+      reference: "Jeremiah 31:31–34",
+      id: "jeremiah_31_31_34",
+      icon: "🔮",
+      text: `"Behold, the days are coming, declares the LORD, when I will make a new covenant... I will put my law within them, and I will write it on their hearts."`,
+      written: "~627 BC",
+      fulfilledBy: "The tearing of the Temple veil, symbolizing direct access to God under a New Covenant",
+      gospelLink: "Matthew 27:51; Hebrews 10:19-22",
+      insight: "The thick veil separated humanity from the Holy of Holies. Its tearing from top to bottom at the moment of Jesus's death was a divine sign that the old system was finished and the New Covenant, prophesied by Jeremiah, had begun.",
+    },
+    {
+      reference: "Haggai 2:6–7",
+      id: "haggai_2_6_7",
+      icon: "🔮",
+      text: `"For thus says the LORD of hosts: Yet once more, in a little while, I am going to shake the heavens and the earth... and I will fill this house with glory."`,
+      written: "~520 BC",
+      fulfilledBy: "The earthquake that struck at the moment of Jesus's death",
+      gospelLink: "Matthew 27:51",
+      insight: "Haggai prophesied a great shaking that would accompany the coming of God's glory. The earthquake at the cross was a physical manifestation of this cosmic event, signifying a shift in spiritual authority.",
+    }
 
   ],
 
@@ -1279,6 +1411,25 @@ propheticRefs: [
       investigatorNote: "The dice indicate a standard, procedural execution routine—until the noon darkness disrupted their shifts.",
     },
     {
+      id: "split_rocks",
+      name: "Split Rocks",
+      type: "physical",
+      relatedProphecy: "haggai_2_6_7",
+      icon: "🌎",
+      location: "Golgotha Basal Rift",
+      desc: "A freshly sheared section of Jerusalem limestone showing a sharp, jagged vertical fracture path triggered by a massive, sudden seismic wave.",
+      bibleRef: "Matthew 27:51 — 'The earth shook, the rocks split and the tombs broke open.'",
+      bibleLink: "matthew_27_51",
+      propheticLink: "The earthquake at the moment of death fulfilled Haggai's prophecy that God would 'shake the heavens and the earth,' signifying a world-altering divine event.",
+bibleRefs: [
+      { ref: "Matthew 27:51", link: "matthew_2751" }
+    ],
+      propheticRefs: [
+        { ref: "Haggai 2:6-7", link: "haggai_2_6_7" }
+      ],
+      investigatorNote: "The split is clean and deep, indicating a severe tectonic movement centered right through the execution hill.",
+    },
+    {
       id: "pierced_spear",
       name: "Blood-Stained Roman Hasta",
       type: "physical",
@@ -1298,35 +1449,22 @@ propheticRefs: [
       investigatorNote: "The fluid separation proves severe internal trauma. The medical signature matches a ruptured heart or extreme pleural effusion.",
     },
     {
-      id: "shattered_limestone",
-      name: "Shattered Limestone Fragment",
+      id: "torn_temple_veil",
+      name: "The Torn Temple Veil",
       type: "physical",
-      relatedProphecy: "-",
-      location: "Golgotha Basal Rift",
-      desc: "A freshly sheared section of Jerusalem limestone showing a sharp, jagged vertical fracture path triggered by a massive, sudden seismic wave.",
-      bibleRef: "Matthew 27:51 — 'The earth shook, the rocks split and the tombs broke open.'",
-      bibleLink: "matthew_27_51",
-      propheticLink: "The earthquake, combined with the three hours of darkness described elsewhere in this case's evidence, served as a cosmic response to the execution. Supporting/narrative evidence — not directly tied to any single one of this case's six defined prophecies.",
-bibleRefs: [
-      { ref: "Matthew 27:51", link: "matthew_2751" }
-    ],
-      investigatorNote: "The split is clean and deep, indicating a severe tectonic movement centered right through the execution hill.",
-    },
-    {
-      id: "torn_veil_thread",
-      name: "Thick Blue and Scarlet Threads",
-      type: "physical",
-      relatedProphecy: "amos_8_9",
+      relatedProphecy: "jeremiah_31_31_34",
       icon: "🧵",
       location: "Temple Outer Courtyard Landing",
       desc: "A heavy twist of woven blue, purple, and scarlet threads, ripped violently apart. The weave is a palm-width thick and incredibly dense.",
       bibleRef: "Luke 23:45 — 'The sun stopped shining. And the curtain of the temple was torn in two.'",
       bibleLink: "luke_23_45",
-      propheticLink: "The Parokhet curtain blocked access to the Holy of Holies. Its top-to-bottom tear structurally verified that the old covenant system had split wide open, granting direct access to the presence of God.",
+      propheticLink: "The Parokhet curtain blocked access to the Holy of Holies. Its top-to-bottom tear, occurring at the moment of death, fulfilled Jeremiah's promise of a New Covenant, granting direct access to the presence of God for all.",
 bibleRefs: [
       { ref: "Luke 23:45", link: "luke_2345" }
     ],
-    propheticRefs: [],
+      propheticRefs: [
+        { ref: "Jeremiah 31:31-34", link: "jeremiah_31_31_34" }
+      ],
       investigatorNote: "Brought out of the sanctuary by a panicked priest. No human hands could rip material this thick—and the tear started from the top down.",
     },
     {
@@ -1348,6 +1486,24 @@ propheticRefs: [
     ],
       investigatorNote: "Joseph risked his entire aristocratic standing on the Sanhedrin by publicly claiming the body of a condemned man from Pilate.",
     },
+    {
+      id: "unbroken_legs",
+      name: "Unbroken Tibiae Report",
+      type: "analytical",
+      relatedProphecy: "psalm_34_20",
+      icon: "🦴",
+      location: "Golgotha Guard Station",
+      desc: "A Roman execution report noting that the legs of the central victim were not broken, as he was already confirmed dead by spear-thrust.",
+      bibleRef: "John 19:31–36",
+      propheticLink: "Jesus' legs were not broken, fulfilling the Passover Lamb imagery (Exodus 12:46) and the specific prophecy of Psalm 34:20.",
+      bibleRefs: [
+        { ref: "John 19:31-36", link: "john_19_31_36" }
+      ],
+      propheticRefs: [
+        { ref: "Psalm 34:20", link: "psalm_34_20" }
+      ],
+      investigatorNote: "The decision to pierce His side instead of breaking His legs was a procedural choice by the soldiers that had immense prophetic significance."
+    }
   
   ],
 
@@ -1360,7 +1516,7 @@ propheticRefs: [
     {
       evidence: "torn_veil_thread",
       suspect: "temple_priest_pashhur",
-      result: "**Identified as Witness** (Witnessed the divine event in the Temple)"
+      result: "**Identified as Witness** (Witnessed the divine event in the Temple)",
     },
     {
       evidence: "linen_shroud_receipt",
@@ -1411,7 +1567,7 @@ propheticRefs: [
       hasDialogue: true,
       storyFile: "temple_curtain",
       unlocksSuspects: ["temple_priest_pashhur"],
-      unlocksEvidence: ["torn_veil_thread", "shattered_limestone"],
+      unlocksEvidence: ["torn_temple_veil", "split_rocks"],
       revealsProphecy: "amos_8_9",
       background: "A serving priest from the course of Abijah, responsible for maintaining ritual protocols inside the Holy Place on the afternoon of Passover Eve. He was inside the Sanctuary when the earthquake struck at 3:00 PM.",
       dialogue: {
@@ -1422,11 +1578,11 @@ propheticRefs: [
         repeat: "The sanctuary is closed. Go back to the lower city.",
       },
       reactions: {
-        torn_veil_thread: { text: "Where did you get that thread? Put it away! If the people find out the inner curtain split right down the center while that Galilean died, it will trigger an absolute religious panic!", isLie: true, revealedClue: "shattered_limestone" },
-        shattered_limestone: { text: "The earthquake was a generic natural coincidence. Tectonic shifts happen in the Rift valley all the time. It has nothing to do with the execution outside the city walls.", isLie: true },
+        torn_temple_veil: { text: "Where did you get that thread? Put it away! If the people find out the inner curtain split right down the center while that Galilean died, it will trigger an absolute religious panic!", isLie: true, revealedClue: "split_rocks" },
+        split_rocks: { text: "The earthquake was a generic natural coincidence. Tectonic shifts happen in the Rift valley all the time. It has nothing to do with the execution outside the city walls.", isLie: true },
       },
       contradictions: {
-        "torn_veil_thread+shattered_limestone": { exposed: "Fine! The earthquake rifts directly struck the Temple foundations at the exact moment the man died on Golgotha. The great doors slammed open, the massive veil split completely in two from top to bottom, and the sanctuary is left bare. Our old structural monopoly over the presence of God collapsed in three seconds." },
+        "torn_temple_veil+split_rocks": { exposed: "Fine! The earthquake rifts directly struck the Temple foundations at the exact moment the man died on Golgotha. The great doors slammed open, the massive veil split completely in two from top to bottom, and the sanctuary is left bare. Our old structural monopoly over the presence of God collapsed in three seconds." },
       },
     },
     {
@@ -1591,11 +1747,11 @@ propheticRefs: [
       },
     },
     "shattered_limestone+torn_veil_thread": {
-      link: {
+      compare: {
         text: "The split limestone on Golgotha and the torn threads of the inner sanctuary veil form a perfectly synchronized tectonic and theological timeline.",
         insight: "At exactly 3:00 PM, the localized seismic wave that fractured the rocks of Golgotha simultaneously struck the Temple foundations, ripping the palm-thick veil from top to bottom to signify that access to God's presence was now completely open.",
         isKey: true,
-        revealsProphecy: "amos_8_9",
+        revealsProphecy: "jeremiah_31_31_34",
         bibleRef: "Matthew 27:51; Luke 23:45; Mishnah Shekalim 8:5",
       },
     },

@@ -134,10 +134,10 @@ Reputation is a faction-based trust meter that tracks how each major group in Je
 *   **Prophecies:** Zechariah 9:9, Psalm 118:25–26, Genesis 49:10–11, Malachi 3:1
 *   **Evidence:**
     *   `Fresh Hoofprints`
+    *   `Two Disciples' Cloaks`
     *   `Villager's Testimony`
     *   `Cut Rope at the Tethering Post`
-    *   `Two Disciples' Cloaks`
-    *   `Zechariah Scroll`
+    *   `Zechariah 9:9 Scroll Fragment`
     *   `Fresh-Cut Palm Branch`
     *   `Pharisee's Written Complaint`
 
@@ -150,18 +150,23 @@ Reputation is a faction-based trust meter that tracks how each major group in Je
 | Tobias | Talk | `Fresh-Cut Palm Branch`, `Zechariah Scroll` | Psalm 118:25–26 |
 | Eleazar | Talk | `Pharisee's Written Complaint` | Malachi 3:1 |
 
+
+
+
+
+
 ##### Character Unlock Table
 
 | Character | ID | Type | Unlock Method | Unlockable |
 |---|---|---|---|---|
-| Peter | `peter` | NPC + Suspect | Talk to Peter; Collect `Two Disciples' Cloaks` | ✅ Yes |
-| John | `john` | NPC + Suspect | Talk to John | ✅ Yes |
-| Tobias | `owner` | NPC + Suspect | Talk to Tobias | ✅ Yes |
+| Peter | `peter` | NPC + Suspect | Talk to Peter; Collect `cloaks`, `rope_fibers`; Lab: **Motive Clarified** (Acted on instruction, not as a thief) | ✅ Yes |
+| John | `john` | NPC + Suspect | Talk to John; Collect `donkey_tracks`, `crowd_testimony`, `witness_account` | ✅ Yes |
+| Tobias | `owner` | NPC + Suspect | Talk to Tobias; Collect `prophecy_scroll`, `palm_branch`; Lab: **Cleared** (Confirmed he willingly lent the colt) | ✅ Yes |
 | Jemimah | `local_skeptic` | NPC + Suspect | Talk to Jemimah | ✅ Yes |
-| Eleazar | `eleazar` | NPC only (not a suspect in this case) | Walk up in Scene tab | ✅ Yes (as NPC) |
-| Local Villager | `villager` | Suspect only | Talk to Peter, John, or Tobias | ✅ Yes |
-| Pharisee | `pharisee` | Suspect only | Talk to Eleazar | ✅ Yes |
-| No One | `none` | Suspect only | Collect `Villager's Testimony` or `Zechariah Scroll` | ✅ Yes |
+| Eleazar | `eleazar` | NPC only | Walk up in Scene tab | ✅ Yes (as NPC) |
+| Local Villager | `villager` | Suspect only | Talk to John or Tobias | ✅ Yes |
+| Pharisee | `pharisee` | Suspect only | Talk to Eleazar; Collect `crowd_testimony` | ✅ Yes |
+| No One | `none` | Suspect only | Collect `witness_account`, `prophecy_scroll` | ✅ Yes |
 
 #### Lab
 
@@ -193,11 +198,9 @@ Reputation is a faction-based trust meter that tracks how each major group in Je
 *   **Prophecies:** Malachi 3:1, Isaiah 56:7, Psalm 69:9
 
 *   **Evidence:**
-    *   `Scattered Shekels`
-    *   `Roman Standard`
+    *   `Scattered Tyrian Shekels`
     *   `Shattered Dove Cages`
-    *   `Disciples' Testimony`
-    *   `Whip of Cords`
+    *   `Discarded Whip of Cords`
 
 #### People
 
@@ -235,10 +238,10 @@ Reputation is a faction-based trust meter that tracks how each major group in Je
 *   **Prophecies:** Micah 7:1, Jeremiah 8:13, Psalm 33:8–9, Zechariah 4:6–7
 
 *   **Evidence:**
-    *   `Withered Fig Leaf (Tuesday)`
-    *   `Healthy Fig Leaf (Monday)`
+    *   `Description of the Fig Tree (Monday)`
+    *   `The Withered Fig Tree (Tuesday)`
+    *   `Peter's Astonished Reaction`
     *   `Jesus's Teaching on Faith`
-    *   `Disciples' Astonishment`
 
 #### People
 
@@ -282,13 +285,12 @@ Reputation is a faction-based trust meter that tracks how each major group in Je
 *   **Prophecies:** Psalm 118:22–23, Isaiah 5:1–7, Daniel 7:13–14, Malachi 3:1
 
 *   **Evidence:**
-    *   `Priestly Vestments`
-    *   `Sketch of Vineyard Parable`
+    *   `The Formal Authority Challenge`
+    *   `Sketch of the Vineyard Parable`
     *   `Rejected Cornerstone Fragment`
     *   `Denarius of Tiberius Caesar`
     *   `Withered Fig Leaf`
     *   `Two Leptons (Widow's Mites)`
-    *   `Temple Bystander's Written Account`
 
 #### People
 
@@ -298,6 +300,20 @@ Reputation is a faction-based trust meter that tracks how each major group in Je
 | Caiaphas | Talk | `Denarius of Tiberius Caesar`, `Two Leptons (Widow's Mites)` |
 | Samuel (Scribe) | Talk | `Sketch of Vineyard Parable`, `Temple Bystander's Written Account` |
 | Nathanael (Pharisee) | Talk | — |
+
+
+
+
+
+##### Character Unlock Table
+
+| Character | ID | Type | Unlock Method | Unlockable |
+|---|---|---|---|---|
+| Caiaphas | `chief_priest` | NPC + Suspect | Talk to Caiaphas; Lab: **Implicated by Parable** (The teaching was aimed at him) | ✅ Yes |
+| Samuel | `scribe` | NPC + Suspect | Talk to Samuel; Lab: **Identified as Witness** (His record implicates the priests) | ✅ Yes |
+| Nathanael | `pharisee` | NPC + Suspect | Talk to Nathanael | ✅ Yes |
+| Thomas the Rich Young Ruler | `rich_young_ruler` | NPC only | Walk up in Scene tab | ✅ Yes (as NPC) |
+| No One | `none` | Suspect only | Auto-unlocked | ✅ Yes |
 
 #### Lab
 
@@ -329,9 +345,9 @@ Reputation is a faction-based trust meter that tracks how each major group in Je
 *   **Prophecies:** Isaiah 25:8
 
 *   **Evidence:**
-    *   `Lazarus's Grave Cloth`
-    *   `Report to Caiaphas`
-    *   `Sanhedrin Meeting Scroll`
+    *   `Bethany Pilgrim Manifest`
+    *   `Bethany Limestone Dust`
+    *   `Intercepted Sadducean Memorandum`
 
 #### People
 
@@ -343,6 +359,27 @@ Reputation is a faction-based trust meter that tracks how each major group in Je
 | Martha (Sister of Lazarus) | Talk | `grave_dirt` | Isaiah 25:8 |
 | Nicodemus | Talk | — |
 | Simon the Leper | Talk | — |
+
+
+
+
+
+##### Character Unlock Table
+
+| Character | ID | Type | Unlock Method | Unlockable |
+|---|---|---|---|---|
+| Maluch | `temple_spy` | NPC only | Walk up in Scene tab | ✅ Yes (as NPC) |
+| Annas | `annas_patriarch` | NPC only | Walk up in Scene tab | ✅ Yes (as NPC) |
+| Martha | `martha_bethany` | NPC only | Walk up in Scene tab | ✅ Yes (as NPC) |
+| Thomas (Parable) | `parable_meaning` | NPC only | Walk up in Scene tab | ✅ Yes (as NPC) |
+| Thomas (Vineyard) | `parable_vineyard` | NPC only | Walk up in Scene tab | ✅ Yes (as NPC) |
+| Trial Rumors | `trial_rumors` | NPC only | Walk up in Scene tab | ✅ Yes (as NPC) |
+| Bethesda Witness | `witness_healed` | NPC only | Walk up in Scene tab | ✅ Yes (as NPC) |
+| Mount Teacher | `teaching_mount` | NPC only | Walk up in Scene tab | ✅ Yes (as NPC) |
+| Nicodemus | `nicodemus` | NPC only | Walk up in Scene tab | ✅ Yes (as NPC) |
+| Simon the Leper | `simon_leper` | NPC only | Walk up in Scene tab | ✅ Yes (as NPC) |
+| Nicodemus | `nicodemus_secret` | Suspect only | Talk to Martha; Lab: **Cleared** (Shows he was a dissenting voice) | ✅ Yes |
+| Caiaphas | `caiaphas` | Suspect only | Talk to Maluch; Lab: **Implicated in Conspiracy** (Directly links him to the plot) | ✅ Yes |
 
 #### Lab
 
@@ -370,9 +407,11 @@ Reputation is a faction-based trust meter that tracks how each major group in Je
 *   **Prophecies:** Daniel 9:27, Joel 2:30-31, Isaiah 13:10
 
 *   **Evidence:**
-    *   `Sketch of Temple Stones`
-    *   `Notes on Cosmic Signs`
-    *   `Disciples' Questions`
+    *   `View of the Temple from Olivet`
+    *   `Disciples' Questions (Written Notes)`
+    *   `Parable of the Ten Virgins (Notes)`
+    *   `Old Testament Cosmic Sign References`
+    *   `Darkened Sun Record`
 
 #### People
 
@@ -382,6 +421,20 @@ Reputation is a faction-based trust meter that tracks how each major group in Je
 | John | Talk | `Sketch of Temple Stones`, `Notes on Cosmic Signs` | Isaiah 13:10 |
 | Thomas | Talk | `parable_of_virgins_notes`, `cosmic_signs_references` |
 | Andrew | Talk | — |
+
+
+
+
+
+##### Character Unlock Table
+
+| Character | ID | Type | Unlock Method | Unlockable |
+|---|---|---|---|---|
+| Peter | `peter_olivet` | NPC only | Walk up in Scene tab | ✅ Yes (as NPC) |
+| John | `john_olivet` | NPC only | Walk up in Scene tab | ✅ Yes (as NPC) |
+| Thomas | `thomas_olivet` | NPC only | Walk up in Scene tab | ✅ Yes (as NPC) |
+| Andrew | `andrew_olivet` | NPC only | Walk up in Scene tab | ✅ Yes (as NPC) |
+| No One | `none` | Suspect only | Auto-unlocked | ✅ Yes |
 
 #### Lab
 
@@ -414,10 +467,14 @@ Reputation is a faction-based trust meter that tracks how each major group in Je
 *   **Prophecies:** Exodus 12:1–14, Jeremiah 31:31–34, Psalm 41:9, Zechariah 11:12–13, Isaiah 53:12
 
 *   **Evidence:**
-    *   `Broken Wine Cup`
-    *   `Spilled Water Basin`
-    *   `Dipped Bread Fragment`
-    *   `Passover Lamb Bone`
+    *   `Unleavened Bread Crumbs`
+    *   `Spilled Wine on the Linen`
+    *   `Shattered Clay Cup`
+    *   `Large Stone Water Jug`
+    *   `Imprint of a Money Bag`
+    *   `Fragment of Sop (Dipped Bread)`
+    *   `Written Summary of Jesus's Words`
+    *   `List of the Twelve`
 
 #### People
 
@@ -426,6 +483,18 @@ Reputation is a faction-based trust meter that tracks how each major group in Je
 | John Mark | Talk | `Broken Wine Cup` | Jeremiah 31:31–34 |
 | Rhoda | Talk | `Spilled Water Basin`, `Passover Lamb Bone`, `Dipped Bread Fragment` | Exodus 12:1–14 |
 | Judas Iscariot | Talk | `Dipped Bread Fragment` |
+
+
+
+
+
+##### Character Unlock Table
+
+| Character | ID | Type | Unlock Method | Unlockable |
+|---|---|---|---|---|
+| John Mark | `john_mark` | NPC + Suspect | Talk to John Mark; Collect `bread_crumbs`, `new_covenant_declaration`, `betrayal_dipped_bread`; Lab: **Witness to Agitation** (Observed the event, but did not cause it) | ✅ Yes |
+| Rhoda | `servant` | NPC + Suspect | Talk to Rhoda; Collect `water_jug`, `cup_fragments`; Lab: **Witness to Haste** (Saw someone leaving in a hurry) | ✅ Yes |
+| Judas Iscariot | `judas` | NPC + Suspect | Talk to Judas Iscariot; Collect `money_bag_impression`; Lab: **Implicated by Prophecy** (Links him to the betrayal) | ✅ Yes |
 
 #### Lab
 
@@ -457,10 +526,10 @@ Reputation is a faction-based trust meter that tracks how each major group in Je
 *   **Prophecies:** Isaiah 53:7, Zechariah 13:7
 
 *   **Evidence:**
-    *   `Bloody Linen Swab`
-    *   `Disciple's Sword`
-    *   `Scattered Disciples' Cloaks`
+    *   `Abandoned Linen Wrapper`
     *   `Extinguished Roman Torch`
+    *   `Bloodied Scarf Fragment`
+    *   `Unresisting Prisoner's Cord`
 
 #### People
 
@@ -469,6 +538,19 @@ Reputation is a faction-based trust meter that tracks how each major group in Je
 | Malchus | Talk | `Bloody Linen Swab` | Isaiah 53:7 |
 | Simon Peter | Talk | `Disciple's Sword` |
 | Roman Soldier | Talk | `Extinguished Roman Torch` |
+
+
+
+
+
+##### Character Unlock Table
+
+| Character | ID | Type | Unlock Method | Unlockable |
+|---|---|---|---|---|
+| Malchus | `malchus_servant` | NPC + Suspect | Talk to Malchus; Collect `abandoned_linen`, `dropped_torch`; Lab: **Identified as Victim** (He was healed, not an aggressor) | ✅ Yes |
+| Simon Peter | `simon_peter` | NPC only | Walk up in Scene tab | ✅ Yes (as NPC) |
+| Garrison Guard | `roman_soldier` | NPC only | Walk up in Scene tab | ✅ Yes (as NPC) |
+| No One | `none` | Suspect only | Auto-unlocked | ✅ Yes |
 
 #### Lab
 
@@ -498,9 +580,13 @@ Reputation is a faction-based trust meter that tracks how each major group in Je
 *   **Prophecies:** Isaiah 50:6, Micah 5:1, Psalm 27:12, Psalm 35:11
 
 *   **Evidence:**
-    *   `Torn High Priestly Robe`
+    *   `Rooster Feather`
+    *   `Priestly Robe Fragment`
     *   `Conflicting Depositions`
-    *   `Courtyard Rooster Feather`
+    *   `Mocking Guards' Reed and Spittle`
+    *   `Guard's Reed`
+    *   `Charcoal Briquette`
+    *   `Perjured Witness Statement`
 
 #### People
 
@@ -509,6 +595,22 @@ Reputation is a faction-based trust meter that tracks how each major group in Je
 | Caiaphas | Talk | `Torn High Priestly Robe` | |
 | Peter | Talk | `Courtyard Rooster Feather` | |
 | Ananias | Talk | `Conflicting Depositions` |
+
+
+
+
+
+##### Character Unlock Table
+
+| Character | ID | Type | Unlock Method | Unlockable |
+|---|---|---|---|---|
+| Caiaphas | `caiaphas_trial` | NPC only | Walk up in Scene tab | ✅ Yes (as NPC) |
+| Peter | `peter_denial_trial` | NPC only | Walk up in Scene tab | ✅ Yes (as NPC) |
+| Ananias | `false_witness_trial` | NPC only | Walk up in Scene tab | ✅ Yes (as NPC) |
+| Caiaphas | `chief_priest` | Suspect only | Talk to Caiaphas; Lab: **Implicated by Action** (His own gesture reveals his orchestration) | ✅ Yes |
+| Ananias | `false_witness` | Suspect only | Talk to Ananias; Lab: **Discredited** (Revealed as a false witness) | ✅ Yes |
+| Peter | `peter_denial` | Suspect only | Talk to Peter; Lab: **Motive Established** (Fear and denial, not conspiracy) | ✅ Yes |
+| No One | `none` | Suspect only | Auto-unlocked | ✅ Yes |
 
 #### Lab
 
@@ -536,8 +638,10 @@ Reputation is a faction-based trust meter that tracks how each major group in Je
 *   **Prophecies:** Isaiah 53:3, Psalm 2:1–2
 
 *   **Evidence:**
-    *   `Pilate's Wash Basin`
-    *   `Broken Prison Shackles`
+    *   `The Governor's Silver Basin`
+    *   `Claudia's Warning Scroll`
+    *   `The Insurgent's Dossier`
+    *   `Joint Verdict Scroll`
 
 #### People
 
@@ -545,6 +649,19 @@ Reputation is a faction-based trust meter that tracks how each major group in Je
 |---|---|---|---|
 | Pontius Pilate | Talk | `Pilate's Wash Basin` | |
 | Barabbas | Talk | `Broken Prison Shackles`, `Pilate's Written Judgment` |
+
+
+
+
+
+##### Character Unlock Table
+
+| Character | ID | Type | Unlock Method | Unlockable |
+|---|---|---|---|---|
+| Pontius Pilate | `pontius_pilate_trial` | NPC only | Walk up in Scene tab | ✅ Yes (as NPC) |
+| Barabbas | `barabbas_insurgent_trial` | NPC only | Walk up in Scene tab | ✅ Yes (as NPC) |
+| Barabbas | `barabbas_insurgent` | Suspect only | Talk to Barabbas; Lab: **Cleared** (He was the beneficiary, not the cause) | ✅ Yes |
+| No One | `none` | Suspect only | Auto-unlocked | ✅ Yes |
 
 #### Lab
 
@@ -574,35 +691,60 @@ Reputation is a faction-based trust meter that tracks how each major group in Je
 *   **Prophecies:** Psalm 22:16-18, Amos 8:9, Isaiah 53:9, Zechariah 12:10, Psalm 34:20, Psalm 31:5
 
 *   **Evidence:**
-    *   `Soldier's Gambling Dice`
-    *   `Torn Temple Veil Fragment`
-    *   `Fine Linen Burial Cloth`
-    *   `Centurion's Spear`
+    *   `Soldiers' Casting Dice`
+    *   `Blood-Stained Roman Hasta`
+    *   `Shattered Limestone Fragment`
+    *   `Thick Blue and Scarlet Threads`
+    *   `Joseph's Market Bill for Fine Linen`
+    *   `Unbroken Tibiae Report`
+    *   `Final Words Scroll`
 
 #### People
 
 | Character | Action | Unlocks | Reveals Prophecy |
 |---|---|---|---|
 | Centurion Longinus | Talk | `Soldier's Gambling Dice`, `Centurion's Spear` | Psalm 34:20 |
-| Pashhur | Talk | `Torn Temple Veil Fragment` | |
+| Pashhur | Talk | `The Torn Temple Veil`, `Split Rocks` | Amos 8:9 |
 | Joseph of Arimathea | Talk | `Fine Linen Burial Cloth` |
+
+
+
+
+
+##### Character Unlock Table
+
+| Character | ID | Type | Unlock Method | Unlockable |
+|---|---|---|---|---|
+| Centurion Longinus | `centurion_longinus` | NPC + Suspect | Talk to Centurion Longinus; Collect `split_dice`, `pierced_spear`; Lab: **Motive Questioned** (Was a participant, not an instigator) | ✅ Yes |
+| Pashhur | `temple_priest_pashhur` | NPC + Suspect | Talk to Pashhur; Collect `torn_temple_veil`, `split_rocks`; Lab: **Identified as Witness** (Witnessed the divine event in the Temple) | ✅ Yes |
+| Joseph of Arimathea | `joseph_arimathea` | NPC + Suspect | Talk to Joseph of Arimathea; Collect `linen_shroud_receipt`; Lab: **Motive Clarified** (Acted out of respect, not conspiracy) | ✅ Yes |
+| Upper Room Prep | `upper_room_prep` | NPC only | Walk up in Scene tab | ✅ Yes (as NPC) |
+| Secret Visitor | `secret_visit` | NPC only | Walk up in Scene tab | ✅ Yes (as NPC) |
+| Peter (Denial) | `peter_denial` | NPC only | Walk up in Scene tab | ✅ Yes (as NPC) |
+| Peter (Simple Defense) | `peter_defense_simple` | NPC only | Walk up in Scene tab | ✅ Yes (as NPC) |
+| Simon of Cyrene | `simon_cyrene` | NPC only | Walk up in Scene tab | ✅ Yes (as NPC) |
+| Temple Curtain Witness | `temple_curtain` | NPC only | Walk up in Scene tab | ✅ Yes (as NPC) |
+| Crucifixion Guard | `execution_guard` | NPC only | Walk up in Scene tab | ✅ Yes (as NPC) |
+| No One | `none` | Suspect only | Auto-unlocked | ✅ Yes |
 
 #### Lab
 
 | Evidence Pair | Operation | Result | Prophecy Revealed | Points | Reputation | Doubt |
 |---|---|---|---|---|---|---|
 | `Soldier's Gambling Dice` + `Centurion's Spear` | Link | **Motive Questioned** for Centurion Longinus | Psalm 22:16–18 | +15 | — | — |
-| `Torn Temple Veil Fragment` + `Soldier's Gambling Dice` | Compare | **Identified as Witness** for Pashhur | Amos 8:9 | +15 | — | — |
+| `The Torn Temple Veil` + `Soldiers' Gambling Dice` | Compare | **Identified as Witness** for Pashhur | Jeremiah 31:31-34 | +15 | — | — |
 | `Fine Linen Burial Cloth` + `Centurion's Spear` | Link | **Motive Clarified** for Joseph of Arimathea | Isaiah 53:9 | +15 | — | — |
 
 #### Codex
 | Evidence + Prophecy = Unlock | Source of Information |
 |---|---|
 | `Soldier's Gambling Dice` → Psalm 22:16–18 | Lab: `Soldier's Gambling Dice` + `Centurion's Spear` |
-| `Torn Temple Veil Fragment` → Amos 8:9 | Lab: `Torn Temple Veil Fragment` + `Soldier's Gambling Dice` |
+| `The Torn Temple Veil` → Jeremiah 31:31-34 | Lab: `The Torn Temple Veil` + `Soldiers' Gambling Dice` |
+| `Split Rocks` → Haggai 2:6-7 | Dialogue: Pashhur |
 | `Fine Linen Burial Cloth` → Isaiah 53:9 | Lab: `Fine Linen Burial Cloth` + `Centurion's Spear` |
 | `Centurion's Spear` → Psalm 34:20 | Dialogue: Centurion Longinus |
 | `Centurion's Spear` → Zechariah 12:10 | Lab: `Centurion's Spear` (pierced side) |
+| `Shattered Limestone Fragment` → Isaiah 26:19 | Dialogue: Pashhur |
 | `Centurion's Spear` → Psalm 31:5 | Not explicitly linked in Lab/People tables |
  
 ---
@@ -624,38 +766,58 @@ Reputation is a faction-based trust meter that tracks how each major group in Je
 *   **Prophecies:** Psalm 16:10, Hosea 6:2, Jonah 1:17 / Matthew 12:40, Isaiah 53:10–11, Psalm 22:1–31, Isaiah 26:19
 
 *   **Evidence:**
-    *   `Folded Grave Clothes`
-    *   `Roman Seal Fragment`
-    *   `Empty Spice Jars`
+    *   `The Displaced Sealing Stone`
+    *   `The Empty Burial Chamber`
+    *   `Folded Burial Linens`
+    *   `The Angelic Proclamation`
+    *   `The Soldiers' Broken Report`
+    *   `Unused Burial Spices`
+    *   `Mary Magdalene's Testimony`
+    *   `Resurrection Psalm Scroll`
+    *   `Sign of Jonah`
 
 #### People
 
 | Character | Action | Unlocks | Reveals Prophecy |
 |---|---|---|---|
-| Mary Magdalene | Talk | `Folded Grave Clothes` | Psalm 16:10 |
-| Marcus | Talk | `Roman Seal Fragment`, `Displaced Tomb Stone` | Hosea 6:2 |
-| Joseph of Arimathea | Talk | `Empty Spice Jars` | Isaiah 53:10–11 |
+| Mary Magdalene | Talk | `rolled_stone`, `empty_tomb`, `burial_linen`, `angelic_witness`, `mary_encounter` | Psalm 16:10 |
+| Marcus | Talk | `guard_report`, `rolled_stone` | Hosea 6:2 |
+| Joseph of Arimathea | Talk | `spice_jars`, `empty_tomb` | Isaiah 53:10–11 |
+
+
+
+
+
+##### Character Unlock Table
+
+| Character | ID | Type | Unlock Method | Unlockable |
+|---|---|---|---|---|
+| Mary Magdalene | `mary_magdalene` | NPC + Suspect | Talk to Mary Magdalene; Collect `mary_encounter`, `angelic_witness`, `empty_tomb`, `burial_linen`; Lab: **Identified as Witness** (Discovered the empty tomb) | ✅ Yes |
+| Marcus | `marcus` | NPC + Suspect | Talk to Marcus; Collect `guard_report`, `rolled_stone`; Lab: **Implicated in Failure** (The seal he guarded was broken) | ✅ Yes |
+| Joseph of Arimathea | `joseph` | NPC + Suspect | Talk to Joseph of Arimathea; Collect `spice_jars`; Lab: **Cleared** (His intention was to anoint a body, not hide one) | ✅ Yes |
+| No One | `none` | Suspect only | Collect `empty_tomb`, `guard_report` | ✅ Yes |
 
 #### Lab
 
 | Evidence Pair | Operation | Result | Prophecy Revealed | Points | Reputation | Doubt |
 |---|---|---|---|---|---|---|
-| `Folded Grave Clothes` + `Empty Spice Jars` | Link | **Identified as Witness** for Mary Magdalene | Psalm 16:10 | +15 | — | — |
-| `Roman Seal Fragment` + `Folded Grave Clothes` | Compare | **Implicated in Failure** for Marcus | Hosea 6:2 & Jonah 1:17 | +15 | — | — |
-| `Empty Spice Jars` + `Roman Seal Fragment` | Link | **Cleared** Joseph of Arimathea | Isaiah 53:10–11 | +15 | — | — |
-| `Displaced Tomb Stone` + `Roman Guard Report` | Compare | **Supernatural Event Confirmed** | Psalm 16:10 | +15 | — | — |
-| `Empty Burial Chamber` + `Folded Grave Clothes` | Compare | **Theft Ruled Out** | Psalm 16:10 | +15 | — | — |
-| `Angelic Proclamation` + `Mary Magdalene's Testimony` | Compare | **Witness Convergence** | Isaiah 53:10–11 | +15 | — | — |
-| `Mary Magdalene's Testimony` + `Roman Guard Report` | Contradict | **Independent Accounts** | Jonah 1:17 / Matthew 12:40 | +15 | — | — |
+| `burial_linen` + `rolled_stone` | Compare | **Identified as Witness** for Mary Magdalene | Psalm 16:10 | +15 | — | — |
+| `rolled_stone` + `guard_report` | Compare | **Implicated in Failure** for Marcus | Hosea 6:2 & Jonah 1:17 | +15 | — | — |
+| `spice_jars` + `burial_linen` | Timeline | **Cleared** Joseph of Arimathea | Isaiah 53:10–11 | +15 | — | — |
+| `rolled_stone` + `guard_report` | Link | **Supernatural Event Confirmed** | Psalm 16:10 | +15 | — | — |
+| `empty_tomb` + `burial_linen` | Compare | **Theft Ruled Out** | Psalm 16:10 | +15 | — | — |
+| `angelic_witness` + `mary_encounter` | Compare | **Witness Convergence** | Isaiah 53:10–11 | +15 | — | — |
+| `mary_encounter` + `guard_report` | Contradict | **Independent Accounts** | Jonah 1:17 / Matthew 12:40 | +15 | — | — |
 
 #### Codex
 | Evidence + Prophecy = Unlock | Source of Information |
 |---|---|
-| `Folded Grave Clothes` → Psalm 16:10 | Lab: `Folded Grave Clothes` + `Empty Spice Jars` |
-| `Roman Seal Fragment` → Hosea 6:2 & Jonah 1:17 | Lab: `Roman Seal Fragment` + `Folded Grave Clothes` |
-| `Empty Spice Jars` → Isaiah 53:10–11 | Lab: `Empty Spice Jars` + `Roman Seal Fragment` |
-| `The Empty Burial Chamber` → Psalm 22:1–31 | Codex: `The Empty Burial Chamber` (cry of abandonment opens, resurrection closes the psalm) |
-| `The Displaced Sealing Stone` → Isaiah 26:19 | Lab: `The Displaced Sealing Stone` (the dead rise and shout for joy) |
+| `burial_linen` → Psalm 16:10 | Lab: `burial_linen` + `rolled_stone` |
+| `rolled_stone` → Hosea 6:2 & Jonah 1:17 | Lab: `rolled_stone` + `guard_report` |
+| `spice_jars` → Isaiah 53:10–11 | Lab: `spice_jars` + `burial_linen` |
+| `empty_tomb` → Psalm 22:1–31 | Codex: `empty_tomb` (cry of abandonment opens, resurrection closes the psalm) |
+| `rolled_stone` → Psalm 16:10 | Lab: `rolled_stone` (the dead rise and shout for joy) |
+| `opened_tombs` → Ezekiel 37:12-13 | Lab: `opened_tombs` + `guard_report` |
  
 ### Case: `roman_inquiry` (The Guard's Report)
 *   **Title:** The Guard's Report
@@ -671,28 +833,47 @@ Reputation is a faction-based trust meter that tracks how each major group in Je
 
 *   **Evidence:**
     *   `High-Grade Sanctuary Coins`
+    *   `Snapped Clay Roman Seal`
+    *   `Shattered Pilum Shaft`
     *   `Official Sanhedrin Report`
 
 #### People
 
 | Character | Action | Unlocks | Reveals Prophecy |
 |---|---|---|---|
-| Lucas | Talk | `High-Grade Sanctuary Coins` | Psalm 2:1–2 |
-| Caiaphas | Talk | `Official Sanhedrin Report`, `Priests' Alibi Scroll` | Psalm 2:1–2 |
+| Lucas | Talk | `bribe_shekels`, `broken_imperial_seal`, `shattered_spear` | Psalm 2:1–2 |
+| Caiaphas | Talk | `sanhedrin_report` | Psalm 2:1–2 |
 | Pilate's Secretary | Talk | — | Psalm 2:1–2 |
+
+
+
+
+
+##### Character Unlock Table
+
+| Character | ID | Type | Unlock Method | Unlockable |
+|---|---|---|---|---|
+| Lucas of the Tenth Legion | `sentry_lucas` | NPC + Suspect | Talk to Lucas of the Tenth Legion; Lab: **Implicated in Bribery** (Possession of the coins links him to the cover-up) | ✅ Yes |
+| Caiaphas | `chief_priest_caiaphas` | NPC only | Walk up in Scene tab | ✅ Yes (as NPC) |
+| Pilate’s Secretary | `pilates_secretary` | NPC only | Walk up in Scene tab | ✅ Yes (as NPC) |
+| Mary (Resurrection) | `mary_resurrection` | NPC only | Walk up in Scene tab | ✅ Yes (as NPC) |
+| Judas (Betrayal) | `judas_betrayal` | NPC only | Walk up in Scene tab | ✅ Yes (as NPC) |
+| Herod's Servant | `herods_servant` | NPC only | Walk up in Scene tab | ✅ Yes (as NPC) |
+| Peter (Restored) | `peter_restored` | NPC only | Walk up in Scene tab | ✅ Yes (as NPC) |
+| No One | `none` | Suspect only | Auto-unlocked | ✅ Yes |
 
 #### Lab
 
 | Evidence Pair | Operation | Result | Prophecy Revealed | Points | Reputation | Doubt |
 |---|---|---|---|---|---|---|
-| `High-Grade Sanctuary Coins` + `Official Sanhedrin Report` | Link | **Implicated in Bribery** for Lucas | Psalm 2:1–2 | +15 | — | — |
-| `Official Sanhedrin Report` + `High-Grade Sanctuary Coins` | Link | **Implicated in Conspiracy** for Caiaphas | Psalm 2:1–2 | +15 | — | — |
-| `Broken Imperial Seal` + `Shattered Spear Shaft` | Link | **Physical Damage Confirmed** | Psalm 2:1–2 | +15 | — | — |
+| `bribe_shekels` + `sanhedrin_report` | Link | **Implicated in Bribery** for Lucas | Psalm 2:1–2 | +15 | — | — |
+| `sanhedrin_report` + `bribe_shekels` | Link | **Implicated in Conspiracy** for Caiaphas | Psalm 2:1–2 | +15 | — | — |
+| `broken_imperial_seal` + `shattered_spear` | Link | **Physical Damage Confirmed** | Psalm 2:1–2 | +15 | — | — |
 
 #### Codex
 | Evidence + Prophecy = Unlock | Source of Information |
 |---|---|
-| `High-Grade Sanctuary Coins` → Psalm 2:1–2 | Lab: `High-Grade Sanctuary Coins` + `Official Sanhedrin Report` |
+| `bribe_shekels` → Psalm 2:1–2 | Lab: `bribe_shekels` + `sanhedrin_report` |
  
 ### Case: `peter_restoration` (Peter's Restoration)
 *   **Title:** Peter's Restoration
@@ -705,35 +886,55 @@ Reputation is a faction-based trust meter that tracks how each major group in Je
     *   Peter ([`../characters/peter.json`](../characters/peter.json))
     *   No One ()
 *   **Culprit:** **No One**. The event was an act of divine grace and restoration.
-*   **Prophecies:** Zechariah 13:7 & Ezekiel 34:11-16
+*   **Prophecies:** Zechariah 13:7, Ezekiel 34:11-16
 
 *   **Evidence:**
-    *   `Charcoal Fire Remnants`
-    *   `Wound-Touching Testimony`
+    *   `The Charcoal Fire`
+    *   `The Miraculous Catch`
+    *   `Bread and Fish Breakfast`
+    *   `The Threefold Commission`
+    *   `Risen Appearance`
 
 #### People
 
 | Character | Action | Unlocks | Reveals Prophecy |
 |---|---|---|---|
-| Peter | Talk | `Charcoal Fire Remnants` | Zechariah 13:7 |
-| Thomas | Talk | `Wound-Touching Testimony`, `Charcoal Fire Remnants` | Zechariah 13:7 |
-| Mary Magdalene | Talk | `Wound-Touching Testimony` | Ezekiel 34:11-16 |
+| Peter | Talk | `charcoal_fire`, `threefold_commission` | Zechariah 13:7 |
+| Thomas | Talk | `miraculous_catch`, `threefold_commission` | Zechariah 13:7 |
+| Mary Magdalene | Talk | `miraculous_catch` | Ezekiel 34:11-16 |
 | Nathanael | Talk | — | Ezekiel 34:11-16 |
+
+
+
+
+
+##### Character Unlock Table
+
+| Character | ID | Type | Unlock Method | Unlockable |
+|---|---|---|---|---|
+| Peter | `peter` | NPC + Suspect | Talk to Peter; Collect `charcoal_fire`, `threefold_commission`; Lab: **Motive Clarified** (Links his restoration to his earlier denial) | ✅ Yes |
+| Thomas | `thomas` | NPC only | Walk up in Scene tab | ✅ Yes (as NPC) |
+| Mary Magdalene | `mary_magdalene` | NPC only | Walk up in Scene tab | ✅ Yes (as NPC) |
+| Nathanael | `nathanael` | NPC only | Walk up in Scene tab | ✅ Yes (as NPC) |
+| No One | `none` | Suspect only | Collect `threefold_commission` | ✅ Yes |
 
 #### Lab
 
 | Evidence Pair | Operation | Result | Prophecy Revealed | Points | Reputation | Doubt |
 |---|---|---|---|---|---|---|
-| `Charcoal Fire Remnants` + `Wound-Touching Testimony` | Compare | **Motive Clarified** for Peter | Zechariah 13:7 & Ezekiel 34:11-16 | +15 | — | — |
-| `Wound-Touching Testimony` + `Charcoal Fire Remnants` | Link | **Identified as Witness** for Thomas | Zechariah 13:7 & Ezekiel 34:11-16 | +15 | — | — |
-| `Miraculous Catch` + `Threefold Commission` | Timeline | **Restoration Pattern** | Ezekiel 34:11-16 | +15 | — | — |
-| `Risen Appearance` + `Bread Breakfast` | Compare | **Physical Resurrection Confirmed** | Ezekiel 34:11-16 | +15 | — | — |
+| `charcoal_fire` + `threefold_commission` | Compare | **Motive Clarified** for Peter | Zechariah 13:7 | +15 | — | — |
+| `miraculous_catch` + `threefold_commission` | Timeline | **Restoration Pattern** | Ezekiel 34:11-16 | +15 | — | — |
+| `galilean_apparition` + `bread_breakfast` | Compare | **Physical Resurrection Confirmed** | Ezekiel 34:11-16 | +15 | — | — |
+| `galilean_apparition` + `miraculous_catch` | Compare | **Eyewitness Confirmation** | Isaiah 53:10-11 | +15 | — | — |
 
 #### Codex
 | Evidence + Prophecy = Unlock | Source of Information |
 |---|---|
-| `Charcoal Fire Remnants` → Zechariah 13:7 & Ezekiel 34:11-16 | Lab: `Charcoal Fire Remnants` + `Wound-Touching Testimony` |
-| `Wound-Touching Testimony` → Zechariah 13:7 & Ezekiel 34:11-16 | Dialogue: Mary Magdalene |
+| `charcoal_fire` → Zechariah 13:7 | Lab: `charcoal_fire` + `threefold_commission` |
+| `miraculous_catch` → Ezekiel 34:11-16 | Lab: `miraculous_catch` + `threefold_commission` |
+| `bread_breakfast` → Ezekiel 34:11-16 | Lab: `galilean_apparition` + `bread_breakfast` |
+| `galilean_apparition` → Isaiah 53:10-11 | Lab: `galilean_apparition` + `miraculous_catch` |
+| `threefold_commission` → Ezekiel 34:11-16 | Dialogue: Peter / Nathanael |
  
 <!-- AUTO-GENERATED: DIALOGUE-ID-INDEX START -->
 ## Canonical Runtime Dialogue ID Reference (Auto-Generated)

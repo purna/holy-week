@@ -115,7 +115,8 @@ export const act2CaseA = {
       bibleRef: "Matthew 21:23 — 'When he entered the temple, the chief priests and the elders of the people came up to him as he was teaching.'",
       propheticLink: "Malachi 3:1 predicted the Lord coming to His temple with authority. The irony of the challenge is that they were asking for credentials from the very One whose authority derived directly from God.",
       bibleRefs: [
-      { ref: "Matthew 21:23", link: "matthew_2123" }
+      { ref: "Matthew 21:23", link: "matthew_2123" },
+      { ref: "Malachi 3:1", link: "malachi_31" }
     ],
       propheticRefs: [
       { ref: "Malachi 3:1", link: "malachi_31" }
@@ -135,7 +136,8 @@ export const act2CaseA = {
       bibleRef: "Matthew 21:33–45 — the Parable of the Wicked Tenants",
       propheticLink: "Isaiah 5:1–7 is the Song of the Vineyard — God's lament over Israel's unfaithfulness. Jesus deliberately echoed it. The bystander sketching this recognised the connection immediately.",
       bibleRefs: [
-      { ref: "Matthew 21:33-45", link: "matthew_213345" }
+      { ref: "Matthew 21:33-45", link: "matthew_213345" },
+      { ref: "Isaiah 5:1-7", link: "isaiah_517" }
     ],
       propheticRefs: [
       { ref: "Isaiah 5:1-7", link: "isaiah_517" }
@@ -155,7 +157,8 @@ export const act2CaseA = {
       bibleRef: "Matthew 21:42 — 'Jesus said to them, Have you never read in the Scriptures: The stone the builders rejected has become the cornerstone?'",
       propheticLink: "Psalm 118:22–23 was a coronation Psalm, used at Temple dedications. Jesus quoted it at the very Temple whose builders were rejecting Him. The rejected stone lying in the construction debris became a powerful object lesson for anyone listening.",
       bibleRefs: [
-      { ref: "Matthew 21:42", link: "matthew_2142" }
+      { ref: "Matthew 21:42", link: "matthew_2142" },
+      { ref: "Psalm 118:22-23", link: "psalm_1182223" }
     ],
       propheticRefs: [
       { ref: "Psalm 118:22-23", link: "psalm_1182223" }
@@ -175,7 +178,8 @@ export const act2CaseA = {
       bibleRef: "Matthew 22:19–21 — 'Show me the coin used for paying the tax... Whose image is this? And whose inscription? Caesar's, he replied. Then he said to them, Give back to Caesar what is Caesar's, and to God what is God's.'",
       propheticLink: "The coin bore Caesar's image (imago). Jesus's answer pointed to something deeper: humanity bears God's image (Genesis 1:26–27, imago Dei). The coin question about taxation became a profound statement about identity and allegiance — Caesar's image on metal; God's image on people.",
       bibleRefs: [
-      { ref: "Matthew 22:19-21", link: "matthew_221921" }
+      { ref: "Matthew 22:19-21", link: "matthew_221921" },
+      { ref: "Genesis 1:26-27", link: "genesis_12627" }
     ],
       propheticRefs: [
       { ref: "Genesis 1:26-27", link: "genesis_12627" }
@@ -891,7 +895,7 @@ export const act2CaseC = {
       bibleRef: "Matthew 24:1–2",
       propheticLink: "The physical setting directly inspired the disciples' questions about the Temple's fate, linking Jesus's words to the tangible structure before them.",
       bibleRefs: [
-      { ref: "Matthew 24:1-2", link: "matthew_2412" }
+      { ref: "Matthew 24:1-2", link: "matthew_24_1_2" }
     ],
       propheticRefs: [],
       investigatorNote: "The disciples' awe of the Temple's stones and buildings contrasts sharply with Jesus's prediction of its utter demolition.",
@@ -928,7 +932,7 @@ export const act2CaseC = {
       bibleRef: "Matthew 25:1–13",
       propheticLink: "This parable underscores the theme of watchfulness, a recurring motif in eschatological prophecies, urging believers to be ready for the unexpected timing of the Lord's return.",
       bibleRefs: [
-      { ref: "Matthew 25:1-13", link: "matthew_25113" }
+      { ref: "Matthew 25:1-13", link: "matthew_25_1_13" }
     ],
       propheticRefs: [],
 
@@ -952,6 +956,24 @@ export const act2CaseC = {
       propheticRefs: [],
       investigatorNote: "The consistency between Jesus's words and ancient prophecies reinforces the divine origin of His message.",
     },
+    {
+      id: "darkened_sun_record",
+      name: "Darkened Sun Record",
+      type: "analytical",
+      relatedProphecy: "isaiah_13_10",
+      icon: "☀️",
+      location: "Mount of Olives",
+      desc: "A record of Jesus's prophecy that the sun will be darkened and the moon will not give its light, quoting from Old Testament prophets.",
+      bibleRef: "Matthew 24:29",
+      propheticLink: "Isaiah 13:10 foretells the darkening of the heavenly lights. Jesus quotes this same imagery when describing the signs preceding His return.",
+      bibleRefs: [
+        { ref: "Matthew 24:29", link: "matthew_24_29" }
+      ],
+      propheticRefs: [
+        { ref: "Isaiah 13:10", link: "isaiah_13_10" }
+      ],
+      investigatorNote: "This direct quotation links Jesus's teaching to ancient prophetic tradition, showing a continuity of divine revelation."
+    }
   
   ],
 

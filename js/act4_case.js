@@ -95,6 +95,17 @@ export const act4CaseA = {
       insight: "The stone was not moved to let Jesus out, but to let the world look in. This fulfilled the promise of the dead rising to bring joy to those dwelling in the dust.",
       explanation: "The stone was not moved to let Jesus out, but to let the world look in. This fulfilled the promise of the dead rising to bring joy to those dwelling in the dust.",
     },
+    {
+      reference: "Ezekiel 37:12–13",
+      id: "ezekiel_37_12_13",
+      icon: "🔮",
+      text: `"Therefore prophesy and say to them: ‘This is what the Sovereign LORD says: My people, I am going to open your graves and bring you up from them... Then you, my people, will know that I am the LORD, when I open your graves and bring you up from them."`,
+      written: "~570 BC",
+      fulfilledBy: "The tombs breaking open at the moment of Jesus's death, and the dead being seen in the city after His resurrection.",
+      gospelLink: "Matthew 27:52-53",
+      insight: "Ezekiel's vision of the valley of dry bones was a promise of national and spiritual resurrection for Israel. The literal opening of tombs at the crucifixion was a dramatic, physical sign that this prophecy was being fulfilled in Christ.",
+      explanation: "The earthquake at the crucifixion literally opened tombs, a direct and physical fulfillment of Ezekiel's prophecy that God would open the graves of His people.",
+    }
   ],
 
   intro: formatIntro(`It is early Sunday morning, Nisan 17. Three women — Mary Magdalene, Mary the mother of James, and Salome — have come to the garden tomb at first light to complete the anointing of Jesus's body. They were worried about who would roll the stone away. But when they arrive: the stone is already moved. The Roman guard post is abandoned. The tomb is open, and **empty**. Two strange figures in white are inside. And then — Mary Magdalene sees someone she mistakes for the gardener, until He speaks her name. You are the investigative scribe. What happened here? And can the evidence in this garden account for the _most important claim in history_?`),
@@ -113,19 +124,22 @@ export const act4CaseA = {
       id: "rolled_stone",
       name: "The Displaced Sealing Stone",
       type: "physical",
-      relatedProphecy: "isaiah_26_19",
+      relatedProphecy: "psalm_16_10",
       icon: "🗿",
       location: "Tomb Entrance, Garden of Joseph",
       desc: "A massive circular limestone stone — estimated at 1–2 tonnes — has been rolled away from the tomb entrance and sits to the side, not rolled down the slope but resting beside it. The sealing wax from the Roman official seal is broken.",
       bibleRef: "Matthew 28:2 — 'There was a violent earthquake, for an angel of the Lord came down from heaven and, going to the tomb, rolled back the stone and sat on it.'",
-      propheticLink: "Isaiah 26:19 — 'Your dead will live, LORD; their bodies will rise — let those who dwell in the dust wake up and shout for joy.' The removal of the stone was not to let Jesus out — a resurrected, glorified body passed through locked doors (John 20:19). The stone was rolled away so witnesses could look in.",
+      propheticLink: "Psalm 16:10 — 'You will not abandon me to the realm of the dead, nor will you let your Holy One see decay.' The angel rolled away the stone not to free Jesus, but to reveal that the Holy One had already risen. The empty tomb became the visible evidence that this ancient prophecy had been fulfilled.",
       bibleRefs: [
-      { ref: "Matthew 28:2", link: "matthew_282" }
-    ],
+        { ref: "Matthew 28:2", link: "matthew_28_2" }
+      ],
+
       propheticRefs: [
-      { ref: "Isaiah 26:19", link: "isaiah_2619" },
-      { ref: "John 20:19", link: "john_2019" }
-    ],
+        { ref: "Psalm 16:10", link: "psalm_16_10" },
+        { ref: "Acts 2:25–32", link: "acts_2_25_32" },
+        { ref: "Acts 13:35–37", link: "acts_13_35_37" },
+        { ref: "John 20:19", link: "john_20_19" }
+      ],
       investigatorNote: "A 2-tonne stone moved uphill, not downhill. No marks suggesting ropes or levers. The Roman guard seal is broken from outside the tomb.",
     },
     {
@@ -140,11 +154,11 @@ export const act4CaseA = {
       bibleRef: "Luke 24:3 — 'When they entered, they did not find the body of the Lord Jesus.'",
       propheticLink: "Psalm 16:10 — 'You will not let your holy one see corruption.' The empty tomb is the physical evidence that the Psalm's promise was kept. A body left long enough shows decomposition; no such evidence exists. Psalm 22:1–31 opens with the cry of abandonment Jesus spoke from the cross ('My God, my God, why have you forsaken me?') and closes in resurrection proclamation — the same psalm that describes His hands and feet pierced and His garments divided by lot.",
       bibleRefs: [
-      { ref: "Luke 24:3", link: "luke_243" }
+      { ref: "Luke 24:3", link: "luke_24_3" }
     ],
       propheticRefs: [
-      { ref: "Psalm 16:10", link: "psalm_1610" },
-      { ref: "Psalm 22:1-31", link: "psalm_22131" }
+      { ref: "Psalm 16:10", link: "psalm_16_10" },
+      { ref: "Psalm 22:1-31", link: "psalm_22_1_31" }
     ],
       investigatorNote: "No disturbance to the grave goods. No signs of a struggle. No evidence of the organised haste a grave robbery would require. The space is orderly.",
     },
@@ -175,10 +189,10 @@ export const act4CaseA = {
       bibleRef: "Matthew 28:2–7; Mark 16:5–7; Luke 24:4–7; John 20:12–13",
       propheticLink: "Psalm 103:20 describes angels as those who 'do his bidding.' The angelic announcement at the tomb echoes the angelic announcements at the nativity — both bookend Jesus's earthly life with heavenly proclamation. The consistency of the message across all four Gospel accounts, with slight variations in detail (one angel or two?), reflects the characteristics of independent eyewitness testimony.",
       bibleRefs: [
-      { ref: "Matthew 28:2-7", link: "matthew_2827" },
-      { ref: "Mark 16:5-7", link: "mark_1657" },
-      { ref: "Luke 24:4-7", link: "luke_2447" },
-      { ref: "John 20:12-13", link: "john_201213" }
+      { ref: "Matthew 28:2-7", link: "matthew_28_2_7" },
+      { ref: "Mark 16:5-7", link: "mark_16_5_7" },
+      { ref: "Luke 24:4-7", link: "luke_24_4_7" },
+      { ref: "John 20:12-13", link: "john_20_12_13" }
     ],
       propheticRefs: [
       { ref: "Psalm 103:20", link: "psalm_10320" }
@@ -197,13 +211,13 @@ export const act4CaseA = {
       bibleRef: "Matthew 28:2–4 — 'The guards shook for fear of him and became like dead men.' Matthew 28:11–15 — the chief priests bribed the guards to say the disciples had stolen the body.",
       propheticLink: "The bribe to the guards fulfils the pattern of institutional deception against God's purposes — similar to how the chief priests had bribed Judas (Matthew 26:14–16). The very people who guarded against resurrection were the first non-disciple witnesses of the supernatural event. Jonah 1:17 / Matthew 12:40 — Jesus named His own third-day resurrection the 'sign of Jonah,' the three days in the tomb mirroring Jonah's three days in the great fish.",
       bibleRefs: [
-      { ref: "Matthew 28:2-4", link: "matthew_2824" },
-      { ref: "Matthew 28:11-15", link: "matthew_281115" }
+      { ref: "Matthew 28:2-4", link: "matthew_28_2_4" },
+      { ref: "Matthew 28:11-15", link: "matthew_28_11_15" }
     ],
       propheticRefs: [
-      { ref: "Matthew 26:14-16", link: "matthew_261416" },
-      { ref: "Jonah 1:17", link: "jonah_117" },
-      { ref: "Matthew 12:40", link: "matthew_1240" }
+      { ref: "Matthew 26:14-16", link: "matthew_26_14_16" },
+      { ref: "Jonah 1:17", link: "jonah_1_17" },
+      { ref: "Matthew 12:40", link: "matthew_12_40" }
     ],
       investigatorNote: "Soldiers asleep on duty faced execution under Roman military law. If they were asleep, they couldn't know what happened. If they were awake, they witnessed something they couldn't explain. The bribery is itself evidence that the authorities knew the disciples hadn't stolen the body.",
     },
@@ -221,9 +235,11 @@ export const act4CaseA = {
       { ref: "Mark 16:1", link: "mark_161" }
     ],
       propheticRefs: [
-      { ref: "John 19:39-40", link: "john_193940" },
-      { ref: "Isaiah 53:9", link: "isaiah_539" }
-    ],
+        { ref: "Psalm 16:10", link: "psalm_16_10" },
+        { ref: "John 19:39-40", link: "john_19_39_40" },
+        { ref: "Isaiah 53:9", link: "isaiah_53_9" },
+        { ref: "Acts 2:25-32", link: "acts_2_25_32" }
+      ],
       investigatorNote: "Women who had watched the crucifixion and burial now find the tomb empty. Their grief was real. Their testimony carries the weight of witnesses who had no reason to fabricate — and everything to lose by making the claim.",
     },
     {
@@ -237,15 +253,52 @@ export const act4CaseA = {
       bibleRef: "John 20:11–18 — the most detailed and intimate resurrection appearance account in Scripture. Isaiah 43:1 — 'I have called you by name; you are mine.'",
       propheticLink: "Isaiah 53:10–11 promised the Suffering Servant would 'see his offspring and prolong his days' after being crushed — a resurrection paradox. The risen Christ's first act was to call Mary by name (echoing Isaiah 43:1), sending her as the primary witness. In a Roman court a woman's testimony was inadmissible; making a former demoniac the lead witness is exactly the kind of counter-cultural detail that confirms authenticity rather than fabrication.",
       bibleRefs: [
-      { ref: "John 20:11-18", link: "john_201118" },
-      { ref: "Isaiah 43:1", link: "isaiah_431" }
+      { ref: "John 20:11-18", link: "john_20_11_18" },
+      { ref: "Isaiah 43:1", link: "isaiah_43_1" }
     ],
       propheticRefs: [
-      { ref: "Isaiah 53:10-11", link: "isaiah_531011" },
-      { ref: "Isaiah 43:1", link: "isaiah_431" }
+      { ref: "Isaiah 53:10-11", link: "isaiah_53_10_11" },
+      { ref: "Isaiah 43:1", link: "isaiah_43_1" }
     ],
       investigatorNote: "The fact that Mary Magdalene is the primary resurrection witness is powerful evidence of authenticity. No first-century Jewish or Roman author inventing a resurrection story would choose a woman as the lead witness. This detail is counterproductive to fabrication — which is exactly why it's credible.",
     },
+    {
+      id: "opened_tombs",
+      name: "Opened Tombs Testimony",
+      type: "testimonial",
+      relatedProphecy: "ezekiel_37_12_13",
+      icon: "🪦",
+      location: "Jerusalem City Streets",
+      desc: "Multiple reports from Jerusalem residents of seeing 'holy people who had died' walking in the city after Jesus's resurrection. This followed the earthquake at the crucifixion that broke open their tombs.",
+      bibleRef: "Matthew 27:52-53",
+      propheticLink: "Ezekiel 37 prophesied that God would open the graves of His people as a sign of His power to restore. The raising of these saints was a literal fulfillment and a powerful preview of the final resurrection.",
+      bibleRefs: [
+        { ref: "Matthew 27:52-53", link: "matthew_27_52_53" }
+      ],
+      propheticRefs: [
+        { ref: "Ezekiel 37:12-13", link: "ezekiel_37_12_13" }
+      ],
+      investigatorNote: "This is one of the most mysterious and powerful signs. It confirms the resurrection was not an isolated event, but the start of a new creation, breaking the power of death itself.",
+    }
+    ,
+    {
+      id: "psalm22_scroll",
+      name: "Resurrection Psalm Scroll",
+      type: "analytical",
+      relatedProphecy: "psalm_22_1_31",
+      icon: "📜",
+      location: "Emmaus Road",
+      desc: "A scroll of Psalm 22, which begins with the cry of dereliction from the cross but ends in a proclamation of victory and vindication.",
+      bibleRef: "Luke 24:26–27",
+      propheticLink: "The Psalm that begins with suffering ends in worldwide proclamation and vindication, pointing beyond the cross to resurrection. Jesus explained these scriptures to the disciples on the road to Emmaus.",
+      bibleRefs: [
+        { ref: "Luke 24:26-27", link: "luke_24_26_27" }
+      ],
+      propheticRefs: [
+        { ref: "Psalm 22:1-31", link: "psalm_22_1_31" }
+      ],
+      investigatorNote: "The structure of the Psalm itself is a prophecy: suffering followed by glory."
+    }
   
   ],
 
@@ -413,6 +466,15 @@ contradictions: {},
         bibleRef: "Matthew 28:2–4; John 20:14–17",
       },
     },
+    "opened_tombs+guard_report": {
+      compare: {
+        text: "The guards' report of a supernatural event at the tomb and the citizens' reports of the dead walking in the city are two independent lines of evidence for a reality-altering event.",
+        insight: "The resurrection was not a quiet, private affair. It had public, cosmic consequences that were witnessed by both Roman soldiers and Jerusalem residents, fulfilling Ezekiel's prophecy of opened graves.",
+        isKey: true,
+        revealsProphecy: "ezekiel_37_12_13",
+        bibleRef: "Matthew 27:52-53; Matthew 28:4",
+      },
+    },
   },
 
   truth: {
@@ -478,10 +540,12 @@ export const act4CaseB = {
       snippet: "A heavy canvas pouch filled with pristine Temple shekels.",
       description: "A large sum of silver coins found hidden inside a Roman legionary's standard gear locker inside the fortress. Roman soldiers were paid in imperial denarii, making this Jewish religious currency completely irregular.",
       propheticLink: "Matthew 28:12 records that the chief priests met with the elders and devised a plan, giving the soldiers a 'large sum of money.'",
+      bibleRefs: [
+        { ref: "Matthew 28:12", link: "matthew_2812" }
+      ],
       propheticRefs: [
-      { ref: "Matthew 28:12", link: "matthew_2812" }
-    ],
-    
+        { ref: "Matthew 28:12", link: "matthew_2812" }
+      ],
       investigatorNote: "The high transaction value indicates this wasn't common marketplace spending money. This is institutional hush money directly from the treasury.",
     },
     {
@@ -494,9 +558,12 @@ export const act4CaseB = {
       snippet: "Hardened clay fragments showing the stamp of the Roman Governor.",
       description: "Pieces of the structural sealing clay that tied the chord across the tomb door, cleanly fractured and thrown into the dirt.",
       propheticLink: "Matthew 27:66 notes they went and made the tomb secure by 'putting a seal on the stone and posting the guard.'",
+      bibleRefs: [
+        { ref: "Matthew 27:66", link: "matthew_2766" }
+      ],
       propheticRefs: [
-      { ref: "Matthew 27:66", link: "matthew_2766" }
-    ],
+        { ref: "Matthew 27:66", link: "matthew_2766" }
+      ],
       investigatorNote: "To break this seal without authorization was a high treasonous offense against Caesar himself. No thief would carefully snap the clay and leave it behind; it bears signs of a violent, percussive structural displacement.",
     },
     {
@@ -509,9 +576,12 @@ export const act4CaseB = {
       snippet: "An ash-wood Roman spear snapped cleanly down the middle.",
       description: "A heavy legionary spear fractured by clean kinetic force, left behind in the garden grass near the shifted rock.",
       propheticLink: "Matthew 28:2 states there was a violent earthquake, for an angel of the Lord came down from heaven and rolled back the stone.",
+      bibleRefs: [
+        { ref: "Matthew 28:2", link: "matthew_282" }
+      ],
       propheticRefs: [
-      { ref: "Matthew 28:2", link: "matthew_282" }
-    ],
+        { ref: "Matthew 28:2", link: "matthew_282" }
+      ],
       investigatorNote: "This spear wasn't cut by a sword in combat; the wood fibers show high-impact compression failure, consistent with an external physical shockwave that knocked the sentries flat.",
     },
     {
@@ -806,6 +876,28 @@ export const act4CaseC = {
       insight: "The imagery of shepherding is central—Jesus seeks Peter, binds his wounds, and commissions him to shepherd others.",
       explanation: "Peter's denial was a fulfillment of the 'scattered sheep' prophecy. His restoration by the Sea of Galilee, where Jesus commissions him to 'feed my sheep,' is the fulfillment of the Good Shepherd gathering His flock.",
     },
+    {
+      reference: "Psalm 16:10",
+      id: "psalm_16_10",
+      icon: "🔮",
+      text: `"For you will not abandon my soul to Sheol, or let your holy one see corruption."`,
+      written: "~1000 BC",
+      fulfilledBy: "Jesus rising before His body could decay, leaving only the burial linens",
+      gospelLink: "Acts 2:27–31 — Peter quotes Psalm 16:10 at Pentecost and explicitly applies it to Jesus's resurrection",
+      insight: "David wrote Psalm 16 in first person, but Acts 2:29–31 records Peter explaining that David was a prophet who 'seeing what was ahead, spoke about the resurrection of the Messiah, that he was not abandoned to the realm of the dead, nor did his body see decay.' The empty tomb is the physical evidence of this 1,000-year-old promise kept.",
+      explanation: "The resurrection on the third day, before the body could begin to decay, is the ultimate fulfillment of this promise. The empty tomb is its physical proof.",
+    },
+    {
+      reference: "Isaiah 53:10–11",
+      id: "isaiah_53_10_11",
+      icon: "🔮",
+      text: `"Yet it was the will of the LORD to crush him; he has put him to grief; when his soul makes an offering for guilt, he shall see his offspring and prolong his days... After his anguish he shall see light and be satisfied."`,
+      written: "~700 BC",
+      fulfilledBy: "Jesus's resurrection — 'prolonging his days' after the sacrifice; 'seeing light' after death",
+      gospelLink: "John 20:11–18; Luke 24:13–35 — Jesus appears alive after the suffering",
+      insight: "The Suffering Servant song of Isaiah 53 contains a remarkable internal paradox: the servant is 'cut off from the land of the living' (v.8), assigned a grave (v.9), and yet he 'shall see his offspring and prolong his days' (v.10). The only way to reconcile these statements is resurrection. Jesus's post-resurrection appearances fulfilled Isaiah's paradox.",
+      explanation: "This paradox within Isaiah's prophecy—a figure who is killed yet lives on—can only be resolved through resurrection.",
+    },
   ],
 
   intro: formatIntro(`It is the third morning after the resurrection. Seven disciples—including Peter, Thomas, and Nathanael—have returned to Galilee and spent the night fishing on the Sea. As dawn breaks, a figure on the shore calls out: **'Cast the net on the right side, and you will find something.'** Reluctantly, they obeyed—and the catch was so large they could not haul it in. When they came ashore, they found the resurrected Jesus waiting with bread and fish. But this was not just breakfast—it was a divine appointment to _restore a broken disciple_.`),
@@ -826,10 +918,15 @@ export const act4CaseC = {
       location: "Shoreline, Sea of Galilee",
       desc: "A small charcoal fire with coals still glowing, the only other charcoal fire mentioned in John's Gospel—the first was where Peter denied Jesus (John 18:18).",
       bibleRef: "John 21:9 — 'When they got out of the boat, they saw a fire of burning coals there with fish lying on it, and bread.'",
-      propheticLink: "The fire triggers Peter's memory of his denial, but now transforms that shame into restoration around the risen Christ.",
+      propheticLink: "Zechariah 13:7 foretold that when the Shepherd was struck, His sheep would be scattered. Jesus applied this prophecy to His disciples on the night of His arrest (Matthew 26:31). Around one charcoal fire Peter denied his Lord; around another, the risen Shepherd restored him. The same setting that witnessed failure became the place of forgiveness and renewed calling.",
       bibleRefs: [
       { ref: "John 21:9", link: "john_219" }
     ],
+      propheticRefs: [
+        { ref: "Zechariah 13:7", link: "zechariah_13_7" },
+        { ref: "Matthew 26:31", link: "matthew_26_31" },
+        { ref: "John 18:18", link: "john_18_18" }
+      ],
       investigatorNote: "Peter had warmed himself at a charcoal fire on the night of Jesus's arrest. When he recognized this fire, he knew exactly who stood before him.",
     },
     {
@@ -859,10 +956,15 @@ export const act4CaseC = {
       location: "Shoreline Meal",
       desc: "Loaves of bread and grilled fish prepared by the risen Jesus Himself—simple fare for a divine meal.",
       bibleRef: "John 21:9 — 'Jesus said, \"Bring some of the fish you have just caught... and come and have breakfast.\"'",
-      propheticLink: "The 'bread of life' (John 6) now eats bread with Peter—the broken bread that once condemned him now nourishes him.",
+      propheticLink: "Ezekiel 34:11–16 promised that the Lord Himself would seek, gather, and feed His scattered sheep. Psalm 23 declares that the Shepherd prepares a table for His people, while Isaiah 25:6–9 foretells the Messianic feast following God's victory over death. The risen Jesus fulfills these promises by preparing bread and fish for His disciples, demonstrating that the Good Shepherd still provides for His flock after conquering the grave.",
       bibleRefs: [
       { ref: "John 21:9", link: "john_219" }
     ],
+      propheticRefs: [
+        { ref: "Ezekiel 34:11-16", link: "ezekiel_34_11_16" },
+        { ref: "Psalm 23:1-5", link: "psalm_23_1_5" },
+        { ref: "Isaiah 25:6-9", link: "isaiah_25_6_9" }
+      ],
       investigatorNote: "Jesus ate with Peter again, as He had many times before. The intimacy of the meal signals complete restoration.",
     },
     {
@@ -879,22 +981,33 @@ export const act4CaseC = {
       bibleRefs: [
       { ref: "John 21:15-17", link: "john_211517" }
     ],
-      investigatorNote: "The Greek words for 'love' and 'shepherd' carry deep theological weight—Jesus asks if Peter loves him with agape love, while Peter responds with phileo love. The commission transcends Peter's failure.",
+    propheticRefs: [
+      { ref: "Ezekiel 34:11-16", link: "ezekiel_34_11_16" },
+      { ref: "Jeremiah 3:15", link: "jeremiah_3_15" },
+      { ref: "Isaiah 40:11", link: "isaiah_40_11" },
+      { ref: "Zechariah 13:7", link: "zechariah_13_7" }
+    ],
+    investigatorNote: "The Greek words for 'love' and 'shepherd' carry deep theological weight—Jesus asks if Peter loves him with agape love, while Peter responds with phileo love. The commission transcends Peter's failure.",
     },
     {
       id: "galilean_apparition",
       name: "Risen Appearance",
       type: "testimonial",
-      relatedProphecy: "",
+      relatedProphecy: "isaiah_53_10_11",
       icon: "👁️",
       location: "Shoreline Recognition",
       desc: "The disciples' recognition moment—how they knew this was Jesus. He had been dead, and now stood before them alive.",
       bibleRef: "John 21:12 — 'Jesus said to them, \"Come and have breakfast.\" None of the disciples dared ask him, \"Who are you?\" because they knew it was the Lord.'",
-      propheticLink: "Despite seeing Him die, the disciples knew—supernaturally—who stood before them. Faith recognized its Author.",
+      propheticLink: "Isaiah 53:10–11 foretold that after His suffering the Servant would live again and \"see his offspring.\" Psalm 16:10 declared that God's Holy One would not remain in the grave. The disciples' recognition of Jesus on the shore was not merely a moment of faith—it was eyewitness confirmation that the crucified Messiah was alive, fulfilling the Scriptures.",
       bibleRefs: [
       { ref: "John 21:12", link: "john_2112" }
     ],
-    propheticRefs: [],
+    propheticRefs: [
+      { ref: "Isaiah 53:10-11", link: "isaiah_53_10_11" },
+      { ref: "Psalm 16:10", link: "psalm_16_10" },
+      { ref: "Acts 2:25-32", link: "acts_2_25_32" },
+      { ref: "Acts 13:35-37", link: "acts_13_35_37" }
+    ],
       investigatorNote: "Their recognition was immediate. No debate, no rational explanation—just the certainty that comes from intimate relationship.",
     },
   
@@ -1072,6 +1185,15 @@ export const act4CaseC = {
         isKey: true,
         revealsProphecy: "ezekiel_34_11-16",
         bibleRef: "Luke 24:38-43; John 21:12",
+      },
+    },
+    "galilean_apparition+miraculous_catch": {
+      compare: {
+        text: "The disciples' recognition of the risen Jesus on the shore and the miraculous catch of fish are two separate but connected proofs of His identity.",
+        insight: "Isaiah 53:10-11 prophesied that the Servant would 'see his offspring' after his suffering. This appearance, confirmed by a miracle reminiscent of His initial calling of the disciples, is a direct fulfillment.",
+        isKey: true,
+        revealsProphecy: "isaiah_53_10_11",
+        bibleRef: "John 21:12; Isaiah 53:10-11",
       },
     },
   },
