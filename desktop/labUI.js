@@ -14,6 +14,16 @@ export class LabUI {
 
     return `
       <div class="lab-panel" role="region" aria-label="Investigation Lab">
+
+        <div class="lab-actions" role="group" aria-label="Analysis operations">
+          ${Object.values(OPERATIONS).map(op => `
+            <button class="lab-btn" data-op="${op.id}" aria-label="${op.label}: ${op.desc}" ${!this.de.canOperate() ? "aria-disabled='true'" : ""}>
+              <span class="lab-btn-icon" aria-hidden="true">${op.icon}</span>
+              <span class="lab-btn-label">${op.label}</span>
+            </button>`).join("")}
+        </div>
+
+
         <div class="lab-slots" aria-label="Selected evidence slots">
           <div class="lab-slot" id="slotA" aria-label="Evidence slot A: ${this.es.selectedA?.name || 'empty'}" role="status">
             ${this.es.selectedA
@@ -28,13 +38,6 @@ export class LabUI {
           </div>
         </div>
 
-        <div class="lab-actions" role="group" aria-label="Analysis operations">
-          ${Object.values(OPERATIONS).map(op => `
-            <button class="lab-btn" data-op="${op.id}" aria-label="${op.label}: ${op.desc}" ${!this.de.canOperate() ? "aria-disabled='true'" : ""}>
-              <span class="lab-btn-icon" aria-hidden="true">${op.icon}</span>
-              <span class="lab-btn-label">${op.label}</span>
-            </button>`).join("")}
-        </div>
 
         <div id="lab-result" class="lab-result" role="status" aria-live="polite">
           <span class="result-placeholder">Select two clues, then choose an operation.</span>

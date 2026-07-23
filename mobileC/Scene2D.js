@@ -1,4 +1,5 @@
 import { DIALOGUE_ID_MAP } from "../js/gameplay/dialogueMaps.js";
+import { actions } from "../js/config.js";
 
 const TILE_SIZE = 32;
 const MAP_SIZE = 64;
@@ -35,73 +36,6 @@ const TILE_LEGEND = {
     'B': 6
 };
 
-const mapTemplate = [
-    "################################################################",
-    "###.......................######..........................######",
-    "##.....=======.............####............=======.........#####",
-    "##....==.....==.............##............==.....==.........####",
-    "##...==.......==.........................==.......==.........###",
-    "#...==.........==.......................==.........==..........#",
-    "#...=...RRRR....=................-------=...RRRR....=..........#",
-    "#...=...RWWWR...=...............---------=...RWWWR...=..........#",
-    "#...=...RWWWR...=..............-----------=...RWWWR...=..........#",
-    "#...==..RRRR...==.............-------------==..RRRR...==..........#",
-    "##...==.......==.......#######~~~~~~~~~#####..==.......==..........##",
-    "###...==.....==......###RRRRRR~~~~~~~~~RRR###...==.....==..........###",
-    "####...=======......##RRRRRRRR~~~~~~~~~RRRRR##....=======..........####",
-    "#####..............##RRRRRRRRR~~~~~~~~~RRRRRRR##...................#####",
-    "######.............#RRRRRRRRRR~~~~~~~~~RRRRRRRR#...................######",
-    "######.............#RRRRRRRRR~~~~~~~~~~~RRRRRRR#...................######",
-    "######.............#RRRRRRRR~~~~~~~~~~~~~RRRRRR#...................######",
-    "######.............#RRRRRRR~~~~~~~~~~~~~~~RRRRR#...................######",
-    "######.............#RRRRRRR~~~~WWWWW~~~~~~RRRRR#...................######",
-    "######.............#RRRRRRR~~~WWWWWWW~~~~~RRRRR#...................######",
-    "######.............#RRRRRRR~~~WWWWWWW~~~~~RRRRR#...................######",
-    "######.............#RRRRRRR~~~~WWWWW~~~~~~RRRRR#...................######",
-    "######.............#RRRRRRR~~~~~~~~~~~~~~~RRRRR#...................######",
-    "######.............#RRRRRRRR~~~~~~~~~~~~~RRRRRR#...................######",
-    "######.............##RRRRRRRRR~~~~~~~~~RRRRRR##....................######",
-    "#####...............##RRRRRRRRRRRRRRRRRRRRR##......................#####",
-    "####.................###RRRRRRRRRRRRRRRRR###........................####",
-    "###....................#####.=====.#####...........................###",
-    "##..........................=.....=...............................##",
-    "#...........................=.....=................................#",
-    "#......======================.....======================...........#",
-    "#.....==....................=.....=....................==..........#",
-    "#....==.....................=.....=.....................==.........#",
-    "#...==......................=.....=......................==........#",
-    "#...=.......................=======.......................=........#",
-    "#...=.....................................................=........#",
-    "#...==...................................................==........#",
-    "#....==.....................=======.....................==.........#",
-    "#.....==....................=.....=....................==..........#",
-    "#......======================.....======================...........#",
-    "#...........................=.....=................................#",
-    "#...........................=.....=................................#",
-    "##..........................W.....W...............................##",
-    "###........................WW.....WW..............................###",
-    "####.....................####.....####.............................####",
-    "#####...................#####.....#####............................#####",
-    "######.................######.....######...........................######",
-    "#######...............#######.....###..BBBBBBBBBBB.......#######",
-    "########.............########.....##...B.........B......########",
-    "#########...........#########.....#....B.........B.....#########",
-    "##########.........##########..........B....R....B....##########",
-    "###########.......###########..........B...RWR...B...###########",
-    "############.....############..........B....R....B..############",
-    "#############...#############..........B.........B.#############",
-    "##############.##############..........BBBBBBBBBBB##############",
-    "#############################..................#################",
-    "############################....................################",
-    "###########################......................###############",
-    "##########################........................##############",
-    "#########################..........................#############",
-    "########################............................############",
-    "#######################..............................###########",
-    "######################................................##########",
-    "################################################################"
-];
-
 function getStitchNoise(px, py) {
     const value = Math.sin(px * 12.9898 + py * 78.233) * 43758.5453123;
     return value - Math.floor(value);
@@ -118,6 +52,7 @@ export class Scene2D {
         this.canvas = null;
         this.ctx = null;
         this.levelMap = [];
+        this.colliderMap = [];
         this.npcs = [];
         this.particles = [];
         this.MAX_PARTICLES = 40;
@@ -127,6 +62,7 @@ export class Scene2D {
         this._animFrame = null;
         this._lastMoveTime = 0;
         this._moveDelay = 120;
+        this.tileCache = [];
     }
 
     init(containerId) {
@@ -143,7 +79,14 @@ export class Scene2D {
                         <div class="btn" id="btn-left">◀</div>
                         <div class="btn" id="btn-right">▶</div>
                     </div>
-                    <div id="btn-action">💬</div>
+                    <div class="btn-ui">
+                        <div id="btn-actions">🙏</div>
+                        <div id="btn-inventory">🎒</div>
+                        <div id="btn-talk">💬</div>
+                    </div>
+                    <div id="actions-popup" class="actions-popup">
+                        <div id="actions-list"></div>
+                    </div>
                 </div>
             </div>
         `;
@@ -153,6 +96,7 @@ export class Scene2D {
         this.ctx.imageSmoothingEnabled = false;
 
         this._bindControls();
+        this._setupActionsPanel();
         this._initializeGame();
         this.running = true;
         this._gameLoop();
@@ -175,11 +119,21 @@ export class Scene2D {
         bindBtn('btn-left', 'KeyA');
         bindBtn('btn-right', 'KeyD');
 
-        const actionBtn = this.container.querySelector('#btn-action');
+        const actionBtn = this.container.querySelector('#btn-talk');
         if (actionBtn) {
             actionBtn.addEventListener('pointerdown', (e) => {
                 e.preventDefault();
                 this._handleTalk();
+            });
+        }
+
+        const inventoryBtn = this.container.querySelector('#btn-inventory');
+        if (inventoryBtn) {
+            inventoryBtn.addEventListener('pointerdown', (e) => {
+                e.preventDefault();
+                if (this.ui && typeof this.ui.openInventory === 'function') {
+                    this.ui.openInventory();
+                }
             });
         }
 
@@ -196,14 +150,99 @@ export class Scene2D {
         });
     }
 
+    _setupActionsPanel() {
+        const btnActions = this.container.querySelector('#btn-actions');
+        const actionsPopup = this.container.querySelector('#actions-popup');
+        if (btnActions) {
+            btnActions.addEventListener('pointerdown', (e) => {
+                e.preventDefault();
+                if (!actionsPopup) return;
+
+                if (actionsPopup.classList.contains('open')) {
+                    actionsPopup.classList.remove('open');
+                    return;
+                }
+
+                const parent = btnActions.closest('.btn-ui');
+                const containerRect = this.container.getBoundingClientRect();
+                if (parent) {
+                    const parentRect = parent.getBoundingClientRect();
+                    actionsPopup.style.left = (parentRect.left - containerRect.left - 80) + 'px';
+                    actionsPopup.style.top = (parentRect.top - containerRect.top) + 'px';
+                }
+                actionsPopup.classList.add('open');
+            });
+        }
+
+        const actionsList = this.container.querySelector('#actions-list');
+        if (actionsList) {
+            actionsList.innerHTML = actions.map(a =>
+                `<div class="action-item" data-action-id="${a.id}">${a.icon}</div>`
+            ).join('');
+
+            actionsList.querySelectorAll('.action-item').forEach(item => {
+                item.addEventListener('pointerdown', (e) => {
+                    e.stopPropagation();
+                    const action = actions.find(a => a.id === item.dataset.actionId);
+                    if (action) {
+                        this._showFloatingActionIcon(action.icon);
+                    }
+                });
+            });
+        }
+    }
+
+    _showFloatingActionIcon(iconText) {
+        const icon = document.createElement('div');
+        icon.className = 'floating-action-icon';
+        icon.textContent = iconText;
+
+        const rect = this.canvas.getBoundingClientRect();
+        const startX = rect.left + rect.width * 0.5 + (Math.random() - 0.5) * 60;
+        const startY = rect.top + rect.height * 0.7 + (Math.random() - 0.5) * 20;
+        icon.style.left = `${startX}px`;
+        icon.style.top = `${startY}px`;
+        icon.style.transform = 'translate(0, 0) scale(2)';
+        icon.style.opacity = '1';
+
+        document.body.appendChild(icon);
+
+        const duration = 3000;
+        const travelDistance = 500;
+        let startTime = null;
+
+        const animate = (timestamp) => {
+            if (!startTime) startTime = timestamp;
+            const progress = Math.min((timestamp - startTime) / duration, 1);
+            const scale = 2 - progress;
+            const translateY = -travelDistance * progress;
+            icon.style.transform = `translate(0, ${translateY}px) scale(${scale})`;
+
+            let opacity;
+            if (progress < 0.2) opacity = 1;
+            else if (progress < 0.6) opacity = 1 - ((progress - 0.2) / 0.4);
+            else opacity = 0;
+            icon.style.opacity = opacity;
+
+            if (progress < 1) requestAnimationFrame(animate);
+            else icon.remove();
+        };
+
+        requestAnimationFrame(animate);
+    }
+
     _initializeGame() {
+        // Create a default empty map
         for (let r = 0; r < MAP_SIZE; r++) {
             this.levelMap[r] = [];
+            this.colliderMap[r] = [];
             for (let c = 0; c < MAP_SIZE; c++) {
-                const token = mapTemplate[r][c];
-                this.levelMap[r][c] = TILE_LEGEND[token] !== undefined ? TILE_LEGEND[token] : 0;
+                this.levelMap[r][c] = 0;
+                this.colliderMap[r][c] = 0;
             }
         }
+
+        this._preRenderTiles();
 
         this.player = {
             x: 28,
@@ -249,10 +288,101 @@ export class Scene2D {
             });
         });
 
-        if (tilemapData?.map) {
-            this.levelMap = tilemapData.map.map(row =>
+        if (tilemapData?.background) {
+            this.levelMap = tilemapData.background.map(row =>
                 row.split('').map(ch => tilemapData.tileLegend?.[ch] ?? TILE_LEGEND[ch] ?? 0)
             );
+            if (tilemapData.colliders) {
+                this.colliderMap = tilemapData.colliders.map(row =>
+                    row.split('').map(ch => (ch && ch !== ' ') ? 1 : 0)
+                );
+            }
+
+            this._preRenderTiles();
+        }
+    }
+
+    _preRenderTiles() {
+        this.tileCache = [];
+        const tileIds = Object.values(TILE_LEGEND);
+
+        for (const id of tileIds) {
+            const canvas = document.createElement('canvas');
+            canvas.width = TILE_SIZE;
+            canvas.height = TILE_SIZE;
+            const ctx = canvas.getContext('2d');
+            const ts = TILE_SIZE;
+
+            let baseColor = PALETTE.sand_light;
+            if (id === 1) baseColor = PALETTE.water_deep;
+            if (id === 2) baseColor = PALETTE.palm_trunk;
+            if (id === 3) baseColor = PALETTE.sand_wave;
+            if (id === 4) baseColor = PALETTE.roof_wood;
+            if (id === 5) baseColor = PALETTE.clay_wall;
+            if (id === 6) baseColor = PALETTE.bush_green;
+
+            ctx.fillStyle = baseColor;
+            ctx.fillRect(0, 0, ts, ts);
+
+            for (let y = 0; y < ts; y += 2) {
+                for (let x = 0; x < ts; x += 2) {
+                    const seed = getStitchNoise(id * ts + x, y);
+
+                    switch (id) {
+                        case 0: // Sand
+                            ctx.fillStyle = (seed > 0.88) ? PALETTE.sand_dark : PALETTE.sand_light;
+                            ctx.fillRect(x, y, 2, 2);
+                            break;
+
+                        case 1: // Water
+                            let dynamicWave = Math.sin((x) * 0.08 + (y) * 0.06) * 0.5 + 0.5;
+                            if (dynamicWave > 0.40) {
+                                if ((x + y) % 4 === 0 || seed > 0.52) {
+                                    ctx.fillStyle = PALETTE.water_surf;
+                                } else {
+                                    ctx.fillStyle = PALETTE.water_deep;
+                                }
+                            } else {
+                                if ((x + y) % 4 === 2 || seed > 0.75) {
+                                    ctx.fillStyle = PALETTE.water_surf;
+                                } else {
+                                    ctx.fillStyle = PALETTE.water_deep;
+                                }
+                            }
+                            ctx.fillRect(x, y, 2, 2);
+                            break;
+
+                        case 2: // Palm Trunk / Tree top
+                            if ((x - ts / 2) * (x - ts / 2) + (y - ts / 2) * (y - ts / 2) < 180) {
+                                ctx.fillStyle = (seed > 0.4) ? PALETTE.palm_leaf : '#2a3f2c';
+                                ctx.fillRect(x, y, 2, 2);
+                            }
+                            break;
+
+                        case 3: // Path
+                            if (y % 8 === 0 || (x + (Math.floor(y / 8) % 2) * 8) % 16 === 0) {
+                                ctx.fillStyle = PALETTE.roof_wood;
+                                ctx.fillRect(x, y, 2, 2);
+                            } else if (seed > 0.88) {
+                                ctx.fillStyle = PALETTE.clay_light;
+                                ctx.fillRect(x, y, 2, 2);
+                            }
+                            break;
+
+                        case 4: // Roof
+                            if (y % 6 === 0) { ctx.fillStyle = '#4a2f27'; ctx.fillRect(x, y, 2, 2); }
+                            break;
+                        case 5: // Wall
+                            if (y % 10 === 0) { ctx.fillStyle = PALETTE.clay_dark; ctx.fillRect(x, y, 2, 2); }
+                            else if (seed > 0.7) { ctx.fillStyle = PALETTE.clay_light; ctx.fillRect(x, y, 2, 2); }
+                            break;
+                        case 6: // Bush
+                            if (seed > 0.45) { ctx.fillStyle = '#3a5a40'; ctx.fillRect(x, y, 2, 2); }
+                            break;
+                    }
+                }
+            }
+            this.tileCache[id] = canvas;
         }
     }
 
@@ -268,8 +398,9 @@ export class Scene2D {
 
     _isWalkable(gx, gy) {
         if (gx < 0 || gx >= MAP_SIZE || gy < 0 || gy >= MAP_SIZE) return false;
-        const tile = this.levelMap[gy][gx];
-        if (tile === 1 || tile === 2 || tile === 4 || tile === 5 || tile === 6) return false;
+        const backgroundTile = this.levelMap[gy][gx];
+        const colliderTile = this.colliderMap[gy]?.[gx] || 0;
+        if (colliderTile === 1 || backgroundTile === 1 || backgroundTile === 2 || backgroundTile === 4 || backgroundTile === 5 || backgroundTile === 6) return false;
         if (this.npcs.some(n => n.x === gx && n.y === gy)) return false;
         return true;
     }
@@ -288,14 +419,14 @@ export class Scene2D {
         const targetNpc = this._getFrontNPC();
         if (targetNpc && this.ui) {
             this.ui.discoverNPC(targetNpc.id);
-            if (typeof this.ui.openNPCChatFromScene === "function") {
-                this.ui.openNPCChatFromScene(targetNpc.id);
+            if (typeof this.ui.handleNpcInteraction === "function") {
+                this.ui.handleNpcInteraction('talk', targetNpc.id);
             }
         }
     }
 
     _updateTalkButton() {
-        const actionBtn = this.container?.querySelector('#btn-action');
+        const actionBtn = this.container?.querySelector('#btn-talk');
         if (!actionBtn) return;
         if (this._getFrontNPC()) {
             actionBtn.classList.add('active');
@@ -305,6 +436,16 @@ export class Scene2D {
         actionBtn.textContent = '💬';
     }
 
+    // NOTE: previously this method had a corrupted structure where a full,
+    // correct switch(id) block was accidentally nested *inside* the
+    // `else if (id === 1)` branch of an outer if/else. That meant tiles 2-6
+    // (trees, paths, roofs, walls, bushes) never got their per-pixel detail
+    // rendering (only a flat fill), and water tiles were rendered through a
+    // pointless doubly-nested loop (up to 65,536 iterations per tile per
+    // frame instead of 256). There was also a dead `ctx.drawImage(cachedTile...)`
+    // call that got immediately painted over by the following fillRect.
+    // This version keeps the same visual logic but runs it once, correctly,
+    // per tile per frame.
     _renderTile(ctx, id, col, row, time, camX, camY) {
         const ts = TILE_SIZE;
         const tx = col * ts - camX;
@@ -321,15 +462,20 @@ export class Scene2D {
         ctx.fillStyle = baseColor;
         ctx.fillRect(tx, ty, ts, ts);
 
-        let isOuterEdge = (col === 0 || col === MAP_SIZE - 1 || row === 0 || row === MAP_SIZE - 1);
-        let touchesSand = (getTileAt(col-1, row, this.levelMap)===0 || getTileAt(col+1, row, this.levelMap)===0 || getTileAt(col, row-1, this.levelMap)===0 || getTileAt(col, row+1, this.levelMap)===0);
+        const isOuterEdge = (col === 0 || col === MAP_SIZE - 1 || row === 0 || row === MAP_SIZE - 1);
+        const touchesSand = (
+            getTileAt(col - 1, row, this.levelMap) === 0 ||
+            getTileAt(col + 1, row, this.levelMap) === 0 ||
+            getTileAt(col, row - 1, this.levelMap) === 0 ||
+            getTileAt(col, row + 1, this.levelMap) === 0
+        );
 
         for (let y = 0; y < ts; y += 2) {
             for (let x = 0; x < ts; x += 2) {
                 const seed = getStitchNoise(col * ts + x, row * ts + y);
 
-                switch(id) {
-                    case 0:
+                switch (id) {
+                    case 0: { // Sand, blend toward wet shoreline near water
                         let renderWetShore = false;
                         if (getTileAt(col - 1, row, this.levelMap) === 1 && x < 6) renderWetShore = (seed > (x / 6));
                         if (getTileAt(col + 1, row, this.levelMap) === 1 && x > 26) renderWetShore = (seed > ((ts - x) / 6));
@@ -338,14 +484,14 @@ export class Scene2D {
 
                         if (renderWetShore) {
                             ctx.fillStyle = PALETTE.water_shore;
-                            ctx.fillRect(tx + x, ty + y, 2, 2);
                         } else {
                             ctx.fillStyle = (seed > 0.88) ? PALETTE.sand_dark : PALETTE.sand_light;
-                            ctx.fillRect(tx + x, ty + y, 2, 2);
                         }
+                        ctx.fillRect(tx + x, ty + y, 2, 2);
                         break;
+                    }
 
-                    case 1:
+                    case 1: { // Water, animated waves + blend toward sand
                         let renderWaterSand = false;
                         if (getTileAt(col - 1, row, this.levelMap) !== 1 && x < 8) renderWaterSand = (seed > (x / 8));
                         if (getTileAt(col + 1, row, this.levelMap) !== 1 && x > 24) renderWaterSand = (seed > ((ts - x) / 8));
@@ -354,48 +500,39 @@ export class Scene2D {
 
                         if (renderWaterSand) {
                             ctx.fillStyle = (seed > 0.4) ? PALETTE.water_shore : PALETTE.sand_light;
-                            ctx.fillRect(tx + x, ty + y, 2, 2);
                         } else {
-                            let dynamicWave = Math.sin((col*ts + x) * 0.08 + (row*ts + y) * 0.06 + (time / 800)) * 0.5 + 0.5;
+                            let dynamicWave = Math.sin((col * ts + x) * 0.08 + (row * ts + y) * 0.06 + (time / 800)) * 0.5 + 0.5;
                             if (dynamicWave > 0.40) {
-                                if ((x + y) % 4 === 0 || seed > 0.52) {
-                                    ctx.fillStyle = PALETTE.water_surf;
-                                } else {
-                                    ctx.fillStyle = PALETTE.water_deep;
-                                }
+                                ctx.fillStyle = ((x + y) % 4 === 0 || seed > 0.52) ? PALETTE.water_surf : PALETTE.water_deep;
                             } else {
-                                if ((x + y) % 4 === 2 || seed > 0.75) {
-                                    ctx.fillStyle = PALETTE.water_surf;
-                                } else {
-                                    ctx.fillStyle = PALETTE.water_deep;
-                                }
+                                ctx.fillStyle = ((x + y) % 4 === 2 || seed > 0.75) ? PALETTE.water_surf : PALETTE.water_deep;
                             }
-                            ctx.fillRect(tx + x, ty + y, 2, 2);
                         }
+                        ctx.fillRect(tx + x, ty + y, 2, 2);
                         break;
+                    }
 
-                    case 2:
+                    case 2: { // Palm tree / map border
                         let renderBorderBrown = false;
                         if (isOuterEdge) {
-                            let distY = Math.min(row*ts + y, (MAP_SIZE * ts) - (row*ts + y));
-                            let distX = Math.min(col*ts + x, (MAP_SIZE * ts) - (col*ts + x));
+                            let distY = Math.min(row * ts + y, (MAP_SIZE * ts) - (row * ts + y));
+                            let distX = Math.min(col * ts + x, (MAP_SIZE * ts) - (col * ts + x));
                             renderBorderBrown = (seed > (Math.min(distX, distY) / 18));
                         }
                         if (renderBorderBrown) {
                             ctx.fillStyle = PALETTE.border_brown;
                             ctx.fillRect(tx + x, ty + y, 2, 2);
-                        } else {
-                            if (touchesSand && (y > 24 || x < 8 || x > 24 || y < 8) && seed > 0.6) {
-                                ctx.fillStyle = PALETTE.sand_light;
-                                ctx.fillRect(tx + x, ty + y, 2, 2);
-                            } else if ((x - ts/2)*(x - ts/2) + (y - ts/2)*(y - ts/2) < 180) {
-                                ctx.fillStyle = (seed > 0.4) ? PALETTE.palm_leaf : '#2a3f2c';
-                                ctx.fillRect(tx + x, ty + y, 2, 2);
-                            }
+                        } else if (touchesSand && (y > 24 || x < 8 || x > 24 || y < 8) && seed > 0.6) {
+                            ctx.fillStyle = PALETTE.sand_light;
+                            ctx.fillRect(tx + x, ty + y, 2, 2);
+                        } else if ((x - ts / 2) * (x - ts / 2) + (y - ts / 2) * (y - ts / 2) < 180) {
+                            ctx.fillStyle = (seed > 0.4) ? PALETTE.palm_leaf : '#2a3f2c';
+                            ctx.fillRect(tx + x, ty + y, 2, 2);
                         }
                         break;
+                    }
 
-                    case 3:
+                    case 3: { // Path, blend toward sand at edges
                         let renderPathSand = false;
                         if (getTileAt(col - 1, row, this.levelMap) === 0 && x < 8) renderPathSand = (seed > (x / 8));
                         if (getTileAt(col + 1, row, this.levelMap) === 0 && x > 22) renderPathSand = (seed > ((ts - x) / 8));
@@ -405,26 +542,38 @@ export class Scene2D {
                         if (renderPathSand) {
                             ctx.fillStyle = (seed > 0.5) ? PALETTE.sand_light : PALETTE.sand_dark;
                             ctx.fillRect(tx + x, ty + y, 2, 2);
-                        } else {
-                            if (y % 8 === 0 || (x + (Math.floor(y/8)%2)*8) % 16 === 0) {
-                                ctx.fillStyle = PALETTE.roof_wood;
-                                ctx.fillRect(tx + x, ty + y, 2, 2);
-                            } else if (seed > 0.88) {
-                                ctx.fillStyle = PALETTE.clay_light;
-                                ctx.fillRect(tx + x, ty + y, 2, 2);
-                            }
+                        } else if (y % 8 === 0 || (x + (Math.floor(y / 8) % 2) * 8) % 16 === 0) {
+                            ctx.fillStyle = PALETTE.roof_wood;
+                            ctx.fillRect(tx + x, ty + y, 2, 2);
+                        } else if (seed > 0.88) {
+                            ctx.fillStyle = PALETTE.clay_light;
+                            ctx.fillRect(tx + x, ty + y, 2, 2);
+                        }
+                        break;
+                    }
+
+                    case 4: // Roof
+                        if (y % 6 === 0) {
+                            ctx.fillStyle = '#4a2f27';
+                            ctx.fillRect(tx + x, ty + y, 2, 2);
                         }
                         break;
 
-                    case 4:
-                        if (y % 6 === 0) { ctx.fillStyle = '#4a2f27'; ctx.fillRect(tx + x, ty + y, ts, 2); }
+                    case 5: // Wall
+                        if (y % 10 === 0) {
+                            ctx.fillStyle = PALETTE.clay_dark;
+                            ctx.fillRect(tx + x, ty + y, 2, 2);
+                        } else if (seed > 0.7) {
+                            ctx.fillStyle = PALETTE.clay_light;
+                            ctx.fillRect(tx + x, ty + y, 2, 2);
+                        }
                         break;
-                    case 5:
-                        if (y % 10 === 0) { ctx.fillStyle = PALETTE.clay_dark; ctx.fillRect(tx + x, ty + y, ts, 2); }
-                        else if (seed > 0.7) { ctx.fillStyle = PALETTE.clay_light; ctx.fillRect(tx + x, ty + y, 2, 2); }
-                        break;
-                    case 6:
-                        if (seed > 0.45) { ctx.fillStyle = '#3a5a40'; ctx.fillRect(tx + x, ty + y, 2, 2); }
+
+                    case 6: // Bush
+                        if (seed > 0.45) {
+                            ctx.fillStyle = '#3a5a40';
+                            ctx.fillRect(tx + x, ty + y, 2, 2);
+                        }
                         break;
                 }
             }

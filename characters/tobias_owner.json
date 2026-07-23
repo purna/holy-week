@@ -2,7 +2,7 @@
   "name": "Tobias",
   "role": "Market Owner",
   "faction": "local",
-  "avatar": "👨‍🌾",
+  "avatar": "\ud83d\udc68\u200d\ud83c\udf3e",
   "mood": "neutral",
   "background": "A wealthy linen merchant who operates a shop near the Temple Mount. He provides ceremonial items for Passover preparations.",
   "dialogue": {
@@ -12,5 +12,14 @@
     "exposed": "Enough! I saw the transaction happen. Thirty silver pieces changed hands for a kiss."
   },
   "reactions": {},
-  "contradictions": {}
+  "contradictions": {},
+  "personality": "neutral",
+  "genericReactions": {
+    "physical": "My colt... it was an honor to provide it for the King.",
+    "testimonial": "They said 'The Lord needs it.' I understood immediately.",
+    "digital": "The prophecy of Zechariah is the only record I need.",
+    "environmental": "My home in Bethphage was the starting point for His entry.",
+    "analytical": "One colt, for one King. The numbers are simple.",
+    "prophecy": "I have waited my whole life to see this prophecy fulfilled."
+  }
 }

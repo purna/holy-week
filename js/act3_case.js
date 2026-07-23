@@ -260,17 +260,20 @@ propheticRefs: [
     {
       evidence: "cup_fragments",
       suspect: "john_mark",
-      result: "**Witness to Agitation** (Observed the event, but did not cause it)"
+      result: "**Witness to Agitation** (Observed the event, but did not cause it)",
+      notes: "'This cup is the new covenant in my blood' (Luke 22:20) — the household saw the moment turn, but the words came from Jesus, not the boy watching."
     },
     {
       evidence: "water_jug",
       suspect: "servant",
-      result: "**Witness to Haste** (Saw someone leaving in a hurry)"
+      result: "**Witness to Haste** (Saw someone leaving in a hurry)",
+      notes: "'You will meet a man carrying a jar of water' (Mark 14:13) — the sign that led the disciples here also marks Judas's exit as out of the ordinary."
     },
     {
       evidence: "betrayal_dipped_bread",
       suspect: "judas",
-      result: "**Implicated by Prophecy** (Links him to the betrayal)"
+      result: "**Implicated by Prophecy** (Links him to the betrayal)",
+      notes: "'He who shared my bread has turned against me' (John 13:18, Psalm 41:9). The dipped morsel named the betrayer before he moved."
     }
   ],
 
@@ -395,6 +398,12 @@ propheticRefs: [
         isKey: true,
         bibleRef: "Luke 22:20; Jeremiah 31:31–34",
       },
+      compare: {
+        text: "The stain sits exactly where the words were recorded as being spoken — physical evidence lines up with the written testimony, not against it.",
+        insight: "A spill in the wrong place would just be an accident. A spill in the exact spot the covenant declaration was written down is corroboration.",
+        isKey: false,
+        bibleRef: "Luke 22:20",
+      },
     },
     "bread_crumbs+betrayal_dipped_bread": {
       compare: {
@@ -402,6 +411,21 @@ propheticRefs: [
         insight: "The Passover Seder uses bread in multiple ways: the breaking of the matzah (which Jesus reinterpreted as His body), and the dipping of bread into bitter herbs (which Jesus used to identify the betrayer). Both bread items relate to different prophetic threads in the same evening.",
         isKey: false,
         bibleRef: "Matthew 26:26; John 13:26",
+      },
+      timeline: {
+        text: "The broken matzah came first, shared with all twelve. The dipped morsel came later, given to one.",
+        insight: "Jesus instituted the covenant meal for the whole table before He singled out His betrayer — the gift came before the exposure, not after.",
+        isKey: false,
+        bibleRef: "Matthew 26:26; John 13:26",
+      },
+    },
+    "twelve_roll+betrayal_dipped_bread": {
+      link: {
+        text: "The roll call confirms Judas was one of the twelve at the table. The dipped morsel confirms Jesus knowingly served His betrayer to the end.",
+        insight: "Isaiah 53:12 said the Suffering Servant would be 'numbered with the transgressors.' Jesus didn't just tolerate that association — He handed Judas the meal Himself, hours before the betrayal.",
+        isKey: true,
+        revealsProphecy: "isaiah_53_12",
+        bibleRef: "Luke 22:37; John 13:26",
       },
     },
     "water_jug+cup_fragments": {
@@ -485,12 +509,14 @@ export const act3CaseB = {
     {
       evidence: "severed_ear_wrap",
       suspect: "malchus_servant",
-      result: "**Identified as Victim** (He was healed, not an aggressor)"
+      result: "**Identified as Victim** (He was healed, not an aggressor)",
+      notes: "'He touched the man's ear and healed him' (Luke 22:51) — Malchus took the wound and, uniquely, Jesus's last free miracle."
     },
     {
       evidence: "abandoned_linen", // Using the disciple's sword evidence
       suspect: "simon_peter",
-      result: "**Implicated as Assailant** (He drew the sword)"
+      result: "**Implicated as Assailant** (He drew the sword)",
+      notes: "'Put your sword back... all who draw the sword will die by the sword' (Matthew 26:52) — Peter's blade contradicted everything he'd just watched Jesus surrender to."
     }
   ],
   evidencePool: [
@@ -697,6 +723,12 @@ propheticRefs: [
         revealsProphecy: "zechariah_13_7",
         bibleRef: "Mark 14:50",
       },
+      timeline: {
+        text: "The torch went down first, in the same instant the arresting party fell back. The linen was abandoned moments later, once the young follower realized he'd been seen.",
+        insight: "Both items mark the same few seconds of chaos, viewed from two different vantage points in the dark.",
+        isKey: false,
+        bibleRef: "John 18:6; Mark 14:51-52",
+      },
     },
     "dropped_torch+severed_ear_wrap": {
       link: {
@@ -704,6 +736,21 @@ propheticRefs: [
         insight: "Peter attempted a messy tactical defense, but Jesus immediately neutralized the violence by performing a medical miracle on the enemy commander.",
         isKey: true,
         bibleRef: "Luke 22:51",
+      },
+      contradict: {
+        text: "A dropped, unlit torch from a detachment that fell backward in fear sits oddly against a freshly bloodied blade wound — one moment looks like surrender, the other looks like a fight.",
+        insight: "Both are true at once: the arresting party's power failed first (John 18:6), and only after that did Peter draw a sword Jesus never asked him to draw.",
+        isKey: false,
+        bibleRef: "John 18:6; John 18:10",
+      },
+    },
+    "prisoner_cord+severed_ear_wrap": {
+      contradict: {
+        text: "The unresisting cord and the bloodied blade wound point in opposite directions — one shows total submission, the other shows a violent struggle.",
+        insight: "Only one person in the garden fought back, and it wasn't the prisoner. Jesus's silence under the rope (Isaiah 53:7) stands in direct contrast to Peter's sword.",
+        isKey: true,
+        revealsProphecy: "isaiah_53_7",
+        bibleRef: "Isaiah 53:7; Matthew 26:52-54",
       },
     },
   },
@@ -791,17 +838,20 @@ export const act3CaseC = {
     {
       evidence: "torn_robe",
       suspect: "chief_priest",
-      result: "**Implicated by Action** (His own gesture reveals his orchestration)"
+      result: "**Implicated by Action** (His own gesture reveals his orchestration)",
+      notes: "'The high priest tore his clothes' (Matthew 26:65) — a ritual act of outrage that conveniently supplied the verdict he'd already decided on."
     },
     {
       evidence: "false_scroll",
       suspect: "false_witness",
-      result: "**Discredited** (Revealed as a false witness)"
+      result: "**Discredited** (Revealed as a false witness)",
+      notes: "'Many testified falsely against him, but their statements did not agree' (Mark 14:56) — the case needed manufactured testimony because none of it held together."
     },
     {
       evidence: "rooster_feather",
       suspect: "peter_denial",
-      result: "**Motive Established** (Fear and denial, not conspiracy)"
+      result: "**Motive Established** (Fear and denial, not conspiracy)",
+      notes: "'Before the rooster crows, you will disown me three times' (Matthew 26:34) — foretold at the table, fulfilled in the courtyard."
     }
   ],
 
@@ -1020,7 +1070,7 @@ bibleRefs: [
     },
   ],
 
-   deductions: {
+  deductions: {
     "rooster_feather+torn_robe": {
       timeline: {
         text: "Peter's third denial coincided with the High Priest's dramatic tear of his robes—two moments of judgment on the same night.",
@@ -1053,6 +1103,23 @@ bibleRefs: [
         insight: "While false witnesses could not agree, Peter's denials were uncomfortably consistent—confirming his presence and his failure.",
         isKey: true,
         bibleRef: "Matthew 26:56; 26:75",
+      },
+    },
+    "guard_reed+torn_robe": {
+      link: {
+        text: "The mocking reed and the torn robe belong to the same verdict — one is the council's ritual outrage, the other the guards' physical contempt.",
+        insight: "The reed used to strike a bound, silent prisoner is a mock scepter — soldiers making sport of a claim to kingship they'd just heard condemned as blasphemy.",
+        isKey: true,
+        revealsProphecy: "micah_5_1",
+        bibleRef: "Matthew 26:65-68; Micah 5:1",
+      },
+    },
+    "perjured_testimony+false_scroll": {
+      compare: {
+        text: "The perjured witness statement and the false scroll are two records of the same failure — every attempt to make the testimony agree falls apart on comparison.",
+        insight: "'Even then their testimony did not agree' (Mark 14:59) — the prosecution needed two matching witnesses under the Law and never produced them.",
+        isKey: false,
+        bibleRef: "Mark 14:56-59; Psalm 35:11",
       },
     },
   },
@@ -1121,12 +1188,14 @@ export const act3CaseD = {
     {
       evidence: "barabbas_warrant",
       suspect: "barabbas_insurgent",
-      result: "**Cleared** (He was the beneficiary, not the cause)"
+      result: "**Cleared** (He was the beneficiary, not the cause)",
+      notes: "'Release Barabbas to us!' (Luke 23:18) — a guilty insurrectionist walked free while an innocent man took his sentence."
     },
     {
       evidence: "pilates_basin",
       suspect: "pontius_pilate_trial", // Suspect ID from npcs list
-      result: "**Has Alibi** (Publicly washed his hands of the matter)"
+      result: "**Has Alibi** (Publicly washed his hands of the matter)",
+      notes: "'I am innocent of this man's blood' (Matthew 27:24) — a gesture of denial, not the acquittal his own authority could have granted."
     }
   ],
   intro: formatIntro(`It is now early Friday morning. Pilate, seeking to avoid responsibility, has offered the crowd a Passover custom: the release of one prisoner. He presents them with Jesus, whom he has declared innocent, and **Barabbas**, a notorious insurrectionist and murderer. The chief priests stir up the crowd, and their choice will fulfill one of the most poignant prophecies about the Messiah.`),
@@ -1249,7 +1318,13 @@ bibleRefs: [
         insight: "He knew the man was innocent, yet he used a ritual to try and 'wash away' a legal murder for the sake of political stability.",
         isKey: true,
         bibleRef: "Matthew 27:19, 24",
-      }
+      },
+      contradict: {
+        text: "The warning arrived before the verdict; the basin came after it. Pilate had the information he needed to stop this in time, and used a ritual instead.",
+        insight: "A private dream and a public washbowl can't both be read as innocence — one was an early chance to act, the other was a late attempt to look like he had.",
+        isKey: false,
+        bibleRef: "Matthew 27:19; 27:24",
+      },
     },
     "barabbas_warrant+pilates_basin": {
       compare: {
@@ -1259,7 +1334,16 @@ bibleRefs: [
         revealsProphecy: "isaiah_53_3",
         bibleRef: "Mark 15:7, 14",
       }
-    }
+    },
+    "barabbas_warrant+joint_verdict": {
+      compare: {
+        text: "The insurgent's dossier and the record of Herod and Pilate's new alliance sit side by side as the day's two verdicts: a guilty man released, an innocent man condemned by rulers who'd just become friends over Him.",
+        insight: "Psalm 2:1-2 pictured the rulers of the earth banding together against the LORD's Anointed. Two rival governors did exactly that, on the same afternoon they freed a murderer instead.",
+        isKey: true,
+        revealsProphecy: "psalm_2_1_2",
+        bibleRef: "Luke 23:12; Mark 15:7; Psalm 2:1-2",
+      },
+    },
   },
 
   truth: {
@@ -1511,17 +1595,20 @@ propheticRefs: [
     {
       evidence: "split_dice",
       suspect: "centurion_longinus",
-      result: "**Motive Questioned** (Was a participant, not an instigator)"
+      result: "**Motive Questioned** (Was a participant, not an instigator)",
+      notes: "'They divided up his clothes by casting lots' (Psalm 22:18, Matthew 27:35) — routine duty for the centurion, until 'Surely he was the Son of God' (Matthew 27:54) changed his mind."
     },
     {
-      evidence: "torn_veil_thread",
+      evidence: "torn_temple_veil",
       suspect: "temple_priest_pashhur",
       result: "**Identified as Witness** (Witnessed the divine event in the Temple)",
+      notes: "'The curtain of the temple was torn in two, from top to bottom' (Matthew 27:51) — torn from above, not by human hands reaching up.",
     },
     {
       evidence: "linen_shroud_receipt",
       suspect: "joseph_arimathea",
-      result: "**Motive Clarified** (Acted out of respect, not conspiracy)"
+      result: "**Motive Clarified** (Acted out of respect, not conspiracy)",
+      notes: "'A rich man... who had himself become a disciple' (Matthew 27:57) asked Pilate for the body — an act of open devotion from a man who'd stayed secret."
     }
   ],
 
@@ -1551,7 +1638,7 @@ propheticRefs: [
       reactions: {
         split_dice: { text: "My men were playing tabs for the garments. It's an old garrison habit to pass the grueling hours. But when the darkness hit at noon, they dropped the bone dice and fell flat on their faces.", isLie: false },
         pierced_spear: { text: "Yes, that's my unit's hasta. I ordered the thrust because the priests wanted the legs smashed to clear the hill before Sabbath. But He was already gone. When the iron went in, blood and water came rushing out in distinct streams. No living body does that.", isLie: false },
-        shattered_limestone: { text: "That limestone split right at the moment He breathed His last. The tectonic shock wave nearly knocked me off my feet.", isLie: false },
+        split_rocks: { text: "That limestone split right at the moment He breathed His last. The tectonic shock wave nearly knocked me off my feet.", isLie: false },
       },
       contradictions: {},
     },
@@ -1746,13 +1833,28 @@ propheticRefs: [
         bibleRef: "John 19:23–34; Psalm 22:18; Exodus 12:46",
       },
     },
-    "shattered_limestone+torn_veil_thread": {
+    "split_rocks+torn_temple_veil": {
       compare: {
         text: "The split limestone on Golgotha and the torn threads of the inner sanctuary veil form a perfectly synchronized tectonic and theological timeline.",
         insight: "At exactly 3:00 PM, the localized seismic wave that fractured the rocks of Golgotha simultaneously struck the Temple foundations, ripping the palm-thick veil from top to bottom to signify that access to God's presence was now completely open.",
         isKey: true,
         revealsProphecy: "jeremiah_31_31_34",
         bibleRef: "Matthew 27:51; Luke 23:45; Mishnah Shekalim 8:5",
+      },
+      timeline: {
+        text: "Both events land at the same recorded moment — the death on the cross, not a later aftershock or a separate incident.",
+        insight: "Matthew and Luke both anchor the torn veil to the instant of death, not to the earthquake as an isolated natural disaster afterward.",
+        isKey: false,
+        bibleRef: "Matthew 27:50-51; Luke 23:45-46",
+      },
+    },
+    "unbroken_legs+pierced_spear": {
+      timeline: {
+        text: "The spear thrust came first, confirming death. Because death was already certain, the soldiers never needed to break the legs at all.",
+        insight: "Exodus 12:46 required the Passover lamb's bones stay unbroken. The soldiers weren't observing that law — they were simply following the spear's evidence — and fulfilled it anyway.",
+        isKey: true,
+        revealsProphecy: "psalm_34_20",
+        bibleRef: "John 19:31-36; Psalm 34:20; Exodus 12:46",
       },
     },
     "linen_shroud_receipt+split_dice": {

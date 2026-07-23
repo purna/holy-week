@@ -30,8 +30,19 @@ export class UIManager {
     this.prevScreen = "map";
 
     this._scene2DInitialized = false;
-    this._tilemapData = null;
     this.discoveredNPCs = new Set();
+  }
+
+  _getTilemapPath(caseId) {
+    const actMap = {
+      'act1': ['triumphal_entry', 'temple_cleansing', 'fig_tree_incident'],
+      'act2': ['authority_challenged', 'lazarus_plot', 'olivet_discourse'],
+      'act3': ['last_supper', 'gethsemane_arrest', 'sanhedrin_trial', 'barabbas_choice', 'crucifixion_site'],
+      'act4': ['resurrection', 'roman_inquiry', 'peter_restoration']
+    };
+    const act = Object.keys(actMap).find(key => actMap[key].includes(caseId));
+    if (!act) return null;
+    return `./maps/${act}/${caseId}.json`;
   }
 
   extractBibleReferences(text) {
@@ -58,10 +69,20 @@ export class UIManager {
     if (tab === "lab") { const view = document.getElementById("inv-lab"); if (view) { view.innerHTML = this.labUI.render(); this.labUI.bindEvents(view); } }
     if (tab === "people") { const view = document.getElementById("inv-people"); if (view) { view.innerHTML = this.peopleUI.renderNPCPanel(this.discoveredNPCs); this.peopleUI.bindNPCEvents(view); } }
     if (tab === "codex") { const view = document.getElementById("inv-codex"); if (view) { view.innerHTML = this.codexUI.render(); } }
-    if (tab === "scene") { const view = document.getElementById("inv-scene"); if (view && !window.scene2d) { view.innerHTML = this.sceneUI.render(); } }
+    if (tab === "scene") this.renderScene();
     if (tab === "accuse") { this.cm.refreshUnlockedSuspects(); const view = document.getElementById("inv-accuse"); if (view) { view.innerHTML = this.accuseUI.render(); } }
 
     this.a11y.announce(`${tab} tab open`);
+  }
+
+  renderScene() {
+    const c = this.cm.getActiveCase();
+    const container = document.getElementById("inv-scene");
+    if (!c || !container) return;
+
+    if (!window.scene2d) {
+      this.init2DScene();
+    }
   }
 
   goBack() {
@@ -198,60 +219,57 @@ export class UIManager {
   }
 
    async setupInvestigation(c) {
-    // Re-bind callbacks to the specific case context
-    this.labUI.onResult = this.onLabAction.bind(this);
-    this.peopleUI.onAction = this.onChatAction.bind(this);
-    const introText = getIntroText(c.intro) || c.subtitle;
+     // Re-bind callbacks to the specific case context
+     this.labUI.onResult = this.onLabAction.bind(this);
+     this.peopleUI.onAction = this.onChatAction.bind(this);
+     const introText = getIntroText(c.intro) || c.subtitle;
 
-    if (this.dm && this.dm.setActiveCase) this.dm.setActiveCase(c.id);
-    this.peopleUI.addSystem(introText);
-    document.getElementById("inv-case-title").textContent = c.title;
-    document.getElementById("inv-case-sub").textContent = c.subtitle;
+     if (this.dm && this.dm.setActiveCase) this.dm.setActiveCase(c.id);
+     this.peopleUI.addSystem(introText);
+     document.getElementById("inv-case-title").textContent = c.title;
+     document.getElementById("inv-case-sub").textContent = c.subtitle;
 
-    if (!this._scene2DInitialized && !window.scene2d) {
-      try {
-        await this.init2DScene();
-        this._scene2DInitialized = true;
-      } catch (e) {
-        console.warn('2D scene init failed:', e);
+      if (!this._scene2DInitialized && !window.scene2d) {
+        try {
+          await this.init2DScene();
+          this._scene2DInitialized = true;
+        } catch (e) {
+          console.warn('2D scene init failed:', e);
+        }
       }
-    }
 
-    if (window.scene2d && window.scene2d.loadCase) {
-      const caseId = c.id;
-      const tileData = this._tilemapData?.cases?.[caseId] || {};
-      window.scene2d.loadCase(caseId, tileData);
-    }
+      let tileData = null;
+      if (window.scene2d && window.scene2d.loadCase) {
+        const caseId = c.id;
+        const mapPath = this._getTilemapPath(caseId);
+        if (mapPath) {
+          try {
+            const res = await fetch(mapPath);
+            if (res.ok) tileData = await res.json();
+          } catch (e) {
+            console.warn('Failed to load tilemap:', mapPath, e);
+          }
+        }
+        window.scene2d.loadCase(caseId, tileData);
+      }
 
-    this.switchInvTab("scene");
-    this.showScreen("investigation");
-    this.prevScreen = "cases";
-    this.a11y.speak(`Case started: ${c.title}. ${introText}`);
-  }
+      this.switchInvTab("scene");
+      this.showScreen("investigation");
+      this.prevScreen = "cases";
+      this.a11y.speak(`Case started: ${c.title}. ${introText}`);
+   }
 
   async init2DScene(container) {
-    window.Scene2D = (await import('./Scene2D.js')).Scene2D;
-    window.scene2d = new window.Scene2D(this);
+    window.scene2d = new Scene2D(this);
     await window.scene2d.init('inv-scene');
+   }
 
-    try {
-      const res = await fetch('./case_tilemaps.json');
-      if (res.ok) {
-        this._tilemapData = await res.json();
-      }
-    } catch (e) {
-      console.warn('Failed to load case_tilemaps.json:', e);
-    }
-  }
-
-  handleNpcInteraction(mode) {
-    if (window.scene2d && mode === 'talk') {
-      this.switchInvTab('people');
-      return;
-    }
-
-    const activeNpc = window.sceneNPCs?.find(n => n.data && n.data.id);
-    if (activeNpc && this.dm) {
+  handleNpcInteraction(mode, npcId = null) {
+    const activeNpc = (npcId
+      ? (window.sceneNPCs?.find(n => n.data && n.data.id === npcId) || { data: this.ns.getNPC(npcId) })
+      : (window.sceneNPCs?.find(n => n.data && n.data.id) || { data: this.ns.getNPC()})) || null;
+    if (!activeNpc || !activeNpc.data) return;
+    if (this.dm) {
       this.dm.setActiveNPC(activeNpc.data);
       const c = this.cm.getActiveCase();
       const caseId = c?.id || this.cm.activeCaseId || null;
@@ -426,9 +444,10 @@ export class UIManager {
           <div class="score-item"><div class="score-item-value">${result.score.evidence}</div><div class="score-item-label">Evidence</div></div>
           <div class="score-item"><div class="score-item-value">${result.score.deduction}</div><div class="score-item-label">Deductions</div></div>
           <div class="score-item"><div class="score-item-value">${result.score.challenge || 0}</div><div class="score-item-label">Challenges</div></div>
-          <div class="score-item"><div class="score-item-value">${result.score.prophecy || 0}</div><div class="score-item-label">Prophecies</div></div>
-          <div class="score-item" style="border: 1px solid var(--gold);"><div class="score-item-value" style="color:var(--green)">+${result.score.perfectBonus || 0}</div><div class="score-item-label">Perfect Bonus</div></div>
+          <div class="score-item"><div class="score-item-value">${result.score.prophecy || 0}</div><div class="score-item-label">Prophecy</div></div>
+          <div class="score-item"><div class="score-item-value" style="color:var(--blue)">+${result.score.reputation || 0}</div><div class="score-item-label">Reputation</div></div>
           <div class="score-item"><div class="score-item-value">${result.score.accusation > 0 ? '+' : ''}${result.score.accusation}</div><div class="score-item-label">Accusation</div></div>
+          <div class="score-item" style="border: 1px solid var(--gold);"><div class="score-item-value" style="color:var(--green)">+${result.score.perfectBonus || 0}</div><div class="score-item-label">Perfect</div></div>
           <div class="score-item"><div class="score-item-value" style="color:var(--red)">-${result.score.doubtPenalty}</div><div class="score-item-label">Doubt (x2)</div></div>
           <div class="score-item"><div class="score-item-value">${result.score.total}</div><div class="score-item-label">Total</div></div>
         </div>
@@ -611,6 +630,134 @@ export class UIManager {
 
   closeEvidenceDetail() {
     const modal = document.getElementById("evidence-detail-modal");
+    modal.classList.remove("active");
+    setTimeout(() => { modal.hidden = true; }, 200);
+  }
+
+  openInventory() {
+    const modal = document.getElementById("evidence-inventory-modal");
+    if (!modal) return;
+    const grid = document.getElementById("inventory-grid");
+    const detail = document.getElementById("inventory-detail");
+    if (!grid || !detail) return;
+
+    const collected = this.es.getCollected();
+    grid.innerHTML = collected.length === 0
+      ? `<p class="picker-empty">No evidence collected yet.</p>`
+      : collected.map(e => `
+          <button class="inventory-item" data-evidence-id="${e.id}" aria-label="View ${e.name}">
+            <span class="inventory-icon">${e.icon || e.emoji}</span>
+            <span class="inventory-name">${e.name}</span>
+          </button>
+        `).join("");
+
+    detail.hidden = true;
+    detail.innerHTML = "";
+
+    modal.hidden = false;
+    requestAnimationFrame(() => modal.classList.add("active"));
+
+    this._bindInventoryGrid(modal);
+  }
+
+  _bindInventoryGrid(modal) {
+    const grid = modal.querySelector("#inventory-grid");
+    if (!grid) return;
+    const handler = (e) => {
+      const item = e.target.closest(".inventory-item");
+      if (item) this._showInventoryDetail(item.dataset.evidenceId);
+    };
+    grid.addEventListener("click", handler);
+  }
+
+  _showInventoryDetail(evidenceId) {
+    const detail = document.getElementById("inventory-detail");
+    const e = this.es.getById(evidenceId);
+    if (!e || !detail) return;
+    const typeInfo = this.es.getTypeInfo(e.type);
+    detail.innerHTML = `
+      <div class="evidence-detail-header">
+        <span class="evidence-detail-icon">${e.icon}</span>
+        <div>
+          <div class="evidence-detail-name">${e.name}</div>
+          <div class="evidence-detail-type">${typeInfo.label || e.type}</div>
+        </div>
+      </div>
+      <div class="evidence-detail-body">
+        <div class="evidence-detail-section">
+          <div class="evidence-detail-label">Description</div>
+          <div class="evidence-detail-desc">${e.desc || e.description || ""}</div>
+        </div>
+        ${e.location ? `
+        <div class="evidence-detail-section">
+          <div class="evidence-detail-label">Location Found</div>
+          <div class="evidence-detail-location">${e.location}</div>
+        </div>` : ''}
+        ${e.bibleRef ? `
+        <div class="evidence-detail-section prophecy-section">
+          <div class="evidence-detail-label">📜 Bible Reference</div>
+          <div class="evidence-detail-bible-ref">${e.bibleRef}</div>
+          <div class="bible-read-more-container"></div>
+          <div class="verse-content" data-target="bible-verse-content" hidden></div>
+        </div>` : ''}
+        ${e.prophecy || e.propheticLink ? `
+        <div class="evidence-detail-section prophecy-section">
+          <div class="evidence-detail-label">✨ Prophecy & Fulfilment</div>
+          <div class="evidence-detail-prophetic-link">${e.prophecy || e.propheticLink}</div>
+          <div class="prophecy-read-more-container"></div>
+          <div class="verse-content" data-target="prophecy-verse-content" hidden></div>
+        </div>` : ''}
+        ${e.investigatorNote || e.investigator_note ? `
+        <div class="evidence-detail-section">
+          <div class="evidence-detail-label">🔎 Investigator Notes</div>
+          <div class="evidence-detail-investigator-note">${e.investigatorNote || e.investigator_note}</div>
+        </div>` : ''}
+      </div>
+    `;
+    detail.hidden = false;
+    detail.scrollIntoView({ behavior: "smooth" });
+
+    const bibleReadMoreContainer = detail.querySelector(".bible-read-more-container");
+    const bibleVerseContent = detail.querySelector(".verse-content[data-target='bible-verse-content']");
+    if (e.bibleRef && bibleReadMoreContainer) {
+      bibleReadMoreContainer.innerHTML = "";
+      const refs = (e.bibleRefs && e.bibleRefs.length > 0) ? e.bibleRefs.map(r => r.ref) : this.extractBibleReferences(e.bibleRef);
+      refs.forEach(ref => {
+        const btn = document.createElement("button");
+        btn.className = "read-more-btn";
+        btn.textContent = `📖 Read ${ref}`;
+        btn.onclick = () => this.fetchVerseInline(ref, bibleVerseContent, btn);
+        bibleReadMoreContainer.appendChild(btn);
+      });
+      if (bibleVerseContent) {
+        bibleVerseContent.innerHTML = "";
+        bibleVerseContent.hidden = true;
+      }
+    }
+
+    const prophetReadMoreContainer = detail.querySelector(".prophecy-read-more-container");
+    const prophetVerseContent = detail.querySelector(".verse-content[data-target='prophecy-verse-content']");
+    if ((e.prophecy || e.propheticLink) && prophetReadMoreContainer) {
+      prophetReadMoreContainer.innerHTML = "";
+      const propheticText = e.prophecy || e.propheticLink || "";
+      const refs = (e.propheticRefs && e.propheticRefs.length > 0) ? e.propheticRefs.map(r => r.ref) : this.extractBibleReferences(propheticText);
+      refs.forEach(ref => {
+        const btn = document.createElement("button");
+        btn.className = "read-more-btn";
+        btn.textContent = `📖 Read ${ref}`;
+        btn.onclick = () => this.fetchVerseInline(ref, prophetVerseContent, btn);
+        prophetReadMoreContainer.appendChild(btn);
+      });
+      if (prophetVerseContent) {
+        prophetVerseContent.innerHTML = "";
+        prophetVerseContent.hidden = true;
+      }
+    }
+  }
+
+  closeInventory() {
+    const modal = document.getElementById("evidence-inventory-modal");
+    if (!modal) return;
     modal.classList.remove("active");
     setTimeout(() => { modal.hidden = true; }, 200);
   }

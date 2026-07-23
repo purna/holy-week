@@ -32,6 +32,7 @@
   <link rel="stylesheet" href="css/dialogue-modal.css">
   <link rel="stylesheet" href="css/accusation.css">
   <link rel="stylesheet" href="css/result.css">
+  <link rel="stylesheet" href="css/a11y.css">
   <link rel="stylesheet" href="css/game-complete.css">
   <link rel="stylesheet" href="css/misc.css">
   <link rel="stylesheet" href="css/scene-3d.css">
@@ -488,6 +489,8 @@
           <span class="inv-tab-icon" aria-hidden="true">🧪</span>Lab
         </button>
 
+ 
+
         <button class="inv-tab" role="tab" aria-selected="false" data-tab="codex" aria-controls="inv-codex"
           onclick="switchInvTab('codex')">
           <span class="inv-tab-icon" aria-hidden="true">📜</span>Codex
@@ -702,6 +705,18 @@
       </div>
     </div>
 
+    <!-- Modal: Evidence Inventory -->
+    <div id="evidence-inventory-modal" role="dialog" aria-label="Evidence inventory" aria-modal="true" hidden>
+      <div class="evidence-detail-content">
+        <button class="evidence-detail-close" onclick="window.closeInventory()" aria-label="Close">✕</button>
+        <div class="evidence-detail-inner">
+          <h3 class="section-title">Collected Evidence</h3>
+          <div class="inventory-grid" id="inventory-grid"></div>
+          <div class="inventory-detail" id="inventory-detail" hidden></div>
+        </div>
+      </div>
+    </div>
+
     <!-- Overlay Screen: Tutorial/How to Play instructions -->
     <div id="instructions-modal" class="screen">
       <div class="evidence-detail-content"> <!-- Instruction box -->
@@ -831,6 +846,8 @@
         <div id="prophecy-people-intro-data" hidden>Some witnesses are hidden until you find them. Explore the <strong>🔎 Scene</strong> tab and walk up to a person to discover them — they'll appear here unlocked. Once found, talk to witnesses for clues, show them evidence, or challenge a contradiction once two clues are selected.
           <button class="people-intro-scene-btn" type="button" onclick="window.switchInvTab; window.switchInvTab('scene')">🔎 Go to Scene</button>
         </div>
+
+  </div>
 </body>
 
 </html>

@@ -2,9 +2,20 @@
   "id": "upper_room_prep",
   "name": "Preparation Servant",
   "role": "Upper Room Preparer",
-  "avatar": "🕯️",
+  "avatar": "\ud83d\udd6f\ufe0f",
   "truthfulness": 0.9,
   "bibleRef": "John 12:1-8",
   "background": "Preparing the upper room for the Passover meal, aware of the Master's impending departure.",
-  "factions": ["disciple"]
+  "factions": [
+    "disciple"
+  ],
+  "personality": "neutral",
+  "genericReactions": {
+    "physical": "The cup was broken. It seemed like a bad omen.",
+    "testimonial": "I heard them arguing, but quietly. Something about who was the greatest.",
+    "digital": "I just prepare the room. I don't read the scrolls.",
+    "environmental": "The air in that room was so heavy. You could feel something was about to happen.",
+    "analytical": "Thirteen men at the table. One of them left early.",
+    "prophecy": "He spoke of his body and blood. It was strange, and sad."
+  }
 }

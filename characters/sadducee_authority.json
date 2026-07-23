@@ -2,9 +2,20 @@
   "id": "sadducee_opposition",
   "name": "Sadducee Opposer",
   "role": "Sadducean Authority",
-  "avatar": "🏛️",
+  "avatar": "\ud83c\udfdb\ufe0f",
   "truthfulness": 0.4,
   "bibleRef": "Acts 23:6-8",
   "background": "An elite Sadducean who denies resurrection, angels, and spirits. Opposes the movement.",
-  "factions": ["temple"]
+  "factions": [
+    "temple"
+  ],
+  "personality": "neutral",
+  "genericReactions": {
+    "physical": "Material objects are of no consequence to the Law.",
+    "testimonial": "The man was a threat to the Temple and our arrangement with Rome. That is all.",
+    "digital": "We have the Law of Moses. We need no other records.",
+    "environmental": "The location is irrelevant. The threat was real.",
+    "analytical": "We do not deal in the superstitions of the Pharisees. There is no resurrection.",
+    "prophecy": "Prophecy is for the excitable masses. We deal in law and order."
+  }
 }

@@ -29,7 +29,6 @@ export class AccuseUI {
                                         <div class="suspect-details-content">
                                             <div class="suspect-detail-row"><span class="suspect-detail-label">Bible Reference</span><span class="suspect-detail-value">${s.bibleRef || '—'}</span></div>
                                             <div class="suspect-detail-row"><span class="suspect-detail-label">Status</span><span class="suspect-detail-value">${status.status}</span></div>
-                                            ${status.notes ? `<div class="suspect-detail-notes">${status.notes}</div>` : ''}
                                             <div class="suspect-action-row">
                                                 <button class="accuse-btn ${isLocked ? 'locked' : ''}" onclick="accuse('${s.id}')" ${isLocked ? 'disabled' : ''}>${isLocked ? '🔒 Locked' : 'Accuse →'}</button>
                                             </div>

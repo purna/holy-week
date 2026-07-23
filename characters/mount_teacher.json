@@ -2,9 +2,20 @@
   "id": "teaching_mount",
   "name": "Mount Teacher",
   "role": "Disciple",
-  "avatar": "📖",
+  "avatar": "\ud83d\udcd6",
   "truthfulness": 0.8,
   "bibleRef": "Matthew 5-7 (Sermon on the Mount)",
   "background": "A teacher from the Mount of Olives area who heard Jesus's direct teaching and shares wisdom from the gatherings.",
-  "factions": ["disciples"]
+  "factions": [
+    "disciples"
+  ],
+  "personality": "neutral",
+  "genericReactions": {
+    "physical": "A physical sign of a spiritual truth. We must interpret it wisely.",
+    "testimonial": "His words on the Mount... they are the foundation for everything.",
+    "digital": "Let us compare this with what is written in the Law and the Prophets.",
+    "environmental": "He taught us on the Mount of Olives, overlooking the Temple He said would fall.",
+    "analytical": "The parables have layers of meaning. We must not be content with the surface.",
+    "prophecy": "He spoke of the end of the age. We must be watchful."
+  }
 }

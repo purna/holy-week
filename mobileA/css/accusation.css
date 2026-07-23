@@ -130,10 +130,12 @@
 .suspect-detail-label {
     color: var(--text-muted);
     font-family: var(--font-mono);
+    min-width: 40%;
 }
 
 .suspect-detail-value {
     font-weight: 600;
+    text-align: right;
 }
 
 .suspect-detail-notes {
@@ -143,6 +145,7 @@
     padding: 8px;
     background: var(--surface2);
     border-radius: var(--radius);
+    display: none;
 }
 
 .suspect-action-row {

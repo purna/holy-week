@@ -2,9 +2,20 @@
   "id": "upset_buyer",
   "name": "Upset Temple Buyer",
   "role": "Displaced Merchant",
-  "avatar": "😤",
+  "avatar": "\ud83d\ude24",
   "truthfulness": 0.7,
   "bibleRef": "Mark 11:15-18",
   "background": "A dove or livestock seller ejected from the Temple courts. Resentful but not entirely without cause.",
-  "factions": ["temple"]
+  "factions": [
+    "temple"
+  ],
+  "personality": "neutral",
+  "genericReactions": {
+    "physical": "What is this? It won't replace the doves I lost.",
+    "testimonial": "I'll tell anyone who listens what happened. It was chaos.",
+    "digital": "I don't care about records. I care about my livelihood.",
+    "environmental": "The whole court is a mess. My stand was completely destroyed.",
+    "analytical": "You can count coins, but can you count the cost of this 'cleansing'?",
+    "prophecy": "Prophecy? I was just trying to make a living for the festival."
+  }
 }

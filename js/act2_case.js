@@ -256,12 +256,14 @@ export const act2CaseA = {
     {
       evidence: "parable_fragments",
       suspect: "scribe",
-      result: "**Identified as Witness** (His record implicates the priests)"
+      result: "**Identified as Witness** (His record implicates the priests)",
+      notes: "The tenants who kill the son (Mark 12:1-9) — even Samuel's own notes read as an indictment of the men he serves."
     },
     {
       evidence: "question_scroll",
       suspect: "chief_priest",
-      result: "**Implicated by Parable** (The teaching was aimed at him)"
+      result: "**Implicated by Parable** (The teaching was aimed at him)",
+      notes: "'They knew he had spoken the parable against them' (Mark 12:12). Caiaphas heard the accusation and couldn't answer it."
     }
   ],
 
@@ -384,6 +386,12 @@ export const act2CaseA = {
         isKey: true,
         bibleRef: "Matthew 22:46; Isaiah 11:2",
       },
+      link: {
+        text: "The official challenge and the independent witness point to the same outcome from two different angles — one records what was asked, the other what happened when it was answered.",
+        insight: "A formal Temple challenge and a bystander's account rarely agree this closely unless both are describing the same real event, not two separate rumors.",
+        isKey: false,
+        bibleRef: "Matthew 22:46",
+      },
     },
     "parable_fragments+cornerstone_carving": {
       link: {
@@ -392,6 +400,12 @@ export const act2CaseA = {
         isKey: true,
         revealsProphecy: "psalm_118_22_23",
         bibleRef: "Matthew 21:33–42; Isaiah 5:1–7; Psalm 118:22",
+      },
+      compare: {
+        text: "Set against each other, the two images make the same accusation twice — once as a story about tenants, once as a single line about a stone.",
+        insight: "A parable can be argued with; a direct quotation of Psalm 118:22 to a Scripture-literate audience cannot. Jesus escalated from implication to citation.",
+        isKey: false,
+        bibleRef: "Matthew 21:42; Psalm 118:22",
       },
     },
     "coin_of_caesar+widow_two_coins": {
@@ -533,12 +547,14 @@ export const act2CaseB = {
     {
       evidence: "secret_decree",
       suspect: "caiaphas",
-      result: "**Implicated in Conspiracy** (Directly links him to the plot)"
+      result: "**Implicated in Conspiracy** (Directly links him to the plot)",
+      notes: "'Better that one man die for the people' (John 11:50) — Caiaphas meant it as policy. He didn't know it was prophecy."
     },
     {
       evidence: "secret_decree", // Note: same evidence can affect multiple suspects
       suspect: "nicodemus_secret",
-      result: "**Cleared** (Shows he was a dissenting voice)"
+      result: "**Cleared** (Shows he was a dissenting voice)",
+      notes: "The same council that condemned Jesus once heard Nicodemus ask, 'Does our law condemn a man without a hearing?' (John 7:51). He hadn't changed."
     }
   ],
 
@@ -981,7 +997,8 @@ export const act2CaseC = {
     {
       evidence: "disciples_questions_notes",
       suspect: "peter_olivet",
-      result: "**Identified as Primary Witness** (He asked the initial question about the Temple's destruction)"
+      result: "**Identified as Primary Witness** (He asked the initial question about the Temple's destruction)",
+      notes: "'Tell us, when will this happen?' (Matthew 24:3) — the whole discourse traces back to a question asked in private, on the mountain."
     }
   ],
 
@@ -1112,6 +1129,14 @@ export const act2CaseC = {
         insight: "The discourse balances two aspects of end-times teaching: the personal responsibility to be ready (parables) and the grand, cosmic events that will signal the culmination of history (prophecies).",
         isKey: true,
         bibleRef: "Matthew 25:1–13; Matthew 24:29",
+      },
+    },
+    "cosmic_signs_references+darkened_sun_record": {
+      compare: {
+        text: "The Old Testament source texts and Jesus's own record of them line up almost word for word — He wasn't inventing new imagery, He was quoting.",
+        insight: "Isaiah 13:10 and Joel 2:30–31 already described a darkened sun and moon centuries earlier. Jesus placed His own coming inside that established prophetic pattern rather than starting a new one.",
+        isKey: false,
+        bibleRef: "Matthew 24:29; Isaiah 13:10",
       },
     },
   },

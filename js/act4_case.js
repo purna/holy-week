@@ -306,17 +306,20 @@ export const act4CaseA = {
     {
       evidence: "burial_linen",
       suspect: "mary_magdalene",
-      result: "**Identified as Witness** (Discovered the empty tomb)"
+      result: "**Identified as Witness** (Discovered the empty tomb)",
+      notes: "'Early on the first day of the week, while it was still dark' (John 20:1) — Mary was first to the tomb and first to find it empty."
     },
     {
       evidence: "rolled_stone",
       suspect: "marcus",
-      result: "**Implicated in Failure** (The seal he guarded was broken)"
+      result: "**Implicated in Failure** (The seal he guarded was broken)",
+      notes: "'They made the tomb secure by putting a seal on the stone and posting the guard' (Matthew 27:66) — a Roman guard, broken by an angel, not a grave robber."
     },
     {
       evidence: "spice_jars",
       suspect: "joseph",
-      result: "**Cleared** (His intention was to anoint a body, not hide one)"
+      result: "**Cleared** (His intention was to anoint a body, not hide one)",
+      notes: "'Joseph took the body, wrapped it in a clean linen cloth' (Matthew 27:59) — proper burial rites, not concealment."
     }
   ],
 
@@ -438,6 +441,20 @@ contradictions: {},
         isKey: true,
         revealsProphecy: "psalm_16_10",
         bibleRef: "John 20:6–8; Psalm 16:10",
+      },
+      link: {
+        text: "The empty space and the undisturbed linens point to the same conclusion together: whatever happened here didn't involve anyone unwrapping or carrying a body.",
+        insight: "A body doesn't leave its wrappings behind still arranged in their shape unless it passed through them, not out of them.",
+        isKey: false,
+        bibleRef: "John 20:6–8",
+      },
+    },
+    "psalm22_scroll+mary_encounter": {
+      link: {
+        text: "The Psalm that opens with a cry of abandonment and ends in vindication is completed in real time by Mary's encounter — suffering giving way to a living voice saying her name.",
+        insight: "Psalm 22 begins 'My God, my God, why have you forsaken me?' — quoted by Jesus from the cross (Matthew 27:46) — and ends in worldwide proclamation. Mary hearing 'Mary' from the risen Jesus (John 20:16) is the Psalm's turning point made personal.",
+        isKey: true,
+        bibleRef: "Psalm 22:1, 22–31; John 20:16; Luke 24:26–27",
       },
     },
     "angelic_witness+mary_encounter": {
@@ -607,12 +624,14 @@ export const act4CaseB = {
     {
       evidence: "bribe_shekels",
       suspect: "sentry_lucas",
-      result: "**Implicated in Bribery** (Possession of the coins links him to the cover-up)"
+      result: "**Implicated in Bribery** (Possession of the coins links him to the cover-up)",
+      notes: "'They gave the soldiers a large sum of money' (Matthew 28:12) — silver bought silence, again."
     },
     {
       evidence: "broken_imperial_seal",
       suspect: "caiaphas",
-      result: "**Implicated in Conspiracy** (Authored the false report)"
+      result: "**Implicated in Conspiracy** (Authored the false report)",
+      notes: "'Say, His disciples came during the night and stole him away' (Matthew 28:13) — a story invented by the same council that condemned him."
     }
   ],
   suspects: [
@@ -812,6 +831,21 @@ export const act4CaseB = {
         isKey: false,
         revealsProphecy: "psalm_2_1_2",
         bibleRef: "John 20:6–7",
+      },
+      compare: {
+        text: "Both items show the same signature of sudden, overwhelming force — not the quiet work of grave robbers trying not to be heard.",
+        insight: "A snapped seal and a shattered spear shaft both fail the same way under a shockwave, not under a crowbar.",
+        isKey: false,
+        bibleRef: "Matthew 28:2",
+      },
+    },
+    "sanhedrin_report+bribe_shekels": {
+      contradict: {
+        text: "The official report claims the guards were asleep when the body was taken — but sleeping men can't testify to what happened while they slept. The bribe money is what actually explains the story.",
+        insight: "Matthew 28:13-14 records the priests' own instructions: 'say his disciples came during the night and stole him.' A report built on an impossible eyewitness claim, paid for in silver, is the fingerprint of a cover-up, not an investigation.",
+        isKey: true,
+        revealsProphecy: "psalm_2_1_2",
+        bibleRef: "Matthew 28:11-15",
       },
     },
   },
@@ -1017,12 +1051,14 @@ export const act4CaseC = {
     {
       evidence: "charcoal_fire",
       suspect: "peter",
-      result: "**Motive Clarified** (Links his restoration to his earlier denial)"
+      result: "**Motive Clarified** (Links his restoration to his earlier denial)",
+      notes: "One charcoal fire (John 18:18) saw three denials; a second (John 21:9) hears three declarations of love — 'Simon, do you love me?'"
     },
     {
       evidence: "miraculous_catch",
       suspect: "thomas",
-      result: "**Identified as Witness** (His doubt led to physical proof)"
+      result: "**Identified as Witness** (His doubt led to physical proof)",
+      notes: "'Unless I see the nail marks... I will not believe' (John 20:25) — Thomas's doubt is what makes his eventual confession, 'My Lord and my God,' count as evidence."
     }
   ],
   npcs: [
@@ -1176,6 +1212,12 @@ export const act4CaseC = {
         isKey: true,
         revealsProphecy: "ezekiel_34_11-16",
         bibleRef: "John 21:3, 15-17",
+      },
+      link: {
+        text: "The net full of fish and the threefold charge to 'feed my sheep' are the same calling in two pictures — one about catching, one about tending.",
+        insight: "Jesus first called Peter as a fisherman with a miraculous catch (Luke 5:1-11) and now recommissions him the same way, before handing him a shepherd's task instead of a fisherman's one.",
+        isKey: false,
+        bibleRef: "Luke 5:1-11; John 21:15-17",
       },
     },
     "galilean_apparition+bread_breakfast": {

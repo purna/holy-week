@@ -3,8 +3,21 @@
   "name": "Andrew",
   "role": "Disciple",
   "description": "One of the inner circle who accompanied Jesus to the Mount of Olives. He is deeply troubled by the prophecies regarding the Temple's destruction.",
-  "traits": ["earnest", "inquisitive", "loyal"],
+  "traits": [
+    "earnest",
+    "inquisitive",
+    "loyal"
+  ],
   "voiceProfile": "soft, thoughtful",
   "avatar": "assets/npcs/andrew_portrait.png",
-  "faction": "The Twelve"
+  "faction": "The Twelve",
+  "personality": "neutral",
+  "genericReactions": {
+    "physical": "Hmm. I'm not sure how that connects to me.",
+    "testimonial": "That's not what I said at all.",
+    "digital": "I don't know anything about that data.",
+    "environmental": "The environment? Could be anyone.",
+    "analytical": "Numbers can be misleading, you know.",
+    "prophecy": "A prophecy fulfilled? I see the connection now."
+  }
 }

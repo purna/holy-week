@@ -262,12 +262,14 @@ propheticRefs: [
     {
       evidence: "cloaks",
       suspect: "peter",
-      result: "**Motive Clarified** (Acted on instruction, not as a thief)"
+      result: "**Motive Clarified** (Acted on instruction, not as a thief)",
+      notes: "Zechariah 9:9 — the king comes 'lowly, riding on a donkey.' Peter was fulfilling a word, not stealing a ride."
     },
     {
       evidence: "prophecy_scroll",
       suspect: "owner",
-      result: "**Cleared** (Confirmed he willingly lent the colt)"
+      result: "**Cleared** (Confirmed he willingly lent the colt)",
+      notes: "'The Lord needs it' (Luke 19:31) was recognition, not requisition. The owner released the colt the moment he understood."
     }
   ],
   npcs: [
@@ -494,6 +496,12 @@ propheticRefs: [
         isKey: true,
         bibleRef: "John 12:12–13; Zechariah 9:9",
       },
+      compare: {
+        text: "Set side by side, the written prophecy and the crowd's action match almost line for line — this wasn't a coincidence read backward into the text.",
+        insight: "Zechariah 9:9 was five centuries old by this point. The crowd wasn't fulfilling it on purpose; they were simply responding to a king who was.",
+        isKey: false,
+        bibleRef: "Zechariah 9:9; John 12:12–13",
+      },
     },
     "crowd_testimony+witness_account": {
       compare: {
@@ -669,12 +677,14 @@ propheticRefs: [
     {
       evidence: "scattered_shekels",
       suspect: "money_changer",
-      result: "**Identified as Victim** (Business was disrupted)"
+      result: "**Identified as Victim** (Business was disrupted)",
+      notes: "Not a coin was pocketed — even Malachi admits it. Overturned tables (Mark 11:15), not a robbery."
     },
     {
       evidence: "broken_cages",
       suspect: "merchant_jadan",
-      result: "**Identified as Victim** (Wares were destroyed)"
+      result: "**Identified as Victim** (Wares were destroyed)",
+      notes: "'You have made it a den of robbers' (Mark 11:17) — the outrage was at the trade itself, not aimed at Jadan personally."
     }
   ],
   suspects: [
@@ -1174,7 +1184,8 @@ propheticRefs: [
     {
       evidence: "withered_fig_tree_state",
       suspect: "peter_fig_tree",
-      result: "**Identified as Witness** (Observed the event, did not cause it)"
+      result: "**Identified as Witness** (Observed the event, did not cause it)",
+      notes: "'How did the fig tree wither so quickly?' (Matthew 21:20). Peter only found the aftermath — the word was spoken the day before."
     }
   ],
   npcs: [

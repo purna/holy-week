@@ -2,9 +2,20 @@
   "id": "money_changer",
   "name": "Malachi",
   "role": "Temple Money Changer",
-  "avatar": "🤑",
+  "avatar": "\ud83e\udd11",
   "truthfulness": 0.5,
   "bibleRef": "Mark 11:15",
   "background": "A licensed merchant operating under Sanhedrin authorization. He specializes in high-margin currency exchange for pilgrims requiring Tyrian shekels.",
-  "factions": ["temple"]
+  "factions": [
+    "temple"
+  ],
+  "personality": "neutral",
+  "genericReactions": {
+    "physical": "Is this going to pay for my overturned table? I think not.",
+    "testimonial": "He called us robbers! We are licensed by the Temple!",
+    "digital": "Our exchange rates are approved by the priests. It's all legal.",
+    "environmental": "He made a mess of the entire courtyard. It's a disgrace.",
+    "analytical": "I can tell you the exact amount of silver he scattered in the dirt. An outrage!",
+    "prophecy": "A prophet? He's a menace to commerce and order."
+  }
 }

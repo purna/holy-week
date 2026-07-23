@@ -2,9 +2,20 @@
   "id": "peter",
   "name": "Simon Peter",
   "role": "Galilean Disciple",
-  "avatar": "🐓",
+  "avatar": "\ud83d\udc13",
   "truthfulness": 0.75,
   "bibleRef": "John 18:10-11; Matthew 26:69-75; John 21:15-19",
   "background": "The informal leader of the inner circle. Impulsive and loyal, he is struggling with the transition from physical rebellion to the spiritual kingdom of the Messiah.",
-  "factions": ["disciples"]
+  "factions": [
+    "disciples"
+  ],
+  "personality": "neutral",
+  "genericReactions": {
+    "physical": "A sword? I had one. I used it. He told me to put it away.",
+    "testimonial": "I said I would die for him. Then I said I didn't know him. My words are worthless.",
+    "digital": "I don't care what's written. I know what I did. And what He did.",
+    "environmental": "The courtyard fire... the rooster... I'll never forget that place.",
+    "analytical": "Three times. I denied him three times. That's the only number that matters.",
+    "prophecy": "He said it would happen. I didn't believe him. I was a fool."
+  }
 }

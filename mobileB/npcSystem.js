@@ -262,8 +262,7 @@ export class NPCSystem {
       return { speaker: npc.name, text: reaction.text, mood: state.mood, revealedClue: reaction.revealedClue || null, revealedProphecy: reaction.revealsProphecy || null };
     }
 
-    // Generic reaction by type
-    const genericReactions = {
+    const npcReactions = npc.genericReactions || {
       physical: "Hmm. I'm not sure how that connects to me.",
       testimonial: "That's not what I said at all.",
       digital: "I don't know anything about that data.",
@@ -272,7 +271,7 @@ export class NPCSystem {
       prophecy: "A prophecy fulfilled? I see the connection now.",
     };
 
-    const text = genericReactions[evidence.type] || "Interesting. So what?";
+    const text = npcReactions[evidence.type] || "Interesting. So what?";
     this._addMemory(npcId, { type: "shown_evidence", evidenceId, reaction: text });
     return { speaker: npc.name, text, mood: state.mood };
   }

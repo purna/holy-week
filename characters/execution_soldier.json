@@ -2,10 +2,21 @@
   "id": "execution_soldier",
   "name": "Execution Detail Soldier",
   "role": "Roman Infantryman",
-  "avatar": "⚔️",
+  "avatar": "\u2694\ufe0f",
   "truthfulness": 0.6,
   "faction": "roman",
-  "bibleRef": "Matthew 27:27–36; Mark 15:16–24; John 19:23–24",
+  "bibleRef": "Matthew 27:27\u201336; Mark 15:16\u201324; John 19:23\u201324",
   "background": "A veteran Roman infantryman accustomed to public executions, stationed at the crucifixion site (Act III crucifixion_site). Initially detached, later unsettled by extraordinary events. Uses gallows humor and procedural language, gambling for the condemned's garments. Shows how even desensitized professionals are disrupted by the crucifixion.",
-  "factions": ["roman"]
+  "factions": [
+    "roman"
+  ],
+  "personality": "neutral",
+  "genericReactions": {
+    "physical": "Another piece of battlefield junk. We see this stuff all the time.",
+    "testimonial": "I heard what the Centurion said. He seemed shaken. Not me.",
+    "digital": "Official reports are for the brass. I just follow orders.",
+    "environmental": "The ground shook, the sky went black. Just another day in Judea.",
+    "analytical": "We gambled for his clothes. I lost. That's all the numbers I care about.",
+    "prophecy": "The locals have their stories. I have my duty. But that darkness... that wasn't normal."
+  }
 }

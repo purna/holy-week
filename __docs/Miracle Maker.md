@@ -112,6 +112,33 @@ Reputation is a faction-based trust meter that tracks how each major group in Je
 
 ---
 
+## Core Gameplay Systems
+
+### Inventory & Evidence System
+
+The player's inventory consists of **Evidence** collected during an investigation. Evidence is the primary resource used for making deductions, challenging witnesses, and linking events to prophecies.
+
+*   **Collection:** Evidence is discovered by exploring the 2D/3D scene, interacting with objects, and talking to witnesses.
+*   **Management:** Collected evidence is accessible through the **Evidence** tab (or "Lab" tab in some versions). From here, players can review details or select items for analysis.
+*   **Usage:**
+    *   **Lab:** Combine two pieces of evidence to make a deduction.
+    *   **People:** Show evidence to a witness to get a reaction.
+    *   **Codex:** Link evidence to a revealed prophecy to score points.
+
+### Actions System
+
+A new **Actions** tab is available on the main investigation screen, providing access to thematic and spiritual actions that deepen the player's connection to the narrative.
+
+*   **Purpose:** To provide immersive, non-investigative interactions that reinforce the game's spiritual themes.
+*   **Current Actions:**
+    *   **🙏 Pray:** The player can offer a prayer for guidance. This triggers a visual effect of a floating icon, representing a moment of reflection.
+    *   **❤️‍🩹 Heal:** A context-sensitive action representing spiritual restoration. It provides a visual effect and could be used in specific cases (like "The Severed Ear") to confirm a miracle.
+*   **Gameplay:** These actions are currently for atmospheric effect and do not directly impact scoring or case progression. They are accessible from the "Actions" tab in the main investigation UI for all game versions (`/desktop/`, `/mobileB/`, `/mobileC/`).
+
+---
+
+## Acts & Cases
+
 ## Act I: The Arrival
 
 ### Case: `triumphal_entry` (The Missing Donkey)

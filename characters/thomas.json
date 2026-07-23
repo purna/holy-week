@@ -2,9 +2,20 @@
   "id": "thomas",
   "name": "Thomas",
   "role": "Analytical Disciple",
-  "avatar": "🤔",
+  "avatar": "\ud83e\udd14",
   "truthfulness": 0.9,
   "bibleRef": "John 20:24-29; John 21:2",
   "background": "Called 'the Twin.' He is distinguished by his analytical and skeptical mindset, requiring evidence before confirming his faith.",
-  "factions": ["disciples"]
+  "factions": [
+    "disciples"
+  ],
+  "personality": "neutral",
+  "genericReactions": {
+    "physical": "Unless I see the mark of the nails and put my finger in the wounds, I will not believe.",
+    "testimonial": "The others say they have seen him. I need more than words.",
+    "digital": "Show me the record. Let me examine it for myself.",
+    "environmental": "He appeared in a locked room. How is that possible?",
+    "analytical": "I need tangible proof. Evidence I can touch and see.",
+    "prophecy": "He said he would rise. I need to see it to believe it."
+  }
 }

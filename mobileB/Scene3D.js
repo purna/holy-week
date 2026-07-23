@@ -13,7 +13,7 @@ import { ModelManager } from '../js/core/modelManager.js';
 import { VFXSystem } from '../js/core/VFXSystem.js';
 import { DayNight } from '../js/core/DayNight.js';
 import { NPC } from '../js/NPC.js';
-import { locations as locationConfig } from '../js/config.js';
+import { locations as locationConfig, actions } from '../js/config.js';
 
 // Toon shader styling constants (matching toonshader.html)
 const TOON_COLORS = {
@@ -254,8 +254,24 @@ export class Scene3D {
         this.container.appendChild(ctrl);
         this.mobileCtrl = ctrl;
 
+        const actions = document.createElement('div');
+        actions.id = 'scene-mobile-actions';
+        actions.innerHTML = `
+            <button id="scene-ctrl-actions" class="ui-toggle" aria-label="Actions">🙏</button>
+            <button id="scene-ctrl-inventory" class="ui-toggle" aria-label="Inventory">🎒</button>
+            <button id="scene-ctrl-talk" class="ui-toggle" aria-label="Talk">💬</button>
+        `;
+        this.container.appendChild(actions);
+
+        const actionsPanel = document.createElement('div');
+        actionsPanel.id = 'scene-actions-panel';
+        actionsPanel.className = 'actions-popup';
+        actionsPanel.innerHTML = '<div id="scene-actions-list"></div>';
+        this.container.appendChild(actionsPanel);
+
         // Bind mobile controls
         this.bindMobileControls();
+        this.bindMobileActions();
     }
 
     bindMobileControls() {
@@ -306,6 +322,121 @@ export class Scene3D {
             jumpBtn.addEventListener('mouseup', jumpEnd);
             jumpBtn.addEventListener('mouseleave', jumpEnd);
         }
+    }
+
+    bindMobileActions() {
+        const inventoryBtn = document.getElementById('scene-ctrl-inventory');
+        if (inventoryBtn) {
+            inventoryBtn.addEventListener('click', () => {
+                if (this.ui && typeof this.ui.openInventory === 'function') {
+                    this.ui.openInventory();
+                }
+            });
+        }
+
+        const actionsBtn = document.getElementById('scene-ctrl-actions');
+        if (actionsBtn) {
+            actionsBtn.addEventListener('click', () => {
+                const popup = document.getElementById('scene-actions-panel');
+                if (!popup) return;
+
+                if (popup.classList.contains('open')) {
+                    popup.classList.remove('open');
+                    return;
+                }
+
+                const parent = document.getElementById('scene-mobile-actions');
+                const containerRect = this.container.getBoundingClientRect();
+                if (parent) {
+                    const parentRect = parent.getBoundingClientRect();
+                    popup.style.left = (parentRect.left - containerRect.left - 80) + 'px';
+                    popup.style.top = (parentRect.top - containerRect.top) + 'px';
+                }
+                popup.classList.add('open');
+            });
+        }
+
+        const actionsList = document.getElementById('scene-actions-list');
+        if (actionsList) {
+            actionsList.innerHTML = actions.map(a =>
+                `<div class="action-item" data-action-id="${a.id}">${a.icon}</div>`
+            ).join('');
+
+            actionsList.querySelectorAll('.action-item').forEach(item => {
+                item.addEventListener('click', () => {
+                    const action = actions.find(a => a.id === item.dataset.actionId);
+                    if (action) {
+                        this._showFloatingActionIcon(action.icon);
+                    }
+                });
+            });
+        }
+
+        const talkBtn = document.getElementById('scene-ctrl-talk');
+        if (talkBtn) {
+            talkBtn.addEventListener('click', () => {
+                const npc = this.getNearestNPC();
+                if (npc) {
+                    if (this.ui && this.ui.discoverNPC) this.ui.discoverNPC(npc.data.id);
+                    this.ui.handleNpcInteraction('talk', npc.data.id);
+                }
+            });
+        }
+    }
+
+
+    _showFloatingActionIcon(iconText) {
+        const icon = document.createElement('div');
+        icon.className = 'floating-action-icon';
+        icon.textContent = iconText;
+
+        const startX = window.innerWidth * 0.5 + (Math.random() - 0.5) * 60;
+        const startY = window.innerHeight * 0.7 + (Math.random() - 0.5) * 20;
+        icon.style.left = `${startX}px`;
+        icon.style.top = `${startY}px`;
+        icon.style.transform = 'translate(0, 0) scale(2)';
+        icon.style.opacity = '1';
+
+        document.body.appendChild(icon);
+
+        const duration = 3000;
+        const travelDistance = 500;
+        let startTime = null;
+
+        const animate = (timestamp) => {
+            if (!startTime) startTime = timestamp;
+            const progress = Math.min((timestamp - startTime) / duration, 1);
+            const scale = 2 - progress;
+            const translateY = -travelDistance * progress;
+            icon.style.transform = `translate(0, ${translateY}px) scale(${scale})`;
+
+            let opacity;
+            if (progress < 0.2) opacity = 1;
+            else if (progress < 0.6) opacity = 1 - ((progress - 0.2) / 0.4);
+            else opacity = 0;
+            icon.style.opacity = opacity;
+
+            if (progress < 1) requestAnimationFrame(animate);
+            else icon.remove();
+        };
+
+        requestAnimationFrame(animate);
+    }
+
+    getNearestNPC() {
+        const pPos = this.player.getPosition();
+        let nearestNpc = null;
+        let nearestDist = Infinity;
+
+        for (const npc of this.npcMeshes) {
+            if (!npc || !npc.mesh) continue;
+            const dist = pPos.distanceTo(npc.mesh.position);
+            if (dist < 16 && dist < nearestDist) {
+                nearestDist = dist;
+                nearestNpc = npc;
+            }
+        }
+        return nearestNpc;
     }
 
     setupKeyboardControls() {
@@ -637,6 +768,11 @@ export class Scene3D {
 
             overlay.style.display = 'block';
         });
+
+        const talkBtn = this.container.querySelector('#scene-ctrl-talk');
+        if (talkBtn) {
+            talkBtn.disabled = !nearestNpc;
+        }
     }
 
     checkLocationProximity(pPos) {

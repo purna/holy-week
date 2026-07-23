@@ -2,10 +2,21 @@
   "id": "jerusalem_local",
   "name": "Jerusalem Local",
   "role": "City Resident",
-  "avatar": "🏠",
+  "avatar": "\ud83c\udfe0",
   "truthfulness": 0.65,
   "faction": "local",
-  "bibleRef": "Matthew 21:10–11; Luke 19:39–40",
+  "bibleRef": "Matthew 21:10\u201311; Luke 19:39\u201340",
   "background": "A long-time resident frustrated by Passover overcrowding and suspicious of Galilean enthusiasm. Treats pilgrims as disruptions to city order, offering cynical observations that contrast local skepticism against provincial excitement. Appears during the Triumphal Entry and Temple Cleansing.",
-  "factions": ["local"]
+  "factions": [
+    "local"
+  ],
+  "personality": "neutral",
+  "genericReactions": {
+    "physical": "Just more clutter in the streets. This city is overflowing.",
+    "testimonial": "I don't trust what these pilgrims say. They're all fanatics.",
+    "digital": "Another decree? The authorities are getting nervous.",
+    "environmental": "The city is a mess during Passover. This is nothing new.",
+    "analytical": "More people, more problems. It's simple math.",
+    "prophecy": "These Galileans and their prophecies will get us all killed by Rome."
+  }
 }

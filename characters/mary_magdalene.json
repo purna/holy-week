@@ -2,9 +2,20 @@
   "id": "mary_magdalene",
   "name": "Mary Magdalene",
   "role": "Devoted Disciple",
-  "avatar": "👩",
+  "avatar": "\ud83d\udc69",
   "truthfulness": 0.98,
-  "bibleRef": "John 20:1–18; Luke 8:1–3",
+  "bibleRef": "John 20:1\u201318; Luke 8:1\u20133",
   "background": "From Magdala. After being healed by Jesus, she became one of His most devoted followers and financial supporters, present at both the cross and the tomb.",
-  "factions": ["disciples"]
+  "factions": [
+    "disciples"
+  ],
+  "personality": "neutral",
+  "genericReactions": {
+    "physical": "Objects can hold memories. This one reminds me of His kindness.",
+    "testimonial": "I know what He did for me. My life is my testimony.",
+    "digital": "I don't know of such things. I only know what I have seen and heard from Him.",
+    "environmental": "I remember the garden. I thought He was the gardener, until He spoke my name.",
+    "analytical": "You can't measure what He did for me. He cast out seven demons. How do you count that?",
+    "prophecy": "I don't know the ancient words, but I know He is the one they spoke of."
+  }
 }

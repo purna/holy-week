@@ -14,52 +14,11 @@ export class LabUI {
     const historyList = deductions.slice().reverse();
     const evidence = this.es.getCollected();
 
-    const renderPicker = (slot) => `
-      <div class="picker-grid">
-        ${evidence.map(e => {
-          const isA = this.es.selectedA?.id === e.id;
-          const isB = this.es.selectedB?.id === e.id;
-          const selected = (slot === "A" && isA) || (slot === "B" && isB);
-          return `
-            <button class="picker-card ${isA ? 'selected-a' : ''} ${isB ? 'selected-b' : ''}" data-evidence-id="${e.id}" data-slot="${slot}"
-              aria-label="${e.name}: ${e.desc || e.description || ''}. ${selected ? (slot === 'A' ? 'Selected as A' : 'Selected as B') : 'Tap to assign to slot ' + slot}"
-              aria-pressed="${selected}">
-              <span class="picker-icon" aria-hidden="true">${e.icon || e.emoji}</span>
-              <span class="picker-name">${e.name}</span>
-              ${isA ? `<span class="sel-badge" aria-hidden="true">A</span>` : ""}
-              ${isB ? `<span class="sel-badge" aria-hidden="true">B</span>` : ""}
-            </button>`;
-        }).join("")}
-        ${evidence.length === 0 ? `<p class="picker-empty">Collect evidence from the scene first.</p>` : ""}
-      </div>`;
-
     return `
       <div class="lab-panel" role="region" aria-label="Investigation Lab">
         <h3 class="section-title">Deduction Lab</h3>
         <div class="prophecy-lab-intro">
-          Pick a clue for slot A and a clue for slot B, then tap an operation to combine them.
-        </div>
-
-        <div class="codex-matching-columns" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: start;">
-          <div class="codex-match-column">
-            <div class="lab-slot" id="slotA" aria-label="Evidence slot A: ${this.es.selectedA?.name || 'empty'}" role="status">
-              ${this.es.selectedA
-                ? `<span class="slot-icon">${this.es.selectedA.icon || this.es.selectedA.emoji}</span><span class="slot-name">${this.es.selectedA.name}</span>`
-                : `<span class="slot-empty">Tap evidence below</span>`}
-            </div>
-            <h3 class="section-title">Slot A — First Clue</h3>
-            ${renderPicker("A")}
-          </div>
-
-          <div class="codex-match-column">
-            <div class="lab-slot" id="slotB" aria-label="Evidence slot B: ${this.es.selectedB?.name || 'empty'}" role="status">
-              ${this.es.selectedB
-                ? `<span class="slot-icon">${this.es.selectedB.icon || this.es.selectedB.emoji}</span><span class="slot-name">${this.es.selectedB.name}</span>`
-                : `<span class="slot-empty">Tap second clue</span>`}
-            </div>
-            <h3 class="section-title">Slot B — Second Clue</h3>
-            ${renderPicker("B")}
-          </div>
+          <span>Select two clues, then choose an operation.</span>
         </div>
 
         <div class="lab-actions" role="group" aria-label="Analysis operations">
@@ -69,6 +28,38 @@ export class LabUI {
               <span class="lab-btn-label">${op.label}</span>
             </button>`).join("")}
         </div>
+
+        <div class="lab-selection-summary">
+          <div class="lab-slot-badge ${this.es.selectedA ? 'filled' : 'empty'}" aria-label="First clue: ${this.es.selectedA?.name || 'not selected'}">
+            ${this.es.selectedA
+              ? `<span class="slot-icon">${this.es.selectedA.icon || this.es.selectedA.emoji}</span><span class="slot-name">${this.es.selectedA.name}</span>`
+              : `<span class="slot-empty">First clue...</span>`}
+          </div>
+          <div class="lab-slot-badge ${this.es.selectedB ? 'filled' : 'empty'}" aria-label="Second clue: ${this.es.selectedB?.name || 'not selected'}">
+            ${this.es.selectedB
+              ? `<span class="slot-icon">${this.es.selectedB.icon || this.es.selectedB.emoji}</span><span class="slot-name">${this.es.selectedB.name}</span>`
+              : `<span class="slot-empty">Second clue...</span>`}
+          </div>
+        </div>
+
+        <div class="picker-grid">
+          ${evidence.map(e => {
+            const isA = this.es.selectedA?.id === e.id;
+            const isB = this.es.selectedB?.id === e.id;
+            return `
+              <button class="picker-card ${isA ? 'selected-a' : ''} ${isB ? 'selected-b' : ''}" data-evidence-id="${e.id}"
+                aria-label="${e.name}: ${e.desc || e.description || ''}. ${isA ? 'Selected as first clue' : isB ? 'Selected as second clue' : 'Tap to select as clue'}"
+                aria-pressed="${isA || isB}">
+                <span class="picker-icon" aria-hidden="true">${e.icon || e.emoji}</span>
+                <span class="picker-name">${e.name}</span>
+                ${isA ? `<span class="sel-badge" aria-hidden="true" style="background:var(--blue)">A</span>` : ""}
+                ${isB ? `<span class="sel-badge" aria-hidden="true" style="background:var(--gold)">B</span>` : ""}
+              </button>`;
+          }).join("")}
+          ${evidence.length === 0 ? `<p class="picker-empty">Collect evidence from the scene first.</p>` : ""}
+        </div>
+
+   
 
         <div id="lab-result" class="lab-result" role="status" aria-live="polite">
           <span class="result-placeholder">Select two clues, then choose an operation.</span>
@@ -133,10 +124,9 @@ export class LabUI {
     container.querySelectorAll("[data-evidence-id]").forEach(card => {
       card.addEventListener("click", (e) => {
         const id = card.dataset.evidenceId;
-        const slot = card.dataset.slot;
         if (e.shiftKey || e.ctrlKey || e.metaKey) { window.openEvidenceDetail?.(id); return; }
-        this.es.selectForSlot(id, slot);
-        this.a11y.speak(`Selected ${card.querySelector(".picker-name").textContent} as ${slot}`);
+        this.es.selectEvidence(id);
+        this.a11y.speak(`Selected ${card.querySelector(".picker-name").textContent} as clue`);
         if (this.onResult) this.onResult({ type: "selection" });
       });
     });

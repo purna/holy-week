@@ -69,11 +69,20 @@ export class EvidenceSystem {
   selectEvidence(evidenceId) {
     const e = this.getById(evidenceId);
     if (!e) return;
-    if (!this.selectedA || (this.selectedA && this.selectedB)) {
-      this.selectedA = e;
+    if (this.selectedA && this.selectedA.id === evidenceId) {
+      this.selectedA = null;
+      return;
+    }
+    if (this.selectedB && this.selectedB.id === evidenceId) {
       this.selectedB = null;
-    } else {
+      return;
+    }
+    if (!this.selectedA) {
+      this.selectedA = e;
+    } else if (!this.selectedB) {
       this.selectedB = e;
+    } else {
+      this.selectedA = e;
     }
   }
 

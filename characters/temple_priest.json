@@ -2,9 +2,20 @@
   "id": "priest_objection",
   "name": "Temple Priest Objector",
   "role": "Sadducean Aristocrat",
-  "avatar": "🙅",
+  "avatar": "\ud83d\ude45",
   "truthfulness": 0.5,
   "bibleRef": "Acts 4:1-3; Acts 5:17-42",
   "background": "An elite Sadducean priest who views any popular religious movement as a threat. Objects to teaching on resurrection.",
-  "factions": ["temple"]
+  "factions": [
+    "temple"
+  ],
+  "personality": "neutral",
+  "genericReactions": {
+    "physical": "This is irrelevant. The only thing that matters is the Law of Sinai.",
+    "testimonial": "His claims are blasphemy. There is no other interpretation.",
+    "digital": "The Law is our only record. All else is commentary.",
+    "environmental": "The Temple has stood for generations. It will not be threatened by one man.",
+    "analytical": "You cannot quantify holiness or blasphemy. The Law is absolute.",
+    "prophecy": "He is not the one the prophets spoke of. He is a lawbreaker."
+  }
 }

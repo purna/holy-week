@@ -93,6 +93,8 @@ export class GameEngine {
     window.goBack = () => this.ui.goBack();
     window.openEvidenceDetail = this.ui.openEvidenceDetail.bind(this.ui);
     window.closeEvidenceDetail = this.ui.closeEvidenceDetail.bind(this.ui);
+    window.openInventory = this.ui.openInventory.bind(this.ui);
+    window.closeInventory = this.ui.closeInventory.bind(this.ui);
     window.showInstructionsModal = this.ui.showInstructionsModal.bind(this.ui);
     window.closeInstructionsModal = this.ui.closeInstructionsModal.bind(this.ui);
     window.showResetModal = this.ui.showResetModal.bind(this.ui);

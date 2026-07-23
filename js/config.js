@@ -262,11 +262,9 @@ export const SOUND = {
 };
 
 export const actions = [
-    { name: "Scan Area", type: "scan", icon: ICON_SYSTEM === 'svg' ? ICONS.scan : FA_ICONS.scan, iconType: "scan", uses: -1 },
-    { name: "Repair Gear", type: "repair", icon: ICON_SYSTEM === 'svg' ? ICONS.repair : FA_ICONS.repair, iconType: "repair", uses: 1 },
-    { name: "Hack Terminal", type: "hack", icon: ICON_SYSTEM === 'svg' ? ICONS.hack : FA_ICONS.hack, iconType: "hack", uses: 1 },
-    { name: "Med Kit", type: "heal", icon: ICON_SYSTEM === 'svg' ? ICONS.heal : FA_ICONS.heal, iconType: "heal", uses: 5 }
-];
+    { id: "pray", name: "Pray", icon: "🙏", description: "Offer a prayer for guidance and insight." },
+    { id: "heal", name: "Heal", icon: "❤️‍🩹", description: "A spiritual act of restoration." },
+  ];
 
 // Legacy npcs, quests, collectables deprecated - now in level*.js files
 // Locations are now loaded dynamically from level data

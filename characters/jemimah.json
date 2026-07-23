@@ -2,7 +2,7 @@
   "name": "Jemimah",
   "role": "Temple Flower Seller",
   "faction": "local",
-  "avatar": "👩‍🌾",
+  "avatar": "\ud83d\udc69\u200d\ud83c\udf3e",
   "mood": "neutral",
   "background": "A young woman who sells fragrant spices and flowers near the Temple courtyard. She observes much from her flower stall.",
   "dialogue": {
@@ -12,5 +12,14 @@
     "exposed": "They came with torches and ropes! And one young man ran off in only his skin!"
   },
   "reactions": {},
-  "contradictions": {}
+  "contradictions": {},
+  "personality": "neutral",
+  "genericReactions": {
+    "physical": "Hmm. I'm not sure how that connects to me.",
+    "testimonial": "That's not what I said at all.",
+    "digital": "I don't know anything about that information.",
+    "environmental": "The environment? Could be anyone.",
+    "analytical": "Numbers can be misleading, you know.",
+    "prophecy": "A prophecy fulfilled? I see the connection now."
+  }
 }

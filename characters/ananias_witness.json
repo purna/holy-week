@@ -2,9 +2,20 @@
   "id": "false_witness",
   "name": "Ananias",
   "role": "Hired Accuser",
-  "avatar": "🤥",
+  "avatar": "\ud83e\udd25",
   "truthfulness": 0.2,
   "bibleRef": "Mark 14:56-58",
   "background": "One of several individuals compensated by the Sanhedrin to provide testimony against Jesus. His accounts are inconsistent and prone to fabrication.",
-  "factions": ["temple"]
+  "factions": [
+    "temple"
+  ],
+  "personality": "neutral",
+  "genericReactions": {
+    "physical": "Physical evidence can be misleading. What are you suggesting?",
+    "testimonial": "That's just hearsay. You can't trust what people say.",
+    "digital": "I have no knowledge of such records.",
+    "environmental": "A bit of dust? Could be from anywhere.",
+    "analytical": "Figures can be twisted to mean anything.",
+    "prophecy": "Prophecy? That's above my pay grade."
+  }
 }

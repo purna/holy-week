@@ -2,9 +2,20 @@
   "id": "market_rumors",
   "name": "Market Vendor",
   "role": "Street Merchant",
-  "avatar": "🏪",
+  "avatar": "\ud83c\udfea",
   "truthfulness": 0.7,
   "bibleRef": "Mark 11:15-19 (Temple market)",
-  "background": "A merchant in the Court of the Gentiles. He sees everyone and hears everything — useful for gathering rumors.",
-  "factions": ["local"]
+  "background": "A merchant in the Court of the Gentiles. He sees everyone and hears everything \u2014 useful for gathering rumors.",
+  "factions": [
+    "local"
+  ],
+  "personality": "neutral",
+  "genericReactions": {
+    "physical": "Interesting. Is it for sale? No? Well, can I interest you in some figs?",
+    "testimonial": "I hear many things at my stall. The whole city is buzzing.",
+    "digital": "I don't read the official notices. I listen to the street.",
+    "environmental": "My stall is right here in the thick of it. I see everything.",
+    "analytical": "Lots of talk, lots of people. Good for business, mostly.",
+    "prophecy": "They say he's a prophet. It's the talk of the market."
+  }
 }

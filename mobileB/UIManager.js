@@ -809,6 +809,134 @@ export class UIManager {
     setTimeout(() => { modal.hidden = true; }, 200);
   }
 
+  openInventory() {
+    const modal = document.getElementById("evidence-inventory-modal");
+    if (!modal) return;
+    const grid = document.getElementById("inventory-grid");
+    const detail = document.getElementById("inventory-detail");
+    if (!grid || !detail) return;
+
+    const collected = this.es.getCollected();
+    grid.innerHTML = collected.length === 0
+      ? `<p class="picker-empty">No evidence collected yet.</p>`
+      : collected.map(e => `
+          <button class="inventory-item" data-evidence-id="${e.id}" aria-label="View ${e.name}">
+            <span class="inventory-icon">${e.icon || e.emoji}</span>
+            <span class="inventory-name">${e.name}</span>
+          </button>
+        `).join("");
+
+    detail.hidden = true;
+    detail.innerHTML = "";
+
+    modal.hidden = false;
+    requestAnimationFrame(() => modal.classList.add("active"));
+
+    this._bindInventoryGrid(modal);
+  }
+
+  _bindInventoryGrid(modal) {
+    const grid = modal.querySelector("#inventory-grid");
+    if (!grid) return;
+    const handler = (e) => {
+      const item = e.target.closest(".inventory-item");
+      if (item) this._showInventoryDetail(item.dataset.evidenceId);
+    };
+    grid.addEventListener("click", handler);
+  }
+
+  _showInventoryDetail(evidenceId) {
+    const detail = document.getElementById("inventory-detail");
+    const e = this.es.getById(evidenceId);
+    if (!e || !detail) return;
+    const typeInfo = this.es.getTypeInfo(e.type);
+    detail.innerHTML = `
+      <div class="evidence-detail-header">
+        <span class="evidence-detail-icon">${e.icon}</span>
+        <div>
+          <div class="evidence-detail-name">${e.name}</div>
+          <div class="evidence-detail-type">${typeInfo.label || e.type}</div>
+        </div>
+      </div>
+      <div class="evidence-detail-body">
+        <div class="evidence-detail-section">
+          <div class="evidence-detail-label">Description</div>
+          <div class="evidence-detail-desc">${e.desc || e.description || ""}</div>
+        </div>
+        ${e.location ? `
+        <div class="evidence-detail-section">
+          <div class="evidence-detail-label">Location Found</div>
+          <div class="evidence-detail-location">${e.location}</div>
+        </div>` : ''}
+        ${e.bibleRef ? `
+        <div class="evidence-detail-section prophecy-section">
+          <div class="evidence-detail-label">📜 Bible Reference</div>
+          <div class="evidence-detail-bible-ref">${e.bibleRef}</div>
+          <div class="bible-read-more-container"></div>
+          <div class="verse-content" data-target="bible-verse-content" hidden></div>
+        </div>` : ''}
+        ${e.prophecy || e.propheticLink ? `
+        <div class="evidence-detail-section prophecy-section">
+          <div class="evidence-detail-label">✨ Prophecy & Fulfilment</div>
+          <div class="evidence-detail-prophetic-link">${e.prophecy || e.propheticLink}</div>
+          <div class="prophecy-read-more-container"></div>
+          <div class="verse-content" data-target="prophecy-verse-content" hidden></div>
+        </div>` : ''}
+        ${e.investigatorNote || e.investigator_note ? `
+        <div class="evidence-detail-section">
+          <div class="evidence-detail-label">🔎 Investigator Notes</div>
+          <div class="evidence-detail-investigator-note">${e.investigatorNote || e.investigator_note}</div>
+        </div>` : ''}
+      </div>
+    `;
+    detail.hidden = false;
+    detail.scrollIntoView({ behavior: "smooth" });
+
+    const bibleReadMoreContainer = detail.querySelector(".bible-read-more-container");
+    const bibleVerseContent = detail.querySelector(".verse-content[data-target='bible-verse-content']");
+    if (e.bibleRef && bibleReadMoreContainer) {
+      bibleReadMoreContainer.innerHTML = "";
+      const refs = (e.bibleRefs && e.bibleRefs.length > 0) ? e.bibleRefs.map(r => r.ref) : this.extractBibleReferences(e.bibleRef);
+      refs.forEach(ref => {
+        const btn = document.createElement("button");
+        btn.className = "read-more-btn";
+        btn.textContent = `📖 Read ${ref}`;
+        btn.onclick = () => this.fetchVerseInline(ref, bibleVerseContent, btn);
+        bibleReadMoreContainer.appendChild(btn);
+      });
+      if (bibleVerseContent) {
+        bibleVerseContent.innerHTML = "";
+        bibleVerseContent.hidden = true;
+      }
+    }
+
+    const prophetReadMoreContainer = detail.querySelector(".prophecy-read-more-container");
+    const prophetVerseContent = detail.querySelector(".verse-content[data-target='prophecy-verse-content']");
+    if ((e.prophecy || e.propheticLink) && prophetReadMoreContainer) {
+      prophetReadMoreContainer.innerHTML = "";
+      const propheticText = e.prophecy || e.propheticLink || "";
+      const refs = (e.propheticRefs && e.propheticRefs.length > 0) ? e.propheticRefs.map(r => r.ref) : this.extractBibleReferences(propheticText);
+      refs.forEach(ref => {
+        const btn = document.createElement("button");
+        btn.className = "read-more-btn";
+        btn.textContent = `📖 Read ${ref}`;
+        btn.onclick = () => this.fetchVerseInline(ref, prophetVerseContent, btn);
+        prophetReadMoreContainer.appendChild(btn);
+      });
+      if (prophetVerseContent) {
+        prophetVerseContent.innerHTML = "";
+        prophetVerseContent.hidden = true;
+      }
+    }
+  }
+
+  closeInventory() {
+    const modal = document.getElementById("evidence-inventory-modal");
+    if (!modal) return;
+    modal.classList.remove("active");
+    setTimeout(() => { modal.hidden = true; }, 200);
+  }
+
   async fetchVerseInline(refString, targetEl, btnEl) {
     targetEl.innerHTML = `⏳ Loading…`;
     targetEl.hidden = false;

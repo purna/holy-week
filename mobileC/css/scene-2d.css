@@ -67,35 +67,89 @@
 }
 
 
-/* Talk / Action button (bottom-right circular) */
-#btn-action {
+
+
+
+/* UI buttons — bottom-right, stacked vertically */
+.btn-ui {
     position: absolute;
-    bottom: 32px;
+    bottom: 16px;
     right: 16px;
-    width: 75px;
-    height: 75px;
-    border-radius: 50%;
-    font-size: 24px;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    transition: all 0.2s ease;
-    background: var(--surface2, #221a14);
-    border: 2px solid var(--border, #44372c);
-    color: var(--text-muted, #554438);
-    opacity: 0.6;
+    flex-direction: column;
+    gap: 8px;
+    z-index: 999;
     pointer-events: none;
 }
 
-/* Active state — NPC is within talking range */
-#btn-action.active {
-    background: var(--accent-secondary, #ffaa00);
-    border-color: var(--accent-success, #00f5d4);
-    color: #fff;
-    opacity: 1;
-    box-shadow: 0 0 15px rgba(255, 170, 0, 0.7);
-    transform: scale(1.05);
-    cursor: pointer;
+.btn-ui div {
+    width: 40px;
+    height: 40px;
+    background: var(--surface2, #2c2219);
+    border: 2px solid var(--border, #44372c);
+    color: var(--text-muted, #554438);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
     pointer-events: auto;
+    cursor: pointer;
+    touch-action: manipulation;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+}
+
+.btn-ui div:active {
+    background: var(--surface3, #3a2e24);
+    border-color: var(--gold);
+}
+
+.btn-ui div:hover {
+    background: rgba(0, 242, 255, 0.2);
+}
+
+/* Action popup for 2D scene — positioned by JS near btn-actions */
+.actions-popup {
+    position: absolute;
+    background: rgba(0, 10, 20, 0.94);
+    border: 1px solid var(--accent-primary);
+    border-radius: 10px;
+    padding: 8px;
+    z-index: 1000;
+    display: none;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(6px);
+    pointer-events: auto;
+}
+
+.actions-popup.open {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.action-item {
+    padding: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text);
+    border-radius: 8px;
+    font-size: 1.4rem;
+    transition: background 0.2s;
+    width: 48px;
+    height: 48px;
+}
+
+.action-item:hover {
+    background: rgba(0, 242, 255, 0.2);
+}
+
+.floating-action-icon {
+    position: fixed;
+    font-size: 24px;
+    z-index: 2000;
+    pointer-events: none;
+    will-change: transform, opacity;
 }

@@ -59,7 +59,14 @@ export class DeductionEngine {
         score: specific.isKey ? 15 : 8,
       };
     } else {
-      result = this._genericDeduction(operation, a, b);
+      // Per "Source of Truth" doc, incorrect pairings have a penalty.
+      // A generic deduction is treated as an incorrect pairing for scoring purposes.
+      this.caseManager.addDoubt(5);
+      result = {
+        ...this._genericDeduction(operation, a, b),
+        score: -5, // Penalty for incorrect pairing
+        isPenalty: true
+      };
     }
 
     this.deductions.push(result);
@@ -94,7 +101,13 @@ export class DeductionEngine {
     const pool = templates[op] || [`Analysis of ${a.name} and ${b.name} complete.`];
     const text = pool[Math.floor(Math.random() * pool.length)];
 
-    return { operation: op, a: a.name, aIcon: a.icon, b: b.name, bIcon: b.icon, text, insight: null, isKeyDeduction: false, score: 4 };
+    // Determine a score based on the evidence properties
+    let score = 2; // Base score for any generic deduction
+    if (a.isKey) score += 2;
+    if (b.isKey) score += 2;
+    if (a.isKey && b.isKey) score += 2; // Extra bonus for linking two key items
+
+    return { operation: op, a: a.name, aIcon: a.icon, b: b.name, bIcon: b.icon, text, insight: null, isKeyDeduction: false, score: score };
   }
 
   getDeductions() {

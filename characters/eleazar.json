@@ -2,9 +2,21 @@
   "id": "eleazar",
   "name": "Eleazar",
   "role": "Sadducean Aristocrat",
-  "avatar": "🏛️",
+  "avatar": "\ud83c\udfdb\ufe0f",
   "truthfulness": 0.3,
   "bibleRef": "Acts 5:17",
   "background": "A wealthy member of the priestly aristocracy. He views the Galilean movement as a Match to a tinderbox and a threat to the established status quo.",
-  "factions": ["temple", "sanhedrin"]
+  "factions": [
+    "temple",
+    "sanhedrin"
+  ],
+  "personality": "neutral",
+  "genericReactions": {
+    "physical": "Material objects are trivial. Let's focus on matters of law and order.",
+    "testimonial": "Be careful with gossip. The law is what matters.",
+    "digital": "Official records are one thing, but this is irrelevant.",
+    "environmental": "This is a matter for the groundskeepers, not the Sanhedrin.",
+    "analytical": "Statistics? We deal in scripture and tradition, not base calculations.",
+    "prophecy": "The prophets spoke of many things. One must be careful with interpretation."
+  }
 }

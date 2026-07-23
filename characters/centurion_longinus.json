@@ -2,9 +2,20 @@
   "id": "centurion_longinus",
   "name": "Centurion Longinus",
   "role": "Roman Centurion",
-  "avatar": "🪖",
+  "avatar": "\ud83e\ude96",
   "truthfulness": 0.95,
   "bibleRef": "Mark 15:39",
   "background": "A veteran Roman officer who supervised the crucifixion. The cosmic and geological anomalies led him to declare Jesus's divinity.",
-  "factions": ["roman"]
+  "factions": [
+    "roman"
+  ],
+  "personality": "neutral",
+  "genericReactions": {
+    "physical": "Hmm. I'm not sure how that connects to me.",
+    "testimonial": "That's not what I said at all.",
+    "digital": "I don't know anything about that data.",
+    "environmental": "The environment? Could be anyone.",
+    "analytical": "Numbers can be misleading, you know.",
+    "prophecy": "A prophecy fulfilled? I see the connection now."
+  }
 }

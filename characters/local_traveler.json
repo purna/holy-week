@@ -3,7 +3,16 @@
   "name": "Local Traveler",
   "role": "Roadside Witness",
   "faction": "local",
-  "avatar": "🚶",
+  "avatar": "\ud83d\udeb6",
   "color": "0x9ca3af",
-  "background": "A common traveler on the road between Bethany and Jerusalem, who observed the fig tree both on Monday and Tuesday morning."
+  "background": "A common traveler on the road between Bethany and Jerusalem, who observed the fig tree both on Monday and Tuesday morning.",
+  "personality": "neutral",
+  "genericReactions": {
+    "physical": "Hmm. I'm not sure how that connects to me.",
+    "testimonial": "That's not what I said at all.",
+    "digital": "I don't know anything about that data.",
+    "environmental": "The environment? Could be anyone.",
+    "analytical": "Numbers can be misleading, you know.",
+    "prophecy": "A prophecy fulfilled? I see the connection now."
+  }
 }

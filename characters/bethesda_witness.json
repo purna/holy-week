@@ -6,5 +6,15 @@
   "truthfulness": 0.85,
   "bibleRef": "John 5:1-15",
   "background": "An ordinary resident who witnessed the healing at the Pool of Bethesda. Their testimony about the anomaly confirms the power of the Healer.",
-  "factions": ["local"]
+  "factions": [
+    "local"
+  ],
+  "genericReactions": {
+    "physical": "I'm not sure what this has to do with what I saw.",
+    "testimonial": "I know what I saw with my own eyes. That's my truth.",
+    "digital": "I wouldn't know about that. I just speak to what I witnessed.",
+    "environmental": "The water... yes, something was different that day.",
+    "analytical": "I don't understand numbers, but I understand the power I saw.",
+    "prophecy": "I don't know about prophecies, I just know what I saw."
+  }
 }
