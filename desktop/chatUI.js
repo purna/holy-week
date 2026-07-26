@@ -29,7 +29,7 @@ export class ChatUI {
 
   _renderMsg(m) {
     const cls = `msg msg-${m.type}`;
-    const icons = { player: "🕵️", system: "📋", verdict: "⚖️" };
+    const icons = { player: "🕵️", system: "<img src='../assets/gfx/clipboard-duotone.svg' class='icon-svg' loading='lazy'>", verdict: "<img src='../assets/gfx/balance-scale-duotone.svg' class='icon-svg' loading='lazy'>" };
     const icon = icons[m.type] || "🗣";
     return `
       <div class="${cls}" role="listitem" aria-label="${m.speaker}: ${m.text}">
@@ -38,7 +38,7 @@ export class ChatUI {
         <div class="msg-badges">
           ${m.extra?.evidenceTag ? `<span class="evidence-tag-badge ${m.extra.isKey ? 'key' : ''}">${m.extra.evidenceTag} ${m.extra.evidenceName || ''}</span>` : ""}
           ${m.extra?.breakthrough ? `<span class="breakthrough-badge">⚡ Breakthrough</span>` : ""}
-          ${m.extra?.revealedClue ? `<span class="clue-badge">🔍 New clue</span>` : ""}
+          ${m.extra?.revealedClue ? `<span class="clue-badge"><img src='..assets/gfx/magnifying-glass-duotone.svg' class='icon-svg' loading='lazy'> New clue</span>` : ""}
           ${m.extra?.revealedProphecy ? `<span class="prophecy-badge">🔮 Prophecy Revealed</span>` : ""}
         </div>
         ${m.type === 'verdict' ? this._renderVerdict(m.extra.result) : ""}
@@ -49,10 +49,10 @@ export class ChatUI {
     const s = res.score;
     return `
       <div class="verdict-card ${res.correct ? 'verdict-correct' : 'verdict-wrong'}">
-        <div class="verdict-header">${res.correct ? '🏆 CASE SOLVED' : '❌ INCORRECT ACCUSATION'}</div>
+        <div class="verdict-header">${res.correct ? "<img src='../assets/gfx/trophy-duotone.svg' class='icon-svg' loading='lazy'> CASE SOLVED" : "<img src='../assets/gfx/x-circle-duotone.svg' class='icon-svg' loading='lazy'> INCORRECT ACCUSATION"}</div>
         <div class="verdict-score-grid">
           <div class="score-row"><span>💡 Deductions:</span> <span>+${s.breakdown?.deductionScore || s.deduction}</span></div>
-          <div class="score-row"><span>🔍 Evidence:</span> <span>+${s.breakdown?.evidenceScore || s.evidence}</span></div>
+          <div class="score-row"><span><img src='../assets/gfx/magnifying-glass-duotone.svg' class='icon-svg' loading='lazy'> Evidence:</span> <span>+${s.breakdown?.evidenceScore || s.evidence}</span></div>
           <div class="score-total"><span>⭐ Total Score:</span> <span>${s.total}</span></div>
         </div>
       </div>`;
@@ -75,8 +75,8 @@ export class ChatUI {
               </div>
               <div class="npc-feed" role="log" aria-live="polite">${this.messagesByNPC[npc.id]?.map(m => this._renderMsg(m)).join("") || ""}</div>
               <div class="npc-actions">
-                <button class="npc-btn" data-action="talk" data-npc="${npc.id}">💬 Talk</button>
-                <button class="npc-btn" data-action="show" data-npc="${npc.id}">🔍 Evidence</button>
+                <button class="npc-btn" data-action="talk" data-npc="${npc.id}"><img src='../assets/gfx/chat-duotone.svg' class='icon-svg' loading='lazy'> Talk</button>
+                <button class="npc-btn" data-action="show" data-npc="${npc.id}"><img src='../assets/gfx/magnifying-glass-duotone.svg' class='icon-svg' loading='lazy'> Evidence</button>
                 <button class="npc-btn" data-action="challenge" data-npc="${npc.id}" ${!this.es.selectedA ? "aria-disabled='true'" : ""}>⚡ Challenge</button>
               </div>
               <div class="challenge-result" data-npc-challenge="${npc.id}" ${this.challengeResultsByNPC[npc.id] ? '' : 'hidden'}>
@@ -85,13 +85,20 @@ export class ChatUI {
               <div class="show-evidence-picker" data-npc-picker="${npc.id}" hidden>
                 <h3>Select evidence to show:</h3>
                 <div class="evidence-pick-list">
-                  ${this.es.getCollected().map(e => `<button class="evidence-pick-btn" data-evidence="${e.id}" data-npc="${npc.id}">${e.icon} ${e.name}</button>`).join("")}
+                  ${this.es.getCollected().map(e => `<button class="evidence-pick-btn" data-evidence="${e.id}" data-npc="${npc.id}">${this._iconMarkup(e.icon)} ${e.name}</button>`).join("")}
                 </div>
                 <button class="cancel-btn" data-npc="${npc.id}">Cancel</button>
               </div>
             </div>`;
         }).join("")}
       </div>`;
+  }
+
+  _iconMarkup(icon) {
+    if (!icon) return '';
+    if (String(icon).includes('<img')) return String(icon);
+    if (String(icon).endsWith('.svg')) return `<img src="${icon}" class="icon-svg" loading='lazy'>`;
+    return String(icon);
   }
 
   bindNPCEvents(container) {
@@ -111,8 +118,8 @@ export class ChatUI {
               const alreadyCollected = typeof this.es.isCollected === "function" ? this.es.isCollected(id) : false;
               if (alreadyCollected) return;
               const discovered = this.es.discover(id);
-              const evidence = discovered || (typeof this.es.getById === "function" ? this.es.getById(id) : null);
-              this.addSystem(`🔓 New clue: ${evidence?.name || id}`, npcId);
+              const evidence = discovered || (typeof this.es.getById === "function" ? this.es.getById(id) : null); 
+              this.addSystem(`<img src='../assets/gfx/lock-open-duotone.svg' class='icon-svg' loading='lazy'> New clue: ${evidence?.name || id}`, npcId);
               count++;
             });
           }
@@ -136,7 +143,7 @@ export class ChatUI {
               if (!isUnlocked || wasUnlocked) return;
 
               const suspect = this.npcs.getNPC(suspectId);
-              this.addSystem(`⚖️ New suspect identified: ${suspect ? suspect.name : suspectId}`, npcId);
+              this.addSystem(`<img src='../assets/gfx/balance-scale-duotone.svg' class='icon-svg' loading='lazy'> New suspect identified: ${suspect ? suspect.name : suspectId}`, npcId);
               count++;
             });
           }
@@ -189,8 +196,8 @@ export class ChatUI {
           const evidence = this.es.getById(evId);
           this.addMessage(result.speaker, result.text, "npc", { 
             revealedClue: result.revealedClue,
-            revealedProphecy: result.revealedProphecy,
-            evidenceTag: evidence?.icon || "🔍",
+            revealedProphecy: result.revealedProphecy, 
+            evidenceTag: evidence?.icon || "<img src='../assets/gfx/magnifying-glass-duotone.svg' class='icon-svg' loading='lazy'>",
             evidenceName: evidence?.name
           }, npcId);
         }

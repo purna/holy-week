@@ -102,8 +102,8 @@ export class UIManager {
     if (container) {
       container.innerHTML = mapData.map(loc => {
         const status = !loc.isUnlocked ? "locked" : loc.allSolved ? "solved" : "open";
-        const badge = loc.allSolved ? "✅" : loc.isUnlocked ? "🔍" : "🔒";
-        const statusText = { locked: "🔒 Locked", open: "🔍 Cases available", solved: "✅ All solved" }[status];
+        const badge = loc.allSolved ? "<img src='../assets/gfx/check-circle-duotone.svg' class='icon-svg' loading='lazy'>" : loc.isUnlocked ? "<img src='../assets/gfx/magnifying-glass-duotone.svg' class='icon-svg' loading='lazy'>" : "<img src='../assets/gfx/lock-duotone.svg' class='icon-svg' loading='lazy'>";
+        const statusText = { locked: "<img src='../assets/gfx/lock-duotone.svg' class='icon-svg' loading='lazy'> Locked", open: "<img src='../assets/gfx/magnifying-glass-duotone.svg' class='icon-svg' loading='lazy'> Cases available", solved: "<img src='../assets/gfx/check-circle-duotone.svg' class='icon-svg' loading='lazy'> All solved" }[status];
         return `
         <div class="location-card ${status}" role="listitem" tabindex="0" onclick="openLocation('${loc.id}')">
           <div class="location-inner">
@@ -126,7 +126,7 @@ export class UIManager {
     if (!loc) return;
     this.prevScreen = "map";
 
-    document.getElementById("cases-loc-name").textContent = "🔍 Holy Week";
+    document.getElementById("cases-loc-name").innerHTML = "<img src='../assets/gfx/magnifying-glass-duotone.svg' class='icon-svg' loading='lazy'> Holy Week";
     const scroll = document.getElementById("cases-scroll");
 
     scroll.innerHTML = `
@@ -137,7 +137,7 @@ export class UIManager {
           <div class="location-header-ambiance">${loc.ambiance}</div>
         </div>
       </div>
-      <div class="location-fact-box">📚 ${loc.fact}</div>
+      <div class="location-fact-box"><img src='../assets/gfx/books-duotone.svg' class='icon-svg' loading='lazy'> ${loc.fact}</div>
       ${this._renderActGroups(locId)}
     `;
     this.showScreen("cases");
@@ -160,8 +160,8 @@ export class UIManager {
                   onclick="${c.isLocked ? '' : `startCase('${c.id}')`}">
             <div class="case-title">${c.title}</div>
             <div class="case-subtitle">${c.subtitle}</div>
-            ${c.eventLocation ? `<div class="case-event-location">📍 ${c.eventLocation}</div>` : ''}
-            <span class="case-status-label">${prog?.solved ? `✅ Solved — ${prog.score?.total} pts` : c.isLocked ? "🔒 Locked" : "🔍 Open"}</span>
+            ${c.eventLocation ? `<div class="case-event-location"><img src='../assets/gfx/pin-duotone.svg' class='icon-svg' loading='lazy'> ${c.eventLocation}</div>` : ''}
+            <span class="case-status-label">${prog?.solved ? `<img src='../assets/gfx/check-circle-duotone.svg' class='icon-svg' loading='lazy'> Solved — ${prog.score?.total} pts` : c.isLocked ? "<img src='../assets/gfx/lock-duotone.svg' class='icon-svg' loading='lazy'> Locked" : "<img src='../assets/gfx/magnifying-glass-duotone.svg' class='icon-svg' loading='lazy'> Open"}</span>
           </div>`;
     }).join("")}
       </div>`).join("");
@@ -322,7 +322,7 @@ export class UIManager {
       <div class="codex-matching-columns" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: start;">
         <div class="codex-match-column">
           <div class="selection-slot ${selectedEv ? 'active' : ''}" id="codex-evidence-slot" onclick="window.ui.a11y.speak('Select evidence from your collection below.')">
-            ${selectedEv ? `<span class="slot-icon">${selectedEv.icon}</span><span class="slot-name">${selectedEv.name}</span>` : `<span>Select Evidence...</span>`}
+            ${selectedEv ? `<span class="slot-icon"><img src='${selectedEv.icon}' class='icon-svg' loading='lazy'></span><span class="slot-name">${selectedEv.name}</span>` : `<span>Select Evidence...</span>`}
           </div>
           <h3 class="section-title">Your Evidence</h3>
           <div class="picker-grid" style="grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));">
@@ -338,7 +338,7 @@ export class UIManager {
                   aria-pressed="${isSelected}"
                   onclick="window.ui.selectEvidenceForMatching('${e.id}')"
                 >
-                  <span class="picker-icon" aria-hidden="true">${e.icon}</span>
+                  <span class="picker-icon" aria-hidden="true"><img src='${e.icon}' class='icon-svg' loading='lazy'></span>
                   <span class="picker-name">${e.name}</span>
                   ${isSelected ? `<span class="sel-badge" aria-hidden="true">A</span>` : ""}
                 </button>`;
@@ -348,7 +348,7 @@ export class UIManager {
 
         <div class="codex-match-column">
           <div class="selection-slot ${selectedProp ? 'active' : ''}" id="codex-prophecy-slot" onclick="window.ui.a11y.speak('Select a locked prophecy to attempt a match.')">
-            ${selectedProp ? `<span class="slot-icon">${selectedProp.icon}</span><span class="slot-name">${selectedProp.reference}</span>` : `<span>Select Prophecy...</span>`}
+            ${selectedProp ? `<span class="slot-icon"><img src='${selectedProp.icon}' class='icon-svg' loading='lazy'></span><span class="slot-name">${selectedProp.reference}</span>` : `<span>Select Prophecy...</span>`}
           </div>
           <h3 class="section-title">Locked Prophecies</h3>
           <div class="picker-grid" style="grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));">
@@ -378,7 +378,7 @@ export class UIManager {
       <div id="codex-grid" class="codex-grid">
         ${discoveredProps.map(p => `
           <div class="prophecy-card discovered" onclick="window.ui.showProphecyDetail('${p.id}')">
-            <div class="prophecy-card-icon">${p.icon || '🔮'}</div>
+             <div class="prophecy-card-icon">${p.icon || '<img src=\'../assets/gfx/star-duotone.svg\' class=\'icon-svg\' loading=\'lazy\'>'}</div>
             <div class="prophecy-card-info">
               <div class="prophecy-card-reference">${p.reference}</div>
               <div class="prophecy-card-desc">${(p.fulfilledBy || p.desc || '').substring(0, 60)}...</div>
@@ -421,8 +421,8 @@ export class UIManager {
 
     if (deductionCount <= prophecyCount) {
       if (this.audio.enabled) this.audio.playError();
-      this.codexMatchFeedback = `<div class="codex-feedback-msg error">🧪 Run another Lab deduction first<br><small>You need ${prophecyCount + 1} deductions to unlock prophecy #${prophecyCount + 1}.</small></div>`;
-      this.addSystemMessage(`🧪 Run another Lab deduction before matching the next prophecy.`, 'codex');
+      this.codexMatchFeedback = `<div class="codex-feedback-msg error"><img src='../assets/gfx/microscope-duotone.svg' class='icon-svg' loading='lazy'> Run another Lab deduction first<br><small>You need ${prophecyCount + 1} deductions to unlock prophecy #${prophecyCount + 1}.</small></div>`;
+      this.addSystemMessage(`<img src='../assets/gfx/microscope-duotone.svg' class='icon-svg' loading='lazy'> Run another Lab deduction before matching the next prophecy.`, 'codex');
       this.renderCodex();
       return;
     }
@@ -434,13 +434,13 @@ export class UIManager {
     if (isMatch) {
       this.cm.recordProphecyFound(prophecyId);
       if (this.audio.enabled) this.audio.playBonus();
-      this.codexMatchFeedback = `<div class="codex-feedback-msg success">✨ Correct! +10 pts<br><small>${evidence.name} linked to ${prophecy.reference}</small></div>`;
-      this.addSystemMessage(`✨ Correct! ${evidence.name} linked to prophecy. (+10 pts)`, 'codex');
+      this.codexMatchFeedback = `<div class="codex-feedback-msg success"><img src='../assets/gfx/sparkles-duotone.svg' class='icon-svg' loading='lazy'> Correct! +10 pts<br><small>${evidence.name} linked to ${prophecy.reference}</small></div>`;
+      this.addSystemMessage(`<img src='../assets/gfx/sparkles-duotone.svg' class='icon-svg' loading='lazy'> Correct! ${evidence.name} linked to prophecy. (+10 pts)`, 'codex');
     } else {
       this.cm.updateDoubt(5);
       if (this.audio.enabled) this.audio.playError();
-      this.codexMatchFeedback = `<div class="codex-feedback-msg error">❌ Incorrect Link! +5 Doubt<br><small>This evidence does not fulfill that prophecy.</small></div>`;
-      this.addSystemMessage(`❌ Incorrect link. Doubt increased by 5.`, 'codex');
+      this.codexMatchFeedback = `<div class="codex-feedback-msg error"><img src='../assets/gfx/x-circle-duotone.svg' class='icon-svg' loading='lazy'> Incorrect Link! +5 Doubt<br><small>This evidence does not fulfill that prophecy.</small></div>`;
+      this.addSystemMessage(`<img src='../assets/gfx/x-circle-duotone.svg' class='icon-svg' loading='lazy'> Incorrect link. Doubt increased by 5.`, 'codex');
     }
 
     this.selectedCodexEvidenceId = null;
@@ -469,7 +469,7 @@ export class UIManager {
     const p = this.es.getProphecyById(prophecyId);
     if (!p) return;
 
-    modal.querySelector(".evidence-detail-icon").textContent = p.icon || "🔮";
+    modal.querySelector(".evidence-detail-icon").innerHTML = "<img src='" + (e.icon || '../assets/gfx/star-duotone.svg') + "' class='icon-svg' loading='lazy'>";
     modal.querySelector(".evidence-detail-name").textContent = p.reference || "Prophecy";
     modal.querySelector(".evidence-detail-type").textContent = "Prophecy";
 
@@ -496,7 +496,7 @@ export class UIManager {
         refs.forEach(ref => {
           const btn = document.createElement("button");
           btn.className = "read-more-btn";
-          btn.textContent = `📖 Read ${ref}`;
+          btn.innerHTML = `<img src='../assets/gfx/book-open-duotone.svg' class='icon-svg' loading='lazy'> Read ${ref}`;
           btn.onclick = () => this.fetchVerseInline(ref, bibleVerseContent, btn);
           bibleReadMoreContainer.appendChild(btn);
         });
@@ -529,7 +529,7 @@ export class UIManager {
         refs.forEach(ref => {
           const btn = document.createElement("button");
           btn.className = "read-more-btn";
-          btn.textContent = `📖 Read ${ref}`;
+          btn.innerHTML = `<img src='../assets/gfx/book-open-duotone.svg' class='icon-svg' loading='lazy'> Read ${ref}`;
           btn.onclick = () => this.fetchVerseInline(ref, prophetVerseContent, btn);
           prophetReadMoreContainer.appendChild(btn);
         });
@@ -586,7 +586,7 @@ export class UIManager {
             <div class="suspect-detail-row"><span class="suspect-detail-label">Status</span><span class="suspect-detail-value">${status.status}</span></div>
             ${status.notes ? `<div class="suspect-detail-notes">${status.notes}</div>` : ''}
             <div class="suspect-action-row">
-              <button class="accuse-btn ${isLocked ? 'locked' : ''}" onclick="accuse('${s.id}')" ${isLocked ? 'disabled' : ''}>${isLocked ? '🔒 Locked' : 'Accuse →'}</button>
+              <button class="accuse-btn ${isLocked ? 'locked' : ''}" onclick="accuse('${s.id}')" ${isLocked ? 'disabled' : ''}>${isLocked ? "<img src='../assets/gfx/lock-duotone.svg' class='icon-svg' loading='lazy'> Locked" : 'Accuse →'}</button>
             </div>
           </div>
         </div>
@@ -601,7 +601,7 @@ export class UIManager {
     document.getElementById("result-content").innerHTML = `
     <div class="container" role="region" aria-label="Case result details">
       <div class="result-card">
-        <div class="result-verdict" aria-hidden="true">${result.correct ? "🏆" : "❌"}</div>
+        <div class="result-verdict" aria-hidden="true">${result.correct ? "<img src='../assets/gfx/trophy-duotone.svg' class='icon-svg' loading='lazy'>" : "<img src='../assets/gfx/x-circle-duotone.svg' class='icon-svg' loading='lazy'>"}</div>
         <div class="result-verdict-text ${result.correct ? 'correct' : 'wrong'}" role="heading" aria-level="1">
           ${result.correct ? "Case Solved!" : "Wrong Accusation"}
         </div>
@@ -610,7 +610,7 @@ export class UIManager {
             <strong>The truth:</strong> ${this.a11y.simplify(c.truth.motive)} ${this.a11y.simplify(c.truth.method)}
           </div>
           <div class="result-lesson" aria-label="What you learned">
-            📚 ${this.a11y.simplify(c.truth.lesson)}
+            <img src='../assets/gfx/books-duotone.svg' class='icon-svg' loading='lazy'> ${this.a11y.simplify(c.truth.lesson)}
           </div>
         </div>
         <div class="scroll-hint" aria-hidden="true">
@@ -711,7 +711,7 @@ export class UIManager {
     if (!e) return;
     const typeInfo = this.es.getTypeInfo(e.type);
 
-    modal.querySelector(".evidence-detail-icon").textContent = e.icon;
+    modal.querySelector(".evidence-detail-icon").innerHTML = "<img src='" + (e.icon || '../assets/gfx/star-duotone.svg') + "' class='icon-svg' loading='lazy'>";
     modal.querySelector(".evidence-detail-name").textContent = e.name;
     modal.querySelector(".evidence-detail-type").textContent = typeInfo.label || e.type;
 
@@ -738,7 +738,7 @@ export class UIManager {
         refs.forEach(ref => {
           const btn = document.createElement("button");
           btn.className = "read-more-btn";
-          btn.textContent = `📖 Read ${ref}`;
+          btn.innerHTML = `<img src='../assets/gfx/book-open-duotone.svg' class='icon-svg' loading='lazy'> Read ${ref}`;
           btn.onclick = () => this.fetchVerseInline(ref, bibleVerseContent, btn);
           bibleReadMoreContainer.appendChild(btn);
         });
@@ -772,7 +772,7 @@ export class UIManager {
         refs.forEach(ref => {
           const btn = document.createElement("button");
           btn.className = "read-more-btn";
-          btn.textContent = `📖 Read ${ref}`;
+          btn.innerHTML = `<img src='../assets/gfx/book-open-duotone.svg' class='icon-svg' loading='lazy'> Read ${ref}`;
           btn.onclick = () => this.fetchVerseInline(ref, prophetVerseContent, btn);
           prophetReadMoreContainer.appendChild(btn);
         });
@@ -852,7 +852,7 @@ export class UIManager {
     const typeInfo = this.es.getTypeInfo(e.type);
     detail.innerHTML = `
       <div class="evidence-detail-header">
-        <span class="evidence-detail-icon">${e.icon}</span>
+        <span class="evidence-detail-icon"><img src='../assets/gfx/book-duotone.svg' class='icon-svg' loading='lazy'><img src='${e.icon}' class='icon-svg' loading='lazy'>  </span>
         <div>
           <div class="evidence-detail-name">${e.name}</div>
           <div class="evidence-detail-type">${typeInfo.label || e.type}</div>
@@ -870,21 +870,21 @@ export class UIManager {
         </div>` : ''}
         ${e.bibleRef ? `
         <div class="evidence-detail-section prophecy-section">
-          <div class="evidence-detail-label">📜 Bible Reference</div>
+          <div class="evidence-detail-label"><img src='../assets/gfx/scroll-duotone.svg' class='icon-svg' loading='lazy'> Bible Reference</div>
           <div class="evidence-detail-bible-ref">${e.bibleRef}</div>
           <div class="bible-read-more-container"></div>
           <div class="verse-content" data-target="bible-verse-content" hidden></div>
         </div>` : ''}
         ${e.prophecy || e.propheticLink ? `
         <div class="evidence-detail-section prophecy-section">
-          <div class="evidence-detail-label">✨ Prophecy & Fulfilment</div>
+          <div class="evidence-detail-label"><img src='../assets/gfx/sparkles-duotone.svg' class='icon-svg' loading='lazy'> Prophecy & Fulfilment</div>
           <div class="evidence-detail-prophetic-link">${e.prophecy || e.propheticLink}</div>
           <div class="prophecy-read-more-container"></div>
           <div class="verse-content" data-target="prophecy-verse-content" hidden></div>
         </div>` : ''}
         ${e.investigatorNote || e.investigator_note ? `
         <div class="evidence-detail-section">
-          <div class="evidence-detail-label">🔎 Investigator Notes</div>
+          <div class="evidence-detail-label"><img src='../assets/gfx/search.svg' class='icon-svg' loading='lazy'> Investigator Notes</div>
           <div class="evidence-detail-investigator-note">${e.investigatorNote || e.investigator_note}</div>
         </div>` : ''}
       </div>
@@ -900,7 +900,7 @@ export class UIManager {
       refs.forEach(ref => {
         const btn = document.createElement("button");
         btn.className = "read-more-btn";
-        btn.textContent = `📖 Read ${ref}`;
+        btn.innerHTML = `<img src='../assets/gfx/book-open-duotone.svg' class='icon-svg' loading='lazy'> Read ${ref}`;
         btn.onclick = () => this.fetchVerseInline(ref, bibleVerseContent, btn);
         bibleReadMoreContainer.appendChild(btn);
       });
@@ -919,7 +919,7 @@ export class UIManager {
       refs.forEach(ref => {
         const btn = document.createElement("button");
         btn.className = "read-more-btn";
-        btn.textContent = `📖 Read ${ref}`;
+        btn.innerHTML = `<img src='../assets/gfx/book-open-duotone.svg' class='icon-svg' loading='lazy'> Read ${ref}`;
         btn.onclick = () => this.fetchVerseInline(ref, prophetVerseContent, btn);
         prophetReadMoreContainer.appendChild(btn);
       });
@@ -938,7 +938,7 @@ export class UIManager {
   }
 
   async fetchVerseInline(refString, targetEl, btnEl) {
-    targetEl.innerHTML = `⏳ Loading…`;
+    targetEl.innerHTML = `Loading…`;
     targetEl.hidden = false;
     try {
       const parts = refString.match(/((?:\d\s)?[A-Za-z][^0-9]*)\s(\d+):(\d+)/);

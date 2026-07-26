@@ -2,7 +2,7 @@
   "id": "eleazar",
   "name": "Eleazar",
   "role": "Sadducean Aristocrat",
-  "avatar": "\ud83c\udfdb\ufe0f",
+  "avatar": "eleazar.svg",
   "truthfulness": 0.3,
   "bibleRef": "Acts 5:17",
   "background": "A wealthy member of the priestly aristocracy. He views the Galilean movement as a Match to a tinderbox and a threat to the established status quo.",
@@ -18,5 +18,7 @@
     "environmental": "This is a matter for the groundskeepers, not the Sanhedrin.",
     "analytical": "Statistics? We deal in scripture and tradition, not base calculations.",
     "prophecy": "The prophets spoke of many things. One must be careful with interpretation."
-  }
+  },
+  "earSize": 1.2,
+  "headSize": 1.05
 }

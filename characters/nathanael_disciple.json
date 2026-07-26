@@ -2,7 +2,7 @@
   "id": "nathanael_disciple",
   "name": "Nathanael",
   "role": "Honest Disciple",
-  "avatar": "\ud83d\udc68\u200d\ud83c\udf3e",
+  "avatar": "nathanael_disciple.svg",
   "truthfulness": 0.9,
   "bibleRef": "John 1:45-51; John 21:2",
   "background": "An Israelite in whom there is no guile. He was a witness to both the early ministry and the post-resurrection restoration.",
@@ -17,5 +17,7 @@
     "environmental": "He saw me under the fig tree. He sees all things.",
     "analytical": "I am not one for complex sums, but I know truth when I see it.",
     "prophecy": "He is the Son of God; He is the King of Israel. What more prophecy do we need?"
-  }
+  },
+  "earSize": 1.0,
+  "headSize": 1.0
 }

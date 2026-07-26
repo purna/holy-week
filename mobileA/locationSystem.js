@@ -5,36 +5,36 @@
 const LOCATIONS = {
   jerusalem: {
     id: "jerusalem",
-    name: "🌿 The Triumphal Entry",
+    name: "<img src='../assets/gfx/leaf-duotone.svg' class='icon-svg' loading='lazy'> The Triumphal Entry",
     region: "Jerusalem",
-    icon: "🐴",
+    icon: "<img src='../assets/gfx/horse-duotone.svg' class='icon-svg' loading='lazy'>",
     color: "#60a5fa",
     fact: "Jesus entered Jerusalem riding on a donkey, fulfilling prophecy.",
     ambiance: "Crowds wave palm branches and shout 'Hosanna!'"
   },
   temple: {
     id: "temple",
-    name: "🕍 The Temple Courts",
+    name: "<img src='../assets/gfx/church-duotone.svg' class='icon-svg' loading='lazy'> The Temple Courts",
     region: "Jerusalem",
-    icon: "📜",
+    icon: "<img src='../assets/gfx/scroll-duotone.svg' class='icon-svg' loading='lazy'>",
     color: "#f59e0b",
     fact: "Religious leaders attempted to trap Jesus with trick questions, but His wisdom silenced them completely.",
     ambiance: "Crowds listening intently, murmuring scribes, and echoing debates in the outer courts."
   },
   upperroom: {
     id: "upperroom",
-    name: "🍞 The Last Supper",
+    name: "<img src='../assets/gfx/bread-duotone.svg' class='icon-svg' loading='lazy'> The Last Supper",
     region: "Jerusalem",
-    icon: "🍷",
+    icon: "<img src='../assets/gfx/wine-duotone.svg' class='icon-svg' loading='lazy'>",
     color: "#34d399",
     fact: "Jesus shared the Passover meal with his disciples and instituted the New Covenant.",
     ambiance: "The upper room is prepared with bread and wine."
   },
   garden: {
     id: "garden",
-    name: "✝️ The Resurrection",
+    name: "<img src='../assets/gfx/cross-duotone.svg' class='icon-svg' loading='lazy'> The Resurrection",
     region: "Jerusalem",
-    icon: "✨",
+    icon: "<img src='../assets/gfx/sparkles-duotone.svg' class='icon-svg' loading='lazy'>",
     color: "#a78bfa",
     fact: "Jesus rose from the dead on the third day, defeating death.",
     ambiance: "The tomb is empty, and angels announce Jesus is alive."

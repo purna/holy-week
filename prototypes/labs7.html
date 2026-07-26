@@ -1,0 +1,1372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Act I Lab Workspace — Fixed Tab 2 Removal</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background-color: #0b0f19;
+      color: #f3f4f6;
+      padding: 8px;
+      padding-bottom: 75px; /* Space for sticky bottom action bar */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    @media (min-width: 600px) {
+      body { padding: 12px; padding-bottom: 20px; }
+    }
+
+    .container {
+      max-width: 950px;
+      width: 100%;
+      position: relative;
+    }
+
+    header {
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 1.15rem;
+      color: #fbbf24;
+      margin-bottom: 2px;
+    }
+
+    @media (min-width: 600px) { h1 { font-size: 1.35rem; } }
+
+    p.subtitle {
+      color: #9ca3af;
+      font-size: 0.75rem;
+      margin-bottom: 6px;
+    }
+
+    /* Score Badge Header */
+    .score-badge {
+      display: inline-block;
+      padding: 4px 14px;
+      background: #1e293b;
+      border: 1px solid #fbbf24;
+      border-radius: 20px;
+      font-weight: 800;
+      font-size: 0.85rem;
+      color: #fbbf24;
+      transition: all 0.25s ease;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+
+    .score-badge.bump-plus {
+      color: #34d399;
+      border-color: #10b981;
+      background: #064e3b;
+      transform: scale(1.15);
+    }
+
+    .score-badge.bump-minus {
+      color: #f87171;
+      border-color: #ef4444;
+      background: #7f1d1d;
+      transform: scale(1.15);
+    }
+
+    /* Tabs Navigation */
+    .nav-tabs {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 10px;
+      margin-top: 8px;
+      border-bottom: 2px solid #1e293b;
+      padding-bottom: 6px;
+      overflow-x: auto;
+      white-space: nowrap;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .nav-tabs::-webkit-scrollbar { display: none; }
+
+    .tab-btn {
+      background: #1e293b;
+      color: #9ca3af;
+      border: 1px solid #334155;
+      padding: 8px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.75rem;
+      flex-shrink: 0;
+      transition: all 0.2s;
+    }
+
+    .tab-btn.active {
+      background: #d97706;
+      color: #fff;
+      border-color: #fbbf24;
+    }
+
+    /* Feedback Banner */
+    .feedback-box {
+      min-height: 38px;
+      background: #1e293b;
+      border-left: 4px solid #3b82f6;
+      padding: 8px 10px;
+      border-radius: 4px;
+      margin-bottom: 10px;
+      font-size: 0.78rem;
+      display: flex;
+      align-items: center;
+      line-height: 1.3;
+    }
+
+    .feedback-box.success {
+      border-left-color: #10b981;
+      background: #064e3b;
+      color: #ecfdf5;
+    }
+
+    .feedback-box.error {
+      border-left-color: #ef4444;
+      background: #7f1d1d;
+      color: #fef2f2;
+    }
+
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    /* Drag & Drop Visual Targets */
+    .drop-hover {
+      border-color: #fbbf24 !important;
+      background-color: rgba(251, 191, 36, 0.15) !important;
+      box-shadow: inset 0 0 8px rgba(251, 191, 36, 0.4);
+    }
+
+    /* Card UI */
+    .ev-card {
+      background: #0f172a;
+      border: 2px solid #1e293b;
+      border-radius: 8px;
+      padding: 8px;
+      cursor: grab;
+      transition: all 0.2s ease;
+      min-height: 62px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+    }
+
+    .ev-card:active { cursor: grabbing; background-color: #1e293b; }
+
+    .ev-card.dragging {
+      opacity: 0.4;
+      border-style: dashed;
+      border-color: #fbbf24;
+    }
+
+    .ev-card.selected {
+      border-color: #38bdf8 !important;
+      box-shadow: 0 0 8px rgba(56, 189, 248, 0.5);
+      background: #0284c7;
+    }
+
+    /* Right / Wrong Card Status Classes */
+    .ev-card.card-correct {
+      border-color: #10b981 !important;
+      background: #064e3b !important;
+      box-shadow: 0 0 8px rgba(16, 185, 129, 0.5);
+    }
+
+    .ev-card.card-incorrect {
+      border-color: #ef4444 !important;
+      background: #7f1d1d !important;
+      box-shadow: 0 0 8px rgba(239, 68, 68, 0.5);
+    }
+
+    .ev-card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 4px;
+      margin-bottom: 2px;
+    }
+
+    .ev-card-title-group {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      overflow: hidden;
+    }
+
+    .ev-icon { font-size: 0.95rem; }
+
+    .ev-name {
+      font-weight: 700;
+      font-size: 0.75rem;
+      color: #f3f4f6;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .ev-info-btn {
+      background: #1e293b;
+      color: #fbbf24;
+      border: 1px solid #374151;
+      border-radius: 4px;
+      padding: 3px 7px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      cursor: pointer;
+      flex-shrink: 0;
+      min-height: 24px;
+      min-width: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .ev-desc {
+      font-size: 0.68rem;
+      color: #9ca3af;
+      line-height: 1.15;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .card-pool-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+      gap: 8px;
+      margin-bottom: 12px;
+      min-height: 70px;
+      padding: 4px;
+      border: 1px dashed transparent;
+      border-radius: 8px;
+    }
+
+    @media (min-width: 500px) {
+      .card-pool-grid { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); }
+    }
+
+    /* Sticky Actions Bar */
+    .actions-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(11, 15, 25, 0.92);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      padding: 8px 12px;
+      border-top: 1px solid #1e293b;
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+      z-index: 50;
+    }
+
+    @media (min-width: 600px) {
+      .actions-bar {
+        position: relative;
+        background: transparent;
+        padding: 0;
+        border-top: none;
+        margin-top: 12px;
+        backdrop-filter: none;
+      }
+    }
+
+    .btn-submit {
+      background: #d97706;
+      color: #fff;
+      border: none;
+      padding: 10px 14px;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 0.8rem;
+      cursor: pointer;
+      flex: 1;
+      min-height: 42px;
+    }
+
+    .btn-secondary {
+      background: #1e293b;
+      color: #9ca3af;
+      border: 1px solid #334155;
+      padding: 10px 12px;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 0.8rem;
+      cursor: pointer;
+      min-height: 42px;
+    }
+
+    @media (min-width: 600px) {
+      .btn-submit, .btn-secondary { flex: initial; width: auto; }
+    }
+
+    /* ==========================================
+       1. DUAL COMPARATOR (TAB 1)
+       ========================================== */
+    .comparator-stage {
+      background: #0f172a;
+      border: 2px dashed #334155;
+      border-radius: 10px;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+
+    .comparator-slots {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .comparator-slot {
+      background: #1e293b;
+      border: 2px dashed #475569;
+      border-radius: 8px;
+      min-height: 85px;
+      padding: 6px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      transition: all 0.2s;
+    }
+
+    .slot-label {
+      font-size: 0.68rem;
+      font-weight: 800;
+      color: #fbbf24;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+      pointer-events: none;
+    }
+
+    /* ==========================================
+       2. FILING FOLDERS (TAB 2)
+       ========================================== */
+    .folder-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    @media (min-width: 550px) {
+      .folder-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    .folder-tray {
+      background: #1e293b;
+      border: 2px solid #334155;
+      border-radius: 8px;
+      padding: 8px;
+      min-height: 90px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+
+    .folder-header {
+      font-size: 0.75rem;
+      font-weight: 800;
+      color: #fbbf24;
+      border-bottom: 1px solid #334155;
+      padding-bottom: 4px;
+      pointer-events: none;
+    }
+
+    .folder-content {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      flex-grow: 1;
+      /* pointer-events: none REMOVED so cards inside folders can be clicked & dragged */
+    }
+
+    /* ==========================================
+       3. FUSE CIRCUIT (TAB 3)
+       ========================================== */
+    .fuse-box {
+      background: #0f172a;
+      border: 2px solid #1e293b;
+      border-radius: 10px;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+
+    .fuse-nodes {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 6px;
+      -webkit-overflow-scrolling: touch;
+      scroll-snap-type: x mandatory;
+    }
+
+    @media (min-width: 640px) {
+      .fuse-nodes {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        overflow-x: visible;
+        padding-bottom: 0;
+      }
+    }
+
+    .fuse-socket {
+      background: #1e293b;
+      border: 2px dashed #475569;
+      border-radius: 8px;
+      padding: 6px;
+      min-height: 85px;
+      min-width: 130px;
+      flex: 0 0 130px;
+      scroll-snap-align: start;
+      position: relative;
+      transition: all 0.2s;
+    }
+
+    @media (min-width: 640px) {
+      .fuse-socket { min-width: auto; flex: auto; }
+    }
+
+    .fuse-socket.spark {
+      border-color: #ef4444;
+      background: #7f1d1d !important;
+      animation: flashSpark 0.2s 3;
+    }
+
+    .fuse-socket.powered {
+      border-color: #10b981;
+      background: #064e3b;
+    }
+
+    @keyframes flashSpark {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    .socket-header {
+      font-size: 0.68rem;
+      font-weight: 800;
+      color: #fbbf24;
+      margin-bottom: 4px;
+      pointer-events: none;
+    }
+
+    /* ==========================================
+       4. CANDLE & RECOVERABLE SHREDDER (TAB 4)
+       ========================================== */
+    .desk-stage {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .desk-station {
+      background: #0f172a;
+      border: 2px solid #1e293b;
+      border-radius: 8px;
+      padding: 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .station-title {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #fbbf24;
+      margin-top: 2px;
+      pointer-events: none;
+    }
+
+    .candle-viewer {
+      width: 100%;
+      min-height: 50px;
+      background: radial-gradient(circle, rgba(251,191,36,0.15) 0%, rgba(15,23,42,1) 70%);
+      border: 1px solid #334155;
+      border-radius: 6px;
+      padding: 4px;
+      margin-top: 6px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+
+    .watermark-seal {
+      font-size: 0.65rem;
+      font-weight: 800;
+      padding: 3px 6px;
+      border-radius: 4px;
+      margin-top: 2px;
+    }
+    .watermark-seal.valid { color: #34d399; border: 1px dashed #10b981; }
+    .watermark-seal.fake { color: #f87171; border: 1px dashed #ef4444; }
+
+    .trash-archive-box {
+      background: #1f1917;
+      border: 2px dashed #7f1d1d;
+      border-radius: 8px;
+      padding: 8px;
+      min-height: 70px;
+      margin-bottom: 10px;
+      transition: all 0.2s;
+    }
+
+    /* Modal Styling */
+    .modal-mask {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(4px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      padding: 12px;
+    }
+
+    .modal-card {
+      background: #0f172a;
+      border: 2px solid #fbbf24;
+      border-radius: 10px;
+      width: 100%;
+      max-width: 480px;
+      padding: 14px;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+      border-bottom: 1px solid #1e293b;
+      padding-bottom: 6px;
+    }
+
+    .modal-title { font-size: 0.9rem; color: #fbbf24; font-weight: 700; }
+    .modal-close { background: transparent; border: none; color: #9ca3af; font-size: 1.2rem; cursor: pointer; padding: 4px 8px; }
+    .modal-body { font-size: 0.78rem; line-height: 1.35; color: #d1d5db; margin-bottom: 10px; }
+
+    .detail-row {
+      background: #1e293b;
+      padding: 8px;
+      border-radius: 6px;
+      border-left: 4px solid #38bdf8;
+      font-size: 0.75rem;
+    }
+    .detail-row strong { color: #38bdf8; display: block; margin-bottom: 2px; font-size: 0.68rem; }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <h1>Act I: Mobile Lab Workspace</h1>
+    <p class="subtitle">Drag cards or tap to select & move.</p>
+    <div class="score-badge">Score: <span id="score-val">0</span></div>
+  </header>
+
+  <!-- Navigation Tabs -->
+  <div class="nav-tabs">
+    <button class="tab-btn active" onclick="switchTab('compare')">1. Comparator</button>
+    <button class="tab-btn" onclick="switchTab('link')">2. Folders</button>
+    <button class="tab-btn" onclick="switchTab('timeline')">3. Circuit Board</button>
+    <button class="tab-btn" onclick="switchTab('contradict')">4. Candle/Shredder</button>
+  </div>
+
+  <!-- Feedback Banner -->
+  <div id="feedback" class="feedback-box">
+    Drag card to Slot A/B or tap card to select.
+  </div>
+
+  <!-- TAB 1: DUAL COMPARATOR -->
+  <div id="panel-compare" class="tab-panel active">
+    <div class="comparator-stage">
+      <div class="comparator-slots">
+        <div class="comparator-slot" id="comp-slot-container-0"
+             onclick="handleComparatorSlotTap(0)"
+             ondragover="onDragOver(event)" ondragenter="onDragEnter(event)" ondragleave="onDragLeave(event)" ondrop="onDropComparator(event, 0)">
+          <div class="slot-label">Slot A</div>
+          <div id="comp-slot-0" style="width:100%;"></div>
+        </div>
+        <div class="comparator-slot" id="comp-slot-container-1"
+             onclick="handleComparatorSlotTap(1)"
+             ondragover="onDragOver(event)" ondragenter="onDragEnter(event)" ondragleave="onDragLeave(event)" ondrop="onDropComparator(event, 1)">
+          <div class="slot-label">Slot B</div>
+          <div id="comp-slot-1" style="width:100%;"></div>
+        </div>
+      </div>
+    </div>
+
+    <p style="font-size:0.72rem; color:#9ca3af; margin-bottom:6px;">Evidence Shelf (Drop here to unslot):</p>
+    <div id="comp-bank" class="card-pool-grid"
+         ondragover="onDragOver(event)" ondragenter="onDragEnter(event)" ondragleave="onDragLeave(event)" ondrop="onDropCompBank(event)"></div>
+
+    <div class="actions-bar">
+      <button class="btn-secondary" onclick="clearComparator()">Clear Slots</button>
+      <button class="btn-submit" onclick="testComparatorPair()">Compare Items</button>
+    </div>
+  </div>
+
+  <!-- TAB 2: EVIDENCE FOLDERS -->
+  <div id="panel-link" class="tab-panel">
+    <div class="folder-grid">
+      <div class="folder-tray" onclick="handleFolderTap('people')"
+           ondragover="onDragOver(event)" ondragenter="onDragEnter(event)" ondragleave="onDragLeave(event)" ondrop="onDropFolder(event, 'people')">
+        <div class="folder-header">👥 People & Suspects</div>
+        <div id="folder-people" class="folder-content"></div>
+      </div>
+      <div class="folder-tray" onclick="handleFolderTap('prophecy')"
+           ondragover="onDragOver(event)" ondragenter="onDragEnter(event)" ondragleave="onDragLeave(event)" ondrop="onDropFolder(event, 'prophecy')">
+        <div class="folder-header">📜 Prophecy & Scripture</div>
+        <div id="folder-prophecy" class="folder-content"></div>
+      </div>
+      <div class="folder-tray" onclick="handleFolderTap('event')"
+           ondragover="onDragOver(event)" ondragenter="onDragEnter(event)" ondragleave="onDragLeave(event)" ondrop="onDropFolder(event, 'event')">
+        <div class="folder-header">🐾 Event Trail</div>
+        <div id="folder-event" class="folder-content"></div>
+      </div>
+    </div>
+
+    <p style="font-size:0.72rem; color:#9ca3af; margin-bottom:6px;">Unfiled Desk Items (Drop here to unfile):</p>
+    <div id="folder-bank" class="card-pool-grid"
+         ondragover="onDragOver(event)" ondragenter="onDragEnter(event)" ondragleave="onDragLeave(event)" ondrop="onDropFolderBank(event)"></div>
+
+    <div class="actions-bar">
+      <button class="btn-submit" onclick="submitFolderFiling()">Verify All Folders</button>
+    </div>
+  </div>
+
+  <!-- TAB 3: FUSE CIRCUIT -->
+  <div id="panel-timeline" class="tab-panel">
+    <div class="fuse-box">
+      <p style="font-size:0.72rem; color:#9ca3af; margin-bottom:6px;">Swipe circuit nodes ↔ to place in order:</p>
+      <div class="fuse-nodes">
+        <div class="fuse-socket" id="socket-0" onclick="handleFuseSocketTap(0)"
+             ondragover="onDragOver(event)" ondragenter="onDragEnter(event)" ondragleave="onDragLeave(event)" ondrop="onDropFuse(event, 0)">
+          <div class="socket-header">#1 Node</div><div id="socket-card-0"></div>
+        </div>
+        <div class="fuse-socket" id="socket-1" onclick="handleFuseSocketTap(1)"
+             ondragover="onDragOver(event)" ondragenter="onDragEnter(event)" ondragleave="onDragLeave(event)" ondrop="onDropFuse(event, 1)">
+          <div class="socket-header">#2 Node</div><div id="socket-card-1"></div>
+        </div>
+        <div class="fuse-socket" id="socket-2" onclick="handleFuseSocketTap(2)"
+             ondragover="onDragOver(event)" ondragenter="onDragEnter(event)" ondragleave="onDragLeave(event)" ondrop="onDropFuse(event, 2)">
+          <div class="socket-header">#3 Node</div><div id="socket-card-2"></div>
+        </div>
+        <div class="fuse-socket" id="socket-3" onclick="handleFuseSocketTap(3)"
+             ondragover="onDragOver(event)" ondragenter="onDragEnter(event)" ondragleave="onDragLeave(event)" ondrop="onDropFuse(event, 3)">
+          <div class="socket-header">#4 Node</div><div id="socket-card-3"></div>
+        </div>
+        <div class="fuse-socket" id="socket-4" onclick="handleFuseSocketTap(4)"
+             ondragover="onDragOver(event)" ondragenter="onDragEnter(event)" ondragleave="onDragLeave(event)" ondrop="onDropFuse(event, 4)">
+          <div class="socket-header">#5 Node</div><div id="socket-card-4"></div>
+        </div>
+      </div>
+    </div>
+
+    <p style="font-size:0.72rem; color:#9ca3af; margin-bottom:6px;">Unassigned Items (Drop here to remove):</p>
+    <div id="fuse-bank" class="card-pool-grid"
+         ondragover="onDragOver(event)" ondragenter="onDragEnter(event)" ondragleave="onDragLeave(event)" ondrop="onDropFuseBank(event)"></div>
+
+    <div class="actions-bar">
+      <button class="btn-secondary" onclick="resetCircuit()">Clear</button>
+      <button class="btn-submit" onclick="testCircuitCurrent()">⚡ Flip Power Switch</button>
+    </div>
+  </div>
+
+  <!-- TAB 4: CANDLE & RECOVERABLE SHREDDER -->
+  <div id="panel-contradict" class="tab-panel">
+    <div class="desk-stage">
+      <div class="desk-station" onclick="handleDeskStationTap('candle')"
+           ondragover="onDragOver(event)" ondragenter="onDragEnter(event)" ondragleave="onDragLeave(event)" ondrop="onDropCandle(event)">
+        <div style="font-size:1.2rem; pointer-events:none;">🕯️</div>
+        <div class="station-title">Candlelight Inspector</div>
+        <div class="candle-viewer" id="candle-viewer">
+          <span style="font-size:0.68rem; color:#9ca3af; pointer-events:none;">Drag/tap item here.</span>
+        </div>
+      </div>
+
+      <div class="desk-station" style="border-color: #7f1d1d;" onclick="handleDeskStationTap('shredder')"
+           ondragover="onDragOver(event)" ondragenter="onDragEnter(event)" ondragleave="onDragLeave(event)" ondrop="onDropShredder(event)">
+        <div style="font-size:1.2rem; pointer-events:none;">🗑️</div>
+        <div class="station-title" style="color:#f87171;">Shredder Bin</div>
+        <span style="font-size:0.68rem; color:#fca5a5; margin-top:2px; pointer-events:none;">Drag/tap here to fake.</span>
+      </div>
+    </div>
+
+    <p style="font-size:0.72rem; color:#9ca3af; margin-bottom:4px;">Active Evidence Items on Desk:</p>
+    <div id="desk-bank" class="card-pool-grid"
+         ondragover="onDragOver(event)" ondragenter="onDragEnter(event)" ondragleave="onDragLeave(event)" ondrop="onDropDeskBank(event)"></div>
+
+    <p style="font-size:0.72rem; color:#ef4444; margin-bottom:4px;">Shredded Bin (Tap card to restore):</p>
+    <div id="shredded-bank" class="trash-archive-box card-pool-grid"
+         ondragover="onDragOver(event)" ondragenter="onDragEnter(event)" ondragleave="onDragLeave(event)" ondrop="onDropShredder(event)"></div>
+
+    <div class="actions-bar">
+      <button class="btn-submit" onclick="submitShredderVerification()">Verify Shredded Items</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Dialog -->
+<div id="modal-mask" class="modal-mask" onclick="closeModal()">
+  <div class="modal-card" onclick="event.stopPropagation()">
+    <div class="modal-header">
+      <div id="modal-title" class="modal-title">Item Title</div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div id="modal-body" class="modal-body">Description...</div>
+    <div id="modal-detail"></div>
+  </div>
+</div>
+
+<script>
+  const evidence = [
+    {
+      id: 'hoofprints',
+      name: 'Fresh Hoofprints',
+      icon: '🐾',
+      desc: 'Single-animal tracks toward gate.',
+      fake: false,
+      category: 'event',
+      timelineOrder: 1,
+      clues: {
+        compare: "Pairs with Villager's Testimony.",
+        link: "Physical ground evidence -> Event Trail.",
+        timeline: "CHRONOLOGY: Tracks made 1st.",
+        contradict: "RELIABILITY: Depth matches walking animal."
+      }
+    },
+    {
+      id: 'testimony',
+      name: 'Villager\'s Testimony',
+      icon: '🗣️',
+      desc: 'Colt was tied at gate.',
+      fake: false,
+      category: 'people',
+      timelineOrder: 2,
+      clues: {
+        compare: "Pairs with Fresh Hoofprints.",
+        link: "Eyewitness account -> People.",
+        timeline: "CHRONOLOGY: Colt untied 2nd.",
+        contradict: "RELIABILITY: Credible statement."
+      }
+    },
+    {
+      id: 'cloaks',
+      name: 'Disciples\' Cloaks',
+      icon: '🧥',
+      desc: 'Cloaks laid down for ride.',
+      fake: false,
+      category: 'people',
+      timelineOrder: 3,
+      clues: {
+        compare: "Pairs with Zechariah scroll.",
+        link: "Garments -> People.",
+        timeline: "CHRONOLOGY: Laid down 3rd.",
+        contradict: "RELIABILITY: Authentic garments."
+      }
+    },
+    {
+      id: 'palms',
+      name: 'Fresh Palm Branch',
+      icon: '🌿',
+      desc: 'Cut palm fronds on route.',
+      fake: false,
+      category: 'prophecy',
+      timelineOrder: 4,
+      clues: {
+        compare: "Symbolic frond from procession.",
+        link: "Greeting -> Prophecy.",
+        timeline: "CHRONOLOGY: Waved 4th.",
+        contradict: "RELIABILITY: Fresh frond."
+      }
+    },
+    {
+      id: 'zechariah',
+      name: 'Zechariah Scroll',
+      icon: '📜',
+      desc: 'King entering on colt.',
+      fake: false,
+      category: 'prophecy',
+      timelineOrder: 5,
+      clues: {
+        compare: "Pairs with Cloaks.",
+        link: "Scripture -> Prophecy.",
+        timeline: "CHRONOLOGY: Scripture summary 5th.",
+        contradict: "RELIABILITY: Ancient fragment."
+      }
+    },
+    {
+      id: 'rope',
+      name: 'Cut Rope Piece',
+      icon: '🪢',
+      desc: 'Rope cut with blade.',
+      fake: true,
+      category: 'people',
+      timelineOrder: null,
+      clues: {
+        compare: "Invalid pair item.",
+        link: "Categorized under People.",
+        timeline: "N/A — Theft did not occur.",
+        contradict: "FORGERY: Knife cuts conflict with testimony."
+      }
+    },
+    {
+      id: 'complaint',
+      name: 'Pharisee Complaint',
+      icon: '📝',
+      desc: 'Written report of riot.',
+      fake: true,
+      category: 'event',
+      timelineOrder: null,
+      clues: {
+        compare: "Invalid pair item.",
+        link: "Categorized under Event Trail.",
+        timeline: "N/A — Riot never happened.",
+        contradict: "FORGERY: Exaggerated claims conflict testimony."
+      }
+    }
+  ];
+
+  let currentTab = 'compare';
+  let selectedCardId = null;
+  let currentScore = 0;
+
+  // Workspace States
+  let comparatorSlots = [null, null];
+  let folderState = {}; 
+  let folderValidated = false;
+  let fuseSockets = [null, null, null, null, null];
+  let shreddedSet = new Set();
+
+  window.onload = () => { 
+    updateScore(0);
+    renderAll(); 
+  };
+
+  /* SCORE MANAGER */
+  function updateScore(delta) {
+    currentScore += delta;
+    const scoreValEl = document.getElementById('score-val');
+    const badgeEl = document.querySelector('.score-badge');
+
+    scoreValEl.textContent = currentScore;
+
+    if (delta !== 0) {
+      badgeEl.classList.remove('bump-plus', 'bump-minus');
+      void badgeEl.offsetWidth; // Force CSS animation restart
+      if (delta > 0) {
+        badgeEl.classList.add('bump-plus');
+      } else {
+        badgeEl.classList.add('bump-minus');
+      }
+      setTimeout(() => {
+        badgeEl.classList.remove('bump-plus', 'bump-minus');
+      }, 350);
+    }
+  }
+
+  function switchTab(tab) {
+    currentTab = tab;
+    selectedCardId = null;
+    document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+
+    event.target.classList.add('active');
+    document.getElementById(`panel-${tab}`).classList.add('active');
+    setFeedback(`Mode: ${tab.toUpperCase()}. Drag cards or tap to place.`);
+    renderAll();
+  }
+
+  function setFeedback(msg, type = "") {
+    const fb = document.getElementById('feedback');
+    fb.textContent = msg;
+    fb.className = "feedback-box " + type;
+  }
+
+  function renderAll() {
+    renderComparator();
+    renderFolders();
+    renderFuse();
+    renderCandleAndShredder();
+  }
+
+  /* DRAG AND DROP HANDLERS */
+  function onDragStart(e, cardId) {
+    e.dataTransfer.setData('text/plain', cardId);
+    e.dataTransfer.effectAllowed = 'move';
+    setTimeout(() => {
+      const el = e.target;
+      if (el) el.classList.add('dragging');
+    }, 0);
+  }
+
+  function onDragEnd(e) {
+    const el = e.target;
+    if (el) el.classList.remove('dragging');
+    document.querySelectorAll('.drop-hover').forEach(el => el.classList.remove('drop-hover'));
+  }
+
+  function onDragOver(e) {
+    e.preventDefault();
+    e.dataTransfer.dropEffect = 'move';
+  }
+
+  function onDragEnter(e) {
+    e.preventDefault();
+    e.currentTarget.classList.add('drop-hover');
+  }
+
+  function onDragLeave(e) {
+    e.currentTarget.classList.remove('drop-hover');
+  }
+
+  function getDraggedId(e) {
+    e.preventDefault();
+    e.currentTarget.classList.remove('drop-hover');
+    return e.dataTransfer.getData('text/plain');
+  }
+
+  // Drop Handlers for Tab 1
+  function onDropComparator(e, slotIdx) {
+    const id = getDraggedId(e);
+    if (!id) return;
+    comparatorSlots = comparatorSlots.map(s => s === id ? null : s);
+    comparatorSlots[slotIdx] = id;
+    selectedCardId = null;
+    renderComparator();
+  }
+
+  function onDropCompBank(e) {
+    const id = getDraggedId(e);
+    if (!id) return;
+    comparatorSlots = comparatorSlots.map(s => s === id ? null : s);
+    selectedCardId = null;
+    renderComparator();
+  }
+
+  // Drop Handlers for Tab 2
+  function onDropFolder(e, category) {
+    const id = getDraggedId(e);
+    if (!id) return;
+    folderState[id] = category;
+    folderValidated = false;
+    selectedCardId = null;
+    renderFolders();
+  }
+
+  function onDropFolderBank(e) {
+    const id = getDraggedId(e);
+    if (!id) return;
+    delete folderState[id];
+    folderValidated = false;
+    selectedCardId = null;
+    renderFolders();
+  }
+
+  // Drop Handlers for Tab 3
+  function onDropFuse(e, socketIdx) {
+    const id = getDraggedId(e);
+    if (!id) return;
+    resetCircuitVisuals();
+    fuseSockets = fuseSockets.map(s => s === id ? null : s);
+    fuseSockets[socketIdx] = id;
+    selectedCardId = null;
+    renderFuse();
+  }
+
+  function onDropFuseBank(e) {
+    const id = getDraggedId(e);
+    if (!id) return;
+    resetCircuitVisuals();
+    fuseSockets = fuseSockets.map(s => s === id ? null : s);
+    selectedCardId = null;
+    renderFuse();
+  }
+
+  // Drop Handlers for Tab 4
+  function onDropCandle(e) {
+    const id = getDraggedId(e);
+    if (!id) return;
+    selectedCardId = id;
+    handleDeskStationTap('candle');
+  }
+
+  function onDropShredder(e) {
+    const id = getDraggedId(e);
+    if (!id) return;
+    shreddedSet.add(id);
+    selectedCardId = null;
+    renderCandleAndShredder();
+    const item = evidence.find(x => x.id === id);
+    setFeedback(`Moved "${item ? item.name : 'item'}" to Shredder Bin.`);
+  }
+
+  function onDropDeskBank(e) {
+    const id = getDraggedId(e);
+    if (!id) return;
+    shreddedSet.delete(id);
+    selectedCardId = null;
+    renderCandleAndShredder();
+    const item = evidence.find(x => x.id === id);
+    setFeedback(`Restored "${item ? item.name : 'item'}" to desk.`);
+  }
+
+  /* CARD GENERATOR */
+  function createCardUI(ev, customOnClick = null, extraClass = "") {
+    const card = document.createElement('div');
+    card.className = `ev-card ${extraClass}` + (selectedCardId === ev.id ? ' selected' : '');
+    card.setAttribute('draggable', 'true');
+    
+    card.innerHTML = `
+      <div class="ev-card-top">
+        <div class="ev-card-title-group">
+          <span class="ev-icon">${ev.icon}</span>
+          <span class="ev-name">${ev.name}</span>
+        </div>
+        <button class="ev-info-btn" onclick="openDetail(event, '${ev.id}')">ⓘ</button>
+      </div>
+      <div class="ev-desc">${ev.desc}</div>
+    `;
+
+    card.ondragstart = (e) => onDragStart(e, ev.id);
+    card.ondragend = (e) => onDragEnd(e);
+
+    card.onclick = (e) => {
+      e.stopPropagation();
+      if (customOnClick) {
+        customOnClick(ev.id);
+      } else {
+        selectedCardId = (selectedCardId === ev.id) ? null : ev.id;
+        if (selectedCardId) setFeedback(`Selected "${ev.name}". Drag or tap target.`);
+        renderAll();
+      }
+    };
+
+    return card;
+  }
+
+  /* 1. DUAL COMPARATOR LOGIC */
+  function renderComparator() {
+    const bank = document.getElementById('comp-bank');
+    bank.innerHTML = '';
+
+    evidence.filter(e => !comparatorSlots.includes(e.id)).forEach(ev => {
+      bank.appendChild(createCardUI(ev));
+    });
+
+    for (let i = 0; i < 2; i++) {
+      const slotEl = document.getElementById(`comp-slot-${i}`);
+      slotEl.innerHTML = '';
+      const slottedId = comparatorSlots[i];
+      if (slottedId) {
+        const ev = evidence.find(e => e.id === slottedId);
+        slotEl.appendChild(createCardUI(ev, () => {
+          comparatorSlots[i] = null;
+          renderComparator();
+        }));
+      }
+    }
+  }
+
+  function handleComparatorSlotTap(slotIdx) {
+    if (selectedCardId) {
+      comparatorSlots = comparatorSlots.map(id => id === selectedCardId ? null : id);
+      comparatorSlots[slotIdx] = selectedCardId;
+      selectedCardId = null;
+      renderComparator();
+    }
+  }
+
+  function clearComparator() {
+    comparatorSlots = [null, null];
+    renderComparator();
+    setFeedback("Cleared comparator slots.");
+  }
+
+  function testComparatorPair() {
+    if (!comparatorSlots[0] || !comparatorSlots[1]) {
+      setFeedback("Place 2 items into Slot A and Slot B first.", "error");
+      updateScore(-3);
+      return;
+    }
+
+    const pair = comparatorSlots.slice().sort().join('+');
+    const validPairs = ['cloaks+zechariah', 'hoofprints+testimony'];
+
+    if (validPairs.includes(pair)) {
+      setFeedback("✔ MATCH CONFIRMED! (+5 pts)", "success");
+      updateScore(5);
+    } else {
+      setFeedback("✖ NO MATCH. (-3 pts)", "error");
+      updateScore(-3);
+    }
+  }
+
+  /* 2. FILING FOLDERS LOGIC */
+  function renderFolders() {
+    const bank = document.getElementById('folder-bank');
+    bank.innerHTML = '';
+
+    document.getElementById('folder-people').innerHTML = '';
+    document.getElementById('folder-prophecy').innerHTML = '';
+    document.getElementById('folder-event').innerHTML = '';
+
+    evidence.forEach(ev => {
+      const folderTarget = folderState[ev.id];
+      if (!folderTarget) {
+        bank.appendChild(createCardUI(ev));
+      } else {
+        let statusClass = "";
+        if (folderValidated) {
+          statusClass = (folderTarget === ev.category) ? "card-correct" : "card-incorrect";
+        }
+
+        // Tapping a card already in a folder unfiles it
+        const card = createCardUI(ev, () => {
+          delete folderState[ev.id];
+          folderValidated = false;
+          renderFolders();
+          setFeedback(`Removed "${ev.name}" from folder.`);
+        }, statusClass);
+
+        document.getElementById(`folder-${folderTarget}`).appendChild(card);
+      }
+    });
+  }
+
+  function handleFolderTap(category) {
+    if (selectedCardId) {
+      folderState[selectedCardId] = category;
+      folderValidated = false;
+      selectedCardId = null;
+      renderFolders();
+    }
+  }
+
+  function submitFolderFiling() {
+    let allCorrect = true;
+    let totalFiled = 0;
+
+    evidence.forEach(ev => {
+      if (folderState[ev.id]) {
+        totalFiled++;
+        if (folderState[ev.id] !== ev.category) allCorrect = false;
+      } else {
+        allCorrect = false;
+      }
+    });
+
+    folderValidated = true;
+    renderFolders();
+
+    if (allCorrect && totalFiled === evidence.length) {
+      setFeedback("✔ Perfect! All evidence accurately categorized. (+5 pts)", "success");
+      updateScore(5);
+    } else {
+      setFeedback("✖ Classification incorrect or incomplete! Red items are misfiled. (-3 pts)", "error");
+      updateScore(-3);
+    }
+  }
+
+  /* 3. FUSE CIRCUIT LOGIC */
+  function renderFuse() {
+    const bank = document.getElementById('fuse-bank');
+    bank.innerHTML = '';
+
+    const assignedIds = fuseSockets.filter(Boolean);
+    evidence.filter(e => !e.fake && !assignedIds.includes(e.id)).forEach(ev => {
+      bank.appendChild(createCardUI(ev));
+    });
+
+    for (let i = 0; i < 5; i++) {
+      const slotContainer = document.getElementById(`socket-card-${i}`);
+      slotContainer.innerHTML = '';
+      const slottedId = fuseSockets[i];
+      if (slottedId) {
+        const ev = evidence.find(e => e.id === slottedId);
+        slotContainer.appendChild(createCardUI(ev, () => {
+          fuseSockets[i] = null;
+          resetCircuitVisuals();
+          renderFuse();
+        }));
+      }
+    }
+  }
+
+  function handleFuseSocketTap(socketIdx) {
+    resetCircuitVisuals();
+    if (selectedCardId) {
+      fuseSockets = fuseSockets.map(id => id === selectedCardId ? null : id);
+      fuseSockets[socketIdx] = selectedCardId;
+      selectedCardId = null;
+      renderFuse();
+    }
+  }
+
+  function resetCircuitVisuals() {
+    for (let i = 0; i < 5; i++) {
+      const el = document.getElementById(`socket-${i}`);
+      el.classList.remove('powered', 'spark');
+    }
+  }
+
+  function resetCircuit() {
+    fuseSockets = [null, null, null, null, null];
+    resetCircuitVisuals();
+    renderFuse();
+    setFeedback("Circuit reset.");
+  }
+
+  function testCircuitCurrent() {
+    const expected = ['hoofprints', 'testimony', 'cloaks', 'palms', 'zechariah'];
+    let failedIndex = -1;
+
+    for (let i = 0; i < 5; i++) {
+      const el = document.getElementById(`socket-${i}`);
+      el.classList.remove('powered', 'spark');
+
+      if (fuseSockets[i] === expected[i] && failedIndex === -1) {
+        el.classList.add('powered');
+      } else if (failedIndex === -1) {
+        failedIndex = i;
+        el.classList.add('spark');
+      }
+    }
+
+    if (failedIndex === -1 && fuseSockets.every(Boolean)) {
+      setFeedback("⚡ CIRCUIT POWERED! Sequence correct. (+5 pts)", "success");
+      updateScore(5);
+    } else {
+      setFeedback(`💥 BREAK AT NODE #${failedIndex + 1}! Tap node card to unslot. (-3 pts)`, "error");
+      updateScore(-3);
+    }
+  }
+
+  /* 4. CANDLE & RECOVERABLE SHREDDER LOGIC */
+  function renderCandleAndShredder() {
+    const deskBank = document.getElementById('desk-bank');
+    const shreddedBank = document.getElementById('shredded-bank');
+
+    deskBank.innerHTML = '';
+    shreddedBank.innerHTML = '';
+
+    evidence.forEach(ev => {
+      if (shreddedSet.has(ev.id)) {
+        const card = createCardUI(ev, () => {
+          shreddedSet.delete(ev.id);
+          renderCandleAndShredder();
+          setFeedback(`Restored "${ev.name}" to desk.`);
+        });
+        shreddedBank.appendChild(card);
+      } else {
+        deskBank.appendChild(createCardUI(ev));
+      }
+    });
+  }
+
+  function handleDeskStationTap(stationType) {
+    if (!selectedCardId) return;
+
+    const item = evidence.find(e => e.id === selectedCardId);
+    if (!item) return;
+
+    if (stationType === 'candle') {
+      const viewer = document.getElementById('candle-viewer');
+      if (item.fake) {
+        viewer.innerHTML = `
+          <div style="color:#f87171; font-weight:700; font-size:0.75rem;">🕯️ ${item.name}</div>
+          <div class="watermark-seal fake">⚠️ FORGERY DETECTED</div>
+        `;
+        setFeedback(`Candle Light: "${item.name}" is a suspicious forgery!`, "error");
+      } else {
+        viewer.innerHTML = `
+          <div style="color:#34d399; font-weight:700; font-size:0.75rem;">🕯️ ${item.name}</div>
+          <div class="watermark-seal valid">✔ AUTHENTIC SEAL</div>
+        `;
+        setFeedback(`Candle Light: "${item.name}" is verified genuine.`, "success");
+      }
+    } else if (stationType === 'shredder') {
+      shreddedSet.add(item.id);
+      selectedCardId = null;
+      renderCandleAndShredder();
+      setFeedback(`Moved "${item.name}" to Shredder Bin.`);
+    }
+  }
+
+  function submitShredderVerification() {
+    const fakeIds = evidence.filter(e => e.fake).map(e => e.id).sort().join(',');
+    const shreddedIds = Array.from(shreddedSet).sort().join(',');
+
+    if (fakeIds === shreddedIds) {
+      setFeedback("✔ Verification Complete! Only false items are shredded. (+5 pts)", "success");
+      updateScore(5);
+    } else {
+      setFeedback("✖ Incorrect items in Shredder Bin. Tap shredded card to restore. (-3 pts)", "error");
+      updateScore(-3);
+    }
+  }
+
+  /* MODAL DIALOG */
+  function openDetail(event, evId) {
+    event.stopPropagation();
+    
+    updateScore(-1);
+
+    const item = evidence.find(e => e.id === evId);
+    if (!item) return;
+
+    document.getElementById('modal-title').textContent = `${item.icon} ${item.name}`;
+    document.getElementById('modal-body').textContent = item.desc;
+    document.getElementById('modal-detail').innerHTML = `
+      <div class="detail-row">
+        <strong>${currentTab.toUpperCase()} HINT (-1 pt):</strong>
+        <span>${item.clues[currentTab] || "No hint available."}</span>
+      </div>
+    `;
+
+    document.getElementById('modal-mask').style.display = 'flex';
+  }
+
+  function closeModal() {
+    document.getElementById('modal-mask').style.display = 'none';
+  }
+</script>
+
+</body>
+</html>

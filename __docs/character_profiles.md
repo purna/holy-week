@@ -235,14 +235,14 @@ This document establishes the comprehensive character profiles for the speakers 
 
 ---
 
-# ✨ Expanded Holy Week Character Roster
+## ✨ Expanded Holy Week Character Roster
 ## Additional NPC Archetypes & Jerusalem Narrative Roles
 
 These additions expand the social, political, and emotional ecosystem surrounding Jesus’s final week in Jerusalem during Passover. They are designed to preserve the existing systemic dialogue philosophy while broadening the playable world.
 
 ---
 
-# 🐑 Group 6: The Pilgrims & Festival Crowds
+## 🐑 Group 6: The Pilgrims & Festival Crowds
 ### Emotional, Reactive, Politically Unstable
 
 ## 11. The Galilean Pilgrim
@@ -318,7 +318,7 @@ These additions expand the social, political, and emotional ecosystem surroundin
 
 ---
 
-# 👑 Group 7: The Political Elite
+## 👑 Group 7: The Political Elite
 ### Strategic, Manipulative, Survival-Oriented
 
 ## 14. Caiaphas the High Priest
@@ -394,7 +394,7 @@ These additions expand the social, political, and emotional ecosystem surroundin
 
 ---
 
-# 🪙 Group 8: Betrayal & Intelligence Networks
+## 🪙 Group 8: Betrayal & Intelligence Networks
 ### Secretive, Fragmented, Dangerous
 
 ## 17. Judas Iscariot
@@ -446,7 +446,7 @@ These additions expand the social, political, and emotional ecosystem surroundin
 
 ---
 
-# 🌿 Group 9: The Inner Followers
+## 🌿 Group 9: The Inner Followers
 ### Loyal, Fractured, Exhausted
 
 ## 19. John the Beloved Disciple
@@ -525,7 +525,7 @@ These additions expand the social, political, and emotional ecosystem surroundin
 
 ---
 
-# ⚖️ Group 10: Roman Administration
+## ⚖️ Group 10: Roman Administration
 ### Bureaucratic, Detached, Violent When Necessary
 
 ## 22. Pontius Pilate
@@ -576,7 +576,7 @@ These additions expand the social, political, and emotional ecosystem surroundin
 
 ---
 
-# 🏛️ Group 12: The Sanhedrin & Associates
+## 🏛️ Group 12: The Sanhedrin & Associates
 ### Legalistic, Political, and Conflicted Authorities
 
 ## 26. Samuel the Scribe
@@ -650,7 +650,7 @@ These additions expand the social, political, and emotional ecosystem surroundin
 
 ---
 
-# 👥 Group 13: The Disciples & Inner Circle
+## 👥 Group 13: The Disciples & Inner Circle
 ### Loyal, Developing, and Diverse Followers
 
 ## 30. Andrew the Disciple
@@ -689,7 +689,7 @@ These additions expand the social, political, and emotional ecosystem surroundin
 
 ---
 
-# 🏘️ Group 14: Local Residents & Witnesses
+## 🏘️ Group 14: Local Residents & Witnesses
 ### The Everyday People of Judea
 
 ## 32. Tobias the Donkey Owner
@@ -928,7 +928,7 @@ These additions expand the social, political, and emotional ecosystem surroundin
 
 ---
 
-# 📅 Essential Jerusalem Events During Holy Week
+## 📅 Essential Jerusalem Events During Holy Week
 
 These events are recommended as major dialogue hubs, quest chains, or branching narrative matrices.
 
@@ -1475,7 +1475,7 @@ _These characters have runtime `/characters/` JSON files and are active in one o
 
 ---
 
-# Character Dialogue Profiles by Investigation Phase
+## Character Dialogue Profiles by Investigation Phase
 ## Systemic Script Parameters & Linguistic Casting
 
 This reference manual structures all 36 narrative archetypes into the 12 distinct, linear investigation phases established in the dynamic player interface board.
@@ -1729,7 +1729,7 @@ This reference manual structures all 36 narrative archetypes into the 12 distinc
 
 ---
 
-# 🔍 Cross-Reference: Character Profiles vs. `js/act*_case.js`
+## 🔍 Cross-Reference: Character Profiles vs. `js/act*_case.js`
 
 Generated audit of `characters/*.json` against `profileFile` references in `js/act1_case.js`, `js/act2_case.js`, `js/act3_case.js`, and `js/act4_case.js`.
 

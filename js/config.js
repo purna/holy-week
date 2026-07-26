@@ -262,8 +262,8 @@ export const SOUND = {
 };
 
 export const actions = [
-    { id: "pray", name: "Pray", icon: "🙏", description: "Offer a prayer for guidance and insight." },
-    { id: "heal", name: "Heal", icon: "❤️‍🩹", description: "A spiritual act of restoration." },
+    { id: "pray", name: "Pray", icon: '<img src="../assets/gfx/hand-pointer.svg" class="icon-svg" loading="lazy">', description: "Offer a prayer for guidance and insight." },
+    { id: "heal", name: "Heal", icon: '<img src="../assets/gfx/heart-duotone.svg" class="icon-svg" loading="lazy">', description: "A spiritual act of restoration." },
   ];
 
 // Legacy npcs, quests, collectables deprecated - now in level*.js files

@@ -28,17 +28,17 @@ export class GameEngine {
     this.cm = new CaseManager();
     this.app = new MobileApp({
       tabs: [
-        { id: 'scene', label: 'Scene', icon: '🔎' },
-        { id: 'people', label: 'People', icon: '🗣' },
-        { id: 'lab', label: 'Lab', icon: '🧪' },
-        { id: 'codex', label: 'Codex', icon: '📜' },
-        { id: 'accuse', label: 'Accuse', icon: '⚖️' }
+        { id: 'scene', label: 'Scene', icon: "<img src='../assets/gfx/search.svg' class='icon-svg' loading='lazy'>" },
+        { id: 'people', label: 'People', icon: "<img src='../assets/gfx/chat-duotone.svg' class='icon-svg' loading='lazy'>" },
+        { id: 'lab', label: 'Lab', icon: "<img src='../assets/gfx/microscope-duotone.svg' class='icon-svg' loading='lazy'>" },
+         { id: 'codex', label: 'Codex', icon: "<img src='../assets/gfx/scroll-duotone.svg' class='icon-svg' loading='lazy'>" },
+         { id: 'accuse', label: 'Accuse', icon: "<img src='../assets/gfx/balance-scale-duotone.svg' class='icon-svg' loading='lazy'>" }
       ],
       views: ['scene', 'people', 'lab', 'codex', 'accuse']
     });
 
     this.a11y = new AccessibilityManager({ app: this.app });
-    this.es = new EvidenceSystem(this.cm);
+    this.es = new EvidenceSystem(this.cm, this.config);
     this.ns = new NPCSystem(this.cm, this.es);
     this.de = new DeductionEngine(this.cm, this.es);
     this.ls = new LocationSystem(this.cm);

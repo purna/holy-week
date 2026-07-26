@@ -2,7 +2,7 @@
   "name": "Jemimah",
   "role": "Temple Flower Seller",
   "faction": "local",
-  "avatar": "\ud83d\udc69\u200d\ud83c\udf3e",
+  "avatar": "jemimah.svg",
   "mood": "neutral",
   "background": "A young woman who sells fragrant spices and flowers near the Temple courtyard. She observes much from her flower stall.",
   "dialogue": {
@@ -21,5 +21,7 @@
     "environmental": "The environment? Could be anyone.",
     "analytical": "Numbers can be misleading, you know.",
     "prophecy": "A prophecy fulfilled? I see the connection now."
-  }
+  },
+  "earSize": 0.5,
+  "headSize": 0.85
 }

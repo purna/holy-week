@@ -75,14 +75,14 @@ export class Scene2D {
                 <div id="ui-controls-overlay">
                     <div class="dpad">
                         <div class="btn" id="btn-up">▲</div>
-                        <div class="btn" id="btn-down">▼</div>
+                        <div class="btn" id="btn-down"><img src='../assets/gfx/arrow-down-duotone.svg' class='icon-svg' loading='lazy'></div>
                         <div class="btn" id="btn-left">◀</div>
-                        <div class="btn" id="btn-right">▶</div>
+                        <div class="btn" id="btn-right"><img src='../assets/gfx/play-duotone.svg' class='icon-svg' loading='lazy'></div>
                     </div>
                     <div class="btn-ui">
-                        <div id="btn-actions">🙏</div>
-                        <div id="btn-inventory">🎒</div>
-                        <div id="btn-talk">💬</div>
+                        <div id="btn-actions"><img src='../assets/gfx/hand-pointer.svg' class='icon-svg' loading='lazy'></div>
+                        <div id="btn-inventory"><img src='../assets/gfx/backpack-duotone.svg' class='icon-svg' loading='lazy'></div>
+                        <div id="btn-talk"><img src='../assets/gfx/chat-duotone.svg' class='icon-svg' loading='lazy'></div>
                     </div>
                     <div id="actions-popup" class="actions-popup">
                         <div id="actions-list"></div>
@@ -284,7 +284,7 @@ export class Scene2D {
                 y: pos.y,
                 location: npc.location || '',
                 animOffset: (Math.PI / 3) * i,
-                avatar: npc.avatar || '👤'
+                avatar: npc.avatar || "<img src='../assets/gfx/user-duotone.svg' class='icon-svg' loading='lazy'>"
             });
         });
 
@@ -433,7 +433,7 @@ export class Scene2D {
         } else {
             actionBtn.classList.remove('active');
         }
-        actionBtn.textContent = '💬';
+        actionBtn.textContent = "<img src='../assets/gfx/chat-duotone.svg' class='icon-svg' loading='lazy'>";
     }
 
     // NOTE: previously this method had a corrupted structure where a full,

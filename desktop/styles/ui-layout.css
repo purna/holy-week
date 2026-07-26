@@ -535,3 +535,4 @@
     left: calc(50% - (var(--btn-sz) / 2));
     background: rgba(100, 255, 218, 0.15);
 }
+.icon-svg { width: 1em; height: 1em; vertical-align: -0.125em; display: inline-block; }

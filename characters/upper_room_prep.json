@@ -2,7 +2,7 @@
   "id": "upper_room_prep",
   "name": "Preparation Servant",
   "role": "Upper Room Preparer",
-  "avatar": "\ud83d\udd6f\ufe0f",
+  "avatar": "upper_room_prep.svg",
   "truthfulness": 0.9,
   "bibleRef": "John 12:1-8",
   "background": "Preparing the upper room for the Passover meal, aware of the Master's impending departure.",
@@ -17,5 +17,7 @@
     "environmental": "The air in that room was so heavy. You could feel something was about to happen.",
     "analytical": "Thirteen men at the table. One of them left early.",
     "prophecy": "He spoke of his body and blood. It was strange, and sad."
-  }
+  },
+  "earSize": 0.95,
+  "headSize": 1.0
 }

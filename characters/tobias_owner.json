@@ -2,7 +2,7 @@
   "name": "Tobias",
   "role": "Market Owner",
   "faction": "local",
-  "avatar": "\ud83d\udc68\u200d\ud83c\udf3e",
+  "avatar": "tobias_owner.svg",
   "mood": "neutral",
   "background": "A wealthy linen merchant who operates a shop near the Temple Mount. He provides ceremonial items for Passover preparations.",
   "dialogue": {
@@ -21,5 +21,7 @@
     "environmental": "My home in Bethphage was the starting point for His entry.",
     "analytical": "One colt, for one King. The numbers are simple.",
     "prophecy": "I have waited my whole life to see this prophecy fulfilled."
-  }
+  },
+  "earSize": 1.0,
+  "headSize": 1.0
 }

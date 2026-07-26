@@ -32,7 +32,7 @@ export const act1CaseA = {
     {
       reference: "Zechariah 9:9",
       id: "zechariah_9_9",
-      icon: "🔮",
+      icon: "<img src='../assets/gfx/star-duotone.svg' class='icon-svg' loading='lazy'>",
       text: `"Rejoice greatly, O daughter of Zion! Shout aloud, O daughter of Jerusalem! Behold, your king is coming to you; righteous and having salvation is he, humble and mounted on a donkey, on a colt, the foal of a donkey."`,
       written: "~520 BC",
       fulfilledBy: "Jesus riding a donkey colt into Jerusalem",
@@ -43,7 +43,7 @@ export const act1CaseA = {
     {
       reference: "Psalm 118:25–26",
       id: "psalm_118_25_26",
-      icon: "🔮",
+      icon: "<img src='../assets/gfx/star-duotone.svg' class='icon-svg' loading='lazy'>",
       text: `"Save us, we pray, O LORD! O LORD, we pray, give us success! Blessed is he who comes in the name of the LORD!"`,
       written: "~1000 BC",
       fulfilledBy: "The crowds shouting 'Hosanna! Blessed is he who comes in the name of the Lord!'",
@@ -54,7 +54,7 @@ export const act1CaseA = {
     {
       reference: "Genesis 49:10–11",
       id: "genesis_49_10_11",
-      icon: "🔮",
+      icon: "<img src='../assets/gfx/star-duotone.svg' class='icon-svg' loading='lazy'>",
       text: `"The scepter shall not depart from Judah... binding his foal to the vine and his donkey's colt to the choice vine."`,
       written: "~1400 BC",
       fulfilledBy: "A king from Judah arriving on a donkey colt",
@@ -65,7 +65,7 @@ export const act1CaseA = {
     {
       reference: "Malachi 3:1",
       id: "malachi_3_1",
-      icon: "🔮",
+      icon: "<img src='../assets/gfx/star-duotone.svg' class='icon-svg' loading='lazy'>",
       text: `"Behold, I send my messenger, and he will prepare the way before me. And the Lord whom you seek will suddenly come to his temple."`,
       written: "~430 BC",
       fulfilledBy: "Jesus's arrival in Jerusalem preceding His Temple visit (Mark 11:11)",
@@ -78,25 +78,24 @@ export const act1CaseA = {
   intro: formatIntro(`It is Palm Sunday morning, Nisan 10. Jesus and His disciples have spent the night in Bethany and are now walking toward Jerusalem. Two disciples were sent ahead to the village of Bethphage with specific instructions: untie a donkey colt they would find there, and if anyone challenged them, say only **"The Lord needs it."** But when you arrive at the tethering post — the colt is gone, a rope has been cut, and three people were seen in the area. Was it stolen? Or is something else _entirely_ happening here?`),
 
   suspects: [
-    { id: "peter", name: "Peter", role: "Disciple of Jesus", avatar: "👨‍🦰", bibleRef: "Mark 11:1–6" },
-    { id: "john", name: "John", role: "Disciple of Jesus", avatar: "👨‍🦰", bibleRef: "Luke 19:29–35" },
-    { id: "owner", name: "Tobias", role: "Donkey Owner / Sympathiser", avatar: "👴", bibleRef: "Mark 11:3–6 (unnamed owner)" },
-    { id: "villager", name: "Local Villager", role: "Eyewitness", avatar: "👨‍🌾", bibleRef: "Mark 11:3–6 (unnamed villager who witnessed the exchange)" },
-    { id: "pharisee", name: "Pharisee", role: "Religious Authority", avatar: "👨‍⚖️", bibleRef: "Luke 19:39–40; John 12:19" },
-    { id: "local_skeptic", name: "Jemimah", role: "Jerusalem Local", avatar: "👩‍🌾", bibleRef: "Matthew 21:10-11" },
-    { id: "none", name: "No One", role: "Not Stolen", avatar: "❓", bibleRef: null },
+    { id: "peter", name: "Peter", role: "Disciple of Jesus", avatar: "peter.svg", bibleRef: "Mark 11:1–6" },
+    { id: "john", name: "John", role: "Disciple of Jesus", avatar: "john_apostle.svg", bibleRef: "Luke 19:29–35" },
+    { id: "owner", name: "Tobias", role: "Donkey Owner / Sympathiser", avatar: "tobias_owner.svg", bibleRef: "Mark 11:3–6 (unnamed owner)" },
+    { id: "villager", name: "Local Villager", role: "Eyewitness", avatar: "local_traveler.svg", bibleRef: "Mark 11:3–6 (unnamed villager who witnessed the exchange)" },
+    { id: "pharisee", name: "Pharisee", role: "Religious Authority", avatar: "simon_pharisee.svg", bibleRef: "Luke 19:39–40; John 12:19" },
+    { id: "local_skeptic", name: "Jemimah", role: "Jerusalem Local", avatar: "jemimah.svg", bibleRef: "Matthew 21:10-11" },
+    { id: "none", name: "No One", role: "Not Stolen", avatar: "<img src='../assets/gfx/question-duotone.svg' class='icon-svg' loading='lazy'>", bibleRef: null },
   ],
 
   evidencePool: [
-    
     {
       id: "cloaks",
       name: "Two Disciples' Cloaks",
       relatedProphecy: "genesis_49_10_11",
       revealsSuspect: "peter",
       type: "physical",
-      icon: "👕",
-      emoji: "👕",
+      icon: "../assets/gfx/user-duotone.svg",
+      emoji: "", // Retaining for reference, but icon is now SVG
       iconFA: "fa-solid fa-shirt",
       pos: [-15, 0, -10],
       location: "Tethering Post, Bethphage Road",
@@ -104,22 +103,32 @@ export const act1CaseA = {
       bibleRef: "Mark 11:7 — 'They brought the colt to Jesus and threw their cloaks over it.'; 2 Kings 9:13 — cloaks spread before King Jehu as a royal honour",
       bibleLink: "mark_11_7",
       propheticLink: "This mirrors 2 Kings 9:13 where cloaks were spread before King Jehu — a royal gesture the disciples repeated on the road to Jerusalem.",
-bibleRefs: [
-      { ref: "Mark 11:7", link: "mark_117" },
-      { ref: "2 Kings 9:13", link: "2kings_913" },
-      { ref: "Genesis 49:10-11", link: "genesis_491011" }
-    ],
-propheticRefs: [
-      { ref: "2 Kings 9:13", link: "2 kings_913" }
-    ],
+      bibleRefs: [
+        { ref: "Mark 11:7", link: "mark_117" },
+        { ref: "2 Kings 9:13", link: "2kings_913" },
+        { ref: "Genesis 49:10-11", link: "genesis_491011" }
+      ],
+      propheticRefs: [
+        { ref: "2 Kings 9:13", link: "2 kings_913" }
+      ],
       investigatorNote: "If the cloaks belong to the disciples, they were here. Why leave them behind?",
+      fake: false,
+      category: 'people',
+      timelineOrder: 1,
+      clues: {
+        compare: "Connects the disciples' cloaks to the donkey colt as a saddle.",
+        link: "People — the cloaks belong to the disciples, linking them physically to the scene.",
+        timeline: "CHRONOLOGY: The cloaks were gathered first, before the colt was untied.",
+        contradict: "RELIABILITY: The disciples' own testimony confirms these were their cloaks."
+      }
     },
+
     {
       id: "donkey_tracks",
       name: "Fresh Hoofprints",
       type: "physical",
-      icon: "👣",
-      emoji: "👣",
+      icon: "../assets/gfx/horse-duotone.svg",
+      emoji: "", // Retaining for reference, but icon is now SVG
       iconFA: "fa-solid fa-shoe-prints",
       pos: [-8, 0, -15],
       location: "Mount of Olives Path, heading west toward Jerusalem",
@@ -127,21 +136,31 @@ propheticRefs: [
       bibleRef: "Luke 19:35–36 — 'As he rode along, people spread their cloaks on the road.'",
       bibleLink: "luke_19_35_36",
       propheticLink: "The route from the Mount of Olives into Jerusalem through the eastern gate mirrors the processional route described in Ezekiel 44:1–3, associated with the glory of God entering the city.",
-bibleRefs: [
-      { ref: "Luke 19:35-36", link: "luke_193536" },
-      { ref: "Ezekiel 44:1-3", link: "ezekiel_4413" }
-    ],
-propheticRefs: [
-      { ref: "Ezekiel 44:1-3", link: "ezekiel_4413" }
-    ],
+      bibleRefs: [
+        { ref: "Luke 19:35-36", link: "luke_193536" },
+        { ref: "Ezekiel 44:1-3", link: "ezekiel_4413" }
+      ],
+      propheticRefs: [
+        { ref: "Ezekiel 44:1-3", link: "ezekiel_4413" }
+      ],
       investigatorNote: "The prints are heading directly toward the road that pilgrims take into the city for Passover.",
+      fake: false,
+      category: 'event',
+      timelineOrder: 1,
+      clues: {
+        compare: "Connects directly with Villager's Testimony to confirm only one animal was present at the gate.",
+        link: "This represents physical evidence left on the ground, fitting the Event Trail category.",
+        timeline: "CHRONOLOGY: These tracks were made 1st, before any disciples arrived or touched the colt.",
+        contradict: "RELIABILITY: Physical track impression matches normal, undisturbed walking tracks."
+      }
     },
+
     {
       id: "witness_account",
       name: "Villager's Testimony",
       type: "testimonial",
-      icon: "👂",
-      emoji: "👂",
+      icon: "../assets/gfx/ear-duotone.svg",
+      emoji: "", // Retaining for reference, but icon is now SVG
       iconFA: "fa-solid fa-ear",
       pos: [-5, 0, -20],
       location: "Bethphage Village Square",
@@ -150,23 +169,33 @@ propheticRefs: [
       bibleRef: "Mark 11:3–6 — 'They answered as Jesus had told them to, and the people let them go.'",
       bibleLink: "mark_11_3_6",
       propheticLink: "Jesus's foreknowledge of the exact response to give is consistent with His omniscience, and mirrors how the Passover lamb was 'set apart' by divine instruction (Exodus 12:3–6).",
-bibleRefs: [
-      { ref: "Mark 11:3-6", link: "mark_11_3_6" },
-      { ref: "Exodus 12:3-6", link: "exodus_12_3_6" }
-    ],
-propheticRefs: [
-      { ref: "Exodus 12:3-6", link: "exodus_12_3_6" }
-    ],
+      bibleRefs: [
+        { ref: "Mark 11:3-6", link: "mark_11_3_6" },
+        { ref: "Exodus 12:3-6", link: "exodus_12_3_6" }
+      ],
+      propheticRefs: [
+        { ref: "Exodus 12:3-6", link: "exodus_12_3_6" }
+      ],
       investigatorNote: "Both the gospel accounts of Mark and Luke confirm this exchange happened exactly as predicted. This is not a theft.",
+      fake: false,
+      category: 'people',
+      timelineOrder: 2,
+      clues: {
+        compare: "Corroborates the donkey tracks and rope fibers as part of the same sequence.",
+        link: "People — a witness account about what the disciples said and did.",
+        timeline: "CHRONOLOGY: The villager witnessed the exchange after the disciples arrived but before the colt was led away.",
+        contradict: "RELIABILITY: Corroborated by both Mark and Luke accounts."
+      }
     },
+
     {
       id: "prophecy_scroll",
       relatedProphecy: "zechariah_9_9",
       revealsSuspect: "none",
       name: "Zechariah 9:9 Scroll Fragment",
       type: "analytical",
-      icon: "📜",
-      emoji: "📜",
+      icon: "../assets/gfx/scroll-duotone.svg",
+      emoji: "", // Retaining for reference, but icon is now SVG
       iconFA: "fa-solid fa-scroll",
       pos: [5, 0, -12],
       location: "Tobias the Owner's Tent",
@@ -174,22 +203,32 @@ propheticRefs: [
       bibleRef: "Matthew 21:4–5 — 'This took place to fulfil what was spoken through the prophet.'",
       bibleLink: "matthew_21_4_5",
       propheticLink: "Zechariah 9:9 was written around 520 BC. Zechariah himself arrived back in Judah after the Babylonian exile — a people who desperately needed a king. His vision of a humble, donkey-riding king was a hope that Jesus publicly claimed.",
-bibleRefs: [
-      { ref: "Matthew 21:4-5", link: "matthew_21_4_5" },
-      { ref: "Zechariah 9:9", link: "zechariah_9_9" }
-    ],
-propheticRefs: [
-      { ref: "Zechariah 9:9", link: "zechariah_99" }
-    ],
+      bibleRefs: [
+        { ref: "Matthew 21:4-5", link: "matthew_21_4_5" },
+        { ref: "Zechariah 9:9", link: "zechariah_9_9" }
+      ],
+      propheticRefs: [
+        { ref: "Zechariah 9:9", link: "zechariah_99" }
+      ],
       investigatorNote: "The owner kept this scroll. He knew this day might come. He was waiting.",
+      fake: false,
+      category: 'prophecy',
+      timelineOrder: 3,
+      clues: {
+        compare: "Links the owner's knowledge to the prophecy fulfilled by the donkey colt.",
+        link: "Prophecy — the scroll contains Zechariah 9:9, directly fulfilled by the event.",
+        timeline: "CHRONOLOGY: The scroll was prepared long before the event, showing the owner's anticipation.",
+        contradict: "RELIABILITY: The owner's willingness to release the colt confirms the scroll's influence."
+      }
     },
+
     {
       id: "palm_branch",
       relatedProphecy: "psalm_118_25_26",
       name: "Fresh-Cut Palm Branch",
       type: "environmental",
-      icon: "🌴",
-      emoji: "🌴",
+      icon: "../assets/gfx/tree-duotone.svg",
+      emoji: "", // Retaining for reference, but icon is now SVG
       iconFA: "fa-solid fa-seedling",
       pos: [-12, 0, -18],
       location: "Road descending toward Jerusalem Gate",
@@ -202,16 +241,26 @@ propheticRefs: [
         { ref: "Psalm 118:25-26", link: "psalm_118_25_26" }
       ],
       propheticRefs: [
-        { ref: "1 Maccabees 13:51",  link: "maccabees_13_51", note: "Palm branches were already a Jewish symbol of national victory and messianic hope." }
+        { ref: "1 Maccabees 13:51", link: "maccabees_13_51", note: "Palm branches were already a Jewish symbol of national victory and messianic hope." }
       ],
       investorNote: "The crowd was prepared. This was not a spontaneous moment — it had been anticipated.",
+      fake: false,
+      category: 'event',
+      timelineOrder: 4,
+      clues: {
+        compare: "Connects the crowd's celebration to the prophetic entry described in Zechariah 9:9.",
+        link: "Event — a physical object from the procession route.",
+        timeline: "CHRONOLOGY: Palms were carried during the procession, after the colt was mounted.",
+        contradict: "RELIABILITY: The branch was freshly cut and carried from Jericho, consistent with the Gospel account."
+      }
     },
+
     {
       id: "rope_fibers",
       name: "Cut Rope at the Tethering Post",
       type: "physical",
-      icon: "🧵",
-      emoji: "🧵",
+      icon: "../assets/gfx/link-duotone.svg",
+      emoji: "", // Retaining for reference, but icon is now SVG
       iconFA: "fa-solid fa-link",
       pos: [-2, 0, -5],
       location: "Stone Tethering Post, Bethphage",
@@ -219,24 +268,34 @@ propheticRefs: [
       bibleRef: "Mark 11:2 — 'You will find a colt tied there, which no one has ever ridden. Untie it and bring it here.'",
       bibleLink: "mark_11_2",
       propheticLink: "Jesus specified it must be a colt 'no one has ever ridden' — in Jewish law, an animal used for sacred purposes must be one that has not been used for common work (Numbers 19:2; Deuteronomy 21:3). This detail proves the act was religiously intentional, not criminal.",
-bibleRefs: [
-      { ref: "Mark 11:2", link: "mark_112" },
-      { ref: "Numbers 19:2", link: "numbers_192" },
-      { ref: "Deuteronomy 21:3", link: "deuteronomy_213" }
-    ],
-propheticRefs: [
-      { ref: "Numbers 19:2", link: "numbers_192" },
-      { ref: "Deuteronomy 21:3", link: "deuteronomy_213" }
-    ],
+      bibleRefs: [
+        { ref: "Mark 11:2", link: "mark_112" },
+        { ref: "Numbers 19:2", link: "numbers_192" },
+        { ref: "Deuteronomy 21:3", link: "deuteronomy_213" }
+      ],
+      propheticRefs: [
+        { ref: "Numbers 19:2", link: "numbers_192" },
+        { ref: "Deuteronomy 21:3", link: "deuteronomy_213" }
+      ],
       investigatorNote: "A thief would cut a rope. A disciple would untie it carefully. The clean cut could go either way — unless you know the context.",
+      fake: false,
+      category: 'event',
+      timelineOrder: 2,
+      clues: {
+        compare: "Pairs with the witness account to confirm the colt was untied, not stolen.",
+        link: "Event — physical evidence from the tethering post.",
+        timeline: "CHRONOLOGY: The rope was cut early in the sequence, before the colt was led away.",
+        contradict: "RELIABILITY: The clean cut is consistent with careful untying, not criminal cutting."
+      }
     },
+
     {
       id: "crowd_testimony",
       name: "Pharisee's Written Complaint",
       relatedProphecy: "malachi_3_1",
       type: "analytical",
-      icon: "⚖️",
-      emoji: "⚖️",
+      icon: "../assets/gfx/balance-scale-duotone.svg",
+      emoji: "", // Retaining for reference, but icon is now SVG
       iconFA: "fa-solid fa-gavel",
       pos: [8, 0, -12],
       location: "Temple Authority Notice Board",
@@ -245,17 +304,25 @@ propheticRefs: [
       bibleRef: "Luke 19:39–40 — The Pharisees said, 'Teacher, rebuke your disciples!' Jesus replied, 'If they keep quiet, the stones will cry out.'",
       bibleLink: "luke_19_39_40",
       propheticLink: "The Pharisees recognised the messianic implication of the palm branches and shouts. John 12:19 records their panic: 'Look how the whole world has gone after him!'",
-bibleRefs: [
-      { ref: "Luke 19:39-40", link: "luke_193940" },
-      { ref: "Malachi 3:1", link: "malachi_31" },
-      { ref: "John 12:19", link: "john_1219" }
-    ],
-propheticRefs: [
-      { ref: "John 12:19", link: "john_1219" }
-    ],
+      bibleRefs: [
+        { ref: "Luke 19:39-40", link: "luke_193940" },
+        { ref: "Malachi 3:1", link: "malachi_31" },
+        { ref: "John 12:19", link: "john_1219" }
+      ],
+      propheticRefs: [
+        { ref: "John 12:19", link: "john_1219" }
+      ],
       investigatorNote: "If the religious authorities were alarmed, this event was unmistakably public and significant. A stolen donkey doesn't cause this kind of reaction.",
-    },
-  
+      fake: false,
+      category: 'event',
+      timelineOrder: 5,
+      clues: {
+        compare: "Confirms the public reaction to the entry, showing it was widely recognized as significant.",
+        link: "Event — a written record of the Pharisees' reaction to the procession.",
+        timeline: "CHRONOLOGY: The complaint was written during or immediately after the procession.",
+        contradict: "RELIABILITY: The Pharisees' alarm confirms the event was real and impactful."
+      }
+    }
   ],
 
   lab: [
@@ -278,7 +345,7 @@ propheticRefs: [
       name: "Peter",
       role: "Disciple of Jesus",
       faction: "scribes",
-      avatar: "👨\u200d🦰",
+      avatar: "peter.svg",
       profileFile: "peter",
       color: 0xffaa44,
       pos: [-10, 0, -5],
@@ -319,7 +386,7 @@ propheticRefs: [
       name: "John",
       role: "Disciple of Jesus",
       faction: "scribes",
-      avatar: "👨\u200d🦰",
+      avatar: "john_apostle.svg",
       profileFile: "john_apostle",
       color: 0x66aaff,
       pos: [10, 0, -8],
@@ -351,7 +418,7 @@ propheticRefs: [
       name: "Tobias",
       role: "Donkey Owner / Sympathiser",
       faction: "local",
-      avatar: "👴",
+      avatar: "tobias_owner.svg",
       profileFile: "tobias_owner",
       color: 0x88cc88,
       pos: [-5, 0, -12],
@@ -386,7 +453,7 @@ propheticRefs: [
       name: "Jemimah",
       role: "Jerusalem Local",
       faction: "local",
-      avatar: "👩\u200d🌾",
+      avatar: "jemimah.svg",
       profileFile: "jemimah",
       color: 0xba93db,
       pos: [12, 0, -15],
@@ -424,7 +491,7 @@ propheticRefs: [
       name: "Eleazar",
       role: "Sadducean Aristocrat",
       faction: "temple",
-      avatar: "🏛️",
+      avatar: "eleazar.svg",
       profileFile: "eleazar",
       color: 0x94a3b8,
       pos: [5, 0, -5],
@@ -563,7 +630,7 @@ export const act1CaseB = {
     {
       reference: "Malachi 3:1",
       id: "malachi_3_1",
-      icon: "🔮",
+      icon: "<img src='../assets/gfx/star-duotone.svg' class='icon-svg' loading='lazy'>",
       text: `"And the Lord whom you seek will suddenly come to his temple; and the messenger of the covenant in whom you delight, behold, he is coming, says the LORD of hosts."`,
       written: "~430 BC",
       fulfilledBy: "Jesus unexpectedly arriving to judge the temple's sacrificial practices",
@@ -574,7 +641,7 @@ export const act1CaseB = {
     {
       reference: "Isaiah 56:7",
       id: "isaiah_56_7",
-      icon: "🔮",
+      icon: "<img src='../assets/gfx/star-duotone.svg' class='icon-svg' loading='lazy'>",
       text: `"These I will bring to my holy mountain... for my house shall be called a house of prayer for all nations."`,
       written: "~700 BC",
       fulfilledBy: "Jesus clearing the outer court—the only area open to non-Jews",
@@ -585,7 +652,7 @@ export const act1CaseB = {
     {
       reference: "Psalm 69:9",
       id: "psalm_69_9",
-      icon: "🔮",
+      icon: "<img src='../assets/gfx/star-duotone.svg' class='icon-svg' loading='lazy'>",
       text: `"Zeal for your house will consume me; the insults of those who insult you have fallen on me."`,
       written: "~1000 BC",
       fulfilledBy: "Jesus's passionate action in the Temple, driving out those who had turned prayer into profit",
@@ -596,14 +663,13 @@ export const act1CaseB = {
   ],
 
   evidencePool: [
-    
     {
       id: "broken_cages",
       name: "Shattered Dove Cages",
       relatedProphecy: "isaiah_56_7",
       type: "physical",
-      icon: "🕊️",
-      emoji: "🕊️",
+      icon: "../assets/gfx/feather-duotone.svg",
+      emoji: "", // Retaining for reference, but icon is now SVG
       iconFA: "fa-solid fa-dove",
       label: "Dove Cages",
       pos: [5, 0, -3],
@@ -612,23 +678,33 @@ export const act1CaseB = {
       bibleRef: "Leviticus 5:7",
       bibleLink: "leviticus_5_7",
       propheticLink: "Isaiah 56:7 — 'My house shall be called a house of prayer for all nations' — is the prophecy Jesus explicitly quoted as He drove out the sellers. The dove trade was the clearest abuse of it: Leviticus 5:7 allows doves as a concession for poverty, yet the priests exploited this legal requirement with exorbitant commercial markups, locking the poor and the nations out of the very prayer court Isaiah said was for them. That exploitation directly triggered Jesus's anger.",
-bibleRefs: [
-      { ref: "Leviticus 5:7", link: "leviticus_57" },
-      { ref: "Isaiah 56:7", link: "isaiah_567" }
-    ],
-propheticRefs: [
-      { ref: "Isaiah 56:7", link: "isaiah_567" },
-      { ref: "Leviticus 5:7", link: "leviticus_57" }
-    ],
+      bibleRefs: [
+        { ref: "Leviticus 5:7", link: "leviticus_57" },
+        { ref: "Isaiah 56:7", link: "isaiah_567" }
+      ],
+      propheticRefs: [
+        { ref: "Isaiah 56:7", link: "isaiah_567" },
+        { ref: "Leviticus 5:7", link: "leviticus_57" }
+      ],
       investigatorNote: "The destruction was targeted. Only the commercial apparatus was overturned; the text notes He told the dove-sellers to 'take these things away,' showing controlled fury, not an out-of-control tantrum.",
+      fake: false,
+      category: 'event',
+      timelineOrder: 1,
+      clues: {
+        compare: "Pairs with the scattered shekels to show the cleansing was targeted, not a robbery.",
+        link: "Event — physical destruction of commercial apparatus in the Temple.",
+        timeline: "CHRONOLOGY: The cages were overturned first, before the money was scattered.",
+        contradict: "RELIABILITY: The targeted destruction shows controlled action, not random violence."
+      }
     },
+
     {
       id: "scattered_shekels",
       name: "Scattered Tyrian Shekels",
       relatedProphecy: "malachi_3_1",
       type: "physical",
-      icon: "🪙",
-      emoji: "🪙",
+      icon: "../assets/gfx/coins-duotone.svg",
+      emoji: "", // Retaining for reference, but icon is now SVG
       iconFA: "fa-solid fa-coins",
       label: "Silver Coins",
       pos: [-4, 0, 8],
@@ -637,22 +713,32 @@ propheticRefs: [
       bibleRef: "Exodus 30:13",
       bibleLink: "exodus_30_13",
       propheticLink: "Exodus 30:13 required a half-shekel temple offering. The priests exploited this by mandating Tyrian shekels, forcing pilgrims to pay massive exchange fees.",
-bibleRefs: [
-      { ref: "Exodus 30:13", link: "exodus_3013" },
-      { ref: "Malachi 3:1", link: "malachi_31" }
-    ],
-propheticRefs: [
-      { ref: "Exodus 30:13", link: "exodus_3013" }
-    ],
+      bibleRefs: [
+        { ref: "Exodus 30:13", link: "exodus_3013" },
+        { ref: "Malachi 3:1", link: "malachi_31" }
+      ],
+      propheticRefs: [
+        { ref: "Exodus 30:13", link: "exodus_3013" }
+      ],
       investigatorNote: "The fact that merchants left this silver behind in their rush to escape proves the authority and commanding presence Jesus exuded during the clearing.",
+      fake: false,
+      category: 'event',
+      timelineOrder: 2,
+      clues: {
+        compare: "Pairs with broken cages to confirm the cleansing was targeted, not a robbery.",
+        link: "Event — physical evidence of money left behind.",
+        timeline: "CHRONOLOGY: The shekels were scattered after the tables were overturned.",
+        contradict: "RELIABILITY: No coins were taken, confirming this was a prophetic act, not theft."
+      }
     },
+
     {
       id: "whip_of_cords",
       name: "Discarded Whip of Cords",
       relatedProphecy: "malachi_3_1",
       type: "physical",
-      icon: "🪢",
-      emoji: "🪢",
+      icon: "../assets/gfx/link-duotone.svg",
+      emoji: "", // Retaining for reference, but icon is now SVG
       iconFA: "fa-solid fa-wand-sparkles",
       label: "Whip of Cords",
       pos: [0, 0, 2],
@@ -661,16 +747,24 @@ propheticRefs: [
       bibleRef: "John 2:15",
       bibleLink: "john_2_15",
       propheticLink: "John 2:15 specifically details Him weaving this instrument on the spot before initiating the cleansing.",
-bibleRefs: [
-      { ref: "John 2:15", link: "john_215" },
-      { ref: "Malachi 3:1", link: "malachi_31" }
-    ],
-propheticRefs: [
-      { ref: "John 2:15", link: "john_215" }
-    ],
+      bibleRefs: [
+        { ref: "John 2:15", link: "john_215" },
+        { ref: "Malachi 3:1", link: "malachi_31" }
+      ],
+      propheticRefs: [
+        { ref: "John 2:15", link: "john_215" }
+      ],
       investigatorNote: "A weapon made from reeds could not seriously injure a grown man. It was used as a symbolic driving tool for the livestock, signaling prophetic exile from the sacred space.",
-    },
-  
+      fake: false,
+      category: 'event',
+      timelineOrder: 3,
+      clues: {
+        compare: "Connects to the broken cages as part of the same cleansing action.",
+        link: "Event — a physical instrument used in the Temple cleansing.",
+        timeline: "CHRONOLOGY: The whip was woven on the spot and used during the clearing of the courts.",
+        contradict: "RELIABILITY: A reed whip could not seriously injure, confirming the symbolic nature of the act."
+      }
+    }
   ],
 
   lab: [
@@ -692,7 +786,7 @@ propheticRefs: [
       id: "merchant_jadan",
       name: "Jadan of Bethphage",
       role: "Temple Dove Vendor",
-      avatar: "👳",
+      avatar: "temple_merchant.svg",
       bibleRef: "Matthew 21:12",
       background: "A local trader licensed directly by the Sanhedrin to operate a booth inside the royal stOA.",
       dialogue: {
@@ -706,7 +800,7 @@ propheticRefs: [
         },
       },
     },
-    { id: "none", name: "No One", role: "Not Stolen", avatar: "❓", bibleRef: null },
+    { id: "none", name: "No One", role: "Not Stolen", avatar: "<img src='../assets/gfx/question-duotone.svg' class='icon-svg' loading='lazy'>", bibleRef: null },
   ],
 
   npcs: [
@@ -715,7 +809,7 @@ propheticRefs: [
       name: "Malachi",
       role: "Temple Money Changer",
       faction: "temple",
-      avatar: "🤑",
+      avatar: "malachi_moneychanger.svg",
       profileFile: "malachi_moneychanger",
       color: 0xffdd66,
       pos: [-6, 0, 6],
@@ -751,7 +845,7 @@ propheticRefs: [
       name: "Marcus",
       role: "Antonia Fortress Guard",
       faction: "roman",
-      avatar: "💂",
+      avatar: "garrison_guard.svg",
       profileFile: "garrison_guard",
       color: 0xdd4444,
       pos: [0, 0, 12],
@@ -782,7 +876,7 @@ propheticRefs: [
       id: "barabbas_insurgent",
       name: "Barabbas",
       role: "Insurgent",
-      avatar: "⚔️",
+      avatar: "barabbas.svg",
       truthfulness: 0.3,
       bibleRef: "Mark 15:6-15; Luke 23:18-19; John 18:40",
       hasDialogue: true,
@@ -799,7 +893,7 @@ propheticRefs: [
       id: "informant_bribe",
       name: "Market Informant",
       role: "Street Informant",
-      avatar: "💰",
+      avatar: "market_informant.svg",
       truthfulness: 0.4,
       bibleRef: "Matthew 26:14-16; John 13:29",
       hasDialogue: true,
@@ -816,7 +910,7 @@ propheticRefs: [
       id: "market_rumors",
       name: "Market Vendor",
       role: "Street Merchant",
-      avatar: "🏪",
+      avatar: "market_vendor.svg",
       truthfulness: 0.7,
       bibleRef: "Mark 11:15-19 (Temple market)",
       hasDialogue: true,
@@ -833,7 +927,7 @@ propheticRefs: [
       id: "pontius_pilate",
       name: "Pontius Pilate",
       role: "Roman Prefect",
-      avatar: "🏛️",
+      avatar: "pontius_pilate.svg",
       truthfulness: 0.5,
       bibleRef: "Luke 23:1-25; John 18:28-19:16",
       hasDialogue: true,
@@ -850,7 +944,7 @@ propheticRefs: [
       id: "pilates_secretary",
       name: "Pilate's Secretary",
       role: "Administrative Recorder",
-      avatar: "📋",
+      avatar: "pilates_secretary.svg",
       truthfulness: 0.6,
       bibleRef: "John 19:19-22 (INRI inscription)",
       hasDialogue: true,
@@ -867,7 +961,7 @@ propheticRefs: [
       id: "pharisee_critique",
       name: "Simon the Pharisee",
       role: "Local Civic Judge",
-      avatar: "⚖️",
+      avatar: "simon_pharisee.svg",
       truthfulness: 0.6,
       bibleRef: "Luke 18:9-14 (Pharisee and Tax Collector); Luke 7:36-50",
       hasDialogue: true,
@@ -884,7 +978,7 @@ propheticRefs: [
       id: "priest_objection",
       name: "Temple Priest Objector",
       role: "Sadducean Aristocrat",
-      avatar: "🙅",
+      avatar: "temple_priest.svg",
       truthfulness: 0.5,
       bibleRef: "Acts 4:1-3; Acts 5:17-42",
       hasDialogue: true,
@@ -901,7 +995,7 @@ propheticRefs: [
       id: "rumor_whisper",
       name: "Rumor Whisperer",
       role: "City Gossip",
-      avatar: "🗣️",
+      avatar: "city_gossip.svg",
       truthfulness: 0.3,
       bibleRef: "Luke 4:22 (Initially spoke well of Him...)",
       hasDialogue: true,
@@ -918,7 +1012,7 @@ propheticRefs: [
       id: "upset_buyer",
       name: "Upset Temple Buyer",
       role: "Displaced Merchant",
-      avatar: "😤",
+      avatar: "displaced_merchant.svg",
       truthfulness: 0.7,
       bibleRef: "Mark 11:15-18 (Jesus drives out merchants)",
       hasDialogue: true,
@@ -935,7 +1029,7 @@ propheticRefs: [
       id: "woman_cloak",
       name: "Woman Who Gave Her Cloak",
       role: "Devout Follower",
-      avatar: "🧕",
+      avatar: "devout_follower.svg",
       truthfulness: 0.9,
       bibleRef: "Luke 8:1-3 (Women who supported Jesus)",
       hasDialogue: true,
@@ -952,7 +1046,7 @@ propheticRefs: [
       id: "sadducee_opposition",
       name: "Sadducee Opposer",
       role: "Sadducean Authority",
-      avatar: "🏛️",
+      avatar: "sadducee_authority.svg",
       truthfulness: 0.4,
       bibleRef: "Acts 23:6-8 (Sadducees deny resurrection)",
       hasDialogue: true,
@@ -969,7 +1063,7 @@ propheticRefs: [
       id: "corrupt_seller",
       name: "Corrupt Seller",
       role: "Temple Merchant",
-      avatar: "💴",
+      avatar: "temple_merchant.svg",
       truthfulness: 0.4,
       bibleRef: "Mark 11:15-19",
       hasDialogue: true,
@@ -1047,7 +1141,7 @@ export const act1CaseC = {
     {
       reference: "Micah 7:1",
       id: "micah_7_1",
-      icon: "🔮",
+      icon: "<img src='../assets/gfx/star-duotone.svg' class='icon-svg' loading='lazy'>",
       text: `"What misery is mine! I am like one who gathers summer fruit at the close of the grape harvest; there is no cluster of grapes to eat, no early fig I crave."`,
       written: "~700 BC",
       fulfilledBy: "Jesus finding no fruit on the fig tree, symbolizing Israel's spiritual barrenness",
@@ -1058,7 +1152,7 @@ export const act1CaseC = {
     {
       reference: "Jeremiah 8:13",
       id: "jeremiah_8_13",
-      icon: "🔮",
+      icon: "<img src='../assets/gfx/star-duotone.svg' class='icon-svg' loading='lazy'>",
       text: `"I will take away their harvest, declares the LORD. There will be no grapes on the vine, no figs on the tree, and their leaves will wither."`,
       written: "~600 BC",
       fulfilledBy: "The fig tree withering after Jesus's curse, signifying judgment",
@@ -1069,7 +1163,7 @@ export const act1CaseC = {
     {
       reference: "Psalm 33:8–9",
       id: "psalm_33_8_9",
-      icon: "🔮",
+      icon: "<img src='../assets/gfx/star-duotone.svg' class='icon-svg' loading='lazy'>",
       text: `"Let all the earth fear the LORD; let all the inhabitants of the world stand in awe of him. For he spoke, and it came to be; he commanded, and it stood firm."`,
       written: "~1000 BC",
       fulfilledBy: "The disciples witnessing the immediate and absolute power of Jesus's spoken word over creation",
@@ -1079,7 +1173,7 @@ export const act1CaseC = {
     {
       reference: "Zechariah 4:6–7",
       id: "zechariah_4_6_7",
-      icon: "🔮",
+      icon: "<img src='../assets/gfx/star-duotone.svg' class='icon-svg' loading='lazy'>",
       text: `"‘Not by might nor by power, but by my Spirit,’ says the LORD Almighty. ‘What are you, mighty mountain? Before Zerubbabel you will become level ground.’"`,
       written: "~520 BC",
       fulfilledBy: "Jesus teaching that faith in God provides authority to move mountains and overcome any obstacle",
@@ -1091,93 +1185,130 @@ export const act1CaseC = {
   intro: formatIntro(`It is Tuesday morning. As Jesus and His disciples walk from Bethany back to Jerusalem, Peter points to a fig tree they had passed yesterday. It was full of leaves then, but now it is **completely withered** from the roots. The disciples are astonished. Was this a mere coincidence, a natural phenomenon, or something _far more profound_? The withered tree stands as a silent witness, demanding an explanation.`),
 
   suspects: [
-    { id: "peter_fig_tree", name: "Peter", role: "Disciple, Witness to the Withering", avatar: "👨‍🦰", bibleRef: "Mark 11:21" },
-    { id: "none", name: "No One", role: "Prophetic Act", avatar: "❓", bibleRef: null },
+    { id: "peter_fig_tree", name: "Peter", role: "Disciple, Witness to the Withering", avatar: "peter.svg", bibleRef: "Mark 11:21" },
+    { id: "none", name: "No One", role: "Prophetic Act", avatar: "<img src='../assets/gfx/question-duotone.svg' class='icon-svg' loading='lazy'>", bibleRef: null },
   ],
 
   evidencePool: [
-    
     {
       id: "cursed_fig_tree_desc",
       name: "Description of the Fig Tree (Monday)",
       type: "analytical",
       relatedProphecy: "micah_7_1",
-      icon: "🌳",
+      icon: "../assets/gfx/tree-duotone.svg",
       location: "Bethany Road",
       desc: "Eyewitness accounts describe the fig tree on Monday morning: full of leaves, but bearing no fruit. Jesus approached it, found nothing, and spoke a curse upon it.",
       bibleRef: "Mark 11:12–14",
       bibleLink: "mark_11_12_14",
       propheticLink: "The tree's appearance—leaves but no fruit—symbolized Israel's outward show of religiosity without genuine spiritual fruit, echoing prophetic laments like Micah 7:1.",
-bibleRefs: [
-      { ref: "Mark 11:12-14", link: "mark_111214" },
-      { ref: "Micah 7:1", link: "micah_71" }
-    ],
-propheticRefs: [
-      { ref: "Micah 7:1", link: "micah_71" }
-    ],
+      bibleRefs: [
+        { ref: "Mark 11:12-14", link: "mark_111214" },
+        { ref: "Micah 7:1", link: "micah_71" }
+      ],
+      propheticRefs: [
+        { ref: "Micah 7:1", link: "micah_71" }
+      ],
       investigatorNote: "The tree's barrenness was noted before the curse, establishing the context for Jesus's action.",
+      fake: false,
+      category: 'event',
+      timelineOrder: 1,
+      clues: {
+        compare: "Pairs with the withered tree state to show the full sequence of the fig tree incident.",
+        link: "Event — the initial observation of the barren fig tree.",
+        timeline: "CHRONOLOGY: Observed on Monday morning before the Temple cleansing.",
+        contradict: "RELIABILITY: Multiple disciples witnessed the tree's condition before the curse."
+      }
     },
+
     {
       id: "withered_fig_tree_state",
       name: "The Withered Fig Tree (Tuesday)",
       type: "physical",
       relatedProphecy: "jeremiah_8_13",
-      icon: "🍂",
+      icon: "../assets/gfx/leaves-duotone.svg",
       location: "Bethany Road",
       desc: "The fig tree, observed on Tuesday morning, is completely withered from its roots. Its leaves are shriveled and branches brittle, as if suddenly struck by a severe blight.",
       bibleRef: "Mark 11:20–21",
       bibleLink: "mark_11_20_21",
       propheticLink: "The rapid, complete withering fulfilled prophecies of judgment on unfruitfulness, such as Jeremiah 8:13, where God threatens to remove fruit and wither leaves.",
-bibleRefs: [
-      { ref: "Mark 11:20-21", link: "mark_112021" },
-      { ref: "Jeremiah 8:13", link: "jeremiah_813" }
-    ],
-propheticRefs: [
-      { ref: "Jeremiah 8:13", link: "jeremiah_813" }
-    ],
+      bibleRefs: [
+        { ref: "Mark 11:20-21", link: "mark_112021" },
+        { ref: "Jeremiah 8:13", link: "jeremiah_813" }
+      ],
+      propheticRefs: [
+        { ref: "Jeremiah 8:13", link: "jeremiah_813" }
+      ],
       investigatorNote: "The speed and totality of the withering are highly unusual for natural causes, especially overnight.",
+      fake: false,
+      category: 'event',
+      timelineOrder: 2,
+      clues: {
+        compare: "Pairs with Peter's astonishment to confirm the miracle was witnessed immediately.",
+        link: "Event — physical evidence of the withered fig tree.",
+        timeline: "CHRONOLOGY: Discovered Tuesday morning, the day after the curse.",
+        contradict: "RELIABILITY: The complete withering from the roots is consistent with the Gospel accounts."
+      }
     },
+
     {
       id: "peter_astonishment",
       name: "Peter's Astonished Reaction",
       type: "testimonial",
       relatedProphecy: "psalm_33_8_9",
-      icon: "😮",
+      icon: "../assets/gfx/user-duotone.svg",
       location: "Bethany Road",
       desc: "Peter's exclamation to Jesus: 'Rabbi, look! The fig tree you cursed has withered!' His tone suggests genuine surprise and awe at the immediate and powerful effect of Jesus's words.",
       bibleRef: "Mark 11:21",
       bibleLink: "mark_11_21",
       propheticLink: "Psalm 33:8-9 declares that all should stand in awe of Him because 'He spoke, and it came to be.' Peter’s reaction is the physical fulfillment of this reverence when confronted with divine command.",
-bibleRefs: [
-      { ref: "Mark 11:21", link: "mark_1121" },
-      { ref: "Psalm 33:8-9", link: "psalm_3389" }
-    ],
-propheticRefs: [
-      { ref: "Psalm 33:8-9", link: "psalm_3389" }
-    ],
+      bibleRefs: [
+        { ref: "Mark 11:21", link: "mark_1121" },
+        { ref: "Psalm 33:8-9", link: "psalm_3389" }
+      ],
+      propheticRefs: [
+        { ref: "Psalm 33:8-9", link: "psalm_3389" }
+      ],
       investigatorNote: "Peter specifically links the withering to Jesus's curse, indicating he understood it as a direct consequence.",
+      fake: false,
+      category: 'people',
+      timelineOrder: 3,
+      clues: {
+        compare: "Connects the withered tree to Jesus's teaching on faith.",
+        link: "People — Peter's testimony about the withered fig tree.",
+        timeline: "CHRONOLOGY: Peter's reaction occurred Tuesday morning when they saw the withered tree.",
+        contradict: "RELIABILITY: Peter's astonishment is consistent with his character as an impulsive, observant disciple."
+      }
     },
+
     {
       id: "disciples_faith_lesson",
       name: "Jesus's Teaching on Faith",
       type: "analytical",
       relatedProphecy: "zechariah_4_6_7",
-      icon: "📖",
+      icon: "../assets/gfx/book-open-duotone.svg",
       location: "Bethany Road",
       desc: "Jesus's response to Peter's astonishment: 'Have faith in God... Truly I tell you, if anyone says to this mountain, 'Go, throw yourself into the sea,' and does not doubt in their heart but believes that what they say will happen, it will be done for them.'",
       bibleRef: "Mark 11:22–24",
       bibleLink: "mark_11_22_24",
       propheticLink: "Zechariah 4:7 speaks of a 'mighty mountain' becoming 'level ground' by the Spirit. Jesus adopts this imagery to show that faith connects the believer to that same mountain-moving power.",
-bibleRefs: [
-      { ref: "Mark 11:22-24", link: "mark_112224" },
-      { ref: "Zechariah 4:6-7", link: "zechariah_467" }
-    ],
-propheticRefs: [
-      { ref: "Zechariah 4:7", link: "zechariah_4_7" }
-    ],
+      bibleRefs: [
+        { ref: "Mark 11:22-24", link: "mark_112224" },
+        { ref: "Zechariah 4:6-7", link: "zechariah_467" }
+      ],
+      propheticRefs: [
+        { ref: "Zechariah 4:7", link: "zechariah_4_7" }
+      ],
       investigatorNote: "The lesson immediately following the miracle underscores its dual purpose: judgment and a call to radical faith.",
-    },
-  
+      fake: false,
+      category: 'prophecy',
+      timelineOrder: 4,
+      clues: {
+        compare: "Connects the fig tree withering to the broader theme of faith and prophetic authority.",
+        link: "Prophecy — Jesus's teaching on faith links to Zechariah 4:7 and the mountain-moving metaphor.",
+        timeline: "CHRONOLOGY: The teaching was given Tuesday morning after Peter noticed the withered tree.",
+        contradict: "RELIABILITY: The teaching is recorded in multiple Gospel accounts, confirming its authenticity."
+      }
+    }
   ],
 
   lab: [
@@ -1194,7 +1325,7 @@ propheticRefs: [
       name: "Peter",
       role: "Disciple, Witness to the Withering",
       faction: "scribes",
-      avatar: "👨\u200d🦰",
+      avatar: "peter.svg",
       profileFile: "peter",
       color: 0xffaa44,
       pos: [-10, 0, -5],
@@ -1225,7 +1356,7 @@ propheticRefs: [
       name: "John",
       role: "Disciple, Observer",
       faction: "scribes",
-      avatar: "👨\u200d🦰",
+      avatar: "john_apostle.svg",
       profileFile: "john_apostle",
       color: 0x66aaff,
       pos: [10, 0, -8],
@@ -1256,7 +1387,7 @@ propheticRefs: [
       name: "Nathan",
       role: "Local Landowner",
       faction: "local",
-      avatar: "🌳",
+      avatar: "nathan_gardener.svg",
       profileFile: "nathan_gardener",
       color: 0x888877,
       pos: [5, 0, 2], // Example position, adjust as needed
@@ -1283,7 +1414,7 @@ propheticRefs: [
       name: "Local Traveler",
       role: "Roadside Witness",
       faction: "local",
-      avatar: "🚶",
+      avatar: "local_traveler.svg",
       profileFile: "local_traveler", // Assuming a generic local_traveler profile exists
       color: 0x9ca3af,
       pos: [0, 0, 5],

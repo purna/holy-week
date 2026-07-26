@@ -2,7 +2,7 @@
   "id": "malchus",
   "name": "Malchus",
   "role": "High Priest's Assistant",
-  "avatar": "\ud83d\udc68\u200d\ud83d\udcbc",
+  "avatar": "malchus.svg",
   "truthfulness": 0.9,
   "bibleRef": "John 18:10; Luke 22:51",
   "background": "The confidential agent of Caiaphas. He was healed by Jesus after Peter struck him in Gethsemane, leaving him in a state of profound cognitive dissonance.",
@@ -17,5 +17,7 @@
     "environmental": "It was dark in the garden. I remember the smell of olive trees and blood.",
     "analytical": "One moment, a wound. The next, nothing. How do you account for that?",
     "prophecy": "I serve the High Priest. I do not deal in prophecy. But I know what I felt."
-  }
+  },
+  "earSize": 1.0,
+  "headSize": 1.0
 }

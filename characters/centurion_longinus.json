@@ -2,7 +2,7 @@
   "id": "centurion_longinus",
   "name": "Centurion Longinus",
   "role": "Roman Centurion",
-  "avatar": "\ud83e\ude96",
+  "avatar": "centurion_longinus.svg",
   "truthfulness": 0.95,
   "bibleRef": "Mark 15:39",
   "background": "A veteran Roman officer who supervised the crucifixion. The cosmic and geological anomalies led him to declare Jesus's divinity.",
@@ -17,5 +17,7 @@
     "environmental": "The environment? Could be anyone.",
     "analytical": "Numbers can be misleading, you know.",
     "prophecy": "A prophecy fulfilled? I see the connection now."
-  }
+  },
+  "earSize": 1.15,
+  "headSize": 1.0
 }

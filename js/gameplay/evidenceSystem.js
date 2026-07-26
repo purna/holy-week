@@ -4,36 +4,39 @@
 // ============================================================
 
 export const EVIDENCE_TYPES = {
-  PHYSICAL:      { id: "physical",      label: "Physical",      icon: "🧤", color: "#f59e0b" },
-  TESTIMONIAL:   { id: "testimonial",   label: "Testimonial",   icon: "💬", color: "#60a5fa" },
-  DIGITAL:       { id: "digital",       label: "Digital",       icon: "💻", color: "#34d399" },
-  ENVIRONMENTAL: { id: "environmental", label: "Environmental", icon: "🌿", color: "#a78bfa" },
-  ANALYTICAL:    { id: "analytical",    label: "Analytical",    icon: "🔬", color: "#f472b6" },
-  PROPHECY:      { id: "prophecy",      label: "Prophecy",      icon: "🔮", color: "#facc15" },
+  PHYSICAL:      { id: "physical",      label: "Physical",      icon: "<img src='../assets/gfx/shield-duotone.svg' class='icon-svg' loading='lazy'>", color: "#f59e0b" },
+  TESTIMONIAL:   { id: "testimonial",   label: "Testimonial",   icon: "<img src='../assets/gfx/chat-duotone.svg' class='icon-svg' loading='lazy'>", color: "#60a5fa" },
+  DIGITAL:       { id: "digital",       label: "Digital",       icon: "<img src='../assets/gfx/laptop-code.svg' class='icon-svg' loading='lazy'>", color: "#34d399" },
+  ENVIRONMENTAL: { id: "environmental", label: "Environmental", icon: "<img src='../assets/gfx/leaf-duotone.svg' class='icon-svg' loading='lazy'>", color: "#a78bfa" },
+  ANALYTICAL:    { id: "analytical",    label: "Analytical",    icon: "<img src='../assets/gfx/microscope-duotone.svg' class='icon-svg' loading='lazy'>", color: "#f472b6" },
+  PROPHECY:      { id: "prophecy",      label: "Prophecy",      icon: "<img src='../assets/gfx/star-duotone.svg' class='icon-svg' loading='lazy'>", color: "#facc15" },
 };
 
 export class EvidenceSystem {
-  constructor(caseManager) {
+  constructor(caseManager, config = {}) {
     this.caseManager = caseManager;
+    this.config = config;
     this.collected = [];
     this.prophecies = [];
-    this.prophecyStatus = {}; // { [prophecyId]: 'locked' | 'revealed' | 'linked' }
-    this.onProphecyReveal = null; // Callback for UI notifications
+    this.prophecyStatus = {};
+    this.onProphecyReveal = null;
 
     this.selectedA = null;
     this.selectedB = null;
 
-    // Codex Matching State
     this.selectedCodexEvidenceId = null;
     this.selectedCodexProphecyId = null;
   }
 
   loadCase(caseData) {
-    this.collected = this.caseManager.getCaseProgress(caseData.id)?.evidenceFound || [];
+    if (this.config.unlockAllEvidence) {
+      this.collected = (caseData.evidencePool || []).map(e => e.id);
+    } else {
+      this.collected = this.caseManager.getCaseProgress(caseData.id)?.evidenceFound || [];
+    }
     this.prophecies = caseData.prophecies || [];
     this.prophecyStatus = {};
     this.prophecies.forEach(p => {
-      // Initialize all prophecies for the case as 'locked'
       this.prophecyStatus[p.id] = 'locked';
     });
     this.selectedCodexEvidenceId = null;

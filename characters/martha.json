@@ -2,7 +2,7 @@
   "id": "martha",
   "name": "Martha",
   "role": "Sister of Lazarus",
-  "avatar": "\ud83e\uddfa",
+  "avatar": "martha.svg",
   "truthfulness": 0.95,
   "bibleRef": "John 11:1\u201344; John 12:1\u20132",
   "background": "The practical, protective head of the Bethany household. Having witnessed her brother's descent into death and subsequent revival, she manages family survival while under surveillance.",
@@ -17,5 +17,7 @@
     "environmental": "This is my home. I will protect it and those within it.",
     "analytical": "I count plates, not arguments. Are there enough for everyone?",
     "prophecy": "My brother was dead, and now he lives. That is the only sign I need."
-  }
+  },
+  "earSize": 0.6,
+  "headSize": 0.9
 }

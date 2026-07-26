@@ -2,7 +2,7 @@
   "id": "rumor_whisper",
   "name": "Rumor Whisperer",
   "role": "City Gossip",
-  "avatar": "\ud83d\udde3\ufe0f",
+  "avatar": "city_gossip.svg",
   "truthfulness": 0.3,
   "bibleRef": "Luke 4:22",
   "background": "An ordinary resident spreading whispers. Partly informed, mostly distorted. Reflects popular confusion.",
@@ -17,5 +17,7 @@
     "environmental": "The environment? Could be anyone.",
     "analytical": "Numbers can be misleading, you know.",
     "prophecy": "A prophecy fulfilled? I see the connection now."
-  }
+  },
+  "earSize": 0.9,
+  "headSize": 1.0
 }

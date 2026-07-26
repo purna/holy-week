@@ -2,9 +2,9 @@
   "id": "joseph_arimathea",
   "name": "Joseph of Arimathea",
   "role": "Secret Disciple & Council Member",
-  "avatar": "📜",
+  "avatar": "joseph_arimathea.svg",
   "truthfulness": 0.9,
-  "bibleRef": "Luke 23:50–53; John 19:38",
+  "bibleRef": "Luke 23:50\u201353; John 19:38",
   "background": "A wealthy and prominent member of the Sanhedrin who secretly looked for the Kingdom of God. He risked his status to provide a burial for Jesus.",
   "factions": [
     "sanhedrin",
@@ -17,5 +17,7 @@
     "environmental": "The land itself? What does that prove? I am more concerned with matters of the council.",
     "analytical": "There is wisdom in numbers, but they do not show the whole picture.",
     "prophecy": "Many things were foretold. One must be wise in discerning their fulfillment."
-  }
+  },
+  "earSize": 0.95,
+  "headSize": 0.95
 }

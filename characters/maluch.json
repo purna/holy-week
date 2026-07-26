@@ -2,7 +2,7 @@
   "id": "maluch",
   "name": "Maluch",
   "role": "Temple Informant / Spy",
-  "avatar": "\ud83d\udc64",
+  "avatar": "maluch.svg",
   "truthfulness": 0.6,
   "bibleRef": "John 18:10; Luke 22:52",
   "background": "An administrative operative and courier under the payroll of the high priest's household, tasked with logging suspicious crowd densities and profiling revolutionary movement.",
@@ -17,5 +17,7 @@
     "environmental": "The subject's route is of primary importance. The terrain is secondary.",
     "analytical": "Crowd density is a key metric. These numbers confirm my report.",
     "prophecy": "Prophetic claims are a threat multiplier. I note them as such."
-  }
+  },
+  "earSize": 1.0,
+  "headSize": 1.0
 }

@@ -2,7 +2,7 @@
   "id": "chief_priest",
   "name": "Caiaphas",
   "role": "High Priest, Sadducee",
-  "avatar": "\ud83d\udc68\u200d\u2696\ufe0f",
+  "avatar": "caiaphas.svg",
   "truthfulness": 0.55,
   "bibleRef": "Matthew 21:23; John 11:49\u201352; Matthew 26:57\u201368",
   "background": "Joseph ben Caiaphas has been High Priest since AD 18 \u2014 appointed by the Roman prefect, dependent on Roman goodwill to remain in office. He is theologically Sadducean and politically calculating. He famously said it was 'better for one man to die for the people than for the whole nation to perish' \u2014 not realising he was prophesying.",
@@ -22,5 +22,7 @@
     "environmental": "The environment? Could be anyone.",
     "analytical": "Numbers can be misleading, you know.",
     "prophecy": "A prophecy fulfilled? I see the connection now."
-  }
+  },
+  "earSize": 1.4,
+  "headSize": 1.1
 }

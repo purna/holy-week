@@ -8,6 +8,13 @@ export class LabUI {
     this.onResult = onResult;
   }
 
+  _iconMarkup(icon) {
+    if (!icon) return '';
+    if (String(icon).includes('<img')) return String(icon);
+    if (String(icon).endsWith('.svg')) return `<img src="${icon}" class="icon-svg" loading='lazy'>`;
+    return String(icon);
+  }
+
   render() {
     const deductions = this.de.getDeductions ? this.de.getDeductions() : (this.de.deductions || []);
     const historyList = deductions.slice().reverse();
@@ -27,13 +34,13 @@ export class LabUI {
         <div class="lab-slots" aria-label="Selected evidence slots">
           <div class="lab-slot" id="slotA" aria-label="Evidence slot A: ${this.es.selectedA?.name || 'empty'}" role="status">
             ${this.es.selectedA
-        ? `<span class="slot-icon">${this.es.selectedA.icon || this.es.selectedA.emoji}</span><span class="slot-name">${this.es.selectedA.name}</span>`
+        ? `<span class="slot-icon">${this._iconMarkup(this.es.selectedA.icon)}</span><span class="slot-name">${this.es.selectedA.name}</span>`
         : `<span class="slot-empty">Tap evidence below</span>`}
           </div>
           <div class="lab-slot-divider" aria-hidden="true">+</div>
           <div class="lab-slot" id="slotB" aria-label="Evidence slot B: ${this.es.selectedB?.name || 'empty'}" role="status">
             ${this.es.selectedB
-        ? `<span class="slot-icon">${this.es.selectedB.icon || this.es.selectedB.emoji}</span><span class="slot-name">${this.es.selectedB.name}</span>`
+        ? `<span class="slot-icon">${this._iconMarkup(this.es.selectedB.icon)}</span><span class="slot-name">${this.es.selectedB.name}</span>`
         : `<span class="slot-empty">Tap second clue</span>`}
           </div>
         </div>
@@ -71,9 +78,9 @@ export class LabUI {
           return `
               <button class="picker-card ${isA ? 'selected-a' : ''} ${isB ? 'selected-b' : ''}" data-evidence-id="${e.id}"
                 aria-label="${e.name}: ${e.desc || e.description || ''}. ${selected ? (isA ? 'Selected as A' : 'Selected as B') : 'Tap to select'}"
-                aria-pressed="${selected}">
+                aria-pressed="${selected ? 'true' : 'false'}">
                 <span class="picker-icon" aria-hidden="true">${e.icon || e.emoji}</span>
-                <span class="picker-name">${e.name}</span>
+                <span class="picker-name"><img src='${e.icon}' class='icon-svg' loading='lazy' >${e.name}</span>
                 ${isA ? `<span class="sel-badge" aria-hidden="true">A</span>` : ""}
                 ${isB ? `<span class="sel-badge" aria-hidden="true">B</span>` : ""}
               </button>`;

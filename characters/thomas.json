@@ -2,7 +2,7 @@
   "id": "thomas",
   "name": "Thomas",
   "role": "Analytical Disciple",
-  "avatar": "\ud83e\udd14",
+  "avatar": "thomas.svg",
   "truthfulness": 0.9,
   "bibleRef": "John 20:24-29; John 21:2",
   "background": "Called 'the Twin.' He is distinguished by his analytical and skeptical mindset, requiring evidence before confirming his faith.",
@@ -17,5 +17,7 @@
     "environmental": "He appeared in a locked room. How is that possible?",
     "analytical": "I need tangible proof. Evidence I can touch and see.",
     "prophecy": "He said he would rise. I need to see it to believe it."
-  }
+  },
+  "earSize": 1.0,
+  "headSize": 1.0
 }

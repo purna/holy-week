@@ -2,7 +2,7 @@
   "id": "simon_cyrene",
   "name": "Simon of Cyrene",
   "role": "Passerby",
-  "avatar": "\ud83e\udea2",
+  "avatar": "simon_cyrene.svg",
   "truthfulness": 0.9,
   "bibleRef": "Matthew 27:32",
   "background": "Compelled to carry the crossbeam when the condemned man could go no further.",
@@ -17,5 +17,7 @@
     "environmental": "The road to the hill... it was crowded. People were weeping.",
     "analytical": "I don't know how far I carried it. It felt like a lifetime.",
     "prophecy": "I don't know about prophecies. I just know I was there."
-  }
+  },
+  "earSize": 1.0,
+  "headSize": 1.0
 }

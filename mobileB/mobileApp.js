@@ -59,10 +59,10 @@ export class MobileApp {
     if (!container) return;
     container.innerHTML = `
       <div class="a11y-bar" role="toolbar" aria-label="Accessibility Options">
-        <button id="btn-tts" aria-pressed="false" onclick="window.__toggleTTS()" title="Text to Speech">🔊</button>
-        <button id="btn-contrast" aria-pressed="false" onclick="window.__toggleContrast()" title="High Contrast">🌓</button>
-        <button id="btn-simple" aria-pressed="false" onclick="window.__toggleSimple()" title="Simple Mode">🅰</button>
-        <button id="btn-reset" onclick="window.__resetProgress()" title="Reset Progress">↺</button>
+        <button id="btn-tts" aria-pressed="false" onclick="window.__toggleTTS()" title="Text to Speech"><img src='../assets/gfx/audio.svg' class='icon-svg' loading='lazy'></button>
+        <button id="btn-contrast" aria-pressed="false" onclick="window.__toggleContrast()" title="High Contrast"><img src='../assets/gfx/sun-duotone.svg' class='icon-svg' loading='lazy'></button>
+        <button id="btn-simple" aria-pressed="false" onclick="window.__toggleSimple()" title="Simple Mode"><img src='../assets/gfx/book-open-duotone.svg' class='icon-svg' loading='lazy'></button>
+        <button id="btn-reset" onclick="window.__resetProgress()" title="Reset Progress"><img src='../assets/gfx/arrow-clockwise-duotone.svg' class='icon-svg' loading='lazy'></button>
       </div>
     `;
     window.__toggleTTS     = () => this._toggleTTS();

@@ -2,7 +2,7 @@
   "id": "judas",
   "name": "Judas Iscariot",
   "role": "Disciple and Treasurer",
-  "avatar": "\ud83e\ude99",
+  "avatar": "judas.svg",
   "truthfulness": 0.3,
   "bibleRef": "Matthew 26:14-16; John 13:27-30",
   "background": "The only non-Galilean among the twelve. He carried the communal purse but became disillusioned with the nature of the Kingdom Jesus was announcing.",
@@ -17,5 +17,7 @@
     "environmental": "The location is of no consequence. The outcome was inevitable.",
     "analytical": "You're focusing on the wrong numbers. Think of the cost of this movement.",
     "prophecy": "He spoke of prophecies, but a true kingdom must be built on practical terms."
-  }
+  },
+  "earSize": 1.0,
+  "headSize": 1.0
 }

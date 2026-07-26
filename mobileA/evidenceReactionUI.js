@@ -21,7 +21,7 @@ class EvidenceReactionUI {
         if (!npc || !reaction) return;
 
         // Populate modal with NPC and reaction info
-        this.avatarEl.textContent = npc.avatar;
+        this.avatarEl.innerHTML = npc.avatar || '';
         this.npcNameEl.textContent = `${npc.name}'s Reaction`;
         this.reactionTextEl.textContent = reaction.text;
 
@@ -36,7 +36,7 @@ class EvidenceReactionUI {
                 this.clueEl.innerHTML = `
                     <p>New Information Unlocked:</p>
                     <div class="picker-card minimal">
-                        <div class="picker-icon">${evidenceType.icon}</div>
+                        <div class="picker-icon"><img src='${evidenceType.icon}' class='icon-svg' loading='lazy'></div>
                         <div class="picker-title">${clue.name}</div>
                     </div>`;
                 this.clueEl.style.display = 'block';

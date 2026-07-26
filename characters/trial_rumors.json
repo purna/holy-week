@@ -2,7 +2,7 @@
   "id": "trial_rumors",
   "name": "Trial Rumors",
   "role": "Court Observer",
-  "avatar": "\ud83d\udc41\ufe0f",
+  "avatar": "trial_rumors.svg",
   "truthfulness": 0.4,
   "bibleRef": "Matthew 26:59-68",
   "background": "An anonymous observer present near the High Priest's residence. They provide a mixture of accurate observations and distorted street rumors regarding the trial.",
@@ -17,5 +17,7 @@
     "environmental": "It all happened at the High Priest's house, in the middle of the night.",
     "analytical": "So many people involved... it's hard to know what to believe.",
     "prophecy": "They say he claimed to be the Son of God. Is that a crime?"
-  }
+  },
+  "earSize": 1.0,
+  "headSize": 1.0
 }

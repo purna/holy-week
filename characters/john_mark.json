@@ -2,7 +2,7 @@
   "id": "john_mark",
   "name": "John Mark",
   "role": "Son of the House Owner",
-  "avatar": "\ud83d\udc68\u200d\ud83e\uddb0",
+  "avatar": "john_mark.svg",
   "truthfulness": 0.75,
   "bibleRef": "Acts 12:12; Mark 14:51-52",
   "background": "The teenage son of Mary, owner of the Upper Room. He is observant and later records the Gospel of Mark based on Peter's accounts.",
@@ -18,5 +18,7 @@
     "environmental": "This happened in my mother's house. I will never forget the feeling in that room.",
     "analytical": "So many details to remember. I must get the sequence right.",
     "prophecy": "He spoke of the prophets. I need to go back and read them again."
-  }
+  },
+  "earSize": 0.95,
+  "headSize": 1.0
 }

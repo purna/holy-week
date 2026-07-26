@@ -44,20 +44,20 @@ export class CodexUI {
             <div class="codex-matching-columns">
                 <div class="codex-match-column">
                     <div class="selection-slot ${selectedEv ? 'active' : ''}" id="codex-evidence-slot">
-                        ${selectedEv ? `<span class="slot-icon">${selectedEv.icon}</span><span class="slot-name">${selectedEv.name}</span>` : `<span>Select Evidence...</span>`}
+                        ${selectedEv ? `<span class="slot-icon"><img src='${selectedEv.icon}' class='icon-svg' loading='lazy'></span><span class="slot-name">${selectedEv.name}</span>` : `<span>Select Evidence...</span>`}
                     </div>
                     <h3 class="section-title">Your Evidence</h3>
                     <div class="picker-grid">
                         ${collectedEvidence.map(e => `
                             <button class="picker-card ${this.selectedCodexEvidenceId === e.id ? 'selected-a' : ''}" onclick="window.ui.codexUI.selectEvidenceForMatching('${e.id}')">
-                                <span class="picker-icon">${e.icon}</span><span class="picker-name">${e.name}</span>
+                                <span class="picker-icon"><img src='${e.icon}' class='icon-svg' loading='lazy'></span><span class="picker-name">${e.name}</span>
                             </button>`).join('') || `<p class="picker-empty">Collect evidence first.</p>`}
                     </div>
                 </div>
 
                 <div class="codex-match-column">
                     <div class="selection-slot ${selectedProp ? 'active' : ''}" id="codex-prophecy-slot">
-                        ${selectedProp ? `<span class="slot-icon">${selectedProp.icon}</span><span class="slot-name">${selectedProp.reference}</span>` : `<span>Select Prophecy...</span>`}
+                        ${selectedProp ? `<span class="slot-icon"><img src='${selectedProp.icon}' class='icon-svg' loading='lazy'></span><span class="slot-name">${selectedProp.reference}</span>` : `<span>Select Prophecy...</span>`}
                     </div>
                     <h3 class="section-title">Locked Prophecies</h3>
                     <div class="picker-grid">
@@ -75,7 +75,7 @@ export class CodexUI {
             <div id="codex-grid" class="codex-grid">
                 ${discoveredProps.map(p => `
                     <div class="prophecy-card discovered" onclick="window.ui.showProphecyDetail('${p.id}')">
-                        <div class="prophecy-card-icon">${p.icon || '🔮'}</div>
+                        <div class="prophecy-card-icon">${p.icon || "<img src='../assets/gfx/star-duotone.svg' class='icon-svg' loading='lazy'>"}</div>
                         <div class="prophecy-card-info">
                             <div class="prophecy-card-reference">${p.reference}</div>
                             <div class="prophecy-card-desc">${(p.fulfilledBy || p.desc || '').substring(0, 60)}...</div>
@@ -113,7 +113,7 @@ export class CodexUI {
 
         if (deductionCount <= prophecyCount) {
             if (this.audio.enabled) this.audio.playError();
-            this.codexMatchFeedback = `<div class="codex-feedback-msg error">🧪 Run another Lab deduction first<br><small>You need ${prophecyCount + 1} deductions to unlock prophecy #${prophecyCount + 1}.</small></div>`;
+            this.codexMatchFeedback = `<div class="codex-feedback-msg error"><img src='../assets/gfx/microscope-duotone.svg' class='icon-svg' loading='lazy'> Run another Lab deduction first<br><small>You need ${prophecyCount + 1} deductions to unlock prophecy #${prophecyCount + 1}.</small></div>`;
         } else {
             const evidence = this.es.getById(evidenceId);
             const prophecy = this.es.getProphecyById(prophecyId);
@@ -122,11 +122,11 @@ export class CodexUI {
             if (isMatch) {
                 this.cm.recordProphecyFound(prophecyId);
                 if (this.audio.enabled) this.audio.playBonus();
-                this.codexMatchFeedback = `<div class="codex-feedback-msg success">✨ Correct! +10 pts<br><small>${evidence.name} linked to ${prophecy.reference}</small></div>`;
+                this.codexMatchFeedback = `<div class="codex-feedback-msg success"><img src='../assets/gfx/sparkles-duotone.svg' class='icon-svg' loading='lazy'> Correct! +10 pts<br><small>${evidence.name} linked to ${prophecy.reference}</small></div>`;
             } else {
                 this.cm.updateDoubt(5);
                 if (this.audio.enabled) this.audio.playError();
-                this.codexMatchFeedback = `<div class="codex-feedback-msg error">❌ Incorrect Link! +5 Doubt<br><small>This evidence does not fulfill that prophecy.</small></div>`;
+                this.codexMatchFeedback = `<div class="codex-feedback-msg error"><img src='../assets/gfx/x-circle-duotone.svg' class='icon-svg' loading='lazy'> Incorrect Link! +5 Doubt<br><small>This evidence does not fulfill that prophecy.</small></div>`;
             }
             this.selectedCodexEvidenceId = null;
             this.selectedCodexProphecyId = null;

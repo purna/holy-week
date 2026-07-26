@@ -98,8 +98,8 @@ export class UIManager {
     if (container) {
       container.innerHTML = mapData.map(loc => {
         const status = !loc.isUnlocked ? "locked" : loc.allSolved ? "solved" : "open";
-        const badge = loc.allSolved ? "✅" : loc.isUnlocked ? "🔍" : "🔒";
-        const statusText = { locked: "🔒 Locked", open: "🔍 Cases available", solved: "✅ All solved" }[status];
+        const badge = loc.allSolved ? "<img src='../assets/gfx/check-circle-duotone.svg' class='icon-svg' loading='lazy'>" : loc.isUnlocked ? "<img src='../assets/gfx/magnifying-glass-duotone.svg' class='icon-svg' loading='lazy'>" : "<img src='../assets/gfx/lock-duotone.svg' class='icon-svg' loading='lazy'>";
+        const statusText = { locked: "<img src='../assets/gfx/lock-duotone.svg' class='icon-svg' loading='lazy'> Locked", open: "<img src='../assets/gfx/magnifying-glass-duotone.svg' class='icon-svg' loading='lazy'> Cases available", solved: "<img src='../assets/gfx/check-circle-duotone.svg' class='icon-svg' loading='lazy'> All solved" }[status];
         return `
         <div class="location-card ${status}" role="listitem" tabindex="0" onclick="openLocation('${loc.id}')">
           <div class="location-inner">
@@ -122,7 +122,7 @@ export class UIManager {
     if (!loc) return;
     this.prevScreen = "map";
 
-    document.getElementById("cases-loc-name").textContent = "🔍 Holy Week";
+    document.getElementById("cases-loc-name").innerHTML = "<img src='../assets/gfx/magnifying-glass-duotone.svg' class='icon-svg' loading='lazy'> Holy Week";
     const scroll = document.getElementById("cases-scroll");
 
     scroll.innerHTML = `
@@ -133,7 +133,7 @@ export class UIManager {
           <div class="location-header-ambiance">${loc.ambiance}</div>
         </div>
       </div>
-      <div class="location-fact-box">📚 ${loc.fact}</div>
+      <div class="location-fact-box"><img src='../assets/gfx/books-duotone.svg' class='icon-svg' loading='lazy'> ${loc.fact}</div>
       ${this._renderActGroups(locId)}
     `;
     this.showScreen("cases");
@@ -156,8 +156,8 @@ export class UIManager {
                   onclick="${c.isLocked ? '' : `startCase('${c.id}')`}">
             <div class="case-title">${c.title}</div>
             <div class="case-subtitle">${c.subtitle}</div>
-            ${c.eventLocation ? `<div class="case-event-location">📍 ${c.eventLocation}</div>` : ''}
-            <span class="case-status-label">${prog?.solved ? `✅ Solved — ${prog.score?.total} pts` : c.isLocked ? "🔒 Locked" : "🔍 Open"}</span>
+            ${c.eventLocation ? `<div class="case-event-location"><img src='../assets/gfx/pin-duotone.svg' class='icon-svg' loading='lazy'> ${c.eventLocation}</div>` : ''}
+            <span class="case-status-label">${prog?.solved ? `<img src='../assets/gfx/check-circle-duotone.svg' class='icon-svg' loading='lazy'> Solved — ${prog.score?.total} pts` : c.isLocked ? "<img src='../assets/gfx/lock-duotone.svg' class='icon-svg' loading='lazy'> Locked" : "<img src='../assets/gfx/magnifying-glass-duotone.svg' class='icon-svg' loading='lazy'> Open"}</span>
           </div>`;
     }).join("")}
       </div>`).join("");
@@ -247,7 +247,7 @@ export class UIManager {
     const p = this.es.getProphecyById(prophecyId);
     if (!p) return;
 
-    modal.querySelector(".evidence-detail-icon").textContent = p.icon || "🔮";
+    modal.querySelector(".evidence-detail-icon").innerHTML = "<img src='" + (e.icon || '../assets/gfx/star-duotone.svg') + "' class='icon-svg' loading='lazy'>";
     modal.querySelector(".evidence-detail-name").textContent = p.reference || "Prophecy";
     modal.querySelector(".evidence-detail-type").textContent = "Prophecy";
 
@@ -274,7 +274,7 @@ export class UIManager {
         refs.forEach(ref => {
           const btn = document.createElement("button");
           btn.className = "read-more-btn";
-          btn.textContent = `📖 Read ${ref}`;
+          btn.innerHTML = `<img src='../assets/gfx/book-open-duotone.svg' class='icon-svg' loading='lazy'> Read ${ref}`;
           btn.onclick = () => this.fetchVerseInline(ref, bibleVerseContent, btn);
           bibleReadMoreContainer.appendChild(btn);
         });
@@ -307,7 +307,7 @@ export class UIManager {
         refs.forEach(ref => {
           const btn = document.createElement("button");
           btn.className = "read-more-btn";
-          btn.textContent = `📖 Read ${ref}`;
+          btn.innerHTML = `<img src='../assets/gfx/book-open-duotone.svg' class='icon-svg' loading='lazy'> Read ${ref}`;
           btn.onclick = () => this.fetchVerseInline(ref, prophetVerseContent, btn);
           prophetReadMoreContainer.appendChild(btn);
         });
@@ -340,7 +340,7 @@ export class UIManager {
     document.getElementById("result-content").innerHTML = `
     <div class="container" role="region" aria-label="Case result details">
       <div class="result-card">
-        <div class="result-verdict" aria-hidden="true">${result.correct ? "🏆" : "❌"}</div>
+        <div class="result-verdict" aria-hidden="true">${result.correct ? "<img src='../assets/gfx/trophy-duotone.svg' class='icon-svg' loading='lazy'>" : "<img src='../assets/gfx/x-circle-duotone.svg' class='icon-svg' loading='lazy'>"}</div>
         <div class="result-verdict-text ${result.correct ? 'correct' : 'wrong'}" role="heading" aria-level="1">
           ${result.correct ? "Case Solved!" : "Wrong Accusation"}
         </div>
@@ -349,7 +349,7 @@ export class UIManager {
             <strong>The truth:</strong> ${this.a11y.simplify(c.truth.motive)} ${this.a11y.simplify(c.truth.method)}
           </div>
           <div class="result-lesson" aria-label="What you learned">
-            📚 ${this.a11y.simplify(c.truth.lesson)}
+            <img src='../assets/gfx/books-duotone.svg' class='icon-svg' loading='lazy'> ${this.a11y.simplify(c.truth.lesson)}
           </div>
         </div>
         <div class="scroll-hint" aria-hidden="true">
@@ -450,7 +450,7 @@ export class UIManager {
     if (!e) return;
     const typeInfo = this.es.getTypeInfo(e.type);
 
-    modal.querySelector(".evidence-detail-icon").textContent = e.icon;
+    modal.querySelector(".evidence-detail-icon").innerHTML = "<img src='" + (e.icon || '../assets/gfx/star-duotone.svg') + "' class='icon-svg' loading='lazy'>";
     modal.querySelector(".evidence-detail-name").textContent = e.name;
     modal.querySelector(".evidence-detail-type").textContent = typeInfo.label || e.type;
 
@@ -477,7 +477,7 @@ export class UIManager {
         refs.forEach(ref => {
           const btn = document.createElement("button");
           btn.className = "read-more-btn";
-          btn.textContent = `📖 Read ${ref}`;
+          btn.innerHTML = `<img src='../assets/gfx/book-open-duotone.svg' class='icon-svg' loading='lazy'> Read ${ref}`;
           btn.onclick = () => this.fetchVerseInline(ref, bibleVerseContent, btn);
           bibleReadMoreContainer.appendChild(btn);
         });
@@ -511,7 +511,7 @@ export class UIManager {
         refs.forEach(ref => {
           const btn = document.createElement("button");
           btn.className = "read-more-btn";
-          btn.textContent = `📖 Read ${ref}`;
+          btn.innerHTML = `<img src='../assets/gfx/book-open-duotone.svg' class='icon-svg' loading='lazy'> Read ${ref}`;
           btn.onclick = () => this.fetchVerseInline(ref, prophetVerseContent, btn);
           prophetReadMoreContainer.appendChild(btn);
         });
@@ -549,7 +549,7 @@ export class UIManager {
   }
 
   async fetchVerseInline(refString, targetEl, btnEl) {
-    targetEl.innerHTML = `⏳ Loading…`;
+    targetEl.innerHTML = `Loading…`;
     targetEl.hidden = false;
     try {
       const parts = refString.match(/((?:\d\s)?[A-Za-z][^0-9]*)\s(\d+):(\d+)/);

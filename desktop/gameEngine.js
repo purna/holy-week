@@ -32,7 +32,7 @@ export class GameEngine {
     this.cm = new CaseManager();
     this.a11y = new AccessibilityManager();
     this.a11y.restorePreferences();
-    this.es = new EvidenceSystem(this.cm);
+    this.es = new EvidenceSystem(this.cm, this.config);
     this.ns = new NPCSystem(this.cm, this.es, this.surfaceRadius);
     this.de = new DeductionEngine(this.cm, this.es);
     this.ls = new LocationSystem(this.cm);
@@ -590,7 +590,7 @@ export class GameEngine {
 
     // Pre-load Ink stories
     if (caseData.npcs) {
-      caseData.npcs.forEach(npc => {
+      (caseData.npcs || []).forEach(npc => {
         if (npc.hasDialogue || npc.dialogueId || npc.storyFile) this.dm.loadStoryForNPC(npc);
       });
     }
@@ -1116,7 +1116,7 @@ export class GameEngine {
       const card = document.createElement('div');
       card.className = 'picker-card';
       card.innerHTML = `
-        <span class="picker-icon">${s.avatar || '👤'}</span>
+        <span class="picker-icon">${s.avatar || '<img src="assets/gfx/user-duotone.svg" class="icon-svg" loading="lazy">'}</span>
         <span class="picker-name">${s.name}</span>
         <small style="display:block; font-size:0.6rem; opacity:0.7; margin-bottom:4px;">${s.role}</small>
         <div style="font-size:0.65rem; margin-bottom:8px; opacity:0.85;">Status: <strong>${status.status}</strong></div>
@@ -1207,7 +1207,7 @@ export class GameEngine {
         <div class="people-list-sidebar">
             ${npcs.map(n => `
                 <button class="person-nav-btn" data-npc-id="${n.id}">
-                    <span>${n.avatar || '👤'}</span> ${n.name}
+                    <span>${n.avatar || '<img src="assets/gfx/user-duotone.svg" class="icon-svg" loading="lazy">'}</span> ${n.name}
                 </button>
             `).join('')}
         </div>
@@ -1240,11 +1240,13 @@ export class GameEngine {
     );
 
     content.innerHTML = `
-        <h3 class="modal-title-settings">${npc.avatar || '👤'} ${npc.name}</h3>
+        <h3 class="modal-title-settings">${npc.avatar || '<img src="assets/gfx/user-duotone.svg" class="icon-svg" loading="lazy">'} ${npc.name}</h3>
         <h4 class="modal-subtitle-custom">${npc.role}</h4>
         <div class="evidence-detail-label" style="margin-top:15px;">Related Evidence</div>
         <div class="picker-grid">
-            ${relatedEvidence.map(ev => `<div class="picker-card"><span class="picker-icon">${ev.emoji}</span><span class="picker-name">${ev.name}</span></div>`).join('') || '<small>No evidence linked yet.</small>'}
+            ${relatedEvidence.map(ev => `<div class="picker-card"><span class="picker-icon">
+              <img src="${ev.emoji}" class="icon-svg" loading="lazy">
+            </span><span class="picker-name">${ev.name}</span></div>`).join('') || '<small>No evidence linked yet.</small>'}
         </div>
         <div class="evidence-detail-label" style="margin-top:20px;">Conversation Record</div>
         <div class="convo-history-feed">
@@ -1270,7 +1272,7 @@ export class GameEngine {
     const modal = document.getElementById('evidence-detail-modal');
 
     // Header & Basic Info
-    modal.querySelector('.evidence-detail-icon').textContent = ev.emoji || ev.icon || '🛡️';
+    modal.querySelector('.evidence-detail-icon').innerHTML = ev.emoji || ev.icon || '<img src="assets/gfx/shield-duotone.svg" class="icon-svg" loading="lazy">';
     modal.querySelector('.evidence-detail-name').textContent = ev.name;
     modal.querySelector('.evidence-detail-type').textContent = ev.type || 'Physical';
     modal.querySelector('.evidence-detail-desc').textContent = ev.desc || ev.description || 'No description available.';
@@ -1296,7 +1298,7 @@ export class GameEngine {
         bibleRefs.forEach(ref => {
           const btn = document.createElement('button');
           btn.className = 'read-more-btn';
-          btn.textContent = `📖 Read ${ref}`;
+          btn.textContent = `<img src="assets/gfx/book-open-duotone.svg" class="icon-svg" loading="lazy"> Read ${ref}`;
           btn.onclick = () => this.fetchVerseInline(ref, bibleVerseContent, btn);
           bibleContainer.appendChild(btn);
         });
@@ -1311,7 +1313,7 @@ export class GameEngine {
         propheticRefs.forEach(ref => {
           const btn = document.createElement('button');
           btn.className = 'read-more-btn';
-          btn.textContent = `📖 Read ${ref}`;
+          btn.textContent = `<img src="assets/gfx/book-open-duotone.svg" class="icon-svg" loading="lazy"> Read ${ref}`;
           btn.onclick = () => this.fetchVerseInline(ref, prophetVerseContent, btn);
           prophetContainer.appendChild(btn);
         });
@@ -1339,7 +1341,7 @@ export class GameEngine {
       const r = await fetch(`https://bible-api.com/${apiRef}?translation=web`);
       const j = await r.json();
       targetEl.innerHTML = `<div style="margin-bottom:8px;">"${j.verses[0].text}"</div>
-        <button class="read-more-btn" style="width:100%" onclick="window.BibleReader.displayPassage('${j.id}')">📖 Read Full Passage</button>`;
+        <button class="read-more-btn" style="width:100%" onclick="window.BibleReader.displayPassage('${j.id}')"><img src="assets/gfx/book-open-duotone.svg" class="icon-svg" loading="lazy"> Read Full Passage</button>`;
       this.audio.playClue();
     } catch (err) {
       targetEl.innerHTML = `Could not load verse.`;
@@ -1384,7 +1386,7 @@ export class GameEngine {
     grid.innerHTML = collected.map(e => `
       <button class="picker-card ${this.es.selectedCodexEvidenceId === e.id ? 'selected-a' : ''}" 
               onclick="window.gameEngine.es.selectedCodexEvidenceId='${e.id}'; window.gameEngine.renderCodexMatcherContent();">
-        ${e.emoji || '🛡️'} ${e.name}
+        <img src='${e.icon}' class='icon-svg' loading='lazy'> ${e.name}
       </button>`).join("");
   }
 
@@ -1794,7 +1796,7 @@ startDialogue(npcConfig) {
       collPrompt.style.top = `${y}px`;
       collPrompt.style.display = 'flex';
       const data = nearestItem.userData.dataRef;
-      document.getElementById('inworld-collectable-msg').textContent = (nearestItem.userData.newlyUnlocked ? '✨ NEW — ' : '') + (data.name || 'NEARBY COLLECTABLE');
+      document.getElementById('inworld-collectable-msg').textContent = (nearestItem.userData.newlyUnlocked ? '<img src="assets/gfx/sparkles-duotone.svg" class="icon-svg" loading="lazy"> NEW — ' : '') + (data.name || 'NEARBY COLLECTABLE');
     } else {
       collPrompt.style.display = 'none';
     }

@@ -5,7 +5,8 @@ import { AccessibilityManager } from "../mobileB/accessibility.js";
 
 // ── Configuration ──────────────────────────────────────────
 const CONFIG = {
-  unlockAllCases: true // Set to true to bypass case requirements for testing
+  unlockAllCases: true, // Set to true to bypass case requirements for testing
+  unlockAllEvidence: true // Set to true to unlock all evidence for testing
 };
 
 

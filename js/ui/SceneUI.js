@@ -1,5 +1,12 @@
 import { getIntroHtml, getIntroText } from "../utils.js";
 
+function iconMarkup(icon) {
+    if (!icon) return '';
+    if (String(icon).includes('<img')) return String(icon);
+    if (String(icon).endsWith('.svg')) return `<img src="${icon}" class="icon-svg" loading="lazy">`;
+    return String(icon);
+}
+
 export class SceneUI {
     constructor(caseManager, evidenceSystem, accessibility, ui) {
         this.cm = caseManager;
@@ -23,11 +30,11 @@ export class SceneUI {
             ${introMarkup}
             ${!this.cm.getCaseProgress(c.id)?.sceneViewed ? `<button class="lets-investigate-btn" onclick="this.style.display='none'; const p=window.cm.getCaseProgress(window.cm.activeCaseId); if(p) p.sceneViewed=true; window.cm._saveProgress(); switchInvTab('people')">Let's investigate</button>` : ''}
             <div class="evidence-grid">
-                ${c.evidencePool.map(e => {
+                ${(c.evidencePool || []).map(e => {
                     const col = this.es.collected.includes(e.id);
                     return `<div class="evidence-card ${col ? 'collected' : 'locked'}" 
                                  onclick="${col ? `openEvidenceDetail('${e.id}')` : ''}">
-                                <div class="evidence-card-icon">${e.icon}</div>
+                                <div class="evidence-card-icon">${iconMarkup(e.icon)}</div>
                                 <div class="evidence-card-name">${e.name}</div>
                             </div>`;
                 }).join("")}
@@ -52,7 +59,7 @@ export class SceneUI {
                     if (alreadyCollected) return;
                     const discovered = this.ui.es.discover(id);
                     const evidence = discovered || (typeof this.ui.es.getById === "function" ? this.ui.es.getById(id) : null);
-                    this.ui.peopleUI.addSystem(`🔓 New clue: ${evidence?.name || id}`, npcId);
+                    this.ui.peopleUI.addSystem(`<img src='../assets/gfx/lock-open-duotone.svg' class='icon-svg' loading='lazy'> New clue: ${evidence?.name || id}`, npcId);
                     count++;
                 });
             }
@@ -64,7 +71,7 @@ export class SceneUI {
                     const alreadyFound = caseProgress?.propheciesFound?.includes(npc.revealsProphecy);
                     if (!alreadyFound) {
                         this.ui.npcs?.caseManager?.recordProphecyFound?.(npc.revealsProphecy);
-                        this.ui.peopleUI.addSystem(`🔮 Prophecy Revealed: ${prophecy.reference}`, npcId);
+                        this.ui.peopleUI.addSystem(`<img src='../assets/gfx/star-duotone.svg' class='icon-svg' loading='lazy'> Prophecy Revealed: ${prophecy.reference}`, npcId);
                         count++;
                     }
                 }
@@ -89,7 +96,7 @@ export class SceneUI {
                     }
 
                     const suspect = this.ui.ns.getNPC(suspectId);
-                    this.ui.peopleUI.addSystem(`⚖️ New suspect identified: ${suspect ? suspect.name : suspectId}`, npcId);
+                    this.ui.peopleUI.addSystem(`<img src='../assets/gfx/balance-scale-duotone.svg' class='icon-svg' loading='lazy'> New suspect identified: ${suspect ? suspect.name : suspectId}`, npcId);
                     count++;
                 });
             }

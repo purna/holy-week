@@ -2,7 +2,7 @@
   "id": "jerusalem_local",
   "name": "Jerusalem Local",
   "role": "City Resident",
-  "avatar": "\ud83c\udfe0",
+  "avatar": "jerusalem_local.svg",
   "truthfulness": 0.65,
   "faction": "local",
   "bibleRef": "Matthew 21:10\u201311; Luke 19:39\u201340",
@@ -18,5 +18,7 @@
     "environmental": "The city is a mess during Passover. This is nothing new.",
     "analytical": "More people, more problems. It's simple math.",
     "prophecy": "These Galileans and their prophecies will get us all killed by Rome."
-  }
+  },
+  "earSize": 1.0,
+  "headSize": 1.0
 }

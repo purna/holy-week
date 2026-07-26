@@ -2,7 +2,7 @@
   "id": "execution_soldier",
   "name": "Execution Detail Soldier",
   "role": "Roman Infantryman",
-  "avatar": "\u2694\ufe0f",
+  "avatar": "execution_soldier.svg",
   "truthfulness": 0.6,
   "faction": "roman",
   "bibleRef": "Matthew 27:27\u201336; Mark 15:16\u201324; John 19:23\u201324",
@@ -18,5 +18,7 @@
     "environmental": "The ground shook, the sky went black. Just another day in Judea.",
     "analytical": "We gambled for his clothes. I lost. That's all the numbers I care about.",
     "prophecy": "The locals have their stories. I have my duty. But that darkness... that wasn't normal."
-  }
+  },
+  "earSize": 1.0,
+  "headSize": 1.0
 }

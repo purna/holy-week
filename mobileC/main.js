@@ -1,7 +1,8 @@
 import { GameEngine } from "./gameEngine.js";
 
 const CONFIG = {
-  unlockAllCases: true 
+  unlockAllCases: true,
+  unlockAllEvidence: true
 };
 
 const game = new GameEngine(CONFIG);

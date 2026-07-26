@@ -32,12 +32,12 @@ export class LabUI {
         <div class="lab-selection-summary">
           <div class="lab-slot-badge ${this.es.selectedA ? 'filled' : 'empty'}" aria-label="First clue: ${this.es.selectedA?.name || 'not selected'}">
             ${this.es.selectedA
-              ? `<span class="slot-icon">${this.es.selectedA.icon || this.es.selectedA.emoji}</span><span class="slot-name">${this.es.selectedA.name}</span>`
+              ? `<span class="slot-icon"><img src='${this.es.selectedA.icon || this.es.selectedA.emoji}' class='icon-svg' loading='lazy'></span><span class="slot-name">${this.es.selectedA.name}</span>`
               : `<span class="slot-empty">First clue...</span>`}
           </div>
           <div class="lab-slot-badge ${this.es.selectedB ? 'filled' : 'empty'}" aria-label="Second clue: ${this.es.selectedB?.name || 'not selected'}">
             ${this.es.selectedB
-              ? `<span class="slot-icon">${this.es.selectedB.icon || this.es.selectedB.emoji}</span><span class="slot-name">${this.es.selectedB.name}</span>`
+              ? `<span class="slot-icon"><img src='${this.es.selectedB.icon || this.es.selectedB.emoji}' class='icon-svg' loading='lazy'></span><span class="slot-name">${this.es.selectedB.name}</span>`
               : `<span class="slot-empty">Second clue...</span>`}
           </div>
         </div>
@@ -50,7 +50,7 @@ export class LabUI {
               <button class="picker-card ${isA ? 'selected-a' : ''} ${isB ? 'selected-b' : ''}" data-evidence-id="${e.id}"
                 aria-label="${e.name}: ${e.desc || e.description || ''}. ${isA ? 'Selected as first clue' : isB ? 'Selected as second clue' : 'Tap to select as clue'}"
                 aria-pressed="${isA || isB}">
-                <span class="picker-icon" aria-hidden="true">${e.icon || e.emoji}</span>
+                <span class="picker-icon" aria-hidden="true"><img src='${e.icon}' class='icon-svg' loading='lazy'></span>
                 <span class="picker-name">${e.name}</span>
                 ${isA ? `<span class="sel-badge" aria-hidden="true" style="background:var(--blue)">A</span>` : ""}
                 ${isB ? `<span class="sel-badge" aria-hidden="true" style="background:var(--gold)">B</span>` : ""}
@@ -73,9 +73,9 @@ export class LabUI {
               <p class="result-text" style="margin:0;line-height:1.5;">${this.a11y.simplify(this.activeModalResult.text || "")}</p>
               ${this.activeModalResult.revealsProphecy ? (() => {
                 const p = this.es.getProphecyById(this.activeModalResult.revealsProphecy);
-                return p ? `<p class="result-prophecy" style="margin:0;line-height:1.5;">🔮 <strong>Prophecy Revealed:</strong> ${p.reference} — "${this.a11y.simplify(p.text.substring(0, 160))}${p.text.length > 160 ? '...' : ''}"</p>` : '';
+                return p ? `<p class="result-prophecy" style="margin:0;line-height:1.5;"><img src='../assets/gfx/star-duotone.svg' class='icon-svg' loading='lazy'> <strong>Prophecy Revealed:</strong> ${p.reference} — "${this.a11y.simplify(p.text.substring(0, 160))}${p.text.length > 160 ? '...' : ''}"</p>` : '';
               })() : ""}
-              ${this.activeModalResult.insight ? `<p class="result-insight" style="margin:0;line-height:1.5;">💡 ${this.a11y.simplify(this.activeModalResult.insight)}</p>` : ""}
+              ${this.activeModalResult.insight ? `<p class="result-insight" style="margin:0;line-height:1.5;"><img src='../assets/gfx/sparkles-duotone.svg' class='icon-svg' loading='lazy'> ${this.a11y.simplify(this.activeModalResult.insight)}</p>` : ""}
               <p class="lab-modal-score" style="margin:0;font-weight:700;">⭐ +${this.activeModalResult.score || 0} score</p>
               <p class="lab-modal-note" style="margin:0;opacity:0.9;">Saved in the Deductions history below.</p>
             ` : ""}
@@ -90,9 +90,9 @@ export class LabUI {
           <div class="lab-history-list">
             ${deductions.length === 0 ? `<p class="lab-empty">No deductions yet.</p>` : historyList.map(d => `
                   <div class="deduction-entry ${d.isKeyDeduction ? 'key' : ''}" role="listitem">
-                    <span class="deduction-op" aria-hidden="true">${OPERATIONS[d.operation?.toUpperCase()]?.icon || "🔍"}</span>
+                    <span class="deduction-op" aria-hidden="true">${OPERATIONS[d.operation?.toUpperCase()]?.icon || "<img src='../assets/gfx/magnifying-glass-duotone.svg' class='icon-svg' loading='lazy'>"}</span>
                     <span class="deduction-text">${this.a11y.simplify(d.text)}</span>
-                    ${d.isKeyDeduction ? `<span class="key-badge" aria-label="Key deduction">★</span>` : ""}
+                    ${d.isKeyDeduction ? `<span class="key-badge" aria-label="Key deduction"><img src='../assets/gfx/star-duotone.svg' class='icon-svg' loading='lazy'></span>` : ""}
                     ${d.a && d.b ? `
                     <div class="deduction-evidence-tags">
                       <span class="evidence-tag-badge">${d.aIcon || ''}\u00A0${d.a}</span>
@@ -150,13 +150,13 @@ export class LabUI {
     if (result.revealsProphecy) {
       const prophecy = this.es.getProphecyById(result.revealsProphecy);
       if (prophecy) {
-        prophecyHtml = `<p class="result-prophecy">🔮 <strong>Prophecy Revealed:</strong> ${prophecy.reference} — "${prophecy.text.substring(0, 120)}${prophecy.text.length > 120 ? '...' : ''}"</p>`;
+        prophecyHtml = `<p class="result-prophecy"><img src='../assets/gfx/star-duotone.svg' class='icon-svg' loading='lazy'> <strong>Prophecy Revealed:</strong> ${prophecy.reference} — "${prophecy.text.substring(0, 120)}${prophecy.text.length > 120 ? '...' : ''}"</p>`;
       }
     }
     el.innerHTML = `<div class="result-content ${result.isKeyDeduction ? 'result-key' : ''}">
       <p class="result-text">${this.a11y.simplify(result.text)}</p>
       ${prophecyHtml}
-      ${result.insight ? `<p class="result-insight">💡 ${this.a11y.simplify(result.insight)}</p>` : ""}
+      ${result.insight ? `<p class="result-insight"><img src='../assets/gfx/sparkles-duotone.svg' class='icon-svg' loading='lazy'> ${this.a11y.simplify(result.insight)}</p>` : ""}
     </div>`;
   }
 

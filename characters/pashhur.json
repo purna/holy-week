@@ -2,7 +2,7 @@
   "id": "pashhur",
   "name": "Pashhur",
   "role": "Temple Priest",
-  "avatar": "\ud83d\udd4c",
+  "avatar": "pashhur.svg",
   "truthfulness": 0.4,
   "bibleRef": "Luke 23:45; Matthew 27:51",
   "background": "A serving priest who was inside the Sanctuary when the Temple veil tore from top to bottom at 3:00 PM.",
@@ -17,5 +17,7 @@
     "environmental": "The Holy of Holies... exposed. It was a terrifying sight.",
     "analytical": "You can't measure the presence of God leaving a place. But you can feel it.",
     "prophecy": "The prophets spoke of the Lord suddenly coming to His temple. I think... I think He has."
-  }
+  },
+  "earSize": 1.05,
+  "headSize": 1.0
 }

@@ -1708,11 +1708,11 @@ function buildLabHTML() {
   <div class="lab-panel" role="region" aria-label="Investigation Lab">
     <div class="lab-slots" aria-label="Selected evidence slots">
       <div class="lab-slot" id="slotA" aria-label="Evidence slot A: ${es.selectedA?.name||'empty'}" role="status">
-        ${es.selectedA?`<span class="slot-icon">${es.selectedA.icon}</span><span class="slot-name">${es.selectedA.name}</span>`:`<span class="slot-empty">Tap evidence below</span>`}
+        ${es.selectedA?`<span class="slot-icon"><img src='${es.selectedA.icon}' class='icon-svg' loading='lazy'></span><span class="slot-name">${es.selectedA.name}</span>`:`<span class="slot-empty">Tap evidence below</span>`}
       </div>
       <div class="lab-slot-divider" aria-hidden="true">+</div>
       <div class="lab-slot" id="slotB" aria-label="Evidence slot B: ${es.selectedB?.name||'empty'}" role="status">
-        ${es.selectedB?`<span class="slot-icon">${es.selectedB.icon}</span><span class="slot-name">${es.selectedB.name}</span>`:`<span class="slot-empty">Tap second clue</span>`}
+        ${es.selectedB?`<span class="slot-icon"><img src='${es.selectedB.icon}' class='icon-svg' loading='lazy'></span><span class="slot-name">${es.selectedB.name}</span>`:`<span class="slot-empty">Tap second clue</span>`}
       </div>
     </div>
     <div class="lab-actions" role="group" aria-label="Analysis operations">

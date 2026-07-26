@@ -2,7 +2,7 @@
   "id": "galilean_pilgrim",
   "name": "Galilean Pilgrim",
   "role": "Festival Pilgrim",
-  "avatar": "\ud83e\uddf3",
+  "avatar": "galilean_pilgrim.svg",
   "truthfulness": 0.7,
   "faction": "local",
   "bibleRef": "Matthew 21:8\u201311; Mark 11:8\u201310; John 12:12\u201313",
@@ -18,5 +18,7 @@
     "environmental": "The very road is sacred now, where He rode.",
     "analytical": "You can't count the hope in the air. It was everywhere.",
     "prophecy": "Of course it was prophecy! We have been waiting for this day!"
-  }
+  },
+  "earSize": 1.0,
+  "headSize": 1.0
 }

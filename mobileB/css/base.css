@@ -79,3 +79,5 @@ button:focus-visible {
     outline-offset: 2px;
 }
 
+
+.icon-svg { width: 1em; height: 1em; vertical-align: -0.125em; display: inline-block; color: #3b82f6; }

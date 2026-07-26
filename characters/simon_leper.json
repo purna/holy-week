@@ -2,7 +2,7 @@
   "id": "simon_leper",
   "name": "Simon the Leper",
   "role": "Healed Host",
-  "avatar": "\ud83c\udfe0",
+  "avatar": "simon_leper.svg",
   "truthfulness": 0.9,
   "bibleRef": "Matthew 26:6-13; Mark 14:3-9",
   "background": "Once an outcast, now a host. His house in Bethany became a refuge for Jesus and a place where the preparation for His burial began through Mary's anointing.",
@@ -17,5 +17,7 @@
     "environmental": "My home in Bethany is a place of refuge for Him. All I have is His.",
     "analytical": "How can you measure the value of a new life? It is priceless.",
     "prophecy": "He said the woman who anointed him would be remembered. He is a true prophet."
-  }
+  },
+  "earSize": 1.0,
+  "headSize": 1.0
 }

@@ -9,7 +9,7 @@
     "loyal"
   ],
   "voiceProfile": "soft, thoughtful",
-  "avatar": "assets/npcs/andrew_portrait.png",
+  "avatar": "andrew_disciple.svg",
   "faction": "The Twelve",
   "personality": "neutral",
   "genericReactions": {
@@ -19,5 +19,7 @@
     "environmental": "The environment? Could be anyone.",
     "analytical": "Numbers can be misleading, you know.",
     "prophecy": "A prophecy fulfilled? I see the connection now."
-  }
+  },
+  "earSize": 1.0,
+  "headSize": 1.0
 }

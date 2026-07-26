@@ -2,7 +2,7 @@
   "id": "nathan_fig_tree",
   "name": "Nathan the Gardener",
   "role": "Orchard Gardener",
-  "avatar": "\ud83c\udf33",
+  "avatar": "nathan_fig_tree.svg",
   "truthfulness": 0.8,
   "faction": "local",
   "bibleRef": "Mark 11:12\u201314, 20\u201325",
@@ -18,5 +18,7 @@
     "environmental": "That fig tree... it withered from the roots up. No blight does that.",
     "analytical": "It takes years for a tree to grow, and years for it to die. Not one night.",
     "prophecy": "I'm just a gardener. But what I saw wasn't natural."
-  }
+  },
+  "earSize": 1.0,
+  "headSize": 1.0
 }

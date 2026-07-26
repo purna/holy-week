@@ -2,7 +2,7 @@
   "id": "sadducee_opposition",
   "name": "Sadducee Opposer",
   "role": "Sadducean Authority",
-  "avatar": "\ud83c\udfdb\ufe0f",
+  "avatar": "sadducee_authority.svg",
   "truthfulness": 0.4,
   "bibleRef": "Acts 23:6-8",
   "background": "An elite Sadducean who denies resurrection, angels, and spirits. Opposes the movement.",
@@ -17,5 +17,7 @@
     "environmental": "The location is irrelevant. The threat was real.",
     "analytical": "We do not deal in the superstitions of the Pharisees. There is no resurrection.",
     "prophecy": "Prophecy is for the excitable masses. We deal in law and order."
-  }
+  },
+  "earSize": 1.35,
+  "headSize": 1.05
 }

@@ -2,7 +2,7 @@
   "id": "teaching_mount",
   "name": "Mount Teacher",
   "role": "Disciple",
-  "avatar": "\ud83d\udcd6",
+  "avatar": "mount_teacher.svg",
   "truthfulness": 0.8,
   "bibleRef": "Matthew 5-7 (Sermon on the Mount)",
   "background": "A teacher from the Mount of Olives area who heard Jesus's direct teaching and shares wisdom from the gatherings.",
@@ -17,5 +17,7 @@
     "environmental": "He taught us on the Mount of Olives, overlooking the Temple He said would fall.",
     "analytical": "The parables have layers of meaning. We must not be content with the surface.",
     "prophecy": "He spoke of the end of the age. We must be watchful."
-  }
+  },
+  "earSize": 1.1,
+  "headSize": 1.05
 }

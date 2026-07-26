@@ -2,7 +2,7 @@
   "id": "corrupt_seller",
   "name": "Corrupt Seller",
   "role": "Temple Merchant",
-  "avatar": "\ud83d\udcb4",
+  "avatar": "temple_merchant.svg",
   "truthfulness": 0.4,
   "bibleRef": "Mark 11:15-19",
   "background": "A Temple merchant who sold sacrificial animals. Profited from the Temple system. Ejected by Jesus during the cleansing.",
@@ -17,5 +17,7 @@
     "environmental": "He turned the Court of the Gentiles into a riot. It was a disaster.",
     "analytical": "I know my margins. He cost me a fortune.",
     "prophecy": "If he's a prophet, why is he attacking the House of God?"
-  }
+  },
+  "earSize": 1.0,
+  "headSize": 1.0
 }

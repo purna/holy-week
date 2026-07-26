@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Lab Prototype - Act I: The Missing Donkey</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+      -webkit-user-select: none
+    }
+
+    html,
+    body {
+      height: 100%
+    }
+
+    body {
+      background: #0c1018;
+      color: #e2e8f0;
+      font-family: ui-monospace, 'Courier New', monospace;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 10px
+    }
+
+    #app {
+      width: 100%;
+      max-width: 480px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px
+    }
+
+    #header h1 {
+      font-size: 1rem;
+      color: #fbbf24
+    }
+
+    #header .sub {
+      font-size: .68rem;
+      color: #94a3b8;
+      margin-top: 3px;
+      line-height: 1.35
+    }
+
+    #scores {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px
+    }
+
+    .score-item {
+      background: #111827;
+      border: 1px solid #1f2937;
+      border-radius: 10px;
+      padding: 10px 4px;
+      text-align: center
+    }
+
+    .score-item .label {
+      font-size: .56rem;
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: .04em
+    }
+
+    .score-item .value {
+      font-size: 1.1rem;
+      font-weight: 800;
+      margin-top: 2px
+    }
+
+    .score-item.deduction .value {
+      color: #34d399
+    }
+
+    .score-item.evidence .value {
+      color: #60a5fa
+    }
+
+    .score-item.challenge .value {
+      color: #fbbf24
+    }
+
+    .score-item.doubt .value {
+      color: #f87171
+    }
+
+    #diff-row {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+      justify-content: center
+    }
+
+    #diff-row span {
+      font-size: .68rem;
+      color: #94a3b8;
+      font-weight: 700
+    }
+
+    .diff-btn {
+      background: #1e293b;
+      color: #94a3b8;
+      border: 1px solid #334155;
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: .7rem;
+      font-weight: 700;
+      cursor: pointer;
+      min-height: 40px
+    }
+
+    .diff-btn.active {
+      background: #2563eb;
+      color: #fff;
+      border-color: #60a5fa
+    }
+
+    #tabs {
+      display: flex;
+      gap: 3px;
+      background: #111827;
+      padding: 3px;
+      border-radius: 10px;
+      border: 1px solid #1f2937
+    }
+
+    .tab {
+      flex: 1;
+      background: transparent;
+      color: #94a3b8;
+      border: none;
+      padding: 10px 2px;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: .66rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all .15s
+    }
+
+    .tab[aria-selected="true"] {
+      background: #1e293b;
+      color: #f1f5f9;
+      box-shadow: 0 0 0 1px #334155
+    }
+
+    #lab {
+      background: #111827;
+      border: 1px solid #1f2937;
+      border-radius: 12px;
+      padding: 12px;
+      min-height: 340px
+    }
+
+    .view {
+      display: none
+    }
+
+    .view.active {
+      display: block;
+      animation: fade .2s
+    }
+
+    @keyframes fade {
+      from {
+        opacity: 0;
+        transform: translateY(6px)
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0)
+      }
+    }
+
+    .intro {
+      font-size: .72rem;
+      color: #cbd5e1;
+      line-height: 1.4;
+      margin-bottom: 10px
+    }
+
+    .item-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+      margin-top: 8px
+    }
+
+    .ev-card {
+      background: #0f172a;
+      border: 2px solid #1e293b;
+      border-radius: 10px;
+      padding: 10px;
+      cursor: pointer;
+      text-align: center;
+      transition: all .12s;
+      min-height: 90px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center
+    }
+
+    .ev-card:active {
+      transform: scale(.97)
+    }
+
+    .ev-card.selected {
+      border-color: #60a5fa;
+      background: #0b1d35;
+      box-shadow: 0 0 0 2px rgba(96, 165, 250, .25)
+    }
+
+    .ev-card.used {
+      opacity: .35;
+      pointer-events: none
+    }
+
+    .ev-icon {
+      font-size: 1.6rem;
+      display: block;
+      margin-bottom: 4px
+    }
+
+    .ev-name {
+      font-size: .66rem;
+      font-weight: 800;
+      line-height: 1.2
+    }
+
+    .ev-desc {
+      font-size: .6rem;
+      color: #94a3b8;
+      margin-top: 3px;
+      line-height: 1.25
+    }
+
+    .btn {
+      background: #2563eb;
+      color: #fff;
+      border: none;
+      padding: 12px 14px;
+      border-radius: 10px;
+      font-family: inherit;
+      font-size: .76rem;
+      font-weight: 800;
+      cursor: pointer;
+      min-height: 48px;
+      width: 100%
+    }
+
+    .btn:active {
+      transform: scale(.97)
+    }
+
+    .btn:disabled {
+      opacity: .3;
+      cursor: not-allowed
+    }
+
+    .btn-secondary {
+      background: #334155
+    }
+
+    .btn-filter {
+      background: #0f172a;
+      color: #e2e8f0;
+      border: 1px solid #1e293b;
+      padding: 8px 10px;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: .66rem;
+      font-weight: 700;
+      cursor: pointer;
+      min-height: 40px;
+      flex: 1
+    }
+
+    .btn-filter.active {
+      background: #1e293b;
+      border-color: #60a5fa;
+      color: #f1f5f9
+    }
+
+    .feedback {
+      margin-top: 10px;
+      padding: 10px;
+      border-radius: 10px;
+      font-size: .73rem;
+      line-height: 1.35;
+      display: none
+    }
+
+    .feedback.show {
+      display: block;
+      animation: fade .15s
+    }
+
+    .feedback.success {
+      background: rgba(52, 211, 153, .1);
+      border: 1px solid #059669;
+      color: #6ee7b7
+    }
+
+    .feedback.error {
+      background: rgba(248, 113, 113, .1);
+      border: 1px solid #b91c1c;
+      color: #fca5a5
+    }
+
+    .feedback.hint {
+      background: rgba(251, 191, 36, .1);
+      border: 1px solid #b45309;
+      color: #fcd34d
+    }
+
+    .hint-box {
+      margin-top: 10px;
+      padding: 10px;
+      border-radius: 10px;
+      background: #1c1917;
+      border: 1px dashed #fbbf24;
+      color: #fcd34d;
+      font-size: .73rem;
+      line-height: 1.35;
+      display: none
+    }
+
+    .hint-box.show {
+      display: block;
+      animation: fade .15s
+    }
+
+    .help-btn {
+      background: transparent;
+      color: #fbbf24;
+      border: 1px dashed #fbbf24;
+      padding: 10px 12px;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: .7rem;
+      font-weight: 700;
+      cursor: pointer;
+      min-height: 48px;
+      min-width: 100px
+    }
+
+    .help-btn:active {
+      transform: scale(.96)
+    }
+
+    .help-btn:disabled {
+      opacity: .35;
+      cursor: not-allowed
+    }
+
+    .row {
+      display: flex;
+      gap: 8px;
+      margin-top: 10px;
+      align-items: center;
+      flex-wrap: wrap
+    }
+
+    .progress-bar {
+      height: 6px;
+      background: #1e293b;
+      border-radius: 3px;
+      overflow: hidden;
+      margin-top: 8px
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: #2563eb;
+      width: 0%;
+      transition: width .3s
+    }
+
+    .compare-ab {
+      position: absolute;
+      top: 4px;
+      left: 4px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #2563eb;
+      color: #fff;
+      font-size: .6rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center
+    }
+
+    .tl-controls {
+      display: flex;
+      gap: 4px;
+      margin-top: 4px;
+      justify-content: flex-end
+    }
+
+    .tl-ctrl-btn {
+      background: #1e293b;
+      color: #94a3b8;
+      border: 1px solid #334155;
+      padding: 4px 8px;
+      border-radius: 6px;
+      font-family: inherit;
+      font-size: .6rem;
+      font-weight: 700;
+      cursor: pointer;
+      min-height: 28px
+    }
+
+    .tl-ctrl-btn:active {
+      background: #334155
+    }
+
+    .bank {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 8px
+    }
+
+    .slot {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px;
+      background: #0f172a;
+      border: 2px solid #1e293b;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: .68rem;
+      font-weight: 700;
+      min-height: 44px;
+      transition: all .1s
+    }
+
+    .slot:active {
+      transform: scale(.96)
+    }
+
+    .slot.selected-link {
+      border-color: #fbbf24;
+      background: #1c1917
+    }
+
+    .timeline {
+      position: relative;
+      margin: 12px 0 8px;
+      padding-left: 22px;
+      border-left: 3px solid #334155
+    }
+
+    .tl-slot {
+      position: relative;
+      margin-bottom: 14px
+    }
+
+    .tl-marker {
+      position: absolute;
+      left: -27px;
+      top: 6px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #1e293b;
+      border: 3px solid #475569
+    }
+
+    .tl-slot.filled .tl-marker {
+      background: #2563eb;
+      border-color: #60a5fa
+    }
+
+    .tl-slot.correct .tl-marker {
+      background: #059669;
+      border-color: #34d399
+    }
+
+    .tl-slot.wrong .tl-marker {
+      background: #b91c1c;
+      border-color: #f87171
+    }
+
+    .tl-time {
+      font-size: .58rem;
+      color: #64748b;
+      margin-bottom: 3px;
+      font-weight: 700
+    }
+
+    .tl-drop {
+      min-height: 52px;
+      background: #0b1220;
+      border: 2px dashed #1e293b;
+      border-radius: 10px;
+      padding: 8px;
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      align-items: center;
+      cursor: pointer;
+      transition: all .15s
+    }
+
+    .tl-drop.drag {
+      border-color: #60a5fa;
+      background: #0b1d35
+    }
+
+    .checklist {
+      list-style: none;
+      margin-top: 8px
+    }
+
+    .checklist li {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 0;
+      font-size: .73rem;
+      border-bottom: 1px solid #1f2937;
+      min-height: 48px
+    }
+
+    .checklist input[type="checkbox"] {
+      accent-color: #2563eb;
+      transform: scale(1.3);
+      width: 20px;
+      height: 20px;
+      min-width: 20px
+    }
+
+    #modal-mask {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, .8);
+      z-index: 9000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px
+    }
+
+    .modal {
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 14px;
+      padding: 18px;
+      max-width: 520px;
+      width: 100%
+    }
+
+    .modal h3 {
+      font-size: 1rem;
+      margin-bottom: 6px
+    }
+
+    .modal p {
+      font-size: .82rem;
+      color: #94a3b8;
+      line-height: 1.45;
+      margin-top: 6px
+    }
+
+    .modal .score-gain {
+      font-size: .9rem;
+      font-weight: 800;
+      color: #34d399;
+      margin-top: 10px
+    }
+
+    .modal .hint-reveal {
+      margin-top: 10px;
+      padding: 10px;
+      background: #1c1917;
+      border: 1px dashed #fbbf24;
+      border-radius: 8px;
+      color: #fcd34d;
+      font-size: .8rem;
+      line-height: 1.4
+    }
+
+    .close-btn {
+      background: #2563eb;
+      color: #fff;
+      border: none;
+      padding: 12px;
+      border-radius: 8px;
+      font-family: inherit;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 10px;
+      min-height: 48px;
+      width: 100%
+    }
+
+    .sos-btn {
+      background: #7c2d12;
+      color: #fdba74;
+      border: 1px solid #f97316
+    }
+
+    .sos-btn:active {
+      background: #431407
+    }
+
+    .detail-row {
+      display: flex;
+      gap: 6px;
+      margin-top: 6px;
+      font-size: .72rem;
+      color: #94a3b8
+    }
+
+    .detail-row strong {
+      color: #e2e8f0;
+      min-width: 70px
+    }
+
+    @media(max-width:400px) {
+      .item-grid {
+        grid-template-columns: 1fr
+      }
+
+      #scores {
+        grid-template-columns: repeat(2, 1fr)
+      }
+
+      .tab {
+        font-size: .6rem;
+        padding: 8px 2px
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <div id="header">
+      <h1>Lab - Act I: The Missing Donkey</h1>
+      <div class="sub">Tap any evidence to read details. Use Hint for a clue (-3 Evidence). Helping Hand gives reduced
+        credit after a wrong answer.</div>
+    </div>
+
+    <div id="scores">
+      <div class="score-item deduction">
+        <div class="label">Deduction</div>
+        <div class="value" id="score-deduction">0</div>
+      </div>
+      <div class="score-item evidence">
+        <div class="label">Evidence</div>
+        <div class="value" id="score-evidence">25</div>
+      </div>
+      <div class="score-item challenge">
+        <div class="label">Challenge</div>
+        <div class="value" id="score-challenge">0</div>
+      </div>
+      <div class="score-item doubt">
+        <div class="label">Doubt</div>
+        <div class="value" id="score-doubt">0</div>
+      </div>
+    </div>
+
+    <div id="diff-row">
+      <span>Difficulty:</span>
+      <button class="diff-btn" data-diff="easy" onclick="setDifficulty('easy')">Easy</button>
+      <button class="diff-btn active" data-diff="medium" onclick="setDifficulty('medium')">Medium</button>
+      <button class="diff-btn" data-diff="hard" onclick="setDifficulty('hard')">Hard</button>
+    </div>
+
+    <div id="tabs" role="tablist" aria-label="Lab tasks">
+      <button class="tab" role="tab" aria-selected="true" data-view="compare"
+        onclick="switchTab('compare')">Compare</button>
+      <button class="tab" role="tab" aria-selected="false" data-view="link" onclick="switchTab('link')">Link</button>
+      <button class="tab" role="tab" aria-selected="false" data-view="timeline"
+        onclick="switchTab('timeline')">Timeline</button>
+      <button class="tab" role="tab" aria-selected="false" data-view="contradict"
+        onclick="switchTab('contradict')">Contradict</button>
+    </div>
+
+    <div id="lab">
+      <div id="view-compare" class="view active">
+        <p class="intro">Find <b>two pieces of evidence</b> that connect the same event or suspect. Try as many times as
+          you like.</p>
+        <div id="compare-bank" class="item-grid"></div>
+        <div class="row">
+          <button class="help-btn" id="btn-compare-hint" onclick="spendHint('compare')">Hint (-3 Ev)</button>
+          <span class="intro" style="margin:0;flex:1" id="compare-hint">Select 2 items (A + B).</span>
+        </div>
+        <div class="hint-box" id="hint-compare"></div>
+        <div class="row"><button class="btn" id="btn-compare" disabled onclick="submitCompare()">Compare</button></div>
+        <div class="feedback" id="feedback-compare"></div>
+        <div class="progress-bar">
+          <div class="progress-fill" id="progress-compare"></div>
+        </div>
+      </div>
+
+      <div id="view-link" class="view">
+        <p class="intro">Connect evidence to the correct <b>person</b>, <b>Bible reference</b>, or <b>event</b>.</p>
+        <div id="link-filters" class="row">
+          <button class="btn-filter active" data-filter="all" onclick="setLinkFilter('all')">All</button>
+          <button class="btn-filter" data-filter="person" onclick="setLinkFilter('person')">Person</button>
+          <button class="btn-filter" data-filter="bible" onclick="setLinkFilter('bible')">Bible</button>
+          <button class="btn-filter" data-filter="event" onclick="setLinkFilter('event')">Event</button>
+        </div>
+        <div class="row" style="margin-top:10px">
+          <div style="flex:1">
+            <div style="font-size:.65rem;color:#94a3b8;margin-bottom:4px;font-weight:700">EVIDENCE</div>
+            <div id="link-evidence-bank" class="bank"></div>
+          </div>
+          <div style="flex:1">
+            <div style="font-size:.65rem;color:#94a3b8;margin-bottom:4px;font-weight:700">TARGETS</div>
+            <div id="link-target-bank" class="bank"></div>
+          </div>
+        </div>
+        <div class="row">
+          <button class="help-btn" id="btn-link-hint" onclick="spendHint('link')">Hint (-3 Ev)</button>
+          <span class="intro" style="margin:0;flex:1" id="link-hint">Pick 1 evidence + 1 target.</span>
+        </div>
+        <div class="hint-box" id="hint-link"></div>
+        <div class="row"><button class="btn" id="btn-link" disabled onclick="submitLink()">Link</button></div>
+        <div class="feedback" id="feedback-link"></div>
+        <div class="progress-bar">
+          <div class="progress-fill" id="progress-link"></div>
+        </div>
+      </div>
+
+      <div id="view-timeline" class="view">
+        <p class="intro">Place all evidence in <b>chronological order</b>.</p>
+        <div id="timeline-slots" class="timeline"></div>
+        <div id="timeline-bank" class="bank" style="margin-top:12px"></div>
+        <div class="row">
+          <button class="help-btn" id="btn-timeline-hint" onclick="spendHint('timeline')">Hint (-3 Ev)</button>
+          <span class="intro" style="margin:0;flex:1" id="timeline-hint">Drag into order. Fake items ignored. ▲▼ to reorder.</span>
+        </div>
+        <div class="hint-box" id="hint-timeline"></div>
+        <div class="row"><button class="btn" id="btn-timeline" disabled onclick="submitTimeline()">Timeline</button>
+        </div>
+        <div class="feedback" id="feedback-timeline"></div>
+        <div class="progress-bar">
+          <div class="progress-fill" id="progress-timeline"></div>
+        </div>
+      </div>
+
+      <div id="view-contradict" class="view">
+        <p class="intro">Select at least <b>two fake/misleading items</b> among the evidence.</p>
+        <div id="contradict-bank" class="item-grid"></div>
+        <div class="row">
+          <button class="help-btn" id="btn-contradict-hint" onclick="spendHint('contradict')">Hint (-3 Ev)</button>
+          <span class="intro" style="margin:0;flex:1" id="contradict-hint">Pick at least 2 suspicious items.</span>
+        </div>
+        <div class="hint-box" id="hint-contradict"></div>
+        <div class="row"><button class="btn" id="btn-contradict" disabled
+            onclick="submitContradict()">Contradict</button></div>
+        <div class="feedback" id="feedback-contradict"></div>
+        <div class="progress-bar">
+          <div class="progress-fill" id="progress-contradict"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="modal-mask" onclick="closeModal(event)">
+    <div class="modal" id="modal">
+      <h3 id="modal-title">Evidence</h3>
+      <p id="modal-body"></p>
+      <div id="modal-detail"></div>
+      <button class="close-btn" onclick="closeModal()">Close</button>
+    </div>
+  </div>
+
+  <script>
+    (() => {
+      const EVIDENCE_COST = 3;
+
+      const evidence = [
+        { id: 'cloaks', name: 'Two Disciples\' Cloaks', icon: '🧥', desc: 'Cloaks laid down for the colt ride.', fake: false, detail: 'Matching travel cloaks with Galilee stitching. Consistent with disciples who followed from Bethphage.' },
+        { id: 'hoofprints', name: 'Fresh Hoofprints', icon: '🐾', desc: 'Single-animal tracks toward the village gate.', fake: false, detail: 'Fresh single-hoofprint trail leading east toward Bethphage, not a cart track.' },
+        { id: 'testimony', name: 'Villager\'s Testimony', icon: '🗣️', desc: 'The colt was already tied at the village gate.', fake: false, detail: 'Local villager confirms the colt was waiting, not stolen.' },
+        { id: 'rope', name: 'Cut Rope at the Tethering Post', icon: '🪢', desc: 'Rope cut, not untied.', fake: true, detail: 'Rope appears cut, but owner later confirms this was done with permission to release the colt.' },
+        { id: 'zechariah', name: 'Zechariah 9:9 Scroll Fragment', icon: '📜', desc: 'Passage about a king entering on a colt.', fake: false, detail: 'A torn scroll fragment quoting Zechariah 9:9 found in the crowd debris.' },
+        { id: 'palms', name: 'Fresh-Cut Palm Branch', icon: '🌿', desc: 'Palm fronds scattered along the route.', fake: false, detail: 'Palm branch still oozing sap, consistent with same-day entrance into Jerusalem.' },
+        { id: 'complaint', name: 'Pharisee\'s Written Complaint', icon: '📝', desc: 'A complaint about the noisy procession.', fake: true, detail: 'Lists only six disciples and exaggerates the crowd size; questionable reliability.' }
+      ];
+
+      const targets = [
+        { id: 'peter', name: 'Peter', type: 'person', fake: false, detail: 'Disciple who helped prepare the colt ride.' },
+        { id: 'john', name: 'John', type: 'person', fake: false, detail: 'Disciple present at Bethphage and Jerusalem gate.' },
+        { id: 'tobias', name: 'Tobias', type: 'person', fake: false, detail: 'Donkey owner who lent the colt willingly.' },
+        { id: 'zechariah9', name: 'Zechariah 9:9', type: 'bible', fake: false, detail: 'Prophetic passage about a humble king entering Jerusalem.' },
+        { id: 'psalm118', name: 'Psalm 118:25–26', type: 'bible', fake: false, detail: 'Triumphal song of entrance and deliverance.' },
+        { id: 'genesis49', name: 'Genesis 49:10–11', type: 'bible', fake: false, detail: 'Prophecy about Judah and donkey imagery.' },
+        { id: 'malachi3', name: 'Malachi 3:1', type: 'bible', fake: false, detail: 'Reference to a messenger preparing the way.' },
+        { id: 'triumphal_entry', name: 'Triumphal Entry', type: 'event', fake: false, detail: 'Jesus enters Jerusalem on a colt.' },
+        { id: 'bethphage_send', name: 'Disciples Sent for Colt', type: 'event', fake: false, detail: 'Two disciples sent ahead to retrieve the colt.' },
+        { id: 'pharisees', name: 'Pharisees', type: 'person', fake: false, detail: 'Religious leaders who objected to the procession.' }
+      ];
+
+      const correctLinks = { cloaks: 'peter', hoofprints: 'triumphal_entry', testimony: 'tobias', palms: 'psalm118', zechariah: 'zechariah9', rope: 'tobias', complaint: 'pharisees' };
+
+      const timelineOrder = ['rope', 'cloaks', 'palms', 'zechariah', 'complaint'];
+      const realTimelineOrder = timelineOrder.filter(id => !evidence.find(e => e.id === id).fake);
+
+      let difficulty = 'medium';
+      let scores = { deduction: 0, evidence: 25, challenge: 0, doubt: 0 };
+      let currentTab = 'compare';
+      let linkFilter = 'all';
+      let compareSelected = [];
+      let linkSelected = { evidence: null, target: null };
+      let contradictSelected = new Set();
+      let timelineSlots = [];
+      let usedEvidence = new Set();
+      let tries = { compare: 0, link: 0, timeline: 0, contradict: 0 };
+      let helped = { compare: false, link: false, timeline: false, contradict: false };
+      let hintsUsed = { compare: false, link: false, timeline: false, contradict: false };
+      let hintRevealed = { compare: '', link: '', timeline: '', contradict: '' };
+
+      const hints = {
+        compare: 'Look for evidence that points to the same person or event.',
+        link: 'The scroll fragment connects to Zechariah; cloaks connect to Peter.',
+        timeline: 'Start with the sending, then the entrance, then the prophecy link.',
+        contradict: 'One item is exaggerated, another is mislabeled as cut when it was released.'
+      };
+
+      const diffSettings = {
+        easy: { hintCost: 0, helpCost: 2, penaltyMul: 0.5 },
+        medium: { hintCost: 3, helpCost: 5, penaltyMul: 1 },
+        hard: { hintCost: 5, helpCost: 8, penaltyMul: 1.5 }
+      };
+
+      function spend(n, amount) { if (scores.evidence >= amount) { scores.evidence -= amount; refreshScores(); return true; } return false; }
+      function addScore(category, amount) { scores[category] = Math.max(0, scores[category] + amount); refreshScores(); }
+      function refreshScores() { document.getElementById('score-deduction').textContent = scores.deduction; document.getElementById('score-evidence').textContent = scores.evidence; document.getElementById('score-challenge').textContent = scores.challenge; document.getElementById('score-doubt').textContent = scores.doubt; }
+
+      function setDifficulty(d) { difficulty = d; document.querySelectorAll('.diff-btn').forEach(b => b.classList.toggle('active', b.dataset.diff === d)); if (currentTab === 'timeline') renderTimeline(); else if (currentTab === 'link') renderLinkBanks(); }
+      function switchTab(tab) { currentTab = tab; document.querySelectorAll('.tab').forEach(b => b.setAttribute('aria-selected', b.dataset.view === tab)); document.querySelectorAll('.view').forEach(v => v.classList.toggle('active', v.id === 'view-' + tab)); if (tab === 'link') renderLinkBanks(); else if (tab === 'timeline') renderTimeline(); }
+      function setLinkFilter(f) { linkFilter = f; document.querySelectorAll('#link-filters .btn-filter').forEach(b => b.classList.toggle('active', b.dataset.filter === f)); renderLinkBanks(); }
+
+      function renderCompare() {
+        const bank = document.getElementById('compare-bank');
+        bank.innerHTML = '';
+        evidence.forEach(ev => {
+          const c = document.createElement('div');
+          c.className = 'ev-card' + (usedEvidence.has(ev.id) ? ' used' : '');
+          c.style.position = 'relative';
+          const isA = compareSelected[0] === ev.id;
+          const isB = compareSelected[1] === ev.id;
+          if (isA || isB) {
+            c.style.borderColor = '#fbbf24';
+            c.style.background = '#1c1917';
+          }
+          let abLabel = '';
+          if (isA) abLabel = '<div class="compare-ab">A</div>';
+          if (isB) abLabel = '<div class="compare-ab">B</div>';
+          c.innerHTML = abLabel + `<span class="ev-icon">${ev.icon}</span><div class="ev-name">${ev.name}</div>`;
+          c.onclick = () => toggleCompare(ev.id);
+          bank.appendChild(c);
+        });
+      }
+      function toggleCompare(id) { if (usedEvidence.has(id)) return; const i = compareSelected.indexOf(id); if (i >= 0) compareSelected.splice(i, 1); else if (compareSelected.length < 2) compareSelected.push(id); renderCompare(); document.getElementById('btn-compare').disabled = compareSelected.length !== 2; document.getElementById('compare-hint').textContent = compareSelected.length < 2 ? 'Select 2 items (A + B).' : 'A: ' + evidence.find(e => e.id === compareSelected[0]).name + ' / B: ' + evidence.find(e => e.id === compareSelected[1]).name; }
+      function submitCompare() { if (compareSelected.length !== 2) return; tries.compare++; const a = compareSelected[0], b = compareSelected[1]; const ok = (a === 'cloaks' && b === 'zechariah') || (a === 'hoofprints' && b === 'testimony'); if (ok) { addScore('deduction', 10); addScore('evidence', 3); showFeedback('feedback-compare', 'Compared correctly. Deduction unlocked.', 'success'); markUsed(a); markUsed(b); helped.compare = false; } else { const ds = diffSettings[difficulty]; addScore('doubt', Math.round(5 * ds.penaltyMul)); helped.compare = true; showFeedback('feedback-compare', 'Not a recognized connection for this case. Try - Helping Hand available.', 'error'); } compareSelected = []; renderCompare(); document.getElementById('btn-compare').disabled = true; document.getElementById('compare-hint').textContent = 'Select 2 items.'; updateProgress('compare'); }
+      function markUsed(id) { usedEvidence.add(id); }
+
+      function renderLinkBanks() {
+        const evBank = document.getElementById('link-evidence-bank');
+        const tgBank = document.getElementById('link-target-bank');
+        evBank.innerHTML = '';
+        tgBank.innerHTML = '';
+
+        let evList = evidence.filter(ev => !usedEvidence.has(ev.id));
+        let tgList = [...targets];
+
+        if (linkFilter !== 'all') {
+          tgList = tgList.filter(t => t.type === linkFilter);
+        }
+
+        if (difficulty === 'easy') {
+          evList = evList.filter(ev => correctLinks[ev.id]);
+          const validTargetIds = evList.map(ev => correctLinks[ev.id]);
+          tgList = tgList.filter(t => validTargetIds.includes(t.id));
+        } else if (difficulty === 'medium') {
+          const validTargetIds = evList.filter(ev => correctLinks[ev.id]).map(ev => correctLinks[ev.id]);
+          const fakeTargets = tgList.filter(t => !validTargetIds.includes(t.id));
+          const keepFakes = fakeTargets.slice(0, Math.max(0, 4 - validTargetIds.length));
+          tgList = tgList.filter(t => validTargetIds.includes(t.id) || keepFakes.includes(t.id));
+        }
+
+        evList.forEach(ev => {
+          const s = document.createElement('div');
+          s.className = 'slot' + (usedEvidence.has(ev.id) ? ' used' : '') + (linkSelected.evidence === ev.id ? ' selected-link' : '');
+          s.textContent = ev.icon + ' ' + ev.name;
+          s.onclick = () => { if (usedEvidence.has(ev.id)) return; linkSelected.evidence = linkSelected.evidence === ev.id ? null : ev.id; renderLinkBanks(); syncLinkBtn(); };
+          evBank.appendChild(s);
+        });
+
+        tgList.forEach(t => {
+          const s = document.createElement('div');
+          s.className = 'slot' + (linkSelected.target === t.id ? ' selected-link' : '');
+          s.textContent = t.name + ' (' + t.type + ')';
+          s.onclick = () => { linkSelected.target = linkSelected.target === t.id ? null : t.id; renderLinkBanks(); syncLinkBtn(); };
+          tgBank.appendChild(s);
+        });
+      }
+      function syncLinkBtn() { document.getElementById('btn-link').disabled = !(linkSelected.evidence && linkSelected.target); document.getElementById('link-hint').textContent = linkSelected.evidence ? ('Target: ' + targets.find(t => t.id === linkSelected.target)?.name) : 'Pick 1 evidence + 1 target.'; }
+      function submitLink() { if (!linkSelected.evidence || !linkSelected.target) return; tries.link++; const ok = correctLinks[linkSelected.evidence] === linkSelected.target; if (ok) { addScore('evidence', 5); addScore('deduction', 5); showFeedback('feedback-link', 'Linked correctly. +5 Evidence and +5 Deduction.', 'success'); helped.link = false; } else { const ds = diffSettings[difficulty]; addScore('doubt', Math.round(5 * ds.penaltyMul)); helped.link = true; showFeedback('feedback-link', 'Incorrect link. Try - Helping Hand available.', 'error'); } markUsed(linkSelected.evidence); linkSelected = { evidence: null, target: null }; renderLinkBanks(); document.getElementById('btn-link').disabled = true; updateProgress('link'); }
+      function setLinkFilter(f) { linkFilter = f; document.querySelectorAll('#link-filters .btn-filter').forEach(b => b.classList.toggle('active', b.dataset.filter === f)); renderLinkBanks(); }
+
+      function renderTimeline() {
+        const bank = document.getElementById('timeline-bank');
+        const slots = document.getElementById('timeline-slots');
+        bank.innerHTML = '';
+        slots.innerHTML = '';
+
+        const slotCount = difficulty === 'easy' ? 3 : difficulty === 'medium' ? 5 : realTimelineOrder.length;
+        const orderedIds = realTimelineOrder.slice(0, slotCount);
+
+        if (timelineSlots.length !== slotCount) {
+          timelineSlots = orderedIds.map(() => null);
+        }
+
+        const realIds = evidence.filter(ev => !ev.fake && !usedEvidence.has(ev.id) && !timelineSlots.includes(ev.id)).map(ev => ev.id);
+
+        orderedIds.forEach((id, idx) => {
+          const d = document.createElement('div');
+          d.className = 'tl-slot';
+          const drop = document.createElement('div');
+          drop.className = 'tl-drop';
+          drop.dataset.slot = idx;
+          const time = document.createElement('div');
+          time.className = 'tl-time';
+          time.textContent = '#' + (idx + 1);
+          d.appendChild(time);
+          d.appendChild(drop);
+
+          drop.addEventListener('dragover', e => e.preventDefault());
+          drop.addEventListener('drop', e => {
+            e.preventDefault();
+            const evId = e.dataTransfer.getData('text/plain');
+            if (usedEvidence.has(evId)) return;
+            const evItem = evidence.find(x => x.id === evId);
+            if (!evItem) return;
+            timelineSlots[idx] = evId;
+            drop.textContent = '';
+            const span = document.createElement('span');
+            span.textContent = evItem.icon + ' ' + evItem.name;
+            drop.appendChild(span);
+            updateTimelineBtn();
+          });
+
+          d.addEventListener('click', () => {
+            const evId = timelineSlots[idx];
+            if (evId) {
+              timelineSlots[idx] = null;
+              drop.textContent = '';
+              updateTimelineBtn();
+              renderTimeline();
+            }
+          });
+
+          const controls = document.createElement('div');
+          controls.className = 'tl-controls';
+          const upBtn = document.createElement('button');
+          upBtn.className = 'tl-ctrl-btn';
+          upBtn.textContent = '▲';
+          upBtn.onclick = (e) => { e.stopPropagation(); moveTimelineSlot(idx, -1); };
+          const downBtn = document.createElement('button');
+          downBtn.className = 'tl-ctrl-btn';
+          downBtn.textContent = '▼';
+          downBtn.onclick = (e) => { e.stopPropagation(); moveTimelineSlot(idx, 1); };
+          controls.appendChild(upBtn);
+          controls.appendChild(downBtn);
+          d.appendChild(controls);
+
+          slots.appendChild(d);
+        });
+
+        realIds.forEach(evId => {
+          const s = document.createElement('div');
+          s.className = 'slot';
+          s.textContent = evidence.find(e => e.id === evId).icon + ' ' + evidence.find(e => e.id === evId).name;
+          s.draggable = true;
+          s.dataset.ev = evId;
+          s.ondragstart = (e) => { e.dataTransfer.setData('text/plain', evId); };
+          bank.appendChild(s);
+        });
+      }
+      function submitTimeline() {
+        const btn = document.getElementById('btn-timeline');
+        if (!btn || btn.disabled) return;
+        tries.timeline++;
+        const ok = checkTimeline();
+        if (ok) {
+          addScore('deduction', 10);
+          showFeedback('feedback-timeline', 'Timeline correct. +10 Deduction.', 'success');
+          helped.timeline = false;
+        } else {
+          const ds = diffSettings[difficulty];
+          addScore('doubt', Math.round(5 * ds.penaltyMul));
+          helped.timeline = true;
+          showFeedback('feedback-timeline', 'Wrong order. Try - Helping Hand available.', 'error');
+        }
+        updateProgress('timeline');
+      }
+      function checkTimeline() {
+        const slots = [...document.querySelectorAll('#timeline-slots .tl-drop')];
+        let ordered = true;
+        slots.forEach((slot, idx) => {
+          slot.classList.remove('correct', 'wrong');
+          const evId = timelineSlots[idx];
+          const ev = evidence.find(e => e.id === evId);
+          if (!ev || evId !== realTimelineOrder[idx]) ordered = false;
+        });
+        if (ordered) { slots.forEach(s => s.classList.add('correct')); return true; }
+        slots.forEach(s => s.classList.add('wrong'));
+        return false;
+      }
+      function moveTimelineSlot(idx, dir) {
+        const newIdx = idx + dir;
+        if (newIdx < 0 || newIdx >= timelineSlots.length) return;
+        const tmp = timelineSlots[idx];
+        timelineSlots[idx] = timelineSlots[newIdx];
+        timelineSlots[newIdx] = tmp;
+        renderTimeline();
+      }
+      function updateTimelineBtn() {
+        const allPlaced = timelineSlots.every(id => id !== null);
+        const btn = document.getElementById('btn-timeline');
+        if (btn) btn.disabled = !allPlaced;
+      }
+
+      function renderContradict() { const bank = document.getElementById('contradict-bank'); bank.innerHTML = ''; evidence.forEach(ev => { const c = document.createElement('div'); c.className = 'ev-card' + (contradictSelected.has(ev.id) ? ' selected' : '') + (usedEvidence.has(ev.id) ? ' used' : ''); c.innerHTML = `<span class="ev-icon">${ev.icon}</span><div class="ev-name">${ev.name}</div>`; c.onclick = () => toggleContradict(ev.id); bank.appendChild(c); }); document.getElementById('btn-contradict').disabled = contradictSelected.size < 2; const hint = document.getElementById('contradict-hint'); hint.textContent = 'Pick at least 2 suspicious items.' + (contradictSelected.size > 0 ? ` (${contradictSelected.size} selected)` : ''); }
+      function toggleContradict(id) { if (contradictSelected.has(id)) contradictSelected.delete(id); else contradictSelected.add(id); renderContradict(); }
+      function submitContradict() { if (contradictSelected.size < 2) return; tries.contradict++; const fakes = evidence.filter(e => e.fake).map(e => e.id); const ok = contradictSelected.size === fakes.length && fakes.every(id => contradictSelected.has(id)); if (ok) { addScore('challenge', 15); showFeedback('feedback-contradict', 'All fake items identified. +15 Challenge.', 'success'); helped.contradict = false; } else { const ds = diffSettings[difficulty]; addScore('doubt', Math.round(10 * ds.penaltyMul)); helped.contradict = true; showFeedback('feedback-contradict', 'Wrong selection. Try - Helping Hand available.', 'error'); } updateProgress('contradict'); }
+
+      function spendHint(challenge) { if (hintsUsed[challenge]) { showFeedback('feedback-' + challenge, 'Hint already used.', 'hint'); return; } const cost = diffSettings[difficulty].hintCost; if (!spend('evidence', cost)) { showFeedback('feedback-' + challenge, 'Not enough Evidence.', 'error'); return; } hintsUsed[challenge] = true; hintRevealed[challenge] = hints[challenge]; const box = document.getElementById('hint-' + challenge); box.textContent = hints[challenge]; box.classList.add('show'); document.getElementById('btn-' + challenge + '-hint').disabled = true; }
+      function showFeedback(id, msg, type) { const el = document.getElementById(id); el.className = 'feedback show ' + type; el.innerHTML = msg; }
+      function updateProgress(ch) { const el = document.getElementById('progress-' + ch); if (!el) return; const max = 2; const cur = Math.min(max, (tries[ch] || 0)); el.style.width = Math.min(100, (cur / max) * 100) + '%'; }
+
+      function openDetail(ev) { const mask = document.getElementById('modal-mask'); document.getElementById('modal-title').textContent = ev.name; document.getElementById('modal-body').textContent = ev.desc; const det = document.getElementById('modal-detail'); det.innerHTML = '<div class="detail-row"><strong>Status</strong><span>' + (ev.fake ? 'FAKE / Misleading' : 'REAL') + '</span></div><div class="detail-row"><strong>Detail</strong><span>' + ev.detail + '</span></div>'; mask.style.display = 'flex'; }
+      function closeModal(e) { if (e && e.target !== document.getElementById('modal-mask')) return; document.getElementById('modal-mask').style.display = 'none'; }
+
+      window.setDifficulty = setDifficulty; window.switchTab = switchTab; window.setLinkFilter = setLinkFilter;
+      window.spendHint = spendHint; window.submitCompare = submitCompare; window.submitLink = submitLink; window.submitTimeline = submitTimeline; window.submitContradict = submitContradict;
+      window.openDetail = openDetail; window.closeModal = closeModal;
+
+      (function init() {
+        renderCompare(); renderLinkBanks(); renderTimeline(); renderContradict(); refreshScores();
+      })();
+    })();
+  </script>
+</body>
+
+</html>

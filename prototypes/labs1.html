@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Miracle Maker v3 - Lab Prototype 2</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0;user-select:none;-webkit-user-select:none}
+  html,body{height:100%}
+  body{background:#0c1018;color:#e2e8f0;font-family:ui-monospace,'Courier New',monospace;display:flex;flex-direction:column;align-items:center;padding:10px}
+  #app{width:100%;max-width:480px;display:flex;flex-direction:column;gap:10px}
+  #header h1{font-size:1rem;color:#fbbf24}
+  #header .sub{font-size:.7rem;color:#94a3b8;margin-top:3px;line-height:1.35}
+  #scores{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+  .score-item{background:#111827;border:1px solid #1f2937;border-radius:10px;padding:10px 4px;text-align:center}
+  .score-item .label{font-size:.58rem;color:#94a3b8;text-transform:uppercase;letter-spacing:.04em}
+  .score-item .value{font-size:1.1rem;font-weight:800;margin-top:2px}
+  .score-item.deduction .value{color:#34d399}
+  .score-item.evidence .value{color:#60a5fa}
+  .score-item.challenge .value{color:#fbbf24}
+  .score-item.doubt .value{color:#f87171}
+
+  #tabs{display:flex;gap:3px;background:#111827;padding:3px;border-radius:10px;border:1px solid #1f2937}
+  .tab{flex:1;background:transparent;color:#94a3b8;border:none;padding:10px 2px;border-radius:8px;font-family:inherit;font-size:.68rem;font-weight:700;cursor:pointer;transition:all .15s}
+  .tab[aria-selected="true"]{background:#1e293b;color:#f1f5f9;box-shadow:0 0 0 1px #334155}
+
+  #lab{background:#111827;border:1px solid #1f2937;border-radius:12px;padding:12px;min-height:340px}
+  .view{display:none}
+  .view.active{display:block;animation:fade .2s}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+
+  .intro{font-size:.75rem;color:#cbd5e1;line-height:1.4;margin-bottom:10px}
+  .item-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:8px}
+  .ev-card{background:#0f172a;border:2px solid #1e293b;border-radius:10px;padding:10px;cursor:pointer;text-align:center;transition:all .12s;min-height:90px;display:flex;flex-direction:column;align-items:center;justify-content:center}
+  .ev-card:active{transform:scale(.97)}
+  .ev-card.selected{border-color:#60a5fa;background:#0b1d35;box-shadow:0 0 0 2px rgba(96,165,250,.25)}
+  .ev-card.used{opacity:.35;pointer-events:none}
+  .ev-icon{font-size:1.6rem;display:block;margin-bottom:4px}
+  .ev-name{font-size:.68rem;font-weight:800;line-height:1.2}
+  .ev-desc{font-size:.62rem;color:#94a3b8;margin-top:3px;line-height:1.25}
+
+  .btn{background:#2563eb;color:#fff;border:none;padding:12px 14px;border-radius:10px;font-family:inherit;font-size:.78rem;font-weight:800;cursor:pointer;min-height:48px;width:100%}
+  .btn:active{transform:scale(.97)}
+  .btn:disabled{opacity:.3;cursor:not-allowed}
+  .btn-secondary{background:#334155}
+
+  .feedback{margin-top:10px;padding:10px;border-radius:10px;font-size:.75rem;line-height:1.35;display:none}
+  .feedback.show{display:block;animation:fade .15s}
+  .feedback.success{background:rgba(52,211,153,.1);border:1px solid #059669;color:#6ee7b7}
+  .feedback.error{background:rgba(248,113,113,.1);border:1px solid #b91c1c;color:#fca5a5}
+  .feedback.hint{background:rgba(251,191,36,.1);border:1px solid #b45309;color:#fcd34d}
+
+  .hint-box{margin-top:10px;padding:10px;border-radius:10px;background:#1c1917;border:1px dashed #fbbf24;color:#fcd34d;font-size:.75rem;line-height:1.35;display:none}
+  .hint-box.show{display:block;animation:fade .15s}
+
+  .help-btn{background:transparent;color:#fbbf24;border:1px dashed #fbbf24;padding:10px 12px;border-radius:8px;font-family:inherit;font-size:.72rem;font-weight:700;cursor:pointer;min-height:48px;min-width:110px}
+  .help-btn:active{transform:scale(.96)}
+  .help-btn:disabled{opacity:.35;cursor:not-allowed}
+
+  .row{display:flex;gap:8px;margin-top:10px;align-items:center;flex-wrap:wrap}
+
+  .progress-bar{height:6px;background:#1e293b;border-radius:3px;overflow:hidden;margin-top:8px}
+  .progress-fill{height:100%;background:#2563eb;width:0%;transition:width .3s}
+
+  .bank{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+  .slot{display:inline-flex;align-items:center;gap:6px;padding:10px;background:#0f172a;border:2px solid #1e293b;border-radius:8px;cursor:pointer;font-size:.7rem;font-weight:700;min-height:44px;transition:all .1s}
+  .slot:active{transform:scale(.96)}
+  .slot.selected-link{border-color:#fbbf24;background:#1c1917}
+
+  .timeline{position:relative;margin:12px 0 8px;padding-left:22px;border-left:3px solid #334155}
+  .tl-slot{position:relative;margin-bottom:14px}
+  .tl-marker{position:absolute;left:-27px;top:6px;width:16px;height:16px;border-radius:50%;background:#1e293b;border:3px solid #475569}
+  .tl-slot.filled .tl-marker{background:#2563eb;border-color:#60a5fa}
+  .tl-slot.correct .tl-marker{background:#059669;border-color:#34d399}
+  .tl-slot.wrong .tl-marker{background:#b91c1c;border-color:#f87171}
+  .tl-time{font-size:.6rem;color:#64748b;margin-bottom:3px;font-weight:700}
+  .tl-drop{min-height:52px;background:#0b1220;border:2px dashed #1e293b;border-radius:10px;padding:8px;display:flex;gap:6px;flex-wrap:wrap;align-items:center;cursor:pointer;transition:all .15s}
+  .tl-drop.drag{border-color:#60a5fa;background:#0b1d35}
+
+  .checklist{list-style:none;margin-top:8px}
+  .checklist li{display:flex;align-items:center;gap:8px;padding:10px 0;font-size:.76rem;border-bottom:1px solid #1f2937;min-height:48px}
+  .checklist input[type="checkbox"]{accent-color:#2563eb;transform:scale(1.3);width:20px;height:20px;min-width:20px}
+
+  #modal-mask{position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:9000;display:none;align-items:center;justify-content:center;padding:16px}
+  .modal{background:#0f172a;border:1px solid #334155;border-radius:14px;padding:18px;max-width:520px;width:100%}
+  .modal h3{font-size:1rem;margin-bottom:6px}
+  .modal p{font-size:.82rem;color:#94a3b8;line-height:1.45;margin-top:6px}
+  .modal .score-gain{font-size:.9rem;font-weight:800;color:#34d399;margin-top:10px}
+  .modal .hint-reveal{margin-top:10px;padding:10px;background:#1c1917;border:1px dashed #fbbf24;border-radius:8px;color:#fcd34d;font-size:.8rem;line-height:1.4}
+  .close-btn{background:#2563eb;color:#fff;border:none;padding:12px;border-radius:8px;font-family:inherit;font-weight:700;cursor:pointer;margin-top:10px;min-height:48px;width:100%}
+  .sos-btn{background:#7c2d12;color:#fdba74;border:1px solid #f97316}
+  .sos-btn:active{background:#431407}
+
+  @media(max-width:400px){
+    .item-grid{grid-template-columns:1fr}
+    #scores{grid-template-columns:repeat(2,1fr)}
+    .tab{font-size:.62rem;padding:8px 2px}
+  }
+</style>
+</head>
+<body>
+<div id="app">
+  <div id="header">
+    <h1>Lab - Act I: The Missing Donkey</h1>
+    <div class="sub">Tap Hint to spend Evidence points for a clue. Get it wrong and a Helping Hand appears for reduced credit.</div>
+  </div>
+
+  <div id="scores">
+    <div class="score-item deduction"><div class="label">Deduction</div><div class="value" id="score-deduction">0</div></div>
+    <div class="score-item evidence"><div class="label">Evidence</div><div class="value" id="score-evidence">0</div></div>
+    <div class="score-item challenge"><div class="label">Challenge</div><div class="value" id="score-challenge">0</div></div>
+    <div class="score-item doubt"><div class="label">Doubt</div><div class="value" id="score-doubt">0</div></div>
+  </div>
+
+  <div id="tabs" role="tablist" aria-label="Lab tasks">
+    <button class="tab" role="tab" aria-selected="true" data-view="compare" onclick="switchTab('compare')">Compare</button>
+    <button class="tab" role="tab" aria-selected="false" data-view="link" onclick="switchTab('link')">Link</button>
+    <button class="tab" role="tab" aria-selected="false" data-view="timeline" onclick="switchTab('timeline')">Timeline</button>
+    <button class="tab" role="tab" aria-selected="false" data-view="contradict" onclick="switchTab('contradict')">Contradict</button>
+  </div>
+
+  <div id="lab">
+    <div id="view-compare" class="view active">
+      <p class="intro">Find <b>two pieces of evidence</b> that connect the same event or suspect.</p>
+      <div id="compare-bank" class="item-grid"></div>
+      <div class="row">
+        <button class="help-btn" id="btn-compare-hint" onclick="spendHint('compare')">Hint (-3 Ev)</button>
+        <span class="intro" style="margin:0;flex:1" id="compare-hint">Select 2 items.</span>
+      </div>
+      <div class="hint-box" id="hint-compare"></div>
+      <div class="row"><button class="btn" id="btn-compare" disabled onclick="submitCompare()">Compare</button></div>
+      <div class="feedback" id="feedback-compare"></div>
+      <div class="progress-bar"><div class="progress-fill" id="progress-compare"></div></div>
+    </div>
+
+    <div id="view-link" class="view">
+      <p class="intro">Link evidence to the right <b>person</b>, <b>Bible reference</b>, or <b>event</b>.</p>
+      <div class="row">
+        <div style="flex:1">
+          <div style="font-size:.6rem;color:#64748b;margin-bottom:4px;font-weight:700">EVIDENCE</div>
+          <div id="link-ev-bank" class="bank"></div>
+        </div>
+        <div style="flex:1">
+          <div style="font-size:.6rem;color:#64748b;margin-bottom:4px;font-weight:700">TARGETS</div>
+          <div id="link-targets" class="bank"></div>
+        </div>
+      </div>
+      <div class="row">
+        <button class="help-btn" id="btn-link-hint" onclick="spendHint('link')">Hint (-3 Ev)</button>
+        <button class="btn" id="btn-link" disabled onclick="submitLink()" style="flex:1">Confirm Link</button>
+        <button class="btn btn-secondary" onclick="resetLink()" style="flex:1">Reset</button>
+      </div>
+      <div class="hint-box" id="hint-link"></div>
+      <div class="feedback" id="feedback-link"></div>
+      <div class="progress-bar"><div class="progress-fill" id="progress-link"></div></div>
+    </div>
+
+    <div id="view-timeline" class="view">
+      <p class="intro">Place evidence on the timeline in the correct order. <b>Tap a slot to remove.</b></p>
+      <div class="row">
+        <button class="help-btn" id="btn-timeline-hint" onclick="spendHint('timeline')">Hint (-3 Ev)</button>
+        <span style="font-size:.62rem;color:#94a3b8;font-weight:700;flex:1">DRAG EVIDENCE INTO SLOTS</span>
+      </div>
+      <div class="hint-box" id="hint-timeline"></div>
+      <div id="timeline-slots" class="timeline"></div>
+      <div id="timeline-bank" class="bank" style="margin-top:6px"></div>
+      <div class="row"><button class="btn" id="btn-timeline" disabled onclick="submitTimeline()">Submit Timeline</button></div>
+      <div class="feedback" id="feedback-timeline"></div>
+      <div class="progress-bar"><div class="progress-fill" id="progress-timeline"></div></div>
+    </div>
+
+    <div id="view-contradict" class="view">
+      <p class="intro">Identify evidence that is <b>false, fake, or misleading</b>. Select at least <b>two</b> fake items.</p>
+      <div class="row">
+        <button class="help-btn" id="btn-contradict-hint" onclick="spendHint('contradict')">Hint (-3 Ev)</button>
+        <span style="font-size:.62rem;color:#94a3b8;font-weight:700;flex:1">TAP TO SELECT</span>
+      </div>
+      <div class="hint-box" id="hint-contradict"></div>
+      <ul class="checklist" id="contradict-list"></ul>
+      <div class="row"><button class="btn" id="btn-contradict" disabled onclick="submitContradict()">Expose Contradiction</button></div>
+      <div class="feedback" id="feedback-contradict"></div>
+      <div class="progress-bar"><div class="progress-fill" id="progress-contradict"></div></div>
+    </div>
+  </div>
+
+  <div id="modal-mask" onclick="closeModal(event)">
+    <div class="modal" id="modal-box">
+      <h3 id="modal-title">Result</h3>
+      <p id="modal-text"></p>
+      <div class="hint-reveal" id="modal-hint" style="display:none"></div>
+      <div class="score-gain" id="modal-score"></div>
+      <div id="modal-sos" style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap"></div>
+      <button class="close-btn" onclick="document.getElementById('modal-mask').style.display='none'">Close</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const EVIDENCE=[
+  {id:'cloaks',icon:'\u{1F455}',name:"Disciples' Cloaks",type:'physical',fake:false,desc:'Draped over the colt as a saddle.'},
+  {id:'hoofprints',icon:'\u{1F43E}',name:'Fresh Hoofprints',type:'env',fake:false,desc:'Hoofprints leading down the western slope.'},
+  {id:'testimony',icon:'\u{1F4DC}',name:"Villager's Testimony",type:'testimonial',fake:false,desc:'Eyewitness account at the tethering post.'},
+  {id:'rope',icon:'\u{1FAAB}',name:'Cut Rope at Post',type:'physical',fake:false,desc:'Section of rope found near the post.'},
+  {id:'scroll',icon:'\u{1F4DC}',name:'Zechariah 9:9 Scroll',type:'testimonial',fake:false,desc:'Fragment of Zechariah 9:9 carried by the owner.'},
+  {id:'palm',icon:'\u{1F33F}',name:'Fresh-Cut Palm Branch',type:'physical',fake:false,desc:'Palm branch dropped in the crowd.'},
+  {id:'complaint',icon:'\u{1F4DC}',name:"Pharisee's Complaint",type:'digital',fake:true,desc:'Written complaint - timestamp mismatched with events.'}
+];
+
+const LINKS=[
+  {from:'cloaks',to:'Peter',label:'Peter',kind:'person'},
+  {from:'cloaks',to:'Genesis 49:10-11',label:'Genesis 49:10-11',kind:'bible'},
+  {from:'rope',to:'Peter',label:'Peter',kind:'person'},
+  {from:'rope',to:'Motive Clarified',label:'Motive Clarified',kind:'deduction'},
+  {from:'scroll',to:'Tobias',label:'Tobias',kind:'person'},
+  {from:'scroll',to:'Zechariah 9:9',label:'Zechariah 9:9',kind:'bible'},
+  {from:'palm',to:'Tobias',label:'Tobias',kind:'person'},
+  {from:'palm',to:'Psalm 118:25-26',label:'Psalm 118:25-26',kind:'bible'},
+  {from:'hoofprints',to:'John',label:'John',kind:'person'},
+  {from:'testimony',to:'John',label:'John',kind:'person'},
+  {from:'hoofprints',to:'Triumphal Entry',label:'Triumphal Entry',kind:'event'},
+  {from:'palm',to:'Triumphal Entry',label:'Triumphal Entry',kind:'event'},
+  {from:'complaint',to:'Sanhedrin Investigation',label:'Sanhedrin Investigation',kind:'event'}
+];
+
+const TIMELINE_ORDER=['hoofprints','testimony','rope','cloaks','scroll','palm'];
+const TIMELINE_SLOTS=[
+  {time:'Early Morning',label:'Disciples sent to Bethphage'},
+  {time:'Mid-Morning',label:'At the tethering post - colt untied'},
+  {time:'Late Morning',label:'Roadside preparations'},
+  {time:'Noon',label:'Descent toward Jerusalem begins'},
+  {time:'Afternoon',label:'Triumphal entry into Jerusalem'},
+  {time:'Evening',label:'Pharisees confer; complaint drafted'}
+];
+
+const CORRECT_CONTRADICTS=['complaint'];
+const MIN_CONTRADICTS=2;
+const CORRECT_COMPARES=new Set([['cloaks','rope'],['hoofprints','testimony'],['scroll','palm'],['cloaks','scroll']]);
+
+const HINTS={
+  compare:[
+    'Both items in a correct pair come from the same person - the one who untied the colt.',
+    'Look for physical + testimonial evidence from the same event matching a single witness.',
+    'Peter and John each left two pieces of evidence. Tobias left two. Find those pairs.'
+  ],
+  link:[
+    'The owner of the colt is also the keeper of the Zechariah scroll.',
+    'John recorded both the hoofprints and the villager account in his own gospel.',
+    'The Pharisees made their complaint after the Triumphal Entry - not before it.'
+  ],
+  timeline:[
+    'Start where? Two disciples were sent ahead to Bethphage first.',
+    'Before the entry into Jerusalem, the colt had to be untied and prepared with cloaks.',
+    'The complaint was only drafted after seeing the crowds respond to Jesus.'
+  ],
+  contradict:[
+    'Only one item is fake - the rest are real.',
+    'The fake evidence is a document - not something you picked up off the ground.',
+    'A timestamp mismatch is the tell.'
+  ]
+};
+
+const SCORES={compare:10,compareWrong:5,link:5,linkWrong:3,timeline:10,timelineWrong:5,contradict:15,contradictPenalty:10,hintCost:3,sosCost:3};
+
+function sosCompare(){var half=Math.floor(SCORES.compare/2);addScore('deduction',half);addScore('evidence',1);showFeedback('feedback-compare','Helping hand used. +'+half+' Deduction, +1 Evidence','success');state.done.compare=true;renderCompare()}
+function sosLink(){addScore('evidence',3);showFeedback('feedback-link','Helping hand used. +3 Evidence. Try again for a perfect link.','success');state.link.used.clear();state.link.selectedEv=null;state.link.selectedTarget=null;state.done.link=false;renderLink()}
+function sosTimeline(){var pts=Math.floor(SCORES.timeline*1.5);addScore('deduction',pts);TIMELINE_SLOTS.forEach(function(s,i){state.timeline.placements[i]=TIMELINE_ORDER[i]});renderTimeline();document.getElementById('progress-timeline').style.width='100%';showFeedback('feedback-timeline','Helping hand used. Timeline filled for reduced credit. +'+pts+' Deduction','success')}
+function sosContradict(){state.contradict.checked=new Set(['complaint']);addScore('challenge',Math.floor(SCORES.contradict/2));showFeedback('feedback-contradict','Helping hand used. Half credit applied. Select the fake item and submit.','success');renderContradict()}
+
+var state={scores:{deduction:0,evidence:0,challenge:0,doubt:0},tab:'compare',compare:{selected:[],done:false,hintsUsed:0},link:{selectedEv:null,selectedTarget:null,done:false,used:new Set(),hintsUsed:0},timeline:{placements:{},submitted:false,hintsUsed:0},contradict:{checked:new Set(),submitted:false,hintsUsed:0},done:{compare:false,link:false,timeline:false,contradict:false}};
+
+var $=function(id){return document.getElementById(id)};
+function updateScores(){$('score-deduction').textContent=state.scores.deduction;$('score-evidence').textContent=state.scores.evidence;$('score-challenge').textContent=state.scores.challenge;$('score-doubt').textContent=state.scores.doubt}
+function addScore(cat,amount){state.scores[cat]=Math.max(0,state.scores[cat]+amount);updateScores()}
+function showFeedback(id,msg,type){var el=$(id);el.className='feedback show '+type;el.textContent=msg}
+function showHint(id,msg){var el=$(id);el.className='hint-box show';el.textContent='Hint: '+msg}
+function showModal(title,text,delta,hintText,sosFn){
+  $('modal-title').textContent=title;$('modal-text').textContent=text;
+  var hintEl=$('modal-hint');
+  if(hintText){hintEl.textContent='Hint: '+hintText;hintEl.style.display='block'}else{hintEl.style.display='none'}
+  $('modal-score').textContent=delta?(delta>0?'+'+delta+' points':delta+' points'):'';
+  var sosEl=$('modal-sos');sosEl.innerHTML='';
+  if(sosFn){var b=document.createElement('button');b.className='btn sos-btn';b.textContent='Helping Hand (-3 Evidence)';b.onclick=function(){addScore('evidence',-SCORES.sosCost);sosFn();$('modal-mask').style.display='none'};sosEl.appendChild(b)}
+  $('modal-mask').style.display='flex'
+}
+function closeModal(e){if(e.target.id==='modal-mask')$('modal-mask').style.display='none'}
+function switchTab(view){state.tab=view;document.querySelectorAll('.tab').forEach(function(t){t.setAttribute('aria-selected',t.dataset.view===view)});document.querySelectorAll('.view').forEach(function(v){v.classList.toggle('active',v.id==='view-'+view)});if(view==='compare')renderCompare();if(view==='link')renderLink();if(view==='timeline')renderTimeline();if(view==='contradict')renderContradict()}
+
+function renderCompare(){
+  var bank=$('compare-bank');bank.innerHTML='';
+  EVIDENCE.forEach(function(ev){
+    var sel=state.compare.selected.indexOf(ev.id)>=0;
+    bank.innerHTML+='<div class="ev-card '+(sel?'selected':'')+'" data-id="'+ev.id+'" onclick="toggleCompare(\''+ev.id+'\')"><span class="ev-icon">'+ev.icon+'</span><div class="ev-name">'+ev.name+'</div><div class="ev-desc">'+ev.desc+'</div></div>';
+  });
+  var count=state.compare.selected.length;
+  $('compare-hint').textContent=state.compare.done?'Complete!':'Selected '+count+'/2 - pick a second item.';
+  $('btn-compare').disabled=count!==2||state.compare.done;
+  $('btn-compare-hint').disabled=state.compare.done||state.compare.hintsUsed>=2;
+  $('progress-compare').style.width=state.compare.done?'100%':(count/2*100)+'%';
+}
+function toggleCompare(id){if(state.compare.done)return;var i=state.compare.selected.indexOf(id);if(i>=0)state.compare.selected.splice(i,1);else if(state.compare.selected.length<2)state.compare.selected.push(id);renderCompare()}
+function submitCompare(){
+  var a=state.compare.selected[0],b=state.compare.selected[1];
+  if(!a||!b)return;
+  var key=[a,b].sort().join(',');
+  var ok=CORRECT_COMPARES.has(key);
+  if(ok){
+    addScore('deduction',SCORES.compare);addScore('evidence',3);
+    showFeedback('feedback-compare','Deduction unlocked. +'+SCORES.compare+' Deduction, +3 Evidence','success');
+    showModal('Deduction Confirmed','These two pieces of evidence reinforce the same event or suspect.',SCORES.compare+3,null);
+    state.done.compare=true;
+  }else{
+    addScore('doubt',SCORES.compareWrong);
+    showFeedback('feedback-compare','No match. +'+SCORES.compareWrong+' Doubt. Try a hint or helping hand.','error');
+    showModal('No Match','These two items do not form a known deduction pair. +'+SCORES.compareWrong+' Doubt.',-SCORES.compareWrong,HINTS.compare[0],sosCompare);
+  }
+  state.compare.selected=[];state.compare.done=true;renderCompare();
+}
+function spendHint(tab){
+  if(state.scores.evidence<SCORES.hintCost){showFeedback('feedback-'+tab,'Not enough Evidence points. Need '+SCORES.hintCost+'.','error');return}
+  var bucket=state[tab];var idx=Math.min((bucket.hintsUsed||0),HINTS[tab].length-1);
+  addScore('evidence',-SCORES.hintCost);bucket.hintsUsed=(bucket.hintsUsed||0)+1;
+  showHint('hint-'+tab,HINTS[tab][idx]);showFeedback('feedback-'+tab,'Hint purchased. -'+SCORES.hintCost+' Evidence','hint');
+}
+
+function renderLink(){
+  var evBank=$('link-ev-bank'),targets=$('link-targets'),used=state.link.used;
+  evBank.innerHTML=EVIDENCE.filter(function(ev){return !used.has(ev.id)}).map(function(ev){
+    var sel=state.link.selectedEv===ev.id;
+    return '<div class="slot '+(sel?'selected-link':'')+'" data-id="'+ev.id+'" onclick="selectLinkEv(\''+ev.id+'\')">'+ev.icon+' '+ev.name+'</div>';
+  }).join('');
+  var pool=LINKS.filter(function(l){return !used.has(l.from+'->'+l.to)});
+  targets.innerHTML=pool.map(function(l){
+    var sel=state.link.selectedTarget===l.from+'|'+l.to;
+    return '<div class="slot '+(sel?'selected-link':'')+'" data-key="'+l.from+'|'+l.to+'" onclick="selectLinkTarget(\''+l.from+'|'+l.to+'\')">'+l.label+' <span style="font-size:.58rem;color:#64748b">'+l.kind+'</span></div>';
+  }).join('');
+  $('btn-link').disabled=!(state.link.selectedEv&&state.link.selectedTarget)||state.link.done||used.size>=LINKS.length;
+  $('btn-link-hint').disabled=state.link.done||state.link.hintsUsed>=2;
+  $('progress-link').style.width=Math.min(100,(used.size/Math.max(1,LINKS.length))*100)+'%';
+}
+function selectLinkEv(id){state.link.selectedEv=id;renderLink()}
+function selectLinkTarget(key){state.link.selectedTarget=key;renderLink()}
+function submitLink(){
+  var parts=state.link.selectedTarget.split('|');var from=parts[0],to=parts[1];
+  var link=LINKS.find(function(l){return l.from===from&&l.to===to});
+  var used=state.link.used;
+  if(!link||used.has(from+'->'+to))return;
+  used.add(from+'->'+to);addScore('evidence',SCORES.link);
+  showFeedback('feedback-link','Linked: '+from+' -> '+link.label+'. +'+SCORES.link+' Evidence','success');
+  if(used.size>=LINKS.length){state.done.link=true;showModal('Lab Complete - Link','All evidence connections made.',0,null)}
+  else{showModal('Evidence Linked',EVIDENCE.find(function(e){return e.id===from})?.name+' linked to '+link.label+'. +'+SCORES.link+' Evidence',SCORES.link)}
+  state.link.selectedEv=null;state.link.selectedTarget=null;renderLink();
+}
+function resetLink(){state.link.selectedEv=null;state.link.selectedTarget=null;renderLink()}
+
+function renderTimeline(){
+  var slots=$('timeline-slots'),bank=$('timeline-bank');
+  var html='';
+  TIMELINE_SLOTS.forEach(function(s,i){
+    var evId=state.timeline.placements[i];
+    var markerClass=evId?'filled':'';
+    var ev=evId?EVIDENCE.find(function(e){return e.id===evId}):null;
+    var inner=ev?'<span class="ev-icon">'+ev.icon+'</span><span class="ev-name">'+ev.name+'</span>':s.label;
+    html+='<div class="tl-slot '+markerClass+'" data-index="'+i+'"><div class="tl-marker"></div><div class="tl-time">'+s.time+'</div><div class="tl-drop" data-index="'+i+'" ondrop="dropOnTimeline(event,'+i+')" ondragover="event.preventDefault()" onclick="clickTimelineSlot('+i+')">'+inner+'</div></div>';
+  });
+  slots.innerHTML=html;
+  var placed=Object.entries(state.timeline.placements);
+  var placedIds=new Set(placed.map(function(a){return a[1]}));
+  bank.innerHTML=EVIDENCE.filter(function(ev){return !placedIds.has(ev.id)}).map(function(ev){return '<div class="slot" draggable="true" data-id="'+ev.id+'" ondragstart="dragFromBank(event,\''+ev.id+'\')">'+ev.icon+' '+ev.name+'</div>'}).join('');
+  $('btn-timeline-hint').disabled=state.timeline.submitted||(state.timeline.hintsUsed||0)>=2;
+  $('progress-timeline').style.width=state.timeline.submitted?'100%':((placed.length/TIMELINE_SLOTS.length)*100)+'%';
+}
+function dragFromBank(e,id){e.dataTransfer.setData('text/plain',id)}
+function dropOnTimeline(e,idx){e.preventDefault();var id=e.dataTransfer.getData('text/plain');if(!id)return;state.timeline.placements[idx]=id;renderTimeline();$('btn-timeline').disabled=false}
+function clickTimelineSlot(idx){var id=state.timeline.placements[idx];if(id&&!state.timeline.submitted){delete state.timeline.placements[idx];renderTimeline()}}
+function submitTimeline(){
+  if(state.timeline.submitted)return;state.timeline.submitted=true;var correct=0;
+  TIMELINE_SLOTS.forEach(function(s,i){
+    var slot=document.querySelector('.tl-slot[data-index="'+i+'"]');var drop=slot&&slot.querySelector('.tl-drop');
+    var evId=state.timeline.placements[i];if(!evId||!slot)return;
+    var ev=EVIDENCE.find(function(e){return e.id===evId});
+    if(evId===TIMELINE_ORDER[i]){correct++;slot.className='tl-slot correct';drop.innerHTML='<span class="ev-icon">'+ev.icon+'</span><span class="ev-name">'+ev.name+'</span>'}
+    else{slot.className='tl-slot wrong';drop.innerHTML='<span class="ev-icon">'+ev.icon+'</span><span class="ev-name">'+ev.name+' <span style="color:#f87171">wrong slot</span></span>';addScore('doubt',SCORES.timelineWrong)}
+  });
+  if(correct===TIMELINE_ORDER.length){var pts=SCORES.timeline*TIMELINE_ORDER.length;addScore('deduction',pts);showFeedback('feedback-timeline','Perfect! '+correct+'/'+TIMELINE_ORDER.length+' correct. +'+pts+' Deduction','success');showModal('Timeline Mastered','All '+TIMELINE_ORDER.length+' in order.',pts,null);state.done.timeline=true}
+  else{var half=Math.floor(SCORES.timeline*correct);addScore('deduction',half);showFeedback('feedback-timeline',correct+'/'+TIMELINE_ORDER.length+' correct. +'+half+' Deduction, wrong slots cost Doubt.','error');showModal('Timeline Incomplete',correct+' of '+TIMELINE_ORDER.length+' placements correct.',half,HINTS.timeline[0],sosTimeline)}
+  state.done.timeline=true;$('progress-timeline').style.width='100%';$('btn-timeline').disabled=true;
+}
+
+function renderContradict(){
+  var list=$('contradict-list');
+  list.innerHTML=EVIDENCE.map(function(ev){
+    var checked=state.contradict.checked.has(ev.id);
+    return '<li><label style="display:flex;align-items:center;gap:8px;width:100%;cursor:pointer"><input type="checkbox" data-id="'+ev.id+'" '+(checked?'checked':'')+' onchange="toggleContradict(\''+ev.id+'\')"><span class="ev-icon">'+ev.icon+'</span><span class="ev-name">'+ev.name+'</span><span style="font-size:.62rem;color:#94a3b8;margin-left:auto">'+ev.desc+'</span></label></li>';
+  }).join('');
+  $('btn-contradict').disabled=state.contradict.checked.size<MIN_CONTRADICTS||state.contradict.submitted;
+  $('progress-contradict').style.width=state.contradict.submitted?'100%':((state.contradict.checked.size/Math.max(1,MIN_CONTRADICTS))*100)+'%';
+}
+function toggleContradict(id){if(state.contradict.submitted)return;var set=state.contradict.checked;set.has(id)?set.delete(id):set.add(id);renderContradict()}
+function submitContradict(){
+  if(state.contradict.submitted)return;state.contradict.submitted=true;
+  var selected=[].slice.call(document.querySelectorAll('#contradict-list input:checked')).map(function(i){return i.dataset.id});
+  var hits=selected.filter(function(id){return CORRECT_CONTRADICTS.includes(id)});
+  var misses=selected.filter(function(id){return !CORRECT_CONTRADICTS.includes(id)});
+  if(hits.length===CORRECT_CONTRADICTS.length&&misses.length===0){
+    var pts=SCORES.contradict;addScore('challenge',pts);
+    showFeedback('feedback-contradict','Contradiction exposed! All fake items identified. +'+pts+' Challenge.','success');
+    showModal('Contradiction Confirmed','You correctly identified the false evidence. +'+pts+' Challenge.',pts);
+  }else{
+    var penalty=SCORES.contradictPenalty;addScore('doubt',Math.abs(penalty));
+    showFeedback('feedback-contradict','Wrong selection. +'+Math.abs(penalty)+' Doubt.','error');
+    showModal('Incorrect Identification','Not all selected items are fake. Evidence reviewed - Doubt increased.',penalty);
+  }
+  state.done.contradict=true;
+  document.querySelectorAll('#contradict-list input').forEach(function(i){i.disabled=true});
+  $('btn-contradict').disabled=true;
+}
+
+updateScores();renderCompare();
+</script>
+</body>
+</html>

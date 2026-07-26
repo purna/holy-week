@@ -2,7 +2,7 @@
   "id": "false_witness",
   "name": "Ananias",
   "role": "Hired Accuser",
-  "avatar": "\ud83e\udd25",
+  "avatar": "ananias_witness.svg",
   "truthfulness": 0.2,
   "bibleRef": "Mark 14:56-58",
   "background": "One of several individuals compensated by the Sanhedrin to provide testimony against Jesus. His accounts are inconsistent and prone to fabrication.",
@@ -17,5 +17,7 @@
     "environmental": "A bit of dust? Could be from anywhere.",
     "analytical": "Figures can be twisted to mean anything.",
     "prophecy": "Prophecy? That's above my pay grade."
-  }
+  },
+  "earSize": 1.0,
+  "headSize": 1.0
 }

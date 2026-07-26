@@ -172,7 +172,7 @@ export class Scene3D {
         intro.id = 'scene-intro';
         intro.className = 'scene-intro hidden';
         intro.innerHTML = `
-            <button class="scene-intro-close" onclick="window.scene3d.closeIntro()" aria-label="Close intro">✕</button>
+            <button class="scene-intro-close" onclick="window.scene3d.closeIntro()" aria-label="Close intro"><img src='../assets/gfx/x-circle-duotone.svg' class='icon-svg' loading='lazy'></button>
             <div class="scene-intro-content">
                 <h2>Investigate the Scene</h2>
                 <p>Navigate the 3D world to find clues and talk to witnesses.</p>
@@ -257,9 +257,9 @@ export class Scene3D {
         const actions = document.createElement('div');
         actions.id = 'scene-mobile-actions';
         actions.innerHTML = `
-            <button id="scene-ctrl-actions" class="ui-toggle" aria-label="Actions">🙏</button>
-            <button id="scene-ctrl-inventory" class="ui-toggle" aria-label="Inventory">🎒</button>
-            <button id="scene-ctrl-talk" class="ui-toggle" aria-label="Talk">💬</button>
+            <button id="scene-ctrl-actions" class="ui-toggle" aria-label="Actions"><img src='../assets/gfx/hand-pointer.svg' class='icon-svg' loading='lazy'></button>
+            <button id="scene-ctrl-inventory" class="ui-toggle" aria-label="Inventory"><img src='../assets/gfx/backpack-duotone.svg' class='icon-svg' loading='lazy'></button>
+            <button id="scene-ctrl-talk" class="ui-toggle" aria-label="Talk"><img src='../assets/gfx/chat-duotone.svg' class='icon-svg' loading='lazy'></button>
         `;
         this.container.appendChild(actions);
 

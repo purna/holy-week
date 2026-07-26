@@ -2,7 +2,7 @@
   "id": "nicodemus",
   "name": "Nicodemus",
   "role": "Conflicted Pharisee",
-  "avatar": "\ud83c\udf19",
+  "avatar": "nicodemus.svg",
   "truthfulness": 0.8,
   "bibleRef": "John 3:1-21; John 7:50-52; John 19:39",
   "background": "A Pharisee and member of the Sanhedrin who seeks the truth in secret. He is torn between his position in the Council and his growing conviction that Jesus is from God.",
@@ -18,5 +18,7 @@
     "environmental": "The darkness is where I sought him, but he speaks of the light.",
     "analytical": "The council is calculating the political cost. I am calculating the spiritual one.",
     "prophecy": "He speaks of being born again. It is a difficult teaching."
-  }
+  },
+  "earSize": 1.1,
+  "headSize": 1.0
 }

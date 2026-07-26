@@ -9,7 +9,7 @@
     "skeptical"
   ],
   "voiceProfile": "rough-hewn, rustic",
-  "avatar": "assets/npcs/gardener_portrait.png",
+  "avatar": "nathan_gardener.svg",
   "faction": "Bethany Locals",
   "personality": "neutral",
   "genericReactions": {
@@ -19,5 +19,7 @@
     "environmental": "That fig tree... it withered from the roots up. No blight does that.",
     "analytical": "It takes years for a tree to grow, and years for it to die. Not one night.",
     "prophecy": "I'm just a gardener. But what I saw wasn't natural."
-  }
+  },
+  "earSize": 0.9,
+  "headSize": 1.0
 }

@@ -2,7 +2,7 @@
   "id": "senior_scribe",
   "name": "Senior Scribe",
   "role": "Investigative Mentor / Archivist",
-  "avatar": "\ud83d\udcdc",
+  "avatar": "senior_scribe.svg",
   "truthfulness": 0.9,
   "faction": "scribes",
   "bibleRef": "Luke 1:1\u20134; Acts 4:5",
@@ -18,5 +18,7 @@
     "environmental": "Do not be distracted by trivialities. Focus on the structural anomalies.",
     "analytical": "A compelling calculation. But does it withstand scrutiny? Check your premises.",
     "prophecy": "Be wary of fitting events to prophecy. First, establish the event. Then, we may discuss interpretation."
-  }
+  },
+  "earSize": 1.15,
+  "headSize": 1.05
 }

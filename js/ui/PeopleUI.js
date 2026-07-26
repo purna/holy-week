@@ -1,5 +1,7 @@
 import { DIALOGUE_ID_MAP } from "../gameplay/dialogueMaps.js";
 
+function avatarMarkup(a){if(!a)return'';if(a.endsWith('.svg'))return`<img src="../assets/characters/${a}"style="width:1.5em;height:1.5em;vertical-align:middle;object-fit:contain;"alt="">`;return a;}
+
 export class PeopleUI {
   constructor(npcSystem, evidenceSystem, accessibility, onAction, audioManager, dialogueManager) {
     this.npcs = npcSystem;
@@ -12,7 +14,7 @@ export class PeopleUI {
     this.challengeResultsByNPC = {};
     this._loadedCaseId = null;
     this.activeModalResult = null;
-    this.peopleIntroHtml = "Some witnesses are hidden until you find them. Explore the <strong>🔎 Scene</strong> tab and walk up to a person to discover them — they'll appear here unlocked. Once found, talk to witnesses for clues, show them evidence, or challenge a contradiction once two clues are selected.<button class=\"people-intro-scene-btn\" type=\"button\" onclick=\"window.switchInvTab && window.switchInvTab('scene')\">🔎 Go to Scene</button>";
+    this.peopleIntroHtml = "Some witnesses are hidden until you find them. Explore the <strong><img src='../assets/gfx/magnifying-glass-duotone.svg' class='icon-svg' loading='lazy'> Scene</strong> tab and walk up to a person to discover them — they'll appear here unlocked. Once found, talk to witnesses for clues, show them evidence, or challenge a contradiction once two clues are selected.<button class=\"people-intro-scene-btn\" type=\"button\" onclick=\"window.switchInvTab && window.switchInvTab('scene')\"><img src='../assets/gfx/magnifying-glass-duotone.svg' class='icon-svg' loading='lazy'> Go to Scene</button>";
     this.evidencePickerIntro = "Choose evidence to present to this witness.";
   }
 
@@ -35,17 +37,17 @@ export class PeopleUI {
 
   _renderMsg(m) {
     const cls = `msg msg-${m.type}`;
-    const icons = { player: "🕵️", system: "📋", verdict: "⚖️" };
-    const icon = icons[m.type] || "🗣";
+    const icons = { player: "<img src='../assets/gfx/spy-duotone.svg' class='icon-svg' loading='lazy'>", system: "<img src='../assets/gfx/clipboard-duotone.svg' class='icon-svg' loading='lazy'>", verdict: "<img src='../assets/gfx/balance-scale-duotone.svg' class='icon-svg' loading='lazy'>" };
+    const icon = icons[m.type] || "<img src='../assets/gfx/chat-duotone.svg' class='icon-svg' loading='lazy'>";
     return `
       <div class="${cls}" role="listitem" aria-label="${m.speaker}: ${m.text}">
         <span class="msg-speaker-badge" aria-hidden="true">${icon} ${m.speaker}</span>
         <span class="msg-text">${this.a11y.simplify(m.text)}</span>
         <div class="msg-badges">
           ${m.extra?.evidenceTag ? `<span class="evidence-tag-badge ${m.extra.isKey ? 'key' : ''}">${m.extra.evidenceTag} ${m.extra.evidenceName || ''}</span>` : ""}
-          ${m.extra?.breakthrough ? `<span class="breakthrough-badge">⚡ Breakthrough</span>` : ""}
-          ${m.extra?.revealedClue ? `<span class="clue-badge">🔍 New clue</span>` : ""}
-          ${m.extra?.revealedProphecy ? `<span class="prophecy-badge">🔮 Prophecy Revealed</span>` : ""}
+          ${m.extra?.breakthrough ? `<span class="breakthrough-badge"><img src='../assets/gfx/sparkles-duotone.svg' class='icon-svg' loading='lazy'> Breakthrough</span>` : ""}
+          ${m.extra?.revealedClue ? `<span class="clue-badge"><img src='../assets/gfx/magnifying-glass-duotone.svg' class='icon-svg' loading='lazy'> New clue</span>` : ""}
+          ${m.extra?.revealedProphecy ? `<span class="prophecy-badge"><img src='../assets/gfx/star-duotone.svg' class='icon-svg' loading='lazy'> Prophecy Revealed</span>` : ""}
         </div>
         ${m.type === 'verdict' ? this._renderVerdict(m.extra.result) : ""}
       </div>`;
@@ -55,10 +57,10 @@ export class PeopleUI {
     const s = res.score;
     return `
       <div class="verdict-card ${res.correct ? 'verdict-correct' : 'verdict-wrong'}">
-        <div class="verdict-header">${res.correct ? '🏆 CASE SOLVED' : '❌ INCORRECT ACCUSATION'}</div>
+        <div class="verdict-header">${res.correct ? "<img src='../assets/gfx/trophy-duotone.svg' class='icon-svg' loading='lazy'> CASE SOLVED" : "<img src='../assets/gfx/x-circle-duotone.svg' class='icon-svg' loading='lazy'> INCORRECT ACCUSATION"}</div>
         <div class="verdict-score-grid">
-          <div class="score-row"><span>💡 Deductions:</span> <span>+${s.breakdown?.deductionScore || s.deduction}</span></div>
-          <div class="score-row"><span>🔍 Evidence:</span> <span>+${s.breakdown?.evidenceScore || s.evidence}</span></div>
+          <div class="score-row"><span><img src='../assets/gfx/sparkles-duotone.svg' class='icon-svg' loading='lazy'> Deductions:</span> <span>+${s.breakdown?.deductionScore || s.deduction}</span></div>
+          <div class="score-row"><span><img src='../assets/gfx/magnifying-glass-duotone.svg' class='icon-svg' loading='lazy'> Evidence:</span> <span>+${s.breakdown?.evidenceScore || s.evidence}</span></div>
           <div class="score-total"><span>⭐ Total Score:</span> <span>${s.total}</span></div>
         </div>
       </div>`;
@@ -86,25 +88,25 @@ export class PeopleUI {
             return `
             <div class="npc-card locked" aria-disabled="true">
               <div class="npc-header">
-                <span class="npc-avatar">${npc.avatar || "❓"}</span>
+                 <span class="npc-avatar">${avatarMarkup(npc.avatar || "<img src='../assets/gfx/question-duotone.svg' class='icon-svg' loading='lazy'>")}</span>
                 <div class="npc-info"><span class="npc-name">${npc.name}</span></div>
-                <span class="npc-lock" aria-hidden="true">🔒</span>
+                <span class="npc-lock" aria-hidden="true"><img src='../assets/gfx/lock-duotone.svg' class='icon-svg' loading='lazy'></span>
               </div>
-              <div class="npc-locked-note">🔒 Find this person in the Scene tab to unlock.</div>
+              <div class="npc-locked-note"><img src='../assets/gfx/lock-duotone.svg' class='icon-svg' loading='lazy'> Find this person in the Scene tab to unlock.</div>
             </div>`;
           }
           return `
             <div class="npc-card">
               <div class="npc-header">
-                <span class="npc-avatar">${npc.avatar}</span>
+                <span class="npc-avatar">${avatarMarkup(npc.avatar)}</span>
                 <div class="npc-info"><span class="npc-name">${npc.name}</span></div>
                 <span class="npc-mood" style="color:${moodColor}">${moodLabel}</span>
               </div>
               <div class="npc-feed" role="log" aria-live="polite">${this.messagesByNPC[npc.id]?.map(m => this._renderMsg(m)).join("") || ""}</div>
               <div class="npc-actions">
-                <button class="npc-btn" data-action="talk" data-npc="${npc.id}">💬 Talk</button>
-                <button class="npc-btn" data-action="show" data-npc="${npc.id}">🔍 Evidence</button>
-                <button class="npc-btn" data-action="challenge" data-npc="${npc.id}" ${!this.es.selectedA ? "aria-disabled='true'" : ""}>⚡ Challenge</button>
+                <button class="npc-btn" data-action="talk" data-npc="${npc.id}"><img src='../assets/gfx/chat-duotone.svg' class='icon-svg' loading='lazy'> Talk</button>
+                <button class="npc-btn" data-action="show" data-npc="${npc.id}"><img src='../assets/gfx/magnifying-glass-duotone.svg' class='icon-svg' loading='lazy'> Evidence</button>
+                <button class="npc-btn" data-action="challenge" data-npc="${npc.id}" ${!this.es.selectedA ? "aria-disabled='true'" : ""}><img src='../assets/gfx/sparkles-duotone.svg' class='icon-svg' loading='lazy'> Challenge</button>
               </div>
               <div class="challenge-result" data-npc-challenge="${npc.id}" ${this.challengeResultsByNPC[npc.id] ? '' : 'hidden'}>
                 ${this.challengeResultsByNPC[npc.id] || ''}
@@ -159,7 +161,7 @@ export class PeopleUI {
               if (alreadyCollected) return;
               const discovered = this.es.discover(id);
               const evidence = discovered || (typeof this.es.getById === "function" ? this.es.getById(id) : null);
-              this.addSystem(`🔓 New clue: ${evidence?.name || id}`, npcId);
+              this.addSystem(`<img src='../assets/gfx/lock-open-duotone.svg' class='icon-svg' loading='lazy'> New clue: ${evidence?.name || id}`, npcId);
               count++;
             });
           }
@@ -171,7 +173,7 @@ export class PeopleUI {
               const alreadyFound = caseProgress?.propheciesFound?.includes(npc.revealsProphecy);
               if (!alreadyFound) {
                 this.npcs.caseManager?.recordProphecyFound?.(npc.revealsProphecy);
-                this.addSystem(`🔮 Prophecy Revealed: ${prophecy.reference}`, npcId);
+                this.addSystem(`<img src='../assets/gfx/star-duotone.svg' class='icon-svg' loading='lazy'> Prophecy Revealed: ${prophecy.reference}`, npcId);
                 count++;
               }
             }
@@ -200,7 +202,7 @@ export class PeopleUI {
               }
 
               const suspect = this.npcs.getNPC(suspectId);
-              this.addSystem(`⚖️ New suspect identified: ${suspect ? suspect.name : suspectId}`, npcId);
+              this.addSystem(`<img src='../assets/gfx/balance-scale-duotone.svg' class='icon-svg' loading='lazy'> New suspect identified: ${suspect ? suspect.name : suspectId}`, npcId);
               count++;
             });
           }
@@ -279,7 +281,7 @@ export class PeopleUI {
             avatar: npc?.avatar,
             title: npc ? `Challenging ${npc.name}` : "Challenge Result",
             text: result.text,
-            badge: result.breakthrough ? "⚡ Contradiction found!" : null,
+            badge: result.breakthrough ? "<img src='../assets/gfx/sparkles-duotone.svg' class='icon-svg' loading='lazy'> Contradiction found!" : null,
             revealedProphecy: result.revealedProphecy
           };
           this._showNPCModal(container);
@@ -307,7 +309,7 @@ export class PeopleUI {
             this.addMessage(result.speaker, result.text, "npc", {
               revealedClue: result.revealedClue,
               revealedProphecy: result.revealedProphecy,
-              evidenceTag: evidence?.icon || "🔍",
+              evidenceTag: evidence?.icon || "<img src='../assets/gfx/magnifying-glass-duotone.svg' class='icon-svg' loading='lazy'>",
               evidenceName: evidence?.name
             }, npcId);
 
@@ -315,7 +317,7 @@ export class PeopleUI {
               avatar: npc?.avatar,
               title: npc ? `${npc.name}'s Reaction` : "Reaction",
               text: result.text,
-              badge: result.revealedProphecy ? "🔮 Prophecy Revealed" : (result.revealedClue ? "🔓 New clue revealed" : null)
+              badge: result.revealedProphecy ? "<img src='../assets/gfx/star-duotone.svg' class='icon-svg' loading='lazy'> Prophecy Revealed" : (result.revealedClue ? "<img src='../assets/gfx/lock-open-duotone.svg' class='icon-svg' loading='lazy'> New clue revealed" : null)
             };
             this._showNPCModal(container);
           }
@@ -339,11 +341,11 @@ export class PeopleUI {
         const textEl = modal.querySelector(".modal-text");
         const badgeEl = modal.querySelector(".modal-badge");
 
-        if (avatarEl) avatarEl.textContent = this.activeModalResult.avatar || '';
+        if (avatarEl) avatarEl.innerHTML = avatarMarkup(this.activeModalResult.avatar || '');
         if (titleEl) titleEl.textContent = this.activeModalResult.title || '';
         if (textEl) textEl.textContent = this.a11y.simplify(this.activeModalResult.text || "");
         if (badgeEl) {
-          const badgeText = this.activeModalResult.revealedProphecy ? "🔮 Prophecy Revealed" : (this.activeModalResult.badge || '');
+          const badgeText = this.activeModalResult.revealedProphecy ? "<img src='../assets/gfx/star-duotone.svg' class='icon-svg' loading='lazy'> Prophecy Revealed" : (this.activeModalResult.badge || '');
           badgeEl.textContent = badgeText;
           badgeEl.style.display = badgeText ? 'block' : 'none';
         }

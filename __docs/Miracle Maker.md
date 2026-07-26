@@ -64,6 +64,105 @@ The score is composed of the following elements:
 *   **Doubt Penalty:** `-2 points` per doubt point
     *   The player's final score for the case is reduced by a penalty calculated from their accumulated "Doubt" score.
 
+
+# Prophecy Collection System
+
+## Overview
+
+The prophecy collection system allows players to discover and track biblical prophecies that are fulfilled throughout their investigation. Prophecies work similarly to evidence but are categorized separately and displayed in a dedicated Codex tab.
+
+## Architecture
+
+### Evidence Type Addition
+- PROPHECY is added to EVIDENCE_TYPES in evidenceSystem.js
+- Prophecies have id, type, icon, location, desc fields
+- Evidence can reference related prophecies via `relatedProphecy` field
+- NPC reactions can reveal prophecies via `revealsProphecy` field
+
+### Case Manager Tracking
+- `propheciesFound` array tracks discovered prophecy IDs per case
+- `recordProphecyFound(prophecyId)` method records discoveries
+- Progress saved to localStorage under `cases[id].propheciesFound`
+
+### NPC System Integration
+- `showEvidence()` checks for `revealsProphecy` in reactions
+- `challenge()` checks for `revealsProphecy` in contradictions
+- Prophecies unlocked through investigation and deduction
+
+### UI Changes
+- Accuse tab renamed to "Codex"
+- Codex shows discovered prophecies grouped by case
+- Prophecy detail view shows full reference, text, and fulfillment info
+- Completion percentage shown for each case's prophecy collection
+
+## Implementation Pattern
+
+Prophecies follow the same discovery pattern as evidence:
+1. Player shows evidence to NPC
+2. NPC reaction may include `revealsProphecy: "prophecy_id"`
+3. System marks prophecy as discovered
+4. Prophecy appears in Codex tab
+
+## Prophecy Data Structure
+
+```javascript
+{
+  id: "zechariah_9_9",
+  reference: "Zechariah 9:9",
+  text: "Rejoice greatly, O daughter of Zion!...",
+  written: "~520 BC",
+  fulfilledBy: "Jesus riding a donkey colt into Jerusalem",
+  gospelLink: "Matthew 21:4-5; John 12:14-15",
+  insight: "The donkey was not a practical choice...",
+  icon: "🔮",
+  location: "Bethphage, Mount of Olives",
+  type: "PROPHECY"
+}
+```
+
+---
+
+# 🔍 Cross-Reference: Story Files vs. `js/act*_case.js`
+
+Generated audit of dialogue story files (`story/extras/*.ink` + `story/system/*.ink`) against `storyFile` references in `js/act1_case.js`, `js/act2_case.js`, `js/act3_case.js`, and `js/act4_case.js`.
+
+* **Story files present:** 79
+* **Distinct `storyFile` references used:** 62
+* **Story files NOT referenced by any act case (unused):** 18
+* **`storyFile` references with NO matching file (orphans / broken links):** 1 — `chief_priest`
+
+## ⚠️ Broken Reference (fixed)
+* `js/act2_case.js` referenced `storyFile: "chief_priest"` (NPC id `chief_priest` = Caiaphas), but no `chief_priest.ink`/`.json` exists. The correct file is `caiaphas_priest`. **Corrected** in `js/act2_case.js:213` to `storyFile: "caiaphas_priest"` (act3 already used the correct name).
+
+## Unused Story Files (present in `/story/` but not referenced in `act*_case.js`)
+
+| Story File | Identity | Notes |
+|---|---|---|
+| `board_debate` | Board Debate (Senior Scribe) | System overlay / case-review interface |
+| `board_review` | Board Review (Senior Scribe) | System overlay / case-review interface |
+| `centurion_witness` | Centurion Longinus Witness | Crucifixion spear-thrust account |
+| `excited_child_donkey` | Excited Child (Donkey) | Triumphal entry flavor |
+| `guard_entry` | Guard — Entry | Antonia gate duty |
+| `guard_report_crucifixion` | Guard — Crucifixion | Roman watch report variant |
+| `guard_report_gethsemane` | Guard — Gethsemane | Arrest watch report variant |
+| `guard_report_temple` | Guard — Temple | Cleansing watch report variant |
+| `jesus_reinstatement` | Jesus Reinstatement (Peter) | John 21 restoration |
+| `peter_reinstated` | Peter Reinstated | John 21 restoration variant |
+| `pilate_interrogation` | Pilate Interrogation | Trial dialogue variant |
+| `pontius_pilate_barabbas` | Pilate — Barabbas | Barabbas exchange variant |
+| `pontius_pilate_temple` | Pilate — Temple | Temple-cleansing variant |
+| `priest_objection_crucifixion` | Priest Objection — Crucifixion | Crucifixion variant |
+| `priest_objection_temple` | Priest Objection — Temple | Temple variant |
+| `rich_young_ruler` | Rich Young Ruler | Extra encounter |
+| `roman_council` | Roman Council | Extra encounter |
+| `roman_soldier` | Roman Soldier | Extra encounter |
+
+## Notes
+* Several unused files are **variant** dialogue trees (`*_crucifixion`, `*_temple`, `*_gethsemane`, `*_barabbas`, `pilate_interrogation`, `priest_objection_*`) that branch the same NPC but are not currently wired into the linear act cases.
+* `board_debate` / `board_review` belong to the persistent investigation-board overlay rather than an act case, which is expected.
+* The `chief_priest` → `caiaphas_priest` mismatch was the only broken link; it has been resolved.
+
+
 ### Lab Actions
 
 Every case's Lab table includes **Points**, **Reputation**, and **Doubt** columns showing exactly what each pairing awards:
@@ -1047,3 +1146,124 @@ This section is generated from `js/act*_case.js` + `js/gameplay/dialogueMaps.js`
 | Act IV | `roman_inquiry` | `mary_resurrection` | Mary (Resurrection) | `mary_resurrection` | [`../story/act4/case_b_guards_report/mary_resurrection.json`](../story/act4/case_b_guards_report/mary_resurrection.json) | [`../story/act4/case_b_guards_report/mary_resurrection.ink`](../story/act4/case_b_guards_report/mary_resurrection.ink) |
 | Act IV | `roman_inquiry` | `peter_restored` | Peter (Restored) | `peter_restored` | [`../story/act4/case_c_peters_restoration/peter_restored.json`](../story/act4/case_c_peters_restoration/peter_restored.json) | [`../story/act4/case_c_peters_restoration/peter_restored.ink`](../story/act4/case_c_peters_restoration/peter_restored.ink) |
 <!-- AUTO-GENERATED: DIALOGUE-ID-INDEX END -->
+
+## Appendix: Emoji Reference
+
+This table catalogs every emoji used directly in the game UI, narrative, or system code.
+The **Phosphor Duotone** column provides the SVG filename from [phosphoricons.com](https://phosphoricons.com/?weight=duotone) where a matching icon exists.
+Emojis without a match (`—`) currently have no Phosphor Duotone equivalent and remain as-is.
+
+Phosphor Duotone Icon  are in the /assets/gfx/ folder
+
+| Emoji | Phosphor Duotone Icon | Name / Description |
+|-------|------------------------|-------------------|
+| `🔄` | `arrow-clockwise-duotone.svg` | Arrow Clockwise |
+| `⬇️` | `arrow-down-duotone.svg` | Arrow Down |
+| `⬆️` | `arrow-up-duotone.svg` | Arrow Up |
+| `🔊` | `audio.svg` | Audio |
+| `🎒` | `backpack-duotone.svg` | Backpack |
+| `⚖️` | `balance-scale-duotone.svg` | Balance Scale |
+| `⛵` | `boat-duotone.svg` | Boat |
+| `🦴` | `bone-duotone.svg` | Bone |
+| `📖` | `book-open-duotone.svg` | Book Open |
+| `📚` | `books-duotone.svg` | Books |
+| `🥣` | `bowl-duotone.svg` | Bowl |
+| `🥊` | `boxing-glove-duotone.svg` | Boxing Glove |
+| `🍞` | `bread-duotone.svg` | Bread |
+| `🏛️` | `building-columns-duotone.svg` | Building Columns |
+| `📅` | `calendar-duotone.svg` | Calendar |
+| `⛓` | `chain-duotone.svg` | Chain |
+| `💬` | `chat-duotone.svg` | Chat |
+| `✅` | `check-circle-duotone.svg` | Check Circle |
+| `☐` | `check-square-empty.svg` | Check Square Empty |
+| `☑️` | `check-square-full.svg` | Check Square Full |
+| `⛪` | `church-duotone.svg` | Church |
+| `⭕` | `circle-duotone.svg` | Circle |
+| `⭕` | `circle.svg` | Circle |
+| `📋` | `clipboard-duotone.svg` | Clipboard |
+| `🪙` | `coins-duotone.svg` | Coins |
+| `✝️` | `cross-duotone.svg` | Cross |
+| `👑` | `crown-duotone.svg` | Crown |
+| `☕` | `cup-duotone.svg` | Cup |
+| `💵` | `currency-dollar-duotone.svg` | Currency Dollar |
+| `🖱️` | `cursor-duotone.svg` | Cursor |
+| `🗡` | `dagger-duotone.svg` | Dagger |
+| `☀️` | `day.svg` | Day |
+| `🎲` | `dice-duotone.svg` | Dice |
+| `🟫` | `dirt.svg` | Dirt |
+| `🦅` | `eagle-duotone.svg` | Eagle |
+| `👂` | `ear-duotone.svg` | Ear |
+| `🌍` | `earth-duotone.svg` | Earth |
+| `✉️` | `envelope-duotone.svg` | Envelope |
+| `👁️` | `eye-duotone.svg` | Eye |
+| `🪶` | `feather-duotone.svg` | Feather |
+| `🚑` | `first-aid.svg` | First Aid |
+| `🐟` | `fish-duotone.svg` | Fish |
+| `🔥` | `flame-duotone.svg` | Flame |
+| `💾` | `floppy-disk-duotone.svg` | Floppy Disk |
+| `💎` | `gem.svg` | Gem |
+| `☝️` | `hand-pointer.svg` | Hand Pointer |
+| `🪦` | `headstone-duotone.svg` | Headstone |
+| `🐴` | `horse-duotone.svg` | Horse |
+| `🏠` | `house-chimney-duotone.svg` | House Chimney |
+| `🏠` | `house-duotone.svg` | House |
+| `📦` | `inventory.svg` | Inventory |
+| `🫙` | `jar-duotone.svg` | Jar |
+| `💻` | `laptop-code.svg` | Laptop Code |
+| `💻` | `laptop-duotone.svg` | Laptop |
+| `🍃` | `leaf-duotone.svg` | Leaf |
+| `🍂` | `leaves-duotone.svg` | Leaves |
+| `🔗` | `link-duotone.svg` | Link |
+| `📋` | `list.svg` | List |
+| `⏳` | `loading.svg` | Loading |
+| `🔒` | `lock-duotone.svg` | Lock |
+| `🔓` | `lock-open-duotone.svg` | Lock Open |
+| `🪵` | `log-duotone.svg` | Log |
+| `🔍` | `magnifying-glass-duotone.svg` | Magnifying Glass |
+| `📍` | `map-pin-duotone.svg` | Map Pin |
+| `🧠` | `memory.svg` | Memory |
+| `🔬` | `microscope-duotone.svg` | Microscope |
+| `🌙` | `moon-duotone.svg` | Moon |
+| `🎵` | `music.svg` | Music |
+| `🔇` | `music_off.svg` | Music_Off |
+| `🌙` | `night.svg` | Night |
+| `📦` | `package-duotone.svg` | Package |
+| `✏️` | `pencil-duotone.svg` | Pencil |
+| `📌` | `pin-duotone.svg` | Pin |
+| `▶️` | `play-duotone.svg` | Play |
+| `➕` | `plus-duotone.svg` | Plus |
+| `❓` | `quest.svg` | Quest |
+| `❓` | `question-duotone.svg` | Question |
+| `🪨` | `rock-duotone.svg` | Rock |
+| `🐓` | `rooster-duotone.svg` | Rooster |
+| `📏` | `ruler-duotone.svg` | Ruler |
+| `📡` | `scan.svg` | Scan |
+| `✂️` | `scissors-duotone.svg` | Scissors |
+| `📜` | `scroll-duotone.svg` | Scroll |
+| `🔍` | `search.svg` | Search |
+| `🐑` | `sheep-duotone.svg` | Sheep |
+| `🛡️` | `shield-duotone.svg` | Shield |
+| `🚿` | `shower-duotone.svg` | Shower |
+| `💀` | `skull-duotone.svg` | Skull |
+| `✨` | `sparkles-duotone.svg` | Sparkles |
+| `🔊` | `speaker-high-duotone.svg` | Speaker High |
+| `🕵️` | `spy-duotone.svg` | Spy |
+| `⭐` | `star-duotone.svg` | Star |
+| `🌟` | `stars-duotone.svg` | Stars |
+| `☀️` | `sun-duotone.svg` | Sun |
+| `🌅` | `sunrise-duotone.svg` | Sunrise |
+| `⚔️` | `sword-duotone.svg` | Sword |
+| `📝` | `text-align-left-duotone.svg` | Text Align Left |
+| `🎭` | `theater-masks-duotone.svg` | Theater Masks |
+| `🌳` | `tree-duotone.svg` | Tree |
+| `🏆` | `trophy-duotone.svg` | Trophy |
+| `👤` | `user-duotone.svg` | User |
+| `👥` | `users-duotone.svg` | Users |
+| `💧` | `water-drop-duotone.svg` | Water Drop |
+| `🥀` | `wilted-flower-duotone.svg` | Wilted Flower |
+| `🍷` | `wine-duotone.svg` | Wine |
+| `🔧` | `wrench.svg` | Wrench |
+| `❌` | `x-circle-duotone.svg` | X Circle |
+| `✖️` | `x-duotone.svg` | X |
+
+<!-- AUTO-GENERATED: EMOJI-REFERENCE-APPENDIX END -->

@@ -2,7 +2,7 @@
   "id": "rich_young_ruler",
   "name": "Thomas the Rich Young Ruler",
   "role": "Wealthy Seeker",
-  "avatar": "\ud83d\udcb0",
+  "avatar": "rich_young_ruler.svg",
   "truthfulness": 0.7,
   "bibleRef": "Matthew 19:16-22; Mark 10:17-22; Luke 18:18-23",
   "background": "A young man of great wealth who ran up to Jesus and asked what he must do to inherit eternal life. He left grieving, unable to give up his riches.",
@@ -17,5 +17,7 @@
     "environmental": "I have great wealth. What more is required?",
     "analytical": "He said it is hard for a rich man to enter the kingdom. I am beginning to understand.",
     "prophecy": "He spoke of treasure in heaven. I chose the treasure I could see."
-  }
+  },
+  "earSize": 1.0,
+  "headSize": 1.0
 }
