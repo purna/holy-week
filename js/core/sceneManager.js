@@ -25,8 +25,9 @@ export class SceneManager {
         this.renderer.shadowMap.enabled = true;
         this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
         if (container) {
-            container.appendChild(this.renderer.domElement);
-            this.canvasContainer = container;
+            const mount = container.querySelector('#scene-canvas-mount');
+            (mount || container).appendChild(this.renderer.domElement);
+            this.canvasContainer = mount || container;
         } else {
             document.body.appendChild(this.renderer.domElement);
         }

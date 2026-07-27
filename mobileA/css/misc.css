@@ -303,3 +303,123 @@
     font-size: 0.78rem;
 }
 
+
+/* Scene panel scroll */
+#inv-scene {
+  overflow-y: auto;
+  max-height: 70vh;
+}
+
+#inv-scene .scene-canvas-mount,
+#inv-scene #scene-canvas-mount {
+  width: 100%;
+  min-height: 55vh;
+  background: var(--surface2);
+  border-radius: var(--radius);
+  margin: 10px 0;
+  overflow: hidden;
+}
+
+#inv-scene .section-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+
+#inv-scene .prophecy-scene-intro {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
+
+#inv-scene .scene-intro {
+  font-size: 0.82rem;
+  color: var(--text);
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+
+#inv-scene .evidence-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 8px;
+  margin-top: 10px;
+}
+
+#inv-scene .evidence-card {
+  background: var(--surface2);
+  border: 1px solid var(--border2);
+  border-radius: var(--radius-sm);
+  padding: 8px;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+#inv-scene .evidence-card.collected {
+  border-color: var(--green);
+  background: rgba(61, 214, 140, 0.08);
+}
+
+#inv-scene .evidence-card.locked {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+#inv-scene .evidence-card-icon {
+  font-size: 1.6rem;
+  margin-bottom: 4px;
+}
+
+#inv-scene .evidence-card-name {
+  font-size: 0.68rem;
+  color: var(--text);
+  line-height: 1.3;
+}
+
+/* Scene intro panel */
+#inv-scene .section-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+
+#inv-scene .prophecy-scene-intro {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
+
+#inv-scene .scene-intro {
+  font-size: 0.82rem;
+  color: var(--text);
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+
+#inv-scene .scene-next-btn {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background: var(--gold);
+  color: var(--bg);
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+#inv-scene #scene-canvas-mount {
+  width: 100%;
+  min-height: 55vh;
+  background: var(--surface2);
+  border-radius: var(--radius);
+  margin-bottom: 10px;
+  overflow: hidden;
+}

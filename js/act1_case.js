@@ -158,7 +158,7 @@ export const act1CaseA = {
     { id: "villager", name: "Local Villager", role: "Eyewitness", avatar: "local_traveler.svg", bibleRef: "Mark 11:3–6 (unnamed villager who witnessed the exchange)" },
     { id: "pharisee", name: "Pharisee", role: "Religious Authority", avatar: "simon_pharisee.svg", bibleRef: "Luke 19:39–40; John 12:19" },
     { id: "local_skeptic", name: "Jemimah", role: "Jerusalem Local", avatar: "jemimah.svg", bibleRef: "Matthew 21:10-11" },
-    { id: "none", name: "No One", role: "Not Stolen", avatar: "<img src='../assets/gfx/question-duotone.svg' class='icon-svg' loading='lazy'>", bibleRef: null },
+    { id: "none", name: "No One", role: "Not Stolen", avatar: "question-duotone.svg", bibleRef: null },
   ],
 
   evidencePool: [
@@ -951,7 +951,7 @@ export const act1CaseB = {
         },
       },
     },
-    { id: "none", name: "No One", role: "Not Stolen", avatar: "<img src='../assets/gfx/question-duotone.svg' class='icon-svg' loading='lazy'>", bibleRef: null },
+    { id: "none", name: "No One", role: "Not Stolen", avatar: "question-duotone.svg", bibleRef: null },
   ],
 
   npcs: [
@@ -1423,7 +1423,7 @@ export const act1CaseC = {
 
   suspects: [
     { id: "peter_fig_tree", name: "Peter", role: "Disciple, Witness to the Withering", avatar: "peter.svg", bibleRef: "Mark 11:21" },
-    { id: "none", name: "No One", role: "Prophetic Act", avatar: "<img src='../assets/gfx/question-duotone.svg' class='icon-svg' loading='lazy'>", bibleRef: null },
+    { id: "none", name: "No One", role: "Prophetic Act", avatar: "question-duotone.svg", bibleRef: null },
   ],
 
   evidencePool: [

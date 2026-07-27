@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Miracle Maker - Case Editor</title>
+    <style>
+        :root {
+            --bg: #070c10;
+            --panel: #111827;
+            --panel-2: #1f2937;
+            --accent: #00e6c8;
+            --acc2: #ffaa00;
+            --text: #e5e7eb;
+            --dim: #9ca3af;
+            --border: #374151;
+            --field-bg: #0a141d;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-size: 16px;
+        }
+
+        .editor-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        h1,
+        h2 {
+            color: var(--accent);
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 10px;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        .io-section {
+            background: var(--panel);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border: 1px solid var(--border);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            font-size: 0.8rem;
+            color: var(--dim);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        input[type="file"],
+        select,
+        button {
+            font-size: 1rem;
+            padding: 10px 15px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: var(--panel-2);
+            color: var(--text);
+            cursor: pointer;
+            transition: background-color 0.2s, border-color 0.2s;
+        }
+
+        button:hover {
+            background-color: #374151;
+            border-color: var(--accent);
+        }
+
+        #export-btn {
+            background: var(--accent);
+            color: var(--bg);
+            font-weight: bold;
+            border-color: var(--accent);
+        }
+
+        #export-btn:hover {
+            background-color: #2dd4bf;
+        }
+
+        #editor-form {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .form-section {
+            background: var(--panel);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+
+        textarea {
+            width: 100%;
+            height: 300px;
+            background: var(--field-bg);
+            color: var(--text);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 10px;
+            font-family: monospace;
+            font-size: 0.85rem;
+            resize: vertical;
+        }
+
+        .form-section h3 {
+            margin-top: 0;
+            color: var(--acc2);
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        #status {
+            color: var(--dim);
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="editor-container">
+        <h1>Case Editor</h1>
+
+        <div class="io-section">
+            <div>
+                <label for="case-select">Select a Case</label>
+                <select id="case-select">
+                    <option value="">Loading cases...</option>
+                </select>
+            </div>
+            <div style="margin-left: auto;">
+                <label>&nbsp;</label>
+                <button id="export-btn" class="hidden">Export as JSON</button>
+            </div>
+        </div>
+
+        <div id="status">Select a case to begin editing.</div>
+
+        <form id="editor-form" class="hidden">
+            <div class="form-section">
+                <h3>Case Metadata</h3>
+                <textarea id="meta-editor" data-section="meta"></textarea>
+            </div>
+            <div class="form-section">
+                <h3>NPCs</h3>
+                <textarea id="npcs-editor" data-section="npcs"></textarea>
+            </div>
+            <div class="form-section">
+                <h3>Evidence Pool</h3>
+                <textarea id="evidence-editor" data-section="evidencePool"></textarea>
+            </div>
+            <div class="form-section">
+                <h3>Suspects</h3>
+                <textarea id="suspects-editor" data-section="suspects"></textarea>
+            </div>
+            <div class="form-section">
+                <h3>Prophecies</h3>
+                <textarea id="prophecies-editor" data-section="prophecies"></textarea>
+            </div>
+        </form>
+    </div>
+
+    <script type="module">
+        const caseSelect = document.getElementById('case-select');
+        const editorForm = document.getElementById('editor-form');
+        const exportBtn = document.getElementById('export-btn');
+        const statusEl = document.getElementById('status');
+        const textareas = {
+            meta: document.getElementById('meta-editor'),
+            npcs: document.getElementById('npcs-editor'),
+            evidencePool: document.getElementById('evidence-editor'),
+            suspects: document.getElementById('suspects-editor'),
+            prophecies: document.getElementById('prophecies-editor'),
+        };
+
+        let allCases = {};
+        let currentCaseId = null;
+
+        async function loadAllCases() {
+            const caseFiles = [
+                '../js/act1_case.js',
+                '../js/act2_case.js',
+                '../js/act3_case.js',
+                '../js/act4_case.js',
+            ];
+
+            statusEl.textContent = 'Loading case files...';
+            const casePromises = caseFiles.map(async (path) => {
+                try {
+                    const module = await import(path);
+                    return module.CASE_DATA || {};
+                } catch (err) {
+                    console.error(`Failed to load case file: ${path}`, err);
+                    return {};
+                }
+            });
+
+            const caseDataArray = await Promise.all(casePromises);
+            allCases = Object.assign({}, ...caseDataArray);
+
+            populateCaseSelect();
+            statusEl.textContent = 'Select a case to begin editing.';
+        }
+
+        function populateCaseSelect() {
+            caseSelect.innerHTML = '<option value="">-- Select a Case --</option>';
+            for (const caseId in allCases) {
+                const option = document.createElement('option');
+                option.value = caseId;
+                option.textContent = allCases[caseId].title || caseId;
+                caseSelect.appendChild(option);
+            }
+        }
+
+        function displayCase(caseId) {
+            currentCaseId = caseId;
+            if (!caseId) {
+                editorForm.classList.add('hidden');
+                exportBtn.classList.add('hidden');
+                statusEl.textContent = 'Select a case to begin editing.';
+                return;
+            }
+
+            const caseData = allCases[caseId];
+            const { npcs, evidencePool, suspects, prophecies, ...meta } = caseData || {};
+
+            textareas.meta.value = JSON.stringify(meta, null, 2);
+            textareas.npcs.value = JSON.stringify(npcs || [], null, 2);
+            textareas.evidencePool.value = JSON.stringify(evidencePool || [], null, 2);
+            textareas.suspects.value = JSON.stringify(suspects || [], null, 2);
+            textareas.prophecies.value = JSON.stringify(prophecies || [], null, 2);
+
+            editorForm.classList.remove('hidden');
+            exportBtn.classList.remove('hidden');
+            statusEl.textContent = `Editing: ${caseData.title || caseId}`;
+        }
+
+        function updateCaseData() {
+            if (!currentCaseId) return;
+
+            try {
+                const meta = JSON.parse(textareas.meta.value);
+                const npcs = JSON.parse(textareas.npcs.value);
+                const evidencePool = JSON.parse(textareas.evidencePool.value);
+                const suspects = JSON.parse(textareas.suspects.value);
+                const prophecies = JSON.parse(textareas.prophecies.value);
+
+                allCases[currentCaseId] = {
+                    ...meta,
+                    npcs,
+                    evidencePool,
+                    suspects,
+                    prophecies,
+                };
+                statusEl.textContent = `Editing: ${allCases[currentCaseId].title || currentCaseId} (unsaved changes)`;
+            } catch (e) {
+                statusEl.textContent = `Error parsing JSON: ${e.message}`;
+                console.error("JSON Parse Error:", e);
+            }
+        }
+
+        function exportCase() {
+            if (!currentCaseId) return;
+
+            updateCaseData(); // Ensure latest data is captured
+
+            const caseData = allCases[currentCaseId];
+            const dataStr = JSON.stringify(caseData, null, 2);
+            const blob = new Blob([dataStr], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `${currentCaseId}.json`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            statusEl.textContent = `Exported ${currentCaseId}.json`;
+        }
+
+        caseSelect.addEventListener('change', (e) => {
+            displayCase(e.target.value);
+        });
+
+        Object.values(textareas).forEach(textarea => {
+            textarea.addEventListener('input', updateCaseData);
+        });
+
+        exportBtn.addEventListener('click', exportCase);
+
+        // Initialize
+        loadAllCases();
+    </script>
+
+</body>
+
+</html>
+            <button id="export-btn" class="hidden">Export as new JS File</button>
+        </div>
+
+        <form id="editor-form" class="hidden">
+            <div class="form-section">
+                <h3>Case Metadata</h3><textarea id="meta-editor" data-section="meta"></textarea>
+            </div>
+            <div class="form-section">
+                <h3>NPCs</h3><textarea id="npcs-editor" data-section="npcs"></textarea>
+            </div>
+            <div class="form-section">
+                <h3>Evidence Pool</h3><textarea id="evidence-editor" data-section="evidencePool"></textarea>
+            </div>
+            <div class="form-section">
+                <h3>Suspects</h3><textarea id="suspects-editor" data-section="suspects"></textarea>
+            </div>
+            <div class="form-section">
+                <h3>Prophecies</h3><textarea id="prophecies-editor" data-section="prophecies"></textarea>
+            </div>
+        </form>
+    </div>
+
+    <script type="module" src="case-editor.js"></script>
+</body>
+
+</html>

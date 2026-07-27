@@ -14,7 +14,15 @@ export class FloatingIconManager {
     show(icon) {
         const iconEl = document.createElement('div');
         iconEl.className = 'floating-action-icon';
-        iconEl.textContent = icon;
+
+        const iconStr = String(icon);
+        if (iconStr.endsWith('.svg')) {
+            iconEl.innerHTML = `<img src="${iconStr}" class="icon-svg" loading="lazy">`;
+        } else if (iconStr.startsWith('<')) {
+            iconEl.innerHTML = iconStr;
+        } else {
+            iconEl.textContent = iconStr;
+        }
 
         // Start at a random horizontal position at the bottom of the screen
         const startX = Math.random() * 80 + 10; // 10% to 90% of screen width

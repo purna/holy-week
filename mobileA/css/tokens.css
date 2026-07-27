@@ -26,6 +26,8 @@
     --text-dim: #4a5568;
     --text-reverse: #080c14;
 
+    
+
 
     --font-display: 'Syne', sans-serif;
     --font-mono: 'Space Mono', monospace;
@@ -36,4 +38,6 @@
 
     --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
 }
+
+
 

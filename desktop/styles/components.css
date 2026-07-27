@@ -1904,7 +1904,7 @@
     font-weight: 700;
     width: 16px;
     height: 16px;
-    border-radius: 1px;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;

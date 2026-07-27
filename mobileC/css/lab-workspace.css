@@ -503,3 +503,10 @@
 #lab-workspace .actions-bar > :only-child {
   grid-column: 1 / -1;
 }
+
+#lab-workspace .card-name {
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--lw-text);
+  text-align: center;
+}

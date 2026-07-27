@@ -23,7 +23,7 @@ export class AccuseUI {
                         const status = this.cm.getSuspectStatus(s.id);
                         return `<div class="suspect-accordion">
                                     <button class="suspect-btn ${isLocked ? 'locked' : ''}" onclick="toggleSuspect(this)" aria-expanded="false">
-                                        <span class="suspect-btn-avatar">${avatarMarkup(s.avatar)}</span>
+                                        <span class="suspect-btn-avatar"><img src="../assets/characters/${s.avatar}" style="width:1.5em;height:1.5em;vertical-align:middle;object-fit:contain;" alt=""></span>
                                         <div class="suspect-btn-info"><div class="suspect-btn-name">${s.name}</div><div class="suspect-btn-role">${s.role}</div></div>
                                         <span class="accordion-chevron" aria-hidden="true">▶</span>
                                     </button>

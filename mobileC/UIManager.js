@@ -29,7 +29,6 @@ export class UIManager {
 
     this.prevScreen = "map";
 
-    this._scene2DInitialized = false;
     this.discoveredNPCs = new Set();
   }
 
@@ -80,8 +79,37 @@ export class UIManager {
     const container = document.getElementById("inv-scene");
     if (!c || !container) return;
 
-    if (!window.scene2d) {
-      this.init2DScene();
+    container.innerHTML = this.sceneUI.render();
+
+    const nextBtn = container.querySelector("#scene-next-btn");
+    if (nextBtn) {
+      nextBtn.addEventListener("click", async () => {
+        const panel = container.querySelector(".scene-intro-panel");
+        if (panel) panel.classList.add("hidden");
+        const mount = container.querySelector("#scene-canvas-mount");
+        if (mount) mount.style.display = "block";
+
+        const needsInit = !window.scene2d || !document.contains(window.scene2d.container);
+        if (needsInit) {
+          await this.init2DScene();
+        }
+
+        const c = this.cm.getActiveCase();
+        if (c && window.scene2d && window.scene2d.loadCase) {
+          const mapPath = this._getTilemapPath(c.id);
+          if (mapPath) {
+            try {
+              const res = await fetch(mapPath);
+              if (res.ok) {
+                const tileData = await res.json();
+                window.scene2d.loadCase(c.id, tileData);
+              }
+            } catch (e) {
+              console.warn('Failed to load tilemap:', mapPath, e);
+            }
+          }
+        }
+      });
     }
   }
 
@@ -229,30 +257,6 @@ export class UIManager {
      document.getElementById("inv-case-title").textContent = c.title;
      document.getElementById("inv-case-sub").textContent = c.subtitle;
 
-      if (!this._scene2DInitialized && !window.scene2d) {
-        try {
-          await this.init2DScene();
-          this._scene2DInitialized = true;
-        } catch (e) {
-          console.warn('2D scene init failed:', e);
-        }
-      }
-
-      let tileData = null;
-      if (window.scene2d && window.scene2d.loadCase) {
-        const caseId = c.id;
-        const mapPath = this._getTilemapPath(caseId);
-        if (mapPath) {
-          try {
-            const res = await fetch(mapPath);
-            if (res.ok) tileData = await res.json();
-          } catch (e) {
-            console.warn('Failed to load tilemap:', mapPath, e);
-          }
-        }
-        window.scene2d.loadCase(caseId, tileData);
-      }
-
       this.switchInvTab("scene");
       this.showScreen("investigation");
       this.prevScreen = "cases";
@@ -261,7 +265,7 @@ export class UIManager {
 
   async init2DScene(container) {
     window.scene2d = new Scene2D(this);
-    await window.scene2d.init('inv-scene');
+    await window.scene2d.init('scene-canvas-mount');
    }
 
   handleNpcInteraction(mode, npcId = null) {
@@ -647,7 +651,7 @@ export class UIManager {
       ? `<p class="picker-empty">No evidence collected yet.</p>`
       : collected.map(e => `
           <button class="inventory-item" data-evidence-id="${e.id}" aria-label="View ${e.name}">
-            <span class="inventory-icon">${e.icon || e.emoji}</span>
+            <span class="inventory-icon"><img src="${e.icon}" alt="${e.name}" class="icon-svg" loading="lazy"/></span>
             <span class="inventory-name">${e.name}</span>
           </button>
         `).join("");

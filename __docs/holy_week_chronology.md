@@ -19,7 +19,7 @@
 | 📍 **Location** | Road from Bethphage / Mount of Olives into Jerusalem |
 | 👁 **Witnesses** | The Twelve, large pilgrim crowds, Pharisees, Jerusalem residents |
 | 👥 **Characters** | Peter, John, Tobias (Owner), Jemimah (Skeptic), Eleazar (Sadducee) |
-| 🎮 **Game Quest** | **The Donkey King:** Find out why the crowd treats Him like a king. |
+| 🎮 **Game Quest** | **The Missing Donkey** (`triumphal_entry`, Act I): Find out why the crowd treats Him like a king. |
 
 **✡ Prophecy Fulfilled:**
 - [Zechariah 9:9](https://www.biblegateway.com/passage/?search=Zechariah+9:9&version=NIV) — *"See, your king comes to you, righteous and victorious, lowly and riding on a donkey."*
@@ -86,7 +86,7 @@
 | 📍 **Location** | Court of the Gentiles, Temple Mount, Jerusalem |
 | 👁 **Witnesses** | The Twelve, money changers, merchants, chief priests, scribes, the blind and lame (healed), children |
 | 👥 **Characters** | Malachi (Money Changer), Marcus (Guard), Jadan (Merchant) |
-| 🎮 **Game Quest** | **The Cleansed Temple:** Discover why Jesus became angry. |
+| 🎮 **Game Quest** | **The Overturned Tables** (`temple_cleansing`, Act I): Discover why Jesus became angry. |
 
 **✡ Prophecy Fulfilled:**
 - [Isaiah 56:7](https://www.biblegateway.com/passage/?search=Isaiah+56:7&version=NIV) — *"My house will be called a house of prayer for all nations."*
@@ -108,6 +108,7 @@
 | 🕙 **Time** | Early morning, en route from Bethany |
 | 📍 **Location** | Road between Bethany and Jerusalem |
 | 👁 **Witnesses** | Peter, James, John, Andrew, and the other disciples |
+| 🎮 **Game Quest** | **The Barren Fig Tree** (`fig_tree_incident`, Act I): A fig tree cursed for its unfruitfulness withers overnight — a stark lesson for the disciples. |
 
 ---
 
@@ -120,7 +121,7 @@
 | 📍 **Location** | Temple courts |
 | 👁 **Witnesses** | Chief priests, scribes, elders, the Twelve, Temple crowds |
 | 👥 **Characters** | Caiaphas, Samuel (Scribe), Nathanael (Pharisee) |
-| 🎮 **Game Quest** | **Render Unto Caesar:** Understand how Jesus answers impossible questions. |
+| 🎮 **Game Quest** | **The Silenced Teacher** (`authority_challenged`, Act II): Understand how Jesus answers impossible questions. |
 
 ---
 
@@ -135,7 +136,7 @@
 | 📍 **Location** | Temple courts |
 | 👁 **Witnesses** | Pharisees, Herodians, Sadducees, scribes, Temple crowds, the Twelve |
 | 👥 **Characters** | Caiaphas, Samuel (Scribe), Nathanael (Pharisee) |
-| 🎮 **Game Quest** | **The Greatest Commandment:** Understand the core of Jesus's teaching. |
+| 🎮 **Game Quest** | *Not a distinct game case — narrative content folded into* `authority_challenged` *("The Silenced Teacher"), see #7.* |
 
 **✡ Prophecy Fulfilled (within parables):**
 - [Psalm 118:22](https://www.biblegateway.com/passage/?search=Psalm+118:22&version=NIV) — *"The stone the builders rejected has become the cornerstone."* (quoted by Jesus, Matt 21:42)
@@ -153,7 +154,7 @@
 | 🕙 **Time** | Afternoon |
 | 📍 **Location** | Temple treasury |
 | 👁 **Witnesses** | The Twelve, other Temple-goers |
-| 🎮 **Game Quest** | **The Widow's Offering:** Learn what Jesus values. |
+| 🎮 **Game Quest** | *Not a distinct game case.* |
 
 ---
 
@@ -167,6 +168,7 @@
 | 🕙 **Time** | Late afternoon–evening |
 | 📍 **Location** | Mount of Olives, facing Jerusalem |
 | 👁 **Witnesses** | Peter, James, John, Andrew (Mark 13:3) |
+| 🎮 **Game Quest** | **The End of the Age** (`olivet_discourse`, Act II): Overlooking Jerusalem, Jesus delivers a profound prophecy about the Temple's destruction and the signs of His return. |
 
 **✡ Prophecy Referenced:**
 - [Daniel 9:27; 11:31; 12:11](https://www.biblegateway.com/passage/?search=Daniel+9:27&version=NIV) — *"The abomination that causes desolation."* (quoted by Jesus, Matt 24:15)
@@ -198,7 +200,7 @@
 | 📍 **Location** | Bethany |
 | 👁 **Witnesses** | Jesus, disciples, close followers |
 | 👥 **Characters** | Maluch (Spy), Annas, Martha, Nicodemus |
-| 🎮 **Game Quest** | **Whispers About Lazarus:** Travel to Bethany and investigate the rumor of a raised man. |
+| 🎮 **Game Quest** | **The Price of Life** (`lazarus_plot`, Act II): Travel to Bethany and investigate the rumor of a raised man. |
 
 **✡ Prophecy Fulfilled:**
 - [Isaiah 25:8](https://www.biblegateway.com/passage/?search=Isaiah+25:8&version=NIV) — The raising of Lazarus serves as a preview of God "swallowing up death forever."
@@ -222,7 +224,7 @@
 | 📍 **Location** | Jerusalem (a man's upper room, location unspecified) |
 | 👁 **Witnesses** | Peter and John (sent ahead), the room's owner |
 | 👥 **Characters** | John Mark, Rhoda (Servant), Judas |
-| 🎮 **Game Quest** | **The Last Supper:** Discover why this final meal matters. |
+| 🎮 **Game Quest** | **The Broken Cup** (`last_supper`, Act III): The Passover preparations in the upper room have been disturbed — and someone is hiding what they know. *(Case spans #12–15 below.)* |
 
 ---
 
@@ -247,7 +249,7 @@
 | 📍 **Location** | The Upper Room, Jerusalem |
 | 👁 **Witnesses** | The Twelve |
 | 👥 **Characters** | John Mark, Rhoda (Servant), Judas |
-| 🎮 **Game Quest** | **The Last Supper:** Discover why this final meal matters. |
+| 🎮 **Game Quest** | *Part of* `last_supper` *("The Broken Cup"), see #12.* |
 
 **✡ Prophecy Fulfilled:**
 - [Exodus 12:1–14](https://www.biblegateway.com/passage/?search=Exodus+12:1-14&version=NIV) — The Passover lamb: type of Christ, the Lamb of God.
@@ -265,7 +267,7 @@
 | 📍 **Location** | The Upper Room, Jerusalem |
 | 👁 **Witnesses** | The Twelve (Judas departs; eleven remain) |
 | 👥 **Characters** | John Mark, Rhoda (Servant), Judas |
-| 🎮 **Game Quest** | **The Last Supper:** Discover why this final meal matters. |
+| 🎮 **Game Quest** | *Part of* `last_supper` *("The Broken Cup"), see #12.* |
 
 **✡ Prophecy Fulfilled:**
 - [Zechariah 13:7](https://www.biblegateway.com/passage/?search=Zechariah+13:7&version=NIV) — *"Strike the shepherd, and the sheep will be scattered."* (quoted by Jesus, Matt 26:31)
@@ -292,7 +294,7 @@
 | 📍 **Location** | Garden of Gethsemane, Mount of Olives |
 | 👁 **Witnesses** | Peter, James, John (innermost); the other eight nearby; an angel (Luke 22:43) |
 | 👥 **Characters** | Malchus, Peter, Roman Soldier |
-| 🎮 **Game Quest** | **The Garden:** Witness the arrest. |
+| 🎮 **Game Quest** | **The Severed Ear** (`gethsemane_arrest`, Act III): An armed mob entered Gethsemane under cover of darkness. A sword was drawn, yet the physical evidence makes no sense. *(Case spans #17–18 below.)* |
 
 **✡ Prophecy Fulfilled:**
 - [Psalm 22:1](https://www.biblegateway.com/passage/?search=Psalm+22:1&version=NIV) — *"My God, my God, why have you forsaken me?"* (anguish foreshadowed)
@@ -311,7 +313,7 @@
 | 📍 **Location** | Garden of Gethsemane, Mount of Olives |
 | 👁 **Witnesses** | Judas Iscariot, chief priests' servants, Roman soldiers, the Eleven (who then fled); Malchus (ear severed and healed) |
 | 👥 **Characters** | Malchus, Peter, Roman Soldier |
-| 🎮 **Game Quest** | **The Garden:** Witness the arrest. |
+| 🎮 **Game Quest** | *Part of* `gethsemane_arrest` *("The Severed Ear"), see #17.* |
 
 **✡ Prophecy Fulfilled:**
 - [Zechariah 13:7](https://www.biblegateway.com/passage/?search=Zechariah+13:7&version=NIV) — Disciples scattered.
@@ -344,7 +346,7 @@
 | 📍 **Location** | Palace of Caiaphas, Jerusalem |
 | 👁 **Witnesses** | Caiaphas, chief priests, scribes, elders, false witnesses, temple guards; Peter watched from the courtyard |
 | 👥 **Characters** | Caiaphas, Peter, Ananias (False Witness) |
-| 🎮 **Game Quest** | **The Trial:** Build your evidence board and reach a conclusion. |
+| 🎮 **Game Quest** | **The Midnight Tribunal** (`sanhedrin_trial`, Act III): Inside the High Priest's residence, a legal sham is unfolding while a disciple waits in the cold courtyard. *(Also covers Peter's denials, #21, in the same courtyard.)* |
 
 **✡ Prophecy Fulfilled:**
 - [Isaiah 53:7](https://www.biblegateway.com/passage/?search=Isaiah+53:7&version=NIV) — *"He was led like a lamb to the slaughter, and as a sheep before its shearers is silent, so he did not open his mouth."*
@@ -404,7 +406,7 @@
 | 📍 **Location** | The Praetorium (Pilate's headquarters), Jerusalem |
 | 👁 **Witnesses** | Pontius Pilate, chief priests, scribes, Jerusalem crowds |
 | 👥 **Characters** | Pontius Pilate, Barabbas |
-| 🎮 **Game Quest** | **The Trial:** Build your evidence board and reach a conclusion. |
+| 🎮 **Game Quest** | *Leads into* `barabbas_choice` *("The People's Choice"), tagged at #26.* |
 
 **✡ Prophecy Fulfilled:**
 - [Isaiah 53:7](https://www.biblegateway.com/passage/?search=Isaiah+53:7&version=NIV) — Silent before his accusers.
@@ -434,6 +436,7 @@
 | 🕙 **Time** | Morning (~8–9 AM) |
 | 📍 **Location** | The Praetorium / Pilate's Judgment Seat (Gabbatha), Jerusalem |
 | 👁 **Witnesses** | Pilate, his wife (sent a message), chief priests, crowds; Barabbas |
+| 🎮 **Game Quest** | **The People's Choice** (`barabbas_choice`, Act III): Pilate offers a choice between a Prince of Peace and a man of violence. Who will the crowd choose? |
 
 ---
 
@@ -472,6 +475,7 @@
 | 🕙 **Time** | 9 AM — "the third hour" (Mark 15:25) |
 | 📍 **Location** | Golgotha ("Place of the Skull"), outside Jerusalem's walls |
 | 👁 **Witnesses** | Roman soldiers, centurion, chief priests, scribes, elders, two crucified criminals, passing crowds, Mary Magdalene, Mary (mother of James & Joseph), Salome, Mary the mother of Jesus, John the beloved disciple, other women from Galilee |
+| 🎮 **Game Quest** | **The Final Sacrifice** (`crucifixion_site`, Act III): The sky has turned to ink and the ground is groaning. On the hill of execution, the records of Rome and Jerusalem are being rewritten by the rocks themselves. *(Case spans #29–33 below.)* |
 
 **✡ Prophecy Fulfilled:**
 - [Psalm 22:1–18](https://www.biblegateway.com/passage/?search=Psalm+22:1-18&version=NIV) — *"They pierced my hands and my feet… they divide my clothes among them and cast lots for my garment."*
@@ -590,6 +594,7 @@
 | 📍 **Location** | The garden tomb of Joseph of Arimathea, near Golgotha |
 | 👁 **Witnesses** | Mary Magdalene, Mary mother of James, Salome, Joanna, angels, Peter, John; Jesus appeared first to Mary Magdalene (John 20:11–18), then to the other women (Matt 28:9–10) |
 | 👥 **Characters** | Mary Magdalene, Marcus (Guard), Joseph of Arimathea |
+| 🎮 **Game Quest** | **The Empty Tomb** (`resurrection`, Act IV): The sealed tomb is open. The body is gone. The guards have fled. What happened on the third day? |
 
 **✡ Prophecy Fulfilled:**
 - [Psalm 16:10](https://www.biblegateway.com/passage/?search=Psalm+16:10&version=NIV) — *"You will not abandon me to the realm of the dead, nor will you let your faithful one see decay."* (cited in Acts 2:27–31)
@@ -599,6 +604,41 @@
 - [Isaiah 52:7](https://www.biblegateway.com/passage/?search=Isaiah+52:7&version=NIV) — *"How beautiful on the mountains are the feet of those who bring good news."* (The women becoming the first evangelists).
 - [Isaiah 26:19](https://www.biblegateway.com/passage/?search=Isaiah+26:19&version=NIV) — *"Your dead will live, LORD; their bodies will rise—let those who dwell in the dust wake up and shout for joy."*
 - [Psalm 22:1–31](https://www.biblegateway.com/passage/?search=Psalm+22:1-31&version=NIV) — The crucifixion psalm ends not in defeat, but in a proclamation of victory to be declared to future generations.
+
+---
+
+### 37. 🪖 The Guards' False Report
+**📖 Passage:** [Matthew 28:11–15](https://www.biblegateway.com/passage/?search=Matthew+28:11-15&version=NIV)
+
+| | |
+|---|---|
+| 🕙 **Time** | Sunday, shortly after the resurrection is discovered |
+| 📍 **Location** | Jerusalem — guards report to the chief priests, having come from the garden tomb, Golgotha |
+| 👁 **Witnesses** | The Roman/Temple guard detail, chief priests, elders |
+| 🎮 **Game Quest** | **The Guard's Report** (`roman_inquiry`, Act IV): A Roman guard detail has returned from the garden tomb with a story that breaks military law. What are they hiding? |
+
+**✡ Prophecy Fulfilled:**
+- [Psalm 2:1–2](https://www.biblegateway.com/passage/?search=Psalm+2:1-2&version=NIV) — *"The kings of the earth rise up… against the LORD and against his anointed."* (authorities conspiring to suppress the truth)
+
+---
+
+## AFTER THE RESURRECTION — Post-Easter Appearances (timing uncertain; not tied to a specific Nisan date)
+
+---
+
+### 38. 🐟 Peter's Restoration by the Sea of Galilee
+**📖 Passage:** [John 21:1–19](https://www.biblegateway.com/passage/?search=John+21:1-19&version=NIV)
+
+| | |
+|---|---|
+| 🕙 **Time** | Dawn |
+| 📍 **Location** | Shore of the Sea of Galilee |
+| 👁 **Witnesses** | Peter, Thomas, Nathanael, James and John (sons of Zebedee), two other disciples |
+| 🎮 **Game Quest** | **Peter's Restoration** (`peter_restoration`, Act IV): By the Sea of Galilee, a disciple is confronted with his failures — and given a second chance. |
+
+**✡ Prophecy Fulfilled / Referenced:**
+- [Zechariah 13:7](https://www.biblegateway.com/passage/?search=Zechariah+13:7&version=NIV) — *"Strike the shepherd, and the sheep will be scattered."* (the scattering, here reversed through restoration)
+- [Ezekiel 34:11–16](https://www.biblegateway.com/passage/?search=Ezekiel+34:11-16&version=NIV) — God himself searching for and restoring his scattered sheep — echoed in Jesus's threefold charge to Peter to "feed my sheep."
 
 ---
 
@@ -638,6 +678,8 @@
 | Fri before 6 PM | Burial | [John 19:38–42](https://www.biblegateway.com/passage/?search=John+19:38-42&version=NIV) |
 | Saturday | Guard placed | [Matt 27:62–66](https://www.biblegateway.com/passage/?search=Matthew+27:62-66&version=NIV) |
 | **Sunday dawn** | **Resurrection** | [Matt 28:1–10](https://www.biblegateway.com/passage/?search=Matthew+28:1-10&version=NIV) |
+| Sunday | Guards' false report | [Matt 28:11–15](https://www.biblegateway.com/passage/?search=Matthew+28:11-15&version=NIV) |
+| *(timing uncertain)* | Peter's Restoration | [John 21:1–19](https://www.biblegateway.com/passage/?search=John+21:1-19&version=NIV) |
 
 ---
 
@@ -895,3 +937,30 @@ For further study into the criteria used to analyze these events historically (s
 * **Habermas, Gary R., and Licona, Michael R.** *The Case for the Resurrection of Jesus.* (Kregel Publications, 2004). Outlines the academic consensus regarding the disciples' sudden transformation.  
 * **Meier, John P.** *A Marginal Jew: Rethinking the Historical Jesus. Volume One: The Roots of the Problem and the Person.* (Anchor Bible Reference Library, 1991). The benchmark study for evaluating the *Testimonium Flavianum*.  
 * **Wright, N.T.** *The Resurrection of the Son of God.* (Fortress Press, 2003). A massive, thorough historical investigation into 1st-century Jewish and Roman beliefs about death, burial, and the emergence of the early Christian movement.
+
+---
+
+# Appendix: Game Case Reference
+
+The 14 canonical cases below are sourced directly from `act1_case.js`–`act4_case.js` (id, title, and subtitle taken verbatim from each case object). Every case now has exactly one tagged chronology entry above. Anything in this document that does *not* correspond to one of these 14 ids — sub-events, historical/archaeological corroboration, the location index — is supplementary material, not part of the current game.
+
+| Act | Case ID | Title | Chronology Event(s) |
+|---|---|---|---|
+| I | `triumphal_entry` | The Missing Donkey | #1 |
+| I | `temple_cleansing` | The Overturned Tables | #5 |
+| I | `fig_tree_incident` | The Barren Fig Tree | #6 (cause: #4) |
+| II | `authority_challenged` | The Silenced Teacher | #7 |
+| II | `lazarus_plot` | The Price of Life | #11 (Day 4) |
+| II | `olivet_discourse` | The End of the Age | #10 |
+| III | `last_supper` | The Broken Cup | #12–15 |
+| III | `gethsemane_arrest` | The Severed Ear | #17–18 |
+| III | `sanhedrin_trial` | The Midnight Tribunal | #20 (+ #21 Peter's denials) |
+| III | `barabbas_choice` | The People's Choice | #26 (lead-in: #24–25) |
+| III | `crucifixion_site` | The Final Sacrifice | #29 (+ #30–33) |
+| IV | `resurrection` | The Empty Tomb | #36 |
+| IV | `roman_inquiry` | The Guard's Report | #37 *(previously missing)* |
+| IV | `peter_restoration` | Peter's Restoration | #38 *(previously missing)* |
+
+**Chronology events not tied to any of the 14 cases** (kept for scriptural completeness; not currently gamified): #2 (Weeps over Jerusalem), #3 (Surveys Temple), #8 (Teaching & Parables), #9 (Widow's Offering), #16 (Farewell Discourse), #19 (Trial before Annas), #22 (Formal Sanhedrin condemnation), #23 (Judas's death), #25 (Trial before Herod), #27 (Mocking & Scourging), #28 (Via Dolorosa), #34 (Burial), #35 (Tomb sealed/guard placed).
+
+**Case-dependency chain** (from each case's `requires` field): `triumphal_entry` → `temple_cleansing` → (`fig_tree_incident` / `authority_challenged`) → `lazarus_plot` → (`olivet_discourse` / `last_supper`) → `gethsemane_arrest` → `sanhedrin_trial` → `barabbas_choice` → `crucifixion_site` → `resurrection` → `roman_inquiry` → `peter_restoration`.

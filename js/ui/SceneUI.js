@@ -24,11 +24,26 @@ export class SceneUI {
             ? `<p class="scene-intro">${this.a11y.simplify(introText)}</p>`
             : getIntroHtml(c.intro, c.subtitle);
 
+        const hasCanvas = this.ui && (typeof this.ui.init3DScene === 'function' || typeof this.ui.init2DScene === 'function');
+        const canvasMount = hasCanvas ? `<div id="scene-canvas-mount" style="display:none;"></div>` : '';
+        const nextBtn = hasCanvas ? `<button class="scene-next-btn" id="scene-next-btn">Next</button>` : '';
+        const evidenceGrid = !hasCanvas ? this.renderEvidenceGrid() : '';
+
         return `
-            <h3 class="section-title">Crime Scene</h3>
-            <div class="prophecy-scene-intro">Examine the scene and tap glowing objects to collect evidence for your investigation.</div>
-            ${introMarkup}
-            ${!this.cm.getCaseProgress(c.id)?.sceneViewed ? `<button class="lets-investigate-btn" onclick="this.style.display='none'; const p=window.cm.getCaseProgress(window.cm.activeCaseId); if(p) p.sceneViewed=true; window.cm._saveProgress(); switchInvTab('people')">Let's investigate</button>` : ''}
+            <div class="scene-intro-panel">
+                <h3 class="section-title">Crime Scene</h3>
+                <div class="prophecy-scene-intro">Examine the scene and tap glowing objects to collect evidence for your investigation.</div>
+                ${introMarkup}
+                ${nextBtn}
+            </div>
+            ${canvasMount}
+            ${evidenceGrid}`;
+    }
+
+    renderEvidenceGrid() {
+        const c = this.cm.getActiveCase();
+        if (!c) return '';
+        return `
             <div class="evidence-grid">
                 ${(c.evidencePool || []).map(e => {
                     const col = this.es.collected.includes(e.id);

@@ -13,7 +13,6 @@
             -webkit-user-select: none;
         }
         body {
-            position: relative;
             background-color: #1a1410;
             color: #f5ebe0;
             font-family: monospace;
@@ -118,50 +117,12 @@
             max-width: 512px;
             line-height: 1.4;
         }
-        #lives-display {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            color: #f87171;
-            font-size: 24px;
-            text-shadow: 1px 1px 2px #000;
-            z-index: 10;
-        }
-        .overlay {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(0,0,0,0.9);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-            text-align: center;
-            color: white;
-        }
-        .overlay h1 { font-size: 3em; color: #f87171; margin-bottom: 20px; }
-        .overlay button {
-            background: #d4a373;
-            border: none;
-            padding: 12px 30px;
-            font-size: 1.2em;
-            font-family: monospace;
-            cursor: pointer;
-            color: #1a1410;
-        }
     </style>
 </head>
 <body>
 
 <div id="game-container">
     <canvas id="gameCanvas" width="512" height="512"></canvas>
-    <div id="lives-display"></div>
-</div>
-
-<div id="game-over-screen" class="overlay" style="display: none;">
-    <h1>GAME OVER</h1>
-    <button id="btn-try-again">Try Again</button>
 </div>
 
 <div id="ui-controls-container">
@@ -171,17 +132,7 @@
         <div class="btn" id="btn-right">▶</div>
         <div class="btn" id="btn-down">▼</div>
     </div>
-    <div class="action-group">
-        <div id="btn-action" class="btn disabled">TALK</div>
-    </div>
-    <div class="action-group">
-        <div id="btn-action-prayer" class="btn active">PRAY</div>
-        <div id="prayer-count" class="action-count">x3</div>
-    </div>
-    <div class="action-group">
-        <div id="btn-action-heal" class="btn active">HEAL</div>
-        <div id="heal-count" class="action-count">x1</div>
-    </div>
+    <div id="btn-action" class="disabled">TALK</div>
 </div>
 
 <div id="hud">
@@ -296,33 +247,17 @@ const mapTemplate = [
     "################################################################"
 ];
 
-let gameOver = false;
 const levelMap = [];
+const npcs = [];
 
 const player = { 
     x: 28,            
     y: 35, 
     renderX: 28 * TILE_SIZE, 
     renderY: 35 * TILE_SIZE,
-    startX: 28,
-    startY: 35,
     facing: 'down',
-    isMoving: false,
-    lives: 3,
-    prayers: 3,
-    heals: 1,
-    invisibleUntil: 0
+    isMoving: false
 };
-
-const npcs = [];
-const enemies = [];
-const ENEMY_TYPES = {
-    SOLDIER: { color: '#dc2626', speed: 0.04, pattern: 'patrol' },
-    SADDUCEE: { color: '#9333ea', speed: 0.03, pattern: 'wander' },
-    PHARISEE: { color: '#0284c7', speed: 0.03, pattern: 'square' }
-};
-const CHASE_RADIUS = 8;
-const INVISIBILITY_DURATION = 2000; // 2 seconds
 
 const camera = { x: player.renderX - VIEW_WIDTH/2, y: player.renderY - VIEW_HEIGHT/2 };
 const particles = [];
@@ -367,13 +302,8 @@ function initializeGame() {
             opacity: 0.1 + Math.random() * 0.3
         });
     }
-
-    spawnEnemies(10);
 }
 initializeGame();
-spawnEnemies(10);
-updateLivesDisplay();
-updateActionCounts();
 
 const talkButton = document.getElementById('btn-action');
 
@@ -385,16 +315,6 @@ function getStitchNoise(px, py) {
 function getTileAt(col, row) {
     if (col < 0 || col >= MAP_SIZE || row < 0 || row >= MAP_SIZE) return 2;
     return levelMap[row][col];
-}
-
-function getFrontNPC() {
-    let lookX = player.x;
-    let lookY = player.y;
-    if (player.facing === 'up') lookY--;
-    if (player.facing === 'down') lookY++;
-    if (player.facing === 'left') lookX--;
-    if (player.facing === 'right') lookX++;
-    return npcs.find(n => n.x === lookX && n.y === lookY) || null;
 }
 
 function renderTile(ctx, id, col, row, time, camX, camY) {
@@ -540,7 +460,6 @@ function getFrontNPC() {
 }
 
 function updateTalkButtonState() {
-    const talkButton = document.getElementById('btn-action');
     if (getFrontNPC()) {
         talkButton.className = 'active';
     } else {
@@ -553,7 +472,6 @@ function isWalkable(gx, gy) {
     const tile = levelMap[gy][gx];
     if (tile === 1 || tile === 2 || tile === 4 || tile === 5 || tile === 6) return false;
     if (npcs.some(n => n.x === gx && n.y === gy)) return false;
-    if (enemies.some(e => Math.floor(e.x) === gx && Math.floor(e.y) === gy)) return false;
     return true;
 }
 
@@ -571,52 +489,8 @@ function triggerInteraction() {
     const targetNpc = getFrontNPC();
     if (targetNpc) {
         alert(`✨ EVENT TRIGGERED ✨\n\nYou successfully intercepted ${targetNpc.name} near ${targetNpc.location}!`);
-        isDialogueOpen = true;
-        setTimeout(() => {
-            isDialogueOpen = false;
-            player.invisibleUntil = Date.now() + INVISIBILITY_DURATION;
-        }, 2000);
     }
 }
-
-function usePlayerAction(actionType) {
-    if (actionType === 'prayer' && player.prayers > 0) {
-        player.prayers--;
-        enemies.forEach(e => {
-            if (e.type === 'SADDUCEE' || e.type === 'PHARISEE') {
-                e.stoppedUntil = Date.now() + 5000; // Stop for 5 seconds
-            }
-        });
-    } else if (actionType === 'heal' && player.heals > 0) {
-        player.heals--;
-        enemies.forEach(e => {
-            if (e.type === 'SOLDIER') e.stoppedUntil = Date.now() + 5000;
-        });
-    }
-    updateActionCounts();
-}
-
-function handlePlayerArrested() {
-    isDialogueOpen = true; // Pause enemy movement
-    const overlay = document.createElement('div');
-    overlay.style.cssText = 'position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: black; opacity: 0; transition: opacity 0.2s; z-index: 500;';
-    document.getElementById('game-container').appendChild(overlay);
-
-    setTimeout(() => { overlay.style.opacity = '1'; }, 10);
-
-    setTimeout(() => {
-        player.x = player.startX;
-        player.y = player.startY;
-        player.invisibleUntil = Date.now() + INVISIBILITY_DURATION * 2; // Longer invisibility on respawn
-        overlay.style.opacity = '0';
-        setTimeout(() => {
-            overlay.remove();
-            isDialogueOpen = false;
-        }, 200);
-    }, 400);
-}
-
-document.getElementById('btn-try-again').addEventListener('click', () => location.reload());
 
 window.addEventListener('keydown', e => {
     switch(e.key.toLowerCase()) {
@@ -628,22 +502,11 @@ window.addEventListener('keydown', e => {
     }
 });
 
-initializeGame();
-spawnEnemies(10);
-updateLivesDisplay();
-updateActionCounts();
-
-
-const talkButton = document.getElementById('btn-action');
 document.getElementById('btn-up').addEventListener('pointerdown', (e) => { e.preventDefault(); movePlayer(0, -1, 'up'); });
 document.getElementById('btn-down').addEventListener('pointerdown', (e) => { e.preventDefault(); movePlayer(0, 1, 'down'); });
 document.getElementById('btn-left').addEventListener('pointerdown', (e) => { e.preventDefault(); movePlayer(-1, 0, 'left'); });
 document.getElementById('btn-right').addEventListener('pointerdown', (e) => { e.preventDefault(); movePlayer(1, 0, 'right'); });
 talkButton.addEventListener('pointerdown', (e) => { e.preventDefault(); triggerInteraction(); });
-document.getElementById('btn-action-prayer').addEventListener('pointerdown', (e) => { e.preventDefault(); usePlayerAction('prayer'); });
-document.getElementById('btn-action-heal').addEventListener('pointerdown', (e) => { e.preventDefault(); usePlayerAction('heal'); });
-
-let isDialogueOpen = false;
 
 function drawCustomPatternSprite(ctx, startX, startY, size, bounce, isPlayer, facing, camX, camY) {
     const q = size / 4; 
@@ -651,10 +514,7 @@ function drawCustomPatternSprite(ctx, startX, startY, size, bounce, isPlayer, fa
     const sy = startY - bounce - camY;
 
     for (let i = 0; i < 4; i++) {
-        if (isPlayer) {
-            ctx.globalAlpha = (Date.now() < player.invisibleUntil) ? 0.5 : 1.0;
-            ctx.fillStyle = (i === 1) ? PALETTE.pattern_brown : PALETTE.sky_blue;
-        }
+        if (isPlayer) ctx.fillStyle = (i === 1) ? PALETTE.pattern_brown : PALETTE.sky_blue;
         else ctx.fillStyle = (i === 1) ? PALETTE.pattern_brown : PALETTE.sprite_white;
         ctx.fillRect(sx, sy + (i * q), size, q);
     }
@@ -677,7 +537,6 @@ function drawCustomPatternSprite(ctx, startX, startY, size, bounce, isPlayer, fa
     if (facing === 'left')  { pupilX1 -= 1; pupilX2 -= 1; }
     ctx.fillRect(pupilX1, eyeY + 1, 2, 2);
     ctx.fillRect(pupilX2, eyeY + 1, 2, 2);
-    ctx.globalAlpha = 1.0;
 }
 
 function drawNPCNameTag(ctx, npc, bounce, camX, camY) {
@@ -775,63 +634,6 @@ function drawTrackingMinimap(ctx, time) {
     ctx.restore();
 }
 
-function updateEnemies() {
-    if (isDialogueOpen) return;
-function mainLoop() {
-    if (gameOver) return;
-
-    enemies.forEach(enemy => {
-        if (Date.now() < enemy.stoppedUntil) {
-            enemy.isMoving = false;
-            return;
-        }
-
-        const distToPlayer = Math.sqrt(Math.pow(enemy.x - player.x, 2) + Math.pow(enemy.y - player.y, 2));
-
-        if (distToPlayer <= CHASE_RADIUS && Date.now() > player.invisibleUntil) {
-            enemy.state = 'chase';
-        } else {
-            enemy.state = 'wander';
-        }
-
-        let dx = 0, dy = 0;
-
-        if (enemy.state === 'chase') {
-            if (Math.abs(player.x - enemy.x) > Math.abs(player.y - enemy.y)) {
-                dx = Math.sign(player.x - enemy.x);
-            } else {
-                dy = Math.sign(player.y - enemy.y);
-            }
-        } else { // wander
-            enemy.state_timer--;
-            if (enemy.state_timer <= 0) {
-                const dirs = [{x:0,y:1}, {x:0,y:-1}, {x:1,y:0}, {x:-1,y:0}];
-                enemy.dir = dirs[Math.floor(Math.random() * 4)];
-                enemy.state_timer = 50 + Math.random() * 50;
-            }
-            dx = enemy.dir.x;
-            dy = enemy.dir.y;
-        }
-
-        const speed = ENEMY_TYPES[enemy.type].speed;
-        const nextX = enemy.x + dx * speed;
-        const nextY = enemy.y + dy * speed;
-
-        if (isWalkable(Math.floor(nextX), Math.floor(nextY))) {
-            enemy.x = nextX;
-            enemy.y = nextY;
-            enemy.isMoving = true;
-        } else {
-            enemy.state_timer = 0; // new direction
-            enemy.isMoving = false;
-        }
-
-        enemy.renderX += (enemy.x * TILE_SIZE - enemy.renderX) * 0.2;
-        enemy.renderY += (enemy.y * TILE_SIZE - enemy.renderY) * 0.2;
-    });
-}
-
-
 function mainLoop() {
     const time = Date.now();
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -868,8 +670,6 @@ function mainLoop() {
         }
     }
 
-    updateEnemies();
-
     const activeTargetNPC = getFrontNPC();
 
     npcs.forEach(n => {
@@ -888,32 +688,6 @@ function mainLoop() {
 
     let walkBounce = player.isMoving ? Math.abs(Math.sin(time * 0.015)) * 5 : 0;
     drawCustomPatternSprite(ctx, player.renderX + 4, player.renderY + 4, TILE_SIZE - 8, walkBounce, true, player.facing, camera.x, camera.y);
-
-    enemies.forEach(enemy => {
-        let bounce = enemy.isMoving ? Math.abs(Math.sin((time / 150) + enemy.x)) * 4 : 0;
-        ctx.fillStyle = ENEMY_TYPES[enemy.type].color;
-        ctx.fillRect(enemy.renderX - camera.x, enemy.renderY - camera.y - bounce, TILE_SIZE, TILE_SIZE);
-
-        if (Date.now() < enemy.stoppedUntil) {
-            ctx.fillStyle = 'rgba(0, 255, 255, 0.7)';
-            ctx.font = 'bold 12px monospace';
-            ctx.textAlign = 'center';
-            ctx.fillText('Zzz', enemy.renderX + TILE_SIZE/2 - camera.x, enemy.renderY - bounce - camera.y - 5);
-        }
-
-        if (Date.now() > player.invisibleUntil && Math.abs(player.x - enemy.x) < 0.8 && Math.abs(player.y - enemy.y) < 0.8) {
-            player.lives--;
-            updateLivesDisplay();
-            player.x = player.startX;
-            player.y = player.startY;
-            if (player.lives <= 0) {
-                gameOver = true;
-                document.getElementById('game-over-screen').style.display = 'flex';
-            } else {
-                handlePlayerArrested();
-            }
-        }
-    });
 
     ctx.fillStyle = '#dfb24c'; 
     particles.forEach(p => {

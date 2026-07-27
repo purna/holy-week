@@ -192,14 +192,21 @@ export class UIManager {
     const container = document.getElementById("inv-scene");
     if (!c || !container) return;
 
-    // Initialize 3D scene if not already done
-    if (typeof window.scene3d === 'undefined') {
-      this.init3DScene(container);
-    }
+    container.innerHTML = this.sceneUI.render();
 
-    // Show intro overlay if scene not yet viewed
-    if (!this.cm.getCaseProgress(c.id)?.sceneViewed) {
-      if (window.scene3d) window.scene3d.showIntro();
+    const nextBtn = container.querySelector("#scene-next-btn");
+    if (nextBtn) {
+      nextBtn.addEventListener("click", () => {
+        const panel = container.querySelector(".scene-intro-panel");
+        if (panel) panel.classList.add("hidden");
+        const mount = container.querySelector("#scene-canvas-mount");
+        if (mount) mount.style.display = "block";
+        if (typeof window.scene3d === 'undefined') {
+          this.init3DScene(container);
+        } else if (window.scene3d) {
+          window.scene3d.handleResize();
+        }
+      });
     }
   }
 
@@ -262,7 +269,6 @@ export class UIManager {
     if (result.type === "selection") this.renderPeople();
     else result.error ? this.audio.playError() : this.audio.playClue();
     if (result?.scoreDelta) this.cm.addScore(result.scoreDelta);
-    this.renderLab();
     if (!result?.error && result?.operation) {
       const view = document.getElementById("inv-lab");
       this.labUI.showActiveResultModal?.(view);
@@ -822,7 +828,7 @@ export class UIManager {
       ? `<p class="picker-empty">No evidence collected yet.</p>`
       : collected.map(e => `
           <button class="inventory-item" data-evidence-id="${e.id}" aria-label="View ${e.name}">
-            <span class="inventory-icon">${e.icon || e.emoji}</span>
+            <span class="inventory-icon"><img src="${e.icon}" alt="${e.name}" class="icon-svg" loading="lazy"/></span>
             <span class="inventory-name">${e.name}</span>
           </button>
         `).join("");

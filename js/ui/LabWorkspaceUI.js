@@ -200,12 +200,40 @@ export class LabWorkspaceUI {
           return;
         }
         
-        const card = e.target.closest(".ev-card");
-        if (card) {
-          const id = card.dataset.evidenceId;
-          const item = this.evidence.find(i => i.id === id);
-          if (!item) return;
-          if (this._activeComparatorSlotIndex !== null) {
+    const card = e.target.closest(".ev-card");
+    if (card) {
+      const id = card.dataset.evidenceId;
+      const item = this.evidence.find(i => i.id === id);
+      if (!item) return;
+
+      // Clicking a card that's already in a comparator slot removes it
+      const slot = card.closest(".comparator-slot");
+      if (slot) {
+        const idx = parseInt(slot.id.replace("lw-comp-slot-", ""), 10);
+        if (this.compareSlots[idx]?.id === id) {
+          this.compareSlots[idx] = null;
+          this._renderComparatorSlots();
+          this._renderComparatorBank();
+          this._setFeedback(`Removed ${item.name} from Slot ${idx === 0 ? 'A' : 'B'}.`);
+          return;
+        }
+      }
+
+      // Clicking a card that's already in a timeline step removes it
+      const timelineStep = card.closest(".timeline-step");
+      if (timelineStep) {
+        const step = parseInt(timelineStep.dataset.step, 10);
+        const idx = this.timelineSlots[step]?.indexOf(id);
+        if (idx >= 0) {
+          this.timelineSlots[step].splice(idx, 1);
+          this._renderTimelineSteps();
+          this._renderTimelineBank();
+          this._setFeedback(`Removed ${item.name} from Step ${step}.`);
+          return;
+        }
+      }
+
+      if (this._activeComparatorSlotIndex !== null) {
             this.compareSlots[this._activeComparatorSlotIndex] = item;
             this._activeComparatorSlotIndex = null;
             this._renderComparatorSlots();
@@ -246,6 +274,8 @@ export class LabWorkspaceUI {
             this._activeDeskStation = null;
             this._renderCandleViewer();
             this._renderDeskBank();
+            this.onResult?.({ scoreDelta: -1 });
+            this._setFeedback(`Candlelight inspection costs 1 point.`, "error");
           } else if (this._activeDeskStation === "shredder") {
             this.deskItems = this.deskItems.filter(i => i.id !== id);
             if (!this.shreddedItems.find(i => i.id === id)) this.shreddedItems.push(item);
@@ -325,28 +355,37 @@ export class LabWorkspaceUI {
         } else if (dropZone.classList.contains('folder-tray')) {
           const key = dropZone.dataset.folder;
           if (!this.folderState[key]) this.folderState[key] = [];
-          const idx = this.folderState[key].indexOf(id);
-          if (idx >= 0) {
-            this.folderState[key].splice(idx, 1);
-          } else {
+          const alreadyHere = this.folderState[key].includes(id);
+          for (const k in this.folderState) {
+            const idx = this.folderState[k].indexOf(id);
+            if (idx >= 0) this.folderState[k].splice(idx, 1);
+          }
+          if (!alreadyHere) {
             this.folderState[key].push(id);
+            this._setFeedback(`Filed item.`, "success");
+          } else {
+            this._setFeedback(`Unfiled item.`, "success");
           }
           this._renderFolderContents();
-          this._setFeedback(`Filed item.`, "success");
         } else if (dropZone.classList.contains('timeline-step')) {
           const step = parseInt(dropZone.dataset.step, 10);
           if (!this.timelineSlots[step]) this.timelineSlots[step] = [];
-          const idx = this.timelineSlots[step].indexOf(id);
-          if (idx >= 0) {
-            this.timelineSlots[step].splice(idx, 1);
-          } else {
+          const alreadyHere = this.timelineSlots[step].includes(id);
+          for (const s in this.timelineSlots) {
+            const idx = this.timelineSlots[s].indexOf(id);
+            if (idx >= 0) this.timelineSlots[s].splice(idx, 1);
+          }
+          if (!alreadyHere) {
             const max = step === 3 ? 2 : 1;
             if (this.timelineSlots[step].length < max) {
               this.timelineSlots[step].push(id);
+              this._setFeedback(`Placed in Step ${step}.`, "success");
             } else {
               this._setFeedback(`Step ${step} is full.`, "error");
               return;
             }
+          } else {
+            this._setFeedback(`Removed from Step ${step}.`, "success");
           }
           this._renderTimelineSteps();
           this._renderTimelineBank();
@@ -354,6 +393,8 @@ export class LabWorkspaceUI {
           this.candleItem = this.evidence.find(i => i.id === id);
           this._renderCandleViewer();
           this._renderDeskBank();
+          this.onResult?.({ scoreDelta: -1 });
+          this._setFeedback(`Candlelight inspection costs 1 point.`, "error");
         } else if (dropZone.id === 'lw-shredder') {
           this.deskItems = this.deskItems.filter(i => i.id !== id);
           if (!this.shreddedItems.find(i => i.id === id)) {

@@ -148,12 +148,53 @@
 }
 
 /* ── Timeline steps ── */
+#lab-workspace .timeline-vertical-box {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+  padding-left: 22px;
+  border-left: 3px solid var(--border2);
+  margin-left: 10px;
+  margin-bottom: 14px;
+  margin-top: 6px;
+}
+
 #lab-workspace .timeline-step {
   border: 1.5px solid var(--border2);
   border-radius: var(--radius);
   padding: 10px;
   margin-bottom: 8px;
   transition: border-color 0.2s, background 0.2s;
+  position: relative;
+}
+
+#lab-workspace .timeline-step::before {
+  content: '';
+  position: absolute;
+  left: -31px;
+  top: 14px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--gold);
+  border: 3px solid var(--bg);
+  transition: all 0.2s;
+}
+
+#lab-workspace .timeline-step.filled::before {
+  background: var(--green);
+  border-color: var(--bg);
+}
+
+#lab-workspace .timeline-step.correct::before {
+  background: var(--green);
+  border-color: var(--bg);
+}
+
+#lab-workspace .timeline-step.wrong::before {
+  background: var(--red);
+  border-color: var(--bg);
 }
 
 #lab-workspace .timeline-step.filled {
@@ -378,6 +419,10 @@
 #lab-workspace .trash-archive-box {
   max-height: 120px;
   overflow-y: auto;
+  background: rgba(244, 96, 96, 0.08);
+  border: 1.5px dashed var(--red);
+  border-radius: var(--radius);
+  padding: 8px;
 }
 /* ── Tab panels ── */
 #lab-workspace .tab-panel {
@@ -503,4 +548,11 @@
 
 #lab-workspace .actions-bar > :only-child {
   grid-column: 1 / -1;
+}
+
+#lab-workspace .card-name {
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--lw-text);
+  text-align: center;
 }

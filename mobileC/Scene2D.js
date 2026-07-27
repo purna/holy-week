@@ -177,7 +177,7 @@ export class Scene2D {
         const actionsList = this.container.querySelector('#actions-list');
         if (actionsList) {
             actionsList.innerHTML = actions.map(a =>
-                `<div class="action-item" data-action-id="${a.id}">${a.icon}</div>`
+                `<div class="action-item" data-action-id="${a.id}"><img src="${a.icon}" alt="${a.name}" class="action-icon"/></div>`
             ).join('');
 
             actionsList.querySelectorAll('.action-item').forEach(item => {
@@ -195,7 +195,16 @@ export class Scene2D {
     _showFloatingActionIcon(iconText) {
         const icon = document.createElement('div');
         icon.className = 'floating-action-icon';
-        icon.textContent = iconText;
+
+        const iconStr = String(iconText);
+        if (iconStr.endsWith('.svg')) {
+            icon.innerHTML = `<img src="${iconStr}" class="icon-svg" loading="lazy">`;
+        } else if (iconStr.startsWith('<')) {
+            icon.innerHTML = iconStr;
+        } else {
+            icon.textContent = iconStr;
+        }
+
 
         const rect = this.canvas.getBoundingClientRect();
         const startX = rect.left + rect.width * 0.5 + (Math.random() - 0.5) * 60;

@@ -243,7 +243,7 @@
     .inv-view {
       display: none;
       flex: 1;
-      padding: 16px;
+      padding: 8px 16px;
       overflow-y: auto;
       /* Space for floating navbar */
       -webkit-overflow-scrolling: touch;
@@ -259,6 +259,7 @@
 
     #inv-scene.active {
       display: flex;
+      flex-direction: column;
       /* Only scene view needs flex for the 3D canvas */
     }
 

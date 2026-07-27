@@ -1,7 +1,93 @@
+import { formatIntro } from './utils.js';
+
 // ============================================================
-// CASE: The Silenced Teacher — difficulty 2 — Temple Courts
-// ACT: Act II
-// CASE EXPORT: act2CaseA (id: "authority_challenged")
+// ACT: II — Authority Challenged
+// CASE: The Silenced Teacher
+// CASE ID: authority_challenged
+// CASE EXPORT: act2CaseA
+// SOURCE: Matthew 21:23–22:46; Mark 11:27–12:44; Luke 20:1–21:4
+//
+// LOCATION:
+// Temple Courts, Jerusalem
+//
+// DIFFICULTY:
+// ★★☆☆☆ (2/5)
+//
+// BACKGROUND:
+// On the Tuesday of Passion Week, Jesus returned to the Temple after
+// cleansing it the previous day. The chief priests, elders, Pharisees,
+// Sadducees, Herodians, and scribes launched a coordinated series of
+// public challenges designed to discredit Him before the crowds.
+// Instead, every trap was answered with perfect wisdom, exposing the
+// hypocrisy of His opponents while affirming His divine authority.
+// By the end of the day, no one dared question Him further.
+//
+// BIBLE REFERENCES:
+// Matthew 21:23–22:46
+// Mark 11:27–12:44
+// Luke 20:1–21:4
+//
+// ------------------------------------------------------------
+// PROPHECIES FULFILLED:
+//
+// • Psalm 118:22–23 — The rejected stone becomes the cornerstone.
+//
+// • Isaiah 5:1–7 — The Song of the Vineyard fulfilled through the
+//   Parable of the Wicked Tenants.
+//
+// • Daniel 7:13–14 — The Son of Man possesses everlasting authority
+//   and dominion.
+//
+// • Malachi 3:1 — The Lord comes suddenly to His Temple after His
+//   messenger prepares the way.
+//
+// ------------------------------------------------------------
+// BIBLICAL CONTEXT:
+//
+// Summary:
+// Religious leaders publicly challenged Jesus's authority, hoping to
+// trap Him into making a statement that could justify His arrest.
+// Jesus answered every challenge with wisdom, exposed their motives,
+// taught several parables of judgment, and revealed Himself as the
+// rejected Cornerstone foretold in Scripture.
+//
+// Historical Context:
+// This confrontation took place during Passion Week in the Temple
+// courts of Jerusalem, where thousands of pilgrims had gathered for
+// Passover. Public debates between rabbis were common, but this was
+// an organised attempt by the Sanhedrin and allied religious groups
+// to undermine Jesus before the crowds.
+//
+// Spiritual Theme:
+// Divine authority, truth confronting hypocrisy, wisdom, judgment,
+// the rejection of God's Messiah, and the fulfilment of prophecy.
+//
+// ------------------------------------------------------------
+// CASE FACTS (Truth Object)
+//
+// Crime:
+// Conspiracy to publicly discredit and undermine Jesus's authority.
+//
+// Actual Event:
+// Religious leaders coordinated a series of theological and political
+// traps concerning authority, taxation, resurrection, and the Law.
+// Jesus answered every question flawlessly, revealed their hypocrisy,
+// and declared Himself to be the rejected Cornerstone promised in
+// Scripture.
+//
+// Culprit:
+// Caiaphas and the religious leadership of the Sanhedrin.
+//
+// Motive:
+// To preserve their religious authority, political influence, and
+// control over the people while preventing the crowds from accepting
+// Jesus as the Messiah.
+//
+// Verdict:
+// The conspiracy failed completely. Jesus's wisdom silenced every
+// challenger, confirmed His divine authority, and fulfilled multiple
+// Old Testament prophecies concerning the Messiah.
+//
 // ============================================================
 
 export const act2CaseA = {
@@ -29,7 +115,7 @@ export const act2CaseA = {
     {
       reference: "Psalm 118:22–23",
       id: "psalm_118_22_23",
-      icon: "<img src='../assets/gfx/star-duotone.svg' class='icon-svg' loading='lazy'>",
+      icon: "🔮",
       text: `"The stone the builders rejected has become the cornerstone; the LORD has done this, and it is marvellous in our eyes."`,
       written: "~1000 BC",
       fulfilledBy: "Jesus quoting this Psalm directly against the religious leaders after the Parable of the Wicked Tenants",
@@ -40,7 +126,7 @@ export const act2CaseA = {
     {
       reference: "Isaiah 5:1–7",
       id: "isaiah_5_1_7",
-      icon: "<img src='../assets/gfx/star-duotone.svg' class='icon-svg' loading='lazy'>",
+      icon: "🔮",
       text: `"My beloved had a vineyard on a very fertile hill... He looked for it to yield grapes, but it yielded wild grapes... The vineyard of the LORD Almighty is the nation of Israel."`,
       written: "~700 BC",
       fulfilledBy: "The Parable of the Wicked Tenants (Matthew 21:33–46), which deliberately echoed Isaiah's Song of the Vineyard",
@@ -51,7 +137,7 @@ export const act2CaseA = {
     {
       reference: "Daniel 7:13–14",
       id: "daniel_7_13_14",
-      icon: "<img src='../assets/gfx/star-duotone.svg' class='icon-svg' loading='lazy'>",
+      icon: "🔮",
       text: `"There before me was one like a son of man, coming with the clouds of heaven... He was given authority, glory and sovereign power; all nations and peoples of every language worshipped him."`,
       written: "~550 BC",
       fulfilledBy: "Jesus's implicit claim to be the 'Son of Man' with divine authority — the title He used throughout the Gospels",
@@ -62,7 +148,7 @@ export const act2CaseA = {
     {
       reference: "Malachi 3:1",
       id: "malachi_3_1",
-      icon: "<img src='../assets/gfx/star-duotone.svg' class='icon-svg' loading='lazy'>",
+      icon: "🔮",
       text: `"I will send my messenger, who will prepare the way before me. Then suddenly the Lord you are seeking will come to his temple; the messenger of the covenant, whom you desire, will come."`,
       written: "~430 BC",
       fulfilledBy: "Jesus's presence and teaching authority in the Temple",
@@ -75,19 +161,21 @@ export const act2CaseA = {
   intro: formatIntro(`It is Tuesday morning, Nisan 12. The Temple courts are packed with Passover pilgrims and local worshippers. Jesus is teaching when a delegation of chief priests, scribes, and elders arrives — formally and deliberately. Their challenge is direct: **'By what authority do you do these things? Who gave you this authority?'** Three religious leaders were the primary challengers that morning, each representing a different faction. But as you gather evidence from the scene, a question emerges: _who is really on trial here_ — Jesus, or them?`),
 
   suspects: [
-    { id: "chief_priest", name: "Caiaphas", role: "High Priest, Sadducee", avatar: "caiaphas.svg", bibleRef: "Matthew 21:23; John 11:49–52" },
-    { id: "scribe", name: "Samuel", role: "Temple Scribe, Pharisee", avatar: "samuel_scribe.svg", bibleRef: "Mark 12:28–34 — a scribe who asks about the greatest commandment" },
-    { id: "pharisee", name: "Nathanael", role: "Pharisee, Herodian ally", avatar: "simon_pharisee.svg", bibleRef: "Matthew 22:15–22 — the Pharisees and Herodians on the tax question" },
-    { id: "none", name: "No One", role: "Not Stolen", avatar: "<img src='../assets/gfx/question-duotone.svg' class='icon-svg' loading='lazy'>", bibleRef: null },
+    { id: "chief_priest", name: "Caiaphas", role: "High Priest, Sadducee", avatar: "👨‍⚖️", bibleRef: "Matthew 21:23; John 11:49–52" },
+    { id: "scribe", name: "Samuel", role: "Temple Scribe, Pharisee", avatar: "📜", bibleRef: "Mark 12:28–34 — a scribe who asks about the greatest commandment" },
+    { id: "pharisee", name: "Nathanael", role: "Pharisee, Herodian ally", avatar: "🧣", bibleRef: "Matthew 22:15–22 — the Pharisees and Herodians on the tax question" },
+    { id: "none", name: "No One", role: "Not Stolen", avatar: "❓", bibleRef: null },
+
   ],
 
   evidencePool: [
+
     {
       id: "question_scroll",
       name: "The Formal Authority Challenge",
       type: "analytical",
       relatedProphecy: "malachi_3_1",
-      icon: "../assets/gfx/scroll-duotone.svg",
+      icon: "📜",
       location: "Temple East Portico",
       pos: [10, 0, 10],
       snippet: "A formal scroll bearing three official priestly seals.",
@@ -102,23 +190,18 @@ export const act2CaseA = {
         { ref: "Malachi 3:1", link: "malachi_31" }
       ],
       investigatorNote: "Three seals: the High Priest, the Chief Scribe, the Council Elder. This was planned, not spontaneous.",
-      fake: false,
-      category: 'event',
-      timelineOrder: 1,
       clues: {
-        compare: "Pairs with the witness account to show the delegation's formal challenge backfired.",
-        link: "Event — official written challenge from the chief priests questioning Jesus's authority.",
-        timeline: "CHRONOLOGY: Presented first thing on Tuesday morning as Jesus began teaching in the Temple.",
-        contradict: "RELIABILITY: Sealed by three priestly factions, proving a pre-planned entrapment attempt."
-      }
-    },
-
-    {
+        compare: "Connects with related evidence in this case to confirm the established narrative.",
+        link: "Prophecy & Scripture — the formal authority challenge",
+        timeline: "CHRONOLOGY: Recovered during the investigation.",
+        contradict: "RELIABILITY: Corroborated by multiple independent sources and consistent with the narrative."
+      },
+    }, {
       id: "parable_fragments",
       name: "Sketch of the Vineyard Parable",
       type: "physical",
       relatedProphecy: "isaiah_5_1_7",
-      icon: "../assets/gfx/jar-duotone.svg",
+      icon: "🏺",
       location: "Temple West Portico, Ground",
       pos: [-10, 0, 15],
       snippet: "Broken pottery fragments with rough agricultural sketches.",
@@ -133,23 +216,18 @@ export const act2CaseA = {
         { ref: "Isaiah 5:1-7", link: "isaiah_517" }
       ],
       investigatorNote: "These fragments show a bystander who understood the parable's OT reference. The religious leaders would have recognised it instantly — and been publicly shamed.",
-      fake: false,
-      category: 'event',
-      timelineOrder: 2,
       clues: {
-        compare: "Pairs with the cornerstone carving to connect the Parable of the Wicked Tenants with Psalm 118.",
-        link: "Event — physical sketches recording Jesus's response to the priestly delegation.",
-        timeline: "CHRONOLOGY: Drawn during the parable teaching immediately following the authority challenge.",
-        contradict: "RELIABILITY: The Isaiah 5 imagery was unmistakable to all bystanders and religious leaders present."
-      }
-    },
-
-    {
+        compare: "Connects with related evidence in this case to confirm the established narrative.",
+        link: "Event Trail — sketch of the vineyard parable",
+        timeline: "CHRONOLOGY: Recovered during the investigation.",
+        contradict: "RELIABILITY: Corroborated by multiple independent sources and consistent with the narrative."
+      },
+    }, {
       id: "cornerstone_carving",
       name: "Rejected Cornerstone Fragment",
       type: "physical",
       relatedProphecy: "psalm_118_22_23",
-      icon: "../assets/gfx/rock-duotone.svg",
+      icon: "🪨",
       location: "Temple South Wall, Construction Debris",
       pos: [5, 0, -20],
       snippet: "A discarded limestone fragment with a single Hebrew word.",
@@ -164,23 +242,18 @@ export const act2CaseA = {
         { ref: "Psalm 118:22-23", link: "psalm_1182223" }
       ],
       investigatorNote: "Someone scratched 'pinnah' onto a discarded stone and left it here. A disciple? A bystander who understood? Or was it already there — providentially?",
-      fake: false,
-      category: 'prophecy',
-      timelineOrder: 3,
       clues: {
-        compare: "Links the rejected stone in Psalm 118:22 directly to the religious leaders' rejection of Jesus.",
-        link: "Prophecy — inscribed scripture fragment fulfilling coronation prophecy from Psalm 118.",
-        timeline: "CHRONOLOGY: Carved and referenced immediately after the Parable of the Wicked Tenants.",
-        contradict: "RELIABILITY: Inscribed on discarded Temple limestone, creating a tangible physical object lesson."
-      }
-    },
-
-    {
+        compare: "Connects with related evidence in this case to confirm the established narrative.",
+        link: "Event Trail — rejected cornerstone fragment",
+        timeline: "CHRONOLOGY: Recovered during the investigation.",
+        contradict: "RELIABILITY: Corroborated by multiple independent sources and consistent with the narrative."
+      },
+    }, {
       id: "coin_of_caesar",
       name: "Denarius of Tiberius Caesar",
       type: "physical",
       relatedProphecy: "",
-      icon: "../assets/gfx/coins-duotone.svg",
+      icon: "🪙",
       location: "Temple Court Floor, Near Treasury Entrance",
       pos: [-5, 0, -10],
       snippet: "A Roman silver coin bearing the face of the Emperor.",
@@ -195,23 +268,18 @@ export const act2CaseA = {
         { ref: "Genesis 1:26-27", link: "genesis_12627" }
       ],
       investigatorNote: "The Pharisees and Herodians brought this coin specifically to trap Him. They never expected His answer to turn the image question back onto every human being.",
-      fake: false,
-      category: 'event',
-      timelineOrder: 4,
       clues: {
-        compare: "Pairs with the widow's leptons to contrast Roman tax obligations with wholehearted devotion to God.",
-        link: "Event — Roman silver denarius used by Pharisees and Herodians in their taxation trap.",
-        timeline: "CHRONOLOGY: Produced during the second wave of challenges regarding tribute to Caesar.",
-        contradict: "RELIABILITY: Possessing a Roman coin inside the Temple exposed the hypocritical stance of the questioners."
-      }
-    },
-
-    {
+        compare: "Connects with related evidence in this case to confirm the established narrative.",
+        link: "Event Trail — denarius of tiberius caesar",
+        timeline: "CHRONOLOGY: Recovered during the investigation.",
+        contradict: "RELIABILITY: Corroborated by multiple independent sources and consistent with the narrative."
+      },
+    }, {
       id: "fig_leaf_withered",
       name: "Withered Fig Leaf",
       type: "environmental",
       relatedProphecy: "",
-      icon: "../assets/gfx/leaf-duotone.svg",
+      icon: "🍂",
       location: "Jerusalem-Bethany Road, Near the Temple Gate",
       pos: [20, 0, 0],
       snippet: "A brittle, blackened leaf that appears to have died instantly.",
@@ -227,23 +295,18 @@ export const act2CaseA = {
         { ref: "Hosea 9:10", link: "hosea_910" }
       ],
       investigatorNote: "The withered fig tree and the Temple parables interpret each other. Both speak of outward religious appearance with no real fruit.",
-      fake: false,
-      category: 'event',
-      timelineOrder: 5,
       clues: {
-        compare: "Pairs with the Parable of the Wicked Tenants as a physical sign of judgment on fruitlessness.",
-        link: "Event — dried leaf from the cursed fig tree brought from the Bethany road.",
-        timeline: "CHRONOLOGY: Collected Tuesday morning before entering the Temple courts.",
-        contradict: "RELIABILITY: Shows total, rapid withering from the roots, confirming the prophetic act."
-      }
-    },
-
-    {
+        compare: "Connects with related evidence in this case to confirm the established narrative.",
+        link: "Event Trail — withered fig leaf",
+        timeline: "CHRONOLOGY: Recovered during the investigation.",
+        contradict: "RELIABILITY: Corroborated by multiple independent sources and consistent with the narrative."
+      },
+    }, {
       id: "widow_two_coins",
       name: "Two Leptons (Widow's Mites)",
       type: "physical",
       relatedProphecy: "",
-      icon: "../assets/gfx/currency-dollar-duotone.svg",
+      icon: "💵",
       location: "Temple Treasury Contribution Chests",
       pos: [0, 0, 12],
       snippet: "Two tiny bronze coins, the smallest possible currency.",
@@ -257,23 +320,18 @@ export const act2CaseA = {
         { ref: "Samuel 16:7", link: "samuel_167" }
       ],
       investigatorNote: "The widow's two coins appear after the Seven Woes against the Pharisees (Matthew 23). Jesus used her as a living counter-example: this is what genuine faith looks like, next to the performance the religious leaders were offering.",
-      fake: false,
-      category: 'people',
-      timelineOrder: 6,
       clues: {
-        compare: "Pairs with the denarius of Caesar to contrast ostentatious legalism with sacrificial faith.",
-        link: "People — two tiny leptons deposited by a poor widow in the Temple treasury.",
-        timeline: "CHRONOLOGY: Observed late Tuesday afternoon near the Treasury chests.",
-        contradict: "RELIABILITY: Confirmed by Jesus's direct commendation in front of the disciples."
-      }
-    },
-
-    {
+        compare: "Connects with related evidence in this case to confirm the established narrative.",
+        link: "Event Trail — two leptons (widow's mites)",
+        timeline: "CHRONOLOGY: Recovered during the investigation.",
+        contradict: "RELIABILITY: Corroborated by multiple independent sources and consistent with the narrative."
+      },
+    }, {
       id: "witness_scroll",
       name: "Temple Bystander's Written Account",
       type: "testimonial",
       relatedProphecy: "",
-      icon: "../assets/gfx/clipboard-duotone.svg",
+      icon: "📋",
       location: "Temple North Portico",
       pos: [-15, 0, -5],
       snippet: "A detailed testimonial from a visitor from Alexandria.",
@@ -288,17 +346,13 @@ export const act2CaseA = {
         { ref: "Daniel 7:13-14", link: "daniel_71314" }
       ],
       investigatorNote: "The witness is from Alexandria — an educated diaspora Jew well-versed in both Scripture and rhetoric. His assessment is clear: Jesus did not evade their questions. He answered them and won.",
-      fake: false,
-      category: 'event',
-      timelineOrder: 7,
       clues: {
-        compare: "Summarizes the total defeat of all three religious factions across the day's debates.",
-        link: "Event — eyewitness written testimony from an Alexandrian pilgrim recording the exchanges.",
-        timeline: "CHRONOLOGY: Recorded at the conclusion of Tuesday's public teaching sessions.",
-        contradict: "RELIABILITY: Independent third-party account confirming no one dared question Him further."
-      }
-    }
-  ],
+        compare: "Connects with related evidence in this case to confirm the established narrative.",
+        link: "People & Suspects — temple bystander's written account",
+        timeline: "CHRONOLOGY: Recovered during the investigation.",
+        contradict: "RELIABILITY: Corroborated by multiple independent sources and consistent with the narrative."
+      },
+    },],
 
   lab: [
     {
@@ -320,7 +374,7 @@ export const act2CaseA = {
       id: "chief_priest",
       name: "Caiaphas",
       role: "High Priest, Sadducee",
-      avatar: "caiaphas.svg",
+      avatar: "👨‍⚖️",
       pos: [15, 0, 5],
       unlocksSuspects: ["chief_priest"],
       hasDialogue: true,
@@ -350,7 +404,7 @@ export const act2CaseA = {
       id: "scribe",
       name: "Samuel",
       role: "Temple Scribe, Pharisee",
-      avatar: "samuel_scribe.svg",
+      avatar: "📜",
       pos: [-15, 0, 10],
       unlocksSuspects: ["scribe"],
       hasDialogue: true,
@@ -359,61 +413,1027 @@ export const act2CaseA = {
       revealsProphecy: "isaiah_5_1_7",
       truthfulness: 0.85,
       bibleRef: "Mark 12:28–34",
-      background: "A Temple scribe trained in meticulous recording of legal proceedings and scriptural interpretation. Pharisaic background — unlike the Sadducean priests, he believes in resurrection and angels. He asked Jesus about the greatest commandment and received an answer that genuinely moved him.",
+      background: "A Temple scribe trained in meticulous recording of legal proceedings and scriptural interpretation. Pharisaic background — unlike the Sadducean priests, he believes in resurrection and angels. He actually asked Jesus about the greatest commandment and received an answer that genuinely moved him.",
       dialogue: {
-        neutral: "I came to hear a fanatic. I listened to a master of the Law.",
-        cautious: "His command of Scripture is unmatched. When He quoted Deuteronomy 6:4–5 and Leviticus 19:18, He summed up all 613 commandments in two sentences.",
-        pressured: "The chief priests were trying to trap Him. But He turned every question back on them until they were silent.",
-        exposed: "He told me I was 'not far from the kingdom of God.' Those words have stayed with me all day.",
-        repeat: "I am pondering what was spoken today.",
+        neutral: "I was tasked with recording the morning's proceedings. I was also, I confess, listening with more than professional interest.",
+        cautious: "The authority challenge was politically motivated. I'm a scribe — I deal in words, not politics. What He said about the commandments was... remarkable.",
+        pressured: "When I asked about the greatest commandment, I was testing Him — as the others were. But His answer stopped me. 'Love God with all your heart, soul, mind, and strength, and your neighbour as yourself.' He said: 'All the Law and the Prophets hang on these two commandments.'",
+        exposed: "I told Him he answered wisely. He said to me: 'You are not far from the kingdom of God.' I've thought about nothing else since.",
+        repeat: "I believe I've shared all that is relevant to your inquiry.",
       },
       reactions: {
-        parable_fragments: { text: "I recorded those sketches myself as He spoke. The reference to Isaiah 5 was unmistakable. He was accusing the Sanhedrin of killing God's prophets.", isLie: false },
-        cornerstone_carving: { text: "Psalm 118:22. Every scribe knows it. But applying it to Himself in front of the High Priest... that took courage I have never seen in this city.", isLie: false },
+        coin_of_caesar: { text: "That was the Herodians' question — about paying taxes to Caesar. His answer was remarkable: 'Give to Caesar what is Caesar's, and to God what is God's.' He split the trap perfectly.", isLie: false },
+        witness_scroll: { text: "The Alexandrian's account is accurate. I was there for all of it. By the end, the crowd was silent and the leaders were defeated. Verse by verse, question by question.", isLie: false, revealedClue: "fig_leaf_withered" },
+        parable_fragments: { text: "The vineyard parable was Isaiah 5 rewritten for the present day. Anyone schooled in Scripture recognised the source. The leaders certainly did — Matthew records they wanted to arrest Him immediately.", isLie: false },
+        cornerstone_carving: { text: "Psalm 118:22. 'The stone the builders rejected.' He quoted it while standing in the Temple the builders were maintaining. The irony was devastating.", isLie: false },
       },
       contradictions: {},
-    }
+    },
+    {
+      id: "pharisee",
+      name: "Nathanael",
+      role: "Pharisee, Herodian ally",
+      avatar: "🧣",
+      pos: [0, 0, -15],
+      unlocksSuspects: ["pharisee"],
+      hasDialogue: true,
+      storyFile: "simon_pharisee_authority",
+      profileFile: "nathanael_pharisee",
+      truthfulness: 0.4,
+      bibleRef: "Matthew 22:15–22 — the Pharisee-Herodian coalition",
+      background: "A Pharisee who has formed an unlikely alliance with the Herodians — normally political rivals — specifically to trap Jesus on the tax question. The Pharisees hated Roman taxation on nationalist grounds; the Herodians supported it. Normally they would never cooperate. The threat Jesus posed united them.",
+      dialogue: {
+        neutral: "We asked a straightforward legal question about taxation. Any teacher should be able to answer a question about Roman law.",
+        cautious: "My political affiliations are my own business. I came here as a representative of the Pharisaic council.",
+        pressured: "If He said don't pay taxes, we had Him on sedition against Rome. If He said pay taxes, He'd alienate the nationalists in the crowd. It was the perfect trap.",
+        exposed: "He asked to see a coin. We showed him the denarius. He looked at Caesar's face and said 'Render to Caesar what is Caesar's, and to God what is God's.' And that was it. The crowd fell silent. We had nothing to say.",
+        repeat: "I have already discussed this with the Sanhedrin. I won't repeat myself.",
+      },
+      reactions: {
+        coin_of_caesar: { text: "We brought that coin deliberately. You can't pay the Temple tax with a denarius — it has a graven image on it. We thought bringing it would humiliate him.", isLie: false },
+        widow_two_coins: { text: "The widow's offering has nothing to do with the taxation question. He used it to embarrass us — look, a poor widow gives everything while you Pharisees give from your wealth. Typical.", isLie: true },
+        fig_leaf_withered: { text: "The cursed fig tree — yes, I heard about it. Another staged prophetic act. Nothing but theatrics.", isLie: false },
+        question_scroll: { text: "I did not sign that scroll. My challenge was separate — about taxes. Not about Temple authority.", isLie: false },
+      },
+      contradictions: {
+        "coin_of_caesar+widow_two_coins": { exposed: "You want to know what broke the coalition? His answer about the coin. We expected a political answer. Instead He talked about image — Caesar's image on the coin, God's image on people. The Herodians thought He'd sided with Rome. I thought He'd sidestepped completely. Neither of us could attack the answer. We just... walked away." },
+      },
+    },
+    {
+      id: "rich_young_ruler",
+      name: "Thomas the Rich Young Ruler",
+      role: "Wealthy Seeker",
+      faction: "local",
+      avatar: "💰",
+      profileFile: "rich_young_ruler",
+      truthfulness: 0.7,
+      bibleRef: "Matthew 19:16-22; Mark 10:17-22; Luke 18:18-23",
+      hasDialogue: true,
+      storyFile: "rich_young_ruler",
+      background: "A young man of great wealth who ran up to Jesus and asked what he must do to inherit eternal life. He left grieving, unable to give up his riches.",
+      dialogue: {
+        neutral: "Tell me what you know.",
+      },
+      reactions: {
+        default: { text: "I have nothing more to add.", isLie: false },
+      },
+    },
   ],
 
   deductions: {
-    "question_scroll+parable_fragments": {
+    "question_scroll+witness_scroll": {
       compare: {
-        text: "The chief priests came to question Jesus's authority. Jesus responded not with an argument, but with the Parable of the Wicked Tenants — exposing that they were rejecting God's authority.",
-        insight: "Instead of defending His credentials to men who lacked spiritual authority, Jesus delivered a parabolic judgement showing they were unfaithful stewards of God's vineyard.",
+        text: "The formal authority challenge and the eyewitness account together confirm the scope of what happened: three separate factions (priests, Pharisees-Herodians, Sadducees) attempted coordinated challenges across one morning — and all were silenced.",
+        insight: "Isaiah 11:2 promised the Messiah would have wisdom to answer all challenges. The witness account documents this happening: 'no one dared ask him any more questions.' The fulfilment was public, documented, and witnessed by a diverse crowd.",
         isKey: true,
-        bibleRef: "Matthew 21:23–46",
+        bibleRef: "Matthew 22:46; Isaiah 11:2",
       },
       link: {
-        text: "The official challenge scroll and the parable sketch document the exact turning point of Tuesday morning: from religious leaders questioning Jesus to Jesus judging the religious leaders.",
-        insight: "The authority challenge backfired completely, shifting public initiative to Jesus.",
-        isKey: true,
-        bibleRef: "Matthew 21:27–33",
-      }
+        text: "The official challenge and the independent witness point to the same outcome from two different angles — one records what was asked, the other what happened when it was answered.",
+        insight: "A formal Temple challenge and a bystander's account rarely agree this closely unless both are describing the same real event, not two separate rumors.",
+        isKey: false,
+        bibleRef: "Matthew 22:46",
+      },
     },
     "parable_fragments+cornerstone_carving": {
       link: {
-        text: "The Parable of the Wicked Tenants ends with the murder of the owner's son. Immediately following, Jesus quoted Psalm 118:22 — the stone rejected by the builders becoming the cornerstone.",
-        insight: "The stone and the son are the same figure: Jesus Himself. His upcoming rejection by the leaders was predicted in Scripture and would result in God giving the kingdom to others.",
+        text: "The vineyard parable fragments (echoing Isaiah 5) and the cornerstone carving (Psalm 118:22) both relate to Jesus's teaching against the religious leaders — drawn from the same block of Scripture.",
+        insight: "Jesus was doing deliberate intertextual theology: Isaiah 5's rejected vineyard + Psalm 118's rejected stone = the same prophetic story told two ways. The religious leaders were the unfaithful tenants and the builders who rejected the cornerstone simultaneously.",
         isKey: true,
+        revealsProphecy: "psalm_118_22_23",
+        bibleRef: "Matthew 21:33–42; Isaiah 5:1–7; Psalm 118:22",
+      },
+      compare: {
+        text: "Set against each other, the two images make the same accusation twice — once as a story about tenants, once as a single line about a stone.",
+        insight: "A parable can be argued with; a direct quotation of Psalm 118:22 to a Scripture-literate audience cannot. Jesus escalated from implication to citation.",
+        isKey: false,
         bibleRef: "Matthew 21:42; Psalm 118:22",
-      }
+      },
     },
     "coin_of_caesar+widow_two_coins": {
       compare: {
-        text: "The Roman denarius represented financial allegiance to Caesar; the widow's two leptons represented complete heart-devotion to God.",
-        insight: "Jesus contrasted political traps about taxation with genuine spiritual sacrifice. Caesar receives metal bearing his image; God receives hearts bearing His image.",
+        text: "The denarius (brought to trap Him) and the widow's two leptons (observed and highlighted by Him) form a deliberate contrast on the theme of worth, image, and allegiance.",
+        insight: "The denarius bore Caesar's image — Jesus pointed to the deeper truth that people bear God's image (Genesis 1:26). The widow's two coins had no image of anyone — just her complete surrender. The two coin stories bracket the day's teaching on what genuine devotion looks like.",
         isKey: true,
-        bibleRef: "Matthew 22:15–22; Mark 12:41–44",
-      }
-    }
+        bibleRef: "Matthew 22:20–21; Mark 12:44; Genesis 1:26",
+      },
+    },
+    "fig_leaf_withered+parable_fragments": {
+      link: {
+        text: "The withered fig tree (seen Tuesday morning) and the vineyard parable (taught Tuesday morning in the Temple) are two expressions of the same prophetic message.",
+        insight: "Both use agricultural imagery to describe Israel's religious failure: a tree with leaves but no fruit (the fig tree); a vineyard that produces nothing for the owner (Isaiah 5's vineyard). Jesus was teaching the same lesson in action on the road and in words in the Temple.",
+        isKey: false,
+        bibleRef: "Mark 11:20–21; Matthew 21:33–45; Isaiah 5:1–7; Micah 7:1",
+      },
+    },
   },
 
   truth: {
     culprit: "caiaphas",
-    motive: "Caiaphas and the priestly establishment sought to preserve their political monopoly and institutional power under Roman rule, fearing Jesus's public teaching threatened their authority.",
-    method: "A coordinated delegation of chief priests, scribes, Pharisees, and Sadducees mounted sequential public challenges against Jesus in the Temple courts. Jesus dismantled every trap, turned their questions back upon their hypocritical motives, and silenced them entirely.",
-    lesson: "True authority in the kingdom of God does not derive from earthly position, political alliances, or religious office, but from divine commission and total obedience to God's truth. Those who reject the Cornerstone will find themselves displaced by God's unfolding plan.",
-    prophesyFulfilled: ["Psalm 118:22–23", "Isaiah 5:1–7", "Daniel 7:13–14", "Malachi 3:1"],
-    furtherReading: ["Matthew 21:23–22:46", "Mark 11:27–12:44", "Luke 20:1–21:4"],
-  }
+    motive: "The religious leaders sought to discredit Jesus publicly to protect their institutional authority and prevent the crowds from following Him as the true King of Israel.",
+    method: "A coordinated series of intellectual traps using representatives from different factions (Pharisees, Sadducees, Herodians) to catch Jesus in a blasphemous or seditious statement.",
+    lesson: "Human attempts to trap divine wisdom only serve to reveal human hypocrisy. Jesus's authority as the cornerstone is established even through the rejection of the builders.",
+    prophesyFulfilled: ["Psalm 118:22–23", "Isaiah 5:1–7", "Daniel 7:13–14"],
+    furtherReading: ["Matthew 21:23–22:46", "Mark 11:27–12:44"],
+  },
+};
+
+
+// ============================================================
+// ACT: II — Growing Opposition
+// CASE: The Price of Life
+// CASE ID: lazarus_plot
+// CASE EXPORT: act2CaseB
+// SOURCE: John 11:45–57; John 12:9–11
+//
+// LOCATION:
+// Bethany & Temple Courts, Jerusalem
+//
+// DIFFICULTY:
+// ★★☆☆☆ (2/5)
+//
+// BACKGROUND:
+// After Jesus raised Lazarus from the dead following four days in the
+// tomb, news spread rapidly throughout Jerusalem during Passover.
+// Instead of celebrating the miracle, the chief priests and Pharisees
+// feared that the growing crowds would strengthen belief in Jesus and
+// provoke Roman intervention. The Sanhedrin secretly agreed that both
+// Jesus and Lazarus had become threats to their authority, leading to
+// an unprecedented conspiracy to eliminate not only the miracle worker,
+// but also the living evidence of the miracle itself.
+//
+// BIBLE REFERENCES:
+// John 11:45–57
+// John 12:9–11
+//
+// ------------------------------------------------------------
+// PROPHECIES FULFILLED:
+//
+// • Isaiah 25:8 — God would swallow up death forever, previewed by the
+//   raising of Lazarus from the grave.
+//
+// • Psalm 16:10 — God's Holy One would not ultimately remain under the
+//   power of death, foreshadowed through Jesus's authority over the tomb.
+//
+// ------------------------------------------------------------
+// BIBLICAL CONTEXT:
+//
+// Summary:
+// The resurrection of Lazarus became the turning point that convinced
+// the religious leaders they must act against Jesus. Rather than denying
+// the miracle, they sought to silence its evidence by plotting the deaths
+// of both Jesus and Lazarus.
+//
+// Historical Context:
+// Bethany lay less than two miles from Jerusalem, making Lazarus easily
+// accessible to the thousands of Passover pilgrims entering the city.
+// His public resurrection generated enormous attention, creating intense
+// political anxiety among the Temple leadership, who feared Roman
+// retaliation if the crowds proclaimed Jesus as Messiah.
+//
+// Spiritual Theme:
+// Victory over death, unbelief despite overwhelming evidence, fear versus
+// faith, corruption of power, and God's sovereign plan unfolding through
+// human opposition.
+//
+// ------------------------------------------------------------
+// CASE FACTS (Truth Object)
+//
+// Crime:
+// Secret conspiracy to murder an innocent witness and suppress evidence
+// of a divine miracle.
+//
+// Actual Event:
+// Following Lazarus's resurrection, the Sanhedrin secretly resolved to
+// eliminate both Jesus and Lazarus. Their objective was to destroy the
+// living testimony that was leading many people to believe in Christ.
+//
+// Culprit:
+// Caiaphas and the chief priests of the Sanhedrin.
+//
+// Motive:
+// To preserve political stability, protect their religious authority,
+// and prevent the growing influence of Jesus from provoking Roman
+// intervention and weakening their control.
+//
+// Verdict:
+// The conspiracy confirmed the hardness of the religious leaders' hearts.
+// Rather than accepting God's power over death, they chose to oppose it,
+// setting in motion the events leading to Jesus's crucifixion while
+// unknowingly advancing God's plan of salvation.
+//
+// ============================================================
+
+export const act2CaseB = {
+  id: "lazarus_plot",
+  title: "The Price of Life",
+  subtitle: "Rumors fly through the Temple that the high priests have issued an unlisted execution order for a man who committed no crime.",
+  location: "temple",
+  eventLocation: "Bethany & Temple Courts, Jerusalem",
+  timeOfDay: "day",
+  difficulty: 2,
+  requires: "authority_challenged",
+  actLabel: "Act II",
+  color: 0xf59e0b,
+  worldModel: "../assets/models/sphere.glb",
+  showCityLayer: false,
+  quest: { name: "Track Sanhedrin Orders", task: "Intercept shadow documents", cur: 0, tar: 7 },
+
+  biblicalContext: {
+    summary: `Following the resurrection of Lazarus after four days in the tomb, a massive theological shift occurred in Jerusalem. Instead of celebrating, the chief priests and Pharisees called a council meeting, fearing Roman intervention. John 12:10 explicitly records that the chief priests made plans to put Lazarus to death as well, because on account of him, many Jews were putting their faith in Jesus.`,
+    significance: `This case exposes the moral bankruptcy of the corrupt religious leadership. To protect their political positions, they were willing to murder a living monument to God's resurrection power.`,
+    historicalNote: `The raising of Lazarus took place in Bethany, less than two miles from Jerusalem. Because it happened right before Passover, the city was filled with thousands of eyewitnesses and curious pilgrims trying to catch a glimpse of the resurrected man.`,
+  },
+
+  prophecies: [
+    {
+      reference: "Isaiah 25:8",
+      id: "isaiah_25_8",
+      icon: "🔮",
+      text: `"He will swallow up death forever; and the Lord GOD will wipe away tears from all faces, and the reproach of his people he will take away from all the earth."`,
+      written: "~700 BC",
+      fulfilledBy: "Jesus demonstrating complete authority over the grave at Bethany",
+      gospelLink: "John 11:25",
+      insight: "Lazarus’s revival was a tactical, localized preview of the ultimate cosmic victory over death that was about to occur on Easter morning.",
+      explanation: "The resurrection of Lazarus served as a powerful, localized preview of the ultimate cosmic victory over death that this prophecy describes.",
+    },
+  ],
+
+  evidencePool: [
+
+    {
+      id: "crowd_report",
+      name: "Bethany Pilgrim Manifest",
+      type: "analytical",
+      relatedProphecy: "",
+      icon: "📜",
+      pos: [2, -6, 0],
+      snippet: "A watchman's tally book monitoring the eastern gate traffic.",
+      description: "A log recording unprecedented human crowds leaving the city gates toward Bethany after dusk, specifically asking for the house of Simon the Leper.",
+      bibleRef: "John 12:9 notes that a large crowd found out Jesus was there and came not only because of Him, but also to see Lazarus, whom He had raised.",
+      bibleRefs: [
+        { ref: "John 12:9", link: "john_129" }
+      ],
+      propheticRefs: [],
+      investigatorNote: "The exponential growth of these crowd tallies explains the absolute state of panic inside the Sanhedrin chambers.",
+      clues: {
+        compare: "Connects with related evidence in this case to confirm the established narrative.",
+        link: "Prophecy & Scripture — bethany pilgrim manifest",
+        timeline: "CHRONOLOGY: Recovered during the investigation.",
+        contradict: "RELIABILITY: Corroborated by multiple independent sources and consistent with the narrative."
+      },
+    }, {
+      id: "grave_dirt",
+      name: "Bethany Limestone Dust",
+      relatedProphecy: "isaiah_25_8",
+      type: "physical",
+      icon: "🪨",
+      pos: [-3, 3, 0],
+      snippet: "Trace white dust contaminated with heavy burial aloes.",
+      description: "Powdery white limestone scrapings mixed with residual traces of heavy myrrh and aloe resins, found dropped outside the high priest's council room.",
+      bibleRef: "John 11:39 records Martha's objection that after four days there would already be a bad odor — the natural expectation of decay this deep into a Judean burial, against which the raising of Lazarus stands out as a reversal.",
+      bibleRefs: [
+        { ref: "John 11:39", link: "john_1139" }
+      ],
+      propheticRefs: [],
+      investigatorNote: "This dust indicates that witnesses from the actual tomb site in Bethany have been brought into the inner chambers of the Sanhedrin for intense interrogation.",
+      clues: {
+        compare: "Connects with related evidence in this case to confirm the established narrative.",
+        link: "Event Trail — bethany limestone dust",
+        timeline: "CHRONOLOGY: Recovered during the investigation.",
+        contradict: "RELIABILITY: Corroborated by multiple independent sources and consistent with the narrative."
+      },
+    }, {
+      id: "secret_decree",
+      name: "Intercepted Sadducean Memorandum",
+      type: "analytical",
+      relatedProphecy: "",
+      icon: "✉️",
+      pos: [0, 0, 0],
+      snippet: "A sealed tablet bearing the administrative mark of the House of Annas.",
+      description: "A secure internal brief detailing political damage control. It outlines plans to quietly eliminate a 'destabilizing living asset' currently residing in Bethany.",
+      bibleRef: "John 12:10–11 explicitly validates this conspiracy: 'So the chief priests made plans to put Lazarus to death as well.'",
+      bibleRefs: [
+        { ref: "John 12:10-11", link: "john_121011" }
+      ],
+      propheticRefs: [],
+      investigatorNote: "Murdering a resurrected man is a fascinating logical absurdity. It reveals that the leadership doesn't doubt the miracle occurred—they simply care more about their institutional control than God's reality.",
+      clues: {
+        compare: "Connects with related evidence in this case to confirm the established narrative.",
+        link: "Prophecy & Scripture — intercepted sadducean memorandum",
+        timeline: "CHRONOLOGY: Recovered during the investigation.",
+        contradict: "RELIABILITY: Corroborated by multiple independent sources and consistent with the narrative."
+      },
+    },],
+
+  lab: [
+    {
+      evidence: "secret_decree",
+      suspect: "caiaphas",
+      result: "**Implicated in Conspiracy** (Directly links him to the plot)",
+      notes: "'Better that one man die for the people' (John 11:50) — Caiaphas meant it as policy. He didn't know it was prophecy."
+    },
+    {
+      evidence: "secret_decree", // Note: same evidence can affect multiple suspects
+      suspect: "nicodemus_secret",
+      result: "**Cleared** (Shows he was a dissenting voice)",
+      notes: "The same council that condemned Jesus once heard Nicodemus ask, 'Does our law condemn a man without a hearing?' (John 7:51). He hadn't changed."
+    }
+  ],
+
+  suspects: [
+    {
+      id: "nicodemus_secret",
+      name: "Nicodemus",
+      role: "Conflicted Sanhedrin Member",
+      avatar: "👴",
+      color: 0x88cc88,
+      pos: [15, 0, 5],
+      bibleRef: "John 7:50–51, John 19:39",
+      background: "A ruler of the Jews who originally approached Jesus by night, now watching the legal framework collapse from within.",
+      dialogue: {
+        neutral: "Our council is supposed to be a vanguard of justice and Mosaic law. Yet, fear makes men blind to the light.",
+        cautious: "The decree is real. Caiaphas argued that it is better for one man to die for the nation. But they aren't stopping at one man anymore. They are trying to cover up the resurrection itself.",
+      },
+      contradictions: {
+        "crowd_report+secret_decree": {
+          exposed: "The more the people see Lazarus, the more our authority crumbles. The decree was rushed through without a full legal trial. I spoke against it, but they are driven by sheer preservation of power. Take that document and warn the family."
+        },
+      },
+    },
+    { id: "caiaphas", name: "Caiaphas", role: "High Priest, Sadducee", avatar: "👨‍⚖️", color: 0xcc8888, pos: [-15, 0, 5], bibleRef: "John 11:49–52; Matthew 26:57–68" },
+
+  ],
+
+  npcs: [
+    {
+      id: "temple_spy",
+      name: "Maluch",
+      role: "Temple Informant / Spy",
+      avatar: "👤",
+      profileFile: "maluch",
+      truthfulness: 0.60,
+      bibleRef: "John 18:10; Luke 22:52",
+      pos: [10, 0, -10],
+      hasDialogue: true,
+      storyFile: "temple_spy",
+      unlocksSuspects: ["caiaphas"],
+      unlocksEvidence: ["crowd_report"],
+      background: "An administrative operative and courier under the payroll of the high priest's household, tasked with logging suspicious crowd densities, tracking routes, and profiling revolutionary movement between Jerusalem and Bethany.",
+      dialogue: {
+        neutral: "I look at movements, routes, and numbers. My job is to ensure the Passover crowds do not aggregate into an uncontrollable nationalist front.",
+        cautious: "Bethany has become a major intelligence blindspot. The road is constantly jammed with pilgrims who are bypassing our official checkpoints.",
+        pressured: "The elders wanted specific confirmation from the tomb itself. They didn't want hearsay; they wanted structural verification before taking action.",
+        exposed: "Fine. I tracked the family. The crowds aren't visiting a gravesite; they are eating dinner with a man who was rotting last week. It's an operational nightmare.",
+        repeat: "The streets are crowded. Keep moving if you don't have business with the guard.",
+      },
+      reactions: {
+        crowd_report: { text: "That is my gate tally. Look at the dusk trajectory toward the eastern gate. That isn't standard holiday traffic; those people are marching to a single house.", isLie: false },
+        grave_dirt: { text: "I may have tracked some residue into the courthouse corridors after my sweep of the cave. The smell of burial spice doesn't wash off easily.", isLie: false },
+        secret_decree: { text: "I don't sign political policies. I just gather the logistical data that makes those policies necessary.", isLie: false },
+      },
+      contradictions: {},
+    },
+    {
+      id: "annas_patriarch",
+      name: "Annas",
+      role: "High Priest Emeritus",
+      avatar: "🦅",
+      profileFile: "annas",
+      truthfulness: 0.35,
+      bibleRef: "John 18:13; Luke 3:2; Acts 4:6",
+      pos: [-10, 0, -10],
+      hasDialogue: true,
+      storyFile: "annas_patriarch",
+      unlocksEvidence: ["secret_decree"],
+      background: "The elderly patriarch of the ruling Sadducean family. Though Rome formally deposed him years ago, he remains the true systemic power behind the high priesthood, controlling his sons and son-in-law Caiaphas. He values political continuity and institutional risk management above all else.",
+      dialogue: {
+        neutral: "True governance is quiet, indirect, and economical. Populist enthusiasm fades, but the temple infrastructure must endure.",
+        cautious: "When a crowd begins to look past the priesthood to find a king, it is no longer a religious debate. It is a crisis of regional stability.",
+        pressured: "Caiaphas looks at the immediate problem. I look at the long-term mechanics of Roman occupation. If the governor senses an unpoliced movement, his legions will destroy our nation.",
+        exposed: "You think a dynamic miracle justifies civic chaos? If a man is raised from the dead but his existence sparks a war that levels Jerusalem, his life is an unacceptable expense. The security of the temple requires the eradication of the asset.",
+        repeat: "Our conversation has reached its logical conclusion. Guard, show this investigator out.",
+      },
+      reactions: {
+        secret_decree: { text: "A routine security memorandum from my house. It outlines proactive containment protocols for a severe socio-political disruption.", isLie: false },
+        grave_dirt: { text: "Judean soil. The temple floor is swept daily; your forensic parameters are irrelevant to council business.", isLie: true },
+        crowd_report: { text: "Pilgrim metrics fluctuate every Passover. These counts are highly exaggerated by nationalist sympathizers.", isLie: true },
+      },
+      contradictions: {
+        "grave_dirt+secret_decree": { exposed: "The legal trial is a tool for ordinary criminals. In matters of national survival, we do not wait for a court to verify what our own spies have confirmed by the smell of burial cloth. The threat will be neutralized quietly." },
+      },
+    },
+    {
+      id: "martha_bethany",
+      name: "Martha",
+      role: "Sister of Lazarus",
+      avatar: "🧺",
+      profileFile: "martha",
+      truthfulness: 0.95,
+      bibleRef: "John 11:1–44; John 12:1–2",
+      pos: [0, 0, 15],
+      hasDialogue: true,
+      storyFile: "martha_bethany",
+      unlocksSuspects: ["nicodemus_secret"],
+      unlocksEvidence: ["grave_dirt"],
+      revealsProphecy: "isaiah_25_8",
+      background: "The practical, protective head of the Bethany household. Having witnessed her brother's descent into death and subsequent revival, she is now trapped in a terrifying surveillance grid, managing family survival while shadow operatives monitor her home.",
+      dialogue: {
+        neutral: "We were a quiet household before the illness. Now, strange men stand at the edge of our fields, watching who enters and leaves.",
+        cautious: "My brother is inside. He is alive, he is eating, and yet the temple officials treat him like he has committed a capital crime.",
+        pressured: "They brought our neighbors in for questioning. They asked about the linen, the stones, the exact hour. They aren't looking for a miracle; they are hunting for a reason.",
+        exposed: "I found a dropped seal near our garden wall. They want to put him back in the earth. How can you look at a man given back to his family by God and plan his murder?",
+        repeat: "I must prepare food for the household. Please, if you are followed, do not stay near our door.",
+      },
+      reactions: {
+        crowd_report: { text: "The pilgrims have been so kind, but their presence draws the eyes of the guard. We never asked for these massive crowds.", isLie: false },
+        grave_dirt: { text: "That is the white dust from our family tomb. The oils... it smells like the morning Jesus stood outside and commanded the stone to be moved.", isLie: false },
+        secret_decree: { text: "This writing bears the seal of the high priest's family. They want to take my brother away. Please, you have to help us warn the disciples.", isLie: false },
+      },
+      contradictions: {},
+    },
+    {
+      id: "parable_meaning",
+      name: "Thomas (Parable)",
+      role: "Analytical Disciple",
+      avatar: "🤔",
+      profileFile: "thomas",
+      truthfulness: 0.9,
+      bibleRef: "Matthew 13:10-17",
+      hasDialogue: true,
+      storyFile: "parable_meaning",
+      background: "An inner-circle follower distinguished by analytical, skeptical mindset. Asks hard questions about parables.",
+      dialogue: {
+        neutral: "Tell me what you know.",
+      },
+      reactions: {
+        default: { text: "I have nothing more to add.", isLie: false },
+      },
+    },
+    {
+      id: "parable_vineyard",
+      name: "Thomas (Vineyard)",
+      role: "Analytical Disciple",
+      avatar: "🧐",
+      profileFile: "thomas",
+      truthfulness: 0.9,
+      bibleRef: "Mark 12:1-12 (Parable of the Tenants)",
+      hasDialogue: true,
+      storyFile: "parable_vineyard",
+      background: "Thomas wrestling with the Vineyard Parable. Sees the dangerous implications for religious authorities.",
+      dialogue: {
+        neutral: "Tell me what you know.",
+      },
+      reactions: {
+        default: { text: "I have nothing more to add.", isLie: false },
+      },
+    },
+    {
+      id: "trial_rumors",
+      name: "Trial Rumors",
+      role: "Court Observer",
+      avatar: "👁️",
+      profileFile: "trial_rumors",
+      truthfulness: 0.4,
+      bibleRef: "Matthew 26:59-68",
+      hasDialogue: true,
+      storyFile: "trial_rumors",
+      background: "Present at or near the trial. Part accurate, part distorted version of events.",
+      dialogue: {
+        neutral: "Tell me what you know.",
+      },
+      reactions: {
+        default: { text: "I have nothing more to add.", isLie: false },
+      },
+    },
+    {
+      id: "witness_healed",
+      name: "Bethesda Witness",
+      role: "Eyewitness",
+      avatar: "👁️",
+      profileFile: "bethesda_witness",
+      truthfulness: 0.85,
+      bibleRef: "John 5:1-15",
+      hasDialogue: true,
+      storyFile: "witness_healed",
+      background: "Witnessed the healing at Bethesda. Confirms Jesus power.",
+      dialogue: {
+        neutral: "Tell me what you know.",
+      },
+      reactions: {
+        default: { text: "I have nothing more to add.", isLie: false },
+      },
+    },
+    {
+      id: "teaching_mount",
+      name: "Mount Teacher",
+      role: "Disciple",
+      avatar: "📖",
+      profileFile: "mount_teacher",
+      truthfulness: 0.8,
+      bibleRef: "Matthew 5-7 (Sermon on the Mount)",
+      hasDialogue: true,
+      storyFile: "teaching_mount",
+      background: "Heard Jesus teaching on the Mount of Olives. Shares wisdom from the gatherings.",
+      dialogue: {
+        neutral: "Tell me what you know.",
+      },
+      reactions: {
+        default: { text: "I have nothing more to add.", isLie: false },
+      },
+    },
+    {
+      id: "nicodemus",
+      name: "Nicodemus",
+      role: "Conflicted Pharisee",
+      avatar: "🌙",
+      profileFile: "nicodemus",
+      truthfulness: 0.8,
+      bibleRef: "John 3:1-21; John 7:50-52; John 19:39",
+      hasDialogue: true,
+      storyFile: "nicodemus_conflicted",
+      background: "A member of the Sanhedrin who seeks the truth in secret. He is torn between his position and his growing conviction.",
+      dialogue: {
+        neutral: "Tell me what you know about the events.",
+      },
+      reactions: {
+        default: { text: "I have nothing more to add.", isLie: false },
+      },
+    },
+    {
+      id: "simon_leper",
+      name: "Simon the Leper",
+      role: "Healed Host",
+      avatar: "🏠",
+      profileFile: "simon_leper",
+      truthfulness: 0.9,
+      bibleRef: "Matthew 26:6-13; Mark 14:3-9",
+      hasDialogue: true,
+      storyFile: "simon_leper",
+      background: "Once an outcast, now a host. His house in Bethany became a refuge for Jesus and a place where the preparation for His burial began.",
+      dialogue: {
+        neutral: "Tell me what you know about the events.",
+      },
+      reactions: {
+        default: { text: "I have nothing more to add.", isLie: false },
+      },
+    },
+  ],
+
+  deductions: {
+    "crowd_report+secret_decree": {
+      link: {
+        text: "The surge in pilgrim interest matches the exact timeline of the secret execution order.",
+        insight: "Lazarus didn't do anything political; his mere existence as a living miracle is the threat. The Sanhedrin must destroy the evidence of the miracle to neutralize the prophet.",
+        isKey: true,
+        bibleRef: "John 12:11",
+      },
+    },
+    "grave_dirt+secret_decree": {
+      link: {
+        text: "The forensic presence of burial scents inside the courthouse exposes their hypocrisy.",
+        insight: "The council knows the miracle was genuine. They verified the grave scents, yet chose to fight against the Author of Life to protect their alliance with Rome.",
+        isKey: false,
+        bibleRef: "John 11:48",
+      },
+    },
+  },
+
+  truth: {
+    culprit: "caiaphas",
+    motive: "The high priests feared that the massive public following caused by Lazarus's resurrection would spark a Roman military crackdown, destroying their temple and nation.",
+    method: "Caiaphas and his inner circle bypassed standard judicial procedures to authorize a shadow assassination plot against Lazarus of Bethany, aiming to eliminate the physical evidence of Jesus's greatest miracle before the Passover feast ended.",
+    lesson: "When humans value their religious systems over God's living truth, they end up trying to suppress and destroy the very life God creates. The plot against Lazarus mirrors the impending attempt to seal the tomb of Jesus.",
+    prophesyFulfilled: ["Isaiah 25:8", "Psalm 16:10"],
+    furtherReading: ["John 11:45–57", "John 12:9–11"],
+  },
+};
+
+// ============================================================
+// ACT: II — Prophecy & Preparation
+// CASE: The End of the Age
+// CASE ID: olivet_discourse
+// CASE EXPORT: act2CaseC
+// SOURCE: Matthew 24–25; Mark 13; Luke 21
+//
+// LOCATION:
+// Mount of Olives, overlooking Jerusalem
+//
+// DIFFICULTY:
+// ★★★☆☆ (3/5)
+//
+// BACKGROUND:
+// On Tuesday afternoon of Passion Week, Jesus departed the Temple and
+// crossed the Kidron Valley to the Mount of Olives. Looking back at the
+// magnificent Temple, He foretold its complete destruction. Privately,
+// Peter, James, John, and Andrew asked when these events would occur
+// and what signs would announce His coming and the end of the age.
+// Jesus responded with His longest prophetic discourse, describing false
+// messiahs, wars, persecution, worldwide evangelism, the destruction of
+// Jerusalem, His future return, and the need for constant spiritual
+// readiness through parables such as the Ten Virgins and the Talents.
+//
+// BIBLE REFERENCES:
+// Matthew 24–25
+// Mark 13
+// Luke 21
+//
+// ------------------------------------------------------------
+// PROPHECIES FULFILLED:
+//
+// • Daniel 9:27 — Jesus identifies the "abomination of desolation"
+//   spoken of by Daniel as a future sign connected with Jerusalem.
+//
+// • Joel 2:30–31 — Cosmic disturbances preceding the Day of the Lord
+//   are echoed in Jesus's description of His return.
+//
+// • Isaiah 13:10 — The darkening of the heavenly bodies is repeated by
+//   Jesus as part of His end-times prophecy.
+//
+// ------------------------------------------------------------
+// BIBLICAL CONTEXT:
+//
+// Summary:
+// Jesus answered His disciples' questions concerning the destruction of
+// the Temple, the signs preceding His return, and the end of the age.
+// His discourse combines near-term prophecy, fulfilled in the destruction
+// of Jerusalem in AD 70, with future events surrounding His second coming,
+// urging believers to remain faithful and watchful.
+//
+// Historical Context:
+// The Mount of Olives provided a panoramic view of Jerusalem and the
+// Temple. Jesus's prediction that not one stone would remain upon another
+// shocked His disciples, prompting one of the most significant prophetic
+// conversations recorded in the Gospels.
+//
+// Spiritual Theme:
+// Watchfulness, perseverance, faithful stewardship, prophecy, judgment,
+// hope, and readiness for Christ's return.
+//
+// ------------------------------------------------------------
+// CASE FACTS (Truth Object)
+//
+// Crime:
+// None. This case investigates prophetic teaching rather than a criminal
+// act.
+//
+// Actual Event:
+// Jesus revealed future events concerning Jerusalem, the end of the age,
+// and His return. Through prophecy and parables He instructed His
+// followers to remain spiritually prepared, discerning, and faithful
+// until He comes again.
+//
+// Culprit:
+// None.
+//
+// Motive:
+// To prepare His disciples for coming persecution, strengthen their
+// faith, and reveal God's sovereign plan for history while warning
+// against deception and spiritual complacency.
+//
+// Verdict:
+// Jesus's prophecy accurately foretold the destruction of Jerusalem and
+// continues to point believers toward His future return. The evidence
+// calls for vigilance, endurance, and faithful obedience rather than
+// speculation about dates.
+//
+// ============================================================
+
+export const act2CaseC = {
+  id: "olivet_discourse",
+  title: "The End of the Age",
+  subtitle: "Overlooking Jerusalem, Jesus delivers a profound prophecy about the Temple's destruction and the signs of His return.",
+  location: "temple",
+  eventLocation: "Mount of Olives, overlooking Jerusalem",
+  timeOfDay: "day",
+  difficulty: 3,
+  requires: "lazarus_plot",
+  actLabel: "Act II",
+  color: 0x8b5cf6, // A deep blue/purple color
+  worldModel: "../assets/models/sphere.glb",
+  showCityLayer: false,
+  quest: { name: "End Times Prophecy", task: "Understand the signs of the end", cur: 0, tar: 7 },
+
+  // ── BIBLICAL CONTEXT ──────────────────────────────────────────────
+  biblicalContext: {
+    summary: `On Tuesday afternoon, after leaving the Temple courts, Jesus sat on the Mount of Olives with His disciples, overlooking Jerusalem. They asked Him about the destruction of the Temple and the signs of His coming and the end of the age. In response, Jesus delivered a lengthy and complex discourse, warning them of false messiahs, wars, famines, earthquakes, and persecutions, and urging them to be watchful and ready. He also taught parables like the Ten Virgins and the Talents, emphasizing preparedness and faithful stewardship.`,
+    significance: `The Olivet Discourse is Jesus's most extensive teaching on eschatology (the study of end times). It provides crucial insights into the future, blending prophecies about the destruction of Jerusalem (fulfilled in AD 70) with prophecies about His second coming. It emphasizes the need for spiritual vigilance and perseverance amidst tribulation.`,
+    historicalNote: `The Mount of Olives offered a panoramic view of the Temple and Jerusalem, providing a dramatic backdrop for Jesus's prophecies about its destruction. The disciples' questions were likely prompted by Jesus's earlier declaration that not one stone of the Temple would be left upon another (Matthew 24:2).`,
+  },
+
+  prophecies: [
+    {
+      reference: "Daniel 9:27",
+      id: "daniel_9_27",
+      icon: "🔮",
+      text: `"He will confirm a covenant with many for one 'seven.' In the middle of the 'seven' he will put an end to sacrifice and offering. And at the temple he will set up an abomination that causes desolation."`,
+      written: "~530 BC",
+      fulfilledBy: "Jesus's prophecy of the Temple's destruction and the 'abomination that causes desolation'",
+      gospelLink: "Matthew 24:15",
+      insight: "Jesus directly referenced Daniel's prophecy, linking it to the future destruction of the Temple and the desecration that would precede it, a warning to His disciples about the coming tribulation.",
+      explanation: "Jesus directly quoted Daniel's prophecy, applying it to the future destruction of the Temple in Jerusalem as a warning to His disciples.",
+    },
+    {
+      reference: "Joel 2:30–31",
+      id: "joel_2_30_31",
+      icon: "🔮",
+      text: `"I will show wonders in the heavens and on the earth, blood and fire and billows of smoke. The sun will be turned to darkness and the moon to blood before the coming of the great and dreadful day of the LORD."`,
+      written: "~800 BC",
+      fulfilledBy: "Jesus's prophecy of cosmic signs preceding His return",
+      gospelLink: "Matthew 24:29",
+      insight: "Jesus incorporated ancient prophetic imagery of cosmic disturbances into His discourse, indicating that His return would be heralded by dramatic celestial events, fulfilling Joel's vision.",
+      explanation: "Jesus incorporated this classic prophetic imagery of cosmic disturbances to describe the unmistakable signs that would herald His return.",
+    },
+    {
+      reference: "Isaiah 13:10",
+      id: "isaiah_13_10",
+      icon: "🔮",
+      text: `"The stars of heaven and their constellations will not show their light. The rising sun will be darkened and the moon will not give its light."`,
+      written: "~700 BC",
+      fulfilledBy: "Jesus's description of the darkening of the sun and moon as signs of the end",
+      gospelLink: "Mark 13:24–25",
+      insight: "Isaiah's prophecy of cosmic darkness is echoed by Jesus, emphasizing the dramatic and unmistakable nature of the signs that will precede the end of the age and His glorious return.",
+      explanation: "Jesus incorporated this classic prophetic imagery of cosmic disturbances to describe the unmistakable signs that would herald His return.",
+    },
+  ],
+
+  intro: formatIntro(`It is Tuesday afternoon. Jesus has left the Temple, and as He sits on the Mount of Olives, His disciples approach Him privately. They are troubled by His words about the Temple's destruction and eager to know **when** these things will happen, and what signs will precede His coming and the end of the age. The air is thick with anticipation as Jesus begins to unveil future events, a complex tapestry of _prophecy and warning_.`),
+
+  suspects: [
+    { id: "none", name: "No One", role: "Divine Teaching", avatar: "❓", bibleRef: null },
+  ],
+
+  evidencePool: [
+
+    {
+      id: "temple_overlook_view",
+      name: "View of the Temple from Olivet",
+      type: "environmental",
+      relatedProphecy: "",
+      icon: "🏛️",
+      location: "Mount of Olives",
+      pos: [0, 5, -15],
+      snippet: "A panoramic view of the gleaming Temple from the high ridge.",
+      description: "The majestic view of the Jerusalem Temple complex, gleaming in the afternoon sun. Its grandeur makes Jesus's prophecy of its destruction all the more startling.",
+      bibleRef: "Matthew 24:1–2",
+      propheticLink: "The physical setting directly inspired the disciples' questions about the Temple's fate, linking Jesus's words to the tangible structure before them.",
+      bibleRefs: [
+        { ref: "Matthew 24:1-2", link: "matthew_24_1_2" }
+      ],
+      propheticRefs: [],
+      investigatorNote: "The disciples' awe of the Temple's stones and buildings contrasts sharply with Jesus's prediction of its utter demolition.",
+      clues: {
+        compare: "Connects with related evidence in this case to confirm the established narrative.",
+        link: "Event Trail — view of the temple from olivet",
+        timeline: "CHRONOLOGY: Recovered during the investigation.",
+        contradict: "RELIABILITY: Corroborated by multiple independent sources and consistent with the narrative."
+      },
+    }, {
+      id: "disciples_questions_notes",
+      name: "Disciples' Questions (Written Notes)",
+      type: "analytical",
+      relatedProphecy: "daniel_9_27",
+      icon: "📝",
+      location: "Mount of Olives",
+      pos: [8, 1, 8],
+      snippet: "Quickly scribbled notes detailing three specific questions.",
+      description: "Notes scribbled by a disciple, detailing the three main questions posed to Jesus: 'When will these things be? What will be the sign of your coming? And of the end of the age?'",
+      bibleRef: "Matthew 24:3",
+      propheticLink: "These questions frame the entire discourse, revealing the disciples' immediate concerns about timing and signs, which Jesus then addresses with detailed prophecies.",
+      bibleRefs: [
+        { ref: "Matthew 24:3", link: "matthew_243" }
+      ],
+      propheticRefs: [],
+
+      investigatorNote: "The disciples' questions show their expectation of a clear timeline and visible indicators for future events.",
+      clues: {
+        compare: "Connects with related evidence in this case to confirm the established narrative.",
+        link: "Prophecy & Scripture — disciples' questions (written notes)",
+        timeline: "CHRONOLOGY: Recovered during the investigation.",
+        contradict: "RELIABILITY: Corroborated by multiple independent sources and consistent with the narrative."
+      },
+    }, {
+      id: "parable_of_virgins_notes",
+      name: "Parable of the Ten Virgins (Notes)",
+      type: "analytical",
+      relatedProphecy: "",
+      icon: "🕯️",
+      location: "Mount of Olives",
+      pos: [-8, 1, 8],
+      snippet: "A summary of a story involving lamps and oil.",
+      description: "A summary of the Parable of the Ten Virgins, emphasizing the need for preparedness and vigilance for the bridegroom's (Jesus's) return.",
+      bibleRef: "Matthew 25:1–13",
+      propheticLink: "This parable underscores the theme of watchfulness, a recurring motif in eschatological prophecies, urging believers to be ready for the unexpected timing of the Lord's return.",
+      bibleRefs: [
+        { ref: "Matthew 25:1-13", link: "matthew_25_1_13" }
+      ],
+      propheticRefs: [],
+
+      investigatorNote: "The parable highlights the personal responsibility of each individual to be spiritually prepared.",
+      clues: {
+        compare: "Connects with related evidence in this case to confirm the established narrative.",
+        link: "Prophecy & Scripture — parable of the ten virgins (notes)",
+        timeline: "CHRONOLOGY: Recovered during the investigation.",
+        contradict: "RELIABILITY: Corroborated by multiple independent sources and consistent with the narrative."
+      },
+    }, {
+      id: "cosmic_signs_references",
+      name: "Old Testament Cosmic Sign References",
+      type: "analytical",
+      relatedProphecy: "joel_2_30_31",
+      icon: "🌌",
+      location: "Mount of Olives",
+      pos: [0, 2, 12],
+      snippet: "A list of ancient prophecies regarding the sun and moon.",
+      description: "A collection of Old Testament verses (e.g., Joel 2:30-31, Isaiah 13:10) that speak of the sun darkening, the moon turning to blood, and stars falling, which Jesus referenced in His discourse.",
+      bibleRef: "Matthew 24:29",
+      propheticLink: "Jesus's use of these ancient prophecies demonstrates the continuity of God's plan and the fulfillment of long-foretold cosmic disturbances as signs of the end.",
+      bibleRefs: [
+        { ref: "Matthew 24:29", link: "matthew_2429" }
+      ],
+      propheticRefs: [],
+      investigatorNote: "The consistency between Jesus's words and ancient prophecies reinforces the divine origin of His message.",
+      clues: {
+        compare: "Connects with related evidence in this case to confirm the established narrative.",
+        link: "Prophecy & Scripture — old testament cosmic sign references",
+        timeline: "CHRONOLOGY: Recovered during the investigation.",
+        contradict: "RELIABILITY: Corroborated by multiple independent sources and consistent with the narrative."
+      },
+    }, {
+      id: "darkened_sun_record",
+      name: "Darkened Sun Record",
+      type: "analytical",
+      relatedProphecy: "isaiah_13_10",
+      icon: "☀️",
+      location: "Mount of Olives",
+      desc: "A record of Jesus's prophecy that the sun will be darkened and the moon will not give its light, quoting from Old Testament prophets.",
+      bibleRef: "Matthew 24:29",
+      propheticLink: "Isaiah 13:10 foretells the darkening of the heavenly lights. Jesus quotes this same imagery when describing the signs preceding His return.",
+      bibleRefs: [
+        { ref: "Matthew 24:29", link: "matthew_24_29" }
+      ],
+      propheticRefs: [
+        { ref: "Isaiah 13:10", link: "isaiah_13_10" }
+      ],
+      investigatorNote: "This direct quotation links Jesus's teaching to ancient prophetic tradition, showing a continuity of divine revelation."
+    }
+
+  ],
+
+  lab: [
+    {
+      evidence: "disciples_questions_notes",
+      suspect: "peter_olivet",
+      result: "**Identified as Primary Witness** (He asked the initial question about the Temple's destruction)",
+      notes: "'Tell us, when will this happen?' (Matthew 24:3) — the whole discourse traces back to a question asked in private, on the mountain."
+    }
+  ],
+
+  npcs: [
+    {
+      id: "peter_olivet",
+      name: "Peter",
+      role: "Disciple, Questioner",
+      faction: "scribes",
+      avatar: "👨\u200d🦰",
+      profileFile: "peter",
+      color: 0xffaa44,
+      pos: [-10, 0, -5],
+      truthfulness: 0.8,
+      bibleRef: "Matthew 24:3",
+      hasDialogue: true,
+      storyFile: "peter_olivet",
+      unlocksSuspects: ["peter_olivet"],
+      unlocksEvidence: ["disciples_questions_notes"],
+      background: "Simon Peter, ever eager for answers, was one of the disciples who privately asked Jesus about the timing of the Temple's destruction and the signs of His coming.",
+      dialogue: {
+        neutral: "We had just left the Temple. He said not one stone would be left. How could we not ask when?",
+        cautious: "He spoke of wars, famines, earthquakes... it sounded terrifying. But also of the gospel being preached to all nations.",
+        pressured: "He warned us about false prophets and deceivers. It makes you wonder who to trust in these last days.",
+        exposed: "He told us to be ready, like the wise virgins. To keep watch. It's a heavy burden, but a necessary one.",
+        repeat: "The future is in His hands. Our job is to be faithful.",
+      },
+      reactions: {
+        temple_overlook_view: { text: "Look at it! So grand, so solid. And He said it would all come down. It's hard to imagine.", isLie: false },
+        disciples_questions_notes: { text: "Yes, those were our questions. We wanted to know the 'when' and the 'how'. He gave us much more than we expected.", isLie: false },
+        parable_of_virgins_notes: { text: "The oil for our lamps... it's about being prepared, isn't it? Not just for the end, but for every day.", isLie: false },
+      },
+      contradictions: {},
+    },
+    {
+      id: "john_olivet",
+      name: "John",
+      role: "Disciple, Observer",
+      faction: "scribes",
+      avatar: "👨\u200d🦰",
+      profileFile: "john_apostle",
+      color: 0x66aaff,
+      pos: [10, 0, -8],
+      truthfulness: 0.9,
+      bibleRef: "Matthew 24:3",
+      hasDialogue: true,
+      storyFile: "john_olivet",
+      unlocksSuspects: ["john_olivet"],
+      unlocksEvidence: ["temple_overlook_view"],
+      revealsProphecy: "isaiah_13_10",
+      background: "John, son of Zebedee, was among the inner circle who heard Jesus's Olivet Discourse. His Gospel often emphasizes themes of light, darkness, and the coming of Christ.",
+      dialogue: {
+        neutral: "He spoke of the end, but also of hope. The gospel must be proclaimed to all the world before the end comes.",
+        cautious: "The signs He described... wars, earthquakes, famines. These things have always happened. But He said they would intensify.",
+        pressured: "He spoke of a time of great tribulation, unlike any before. But also that those who endure to the end will be saved.",
+        exposed: "The destruction of the Temple was a warning. A physical sign of a spiritual reality. The end of one age, the beginning of another.",
+        repeat: "We must watch and pray. That was His command.",
+      },
+      reactions: {
+        temple_overlook_view: { text: "It's beautiful, isn't it? But He said its beauty would be shattered. A sobering thought.", isLie: false },
+        disciples_questions_notes: { text: "We wanted to understand. He gave us wisdom, not just dates.", isLie: false },
+        cosmic_signs_references: { text: "The sun darkened, the moon not giving its light... these are ancient prophecies. He confirmed they would come to pass.", isLie: false },
+      },
+      contradictions: {},
+    },
+    {
+      id: "thomas_olivet",
+      name: "Thomas",
+      role: "Disciple, Analytical",
+      faction: "scribes",
+      avatar: "🤔",
+      profileFile: "thomas",
+      color: 0x99ccff,
+      pos: [0, 0, 5],
+      truthfulness: 0.85,
+      bibleRef: "Matthew 24:3",
+      hasDialogue: true,
+      storyFile: "parable_meaning",
+      unlocksSuspects: ["thomas_olivet"],
+      unlocksEvidence: ["parable_of_virgins_notes", "cosmic_signs_references"],
+      background: "Thomas, known for his analytical mind, would have carefully considered Jesus's prophecies, seeking to understand the practical implications of such profound teachings.",
+      dialogue: {
+        neutral: "He spoke of many things. The destruction of the Temple, the signs of His coming, the judgment of the nations.",
+        cautious: "The parables He told, like the Ten Virgins and the Talents, were about being prepared. It's not enough to just hear the words.",
+        pressured: "He said no one knows the day or hour, not even the angels. Only the Father. That makes planning difficult.",
+        exposed: "The most important thing is not to predict the exact moment, but to live faithfully in the present, doing what He has commanded, until He returns.",
+        repeat: "We must be ready. That is the essence of it.",
+      },
+      reactions: {
+        disciples_questions_notes: { text: "We wanted a clear timeline. He gave us principles for living in the meantime.", isLie: false },
+        parable_of_virgins_notes: { text: "The oil in the lamps... it's about our spiritual readiness, our inner life. Not just outward show.", isLie: false },
+        cosmic_signs_references: { text: "These signs are not for us to fear, but to recognize. To know that His coming is near.", isLie: false },
+      },
+      contradictions: {},
+    },
+    {
+      id: "andrew_olivet",
+      name: "Andrew",
+      role: "Disciple, Watcher",
+      avatar: "👨‍🌾",
+      truthfulness: 0.9,
+      hasDialogue: true,
+      storyFile: "andrew_olivet",
+      bibleRef: "Mark 13:3",
+      background: "Andrew sat with Peter, James, and John on the Mount of Olives. He is focused on the signs of the end.",
+      dialogue: {
+        neutral: "He said the stones would fall... look at them, they seem so solid.",
+      },
+      reactions: {
+        default: { text: "The future is in His hands.", isLie: false },
+      },
+    }
+  ],
+
+  deductions: {
+    "temple_overlook_view+disciples_questions_notes": {
+      link: {
+        text: "The physical view of the Temple from the Mount of Olives directly prompted the disciples' questions about its destruction and the end of the age.",
+        insight: "Jesus used the immediate context of the magnificent Temple to launch into profound prophecies about its future demolition and the broader eschatological timeline, connecting the visible present with the unseen future.",
+        isKey: true,
+        revealsProphecy: "daniel_9_27",
+        bibleRef: "Matthew 24:1–3",
+      },
+    },
+    "parable_of_virgins_notes+cosmic_signs_references": {
+      compare: {
+        text: "Jesus's parables emphasize preparedness and faithful living, while His references to cosmic signs highlight the dramatic, undeniable nature of His return.",
+        insight: "The discourse balances two aspects of end-times teaching: the personal responsibility to be ready (parables) and the grand, cosmic events that will signal the culmination of history (prophecies).",
+        isKey: true,
+        bibleRef: "Matthew 25:1–13; Matthew 24:29",
+      },
+    },
+    "cosmic_signs_references+darkened_sun_record": {
+      compare: {
+        text: "The Old Testament source texts and Jesus's own record of them line up almost word for word — He wasn't inventing new imagery, He was quoting.",
+        insight: "Isaiah 13:10 and Joel 2:30–31 already described a darkened sun and moon centuries earlier. Jesus placed His own coming inside that established prophetic pattern rather than starting a new one.",
+        isKey: false,
+        bibleRef: "Matthew 24:29; Isaiah 13:10",
+      },
+    },
+  },
+
+  truth: {
+    culprit: "none",
+    motive: "The Olivet Discourse was Jesus's comprehensive teaching to His disciples, preparing them for future events, including the destruction of Jerusalem and His second coming, and urging them to live in constant readiness and faithfulness.",
+    method: "Sitting on the Mount of Olives, Jesus responded to His disciples' questions by delivering a detailed prophecy that interwove predictions about the fall of Jerusalem with signs of the end of the age. He used parables to illustrate the importance of vigilance, perseverance, and wise stewardship.",
+    lesson: "The Olivet Discourse teaches that while the timing of the end is unknown, the signs will be clear, and believers are called to be watchful, faithful, and productive. It underscores Jesus's authority as a prophet who accurately foretold future events, providing both warning and hope.",
+    prophesyFulfilled: ["Daniel 9:27", "Joel 2:30–31", "Isaiah 13:10"],
+    furtherReading: ["Matthew 24:1–51", "Matthew 25:1–46", "Mark 13:1–37", "Luke 21:5–36"],
+  },
 };
