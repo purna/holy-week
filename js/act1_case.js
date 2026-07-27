@@ -1,9 +1,83 @@
 import { formatIntro } from './utils.js';
 
 // ============================================================
-// CASE: The Missing Donkey  — difficulty 1 — Triumphal Entry
-// BIBLICAL FOCUS: Matthew 21:1–11, Mark 11:1–11, Luke 19:28–44, John 12:12–19
-// PROPHECY: Zechariah 9:9 | Psalm 118:25–26 | Genesis 49:10–11 | Malachi 3:1
+// ACT: Act I
+// CASE: The Missing Donkey
+// CASE ID: triumphal_entry
+// CASE EXPORT: act1CaseA
+// SOURCE: act1_case.js
+//
+// LOCATION:
+//   Bethphage, Mount of Olives
+//
+// DIFFICULTY:
+//   1
+//
+// BACKGROUND:
+//   Jesus approaches Jerusalem during Passover and sends two
+//   disciples to collect a donkey colt. To bystanders the animal
+//   appears to have been taken without permission, creating the
+//   appearance of theft. Investigation reveals the owner willingly
+//   released the colt after hearing the pre-arranged words
+//   "The Lord needs it." The entire event forms the opening of
+//   Jesus's public presentation as Israel's Messiah.
+//
+// BIBLE REFERENCE:
+//   Matthew 21:1–11
+//   Mark 11:1–11
+//   Luke 19:28–44
+//   John 12:12–19
+//
+// ------------------------------------------------------------
+// PROPHECIES FULFILLED IN THIS CASE:
+//
+//   • Zechariah 9:9
+//     The King enters Jerusalem riding a donkey.
+//
+//   • Psalm 118:25–26
+//     The crowds proclaim "Hosanna" and bless the coming King.
+//
+//   • Genesis 49:10–11
+//     Judah's ruler associated with a donkey's colt.
+//
+//   • Malachi 3:1
+//     The Lord suddenly comes to His Temple.
+//
+// ------------------------------------------------------------
+// BIBLICAL CONTEXT:
+//
+//   Summary:
+//   Jesus deliberately fulfils multiple Messianic prophecies by
+//   entering Jerusalem on a donkey. What initially appears to be
+//   a missing animal is revealed to be a willing act supporting
+//   God's prophetic plan.
+//
+//   Historical Context:
+//   Palm branches symbolised national victory after the Maccabean
+//   revolt. Riding a donkey echoed Solomon's coronation and
+//   announced peaceful kingship rather than military conquest.
+//
+//   Spiritual Theme:
+//   Recognition of the Messiah.
+//
+// ------------------------------------------------------------
+// CASE FACTS (Truth Object)
+//
+//   Crime:
+//     Apparent theft
+//
+//   Actual Event:
+//     Prophetic fulfilment
+//
+//   Culprit:
+//     none
+//
+//   Motive:
+//     Fulfilment of Messianic prophecy.
+//
+//   Verdict:
+//     No crime committed.
+//
 // ============================================================
 
 export const act1CaseA = {
@@ -599,9 +673,86 @@ export const act1CaseA = {
 };
 
 // ============================================================
-// CASE: The Overturned Tables  — difficulty 2 — Temple Cleansing
-// BIBLICAL FOCUS: Matthew 21:12–17, Mark 11:15–19, Luke 19:45–48, John 2:13–22
-// PROPHECY: Malachi 3:1 | Isaiah 56:7 | Psalm 69:9
+// ACT: Act I
+// CASE: The Overturned Tables
+// CASE ID: temple_cleansing
+// CASE EXPORT: act1CaseB
+// SOURCE: act1_case.js
+//
+// LOCATION:
+//   Temple Courts, Jerusalem
+//
+// DIFFICULTY:
+//   2
+//
+// BACKGROUND:
+//   The day after His triumphal entry, Jesus entered the Temple
+//   courts and found the Court of the Gentiles filled with money
+//   changers and merchants selling sacrificial animals. He drove
+//   them out, overturned their tables, and scattered their coins.
+//   To many witnesses the scene appeared to be a riot or an act
+//   of vandalism, but investigation reveals it was a deliberate
+//   prophetic judgment against corruption and the commercial
+//   exploitation of God's house. Rather than stealing anything,
+//   Jesus condemned a system that had turned worship into profit
+//   and restored the Temple's purpose as a place of prayer.
+//
+// BIBLE REFERENCES:
+//   Matthew 21:12–17
+//   Mark 11:15–19
+//   Luke 19:45–48
+//   John 2:13–22
+//
+// ------------------------------------------------------------
+// PROPHECIES FULFILLED IN THIS CASE:
+//
+//   • Malachi 3:1
+//     The Lord suddenly comes to His Temple to purify it.
+//
+//   • Isaiah 56:7
+//     "My house shall be called a house of prayer for all nations."
+//
+//   • Psalm 69:9
+//     "Zeal for your house will consume me."
+//
+// ------------------------------------------------------------
+// BIBLICAL CONTEXT:
+//
+//   Summary:
+//   Jesus deliberately cleanses the Temple by driving out the
+//   merchants and money changers, restoring God's house as a
+//   place of worship and prayer while publicly condemning the
+//   corruption of the Temple system.
+//
+//   Historical Context:
+//   Pilgrims were required to exchange their currency for Tyrian
+//   shekels to pay the Temple tax, while approved merchants sold
+//   sacrificial animals at inflated prices. These businesses
+//   occupied the Court of the Gentiles, preventing the nations
+//   from worshipping as Isaiah had foretold.
+//
+//   Spiritual Theme:
+//   Judgment, holiness, and the purification of true worship.
+//
+// ------------------------------------------------------------
+// CASE FACTS (Truth Object)
+//
+//   Crime:
+//     Apparent vandalism and public disorder
+//
+//   Actual Event:
+//     Prophetic cleansing of the Temple
+//
+//   Culprit:
+//     none
+//
+//   Motive:
+//     To expose corruption, restore God's house as a place of
+//     prayer, and fulfil Messianic prophecy.
+//
+//   Verdict:
+//     No crime committed.
+//
 // ============================================================
 
 export const act1CaseB = {
@@ -1109,10 +1260,96 @@ export const act1CaseB = {
 
 
 
+
 // ============================================================
-// CASE: The Barren Fig Tree  — difficulty 2 — Bethany Road
-// BIBLICAL FOCUS: Matthew 21:18–22, Mark 11:12–14, 20–25
-// PROPHECY: Micah 7:1 | Jeremiah 8:13 | Psalm 33:8–9 | Zechariah 4:6–7
+// ACT: Act I
+// CASE: The Withered Fig Tree
+// CASE ID: withered_fig_tree
+// CASE EXPORT: act1CaseC
+// SOURCE: act1_case.js
+//
+// LOCATION:
+//   Road between Bethany and Jerusalem
+//
+// DIFFICULTY:
+//   3
+//
+// BACKGROUND:
+//   On the morning after cleansing the Temple, Jesus approached
+//   a leafy fig tree looking for fruit. Finding only leaves, He
+//   pronounced a judgment upon it: "May no one ever eat fruit
+//   from you again." By the following morning the tree had
+//   withered from the roots. To observers it appeared to be an
+//   inexplicable act of destruction against an innocent tree,
+//   but investigation reveals it was a prophetic sign against
+//   spiritual hypocrisy. The tree displayed every appearance of
+//   life yet produced no fruit, mirroring Israel's religious
+//   leadership and preparing the disciples for lessons on faith,
+//   prayer, and judgment.
+//
+// BIBLE REFERENCES:
+//   Matthew 21:18–22
+//   Mark 11:12–14, 20–25
+//
+// ------------------------------------------------------------
+// PROPHECIES FULFILLED IN THIS CASE:
+//
+//   • Jeremiah 8:13
+//     "There are no figs on the fig tree..."
+//
+//   • Hosea 9:10,16
+//     Israel is compared to a fig tree that has become fruitless.
+//
+//   • Micah 7:1
+//     The prophet laments the absence of the first ripe figs,
+//     symbolising the lack of righteousness in Israel.
+//
+//   • Psalm 33:8–9
+//     "He spoke, and it came to be; He commanded, and it stood firm."
+//     Jesus demonstrates the divine authority of God's spoken word
+//     by commanding the fig tree, which immediately begins to wither.
+//
+// ------------------------------------------------------------
+// BIBLICAL CONTEXT:
+//
+//   Summary:
+//   Jesus uses the barren fig tree as a living parable of
+//   judgment. Although covered in leaves, it bears no fruit,
+//   illustrating outward religion without genuine faith or
+//   righteousness.
+//
+//   Historical Context:
+//   Fig trees commonly produced small early figs before their
+//   full crop. A tree covered in leaves should normally have
+//   contained edible early fruit. Its barrenness made it a
+//   fitting symbol of the Temple establishment, which appeared
+//   spiritually healthy while failing to produce the fruit God
+//   desired.
+//
+//   Spiritual Theme:
+//   Fruitfulness, authentic faith, and divine judgment against
+//   hypocrisy.
+//
+// ------------------------------------------------------------
+// CASE FACTS (Truth Object)
+//
+//   Crime:
+//     Apparent destruction of private property
+//
+//   Actual Event:
+//     Prophetic sign of judgment
+//
+//   Culprit:
+//     none
+//
+//   Motive:
+//     To demonstrate God's judgment on fruitless religion and
+//     teach the disciples about genuine faith, prayer, and
+//     spiritual fruitfulness.
+//
+//   Verdict:
+//     No crime committed.
+//
 // ============================================================
 
 export const act1CaseC = {

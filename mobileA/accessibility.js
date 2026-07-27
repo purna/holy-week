@@ -157,10 +157,10 @@ export class AccessibilityManager {
     if (!container) return;
 
     const tools = [
-      { id: 'btn-tts', icon: "<img src='../assets/gfx/audio.svg' class='icon-svg' loading='lazy'>", label: 'Text to Speech', action: () => this.toggleTTS() },
-      { id: 'btn-contrast', icon: '<img src=\'../assets/gfx/sun-duotone.svg\' class=\'icon-svg\' loading=\'lazy\'>', label: 'High Contrast', action: () => this.toggleHighContrast() },
-      { id: 'btn-simple', icon: '<img src=\'../assets/gfx/book-open-duotone.svg\' class=\'icon-svg\' loading=\'lazy\'>', label: 'Simple Text', action: () => this.toggleSimpleMode() },
-      { id: 'btn-large', icon: '<img src=\'../assets/gfx/text-align-left-duotone.svg\' class=\'icon-svg\' loading=\'lazy\'>', label: 'Large Text', action: () => this.toggleLargeText() },
+      { id: 'btn-tts', icon: '../assets/gfx/audio.svg', label: 'Text to Speech', action: () => this.toggleTTS() },
+      { id: 'btn-contrast', icon: '../assets/gfx/sun-duotone.svg', label: 'High Contrast', action: () => this.toggleHighContrast() },
+      { id: 'btn-simple', icon: '../assets/gfx/book-open-duotone.svg', label: 'Simple Text', action: () => this.toggleSimpleMode() },
+      { id: 'btn-large', icon: '../assets/gfx/text-align-left-duotone.svg', label: 'Large Text', action: () => this.toggleLargeText() },
       { id: 'btn-reset', icon: '↺', label: 'Reset Progress', action: () => window.__resetProgress?.() }
     ];
 

@@ -1,0 +1,505 @@
+/* ═══════════════════════════════════════════════
+   LAB WORKSPACE — Scoped for #lab-workspace
+   Replace or augment existing lab.css in each build.
+   Layout is isolated under #lab-workspace so it
+   cannot leak into the rest of the game shell.
+   ════════════════════════════════════════════════ */
+
+/* ── Evidence card base ── */
+#lab-workspace .ev-card {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--surface2);
+  border: 1.5px solid var(--border2);
+  border-radius: var(--radius-sm);
+  padding: 8px 10px;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s, transform 0.1s, opacity 0.15s;
+  position: relative;
+  user-select: none;
+}
+
+#lab-workspace .ev-card:hover {
+  border-color: var(--blue);
+  background: var(--surface3);
+}
+
+#lab-workspace .ev-card:active {
+  transform: scale(0.97);
+}
+
+#lab-workspace .ev-card.selected {
+  border-color: var(--blue);
+  background: rgba(79, 163, 232, 0.15);
+}
+
+#lab-workspace .ev-card.correct-flash {
+  border-color: var(--green);
+  background: rgba(61, 214, 140, 0.2);
+  animation: lw-flash-green 0.6s ease;
+}
+
+#lab-workspace .ev-card.wrong-flash {
+  border-color: var(--red);
+  background: rgba(244, 96, 96, 0.2);
+  animation: lw-flash-red 0.6s ease;
+}
+
+#lab-workspace .ev-card.dragging {
+  opacity: 0.4;
+  transform: scale(0.95);
+}
+
+@keyframes lw-flash-green {
+  0%, 100% { border-color: var(--green); background: rgba(61, 214, 140, 0.2); }
+  50% { border-color: var(--green); background: rgba(61, 214, 140, 0.4); }
+}
+
+@keyframes lw-flash-red {
+  0%, 100% { border-color: var(--red); background: rgba(244, 96, 96, 0.2); }
+  50% { border-color: var(--red); background: rgba(244, 96, 96, 0.4); }
+}
+
+/* ── Info button on cards ── */
+#lab-workspace .ev-info-btn {
+  appearance: none;
+  background: var(--surface3);
+  color: var(--text-muted);
+  border: 1px solid var(--border2);
+  border-radius: 999px;
+  width: 22px;
+  height: 22px;
+  display: inline-grid;
+  place-items: center;
+  font-size: 0.65rem;
+  font-weight: 800;
+  cursor: pointer;
+  margin-left: auto;
+  flex-shrink: 0;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+#lab-workspace .ev-info-btn:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+/* ── Comparator slots ── */
+#lab-workspace .comparator-slot {
+  border: 2px dashed var(--border2);
+  border-radius: var(--radius);
+  padding: 12px;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+#lab-workspace .comparator-slot.filled {
+  border-style: solid;
+  border-color: var(--gold);
+  background: rgba(245, 200, 66, 0.08);
+}
+
+#lab-workspace .comparator-slot.drop-hover {
+  border-color: var(--gold) !important;
+  border-style: dotted !important;
+  background: rgba(245, 200, 66, 0.12) !important;
+}
+
+#lab-workspace .comparator-slot.correct {
+  border-color: var(--green);
+  background: rgba(61, 214, 140, 0.1);
+}
+
+#lab-workspace .comparator-slot.wrong {
+  border-color: var(--red);
+  background: rgba(244, 96, 96, 0.1);
+}
+
+/* ── Folder trays ── */
+#lab-workspace .folder-tray {
+  border: 1.5px solid var(--border2);
+  border-radius: var(--radius);
+  padding: 10px;
+  margin-bottom: 8px;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+#lab-workspace .folder-tray.drop-hover {
+  border-color: var(--gold) !important;
+  border-style: dotted !important;
+  background: rgba(245, 200, 66, 0.12) !important;
+}
+
+#lab-workspace .folder-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+#lab-workspace .folder-header-title {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+/* ── Timeline steps ── */
+#lab-workspace .timeline-step {
+  border: 1.5px solid var(--border2);
+  border-radius: var(--radius);
+  padding: 10px;
+  margin-bottom: 8px;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+#lab-workspace .timeline-step.filled {
+  border-color: var(--gold);
+  border-style: solid;
+  background: rgba(245, 200, 66, 0.06);
+}
+
+#lab-workspace .timeline-step.drop-hover {
+  border-color: var(--gold) !important;
+  border-style: dotted !important;
+  background: rgba(245, 200, 66, 0.12) !important;
+}
+
+#lab-workspace .timeline-step.correct {
+  border-color: var(--green);
+  background: rgba(61, 214, 140, 0.1);
+}
+
+#lab-workspace .timeline-step.wrong {
+  border-color: var(--red);
+  background: rgba(244, 96, 96, 0.1);
+}
+
+#lab-workspace .step-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+#lab-workspace .step-title {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+#lab-workspace .step-hint {
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+}
+
+#lab-workspace .step-cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  min-height: 36px;
+}
+
+/* ── Desk stations ── */
+#lab-workspace .desk-station {
+  border: 1.5px solid var(--border2);
+  border-radius: var(--radius);
+  padding: 12px;
+  margin-bottom: 8px;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+#lab-workspace .desk-station.drop-hover {
+  border-color: var(--gold) !important;
+  border-style: dotted !important;
+  background: rgba(245, 200, 66, 0.12) !important;
+}
+
+/* ── Drop zone hover (yellow dotted border) ── */
+#lab-workspace .comparator-slot.drop-hover,
+#lab-workspace .folder-tray.drop-hover,
+#lab-workspace .timeline-step.drop-hover,
+#lab-workspace .desk-station.drop-hover {
+  border-style: dotted !important;
+  border-width: 2px !important;
+  border-color: var(--gold) !important;
+  background: rgba(245, 200, 66, 0.12) !important;
+}
+
+/* ── Feedback ── */
+#lab-workspace .lw-feedback {
+  font-size: 0.78rem;
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+  margin-bottom: 10px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+}
+
+#lab-workspace .lw-feedback.success {
+  border-color: var(--green);
+  color: var(--green);
+  background: rgba(61, 214, 140, 0.08);
+}
+
+#lab-workspace .lw-feedback.error {
+  border-color: var(--red);
+  color: var(--red);
+  background: rgba(244, 96, 96, 0.08);
+}
+
+/* ── Modal ── */
+#lab-workspace .modal-mask {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 1000;
+  place-items: center;
+}
+
+#lab-workspace .modal-mask.open {
+  display: grid;
+}
+
+#lab-workspace .modal-card {
+  background: var(--surface);
+  border: 1px solid var(--border2);
+  border-radius: var(--radius);
+  padding: 20px;
+  max-width: 360px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+#lab-workspace .modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+#lab-workspace .modal-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+#lab-workspace .modal-close {
+  appearance: none;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  cursor: pointer;
+  padding: 4px 8px;
+}
+
+#lab-workspace .modal-body {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
+#lab-workspace .detail-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 0.78rem;
+  padding: 8px;
+  background: var(--surface2);
+  border-radius: var(--radius-sm);
+}
+
+#lab-workspace .detail-row strong {
+  color: var(--gold);
+  flex-shrink: 0;
+}
+
+/* ── Card pool grid ── */
+#lab-workspace .card-pool-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+/* ── Actions bar ── */
+#lab-workspace .actions-bar {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin: 8px 0;
+  width: 100%;
+}
+
+#lab-workspace .btn-secondary {
+  background: var(--surface3);
+  border: 1px solid var(--border2);
+  border-radius: var(--radius-sm);
+  padding: 8px 16px;
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+#lab-workspace .btn-secondary:hover {
+  background: var(--surface2);
+}
+
+#lab-workspace .btn-submit {
+  background: var(--gold);
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 8px 16px;
+  color: var(--bg);
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+
+#lab-workspace .btn-submit:hover {
+  opacity: 0.85;
+}
+
+/* ── Trash archive ── */
+#lab-workspace .trash-archive-box {
+  max-height: 120px;
+  overflow-y: auto;
+}
+/* ── Tab panels ── */
+#lab-workspace .tab-panel {
+  display: none;
+}
+
+#lab-workspace .tab-panel.active {
+  display: block;
+}
+
+/* ── Lab action buttons ── */
+#lab-workspace .lab-btn {
+  background: var(--surface3);
+  color: var(--text);
+  border: 1px solid var(--border2);
+  border-radius: var(--radius);
+  padding: 10px 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  transition: background 0.15s, transform 0.15s, border-color 0.15s;
+}
+
+#lab-workspace .lab-btn:hover:not([aria-disabled="true"]) {
+  background: var(--surface2);
+}
+
+#lab-workspace .lab-btn:active:not([aria-disabled="true"]) {
+  transform: scale(0.95);
+}
+
+#lab-workspace .lab-btn.active {
+  background: var(--gold);
+  color: var(--bg);
+  border-color: var(--gold);
+}
+
+#lab-workspace .lab-btn[aria-disabled="true"] {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+#lab-workspace .lab-btn-icon {
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#lab-workspace .lab-btn-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+}
+
+/* ── Comparator stage ── */
+#lab-workspace .comparator-stage {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+#lab-workspace .comparator-slots {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+/* ── Desk stage (contradict panel) ── */
+#lab-workspace .desk-stage {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+
+/* ── Slot label ── */
+#lab-workspace .slot-label {
+      font-size: 0.68rem;
+    font-weight: 700;
+    text-align: center;
+  color: #4a5568;
+  
+}
+
+
+#lab-workspace .slot-label .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ── Evidence A/B badge in bank ── */
+#lab-workspace .ev-card .sel-badge {
+  position: absolute;
+  top: 3px;
+  right: 4px;
+  font-size: 0.6rem;
+  font-weight: 700;
+  color: var(--bg);
+  border-radius: 3px;
+  padding: 0 3px;
+  line-height: 1.4;
+  z-index: 1;
+}
+
+#lab-workspace .ev-card .sel-badge-a {
+  background: var(--blue);
+}
+
+#lab-workspace .ev-card .sel-badge-b {
+  background: var(--gold);
+}
+
+#lab-workspace .actions-bar > :only-child {
+  grid-column: 1 / -1;
+}

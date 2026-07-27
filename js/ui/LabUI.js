@@ -32,12 +32,12 @@ export class LabUI {
         <div class="lab-selection-summary">
           <div class="lab-slot-badge ${this.es.selectedA ? 'filled' : 'empty'}" aria-label="First clue: ${this.es.selectedA?.name || 'not selected'}">
             ${this.es.selectedA
-              ? `<span class="slot-icon"><img src='${this.es.selectedA.icon || this.es.selectedA.emoji}' class='icon-svg' loading='lazy'></span><span class="slot-name">${this.es.selectedA.name}</span>`
+              ? `<span class="slot-icon"><img src='${this.es.selectedA.icon}' class='icon-svg' loading='lazy'></span><span class="slot-name">${this.es.selectedA.name}</span>`
               : `<span class="slot-empty">First clue...</span>`}
           </div>
           <div class="lab-slot-badge ${this.es.selectedB ? 'filled' : 'empty'}" aria-label="Second clue: ${this.es.selectedB?.name || 'not selected'}">
             ${this.es.selectedB
-              ? `<span class="slot-icon"><img src='${this.es.selectedB.icon || this.es.selectedB.emoji}' class='icon-svg' loading='lazy'></span><span class="slot-name">${this.es.selectedB.name}</span>`
+              ? `<span class="slot-icon"><img src='${this.es.selectedB.icon}' class='icon-svg' loading='lazy'></span><span class="slot-name">${this.es.selectedB.name}</span>`
               : `<span class="slot-empty">Second clue...</span>`}
           </div>
         </div>

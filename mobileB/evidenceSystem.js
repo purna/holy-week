@@ -3,12 +3,12 @@
 // ============================================================
 
 export const EVIDENCE_TYPES = {
-  PHYSICAL:      { id: "physical",      label: "Physical",      icon: "<img src='../assets/gfx/shield-duotone.svg' class='icon-svg' loading='lazy'>", color: "#f59e0b" },
-  TESTIMONIAL:   { id: "testimonial",   label: "Testimonial",   icon: "<img src='../assets/gfx/chat-duotone.svg' class='icon-svg' loading='lazy'>", color: "#60a5fa" },
-  DIGITAL:       { id: "digital",       label: "Digital",       icon: "<img src='../assets/gfx/laptop-code.svg' class='icon-svg' loading='lazy'>", color: "#34d399" },
-  ENVIRONMENTAL: { id: "environmental", label: "Environmental", icon: "<img src='../assets/gfx/leaf-duotone.svg' class='icon-svg' loading='lazy'>", color: "#a78bfa" },
-  ANALYTICAL:    { id: "analytical",    label: "Analytical",    icon: "<img src='../assets/gfx/microscope-duotone.svg' class='icon-svg' loading='lazy'>", color: "#f472b6" },
-  PROPHECY:      { id: "prophecy",      label: "Prophecy",      icon: "<img src='../assets/gfx/star-duotone.svg' class='icon-svg' loading='lazy'>", color: "#facc15" },
+  PHYSICAL:      { id: "physical",      label: "Physical",      icon: '../assets/gfx/shield-duotone.svg', color: "#f59e0b" },
+  TESTIMONIAL:   { id: "testimonial",   label: "Testimonial",   icon: '../assets/gfx/chat-duotone.svg', color: "#60a5fa" },
+  DIGITAL:       { id: "digital",       label: "Digital",       icon: '../assets/gfx/laptop-code.svg', color: "#34d399" },
+  ENVIRONMENTAL: { id: "environmental", label: "Environmental", icon: '../assets/gfx/leaf-duotone.svg', color: "#a78bfa" },
+  ANALYTICAL:    { id: "analytical",    label: "Analytical",    icon: '../assets/gfx/microscope-duotone.svg', color: "#f472b6" },
+  PROPHECY:      { id: "prophecy",      label: "Prophecy",      icon: '../assets/gfx/star-duotone.svg', color: "#facc15" },
 };
 
 export class EvidenceSystem {
@@ -58,7 +58,7 @@ export class EvidenceSystem {
   // typeInfo.label / typeInfo.icon never crash on an unrecognized or missing type.
   getTypeInfo(type) {
     const key = typeof type === "string" ? type.toUpperCase() : "";
-    return EVIDENCE_TYPES[key] || { id: type, label: type || "Unknown", icon: "<img src='../assets/gfx/magnifying-glass-duotone.svg' class='icon-svg' loading='lazy'>", color: "#94a3b8" };
+    return EVIDENCE_TYPES[key] || { id: type, label: type || "Unknown", icon: '../assets/gfx/magnifying-glass-duotone.svg', color: "#94a3b8" };
   }
 
   getProphecyById(id) {

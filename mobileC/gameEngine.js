@@ -6,7 +6,7 @@ import { PROFILE_ID_MAP } from './npcSystem.js';
 import { DeductionEngine } from './../js/gameplay/deductionEngine.js';
 import { LocationSystem } from './../js/gameplay/locationSystem.js';
 import { AccessibilityManager } from "../js/ui/AccessibilityManager.js";
-import { LabUI } from "../js/ui/LabUI.js";
+import { LabWorkspaceUI } from "../js/ui/LabWorkspaceUI.js";
 import { AudioManager } from "./audioManager.js"; // Mobile uses its own AudioManager
 import { DialogueManager } from "./dialogueManager.js";
 
@@ -27,12 +27,12 @@ export class GameEngine {
     this.cm = new CaseManager();
     this.app = new MobileApp({
       tabs: [
-        { id: 'scene', label: 'Scene', icon: "<img src='../assets/gfx/search.svg' class='icon-svg' loading='lazy'>" },
-        { id: 'evidence', label: 'Evidence', icon: "<img src='../assets/gfx/backpack-duotone.svg' class='icon-svg' loading='lazy'>" },
-        { id: 'people', label: 'People', icon: "<img src='../assets/gfx/chat-duotone.svg' class='icon-svg' loading='lazy'>" },
-        { id: 'lab', label: 'Lab', icon: "<img src='../assets/gfx/microscope-duotone.svg' class='icon-svg' loading='lazy'>" },
-         { id: 'codex', label: 'Codex', icon: "<img src='../assets/gfx/scroll-duotone.svg' class='icon-svg' loading='lazy'>" },
-         { id: 'accuse', label: 'Accuse', icon: "<img src='../assets/gfx/balance-scale-duotone.svg' class='icon-svg' loading='lazy'>" }
+        { id: 'scene', label: 'Scene', icon: '../assets/gfx/search.svg' },
+        { id: 'evidence', label: 'Evidence', icon: '../assets/gfx/backpack-duotone.svg' },
+        { id: 'people', label: 'People', icon: '../assets/gfx/chat-duotone.svg' },
+        { id: 'lab', label: 'Lab', icon: '../assets/gfx/microscope-duotone.svg' },
+         { id: 'codex', label: 'Codex', icon: '../assets/gfx/scroll-duotone.svg' },
+         { id: 'accuse', label: 'Accuse', icon: '../assets/gfx/balance-scale-duotone.svg' }
       ],
       views: ['scene', 'evidence', 'people', 'lab', 'codex', 'accuse']
     });
@@ -47,7 +47,7 @@ export class GameEngine {
     this.dm = new DialogueManager();
     if (window.inkjs) this.dm.setInkLib(window.inkjs);
 
-    this.labUI = new LabUI(this.de, this.es, this.a11y);
+    this.labUI = new LabWorkspaceUI(this.de, this.es, this.a11y);
 
     this.ui = new UIManager(this.cm, this.es, this.ns, this.de, this.ls, this.a11y, this.audio, this.dm, this.app, this.labUI);
     const introData = document.getElementById('prophecy-people-intro-data');

@@ -5,7 +5,7 @@ import { NPCSystem, PROFILE_ID_MAP } from "./NPCSystem.js";
 import { DeductionEngine } from './../js/gameplay/deductionEngine.js';
 import { LocationSystem } from './../js/gameplay/locationSystem.js';
 import { AccessibilityManager } from "../js/ui/AccessibilityManager.js";
-import { LabUI } from "../js/ui/LabUI.js";  
+import { LabWorkspaceUI } from "../js/ui/LabWorkspaceUI.js";  
 import { ChatUI } from "../js/ui/ChatUI.js";
 import { AudioManager } from "./audioManager.js"; // Desktop uses its own AudioManager
 import { DialogueManager } from "./dialogueManager.js";
@@ -71,7 +71,12 @@ export class GameEngine {
   }
 
   registerAllCases() {
-    const cases = [act1CaseA, act1CaseB, act1CaseC, act2CaseA, act2CaseB, act2CaseC, act3CaseA, act3CaseB, act3CaseC, act3CaseD, act3CaseE, act4CaseA, act4CaseB, act4CaseC];
+    const cases = [
+      act1CaseA, act1CaseB, act1CaseC,
+      act2CaseA, act2CaseB, act2CaseC,
+      act3CaseA, act3CaseB, act3CaseC, act3CaseD, act3CaseE,
+      act4CaseA, act4CaseB, act4CaseC
+    ];
     cases.forEach(c => {
       if (this.config.unlockAllCases) c.requires = null;
       this.cm.registerCase(c);

@@ -340,6 +340,12 @@ export class CaseManager {
     return result;
   }
 
+  addScore(delta) {
+    this.progress.totalScore = Math.max(0, (this.progress.totalScore || 0) + delta);
+    this._refreshMetricsUI();
+    this._saveProgress();
+  }
+
   _calcRank(score) {
     if (score >= 90) return "Master Detective";
     if (score >= 70) return "Analyst";

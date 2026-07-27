@@ -44,13 +44,14 @@ export class CodexUI {
             <div class="codex-matching-columns">
                 <div class="codex-match-column">
                     <div class="selection-slot ${selectedEv ? 'active' : ''}" id="codex-evidence-slot">
-                        ${selectedEv ? `<span class="slot-icon"><img src='${selectedEv.icon}' class='icon-svg' loading='lazy'></span><span class="slot-name">${selectedEv.name}</span>` : `<span>Select Evidence...</span>`}
+                        ${selectedEv ? `<span class="slot-icon">${selectedEv.icon.includes('<img') ? selectedEv.icon : `<img src='${selectedEv.icon}' class='icon-svg' loading='lazy'>`}</span><span class="slot-name">${selectedEv.name}</span>` : `<span>Select Evidence...</span>`}
                     </div>
                     <h3 class="section-title">Your Evidence</h3>
                     <div class="picker-grid">
                         ${collectedEvidence.map(e => `
                             <button class="picker-card ${this.selectedCodexEvidenceId === e.id ? 'selected-a' : ''}" onclick="window.ui.codexUI.selectEvidenceForMatching('${e.id}')">
-                                <span class="picker-icon"><img src='${e.icon}' class='icon-svg' loading='lazy'></span><span class="picker-name">${e.name}</span>
+                                <span class="picker-icon" aria-hidden="true">${e.icon.includes('<img') ? e.icon : `<img src='${e.icon}' class='icon-svg' loading='lazy'>`}</span><span class="picker-name">${e.name}</span>
+                                ${this.selectedCodexEvidenceId === e.id ? `<span class="sel-badge" aria-hidden="true" style="background:var(--blue)">A</span>` : ""}
                             </button>`).join('') || `<p class="picker-empty">Collect evidence first.</p>`}
                     </div>
                 </div>
@@ -64,6 +65,7 @@ export class CodexUI {
                         ${lockedProps.map(p => `
                             <button class="picker-card ${this.selectedCodexProphecyId === p.id ? 'selected-b' : ''}" onclick="window.ui.codexUI.selectProphecyForMatching('${p.id}')">
                                 <span class="picker-icon"><i class="fa-solid fa-lock"></i></span><span class="picker-name">${p.reference}</span>
+                                ${this.selectedCodexProphecyId === p.id ? `<span class="sel-badge" aria-hidden="true" style="background:var(--gold)">B</span>` : ""}
                             </button>`).join('') || `<p class="picker-empty">All prophecies matched!</p>`}
                     </div>
                 </div>

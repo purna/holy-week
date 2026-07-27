@@ -134,7 +134,7 @@ export class UIManager {
         return `
         <div class="location-card ${status}" role="listitem" tabindex="0" onclick="openLocation('${loc.id}')">
           <div class="location-inner">
-            <div class="location-icon" aria-hidden="true">${loc.icon}</div>
+            <div class="location-icon" aria-hidden="true"><img src="${loc.icon}" class='icon-svg' loading='lazy'></div>
             <div class="location-info">
               <div class="location-name">${loc.name}</div>
               <div class="location-region">${loc.region}</div>
@@ -158,7 +158,7 @@ export class UIManager {
 
     scroll.innerHTML = `
       <div class="location-header">
-        <div class="location-header-icon" aria-hidden="true">${loc.icon}</div>
+        <div class="location-header-icon" aria-hidden="true"><img src="${loc.icon}" class='icon-svg' loading='lazy'></div>
         <div>
           <div class="location-header-name">${loc.name}</div>
           <div class="location-header-ambiance">${loc.ambiance}</div>
@@ -309,6 +309,7 @@ export class UIManager {
   onLabAction(result) {
     if (result.type === "selection") this.renderPeople();
     else result.error ? this.audio.playError() : this.audio.playClue();
+    if (result?.scoreDelta) this.cm.addScore(result.scoreDelta);
     this.switchInvTab('lab');
     if (!result?.error && result?.operation) {
       const view = document.getElementById("inv-lab");

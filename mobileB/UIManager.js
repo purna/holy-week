@@ -107,7 +107,7 @@ export class UIManager {
         return `
         <div class="location-card ${status}" role="listitem" tabindex="0" onclick="openLocation('${loc.id}')">
           <div class="location-inner">
-            <div class="location-icon" aria-hidden="true">${loc.icon}</div>
+            <div class="location-icon" aria-hidden="true"><img src='${loc.icon}' class='icon-svg' loading='lazy'></div>
             <div class="location-info">
               <div class="location-name">${loc.name}</div>
               <div class="location-region">${loc.region}</div>
@@ -131,7 +131,7 @@ export class UIManager {
 
     scroll.innerHTML = `
       <div class="location-header">
-        <div class="location-header-icon" aria-hidden="true">${loc.icon}</div>
+        <div class="location-header-icon" aria-hidden="true"><img src='${loc.icon}' class='icon-svg' loading='lazy'></div>
         <div>
           <div class="location-header-name">${loc.name}</div>
           <div class="location-header-ambiance">${loc.ambiance}</div>
@@ -261,6 +261,7 @@ export class UIManager {
   onLabAction(result) {
     if (result.type === "selection") this.renderPeople();
     else result.error ? this.audio.playError() : this.audio.playClue();
+    if (result?.scoreDelta) this.cm.addScore(result.scoreDelta);
     this.renderLab();
     if (!result?.error && result?.operation) {
       const view = document.getElementById("inv-lab");
@@ -576,7 +577,7 @@ export class UIManager {
       const status = this.cm.getSuspectStatus(s.id);
       return `<div class="suspect-accordion">
         <button class="suspect-btn ${isLocked ? 'locked' : ''}" onclick="toggleSuspect(this)" aria-expanded="false">
-          <span class="suspect-btn-avatar">${s.avatar}</span>
+          <span class="suspect-btn-avatar"><img src="../assets/characters/${s.avatar}" style="width:1.5em;height:1.5em;vertical-align:middle;object-fit:contain;" alt=""></span>
           <div class="suspect-btn-info"><div class="suspect-btn-name">${s.name}</div><div class="suspect-btn-role">${s.role}</div></div>
           <span class="accordion-chevron" aria-hidden="true">▶</span>
         </button>
