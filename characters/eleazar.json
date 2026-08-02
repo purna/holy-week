@@ -20,5 +20,16 @@
     "prophecy": "The prophets spoke of many things. One must be careful with interpretation."
   },
   "earSize": 1.2,
-  "headSize": 1.05
+  "headSize": 1.05,
+  "colorPalette": {
+    "colorInner": "#e8e0cf",
+    "colorOuter": "#3b2342",
+    "colorCloak": "#241830",
+    "colorAccent": "#4a6288",
+    "colorGarment2": "#d4af37",
+    "colorSkin": "#ae7848",
+    "colorHair": "#b7b0a2",
+    "colorEye": "#3b2a1f",
+    "colorLip": "#b06a5a"
+  }
 }

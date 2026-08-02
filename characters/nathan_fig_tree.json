@@ -20,5 +20,16 @@
     "prophecy": "I'm just a gardener. But what I saw wasn't natural."
   },
   "earSize": 1.0,
-  "headSize": 1.0
+  "headSize": 1.0,
+  "colorPalette": {
+    "colorInner": "#3f382f",
+    "colorOuter": "#28241e",
+    "colorCloak": "#1a1815",
+    "colorAccent": "#4a4438",
+    "colorGarment2": "#8a7a5a",
+    "colorSkin": "#d8b088",
+    "colorHair": "#a8a294",
+    "colorEye": "#2e2016",
+    "colorLip": "#966355"
+  }
 }

@@ -110,6 +110,24 @@ export class CaseManager {
     }
   }
 
+  unlockEvidenceForScene(caseId, evidenceIds) {
+    const p = this.progress.cases[caseId];
+    const c = this.getCase(caseId);
+    if (!p || !c) return;
+    if (!p.unlockedEvidence) p.unlockedEvidence = [];
+    const newIds = evidenceIds.filter(id => !p.unlockedEvidence.includes(id));
+    if (newIds.length === 0) return;
+    newIds.forEach(id => {
+      p.unlockedEvidence.push(id);
+      const ev = c.evidencePool.find(e => e.id === id);
+      if (ev && ev.revealsSuspect) {
+        this.discoverSuspect(ev.revealsSuspect);
+      }
+    });
+    this._saveProgress();
+    this._refreshMetricsUI();
+  }
+
   refreshUnlockedSuspects() {
     const p = this.progress.cases[this.activeCaseId];
     const c = this.getActiveCase();

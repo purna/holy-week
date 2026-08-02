@@ -34,6 +34,7 @@
   color: var(--lw-text);
   padding: 8px;
   padding-bottom: 16px;
+  width: 100%;
 }
 
 #lab-workspace .lw-header {
@@ -589,7 +590,7 @@
 
 #lab-workspace .lab-btn:hover:not([aria-disabled="true"]) {
   background: var(--lw-surface3);
-  color: var(--lw-text);
+  color: var(--lw-gold);
 }
 
 #lab-workspace .lab-btn:active:not([aria-disabled="true"]) {
@@ -598,9 +599,21 @@
 
 #lab-workspace .lab-btn.active {
   background: var(--lw-gold);
-  color: #080c14;
+  color: var(--lw-text);
   border-color: var(--lw-gold);
 }
+
+#lab-workspace .lab-btn.active .lab-btn-label,
+#lab-workspace .lab-btn.active .lab-btn-icon {
+  color: var(--lw-text);
+}
+
+#lab-workspace .lab-btn.active:hover .lab-btn-label,
+#lab-workspace .lab-btn.active:hover .lab-btn-icon {
+  color: var(--gold-text);
+  background: var(--lw-gold);
+}
+
 
 #lab-workspace .lab-btn[aria-disabled="true"] {
   opacity: 0.4;
@@ -626,5 +639,3 @@
     grid-template-columns: repeat(2, 1fr);
   }
 }
-
-

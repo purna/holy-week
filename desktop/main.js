@@ -1,5 +1,5 @@
 import { GameEngine } from "./gameEngine.js";
-import { LabUI } from "./labUI.js";
+import { LabWorkspaceUI } from "../js/ui/LabWorkspaceUI.js";
 import { AccessibilityManager } from "../mobileB/accessibility.js";
 
 
@@ -152,19 +152,18 @@ if (typeof inkjs !== 'undefined') {
     };
   }
 
-  window.renderInvestigationBoard = function () {
-    const invBoardContent = document.getElementById('inv-board-content');
-    if (!invBoardContent) return;
-    const labUI = new LabUI(game.de, game.es, game.a11y, (result) => {
-      if (result && result.type === 'selection') window.renderInvestigationBoard();
-
-      if (result && result.revealsSuspect) {
-        game.cm.unlockSuspect(result.revealsSuspect);
-      }
-    });
-    invBoardContent.innerHTML = labUI.render();
-    labUI.bindEvents(invBoardContent);
-  };
+window.renderInvestigationBoard = function () {
+     const invBoardContent = document.getElementById('inv-board-content');
+     if (!invBoardContent) return;
+     const labUI = new LabWorkspaceUI(game.de, game.es, game.a11y, (result) => {
+       if (result?.error) return;
+       if (result?.scoreDelta !== undefined) {
+         window.renderInvestigationBoard();
+       }
+     });
+     invBoardContent.innerHTML = labUI.render();
+     labUI.bindEvents(invBoardContent);
+   };
 
   window.showInstructionsModal = () => {
     document.getElementById('instructions-modal').classList.add('active');

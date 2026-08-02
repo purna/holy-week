@@ -19,5 +19,16 @@
     "prophecy": "He said it would happen. I didn't believe him. I was a fool."
   },
   "earSize": 1.1,
-  "headSize": 1.0
+  "headSize": 1.0,
+  "colorPalette": {
+    "colorInner": "#3f382f",
+    "colorOuter": "#362f26",
+    "colorCloak": "#1a1815",
+    "colorAccent": "#3b3831",
+    "colorGarment2": "#8a7a5a",
+    "colorSkin": "#b88353",
+    "colorHair": "#7d7a74",
+    "colorEye": "#42352b",
+    "colorLip": "#a85d5d"
+  }
 }

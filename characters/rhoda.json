@@ -19,5 +19,16 @@
     "prophecy": "The prophets? My mother taught me the stories, but I never thought I'd see one."
   },
   "earSize": 0.6,
-  "headSize": 0.9
+  "headSize": 0.9,
+  "colorPalette": {
+    "colorInner": "#4a3d47",
+    "colorOuter": "#463844",
+    "colorCloak": "#241d28",
+    "colorAccent": "#6e4a5c",
+    "colorGarment2": "#b87a6a",
+    "colorSkin": "#d6ab83",
+    "colorHair": "#150f0b",
+    "colorEye": "#3b2a1f",
+    "colorLip": "#b06a5a"
+  }
 }

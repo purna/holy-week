@@ -19,5 +19,16 @@
     "prophecy": "He said the woman who anointed him would be remembered. He is a true prophet."
   },
   "earSize": 1.0,
-  "headSize": 1.0
+  "headSize": 1.0,
+  "colorPalette": {
+    "colorInner": "#544a3e",
+    "colorOuter": "#2f2b25",
+    "colorCloak": "#1a1815",
+    "colorAccent": "#3b3831",
+    "colorGarment2": "#7a6a4a",
+    "colorSkin": "#ae7848",
+    "colorHair": "#2a1e15",
+    "colorEye": "#6b4a2f",
+    "colorLip": "#8f5245"
+  }
 }

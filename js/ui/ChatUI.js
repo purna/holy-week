@@ -1,6 +1,6 @@
 import { DIALOGUE_ID_MAP } from "../gameplay/dialogueMaps.js";
 
-function avatarMarkup(a){if(!a)return'';if(a.endsWith('.svg'))return`<img src="../assets/characters/${a}"style="width:1.5em;height:1.5em;vertical-align:middle;object-fit:contain;"alt="">`;return a;}
+function avatarMarkup(a) { if (!a) return ''; if (a.endsWith('.svg')) return `<img src="../assets/characters/${a}"style="width:1.5em;height:1.5em;vertical-align:middle;object-fit:contain;"alt="">`; return a; }
 
 export class ChatUI {
   constructor(npcSystem, evidenceSystem, accessibility, onAction, audioManager, dialogueManager) {
@@ -79,12 +79,12 @@ export class ChatUI {
       ${this.peopleIntroHtml ? `<div class="prophecy-people-intro">${this.peopleIntroHtml}</div>` : ""}
       <div class="npc-list" role="list">
         ${npcs.map(npc => {
-          const state = this.npcs.getState(npc.id);
-          const unlocked = isNPCUnlocked(npc);
-          const moodColor = this.npcs.getMoodColor(state?.mood || "neutral");
-          const moodLabel = this.npcs.getMoodLabel(state?.mood || "neutral");
-          if (!unlocked) {
-            return `
+      const state = this.npcs.getState(npc.id);
+      const unlocked = isNPCUnlocked(npc);
+      const moodColor = this.npcs.getMoodColor(state?.mood || "neutral");
+      const moodLabel = this.npcs.getMoodLabel(state?.mood || "neutral");
+      if (!unlocked) {
+        return `
             <div class="npc-card locked" aria-disabled="true">
               <div class="npc-header">
                 <span class="npc-avatar">${avatarMarkup(npc.avatar || "<img src='../assets/gfx/question-duotone.svg' class='icon-svg' loading='lazy'>")}</span>
@@ -93,8 +93,8 @@ export class ChatUI {
               </div>
               <div class="npc-locked-note"><img src='../assets/gfx/lock-duotone.svg' class='icon-svg' loading='lazy'> Find this person in the Scene tab to unlock.</div>
             </div>`;
-          }
-          return `
+      }
+      return `
             <div class="npc-card">
               <div class="npc-header">
                 <span class="npc-avatar">${avatarMarkup(npc.avatar)}</span>
@@ -111,7 +111,7 @@ export class ChatUI {
                 ${this.challengeResultsByNPC[npc.id] || ''}
               </div>
             </div>`;
-        }).join("")}
+    }).join("")}
       </div>
 
       <div class="npc-result-modal" data-npc-result-modal hidden role="dialog" aria-modal="true" aria-label="Witness reaction" style="position:fixed;inset:0;z-index:7000;align-items:center;justify-content:center;padding:20px;">

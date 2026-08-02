@@ -19,5 +19,16 @@
     "prophecy": "Prophecy? That's above my pay grade."
   },
   "earSize": 1.0,
-  "headSize": 1.0
+  "headSize": 1.0,
+  "colorPalette": {
+    "colorInner": "#4a423a",
+    "colorOuter": "#2f2b25",
+    "colorCloak": "#1a1815",
+    "colorAccent": "#3b3831",
+    "colorGarment2": "#7a6a4a",
+    "colorSkin": "#9a6b40",
+    "colorHair": "#2a1e15",
+    "colorEye": "#42352b",
+    "colorLip": "#8f5245"
+  }
 }

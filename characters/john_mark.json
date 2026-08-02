@@ -20,5 +20,16 @@
     "prophecy": "He spoke of the prophets. I need to go back and read them again."
   },
   "earSize": 0.95,
-  "headSize": 1.0
+  "headSize": 1.0,
+  "colorPalette": {
+    "colorInner": "#4a423a",
+    "colorOuter": "#362f26",
+    "colorCloak": "#221f1a",
+    "colorAccent": "#4a4438",
+    "colorGarment2": "#8a7a5a",
+    "colorSkin": "#d0a47d",
+    "colorHair": "#1a1410",
+    "colorEye": "#573f2c",
+    "colorLip": "#b06a5a"
+  }
 }

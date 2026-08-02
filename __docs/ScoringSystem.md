@@ -1,5 +1,14 @@
 # Game Scoring, Doubt, and Reputation Systems
 
+< [Back to Main Document](Miracle Maker.md)
+
+## Table of Contents
+
+- [1. Core Scoring System](#1-core-scoring-system)
+- [2. Doubt System](#2-doubt-system)
+- [3. Reputation System](#3-reputation-system)
+- [4. Analysis & Suggested Improvements](#analysis--suggested-improvements)
+
 This document provides a comprehensive overview of the scoring, doubt, and reputation systems in Miracle Maker. It details how points are awarded, how penalties are accrued, and how player actions affect their standing with various factions.
 
 ## 1. Core Scoring System

@@ -121,7 +121,7 @@ export class GameManager {
     return false;
   }
 
-  /** Wipes all progress and returns the player to the start of Act I. */
+  /** Wipes all progress and returns the player to the start of Act I - The Triumphal Entry. */
   resetGame() {
     this.cm.resetProgress();
     this.ui.closeResetModal();

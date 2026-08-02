@@ -20,10 +20,21 @@
   "colorInner": "#4a423a",
   "colorOuter": "#2f2b25",
   "colorCloak": "#1a1815",
-  "colorAccent": "#3b3831",
+  "colorAccent": "#4a4438",
   "colorGarment2": "#8a7a5a",
-  "colorSkin": "#b39e8e",
-  "colorHair": "#1a1614",
+  "colorSkin": "#8d5830",
+  "colorHair": "#8a8a8a",
   "colorEye": "#4a3b32",
-  "colorLip": "#9a5f52"
+  "colorLip": "#7a453a",
+  "colorPalette": {
+    "colorInner": "#4a423a",
+    "colorOuter": "#2f2b25",
+    "colorCloak": "#1a1815",
+    "colorAccent": "#4a4438",
+    "colorGarment2": "#8a7a5a",
+    "colorSkin": "#8d5830",
+    "colorHair": "#8a8a8a",
+    "colorEye": "#4a3b32",
+    "colorLip": "#7a453a"
+  }
 }

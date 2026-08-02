@@ -19,5 +19,16 @@
     "prophecy": "Everything is happening as it was foretold. It is a blessed time."
   },
   "earSize": 0.6,
-  "headSize": 0.9
+  "headSize": 0.9,
+  "colorPalette": {
+    "colorInner": "#5c4a52",
+    "colorOuter": "#3a2f38",
+    "colorCloak": "#241d28",
+    "colorAccent": "#9a6a52",
+    "colorGarment2": "#c98a5a",
+    "colorSkin": "#dcb088",
+    "colorHair": "#241c14",
+    "colorEye": "#4a3b32",
+    "colorLip": "#966355"
+  }
 }

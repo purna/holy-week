@@ -19,5 +19,16 @@
     "prophecy": "I don't trade in prophecies. Only in facts and coin."
   },
   "earSize": 0.9,
-  "headSize": 0.95
+  "headSize": 0.95,
+  "colorPalette": {
+    "colorInner": "#463c30",
+    "colorOuter": "#2a2420",
+    "colorCloak": "#221d18",
+    "colorAccent": "#5c4a34",
+    "colorGarment2": "#6b5a3c",
+    "colorSkin": "#e5be98",
+    "colorHair": "#211712",
+    "colorEye": "#2e2016",
+    "colorLip": "#966355"
+  }
 }

@@ -127,20 +127,35 @@
     text-shadow: 0 0 20px #000;
 }
 
+/* NPC overlay — positions the name tooltip and talk button above the NPC */
+.scene-npc-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 100;
+}
+
 /* NPC Name Tooltip */
 .scene-npc-name-tooltip {
+    position: absolute;
+    display: none;
     background: rgba(0, 0, 0, 0.8);
     color: var(--gold);
     padding: 4px 8px;
     border-radius: 4px;
     font-size: 0.75rem;
     white-space: nowrap;
+    z-index: 100;
+    transform: translate(-50%, -100%);
     border: 1px solid var(--gold);
     pointer-events: none;
 }
 
 /* NPC Talk Button */
 .scene-npc-talk-btn {
+    position: absolute;
+    display: none;
     background: rgba(0, 10, 20, 0.9);
     color: var(--accent-primary);
     border: 1px solid var(--accent-primary);
@@ -148,26 +163,12 @@
     border-radius: 4px;
     cursor: pointer;
     font-size: 0.8rem;
-    margin-top: 6px;
+    z-index: 100;
+    transform: translate(-50%, -150%);
 }
 
 .scene-npc-talk-btn:hover {
     background: rgba(0, 242, 255, 0.2);
-}
-
-/* Combined NPC overlay (name + talk button) */
-.scene-npc-overlay {
-    position: absolute;
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    z-index: 100;
-    transform: translate(-50%, -100%);
-    pointer-events: none;
-}
-
-.scene-npc-overlay .scene-npc-talk-btn {
-    pointer-events: auto;
 }
 
 /* World Prompt - shows NPC name when near */
@@ -276,82 +277,6 @@
     z-index: 2;
 }
 
-#scene-ctrl-up:active {  background: var(--surface2, #2c2219); border-color: var(--gold);}
-#scene-ctrl-down:active {  background: var(--surface2, #2c2219); border-color: var(--gold);}
-#scene-ctrl-left:active {  background: var(--surface2, #2c2219); border-color: var(--gold);}
-#scene-ctrl-right:active {  background: var(--surface2, #2c2219); border-color: var(--gold);}
-#scene-ctrl-jump:active {  background: var(--surface2, #2c2219); border-color: var(--gold);}
-
-/* Action buttons for mobile scene - bottom right */
-#scene-mobile-actions {
-    position: absolute;
-    bottom: 60px;
-    right: 20px;
-    display: grid;
-    grid-template-columns: 40px;
-    grid-template-rows: 40px 40px 40px;
-    gap: 8px;
-    z-index: 100;
-    pointer-events: none;
-}
-
-#scene-mobile-actions .ui-toggle {
-    width: 40px;
-    height: 40px;
-    padding: 0;
-    background: rgba(0, 10, 20, 0.8);
-    border: 1px solid var(--accent-primary);
-    color: var(--accent-primary);
-    cursor: pointer;
-    font-size: 1.2em;
-    border-radius: 8px;
-    transition: transform 0.12s ease, background 0.2s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    pointer-events: auto;
-}
-
-#scene-mobile-actions .ui-toggle:hover {
-    background: rgba(0, 242, 255, 0.2);
-}
-
-#scene-ctrl-actions {
-    grid-column: 1;
-    grid-row: 1;
-}
-
-#scene-ctrl-inventory {
-    grid-column: 1;
-    grid-row: 2;
-}
-
-#scene-ctrl-talk {
-    grid-column: 1;
-    grid-row: 3;
-}
-
-#scene-ctrl-actions:active {
-    background: var(--surface2, #2c2219);
-    border-color: var(--gold);
-}
-
-#scene-ctrl-inventory:active {
-    background: var(--surface2, #2c2219);
-    border-color: var(--gold);
-}
-
-#scene-ctrl-talk:active {
-    background: var(--surface2, #2c2219);
-    border-color: var(--gold);
-}
-
-#scene-ctrl-talk:disabled {
-    opacity: 0.4;
-    cursor: not-allowed;
-}
-
-
 /* Loading screen for 3D scene */
 #scene-loading {
     position: absolute;
@@ -383,44 +308,61 @@
     font-size: 0.9rem;
 }
 
-/* Action popup for 3D scene — positioned by JS near scene-ctrl-actions */
-#scene-actions-panel {
+/* Action buttons overlay on 3D canvas - bottom right, above fixed navbar */
+#scene-mobile-actions {
     position: absolute;
-    background: rgba(0, 10, 20, 0.92);
-    border: 1px solid var(--accent-primary);
+    bottom: 70px;
+    right: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    z-index: 999;
+    pointer-events: none;
+}
+
+#scene-mobile-actions .ui-toggle {
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    background: rgba(0, 10, 20, 0.8);
+    border: 2px solid var(--border, #44372c);
+    color: var(--text-muted, #554438);
     border-radius: 8px;
-    padding: 8px;
-    z-index: 100;
-    display: none;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
-}
-
-#scene-actions-panel.open {
-    display: block;
-}
-
-#scene-actions-panel .action-item {
-    padding: 10px;
-    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--accent-primary);
-    border-radius: 8px;
-    font-size: 1.4rem;
-    transition: background 0.2s;
-    width: 48px;
-    height: 48px;
+    font-size: 20px;
+    pointer-events: auto;
+    cursor: pointer;
+    touch-action: manipulation;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
 }
 
-#scene-actions-panel .action-item:hover {
+#scene-mobile-actions .ui-toggle:active {
+    background: var(--surface3, #3a2e24);
+    border-color: var(--gold);
+}
+
+#scene-mobile-actions .ui-toggle:hover {
     background: rgba(0, 242, 255, 0.2);
 }
 
-.floating-action-icon {
-    position: fixed;
-    font-size: 24px;
-    z-index: 2000;
-    pointer-events: none;
-    will-change: transform, opacity;
+/* Action popup for 3D scene */
+#scene-actions-panel {
+    position: absolute;
+    background: rgba(0, 10, 20, 0.94);
+    border: 1px solid var(--accent-primary);
+    border-radius: 10px;
+    padding: 8px;
+    z-index: 1000;
+    display: none;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(6px);
+    pointer-events: auto;
+}
+
+#scene-actions-panel.open {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
 }

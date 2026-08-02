@@ -20,5 +20,16 @@
     "prophecy": "Of course it was prophecy! We have been waiting for this day!"
   },
   "earSize": 1.0,
-  "headSize": 1.0
+  "headSize": 1.0,
+  "colorPalette": {
+    "colorInner": "#3f382f",
+    "colorOuter": "#2f2b25",
+    "colorCloak": "#1a1815",
+    "colorAccent": "#3b3831",
+    "colorGarment2": "#7a6a4a",
+    "colorSkin": "#e5be98",
+    "colorHair": "#2a1e15",
+    "colorEye": "#6b4a2f",
+    "colorLip": "#8f5245"
+  }
 }

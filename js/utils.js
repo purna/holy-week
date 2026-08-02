@@ -52,3 +52,12 @@ export function getIntroHtml(intro, fallbackText = '') {
   const text = getIntroText(intro) || fallbackText;
   return `<p class="scene-intro">${escapeHtml(text)}</p>`;
 }
+
+export function renderIcon(icon) {
+  if (!icon) return `<img src='../assets/gfx/magnifying-glass-duotone.svg' class='icon-svg' loading='lazy'>`;
+  if (icon.includes('<img')) return icon;
+  if (icon.includes('.svg') || icon.includes('.png') || icon.includes('.jpg') || icon.includes('.jpeg') || icon.includes('.gif')) {
+    return `<img src='${icon}' class='icon-svg' loading='lazy'>`;
+  }
+  return icon;
+}

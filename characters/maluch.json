@@ -19,5 +19,16 @@
     "prophecy": "Prophetic claims are a threat multiplier. I note them as such."
   },
   "earSize": 1.0,
-  "headSize": 1.0
+  "headSize": 1.0,
+  "colorPalette": {
+    "colorInner": "#3a3228",
+    "colorOuter": "#241f1b",
+    "colorCloak": "#1a1613",
+    "colorAccent": "#5c4a34",
+    "colorGarment2": "#7a6642",
+    "colorSkin": "#c69468",
+    "colorHair": "#150f0b",
+    "colorEye": "#2e2016",
+    "colorLip": "#7a453a"
+  }
 }

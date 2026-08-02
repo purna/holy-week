@@ -19,5 +19,16 @@
     "prophecy": "The local superstitions are not my concern. But what I saw... it was not normal."
   },
   "earSize": 1.05,
-  "headSize": 1.0
+  "headSize": 1.0,
+  "colorPalette": {
+    "colorInner": "#4a0000",
+    "colorOuter": "#1c1c1c",
+    "colorCloak": "#6b1111",
+    "colorAccent": "#b8933a",
+    "colorGarment2": "#8c2a2a",
+    "colorSkin": "#bd8b5c",
+    "colorHair": "#100d0a",
+    "colorEye": "#573f2c",
+    "colorLip": "#8f5245"
+  }
 }

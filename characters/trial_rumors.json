@@ -19,5 +19,16 @@
     "prophecy": "They say he claimed to be the Son of God. Is that a crime?"
   },
   "earSize": 1.0,
-  "headSize": 1.0
+  "headSize": 1.0,
+  "colorPalette": {
+    "colorInner": "#463c30",
+    "colorOuter": "#2a2420",
+    "colorCloak": "#221d18",
+    "colorAccent": "#5c4a34",
+    "colorGarment2": "#6b5a3c",
+    "colorSkin": "#a9784e",
+    "colorHair": "#211712",
+    "colorEye": "#5c4632",
+    "colorLip": "#7a453a"
+  }
 }

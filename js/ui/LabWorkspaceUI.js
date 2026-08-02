@@ -6,7 +6,7 @@ export class LabWorkspaceUI {
     this.es = evidenceSystem;
     this.a11y = accessibility;
     this.onResult = onResult;
-    
+
     // Track current tab for info buttons
     this.currentTab = "compare";
     this.selectedCardId = null;
@@ -18,7 +18,12 @@ export class LabWorkspaceUI {
 
         <div>
 
-          <h3 class="section-title">Deduction Lab</h3>
+          <div class="lab-header-row">
+            <h3 class="section-title">Deduction Lab</h3>
+            <button class="lab-view-toggle" data-lab-view="grid" aria-label="Switch to grid view">
+              <i class="fa-solid fa-grip"></i>
+            </button>
+          </div>
           <div class="prophecy-lab-intro">
             <span>Gain points by correctly analyzing evidence.</span>
           </div>
@@ -42,9 +47,19 @@ export class LabWorkspaceUI {
             </button>
           </div>
 
+
+
           <div id="lw-feedback" class="lw-feedback" role="status" aria-live="polite"></div>
 
           <div id="lw-panel-compare" class="tab-panel active" role="tabpanel" aria-label="Comparator">
+<div class="actions-bar">
+              <button class="btn-secondary" id="lw-comp-clear">Clear</button>
+              <button class="btn-submit" id="lw-comp-test">Compare</button>
+            </div>
+          <div class="listgrid">  
+
+           
+
             <div class="comparator-stage">
               <div class="comparator-slots">
                 <div class="comparator-slot" id="lw-comp-slot-0">
@@ -57,56 +72,79 @@ export class LabWorkspaceUI {
                 </div>
               </div>
             </div>
-            <p style="font-size:0.72rem; color: var(--text-muted); margin-bottom:6px;">Tap to add, or use buttons:</p>
-            <div class="actions-bar">
-              <button class="btn-secondary" id="lw-comp-clear">Clear</button>
-              <button class="btn-submit" id="lw-comp-test">Compare</button>
-            </div>
+           
             <div class="card-pool-grid" id="lw-comp-bank"></div>
+          </div>
+            
            
           </div>
 
           <div id="lw-panel-link" class="tab-panel" role="tabpanel" aria-label="Evidence folders">
-            <div class="folder-grid" id="lw-folder-grid"></div>
-            <p style="font-size:0.72rem; color: var(--text-muted); margin-bottom:6px;">Unfiled items:</p>
-             <div class="actions-bar">
+          <div class="actions-bar">
               <button class="btn-submit" id="lw-folder-submit">Verify Folders</button>
             </div>
-            <div class="card-pool-grid" id="lw-folder-bank"></div>
+            
+            <div class="listgrid">  
+               </div>
+            
            
+
+           <div class="folder-grid" id="lw-folder-grid"></div>
+            <p style="font-size:0.72rem; color: var(--text-muted); margin-bottom:6px;">Unfiled items:</p>
+
+            <div class="card-pool-grid" id="lw-folder-bank"></div>
+
+       
           </div>
 
           <div id="lw-panel-timeline" class="tab-panel" role="tabpanel" aria-label="Timeline">
-            <div class="timeline-vertical-box" id="lw-timeline-steps"></div>
-            <p style="font-size:0.72rem; color: var(--text-muted); margin-bottom:6px;">Unassigned items:</p>
-            <div class="actions-bar">
+                <div class="actions-bar">
               <button class="btn-secondary" id="lw-timeline-clear">Clear</button>
               <button class="btn-submit" id="lw-timeline-test">Verify Chronology</button>
             </div>
+            <div class="listgrid">
+
+            
+            <div class="timeline-vertical-box" id="lw-timeline-steps"></div>
+            <p style="font-size:0.72rem; color: var(--text-muted); margin-bottom:6px;">Unassigned items:</p>
+           
             <div class="card-pool-grid" id="lw-timeline-bank"></div>
+            </div>
+
+        
             
           </div>
 
           <div id="lw-panel-contradict" class="tab-panel" role="tabpanel" aria-label="Shredder">
+            <div class="actions-bar">
+              <button class="btn-submit" id="lw-shredder-submit">Verify Shredded</button>
+            </div>
+          <div class="listgrid">  
+
+              
             <div class="desk-stage">
               <div class="desk-station" id="lw-candle">
-                <div class="station-emoji"><img src="../assets/gfx/flame-duotone.svg" class="icon-svg" loading="lazy" style="width:24px;height:24px;" alt=""></div>
+                <div class="station-emoji"><img src="../assets/gfx/flame-duotone.svg" class="icon-svg" loading="lazy"  alt=""></div>
                 <div class="station-title">Candlelight Inspector</div>
                 <div class="candle-viewer" id="lw-candle-viewer"></div>
               </div>
               <div class="desk-station" id="lw-shredder">
-                <div class="station-emoji"><img src="../assets/gfx/scissors-duotone.svg" class="icon-svg" loading="lazy" style="width:24px;height:24px;" alt=""></div>
+                <div class="station-emoji"><img src="../assets/gfx/scissors-duotone.svg" class="icon-svg" loading="lazy"  alt=""></div>
                 <div class="station-title" style="color:var(--red)">Shredder Bin</div>
                 <span style="font-size:0.68rem; color:#fca5a5; margin-top:2px;">Drag fake evidence here.</span>
               </div>
             </div>
             <p style="font-size:0.72rem; color: var(--text-muted); margin-bottom:4px;">Active items:</p>
-            <div class="actions-bar">
-              <button class="btn-submit" id="lw-shredder-submit">Verify Shredded</button>
-            </div>
+           
             <div class="card-pool-grid" id="lw-desk-bank"></div>
-            <p style="font-size:0.72rem; color:var(--red); margin-bottom:4px;">Shredded bin (tap to restore):</p>
+              <p style="font-size:0.72rem; color:var(--red); margin-bottom:4px;">Shredded bin (tap to restore):</p>
             <div class="trash-archive-box card-pool-grid" id="lw-shredded-bank"></div>
+            </div>
+
+          
+
+
+       
             
           </div>
 
@@ -131,6 +169,19 @@ export class LabWorkspaceUI {
     this._initState();
     this._setFeedback("Tap items or use buttons to complete each task.");
     this._renderBanks();
+
+    this.root.querySelector(".lab-view-toggle")?.addEventListener("click", (e) => {
+      const btn = e.currentTarget;
+      const current = btn.dataset.labView;
+      const next = current === "grid" ? "list" : "grid";
+      btn.dataset.labView = next;
+      btn.setAttribute("aria-label", next === "grid" ? "Switch to grid view" : "Switch to list view");
+      btn.innerHTML = next === "grid"
+        ? '<i class="fa-solid fa-grip"></i>'
+        : '<i class="fa-solid fa-list"></i>';
+      this.root.classList.toggle("lab-grid-view", next === "grid");
+      this.root.classList.toggle("lab-list-view", next === "list");
+    });
 
     this.root.querySelectorAll(".lab-btn[data-lw-tab]").forEach(btn => {
       btn.addEventListener("click", () => {
@@ -169,21 +220,21 @@ export class LabWorkspaceUI {
           }
           return;
         }
-        
+
         const folder = e.target.closest(".folder-tray");
         if (folder && !e.target.closest(".ev-card, .ev-info-btn, [data-folder-info]")) {
           this._activeFolderKey = folder.dataset.folder;
           this._setFeedback(`Tap an item to file into ${folderInfoData[this._activeFolderKey]?.title || this._activeFolderKey}.`, "success");
           return;
         }
-        
+
         const step = e.target.closest(".timeline-step");
         if (step && !e.target.closest(".ev-card, .ev-info-btn")) {
           this._activeTimelineStep = parseInt(step.dataset.step, 10);
           this._setFeedback(`Tap an item to place into step ${this._activeTimelineStep}.`, "success");
           return;
         }
-        
+
         const deskStation = e.target.closest(".desk-station");
         if (deskStation && !e.target.closest(".ev-card, .ev-info-btn")) {
           if (deskStation.id === "lw-candle") this._activeDeskStation = "candle";
@@ -191,7 +242,7 @@ export class LabWorkspaceUI {
           this._setFeedback(this._activeDeskStation === "candle" ? "Tap item to inspect under candlelight." : "Tap item to shred.");
           return;
         }
-        
+
         const infoBtn = e.target.closest(".ev-info-btn");
         if (infoBtn) {
           e.stopPropagation();
@@ -199,41 +250,41 @@ export class LabWorkspaceUI {
           this._openDetail(id);
           return;
         }
-        
-    const card = e.target.closest(".ev-card");
-    if (card) {
-      const id = card.dataset.evidenceId;
-      const item = this.evidence.find(i => i.id === id);
-      if (!item) return;
 
-      // Clicking a card that's already in a comparator slot removes it
-      const slot = card.closest(".comparator-slot");
-      if (slot) {
-        const idx = parseInt(slot.id.replace("lw-comp-slot-", ""), 10);
-        if (this.compareSlots[idx]?.id === id) {
-          this.compareSlots[idx] = null;
-          this._renderComparatorSlots();
-          this._renderComparatorBank();
-          this._setFeedback(`Removed ${item.name} from Slot ${idx === 0 ? 'A' : 'B'}.`);
-          return;
-        }
-      }
+        const card = e.target.closest(".ev-card");
+        if (card) {
+          const id = card.dataset.evidenceId;
+          const item = this.evidence.find(i => i.id === id);
+          if (!item) return;
 
-      // Clicking a card that's already in a timeline step removes it
-      const timelineStep = card.closest(".timeline-step");
-      if (timelineStep) {
-        const step = parseInt(timelineStep.dataset.step, 10);
-        const idx = this.timelineSlots[step]?.indexOf(id);
-        if (idx >= 0) {
-          this.timelineSlots[step].splice(idx, 1);
-          this._renderTimelineSteps();
-          this._renderTimelineBank();
-          this._setFeedback(`Removed ${item.name} from Step ${step}.`);
-          return;
-        }
-      }
+          // Clicking a card that's already in a comparator slot removes it
+          const slot = card.closest(".comparator-slot");
+          if (slot) {
+            const idx = parseInt(slot.id.replace("lw-comp-slot-", ""), 10);
+            if (this.compareSlots[idx]?.id === id) {
+              this.compareSlots[idx] = null;
+              this._renderComparatorSlots();
+              this._renderComparatorBank();
+              this._setFeedback(`Removed ${item.name} from Slot ${idx === 0 ? 'A' : 'B'}.`);
+              return;
+            }
+          }
 
-      if (this._activeComparatorSlotIndex !== null) {
+          // Clicking a card that's already in a timeline step removes it
+          const timelineStep = card.closest(".timeline-step");
+          if (timelineStep) {
+            const step = parseInt(timelineStep.dataset.step, 10);
+            const idx = this.timelineSlots[step]?.indexOf(id);
+            if (idx >= 0) {
+              this.timelineSlots[step].splice(idx, 1);
+              this._renderTimelineSteps();
+              this._renderTimelineBank();
+              this._setFeedback(`Removed ${item.name} from Step ${step}.`);
+              return;
+            }
+          }
+
+          if (this._activeComparatorSlotIndex !== null) {
             this.compareSlots[this._activeComparatorSlotIndex] = item;
             this._activeComparatorSlotIndex = null;
             this._renderComparatorSlots();
@@ -287,7 +338,7 @@ export class LabWorkspaceUI {
           }
         }
       });
-      
+
       // Drag and drop events
       container.addEventListener("dragstart", (e) => {
         const card = e.target.closest(".ev-card");
@@ -296,13 +347,13 @@ export class LabWorkspaceUI {
         e.dataTransfer.setData('text/plain', id);
         e.dataTransfer.effectAllowed = 'move';
         setTimeout(() => card.classList.add('dragging'), 0);
-      });
+      }, true);
 
       container.addEventListener("dragend", (e) => {
         const card = e.target.closest(".ev-card");
         if (card) card.classList.remove('dragging');
         this.root.querySelectorAll('.drop-hover').forEach(el => el.classList.remove('drop-hover'));
-      });
+      }, true);
 
       container.addEventListener("dragover", (e) => {
         const dropZone = e.target.closest(".comparator-slot, .folder-tray, .timeline-step, .desk-station");
@@ -334,7 +385,7 @@ export class LabWorkspaceUI {
         dropZone.classList.remove('drop-hover');
         const id = e.dataTransfer.getData('text/plain');
         if (!id) return;
-        
+
         if (dropZone.id.startsWith('lw-comp-slot-')) {
           const idx = parseInt(dropZone.id.replace("lw-comp-slot-", ""), 10);
           if (this.compareSlots[idx]?.id === id) {
@@ -404,7 +455,7 @@ export class LabWorkspaceUI {
           this._renderShreddedBank();
           this._setFeedback(`Shredded item.`, "success");
         }
-      });
+      }, true);
     }
   }
 
@@ -505,9 +556,13 @@ export class LabWorkspaceUI {
   _renderFolderGrid() {
     const grid = this.root.querySelector("#lw-folder-grid");
     if (!grid) return;
-    const cats = [...new Set(this.evidence.map(e => e.category))];
     const folderTitles = { direct: 'Direct Evidence', circumstantial: 'Circumstantial Evidence', physical: 'Physical (Real) Evidence', testimonial: 'Testimonial & Expert Evidence' };
-    const folders = cats.map(c => ({ key: c, title: folderTitles[c] || c.charAt(0).toUpperCase() + c.slice(1) + ' Evidence' }));
+    const folders = [
+      { key: 'physical', title: folderTitles['physical'] },
+      { key: 'testimonial', title: folderTitles['testimonial'] },
+      { key: 'direct', title: folderTitles['direct'] },
+      { key: 'circumstantial', title: folderTitles['circumstantial'] }
+    ];
     grid.innerHTML = folders.map(f => `
       <div class="folder-tray" data-folder="${f.key}">
         <div class="folder-header">
@@ -621,7 +676,7 @@ export class LabWorkspaceUI {
 
   _cardHTML(item, extraClass = "", badge = null) {
     const iconHtml = typeof item.icon === 'string' && item.icon.endsWith('.svg')
-      ? `<img src="${item.icon}" class="icon-svg" loading="lazy" style="width:24px;height:24px;" alt="">`
+      ? `<img src="${item.icon}" class="icon-svg" loading="lazy"  alt="">`
       : item.icon;
     const badgeHtml = badge ? `<span class="sel-badge sel-badge-${badge.toLowerCase()}" aria-hidden="true">${badge}</span>` : '';
     return `<div class="ev-card ${extraClass}" data-evidence-id="${item.id}" draggable="true"><span class="card-icon">${iconHtml}</span><span class="card-name">${item.name}</span>${badgeHtml}<button class="ev-info-btn" data-evidence-id="${item.id}">ⓘ</button></div>`;
@@ -629,6 +684,7 @@ export class LabWorkspaceUI {
 
   _clearComparator() {
     this.compareSlots = [null, null];
+    this._activeComparatorSlotIndex = null;
     this._renderComparatorSlots();
     this._renderComparatorBank();
     this._setFeedback("Comparator cleared.");
@@ -658,9 +714,10 @@ export class LabWorkspaceUI {
       this._setFeedback("These do not match.", "error");
       this.onResult?.({ scoreDelta: -3 });
     }
-    setTimeout(() => { 
-      slot0?.classList.remove("correct", "wrong"); 
-      slot1?.classList.remove("correct", "wrong"); 
+    this._activeComparatorSlotIndex = null;
+    setTimeout(() => {
+      slot0?.classList.remove("correct", "wrong");
+      slot1?.classList.remove("correct", "wrong");
       card0?.classList.remove("correct-flash", "wrong-flash");
       card1?.classList.remove("correct-flash", "wrong-flash");
     }, 1400);
@@ -701,11 +758,25 @@ export class LabWorkspaceUI {
       });
     }
     const bank = this.root.querySelector("#lw-folder-bank");
-    bank?.querySelectorAll(".ev-card").forEach(card => card.classList.add("wrong-flash"));
-    
-    if (allOk && totalItems === this.evidence.length) {
+    bank?.querySelectorAll(".ev-card").forEach(card => {
+      const id = card.dataset.evidenceId;
+      const item = this.evidence.find(e => e.id === id);
+      const folderKey = item?.category;
+      const inFolder = this.folderState[folderKey]?.includes(id);
+      if (item && inFolder && !(item.timelineOrder != null) && !item.fake) {
+        card.classList.add("correct-flash");
+      } else {
+        card.classList.add("wrong-flash");
+      }
+    });
+
+    const totalExpected = this.evidence.filter(e => !e.timelineOrder && !e.fake).length;
+
+    if (allOk && totalItems === totalExpected && totalExpected > 0) {
       this._setFeedback("Evidence folders verified.", "success");
       this.onResult?.({ scoreDelta: 5 });
+    } else if (totalExpected === 0) {
+      this._setFeedback("No items to file.", "error");
     } else {
       this._setFeedback("Some items are misfiled.", "error");
       this.onResult?.({ scoreDelta: -3 });
@@ -716,7 +787,8 @@ export class LabWorkspaceUI {
   }
 
   _clearTimeline() {
-    this.timelineSlots = { 1: [], 2: [], 3: [], 4: [] };
+    this.timelineSlots = {};
+    this._activeTimelineStep = null;
     this._renderTimelineSteps();
     this._renderTimelineBank();
     this._setFeedback("Timeline cleared.");
@@ -724,36 +796,39 @@ export class LabWorkspaceUI {
 
   _testTimeline() {
     let correct = 0;
-    Object.entries(this.timelineSlots).forEach(([step, ids]) => {
+    const totalTimelineItems = this.evidence.filter(e => e.timelineOrder != null).length;
+    const allSteps = [...new Set(this.evidence.filter(e => e.timelineOrder != null).map(e => e.timelineOrder))].sort((a, b) => a - b);
+    allSteps.forEach(step => {
       const stepEl = this.root.querySelector(`#lw-timeline-step-${step}`);
       if (!stepEl) return;
+      const ids = this.timelineSlots[step] || [];
+      if (ids.length === 0) return;
       const allCorrect = ids.every(id => {
         const item = this.evidence.find(e => e.id === id);
-        if (item && item.timelineOrder === parseInt(step, 10)) {
+        if (item && item.timelineOrder === step) {
           correct++;
           return true;
         }
         return false;
       });
       stepEl.classList.add(allCorrect ? "correct" : "wrong");
-      // Add feedback to cards
       ids.forEach(id => {
         const card = stepEl.querySelector(`.ev-card[data-evidence-id="${id}"]`);
         const item = this.evidence.find(e => e.id === id);
         if (card && item) {
-          const isCorrect = item.timelineOrder === parseInt(step, 10);
+          const isCorrect = item.timelineOrder === step;
           card.classList.add(isCorrect ? "correct-flash" : "wrong-flash");
         }
       });
     });
-    const totalTimelineItems = this.evidence.filter(e => e.timelineOrder != null).length;
-    if (correct === totalTimelineItems) {
+    if (correct === totalTimelineItems && totalTimelineItems > 0) {
       this._setFeedback("Timeline is correct.", "success");
       this.onResult?.({ scoreDelta: 5 });
     } else {
       this._setFeedback(`Timeline has ${correct}/${totalTimelineItems} correct placements.`, "error");
       this.onResult?.({ scoreDelta: -3 });
     }
+    this._activeTimelineStep = null;
     setTimeout(() => {
       this.root.querySelectorAll(".timeline-step").forEach(el => el.classList.remove("correct", "wrong"));
       this.root.querySelectorAll(".ev-card").forEach(el => el.classList.remove("correct-flash", "wrong-flash"));
@@ -765,7 +840,7 @@ export class LabWorkspaceUI {
     const fakes = this.shreddedItems.filter(i => i.fake).length;
     const shreddedBank = this.root.querySelector("#lw-shredded-bank");
     const deskBank = this.root.querySelector("#lw-desk-bank");
-    
+
     if (totalFakes === 0 || fakes >= totalFakes) {
       shreddedBank?.querySelectorAll(".ev-card").forEach(card => card.classList.add("correct-flash"));
       deskBank?.querySelectorAll(".ev-card").forEach(card => card.classList.add("wrong-flash"));
@@ -793,7 +868,7 @@ export class LabWorkspaceUI {
     const item = this.evidence.find(e => e.id === evId);
     if (!item) return;
     const iconHtml = typeof item.icon === 'string' && item.icon.endsWith('.svg')
-      ? `<img src="${item.icon}" class="icon-svg" loading="lazy" style="width:24px;height:24px;" alt="">`
+      ? `<img src="${item.icon}" class="icon-svg" loading="lazy"  alt="">`
       : item.icon || '';
     document.getElementById("lw-modal-title").innerHTML = `${iconHtml} <span>${item.name}</span>`;
     document.getElementById("lw-modal-body").textContent = item.desc || '';

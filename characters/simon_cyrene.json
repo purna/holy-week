@@ -19,5 +19,16 @@
     "prophecy": "I don't know about prophecies. I just know I was there."
   },
   "earSize": 1.0,
-  "headSize": 1.0
+  "headSize": 1.0,
+  "colorPalette": {
+    "colorInner": "#3f382f",
+    "colorOuter": "#362f26",
+    "colorCloak": "#221f1a",
+    "colorAccent": "#3b3831",
+    "colorGarment2": "#7a6a4a",
+    "colorSkin": "#8d5830",
+    "colorHair": "#211712",
+    "colorEye": "#2e2016",
+    "colorLip": "#8f5245"
+  }
 }

@@ -20,5 +20,16 @@
     "prophecy": "We did not understand it then, but looking back, we see how the scriptures were fulfilled."
   },
   "earSize": 1.0,
-  "headSize": 1.0
+  "headSize": 1.0,
+  "colorPalette": {
+    "colorInner": "#4a423a",
+    "colorOuter": "#28241e",
+    "colorCloak": "#221f1a",
+    "colorAccent": "#4a4438",
+    "colorGarment2": "#8a7a5a",
+    "colorSkin": "#b88353",
+    "colorHair": "#1a1410",
+    "colorEye": "#2e2016",
+    "colorLip": "#7a453a"
+  }
 }

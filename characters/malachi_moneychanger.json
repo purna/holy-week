@@ -19,5 +19,16 @@
     "prophecy": "A prophet? He's a menace to commerce and order."
   },
   "earSize": 0.95,
-  "headSize": 1.0
+  "headSize": 1.0,
+  "colorPalette": {
+    "colorInner": "#3f382f",
+    "colorOuter": "#28241e",
+    "colorCloak": "#1a1815",
+    "colorAccent": "#3b3831",
+    "colorGarment2": "#8a7a5a",
+    "colorSkin": "#bf8c5d",
+    "colorHair": "#7d7a74",
+    "colorEye": "#4a3b32",
+    "colorLip": "#b06a5a"
+  }
 }

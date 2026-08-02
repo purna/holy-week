@@ -16,7 +16,7 @@ import { GameManager } from "./GameManager.js";
 
 // Case Data Imports
 import { act1CaseA, act1CaseB, act1CaseC } from "./../js/act1_case.js";
-import { act2CaseA, act2CaseB, act2CaseC } from "./../js/act2_case.js";
+import { act2CaseA, act2CaseB, act2CaseC, act2CaseD } from "./../js/act2_case.js";
 import { act3CaseA, act3CaseB, act3CaseC, act3CaseD, act3CaseE } from "./../js/act3_case.js";
 import { act4CaseA, act4CaseB, act4CaseC } from "./../js/act4_case.js";
 
@@ -61,7 +61,7 @@ export class GameEngine {
   registerCases() {
     const cases = [
       act1CaseA, act1CaseB, act1CaseC,
-      act2CaseA, act2CaseB, act2CaseC,
+      act2CaseA, act2CaseB, act2CaseC, act2CaseD,
       act3CaseA, act3CaseB, act3CaseC, act3CaseD, act3CaseE,
       act4CaseA, act4CaseB, act4CaseC
     ];
@@ -81,7 +81,7 @@ export class GameEngine {
     window.audio = this.audio;
     window.showScreen = this.ui.showScreen.bind(this.ui);
     window.switchInvTab = this.ui.switchInvTab.bind(this.ui);
-    window.openLocation = this.ui.openLocation.bind(this.ui);
+    window.openAct = this.ui.openAct.bind(this.ui);
     window.startCase = this.gm.startCase.bind(this.gm);
     window.accuse = this.gm.accuse.bind(this.gm);
     window.toggleSuspect = function(btn) {

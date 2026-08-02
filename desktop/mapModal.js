@@ -94,7 +94,7 @@ export class OrbitalSelectMatrixModal {
 
         // Group cases by act
         this.cm.getAllCases().forEach(c => {
-            const act = c.actLabel || 'Act I';
+            const act = c.actLabel || 'Act I - The Triumphal Entry';
             if (!this.actGroups[act]) this.actGroups[act] = [];
             this.actGroups[act].push(c);
         });
@@ -147,11 +147,9 @@ export class OrbitalSelectMatrixModal {
 
         // Lookup location metadata from the system for a cleaner display name
         const loc = this.ls ? this.ls.getLocation(c.location) : null;
-        // Remove leading non-alphanumeric characters (like emojis) for cleaner display
-        const locDisplay = loc ? loc.name.replace(/^[^a-zA-Z0-9]*/, '') : (c.location || 'Unknown');
 
         label.innerHTML = `
-            <div class="map-node-loc">${locDisplay}</div>
+            <div class="map-node-loc">${loc.name}</div>
             <div class="map-node-title">${c.title}</div>
         `;
 
@@ -305,7 +303,10 @@ export class OrbitalSelectMatrixModal {
         this.hideAllMarkers();
         const allCases = this.cm.getAllCases();
         allCases.forEach((c, index) => {
-            this._renderMarkerForCase(c, index, allCases.length);
+            const locked = c.isLocked || (c.requires && !this.cm.getCaseProgress(c.requires)?.solved);
+            if (!locked) {
+                this._renderMarkerForCase(c, index, allCases.length);
+            }
         });
     }
 
@@ -330,7 +331,8 @@ export class OrbitalSelectMatrixModal {
         const loadBtn = document.getElementById('btn-load-node-scene');
 
         if (title) title.textContent = c.title;
-        if (emoji) emoji.textContent = c.emoji || '📍';
+        if (emoji) emoji.innerHTML = c.emoji || "<img src='../assets/gfx/map-pin-duotone.svg' class='icon-svg' loading='lazy' /> </div>";
+
         if (desc) desc.textContent = c.description || 'No detailed intel available for this sector.';
         if (loc) loc.textContent = c.location || 'Unknown Coordinates';
         if (actDesc) actDesc.textContent = `ACT_OBJECTIVE: ${c.actLabel || 'Phase I'} - investigation parameters synchronized.`;
@@ -389,7 +391,7 @@ export class OrbitalSelectMatrixModal {
 
         this.wrapper.addEventListener('mouseup', (e) => {
             this.dragging = false;
-            
+
             const dist = Math.sqrt(Math.pow(e.clientX - startPos.x, 2) + Math.pow(e.clientY - startPos.y, 2));
             if (dist < moveThreshold) {
                 this._handleRaycast(e);
@@ -419,6 +421,18 @@ export class OrbitalSelectMatrixModal {
 
     open() {
         this.overlay.classList.add('active');
+
+        const loadBtn = document.getElementById('btn-load-node-scene');
+        if (loadBtn) {
+            loadBtn.onclick = () => {
+                const cases = this.cm.getAllCases();
+                const first = cases.find(c => !(c.isLocked || (c.requires && !this.cm.getCaseProgress(c.requires)?.solved)));
+                if (first) {
+                    if (this.audio) this.audio.playUI();
+                    this.selectCase(first.id);
+                }
+            };
+        }
 
         // Small delay to ensure the DOM has rendered the modal dimensions
         setTimeout(() => {

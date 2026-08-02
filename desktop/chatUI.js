@@ -69,7 +69,7 @@ export class ChatUI {
           return `
             <div class="npc-card">
               <div class="npc-header">
-                <span class="npc-avatar">${npc.avatar}</span>
+                <span class="npc-avatar">${this._iconMarkup(npc.avatar)}</span>
                 <div class="npc-info"><span class="npc-name">${npc.name}</span></div>
                 <span class="npc-mood" style="color:${moodColor}">${moodLabel}</span>
               </div>
@@ -197,7 +197,7 @@ export class ChatUI {
           this.addMessage(result.speaker, result.text, "npc", { 
             revealedClue: result.revealedClue,
             revealedProphecy: result.revealedProphecy, 
-            evidenceTag: evidence?.icon || "<img src='../assets/gfx/magnifying-glass-duotone.svg' class='icon-svg' loading='lazy'>",
+            evidenceTag: this._iconMarkup(evidence?.icon || "../assets/gfx/magnifying-glass-duotone.svg"),
             evidenceName: evidence?.name
           }, npcId);
         }

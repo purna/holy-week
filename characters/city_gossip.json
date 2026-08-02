@@ -19,5 +19,16 @@
     "prophecy": "A prophecy fulfilled? I see the connection now."
   },
   "earSize": 0.9,
-  "headSize": 1.0
+  "headSize": 1.0,
+  "colorPalette": {
+    "colorInner": "#544a3e",
+    "colorOuter": "#2f2b25",
+    "colorCloak": "#1a1815",
+    "colorAccent": "#4a4438",
+    "colorGarment2": "#7a6a4a",
+    "colorSkin": "#b88353",
+    "colorHair": "#211712",
+    "colorEye": "#6b4a2f",
+    "colorLip": "#966355"
+  }
 }

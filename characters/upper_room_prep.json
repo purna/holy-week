@@ -19,5 +19,16 @@
     "prophecy": "He spoke of his body and blood. It was strange, and sad."
   },
   "earSize": 0.95,
-  "headSize": 1.0
+  "headSize": 1.0,
+  "colorPalette": {
+    "colorInner": "#3f382f",
+    "colorOuter": "#28241e",
+    "colorCloak": "#1a1815",
+    "colorAccent": "#3b3831",
+    "colorGarment2": "#7a6a4a",
+    "colorSkin": "#b39e8e",
+    "colorHair": "#9c968a",
+    "colorEye": "#42352b",
+    "colorLip": "#7a453a"
+  }
 }

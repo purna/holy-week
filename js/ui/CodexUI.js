@@ -1,3 +1,5 @@
+import { renderIcon } from "../utils.js";
+
 export class CodexUI {
     constructor(caseManager, evidenceSystem, accessibility, audio) {
         this.cm = caseManager;

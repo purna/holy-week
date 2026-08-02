@@ -1,10 +1,26 @@
 # Character Dialogue Profiles — Master Index
 
-## Narrative Archetypes & Linguistic Design for Choice-Driven Scripts
+< [Back to Main Document](Miracle Maker.md)
 
-This document establishes the consolidated character profiles for the speakers featured across the dialogue matrices. It maps out their linguistic styles, social hierarchies, psychological pressures, and dialogue strategies to serve as an authoritative reference for narrative design and systemic conversation trees.
+## Table of Contents
 
-*This is a consolidated master index. All character entries from the previous "Expanded Holy Week Character Roster," "Additional Character Profiles," and "Character Dialogue Profiles by Investigation Phase" sections have been merged into a single list below, one entry per character, using a standard template. Where a character appeared multiple times with varying levels of detail, the fullest version was kept as canonical and any unique dialogue-file references from leaner duplicates were folded in. Fields not documented anywhere in the source material are marked accordingly rather than invented.*
+- [Group 1: The Scribes & Observers](#group-1-the-scribes--observers)
+- [Group 2: The Institutional Authorities](#group-2-the-institutional-authorities)
+- [Group 3: The Broken Inner Circle](#group-3-the-broken-inner-circle)
+- [Group 4: The Secular Powers](#group-4-the-secular-powers)
+- [Group 5: The Street & The Market](#group-5-the-street--the-market)
+- [Group 6: The Pilgrims & Festival Crowds](#group-6-the-pilgrims--festival-crowds)
+- [Group 7: The Political Elite](#group-7-the-political-elite)
+- [Group 8: Betrayal & Intelligence Networks](#group-8-betrayal--intelligence-networks)
+- [Group 9: The Inner Followers](#group-9-the-inner-followers)
+- [Group 10: Roman Administration](#group-10-roman-administration)
+- [Group 12: The Sanhedrin & Associates](#group-12-the-sanhedrin--associates)
+- [Group 13: The Disciples & Inner Circle](#group-13-the-disciples--inner-circle)
+- [Group 14: Local Residents & Witnesses](#group-14-local-residents--witnesses)
+- [Group 15: Additional Witnesses & Minor Figures](#group-15-additional-witnesses--minor-figures)
+- [Appendix A: Essential Jerusalem Events During Holy Week](#appendix-a-essential-jerusalem-events-during-holy-week)
+- [Appendix B: Character Coverage Audit](#appendix-b-character-coverage-audit)
+- [Appendix C: Consolidation Notes](#appendix-c-consolidation-notes)
 
 ---
 
@@ -15,6 +31,7 @@ This document establishes the consolidated character profiles for the speakers f
 - **Character Profile:** [`characters/senior_scribe.json`](../characters/senior_scribe.json)
 - **Source Dialogue(s):** [`system/board_debate.ink`](../story/system/board_debate.ink) / [`system/board_debate.json`](../story/system/board_debate.json), [`system/board_review.ink`](../story/system/board_review.ink) / [`system/board_review.json`](../story/system/board_review.json)
 - **Acts / Cases:** Act IV–V (Case Review / Board Debates)
+- **Role:** Evaluates evidence and guides the player to distinguish between predictive prophecy, historical evidence, and **typological patterns**.
 
 **Identity:** An aging, highly literate Judean scholar, archivist, or administrative mentor evaluating an apprentice scribe named Maluch. He serves as an intellectual gatekeeper who separates historical anomalies from theological bias.
 
@@ -39,13 +56,15 @@ This document establishes the consolidated character profiles for the speakers f
 | Act V | `Board Debates` | [`system/board_review.ink`](../story/system/board_review.ink) / [`system/board_review.json`](../story/system/board_review.json) | Yes (People tab) | — |
 
 ---
+[Back to Top](#table-of-contents)
+
 
 ### 2. Thomas the Twin
 
 - **Character Profile:** [`characters/thomas.json`](../characters/thomas.json)
 - **Additional Dialogue File:** [parable_meaning.ink](parable_meaning.ink)
 - **Source Dialogue(s):** `parable_vineyard.json`
-- **Acts / Cases:** Act II (`authority_challenged`), Act IV (`peter_restoration`)
+- **Acts / Cases:** Act II (`authority_challenged`, `passover_lamb_chain`), Act IV (`peter_restoration`)
 
 **Identity:** A close follower of the Galilean movement, distinguished by a fiercely investigative mindset and a systemic refusal to accept simple allegories without inspecting their real-world consequences.
 
@@ -58,7 +77,7 @@ This document establishes the consolidated character profiles for the speakers f
 **Linguistic Style:**
 * **Syntax:** Pragmatic, evidentiary, and plainspoken. He instantly translates allegorical folklore into hard judicial or civil realities (*"If you heard that in court, the men are guilty"*).
 
-  * **Vocabulary:** Even, skeptical, yet deeply committed to truth. He uses words associated with testing and foundations: *questions, honest, court, guilty, stone, cornerstone*.
+  * **Vocabulary:** Even, skeptical, yet deeply committed to truth. In *The Passover Lamb* investigation, Thomas helps the player notice structural parallels between Torah patterns and Jesus's actions. He uses words associated with testing and foundations: *questions, honest, court, guilty, stone, cornerstone*.
 
 **Dialogue Tree Function:** He functions as a sounding board for the player's interpretive choices, explicitly asking them to strip away the spiritualized outer layers of a parable to confront its political or human core.
 
@@ -70,6 +89,8 @@ This document establishes the consolidated character profiles for the speakers f
 | Act IV | `peter_restoration` | [`act4/case_c_peters_restoration/thomas_restoration.ink`](../story/act4/case_c_peters_restoration/thomas_restoration.ink) / [`thomas_restoration.json`](../story/act4/case_c_peters_restoration/thomas_restoration.json) | Yes (People tab) | — |
 
 ---
+[Back to Top](#table-of-contents)
+
 
 ## Group 2: The Institutional Authorities
 
@@ -99,6 +120,8 @@ This document establishes the consolidated character profiles for the speakers f
 | Act III | `crucifixion_site` | [`act3/case_e_final_sacrifice/pashhur.ink`](../story/act3/case_e_final_sacrifice/pashhur.ink) _(ink only — JSON pending review)_ | Yes (People tab) | — |
 
 ---
+[Back to Top](#table-of-contents)
+
 
 ### 4. Simon the Pharisee
 
@@ -129,6 +152,8 @@ This document establishes the consolidated character profiles for the speakers f
 | Act II | `authority_challenged` | [`act2/case_a_silenced_teacher/simon_pharisee_authority.ink`](../story/act2/case_a_silenced_teacher/simon_pharisee_authority.ink) / [`simon_pharisee_authority.json`](../story/act2/case_a_silenced_teacher/simon_pharisee_authority.json) | Yes (People tab) | — |
 
 ---
+[Back to Top](#table-of-contents)
+
 
 ### 5. The Temple Priest
 
@@ -159,6 +184,8 @@ This document establishes the consolidated character profiles for the speakers f
 | Act III | `crucifixion_site` | [`act3/case_e_final_sacrifice/priest_objection_crucifixion.ink`](../story/act3/case_e_final_sacrifice/priest_objection_crucifixion.ink) / [`priest_objection_crucifixion.json`](../story/act3/case_e_final_sacrifice/priest_objection_crucifixion.json) | Yes (People tab) | — |
 
 ---
+[Back to Top](#table-of-contents)
+
 
 ## Group 3: The Broken Inner Circle
 
@@ -197,6 +224,8 @@ This document establishes the consolidated character profiles for the speakers f
 | Act IV | `peter_restoration` | [`act4/case_c_peters_restoration/peter_restored.ink`](../story/act4/case_c_peters_restoration/peter_restored.ink) / [`peter_restored.json`](../story/act4/case_c_peters_restoration/peter_restored.json) | Yes (People tab) | — |
 
 ---
+[Back to Top](#table-of-contents)
+
 
 ## Group 4: The Secular Powers
 
@@ -230,6 +259,8 @@ This document establishes the consolidated character profiles for the speakers f
 | Act V | `Board Debates` | [`system/board_review.ink`](../story/system/board_review.ink) / [`system/board_review.json`](../story/system/board_review.json) | Yes (People tab) | — |
 
 ---
+[Back to Top](#table-of-contents)
+
 
 ### 8. The Garrison Guard
 
@@ -262,6 +293,8 @@ This document establishes the consolidated character profiles for the speakers f
 | Act IV | `roman_inquiry` | [`act4/case_b_guards_report/sentry_lucas.ink`](../story/act4/case_b_guards_report/sentry_lucas.ink) / [`sentry_lucas.json`](../story/act4/case_b_guards_report/sentry_lucas.json) | Yes (People tab) | — |
 
 ---
+[Back to Top](#table-of-contents)
+
 
 ## Group 5: The Street & The Market
 
@@ -291,6 +324,8 @@ This document establishes the consolidated character profiles for the speakers f
 | Act I | `temple_cleansing` | [`act1/case_b_overturned_tables/corrupt_seller.ink`](../story/act1/case_b_overturned_tables/corrupt_seller.ink) / [`corrupt_seller.json`](../story/act1/case_b_overturned_tables/corrupt_seller.json) | Yes (People tab) | — |
 
 ---
+[Back to Top](#table-of-contents)
+
 
 ### 10. The Market Informant
 
@@ -320,6 +355,8 @@ This document establishes the consolidated character profiles for the speakers f
 | Act I | `temple_cleansing` | [`act1/case_b_overturned_tables/informant_bribe.ink`](../story/act1/case_b_overturned_tables/informant_bribe.ink) / [`informant_bribe.json`](../story/act1/case_b_overturned_tables/informant_bribe.json) | Yes (People tab) | — |
 
 ---
+[Back to Top](#table-of-contents)
+
 
 ### 11. The Market Vendor
 
@@ -349,6 +386,8 @@ This document establishes the consolidated character profiles for the speakers f
 | Act I | `temple_cleansing` | [`act1/case_b_overturned_tables/market_rumors.ink`](../story/act1/case_b_overturned_tables/market_rumors.ink) / [`market_rumors.json`](../story/act1/case_b_overturned_tables/market_rumors.json) | Yes (People tab) | — |
 
 ---
+[Back to Top](#table-of-contents)
+
 
 ### 12. The Nervous Citizen
 
@@ -378,6 +417,8 @@ This document establishes the consolidated character profiles for the speakers f
 | Act I | `temple_cleansing` | [`act1/case_b_overturned_tables/rumor_whisper.ink`](../story/act1/case_b_overturned_tables/rumor_whisper.ink) / [`rumor_whisper.json`](../story/act1/case_b_overturned_tables/rumor_whisper.json) | Yes (People tab) | — |
 
 ---
+[Back to Top](#table-of-contents)
+
 
 ## Group 6: The Pilgrims & Festival Crowds
 
@@ -409,6 +450,8 @@ This document establishes the consolidated character profiles for the speakers f
 | Act I | `triumphal_entry` | [`act1/case_a_missing_donkey/galilean_pilgrim.ink`](../story/act1/case_a_missing_donkey/galilean_pilgrim.ink) / [`galilean_pilgrim.json`](../story/act1/case_a_missing_donkey/galilean_pilgrim.json) | Yes (People tab) | Psalm 118:25–26 |
 
 ---
+[Back to Top](#table-of-contents)
+
 
 ### 14. The Jerusalem Local
 
@@ -439,6 +482,8 @@ This document establishes the consolidated character profiles for the speakers f
 | Act I | `triumphal_entry` | [`act1/case_a_missing_donkey/jerusalem_local.ink`](../story/act1/case_a_missing_donkey/jerusalem_local.ink) / [`jerusalem_local.json`](../story/act1/case_a_missing_donkey/jerusalem_local.json) | Yes (People tab) | — |
 
 ---
+[Back to Top](#table-of-contents)
+
 
 ### 15. The Temple Money Changer
 
@@ -467,6 +512,8 @@ This document establishes the consolidated character profiles for the speakers f
 | Act I | `temple_cleansing` | [`act1/case_b_overturned_tables/market_rumors.ink`](../story/act1/case_b_overturned_tables/market_rumors.ink) / [`market_rumors.json`](../story/act1/case_b_overturned_tables/market_rumors.json) | Yes (People tab) | — |
 
 ---
+[Back to Top](#table-of-contents)
+
 
 ## Group 7: The Political Elite
 
@@ -498,6 +545,8 @@ This document establishes the consolidated character profiles for the speakers f
 | Act II | `lazarus_plot` | [`act2/case_b_lazarus_conspiracy/annas_patriarch.ink`](../story/act2/case_b_lazarus_conspiracy/annas_patriarch.ink) / [`annas_patriarch.json`](../story/act2/case_b_lazarus_conspiracy/annas_patriarch.json) | Yes (People tab) | — |
 
 ---
+[Back to Top](#table-of-contents)
+
 
 ### 17. Caiaphas the High Priest
 
@@ -532,6 +581,8 @@ This document establishes the consolidated character profiles for the speakers f
 | Act IV | `roman_inquiry` | [`act4/case_b_guards_report/caiaphas_roman_inquiry.ink`](../story/act4/case_b_guards_report/caiaphas_roman_inquiry.ink) _(ink only — JSON pending review)_ | Yes (People tab) | — |
 
 ---
+[Back to Top](#table-of-contents)
+
 
 ### 18. Eleazar
 
@@ -559,6 +610,8 @@ This document establishes the consolidated character profiles for the speakers f
 | Act I | `triumphal_entry` | [`act1/case_a_missing_donkey/eleazar_sadducee.ink`](../story/act1/case_a_missing_donkey/eleazar_sadducee.ink) / [`eleazar_sadducee.json`](../story/act1/case_a_missing_donkey/eleazar_sadducee.json) | Yes (People tab) | Malachi 3:1 |
 
 ---
+[Back to Top](#table-of-contents)
+
 
 ### 19. Joseph of Arimathea
 
@@ -590,6 +643,8 @@ This document establishes the consolidated character profiles for the speakers f
 | Act IV | `resurrection` | [`act4/case_a_empty_tomb/joseph_arimathea.ink`](../story/act4/case_a_empty_tomb/joseph_arimathea.ink) / [`joseph_arimathea.json`](../story/act4/case_a_empty_tomb/joseph_arimathea.json) | Yes (People tab) | — |
 
 ---
+[Back to Top](#table-of-contents)
+
 
 ### 20. Sadducee Opposer
 
@@ -616,6 +671,8 @@ This document establishes the consolidated character profiles for the speakers f
 | Act I | `triumphal_entry` | [`act1/case_a_missing_donkey/sadducee_opposition.ink`](../story/act1/case_a_missing_donkey/sadducee_opposition.ink) / [`sadducee_opposition.json`](../story/act1/case_a_missing_donkey/sadducee_opposition.json) | Yes (People tab) | — |
 
 ---
+[Back to Top](#table-of-contents)
+
 
 ## Group 8: Betrayal & Intelligence Networks
 
@@ -624,6 +681,7 @@ This document establishes the consolidated character profiles for the speakers f
 - **Additional Dialogue File:** [judas_betrayal.ink](judas_betrayal.ink)
 - **Additional Dialogue File:** [judas_iscariot.ink](judas_iscariot.ink)
 - **Acts / Cases:** Act III (`last_supper`, `gethsemane_arrest`), Act IV (`roman_inquiry`)
+- **Additional Profile:** `characters/judas_bethany_objection.json`
 
 **Identity:** Trusted insider increasingly fractured by disappointment, greed, or ideological conflict.
 
@@ -651,6 +709,8 @@ This document establishes the consolidated character profiles for the speakers f
 | Act IV | `roman_inquiry` | [`act4/case_b_guards_report/judas_betrayal.ink`](../story/act4/case_b_guards_report/judas_betrayal.ink) / [`judas_betrayal.json`](../story/act4/case_b_guards_report/judas_betrayal.json) | Yes (People tab) | — |
 
 ---
+[Back to Top](#table-of-contents)
+
 
 ### 22. The Temple Spy
 
@@ -679,6 +739,8 @@ This document establishes the consolidated character profiles for the speakers f
 | Act II | `lazarus_plot` |  | N/A (Vendor not an NPC in this case) | — |
 
 ---
+[Back to Top](#table-of-contents)
+
 
 ## Group 9: The Inner Followers
 
@@ -717,6 +779,8 @@ This document establishes the consolidated character profiles for the speakers f
 | Act III | `last_supper` | [`act3/case_a_broken_cup/john_disciple.ink`](../story/act3/case_a_broken_cup/john_disciple.ink) / [`john_disciple.json`](../story/act3/case_a_broken_cup/john_disciple.json) | Yes (People tab) | — |
 
 ---
+[Back to Top](#table-of-contents)
+
 
 ### 24. Martha of Bethany
 
@@ -747,11 +811,14 @@ This document establishes the consolidated character profiles for the speakers f
 | Act II | `lazarus_plot` | [`act2/case_b_lazarus_conspiracy/martha_bethany.ink`](../story/act2/case_b_lazarus_conspiracy/martha_bethany.ink) / [`martha_bethany.json`](../story/act2/case_b_lazarus_conspiracy/martha_bethany.json) | Yes (People tab) | — |
 
 ---
+[Back to Top](#table-of-contents)
+
 
 ### 25. Mary Magdalene
 
 - **Additional Dialogue File:** [mary_resurrection.ink](mary_resurrection.ink)
 - **Additional Dialogue File:** [mary_magdalene.ink](mary_magdalene.ink)
+- **Additional Profile:** `characters/mary_bethany_anointing.json`
 - **Acts / Cases:** Act III (`crucifixion_site`), Act IV (`resurrection`)
 
 **Identity:** Loyal follower remaining present through the movement's public collapse.
@@ -780,6 +847,8 @@ This document establishes the consolidated character profiles for the speakers f
 | Act IV | `peter_restoration` | [`act4/case_a_empty_tomb/mary_magdalene.ink`](../story/act4/case_a_empty_tomb/mary_magdalene.ink) / [`mary_magdalene.json`](../story/act4/case_a_empty_tomb/mary_magdalene.json) | Yes (People tab) | — |
 
 ---
+[Back to Top](#table-of-contents)
+
 
 ## Group 10: Roman Administration
 
@@ -801,6 +870,8 @@ This document establishes the consolidated character profiles for the speakers f
 **Dialogue Tree Function:** *Not documented.*
 
 ---
+[Back to Top](#table-of-contents)
+
 
 ### 27. Claudia Procula (Pilate’s Wife)
 
@@ -820,6 +891,9 @@ This document establishes the consolidated character profiles for the speakers f
 **Dialogue Tree Function:** *Not documented.*
 
 ---
+[Back to Top](#table-of-contents)
+
+
 
 ### 28. Herod’s Servant (Chuza)
 
@@ -839,6 +913,8 @@ This document establishes the consolidated character profiles for the speakers f
 **Dialogue Tree Function:** *Not documented.*
 
 ---
+[Back to Top](#table-of-contents)
+
 
 ### 29. Pilate’s Secretary
 
@@ -871,6 +947,8 @@ This document establishes the consolidated character profiles for the speakers f
 | Act IV | `roman_inquiry` | [`act3/case_d_roman_interrogation/pilates_secretary.ink`](../story/act3/case_d_roman_interrogation/pilates_secretary.ink) / [`pilates_secretary.json`](../story/act3/case_d_roman_interrogation/pilates_secretary.json) | Yes (People tab) | — |
 
 ---
+[Back to Top](#table-of-contents)
+
 
 ### 30. Pontius Pilate
 
@@ -901,6 +979,8 @@ This document establishes the consolidated character profiles for the speakers f
 | Act III | `barabbas_choice` | [`act3/case_d_roman_interrogation/pontius_pilate_barabbas.ink`](../story/act3/case_d_roman_interrogation/pontius_pilate_barabbas.ink) / [`pontius_pilate_barabbas.json`](../story/act3/case_d_roman_interrogation/pontius_pilate_barabbas.json) | Yes (People tab) | — |
 
 ---
+[Back to Top](#table-of-contents)
+
 
 ## Group 12: The Sanhedrin & Associates
 
@@ -931,6 +1011,8 @@ This document establishes the consolidated character profiles for the speakers f
 | Act III | `sanhedrin_trial` | [`act3/case_c_midnight_tribunal/false_witness.ink`](../story/act3/case_c_midnight_tribunal/false_witness.ink) / [`false_witness.json`](../story/act3/case_c_midnight_tribunal/false_witness.json) | Yes (People tab) | — |
 
 ---
+[Back to Top](#table-of-contents)
+
 
 ### 32. Nathanael the Pharisee
 
@@ -961,6 +1043,8 @@ This document establishes the consolidated character profiles for the speakers f
 | Act II | `authority_challenged` | [`act1/case_b_overturned_tables/pharisee_critique.ink`](../story/act1/case_b_overturned_tables/pharisee_critique.ink) / [`pharisee_critique.json`](../story/act1/case_b_overturned_tables/pharisee_critique.json) _(pharisee_critique is from temple cleansing)_ | Yes (People tab) | — |
 
 ---
+[Back to Top](#table-of-contents)
+
 
 ### 33. Nicodemus
 
@@ -989,6 +1073,38 @@ This document establishes the consolidated character profiles for the speakers f
 | Act II | `lazarus_plot` | [`act2/case_b_lazarus_conspiracy/nicodemus_conflicted.ink`](../story/act2/case_b_lazarus_conspiracy/nicodemus_conflicted.ink) / [`nicodemus_conflicted.json`](../story/act2/case_b_lazarus_conspiracy/nicodemus_conflicted.json) | Yes (People tab) | — |
 
 ---
+[Back to Top](#table-of-contents)
+
+
+### 34. Hillel the Scribe
+
+- **Character Profile:** `characters/hillel_scribe.json`
+- **Source Dialogue(s):** `story/act2/case_d_passover_lamb/hillel_scribe.ink`
+- **Acts / Cases:** Act II (`passover_lamb_chain`)
+
+**Identity:** A young, meticulous scribe assigned to the Temple's administrative offices. He is responsible for cross-referencing market ledgers for Passover lambs with the priestly inspection records.
+
+**Social Status:** Junior scribe, not part of the high-level political maneuvering.
+
+**Apparent Age:** 20s.
+
+**Immediate Stress Level:** Moderate; he is cautious about his conclusions, which could be seen as heretical.
+
+**Linguistic Style:**
+* **Syntax:** Professional, precise, and focused on the details of the Law and Temple process.
+* **Vocabulary:** Uses words like *process, records, selected, inspected, blemish, pattern*.
+
+**Dialogue Tree Function:** Provides a data-driven, logistical perspective on the Passover Lamb typology, connecting the selection and inspection of the lamb to Jesus's movements during Passion Week.
+
+**Dialogue Coverage Table:**
+
+| Act | Case | Dialogue | Dialogue Needed? | Prophecies |
+| --- | --- | --- | --- | --- |
+| Act II | `passover_lamb_chain` | `story/act2/case_d_passover_lamb/hillel_scribe.ink` | Yes (People tab) | `typology_passover_lamb` |
+
+---
+[Back to Top](#table-of-contents)
+
 
 ### 34. Samuel the Scribe
 
@@ -1017,6 +1133,8 @@ This document establishes the consolidated character profiles for the speakers f
 | Act II | `authority_challenged` | [`act2/case_a_silenced_teacher/scribe_intro.ink`](../story/act2/case_a_silenced_teacher/scribe_intro.ink) / [`scribe_intro.json`](../story/act2/case_a_silenced_teacher/scribe_intro.json) | Yes (People tab) | — |
 
 ---
+[Back to Top](#table-of-contents)
+
 
 ## Group 13: The Disciples & Inner Circle
 
@@ -1048,6 +1166,8 @@ This document establishes the consolidated character profiles for the speakers f
 | Act II | `olivet_discourse` | [`act2/case_c_olivet_discourse/andrew_olivet.ink`](../story/act2/case_c_olivet_discourse/andrew_olivet.ink) / [`andrew_olivet.json`](../story/act2/case_c_olivet_discourse/andrew_olivet.json) | Yes (People tab) | — |
 
 ---
+[Back to Top](#table-of-contents)
+
 
 ### 36. John Mark
 
@@ -1076,6 +1196,8 @@ This document establishes the consolidated character profiles for the speakers f
 | Act III | `last_supper` | [`act3/case_a_broken_cup/john_disciple.ink`](../story/act3/case_a_broken_cup/john_disciple.ink) / [`john_disciple.json`](../story/act3/case_a_broken_cup/john_disciple.json) _(Shares story with John the Apostle in this case)_ | Yes (People tab) | — |
 
 ---
+[Back to Top](#table-of-contents)
+
 
 ### 37. Mount Teacher
 
@@ -1104,6 +1226,8 @@ This document establishes the consolidated character profiles for the speakers f
 | Act II | `olivet_discourse` | [`act2/case_a_silenced_teacher/teaching_mount.ink`](../story/act2/case_a_silenced_teacher/teaching_mount.ink) / [`teaching_mount.json`](../story/act2/case_a_silenced_teacher/teaching_mount.json) | Yes (People tab) | — |
 
 ---
+[Back to Top](#table-of-contents)
+
 
 ### 38. Nathanael
 
@@ -1130,6 +1254,8 @@ This document establishes the consolidated character profiles for the speakers f
 | Act IV | `peter_restoration` | [`act4/case_c_peters_restoration/nathanael_disciple.ink`](../story/act4/case_c_peters_restoration/nathanael_disciple.ink) / [`nathanael_disciple.json`](../story/act4/case_c_peters_restoration/nathanael_disciple.json) | Yes (People tab) | — |
 
 ---
+[Back to Top](#table-of-contents)
+
 
 ## Group 14: Local Residents & Witnesses
 
@@ -1162,6 +1288,8 @@ This document establishes the consolidated character profiles for the speakers f
 | Act III | `barabbas_choice` | [`act3/case_d_roman_interrogation/barabbas_choice.ink`](../story/act3/case_d_roman_interrogation/barabbas_choice.ink) _(ink only — JSON pending review)_ | Yes (People tab) | — |
 
 ---
+[Back to Top](#table-of-contents)
+
 
 ### 40. Jemimah the Skeptic
 
@@ -1189,6 +1317,8 @@ This document establishes the consolidated character profiles for the speakers f
 | Act I | `triumphal_entry` |  | N/A (Vendor not an NPC in this case) | — |
 
 ---
+[Back to Top](#table-of-contents)
+
 
 ### 41. Lucas the Sentry
 
@@ -1215,6 +1345,8 @@ This document establishes the consolidated character profiles for the speakers f
 | Act IV | `roman_inquiry` | [`act4/case_b_guards_report/sentry_lucas.ink`](../story/act4/case_b_guards_report/sentry_lucas.ink) / [[`act4/case_b_guards_report/sentry_lucas.ink`](../story/act4/case_b_guards_report/sentry_lucas.ink) / [`sentry_lucas.json`](../story/act4/case_b_guards_report/sentry_lucas.json)](../story/act4/case_b_guards_report/sentry_lucas.json) | Yes (People tab) | — |
 
 ---
+[Back to Top](#table-of-contents)
+
 
 ### 42. Malachi the Money Changer
 
@@ -1243,6 +1375,8 @@ This document establishes the consolidated character profiles for the speakers f
 | Act I | `temple_cleansing` | [`act1/case_b_overturned_tables/money_changer.ink`](../story/act1/case_b_overturned_tables/money_changer.ink) / [`money_changer.json`](../story/act1/case_b_overturned_tables/money_changer.json) | Yes (People tab) | Malachi 3:1 |
 
 ---
+[Back to Top](#table-of-contents)
+
 
 ### 43. Malchus
 
@@ -1272,6 +1406,8 @@ This document establishes the consolidated character profiles for the speakers f
 | Act III | `gethsemane_arrest` | [`act3/case_b_severed_ear/malchus.ink`](../story/act3/case_b_severed_ear/malchus.ink) / [`malchus.json`](../story/act3/case_b_severed_ear/malchus.json) | Yes (People tab) | — |
 
 ---
+[Back to Top](#table-of-contents)
+
 
 ### 44. Maluch the Temple Spy
 
@@ -1300,6 +1436,8 @@ This document establishes the consolidated character profiles for the speakers f
 | Act II | `lazarus_plot` | [`act2/case_b_lazarus_conspiracy/temple_spy.ink`](../story/act2/case_b_lazarus_conspiracy/temple_spy.ink) / [`temple_spy.json`](../story/act2/case_b_lazarus_conspiracy/temple_spy.json) | Yes (People tab) | — |
 
 ---
+[Back to Top](#table-of-contents)
+
 
 ### 45. Marcus the Garrison Guard
 
@@ -1328,6 +1466,8 @@ This document establishes the consolidated character profiles for the speakers f
 | Act IV | `resurrection` |  | N/A (Vendor not an NPC in this case) | — |
 
 ---
+[Back to Top](#table-of-contents)
+
 
 ### 46. Nathan the Gardener
 
@@ -1356,6 +1496,8 @@ This document establishes the consolidated character profiles for the speakers f
 | Act I | `fig_tree_incident` | [`act1/case_c_fig_tree_incident/nathan_fig_tree.ink`](../story/act1/case_c_fig_tree_incident/nathan_fig_tree.ink) / [`nathan_fig_tree.json`](../story/act1/case_c_fig_tree_incident/nathan_fig_tree.json) | Yes (People tab) | Micah 7:1 |
 
 ---
+[Back to Top](#table-of-contents)
+
 
 ### 47. Preparation Servant
 
@@ -1382,6 +1524,8 @@ This document establishes the consolidated character profiles for the speakers f
 | Act III | `last_supper` | [`act3/case_a_broken_cup/upper_room_prep.ink`](../story/act3/case_a_broken_cup/upper_room_prep.ink) / [`upper_room_prep.json`](../story/act3/case_a_broken_cup/upper_room_prep.json) | Yes (People tab) | — |
 
 ---
+[Back to Top](#table-of-contents)
+
 
 ### 48. Rhoda the Servant
 
@@ -1411,6 +1555,8 @@ This document establishes the consolidated character profiles for the speakers f
 | Act III | `last_supper` | [`act3/case_a_broken_cup/rhoda_servant.ink`](../story/act3/case_a_broken_cup/rhoda_servant.ink) / [`rhoda_servant.json`](../story/act3/case_a_broken_cup/rhoda_servant.json) | Yes (People tab) | — |
 
 ---
+[Back to Top](#table-of-contents)
+
 
 ### 49. Simon of Cyrene
 
@@ -1440,6 +1586,8 @@ This document establishes the consolidated character profiles for the speakers f
 | Act III | `crucifixion_site` | [`act3/case_e_final_sacrifice/simon_cyrene.ink`](../story/act3/case_e_final_sacrifice/simon_cyrene.ink) / [`simon_cyrene.json`](../story/act3/case_e_final_sacrifice/simon_cyrene.json) | Yes (People tab) | — |
 
 ---
+[Back to Top](#table-of-contents)
+
 
 ### 50. Simon the Leper
 
@@ -1468,6 +1616,8 @@ This document establishes the consolidated character profiles for the speakers f
 | Act II | `lazarus_plot` | [`act2/case_b_lazarus_conspiracy/simon_leper.ink`](../story/act2/case_b_lazarus_conspiracy/simon_leper.ink) / [`simon_leper.json`](../story/act2/case_b_lazarus_conspiracy/simon_leper.json) | Yes (People tab) | — |
 
 ---
+[Back to Top](#table-of-contents)
+
 
 ### 51. The Execution Detail Soldier
 
@@ -1498,6 +1648,8 @@ This document establishes the consolidated character profiles for the speakers f
 | Act IV | `resurrection` | [`act4/case_a_empty_tomb/execution_soldier.ink`](../story/act4/case_a_empty_tomb/execution_soldier.ink) / [`execution_soldier.json`](../story/act4/case_a_empty_tomb/execution_soldier.json) | Yes (People tab) | — |
 
 ---
+[Back to Top](#table-of-contents)
+
 
 ### 52. Tobias the Donkey Owner
 
@@ -1526,6 +1678,8 @@ This document establishes the consolidated character profiles for the speakers f
 | Act I | `triumphal_entry` | [`act1/case_a_missing_donkey/galilean_pilgrim.ink`](../story/act1/case_a_missing_donkey/galilean_pilgrim.ink) / [`galilean_pilgrim.json`](../story/act1/case_a_missing_donkey/galilean_pilgrim.json) _(Runtime uses galilean_pilgrim story (shared))_ | Yes (People tab) | Psalm 118:25–26 |
 
 ---
+[Back to Top](#table-of-contents)
+
 
 ## Group 15: Additional Witnesses & Minor Figures
 
@@ -1554,6 +1708,8 @@ This document establishes the consolidated character profiles for the speakers f
 | Act II | `lazarus_plot` | [`act2/case_b_lazarus_conspiracy/simon_leper.ink`](../story/act2/case_b_lazarus_conspiracy/simon_leper.ink) / [`simon_leper.json`](../story/act2/case_b_lazarus_conspiracy/simon_leper.json) _(witness_healed file is in act2/case_a_silenced_teacher/)_ | Yes (People tab) | — |
 
 ---
+[Back to Top](#table-of-contents)
+
 
 ### 54. Jemimah
 
@@ -1580,6 +1736,8 @@ This document establishes the consolidated character profiles for the speakers f
 | Act I | `triumphal_entry` | [`act1/case_a_missing_donkey/jerusalem_local.ink`](../story/act1/case_a_missing_donkey/jerusalem_local.ink) / [`jerusalem_local.json`](../story/act1/case_a_missing_donkey/jerusalem_local.json) _(Runtime uses jerusalem_local story)_ | Yes (People tab) | — |
 
 ---
+[Back to Top](#table-of-contents)
+
 
 ### 55. Local Traveler
 
@@ -1606,6 +1764,8 @@ This document establishes the consolidated character profiles for the speakers f
 | Act I | `fig_tree_incident` | [`act1/case_c_fig_tree_incident/local_traveler.ink`](../story/act1/case_c_fig_tree_incident/local_traveler.ink) / [`local_traveler.json`](../story/act1/case_c_fig_tree_incident/local_traveler.json) | Yes (People tab) | Psalm 33:8–9 |
 
 ---
+[Back to Top](#table-of-contents)
+
 
 ### 56. Rich Young Ruler
 
@@ -1632,6 +1792,8 @@ This document establishes the consolidated character profiles for the speakers f
 | Act II | `authority_challenged` | [`act2/case_a_silenced_teacher/rich_young_ruler.ink`](../story/act2/case_a_silenced_teacher/rich_young_ruler.ink) / [`rich_young_ruler.json`](../story/act2/case_a_silenced_teacher/rich_young_ruler.json) | Yes (People tab) | — |
 
 ---
+[Back to Top](#table-of-contents)
+
 
 ### 57. Secret Visitor
 
@@ -1658,6 +1820,8 @@ This document establishes the consolidated character profiles for the speakers f
 | Act III | `crucifixion_site` | [`act3/case_b_severed_ear/secret_visit.ink`](../story/act3/case_b_severed_ear/secret_visit.ink) / [`secret_visit.json`](../story/act3/case_b_severed_ear/secret_visit.json) | Yes (People tab) | — |
 
 ---
+[Back to Top](#table-of-contents)
+
 
 ### 58. The Upset Pilgrim Buyer
 
@@ -1677,6 +1841,8 @@ This document establishes the consolidated character profiles for the speakers f
 **Dialogue Tree Function:** *Not documented.*
 
 ---
+[Back to Top](#table-of-contents)
+
 
 ### 59. Trial Rumors
 
@@ -1704,6 +1870,8 @@ This document establishes the consolidated character profiles for the speakers f
 | Act III | `sanhedrin_trial` | [`act3/case_c_midnight_tribunal/trial_rumors.ink`](../story/act3/case_c_midnight_tribunal/trial_rumors.ink) / [`trial_rumors.json`](../story/act3/case_c_midnight_tribunal/trial_rumors.json) | Yes (People tab) | — |
 
 ---
+[Back to Top](#table-of-contents)
+
 
 ### 60. Upset Temple Buyer
 
@@ -1730,6 +1898,8 @@ This document establishes the consolidated character profiles for the speakers f
 | Act I | `temple_cleansing` | [`act1/case_b_overturned_tables/upset_buyer.ink`](../story/act1/case_b_overturned_tables/upset_buyer.ink) / [`upset_buyer.json`](../story/act1/case_b_overturned_tables/upset_buyer.json) | Yes (People tab) | — |
 
 ---
+[Back to Top](#table-of-contents)
+
 
 ### 61. Woman Who Gave Her Cloak
 

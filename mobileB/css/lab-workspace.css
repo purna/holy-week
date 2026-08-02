@@ -5,6 +5,63 @@
    cannot leak into the rest of the game shell.
    ════════════════════════════════════════════════ */
 
+/* ── List/Grid Toggle ── */
+#lab-workspace .lab-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+#lab-workspace .section-title {
+  font-size: 1rem;
+  color: var(--gold);
+  margin: 0 0 2px;
+  font-family: 'Cinzel', serif;
+  letter-spacing: 0.04em;
+}
+#lab-workspace .lab-view-toggle {
+  appearance: none;
+  background: var(--surface2);
+  border: 1px solid var(--border2);
+  color: var(--text-muted);
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  display: inline-grid;
+  place-items: center;
+  font-size: 0.8rem;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  flex-shrink: 0;
+}
+#lab-workspace .lab-view-toggle:hover {
+  background: var(--surface3);
+  color: var(--text);
+  border-color: var(--gold);
+}
+#lab-workspace .lab-view-toggle:active {
+  transform: scale(0.95);
+}
+
+/* ── List/Grid view overrides ── */
+#lab-workspace.lab-list-view .tab-panel {
+  display: block;
+}
+#lab-workspace.lab-grid-view .tab-panel {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  align-items: start;
+}
+#lab-workspace.lab-grid-view .tab-panel > * {
+  grid-column: 1;
+}
+#lab-workspace.lab-grid-view .tab-panel > .card-pool-grid,
+#lab-workspace.lab-grid-view .tab-panel > .trash-archive-box.card-pool-grid {
+  grid-column: 2;
+}
+
 /* ── Evidence card base ── */
 #lab-workspace .ev-card {
   display: flex;
@@ -148,53 +205,12 @@
 }
 
 /* ── Timeline steps ── */
-#lab-workspace .timeline-vertical-box {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  position: relative;
-  padding-left: 22px;
-  border-left: 3px solid var(--border2);
-  margin-left: 10px;
-  margin-bottom: 14px;
-  margin-top: 6px;
-}
-
 #lab-workspace .timeline-step {
   border: 1.5px solid var(--border2);
   border-radius: var(--radius);
   padding: 10px;
   margin-bottom: 8px;
   transition: border-color 0.2s, background 0.2s;
-  position: relative;
-}
-
-#lab-workspace .timeline-step::before {
-  content: '';
-  position: absolute;
-  left: -31px;
-  top: 14px;
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  background: var(--gold);
-  border: 3px solid var(--bg);
-  transition: all 0.2s;
-}
-
-#lab-workspace .timeline-step.filled::before {
-  background: var(--green);
-  border-color: var(--bg);
-}
-
-#lab-workspace .timeline-step.correct::before {
-  background: var(--green);
-  border-color: var(--bg);
-}
-
-#lab-workspace .timeline-step.wrong::before {
-  background: var(--red);
-  border-color: var(--bg);
 }
 
 #lab-workspace .timeline-step.filled {
@@ -419,10 +435,6 @@
 #lab-workspace .trash-archive-box {
   max-height: 120px;
   overflow-y: auto;
-  background: rgba(244, 96, 96, 0.08);
-  border: 1.5px dashed var(--red);
-  border-radius: var(--radius);
-  padding: 8px;
 }
 /* ── Tab panels ── */
 #lab-workspace .tab-panel {
@@ -448,7 +460,8 @@
 }
 
 #lab-workspace .lab-btn:hover:not([aria-disabled="true"]) {
-  background: var(--surface2);
+  background: var(--lw-surface3);
+  color: var(--lw-gold);
 }
 
 #lab-workspace .lab-btn:active:not([aria-disabled="true"]) {
@@ -460,6 +473,18 @@
   color: var(--bg);
   border-color: var(--gold);
 }
+
+#lab-workspace .lab-btn.active .lab-btn-label,
+#lab-workspace .lab-btn.active .lab-btn-icon {
+  color: var(--lw-text);
+}
+
+#lab-workspace .lab-btn.active:hover .lab-btn-label, 
+#lab-workspace .lab-btn.active:hover .lab-btn-icon  {
+  color: var(--gold-text);
+}
+
+
 
 #lab-workspace .lab-btn[aria-disabled="true"] {
   opacity: 0.4;
@@ -502,12 +527,11 @@
 
 
 /* ── Slot label ── */
-
 #lab-workspace .slot-label {
       font-size: 0.68rem;
     font-weight: 700;
     text-align: center;
-   color: #4a5568;
+  color: #4a5568;
   
 }
 

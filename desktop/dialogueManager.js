@@ -177,7 +177,7 @@ export class DialogueManager {
 
         // Populate header
         const avatarEl = document.getElementById('vn-avatar');
-        if (avatarEl) avatarEl.innerText = npc.avatar ?? '?';
+        if (avatarEl) avatarEl.innerHTML = (npc.avatar || '?').endsWith('.svg') ? `<img src="../assets/characters/${npc.avatar}" class="icon-svg" loading='lazy'>` : (npc.avatar ?? '?');
         const statusEl = document.getElementById('vn-status');
         if (statusEl) statusEl.textContent = '● ONLINE';
 

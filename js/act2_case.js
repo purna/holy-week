@@ -92,6 +92,7 @@ import { formatIntro } from './utils.js';
 
 export const act2CaseA = {
   id: "authority_challenged",
+  icon: '../assets/gfx/book-open-duotone.svg',
   title: "The Silenced Teacher",
   subtitle: "Three religious leaders have attempted to trap Jesus in His words — but who holds the real authority?",
   location: "temple",
@@ -99,7 +100,7 @@ export const act2CaseA = {
   timeOfDay: "day",
   difficulty: 2,
   requires: "temple_cleansing",
-  actLabel: "Act II",
+  actLabel: "Act II - The Temple Courts",
   color: 0xf59e0b,
   worldModel: "../assets/models/sphere.glb",
   showCityLayer: false,
@@ -115,7 +116,7 @@ export const act2CaseA = {
     {
       reference: "Psalm 118:22–23",
       id: "psalm_118_22_23",
-      icon: "🔮",
+      icon: "../assets/gfx/sparkles-duotone.svg",
       text: `"The stone the builders rejected has become the cornerstone; the LORD has done this, and it is marvellous in our eyes."`,
       written: "~1000 BC",
       fulfilledBy: "Jesus quoting this Psalm directly against the religious leaders after the Parable of the Wicked Tenants",
@@ -126,7 +127,7 @@ export const act2CaseA = {
     {
       reference: "Isaiah 5:1–7",
       id: "isaiah_5_1_7",
-      icon: "🔮",
+      icon: "../assets/gfx/sparkles-duotone.svg",
       text: `"My beloved had a vineyard on a very fertile hill... He looked for it to yield grapes, but it yielded wild grapes... The vineyard of the LORD Almighty is the nation of Israel."`,
       written: "~700 BC",
       fulfilledBy: "The Parable of the Wicked Tenants (Matthew 21:33–46), which deliberately echoed Isaiah's Song of the Vineyard",
@@ -137,7 +138,7 @@ export const act2CaseA = {
     {
       reference: "Daniel 7:13–14",
       id: "daniel_7_13_14",
-      icon: "🔮",
+      icon: "../assets/gfx/sparkles-duotone.svg",
       text: `"There before me was one like a son of man, coming with the clouds of heaven... He was given authority, glory and sovereign power; all nations and peoples of every language worshipped him."`,
       written: "~550 BC",
       fulfilledBy: "Jesus's implicit claim to be the 'Son of Man' with divine authority — the title He used throughout the Gospels",
@@ -148,7 +149,7 @@ export const act2CaseA = {
     {
       reference: "Malachi 3:1",
       id: "malachi_3_1",
-      icon: "🔮",
+      icon: "../assets/gfx/sparkles-duotone.svg",
       text: `"I will send my messenger, who will prepare the way before me. Then suddenly the Lord you are seeking will come to his temple; the messenger of the covenant, whom you desire, will come."`,
       written: "~430 BC",
       fulfilledBy: "Jesus's presence and teaching authority in the Temple",
@@ -161,10 +162,10 @@ export const act2CaseA = {
   intro: formatIntro(`It is Tuesday morning, Nisan 12. The Temple courts are packed with Passover pilgrims and local worshippers. Jesus is teaching when a delegation of chief priests, scribes, and elders arrives — formally and deliberately. Their challenge is direct: **'By what authority do you do these things? Who gave you this authority?'** Three religious leaders were the primary challengers that morning, each representing a different faction. But as you gather evidence from the scene, a question emerges: _who is really on trial here_ — Jesus, or them?`),
 
   suspects: [
-    { id: "chief_priest", name: "Caiaphas", role: "High Priest, Sadducee", avatar: "👨‍⚖️", bibleRef: "Matthew 21:23; John 11:49–52" },
-    { id: "scribe", name: "Samuel", role: "Temple Scribe, Pharisee", avatar: "📜", bibleRef: "Mark 12:28–34 — a scribe who asks about the greatest commandment" },
-    { id: "pharisee", name: "Nathanael", role: "Pharisee, Herodian ally", avatar: "🧣", bibleRef: "Matthew 22:15–22 — the Pharisees and Herodians on the tax question" },
-    { id: "none", name: "No One", role: "Not Stolen", avatar: "❓", bibleRef: null },
+    { id: "chief_priest", name: "Caiaphas", role: "High Priest, Sadducee", avatar: "caiaphas.svg", bibleRef: "Matthew 21:23; John 11:49–52" },
+    { id: "scribe", name: "Samuel", role: "Temple Scribe, Pharisee", avatar: "senior_scribe.svg", bibleRef: "Mark 12:28–34 — a scribe who asks about the greatest commandment" },
+    { id: "pharisee", name: "Nathanael", role: "Pharisee, Herodian ally", avatar: "simon_pharisee.svg", bibleRef: "Matthew 22:15–22 — the Pharisees and Herodians on the tax question" },
+    { id: "none", name: "No One", role: "Not Stolen", avatar: "nicodemus.svg", bibleRef: null },
 
   ],
 
@@ -175,7 +176,7 @@ export const act2CaseA = {
       name: "The Formal Authority Challenge",
       type: "analytical",
       relatedProphecy: "malachi_3_1",
-      icon: "📜",
+      icon: "../assets/gfx/scroll-duotone.svg",
       location: "Temple East Portico",
       pos: [10, 0, 10],
       snippet: "A formal scroll bearing three official priestly seals.",
@@ -190,18 +191,21 @@ export const act2CaseA = {
         { ref: "Malachi 3:1", link: "malachi_31" }
       ],
       investigatorNote: "Three seals: the High Priest, the Chief Scribe, the Council Elder. This was planned, not spontaneous.",
+      fake: false,
+      category: 'event',
+      timelineOrder: 1,
       clues: {
-        compare: "Connects with related evidence in this case to confirm the established narrative.",
-        link: "Prophecy & Scripture — the formal authority challenge",
-        timeline: "CHRONOLOGY: Recovered during the investigation.",
-        contradict: "RELIABILITY: Corroborated by multiple independent sources and consistent with the narrative."
+        compare: "Pairs with the witness scroll to show the formal challenge was answered publicly and completely.",
+        link: "Event — the official written challenge that opened the day's confrontations.",
+        timeline: "CHRONOLOGY: Presented first, as Jesus began teaching in the Temple courts that morning.",
+        contradict: "RELIABILITY: Three priestly seals confirm this was a planned, sanctioned delegation, not a spontaneous question."
       },
     }, {
       id: "parable_fragments",
       name: "Sketch of the Vineyard Parable",
       type: "physical",
       relatedProphecy: "isaiah_5_1_7",
-      icon: "🏺",
+      icon: "../assets/gfx/jar-duotone.svg",
       location: "Temple West Portico, Ground",
       pos: [-10, 0, 15],
       snippet: "Broken pottery fragments with rough agricultural sketches.",
@@ -216,18 +220,21 @@ export const act2CaseA = {
         { ref: "Isaiah 5:1-7", link: "isaiah_517" }
       ],
       investigatorNote: "These fragments show a bystander who understood the parable's OT reference. The religious leaders would have recognised it instantly — and been publicly shamed.",
+      fake: false,
+      category: 'prophecy',
+      timelineOrder: 2,
       clues: {
-        compare: "Connects with related evidence in this case to confirm the established narrative.",
-        link: "Event Trail — sketch of the vineyard parable",
-        timeline: "CHRONOLOGY: Recovered during the investigation.",
-        contradict: "RELIABILITY: Corroborated by multiple independent sources and consistent with the narrative."
+        compare: "Connects to the cornerstone carving as the second of Jesus's three parables against the leadership that morning.",
+        link: "Prophecy — a bystander's sketch showing they recognised Jesus was echoing Isaiah's Song of the Vineyard.",
+        timeline: "CHRONOLOGY: Sketched during the Parable of the Wicked Tenants, after the authority question had already failed.",
+        contradict: "RELIABILITY: Matthew records the chief priests and Pharisees themselves realised the parable was about them."
       },
     }, {
       id: "cornerstone_carving",
       name: "Rejected Cornerstone Fragment",
       type: "physical",
       relatedProphecy: "psalm_118_22_23",
-      icon: "🪨",
+      icon: "../assets/gfx/rock-duotone.svg",
       location: "Temple South Wall, Construction Debris",
       pos: [5, 0, -20],
       snippet: "A discarded limestone fragment with a single Hebrew word.",
@@ -242,18 +249,21 @@ export const act2CaseA = {
         { ref: "Psalm 118:22-23", link: "psalm_1182223" }
       ],
       investigatorNote: "Someone scratched 'pinnah' onto a discarded stone and left it here. A disciple? A bystander who understood? Or was it already there — providentially?",
+      fake: false,
+      category: 'prophecy',
+      timelineOrder: 3,
       clues: {
-        compare: "Connects with related evidence in this case to confirm the established narrative.",
-        link: "Event Trail — rejected cornerstone fragment",
-        timeline: "CHRONOLOGY: Recovered during the investigation.",
-        contradict: "RELIABILITY: Corroborated by multiple independent sources and consistent with the narrative."
+        compare: "Follows the parable fragments — the cornerstone quotation was Jesus's punchline to the Wicked Tenants parable.",
+        link: "Prophecy — a discarded Temple stone carved with the Hebrew word for 'cornerstone,' quoting Psalm 118.",
+        timeline: "CHRONOLOGY: Carved immediately after Jesus quoted Psalm 118:22 at the religious leaders.",
+        contradict: "RELIABILITY: The word 'pinnah' is unambiguous Hebrew, not a coincidental scratch on discarded masonry."
       },
     }, {
       id: "coin_of_caesar",
       name: "Denarius of Tiberius Caesar",
       type: "physical",
       relatedProphecy: "",
-      icon: "🪙",
+      icon: "../assets/gfx/coins-duotone.svg",
       location: "Temple Court Floor, Near Treasury Entrance",
       pos: [-5, 0, -10],
       snippet: "A Roman silver coin bearing the face of the Emperor.",
@@ -268,18 +278,21 @@ export const act2CaseA = {
         { ref: "Genesis 1:26-27", link: "genesis_12627" }
       ],
       investigatorNote: "The Pharisees and Herodians brought this coin specifically to trap Him. They never expected His answer to turn the image question back onto every human being.",
+      fake: false,
+      category: 'event',
+      timelineOrder: 4,
       clues: {
-        compare: "Connects with related evidence in this case to confirm the established narrative.",
-        link: "Event Trail — denarius of tiberius caesar",
-        timeline: "CHRONOLOGY: Recovered during the investigation.",
-        contradict: "RELIABILITY: Corroborated by multiple independent sources and consistent with the narrative."
+        compare: "Distinct from the cornerstone incident — a separate trap, laid by a different faction (Pharisees and Herodians).",
+        link: "Event — the denarius produced specifically to trap Jesus on the tax question.",
+        timeline: "CHRONOLOGY: Brought forward after the parables, as the Pharisees regrouped with a new line of attack.",
+        contradict: "RELIABILITY: Caesar's image on the coin is undisputed physical fact, which is exactly what made Jesus's answer inescapable."
       },
     }, {
       id: "fig_leaf_withered",
       name: "Withered Fig Leaf",
       type: "environmental",
       relatedProphecy: "",
-      icon: "🍂",
+      icon: "../assets/gfx/leaves-duotone.svg",
       location: "Jerusalem-Bethany Road, Near the Temple Gate",
       pos: [20, 0, 0],
       snippet: "A brittle, blackened leaf that appears to have died instantly.",
@@ -295,18 +308,21 @@ export const act2CaseA = {
         { ref: "Hosea 9:10", link: "hosea_910" }
       ],
       investigatorNote: "The withered fig tree and the Temple parables interpret each other. Both speak of outward religious appearance with no real fruit.",
+      fake: false,
+      category: 'event',
+      timelineOrder: 5,
       clues: {
-        compare: "Connects with related evidence in this case to confirm the established narrative.",
-        link: "Event Trail — withered fig leaf",
-        timeline: "CHRONOLOGY: Recovered during the investigation.",
-        contradict: "RELIABILITY: Corroborated by multiple independent sources and consistent with the narrative."
+        compare: "Links back to Monday's cursing of the fig tree — Peter's own testimony ties this leaf to that event.",
+        link: "Event — physical remnant of the fig tree Jesus cursed the previous morning, kept as a testimony.",
+        timeline: "CHRONOLOGY: Discovered withered this same morning, before the authority challenge began.",
+        contradict: "RELIABILITY: Peter's own exclamation ('Rabbi, look!') is recorded as an eyewitness reaction, not hearsay."
       },
     }, {
       id: "widow_two_coins",
       name: "Two Leptons (Widow's Mites)",
       type: "physical",
       relatedProphecy: "",
-      icon: "💵",
+      icon: "../assets/gfx/currency-dollar-duotone.svg",
       location: "Temple Treasury Contribution Chests",
       pos: [0, 0, 12],
       snippet: "Two tiny bronze coins, the smallest possible currency.",
@@ -320,18 +336,21 @@ export const act2CaseA = {
         { ref: "Samuel 16:7", link: "samuel_167" }
       ],
       investigatorNote: "The widow's two coins appear after the Seven Woes against the Pharisees (Matthew 23). Jesus used her as a living counter-example: this is what genuine faith looks like, next to the performance the religious leaders were offering.",
+      fake: false,
+      category: 'event',
+      timelineOrder: 7,
       clues: {
-        compare: "Connects with related evidence in this case to confirm the established narrative.",
-        link: "Event Trail — two leptons (widow's mites)",
-        timeline: "CHRONOLOGY: Recovered during the investigation.",
-        contradict: "RELIABILITY: Corroborated by multiple independent sources and consistent with the narrative."
+        compare: "Stands in direct contrast to the coin of Caesar — one coin was a trap, these two were an offering.",
+        link: "Event — the treasury's own ledger, logging the widow's gift beside far larger, showier donations.",
+        timeline: "CHRONOLOGY: Observed late in the day, after the public teaching had wound down.",
+        contradict: "RELIABILITY: The treasurer's log is a routine administrative record, not a claim open to exaggeration."
       },
     }, {
       id: "witness_scroll",
       name: "Temple Bystander's Written Account",
       type: "testimonial",
       relatedProphecy: "",
-      icon: "📋",
+      icon: "../assets/gfx/clipboard-duotone.svg",
       location: "Temple North Portico",
       pos: [-15, 0, -5],
       snippet: "A detailed testimonial from a visitor from Alexandria.",
@@ -346,11 +365,14 @@ export const act2CaseA = {
         { ref: "Daniel 7:13-14", link: "daniel_71314" }
       ],
       investigatorNote: "The witness is from Alexandria — an educated diaspora Jew well-versed in both Scripture and rhetoric. His assessment is clear: Jesus did not evade their questions. He answered them and won.",
+      fake: false,
+      category: 'people',
+      timelineOrder: 6,
       clues: {
-        compare: "Connects with related evidence in this case to confirm the established narrative.",
-        link: "People & Suspects — temple bystander's written account",
-        timeline: "CHRONOLOGY: Recovered during the investigation.",
-        contradict: "RELIABILITY: Corroborated by multiple independent sources and consistent with the narrative."
+        compare: "Summarises the entire day's exchanges — ties together the authority question, the tax trap, and the resurrection question.",
+        link: "People — a signed eyewitness account from a visiting God-fearer who watched the whole day unfold.",
+        timeline: "CHRONOLOGY: Written at the close of the day's teaching, once no one dared ask another question.",
+        contradict: "RELIABILITY: An outside observer with no stake in either faction, describing events that match the Gospel record exactly."
       },
     },],
 
@@ -374,7 +396,7 @@ export const act2CaseA = {
       id: "chief_priest",
       name: "Caiaphas",
       role: "High Priest, Sadducee",
-      avatar: "👨‍⚖️",
+      avatar: "caiaphas.svg",
       pos: [15, 0, 5],
       unlocksSuspects: ["chief_priest"],
       hasDialogue: true,
@@ -404,7 +426,7 @@ export const act2CaseA = {
       id: "scribe",
       name: "Samuel",
       role: "Temple Scribe, Pharisee",
-      avatar: "📜",
+      avatar: "senior_scribe.svg",
       pos: [-15, 0, 10],
       unlocksSuspects: ["scribe"],
       hasDialogue: true,
@@ -433,7 +455,7 @@ export const act2CaseA = {
       id: "pharisee",
       name: "Nathanael",
       role: "Pharisee, Herodian ally",
-      avatar: "🧣",
+      avatar: "simon_pharisee.svg",
       pos: [0, 0, -15],
       unlocksSuspects: ["pharisee"],
       hasDialogue: true,
@@ -464,7 +486,7 @@ export const act2CaseA = {
       name: "Thomas the Rich Young Ruler",
       role: "Wealthy Seeker",
       faction: "local",
-      avatar: "💰",
+      avatar: "temple_merchant.svg",
       profileFile: "rich_young_ruler",
       truthfulness: 0.7,
       bibleRef: "Matthew 19:16-22; Mark 10:17-22; Luke 18:18-23",
@@ -537,7 +559,6 @@ export const act2CaseA = {
     furtherReading: ["Matthew 21:23–22:46", "Mark 11:27–12:44"],
   },
 };
-
 
 // ============================================================
 // ACT: II — Growing Opposition
@@ -626,14 +647,15 @@ export const act2CaseA = {
 
 export const act2CaseB = {
   id: "lazarus_plot",
+  icon: '../assets/gfx/coins-duotone.svg',
   title: "The Price of Life",
   subtitle: "Rumors fly through the Temple that the high priests have issued an unlisted execution order for a man who committed no crime.",
-  location: "temple",
+  location: "bethany",
   eventLocation: "Bethany & Temple Courts, Jerusalem",
   timeOfDay: "day",
   difficulty: 2,
   requires: "authority_challenged",
-  actLabel: "Act II",
+  actLabel: "Act II - The Temple Courts",
   color: 0xf59e0b,
   worldModel: "../assets/models/sphere.glb",
   showCityLayer: false,
@@ -649,7 +671,7 @@ export const act2CaseB = {
     {
       reference: "Isaiah 25:8",
       id: "isaiah_25_8",
-      icon: "🔮",
+      icon: "../assets/gfx/sparkles-duotone.svg",
       text: `"He will swallow up death forever; and the Lord GOD will wipe away tears from all faces, and the reproach of his people he will take away from all the earth."`,
       written: "~700 BC",
       fulfilledBy: "Jesus demonstrating complete authority over the grave at Bethany",
@@ -666,7 +688,7 @@ export const act2CaseB = {
       name: "Bethany Pilgrim Manifest",
       type: "analytical",
       relatedProphecy: "",
-      icon: "📜",
+      icon: "../assets/gfx/scroll-duotone.svg",
       pos: [2, -6, 0],
       snippet: "A watchman's tally book monitoring the eastern gate traffic.",
       description: "A log recording unprecedented human crowds leaving the city gates toward Bethany after dusk, specifically asking for the house of Simon the Leper.",
@@ -676,18 +698,21 @@ export const act2CaseB = {
       ],
       propheticRefs: [],
       investigatorNote: "The exponential growth of these crowd tallies explains the absolute state of panic inside the Sanhedrin chambers.",
+      fake: false,
+      category: 'event',
+      timelineOrder: 1,
       clues: {
-        compare: "Connects with related evidence in this case to confirm the established narrative.",
-        link: "Prophecy & Scripture — bethany pilgrim manifest",
-        timeline: "CHRONOLOGY: Recovered during the investigation.",
-        contradict: "RELIABILITY: Corroborated by multiple independent sources and consistent with the narrative."
+        compare: "Explains why the Sanhedrin reacted so fast — this is the surveillance record that triggered their panic.",
+        link: "Event — a watchman's gate log tracking unprecedented crowds heading to Bethany.",
+        timeline: "CHRONOLOGY: Logged over several evenings as word of Lazarus spread, before the secret decree was drafted.",
+        contradict: "RELIABILITY: A routine gate tally, kept for administrative reasons, not written to make a case either way."
       },
     }, {
       id: "grave_dirt",
       name: "Bethany Limestone Dust",
       relatedProphecy: "isaiah_25_8",
       type: "physical",
-      icon: "🪨",
+      icon: "../assets/gfx/rock-duotone.svg",
       pos: [-3, 3, 0],
       snippet: "Trace white dust contaminated with heavy burial aloes.",
       description: "Powdery white limestone scrapings mixed with residual traces of heavy myrrh and aloe resins, found dropped outside the high priest's council room.",
@@ -697,18 +722,21 @@ export const act2CaseB = {
       ],
       propheticRefs: [],
       investigatorNote: "This dust indicates that witnesses from the actual tomb site in Bethany have been brought into the inner chambers of the Sanhedrin for intense interrogation.",
+      fake: false,
+      category: 'event',
+      timelineOrder: 2,
       clues: {
-        compare: "Connects with related evidence in this case to confirm the established narrative.",
-        link: "Event Trail — bethany limestone dust",
-        timeline: "CHRONOLOGY: Recovered during the investigation.",
-        contradict: "RELIABILITY: Corroborated by multiple independent sources and consistent with the narrative."
+        compare: "Physically ties a Bethany eyewitness to the inside of the Sanhedrin's own council chamber.",
+        link: "Event — limestone and burial-spice residue tracked in from Lazarus's actual tomb.",
+        timeline: "CHRONOLOGY: Left behind during an interrogation, after the crowd reports had already alarmed the council.",
+        contradict: "RELIABILITY: The specific mix of limestone and burial aloes matches a real tomb, not a fabricated story."
       },
     }, {
       id: "secret_decree",
       name: "Intercepted Sadducean Memorandum",
       type: "analytical",
       relatedProphecy: "",
-      icon: "✉️",
+      icon: "../assets/gfx/envelope-duotone.svg",
       pos: [0, 0, 0],
       snippet: "A sealed tablet bearing the administrative mark of the House of Annas.",
       description: "A secure internal brief detailing political damage control. It outlines plans to quietly eliminate a 'destabilizing living asset' currently residing in Bethany.",
@@ -718,11 +746,14 @@ export const act2CaseB = {
       ],
       propheticRefs: [],
       investigatorNote: "Murdering a resurrected man is a fascinating logical absurdity. It reveals that the leadership doesn't doubt the miracle occurred—they simply care more about their institutional control than God's reality.",
+      fake: false,
+      category: 'event',
+      timelineOrder: 3,
       clues: {
-        compare: "Connects with related evidence in this case to confirm the established narrative.",
-        link: "Prophecy & Scripture — intercepted sadducean memorandum",
-        timeline: "CHRONOLOGY: Recovered during the investigation.",
-        contradict: "RELIABILITY: Corroborated by multiple independent sources and consistent with the narrative."
+        compare: "The council's response to the two pieces of evidence above — panic escalating into a concrete plan.",
+        link: "Event — a sealed internal memo from the House of Annas outlining a plan to eliminate Lazarus.",
+        timeline: "CHRONOLOGY: Drafted last, once the crowd numbers and eyewitness questioning made the threat undeniable.",
+        contradict: "RELIABILITY: John 12:10–11 independently confirms the plot in the Gospel text itself."
       },
     },],
 
@@ -746,7 +777,7 @@ export const act2CaseB = {
       id: "nicodemus_secret",
       name: "Nicodemus",
       role: "Conflicted Sanhedrin Member",
-      avatar: "👴",
+      avatar: "nicodemus.svg",
       color: 0x88cc88,
       pos: [15, 0, 5],
       bibleRef: "John 7:50–51, John 19:39",
@@ -761,7 +792,7 @@ export const act2CaseB = {
         },
       },
     },
-    { id: "caiaphas", name: "Caiaphas", role: "High Priest, Sadducee", avatar: "👨‍⚖️", color: 0xcc8888, pos: [-15, 0, 5], bibleRef: "John 11:49–52; Matthew 26:57–68" },
+    { id: "caiaphas", name: "Caiaphas", role: "High Priest, Sadducee", avatar: "caiaphas.svg", color: 0xcc8888, pos: [-15, 0, 5], bibleRef: "John 11:49–52; Matthew 26:57–68" },
 
   ],
 
@@ -770,7 +801,7 @@ export const act2CaseB = {
       id: "temple_spy",
       name: "Maluch",
       role: "Temple Informant / Spy",
-      avatar: "👤",
+      avatar: "maluch.svg",
       profileFile: "maluch",
       truthfulness: 0.60,
       bibleRef: "John 18:10; Luke 22:52",
@@ -798,7 +829,7 @@ export const act2CaseB = {
       id: "annas_patriarch",
       name: "Annas",
       role: "High Priest Emeritus",
-      avatar: "🦅",
+      avatar: "annas.svg",
       profileFile: "annas",
       truthfulness: 0.35,
       bibleRef: "John 18:13; Luke 3:2; Acts 4:6",
@@ -827,7 +858,7 @@ export const act2CaseB = {
       id: "martha_bethany",
       name: "Martha",
       role: "Sister of Lazarus",
-      avatar: "🧺",
+      avatar: "market_vendor.svg",
       profileFile: "martha",
       truthfulness: 0.95,
       bibleRef: "John 11:1–44; John 12:1–2",
@@ -856,7 +887,7 @@ export const act2CaseB = {
       id: "parable_meaning",
       name: "Thomas (Parable)",
       role: "Analytical Disciple",
-      avatar: "🤔",
+      avatar: "thomas.svg",
       profileFile: "thomas",
       truthfulness: 0.9,
       bibleRef: "Matthew 13:10-17",
@@ -874,7 +905,7 @@ export const act2CaseB = {
       id: "parable_vineyard",
       name: "Thomas (Vineyard)",
       role: "Analytical Disciple",
-      avatar: "🧐",
+      avatar: "simon_pharisee.svg",
       profileFile: "thomas",
       truthfulness: 0.9,
       bibleRef: "Mark 12:1-12 (Parable of the Tenants)",
@@ -892,7 +923,7 @@ export const act2CaseB = {
       id: "trial_rumors",
       name: "Trial Rumors",
       role: "Court Observer",
-      avatar: "👁️",
+      avatar: "maluch.svg",
       profileFile: "trial_rumors",
       truthfulness: 0.4,
       bibleRef: "Matthew 26:59-68",
@@ -910,7 +941,7 @@ export const act2CaseB = {
       id: "witness_healed",
       name: "Bethesda Witness",
       role: "Eyewitness",
-      avatar: "👁️",
+      avatar: "maluch.svg",
       profileFile: "bethesda_witness",
       truthfulness: 0.85,
       bibleRef: "John 5:1-15",
@@ -928,7 +959,7 @@ export const act2CaseB = {
       id: "teaching_mount",
       name: "Mount Teacher",
       role: "Disciple",
-      avatar: "📖",
+      avatar: "mount_teacher.svg",
       profileFile: "mount_teacher",
       truthfulness: 0.8,
       bibleRef: "Matthew 5-7 (Sermon on the Mount)",
@@ -946,7 +977,7 @@ export const act2CaseB = {
       id: "nicodemus",
       name: "Nicodemus",
       role: "Conflicted Pharisee",
-      avatar: "🌙",
+      avatar: "nicodemus.svg",
       profileFile: "nicodemus",
       truthfulness: 0.8,
       bibleRef: "John 3:1-21; John 7:50-52; John 19:39",
@@ -964,7 +995,7 @@ export const act2CaseB = {
       id: "simon_leper",
       name: "Simon the Leper",
       role: "Healed Host",
-      avatar: "🏠",
+      avatar: "simon_leper.svg",
       profileFile: "simon_leper",
       truthfulness: 0.9,
       bibleRef: "Matthew 26:6-13; Mark 14:3-9",
@@ -1101,14 +1132,15 @@ export const act2CaseB = {
 
 export const act2CaseC = {
   id: "olivet_discourse",
+  icon: '../assets/gfx/sun-duotone.svg',
   title: "The End of the Age",
   subtitle: "Overlooking Jerusalem, Jesus delivers a profound prophecy about the Temple's destruction and the signs of His return.",
-  location: "temple",
+  location: "mount_of_olives",
   eventLocation: "Mount of Olives, overlooking Jerusalem",
   timeOfDay: "day",
   difficulty: 3,
   requires: "lazarus_plot",
-  actLabel: "Act II",
+  actLabel: "Act II - The Temple Courts",
   color: 0x8b5cf6, // A deep blue/purple color
   worldModel: "../assets/models/sphere.glb",
   showCityLayer: false,
@@ -1125,7 +1157,7 @@ export const act2CaseC = {
     {
       reference: "Daniel 9:27",
       id: "daniel_9_27",
-      icon: "🔮",
+      icon: "../assets/gfx/sparkles-duotone.svg",
       text: `"He will confirm a covenant with many for one 'seven.' In the middle of the 'seven' he will put an end to sacrifice and offering. And at the temple he will set up an abomination that causes desolation."`,
       written: "~530 BC",
       fulfilledBy: "Jesus's prophecy of the Temple's destruction and the 'abomination that causes desolation'",
@@ -1136,7 +1168,7 @@ export const act2CaseC = {
     {
       reference: "Joel 2:30–31",
       id: "joel_2_30_31",
-      icon: "🔮",
+      icon: "../assets/gfx/sparkles-duotone.svg",
       text: `"I will show wonders in the heavens and on the earth, blood and fire and billows of smoke. The sun will be turned to darkness and the moon to blood before the coming of the great and dreadful day of the LORD."`,
       written: "~800 BC",
       fulfilledBy: "Jesus's prophecy of cosmic signs preceding His return",
@@ -1147,7 +1179,7 @@ export const act2CaseC = {
     {
       reference: "Isaiah 13:10",
       id: "isaiah_13_10",
-      icon: "🔮",
+      icon: "../assets/gfx/sparkles-duotone.svg",
       text: `"The stars of heaven and their constellations will not show their light. The rising sun will be darkened and the moon will not give its light."`,
       written: "~700 BC",
       fulfilledBy: "Jesus's description of the darkening of the sun and moon as signs of the end",
@@ -1160,7 +1192,7 @@ export const act2CaseC = {
   intro: formatIntro(`It is Tuesday afternoon. Jesus has left the Temple, and as He sits on the Mount of Olives, His disciples approach Him privately. They are troubled by His words about the Temple's destruction and eager to know **when** these things will happen, and what signs will precede His coming and the end of the age. The air is thick with anticipation as Jesus begins to unveil future events, a complex tapestry of _prophecy and warning_.`),
 
   suspects: [
-    { id: "none", name: "No One", role: "Divine Teaching", avatar: "❓", bibleRef: null },
+    { id: "none", name: "No One", role: "Divine Teaching", avatar: "nicodemus.svg", bibleRef: null },
   ],
 
   evidencePool: [
@@ -1170,7 +1202,7 @@ export const act2CaseC = {
       name: "View of the Temple from Olivet",
       type: "environmental",
       relatedProphecy: "",
-      icon: "🏛️",
+      icon: "../assets/gfx/building-columns-duotone.svg",
       location: "Mount of Olives",
       pos: [0, 5, -15],
       snippet: "A panoramic view of the gleaming Temple from the high ridge.",
@@ -1182,18 +1214,21 @@ export const act2CaseC = {
       ],
       propheticRefs: [],
       investigatorNote: "The disciples' awe of the Temple's stones and buildings contrasts sharply with Jesus's prediction of its utter demolition.",
+      fake: false,
+      category: 'event',
+      timelineOrder: 1,
       clues: {
-        compare: "Connects with related evidence in this case to confirm the established narrative.",
-        link: "Event Trail — view of the temple from olivet",
-        timeline: "CHRONOLOGY: Recovered during the investigation.",
-        contradict: "RELIABILITY: Corroborated by multiple independent sources and consistent with the narrative."
+        compare: "Sets the physical stage that provokes the disciples' questions recorded in the next piece of evidence.",
+        link: "Event — the literal view from the Mount of Olives that prompted the whole discourse.",
+        timeline: "CHRONOLOGY: The vantage point Jesus and the disciples shared as they left the Temple that evening.",
+        contradict: "RELIABILITY: A fixed, verifiable location — the Temple's visibility from Olivet is not in dispute."
       },
     }, {
       id: "disciples_questions_notes",
       name: "Disciples' Questions (Written Notes)",
       type: "analytical",
       relatedProphecy: "daniel_9_27",
-      icon: "📝",
+      icon: "../assets/gfx/text-align-left-duotone.svg",
       location: "Mount of Olives",
       pos: [8, 1, 8],
       snippet: "Quickly scribbled notes detailing three specific questions.",
@@ -1206,18 +1241,21 @@ export const act2CaseC = {
       propheticRefs: [],
 
       investigatorNote: "The disciples' questions show their expectation of a clear timeline and visible indicators for future events.",
+      fake: false,
+      category: 'people',
+      timelineOrder: 2,
       clues: {
-        compare: "Connects with related evidence in this case to confirm the established narrative.",
-        link: "Prophecy & Scripture — disciples' questions (written notes)",
-        timeline: "CHRONOLOGY: Recovered during the investigation.",
-        contradict: "RELIABILITY: Corroborated by multiple independent sources and consistent with the narrative."
+        compare: "Directly follows the Temple view — these are the three questions that view provoked.",
+        link: "People — a disciple's own scribbled notes recording the three questions put to Jesus.",
+        timeline: "CHRONOLOGY: Written down as the questions were asked, immediately after Jesus predicted the Temple's fall.",
+        contradict: "RELIABILITY: A contemporaneous note, not a later reconstruction — it matches Matthew 24:3 nearly word for word."
       },
     }, {
       id: "parable_of_virgins_notes",
       name: "Parable of the Ten Virgins (Notes)",
       type: "analytical",
       relatedProphecy: "",
-      icon: "🕯️",
+      icon: "../assets/gfx/flame-duotone.svg",
       location: "Mount of Olives",
       pos: [-8, 1, 8],
       snippet: "A summary of a story involving lamps and oil.",
@@ -1230,18 +1268,21 @@ export const act2CaseC = {
       propheticRefs: [],
 
       investigatorNote: "The parable highlights the personal responsibility of each individual to be spiritually prepared.",
+      fake: false,
+      category: 'people',
+      timelineOrder: 5,
       clues: {
-        compare: "Connects with related evidence in this case to confirm the established narrative.",
-        link: "Prophecy & Scripture — parable of the ten virgins (notes)",
-        timeline: "CHRONOLOGY: Recovered during the investigation.",
-        contradict: "RELIABILITY: Corroborated by multiple independent sources and consistent with the narrative."
+        compare: "Closes out the discourse's teaching arc — moves from 'what are the signs' to 'how then should you live'.",
+        link: "People — a listener's summary of the Parable of the Ten Virgins, told near the end of the discourse.",
+        timeline: "CHRONOLOGY: The last major parable of the Olivet Discourse, after the cosmic signs had been described.",
+        contradict: "RELIABILITY: A straightforward retelling consistent with Matthew 25:1–13, with no embellishment."
       },
     }, {
       id: "cosmic_signs_references",
       name: "Old Testament Cosmic Sign References",
       type: "analytical",
       relatedProphecy: "joel_2_30_31",
-      icon: "🌌",
+      icon: "../assets/gfx/stars-duotone.svg",
       location: "Mount of Olives",
       pos: [0, 2, 12],
       snippet: "A list of ancient prophecies regarding the sun and moon.",
@@ -1253,18 +1294,21 @@ export const act2CaseC = {
       ],
       propheticRefs: [],
       investigatorNote: "The consistency between Jesus's words and ancient prophecies reinforces the divine origin of His message.",
+      fake: false,
+      category: 'prophecy',
+      timelineOrder: 3,
       clues: {
-        compare: "Connects with related evidence in this case to confirm the established narrative.",
-        link: "Prophecy & Scripture — old testament cosmic sign references",
-        timeline: "CHRONOLOGY: Recovered during the investigation.",
-        contradict: "RELIABILITY: Corroborated by multiple independent sources and consistent with the narrative."
+        compare: "Grounds the darkened sun record — this is the wider set of prophecies Jesus was drawing from.",
+        link: "Prophecy — a compiled list of Old Testament passages describing cosmic upheaval as a sign of judgement.",
+        timeline: "CHRONOLOGY: Compiled to cross-reference Jesus's teaching as He described the signs of the end.",
+        contradict: "RELIABILITY: These are established Old Testament texts, not a listener's later embellishment."
       },
     }, {
       id: "darkened_sun_record",
       name: "Darkened Sun Record",
       type: "analytical",
       relatedProphecy: "isaiah_13_10",
-      icon: "☀️",
+      icon: "../assets/gfx/sun-duotone.svg",
       location: "Mount of Olives",
       desc: "A record of Jesus's prophecy that the sun will be darkened and the moon will not give its light, quoting from Old Testament prophets.",
       bibleRef: "Matthew 24:29",
@@ -1275,7 +1319,16 @@ export const act2CaseC = {
       propheticRefs: [
         { ref: "Isaiah 13:10", link: "isaiah_13_10" }
       ],
-      investigatorNote: "This direct quotation links Jesus's teaching to ancient prophetic tradition, showing a continuity of divine revelation."
+      investigatorNote: "This direct quotation links Jesus's teaching to ancient prophetic tradition, showing a continuity of divine revelation.",
+      fake: false,
+      category: 'prophecy',
+      timelineOrder: 4,
+      clues: {
+        compare: "The specific fulfilment case within the wider cosmic-signs list — the sun-darkening image Jesus quoted directly.",
+        link: "Prophecy — Isaiah 13:10's darkened-sun language, quoted almost verbatim in Jesus's own words.",
+        timeline: "CHRONOLOGY: Referenced partway through the discourse, alongside the other cosmic signs.",
+        contradict: "RELIABILITY: A direct quotation match to Isaiah 13:10, not a loose paraphrase."
+      },
     }
 
   ],
@@ -1295,7 +1348,7 @@ export const act2CaseC = {
       name: "Peter",
       role: "Disciple, Questioner",
       faction: "scribes",
-      avatar: "👨\u200d🦰",
+      avatar: "peter.svg",
       profileFile: "peter",
       color: 0xffaa44,
       pos: [-10, 0, -5],
@@ -1325,7 +1378,7 @@ export const act2CaseC = {
       name: "John",
       role: "Disciple, Observer",
       faction: "scribes",
-      avatar: "👨\u200d🦰",
+      avatar: "john_apostle.svg",
       profileFile: "john_apostle",
       color: 0x66aaff,
       pos: [10, 0, -8],
@@ -1356,7 +1409,7 @@ export const act2CaseC = {
       name: "Thomas",
       role: "Disciple, Analytical",
       faction: "scribes",
-      avatar: "🤔",
+      avatar: "thomas.svg",
       profileFile: "thomas",
       color: 0x99ccff,
       pos: [0, 0, 5],
@@ -1385,7 +1438,7 @@ export const act2CaseC = {
       id: "andrew_olivet",
       name: "Andrew",
       role: "Disciple, Watcher",
-      avatar: "👨‍🌾",
+      avatar: "nathan_gardener.svg",
       truthfulness: 0.9,
       hasDialogue: true,
       storyFile: "andrew_olivet",
@@ -1435,5 +1488,381 @@ export const act2CaseC = {
     lesson: "The Olivet Discourse teaches that while the timing of the end is unknown, the signs will be clear, and believers are called to be watchful, faithful, and productive. It underscores Jesus's authority as a prophet who accurately foretold future events, providing both warning and hope.",
     prophesyFulfilled: ["Daniel 9:27", "Joel 2:30–31", "Isaiah 13:10"],
     furtherReading: ["Matthew 24:1–51", "Matthew 25:1–46", "Mark 13:1–37", "Luke 21:5–36"],
+  },
+};
+
+// ============================================================
+// ACT: II — The Temple Courts
+// CASE: The Anointing at Bethany
+// CASE ID: passover_lamb_chain
+// SOURCE: John 12:1–8; Matthew 26:6–13; Mark 14:3–9; Mark 11:27–33
+//
+// LOCATION:
+// Bethany (the house of Simon the Leper) & the Temple Courts, Jerusalem
+//
+// DIFFICULTY:
+// ★★☆☆☆ (2/5)
+//
+// Actual Event:
+// Six days before Passover, Mary of Bethany anoints Jesus's feet with
+// a pound of pure nard — perfume worth a year's wages — and wipes them
+// with her hair. Days later, at Simon the Leper's house, a woman
+// (traditionally identified with the same act, though Matthew and Mark
+// place it nearer the Supper) breaks an alabaster jar of ointment over
+// Jesus's head. Read together with His public inspection in the Temple
+// courts, the sequence traces the same four-stage pattern God gave
+// Israel for the Passover lamb in Exodus 12: Selection, Inspection,
+// Anointing, Sacrifice.
+//
+// Culprit:
+// None — this is an act of worship, not a crime. The tension in the
+// case is Judas's objection to the "waste," which John's Gospel
+// reveals was self-interest rather than concern for the poor.
+//
+// Motive:
+// Mary and the woman at Simon's house acted out of extravagant,
+// unguarded devotion. Judas's complaint exposes the contrast between
+// worship that costs something and religion that merely calculates.
+//
+// Verdict:
+// Jesus receives both anointings as preparation for His burial,
+// identifying Himself as the true Passover Lamb — set apart, publicly
+// examined and found without fault, anointed for consecration, and
+// finally offered as the sacrifice.
+//
+// ============================================================
+
+export const act2CaseD = {
+  id: "passover_lamb_chain",
+  icon: '../assets/gfx/jar-duotone.svg',
+  title: "The Anointing at Bethany",
+  subtitle: "A costly jar is broken over Jesus in an act of worship — and Judas isn't the only one asking why.",
+  location: "bethany",
+  eventLocation: "Bethany & the Temple Courts, Jerusalem",
+  timeOfDay: "night",
+  difficulty: 2,
+  requires: "olivet_discourse",
+  actLabel: "Act II - The Temple Courts",
+  color: 0xd946ef,
+  worldModel: "../assets/models/sphere.glb",
+  showCityLayer: false,
+  quest: { name: "The Passover Lamb Pattern", task: "Trace the anointing and inspection sequence", cur: 0, tar: 4 },
+
+  // ── BIBLICAL CONTEXT ──────────────────────────────────────────────
+  biblicalContext: {
+    summary: `In the days before Passover, at a dinner in Bethany, a woman broke open a flask of pure nard — perfume worth a full year's wages — and anointed Jesus, first at His feet and again at His head, wiping His feet with her own hair. Judas Iscariot objected loudly to the "waste." Jesus silenced the complaint: she had done it to prepare His body for burial. Meanwhile, in the Temple courts, Jesus was being publicly cross-examined by the chief priests, scribes, and elders — questioned, tested, and found without fault (Mark 11:27–33; Luke 20:1–8).`,
+    significance: `Exodus 12 gave Israel a precise four-day sequence for the Passover lamb: it was selected on the 10th of Nisan, kept and inspected for blemishes until the 14th, then slaughtered at twilight. Read together, the anointing at Bethany and the public inspection in the Temple trace that same sequence over Jesus: Selection (His entry into Jerusalem), Inspection (the Temple questioning), Anointing (Bethany), and — days later — Sacrifice (the cross).`,
+    historicalNote: `Spikenard (nard) was an imported aromatic oil from the Himalayas, sold in sealed alabaster flasks precisely because breaking the seal meant using the whole thing at once — there was no resealing it. A pound of it, as John 12:3 specifies, was worth roughly 300 denarii, close to a full year's wages for a laborer. Simon the Leper, the dinner's host, was likely someone Jesus had healed; his willingness to host a public dinner suggests he was no longer considered ceremonially unclean.`,
+  },
+
+  prophecies: [
+    {
+      reference: "Exodus 12:1–14",
+      id: "typology_passover_lamb",
+      icon: "../assets/gfx/sparkles-duotone.svg",
+      text: `"Your lamb shall be without blemish... you shall keep it until the fourteenth day of this month, when the whole assembly of the congregation of Israel shall kill their lambs at twilight."`,
+      written: "~1400 BC",
+      fulfilledBy: "Jesus being selected, publicly inspected in the Temple, anointed at Bethany, and offered as the final sacrifice",
+      gospelLink: "Mark 11:27–33; John 12:1–8; Matthew 26:6–13",
+      insight: "The Passover lamb was chosen four days before it was killed and kept under close watch to be certain it was flawless. Jesus entered Jerusalem, was cross-examined at length by every faction of Jewish leadership and found without fault, was anointed for burial at a dinner in Bethany, and was crucified days later — the same sequence, over the same span of days, fulfilled in a person rather than an animal.",
+      explanation: "The anointing at Bethany and the public Temple inspection together complete the Passover lamb's Selection-Inspection-Anointing-Sacrifice pattern, fulfilled in Jesus over the final days before His death.",
+    },
+  ],
+
+  intro: formatIntro(`It is evening in Bethany, and the house of Simon the Leper is full of guests, lamplight, and the smell of roasting food. Jesus reclines at the table with His disciples — including a very much alive Lazarus. Then, without warning, a woman kneels at His feet with a sealed alabaster flask. She breaks it open. The scent of pure nard fills the entire house. Some at the table are moved to silence. One man is furious. **Why would anyone waste something so valuable?** And in the days before this, in the Temple courts across the valley, Jesus had already faced a very different kind of scrutiny — question after question, trap after trap, testing whether He could be found at fault. Two scenes, two kinds of examination. Only one investigator in the room seems to sense they're connected.`),
+
+  suspects: [
+    { id: "judas_bethany", name: "Judas Iscariot", role: "Disciple and Treasurer", avatar: "judas.svg", bibleRef: "John 12:4-6 — 'He did not say this because he cared about the poor but because he was a thief.'" },
+    { id: "mary_bethany", name: "Mary of Bethany", role: "Sister of Lazarus and Martha", avatar: "market_vendor.svg", bibleRef: "John 12:3 — 'Mary took about a pint of pure nard, an expensive perfume; she poured it on Jesus's feet and wiped his feet with her hair.'" },
+    { id: "simon_leper", name: "Simon the Leper", role: "Dinner Host", avatar: "simon_leper.svg", bibleRef: "Matthew 26:6 — 'While Jesus was in Bethany in the home of Simon the Leper...'" },
+  ],
+
+  evidencePool: [
+
+    {
+      id: "lamb_records",
+      name: "Passover Lamb Market Records",
+      type: "analytical",
+      relatedProphecy: "",
+      icon: "../assets/gfx/scroll-duotone.svg",
+      location: "Jerusalem Livestock Market",
+      desc: "A merchant's ledger recording the selection and inspection dates for festival lambs sold ahead of Passover — each animal marked, penned, and examined daily for blemishes until the fourteenth of Nisan.",
+      bibleRef: "Exodus 12:3–6 — 'On the tenth day of this month each man is to take a lamb... take care of it until the fourteenth day of the month.'",
+      bibleLink: "exodus_1236",
+      propheticLink: "This ledger is the background pattern the whole case is built on: every Passover lamb in the city was selected days in advance and kept under watch, inspected daily, before being sacrificed at twilight on the fourteenth. It's the template the investigator needs before the rest of the evidence makes sense.",
+      bibleRefs: [
+        { ref: "Exodus 12:3-6", link: "exodus_1236" }
+      ],
+      propheticRefs: [],
+      investigatorNote: "An ordinary commercial record — but it lays out, in administrative detail, the exact sequence the rest of this case's evidence seems to be tracing.",
+      fake: false,
+      category: 'event',
+      timelineOrder: 1,
+      clues: {
+        compare: "The background pattern for everything that follows — read this first to see why the timing of the other evidence matters.",
+        link: "Event — a livestock merchant's routine record of the Passover lamb selection and inspection schedule.",
+        timeline: "CHRONOLOGY: Standard yearly practice, running from the tenth to the fourteenth of Nisan, the same days this case's other evidence unfolds within.",
+        contradict: "RELIABILITY: A mundane market ledger with no theological agenda — it simply documents how Passover lambs were always handled."
+      },
+    }, {
+      id: "inspection_notes",
+      name: "Temple Inspection Notes",
+      type: "analytical",
+      relatedProphecy: "typology_passover_lamb",
+      icon: "../assets/gfx/text-align-left-duotone.svg",
+      location: "Temple Courts, Jerusalem",
+      desc: "A scribe's notes from the Temple courts, recording round after round of formal questioning from chief priests, Pharisees, Sadducees, and Herodians — each trying, and failing, to catch Jesus in His words.",
+      bibleRef: "Mark 11:27–33 — 'They arrived again in Jerusalem, and while Jesus was walking in the temple courts, the chief priests, the teachers of the law and the elders came to him.'",
+      bibleLink: "mark_11_27",
+      propheticLink: "The Passover lamb was inspected for blemishes for four days before it was sacrificed (Exodus 12:5). Jesus's public cross-examination in the Temple courts served the same function: every faction of religious authority took their turn testing Him, and none could find a fault to charge Him with.",
+      bibleRefs: [
+        { ref: "Mark 11:27-33", link: "mark_11_27" }
+      ],
+      propheticRefs: [
+        { ref: "Exodus 12:5", link: "exodus_125" }
+      ],
+      investigatorNote: "Four separate factions, four separate lines of attack, and not one of them lands. Read alongside the lamb records, the pattern is hard to miss.",
+      fake: false,
+      category: 'prophecy',
+      timelineOrder: 2,
+      clues: {
+        compare: "The 'Inspection' stage of the pattern the lamb records laid out — this is Jesus being examined in public, the same way a lamb was examined before Passover.",
+        link: "Prophecy — a scribe's notes on the repeated public interrogations Jesus faced and answered without fault.",
+        timeline: "CHRONOLOGY: Took place across the days leading up to Passover, overlapping with the dinner at Bethany.",
+        contradict: "RELIABILITY: A contemporaneous record of a public event witnessed by a large Temple crowd, not a later retelling."
+      },
+    }, {
+      id: "nard_flask",
+      name: "Flask of Pure Nard",
+      type: "physical",
+      relatedProphecy: "typology_passover_lamb",
+      icon: "../assets/gfx/jar-duotone.svg",
+      location: "Bethany, House of Simon the Leper",
+      desc: "A broken alabaster flask, its seal shattered, still carrying the powerful fragrance of pure spikenard — an imported perfume worth close to a year's wages.",
+      bibleRef: "John 12:3 — 'Mary took about a pint of pure nard, an expensive perfume; she poured it on Jesus's feet and wiped his feet with her hair. And the house was filled with the fragrance of the perfume.'",
+      bibleLink: "john_12_3",
+      propheticLink: "The anointing of Jesus's feet with expensive perfume was an act of profound worship. In the Old Testament, anointing with oil consecrated kings (1 Samuel 16:13) and priests (Exodus 30:30) for service. This act sets Jesus apart as the Messiah (the \"Anointed One\") and, as Jesus Himself stated, prepares His body \"beforehand for burial\" (Mark 14:8).",
+      bibleRefs: [
+        { ref: "John 12:1-3", link: "john_12_1" },
+        { ref: "Mark 14:8", link: "mark_14_8" }
+      ],
+      propheticRefs: [
+        { ref: "1 Samuel 16:13", link: "1_samuel_16_13" },
+        { ref: "Exodus 30:30", link: "exodus_30_30" }
+      ],
+      investigatorNote: "Once the seal on a flask like this was broken, there was no saving the rest for later. Mary emptied the whole thing — nothing held back.",
+      fake: false,
+      category: 'event',
+      timelineOrder: 3,
+      clues: {
+        compare: "The 'Anointing' stage of the pattern — an act of worship that, read prophetically, doubles as consecration for a king and priest.",
+        link: "Event — the broken flask of nard Mary used to anoint Jesus's feet at Bethany.",
+        timeline: "CHRONOLOGY: Six days before Passover, at a dinner honouring Jesus and the newly-raised Lazarus.",
+        contradict: "RELIABILITY: John's Gospel names the woman, the cost, and the objector by name — the marks of an eyewitness account, not a vague legend."
+      },
+    }, {
+      id: "alabaster_jar",
+      name: "Broken Alabaster Jar",
+      type: "physical",
+      relatedProphecy: "typology_passover_lamb",
+      icon: "../assets/gfx/cup-duotone.svg",
+      location: "Bethany, House of Simon the Leper",
+      desc: "Shattered fragments of a second, separate alabaster jar, its contents poured out entirely over the head of the guest of honour rather than His feet.",
+      bibleRef: "Matthew 26:6–7 — 'While Jesus was in Bethany in the home of Simon the Leper, a woman came to him with an alabaster jar of very expensive perfume, which she poured on his head as he was reclining at the table.'",
+      bibleLink: "matthew_26_6",
+      propheticLink: "The anointing of Jesus's head directly mirrors the way kings like Saul and David were anointed, signifying His royal authority. It also serves as a prophetic act of consecration, setting Him apart as the ultimate High Priest and King who would offer Himself as the final sacrifice.",
+      bibleRefs: [
+        { ref: "Matthew 26:6-7", link: "matthew_26_6" }
+      ],
+      propheticRefs: [
+        { ref: "1 Samuel 16:13", link: "1_samuel_16_13" }
+      ],
+      investigatorNote: "Where the nard at the feet was an act of humble devotion, this pouring over the head carries an unmistakably royal weight — the same gesture Samuel used to anoint Israel's kings.",
+      fake: false,
+      category: 'event',
+      timelineOrder: 4,
+      clues: {
+        compare: "A second anointing, at the head rather than the feet — completing the royal and priestly weight of the pattern the nard flask began.",
+        link: "Event — the shattered jar used to anoint Jesus's head at the same Bethany dinner.",
+        timeline: "CHRONOLOGY: The same days before Passover, at Simon the Leper's table.",
+        contradict: "RELIABILITY: Recorded independently in Matthew and Mark, both naming the same house and the same objection from those at the table."
+      },
+    }
+
+  ],
+
+  lab: [
+    {
+      evidence: "nard_flask",
+      suspect: "mary_bethany",
+      result: "**Cleared** (An act of costly, unguarded worship, not waste)",
+      notes: "'She has done a beautiful thing to me' (Matthew 26:10) — Jesus reframed the 'waste' Judas condemned as an act He would be remembered for."
+    },
+    {
+      evidence: "nard_flask",
+      suspect: "judas_bethany",
+      result: "**Motive Exposed** (Objection was self-interest, not charity)",
+      notes: "'He did not say this because he cared about the poor but because he was a thief' (John 12:6) — the treasurer's complaint hid a habit of skimming the money bag."
+    },
+    {
+      evidence: "alabaster_jar",
+      suspect: "simon_leper",
+      result: "**Cleared** (A gracious host, willing to be associated with a costly act of devotion)",
+      notes: "A man once cast out for leprosy now hosts the dinner where Jesus is anointed for burial — mercy remembered by making room for more mercy."
+    }
+  ],
+
+  npcs: [
+    {
+      id: "mary_bethany",
+      name: "Mary of Bethany",
+      role: "Sister of Lazarus and Martha",
+      faction: "disciples",
+      avatar: "market_vendor.svg",
+      profileFile: "mary_bethany",
+      truthfulness: 0.98,
+      bibleRef: "John 12:1–8; John 11:1–2",
+      hasDialogue: true,
+      storyFile: "mary_bethany_anointing",
+      unlocksSuspects: ["mary_bethany"],
+      unlocksEvidence: ["nard_flask"],
+      revealsProphecy: "typology_passover_lamb",
+      background: "Sister of Lazarus and Martha, present when Jesus raised her brother from the dead. That miracle reshaped how she saw everything, including what she was willing to give up.",
+      dialogue: {
+        neutral: "I had been saving that nard for a long time. I didn't save it for a special occasion. I saved it for Him.",
+        cautious: "Judas asked why I didn't sell it and give the money to the poor. As if I hadn't thought about the cost before I broke the seal.",
+        pressured: "My brother was dead four days. I watched Jesus weep, and then I watched him walk out of the tomb. What is a flask of oil, next to that?",
+        exposed: "He said I was preparing His body for burial. I didn't fully understand what that meant. I just knew I had to give Him everything I had, before it was too late to give it.",
+        repeat: "The house still smells of it. I don't think I'll ever forget that scent.",
+      },
+      reactions: {
+        nard_flask: { text: "I broke the seal before I could talk myself out of it. Once it's open, there's no keeping any of it back — that's rather the point.", isLie: false },
+        alabaster_jar: { text: "That jar was not mine. But I understood exactly why she did it.", isLie: false },
+        inspection_notes: { text: "They've been testing Him for days in the Temple, trying to find a single fault. They won't find one. I know that better than most.", isLie: false },
+      },
+      contradictions: {},
+    },
+    {
+      id: "judas_bethany",
+      name: "Judas Iscariot",
+      role: "Disciple and Treasurer",
+      faction: "disciples",
+      avatar: "judas.svg",
+      profileFile: "judas",
+      truthfulness: 0.4,
+      bibleRef: "John 12:4–6",
+      hasDialogue: true,
+      storyFile: "judas_bethany_objection",
+      unlocksEvidence: ["alabaster_jar"],
+      background: "Keeper of the disciples' communal purse. Publicly framed his objection to the anointing as concern for the poor — privately, he had been helping himself to the money bag for some time.",
+      dialogue: {
+        neutral: "That perfume could have been sold for three hundred denarii. Do you understand what that money could have done for the poor?",
+        cautious: "I manage the funds for this entire group. Someone has to think practically while everyone else is swept up in sentiment.",
+        pressured: "I'm not the only one who thought it was wasteful. I was simply the only one who said it out loud.",
+        exposed: "Fine. I keep the bag. What of it? Someone has to.",
+        repeat: "Three hundred denarii. Poured out on the floor. Think about that.",
+      },
+      reactions: {
+        nard_flask: { text: "A criminal waste. That much perfume, gone, in a single evening.", isLie: false },
+        alabaster_jar: { text: "Another one. As if the first wasn't excessive enough.", isLie: false },
+        lamb_records: { text: "Lambs are inspected because money is on the line. I understand markets. I don't understand pouring profit onto the floor.", isLie: false },
+      },
+      contradictions: {
+        "nard_flask+lamb_records": {
+          exposed: "You want to know why I really objected? Fine. It wasn't the poor. It was the bag. Three hundred denarii would have passed through my hands, and none of it would have poured out onto a floor.",
+        },
+      },
+    },
+    {
+      id: "simon_leper",
+      name: "Simon the Leper",
+      role: "Dinner Host",
+      faction: "disciples",
+      avatar: "simon_leper.svg",
+      profileFile: "simon_leper",
+      truthfulness: 0.9,
+      bibleRef: "Matthew 26:6–7; Mark 14:3",
+      hasDialogue: true,
+      storyFile: "simon_leper_host",
+      unlocksSuspects: ["simon_leper", "judas_bethany"],
+      unlocksEvidence: ["alabaster_jar"],
+      background: "Once known only by his disease, likely healed by Jesus at some point unrecorded in the Gospels. Now hosts a dinner in his own home, in his own name, for the man who gave him his life back.",
+      dialogue: {
+        neutral: "They still call me 'the Leper,' even now. I don't mind it. It reminds everyone at my table what was done for me.",
+        cautious: "I didn't know what she was going to do when she came in. None of us did. The whole house filled with that scent in a moment.",
+        pressured: "Judas made his complaint loudly enough for the whole table to hear. Jesus's answer was quieter, but it was the one that stayed with me.",
+        exposed: "I have very little left to give that would embarrass me to give. Let my house be remembered for what happened at my table, not for what I once was.",
+        repeat: "Please, eat. There is more than enough.",
+      },
+      reactions: {
+        alabaster_jar: { text: "It happened right there, at my own table. I've never seen a room go so silent, so quickly.", isLie: false },
+        nard_flask: { text: "I understand why Mary gave what she gave. I was given far more than I could ever repay, once.", isLie: false },
+        inspection_notes: { text: "The Temple leaders keep testing Him in public. My table is a much friendlier place to be examined.", isLie: false },
+      },
+      contradictions: {},
+    },
+    {
+      id: "temple_scribe_hillel",
+      name: "Hillel",
+      role: "Temple Court Scribe",
+      faction: "scribes",
+      avatar: "senior_scribe.svg",
+      profileFile: "hillel_scribe",
+      truthfulness: 0.85,
+      bibleRef: "Mark 11:27–33",
+      hasDialogue: true,
+      storyFile: "temple_inspection_scribe",
+      unlocksEvidence: ["inspection_notes", "lamb_records"],
+      background: "A court scribe tasked with recording the formal questioning of Jesus in the Temple courts — and, separately, the routine business of the livestock markets ahead of Passover.",
+      dialogue: {
+        neutral: "I record what is said, not what I believe. My notes are the same either way.",
+        cautious: "Four factions questioned Him this week. Chief priests, Pharisees, Sadducees, Herodians. None of them left satisfied.",
+        pressured: "I also keep the market's Passover lamb records, if you're interested. The inspection schedule is public record.",
+        exposed: "Read the two ledgers side by side, if you like. I only write down what happens. I don't decide what it means.",
+        repeat: "I have more scrolls to file before the festival begins.",
+      },
+      reactions: {
+        inspection_notes: { text: "Every question was designed to trap Him. Every answer left the questioners with nothing to charge Him with.", isLie: false },
+        lamb_records: { text: "Selected on the tenth, watched until the fourteenth. It's the same schedule every year — I've copied it a hundred times.", isLie: false },
+      },
+      contradictions: {},
+    }
+  ],
+
+  deductions: {
+    "lamb_records+inspection_notes": {
+      compare: {
+        text: "The lamb selection and inspection schedule from the livestock market lines up, almost day for day, with the public questioning Jesus faced in the Temple courts.",
+        insight: "A Passover lamb was chosen four days before Passover and examined the whole time for any blemish. Jesus was publicly cross-examined by every faction of religious leadership across those same days — and, like the lamb, was found without fault.",
+        isKey: true,
+        revealsProphecy: "typology_passover_lamb",
+        bibleRef: "Exodus 12:3–6; Mark 11:27–33",
+      },
+    },
+    "nard_flask+alabaster_jar": {
+      link: {
+        text: "Two separate acts of anointing — one at the feet, one at the head — both poured out over Jesus in the same handful of days before Passover.",
+        insight: "Anointing with oil consecrated both kings (1 Samuel 16:13) and priests (Exodus 30:30) in the Old Testament. Together, the two anointings at Bethany mark Jesus out as both — the Anointed King and the ultimate High Priest — just before He offers Himself as the sacrifice.",
+        isKey: true,
+        bibleRef: "John 12:1–3; Matthew 26:6–7",
+      },
+    },
+    "inspection_notes+nard_flask": {
+      compare: {
+        text: "Public scrutiny in the Temple and private worship at Bethany happened in the very same days — one testing Jesus, the other honouring Him.",
+        insight: "Selection, Inspection, Anointing, Sacrifice — the full Passover lamb sequence of Exodus 12, traced across a single week, is completed only once the crucifixion evidence from Golgotha is linked in as well.",
+        isKey: false,
+        bibleRef: "Exodus 12:1–14",
+      },
+    },
+  },
+
+  truth: {
+    culprit: "none",
+    motive: "Mary of Bethany, and separately the woman at Simon's table, gave the most costly thing they owned in an act of worship — anointing Jesus at both feet and head in the days before Passover. Judas's objection revealed his own self-interest rather than a genuine concern for the poor.",
+    method: "The anointing at Bethany, read together with Jesus's public inspection in the Temple courts, traces the same Selection-Inspection-Anointing-Sacrifice sequence God gave Israel for the Passover lamb in Exodus 12 — fulfilled not in an animal, but in a person.",
+    lesson: "Worship that costs nothing is not the same as worship at all. Jesus received the anointing as both an act of devotion and prophetic preparation for His burial, identifying Himself as the true Passover Lamb in the days before He was sacrificed.",
+    prophesyFulfilled: ["Exodus 12:1–14"],
+    furtherReading: ["John 12:1–8", "Matthew 26:6–13", "Mark 14:3–9", "Mark 11:27–33"],
   },
 };

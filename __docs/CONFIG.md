@@ -1,5 +1,32 @@
 # Configuration File (js/config.js)
 
+< [Back to Main Document](Miracle Maker.md)
+
+## Table of Contents
+
+- [1. Loading Screen (`config.loading`)](#1-loading-screen-configloading)
+- 2. Scene (`config.backgroundColor`)
+- 3. Audio (`config.musicUrl`)
+- 4. World (`config.world`)
+- 5. Player (`config.player`)
+- 6. Physics & Movement (`config.physics`)
+- 7. Animation (`config.animation`)
+- 8. Animation Assets (`config.animations`)
+- 9. Wipe Transition (`config.wipeTransition`)
+- 10. Typewriter Effect (`js/typewriter.js`)
+- 12. Locations (`config.locations`)
+- 13. Naming Conventions
+- 14. Actions (`config.actions`)
+- 15. NPCs (`config.npcs`)
+- 16. Pathfinding (`config.pathfinding`)
+- 17. Colliders (`config.colliders`)
+- 18. Tasks Checklist (`config.tasks`)
+- 19. Inventory (`config.inventory`)
+- 20. Folder Structure Proposal
+- 21. External Resources
+- 22. Day/Night Cycle & VFX System
+- 23. WhatsApp-Style Dialogue System
+
 This file centralizes all major settings for the 3D world application.
 
 ## Structure
@@ -1180,4 +1207,3 @@ if (lastNearNpcId !== null && !isDialogueOpen) {
 15. ⬜ Mobile touch controls
 16. ⬜ Save/load game state
 17. ⬜ Optimize particle counts and shadow cascades
-

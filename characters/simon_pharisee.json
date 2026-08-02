@@ -19,5 +19,16 @@
     "prophecy": "A prophet would not allow a sinful woman to touch him."
   },
   "earSize": 1.25,
-  "headSize": 1.05
+  "headSize": 1.05,
+  "colorPalette": {
+    "colorInner": "#e6e6e6",
+    "colorOuter": "#402a4a",
+    "colorCloak": "#1a1224",
+    "colorAccent": "#375273",
+    "colorGarment2": "#c9a02f",
+    "colorSkin": "#a9784e",
+    "colorHair": "#8a8a8a",
+    "colorEye": "#42352b",
+    "colorLip": "#966355"
+  }
 }

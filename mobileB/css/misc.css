@@ -384,7 +384,7 @@
 #inv-scene .scene-canvas-mount,
 #inv-scene #scene-canvas-mount {
   width: 100%;
-  min-height: 55vh;
+  min-height: 60vh;
   background: var(--surface2);
   border-radius: var(--radius);
   margin: 10px 0;
@@ -488,7 +488,7 @@
 
 #inv-scene #scene-canvas-mount {
   width: 100%;
-  min-height: 55vh;
+  min-height: 60vh;
   background: var(--surface2);
   border-radius: var(--radius);
   margin-bottom: 10px;

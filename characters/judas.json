@@ -19,5 +19,16 @@
     "prophecy": "He spoke of prophecies, but a true kingdom must be built on practical terms."
   },
   "earSize": 1.0,
-  "headSize": 1.0
+  "headSize": 1.0,
+  "colorPalette": {
+    "colorInner": "#463c30",
+    "colorOuter": "#2a2420",
+    "colorCloak": "#1a1613",
+    "colorAccent": "#4a3d2c",
+    "colorGarment2": "#7a6642",
+    "colorSkin": "#d8b088",
+    "colorHair": "#b7b0a2",
+    "colorEye": "#5c4632",
+    "colorLip": "#b06a5a"
+  }
 }

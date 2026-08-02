@@ -19,5 +19,16 @@
     "prophecy": "I make my own destiny. I don't wait for prophecies."
   },
   "earSize": 1.05,
-  "headSize": 1.0
+  "headSize": 1.0,
+  "colorPalette": {
+    "colorInner": "#3a3228",
+    "colorOuter": "#241f1b",
+    "colorCloak": "#1a1613",
+    "colorAccent": "#5c4a34",
+    "colorGarment2": "#6b5a3c",
+    "colorSkin": "#ac7646",
+    "colorHair": "#2a1e15",
+    "colorEye": "#42352b",
+    "colorLip": "#8f5245"
+  }
 }

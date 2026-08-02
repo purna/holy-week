@@ -19,5 +19,16 @@
     "prophecy": "My brother was dead, and now he lives. That is the only sign I need."
   },
   "earSize": 0.6,
-  "headSize": 0.9
+  "headSize": 0.9,
+  "colorPalette": {
+    "colorInner": "#5c4a52",
+    "colorOuter": "#463844",
+    "colorCloak": "#2c2028",
+    "colorAccent": "#8a5a6a",
+    "colorGarment2": "#c98a5a",
+    "colorSkin": "#b88353",
+    "colorHair": "#1a1410",
+    "colorEye": "#5c4632",
+    "colorLip": "#966355"
+  }
 }

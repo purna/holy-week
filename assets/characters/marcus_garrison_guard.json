@@ -18,12 +18,23 @@
   "headSize": 1,
   "dualStripe": false,
   "colorInner": "#4a0000",
-  "colorOuter": "#222222",
+  "colorOuter": "#1c1c1c",
   "colorCloak": "#6b1111",
-  "colorAccent": "#c4a045",
+  "colorAccent": "#b8933a",
   "colorGarment2": "#8c2a2a",
-  "colorSkin": "#b39e8e",
-  "colorHair": "#1a1614",
-  "colorEye": "#4a3b32",
-  "colorLip": "#9a5f52"
+  "colorSkin": "#bd8b5c",
+  "colorHair": "#100d0a",
+  "colorEye": "#573f2c",
+  "colorLip": "#8f5245",
+  "colorPalette": {
+    "colorInner": "#4a0000",
+    "colorOuter": "#1c1c1c",
+    "colorCloak": "#6b1111",
+    "colorAccent": "#b8933a",
+    "colorGarment2": "#8c2a2a",
+    "colorSkin": "#bd8b5c",
+    "colorHair": "#100d0a",
+    "colorEye": "#573f2c",
+    "colorLip": "#8f5245"
+  }
 }

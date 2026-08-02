@@ -19,5 +19,16 @@
     "prophecy": "He spoke of the end of the age. We must be watchful."
   },
   "earSize": 1.1,
-  "headSize": 1.05
+  "headSize": 1.05,
+  "colorPalette": {
+    "colorInner": "#e8e0cf",
+    "colorOuter": "#402a4a",
+    "colorCloak": "#1a1224",
+    "colorAccent": "#4a6288",
+    "colorGarment2": "#d4af37",
+    "colorSkin": "#cca075",
+    "colorHair": "#8a8a8a",
+    "colorEye": "#4a3b32",
+    "colorLip": "#a85d5d"
+  }
 }

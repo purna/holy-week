@@ -1,7 +1,6 @@
 
 import { formatIntro } from './utils.js';
 
-
 // ============================================================
 // ACT: IV — Resurrection
 // CASE: The Empty Tomb
@@ -92,10 +91,9 @@ import { formatIntro } from './utils.js';
 //
 // ===================================================================================================================
 
-
-
 export const act4CaseA = {
   id: "resurrection",
+  icon: '../assets/gfx/package-duotone.svg',
   title: "The Empty Tomb",
   subtitle: "The sealed tomb is open. The body is gone. The guards have fled. What happened on the third day?",
   location: "garden",
@@ -103,7 +101,7 @@ export const act4CaseA = {
   timeOfDay: "day",
   difficulty: 3,
   requires: "crucifixion_site",
-  actLabel: "Act IV",
+  actLabel: "Act IV - The Resurrection",
   color: 0xa78bfa,
   worldModel: "../assets/models/sphere.glb",
   showCityLayer: false,
@@ -119,7 +117,7 @@ export const act4CaseA = {
     {
       reference: "Psalm 16:10",
       id: "psalm_16_10",
-      icon: "🔮",
+      icon: "../assets/gfx/sparkles-duotone.svg",
       text: `"For you will not abandon my soul to Sheol, or let your holy one see corruption."`,
       written: "~1000 BC",
       fulfilledBy: "Jesus rising before His body could decay, leaving only the burial linens",
@@ -130,7 +128,7 @@ export const act4CaseA = {
     {
       reference: "Hosea 6:2",
       id: "hosea_6_2",
-      icon: "🔮",
+      icon: "../assets/gfx/sparkles-duotone.svg",
       text: `"After two days he will revive us; on the third day he will restore us, that we may live in his presence."`,
       written: "~750 BC",
       fulfilledBy: "Jesus rising on the third day after crucifixion",
@@ -141,7 +139,7 @@ export const act4CaseA = {
     {
       reference: "Jonah 1:17 / Matthew 12:40",
       id: "jonah_1_17___matthew_12_40",
-      icon: "🔮",
+      icon: "../assets/gfx/sparkles-duotone.svg",
       text: `"For just as Jonah was three days and three nights in the belly of the great fish, so will the Son of Man be three days and three nights in the heart of the earth."`,
       written: "~800 BC / AD 28",
       fulfilledBy: "Jesus's three days in the tomb, followed by resurrection",
@@ -152,7 +150,7 @@ export const act4CaseA = {
     {
       reference: "Isaiah 53:10–11",
       id: "isaiah_53_10_11",
-      icon: "🔮",
+      icon: "../assets/gfx/sparkles-duotone.svg",
       text: `"Yet it was the will of the LORD to crush him; he has put him to grief; when his soul makes an offering for guilt, he shall see his offspring and prolong his days... After his anguish he shall see light and be satisfied."`,
       written: "~700 BC",
       fulfilledBy: "Jesus's resurrection — 'prolonging his days' after the sacrifice; 'seeing light' after death",
@@ -163,7 +161,7 @@ export const act4CaseA = {
     {
       reference: "Psalm 22:1–31",
       id: "psalm_22_1_31",
-      icon: "🔮",
+      icon: "../assets/gfx/sparkles-duotone.svg",
       text: `"My God, my God, why have you forsaken me?... They will come and proclaim his righteousness, declaring to a people yet unborn: He has done it!"`,
       written: "~1000 BC",
       fulfilledBy: "Psalm 22 begins with the crucifixion cry (v.1, quoted by Jesus from the cross) and ends with resurrection proclamation (v.31)",
@@ -174,7 +172,7 @@ export const act4CaseA = {
     {
       reference: "Isaiah 26:19",
       id: "isaiah_26_19",
-      icon: "🔮",
+      icon: "../assets/gfx/sparkles-duotone.svg",
       text: `"Your dead will live, LORD; their bodies will rise — let those who dwell in the dust wake up and shout for joy."`,
       written: "~700 BC",
       fulfilledBy: "The supernatural opening of the tomb allowing witnesses to see the resurrection result",
@@ -184,7 +182,7 @@ export const act4CaseA = {
     {
       reference: "Ezekiel 37:12–13",
       id: "ezekiel_37_12_13",
-      icon: "🔮",
+      icon: "../assets/gfx/sparkles-duotone.svg",
       text: `"Therefore prophesy and say to them: ‘This is what the Sovereign LORD says: My people, I am going to open your graves and bring you up from them... Then you, my people, will know that I am the LORD, when I open your graves and bring you up from them."`,
       written: "~570 BC",
       fulfilledBy: "The tombs breaking open at the moment of Jesus's death, and the dead being seen in the city after His resurrection.",
@@ -197,10 +195,10 @@ export const act4CaseA = {
   intro: formatIntro(`It is early Sunday morning, Nisan 17. Three women — Mary Magdalene, Mary the mother of James, and Salome — have come to the garden tomb at first light to complete the anointing of Jesus's body. They were worried about who would roll the stone away. But when they arrive: the stone is already moved. The Roman guard post is abandoned. The tomb is open, and **empty**. Two strange figures in white are inside. And then — Mary Magdalene sees someone she mistakes for the gardener, until He speaks her name. You are the investigative scribe. What happened here? And can the evidence in this garden account for the _most important claim in history_?`),
 
   suspects: [
-    { id: "mary_magdalene", name: "Mary Magdalene", role: "Disciple, First Witness", avatar: "👩", bibleRef: "John 20:1–18; Mark 16:9" },
-    { id: "marcus", name: "Marcus", role: "Roman Soldier, Guard Detail", avatar: "🛡️", bibleRef: "Matthew 27:62–66; 28:11–15" },
-    { id: "joseph", name: "Joseph of Arimathea", role: "Secret Disciple, Tomb Owner", avatar: "🧓", bibleRef: "Matthew 27:57–61; John 19:38–42" },
-    { id: "none", name: "No One", role: "Not Stolen", avatar: "❓", bibleRef: null },
+    { id: "mary_magdalene", name: "Mary Magdalene", role: "Disciple, First Witness", avatar: "mary_magdalene.svg", bibleRef: "John 20:1–18; Mark 16:9" },
+    { id: "marcus", name: "Marcus", role: "Roman Soldier, Guard Detail", avatar: "marcus.svg", bibleRef: "Matthew 27:62–66; 28:11–15" },
+    { id: "joseph", name: "Joseph of Arimathea", role: "Secret Disciple, Tomb Owner", avatar: "joseph_arimathea.svg", bibleRef: "Matthew 27:57–61; John 19:38–42" },
+    { id: "none", name: "No One", role: "Not Stolen", avatar: "nicodemus.svg", bibleRef: null },
 
   ],
 
@@ -211,7 +209,7 @@ export const act4CaseA = {
       name: "The Displaced Sealing Stone",
       type: "physical",
       relatedProphecy: "psalm_16_10",
-      icon: "🗿",
+      icon: "../assets/gfx/rock-duotone.svg",
       location: "Tomb Entrance, Garden of Joseph",
       desc: "A massive circular limestone stone — estimated at 1–2 tonnes — has been rolled away from the tomb entrance and sits to the side, not rolled down the slope but resting beside it. The sealing wax from the Roman official seal is broken.",
       bibleRef: "Matthew 28:2 — 'There was a violent earthquake, for an angel of the Lord came down from heaven and, going to the tomb, rolled back the stone and sat on it.'",
@@ -227,11 +225,14 @@ export const act4CaseA = {
         { ref: "John 20:19", link: "john_20_19" }
       ],
       investigatorNote: "A 2-tonne stone moved uphill, not downhill. No marks suggesting ropes or levers. The Roman guard seal is broken from outside the tomb.",
+      fake: false,
+      category: 'event',
+      timelineOrder: 1,
       clues: {
-        compare: "Connects with related evidence in this case to confirm the established narrative.",
-        link: "Event Trail — the displaced sealing stone",
-        timeline: "CHRONOLOGY: Recovered during the investigation.",
-        contradict: "RELIABILITY: Corroborated by multiple independent sources and consistent with the narrative."
+        compare: "The first thing anyone noticed — sets up the empty tomb and burial linen found just inside.",
+        link: "Event — the two-tonne sealing stone, displaced uphill rather than rolled down.",
+        timeline: "CHRONOLOGY: Moved before dawn, ahead of anyone arriving at the tomb.",
+        contradict: "RELIABILITY: No rope or lever marks, and a seal broken from the outside — physically inconsistent with grave robbers moving it from within."
       },
     }, {
       id: "empty_tomb",
@@ -239,7 +240,7 @@ export const act4CaseA = {
       revealsSuspect: "none",
       type: "physical",
       relatedProphecy: "psalm_16_10",
-      icon: "🕳️",
+      icon: "../assets/gfx/magnifying-glass-duotone.svg",
       location: "Interior of Joseph's Tomb",
       desc: "The tomb is completely empty except for the burial wrappings. No body, no signs of struggle, no disturbance of the surrounding grave goods. The shelf where Jesus lay is bare. The wall niches are untouched.",
       bibleRef: "Luke 24:3 — 'When they entered, they did not find the body of the Lord Jesus.'",
@@ -252,18 +253,21 @@ export const act4CaseA = {
         { ref: "Psalm 22:1-31", link: "psalm_22_1_31" }
       ],
       investigatorNote: "No disturbance to the grave goods. No signs of a struggle. No evidence of the organised haste a grave robbery would require. The space is orderly.",
+      fake: false,
+      category: 'event',
+      timelineOrder: 2,
       clues: {
-        compare: "Connects with related evidence in this case to confirm the established narrative.",
-        link: "Event Trail — the empty burial chamber",
-        timeline: "CHRONOLOGY: Recovered during the investigation.",
-        contradict: "RELIABILITY: Corroborated by multiple independent sources and consistent with the narrative."
+        compare: "Follows the displaced stone — what was found once the tomb stood open.",
+        link: "Event — the burial chamber itself, undisturbed and orderly, with the body simply gone.",
+        timeline: "CHRONOLOGY: Discovered at first light, immediately after the stone was found rolled away.",
+        contradict: "RELIABILITY: No signs of struggle or the haste a grave robbery would leave behind — the space is undisturbed."
       },
     }, {
       id: "burial_linen",
       name: "Folded Burial Linens",
       type: "physical",
       relatedProphecy: "psalm_16_10",
-      icon: "🧻",
+      icon: "../assets/gfx/package-duotone.svg",
       location: "Burial Shelf, Inside the Tomb",
       desc: "The linen strips that wrapped Jesus's body are still present, lying where the body was — not unwrapped and discarded, but apparently lying in the exact shape the body had been, as if it had simply passed through them. The face cloth is separately folded and placed to one side.",
       bibleRef: "John 20:6–8 — 'He saw the strips of linen lying there, as well as the cloth that had been wrapped around Jesus' head. The cloth was still lying in its place, separate from the linen.'",
@@ -273,18 +277,21 @@ export const act4CaseA = {
       ],
       propheticRefs: [],
       investigatorNote: "If grave robbers unwrapped the body to carry it out more easily, why leave the wrappings so neatly? If they took the body still wrapped, why are the linens here at all? The linen arrangement defies theft as an explanation.",
+      fake: false,
+      category: 'event',
+      timelineOrder: 3,
       clues: {
-        compare: "Connects with related evidence in this case to confirm the established narrative.",
-        link: "Event Trail — folded burial linens",
-        timeline: "CHRONOLOGY: Recovered during the investigation.",
-        contradict: "RELIABILITY: Corroborated by multiple independent sources and consistent with the narrative."
+        compare: "Found inside the empty tomb — the detail that convinced John before anyone else believed.",
+        link: "Event — the grave wrappings, left neatly folded and separate from the head cloth.",
+        timeline: "CHRONOLOGY: Found immediately after entering the empty chamber.",
+        contradict: "RELIABILITY: Neither hasty thieves nor thieves who unwrapped the body would leave the linen this carefully arranged."
       },
     }, {
       id: "angelic_witness",
       name: "The Angelic Proclamation",
       type: "testimonial",
       relatedProphecy: "psalm_16_10",
-      icon: "✨",
+      icon: "../assets/gfx/sparkles-duotone.svg",
       location: "Inside the Tomb / Seated on the Stone",
       desc: "Multiple witnesses independently report seeing one or two figures in white — described as 'like lightning' in appearance — at or inside the tomb. Each gives a consistent message: 'He is not here. He has risen, just as he said. Come and see the place where he lay.'",
       bibleRef: "Matthew 28:2–7; Mark 16:5–7; Luke 24:4–7; John 20:12–13",
@@ -299,19 +306,22 @@ export const act4CaseA = {
         { ref: "Psalm 103:20", link: "psalm_10320" }
       ],
       investigatorNote: "Four independent accounts agree on the core message. The small variations (one angel/two angels; inside or outside) are consistent with the kind of variation seen in genuine eyewitness reports, not coordinated fabrication.",
+      fake: false,
+      category: 'people',
+      timelineOrder: 4,
       clues: {
-        compare: "Connects with related evidence in this case to confirm the established narrative.",
-        link: "People & Suspects — the angelic proclamation",
-        timeline: "CHRONOLOGY: Recovered during the investigation.",
-        contradict: "RELIABILITY: Corroborated by multiple independent sources and consistent with the narrative."
+        compare: "Explains what the empty tomb and folded linen meant to those who found them.",
+        link: "People — the angelic proclamation, independently reported by all four Gospel accounts.",
+        timeline: "CHRONOLOGY: Delivered to the women immediately upon their discovery of the empty tomb.",
+        contradict: "RELIABILITY: Minor variations in detail across the four accounts (one angel or two) are consistent with independent eyewitness testimony, not coordinated fabrication."
       },
     }, {
       id: "guard_report",
       name: "The Soldiers' Broken Report",
       revealsSuspect: "none",
       type: "analytical",
-      relatedProphecy: "hosea_6_2",
-      icon: "📋",
+      relatedProphecy: ["hosea_6_2", "jonah_1_17___matthew_12_40"],
+      icon: "../assets/gfx/clipboard-duotone.svg",
       location: "Roman Guard Post, Outer Garden",
       desc: "A shattered wax tablet from the guard log — only partially legible: '...seismos... phos... ekphobothesan... nekroi...' ('earthquake... light... we became as dead men...'). The soldiers have fled their post. An official report was filed later — but the chief priests are paying the soldiers to alter their account.",
       bibleRef: "Matthew 28:2–4 — 'The guards shook for fear of him and became like dead men.' Matthew 28:11–15 — the chief priests bribed the guards to say the disciples had stolen the body.",
@@ -326,18 +336,21 @@ export const act4CaseA = {
         { ref: "Matthew 12:40", link: "matthew_12_40" }
       ],
       investigatorNote: "Soldiers asleep on duty faced execution under Roman military law. If they were asleep, they couldn't know what happened. If they were awake, they witnessed something they couldn't explain. The bribery is itself evidence that the authorities knew the disciples hadn't stolen the body.",
+      fake: false,
+      category: 'people',
+      timelineOrder: 5,
       clues: {
-        compare: "Connects with related evidence in this case to confirm the established narrative.",
-        link: "Prophecy & Scripture — the soldiers' broken report",
-        timeline: "CHRONOLOGY: Recovered during the investigation.",
-        contradict: "RELIABILITY: Corroborated by multiple independent sources and consistent with the narrative."
+        compare: "The guards' own account — pairs with the angelic witness to show even the soldiers saw something inexplicable.",
+        link: "People — the guards' broken, contradictory report of what happened at their post.",
+        timeline: "CHRONOLOGY: Given shortly after the resurrection, before the chief priests silenced them with a bribe.",
+        contradict: "RELIABILITY: Soldiers risking execution for sleeping on duty had no reason to invent a story this dangerous to tell."
       },
     }, {
       id: "spice_jars",
       name: "Unused Burial Spices",
       type: "physical",
       relatedProphecy: "",
-      icon: "🧴",
+      icon: "../assets/gfx/jar-duotone.svg",
       location: "Entrance to the Tomb Garden",
       desc: "Three clay jars of prepared burial spices — myrrh, aloe, and cinnamon — set down at the garden entrance, unopened. The women brought them to complete the anointing of the body, but they were never used.",
       bibleRef: "Mark 16:1 — 'Mary Magdalene, Mary the mother of James, and Salome bought spices so that they might go to anoint Jesus's body.'",
@@ -352,18 +365,21 @@ export const act4CaseA = {
         { ref: "Acts 2:25-32", link: "acts_2_25_32" }
       ],
       investigatorNote: "Women who had watched the crucifixion and burial now find the tomb empty. Their grief was real. Their testimony carries the weight of witnesses who had no reason to fabricate — and everything to lose by making the claim.",
+      fake: false,
+      category: 'event',
+      timelineOrder: 1,
       clues: {
-        compare: "Connects with related evidence in this case to confirm the established narrative.",
-        link: "Event Trail — unused burial spices",
-        timeline: "CHRONOLOGY: Recovered during the investigation.",
-        contradict: "RELIABILITY: Corroborated by multiple independent sources and consistent with the narrative."
+        compare: "Shows the women's intent before they knew anything had happened — real grief, not staged discovery.",
+        link: "Event — burial spices bought to anoint the body, never used.",
+        timeline: "CHRONOLOGY: Purchased before dawn, in preparation for a task the resurrection made unnecessary.",
+        contradict: "RELIABILITY: Women preparing spices for a dead body is not the behaviour of people expecting or staging a resurrection."
       },
     }, {
       id: "mary_encounter",
       name: "Mary Magdalene's Testimony",
       type: "testimonial",
       relatedProphecy: "isaiah_53_10_11",
-      icon: "👁️",
+      icon: "../assets/gfx/eye-duotone.svg",
       location: "Garden, Near the Tomb Entrance",
       desc: "Mary Magdalene's first-person account, recorded by John: 'I saw the Lord.' She had initially mistaken the risen Jesus for the gardener. He said one word — her name: 'Mary.' She turned and recognised Him. 'Rabboni!' He told her not to cling to Him, for He had not yet ascended to the Father, and sent her to tell the disciples.",
       bibleRef: "John 20:11–18 — the most detailed and intimate resurrection appearance account in Scripture. Isaiah 43:1 — 'I have called you by name; you are mine.'",
@@ -377,11 +393,14 @@ export const act4CaseA = {
         { ref: "Isaiah 43:1", link: "isaiah_43_1" }
       ],
       investigatorNote: "The fact that Mary Magdalene is the primary resurrection witness is powerful evidence of authenticity. No first-century Jewish or Roman author inventing a resurrection story would choose a woman as the lead witness. This detail is counterproductive to fabrication — which is exactly why it's credible.",
+      fake: false,
+      category: 'people',
+      timelineOrder: 6,
       clues: {
-        compare: "Connects with related evidence in this case to confirm the established narrative.",
-        link: "People & Suspects — mary magdalene's testimony",
-        timeline: "CHRONOLOGY: Recovered during the investigation.",
-        contradict: "RELIABILITY: Corroborated by multiple independent sources and consistent with the narrative."
+        compare: "The first personal encounter with the risen Jesus — follows the angelic proclamation chronologically.",
+        link: "People — Mary Magdalene's own account of being called by name in the garden.",
+        timeline: "CHRONOLOGY: The first appearance, shortly after the tomb was found empty.",
+        contradict: "RELIABILITY: A first-century author inventing a resurrection account would not choose a woman, whose testimony was inadmissible in Roman courts, as the lead witness."
       },
     }, {
       id: "opened_tombs",
@@ -400,6 +419,15 @@ export const act4CaseA = {
         { ref: "Ezekiel 37:12-13", link: "ezekiel_37_12_13" }
       ],
       investigatorNote: "This is one of the most mysterious and powerful signs. It confirms the resurrection was not an isolated event, but the start of a new creation, breaking the power of death itself.",
+      fake: false,
+      category: 'people',
+      timelineOrder: 2,
+      clues: {
+        compare: "A separate, wider sign occurring alongside the main resurrection — reported independently of Mary's testimony.",
+        link: "People — testimony that other tombs opened and the dead were seen in the city.",
+        timeline: "CHRONOLOGY: Reported as occurring at the moment of the resurrection, tied to the same event.",
+        contradict: "RELIABILITY: Matthew records this as witnessed by many in Jerusalem, not a private or easily-fabricated claim."
+      },
     }
     ,
     {
@@ -407,7 +435,7 @@ export const act4CaseA = {
       name: "Resurrection Psalm Scroll",
       type: "analytical",
       relatedProphecy: "psalm_22_1_31",
-      icon: "📜",
+      icon: "../assets/gfx/scroll-duotone.svg",
       location: "Emmaus Road",
       desc: "A scroll of Psalm 22, which begins with the cry of dereliction from the cross but ends in a proclamation of victory and vindication.",
       bibleRef: "Luke 24:26–27",
@@ -418,7 +446,16 @@ export const act4CaseA = {
       propheticRefs: [
         { ref: "Psalm 22:1-31", link: "psalm_22_1_31" }
       ],
-      investigatorNote: "The structure of the Psalm itself is a prophecy: suffering followed by glory."
+      investigatorNote: "The structure of the Psalm itself is a prophecy: suffering followed by glory.",
+      fake: false,
+      category: 'prophecy',
+      timelineOrder: 7,
+      clues: {
+        compare: "Ties every piece of evidence in this case back to a single prophecy that predicted both the suffering and the outcome.",
+        link: "Prophecy — the scroll of Psalm 22, explained by Jesus Himself to two disciples on the Emmaus road.",
+        timeline: "CHRONOLOGY: Referenced after the resurrection, as the risen Jesus explained the Scriptures concerning Himself.",
+        contradict: "RELIABILITY: The Psalm's own structure — suffering giving way to vindication — was written centuries before crucifixion existed as a punishment."
+      },
     }
 
   ],
@@ -449,7 +486,7 @@ export const act4CaseA = {
       id: "mary_magdalene",
       name: "Mary Magdalene",
       role: "Disciple, First Witness",
-      avatar: "👩",
+      avatar: "mary_magdalene.svg",
       unlocksSuspects: ["mary_magdalene"],
       profileFile: "mary_magdalene",
       truthfulness: 0.98,
@@ -479,7 +516,7 @@ export const act4CaseA = {
       id: "marcus",
       name: "Marcus",
       role: "Roman Soldier, Guard Detail",
-      avatar: "🛡️",
+      avatar: "marcus.svg",
       unlocksSuspects: ["marcus"],
       profileFile: "garrison_guard",
       truthfulness: 0.6,
@@ -511,7 +548,7 @@ export const act4CaseA = {
       name: "Joseph of Arimathea",
       role: "Secret Disciple, Tomb Owner",
       unlocksSuspects: ["joseph"],
-      avatar: "🧓",
+      avatar: "joseph_arimathea.svg",
       profileFile: "joseph_arimathea",
       truthfulness: 0.9,
       bibleRef: "Matthew 27:57–61; Mark 15:43–47; Luke 23:50–56; John 19:38–42",
@@ -717,6 +754,7 @@ export const act4CaseA = {
 
 export const act4CaseB = {
   id: "roman_inquiry",
+  icon: '../assets/gfx/scroll-duotone.svg',
   title: "The Guard's Report",
   subtitle: "A Roman guard detail has returned from the garden tomb with a story that breaks military law. What are they hiding?",
   location: "garden",
@@ -724,7 +762,7 @@ export const act4CaseB = {
   timeOfDay: "day",
   difficulty: 3,
   requires: "resurrection",
-  actLabel: "Act IV",
+  actLabel: "Act IV - The Resurrection",
   color: 0xa78bfa,
   worldModel: "../assets/models/sphere.glb",
   showCityLayer: false,
@@ -740,7 +778,7 @@ export const act4CaseB = {
     {
       reference: "Psalm 2:1–2",
       id: "psalm_2_1_2",
-      icon: "🔮",
+      icon: "../assets/gfx/sparkles-duotone.svg",
       text: `"Why do the nations conspire and the peoples plot in vain? The kings of the earth rise up and the rulers band together against the LORD and against his anointed."`,
       written: "~1000 BC",
       fulfilledBy: "The Roman military and Jewish Sanhedrin combining forces to suppress the resurrection",
@@ -757,7 +795,7 @@ export const act4CaseB = {
       name: "High-Grade Sanctuary Coins",
       relatedProphecy: "psalm_2_1_2",
       type: "physical",
-      icon: "💰",
+      icon: "../assets/gfx/coins-duotone.svg",
       pos: [-2, 5, 0],
       snippet: "A heavy canvas pouch filled with pristine Temple shekels.",
       description: "A large sum of silver coins found hidden inside a Roman legionary's standard gear locker inside the fortress. Roman soldiers were paid in imperial denarii, making this Jewish religious currency completely irregular.",
@@ -769,18 +807,21 @@ export const act4CaseB = {
         { ref: "Matthew 28:12", link: "matthew_2812" }
       ],
       investigatorNote: "The high transaction value indicates this wasn't common marketplace spending money. This is institutional hush money directly from the treasury.",
+      fake: false,
+      category: 'event',
+      timelineOrder: 2,
       clues: {
-        compare: "Connects with related evidence in this case to confirm the established narrative.",
-        link: "Event Trail — high-grade sanctuary coins",
-        timeline: "CHRONOLOGY: Recovered during the investigation.",
-        contradict: "RELIABILITY: Corroborated by multiple independent sources and consistent with the narrative."
+        compare: "Pairs with the Sanhedrin report to show money changing hands to buy silence.",
+        link: "Event — Temple shekels found in a Roman soldier's locker, currency no legionary should be carrying.",
+        timeline: "CHRONOLOGY: Hidden away shortly after the guards reported to the chief priests.",
+        contradict: "RELIABILITY: The size and irregularity of the sum rules out ordinary spending money — this is institutional hush money."
       },
     }, {
       id: "broken_imperial_seal",
       name: "Snapped Clay Roman Seal",
       relatedProphecy: "psalm_2_1_2",
       type: "physical",
-      icon: "🏷️",
+      icon: "../assets/gfx/pin-duotone.svg",
       pos: [4, -2, 0],
       snippet: "Hardened clay fragments showing the stamp of the Roman Governor.",
       description: "Pieces of the structural sealing clay that tied the chord across the tomb door, cleanly fractured and thrown into the dirt.",
@@ -792,18 +833,21 @@ export const act4CaseB = {
         { ref: "Matthew 27:66", link: "matthew_2766" }
       ],
       investigatorNote: "To break this seal without authorization was a high treasonous offense against Caesar himself. No thief would carefully snap the clay and leave it behind; it bears signs of a violent, percussive structural displacement.",
+      fake: false,
+      category: 'event',
+      timelineOrder: 1,
       clues: {
-        compare: "Connects with related evidence in this case to confirm the established narrative.",
-        link: "Event Trail — snapped clay roman seal",
-        timeline: "CHRONOLOGY: Recovered during the investigation.",
-        contradict: "RELIABILITY: Corroborated by multiple independent sources and consistent with the narrative."
+        compare: "The first sign something went wrong at the guard post — pairs with the shattered spear as physical evidence of shock, not theft.",
+        link: "Event — the Roman governor's own seal, snapped off the tomb and left in the dirt.",
+        timeline: "CHRONOLOGY: Broken at dawn, before the guards ever reached the chief priests.",
+        contradict: "RELIABILITY: Breaking this seal without authorisation was a capital offence against Rome — no thief would risk it and then abandon the evidence."
       },
     }, {
       id: "shattered_spear",
       name: "Shattered Pilum Shaft",
       relatedProphecy: "psalm_2_1_2",
       type: "physical",
-      icon: "🗡️",
+      icon: "../assets/gfx/dagger-duotone.svg",
       pos: [0, -4, 0],
       snippet: "An ash-wood Roman spear snapped cleanly down the middle.",
       description: "A heavy legionary spear fractured by clean kinetic force, left behind in the garden grass near the shifted rock.",
@@ -815,18 +859,21 @@ export const act4CaseB = {
         { ref: "Matthew 28:2", link: "matthew_282" }
       ],
       investigatorNote: "This spear wasn't cut by a sword in combat; the wood fibers show high-impact compression failure, consistent with an external physical shockwave that knocked the sentries flat.",
+      fake: false,
+      category: 'event',
+      timelineOrder: 1,
       clues: {
-        compare: "Connects with related evidence in this case to confirm the established narrative.",
-        link: "Event Trail — shattered pilum shaft",
-        timeline: "CHRONOLOGY: Recovered during the investigation.",
-        contradict: "RELIABILITY: Corroborated by multiple independent sources and consistent with the narrative."
+        compare: "Found alongside the broken seal — physical proof of what overwhelmed the guards at the tomb.",
+        link: "Event — a legionary spear shaft snapped by sudden kinetic force, not combat.",
+        timeline: "CHRONOLOGY: Damaged at the same moment as the seal, during the guards' encounter at the tomb.",
+        contradict: "RELIABILITY: Compression-fracture wood fibres point to an external shockwave, not a fight with intruders."
       },
     }, {
       id: "sanhedrin_report",
       name: "Official Sanhedrin Report",
       relatedProphecy: "psalm_2_1_2",
       type: "analytical",
-      icon: "📜",
+      icon: "../assets/gfx/scroll-duotone.svg",
       desc: "The official report filed by the Sanhedrin, claiming the disciples stole the body while the guards slept.",
       bibleRef: "Matthew 28:11 — 'While the women were on their way, some of the guards went into the city and reported to the chief priests everything that had happened.'",
       propheticLink: "This report is the paper trail of the conspiracy itself — the Sanhedrin's own internal record of receiving the guards' account and choosing to suppress rather than investigate it, matching the pattern of rulers plotting against God's anointed described in Psalm 2:1–2.",
@@ -837,11 +884,14 @@ export const act4CaseB = {
         { ref: "Psalm 2:1-2", link: "psalm_212" }
       ],
       investigatorNote: "The existence of a formal, internal report proves the Sanhedrin knew the guards' true account before they paid for a false one.",
+      fake: false,
+      category: 'event',
+      timelineOrder: 3,
       clues: {
-        compare: "Connects with related evidence in this case to confirm the established narrative.",
-        link: "Prophecy & Scripture — official sanhedrin report",
-        timeline: "CHRONOLOGY: Recovered during the investigation.",
-        contradict: "RELIABILITY: Corroborated by multiple independent sources and consistent with the narrative."
+        compare: "The paper trail connecting the bribe money to a cover-up the council had already decided on.",
+        link: "Event — the Sanhedrin's own internal record of receiving the guards' account of the resurrection.",
+        timeline: "CHRONOLOGY: Filed last, once the council had already chosen to pay for silence rather than investigate.",
+        contradict: "RELIABILITY: Its existence proves the council knew the guards' true story before manufacturing a false one to spread instead."
       },
     },],
   lab: [
@@ -863,7 +913,7 @@ export const act4CaseB = {
       id: "sentry_lucas",
       name: "Lucas of the Tenth Legion",
       role: "Tomb Guard Sentry",
-      avatar: "💂",
+      avatar: "garrison_guard.svg",
       color: 0xffaa44,
       pos: [0, 0, 0],
       bibleRef: "Matthew 28:13",
@@ -878,7 +928,7 @@ export const act4CaseB = {
         },
       },
     },
-    { id: "none", name: "No One", role: "Not Stolen", avatar: "❓", bibleRef: null },
+    { id: "none", name: "No One", role: "Not Stolen", avatar: "nicodemus.svg", bibleRef: null },
   ],
 
   npcs: [
@@ -886,7 +936,7 @@ export const act4CaseB = {
       id: "sentry_lucas",
       name: "Lucas of the Tenth Legion",
       role: "Tomb Guard Sentry",
-      avatar: "💂",
+      avatar: "garrison_guard.svg",
       unlocksSuspects: ["sentry_lucas"],
       profileFile: "garrison_guard",
       hasDialogue: true,
@@ -917,7 +967,7 @@ export const act4CaseB = {
       id: "chief_priest_caiaphas",
       name: "Caiaphas",
       role: "High Priest, Sadducee",
-      avatar: "👨‍⚖️",
+      avatar: "caiaphas.svg",
       profileFile: "caiaphas",
       truthfulness: 0.30,
       bibleRef: "Matthew 28:11-12; John 11:49-50",
@@ -943,7 +993,7 @@ export const act4CaseB = {
       id: "pilates_secretary",
       name: "Pilate’s Secretary",
       role: "Administrative Bureaucrat",
-      avatar: "📜",
+      avatar: "senior_scribe.svg",
       profileFile: "pilate_secretary",
       truthfulness: 0.90,
       bibleRef: "Matthew 27:65-66; 28:14",
@@ -971,7 +1021,7 @@ export const act4CaseB = {
       id: "mary_resurrection",
       name: "Mary (Resurrection)",
       role: "First Witness",
-      avatar: "👩",
+      avatar: "mary_magdalene.svg",
       truthfulness: 0.98,
       bibleRef: "John 20:1-18",
       hasDialogue: true,
@@ -988,7 +1038,7 @@ export const act4CaseB = {
       id: "judas_betrayal",
       name: "Judas (Betrayal)",
       role: "Betrayer",
-      avatar: "😈",
+      avatar: "judas.svg",
       truthfulness: 0.3,
       bibleRef: "Matthew 26:14-16,47-50; Mark 14:10-11,43-45",
       hasDialogue: true,
@@ -1005,7 +1055,7 @@ export const act4CaseB = {
       id: "herods_servant",
       name: "Herod's Servant",
       role: "Royal Household",
-      avatar: "👑",
+      avatar: "annas.svg",
       truthfulness: 0.5,
       bibleRef: "Luke 23:6-12 (Herod and Pilate)",
       hasDialogue: true,
@@ -1022,7 +1072,7 @@ export const act4CaseB = {
       id: "peter_restored",
       name: "Peter (Restored)",
       role: "Restored Disciple",
-      avatar: "🕊️",
+      avatar: "peter.svg",
       truthfulness: 0.9,
       bibleRef: "John 21:15-19 (Restoration of Peter)",
       hasDialogue: true,
@@ -1174,14 +1224,15 @@ export const act4CaseB = {
 
 export const act4CaseC = {
   id: "peter_restoration",
+  icon: '../assets/gfx/fish-duotone.svg',
   title: "Peter's Restoration",
   subtitle: "By the Sea of Galilee, a disciple is confronted with his failures—and given a second chance.",
-  location: "garden",
+  location: "sea_of_galilee",
   eventLocation: "Sea of Galilee",
   timeOfDay: "dawn",
   difficulty: 3,
   requires: "roman_inquiry",
-  actLabel: "Act IV",
+  actLabel: "Act IV - The Resurrection",
   color: 0xa78bfa,
   worldModel: "../assets/models/sphere.glb",
   showCityLayer: false,
@@ -1197,7 +1248,7 @@ export const act4CaseC = {
     {
       reference: "Zechariah 13:7",
       id: "zechariah_13_7",
-      icon: "🔮",
+      icon: "../assets/gfx/sparkles-duotone.svg",
       text: `"Strike the shepherd, and the sheep will be scattered. I will turn my hand against the little ones."`,
       written: "~520 BC",
       fulfilledBy: "Peter's denial and scattering, followed by restoration",
@@ -1208,7 +1259,7 @@ export const act4CaseC = {
     {
       reference: "Ezekiel 34:11-16",
       id: "ezekiel_34_11-16",
-      icon: "🔮",
+      icon: "../assets/gfx/sparkles-duotone.svg",
       text: `"For thus says the Lord GOD: I will seek my sheep... I will rescue them... I will feed them... I will bind up the injured... I will bring back the strayed."`,
       written: "~580 BC",
       fulfilledBy: "Jesus seeking, rescuing, and commissioning Peter to feed His sheep",
@@ -1219,7 +1270,7 @@ export const act4CaseC = {
     {
       reference: "Psalm 16:10",
       id: "psalm_16_10",
-      icon: "🔮",
+      icon: "../assets/gfx/sparkles-duotone.svg",
       text: `"For you will not abandon my soul to Sheol, or let your holy one see corruption."`,
       written: "~1000 BC",
       fulfilledBy: "Jesus rising before His body could decay, leaving only the burial linens",
@@ -1230,7 +1281,7 @@ export const act4CaseC = {
     {
       reference: "Isaiah 53:10–11",
       id: "isaiah_53_10_11",
-      icon: "🔮",
+      icon: "../assets/gfx/sparkles-duotone.svg",
       text: `"Yet it was the will of the LORD to crush him; he has put him to grief; when his soul makes an offering for guilt, he shall see his offspring and prolong his days... After his anguish he shall see light and be satisfied."`,
       written: "~700 BC",
       fulfilledBy: "Jesus's resurrection — 'prolonging his days' after the sacrifice; 'seeing light' after death",
@@ -1243,8 +1294,8 @@ export const act4CaseC = {
   intro: formatIntro(`It is the third morning after the resurrection. Seven disciples—including Peter, Thomas, and Nathanael—have returned to Galilee and spent the night fishing on the Sea. As dawn breaks, a figure on the shore calls out: **'Cast the net on the right side, and you will find something.'** Reluctantly, they obeyed—and the catch was so large they could not haul it in. When they came ashore, they found the resurrected Jesus waiting with bread and fish. But this was not just breakfast—it was a divine appointment to _restore a broken disciple_.`),
 
   suspects: [
-    { id: "peter", name: "Peter", role: "Restored Apostle", avatar: "🕊️", bibleRef: "John 21:15-19" },
-    { id: "none", name: "No One", role: "Forgiven", avatar: "❓", bibleRef: null },
+    { id: "peter", name: "Peter", role: "Restored Apostle", avatar: "peter.svg", bibleRef: "John 21:15-19" },
+    { id: "none", name: "No One", role: "Forgiven", avatar: "nicodemus.svg", bibleRef: null },
   ],
 
   evidencePool: [
@@ -1254,7 +1305,7 @@ export const act4CaseC = {
       name: "The Charcoal Fire",
       relatedProphecy: "zechariah_13_7",
       type: "physical",
-      icon: "🔥",
+      icon: "../assets/gfx/flame-duotone.svg",
       location: "Shoreline, Sea of Galilee",
       desc: "A small charcoal fire with coals still glowing, the only other charcoal fire mentioned in John's Gospel—the first was where Peter denied Jesus (John 18:18).",
       bibleRef: "John 21:9 — 'When they got out of the boat, they saw a fire of burning coals there with fish lying on it, and bread.'",
@@ -1268,18 +1319,21 @@ export const act4CaseC = {
         { ref: "John 18:18", link: "john_18_18" }
       ],
       investigatorNote: "Peter had warmed himself at a charcoal fire on the night of Jesus's arrest. When he recognized this fire, he knew exactly who stood before him.",
+      fake: false,
+      category: 'event',
+      timelineOrder: 1,
       clues: {
-        compare: "Connects with related evidence in this case to confirm the established narrative.",
-        link: "Event Trail — the charcoal fire",
-        timeline: "CHRONOLOGY: Recovered during the investigation.",
-        contradict: "RELIABILITY: Corroborated by multiple independent sources and consistent with the narrative."
+        compare: "The setting that gives every other piece of evidence in this case its meaning — the same kind of fire as Peter's denial.",
+        link: "Event — a charcoal fire on the Galilean shore, deliberately echoing the fire in Caiaphas's courtyard.",
+        timeline: "CHRONOLOGY: Burning before the disciples came ashore from their night of fishing.",
+        contradict: "RELIABILITY: John specifically notes the fire was charcoal — the same rare Greek word used only once before, at Peter's denial."
       },
     }, {
       id: "miraculous_catch",
       name: "The Miraculous Catch",
       relatedProphecy: "ezekiel_34_11-16",
       type: "physical",
-      icon: "🐟",
+      icon: "../assets/gfx/fish-duotone.svg",
       location: "Nets on the Beach",
       desc: "The disciples' nets still contained 153 large fish—the same number they had caught at Jesus's command. The nets had not torn despite the enormous weight.",
       bibleRef: "John 21:10-11 — 'Bring some of the fish you have just caught... There were so many that the fisherman was not able to haul in the net, for it was torn.'",
@@ -1291,18 +1345,21 @@ export const act4CaseC = {
         { ref: "Luke 5:1-11", link: "luke_5111" }
       ],
       investigatorNote: "The number 153 has been interpreted as representing the universality of the gospel—how all nations would come to faith through Peter's commission.",
+      fake: false,
+      category: 'event',
+      timelineOrder: 2,
       clues: {
-        compare: "Connects with related evidence in this case to confirm the established narrative.",
-        link: "Event Trail — the miraculous catch",
-        timeline: "CHRONOLOGY: Recovered during the investigation.",
-        contradict: "RELIABILITY: Corroborated by multiple independent sources and consistent with the narrative."
+        compare: "Echoes Peter's original calling — the same miracle that first brought him to follow Jesus, now repeated.",
+        link: "Event — a net torn under the weight of 153 fish, caught on Jesus's instruction alone.",
+        timeline: "CHRONOLOGY: Happened at dawn, just before the disciples recognised who was calling to them from the shore.",
+        contradict: "RELIABILITY: An unbroken net despite the enormous catch is consistent with the same kind of miracle recorded at Peter's first calling in Luke 5."
       },
     }, {
       id: "bread_breakfast",
       name: "Bread and Fish Breakfast",
       relatedProphecy: "ezekiel_34_11-16",
       type: "physical",
-      icon: "🍞",
+      icon: "../assets/gfx/bread-duotone.svg",
       location: "Shoreline Meal",
       desc: "Loaves of bread and grilled fish prepared by the risen Jesus Himself—simple fare for a divine meal.",
       bibleRef: "John 21:9 — 'Jesus said, \"Bring some of the fish you have just caught... and come and have breakfast.\"'",
@@ -1316,11 +1373,14 @@ export const act4CaseC = {
         { ref: "Isaiah 25:6-9", link: "isaiah_25_6_9" }
       ],
       investigatorNote: "Jesus ate with Peter again, as He had many times before. The intimacy of the meal signals complete restoration.",
+      fake: false,
+      category: 'event',
+      timelineOrder: 3,
       clues: {
-        compare: "Connects with related evidence in this case to confirm the established narrative.",
-        link: "Event Trail — bread and fish breakfast",
-        timeline: "CHRONOLOGY: Recovered during the investigation.",
-        contradict: "RELIABILITY: Corroborated by multiple independent sources and consistent with the narrative."
+        compare: "Follows the miraculous catch — Jesus feeding the disciples before the confrontation with Peter begins.",
+        link: "Event — bread and fish Jesus Himself prepared and served at the charcoal fire.",
+        timeline: "CHRONOLOGY: Served immediately after the disciples brought their catch ashore.",
+        contradict: "RELIABILITY: An ordinary shared meal, consistent with the intimacy Jesus had shown His disciples throughout His ministry."
       },
     }, {
       id: "threefold_commission",
@@ -1328,7 +1388,7 @@ export const act4CaseC = {
       revealsSuspect: "none",
       relatedProphecy: "ezekiel_34_11-16",
       type: "testimonial",
-      icon: "📜",
+      icon: "../assets/gfx/scroll-duotone.svg",
       location: "Dialogue with Peter",
       desc: "Peter's account of being asked three times by Jesus: 'Simon, son of John, do you love me?' Each time Peter answered, Jesus responded: 'Feed my sheep.'",
       bibleRef: "John 21:15-17 — 'Feed my lambs... Feed my sheep... Tend my sheep.'",
@@ -1343,13 +1403,22 @@ export const act4CaseC = {
         { ref: "Zechariah 13:7", link: "zechariah_13_7" }
       ],
       investigatorNote: "The Greek words for 'love' and 'shepherd' carry deep theological weight—Jesus asks if Peter loves him with agape love, while Peter responds with phileo love. The commission transcends Peter's failure.",
+      fake: false,
+      category: 'people',
+      timelineOrder: 4,
+      clues: {
+        compare: "Directly reverses Peter's three denials at the sanhedrin_trial fire — three questions answering three failures.",
+        link: "People — Jesus's own threefold charge to Peter, asked and answered by the same fire.",
+        timeline: "CHRONOLOGY: Spoken last, after breakfast was finished on the Galilean shore.",
+        contradict: "RELIABILITY: The precise number and structure — three questions for three denials — is too exact to be coincidental."
+      },
     },
     {
       id: "galilean_apparition",
       name: "Risen Appearance",
       type: "testimonial",
       relatedProphecy: "isaiah_53_10_11",
-      icon: "👁️",
+      icon: "../assets/gfx/eye-duotone.svg",
       location: "Shoreline Recognition",
       desc: "The disciples' recognition moment—how they knew this was Jesus. He had been dead, and now stood before them alive.",
       bibleRef: "John 21:12 — 'Jesus said to them, \"Come and have breakfast.\" None of the disciples dared ask him, \"Who are you?\" because they knew it was the Lord.'",
@@ -1364,11 +1433,14 @@ export const act4CaseC = {
         { ref: "Acts 13:35-37", link: "acts_13_35_37" }
       ],
       investigatorNote: "Their recognition was immediate. No debate, no rational explanation—just the certainty that comes from intimate relationship.",
+      fake: false,
+      category: 'people',
+      timelineOrder: 1,
       clues: {
-        compare: "Connects with related evidence in this case to confirm the established narrative.",
-        link: "People & Suspects — risen appearance",
-        timeline: "CHRONOLOGY: Recovered during the investigation.",
-        contradict: "RELIABILITY: Corroborated by multiple independent sources and consistent with the narrative."
+        compare: "The moment that makes sense of everything else in this case — the disciples recognising Jesus before He said a word.",
+        link: "People — the disciples' own account of instantly recognising the risen Jesus on the shore.",
+        timeline: "CHRONOLOGY: The very first moment of this appearance, before the catch or the meal.",
+        contradict: "RELIABILITY: John notes none of them dared ask who He was — an instinctive certainty, not a case built up over time."
       },
     },],
 
@@ -1393,7 +1465,7 @@ export const act4CaseC = {
       role: "Restored Apostle",
       faction: "scribes",
       unlocksSuspects: ["peter"],
-      avatar: "🕊️",
+      avatar: "peter.svg",
       profileFile: "peter",
       color: 0xffaa44,
       pos: [0, 0, 0],
@@ -1427,7 +1499,7 @@ export const act4CaseC = {
       name: "Thomas",
       role: "Doubting Disciple",
       faction: "scribes",
-      avatar: "👨‍🦰",
+      avatar: "thomas.svg",
       profileFile: "thomas",
       color: 0x66aaff,
       pos: [5, 0, 5],
@@ -1458,7 +1530,7 @@ export const act4CaseC = {
       name: "Mary Magdalene",
       role: "First Witness",
       faction: "scribes",
-      avatar: "👩",
+      avatar: "mary_magdalene.svg",
       profileFile: "mary_magdalene",
       color: 0xdd44dd,
       pos: [8, 0, -3],
@@ -1488,7 +1560,7 @@ export const act4CaseC = {
       name: "Nathanael",
       role: "Honest Disciple",
       faction: "local",
-      avatar: "👨‍🌾",
+      avatar: "nathan_gardener.svg",
       profileFile: "nathanael_disciple",
       color: 0x88cc88,
       pos: [-5, 0, 7],

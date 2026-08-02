@@ -1,5 +1,18 @@
 /# Trigger & NPC Auto-Binding System
 
+< [Back to Main Document](Miracle Maker.md)
+
+## Table of Contents
+
+- [Overview](#-overview)
+- [Naming Convention](#-naming-convention)
+- [Architecture](#-architecture)
+- [Usage](#-usage)
+- [Event System](#-event-system)
+- [Debug Mode](#-debug-mode)
+- [Integration with Existing Code](#-integration-with-existing-code)
+- [Common Pitfalls](#-common-pitfalls)
+
 A scalable, data-driven pattern for binding gameplay logic to 3D objects in Three.js scenes using Blender naming conventions.
 
 ## 🎯 Overview

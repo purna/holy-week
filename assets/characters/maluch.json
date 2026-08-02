@@ -17,13 +17,24 @@
   "earShape": "pointed",
   "headSize": 1,
   "dualStripe": false,
-  "colorInner": "#4a423a",
-  "colorOuter": "#2f2b25",
-  "colorCloak": "#1a1815",
-  "colorAccent": "#3b3831",
-  "colorGarment2": "#8a7a5a",
-  "colorSkin": "#b39e8e",
-  "colorHair": "#1a1614",
+  "colorInner": "#5c4a52",
+  "colorOuter": "#3a2f38",
+  "colorCloak": "#241d28",
+  "colorAccent": "#9a6a52",
+  "colorGarment2": "#c98a5a",
+  "colorSkin": "#dcb088",
+  "colorHair": "#241c14",
   "colorEye": "#4a3b32",
-  "colorLip": "#9a5f52"
+  "colorLip": "#966355",
+  "colorPalette": {
+    "colorInner": "#5c4a52",
+    "colorOuter": "#3a2f38",
+    "colorCloak": "#241d28",
+    "colorAccent": "#9a6a52",
+    "colorGarment2": "#c98a5a",
+    "colorSkin": "#dcb088",
+    "colorHair": "#241c14",
+    "colorEye": "#4a3b32",
+    "colorLip": "#966355"
+  }
 }

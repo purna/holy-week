@@ -29,6 +29,8 @@ export class LabUI {
             </button>`).join("")}
         </div>
 
+        
+
         <div class="lab-selection-summary">
           <div class="lab-slot-badge ${this.es.selectedA ? 'filled' : 'empty'}" aria-label="First clue: ${this.es.selectedA?.name || 'not selected'}">
             ${this.es.selectedA

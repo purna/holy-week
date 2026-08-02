@@ -1,10 +1,68 @@
 # The Passion Week — Entry to Resurrection
-### A Chronological Record of Events, Prophecies & Witnesses
+### A Chronological Record of Events, Prophecies, Witnesses & Typology
+
+< [Back to Main Document](Miracle Maker.md)
+
+## Table of Contents
+
+- [The Passover Lamb Typological Timeline](#-the-passover-lamb-typological-timeline)
+- [Day-by-Day Chronology](#day-1--sunday-palm-sunday--nisan-10)
+  - [Day 1 — Sunday (Nisan 10)](#day-1--sunday-palm-sunday--nisan-10)
+  - [Day 2 — Monday (Nisan 11)](#day-2--monday-nisan-11)
+  - [Day 3 — Tuesday (Nisan 12)](#day-3--tuesday-nisan-12)
+  - [Day 4 — Wednesday (Nisan 13)](#day-4--wednesday-nisan-13)
+  - [Day 5 — Thursday (Nisan 14)](#day-5--thursday-nisan-14--passover-eve)
+  - [Day 6 — Friday (Nisan 14)](#day-6--friday-nisan-14--crucifixion-day)
+  - [Day 7 — Saturday (Nisan 15)](#day-7--saturday-nisan-15--sabbath)
+  - [Day 8 — Sunday (Nisan 17)](#day-8--sunday-nisan-17--resurrection-day)
+- [Post-Resurrection Appearances](#after-the-resurrection--post-easter-appearances-timing-uncertain-not-tied-to-a-specific-nisan-date)
+- [Summary Table](#summary-table)
+- [Locations in the Holy Week Timeline](#-locations-in-the-holy-week-timeline)
+- [Historical Corroboration and Context](#-historical-corroboration-and-context-of-passion-week)
+- [Bibliography and Reference Records](#-bibliography-and-reference-records-for-passion-week-historiography)
+- [Appendix: Game Case Reference](#appendix-game-case-reference)
 
 > Events run from **Palm Sunday (Nisan 10)** through **Resurrection Sunday (Nisan 17)**, c. AD 30/33.
 > All Bible links use the NIV via BibleGateway. Prophecy references use the ESV/NIV Old Testament.
 
 ---
+
+## 🐑 The Passover Lamb Typological Timeline
+
+Rather than relying solely on direct predictive prophecy, the Holy Week narrative unfolds according to an intentional typological pattern established in **Exodus 12**.
+
+[Exodus 12 Pattern]              [Gospel Fulfilment]
+Lamb selected & set apart   --&gt;  6 Days Before Passover: Anointing at Bethany (John 12)
+Declared without blemish    --&gt;  2 Days Before Passover: Anointing of Head (Matthew 26)
+Lamb sacrificed             --&gt;  Passover: Crucifixion of Christ
+Hyssop applies blood        --&gt;  At the Cross: Hyssop lifts wine (John 19)
+Death passes over           --&gt;  Believers receive eternal life
+
+
+### Typological Parallels
+
+1. **Six Days Before Passover (John 12)**
+   - *Event:* Mary anoints Jesus's feet with pure nard at Bethany.
+   - *Typological Parallel:* The Passover lamb is set apart and its feet/legs prepared (Exodus 12:3–6).
+
+2. **Two Days Before Passover (Matthew 26)**
+   - *Event:* A woman anoints Jesus's head with expensive perfume from an alabaster jar.
+   - *Typological Parallel:* The lamb is publicly inspected and declared free of blemish.
+
+3. **Passover / Crucifixion**
+   - *Event:* Jesus is crucified on Golgotha as the true Passover Lamb.
+   - *Typological Parallel:* The sacrificial lamb whose blood secures deliverance from death.
+
+4. **At the Cross (John 19:29)**
+   - *Event:* A sponge soaked in sour wine is lifted to Jesus's lips on a hyssop stalk.
+   - *Typological Parallel:* Echoes Exodus 12:22, where hyssop was dipped in the lamb's blood to mark the doorposts.
+
+> **Historical & Biblical Note:**
+> The multi-day anointing pattern (feet 6 days prior, head 2 days prior) reflects thematic and theological harmony in the Gospel accounts. The biblical text of Exodus 12 specifies selecting the lamb on the 10th day, keeping it until the 14th day, and sacrificing it. Primary evidence (John 12, Matthew 26, Exodus 12, John 19) is clearly distinguished from later Jewish tradition to preserve historical rigor in the game.
+
+---
+[Back to Top](#table-of-contents)
+
 
 ## DAY 1 — SUNDAY (Palm Sunday · Nisan 10)
 
@@ -41,7 +99,15 @@
 **✡ Prophecy Fulfilled:**
 - [Psalm 69:9](https://www.biblegateway.com/passage/?search=Psalm+69:9&version=NIV) — *"Zeal for your house will consume me."* (context of grief over God's people)
 
+**✡ Prophecy Connection:**
+- [Jeremiah 19:10–11](https://www.biblegateway.com/passage/?search=Jeremiah+19:10-11&version=NIV) — Judgment coming upon Jerusalem.
+- [Daniel 9:26](https://www.biblegateway.com/passage/?search=Daniel+9:26&version=NIV) — Jerusalem's future destruction after Messiah is rejected.
+
+**🔓 Codex Unlock:** *The Rejected City* — Jerusalem's lament at rejecting its king echoes the prophetic verdict of coming judgment recorded by Jeremiah and Daniel.
+
 ---
+
+[Back to Top](#table-of-contents)
 
 ### 3. 🏛 Jesus Surveys the Temple (Brief Visit)
 **📖 Passage:** [Mark 11:11](https://www.biblegateway.com/passage/?search=Mark+11:11&version=NIV)
@@ -53,6 +119,8 @@
 | 👁 **Witnesses** | The Twelve |
 
 > *Jesus then retired to Bethany for the night.*
+
+[Back to Top](#table-of-contents)
 
 ---
 
@@ -77,6 +145,8 @@
 
 ---
 
+[Back to Top](#table-of-contents)
+
 ### 5. ⛪ Cleansing of the Temple
 **📖 Passage:** [Matthew 21:12–17](https://www.biblegateway.com/passage/?search=Matthew+21:12-17&version=NIV) · [Mark 11:15–19](https://www.biblegateway.com/passage/?search=Mark+11:15-19&version=NIV) · [Luke 19:45–48](https://www.biblegateway.com/passage/?search=Luke+19:45-48&version=NIV)
 
@@ -93,6 +163,8 @@
 - [Jeremiah 7:11](https://www.biblegateway.com/passage/?search=Jeremiah+7:11&version=NIV) — *"Has this house… become a den of robbers?"*
 - [Malachi 3:1–3](https://www.biblegateway.com/passage/?search=Malachi+3:1-3&version=NIV) — *"The Lord… will suddenly come to his temple… and purify the Levites."*
 - [Psalm 69:9](https://www.biblegateway.com/passage/?search=Psalm+69:9&version=NIV) — *"For zeal for your house has consumed me."*
+
+[Back to Top](#table-of-contents)
 
 ---
 
@@ -122,6 +194,12 @@
 | 👁 **Witnesses** | Chief priests, scribes, elders, the Twelve, Temple crowds |
 | 👥 **Characters** | Caiaphas, Samuel (Scribe), Nathanael (Pharisee) |
 | 🎮 **Game Quest** | **The Silenced Teacher** (`authority_challenged`, Act II): Understand how Jesus answers impossible questions. |
+
+**✡ Prophecy Fulfilled:**
+- [Psalm 2:1–6](https://www.biblegateway.com/passage/?search=Psalm+2:1-6&version=NIV) — *"The nations conspire and the peoples plot in vain. The kings of the earth rise up and the rulers band together against the LORD and against his annointed…"* — nations and rulers oppose God's Anointed One.
+- [Isaiah 8:14–15](https://www.biblegateway.com/passage/?search=Isaiah+8:14-15&version=NIV) — *"He will become a stone that causes people to stumble, a rock that makes them fall…"* — the rejected stone becomes a stumbling stone.
+
+**🔓 Codex Unlock:** *The Rejected King* — Jesus's authority provokes opposition from every faction, fulfilling the psalmist's vision of rulers conspiring against God's Anointed and Isaiah's prophecy of the cornerstone of stumbling.
 
 ---
 
@@ -191,6 +269,8 @@
 - [Psalm 41:9](https://www.biblegateway.com/passage/?search=Psalm+41:9&version=NIV) — *"Even my close friend… has lifted his heel against me."*
 
 ---
+Back to Top
+
 
 ## DAY 4 — WEDNESDAY (Nisan 13)
 
@@ -208,6 +288,8 @@
 ---
 
 > Likely a day of rest and preparation at Bethany. Scripture records no public ministry this day.
+
+Back to Top
 
 ---
 
@@ -253,8 +335,15 @@
 
 **✡ Prophecy Fulfilled:**
 - [Exodus 12:1–14](https://www.biblegateway.com/passage/?search=Exodus+12:1-14&version=NIV) — The Passover lamb: type of Christ, the Lamb of God.
-- [Jeremiah 31:31–34](https://www.biblegateway.com/passage/?search=Jeremiah+31:31-34&version=NIV) — *"I will make a new covenant with the people of Israel."*
+- [Jeremiah 31:31–34](https://www.biblegateway.com/passage/?search=Jeremiah+31:31-34&version=NIV) — *"I will make a new covenant with the house of Israel."*
+- [Exodus 24:8](https://www.biblegateway.com/passage/?search=Exodus+24:8&version=NIV) — *"Then Moses read to the people every word of the LORD. When he finished, he took the blood of calves, sacrificed it, and sprinkled it on the people, saying, 'This is the blood of the covenant that the LORD has made with you.'"* — Covenant sealed with blood.
 - [Isaiah 53:12](https://www.biblegateway.com/passage/?search=Isaiah+53:12&version=NIV) — *"He poured out his life unto death… and bore the sin of many."*
+
+**⛪ Typology:**
+- [Genesis 14:18](https://www.biblegateway.com/passage/?search=Genesis+14:18&version=NIV) — Melchizedek's bread and wine: the mysterious priest-king of Salem prefigures Christ's eternal priesthood and the elements of the New Covenant.
+- The Passover meal fulfilled in Christ: the entire Exodus 12 lamb-sacrifice sequence (selection → inspection → sacrifice → blood applied) finds its ultimate fulfillment in Jesus's institution of the Lord's Supper.
+
+**🔓 Codex Unlock:** *The New Covenant* — Jesus transforms the Passover Seder into the inauguration of the Jeremiah-prophesied New Covenant, sealed in His own blood.
 
 ---
 
@@ -298,9 +387,16 @@
 
 **✡ Prophecy Fulfilled:**
 - [Psalm 22:1](https://www.biblegateway.com/passage/?search=Psalm+22:1&version=NIV) — *"My God, my God, why have you forsaken me?"* (anguish foreshadowed)
+- [Zechariah 13:7](https://www.biblegateway.com/passage/?search=Zechariah+13:7&version=NIV) — *"Strike the shepherd, and the sheep will be scattered."*
 - [Isaiah 53:10](https://www.biblegateway.com/passage/?search=Isaiah+53:10&version=NIV) — *"It was the LORD's will to crush him and cause him to suffer."*
 - [Psalm 42:5-6](https://www.biblegateway.com/passage/?search=Psalm+42:5-6&version=NIV) — The soul being "cast down" and in turmoil.
 - [Psalm 69:1-3](https://www.biblegateway.com/passage/?search=Psalm+69:1-3&version=NIV) — The soul sinking in deep mire where there is no foothold.
+
+**Fulfilment:**
+- Disciples flee.
+- Jesus is arrested alone.
+
+**🔓 Codex Unlock:** *The Scattered Sheep* — The shepherd is struck, and the flock scatters as predicted. Jesus stands alone in Gethsemane while His disciples flee into the night.
 
 ---
 
@@ -321,6 +417,8 @@
 - [Isaiah 53:12](https://www.biblegateway.com/passage/?search=Isaiah+53:12&version=NIV) — *"He was… numbered with the transgressors."*
 
 ---
+Back to Top
+
 
 ## DAY 6 — FRIDAY (Nisan 14 · Crucifixion Day)
 
@@ -348,12 +446,16 @@
 | 👥 **Characters** | Caiaphas, Peter, Ananias (False Witness) |
 | 🎮 **Game Quest** | **The Midnight Tribunal** (`sanhedrin_trial`, Act III): Inside the High Priest's residence, a legal sham is unfolding while a disciple waits in the cold courtyard. *(Also covers Peter's denials, #21, in the same courtyard.)* |
 
-**✡ Prophecy Fulfilled:**
+**✡ Silent Before His Accusers:**
 - [Isaiah 53:7](https://www.biblegateway.com/passage/?search=Isaiah+53:7&version=NIV) — *"He was led like a lamb to the slaughter, and as a sheep before its shearers is silent, so he did not open his mouth."*
-- [Isaiah 50:6](https://www.biblegateway.com/passage/?search=Isaiah+50:6&version=NIV) — *"I offered my back to those who beat me, my cheeks to those who pulled out my beard."* (spitting and striking)
-- [Micah 5:1](https://www.biblegateway.com/passage/?search=Micah+5:1&version=NIV) — The ruler of Israel being struck on the cheek.
 - [Psalm 27:12](https://www.biblegateway.com/passage/?search=Psalm+27:12&version=NIV) — *"For false witnesses rise up against me, breathing out violence."*
+
+**✡ Struck and Mocked:**
+- [Isaiah 50:6](https://www.biblegateway.com/passage/?search=Isaiah+50:6&version=NIV) — *"I offered my back to those who beat me, my cheeks to those who pulled out my beard; I did not hide my face from mocking and spitting."*
+- [Micah 5:1](https://www.biblegateway.com/passage/?search=Micah+5:1&version=NIV) — The ruler of Israel being struck on the cheek.
 - [Psalm 35:11](https://www.biblegateway.com/passage/?search=Psalm+35:11&version=NIV) — *"Ruthless witnesses come forward; they question me on things I know nothing about."*
+
+**🔓 Codex Unlock:** *The Silent Lamb* — The Suffering Servant embodies the Isaiah 53 prophecy: silent before accusers, beaten and spit upon, yet trusting in the LORD's vindication.
 
 ---
 
@@ -464,6 +566,7 @@
 | 🕙 **Time** | ~9 AM |
 | 📍 **Location** | From the Praetorium through Jerusalem's streets to Golgotha |
 | 👁 **Witnesses** | Simon of Cyrene (compelled to carry the cross), Jerusalem crowds, women who mourned, Roman soldiers |
+| ✡ **Typology** | [Genesis 22:6](https://www.biblegateway.com/passage/?search=Genesis+22:6&version=NIV) — Isaac carried the wood for his sacrifice; Jesus carries the cross. Both willingly bore the means of their own sacrifice. |
 
 ---
 
@@ -477,12 +580,32 @@
 | 👁 **Witnesses** | Roman soldiers, centurion, chief priests, scribes, elders, two crucified criminals, passing crowds, Mary Magdalene, Mary (mother of James & Joseph), Salome, Mary the mother of Jesus, John the beloved disciple, other women from Galilee |
 | 🎮 **Game Quest** | **The Final Sacrifice** (`crucifixion_site`, Act III): The sky has turned to ink and the ground is groaning. On the hill of execution, the records of Rome and Jerusalem are being rewritten by the rocks themselves. *(Case spans #29–33 below.)* |
 
-**✡ Prophecy Fulfilled:**
-- [Psalm 22:1–18](https://www.biblegateway.com/passage/?search=Psalm+22:1-18&version=NIV) — *"They pierced my hands and my feet… they divide my clothes among them and cast lots for my garment."*
+**✡ Psalm 22 Chain:**
+- [Psalm 22:7–8](https://www.biblegateway.com/passage/?search=Psalm+22:7-8&version=NIV) — Mocking at the cross: *"All who see me mock at him; they make mouths and wag their heads."*
+- [Psalm 22:16](https://www.biblegateway.com/passage/?search=Psalm+22:16&version=NIV) — Hands and feet pierced.
+- [Psalm 22:18](https://www.biblegateway.com/passage/?search=Psalm+22:18&version=NIV) — Garments divided and lots cast: *"They divide my clothes among them and cast lots for my garment."*
+
+**✡ Vinegar Offered:**
+- [Psalm 69:21](https://www.biblegateway.com/passage/?search=Psalm+69:21&version=NIV) — Given vinegar for thirst.
+
+**✡ Darkness Over the Land:**
+- [Amos 8:9](https://www.biblegateway.com/passage/?search=Amos+8:9&version=NIV) — Sun darkened at noon: *"I will make the sun go down at noon and darken the earth."*
+
+**✡ Passover Lamb:**
+- [Exodus 12:46](https://www.biblegateway.com/passage/?search=Exodus+12:46&version=NIV) — No bones broken.
+- [Psalm 34:20](https://www.biblegateway.com/passage/?search=Psalm+34:20&version=NIV) — Not one bone broken.
+
+**✡ Pierced Side:**
+- [Zechariah 12:10](https://www.biblegateway.com/passage/?search=Zechariah+12:10&version=NIV) — *"They will look on me whom they have pierced."*
+
+**⛪ Red Heifer Typology:**
+- [Numbers 19](https://www.biblegateway.com/passage/?search=Numbers+19&version=NIV) — The Red Heifer sacrificed outside the camp; Jesus suffers outside the city, fulfilling Hebrews 13:12–13.
+
+**✡ Additional Prophecy Fulfilled:**
 - [Isaiah 53:12](https://www.biblegateway.com/passage/?search=Isaiah+53:12&version=NIV) — *"He… was numbered with the transgressors"* (crucified between two criminals).
-- [Zechariah 12:10](https://www.biblegateway.com/passage/?search=Zechariah+12:10&version=NIV) — *"They will look on me, the one they have pierced."*
-- [Psalm 69:21](https://www.biblegateway.com/passage/?search=Psalm+69:21&version=NIV) — *"They… gave me vinegar for my thirst."*
 - [Numbers 21:8–9](https://www.biblegateway.com/passage/?search=Numbers+21:8-9&version=NIV) / [John 3:14](https://www.biblegateway.com/passage/?search=John+3:14&version=NIV) — The bronze serpent lifted up: type of Christ lifted on the cross.
+
+**🔓 Codex Unlock:** *The Perfect Sacrifice* — The Psalm 22 crime-scene prophecy is fully enacted: mocking, piercing, divided garments, vinegar — all fulfilled. Christ is the unblemished Passover Lamb (no bones broken), the sin-bearing Red Heifer sacrificed outside the city, and the pierced one of Zechariah 12:10.
 
 ---
 
@@ -561,7 +684,11 @@
 **✡ Prophecy Fulfilled:**
 - [Isaiah 53:9](https://www.biblegateway.com/passage/?search=Isaiah+53:9&version=NIV) — *"He was assigned a grave with the wicked, and with the rich in his death"* (buried in a rich man's tomb).
 
+**🔓 Codex Unlock:** *The Unexpected Tomb* — The Suffering Servant is buried with the rich, in a garden tomb hewn from limestone, against all expectation.
+
 ---
+
+Back to Top
 
 ## DAY 7 — SATURDAY (Nisan 15 · Sabbath)
 
@@ -578,6 +705,8 @@
 | 👥 **Characters** | Lucas (Sentry), Caiaphas, Pilate's Secretary |
 
 > *Jesus rested in the tomb. The Sabbath was observed. His followers were scattered and grieving.*
+
+Back to Top
 
 ---
 
@@ -596,14 +725,24 @@
 | 👥 **Characters** | Mary Magdalene, Marcus (Guard), Joseph of Arimathea |
 | 🎮 **Game Quest** | **The Empty Tomb** (`resurrection`, Act IV): The sealed tomb is open. The body is gone. The guards have fled. What happened on the third day? |
 
-**✡ Prophecy Fulfilled:**
+**✡ Firstfruits:**
+- [Leviticus 23:9–14](https://www.biblegateway.com/passage/?search=Leviticus+23:9-14&version=NIV) — *"When you enter the land the LORD your God is giving you... you are to bring that first sheaf of barley... for your priest... the LORD will accept you."* — Feast of Firstfruits.
+
+**⛪ Jonah Sign:**
+- [Jonah 1:17](https://www.biblegateway.com/passage/?search=Jonah+1:17&version=NIV) — Three days and three nights in the great fish; type of Christ's time in the tomb.
+- [Matthew 12:40](https://www.biblegateway.com/passage/?search=Matthew+12:40&version=NIV) — *"For as Jonah was three days and three nights in the belly of a huge fish, so the Son of Man will be three days and three nights in the heart of the earth."*
+
+**✡ Resurrection Prophecies:**
 - [Psalm 16:10](https://www.biblegateway.com/passage/?search=Psalm+16:10&version=NIV) — *"You will not abandon me to the realm of the dead, nor will you let your faithful one see decay."* (cited in Acts 2:27–31)
 - [Hosea 6:2](https://www.biblegateway.com/passage/?search=Hosea+6:2&version=NIV) — *"After two days he will revive us; on the third day he will restore us."*
-- [Jonah 1:17](https://www.biblegateway.com/passage/?search=Jonah+1:17&version=NIV) / [Matthew 12:40](https://www.biblegateway.com/passage/?search=Matthew+12:40&version=NIV) — *"The Son of Man will be three days and three nights in the heart of the earth"* (the sign of Jonah).
 - [Isaiah 53:10–11](https://www.biblegateway.com/passage/?search=Isaiah+53:10-11&version=NIV) — *"He will see his offspring and prolong his days… After he has suffered, he will see the light of life."*
-- [Isaiah 52:7](https://www.biblegateway.com/passage/?search=Isaiah+52:7&version=NIV) — *"How beautiful on the mountains are the feet of those who bring good news."* (The women becoming the first evangelists).
-- [Isaiah 26:19](https://www.biblegateway.com/passage/?search=Isaiah+26:19&version=NIV) — *"Your dead will live, LORD; their bodies will rise—let those who dwell in the dust wake up and shout for joy."*
-- [Psalm 22:1–31](https://www.biblegateway.com/passage/?search=Psalm+22:1-31&version=NIV) — The crucifixion psalm ends not in defeat, but in a proclamation of victory to be declared to future generations.
+
+**✡ Additional Prophecy Fulfilled:**
+- [Isaiah 52:7](https://www.biblegateway.com/passage/?search=Isaiah+52:7&version=NIV) — *"How beautiful on the mountains are the feet of those who bring good news."* (The women becoming the first evangelists.)
+- [Isaiah 26:19](https://www.biblegateway.com/passage/?search=Isaiah+26:19&version=NIV) — *"Your dead will live, LORD; their bodies will rise."*
+- [Psalm 22:1–31](https://www.biblegateway.com/passage/?search=Psalm+22:1-31&version=NIV) — The crucifixion psalm ends not in defeat, but in a proclamation of victory to future generations.
+
+**🔓 Codex Unlock:** *The Firstfruits of Resurrection* — Christ rises as the firstfruits of those who have fallen asleep, fulfilling the Levitical Feast of Firstfruits and the Jonah sign of three days.
 
 ---
 
@@ -621,6 +760,8 @@
 - [Psalm 2:1–2](https://www.biblegateway.com/passage/?search=Psalm+2:1-2&version=NIV) — *"The kings of the earth rise up… against the LORD and against his anointed."* (authorities conspiring to suppress the truth)
 
 ---
+Back to Top
+
 
 ## AFTER THE RESURRECTION — Post-Easter Appearances (timing uncertain; not tied to a specific Nisan date)
 
@@ -641,6 +782,8 @@
 - [Ezekiel 34:11–16](https://www.biblegateway.com/passage/?search=Ezekiel+34:11-16&version=NIV) — God himself searching for and restoring his scattered sheep — echoed in Jesus's threefold charge to Peter to "feed my sheep."
 
 ---
+Back to Top
+
 
 ## Summary Table
 
@@ -682,6 +825,8 @@
 | *(timing uncertain)* | Peter's Restoration | [John 21:1–19](https://www.biblegateway.com/passage/?search=John+21:1-19&version=NIV) |
 
 ---
+
+Back to Top
 
 *Document compiled from the four Gospel accounts (Matthew, Mark, Luke, John) and cross-referenced with Old Testament prophecy. Jewish days begin at sundown; all times are approximate.*
 
@@ -964,3 +1109,53 @@ The 14 canonical cases below are sourced directly from `act1_case.js`–`act4_ca
 **Chronology events not tied to any of the 14 cases** (kept for scriptural completeness; not currently gamified): #2 (Weeps over Jerusalem), #3 (Surveys Temple), #8 (Teaching & Parables), #9 (Widow's Offering), #16 (Farewell Discourse), #19 (Trial before Annas), #22 (Formal Sanhedrin condemnation), #23 (Judas's death), #25 (Trial before Herod), #27 (Mocking & Scourging), #28 (Via Dolorosa), #34 (Burial), #35 (Tomb sealed/guard placed).
 
 **Case-dependency chain** (from each case's `requires` field): `triumphal_entry` → `temple_cleansing` → (`fig_tree_incident` / `authority_challenged`) → `lazarus_plot` → (`olivet_discourse` / `last_supper`) → `gethsemane_arrest` → `sanhedrin_trial` → `barabbas_choice` → `crucifixion_site` → `resurrection` → `roman_inquiry` → `peter_restoration`.
+
+---
+
+## Hidden Detective Chains
+
+Hidden Detective Chains are cross-case discovery patterns that unlock bonus Codex entries when the player links all related evidence items from multiple cases. Each chain represents a complete theological arc spanning multiple days of Holy Week.
+
+### 1. The Psalm 22 Chain
+
+- **Cases spanned:** Gethsemane → Sanhedrin Trial → Crucifixion Site
+- **Codex Reward:** *The Perfect Sacrifice*
+- **Chain Evidence:** `Cry of Abandonment` (Psalm 22:1) → `Mocking Crown of Thorns` (Psalm 22:7–8) → `Crucifixion Nails` (Psalm 22:16) → `Soldiers' Casting Dice` (Psalm 22:18)
+- **Unlock Condition:** Link all four Psalm 22 pieces of evidence across three cases.
+- **Scoring:** +25 points, +10 Faith
+
+### 2. The True Passover Lamb
+
+- **Cases spanned:** Last Supper → Crucifixion Site
+- **Codex Reward:** *The True Passover Lamb*
+- **Chain Evidence:** `Sponge Soaked in Sour Wine` (Passover hyssop) → `Unbroken Tibiae Report` (Exodus 12:46) → `Bread Crumbs` (afikomen type)
+- **Unlock Condition:** Link Passover Lamb typological evidence across two cases.
+- **Scoring:** +25 points, +10 Faith
+
+### 3. The Greater Atonement (Day of Atonement Typology)
+
+- **Cases spanned:** Sanhedrin Trial → Barabbas Choice → Crucifixion Site
+- **Codex Reward:** *The Greater Atonement*
+- **Chain Evidence:** High Priest's torn robe (Caiaphas as high priest) → Scapegoat released (Barabbas as scapegoat) → Blood and water (mercy seat)
+- **Unlock Condition:** Link Day of Atonement typological evidence across three cases.
+- **Scoring:** +25 points, +10 Faith
+
+### 4. The New Covenant
+
+- **Cases spanned:** Last Supper (passover_lamb_chain / act3CaseA)
+- **Codex Reward:** *The New Covenant*
+- **Chain Evidence:** `Unleavened Bread Crumbs` (Genesis 14:18 Melchizedek) → `Spilled Wine on the Linen` (Jeremiah 31:31–34) → `Covenant Seal Mark` (Exodus 24:8) → `Written Summary of Jesus's Words` (Jeremiah 31:31–34)
+- **Unlock Condition:** Link all four Last Supper evidence to Jeremiah 31:31–34 and Exodus 24:8.
+- **Scoring:** +25 points, +10 Faith
+
+### 5. Death Defeated (Resurrection Chain)
+
+- **Cases spanned:** Crucifixion Site → Resurrection → Roman Inquiry
+- **Codex Reward:** *The Firstfruits of Resurrection*
+- **Chain Evidence:** `Sign of Jonah` (three days) → `Firstfruits Offering` (Leviticus 23) → `Empty Burial Chamber` (Psalm 16:10) → `Mary Magdalene's Testimony` (Isaiah 53:10–11)
+- **Unlock Condition:** Link all four resurrection evidence across three cases.
+- **Scoring:** +25 points, +10 Faith
+
+---
+
+**Note:** Each Hidden Detective Chain corresponds to one Codex Unlock entry documented in the individual day sections above. Completing a chain grants +25 investigation points, +10 Faith meter boost, and unlocks a bonus Codex entry that synthesizes the theological arc.

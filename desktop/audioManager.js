@@ -20,10 +20,10 @@ export class AudioManager {
 
     // Background music tracks for each act
     this.actMusicMap = {
-      'Act I': musicPath + 'act1_sunlight_on_marble.mp3',
-      'Act II': musicPath + 'act2_shackles_on_the_stone.mp3',
-      'Act III': musicPath + 'act3_laurel_and_iron.mp3',
-      'Act IV': musicPath + 'act4_victory_at_the_sunlit_gate.mp3'
+      'Act I - The Triumphal Entry': musicPath + 'act1_sunlight_on_marble.mp3',
+      'Act II - The Temple Courts': musicPath + 'act2_shackles_on_the_stone.mp3',
+      'Act III - The Last Supper': musicPath + 'act3_laurel_and_iron.mp3',
+      'Act IV - The Resurrection': musicPath + 'act4_victory_at_the_sunlit_gate.mp3'
     };
 
     this._howls = {};

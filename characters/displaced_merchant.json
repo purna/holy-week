@@ -19,5 +19,16 @@
     "prophecy": "Prophecy? I was just trying to make a living for the festival."
   },
   "earSize": 0.95,
-  "headSize": 1.0
+  "headSize": 1.0,
+  "colorPalette": {
+    "colorInner": "#544a3e",
+    "colorOuter": "#2f2b25",
+    "colorCloak": "#221f1a",
+    "colorAccent": "#4a4438",
+    "colorGarment2": "#8a7a5a",
+    "colorSkin": "#a9784e",
+    "colorHair": "#2a1e15",
+    "colorEye": "#6b4a2f",
+    "colorLip": "#8f5245"
+  }
 }

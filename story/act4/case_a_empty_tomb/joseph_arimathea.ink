@@ -28,8 +28,14 @@ I went to the tomb early on the first day of the week. The stone was rolled away
 * [What did you see?] -> empty_tomb
 
 === my_tomb ===
-It was my new tomb. Never used. Cut from the rock for myself. When I asked for His body, I broke ranks with the council. I was a secret disciple — but I could not let them leave Him to the dogs or the scavengers. That tomb had never held the dead before His body entered it.
+It was my new tomb. Never used. Cut from solid rock in my own garden, close to Golgotha — the kind of resting place only a wealthy man could commission for himself. When I asked for His body, I broke ranks with the council. I was a secret disciple — but I could not let them leave Him to the criminals' burial pits at Hinnom, thrown among the condemned like refuse. That tomb had never held the dead before His body entered it.
 * [Why take the risk?] -> risk_taken
+* [Why does the tomb itself matter?] -> tomb_prophecy
+
+=== tomb_prophecy ===
+Isaiah wrote it centuries before any of us were born: the Servant would make His grave with the wicked, yet be with a rich man in His death. He died condemned between two criminals — the wicked man's grave. And then He was carried to my tomb — the rich man's grave. I was not thinking of Isaiah when I offered it. I was only thinking that I had a tomb and He did not. God apparently was thinking of Isaiah.
+* [You fulfilled it without meaning to.] -> risk_taken
+
 === risk_taken ===
 The soldiers knew Pilate's permission was secured. They had no choice but to let me take the corpse. I brought fine linens and the spices we had prepared. Nicodemus came too — he who had visited Him by night. We wrapped Him together, two men who had hidden their faith now exposed by love.
 * [After the burial?] -> examination

@@ -30,6 +30,8 @@ export class LabUI {
             </button>`).join("")}
         </div>
 
+        <div class="lab-divider" aria-hidden="true"></div>
+
 
         <div class="lab-slots" aria-label="Selected evidence slots">
           <div class="lab-slot" id="slotA" aria-label="Evidence slot A: ${this.es.selectedA?.name || 'empty'}" role="status">
@@ -79,8 +81,8 @@ export class LabUI {
               <button class="picker-card ${isA ? 'selected-a' : ''} ${isB ? 'selected-b' : ''}" data-evidence-id="${e.id}"
                 aria-label="${e.name}: ${e.desc || e.description || ''}. ${selected ? (isA ? 'Selected as A' : 'Selected as B') : 'Tap to select'}"
                 aria-pressed="${selected ? 'true' : 'false'}">
-                <span class="picker-icon" aria-hidden="true">${e.icon || e.emoji}</span>
-                <span class="picker-name"><img src='${e.icon}' class='icon-svg' loading='lazy' >${e.name}</span>
+                <span class="picker-icon" aria-hidden="true">${this._iconMarkup(e.icon || e.emoji)}</span>
+                <span class="picker-name">${this._iconMarkup(e.icon || e.emoji)} ${e.name}</span>
                 ${isA ? `<span class="sel-badge" aria-hidden="true">A</span>` : ""}
                 ${isB ? `<span class="sel-badge" aria-hidden="true">B</span>` : ""}
               </button>`;
@@ -90,30 +92,35 @@ export class LabUI {
       </div>`;
   }
 
-  bindEvents(container) {
-    container.querySelectorAll("[data-op]").forEach(btn => {
-      btn.addEventListener("click", () => {
-        if (btn.getAttribute("aria-disabled") === "true") {
-          this.a11y.speak("Select two pieces of evidence first.");
-          return;
-        }
-        const result = this.de.operate(btn.dataset.op);
-        this._showResult(container, result);
-        this.a11y.speak(result.text);
-        if (this.onResult) this.onResult(result);
-      });
-    });
+bindEvents(container) {
+     this._container = container;
+     container.querySelectorAll("[data-op]").forEach(btn => {
+       btn.addEventListener("click", () => {
+         if (btn.getAttribute("aria-disabled") === "true") {
+           this.a11y.speak("Select two pieces of evidence first.");
+           return;
+         }
+         const result = this.de.operate(btn.dataset.op);
+         this._showResult(container, result);
+         this.a11y.speak(result.text);
+         if (this.onResult) this.onResult(result);
+       });
+     });
 
-    container.querySelectorAll("[data-evidence-id]").forEach(card => {
-      card.addEventListener("click", (e) => {
-        const id = card.dataset.evidenceId;
-        if (e.shiftKey || e.ctrlKey || e.metaKey) { window.openEvidenceDetail?.(id); return; }
-        this.es.selectEvidence(id);
-        this.a11y.speak(`Selected ${card.querySelector(".picker-name").textContent}`);
-        if (this.onResult) this.onResult({ type: "selection" });
-      });
-    });
-  }
+     container.querySelectorAll("[data-evidence-id]").forEach(card => {
+       card.addEventListener("click", (e) => {
+         const id = card.dataset.evidenceId;
+         if (e.shiftKey || e.ctrlKey || e.metaKey) { window.openEvidenceDetail?.(id); return; }
+         this.es.selectEvidence(id);
+         this.a11y.speak(`Selected ${card.querySelector(".picker-name").textContent}`);
+         if (this._container) {
+           this._container.innerHTML = this.render();
+           this.bindEvents(this._container);
+         }
+         if (this.onResult) this.onResult({ type: "selection" });
+       });
+     });
+   }
 
   _showResult(container, result) {
     const el = container.querySelector("#lab-result");

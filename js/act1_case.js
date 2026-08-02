@@ -82,6 +82,7 @@ import { formatIntro } from './utils.js';
 
 export const act1CaseA = {
   id: "triumphal_entry",
+  icon: '../assets/gfx/horse-duotone.svg',
   title: "The Missing Donkey",
   subtitle: "A borrowed donkey has gone missing from Bethphage — but is it theft, or something far greater?",
   location: "jerusalem",
@@ -89,7 +90,7 @@ export const act1CaseA = {
   timeOfDay: "day",
   difficulty: 1,
   requires: null,
-  actLabel: "Act I",
+  actLabel: "Act I - The Triumphal Entry",
   color: 0x60a5fa,
   worldModel: "../assets/models/sphere.glb",
   showCityLayer: false,
@@ -106,7 +107,7 @@ export const act1CaseA = {
     {
       reference: "Zechariah 9:9",
       id: "zechariah_9_9",
-      icon: "<img src='../assets/gfx/star-duotone.svg' class='icon-svg' loading='lazy'>",
+      icon: "../assets/gfx/star-duotone.svg",
       text: `"Rejoice greatly, O daughter of Zion! Shout aloud, O daughter of Jerusalem! Behold, your king is coming to you; righteous and having salvation is he, humble and mounted on a donkey, on a colt, the foal of a donkey."`,
       written: "~520 BC",
       fulfilledBy: "Jesus riding a donkey colt into Jerusalem",
@@ -117,7 +118,7 @@ export const act1CaseA = {
     {
       reference: "Psalm 118:25–26",
       id: "psalm_118_25_26",
-      icon: "<img src='../assets/gfx/star-duotone.svg' class='icon-svg' loading='lazy'>",
+      icon: "../assets/gfx/star-duotone.svg",
       text: `"Save us, we pray, O LORD! O LORD, we pray, give us success! Blessed is he who comes in the name of the LORD!"`,
       written: "~1000 BC",
       fulfilledBy: "The crowds shouting 'Hosanna! Blessed is he who comes in the name of the Lord!'",
@@ -128,7 +129,7 @@ export const act1CaseA = {
     {
       reference: "Genesis 49:10–11",
       id: "genesis_49_10_11",
-      icon: "<img src='../assets/gfx/star-duotone.svg' class='icon-svg' loading='lazy'>",
+      icon: "../assets/gfx/star-duotone.svg",
       text: `"The scepter shall not depart from Judah... binding his foal to the vine and his donkey's colt to the choice vine."`,
       written: "~1400 BC",
       fulfilledBy: "A king from Judah arriving on a donkey colt",
@@ -139,7 +140,7 @@ export const act1CaseA = {
     {
       reference: "Malachi 3:1",
       id: "malachi_3_1",
-      icon: "<img src='../assets/gfx/star-duotone.svg' class='icon-svg' loading='lazy'>",
+      icon: "../assets/gfx/star-duotone.svg",
       text: `"Behold, I send my messenger, and he will prepare the way before me. And the Lord whom you seek will suddenly come to his temple."`,
       written: "~430 BC",
       fulfilledBy: "Jesus's arrival in Jerusalem preceding His Temple visit (Mark 11:11)",
@@ -757,6 +758,7 @@ export const act1CaseA = {
 
 export const act1CaseB = {
   id: "temple_cleansing",
+  icon: '../assets/gfx/coins-duotone.svg',
   title: "The Overturned Tables",
   subtitle: "The Court of the Gentiles is in chaos. Merchant stands have been upended—was it a riot or a message?",
   location: "jerusalem",
@@ -764,7 +766,7 @@ export const act1CaseB = {
   timeOfDay: "day",
   difficulty: 2,
   requires: "triumphal_entry",
-  actLabel: "Act I",
+  actLabel: "Act I - The Triumphal Entry",
   color: 0x60a5fa,
   worldModel: "../assets/models/sphere.glb",
   showCityLayer: false,
@@ -781,7 +783,7 @@ export const act1CaseB = {
     {
       reference: "Malachi 3:1",
       id: "malachi_3_1",
-      icon: "<img src='../assets/gfx/star-duotone.svg' class='icon-svg' loading='lazy'>",
+      icon: "../assets/gfx/star-duotone.svg",
       text: `"And the Lord whom you seek will suddenly come to his temple; and the messenger of the covenant in whom you delight, behold, he is coming, says the LORD of hosts."`,
       written: "~430 BC",
       fulfilledBy: "Jesus unexpectedly arriving to judge the temple's sacrificial practices",
@@ -792,7 +794,7 @@ export const act1CaseB = {
     {
       reference: "Isaiah 56:7",
       id: "isaiah_56_7",
-      icon: "<img src='../assets/gfx/star-duotone.svg' class='icon-svg' loading='lazy'>",
+      icon: "../assets/gfx/star-duotone.svg",
       text: `"These I will bring to my holy mountain... for my house shall be called a house of prayer for all nations."`,
       written: "~700 BC",
       fulfilledBy: "Jesus clearing the outer court—the only area open to non-Jews",
@@ -803,7 +805,7 @@ export const act1CaseB = {
     {
       reference: "Psalm 69:9",
       id: "psalm_69_9",
-      icon: "<img src='../assets/gfx/star-duotone.svg' class='icon-svg' loading='lazy'>",
+      icon: "../assets/gfx/star-duotone.svg",
       text: `"Zeal for your house will consume me; the insults of those who insult you have fallen on me."`,
       written: "~1000 BC",
       fulfilledBy: "Jesus's passionate action in the Temple, driving out those who had turned prayer into profit",
@@ -853,7 +855,7 @@ export const act1CaseB = {
       id: "scattered_shekels",
       name: "Scattered Tyrian Shekels",
       relatedProphecy: "malachi_3_1",
-      type: "physical",
+      type: "analytical",
       icon: "../assets/gfx/coins-duotone.svg",
       emoji: "", // Retaining for reference, but icon is now SVG
       iconFA: "fa-solid fa-coins",
@@ -887,7 +889,7 @@ export const act1CaseB = {
       id: "whip_of_cords",
       name: "Discarded Whip of Cords",
       relatedProphecy: "malachi_3_1",
-      type: "physical",
+      type: "environmental",
       icon: "../assets/gfx/link-duotone.svg",
       emoji: "", // Retaining for reference, but icon is now SVG
       iconFA: "fa-solid fa-wand-sparkles",
@@ -951,7 +953,7 @@ export const act1CaseB = {
         },
       },
     },
-    { id: "none", name: "No One", role: "Not Stolen", avatar: "question-duotone.svg", bibleRef: null },
+    { id: "none", name: "No One", role: "Not Stolen", avatar:  "question-duotone.svg", bibleRef: null },
   ],
 
   npcs: [
@@ -1258,9 +1260,6 @@ export const act1CaseB = {
   },
 };
 
-
-
-
 // ============================================================
 // ACT: Act I
 // CASE: The Withered Fig Tree
@@ -1354,6 +1353,7 @@ export const act1CaseB = {
 
 export const act1CaseC = {
   id: "fig_tree_incident",
+  icon: '../assets/gfx/tree-duotone.svg',
   title: "The Barren Fig Tree",
   subtitle: "A fig tree cursed for its unfruitfulness withers overnight, a stark lesson for the disciples.",
   location: "jerusalem",
@@ -1361,7 +1361,7 @@ export const act1CaseC = {
   timeOfDay: "morning",
   difficulty: 2,
   requires: "temple_cleansing",
-  actLabel: "Act I",
+  actLabel: "Act I - The Triumphal Entry",
   color: 0x4ade80, // A muted green/brown color
   worldModel: "../assets/models/sphere.glb",
   showCityLayer: false,
@@ -1378,7 +1378,7 @@ export const act1CaseC = {
     {
       reference: "Micah 7:1",
       id: "micah_7_1",
-      icon: "<img src='../assets/gfx/star-duotone.svg' class='icon-svg' loading='lazy'>",
+      icon: "../assets/gfx/star-duotone.svg",
       text: `"What misery is mine! I am like one who gathers summer fruit at the close of the grape harvest; there is no cluster of grapes to eat, no early fig I crave."`,
       written: "~700 BC",
       fulfilledBy: "Jesus finding no fruit on the fig tree, symbolizing Israel's spiritual barrenness",
@@ -1389,7 +1389,7 @@ export const act1CaseC = {
     {
       reference: "Jeremiah 8:13",
       id: "jeremiah_8_13",
-      icon: "<img src='../assets/gfx/star-duotone.svg' class='icon-svg' loading='lazy'>",
+      icon: "../assets/gfx/star-duotone.svg",
       text: `"I will take away their harvest, declares the LORD. There will be no grapes on the vine, no figs on the tree, and their leaves will wither."`,
       written: "~600 BC",
       fulfilledBy: "The fig tree withering after Jesus's curse, signifying judgment",
@@ -1400,7 +1400,7 @@ export const act1CaseC = {
     {
       reference: "Psalm 33:8–9",
       id: "psalm_33_8_9",
-      icon: "<img src='../assets/gfx/star-duotone.svg' class='icon-svg' loading='lazy'>",
+      icon: "../assets/gfx/star-duotone.svg",
       text: `"Let all the earth fear the LORD; let all the inhabitants of the world stand in awe of him. For he spoke, and it came to be; he commanded, and it stood firm."`,
       written: "~1000 BC",
       fulfilledBy: "The disciples witnessing the immediate and absolute power of Jesus's spoken word over creation",
@@ -1410,7 +1410,7 @@ export const act1CaseC = {
     {
       reference: "Zechariah 4:6–7",
       id: "zechariah_4_6_7",
-      icon: "<img src='../assets/gfx/star-duotone.svg' class='icon-svg' loading='lazy'>",
+      icon: "../assets/gfx/star-duotone.svg",
       text: `"‘Not by might nor by power, but by my Spirit,’ says the LORD Almighty. ‘What are you, mighty mountain? Before Zerubbabel you will become level ground.’"`,
       written: "~520 BC",
       fulfilledBy: "Jesus teaching that faith in God provides authority to move mountains and overcome any obstacle",
@@ -1423,7 +1423,7 @@ export const act1CaseC = {
 
   suspects: [
     { id: "peter_fig_tree", name: "Peter", role: "Disciple, Witness to the Withering", avatar: "peter.svg", bibleRef: "Mark 11:21" },
-    { id: "none", name: "No One", role: "Prophetic Act", avatar: "question-duotone.svg", bibleRef: null },
+    { id: "none", name: "No One", role: "Prophetic Act", avatar:  "question-duotone.svg", bibleRef: null },
   ],
 
   evidencePool: [

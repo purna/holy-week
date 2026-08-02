@@ -19,5 +19,16 @@
     "prophecy": "I serve the High Priest. I do not deal in prophecy. But I know what I felt."
   },
   "earSize": 1.0,
-  "headSize": 1.0
+  "headSize": 1.0,
+  "colorPalette": {
+    "colorInner": "#3f382f",
+    "colorOuter": "#362f26",
+    "colorCloak": "#1a1815",
+    "colorAccent": "#4a4438",
+    "colorGarment2": "#7a6a4a",
+    "colorSkin": "#c49163",
+    "colorHair": "#b7b0a2",
+    "colorEye": "#5c4632",
+    "colorLip": "#8f5245"
+  }
 }

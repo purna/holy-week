@@ -5,7 +5,6 @@ import { NPCSystem, PROFILE_ID_MAP } from "./NPCSystem.js";
 import { DeductionEngine } from './../js/gameplay/deductionEngine.js';
 import { LocationSystem } from './../js/gameplay/locationSystem.js';
 import { AccessibilityManager } from "../js/ui/AccessibilityManager.js";
-import { LabWorkspaceUI } from "../js/ui/LabWorkspaceUI.js";  
 import { ChatUI } from "../js/ui/ChatUI.js";
 import { AudioManager } from "./audioManager.js"; // Desktop uses its own AudioManager
 import { DialogueManager } from "./dialogueManager.js";
@@ -18,7 +17,7 @@ import { MODELS } from '../js/config.js';
 import { iVFXSystem } from "./iVFXSystem.js";
 
 import { act1CaseA, act1CaseB, act1CaseC } from "./../js/act1_case.js";
-import { act2CaseA, act2CaseB, act2CaseC } from "./../js/act2_case.js";
+import { act2CaseA, act2CaseB, act2CaseC, act2CaseD } from "./../js/act2_case.js";
 import { act3CaseA, act3CaseB, act3CaseC, act3CaseD, act3CaseE } from "./../js/act3_case.js";
 import { act4CaseA, act4CaseB, act4CaseC } from "./../js/act4_case.js";
 
@@ -73,7 +72,7 @@ export class GameEngine {
   registerAllCases() {
     const cases = [
       act1CaseA, act1CaseB, act1CaseC,
-      act2CaseA, act2CaseB, act2CaseC,
+      act2CaseA, act2CaseB, act2CaseC, act2CaseD,
       act3CaseA, act3CaseB, act3CaseC, act3CaseD, act3CaseE,
       act4CaseA, act4CaseB, act4CaseC
     ];
@@ -364,6 +363,16 @@ export class GameEngine {
       this.renderer.setSize(window.innerWidth, window.innerHeight);
     });
 
+    window.addEventListener('click', (e) => {
+      const link = e.target.closest('#evidence-alert-link');
+      if (!link) return;
+      e.preventDefault();
+      const id = link.dataset.evidenceId;
+      if (id && typeof this.openEvidenceDetail === 'function') {
+        this.openEvidenceDetail(id);
+      }
+    });
+
     // Unified Mouse Listener: Left-click for Interaction/Selection, Right-click for Movement
     this.renderer.domElement.addEventListener('mousedown', (e) => {
       const mouseCoords = new THREE.Vector2(
@@ -592,6 +601,7 @@ export class GameEngine {
     this.cm.startCase(caseId);
     this.es.loadCase(caseData);
     this.ns.loadCase(caseData);
+    this.de.loadCase(caseData);
 
     // Pre-load Ink stories
     if (caseData.npcs) {
@@ -1031,7 +1041,7 @@ export class GameEngine {
             btn.className = 'read-more-btn';
             btn.style.marginTop = '8px';
             btn.style.width = '100%';
-            btn.innerHTML = `<i class="fa-solid fa-book-open"></i> Read ${link.trim()}`;
+            btn.innerHTML = `<i class="fa-lg fa-solid fa-book-open"></i> Read ${link.trim()}`;
             btn.onclick = () => {
               this.audio.playUI();
               // Opens the passage-overlay via BibleReader2.js
@@ -1052,7 +1062,7 @@ export class GameEngine {
     this.updateEvidenceGrid();
     this.updateChallengeButton();
   }
-  
+
   _revealProphecy(prophecyId) {
     const wasRevealed = this.es.revealProphecy(prophecyId);
     if (wasRevealed) {
@@ -1076,7 +1086,7 @@ export class GameEngine {
     const canChallenge = this.es.selectedA && this.es.selectedB;
     const challengeBtn = document.createElement('button');
     challengeBtn.className = 'action-btn challenge-action-btn';
-    challengeBtn.innerHTML = `<span><i class="fa-solid fa-bolt"></i> Challenge</span> <small>[${this.es.selectedA?.name || 'A'}+${this.es.selectedB?.name || 'B'}]</small>`;
+    challengeBtn.innerHTML = `<span><i class="fa-lg fa-solid fa fa-bolt"></i> Challenge</span> <small>[${this.es.selectedA?.name || 'A'}+${this.es.selectedB?.name || 'B'}]</small>`;
     challengeBtn.disabled = !canChallenge;
     challengeBtn.onclick = () => {
       if (this.nearestNPC) this._playerChallengedNPC(this.nearestNPC.userData.config, this.es.selectedA?.id, this.es.selectedB?.id);
@@ -1087,7 +1097,7 @@ export class GameEngine {
     accuseBtn.className = 'action-btn accuse-action-btn';
     accuseBtn.style.borderLeft = '3px solid var(--gold)';
     accuseBtn.style.background = 'rgba(255, 183, 77, 0.1)';
-    accuseBtn.innerHTML = `<span><i class="fa-solid fa-scale-balanced"></i> Accuse</span> <small>[Verdict]</small>`;
+    accuseBtn.innerHTML = `<span><i class="fa-lg fa-solid fa-scale-balanced"></i> Accuse</span> <small>[Verdict]</small>`;
     accuseBtn.onclick = () => {
       this.audio.playUI();
       this.openAccuseModal();
@@ -1098,7 +1108,7 @@ export class GameEngine {
       const n = this.nearestNPC.userData.config;
       const talkBtn = document.createElement('button');
       talkBtn.className = 'action-btn talk-prompt-highlight';
-      talkBtn.innerHTML = `<span><i class="fa-solid fa-comments"></i> Talk to ${n.name}</span> <small>[E]</small>`;
+      talkBtn.innerHTML = `<span><i class="fa-lg fa-solid fa-comments"></i> Talk to ${n.name}</span> <small>[E]</small>`;
       talkBtn.onclick = () => this.startDialogue(n);
       actWrap.appendChild(talkBtn);
     }
@@ -1121,7 +1131,7 @@ export class GameEngine {
       const card = document.createElement('div');
       card.className = 'picker-card';
       card.innerHTML = `
-        <span class="picker-icon">${s.avatar || '<img src="assets/gfx/user-duotone.svg" class="icon-svg" loading="lazy">'}</span>
+        <span class="picker-icon">${(s.avatar || '').endsWith('.svg') ? `<img src="${s.avatar}" class="icon-svg" loading="lazy">` : (s.avatar || '<img src="assets/gfx/user-duotone.svg" class="icon-svg" loading="lazy">')}</span>
         <span class="picker-name">${s.name}</span>
         <small style="display:block; font-size:0.6rem; opacity:0.7; margin-bottom:4px;">${s.role}</small>
         <div style="font-size:0.65rem; margin-bottom:8px; opacity:0.85;">Status: <strong>${status.status}</strong></div>
@@ -1183,7 +1193,7 @@ export class GameEngine {
       const slot = document.createElement('div');
       slot.className = 'evidence-slot-btn' + (ev ? ' filled' : '');
       if (ev) {
-        slot.textContent = ev.emoji || '🛡️';
+        slot.innerHTML = ev.emoji || '🛡️';
         if (this.es.selectedA?.id === ev.id) slot.classList.add('sel-a');
         if (this.es.selectedB?.id === ev.id) slot.classList.add('sel-b');
         slot.onclick = () => {
@@ -1193,7 +1203,7 @@ export class GameEngine {
           this.updateChallengeButton();
         };
       } else {
-        slot.innerHTML = '<i class="fa-solid fa-folder"></i>';
+        slot.innerHTML = '<i class="fa-lg fa-solid fa-folder"></i>';
       }
       grid.appendChild(slot);
     }
@@ -1212,7 +1222,7 @@ export class GameEngine {
         <div class="people-list-sidebar">
             ${npcs.map(n => `
                 <button class="person-nav-btn" data-npc-id="${n.id}">
-                    <span>${n.avatar || '<img src="assets/gfx/user-duotone.svg" class="icon-svg" loading="lazy">'}</span> ${n.name}
+                    <span>${(n.avatar || '').endsWith('.svg') ? `<img src="../assets/characters/${n.avatar}" class="icon-svg" loading="lazy">` : (n.avatar || '<img src="assets/gfx/user-duotone.svg" class="icon-svg" loading="lazy">')}</span> ${n.name}
                 </button>
             `).join('')}
         </div>
@@ -1245,7 +1255,7 @@ export class GameEngine {
     );
 
     content.innerHTML = `
-        <h3 class="modal-title-settings">${npc.avatar || '<img src="assets/gfx/user-duotone.svg" class="icon-svg" loading="lazy">'} ${npc.name}</h3>
+        <h3 class="modal-title-settings">${(npc.avatar || '').endsWith('.svg') ? `<img src="../assets/characters/${npc.avatar}" class="icon-svg" loading="lazy">` : (npc.avatar || '<img src="assets/gfx/user-duotone.svg" class="icon-svg" loading="lazy">')} ${npc.name}</h3>
         <h4 class="modal-subtitle-custom">${npc.role}</h4>
         <div class="evidence-detail-label" style="margin-top:15px;">Related Evidence</div>
         <div class="picker-grid">
@@ -1277,54 +1287,87 @@ export class GameEngine {
     const modal = document.getElementById('evidence-detail-modal');
 
     // Header & Basic Info
-    modal.querySelector('.evidence-detail-icon').innerHTML = ev.emoji || ev.icon || '<img src="assets/gfx/shield-duotone.svg" class="icon-svg" loading="lazy">';
+    const evIcon = ev.emoji || ev.icon || '';
+    modal.querySelector('.evidence-detail-icon').innerHTML = evIcon.includes('<img') ? evIcon : (evIcon.endsWith('.svg') ? `<img src="${evIcon}" class="icon-svg" loading="lazy">` : evIcon || '<img src="assets/gfx/shield-duotone.svg" class="icon-svg" loading="lazy">');
     modal.querySelector('.evidence-detail-name').textContent = ev.name;
     modal.querySelector('.evidence-detail-type').textContent = ev.type || 'Physical';
     modal.querySelector('.evidence-detail-desc').textContent = ev.desc || ev.description || 'No description available.';
-    modal.querySelector('.evidence-detail-location').textContent = ev.location || 'Unknown';
-    modal.querySelector('.evidence-detail-investigator-note').textContent = ev.investigatorNote || ev.notes || 'No notes available.';
+
+    const locationEl = modal.querySelector('.evidence-detail-location');
+    const locationSection = locationEl?.closest('.evidence-detail-section');
+    if (ev.location) {
+      locationEl.textContent = ev.location;
+      if (locationSection) locationSection.hidden = false;
+    } else {
+      if (locationSection) locationSection.hidden = true;
+    }
+
+    const noteEl = modal.querySelector('.evidence-detail-investigator-note');
+    const noteSection = noteEl?.closest('.evidence-detail-section');
+    if (ev.investigatorNote || ev.notes) {
+      noteEl.textContent = ev.investigatorNote || ev.notes;
+      if (noteSection) noteSection.hidden = false;
+    } else {
+      if (noteSection) noteSection.hidden = true;
+    }
 
     // Prophecy Section
-    const propArea = document.getElementById('detail-prophecy-area');
-    if (ev.bibleRef || ev.propheticLink) {
-      propArea.hidden = false;
-      modal.querySelector('.evidence-detail-bible-ref').textContent = ev.bibleRef || '---';
-      modal.querySelector('.evidence-detail-prophetic-link').textContent = ev.propheticLink || '---';
+    const bibleRefArea = document.getElementById('detail-prophecy-area');
+    const fulfillmentArea = document.getElementById('detail-fulfillment-area');
+    const hasBible = !!ev.bibleRef;
+    const hasProphecy = !!ev.propheticLink;
 
-      // Reset verse content visibility
-      modal.querySelectorAll('.verse-content').forEach(c => { c.hidden = true; c.innerHTML = ''; });
+    if (hasBible || hasProphecy) {
+      if (hasBible) {
+        bibleRefArea.hidden = false;
+        modal.querySelector('.evidence-detail-bible-ref').textContent = ev.bibleRef || '---';
+        modal.querySelector('.prophecy-read-more-container').innerHTML = '';
+        modal.querySelector('.verse-content[data-target="bible-verse-content"]').hidden = true;
+        modal.querySelector('.verse-content[data-target="bible-verse-content"]').innerHTML = '';
 
-      // Populate Bible read-more buttons
-      const bibleContainer = modal.querySelector('.bible-read-more-container');
-      if (bibleContainer) {
-        bibleContainer.innerHTML = '';
-        const bibleRefs = (ev.bibleRefs && ev.bibleRefs.length > 0) ? ev.bibleRefs.map(r => r.ref) : this.extractBibleReferences(ev.bibleRef);
-        const bibleVerseContent = modal.querySelector('.verse-content[data-target="bible-verse-content"]');
-        bibleRefs.forEach(ref => {
-          const btn = document.createElement('button');
-          btn.className = 'read-more-btn';
-          btn.textContent = `<img src="assets/gfx/book-open-duotone.svg" class="icon-svg" loading="lazy"> Read ${ref}`;
-          btn.onclick = () => this.fetchVerseInline(ref, bibleVerseContent, btn);
-          bibleContainer.appendChild(btn);
-        });
+        const bibleContainer = modal.querySelector('.bible-read-more-container');
+        if (bibleContainer) {
+          bibleContainer.innerHTML = '';
+          const bibleRefs = (ev.bibleRefs && ev.bibleRefs.length > 0) ? ev.bibleRefs.map(r => r.ref) : this.extractBibleReferences(ev.bibleRef);
+          const bibleVerseContent = modal.querySelector('.verse-content[data-target="bible-verse-content"]');
+          bibleRefs.forEach(ref => {
+            const btn = document.createElement('button');
+            btn.className = 'read-more-btn';
+            btn.innerHTML = `<img src="assets/gfx/book-open-duotone.svg" class="icon-svg" loading="lazy"> Read ${ref}`;
+            btn.onclick = () => this.fetchVerseInline(ref, bibleVerseContent, btn);
+            bibleContainer.appendChild(btn);
+          });
+        }
+      } else {
+        bibleRefArea.hidden = true;
       }
 
-      // Populate Prophecy read-more buttons
-      const prophetContainer = modal.querySelector('.prophecy-read-more-container');
-      if (prophetContainer) {
-        prophetContainer.innerHTML = '';
-        const propheticRefs = (ev.propheticRefs && ev.propheticRefs.length > 0) ? ev.propheticRefs.map(r => r.ref) : this.extractBibleReferences(ev.propheticLink);
-        const prophetVerseContent = modal.querySelector('.verse-content[data-target="prophecy-verse-content"]');
-        propheticRefs.forEach(ref => {
-          const btn = document.createElement('button');
-          btn.className = 'read-more-btn';
-          btn.textContent = `<img src="assets/gfx/book-open-duotone.svg" class="icon-svg" loading="lazy"> Read ${ref}`;
-          btn.onclick = () => this.fetchVerseInline(ref, prophetVerseContent, btn);
-          prophetContainer.appendChild(btn);
-        });
+      if (hasProphecy) {
+        fulfillmentArea.hidden = false;
+        modal.querySelector('.evidence-detail-prophetic-link').textContent = ev.propheticLink || '---';
+        modal.querySelector('.prophecy-read-more-container').innerHTML = '';
+        modal.querySelector('.verse-content[data-target="prophecy-verse-content"]').hidden = true;
+        modal.querySelector('.verse-content[data-target="prophecy-verse-content"]').innerHTML = '';
+
+        const prophetContainer = modal.querySelector('.prophecy-read-more-container');
+        if (prophetContainer) {
+          prophetContainer.innerHTML = '';
+          const propheticRefs = (ev.propheticRefs && ev.propheticRefs.length > 0) ? ev.propheticRefs.map(r => r.ref) : this.extractBibleReferences(ev.propheticLink);
+          const prophetVerseContent = modal.querySelector('.verse-content[data-target="prophecy-verse-content"]');
+          propheticRefs.forEach(ref => {
+            const btn = document.createElement('button');
+            btn.className = 'read-more-btn';
+            btn.innerHTML = `<img src="assets/gfx/book-open-duotone.svg" class="icon-svg" loading="lazy"> Read ${ref}`;
+            btn.onclick = () => this.fetchVerseInline(ref, prophetVerseContent, btn);
+            prophetContainer.appendChild(btn);
+          });
+        }
+      } else {
+        fulfillmentArea.hidden = true;
       }
     } else {
-      propArea.hidden = true;
+      bibleRefArea.hidden = true;
+      fulfillmentArea.hidden = true;
     }
 
     document.getElementById('btn-open-codex-from-detail').onclick = () => {
@@ -1403,7 +1446,7 @@ export class GameEngine {
       <button class="picker-card ${p.discovered ? 'discovered' : (this.es.selectedCodexProphecyId === p.id ? 'selected-b' : '')}"
               ${p.discovered ? 'disabled' : ''}
               onclick="window.gameEngine.es.selectedCodexProphecyId='${p.id}'; window.gameEngine.renderCodexMatcherContent();">
-        <i class="fa-solid ${p.discovered ? 'fa-circle-check' : 'fa-lock'}"></i> ${p.reference}
+        <i class="fa-lg fa-solid ${p.discovered ? 'fa-circle-check' : 'fa-lock'}"></i> ${p.reference}
       </button>`).join("");
   }
 
@@ -1416,7 +1459,7 @@ export class GameEngine {
       ? `<p class="picker-empty">No prophecies linked yet. Match evidence to find truths.</p>`
       : discovered.map(p => `
           <div class="prophecy-card discovered">
-            <div class="prophecy-card-icon">📜</div>
+            <div class="prophecy-card-icon"><img src="../assets/gfx/scroll-duotone.svg" class="icon-svg" loading="lazy"/></div>
             <div class="prophecy-card-reference">${p.reference}</div>
             <div class="prophecy-card-desc">${p.text.substring(0, 60)}...</div>
           </div>
@@ -1465,44 +1508,44 @@ export class GameEngine {
     }
   }
 
-startDialogue(npcConfig) {
-     const storyData = this.dm.getStory(npcConfig.id);
+  startDialogue(npcConfig) {
+    const storyData = this.dm.getStory(npcConfig.id);
 
-     if (storyData) {
-       const story = this.dm.createStory(npcConfig.id);
-       if (!story && !storyData.start) {
-         console.warn('[startDialogue] No valid story for NPC:', npcConfig.id);
-         return;
-       }
-       this.inDialogue = true;
-       this.pVelocity.set(0, 0, 0);
+    if (storyData) {
+      const story = this.dm.createStory(npcConfig.id);
+      if (!story && !storyData.start) {
+        console.warn('[startDialogue] No valid story for NPC:', npcConfig.id);
+        return;
+      }
+      this.inDialogue = true;
+      this.pVelocity.set(0, 0, 0);
 
-       // Capture dialogue into NPC memory for the people-modal instead of the sidebar
-       const originalAddMsg = this.dm.addMsg.bind(this.dm);
-       const self = this;
-       this.dm.addMsg = function(text, type) {
-         originalAddMsg(text, type);
-         if (type === 'npc' || type === 'player') {
-           self.ns._addMemory(npcConfig.id, {
-             type: 'talk',
-             reaction: text,
-             speaker: type === 'npc' ? npcConfig.name : 'You'
-           });
-         }
-       };
+      // Capture dialogue into NPC memory for the people-modal instead of the sidebar
+      const originalAddMsg = this.dm.addMsg.bind(this.dm);
+      const self = this;
+      this.dm.addMsg = function (text, type) {
+        originalAddMsg(text, type);
+        if (type === 'npc' || type === 'player') {
+          self.ns._addMemory(npcConfig.id, {
+            type: 'talk',
+            reaction: text,
+            speaker: type === 'npc' ? npcConfig.name : 'You'
+          });
+        }
+      };
 
-       this.dm.openDialogue(npcConfig, story, () => {
-         // Restore original addMsg
-         this.dm.addMsg = originalAddMsg;
-         if (npcConfig.unlocksEvidence) npcConfig.unlocksEvidence.forEach(id => this._unlockEvidence(id));
-         if (npcConfig.revealsProphecy) {
-           this._revealProphecy(npcConfig.revealsProphecy);
-         }
-         this.inDialogue = false;
-         this.updateActions(this.cm.getActiveCase());
-       }, (tag) => {
-         if (tag.startsWith('reveal:')) this._unlockEvidence(tag.split(':')[1]);
-       });
+      this.dm.openDialogue(npcConfig, story, () => {
+        // Restore original addMsg
+        this.dm.addMsg = originalAddMsg;
+        if (npcConfig.unlocksEvidence) npcConfig.unlocksEvidence.forEach(id => this._unlockEvidence(id));
+        if (npcConfig.revealsProphecy) {
+          this._revealProphecy(npcConfig.revealsProphecy);
+        }
+        this.inDialogue = false;
+        this.updateActions(this.cm.getActiveCase());
+      }, (tag) => {
+        if (tag.startsWith('reveal:')) this._unlockEvidence(tag.split(':')[1]);
+      });
     } else if (npcConfig.hasDialogue || npcConfig.dialogueId) {
       // Fallback to simple talk when no Ink story is available
       const result = this.ns.talk(npcConfig.id);
@@ -1548,7 +1591,7 @@ startDialogue(npcConfig) {
     halo.lookAt(0, 100, 0);
     sphere.add(halo);
 
-    this.controls.displayAlert(`Evidence revealed: ${ev.name}`);
+    this.controls.displayAlert(`Evidence revealed: ${ev.name} <a href="#" id="evidence-alert-link" data-evidence-id="${ev.id}" style="color:#00f5d4;text-decoration:underline;margin-left:8px;">View details</a>`);
   }
 
   collectEvidence() {
@@ -1565,6 +1608,7 @@ startDialogue(npcConfig) {
           this.collectedEvidence.push(unlocked);
           this.showEvidencePopup(unlocked.name, unlocked.desc || '', unlocked.emoji);
           this.advanceQuest(1);
+          this.controls.displayAlert(`Evidence collected: ${unlocked.name} <a href="#" id="evidence-alert-link" data-evidence-id="${unlocked.id}" style="color:#00f5d4;text-decoration:underline;margin-left:8px;">View details</a>`);
 
           // Unlock suspect if associated with this evidence
           if (unlocked.revealsSuspect) {
@@ -1586,7 +1630,7 @@ startDialogue(npcConfig) {
   }
 
   showEvidencePopup(title, desc, emoji) {
-    document.getElementById('popup-evidence-title').innerHTML = `<i class="fa-solid fa-file-shield"></i> ${emoji || ''} ${title}`;
+    document.getElementById('popup-evidence-title').innerHTML = `<i class="fa-lg fa-solid fa-file-shield"></i> ${emoji || ''} ${title}`;
     document.getElementById('popup-evidence-body').innerText = desc;
     document.getElementById('evidence-popup-card').style.display = 'block';
   }
@@ -1801,7 +1845,7 @@ startDialogue(npcConfig) {
       collPrompt.style.top = `${y}px`;
       collPrompt.style.display = 'flex';
       const data = nearestItem.userData.dataRef;
-      document.getElementById('inworld-collectable-msg').textContent = (nearestItem.userData.newlyUnlocked ? '<img src="assets/gfx/sparkles-duotone.svg" class="icon-svg" loading="lazy"> NEW — ' : '') + (data.name || 'NEARBY COLLECTABLE');
+      document.getElementById('inworld-collectable-msg').innerHTML = (nearestItem.userData.newlyUnlocked ? '<img src="assets/gfx/sparkles-duotone.svg" class="icon-svg" loading="lazy"> NEW — ' : '') + (data.name || 'NEARBY COLLECTABLE');
     } else {
       collPrompt.style.display = 'none';
     }

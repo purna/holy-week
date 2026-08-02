@@ -1,8 +1,33 @@
 # Miracle Maker - Source of Truth
 
-**Note on Suspects:** All characters involved in a case are considered potential suspects from the start. The final list of accusable suspects is fully unlocked once all prophecies for that case have been discovered.
+## Table of Contents
+
+- [Games](#gsames)
+- [Linked Documentation](#linked-documentation)
+- [Prophecy & Typology System](#prophecy--typology-system)
+  - [Categories in the Codex](#categories-in-the-codex)
+  - [Discovery Steps](#discovery-steps)
+- [Codex: Biblical Patterns Section](#codex-biblical-patterns-section)
+  - [Predictive Prophecies (Direct OT Predictions)](#predictive-prophecies-direct-ot-predictions)
+  - [Typological Fulfilments (Types & Shadows)](#typological-fulfilments-types--shadows)
+- [Typology Deep Dive: The Passover Lamb](#typology-deep-dive-the-passover-lamb)
+- [Typology Deep Dive: The Priest-King of Salem](#typology-deep-dive-the-priest-king-of-salem)
+- [Hidden Detective Chains](#hidden-detective-chains)
+- [Scoring System](#scoring-system)
+- [Prophecy Collection System](#prophecy-collection-system)
+- [Cross-Reference: Story Files vs. `js/act*_case.js`](#-cross-reference-story-files-vs-jsact_casejs)
+- Appendix: Emoji Reference
+- Appendix: Character Emoji & Icon Reference
+- Appendix: Location Emoji & Icon Reference
+
+**Note on Suspects:** All characters involved in a case are considered potential suspects from the start. The final list of accusable suspects is fully unlocked once all prophecies/typologies for that case have been discovered.
 
 This document serves as the canonical source of truth for the game's narrative structure, characters, and case resolutions for both mobile and desktop versions. It is generated from the `act*.js` case files.
+
+---
+[Back to Top](#table-of-contents)
+
+---
 
 ## Gsames
 
@@ -13,32 +38,183 @@ Currently 3 versions all using a core gameplay
 
 ## Linked Documentation
 
-*   **Holy Week Chronology ([`holy_week_chronology.md`](holy_week_chronology.md)):** The master timeline of events, locations, prophecies, and historical context.
-*   **Character Profiles: ([`character_profiles_expanded.md`](character_profiles_expanded.md)):**  In-depth linguistic and psychological profiles for all major characters.
-*   **Prophecy Guide ([`prophecies.md`](prophecies.md)):** A detailed breakdown of all prophecies, their fulfillment, and which characters reference them.§
-*   **System Architecture ([`CONFIG.md`](CONFIG.md)):** Technical documentation for the game's configuration and engine systems.
-*   **Trigger & NPC System:** Design pattern for binding Blender objects to game logic.
+*   [**Holy Week Chronology**](`holy_week_chronology.md`) holy_week_chronology.md : The master timeline of events, locations, prophecies, and historical context.
+*   [**Character Dialogue Profiles**](`Character_Dialogue_Profiles.md`) Character_Dialogue_Profiles.md : Master index of all character dialogue profiles, roles, and linguistic styles.
+*   [**Game Case & Lab Reference**](`Game Case & Lab Reference.md`) Game Case & Lab Reference.md : Master reference for Lab mechanics, UI specs, and case evidence databases.
+*   [**Prophecy & Evidence Links**](`prophecies.md`) : Maps every case to its prophecies and evidence links.
+*   [**Scoring System**](`ScoringSystem.md`) ScoringSystem.md: Comprehensive overview of the scoring, doubt, and reputation systems.
+*   [**System Architecture**](`CONFIG.md`) CONFIG.md: Technical documentation for the game's configuration and engine systems.
+*   [**Trigger & NPC System**](`TRIGGER_NPC_SYSTEM.md`) TRIGGER_NPC_SYSTEM.md: Design pattern for binding Blender objects to game logic.
 
 
-## Prophecy System: How Prophecies are Unlocked
+---
+[Back to Top](#table-of-contents)
 
-Prophecies are a key element for scoring and understanding the narrative. Unlocking them is a two-step process: **Reveal** and **Link**.
+## Prophecy & Typology System
 
-1.  **Reveal (Discovery):** First, a prophecy must be revealed. This removes the padlock in the Codex, allowing you to read its details. A prophecy is revealed when you:
-    *   **Talk to a specific person:** Certain characters will mention a prophecy during dialogue, revealing it.
-    *   **Perform an analysis in the Lab:** Combining the correct evidence in the Lab can also reveal a prophetic connection.
+Unlocking prophetic and typological insights is a key mechanics layer for scoring and narrative discovery.
 
-    Each NPC and lab deduction that reveals a prophecy is marked with a `revealsProphecy` field in the case data. When triggered, a "🔮 Prophecy Revealed" notification appears.
+### Categories in the Codex
+1. **Fulfilled Prophecies:** Direct OT predictions matched with NT events (e.g., Zechariah 9:9).
+2. **Typological Fulfilments (Types & Shadows):** Structural patterns where OT historical events foreshadow Christ (e.g., Passover Lamb sequence).
 
-2.  **Link (Unlock for Score):** Once a prophecy is revealed, you must go to the Codex to unlock its point value. To do this, you must correctly link the prophecy to the piece of evidence that fulfills it.
+### Discovery Steps
+1. **Reveal (Discovery):** Unlocked through NPC conversation or Lab analysis (`revealsProphecy`).
+2. **Link (Codex):** Match revealed prophecy/type to its fulfilling evidence item (+10 points).
+3. **Scoring:**
+   - Correct Link: `+10 points`
+   - Incorrect Link: `+5 doubt`
 
-3.  **Scoring:**
-    *   Open the Codex.
-    *   Select the unlocked prophecy.
-    *   Correctly link it to the piece of evidence that fulfilled it.
-    *   A correct link awards `+10 points`. An incorrect link adds `+5 doubt`.
+---
+[Back to Top](#table-of-contents)
 
-A "Prophecy Revealed" notification (🔮) will appear when you successfully complete step 1.
+---
+
+## Codex: Biblical Patterns Section
+
+The Codex features a dedicated section for **Biblical Patterns & Typology**, distinguishing between predictive prophecies and typological fulfilments:
+
+### Predictive Prophecies (Direct OT Predictions)
+
+| Prophecy | Scripture | Category | Codex Entry |
+|---|---|---|---|
+| The Rejected City | Jeremiah 19:10–11; Daniel 9:26 | Prophecy | *The Rejected City* |
+| The Rejected King | Psalm 2:1–6; Isaiah 8:14–15 | Prophecy | *The Rejected King* |
+| The New Covenant | Jeremiah 31:31–34; Exodus 24:8 | Prophecy | *The New Covenant* |
+| The Scattered Sheep | Zechariah 13:7 | Prophecy | *The Scattered Sheep* |
+| The Silent Lamb | Isaiah 53:7; Psalm 27:12; Isaiah 50:6 | Prophecy | *The Silent Lamb* |
+| Psalm 22 | Psalm 22:1, 7–8, 16, 18 | Prophecy | *Psalm 22 Fulfilled* |
+| The Perfect Sacrifice | Zechariah 12:10; Exodus 12:46; Psalm 34:20 | Prophecy | *The Perfect Sacrifice* |
+| The Unexpected Tomb | Isaiah 53:9 | Prophecy | *The Unexpected Tomb* |
+| The Firstfruits of Resurrection | Leviticus 23:9–14; Psalm 16:10; Hosea 6:2; Isaiah 53:10–11 | Prophecy | *The Firstfruits of Resurrection* |
+
+### Typological Fulfilments (Types & Shadows)
+
+* **Passover Lamb** (Exodus 12)
+* **Bronze Serpent** (Numbers 21)
+* **Jonah** (Jonah 1)
+* **Hyssop at Passover** (Exodus 12:22)
+* **Manna** (Exodus 16)
+* **Melchizedek** (Genesis 14)
+* **Isaac Carrying the Wood** (Genesis 22)
+* **Joseph Rejected then Exalted** (Genesis 37–45)
+* **Day of Atonement / Scapegoat** (Leviticus 16)
+* **Red Heifer** (Numbers 19)
+* **Abel's Righteous Blood** (Genesis 4)
+* **Rock Struck for Water** (Exodus 17)
+
+---
+---
+[Back to Top](#table-of-contents)
+
+
+## Typology Deep Dive: The Passover Lamb
+
+### Case Details
+* **ID:** `passover_lamb_chain` (Act II) & `crucifixion_site` (Act III)
+* **Theme:** The detective discovers that Jesus is intentionally fulfilling the multi-day Passover Lamb sequence from Exodus 12.
+
+### Evidence Items
+*   🧴 **Flask of Nard (`nard_flask`):** Anointing of Jesus's feet at Bethany (John 12). *Typology: The anointing of Jesus's feet with expensive perfume was an act of profound worship. In the Old Testament, anointing with oil consecrated kings (1 Samuel 16:13) and priests (Exodus 30:30) for service. This act sets Jesus apart as the Messiah (the "Anointed One") and, as Jesus Himself stated, prepares His body "beforehand for burial" (Mark 14:8).*
+*   🏺 **Broken Alabaster Jar (`alabaster_jar`):** Anointing of Jesus's head (Matthew 26). *Typology: The anointing of Jesus's head directly mirrors the way kings like Saul and David were anointed, signifying His royal authority. It also serves as a prophetic act of consecration, setting Him apart as the ultimate High Priest and King who would offer Himself as the final sacrifice.*
+*   📜 **Temple Inspection Notes (`inspection_notes`):** Jesus is publicly questioned by priests and found without fault. *Typology: The lamb is inspected for four days.*
+*   🌿 **Sponge Soaked in Sour Wine (`sour_wine_sponge`):** The sponge is lifted to Jesus on a hyssop branch at the cross (John 19:29). *Typology: Hyssop was used to apply the lamb's blood to the doorposts for salvation (Exodus 12:22).*
+
+### Lab Mechanics & "Aha!" Moment
+When players link evidence from across multiple cases (e.g., `nard_flask` + `alabaster_jar` + `sour_wine_sponge`), the game unlocks the hidden pattern:
+
+> **Hidden Pattern Discovered:** 
+> *Jesus is intentionally following the Passover Lamb sequence (Selection -&gt; Inspection -&gt; Anointing -&gt; Sacrifice).*
+
+---
+[Back to Top](#table-of-contents)
+
+---
+
+## Typology Deep Dive: The Priest-King of Salem
+
+*   **Case:** `last_supper` (Act III)
+*   **Evidence:** `Spilled Wine on the Linen` (`wine_stain`)
+*   **Typology:** Melchizedek, the mysterious priest-king of Salem, blessed Abraham with bread and wine (Genesis 14:18). Jesus, as the ultimate priest-king (Hebrews 7), uses the same elements to establish the New Covenant, fulfilling this ancient pattern.
+
+---
+[Back to Top](#table-of-contents)
+
+---
+
+## Hidden Detective Chains
+
+Hidden Detective Chains are **cross-case discovery patterns** that unlock bonus Codex entries when the player links all related evidence items from multiple cases. Each chain represents a complete theological arc spanning multiple days of Holy Week.
+
+### Chain 1 — Psalm 22 (Crucifixion Prophecy Chain)
+
+| Detail | Information |
+|---|---|
+| **Theme** | The complete crucifixion psalm fulfilled scene by scene |
+| **Cases Involved** | `crucifixion_site` (Act III) |
+| **Unlock Requirements** | Mocking Witness, Roman Dice, Crucifixion Nails, Divided Garments, Sour Wine |
+| **Reward** | Codex Entry: *Psalm 22 Fulfilled* |
+| **Scoring** | +25 bonus points, +10 Faith |
+| **Unlock Conditions** | All 5 evidence items linked to their respective Psalm 22 prophecy entries in the Codex |
+
+### Chain 2 — Passover Lamb (The True Passover)
+
+| Detail | Information |
+|---|---|
+| **Theme** | Jesus follows the Exodus 12 lamb-sacrifice sequence |
+| **Cases Involved** | `last_supper` (Act III), `crucifixion_site` (Act III), `passover_lamb_chain` (Act II) |
+| **Unlock Requirements** | Lamb Selection, Temple Inspection, Hyssop Branch, Unbroken Bones, Crucifixion |
+| **Reward** | Codex Entry: *The True Passover Lamb* |
+| **Scoring** | +25 bonus points, +10 Faith |
+| **Unlock Conditions** | Evidence from `nard_flask`, `alabaster_jar`, `inspection_notes`, `sour_wine_sponge`, `unbroken_legs` all linked across cases |
+
+### Chain 3 — Day of Atonement (The Greater Atonement)
+
+| Detail | Information |
+|---|---|
+| **Theme** | Christ fulfills the dual role of sacrificial lamb and scapegoat |
+| **Cases Involved** | `barabbas_choice` (Act III), `sanhedrin_trial` (Act III), `crucifixion_site` (Act III) |
+| **Unlock Requirements** | High Priest, Trial, Scapegoat Evidence, Outside-the-City Execution |
+| **Reward** | Codex Entry: *The Greater Atonement* |
+| **Scoring** | +25 bonus points, +10 Faith |
+| **Unlock Conditions** | Evidence linking Caiaphas's high-priestly role, the trial records, Barabbas as scapegoat, and the crucifixion outside the city all connected |
+
+### Chain 4 — New Covenant (Covenant of Blood)
+
+| Detail | Information |
+|---|---|
+| **Theme** | The Jeremiah-prophesied new covenant is inaugurated |
+| **Cases Involved** | `last_supper` (Act III) |
+| **Unlock Requirements** | Bread, Wine, Jeremiah Scroll, Upper Room Witness |
+| **Reward** | Codex Entry: *The New Covenant* |
+| **Scoring** | +25 bonus points, +10 Faith |
+| **Unlock Conditions** | `bread_crumbs`, `wine_stain`, `new_covenant_declaration`, and Upper Room preparation evidence all linked to Jeremiah 31:31–34 |
+
+### Chain 5 — Resurrection (Death Defeated)
+
+| Detail | Information |
+|---|---|
+| **Theme** | Christ's resurrection fulfills the Feast of Firstfruits and the Jonah sign |
+| **Cases Involved** | `resurrection` (Act IV) |
+| **Unlock Requirements** | Jonah Record, Firstfruits Offering, Empty Tomb, Resurrection Witnesses |
+| **Reward** | Codex Entry: *Death Defeated* |
+| **Scoring** | +25 bonus points, +10 Faith |
+| **Unlock Conditions** | `sign_of_jonah`, `firstfruits_offering`, `empty_tomb`, and `mary_encounter` evidence all linked across prophecy entries |
+
+### Cross-Case Discovery Mechanics
+
+Hidden chains are discovered through the **Codex** tab. When a prophecy from one case is linked to evidence from a *different* case that also relates to the same chain, a "Cross-Case Discovery" notification appears. Completing all links in a chain triggers the bonus Codex entry.
+
+| Chain | Cross-Case Links | Trigger Point |
+|---|---|---|
+| Psalm 22 | `crucifixion_site`: `mockery_crown` → `psalm_22_7_8`, `crucifixion_nails` → `psalm_22_16`, `split_dice` → `psalm_22_18` | After linking all 3 prophecy entries |
+| Passover Lamb | `passover_lamb_chain`: `nard_flask` → `typology_passover_lamb`, `crucifixion_site`: `sour_wine_sponge` → `typology_passover_lamb`, `unbroken_legs` → `exodus_12_46` | After linking evidence from 3 cases |
+| Day of Atonement | `barabbas_choice`: `barabbas_warrant` → scapegoat, `sanhedrin_trial`: high priest evidence, `crucifixion_site`: outside-city execution | After linking trial + execution evidence |
+| New Covenant | `last_supper`: `bread_crumbs` → Exodus 12, `wine_stain` → Jeremiah 31, `new_covenant_declaration` → Jeremiah 31 | After linking all 4 Last Supper evidence |
+| Resurrection | `resurrection`: `sign_of_jonah`, `firstfruits_offering`, `empty_tomb`, `mary_encounter` | After linking all 4 resurrection evidence |
+
+---
+[Back to Top](#table-of-contents)
 
 ---
 
@@ -63,7 +239,8 @@ The score is composed of the following elements:
     *   A bonus awarded if the accusation is correct and the player made no failed challenges during the case.
 *   **Doubt Penalty:** `-2 points` per doubt point
     *   The player's final score for the case is reduced by a penalty calculated from their accumulated "Doubt" score.
-
+*   **Hidden Detective Chains:** `+25 points` + `Codex Entry` per chain unlocked
+    *   Awarded for completing all evidence-to-prophecy links within a cross-case hidden chain. Each unlocked chain grants a bonus Codex entry and contributes `+10 Faith` (a persistent spiritual-progress meter).
 
 # Prophecy Collection System
 
@@ -94,6 +271,15 @@ The prophecy collection system allows players to discover and track biblical pro
 - Codex shows discovered prophecies grouped by case
 - Prophecy detail view shows full reference, text, and fulfillment info
 - Completion percentage shown for each case's prophecy collection
+- **Faith meter:** A persistent progress bar tracks hidden chain completions (+10 Faith per chain)
+
+## Hidden Chains Integration
+
+- Hidden Detective Chains span multiple cases
+- `chainManager.js` tracks cross-case evidence-to-prophecy linkages
+- `chainsCompleted` array stored in `caseState` per case
+- Cross-case links trigger a "Discovery" notification in the Codex
+- Completing a chain unlocks a bonus Codex entry and awards Faith
 
 ## Implementation Pattern
 
@@ -210,6 +396,9 @@ Reputation is a faction-based trust meter that tracks how each major group in Je
         *   Awarded when the player incorrectly challenges an NPC and fails to find a contradiction.
 
 ---
+[Back to Top](#table-of-contents)
+
+---
 
 ## Core Gameplay Systems
 
@@ -235,6 +424,7 @@ A new **Actions** tab is available on the main investigation screen, providing a
 *   **Gameplay:** These actions are currently for atmospheric effect and do not directly impact scoring or case progression. They are accessible from the "Actions" tab in the main investigation UI for all game versions (`/desktop/`, `/mobileB/`, `/mobileC/`).
 
 ---
+[Back to Top](#table-of-contents)
 
 ## Acts & Cases
 
@@ -393,6 +583,7 @@ A new **Actions** tab is available on the main investigation screen, providing a
 | `Jesus's Teaching on Faith` → Zechariah 4:6–7 | Dialogue: John |
  
 ---
+[Back to Top](#table-of-contents)
 
 ## Act II: The Teacher
 
@@ -576,6 +767,7 @@ A new **Actions** tab is available on the main investigation screen, providing a
 | `Notes on Cosmic Signs` → Isaiah 13:10 | Dialogue: John |
  
 ---
+[Back to Top](#table-of-contents)
 
 ## Act III: The Pressure Builds
 
@@ -590,7 +782,8 @@ A new **Actions** tab is available on the main investigation screen, providing a
     *   Rhoda ([`../characters/rhoda.json`](../characters/rhoda.json))
     *   Judas Iscariot ([`../characters/judas.json`](../characters/judas.json))
 *   **Culprit:** **Judas Iscariot**. His agitation and haste led to the broken items as he prepared for his betrayal.
-*   **Prophecies:** Exodus 12:1–14, Jeremiah 31:31–34, Psalm 41:9, Zechariah 11:12–13, Isaiah 53:12
+*   **Prophecies:** Exodus 12:1–14, Jeremiah 31:31–34, Exodus 24:8, Psalm 41:9, Zechariah 11:12–13, Isaiah 53:12
+*   **Typologies:** Melchizedek (Genesis 14:18), Passover Meal (Exodus 12)
 
 *   **Evidence:**
     *   `Unleavened Bread Crumbs`
@@ -599,14 +792,14 @@ A new **Actions** tab is available on the main investigation screen, providing a
     *   `Large Stone Water Jug`
     *   `Imprint of a Money Bag`
     *   `Fragment of Sop (Dipped Bread)`
-    *   `Written Summary of Jesus's Words`
+    *   `Written Summary of Jesus\'s Words`
     *   `List of the Twelve`
 
 #### People
 
 | Character | Action | Unlocks | Reveals Prophecy |
 |---|---|---|---|
-| John Mark | Talk | `Broken Wine Cup` | Jeremiah 31:31–34 |
+| John Mark | Talk | `Broken Wine Cup`, `Jeremiah Scroll` | Jeremiah 31:31–34 |
 | Rhoda | Talk | `Spilled Water Basin`, `Passover Lamb Bone`, `Dipped Bread Fragment` | Exodus 12:1–14 |
 | Judas Iscariot | Talk | `Dipped Bread Fragment` |
 
@@ -618,7 +811,7 @@ A new **Actions** tab is available on the main investigation screen, providing a
 
 | Character | ID | Type | Unlock Method | Unlockable |
 |---|---|---|---|---|
-| John Mark | `john_mark` | NPC + Suspect | Talk to John Mark; Collect `bread_crumbs`, `new_covenant_declaration`, `betrayal_dipped_bread`; Lab: **Witness to Agitation** (Observed the event, but did not cause it) | ✅ Yes |
+| John Mark | `john_mark` | NPC + Suspect | Talk to John Mark; Collect `bread_crumbs`, `new_covenant_declaration`, `betrayal_dipped_bread`, `covenant_seal`; Lab: **Witness to Agitation** (Observed the event, but did not cause it) | ✅ Yes |
 | Rhoda | `servant` | NPC + Suspect | Talk to Rhoda; Collect `water_jug`, `cup_fragments`; Lab: **Witness to Haste** (Saw someone leaving in a hurry) | ✅ Yes |
 | Judas Iscariot | `judas` | NPC + Suspect | Talk to Judas Iscariot; Collect `money_bag_impression`; Lab: **Implicated by Prophecy** (Links him to the betrayal) | ✅ Yes |
 
@@ -638,6 +831,10 @@ A new **Actions** tab is available on the main investigation screen, providing a
 | `Passover Lamb Bone` → Exodus 12:1–14 | Dialogue: Rhoda |
 | `Money Bag Impression` → Zechariah 11:12–13 | Lab: betrayal evidence (thirty pieces of silver) |
 | `Dipped Bread Fragment` → Isaiah 53:12 | Not explicitly linked in Lab/People tables |
+| `Jeremiah Scroll` → Exodus 24:8 (Covenant sealed with blood) | Dialogue: John Mark |
+| `Unleavened Bread Crumbs` → Genesis 14:18 (Melchizedek) | Codex: New Covenant Hidden Chain |
+
+**Hidden Detective Chain:** *The New Covenant* — Links bread, wine, Jeremiah scroll, and Upper Room witness across the Last Supper investigation.
  
 ### Case: `gethsemane_arrest` (The Severed Ear)
 *   **Title:** The Severed Ear
@@ -662,8 +859,8 @@ A new **Actions** tab is available on the main investigation screen, providing a
 | Character | Action | Unlocks | Reveals Prophecy |
 |---|---|---|---|
 | Malchus | Talk | `Bloody Linen Swab` | Isaiah 53:7 |
-| Simon Peter | Talk | `Disciple's Sword` |
-| Roman Soldier | Talk | `Extinguished Roman Torch` |
+| Simon Peter | Talk | `Disciple's Sword` | |
+| Roman Soldier | Talk | `Extinguished Roman Torch`, `Unresisting Prisoner's Cord` | Isaiah 53:7 |
 
 
 
@@ -675,7 +872,7 @@ A new **Actions** tab is available on the main investigation screen, providing a
 |---|---|---|---|---|
 | Malchus | `malchus_servant` | NPC + Suspect | Talk to Malchus; Collect `abandoned_linen`, `dropped_torch`; Lab: **Identified as Victim** (He was healed, not an aggressor) | ✅ Yes |
 | Simon Peter | `simon_peter` | NPC only | Walk up in Scene tab | ✅ Yes (as NPC) |
-| Garrison Guard | `roman_soldier` | NPC only | Walk up in Scene tab | ✅ Yes (as NPC) |
+| Garrison Guard | `roman_soldier` | NPC | Talk to Garrison Guard; Collect `dropped_torch`, `prisoner_cord`; Lab: **Witness to Non-Resistance** (Observed Jesus's silent submission) | ✅ Yes |
 | No One | `none` | Suspect only | Auto-unlocked | ✅ Yes |
 
 #### Lab
@@ -689,7 +886,10 @@ A new **Actions** tab is available on the main investigation screen, providing a
 | Evidence + Prophecy = Unlock | Source of Information |
 |---|---|
 | `Disciple's Sword` → Isaiah 53:7 | Dialogue: Malchus |
+| `Unresisting Prisoner's Cord` → Isaiah 53:7 | Dialogue: Roman Soldier |
 | `Scattered Disciples' Cloaks` → Zechariah 13:7 | Lab: `Disciple's Sword` + `Extinguished Roman Torch` |
+
+**🔗 Cross-Case Chain:** *The Scattered Sheep* — Zechariah 13:7 fulfilled at Gethsemane; its reversal in Peter's Restoration (`peter_restoration` case).
  
 ### Case: `sanhedrin_trial` (The Midnight Tribunal)
 *   **Title:** The Midnight Tribunal
@@ -703,7 +903,7 @@ A new **Actions** tab is available on the main investigation screen, providing a
     *   Peter ([`../characters/peter.json`](../characters/peter.json))
     *   No One ()
 *   **Culprit:** **Caiaphas**. He orchestrated the illegal trial to secure a blasphemy charge.
-*   **Prophecies:** Isaiah 50:6, Micah 5:1, Psalm 27:12, Psalm 35:11
+*   **Prophecies:** Isaiah 53:7, Isaiah 50:6, Micah 5:1, Psalm 27:12, Psalm 35:11
 
 *   **Evidence:**
     *   `Rooster Feather`
@@ -712,13 +912,14 @@ A new **Actions** tab is available on the main investigation screen, providing a
     *   `Mocking Guards' Reed and Spittle`
     *   `Guard's Reed`
     *   `Charcoal Briquette`
-    *   `Perjured Witness Statement`
+     *   `Perjured Witness Statement`
+     *   `Silent Witness Account`
 
 #### People
 
 | Character | Action | Unlocks | Reveals Prophecy |
 |---|---|---|---|
-| Caiaphas | Talk | `Torn High Priestly Robe` | |
+| Caiaphas | Talk | `Torn High Priestly Robe`, `Silent Witness Account` | Isaiah 50:6 & Micah 5:1, Isaiah 53:7 |
 | Peter | Talk | `Courtyard Rooster Feather` | |
 | Ananias | Talk | `Conflicting Depositions` |
 
@@ -750,7 +951,13 @@ A new **Actions** tab is available on the main investigation screen, providing a
 | Evidence + Prophecy = Unlock | Source of Information |
 |---|---|
 | `Torn High Priestly Robe` → Isaiah 50:6 & Micah 5:1 | Lab: `Torn High Priestly Robe` + `Conflicting Depositions` |
-| `Conflicting Depositions` → Psalm 27:12 & Psalm 35:11 | Lab: `Conflicting Depositions` + `Torn High Priestly Robe` |
+| `Conflicting Depositions` → Psalm 27:12 & Psalm 35:11 | Lab: `Conflicting Depositions` + `Torn High Priestic Robe` |
+| `Silent Witness Account` → Isaiah 53:7 | Dialogue: Caiaphas |
+| `Mocking Guards' Reed and Spittle` → Isaiah 50:6 | Dialogue: Ananias (false witness account) |
+| `Guard's Reed` → Micah 5:1 | Dialogue: Caiaphas |
+| `Perjured Witness Statement` → Psalm 35:11 | Lab: `Conflicting Depositions` comparison |
+
+**🔗 Cross-Case Chain:** *The Greater Atonement* — The Sanhedrin trial (high priest role) and `barabbas_choice` (scapegoat) connect here to `crucifixion_site`, forming the Day of Atonement typology.
  
 ### Case: `barabbas_choice` (The People's Choice)
 *   **Title:** The People's Choice
@@ -814,24 +1021,33 @@ A new **Actions** tab is available on the main investigation screen, providing a
     *   Joseph of Arimathea ([`../characters/joseph_arimathea.json`](../characters/joseph_arimathea.json))
     *   No One ()
 *   **Culprit:** **No One**. The event was a divine/cosmic act, not a human crime.
-*   **Prophecies:** Psalm 22:16-18, Amos 8:9, Isaiah 53:9, Zechariah 12:10, Psalm 34:20, Psalm 31:5
+*   **Prophecies:** Psalm 22:1, Psalm 22:7–8, Psalm 22:16, Psalm 22:18, Psalm 69:21, Amos 8:9, Isaiah 53:9, Zechariah 12:10, Psalm 34:20, Exodus 12:46, Psalm 31:5
+
+*   **Typologies:** Red Heifer (Numbers 19), Isaac Carrying the Wood (Genesis 22)
 
 *   **Evidence:**
     *   `Soldiers' Casting Dice`
+    *   `Crucifixion Nails`
+    *   `Mocking Crown of Thorns`
+    *   `Cry of Abandonment`
     *   `Blood-Stained Roman Hasta`
     *   `Shattered Limestone Fragment`
     *   `Thick Blue and Scarlet Threads`
     *   `Joseph's Market Bill for Fine Linen`
     *   `Unbroken Tibiae Report`
     *   `Final Words Scroll`
+    *   `Sponge Soaked in Sour Wine`
+    *   `Simon of Cyrene's Burden`
 
 #### People
 
 | Character | Action | Unlocks | Reveals Prophecy |
 |---|---|---|---|
-| Centurion Longinus | Talk | `Soldier's Gambling Dice`, `Centurion's Spear` | Psalm 34:20 |
+| Centurion Longinus | Talk | `Soldier's Gambling Dice`, `Centurion's Spear`, `Mocking Crown of Thorns` | Psalm 34:20 |
 | Pashhur | Talk | `The Torn Temple Veil`, `Split Rocks` | Amos 8:9 |
-| Joseph of Arimathea | Talk | `Fine Linen Burial Cloth` |
+| Joseph of Arimathea | Talk | `Fine Linen Burial Cloth` | Isaiah 53:9 |
+| Crucifixion Guard | Talk | `Crucifixion Nails`, `Cry of Abandonment` | Psalm 22:1, Psalm 22:16 |
+| Simon of Cyrene | Talk | `Simon of Cyrene's Burden` | Genesis 22:6 (Isaac) |
 
 
 
@@ -848,32 +1064,41 @@ A new **Actions** tab is available on the main investigation screen, providing a
 | Secret Visitor | `secret_visit` | NPC only | Walk up in Scene tab | ✅ Yes (as NPC) |
 | Peter (Denial) | `peter_denial` | NPC only | Walk up in Scene tab | ✅ Yes (as NPC) |
 | Peter (Simple Defense) | `peter_defense_simple` | NPC only | Walk up in Scene tab | ✅ Yes (as NPC) |
-| Simon of Cyrene | `simon_cyrene` | NPC only | Walk up in Scene tab | ✅ Yes (as NPC) |
+| Simon of Cyrene | `simon_cyrene` | NPC | Talk to Simon of Cyrene; Collect `simon_cyrene_burden`; Lab: **Isaac Typology** (Carries the wood, just as Isaac did) | ✅ Yes |
 | Temple Curtain Witness | `temple_curtain` | NPC only | Walk up in Scene tab | ✅ Yes (as NPC) |
-| Crucifixion Guard | `execution_guard` | NPC only | Walk up in Scene tab | ✅ Yes (as NPC) |
+| Crucifixion Guard | `execution_guard` | NPC | Talk to Crucifixion Guard; Collect `crucifixion_nails`, `last_cry_abandonment`; Lab: **Gospel Details Verified** (Nails and final words confirm Gospel accuracy) | ✅ Yes |
 | No One | `none` | Suspect only | Auto-unlocked | ✅ Yes |
 
 #### Lab
 
 | Evidence Pair | Operation | Result | Prophecy Revealed | Points | Reputation | Doubt |
 |---|---|---|---|---|---|---|
-| `Soldier's Gambling Dice` + `Centurion's Spear` | Link | **Motive Questioned** for Centurion Longinus | Psalm 22:16–18 | +15 | — | — |
+| `Soldier's Gambling Dice` + `Centurion's Spear` | Link | **Motive Questioned** for Centurion Longinus | Psalm 22:18 | +15 | — | — |
 | `The Torn Temple Veil` + `Soldiers' Gambling Dice` | Compare | **Identified as Witness** for Pashhur | Jeremiah 31:31-34 | +15 | — | — |
 | `Fine Linen Burial Cloth` + `Centurion's Spear` | Link | **Motive Clarified** for Joseph of Arimathea | Isaiah 53:9 | +15 | — | — |
 
 #### Codex
 | Evidence + Prophecy = Unlock | Source of Information |
 |---|---|
-| `Soldier's Gambling Dice` → Psalm 22:16–18 | Lab: `Soldier's Gambling Dice` + `Centurion's Spear` |
+| `Soldier's Gambling Dice` → Psalm 22:18 | Lab: `Soldier's Gambling Dice` + `Centurion's Spear` |
+| `Crucifixion Nails` → Psalm 22:16 | Dialogue: Centurion Longinus |
+| `Mocking Crown of Thorns` → Psalm 22:7–8 | Dialogue: Centurion Longinus |
+| `Cry of Abandonment` → Psalm 22:1 | Dialogue: Centurion Longinus |
 | `The Torn Temple Veil` → Jeremiah 31:31-34 | Lab: `The Torn Temple Veil` + `Soldiers' Gambling Dice` |
 | `Split Rocks` → Haggai 2:6-7 | Dialogue: Pashhur |
 | `Fine Linen Burial Cloth` → Isaiah 53:9 | Lab: `Fine Linen Burial Cloth` + `Centurion's Spear` |
 | `Centurion's Spear` → Psalm 34:20 | Dialogue: Centurion Longinus |
 | `Centurion's Spear` → Zechariah 12:10 | Lab: `Centurion's Spear` (pierced side) |
-| `Shattered Limestone Fragment` → Isaiah 26:19 | Dialogue: Pashhur |
+| `Shattered Limestone Fragment` → Numbers 19 (Red Heifer) | Dialogue: Pashhur |
+| `Simon of Cyrene's Burden` → Genesis 22:6 (Isaac Carrying the Wood) | Dialogue: Centurion Longinus |
 | `Centurion's Spear` → Psalm 31:5 | Not explicitly linked in Lab/People tables |
+
+**🔓 Hidden Chain:** *The Perfect Sacrifice* — Complete the Psalm 22 chain by linking all mocking, piercing, and garment-division evidence.
+
+**🔓 Hidden Chain:** *The True Passover Lamb* — Link Passover Lamb evidence across `last_supper`, `passover_lamb_chain`, and `crucifixion_site`.
  
 ---
+[Back to Top](#table-of-contents)
 
 ## Act IV: The New Beginning
 
@@ -889,7 +1114,7 @@ A new **Actions** tab is available on the main investigation screen, providing a
     *   Joseph of Arimathea ([`../characters/joseph_arimathea.json`](../characters/joseph_arimathea.json))
     *   No One ()
 *   **Culprit:** **No One**. The resurrection was a supernatural event.
-*   **Prophecies:** Psalm 16:10, Hosea 6:2, Jonah 1:17 / Matthew 12:40, Isaiah 53:10–11, Psalm 22:1–31, Isaiah 26:19
+*   **Prophecies:** Psalm 16:10, Hosea 6:2, Jonah 1:17 / Matthew 12:40, Isaiah 53:10–11, Psalm 22:1–31, Isaiah 26:19, Leviticus 23:9–14
 
 *   **Evidence:**
     *   `The Displaced Sealing Stone`
@@ -901,6 +1126,7 @@ A new **Actions** tab is available on the main investigation screen, providing a
     *   `Mary Magdalene's Testimony`
     *   `Resurrection Psalm Scroll`
     *   `Sign of Jonah`
+    *   `Firstfruits Offering`
 
 #### People
 
@@ -908,7 +1134,7 @@ A new **Actions** tab is available on the main investigation screen, providing a
 |---|---|---|---|
 | Mary Magdalene | Talk | `rolled_stone`, `empty_tomb`, `burial_linen`, `angelic_witness`, `mary_encounter` | Psalm 16:10 |
 | Marcus | Talk | `guard_report`, `rolled_stone` | Hosea 6:2 |
-| Joseph of Arimathea | Talk | `spice_jars`, `empty_tomb` | Isaiah 53:10–11 |
+| Joseph of Arimathea | Talk | `spice_jars`, `empty_tomb`, `firstfruits_offering` | Isaiah 53:10–11, Leviticus 23:9–14 |
 
 
 
@@ -944,6 +1170,10 @@ A new **Actions** tab is available on the main investigation screen, providing a
 | `empty_tomb` → Psalm 22:1–31 | Codex: `empty_tomb` (cry of abandonment opens, resurrection closes the psalm) |
 | `rolled_stone` → Psalm 16:10 | Lab: `rolled_stone` (the dead rise and shout for joy) |
 | `opened_tombs` → Ezekiel 37:12-13 | Lab: `opened_tombs` + `guard_report` |
+| `firstfruits_offering` → Leviticus 23:9–14 | Dialogue: Joseph of Arimathea |
+| `empty_tomb` → Psalm 16:10 | Lab: `empty_tomb` (resurrection as guarantee of our own rising) |
+
+**🔓 Hidden Chain:** *Death Defeated* — Link Jonah Record, Firstfruits Offering, Empty Tomb, and Resurrection Witnesses to complete the resurrection prophecy chain.
  
 ### Case: `roman_inquiry` (The Guard's Report)
 *   **Title:** The Guard's Report
@@ -1062,8 +1292,15 @@ A new **Actions** tab is available on the main investigation screen, providing a
 | `galilean_apparition` → Isaiah 53:10-11 | Lab: `galilean_apparition` + `miraculous_catch` |
 | `threefold_commission` → Ezekiel 34:11-16 | Dialogue: Peter / Nathanael |
  
+
+
+
+---
+[Back to Top](#table-of-contents)
+
 <!-- AUTO-GENERATED: DIALOGUE-ID-INDEX START -->
 ## Canonical Runtime Dialogue ID Reference (Auto-Generated)
+
 
 This section is generated from `js/act*_case.js` + `js/gameplay/dialogueMaps.js` and reflects the **actual runtime mapping**.
 
@@ -1146,6 +1383,11 @@ This section is generated from `js/act*_case.js` + `js/gameplay/dialogueMaps.js`
 | Act IV | `roman_inquiry` | `mary_resurrection` | Mary (Resurrection) | `mary_resurrection` | [`../story/act4/case_b_guards_report/mary_resurrection.json`](../story/act4/case_b_guards_report/mary_resurrection.json) | [`../story/act4/case_b_guards_report/mary_resurrection.ink`](../story/act4/case_b_guards_report/mary_resurrection.ink) |
 | Act IV | `roman_inquiry` | `peter_restored` | Peter (Restored) | `peter_restored` | [`../story/act4/case_c_peters_restoration/peter_restored.json`](../story/act4/case_c_peters_restoration/peter_restored.json) | [`../story/act4/case_c_peters_restoration/peter_restored.ink`](../story/act4/case_c_peters_restoration/peter_restored.ink) |
 <!-- AUTO-GENERATED: DIALOGUE-ID-INDEX END -->
+
+
+---
+[Back to Top](#table-of-contents)
+
 
 ## Appendix: Emoji Reference
 
@@ -1267,3 +1509,152 @@ Phosphor Duotone Icon  are in the /assets/gfx/ folder
 | `✖️` | `x-duotone.svg` | X |
 
 <!-- AUTO-GENERATED: EMOJI-REFERENCE-APPENDIX END -->
+
+---
+[Back to Top](#table-of-contents)
+
+
+# Appendix: Character Emoji & Icon Reference
+
+This table maps each character to their representative emoji and the corresponding SVG icon file located in `/assets/character/`.
+
+| Emoji | Character Name | SVG Icon File |
+|:---:|---|---|
+| `📜` | Senior Scribe | `senior_scribe.svg` |
+| `🤔` | Thomas the Twin | `thomas.svg` |
+| `🏛️` | Pashhur | `pashhur.svg` |
+| `🧐` | Simon the Pharisee | `simon_pharisee.svg` |
+| `🕍` | The Temple Priest | `temple_priest.svg` |
+| `⛵` | Simon Peter | `peter.svg` |
+| `🛡️` | Claudius the Centurion | `centurion_longinus.svg` |
+| `💂` | The Garrison Guard | `garrison_guard.svg` |
+| `💰` | Corrupt Seller | `temple_merchant.svg` |
+| `🤫` | The Market Informant | `market_informant.svg` |
+| `🧺` | The Market Vendor | `market_vendor.svg` |
+| `😨` | The Nervous Citizen | `city_gossip.svg` |
+| `🌾` | The Galilean Pilgrim | `galilean_pilgrim.svg` |
+| `🏙️` | The Jerusalem Local | `jerusalem_local.svg` |
+| `💸` | The Temple Money Changer | `money_changer.svg` |
+| `👑` | Annas the Patriarch | `annas.svg` |
+| `⚖️` | Caiaphas the High Priest | `caiaphas.svg` |
+| `📖` | Eleazar | `eleazar.svg` |
+| `⚰️` | Joseph of Arimathea | `joseph_arimathea.svg` |
+| `😠` | Sadducee Opposer | `sadducee_authority.svg` |
+| `🪙` | Judas Iscariot | `judas.svg` |
+| `🕵️` | The Temple Spy | `temple_spy.svg` |
+| `✍️` | John the Beloved Disciple | `john_apostle.svg` |
+| `🍲` | Martha of Bethany | `martha.svg` |
+| `💎` | Mary of Bethany | `mary_bethany.svg` |
+| `💧` | Mary Magdalene | `mary_magdalene.svg` |
+| `⚔️` | Centurion Longinus | `centurion_longinus.svg` |
+| `💭` | Claudia Procula (Pilate’s Wife) | `claudia_procula.svg` |
+| `🤵` | Herod’s Servant (Chuza) | `herods_servant.svg` |
+| `✒️` | Pilate’s Secretary | `pilate_secretary.svg` |
+| `🏛️` | Pontius Pilate | `pontius_pilate.svg` |
+| `🤥` | Ananias the False Witness | `ananias_witness.svg` |
+| `🦊` | Nathanael the Pharisee | `nathanael_pharisee.svg` |
+| `❓` | Nicodemus | `nicodemus.svg` |
+| `📝` | Hillel the Scribe | `hillel_scribe.svg` |
+| `👨‍🏫` | Samuel the Scribe | `samuel_scribe.svg` |
+| `🤝` | Andrew the Disciple | `andrew_disciple.svg` |
+| `📝` | John Mark | `john_mark.svg` |
+| `🗣️` | Mount Teacher | `mount_teacher.svg` |
+| `🇮🇱` | Nathanael | `nathanael_disciple.svg` |
+| `⛓️` | Barabbas | `barabbas.svg` |
+| `😒` | Jemimah the Skeptic | `jemimah.svg` |
+| `👮` | Lucas the Sentry | `lucas_sentry.svg` |
+| `🤑` | Malachi the Money Changer | `malachi_moneychanger.svg` |
+| `👂` | Malchus | `malchus.svg` |
+| `👁️` | Maluch the Temple Spy | `maluch.svg` |
+| `💂` | Marcus the Garrison Guard | `garrison_guard.svg` |
+| `👨‍🌾` | Nathan the Gardener | `nathan_gardener.svg` |
+| `🧹` | Preparation Servant | `upper_room_prep.svg` |
+| `👧` | Rhoda the Servant | `rhoda.svg` |
+| `💪` | Simon of Cyrene | `simon_cyrene.svg` |
+| `🙌` | Simon the Leper | `simon_leper.svg` |
+| `💂` | The Execution Detail Soldier | `execution_soldier.svg` |
+| `🐴` | Tobias the Donkey Owner | `tobias_owner.svg` |
+| `🧑‍🤝‍🧑` | Bethesda Witness | `bethesda_witness.svg` |
+| `🚶` | Local Traveler | `local_traveler.svg` |
+| `💰` | Rich Young Ruler | `rich_young_ruler.svg` |
+| `🤫` | Secret Visitor | `secret_visit.svg` |
+| `😡` | The Upset Pilgrim Buyer | `upset_buyer.svg` |
+| `🗣️` | Trial Rumors | `trial_rumors.svg` |
+| `😠` | Upset Temple Buyer | `displaced_merchant.svg` |
+| `🧥` | Woman Who Gave Her Cloak | `devout_follower.svg` |
+
+<!-- AUTO-GENERATED: EMOJI-REFERENCE-APPENDIX END -->
+
+---
+[Back to Top](#table-of-contents)
+
+## Appendix: Location Emoji & Icon Reference
+
+This table maps each key location in the game to its representative emoji and the corresponding SVG icon file located in `/assets/locations/`.
+
+| Emoji | Location Name | SVG Icon File |
+|:---:|---|---|
+| `🏡` | Bethany | `bethany.svg` |
+| `🫒` | Mount of Olives | `mount_of_olives.svg` |
+| `🕍` | Jerusalem Temple | `temple.svg` |
+| `🏛️` | The Praetorium | `praetorium.svg` |
+| `🏠` | Palace of Caiaphas | `caiaphas_palace.svg` |
+| `🚪` | The Upper Room | `upper_room.svg` |
+| `🌳` | Garden of Gethsemane | `gethsemane.svg` |
+| `🪦` | Golgotha / Garden Tomb | `golgotha.svg` |
+| `🌊` | Sea of Galilee | `sea_of_galilee.svg` |
+| `🏙️` | Jerusalem | `jerusalem.svg` |
+| `🛤️` | Road to Emmaus | `emmaus_road.svg` |
+| `🏺` | Pool of Bethesda | `pool_of_bethesda.svg` |
+| `🌾` | Field of Blood (Akeldama) | `akeldama.svg` |
+
+
+---
+[Back to Top](#table-of-contents)
+
+
+## Appendix: Location Emoji & Icon Reference
+
+This table maps each key location in the game to its representative emoji and the corresponding SVG icon file located in `/assets/locations/`.
+
+| Emoji | Location Name | SVG Icon File |
+|:---:|---|---|
+| `🏡` | Bethany | `bethany.svg` |
+| `🫒` | Mount of Olives | `mount_of_olives.svg` |
+| `🕍` | Jerusalem Temple | `temple.svg` |
+| `🏛️` | The Praetorium | `praetorium.svg` |
+| `🏠` | Palace of Caiaphas | `caiaphas_palace.svg` |
+| `🚪` | The Upper Room | `upper_room.svg` |
+| `🌳` | Garden of Gethsemane | `gethsemane.svg` |
+| `🪦` | Golgotha / Garden Tomb | `golgotha.svg` |
+| `🌊` | Sea of Galilee | `sea_of_galilee.svg` |
+| `🏙️` | Jerusalem | `jerusalem.svg` |
+| `🛤️` | Road to Emmaus | `emmaus_road.svg` |
+| `🏺` | Pool of Bethesda | `pool_of_bethesda.svg` |
+| `🌾` | Field of Blood (Akeldama) | `akeldama.svg` |
+
+---
+[Back to Top](#table-of-contents)
+
+
+## Appendix: Act & Case Emoji & Icon Reference
+
+This table maps each case to its representative emoji and the corresponding SVG icon file located in `assets/gfx/`.
+
+| Emoji | Case Title | Act | SVG Icon File |
+|:---:|---|---|---|
+| 🐴 | The Missing Donkey | Act I | `horse-duotone.svg` |
+| 🪑 | The Overturned Tables | Act I | `coins-duotone.svg` |
+| 🌳 | The Barren Fig Tree | Act I | `tree-duotone.svg` |
+| 📖 | The Silenced Teacher | Act II | `book-open-duotone.svg` |
+| 💰 | The Price of Life | Act II | `coins-duotone.svg` |
+| ☀️ | The End of the Age | Act II | `sun-duotone.svg` |
+| 🫙 | The Anointing at Bethany | Act II | `jar-duotone.svg` |
+| 🍷 | The Broken Cup | Act III | `cup-duotone.svg` |
+| 👂 | The Severed Ear | Act III | `ear-duotone.svg` |
+| ⚖️ | The Midnight Tribunal | Act III | `balance-scale-duotone.svg` |
+| 👑 | The People's Choice | Act III | `crown-duotone.svg` |
+| ✝️ | The Final Sacrifice | Act III | `cross-duotone.svg` |
+| ⚰️ | The Empty Tomb | Act IV | `package-duotone.svg` |
+| 📜 | The Guard's Report | Act IV | `scroll-duotone.svg` |
+| 🐟 | Peter's Restoration | Act IV | `fish-duotone.svg` |

@@ -19,5 +19,16 @@
     "prophecy": "He spoke of treasure in heaven. I chose the treasure I could see."
   },
   "earSize": 1.0,
-  "headSize": 1.0
+  "headSize": 1.0,
+  "colorPalette": {
+    "colorInner": "#dcd6c8",
+    "colorOuter": "#2c1f38",
+    "colorCloak": "#1a1224",
+    "colorAccent": "#375273",
+    "colorGarment2": "#c9a02f",
+    "colorSkin": "#d2a679",
+    "colorHair": "#241c14",
+    "colorEye": "#6b4a2f",
+    "colorLip": "#7a453a"
+  }
 }

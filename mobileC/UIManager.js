@@ -134,7 +134,7 @@ export class UIManager {
   }
 
   renderMap() {
-    const mapData = this.ls.getMapData();
+    const actData = this.ls.getActData();
     const progress = this.cm.getProgress() || {};
     const total = this.cm.getAllCases().length;
     const solved = Object.values(progress.cases || {}).filter(p => p.solved).length;
@@ -142,7 +142,6 @@ export class UIManager {
     const hdrRank = document.getElementById("hdr-rank");
     if (hdrRank) hdrRank.textContent = progress.rank || "Rookie";
 
-    // Refresh all scores in the UI
     const scoreValEls = document.querySelectorAll('.val-score');
     scoreValEls.forEach(el => el.textContent = progress.totalScore || 0);
 
@@ -155,18 +154,20 @@ export class UIManager {
 
     const container = document.getElementById("map-locations");
     if (container) {
-      container.innerHTML = mapData.map(loc => {
-        const status = !loc.isUnlocked ? "locked" : loc.allSolved ? "solved" : "open";
-        const badge = loc.allSolved ? "<img src='../assets/gfx/check-circle-duotone.svg' class='icon-svg' loading='lazy'>" : loc.isUnlocked ? "<img src='../assets/gfx/magnifying-glass-duotone.svg' class='icon-svg' loading='lazy'>" : "<img src='../assets/gfx/lock-duotone.svg' class='icon-svg' loading='lazy'>";
+      container.innerHTML = actData.map(act => {
+        const status = !act.isUnlocked ? "locked" : act.allSolved ? "solved" : "open";
+        const badge = act.allSolved ? "<img src='../assets/gfx/check-circle-duotone.svg' class='icon-svg' loading='lazy'>" : act.isUnlocked ? "<img src='../assets/gfx/magnifying-glass-duotone.svg' class='icon-svg' loading='lazy'>" : "<img src='../assets/gfx/lock-duotone.svg' class='icon-svg' loading='lazy'>";
         const statusText = { locked: "<img src='../assets/gfx/lock-duotone.svg' class='icon-svg' loading='lazy'> Locked", open: "<img src='../assets/gfx/magnifying-glass-duotone.svg' class='icon-svg' loading='lazy'> Cases available", solved: "<img src='../assets/gfx/check-circle-duotone.svg' class='icon-svg' loading='lazy'> All solved" }[status];
+        const caseCount = act.cases.length;
+        const solvedCount = act.solvedCases;
         return `
-        <div class="location-card ${status}" role="listitem" tabindex="0" onclick="openLocation('${loc.id}')">
+        <div class="location-card ${status}" role="listitem" tabindex="0" onclick="openAct('${act.label}')">
           <div class="location-inner">
-            <div class="location-icon" aria-hidden="true"><img src="${loc.icon}" class='icon-svg' loading='lazy'></div>
+            <div class="location-icon" aria-hidden="true"><img src='${act.cases[0].icon || '../assets/gfx/scroll-duotone.svg'}' class='icon-svg' loading='lazy'></div>
             <div class="location-info">
-              <div class="location-name">${loc.name}</div>
-              <div class="location-region">${loc.region}</div>
-              <div class="location-fact">${loc.fact}</div>
+              <div class="location-name">${act.label}</div>
+              <div class="location-region">${solvedCount}/${caseCount} cases solved</div>
+              <div class="location-fact">${caseCount} case${caseCount !== 1 ? 's' : ''} across ${act.locations.length} location${act.locations.length !== 1 ? 's' : ''}</div>
               <div class="location-status ${status}">${statusText}</div>
             </div>
           </div>
@@ -176,50 +177,78 @@ export class UIManager {
     }
   }
 
-  openLocation(locId) {
-    const loc = this.ls.travelTo(locId);
-    if (!loc) return;
+  openAct(actLabel) {
     this.prevScreen = "map";
+    const actCases = this.ls.getCasesForAct(actLabel);
+    const unlockedCases = actCases.filter(c => !c.isLocked);
 
-    document.getElementById("cases-loc-name").innerHTML = "<img src='../assets/gfx/magnifying-glass-duotone.svg' class='icon-svg' loading='lazy'> Holy Week";
+    document.getElementById("cases-loc-name").innerHTML = actLabel;
     const scroll = document.getElementById("cases-scroll");
 
     scroll.innerHTML = `
       <div class="location-header">
-        <div class="location-header-icon" aria-hidden="true"><img src="${loc.icon}" class='icon-svg' loading='lazy'></div>
         <div>
-          <div class="location-header-name">${loc.name}</div>
-          <div class="location-header-ambiance">${loc.ambiance}</div>
+          <div class="location-header-name">${actLabel}</div>
+          <div class="location-header-ambiance">${unlockedCases.length} case${unlockedCases.length !== 1 ? 's' : ''} available</div>
         </div>
       </div>
-      <div class="location-fact-box"><img src='../assets/gfx/books-duotone.svg' class='icon-svg' loading='lazy'> ${loc.fact}</div>
-      ${this._renderActGroups(locId)}
+      ${this._renderActCases(actLabel)}
     `;
     this.showScreen("cases");
   }
 
-  _renderActGroups(locId) {
-    const allCases = this.ls.getAllCasesAtLocation(locId);
-    const actGroups = {};
-    allCases.forEach(c => {
-      const act = c.actLabel || "Act I";
-      if (!actGroups[act]) actGroups[act] = [];
-      actGroups[act].push(c);
-    });
-    return Object.entries(actGroups).map(([act, actCases]) => `
-      <div class="act-section">
-        <div class="act-label">${act}</div>
-        ${actCases.map(c => {
+  _renderActCases(actLabel) {
+    const allCases = this.ls.getCasesForAct(actLabel);
+    const unlockedIds = this.cm.getUnlockedCases().map(c => c.id);
+    const cases = allCases.map(c => ({ ...c, isLocked: !unlockedIds.includes(c.id) }));
+
+    return cases.map(c => {
       const prog = this.cm.getCaseProgress(c.id);
       return `<div class="case-card ${prog?.solved ? 'solved' : ''} ${c.isLocked ? 'locked' : ''}" 
                   onclick="${c.isLocked ? '' : `startCase('${c.id}')`}">
-            <div class="case-title">${c.title}</div>
-            <div class="case-subtitle">${c.subtitle}</div>
-            ${c.eventLocation ? `<div class="case-event-location"><img src='../assets/gfx/pin-duotone.svg' class='icon-svg' loading='lazy'> ${c.eventLocation}</div>` : ''}
-            <span class="case-status-label">${prog?.solved ? `<img src='../assets/gfx/check-circle-duotone.svg' class='icon-svg' loading='lazy'> Solved — ${prog.score?.total} pts` : c.isLocked ? "<img src='../assets/gfx/lock-duotone.svg' class='icon-svg' loading='lazy'> Locked" : "<img src='../assets/gfx/magnifying-glass-duotone.svg' class='icon-svg' loading='lazy'> Open"}</span>
-          </div>`;
-    }).join("")}
-      </div>`).join("");
+                <div class="case-title"><img src='${c.icon}' class='icon-svg' loading='lazy'> ${c.title}</div>
+                <div class="case-subtitle">${c.subtitle}</div>
+                ${c.eventLocation ? `<div class="case-event-location"><img src='../assets/gfx/pin-duotone.svg' class='icon-svg' loading='lazy'> ${c.eventLocation}</div>` : ''}
+                <span class="case-status-label">${prog?.solved ? `<img src='../assets/gfx/check-circle-duotone.svg' class='icon-svg' loading='lazy'> Solved — ${prog.score?.total} pts` : c.isLocked ? "<img src='../assets/gfx/lock-duotone.svg' class='icon-svg' loading='lazy'> Locked" : "<img src='../assets/gfx/magnifying-glass-duotone.svg' class='icon-svg' loading='lazy'> Open"}</span>
+              </div>`;
+    }).join("");
+  }
+
+  openLocation(locationId) {
+    this.prevScreen = "map";
+    const loc = this.ls.getLocation(locationId);
+    const locCases = this.ls.getCasesAtLocation(locationId);
+
+    document.getElementById("cases-loc-name").innerHTML = loc.name;
+    const scroll = document.getElementById("cases-scroll");
+
+    scroll.innerHTML = `
+      <div class="location-header">
+        <div>
+          <div class="location-header-name">${loc.name.replace(/<[^>]*>/g, '').trim()}</div>
+          <div class="location-header-ambiance">${locCases.length} case${locCases.length !== 1 ? 's' : ''}</div>
+        </div>
+      </div>
+      ${this._renderLocationCases(locationId)}
+    `;
+    this.showScreen("cases");
+  }
+
+  _renderLocationCases(locationId) {
+    const allCases = this.ls.getCasesAtLocation(locationId);
+    const unlockedIds = this.cm.getUnlockedCases().map(c => c.id);
+    const cases = allCases.map(c => ({ ...c, isLocked: !unlockedIds.includes(c.id) }));
+
+    return cases.map(c => {
+      const prog = this.cm.getCaseProgress(c.id);
+      return `<div class="case-card ${prog?.solved ? 'solved' : ''} ${c.isLocked ? 'locked' : ''}" 
+                  onclick="${c.isLocked ? '' : `startCase('${c.id}')`}">
+                <div class="case-title"><img src='${c.icon}' class='icon-svg' loading='lazy'> ${c.title}</div>
+                <div class="case-subtitle">${c.subtitle}</div>
+                ${c.eventLocation ? `<div class="case-event-location"><img src='../assets/gfx/pin-duotone.svg' class='icon-svg' loading='lazy'> ${c.eventLocation}</div>` : ''}
+                <span class="case-status-label">${prog?.solved ? `<img src='../assets/gfx/check-circle-duotone.svg' class='icon-svg' loading='lazy'> Solved — ${prog.score?.total} pts` : c.isLocked ? "<img src='../assets/gfx/lock-duotone.svg' class='icon-svg' loading='lazy'> Locked" : "<img src='../assets/gfx/magnifying-glass-duotone.svg' class='icon-svg' loading='lazy'> Open"}</span>
+              </div>`;
+    }).join("");
   }
 
   renderEvidenceList() {
@@ -254,7 +283,7 @@ export class UIManager {
 
      if (this.dm && this.dm.setActiveCase) this.dm.setActiveCase(c.id);
      this.peopleUI.addSystem(introText);
-     document.getElementById("inv-case-title").textContent = c.title;
+     document.getElementById("inv-case-title").innerHTML = `<img src='${c.icon}' class='icon-svg' loading='lazy'> ${c.title}`;
      document.getElementById("inv-case-sub").textContent = c.subtitle;
 
       this.switchInvTab("scene");
@@ -283,6 +312,13 @@ export class UIManager {
       if (unlocks.length > 0 && c) {
         this.cm.unlockEvidenceForScene(c.id, unlocks);
         this.renderLab();
+        unlocks.forEach(id => {
+          const ev = this.es.getById(id);
+          if (ev) {
+            this.a11y.announce(`Evidence unlocked: ${ev.name}`);
+            this._showEvidenceToast(`Evidence unlocked: ${ev.name}. <button class="evidence-toast-link" data-evidence-id="${ev.id}">View inventory</button>`);
+          }
+        });
       }
 
       if (loadedStory) {
@@ -787,4 +823,31 @@ export class UIManager {
     this.switchInvTab('people');
     if (result?.type === "talk_complete") { this.switchInvTab('scene'); }
   }
+
+  _showEvidenceToast(html) {
+    let toast = document.getElementById('evidence-unlock-toast');
+    if (!toast) {
+      toast = document.createElement('div');
+      toast.id = 'evidence-unlock-toast';
+      toast.className = 'evidence-unlock-toast';
+      toast.style.cssText = 'position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,0.9);color:#fff;padding:12px 20px;border-radius:8px;font-size:0.9rem;z-index:9000;display:flex;align-items:center;gap:10px;border:1px solid var(--gold,#d4a373);box-shadow:0 4px 12px rgba(0,0,0,0.5);max-width:90vw;';
+      document.body.appendChild(toast);
+    }
+    toast.innerHTML = html;
+    toast.style.display = 'flex';
+    clearTimeout(toast._timer);
+    toast._timer = setTimeout(() => { toast.style.display = 'none'; }, 6000);
+  }
 }
+
+// Evidence toast link delegation
+document.addEventListener('click', (e) => {
+  const link = e.target.closest('.evidence-toast-link');
+  if (!link) return;
+  const id = link.dataset.evidenceId;
+  if (window.ui && typeof window.ui.openInventory === 'function') {
+    window.ui.openInventory();
+  }
+  const toast = document.getElementById('evidence-unlock-toast');
+  if (toast) toast.style.display = 'none';
+});

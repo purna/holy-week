@@ -1,21 +1,24 @@
 # **Game Case & Lab Reference Update**
 
-[https://gemini.google.com/app/89693f053f441989](https://gemini.google.com/app/89693f053f441989)
+< [Back to Main Document](Miracle Maker.md)
 
-*User prompt: 1\. read the source of truth document. and the lab\_actions\_reference.md 2\. generate 'clues' for each case 3\. update the 'clues' data in the case files for the lab section of the game (and other incomplete data) fake: false, category: '', timelineOrder: null, clues: { compare: " ", link: " ", timeline: " ", contradict: " " } }, 4\. update the lab .md file with the clues and other missing data. it should have info on each case.*
+## Table of Contents
 
-Response: Here is the complete update for the case files and the Lab Reference documentation, featuring fully populated evidence data (including fake, category, timelineOrder, and specific clues) alongside the updated Lab Reference guide covering all four cases.
-
-## **1\. Generated Clues & Complete Case Data Code**
-
-
-*User prompt: now update the lab\_actions\_reference.md file with all our changes/updated*
-
-Response: Here is the master lab\_actions\_reference.md document, fully updated and reconciled with all system mechanics, retry policies, difficulty scaling rules, UI specifications, and complete Act IV case evidence data.
+- [System Mechanics & UI Specifications](#1-system-mechanics--ui-specifications)
+- [Lab Action Table](#2-lab-action-table)
+- [Difficulty Scaling Settings](#3-difficulty-scaling-settings)
+- [State Variables & Code Data Blueprint](#4-state-variables--code-data-blueprint)
+- [Holy Week Case File Database](#holy-week-case-file-database)
 
 # **Lab Actions & Case Reference Manual — Master Specification**
 
 This document serves as the master source-of-truth reference manual for all Lab Section mechanics, UI specifications, retry policies, and case evidence databases across the investigation system, featuring full coverage for **Act IV**.
+
+## Typology vs. Predictive Prophecy
+
+The Codex now distinguishes between:
+1.  **Fulfilled Prophecy:** Direct predictive Old Testament statements fulfilled in the New Testament.
+2.  **Typological Fulfilments (Types & Shadows):** Events where an earlier biblical pattern (e.g., Exodus 12) intentionally foreshadows Christ rather than predicting Him in a single prophetic text.
 
 ## **1\. System Mechanics & UI Specifications**
 
@@ -161,546 +164,387 @@ const groupDefinitions \= \[
 
 # Holy Week Case File Database
 
-## ACT I: The Opening Ministry & Prophetic Signs
+## ACT I: The Arrival
 
-### Case A: The Missing Donkey (`act1CaseA`)
-* **Location:** Bethphage, Mount of Olives[cite: 7]
-* **Intro Narrative:** Whispers move through the dusty crossroads of Bethphage as a strange command is given: walk to the village center and untie an unridden colt. Two disciples step forward, mindful of the prophecy that a king must come humbly, riding upon a foal[cite: 7].
-* **Summary:** Jesus rides into Jerusalem on a donkey colt, deliberately fulfilling Zechariah 9:9 and Psalm 118:25–26, transforming an apparent theft into a public messianic presentation[cite: 7].
+### Case: `triumphal_entry` (The Missing Donkey)
 
-#### Evidence Items
+#### Prophecies & Typologies
 
-* **Untethered Colt (`untethered_colt`)**[cite: 7]
-  * **Category:** physical[cite: 7]  
-  * **Timeline Order:** 1[cite: 7]  
-  * **Clues:**
-    * Compare: Physical evidence of a young animal found standing outside a village doorway, never yet ridden[cite: 7].  
-    * Link: Tangible biological asset linked to prophecies of royalty[cite: 7].  
-    * Timeline: Step 1 (Observed prior to entry into Jerusalem)[cite: 7].  
-    * Contradict: Unbroken animal temperament matching prophecy parameters[cite: 7].
-
-* **Bystander Inquiry (`bystander_inquiry`)**[cite: 7]
-  * **Category:** testimony[cite: 7]  
-  * **Timeline Order:** 2[cite: 7]  
-  * **Clues:**
-    * Compare: Eyewitness accounts of bystanders asking, "What are you doing, untying the colt?"[cite: 7]  
-    * Link: Verbal interrogation recorded by local witnesses[cite: 7].  
-    * Timeline: Step 2 (Occurring immediately during the removal of the animal)[cite: 7].  
-    * Contradict: Exact quote matching authorization responses[cite: 7].
-
-* **Zechariah Fragment (`zechariah_fragment`)**[cite: 7]
-  * **Category:** textual[cite: 7]  
-  * **Timeline Order:** 3[cite: 7]  
-  * **Clues:**
-    * Compare: A crumpled scroll fragment matching Zechariah 9:9 carried by a traveler in the crowd[cite: 7].  
-    * Link: Written prophetic text matching physical events[cite: 7].  
-    * Timeline: Step 3 (Consulted as the procession begins)[cite: 7].  
-    * Contradict: Ancient manuscript text aligning with messianic entry expectations[cite: 7].
-
----
-
-### Case B: The Overturned Tables (`act1CaseB`)
-* **Location:** Temple Courts, Jerusalem[cite: 7]
-* **Intro Narrative:** The outer courts of the Jerusalem Temple hum with commerce, coin clinking, and the cooing of caged doves. Suddenly, a whip of cords falls, tables shatter against stone, and righteous fury fills the courtyard as the house of prayer is reclaimed[cite: 7].
-* **Summary:** Jesus cleanses the Court of the Gentiles, overturning money changers' tables and dove cages to restore the Temple as a house of prayer and fulfill Malachi 3:1 and Isaiah 56:7[cite: 7].
+| Reference | ID | Category |
+|---|---|---|
+| Zechariah 9:9 | `zechariah_9_9` | Prophecy |
+| Psalm 118:25–26 | `psalm_118_25_26` | Prophecy |
+| Genesis 49:10–11 | `genesis_49_10_11` | Prophecy |
+| Malachi 3:1 | `malachi_3_1` | Prophecy |
 
 #### Evidence Items
 
-* **Scattered Tyrian Shekels (`scattered_shekels`)**[cite: 7]
-  * **Category:** physical[cite: 7]  
-  * **Timeline Order:** 4[cite: 7]  
-  * **Clues:**
-    * Compare: Physical evidence of money left behind on the stone floor[cite: 7].  
-    * Link: Tangible metal currency objects[cite: 7].  
-    * Timeline: Step 4 (Scattered immediately after tables were overturned)[cite: 7].  
-    * Contradict: Genuine silver alloy matching temple tax currency[cite: 7].
-
-* **Shattered Exchange Tables (`shattered_tables`)**[cite: 7]
-  * **Category:** physical[cite: 7]  
-  * **Timeline Order:** 5[cite: 7]  
-  * **Clues:**
-    * Compare: Overturned wooden furniture and broken structural pieces[cite: 7].  
-    * Link: Damaged market infrastructure property[cite: 7].  
-    * Timeline: Step 5 (Resulting from the courtyard cleansing)[cite: 7].  
-    * Contradict: Splintered wood grain consistent with rapid physical disruption[cite: 7].
-
-* **Inflated Ledger (`inflated_ledger`)**[cite: 7]
-  * **Category:** textual[cite: 7]  
-  * **Timeline Order:** 6[cite: 7]  
-  * **Clues:**
-    * Compare: A torn ledger recording inflated exchange rates for temple tax collection[cite: 7].  
-    * Link: Written commercial records revealing exploitative market practices[cite: 7].  
-    * Timeline: Step 6 (Recovered from the debris of the money changers' booths)[cite: 7].  
-    * Contradict: Mathematical discrepancies confirming financial corruption inside the court[cite: 7].
+| Evidence | `relatedProphecy` (Codex) | `bibleRef` (supporting verse) | Prophetic / Narrative Link Text |
+|---|---|---|---|
+| Two Disciples' Cloaks (`cloaks`) | `genesis_49_10_11` | Mark 11:7; 2 Kings 9:13 | Mirrors 2 Kings 9:13 — royal gesture repeated on the road to Jerusalem. |
+| Fresh Hoofprints (`donkey_tracks`) | - | Luke 19:35–36 | Route into Jerusalem through the eastern gate mirrors Ezekiel 44:1–3. |
+| Villager's Testimony (`witness_account`) | - | Mark 11:3–6 | Echoes how the Passover lamb was 'set apart' by divine instruction (Exodus 12:3–6). |
+| Zechariah 9:9 Scroll Fragment (`prophecy_scroll`) | `zechariah_9_9` | Matthew 21:4–5 | Written c. 520 BC; vision of a humble, donkey-riding king. |
+| Fresh-Cut Palm Branch (`palm_branch`) | `psalm_118_25_26` | John 12:13 | Symbol of Jewish national liberation (1 Maccabees 13:51). |
+| Cut Rope at Tethering Post (`rope_fibers`) | - | Mark 11:2 | Unridden colt reserved for sacred purposes (Numbers 19:2; Deuteronomy 21:3). |
+| Pharisee's Written Complaint (`crowd_testimony`) | `malachi_3_1` | Luke 19:39–40 | Pharisees recognised the messianic implications of the crowd's praise. |
 
 ---
 
-### Case C: The Barren Fig Tree (`act1CaseC`)
-* **Location:** Bethany Road, Mount of Olives[cite: 7]
-* **Intro Narrative:** By the dusty path leading from Bethany, a lone fig tree stands heavy with green leaves yet utterly devoid of fruit. A spoken word of judgment seals its fate, and by sunrise, its branches turn brittle and dead to their roots[cite: 7].
-* **Summary:** A leafy yet fruitless fig tree withers overnight after Jesus's curse, serving as a living parable of judgment against spiritual hypocrisy and a lesson on faith[cite: 7].
+### Case: `temple_cleansing` (The Overturned Tables)
+
+#### Prophecies & Typologies
+
+| Reference | ID | Category |
+|---|---|---|
+| Malachi 3:1 | `malachi_3_1` | Prophecy |
+| Isaiah 56:7 | `isaiah_56_7` | Prophecy |
+| Psalm 69:9 | `psalm_69_9` | Prophecy |
 
 #### Evidence Items
 
-* **Deceptive Foliage (`deceptive_foliage`)**[cite: 7]
-  * **Category:** physical[cite: 7]  
-  * **Timeline Order:** 7[cite: 7]  
-  * **Clues:**
-    * Compare: Premature, deceptive foliage hiding an absolute lack of seasonal fruit[cite: 7].  
-    * Link: Botanical anomalies displaying outer show without inner substance[cite: 7].  
-    * Timeline: Step 7 (Identified during the morning walk from Bethany)[cite: 7].  
-    * Contradict: Leaf density masking agricultural barrenness[cite: 7].
-
-* **Carbonized Roots (`carbonized_roots`)**[cite: 7]
-  * **Category:** physical[cite: 7]  
-  * **Timeline Order:** 8[cite: 7]  
-  * **Clues:**
-    * Compare: Shrivelled, carbonized root fibers discovered the following morning[cite: 7].  
-    * Link: Rapid cellular decay matching an absolute botanical sentence[cite: 7].  
-    * Timeline: Step 8 (Observed upon returning along the same path the next day)[cite: 7].  
-    * Contradict: Complete dehydration of structural vascular tissue overnight[cite: 7].
-
-* **Agrarian Field Note (`agrarian_field_note`)**[cite: 7]
-  * **Category:** textual[cite: 7]  
-  * **Timeline Order:** 9[cite: 7]  
-  * **Clues:**
-    * Compare: A discarded field note detailing barren tree anomalies near the ridge[cite: 7].  
-    * Link: Written agricultural observations concerning local flora growth cycles[cite: 7].  
-    * Timeline: Step 9 (Cataloged during environmental checks of the Bethany route)[cite: 7].  
-    * Contradict: Standard seasonal growth timelines violated by sudden decay[cite: 7].
+| Evidence | `relatedProphecy` (Codex) | `bibleRef` (supporting verse) | Prophetic / Narrative Link Text |
+|---|---|---|---|
+| Scattered Tyrian Shekels (`scattered_shekels`) | `malachi_3_1` | Luke 19:45 | The scattered coins are the physical result of the prophesied 'refiner's fire' purifying the Temple. |
+| Shattered Dove Cages (`shattered_cages`) | `isaiah_56_7` | Mark 11:15-17 | The broken cages symbolize the disruption of a system that had turned a 'house of prayer for all nations' into a marketplace. |
+| Discarded Whip of Cords (`whip_of_cords`) | `psalm_69_9` | John 2:15-17 | The disciples remembered Psalm 69:9 ('Zeal for your house will consume me') when they saw Jesus act with such authority. |
 
 ---
 
-## ACT II: Authority Challenged & Growing Opposition
+### Case: `fig_tree_incident` (The Barren Fig Tree)
 
-### Case A: The Silenced Teacher (`act2CaseA`)
-* **Location:** Temple Courts, Jerusalem[cite: 8]
-* **Intro Narrative:** Chief priests, Pharisees, and Herodians circle like hunters in the Temple colonnade, laying traps regarding taxes, resurrection, and divine law. One by one, their trick questions are shattered, leaving them utterly speechless before the multitude[cite: 8].
-* **Summary:** Religious leaders launch a coordinated series of traps regarding authority, taxes, and resurrection. Jesus answers flawlessly, silences every faction, and declares Himself the rejected Cornerstone (Psalm 118:22)[cite: 8].
+#### Prophecies & Typologies
+
+| Reference | ID | Category |
+|---|---|---|
+| Micah 7:1 | `micah_7_1` | Prophecy |
+| Jeremiah 8:13 | `jeremiah_8_13` | Prophecy |
+| Psalm 33:8–9 | `psalm_33_8_9` | Prophecy |
+| Zechariah 4:6–7 | `zechariah_4_6_7` | Prophecy |
 
 #### Evidence Items
 
-* **Roman Denarius (`roman_denarius`)**[cite: 8]
-  * **Category:** physical[cite: 8]  
-  * **Timeline Order:** 10[cite: 8]  
-  * **Clues:**
-    * Compare: A Roman denarius coin featuring the image and inscription of Caesar[cite: 8].  
-    * Link: Currency item utilized in the tax interrogation trap[cite: 8].  
-    * Timeline: Step 10 (Presented during the taxation inquiry in the courtyard)[cite: 8].  
-    * Contradict: Imperial imagery matching political compliance debates[cite: 8].
-
-* **Framing Dilemma Brief (`framing_dilemma_brief`)**[cite: 8]
-  * **Category:** textual[cite: 8]  
-  * **Timeline Order:** 11[cite: 8]  
-  * **Clues:**
-    * Compare: A discarded legal brief drafted by religious rulers attempting to frame a treasonous dilemma[cite: 8].  
-    * Link: Written prosecution strategies compiled by conspiring factions[cite: 8].  
-    * Timeline: Step 11 (Drafted prior to the public confrontation in the Temple)[cite: 8].  
-    * Contradict: Rhetorical traps designed to compromise the teacher politically[cite: 8].
-
-* **Psalm Cornerstone Fragment (`psalm_cornerstone`)**[cite: 8]
-  * **Category:** textual[cite: 8]  
-  * **Timeline Order:** 12[cite: 8]  
-  * **Clues:**
-    * Compare: A broken cornerstone fragment bearing an inscription from Psalm 118[cite: 8].  
-    * Link: Architectural metaphor text applied to messianic rejection[cite: 8].  
-    * Timeline: Step 12 (Referenced during the conclusion of the parabolic warnings)[cite: 8].  
-    * Contradict: Stonemasonry terms identifying the rejected foundational element[cite: 8].
+| Evidence | `relatedProphecy` (Codex) | `bibleRef` (supporting verse) | Prophetic / Narrative Link Text |
+|---|---|---|---|
+| Description of the Fig Tree (Monday) (`cursed_fig_tree_desc`) | `micah_7_1` | Mark 11:12–14 | The tree's appearance—leaves but no fruit—symbolized Israel's outward show of religiosity without genuine spiritual fruit, echoing prophetic laments like Micah 7:1. |
+| The Withered Fig Tree (Tuesday) (`withered_fig_tree_state`) | `jeremiah_8_13` | Mark 11:20–21 | The rapid, complete withering fulfilled prophecies of judgment on unfruitfulness, such as Jeremiah 8:13, where God threatens to remove fruit and wither leaves. |
+| Peter's Astonished Reaction (`peter_astonishment`) | `psalm_33_8_9` | Mark 11:21 | Psalm 33:8-9 declares that all should stand in awe of Him because 'He spoke, and it came to be.' Peter's reaction is the physical fulfillment of this reverence when confronted with divine command. |
+| Jesus's Teaching on Faith (`disciples_faith_lesson`) | `zechariah_4_6_7` | Mark 11:22–24 | Zechariah 4:7 speaks of a 'mighty mountain' becoming 'level ground' by the Spirit. Jesus adopts this imagery to show that faith connects the believer to that same mountain-moving power. |
 
 ---
 
-### Case B: The Price of Life (`act2CaseB`)
-* **Location:** Bethany & Temple Courts, Jerusalem[cite: 8]
-* **Intro Narrative:** Behind closed doors in the high-walled chambers of the Sanhedrin, panic spreads following the Lazarus miracle. Fearing the loss of their nation and standing, the council weighs a dark calculus: one man must die to save the institution[cite: 8].
-* **Summary:** Following the resurrection of Lazarus, the Sanhedrin panics over the massive crowds and issues a secret execution order against both Jesus and Lazarus to protect their institutional power[cite: 8].
+## ACT II: The Teacher
+
+### Case: `authority_challenged` (The Silenced Teacher)
+
+#### Prophecies & Typologies
+
+| Reference | ID | Category |
+|---|---|---|
+| Psalm 118:22–23 | `psalm_118_22_23` | Prophecy |
+| Isaiah 5:1–7 | `isaiah_5_1_7` | Prophecy |
+| Daniel 7:13–14 | `daniel_7_13_14` | Prophecy |
+| Malachi 3:1 | `malachi_3_1` | Prophecy |
 
 #### Evidence Items
 
-* **Sanhedrin Transcript (`sanhedrin_transcript`)**[cite: 8]
-  * **Category:** textual[cite: 8]  
-  * **Timeline Order:** 13[cite: 8]  
-  * **Clues:**
-    * Compare: A confidential Sanhedrin transcript plotting the removal of both Jesus and Lazarus[cite: 8].  
-    * Link: Official council meeting minutes recording conspiracy mandates[cite: 8].  
-    * Timeline: Step 13 (Recorded during the secret closed-door assembly)[cite: 8].  
-    * Contradict: Expediency arguments prioritizing political survival over law[cite: 8].
-
-* **Crowd Density Intelligence (`crowd_density_intelligence`)**[cite: 8]
-  * **Category:** physical[cite: 8]  
-  * **Timeline Order:** 14[cite: 8]  
-  * **Clues:**
-    * Compare: Intelligence reports detailing massive, surging crowds gathering near Bethany[cite: 8].  
-    * Link: Demographic tracking data alarming the ruling authorities[cite: 8].  
-    * Timeline: Step 14 (Compiled following the Lazarus resurrection event)[cite: 8].  
-    * Contradict: Unprecedented pilgrimage numbers overwhelming local security[cite: 8].
-
-* **High Priest's Warrant (`high_priest_warrant`)**[cite: 8]
-  * **Category:** textual[cite: 8]  
-  * **Timeline Order:** 15[cite: 8]  
-  * **Clues:**
-    * Compare: A sealed arrest warrant bearing the high priest's private seal[cite: 8].  
-    * Link: Legal authorization document demanding immediate apprehension[cite: 8].  
-    * Timeline: Step 15 (Issued immediately following the council consensus vote)[cite: 8].  
-    * Contradict: Wax seal impressions validating institutional authority[cite: 8].
+| Evidence | `relatedProphecy` (Codex) | `bibleRef` (supporting verse) | Prophetic / Narrative Link Text |
+|---|---|---|---|
+| The Formal Authority Challenge (`question_scroll`) | `malachi_3_1` | Matthew 21:23 | Malachi 3:1 predicted the Lord coming to His temple with authority. The irony of the challenge is that they were asking for credentials from the very One whose authority derived directly from God. |
+| Sketch of the Vineyard Parable (`parable_fragments`) | `isaiah_5_1_7` | Matthew 21:33–45 | Isaiah 5:1–7 is the Song of the Vineyard — God's lament over Israel's unfaithfulness. Jesus deliberately echoed it. The bystander sketching this recognised the connection immediately. |
+| Rejected Cornerstone Fragment (`cornerstone_carving`) | `psalm_118_22_23` | Matthew 21:42 | Psalm 118:22–23 was a coronation Psalm, used at Temple dedications. Jesus quoted it at the very Temple whose builders were rejecting Him. The rejected stone lying in the construction debris became a powerful object lesson for anyone listening. |
+| Denarius of Tiberius Caesar (`coin_of_caesar`) | - | Matthew 22:19–21 | The coin bore Caesar's image (imago). Jesus's answer pointed to something deeper: humanity bears God's image (Genesis 1:26–27, imago Dei). The coin question about taxation became a profound statement about identity and allegiance — Caesar's image on metal; God's image on people. |
+| Withered Fig Leaf (`fig_leaf_withered`) | - | Mark 11:20–21 | Micah 7:1 and Jeremiah 8:13 both use a barren fig tree as a symbol for Israel's spiritual fruitlessness. Hosea 9:10 says 'Like grapes in the wilderness, I found Israel.' The withered tree was a living parable — the judgement Jesus described in His Temple parables had already begun in miniature on the roadside. |
+| Two Leptons (Widow's Mites) (`widow_two_coins`) | - | Mark 12:41–44 | 1 Samuel 16:7 — 'Man looks at the outward appearance, but the LORD looks at the heart.' The widow's offering is the practical demonstration of everything Jesus had been teaching against the religious leaders' showy piety. She gave all she had (100%); the wealthy gave from their surplus. |
+| Temple Bystander's Written Account (`witness_scroll`) | `daniel_7_13_14` | Matthew 22:46 | Isaiah 11:2 promised the Messiah would have the 'Spirit of wisdom and understanding, the Spirit of counsel and might' — He would answer every challenge with perfect insight. The progressive silencing of each religious faction across one morning is the fulfilment of this promise made 700 years earlier. Daniel 7:13–14 foretold 'one like a son of man' coming with the clouds of heaven to receive an everlasting dominion — the title 'Son of Man' Jesus used for Himself throughout these exchanges. |
 
 ---
 
-### Case C: The End of the Age (`act2CaseC`)
-* **Location:** Mount of Olives, overlooking Jerusalem[cite: 8]
-* **Intro Narrative:** Sitting high upon the slopes of the Mount of Olives as the sun sets over Jerusalem, the disciples gaze at the magnificent stones of the Temple. The quiet evening is broken by solemn words concerning falling walls, global tribulations, and the need for oil in waiting lamps[cite: 8].
-* **Summary:** Overlooking the city, Jesus delivers the Olivet Discourse, prophesying the destruction of the Temple, signs of the end times, and urging constant readiness through parables like the Ten Virgins[cite: 8].
+### Case: `lazarus_plot` (The Price of Life)
+
+#### Prophecies & Typologies
+
+| Reference | ID | Category |
+|---|---|---|
+| Isaiah 25:8 | `isaiah_25_8` | Prophecy |
 
 #### Evidence Items
 
-* **Temple Architectural Blueprint (`temple_blueprint`)**[cite: 8]
-  * **Category:** physical[cite: 8]  
-  * **Timeline Order:** 16[cite: 8]  
-  * **Clues:**
-    * Compare: Architectural blueprints of the Jerusalem Temple marked with future destruction markers[cite: 8].  
-    * Link: Structural diagrams outlining monumental stone formations[cite: 8].  
-    * Timeline: Step 16 (Analyzed during the discourse overlooking the city mount)[cite: 8].  
-    * Contradict: Megalithic masonry dimensions slated for complete dismantling[cite: 8].
-
-* **Dry Clay Oil Lamp (`dry_oil_lamp`)**[cite: 8]
-  * **Category:** physical[cite: 8]  
-  * **Timeline Order:** 17[cite: 8]  
-  * **Clues:**
-    * Compare: A burnt-out clay oil lamp lacking fuel, symbolizing spiritual unreadiness[cite: 8].  
-    * Link: Domestic lighting equipment used in parable illustrations[cite: 8].  
-    * Timeline: Step 17 (Displayed as a visual aid during the night watch teaching)[cite: 8].  
-    * Contradict: Empty fuel reservoirs representing delayed expectation failure[cite: 8].
-
-* **Cosmic Signifier Scroll (`cosmic_signifier_scroll`)**[cite: 8]
-  * **Category:** textual[cite: 8]  
-  * **Timeline Order:** 18[cite: 8]  
-  * **Clues:**
-    * Compare: A frayed parchment scroll detailing cosmic signifiers and geopolitical upheavals[cite: 8].  
-    * Link: Apocalyptic literature mapping future historical milestones[cite: 8].  
-    * Timeline: Step 18 (Unrolled during the discussion of end-time markers)[cite: 8].  
-    * Contradict: Astronomical and societal disruption indexes[cite: 8].
+| Evidence | `relatedProphecy` (Codex) | `bibleRef` (supporting verse) | Prophetic / Narrative Link Text |
+|---|---|---|---|
+| Bethany Pilgrim Manifest (`crowd_report`) | - | John 12:9 | John 12:9 notes that a large crowd found out Jesus was there and came not only because of Him, but also to see Lazarus, whom He had raised. |
+| Bethany Limestone Dust (`grave_dirt`) | `isaiah_25_8` | John 11:39 | John 11:39 records Martha's objection that after four days there would already be a bad odor — the natural expectation of decay this deep into a Judean burial, against which the raising of Lazarus stands out as a reversal. |
+| Intercepted Sadducean Memorandum (`secret_decree`) | - | John 12:10–11 | John 12:10–11 explicitly validates this conspiracy: 'So the chief priests made plans to put Lazarus to death as well.' |
 
 ---
 
-## ACT III: The Passion
+### Case: `passover_lamb_chain` (The Passover Lamb)
 
-### Case A: The Broken Cup (`act3CaseA`)
-* **Location:** Upper Room, Jerusalem[cite: 9]
-* **Intro Narrative:** In an upper room lit by flickering lamps, the Passover meal unfolds into something entirely new. A loaf is broken, a cup of redemption is poured out for a new covenant, and a morsel of dipped bread quietly exposes a hidden betrayal[cite: 9].
-* **Summary:** During the Passover Seder, Jesus institutes the New Covenant (Jeremiah 31:31), identifies His betrayer via the dipped bread (Psalm 41:9), and watches Judas depart into the night[cite: 9].
+#### Prophecies & Typologies
+
+| Reference | ID | Category |
+|---|---|---|
+| Exodus 12:1–14 | `typology_passover_lamb` | Typological Fulfilment |
 
 #### Evidence Items
 
-* **Empty Silver Chalice (`empty_silver_chalice`)**[cite: 9]
-  * **Category:** physical[cite: 9]  
-  * **Timeline Order:** 19[cite: 9]  
-  * **Clues:**
-    * Compare: An empty silver chalice used during the Passover Seder institution[cite: 9].  
-    * Link: Ritual dining vessels connected to blood covenant rites[cite: 9].  
-    * Timeline: Step 19 (Utilized during the middle phase of the Passover meal)[cite: 9].  
-    * Contradict: Residue matching sacramental wine provisions[cite: 9].
-
-* **Stained Unleavened Bread (`stained_bread`)**[cite: 9]
-  * **Category:** physical[cite: 9]  
-  * **Timeline Order:** 20[cite: 9]  
-  * **Clues:**
-    * Compare: A broken fragment of unleavened bread stained with dark wine[cite: 9].  
-    * Link: Sacramental food items identifying the recipient of the dipped morsel[cite: 9].  
-    * Timeline: Step 20 (Handed across the table to indicate the betrayer)[cite: 9].  
-    * Contradict: Pierced texture symbolizing broken corporate body elements[cite: 9].
-
-* **Midnight Departure Footprints (`departure_footprints`)**[cite: 9]
-  * **Category:** physical[cite: 9]  
-  * **Timeline Order:** 21[cite: 9]  
-  * **Clues:**
-    * Compare: Footprints leading out into the dark Jerusalem night following a sudden departure[cite: 9].  
-    * Link: Movement traces tracking an abrupt exit from the upper room[cite: 9].  
-    * Timeline: Step 21 (Logged immediately after the sop was given)[cite: 9].  
-    * Contradict: Directional path heading toward the priestly residential quarters[cite: 9].
+| Evidence | `relatedProphecy` (Codex) | `bibleRef` (supporting verse) | Prophetic / Narrative Link Text |
+|---|---|---|---|
+| Flask of Pure Nard (`nard_flask`) | `typology_passover_lamb` | John 12:1–3 | The anointing of Jesus's feet with expensive perfume was an act of profound worship. In the Old Testament, anointing with oil consecrated kings (1 Samuel 16:13) and priests (Exodus 30:30) for service. This act sets Jesus apart as the Messiah (the "Anointed One") and, as Jesus Himself stated, prepares His body "beforehand for burial" (Mark 14:8). |
+| Broken Alabaster Jar (`alabaster_jar`) | `typology_passover_lamb` | Matthew 26:6–7 | The anointing of Jesus's head directly mirrors the way kings like Saul and David were anointed, signifying His royal authority. It also serves as a prophetic act of consecration, setting Him apart as the ultimate High Priest and King who would offer Himself as the final sacrifice. |
+| Hyssop Branch (`hyssop_branch`) | `typology_passover_lamb` | John 19:29; Exodus 12:22 | Used to offer wine on the cross — direct echo of hyssop applying the lamb's blood to the doorframe so death passes over. |
+| Temple Inspection Notes (`inspection_notes`) | `typology_passover_lamb` | Mark 11:27–33; Exodus 12:5 | Public questioning in the Temple where Jesus is examined and declared without fault ("I find no basis for a charge"). |
+| Passover Lamb Market Records (`lamb_records`) | - | Exodus 12:3–6 | Historical records detailing the selection and inspection dates for festival lambs in Jerusalem. |
 
 ---
 
-### Case B: The Severed Ear (`act3CaseB`)
-* **Location:** Gethsemane Garden, Mount of Olives[cite: 9]
-* **Intro Narrative:** Torches pierce the shadowed olive groves of Gethsemane as an armed mob closes in. Amidst the chaos of a drawn sword and a severed ear, a miraculous healing occurs before hands are bound and surrender is chosen over resistance[cite: 9].
-* **Summary:** An armed mob arrives to arrest Jesus. Peter strikes Malchus with a sword, but Jesus heals the servant's ear, stops the violence, and surrenders voluntarily to fulfill Scripture[cite: 9].
+### Case: `olivet_discourse` (The End of the Age)
+
+#### Prophecies & Typologies
+
+| Reference | ID | Category |
+|---|---|---|
+| Daniel 9:27 | `daniel_9_27` | Prophecy |
+| Joel 2:30–31 | `joel_2_30_31` | Prophecy |
+| Isaiah 13:10 | `isaiah_13_10` | Prophecy |
 
 #### Evidence Items
 
-* **Discarded Iron Short-Sword (`discarded_short_sword`)**[cite: 9]
-  * **Category:** physical[cite: 9]  
-  * **Timeline Order:** 22[cite: 9]  
-  * **Clues:**
-    * Compare: A discarded iron short-sword dropped hastily on the garden path[cite: 9].  
-    * Link: Weapon artifacts used in unlawful self-defense actions[cite: 9].  
-    * Timeline: Step 22 (Dropped during the orchard skirmish)[cite: 9].  
-    * Contradict: Blade edge stained with organic tissue matter[cite: 9].
-
-* **Healing Residue Sample (`healing_residue`)**[cite: 9]
-  * **Category:** physical[cite: 9]  
-  * **Timeline Order:** 23[cite: 9]  
-  * **Clues:**
-    * Compare: Traces of healing residue left behind on a servant's bloodied earlobe[cite: 9].  
-    * Link: Biological evidence of miraculous trauma restoration[cite: 9].  
-    * Timeline: Step 23 (Collected immediately following the garden touch miracle)[cite: 9].  
-    * Contradict: Instantaneous cellular repair without scarring or inflammation[cite: 9].
-
-* **Raiding Party Staves (`raiding_party_staves`)**[cite: 9]
-  * **Category:** physical[cite: 9]  
-  * **Timeline Order:** 24[cite: 9]  
-  * **Clues:**
-    * Compare: Wooden staves and Roman military torches carried by the midnight raiding party[cite: 9].  
-    * Link: Coercive enforcement tools utilized by the temple detachment[cite: 9].  
-    * Timeline: Step 24 (Inventory recovered from the surrounding olive thicket)[cite: 9].  
-    * Contradict: Burn patterns and wood types matching temple guard standard issue[cite: 9].
+| Evidence | `relatedProphecy` (Codex) | `bibleRef` (supporting verse) | Prophetic / Narrative Link Text |
+|---|---|---|---|
+| View of the Temple from Olivet (`temple_overlook_view`) | - | Matthew 24:1–2 | The physical setting directly inspired the disciples' questions about the Temple's fate, linking Jesus's words to the tangible structure before them. |
+| Disciples' Questions (Written Notes) (`disciples_questions_notes`) | `daniel_9_27` | Matthew 24:3 | These questions frame the entire discourse, revealing the disciples' immediate concerns about timing and signs, which Jesus then addresses with detailed prophecies. |
+| Parable of the Ten Virgins (Notes) (`parable_of_virgins_notes`) | - | Matthew 25:1–13 | This parable underscores the theme of watchfulness, a recurring motif in eschatological prophecies, urging believers to be ready for the unexpected timing of the Lord's return. |
+| Old Testament Cosmic Sign References (`cosmic_signs_references`) | `joel_2_30_31` | Matthew 24:29 | Jesus's use of these ancient prophecies demonstrates the continuity of God's plan and the fulfillment of long-foretold cosmic disturbances as signs of the end. |
+| Darkened Sun Record (`darkened_sun_record`) | `isaiah_13_10` | Matthew 24:29 | Isaiah 13:10 foretells the darkening of the heavenly lights. Jesus quotes this same imagery when describing the signs preceding His return. |
 
 ---
 
-### Case C: The Midnight Tribunal (`act3CaseC`)
-* **Location:** High Priest's Courtyard, Jerusalem[cite: 9]
-* **Intro Narrative:** Under the cover of night, an emergency quorum gathers in the high priest's courtyard. False testimonies clash, accusations fly in the dark, and out in the cold courtyard, a frightened disciple denies knowing his master thrice as a rooster crows[cite: 9].
-* **Summary:** Held under cover of darkness, an illegal tribunal uses false witnesses to secure a blasphemy charge against Jesus, while outside in the courtyard, Peter denies Him three times before the rooster crows[cite: 9].
+## ACT III: The Pressure Builds
+
+### Case: `last_supper` (The Broken Cup)
+
+#### Prophecies & Typologies
+
+| Reference | ID | Category |
+|---|---|---|
+| Exodus 12:1–14 | `exodus_12_1_14` | Prophecy |
+| Jeremiah 31:31–34 | `jeremiah_31_31_34` | Prophecy |
+| Psalm 41:9 | `psalm_41_9` | Prophecy |
+| Zechariah 11:12–13 | `zechariah_11_12_13` | Prophecy |
+| Isaiah 53:12 | `isaiah_53_12` | Prophecy |
+| Exodus 24:8 | `exodus_24_8` | Prophecy |
+| Genesis 14:18-20 | `typology_melchizedek` | Typological Fulfilment |
 
 #### Evidence Items
 
-* **Conflicting Testimony Log (`conflicting_testimony_log`)**[cite: 9]
-  * **Category:** textual[cite: 9]  
-  * **Timeline Order:** 25[cite: 9]  
-  * **Clues:**
-    * Compare: Conflicting testimonies written down by corrupt court scribes[cite: 9].  
-    * Link: Judicial records proving witness fabrication and procedural violations[cite: 9].  
-    * Timeline: Step 25 (Recorded during the nocturnal interrogation hearing)[cite: 9].  
-    * Contradict: Witness statements failing to align on core accusation points[cite: 9].
-
-* **Courtyard Charcoal Ashes (`courtyard_charcoal_ashes`)**[cite: 9]
-  * **Category:** physical[cite: 9]  
-  * **Timeline Order:** 26[cite: 9]  
-  * **Clues:**
-    * Compare: Warm ashes from a courtyard charcoal fire where servants warmed themselves[cite: 9].  
-    * Link: Environmental markers surrounding the triple denial incident[cite: 9].  
-    * Timeline: Step 26 (Sampled during the chill pre-dawn hours outside the hall)[cite: 9].  
-    * Contradict: Temperature gradients indicating prolonged overnight gathering[cite: 9].
-
-* **Rooster Audio Log (`rooster_audio_log`)**[cite: 9]
-  * **Category:** physical[cite: 9]  
-  * **Timeline Order:** 27[cite: 9]  
-  * **Clues:**
-    * Compare: Feathers and audio logs capturing a sudden rooster crow at dawn[cite: 9].  
-    * Link: Temporal markers signaling the fulfillment of a predictive warning[cite: 9].  
-    * Timeline: Step 27 (Logged precisely at the moment of the third denial)[cite: 9].  
-    * Contradict: Avian vocalization timing matching prophetic parameters exactly[cite: 9].
+| Evidence | `relatedProphecy` (Codex) | `bibleRef` (supporting verse) | Prophetic / Narrative Link Text |
+|---|---|---|---|
+| Unleavened Bread Crumbs (`bread_crumbs`) | `exodus_12_1_14` | Matthew 26:26 | The breaking of the matzah is called the 'afikomen' in the Passover Seder — traditionally hidden and later 'found' again. Early Christians saw this as a picture of Jesus's death and resurrection: broken, buried, and found alive. |
+| Spilled Wine on the Linen (`wine_stain`) | `jeremiah_31_31_34` | Luke 22:20 | The Passover Seder uses four cups of wine (Exodus 6:6–7). The third cup — the Cup of Redemption — is the one Jesus transformed into the cup of the New Covenant. The spilled wine at this cup's position is theologically charged: 'blood poured out' was exactly the language He used. |
+| Shattered Clay Cup (`cup_fragments`) | - | Matthew 26:27 | Breaking pottery in the Jewish tradition was sometimes associated with mourning or the breaking of a covenant (see Jeremiah 19:10–11, where Jeremiah shattered a clay jar as a prophetic act of judgement). A broken cup at the Passover table carries heavy symbolic weight. |
+| Large Stone Water Jug (`water_jug`) | - | John 13:4–5 | Isaiah 52:13–15 describes the Servant who 'shall startle many nations' — and immediately before this, is described as one who acts in a way that astonishes because of His humility. Jesus washing feet with this water fulfilled the spirit of what Isaiah described: the exalted One taking the lowest role. |
+| Imprint of a Money Bag (`money_bag_impression`) | `zechariah_11_12_13` | John 13:29 | Judas carried the communal purse — and had recently agreed to betray Jesus for 30 silver coins (Matthew 26:14–16), fulfilling Zechariah 11:12. The presence of a money bag impression at the preparation table raises serious questions: what was Judas counting before the meal? |
+| Fragment of Sop (Dipped Bread) (`betrayal_dipped_bread`) | `psalm_41_9` | John 13:26–30 | The giving of the dipped sop to Judas is the fulfilment of Psalm 41:9 ('even my close friend... who ate my bread has lifted his heel against me'). Jesus quoted this Psalm earlier that evening (John 13:18), identifying the traitor through an act of table fellowship. |
+| Written Summary of Jesus's Words (`new_covenant_declaration`) | `jeremiah_31_31_34` | Luke 22:19–20; 1 Corinthians 11:24–25 | Jeremiah 31:31–34 promised a 'new covenant' that would supersede the Mosaic Law — written on hearts, not stone. Jesus announced its establishment at this very table. The young scribe recording His words was preserving the fulfilment of a 600-year-old prophecy. |
+| List of the Twelve (`twelve_roll`) | `isaiah_53_12` | Luke 22:37 | Jesus explicitly applies Isaiah 53:12 to Himself during the Last Supper, explaining that His association with the twelve, including a traitor, fulfills the prophecy of being counted among criminals. |
+| Covenant Seal Mark (`covenant_seal`) | `exodus_24_8` | Exodus 24:8; Luke 22:20 | Exodus 24:8 — 'This is the blood of the covenant that the LORD has made with you.' Jesus's declaration over the cup directly echoes Moses's covenant ratification at Sinai, establishing the New Covenant with His own blood. |
+| Spilled Wine on the Linen (`wine_stain`) | `typology_melchizedek` | Genesis 14:18 | Melchizedek, the mysterious priest-king of Salem (Jerusalem), blessed Abraham with bread and wine. This act is seen as a "type" or foreshadowing of Christ. The book of Hebrews explains that Jesus is a high priest "forever in the order of Melchizedek" (quoting Psalm 110), an eternal priesthood outside the Levitical line. Just as Melchizedek offered bread and wine, Jesus institutes the New Covenant with the same elements at the Last Supper. |
 
 ---
 
-### Case D: The People's Choice (`act3CaseD`)
-* **Location:** Praetorium, Jerusalem[cite: 9]
-* **Intro Narrative:** Inside the stone-paved Praetorium, a governor washes his hands while a raging crowd dictates justice. Given a choice between a quiet teacher of truth and a violent insurrectionist, the mob screams for blood and chooses Barabbas[cite: 9].
-* **Summary:** Pilate offers the crowd a choice between Jesus and Barabbas. Prompted by the chief priests, the mob demands the release of the violent insurgent while condemning an innocent Jesus[cite: 9].
+### Case: `gethsemane_arrest` (The Severed Ear)
+
+#### Prophecies & Typologies
+
+| Reference | ID | Category |
+|---|---|---|
+| Isaiah 53:7 | `isaiah_53_7` | Prophecy |
+| Zechariah 13:7 | `zechariah_13_7` | Prophecy |
 
 #### Evidence Items
 
-* **Sedimentary Water Basin (`sedimentary_water_basin`)**[cite: 9]
-  * **Category:** physical[cite: 9]  
-  * **Timeline Order:** 28[cite: 9]  
-  * **Clues:**
-    * Compare: A basin of water mixed with sediment, symbolizing a governor's abdication of responsibility[cite: 9].  
-    * Link: Judicial cleansing artifacts reflecting moral evasion[cite: 9].  
-    * Timeline: Step 28 (Observed after the public sentencing pronouncement)[cite: 9].  
-    * Contradict: Mineral residue deposited by hand-washing rituals under duress[cite: 9].
-
-* **Barabbas Release Order (`barabbas_release_order`)**[cite: 9]
-  * **Category:** textual[cite: 9]  
-  * **Timeline Order:** 29[cite: 9]  
-  * **Clues:**
-    * Compare: A prison release order bearing the name of the insurgent Barabbas[cite: 9].  
-    * Link: Executive pardon documentation substituting a criminal for an innocent[cite: 9].  
-    * Timeline: Step 29 (Executed following the crowd's shouted preference)[cite: 9].  
-    * Contradict: Riot charges commuted via political appeasement mandates[cite: 9].
-
-* **Instigating Petition Scroll (`instigating_petition_scroll`)**[cite: 9]
-  * **Category:** textual[cite: 9]  
-  * **Timeline Order:** 30[cite: 9]  
-  * **Clues:**
-    * Compare: A petition scroll signed by instigating chief priests circulating through the courtyard[cite: 9].  
-    * Link: Coordinated propaganda texts mobilizing public agitation[cite: 9].  
-    * Timeline: Step 30 (Gathered from agitators moving through the Praetorium assembly)[cite: 9].  
-    * Contradict: Signature stamps matching hierarchical temple administrators[cite: 9].
+| Evidence | `relatedProphecy` (Codex) | `bibleRef` (supporting verse) | Prophetic / Narrative Link Text |
+|---|---|---|---|
+| Abandoned Linen Wrapper (`abandoned_linen`) | `zechariah_13_7` | Mark 14:51-52 | Zechariah 13:7 — 'Strike the shepherd, and the sheep will be scattered' — was quoted by Jesus himself just hours earlier (Matthew 26:31) as a prediction of this exact moment. The unnamed young man fleeing naked into the night, abandoning even his clothing, is the most vivid single image of the disciples' scattering the prophecy foretold. |
+| Extinguished Roman Torch (`dropped_torch`) | - | John 18:3 | John 18:3 notes they arrived with torches and lanterns, expecting a deep-woods manhunt. |
+| Bloodied Scarf Fragment (`severed_ear_wrap`) | - | John 18:10 | Luke 22:50–51 and John 18:10 document Peter cutting off Malchus's ear, which Jesus immediately healed. |
+| Unresisting Prisoner's Cord (`prisoner_cord`) | `isaiah_53_7` | Matthew 26:52–54 | Jesus refuses armed resistance and willingly submits to arrest, embodying the silent Lamb led to slaughter as prophesied in Isaiah 53:7: "He was oppressed and afflicted, yet he did not open his mouth." |
 
 ---
 
-### Case E: The Final Sacrifice (`act3CaseE`)
-* **Location:** Golgotha (Calvary), outside Jerusalem[cite: 9]
-* **Intro Narrative:** Upon the jagged hill of Golgotha, darkness swallows the midday sky. The earth quakes, the massive veil of the Temple rips violently from top to bottom, and a final breath echoes across the valley before a sealed tomb receives its temporary guest[cite: 9].
-* **Summary:** Jesus is crucified, accompanied by three hours of midday darkness, an earthquake, the tearing of the Temple veil, a pierced side without broken bones, and a rich man's burial[cite: 9].
+### Case: `sanhedrin_trial` (The Midnight Tribunal)
+
+#### Prophecies & Typologies
+
+| Reference | ID | Category |
+|---|---|---|
+| Isaiah 50:6 | `isaiah_50_6` | Prophecy |
+| Isaiah 53:7 | `isaiah_53_7` | Prophecy |
+| Micah 5:1 | `micah_5_1` | Prophecy |
+| Psalm 27:12 | `psalm_27_12` | Prophecy |
+| Psalm 35:11 | `psalm_35_11` | Prophecy |
 
 #### Evidence Items
 
-* **Myrrh-Infused Burial Shroud (`burial_shroud`)**[cite: 9]
-  * **Category:** physical[cite: 9]  
-  * **Timeline Order:** 31[cite: 9]  
-  * **Clues:**
-    * Compare: A heavy linen burial shroud infused with myrrh and aloes[cite: 9].  
-    * Link: Mortuary textiles prepared for immediate entombment rites[cite: 9].  
-    * Timeline: Step 31 (Wrapped around the body prior to tomb placement)[cite: 9].  
-    * Contradict: Aromatic resin concentrations matching royal burial standards[cite: 9].
-
-* **Torn Temple Veil (`torn_temple_veil`)**[cite: 9]
-  * **Category:** physical[cite: 9]  
-  * **Timeline Order:** 32[cite: 9]  
-  * **Clues:**
-    * Compare: A thick woven temple veil torn cleanly down the vertical center[cite: 9].  
-    * Link: Sanctuary barrier textiles split by supernatural forces[cite: 9].  
-    * Timeline: Step 32 (Ripped simultaneously with the final expiration breath)[cite: 9].  
-    * Contradict: Massive tensile failure from top to bottom without human agency[cite: 9].
-
-* **Rock-Cut Tomb Slab (`tomb_stone_slab`)**[cite: 9]
-  * **Category:** physical[cite: 9]  
-  * **Timeline Order:** 33[cite: 9]  
-  * **Clues:**
-    * Compare: A heavy stone slab rolled firmly against a hewn rock-cut tomb entrance[cite: 9].  
-    * Link: Sepulcher closure hardware sealing the burial site[cite: 9].  
-    * Timeline: Step 33 (Positioned at sunset before the Sabbath onset)[cite: 9].  
-    * Contradict: Circular granite dimensions matching grave recess grooves[cite: 9].
+| Evidence | `relatedProphecy` (Codex) | `bibleRef` (supporting verse) | Prophetic / Narrative Link Text |
+|---|---|---|---|
+| Rooster Feather (`rooster_feather`) | - | Matthew 26:74-75 | The third denial led to the third crowing, fulfilling Jesus's own prediction of Peter's failure (Matthew 26:34). This is supporting/narrative evidence, not directly Codex-linkable to one of this case's four defined prophecies. |
+| Priestly Robe Fragment (`torn_robe`) | - | Matthew 26:65 | Caiaphas tore his robes to signal the charge of blasphemy when Jesus affirmed His identity. This action forms part of the trial narrative but is not itself a direct fulfilment of one of this case's defined prophecies. |
+| Conflicting Depositions (`false_scroll`) | `psalm_27_12` | Mark 14:56-59 | The lack of consistent testimony exposes the trial as a fabrication, fulfilling Psalm 27:12: "For false witnesses rise up against me, breathing out violence." |
+| Mocking Guards' Reed and Spittle (`mocking_guards`) | `isaiah_50_6` | Matthew 26:67–68 | Isaiah 50:6 declares, 'I gave my back to those who beat me, my cheeks to those who pulled out my beard; I did not hide my face from mocking and spitting.' The abuse inflicted by the Temple guards immediately after the trial is a direct fulfilment of the Suffering Servant prophecy. |
+| Guard's Reed (`guard_reed`) | `micah_5_1` | Matthew 26:67–68 | The guards struck Israel's ruler on the cheek with a reed, exactly as Micah 5:1 foretold. |
+| Charcoal Briquette (`charcoal_remains`) | - | John 18:18 | Peter's denial by the fire fulfilled Jesus's prediction that he would deny three times. |
+| Perjured Witness Statement (`perjured_testimony`) | `psalm_35_11` | Mark 14:57–59 | 'Ruthless witnesses come forward; they question me on things I know nothing about' precisely matches the false testimony at the trial. |
+| Silent Witness Account (`silent_account`) | `isaiah_53_7` | Matthew 26:57–68; Mark 14:56–65 | Jesus remained silent before His accusers — the silent Lamb led to slaughter, fulfilling Isaiah 53:7: "He was oppressed and afflicted, yet he did not open his mouth." |
 
 ---
 
-## ACT IV: Resurrection & Restoration
+### Case: `barabbas_choice` (The People's Choice)
 
-### Case A: The Empty Tomb (`act4CaseA`)
-* **Location:** Garden Tomb, near Golgotha[cite: 10]
-* **Intro Narrative:** Dawn breaks over the garden tomb, revealing a heavy stone rolled aside and terrified guards fleeing in panic. Inside, only neatly folded linen wrappings remain, soon to be validated by eyewitness encounters with the living Christ[cite: 10].
-* **Summary:** On the third day, the sealing stone is rolled away, the Roman guards flee, and the tomb is found empty with its burial linens neatly arranged, followed by eyewitness appearances of the risen Christ[cite: 10].
+#### Prophecies & Typologies
+
+| Reference | ID | Category |
+|---|---|---|
+| Isaiah 53:3 | `isaiah_53_3` | Prophecy |
+| Psalm 2:1-2 | `psalm_2_1_2` | Prophecy |
 
 #### Evidence Items
 
-* **Folded Linen Head-Wraps (`folded_linen_wraps`)**[cite: 10]
-  * **Category:** physical[cite: 10]  
-  * **Timeline Order:** 34[cite: 10]  
-  * **Clues:**
-    * Compare: Neatly folded linen head-wraps left behind on the stone ledge[cite: 10].  
-    * Link: Undisturbed burial garments indicating deliberate exit mechanics[cite: 10].  
-    * Timeline: Step 1 (Discovered inside the burial chamber at dawn)[cite: 10].  
-    * Contradict: Absence of forced cloth tearing or body displacement signs[cite: 10].
-
-* **Displaced Rolling Stone (`displaced_rolling_stone`)**[cite: 10]
-  * **Category:** physical[cite: 10]  
-  * **Timeline Order:** 35[cite: 10]  
-  * **Clues:**
-    * Compare: A massive circular rolling stone displaced completely from its anchoring groove[cite: 10].  
-    * Link: Sepulcher structural breach evidence[cite: 10].  
-    * Timeline: Step 2 (Observed by the visiting women upon arrival)[cite: 10].  
-    * Contradict: Upward slope displacement requiring extraordinary force[cite: 10].
-
-* **Angelic Visitor Statement (`angelic_visitor_statement`)**[cite: 10]
-  * **Category:** testimony[cite: 10]  
-  * **Timeline Order:** 36[cite: 10]  
-  * **Clues:**
-    * Compare: Witness statements from early-morning visitors describing angelic messengers[cite: 10].  
-    * Link: Supernatural eyewitness testimony explaining the empty vault[cite: 10].  
-    * Timeline: Step 3 (Delivered inside the tomb chamber at sunrise)[cite: 10].  
-    * Contradict: Radiant apparition descriptions matching resurrection validation[cite: 10].
+| Evidence | `relatedProphecy` (Codex) | `bibleRef` (supporting verse) | Prophetic / Narrative Link Text |
+|---|---|---|---|
+| The Governor's Silver Basin (`pilates_basin`) | - | Matthew 27:24 | 'I am innocent of this man's blood; see to it yourselves.' |
+| Claudia's Warning Scroll (`wifes_letter`) | - | Matthew 27:19 | - |
+| The Insurgent's Dossier (`barabbas_warrant`) | `isaiah_53_3` | Mark 15:7; John 18:40 | The crowd's rejection of Jesus in favor of a murderer fulfills Isaiah 53:3: "He was despised and rejected by mankind." |
+| Joint Verdict Scroll (`joint_verdict`) | `psalm_2_1_2` | Luke 23:12 | Herod and Pilate, once enemies, became allies on that day in their joint condemnation of Jesus, fulfilling Psalm 2: "The kings of the earth set themselves, and the rulers take counsel together, against the LORD and against his Anointed." |
 
 ---
 
-### Case B: The Guard's Report (`act4CaseB`)
-* **Location:** Garden Tomb, Golgotha[cite: 10]
-* **Intro Narrative:** Pale and trembling, the temple guard detachment rushes to brief the chief priests on supernatural events witnessed at the tomb. A hurried assembly results in a heavy bag of silver coins and a fabricated cover story designed to bury the truth[cite: 10].
-* **Summary:** Terrified Roman guards report the supernatural events to the chief priests, who respond by paying a heavy bribe to manufacture a false narrative claiming the disciples stole the body[cite: 10].
+### Case: `crucifixion_site` (The Final Sacrifice)
+
+#### Prophecies & Typologies
+
+| Reference | ID | Category |
+|---|---|---|
+| Psalm 22:1 | `psalm_22_1` | Prophecy |
+| Psalm 22:7–8 | `psalm_22_7_8` | Prophecy |
+| Psalm 22:16 | `psalm_22_16` | Prophecy |
+| Psalm 22:18 | `psalm_22_18` | Prophecy |
+| Psalm 22:1–31 | `psalm_22_1_31` | Prophecy |
+| Exodus 12:46 | `exodus_12_46` | Prophecy |
+| Numbers 19 (Red Heifer) | `typology_red_heifer` | Typological Fulfilment |
+| Genesis 22 (Isaac Carrying the Wood) | `typology_isaac_wood` | Typological Fulfilment ||
 
 #### Evidence Items
 
-* **Hush-Money Pouch (`hush_money_pouch`)**[cite: 10]
-  * **Category:** physical[cite: 10]  
-  * **Timeline Order:** 37[cite: 10]  
-  * **Clues:**
-    * Compare: A heavy leather pouch filled with hush-money bribe currency[cite: 10].  
-    * Link: Financial transaction tools used to purchase false testimony[cite: 10].  
-    * Timeline: Step 4 (Handed over during the private priestly briefing session)[cite: 10].  
-    * Contradict: Heavy silver coinage density matching institutional slush funds[cite: 10].
-
-* **Fabricated Public Notice (`fabricated_public_notice`)**[cite: 10]
-  * **Category:** textual[cite: 10]  
-  * **Timeline Order:** 38[cite: 10]  
-  * **Clues:**
-    * Compare: A drafted public notice containing a manufactured lie about sleeping guards[cite: 10].  
-    * Link: Disinformation texts circulated to suppress resurrection rumors[cite: 10].  
-    * Timeline: Step 5 (Published across Jerusalem following the council meeting)[cite: 10].  
-    * Contradict: Logically inconsistent claims regarding sleeping sentries reporting events[cite: 10].
-
-* **Deserting Sentry Incident Log (`sentry_incident_log`)**[cite: 10]
-  * **Category:** textual[cite: 10]  
-  * **Timeline Order:** 39[cite: 10]  
-  * **Clues:**
-    * Compare: Incident logs detailing the psychological state of deserting Roman sentries[cite: 10].  
-    * Link: Military behavioral records documenting supernatural terror[cite: 10].  
-    * Timeline: Step 6 (Compiled when guards fled the garden precinct)[cite: 10].  
-    * Contradict: Extreme physiological shock markers recorded by unit commanders[cite: 10].
+| Evidence | `relatedProphecy` (Codex) | `bibleRef` (supporting verse) | Prophetic / Narrative Link Text |
+|---|---|---|---|
+| Soldiers' Casting Dice (`split_dice`) | `psalm_22_18` | John 19:23–24 | Directly fulfils Psalm 22:18. While the victim hung dying, the execution detail cast lots for a high-quality, seamless tunic woven from top to bottom. |
+| Crucifixion Nails (`crucifixion_nails`) | `psalm_22_16` | Luke 24:39–40; John 20:27 | Psalm 22:16 prophesied the piercing of hands and feet — the nail wounds that would mark the risen Christ's identification. |
+| Mocking Crown of Thorns (`mockery_crown`) | `psalm_22_7_8` | Matthew 27:29–31; Mark 15:16–20 | Psalm 22:7–8 — "All who see me mock at me; they wag their heads." The soldiers mocked, struck, and spat upon Him, fulfilling the psalmist's description of the suffering servant. |
+| Cry of Abandonment (`last_cry_abandonment`) | `psalm_22_1` | Matthew 27:46; Mark 15:34 | Psalm 22:1 — "My God, my God, why have you forsaken me?" The opening verse of the crucifixion psalm, quoted by Jesus in His darkest hour, initiates the entire chain of fulfillment. |
+| Blood-Stained Roman Hasta (`pierced_spear`) | `zechariah_12_10` | John 19:34 | Fulfils Zechariah 12:10 ('the one they have pierced'). The spear thrust proved the victim was already dead, making the leg-breaking unnecessary. |
+| Shattered Limestone Fragment (`shattered_limestone`) | `typology_red_heifer` | Matthew 27:51 | The Red Heifer was sacrificed and its blood carried outside the camp. Jesus, the perfect sacrifice, suffered outside the city gates — the earthquake and rocksplit testify to the cosmic significance. |
+| Thick Blue and Scarlet Threads (`torn_veil_thread`) | `amos_8_9` | Luke 23:45 | The Parokhet curtain blocked access to the Holy of Holies. Its top-to-bottom tear structurally verified that the old covenant system had split wide open, granting direct access to the presence of God. |
+| Joseph's Market Bill for Fine Linen (`linen_shroud_receipt`) | `isaiah_53_9` | Mark 15:46 | Fulfils Isaiah 53:9. Instead of being cast into the criminal dirt pits of Hinnom, Jesus was instantly reassigned to a wealthy man's private, rock-hewn garden tomb. |
+| Unbroken Tibiae Report (`unbroken_legs`) | `exodus_12_46` | John 19:31–36 | Jesus' legs were not broken, fulfilling the Passover Lamb imagery (Exodus 12:46) and Psalm 34:20: "He protects all his bones, not one of them will be broken." |
+| Final Words Scroll (`final_words`) | `psalm_31_5` | Luke 23:46 | Jesus's final words from the cross are a direct quote from Psalm 31:5, a prayer of ultimate trust in God at the moment of death. |
+| Sponge Soaked in Sour Wine (`sour_wine_sponge`) | `psalm_69_21` | John 19:28-29 | This act directly fulfills Psalm 69:21 ("...for my thirst they gave me sour wine to drink"). The deliberate mention of a hyssop branch also powerfully evokes the Passover (Exodus 12:22), where hyssop was used to apply the lamb's blood for salvation, identifying Jesus as the true Passover Lamb. |
+| Simon of Cyrene's Burden (`simon_cyrene_burden`) | `typology_isaac_wood` | Genesis 22:6; Luke 23:26 | Isaac carried the wood on which he would be sacrificed. Jesus carries the cross — the instrument of His own sacrifice. Both willingly bore their burden. |
 
 ---
 
-### Case C: Peter's Restoration (`act4CaseC`)
-* **Location:** Sea of Galilee (Shoreline at Dawn)[cite: 10]
-* **Intro Narrative:** By a crackling charcoal fire on the misty shore of the Sea of Galilee, a miraculous net-haul of 153 fish lands on the beach. Here, past failures are undone by three declarations of love, and a fallen leader is officially recommissioned to feed the flock[cite: 10].
-* **Summary:** By a charcoal fire on the shore of Galilee, the risen Jesus meets His disciples, performs a miraculous catch of 153 fish, and restores Peter through a threefold declaration of love and a commission to "feed my sheep"[cite: 10].
+## ACT IV: The New Beginning
+
+### Case: `resurrection` (The Empty Tomb)
+
+#### Prophecies & Typologies
+
+| Reference | ID | Category |
+|---|---|---|
+| Psalm 16:10 | `psalm_16_10` | Prophecy |
+| Hosea 6:2 | `hosea_6_2` | Prophecy |
+| Jonah 1:17 / Matthew 12:40 | `jonah_1_17___matthew_12_40` | Prophecy |
+| Isaiah 53:10–11 | `isaiah_53_10_11` | Prophecy |
+| Psalm 22:1–31 | `psalm_22_1_31` | Prophecy |
+| Isaiah 26:19 | `isaiah_26_19` | Prophecy |
+| Leviticus 23:9–14 | `leviticus_23_firstfruits` | Prophecy |
 
 #### Evidence Items
 
-* **Counted Net of 153 Fish (`counted_net_fish`)**[cite: 10]
-  * **Category:** physical[cite: 10]  
-  * **Timeline Order:** 40[cite: 10]  
-  * **Clues:**
-    * Compare: A precisely counted net containing exactly 153 large fish[cite: 10].  
-    * Link: Marine harvest records validating miraculous abundance without net breakage[cite: 10].  
-    * Timeline: Step 7 (Haunted ashore during the dawn shoreline encounter)[cite: 10].  
-    * Contradict: Exact statistical tally matching specialized catch documentation[cite: 10].
-
-* **Shoreline Charcoal Fire (`shoreline_charcoal_fire`)**[cite: 10]
-  * **Category:** physical[cite: 10]  
-  * **Timeline Order:** 41[cite: 10]  
-  * **Clues:**
-    * Compare: Coals glowing on a beachside cooking fire echoing a previous courtyard denial[cite: 10].  
-    * Link: Sensory triggers linking past failure to redemption settings[cite: 10].  
-    * Timeline: Step 8 (Burning while breakfast is prepared by the water)[cite: 10].  
-    * Contradict: Olfactory and thermal parallels mirroring the high priest's courtyard fire[cite: 10].
-
-* **Shepherd's Commission Emblem (`shepherd_commission_emblem`)**[cite: 10]
-  * **Category:** physical[cite: 10]  
-  * **Timeline Order:** 42[cite: 10]  
-  * **Clues:**
-    * Compare: A shepherd's crook emblem inscribed during a private dialogue on the shoreline[cite: 10].  
-    * Link: Leadership restoration artifacts marking pastoral authorization[cite: 10].  
-    * Timeline: Step 9 (Forged during the threefold confession dialogue)[cite: 10].  
-    * Contradict: Symbolic alignment with the "feed my sheep" mandate[cite: 10].
+| Evidence | `relatedProphecy` (Codex) | `bibleRef` (supporting verse) | Prophetic / Narrative Link Text |
+|---|---|---|---|
+| The Displaced Sealing Stone (`rolled_stone`) | `isaiah_26_19` | Matthew 28:2 | Isaiah 26:19 — 'Your dead will live, LORD; their bodies will rise — let those who dwell in the dust wake up and shout for joy.' The removal of the stone was not to let Jesus out — a resurrected, glorified body passed through locked doors (John 20:19). The stone was rolled away so witnesses could look in. |
+| The Empty Burial Chamber (`empty_tomb`) | `psalm_16_10` | Luke 24:3 | Psalm 16:10 — 'You will not let your holy one see corruption.' The empty tomb is the physical evidence that the Psalm's promise was kept. A body left long enough shows decomposition; no such evidence exists. |
+| Folded Burial Linens (`burial_linen`) | - | John 20:6–8 | John's Gospel records that the 'other disciple' (John) 'saw and believed' specifically because of how the linens were arranged. A body stolen hastily would leave disordered linens or none at all. The orderly, structured arrangement of the grave cloths pointed to something other than grave robbery. |
+| The Angelic Proclamation (`angelic_witness`) | - | Matthew 28:2–7; Mark 16:5–7; Luke 24:4–7; John 20:12–13 | Psalm 103:20 describes angels as those who 'do his bidding.' The angelic announcement at the tomb echoes the angelic announcements at the nativity — both bookend Jesus's earthly life with heavenly proclamation. The consistency of the message across all four Gospel accounts, with slight variations in detail (one angel or two?), reflects the characteristics of independent eyewitness testimony. |
+| The Soldiers' Broken Report (`guard_report`) | `hosea_6_2` | Matthew 28:2–4; Matthew 28:11–15 | The bribe to the guards fulfils the pattern of institutional deception against God's purposes — similar to how the chief priests had bribed Judas (Matthew 26:14–16). The very people who guarded against resurrection were the first non-disciple witnesses of the supernatural event. |
+| Unused Burial Spices (`spice_jars`) | - | Mark 16:1 | Nicodemus had already brought 75 pounds of myrrh and aloes for the burial (John 19:39–40), fulfilling the wealthy burial of Isaiah 53:9. The women's additional spices were for the anointing ritual completed after the Sabbath — but there was no body to anoint. The unused jars are a symbol of an interrupted mourning, halted by resurrection. |
+| Mary Magdalene's Testimony (`mary_encounter`) | `isaiah_53_10_11` | John 20:11–18; Isaiah 43:1 | Isaiah 53:10–11 promised the Suffering Servant would 'see his offspring and prolong his days' after being crushed — a resurrection paradox. The risen Christ's first act was to call Mary by name (echoing Isaiah 43:1), sending her as the primary witness. In a Roman court a woman's testimony was inadmissible; making a former demoniac the lead witness is exactly the kind of counter-cultural detail that confirms authenticity rather than fabrication. |
+| Resurrection Psalm Scroll (`psalm22_scroll`) | `psalm_22_1_31` | Luke 24:26–27 | The Psalm that begins with suffering ends in worldwide proclamation and vindication, pointing beyond the cross to resurrection. |
+| Sign of Jonah (`sign_of_jonah`) | `jonah_1_17___matthew_12_40` | Matthew 12:40 | Jesus named His own third-day resurrection the 'sign of Jonah,' the three days in the tomb mirroring Jonah's three days in the great fish. |
+| Firstfruits Offering (`firstfruits_offering`) | `leviticus_23_firstfruits` | Leviticus 23:9–14; 1 Corinthians 15:20 | The Feast of Firstfruits required bringing the first sheaf of the barley harvest on the day after the Sabbath. Christ's resurrection is the ultimate firstfruits — the guarantee that all who belong to Him will be raised. |
 
 ---
 
-*User prompt: provide a link to download*
+### Case: `roman_inquiry` (The Guard's Report)
 
-Response: As an AI, I am unable to host files on an external server or generate direct file download links (.zip or .js). However, you can save the code and documentation generated above directly onto your computer in a few simple steps:
+#### Prophecies & Typologies
 
-### **Option 1: Save via Text Editor (Recommended)**
+| Reference | ID | Category |
+|---|---|---|
+| Psalm 2:1–2 | `psalm_2_1_2` | Prophecy |
 
-> 1. **Case Data File (act4CaseA.js)**  
-   * Copy the code snippet from **Section 1** above.  
-   * Open a text editor (such as VS Code, Notepad, or TextEdit).  
-   * Paste the code and save the file as act4CaseA.js in your project's case data directory.  
-> 2. **Reference Guide (lab\_actions\_reference.md)**  
-   * Copy the markdown text from **Section 2** above.  
-   * Open a text editor.  
-   * Paste the text and save the file as lab\_actions\_reference.md in your project's docs folder.
+#### Evidence Items
 
-### **Option 2: Command Line / Terminal**
-
-If you are working in a terminal environment within your project repository, you can create and populate the files directly:
-
-\# Create and edit the JS case file  
-cat \<\< 'EOF' \> act4CaseA.js  
-// Paste act4CaseA code here  
-EOF
-
-\# Create and edit the Markdown reference file  
-cat \<\< 'EOF' \> lab\_actions\_reference.md  
-\# Paste lab\_actions\_reference text here  
-EOF
+| Evidence | `relatedProphecy` (Codex) | `bibleRef` (supporting verse) | Prophetic / Narrative Link Text |
+|---|---|---|---|
+| High-Grade Sanctuary Coins (`bribe_shekels`) | `psalm_2_1_2` | Matthew 28:12 | The bribe money is itself the physical evidence of Psalm 2:1–2's 'rulers take counsel together against the LORD and against his anointed' — Israel's own religious leaders conspiring to suppress the resurrection they could not disprove. |
+| Snapped Clay Roman Seal (`broken_imperial_seal`) | `psalm_2_1_2` | Matthew 27:66 | The broken imperial seal is physical proof that Rome's own security measures — meant to make any resurrection claim impossible to fake — were the very thing overcome, undercutting the guards' cover story. |
+| Shattered Pilum Shaft (`shattered_spear`) | `psalm_2_1_2` | Matthew 28:2 | A soldier's dropped and shattered weapon speaks to the guards' terror described in Matthew 28:4 ('the guards were so afraid... that they shook and became like dead men') — the earthly power structure the conspirators relied on was overwhelmed in an instant. |
+| Official Sanhedrin Report (`sanhedrin_report`) | `psalm_2_1_2` | Matthew 28:11 | This report is the paper trail of the conspiracy itself — the Sanhedrin's own internal record of receiving the guards' account and choosing to suppress rather than investigate it, matching the pattern of rulers plotting against God's anointed described in Psalm 2:1–2. |
 
 ---
 
+### Case: `peter_restoration` (Peter's Restoration)
+
+#### Prophecies & Typologies
+
+| Reference | ID | Category |
+|---|---|---|
+| Zechariah 13:7 | `zechariah_13_7` | Prophecy |
+| Ezekiel 34:11-16 | `ezekiel_34_11-16` | Prophecy |
+
+#### Evidence Items
+
+| Evidence | `relatedProphecy` (Codex) | `bibleRef` (supporting verse) | Prophetic / Narrative Link Text |
+|---|---|---|---|
+| The Charcoal Fire (`charcoal_fire`) | `zechariah_13_7` | John 21:9 | The fire triggers Peter's memory of his denial, but now transforms that shame into restoration around the risen Christ. The scattered sheep (Zechariah 13:7) is now being gathered by the Shepherd. |
+| The Miraculous Catch (`miraculous_catch`) | `ezekiel_34_11-16` | John 21:10–11 | This echoes the original calling of the disciples (Luke 5:1-11) and demonstrates that obedience to Christ yields supernatural results. It's a living parable of Ezekiel 34, where God promises to search for His sheep and bring them out from the nations. |
+| Bread and Fish Breakfast (`bread_breakfast`) | - | John 21:9 | The 'bread of life' (John 6) now eats bread with Peter — the broken bread that once condemned him now nourishes him. |
+| The Threefold Commission (`threefold_commission`) | `ezekiel_34_11-16` | John 21:15-17 | Peter's three denials are met with three commissions to shepherd God's flock, directly fulfilling the role of the good shepherd described in Ezekiel 34. |
+| Risen Appearance (`galilean_apparition`) | - | John 21:12 | Despite seeing Him die, the disciples knew — supernaturally — who stood before them. Faith recognized its Author. |
+
+---
+
+## Hidden Detective Chains
+
+| Chain Name | Codex Reward | Cases Spanned | Evidence Required | Points | Faith |
+|---|---|---|---|---|---|
+| The Psalm 22 Chain | *The Perfect Sacrifice* | `gethsemane_arrest` → `sanhedrin_trial` → `crucifixion_site` | `last_cry_abandonment` + `mockery_crown` + `crucifixion_nails` + `split_dice` | +25 | +10 |
+| The True Passover Lamb | *The True Passover Lamb* | `last_supper` → `crucifixion_site` | `sour_wine_sponge` → `typology_passover_lamb` + `unbroken_legs` → `exodus_12_46` + `bread_crumbs` → `exodus_12_1_14` | +25 | +10 |
+| The Greater Atonement | *The Greater Atonement* | `sanhedrin_trial` → `barabbas_choice` → `crucifixion_site` | `silent_account` + `barabbas_warrant` + `crucifixion_nails` + `mockery_crown` | +25 | +10 |
+| The New Covenant | *The New Covenant* | `last_supper` only | `bread_crumbs` → `exodus_12_1_14` + `wine_stain` → `jeremiah_31_31_34` + `covenant_seal` → `exodus_24_8` + `new_covenant_declaration` → `jeremiah_31_31_34` | +25 | +10 |
+| Death Defeated | *The Firstfruits of Resurrection* | `crucifixion_site` → `resurrection` → `roman_inquiry` | `sign_of_jonah` + `firstfruits_offering` + `empty_tomb` + `mary_encounter` | +25 | +10 |
+
+### Cross-Case Chain Notes
+
+- **Psalm 22 Chain:** The `Crucifixion Nails` evidence is unlocked during `crucifixion_site` but its prophecy mapping (`psalm_22_16`) must be linked with the `Mocking Crown of Thorns` (`psalm_22_7_8`), `Cry of Abandonment` (`psalm_22_1`), and `Soldiers' Casting Dice` (`psalm_22_18`) across three cases to complete the chain.
+
+- **True Passover Lamb:** The `Unbroken Tibiae Report` (`unbroken_legs`) evidence, mapped to `exodus_12_46`, must be linked with the `Sponge Soaked in Sour Wine` (`sour_wine_sponge`) and the Last Supper's `Unleavened Bread Crumbs` (`bread_crumbs`) → `exodus_12_1_14` to form the complete typological arc.
+
+- **Greater Atonement:** The `Silent Witness Account` (`silent_account`) evidence in `sanhedrin_trial` represents the high priest's role; the `Joint Verdict Scroll` (`joint_verdict`) in `barabbas_choice` represents the scapegoat; the piercing evidence in `crucifixion_site` represents the blood atonement.
+
+- **New Covenant:** All four Last Supper evidence items must be linked to complete the chain: bread (Melchizedek), wine (Jeremiah), covenant seal (Exodus 24:8), and declaration (Jeremiah 31:31–34).
+
+- **Death Defeated:** The `Firstfruits Offering` (`firstfruits_offering`) evidence, mapped to `leviticus_23_firstfruits`, must be linked with the `Sign of Jonah` (`sign_of_jonah`), `Empty Burial Chamber` (`empty_tomb`), and `Mary Magdalene's Testimony` (`mary_encounter`) across resurrection-related cases.

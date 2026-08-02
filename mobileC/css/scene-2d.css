@@ -1,4 +1,4 @@
-/* ─── 2D Scene (Canvas) Controls ─── */
+/* ─── 2D Scene (PixiJS) Controls ─── */
 
 #game-container {
     position: relative;
@@ -9,11 +9,24 @@
     overflow: hidden;
 }
 
-#gameCanvas {
+#game-container canvas {
     width: 100%;
     height: 100%;
     display: block;
     image-rendering: pixelated;
+}
+
+#lives-display {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: #f87171;
+    font-size: 24px;
+    text-shadow: 1px 1px 2px #000;
+    z-index: 10;
+    font-family: monospace;
+    font-weight: bold;
+    pointer-events: none;
 }
 
 #ui-controls-overlay {
@@ -30,6 +43,7 @@
     left: 16px;
     width: 120px;
     height: 120px;
+    pointer-events: none;
 }
 
 .dpad .btn {
@@ -56,21 +70,75 @@
 #btn-left { top: 40px; left: 0; }
 #btn-right { top: 40px; right: 0; }
 
-#btn-up:active {  background: var(--surface2, #2c2219); border-color: var(--gold);}
-#btn-down:active {  background: var(--surface2, #2c2219); border: 2px solid var(--gold);}
-#btn-left:active {  background: var(--surface2, #2c2219); border: 2px solid var(--gold);}
-#btn-right:active {  background: var(--surface2, #2c2219); border: 2px solid var(--gold); }
-
+#btn-up:active { background: var(--surface2, #2c2219); border-color: var(--gold);}
+#btn-down:active { background: var(--surface2, #2c2219); border: 2px solid var(--gold);}
+#btn-left:active { background: var(--surface2, #2c2219); border: 2px solid var(--gold);}
+#btn-right:active { background: var(--surface2, #2c2219); border: 2px solid var(--gold); }
 
 #ui-controls-overlay .btn:hover {
     background: rgba(0, 242, 255, 0.2);
 }
 
+/* Action buttons — bottom-right */
+.action-group {
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    pointer-events: none;
+}
 
+.btn-action {
+    position: relative;
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    font-size: 13px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--surface2, #2c2219);
+    border: 2px solid var(--accent-primary, #d4a373);
+    color: var(--text, #f5ebe0);
+    touch-action: manipulation;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+    pointer-events: auto;
+    transition: all 0.2s ease;
+    font-family: monospace;
+}
 
+.btn-action.disabled {
+    background: #221a14;
+    border-color: #44372c;
+    color: #554438;
+    opacity: 0.6;
+    pointer-events: none;
+}
 
+.btn-action.active {
+    background: #00bbf9;
+    border-color: #00f5d4;
+    color: #fff;
+    opacity: 1;
+    box-shadow: 0 0 15px rgba(0, 187, 249, 0.7);
+    transform: scale(1.05);
+    cursor: pointer;
+}
 
-/* UI buttons — bottom-right, stacked vertically */
+.action-count {
+    font-size: 12px;
+    color: var(--accent-primary, #d4a373);
+    font-weight: bold;
+    font-family: monospace;
+    pointer-events: none;
+}
+
+/* Legacy UI buttons — kept for compatibility */
 .btn-ui {
     position: absolute;
     bottom: 16px;
@@ -108,7 +176,7 @@
     background: rgba(0, 242, 255, 0.2);
 }
 
-/* Action popup for 2D scene — positioned by JS near btn-actions */
+/* Action popup for 2D scene */
 .actions-popup {
     position: absolute;
     background: rgba(0, 10, 20, 0.94);
@@ -152,4 +220,36 @@
     z-index: 2000;
     pointer-events: none;
     will-change: transform, opacity;
+}
+
+.game-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.9);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    text-align: center;
+    color: white;
+    font-family: monospace;
+}
+
+.game-overlay h1 {
+    font-size: 3em;
+    color: #f87171;
+    margin-bottom: 20px;
+}
+
+.game-overlay button {
+    background: #d4a373;
+    border: none;
+    padding: 12px 30px;
+    font-size: 1.2em;
+    font-family: monospace;
+    cursor: pointer;
+    color: #1a1410;
+    border-radius: 8px;
 }

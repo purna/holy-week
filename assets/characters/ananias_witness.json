@@ -22,8 +22,19 @@
   "colorCloak": "#1a1815",
   "colorAccent": "#3b3831",
   "colorGarment2": "#8a7a5a",
-  "colorSkin": "#b39e8e",
-  "colorHair": "#1a1614",
+  "colorSkin": "#d2a679",
+  "colorHair": "#241c14",
   "colorEye": "#4a3b32",
-  "colorLip": "#9a5f52"
+  "colorLip": "#9a5f52",
+  "colorPalette": {
+    "colorInner": "#4a423a",
+    "colorOuter": "#2f2b25",
+    "colorCloak": "#1a1815",
+    "colorAccent": "#3b3831",
+    "colorGarment2": "#8a7a5a",
+    "colorSkin": "#d2a679",
+    "colorHair": "#241c14",
+    "colorEye": "#4a3b32",
+    "colorLip": "#9a5f52"
+  }
 }

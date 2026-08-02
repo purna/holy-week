@@ -90,6 +90,13 @@ export const DIALOGUE_ID_MAP = {
     peter_olivet: '../story/act2/case_c_olivet_discourse/peter_olivet.json',
     john_olivet: '../story/act2/case_c_olivet_discourse/john_olivet.json',
 
+    // Case D: The Anointing at Bethany (Passover Lamb Chain)
+    mary_bethany_anointing: '../story/mary_bethany_anointing.json',
+    judas_bethany_objection: '../story/judas_bethany_objection.json',
+    simon_leper_host: '../story/act2/case_d_anointing_at_bethany/simon_leper_host.json',
+    temple_inspection_scribe: '../story/act2/case_d_anointing_at_bethany/temple_inspection_scribe.json',
+    hillel_scribe: '../story/hillel_scribe.json',
+
     // --- Act III: The Passion ---
     // Case A: The Broken Cup (Last Supper)
     john_disciple: '../story/act3/case_a_broken_cup/john_disciple.json',

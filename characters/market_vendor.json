@@ -19,5 +19,16 @@
     "prophecy": "They say he's a prophet. It's the talk of the market."
   },
   "earSize": 0.9,
-  "headSize": 0.95
+  "headSize": 0.95,
+  "colorPalette": {
+    "colorInner": "#4a423a",
+    "colorOuter": "#28241e",
+    "colorCloak": "#221f1a",
+    "colorAccent": "#3b3831",
+    "colorGarment2": "#8a7a5a",
+    "colorSkin": "#dcb088",
+    "colorHair": "#150f0b",
+    "colorEye": "#5c4632",
+    "colorLip": "#966355"
+  }
 }

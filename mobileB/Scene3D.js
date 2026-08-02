@@ -256,6 +256,7 @@ export class Scene3D {
 
         const actions = document.createElement('div');
         actions.id = 'scene-mobile-actions';
+        actions.className = 'btn-ui';
         actions.innerHTML = `
             <button id="scene-ctrl-actions" class="ui-toggle" aria-label="Actions"><img src='../assets/gfx/hand-pointer.svg' class='icon-svg' loading='lazy'></button>
             <button id="scene-ctrl-inventory" class="ui-toggle" aria-label="Inventory"><img src='../assets/gfx/backpack-duotone.svg' class='icon-svg' loading='lazy'></button>

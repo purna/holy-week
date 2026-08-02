@@ -103,8 +103,10 @@ import { formatIntro } from './utils.js';
 //     establishment of the New Covenant through Jesus Christ. :contentReference[oaicite:5]{index=5}
 //
 // ============================================================
+
 export const act3CaseA = {
   id: "last_supper",
+  icon: '../assets/gfx/cup-duotone.svg',
   title: "The Broken Cup",
   subtitle: "The Passover preparations in the upper room have been disturbed — and someone is hiding what they know.",
   location: "upperroom",
@@ -112,7 +114,7 @@ export const act3CaseA = {
   timeOfDay: "night",
   difficulty: 3,
   requires: "lazarus_plot",
-  actLabel: "Act III",
+  actLabel: "Act III - The Last Supper",
   color: 0x34d399,
   worldModel: "../assets/models/sphere.glb",
   showCityLayer: false,
@@ -129,7 +131,7 @@ export const act3CaseA = {
     {
       reference: "Exodus 12:1–14",
       id: "exodus_12_1_14",
-      icon: "🔮",
+      icon: "../assets/gfx/sparkles-duotone.svg",
       text: `"The blood shall be a sign for you, on the houses where you are... when I see the blood, I will pass over you, and no plague will befall you to destroy you."`,
       written: "~1400 BC",
       fulfilledBy: "Jesus, as the Passover Lamb, whose blood provides protection from judgement",
@@ -140,7 +142,7 @@ export const act3CaseA = {
     {
       reference: "Jeremiah 31:31–34",
       id: "jeremiah_31_31_34",
-      icon: "🔮",
+      icon: "../assets/gfx/sparkles-duotone.svg",
       text: `"Behold, the days are coming, declares the LORD, when I will make a new covenant with the house of Israel... I will put my law within them, and I will write it on their hearts."`,
       written: "~627 BC",
       fulfilledBy: "Jesus declaring 'This cup is the new covenant in my blood' at the Last Supper",
@@ -151,7 +153,7 @@ export const act3CaseA = {
     {
       reference: "Psalm 41:9",
       id: "psalm_41_9",
-      icon: "🔮",
+      icon: "../assets/gfx/sparkles-duotone.svg",
       text: `"Even my close friend in whom I trusted, who ate my bread, has lifted his heel against me."`,
       written: "~1000 BC",
       fulfilledBy: "Judas Iscariot betraying Jesus after eating with Him at the Last Supper",
@@ -162,7 +164,7 @@ export const act3CaseA = {
     {
       reference: "Zechariah 11:12–13",
       id: "zechariah_11_12_13",
-      icon: "🔮",
+      icon: "../assets/gfx/sparkles-duotone.svg",
       text: `"So they weighed out as my wages thirty pieces of silver... and I threw it into the house of the LORD — to the potter."`,
       written: "~520 BC",
       fulfilledBy: "Judas receiving 30 silver coins for betraying Jesus, later thrown into the Temple",
@@ -173,7 +175,7 @@ export const act3CaseA = {
     {
       reference: "Isaiah 53:12",
       id: "isaiah_53_12",
-      icon: "🔮",
+      icon: "../assets/gfx/sparkles-duotone.svg",
       text: `"He poured out his soul to death and was numbered with the transgressors; yet he bore the sin of many, and makes intercession for the transgressors."`,
       written: "~700 BC",
       fulfilledBy: "Jesus's prayer for His disciples and for those who would betray and crucify Him (John 17)",
@@ -181,14 +183,25 @@ export const act3CaseA = {
       insight: "The farewell discourse (John 14–17), delivered after the meal, is the longest recorded prayer of Jesus. Isaiah described the Suffering Servant 'making intercession' — Jesus fulfilled this at the Last Supper by praying for His disciples, for future believers, and — as He would later do from the cross — even for His enemies.",
       explanation: "The Suffering Servant was prophesied to make 'intercession for the transgressors.' Jesus fulfilled this by praying for His disciples and His enemies during the Last Supper and on the cross.",
     },
+    {
+      reference: "Genesis 14:18-20",
+      id: "typology_melchizedek",
+      icon: "../assets/gfx/sparkles-duotone.svg",
+      text: `"And Melchizedek king of Salem brought out bread and wine. (He was priest of God Most High.)"`,
+      written: "~1400 BC",
+      fulfilledBy: "Jesus, as the ultimate priest-king, using bread and wine to establish the New Covenant",
+      gospelLink: "Hebrews 7; Luke 22:19-20",
+      insight: "Melchizedek, the mysterious priest-king of Salem (Jerusalem), blessed Abraham with bread and wine. The book of Hebrews explains that Jesus is a high priest 'forever in the order of Melchizedek' (quoting Psalm 110), an eternal priesthood outside the Levitical line. Just as Melchizedek offered bread and wine, Jesus institutes the New Covenant with the same elements at the Last Supper.",
+      explanation: "Jesus fulfilled the typology of Melchizedek, the priest-king who blessed Abraham with bread and wine, by using the same elements to establish the New Covenant at the Last Supper.",
+    },
   ],
 
   intro: formatIntro(`It is the evening of Nisan 14. In a large upper room in Jerusalem's southwestern quarter, Peter and John have spent all afternoon preparing for the Passover Seder. The unleavened bread is set. The cups of wine are poured. The Passover lamb is ready. But when Jesus and the twelve arrive for the meal, something is wrong: a cup has been **broken**, the wine from one goblet has been **spilled**, and a portion of the unleavened bread is **missing**. Three people had access to the upper room that afternoon. Was this sabotage — or something _far more significant_?`),
 
   suspects: [
-    { id: "john_mark", name: "John Mark", role: "Son of the House Owner", avatar: "👨‍🦰", bibleRef: "Acts 12:12 — later tradition links this house to Mary, John Mark's mother" },
-    { id: "servant", name: "Rhoda", role: "Household Servant", avatar: "👧", bibleRef: "Acts 12:13–15 — a servant named Rhoda is mentioned in the same household" },
-    { id: "judas", name: "Judas Iscariot", role: "Disciple and Treasurer", avatar: "🪙", bibleRef: "John 13:29 — Judas kept the money bag; Luke 22:3–6 — already made his deal" },
+    { id: "john_mark", name: "John Mark", role: "Son of the House Owner", avatar: "john_mark.svg", bibleRef: "Acts 12:12 — later tradition links this house to Mary, John Mark's mother" },
+    { id: "servant", name: "Rhoda", role: "Household Servant", avatar: "rhoda.svg", bibleRef: "Acts 12:13–15 — a servant named Rhoda is mentioned in the same household" },
+    { id: "judas", name: "Judas Iscariot", role: "Disciple and Treasurer", avatar: "judas.svg", bibleRef: "John 13:29 — Judas kept the money bag; Luke 22:3–6 — already made his deal" },
   ],
 
   evidencePool: [
@@ -198,7 +211,7 @@ export const act3CaseA = {
       name: "Unleavened Bread Crumbs",
       relatedProphecy: "exodus_12_1_14",
       type: "physical",
-      icon: "🍞",
+      icon: "../assets/gfx/bread-duotone.svg",
       location: "Upper Room Preparation Table",
       desc: "Crumbles of unleavened (matzah) bread found on the floor near the preparation table, as if a piece was broken and dropped in haste.",
       bibleRef: "Matthew 26:26 — 'Jesus took bread, and after blessing it broke it and gave it to the disciples.'",
@@ -209,45 +222,52 @@ export const act3CaseA = {
         { ref: "Exodus 12:1-14", link: "exodus_12114" }
       ],
       investigatorNote: "The crumbs suggest someone handled the bread before the meal. The question is whether they were testing its freshness, or hiding something.",
+      fake: false,
+      category: 'event',
+      timelineOrder: 1,
       clues: {
-        compare: "Connects with related evidence in this case to confirm the established narrative.",
-        link: "Event Trail — unleavened bread crumbs",
-        timeline: "CHRONOLOGY: Recovered during the investigation.",
-        contradict: "RELIABILITY: Corroborated by multiple independent sources and consistent with the narrative."
+        compare: "The first physical trace of the meal — sets up the wine stain and cup fragments that follow.",
+        link: "Event — crumbs from the unleavened bread Jesus broke and blessed at the start of the meal.",
+        timeline: "CHRONOLOGY: Left behind at the very start of the meal, when the bread was first broken.",
+        contradict: "RELIABILITY: Consistent with the unleavened matzah required at a Passover table, not ordinary leavened bread."
       },
     }, {
       id: "wine_stain",
       name: "Spilled Wine on the Linen",
       type: "physical",
-      relatedProphecy: "jeremiah_31_31_34",
-      icon: "🍷",
+      relatedProphecy: ["jeremiah_31_31_34", "typology_melchizedek"],
+      icon: "../assets/gfx/wine-duotone.svg",
       location: "Upper Room Dining Table",
       desc: "A dark red stain on the fine linen tablecloth, exactly where the third cup of wine — the 'Cup of Redemption' — was set. It was spilled, not drunk.",
       bibleRef: "Luke 22:20 — 'In the same way, after supper he took the cup, saying: This cup is the new covenant in my blood, which is poured out for you.'",
       bibleLink: "luke_22_20",
-      propheticLink: "The Passover Seder uses four cups of wine (Exodus 6:6–7). The third cup — the Cup of Redemption — is the one Jesus transformed into the cup of the New Covenant. The spilled wine at this cup's position is theologically charged: 'blood poured out' was exactly the language He used.",
+      propheticLink: "The third Passover cup — the Cup of Redemption — is the one Jesus transformed into the cup of the New Covenant (Jeremiah 31:31-34). This also fulfills the typology of Melchizedek, the priest-king of Salem who blessed Abraham with bread and wine (Genesis 14:18), an order of priesthood Jesus now embodies (Hebrews 7).",
       bibleRefs: [
         { ref: "Luke 22:20", link: "luke_2220" },
         { ref: "Jeremiah 31:31-34", link: "jeremiah_313134" },
         { ref: "Exodus 6:6-7", link: "exodus_667" }
       ],
       propheticRefs: [
-        { ref: "Exodus 6:6-7", link: "exodus_6_6_7" }
+        { ref: "Exodus 6:6-7", link: "exodus_6_6_7" },
+        { ref: "Genesis 14:18-20", link: "genesis_14_18_20" }
       ],
       investigatorNote: "The stain is at the position of the third cup. Was this clumsiness, or deliberate disruption of this specific cup?",
+      fake: false,
+      category: 'event',
+      timelineOrder: 4,
       clues: {
-        compare: "Connects with related evidence in this case to confirm the established narrative.",
-        link: "Event Trail — spilled wine on the linen",
-        timeline: "CHRONOLOGY: Recovered during the investigation.",
-        contradict: "RELIABILITY: Corroborated by multiple independent sources and consistent with the narrative."
+        compare: "Marks the third cup position — pairs with the new covenant declaration to fix exactly which words were spoken over it.",
+        link: "Event — wine spilled at the position of the Cup of Redemption, the third of the Seder's four cups.",
+        timeline: "CHRONOLOGY: Occurred after the bread was broken, at the point in the Seder when the third cup is taken.",
+        contradict: "RELIABILITY: The stain's position at the third cup, not a random spill, matches exactly where Jesus spoke of His blood."
       },
     }, {
       id: "cup_fragments",
       name: "Shattered Clay Cup",
       relatedProphecy: "",
-      icon: "🍷",
+      icon: "../assets/gfx/wine-duotone.svg",
       type: "physical",
-      icon: "🥃",
+      icon: "../assets/gfx/wine-duotone.svg",
       location: "Near the Serving Entrance to the Upper Room",
       desc: "Fragments of a small clay cup — one of the Passover cups — shattered near the doorway, as if dropped or thrown. The clay is Galilean-style, not local Jerusalem pottery.",
       bibleRef: "Matthew 26:27 — 'And he took a cup, and when he had given thanks he gave it to them, saying, Drink of it, all of you.'",
@@ -261,11 +281,14 @@ export const act3CaseA = {
         { ref: "Jeremiah 19:10-11", link: "jeremiah_19_10_11" }
       ],
       investigatorNote: "Galilean clay cup — not from Jerusalem. One of the disciples may have brought their own cup. Judas was from Kerioth in Judah; this cup isn't his.",
+      fake: false,
+      category: 'event',
+      timelineOrder: 5,
       clues: {
-        compare: "Connects with related evidence in this case to confirm the established narrative.",
-        link: "Event Trail — shattered clay cup",
-        timeline: "CHRONOLOGY: Recovered during the investigation.",
-        contradict: "RELIABILITY: Corroborated by multiple independent sources and consistent with the narrative."
+        compare: "Found near the wine stain — together they narrow down whose cup was broken and when.",
+        link: "Event — a shattered clay cup of Galilean make, not local Jerusalem pottery.",
+        timeline: "CHRONOLOGY: Broken sometime after the third cup was poured, during or just after the meal.",
+        contradict: "RELIABILITY: The Galilean clay rules out Judas, whose home was in Kerioth, Judea — narrowing the field of suspects."
       },
     }, {
       id: "water_jug",
@@ -286,18 +309,21 @@ export const act3CaseA = {
         { ref: "Isaiah 52:13-15", link: "isaiah_52_13_15" }
       ],
       investigatorNote: "Someone moved this jug. If it was Rhoda doing her preparation duties, the wet trail should lead to the washing basin. It leads toward the staircase instead.",
+      fake: false,
+      category: 'event',
+      timelineOrder: 2,
       clues: {
-        compare: "Connects with related evidence in this case to confirm the established narrative.",
-        link: "Event Trail — large stone water jug",
-        timeline: "CHRONOLOGY: Recovered during the investigation.",
-        contradict: "RELIABILITY: Corroborated by multiple independent sources and consistent with the narrative."
+        compare: "Contradicts the expected route to the washing basin — its trail points somewhere else entirely.",
+        link: "Event — the stone jug used to fill the basin for washing the disciples' feet.",
+        timeline: "CHRONOLOGY: Moved early, before the meal itself, as preparations were being made.",
+        contradict: "RELIABILITY: The wet trail leads toward the staircase, not the basin — inconsistent with routine servant duties."
       },
     }, {
       id: "money_bag_impression",
       name: "Imprint of a Money Bag",
       type: "physical",
       relatedProphecy: "zechariah_11_12_13",
-      icon: "💰",
+      icon: "../assets/gfx/coins-duotone.svg",
       location: "Preparation Table Surface",
       desc: "A faint ring impression on the dusty preparation table surface — the outline of a leather drawstring bag, the kind used to carry coins. It was set down and picked up within the last few hours.",
       bibleRef: "John 13:29 — 'Since Judas had the money bag, some thought Jesus was telling him to buy what was needed for the feast, or give something to the poor.'",
@@ -311,11 +337,14 @@ export const act3CaseA = {
         { ref: "Zechariah 11:12", link: "zechariah_11_12" }
       ],
       investigatorNote: "The disciples' money bag was Judas's responsibility. Why was it here, in the food preparation area, before the meal?",
+      fake: false,
+      category: 'event',
+      timelineOrder: 3,
       clues: {
-        compare: "Connects with related evidence in this case to confirm the established narrative.",
-        link: "Event Trail — imprint of a money bag",
-        timeline: "CHRONOLOGY: Recovered during the investigation.",
-        contradict: "RELIABILITY: Corroborated by multiple independent sources and consistent with the narrative."
+        compare: "Ties directly to the dipped bread — the same person who controlled this bag receives that morsel.",
+        link: "Event — the imprint of the disciples' communal purse, left in the food preparation area before the meal.",
+        timeline: "CHRONOLOGY: Left in the preparation area before the meal proper began, ahead of the dipped-bread moment.",
+        contradict: "RELIABILITY: Judas alone held the money bag (John 13:29), placing him specifically at this spot beforehand."
       },
     }, {
       id: "betrayal_dipped_bread",
@@ -336,18 +365,21 @@ export const act3CaseA = {
         { ref: "John 13:18", link: "john_13_18" }
       ],
       investigatorNote: "The dipped bread points to the seat of honour — and to one specific disciple. This is the most revealing piece of evidence in the room.",
+      fake: false,
+      category: 'people',
+      timelineOrder: 6,
       clues: {
-        compare: "Connects with related evidence in this case to confirm the established narrative.",
-        link: "Event Trail — fragment of sop (dipped bread)",
-        timeline: "CHRONOLOGY: Recovered during the investigation.",
-        contradict: "RELIABILITY: Corroborated by multiple independent sources and consistent with the narrative."
+        compare: "The clearest identification in the room — read together with the money bag impression, it names the traitor.",
+        link: "People — the morsel of bread Jesus Himself dipped and handed to His betrayer.",
+        timeline: "CHRONOLOGY: Given partway through the meal, immediately after Jesus announced one of them would betray Him.",
+        contradict: "RELIABILITY: A deliberate, singled-out act witnessed by the whole table — not an ambiguous or accidental gesture."
       },
     }, {
       id: "new_covenant_declaration",
       name: "Written Summary of Jesus's Words",
       type: "analytical",
       relatedProphecy: "jeremiah_31_31_34",
-      icon: "📜",
+      icon: "../assets/gfx/scroll-duotone.svg",
       location: "John Mark's Writing Table, Downstairs",
       desc: "A partial written record in careful Aramaic script: 'This cup is the new covenant in my blood. Do this in remembrance of me.' The handwriting is young but educated. Someone was recording this meal.",
       bibleRef: "Luke 22:19–20; 1 Corinthians 11:24–25 — Paul records the same words, passed on 'from the Lord.'",
@@ -361,18 +393,21 @@ export const act3CaseA = {
         { ref: "Jeremiah 31:31-34", link: "jeremiah_313134" }
       ],
       investigatorNote: "John Mark was present. He was watching, listening, and writing. He knew everything that happened in that room.",
+      fake: false,
+      category: 'people',
+      timelineOrder: 7,
       clues: {
-        compare: "Connects with related evidence in this case to confirm the established narrative.",
-        link: "Prophecy & Scripture — written summary of jesus's words",
-        timeline: "CHRONOLOGY: Recovered during the investigation.",
-        contradict: "RELIABILITY: Corroborated by multiple independent sources and consistent with the narrative."
+        compare: "Records the words spoken over the same cup marked by the wine stain.",
+        link: "People — a young scribe's written record of Jesus's words over the bread and the cup.",
+        timeline: "CHRONOLOGY: Recorded as Jesus spoke, late in the meal, establishing the new covenant.",
+        contradict: "RELIABILITY: Independently corroborated by Paul's nearly identical wording in 1 Corinthians 11:24–25."
       },
     }, {
       id: "twelve_roll",
       name: "List of the Twelve",
       type: "analytical",
       relatedProphecy: "isaiah_53_12",
-      icon: "📜",
+      icon: "../assets/gfx/scroll-duotone.svg",
       location: "Upper Room",
       desc: "A roll call of the disciples present at the meal, including Judas Iscariot, a known transgressor.",
       bibleRef: "Luke 22:37",
@@ -383,7 +418,16 @@ export const act3CaseA = {
       propheticRefs: [
         { ref: "Isaiah 53:12", link: "isaiah_53_12" }
       ],
-      investigatorNote: "Jesus willingly associated with and ministered to His own betrayer, fulfilling the prophecy."
+      investigatorNote: "Jesus willingly associated with and ministered to His own betrayer, fulfilling the prophecy.",
+      fake: false,
+      category: 'people',
+      timelineOrder: 8,
+      clues: {
+        compare: "Confirms who was present for every earlier piece of evidence in this room — all twelve, including the betrayer.",
+        link: "People — a roll naming all twelve disciples seated at the table that night.",
+        timeline: "CHRONOLOGY: Reflects the seating for the whole meal, from the first cup through Jesus's final words.",
+        contradict: "RELIABILITY: Jesus knowingly kept His betrayer at the table and ministered to him regardless — a detail no fabricated account would need to include."
+      },
     }
 
   ],
@@ -416,7 +460,7 @@ export const act3CaseA = {
       role: "Son of the House Owner",
       faction: "scribes",
       unlocksSuspects: ["john_mark"],
-      avatar: "👨\u200d🦰",
+      avatar: "john_mark.svg",
       profileFile: "john_mark",
       truthfulness: 0.75,
       bibleRef: "Acts 12:12; Mark 14:51–52 (possibly the young man who fled the garden)",
@@ -447,7 +491,7 @@ export const act3CaseA = {
       name: "Rhoda",
       role: "Household Servant",
       faction: "local",
-      avatar: "👧",
+      avatar: "rhoda.svg",
       unlocksSuspects: ["servant"],
       profileFile: "rhoda",
       truthfulness: 0.9,
@@ -476,7 +520,7 @@ export const act3CaseA = {
       name: "Judas Iscariot",
       role: "Disciple and Treasurer",
       faction: "scribes",
-      avatar: "🪙",
+      avatar: "judas.svg",
       unlocksSuspects: ["judas"],
       profileFile: "judas",
       truthfulness: 0.3,
@@ -681,14 +725,15 @@ export const act3CaseA = {
 
 export const act3CaseB = {
   id: "gethsemane_arrest",
+  icon: '../assets/gfx/ear-duotone.svg',
   title: "The Severed Ear",
   subtitle: "An armed mob entered Gethsemane under cover of darkness. A sword was drawn, yet the physical evidence makes no sense.",
-  location: "upperroom",
+  location: "gethsemane",
   eventLocation: "Gethsemane Garden, Mount of Olives",
   timeOfDay: "night",
   difficulty: 3,
   requires: "last_supper",
-  actLabel: "Act III",
+  actLabel: "Act III - The Last Supper",
   color: 0x34d399,
   worldModel: "../assets/models/sphere.glb",
   showCityLayer: false,
@@ -704,7 +749,7 @@ export const act3CaseB = {
     {
       reference: "Zechariah 13:7",
       id: "zechariah_13_7",
-      icon: "🔮",
+      icon: "../assets/gfx/sparkles-duotone.svg",
       text: `"Strike the shepherd, and the sheep will be scattered."`,
       written: "~520 BC",
       explanation: "Jesus quoted this prophecy just before His arrest, predicting that His disciples would flee in fear, which they did.",
@@ -712,7 +757,7 @@ export const act3CaseB = {
     {
       reference: "Isaiah 53:7",
       id: "isaiah_53_7",
-      icon: "🔮",
+      icon: "../assets/gfx/sparkles-duotone.svg",
       text: `"He was oppressed, and he was afflicted, yet he opened not his mouth; like a lamb that is led to the slaughter."`,
       written: "~700 BC",
       fulfilledBy: "Jesus's silence and non-resistance during His arrest and trial",
@@ -743,7 +788,7 @@ export const act3CaseB = {
       name: "Abandoned Linen Wrapper",
       type: "physical",
       relatedProphecy: "zechariah_13_7",
-      icon: "🧣",
+      icon: "../assets/gfx/shield-duotone.svg",
       pos: [3, 4, 0],
       snippet: "A fine linen garment left caught in an olive branch.",
       description: "A high-quality linen cloak dropped in the brush, consistent with someone fleeing in an extreme hurry.",
@@ -758,11 +803,14 @@ export const act3CaseB = {
         { ref: "Matthew 26:31", link: "matthew_2631" }
       ],
       investigatorNote: "The high grade of the linen suggests the owner was from a wealthy Jerusalem family, potentially John Mark acting as a secret night observer.",
+      fake: false,
+      category: 'event',
+      timelineOrder: 3,
       clues: {
-        compare: "Connects with related evidence in this case to confirm the established narrative.",
-        link: "Event Trail — abandoned linen wrapper",
-        timeline: "CHRONOLOGY: Recovered during the investigation.",
-        contradict: "RELIABILITY: Corroborated by multiple independent sources and consistent with the narrative."
+        compare: "The clearest physical sign of the disciples scattering — pairs with the dropped torch to mark the chaos of the arrest.",
+        link: "Event — a fine linen cloak snagged on an olive branch, left by someone fleeing in panic.",
+        timeline: "CHRONOLOGY: Abandoned last, as the disciples scattered once the arrest was made.",
+        contradict: "RELIABILITY: The fabric's quality points to a wealthy young man — plausibly Mark himself, an unnamed eyewitness (Mark 14:51–52)."
       },
     }, {
       id: "dropped_torch",
@@ -783,11 +831,14 @@ export const act3CaseB = {
         { ref: "John 18:3", link: "john_183" }
       ],
       investigatorNote: "John 18:6 records that when Jesus stated 'I am he,' the entire detachment fell backward to the ground. This dropped torch marks the exact physical epicenter of that divine surge.",
+      fake: false,
+      category: 'event',
+      timelineOrder: 1,
       clues: {
-        compare: "Connects with related evidence in this case to confirm the established narrative.",
-        link: "Event Trail — extinguished roman torch",
-        timeline: "CHRONOLOGY: Recovered during the investigation.",
-        contradict: "RELIABILITY: Corroborated by multiple independent sources and consistent with the narrative."
+        compare: "Marks the exact spot of the arresting party's advance — pairs with the severed ear wrap for what happened next.",
+        link: "Event — a Roman military torch, trampled into the mud while still unlit, despite unused pitch remaining.",
+        timeline: "CHRONOLOGY: Dropped first, at the moment the detachment fell backward when Jesus said 'I am he' (John 18:6).",
+        contradict: "RELIABILITY: An unlit, unburnt torch dropped mid-approach is inconsistent with a routine handoff — consistent with a sudden shock."
       },
     }, {
       id: "severed_ear_wrap",
@@ -809,18 +860,21 @@ export const act3CaseB = {
         { ref: "John 18:10", link: "john_1810" }
       ],
       investigatorNote: "This provides the supreme paradox: there is dynamic arterial blood indicating an amputation, but no victim at the scene lacks an ear.",
+      fake: false,
+      category: 'event',
+      timelineOrder: 2,
       clues: {
-        compare: "Connects with related evidence in this case to confirm the established narrative.",
-        link: "Event Trail — bloodied scarf fragment",
-        timeline: "CHRONOLOGY: Recovered during the investigation.",
-        contradict: "RELIABILITY: Corroborated by multiple independent sources and consistent with the narrative."
+        compare: "Follows the dropped torch — the confrontation that happened in that same moment of confusion.",
+        link: "Event — a blood-soaked cloth with a clean blade cut, found on the garden path.",
+        timeline: "CHRONOLOGY: Left immediately after the torch was dropped, during Peter's strike at Malchus.",
+        contradict: "RELIABILITY: Arterial blood loss with no victim missing an ear at the scene — explained only by Jesus's immediate healing (Luke 22:51)."
       },
     }, {
       id: "prisoner_cord",
       name: "Unresisting Prisoner's Cord",
       type: "physical",
       relatedProphecy: "isaiah_53_7",
-      icon: "⛓️",
+      icon: "../assets/gfx/chain-duotone.svg",
       location: "Gethsemane Garden",
       desc: "A length of rope used to bind Jesus's hands, showing no signs of struggle or resistance.",
       bibleRef: "Matthew 26:52–54",
@@ -831,7 +885,16 @@ export const act3CaseB = {
       propheticRefs: [
         { ref: "Isaiah 53:7", link: "isaiah_53_7" }
       ],
-      investigatorNote: "The lack of fraying on the cord indicates a willing submission, not a capture after a fight."
+      investigatorNote: "The lack of fraying on the cord indicates a willing submission, not a capture after a fight.",
+      fake: false,
+      category: 'event',
+      timelineOrder: 4,
+      clues: {
+        compare: "The final piece — shows how the arrest actually ended, in contrast to the violence of the torch and the ear.",
+        link: "Event — the binding cord used to lead Jesus away, unfrayed and unmarked by struggle.",
+        timeline: "CHRONOLOGY: Used last, once Jesus stopped Peter and submitted to arrest.",
+        contradict: "RELIABILITY: The absence of fraying rules out a physical fight — consistent with willing submission, not capture."
+      },
     }
 
   ],
@@ -841,7 +904,7 @@ export const act3CaseB = {
       id: "malchus_servant",
       name: "Malchus",
       role: "High Priest's Personal Assistant",
-      avatar: "👨‍💼",
+      avatar: "malchus.svg",
       color: 0xffaa44,
       pos: [0, 0, 0],
       bibleRef: "John 18:10",
@@ -856,7 +919,7 @@ export const act3CaseB = {
         },
       },
     },
-    { id: "none", name: "No One", role: "Not Stolen", avatar: "❓", bibleRef: null },
+    { id: "none", name: "No One", role: "Not Stolen", avatar: "nicodemus.svg", bibleRef: null },
   ],
 
   npcs: [
@@ -866,7 +929,7 @@ export const act3CaseB = {
       role: "High Priest's Personal Assistant",
       faction: "temple",
       unlocksSuspects: ["malchus_servant"],
-      avatar: "👨\u200d💼",
+      avatar: "malchus.svg",
       profileFile: "malchus",
       truthfulness: 0.90,
       bibleRef: "John 18:10; Luke 22:51",
@@ -894,7 +957,7 @@ export const act3CaseB = {
       name: "Simon Peter",
       role: "Galilean Disciple",
       faction: "scribes",
-      avatar: "🐓",
+      avatar: "peter.svg",
       profileFile: "peter",
       truthfulness: 0.70,
       bibleRef: "John 18:10-11; Matthew 26:51-54",
@@ -923,7 +986,7 @@ export const act3CaseB = {
       name: "Garrison Guard",
       role: "Antonia Fortress Auxiliary",
       faction: "roman",
-      avatar: "🛡️",
+      avatar: "garrison_guard.svg",
       profileFile: "garrison_guard",
       truthfulness: 0.85,
       hasDialogue: true,
@@ -1102,14 +1165,15 @@ export const act3CaseB = {
 
 export const act3CaseC = {
   id: "sanhedrin_trial",
+  icon: '../assets/gfx/balance-scale-duotone.svg',
   title: "The Midnight Tribunal",
   subtitle: "Inside the High Priest's residence, a legal sham is unfolding while a disciple waits in the cold courtyard.",
-  location: "upperroom",
+  location: "high_priest_palace",
   eventLocation: "High Priest's Courtyard, Jerusalem",
   timeOfDay: "night",
   difficulty: 3,
   requires: "gethsemane_arrest",
-  actLabel: "Act III",
+  actLabel: "Act III - The Last Supper",
   color: 0x991b1b,
   worldModel: "../assets/models/sphere.glb",
   showCityLayer: false,
@@ -1125,7 +1189,7 @@ export const act3CaseC = {
     {
       reference: "Isaiah 50:6",
       id: "isaiah_50_6",
-      icon: "🔮",
+      icon: "../assets/gfx/sparkles-duotone.svg",
       text: `"I offered my back to those who beat me, my cheeks to those who pulled out my beard; I did not hide my face from mocking and spitting."`,
       written: "~700 BC",
       fulfilledBy: "The guards and Sanhedrin members striking and spitting on Jesus after the verdict",
@@ -1135,7 +1199,7 @@ export const act3CaseC = {
     {
       reference: "Micah 5:1",
       id: "micah_5_1",
-      icon: "🔮",
+      icon: "../assets/gfx/sparkles-duotone.svg",
       text: `"Out of you will come one ruler to rule over a people... Yet I will come to the firstborn of the exiles of Moab, to the one who has been spared among the dry bones."`,
       written: "~700 BC",
       fulfilledBy: "Jesus remaining silent during His false trial, fulfilling the role of the innocent sufferer",
@@ -1145,7 +1209,7 @@ export const act3CaseC = {
     {
       reference: "Psalm 27:12",
       id: "psalm_27_12",
-      icon: "🔮",
+      icon: "../assets/gfx/sparkles-duotone.svg",
       text: `"For false witnesses rise up against me, breathing out violence."`,
       written: "~1000 BC",
       explanation: "The Sanhedrin's trial was a sham, relying on hired accusers whose testimonies contradicted each other, fulfilling the psalmist's prediction.",
@@ -1153,7 +1217,7 @@ export const act3CaseC = {
     {
       reference: "Psalm 35:11",
       id: "psalm_35_11",
-      icon: "🔮",
+      icon: "../assets/gfx/sparkles-duotone.svg",
       text: `"Malicious witnesses rise up; they ask me of things that I do not know."`,
       written: "~1000 BC",
       explanation: "The Sanhedrin's trial was a sham, relying on hired accusers whose testimonies contradicted each other, fulfilling the psalmist's prediction.",
@@ -1185,10 +1249,10 @@ export const act3CaseC = {
   intro: formatIntro(`The moon has set behind the Temple Mount. In the courtyard of the High Priest's residence, a surreal scene unfolds: Jesus stands before a hastily assembled tribunal, accused of blasphemy. Inside, false witnesses testify against Him. Outside, by a charcoal fire, a certain disciple warms himself—for the moment. **The rooster's crow will change everything.**`),
 
   suspects: [
-    { id: "chief_priest", name: "Caiaphas", role: "High Priest", avatar: "👨‍⚖️", bibleRef: "Matthew 26:57" },
-    { id: "false_witness", name: "Ananias", role: "Hired Accuser", avatar: "🤥", bibleRef: "Mark 14:56" },
-    { id: "peter_denial", name: "Peter", role: "Denying Disciple", avatar: "🐓", bibleRef: "Matthew 26:69-75" },
-    { id: "none", name: "No One", role: "Not Guilty", avatar: "❓", bibleRef: null },
+    { id: "chief_priest", name: "Caiaphas", role: "High Priest", avatar: "caiaphas.svg", bibleRef: "Matthew 26:57" },
+    { id: "false_witness", name: "Ananias", role: "Hired Accuser", avatar: "ananias_witness.svg", bibleRef: "Mark 14:56" },
+    { id: "peter_denial", name: "Peter", role: "Denying Disciple",       avatar: "peter.svg", bibleRef: "Matthew 26:69-75" },
+    { id: "none", name: "No One", role: "Not Guilty", avatar: "nicodemus.svg", bibleRef: null },
   ],
 
   evidencePool: [
@@ -1212,18 +1276,21 @@ export const act3CaseC = {
         { ref: "Matthew 26:34", link: "matthew_2634" }
       ],
       investigatorNote: "This feather marks the site of the most famous denial in history.",
+      fake: false,
+      category: 'event',
+      timelineOrder: 6,
       clues: {
-        compare: "Connects with related evidence in this case to confirm the established narrative.",
-        link: "Event Trail — rooster feather",
-        timeline: "CHRONOLOGY: Recovered during the investigation.",
-        contradict: "RELIABILITY: Corroborated by multiple independent sources and consistent with the narrative."
+        compare: "Marks the exact moment and place of Peter's third denial, fulfilling what Jesus predicted at the Supper.",
+        link: "Event — a feather from the rooster whose crowing marked Peter's third denial.",
+        timeline: "CHRONOLOGY: Found at dawn, at the very end of the night's proceedings.",
+        contradict: "RELIABILITY: The timing lines up exactly with Jesus's own prediction hours earlier (Matthew 26:34)."
       },
     }, {
       id: "torn_robe",
       name: "Priestly Robe Fragment",
       relatedProphecy: "isaiah_50_6",
       type: "physical",
-      icon: "🥋",
+      icon: "../assets/gfx/shield-duotone.svg",
       location: "Judgment Seat",
       desc: "A clean, white piece of high-grade linen torn from a priestly garment. It bears the tear marks of deliberate ripping.",
       bibleRef: "Matthew 26:65",
@@ -1235,18 +1302,21 @@ export const act3CaseC = {
       ],
       propheticRefs: [],
       investigatorNote: "The tear was ritual declaration that Jesus had committed the unforgivable offense.",
+      fake: false,
+      category: 'people',
+      timelineOrder: 3,
       clues: {
-        compare: "Connects with related evidence in this case to confirm the established narrative.",
-        link: "Event Trail — priestly robe fragment",
-        timeline: "CHRONOLOGY: Recovered during the investigation.",
-        contradict: "RELIABILITY: Corroborated by multiple independent sources and consistent with the narrative."
+        compare: "The turning point of the trial — pairs with the perjured testimony that came just before it collapsed the prosecution's case.",
+        link: "People — Caiaphas's own robe, ritually torn the moment Jesus affirmed His divine identity.",
+        timeline: "CHRONOLOGY: Torn partway through the night, once the witness testimony had already fallen apart.",
+        contradict: "RELIABILITY: A public, ritual act performed by the High Priest himself — not a detail anyone could misremember."
       },
     }, {
       id: "false_scroll",
       name: "Conflicting Depositions",
       relatedProphecy: "psalm_27_12",
       type: "analytical",
-      icon: "📜",
+      icon: "../assets/gfx/scroll-duotone.svg",
       location: "Council Chamber",
       desc: "Scraps of parchment recording the claims of witnesses. The details about destroying the Temple do not match.",
       bibleRef: "Mark 14:56-59",
@@ -1258,18 +1328,21 @@ export const act3CaseC = {
       ],
       propheticRefs: [],
       investigatorNote: "No single witness could agree—so they had to manufacture testimony.",
+      fake: false,
+      category: 'people',
+      timelineOrder: 2,
       clues: {
-        compare: "Connects with related evidence in this case to confirm the established narrative.",
-        link: "Prophecy & Scripture — conflicting depositions",
-        timeline: "CHRONOLOGY: Recovered during the investigation.",
-        contradict: "RELIABILITY: Corroborated by multiple independent sources and consistent with the narrative."
+        compare: "Sets up the torn robe — the failed testimony is exactly why Caiaphas had to resort to a direct question.",
+        link: "People — a record of the witness statements brought against Jesus, none of which agreed.",
+        timeline: "CHRONOLOGY: Collected early in the night, before the council abandoned witnesses for a direct interrogation.",
+        contradict: "RELIABILITY: Mark 14:56 explicitly states the testimony did not agree — the record documents the prosecution's own failure."
       },
     }, {
       id: "charcoal_remains",
       name: "Charcoal Briquette",
       type: "physical",
       relatedProphecy: "",
-      icon: "🔥",
+      icon: "../assets/gfx/flame-duotone.svg",
       location: "Courtyard Fire Pit",
       desc: "A charred piece of olive wood from the courtyard fire. Its arrangement suggests recent burning.",
       bibleRef: "John 18:18",
@@ -1280,18 +1353,21 @@ export const act3CaseC = {
       ],
       propheticRefs: [],
       investigatorNote: "The fire was a place of warmth—and of betrayal.",
+      fake: false,
+      category: 'event',
+      timelineOrder: 1,
       clues: {
-        compare: "Connects with related evidence in this case to confirm the established narrative.",
-        link: "Event Trail — charcoal briquette",
-        timeline: "CHRONOLOGY: Recovered during the investigation.",
-        contradict: "RELIABILITY: Corroborated by multiple independent sources and consistent with the narrative."
+        compare: "The setting for Peter's whole ordeal — ties together the rooster feather and Peter's presence in the courtyard.",
+        link: "Event — the remains of the fire Peter warmed himself by while waiting in the courtyard.",
+        timeline: "CHRONOLOGY: Burning from early in the night, throughout the entire trial happening inside.",
+        contradict: "RELIABILITY: John 18:18 places Peter at exactly this fire, warming himself among the guards."
       },
     }, {
       id: "guard_reed",
       name: "Guard's Reed",
       type: "physical",
       relatedProphecy: "micah_5_1",
-      icon: "🌿",
+      icon: "../assets/gfx/leaf-duotone.svg",
       location: "Courtyard Floor",
       desc: "A reed, similar to a staff, used by the guards to strike Jesus on the head in mockery.",
       bibleRef: "Matthew 26:67–68",
@@ -1302,14 +1378,23 @@ export const act3CaseC = {
       propheticRefs: [
         { ref: "Micah 5:1", link: "micah_5_1" }
       ],
-      investigatorNote: "The reed was a symbol of kingship, used here to mock Jesus's claim to be a king."
+      investigatorNote: "The reed was a symbol of kingship, used here to mock Jesus's claim to be a king.",
+      fake: false,
+      category: 'event',
+      timelineOrder: 4,
+      clues: {
+        compare: "Follows the formal condemnation — the mockery that came once the council had already reached its verdict.",
+        link: "Event — the reed used by the guards to mock Jesus as a false king after the verdict.",
+        timeline: "CHRONOLOGY: Used after the council's judgement, as the guards began their mockery.",
+        contradict: "RELIABILITY: A physical prop of humiliation, matching Matthew's account of a reed placed in His hand and used to strike Him."
+      },
     },
     {
       id: "perjured_testimony",
       name: "Perjured Witness Statement",
       type: "analytical",
       relatedProphecy: "psalm_35_11",
-      icon: "📜",
+      icon: "../assets/gfx/scroll-duotone.svg",
       location: "Council Chamber",
       desc: "A statement from a witness whose testimony was inconsistent with others, revealing the fabricated nature of the charges.",
       bibleRef: "Mark 14:57–59",
@@ -1320,7 +1405,16 @@ export const act3CaseC = {
       propheticRefs: [
         { ref: "Psalm 35:11", link: "psalm_35_11" }
       ],
-      investigatorNote: "The desperation to find witnesses, any witnesses, shows the weakness of the prosecution's case."
+      investigatorNote: "The desperation to find witnesses, any witnesses, shows the weakness of the prosecution's case.",
+      fake: false,
+      category: 'people',
+      timelineOrder: 2,
+      clues: {
+        compare: "One of the individual statements that make up the false scroll's record of disagreement.",
+        link: "People — a single false witness's statement, contradicted by every other account given that night.",
+        timeline: "CHRONOLOGY: Given early in the proceedings, part of the failed attempt to build a case.",
+        contradict: "RELIABILITY: The desperation to produce any usable testimony exposes the weakness of the prosecution's actual case."
+      },
     }
 
   ],
@@ -1332,7 +1426,7 @@ export const act3CaseC = {
       role: "High Priest",
       faction: "temple",
       unlocksSuspects: ["chief_priest"],
-      avatar: "👨‍⚖️",
+      avatar: "caiaphas.svg",
       profileFile: "caiaphas",
       color: 0xcc8888,
       pos: [0, 0, 0],
@@ -1361,7 +1455,7 @@ export const act3CaseC = {
       role: "Denying Disciple",
       faction: "scribes",
       unlocksSuspects: ["peter_denial"],
-      avatar: "🐓",
+      avatar: "peter.svg",
       profileFile: "peter",
       color: 0xffaa44,
       pos: [12, 0, 8],
@@ -1392,7 +1486,7 @@ export const act3CaseC = {
       role: "Hired Accuser",
       faction: "temple",
       unlocksSuspects: ["false_witness"],
-      avatar: "🤥",
+      avatar: "ananias_witness.svg",
       profileFile: "ananias_witness",
       color: 0x94a3b8,
       pos: [-5, 0, -5],
@@ -1480,8 +1574,6 @@ export const act3CaseC = {
     furtherReading: ["Matthew 26:57–68", "Mark 14:53–65", "Luke 22:54–71"],
   },
 };
-
-
 
 // ============================================================
 // ACT: Act III
@@ -1579,13 +1671,14 @@ export const act3CaseC = {
 
 export const act3CaseD = {
   id: "barabbas_choice",
+  icon: '../assets/gfx/crown-duotone.svg',
   title: "The People's Choice",
   subtitle: "Pilate offers a choice between a Prince of Peace and a man of violence. Who will the crowd choose?",
-  location: "upperroom",
+  location: "praetorium",
   timeOfDay: "day",
   difficulty: 3,
   requires: "sanhedrin_trial",
-  actLabel: "Act III",
+  actLabel: "Act III - The Last Supper",
   color: 0xa78bfa,
   worldModel: "../assets/models/sphere.glb",
   showCityLayer: false,
@@ -1601,7 +1694,7 @@ export const act3CaseD = {
     {
       reference: "Isaiah 53:3",
       id: "isaiah_53_3",
-      icon: "🔮",
+      icon: "../assets/gfx/sparkles-duotone.svg",
       text: `"He was despised and rejected by mankind, a man of suffering, and familiar with pain. Like one from whom people hide their faces he was despised, and we held him in low esteem."`,
       written: "~700 BC",
       fulfilledBy: "The crowd choosing a murderer over the Messiah",
@@ -1611,7 +1704,7 @@ export const act3CaseD = {
     {
       reference: "Psalm 2:1-2",
       id: "psalm_2_1_2",
-      icon: "🔮",
+      icon: "../assets/gfx/sparkles-duotone.svg",
       text: `"Why do the nations conspire and the peoples plot in vain? The kings of the earth rise up and the rulers band together against the LORD and against his anointed."`,
       written: "~1000 BC",
       fulfilledBy: "The Roman Governor and Jewish leaders collaborating under public pressure",
@@ -1637,8 +1730,8 @@ export const act3CaseD = {
   intro: formatIntro(`It is now early Friday morning. Pilate, seeking to avoid responsibility, has offered the crowd a Passover custom: the release of one prisoner. He presents them with Jesus, whom he has declared innocent, and **Barabbas**, a notorious insurrectionist and murderer. The chief priests stir up the crowd, and their choice will fulfill one of the most poignant prophecies about the Messiah.`),
 
   suspects: [
-    { id: "barabbas_insurgent", name: "Barabbas", role: "Released Criminal", avatar: "⚔️", bibleRef: "Matthew 27:16" },
-    { id: "none", name: "No One", role: "Fulfillment", avatar: "❓", bibleRef: null }
+    { id: "barabbas_insurgent", name: "Barabbas", role: "Released Criminal", avatar: "barabbas.svg", bibleRef: "Matthew 27:16" },
+    { id: "none", name: "No One", role: "Fulfillment", avatar: "nicodemus.svg", bibleRef: null }
   ],
 
   evidencePool: [
@@ -1648,7 +1741,7 @@ export const act3CaseD = {
       name: "The Governor's Silver Basin",
       type: "physical",
       relatedProphecy: "",
-      icon: "🥣",
+      icon: "../assets/gfx/bowl-duotone.svg",
       location: "The Praetorium Bema",
       desc: "A silver basin containing clouded water. Pilate used it to wash his hands in front of the crowd, a symbolic act of disavowal.",
       bibleRef: "Matthew 27:24 — 'I am innocent of this man’s blood; see to it yourselves.'",
@@ -1657,18 +1750,21 @@ export const act3CaseD = {
       ],
       propheticRefs: [],
       investigatorNote: "A Roman official using a Jewish ritual gesture. It shows his desperation to shift legal responsibility to the mob.",
+      fake: false,
+      category: 'event',
+      timelineOrder: 4,
       clues: {
-        compare: "Connects with related evidence in this case to confirm the established narrative.",
-        link: "Event Trail — the governor's silver basin",
-        timeline: "CHRONOLOGY: Recovered during the investigation.",
-        contradict: "RELIABILITY: Corroborated by multiple independent sources and consistent with the narrative."
+        compare: "Pilate's final act after ignoring both the warning scroll and the insurgent's dossier.",
+        link: "Event — the basin Pilate used to wash his hands, borrowing a Jewish ritual gesture of innocence.",
+        timeline: "CHRONOLOGY: Used last, once the crowd had made its choice and the verdict was set.",
+        contradict: "RELIABILITY: A Roman governor invoking a Jewish purification rite is a highly unusual, deliberate act — not routine procedure."
       },
     }, {
       id: "wifes_letter",
       name: "Claudia's Warning Scroll",
       type: "physical",
       relatedProphecy: "",
-      icon: "✉️",
+      icon: "../assets/gfx/envelope-duotone.svg",
       location: "Pilate's Private Quarters",
       desc: "A small piece of parchment sent by Pilate's wife. It warns: 'Don’t have anything to do with that innocent man, for I have suffered a great deal today in a dream because of him.'",
       bibleRef: "Matthew 27:19",
@@ -1677,18 +1773,21 @@ export const act3CaseD = {
       ],
       propheticRefs: [],
       investigatorNote: "Divine warning reached the Roman household before the verdict. Pilate ignored the dream for political safety.",
+      fake: false,
+      category: 'people',
+      timelineOrder: 1,
       clues: {
-        compare: "Connects with related evidence in this case to confirm the established narrative.",
-        link: "Event Trail — claudia's warning scroll",
-        timeline: "CHRONOLOGY: Recovered during the investigation.",
-        contradict: "RELIABILITY: Corroborated by multiple independent sources and consistent with the narrative."
+        compare: "The first warning Pilate received — and the first he chose to ignore, before the crowd was even offered a choice.",
+        link: "People — Claudia's own written warning, sent to Pilate during the proceedings.",
+        timeline: "CHRONOLOGY: Delivered early, while Pilate was still seated on the judgment seat.",
+        contradict: "RELIABILITY: Matthew 27:19 records the warning arriving during the trial itself, not after the fact."
       },
     }, {
       id: "barabbas_warrant",
       name: "The Insurgent's Dossier",
       type: "analytical",
       relatedProphecy: "isaiah_53_3",
-      icon: "⚔️",
+      icon: "../assets/gfx/barabbas.svg",
       location: "Antonia Fortress Record Room",
       desc: "A Roman arrest record for 'Jesus Barabbas.' Charges include insurrection, murder, and robbery. He is an ultra-nationalist zealot.",
       bibleRef: "Mark 15:7; John 18:40",
@@ -1698,6 +1797,15 @@ export const act3CaseD = {
       ],
       propheticRefs: [],
       investigatorNote: "Barabbas was the very thing Rome feared—a violent rebel. Yet the crowd chose him to be set free.",
+      fake: false,
+      category: 'event',
+      timelineOrder: 2,
+      clues: {
+        compare: "Explains exactly who the crowd chose over Jesus — an arrest record for a convicted insurrectionist.",
+        link: "Event — the Roman arrest record for Barabbas, listing insurrection, murder, and robbery.",
+        timeline: "CHRONOLOGY: On file before the trial, describing the man already awaiting sentence when the choice was offered.",
+        contradict: "RELIABILITY: An official Roman charge sheet, confirmed by both Mark 15:7 and John 18:40."
+      },
     }
     ,
     {
@@ -1705,7 +1813,7 @@ export const act3CaseD = {
       name: "Joint Verdict Scroll",
       type: "analytical",
       relatedProphecy: "psalm_2_1_2",
-      icon: "📜",
+      icon: "../assets/gfx/scroll-duotone.svg",
       location: "Praetorium Records",
       desc: "A record showing that Herod and Pilate, once enemies, conferred and agreed on the verdict for Jesus.",
       bibleRef: "Luke 23:12",
@@ -1717,14 +1825,23 @@ export const act3CaseD = {
       propheticRefs: [
         { ref: "Psalm 2:1-2", link: "psalm_2_1_2" }
       ],
-      investigatorNote: "The political alliance formed over this single judicial case highlights the threat Jesus posed to both Roman and Jewish power structures."
+      investigatorNote: "The political alliance formed over this single judicial case highlights the threat Jesus posed to both Roman and Jewish power structures.",
+      fake: false,
+      category: 'event',
+      timelineOrder: 3,
+      clues: {
+        compare: "Follows the warrant — records the crowd's actual choice between the two men described in it.",
+        link: "Event — the scroll recording the crowd's demand and the political alliance it produced between Herod and Pilate.",
+        timeline: "CHRONOLOGY: Drawn up as the crowd made its demand, shortly before Pilate's basin.",
+        contradict: "RELIABILITY: Luke 23:12 independently notes Herod and Pilate became friends that very day, over this case."
+      },
     }
 
   ],
 
   suspects: [
-    { id: "barabbas_insurgent", name: "Barabbas", role: "Released Criminal", avatar: "⚔️", bibleRef: "Matthew 27:16" },
-    { id: "none", name: "No One", role: "Fulfillment", avatar: "❓", bibleRef: null }
+    { id: "barabbas_insurgent", name: "Barabbas", role: "Released Criminal", avatar: "barabbas.svg", bibleRef: "Matthew 27:16" },
+    { id: "none", name: "No One", role: "Fulfillment", avatar: "nicodemus.svg", bibleRef: null }
   ],
 
   npcs: [
@@ -1733,7 +1850,7 @@ export const act3CaseD = {
       name: "Pontius Pilate",
       role: "Roman Prefect",
       faction: "roman",
-      avatar: "🏛️",
+      avatar: "pontius_pilate.svg",
       profileFile: "pontius_pilate",
       truthfulness: 0.5,
       bibleRef: "Luke 23:1-25; John 18:38-40",
@@ -1746,7 +1863,7 @@ export const act3CaseD = {
       name: "Barabbas",
       role: "Released Criminal",
       faction: "local",
-      avatar: "⚔️",
+      avatar: "barabbas.svg",
       profileFile: "barabbas",
       truthfulness: 0.3,
       bibleRef: "Mark 15:6-15",
@@ -1896,13 +2013,14 @@ export const act3CaseD = {
 export const act3CaseE = {
 
   id: "crucifixion_site",
+  icon: '../assets/gfx/cross-duotone.svg',
   title: "The Final Sacrifice",
   subtitle: "The sky has turned to ink and the ground is groaning. On the hill of execution, the records of Rome and Jerusalem are being rewritten by the rocks themselves.",
-  location: "upperroom",
+  location: "golgotha",
   timeOfDay: "night",
   difficulty: 3,
   requires: "barabbas_choice",
-  actLabel: "Act III",
+  actLabel: "Act III - The Last Supper",
   color: 0xef4444,
   worldModel: "../assets/models/sphere.glb",
   showCityLayer: false,
@@ -1918,7 +2036,7 @@ export const act3CaseE = {
     {
       reference: "Psalm 22:16–18",
       id: "psalm_22_16_18",
-      icon: "🔮",
+      icon: "../assets/gfx/sparkles-duotone.svg",
       text: `"They have pierced my hands and my feet... they divide my garments among them and cast lots for my clothing."`,
       written: "~1000 BC",
       fulfilledBy: "Roman soldiers nailing Jesus to the cross and gambling for His seamless garment",
@@ -1928,7 +2046,7 @@ export const act3CaseE = {
     {
       reference: "Amos 8:9",
       id: "amos_8_9",
-      icon: "🔮",
+      icon: "../assets/gfx/sparkles-duotone.svg",
       text: `"'In that day,' declares the Sovereign LORD, 'I will make the sun go down at noon and darken the earth in broad daylight.'"`,
       written: "~750 BC",
       fulfilledBy: "The supernatural three-hour darkness blanketing Judea from noon until 3:00 PM",
@@ -1938,7 +2056,7 @@ export const act3CaseE = {
     {
       reference: "Isaiah 53:9",
       id: "isaiah_53_9",
-      icon: "🔮",
+      icon: "../assets/gfx/sparkles-duotone.svg",
       text: `"He was assigned a grave with the wicked, and with the rich in his death, though he had done no violence."`,
       written: "~700 BC",
       fulfilledBy: "Jesus dying alongside criminals but being buried in the clean, private rock-cut tomb of wealthy Joseph of Arimathea",
@@ -1948,7 +2066,7 @@ export const act3CaseE = {
     {
       reference: "Zechariah 12:10",
       id: "zechariah_12_10",
-      icon: "🔮",
+      icon: "../assets/gfx/sparkles-duotone.svg",
       text: `"They will look on me, the one they have pierced, and they will mourn for him as one mourns for an only child."`,
       written: "~520 BC",
       fulfilledBy: "The legionary piercing Jesus's side with a spear, and the surrounding crowd departing in deep grief",
@@ -1958,7 +2076,7 @@ export const act3CaseE = {
     {
       reference: "Psalm 34:20",
       id: "psalm_34_20",
-      icon: "🔮",
+      icon: "../assets/gfx/sparkles-duotone.svg",
       text: `"He protects all his bones; not one of them will be broken."`,
       written: "~1000 BC",
       explanation: "This prophecy, linked to the Passover lamb requirement (Exodus 12:46), was fulfilled when the soldiers pierced Jesus's side to confirm death instead of breaking His legs.",
@@ -1966,16 +2084,24 @@ export const act3CaseE = {
     {
       reference: "Psalm 31:5",
       id: "psalm_31_5",
-      icon: "🔮",
+      icon: "../assets/gfx/sparkles-duotone.svg",
       text: `"Into your hand I commit my spirit."`,
       written: "~1000 BC",
       explanation: "Jesus's final words from the cross were a direct quote from this Psalm, showing His willing surrender of His life into the Father's hands.",
     }
     ,
     {
+      reference: "Psalm 69:21",
+      id: "psalm_69_21",
+      icon: "../assets/gfx/sparkles-duotone.svg",
+      text: `"They put gall in my food and gave me vinegar for my thirst."`,
+      written: "~1000 BC",
+      explanation: "This prophecy was fulfilled when Jesus was offered sour wine (vinegar) on a hyssop branch during His crucifixion.",
+    },
+    {
       reference: "Jeremiah 31:31–34",
       id: "jeremiah_31_31_34",
-      icon: "🔮",
+      icon: "../assets/gfx/sparkles-duotone.svg",
       text: `"Behold, the days are coming, declares the LORD, when I will make a new covenant... I will put my law within them, and I will write it on their hearts."`,
       written: "~627 BC",
       fulfilledBy: "The tearing of the Temple veil, symbolizing direct access to God under a New Covenant",
@@ -1985,7 +2111,7 @@ export const act3CaseE = {
     {
       reference: "Haggai 2:6–7",
       id: "haggai_2_6_7",
-      icon: "🔮",
+      icon: "../assets/gfx/sparkles-duotone.svg",
       text: `"For thus says the LORD of hosts: Yet once more, in a little while, I am going to shake the heavens and the earth... and I will fill this house with glory."`,
       written: "~520 BC",
       fulfilledBy: "The earthquake that struck at the moment of Jesus's death",
@@ -1998,10 +2124,11 @@ export const act3CaseE = {
   intro: formatIntro(`The air over Golgotha is heavy with dust. The supernatural darkness that choked out the midday sun for three hours has finally lifted, revealing a scene of utter devastation. A violent tremor has split the limestone rifts of the hill, throwing down old tombs. Down in the city, panic has erupted over a structural disaster inside the Temple sanctuary itself. Up here, the execution detail stands frozen. Something **unprecedented** has just occurred—and the physical evidence left on this hill holds the answers.`),
 
   suspects: [
-    { id: "centurion_longinus", name: "Longinus", role: "Roman Centurion", avatar: "🪖", bibleRef: "Matthew 27:54 — 'When the centurion... saw the earthquake and all that had happened, they were terrified, and said, \"Surely he was the Son of God!\"'" },
-    { id: "temple_priest_pashhur", name: "Pashhur", role: "Temple Priest on Shift", avatar: "🕌", bibleRef: "Matthew 27:51 — 'At that moment the curtain of the temple was torn in two from top to bottom.'" },
-    { id: "joseph_arimathea", name: "Joseph of Arimathea", role: "Secret Disciple & Council Member", avatar: "📜", bibleRef: "John 19:38 — 'Joseph of Arimathea asked Pilate for the body of Jesus... With Pilate's permission, he came and took the body away.'" },
-    { id: "none", name: "No One", role: "Divine/Cosmic Event", avatar: "❓", bibleRef: "Amos 8:9; Matthew 27:51 — The signs were acts of God, not human subversion" }
+    { id: "centurion_longinus", name: "Longinus", role: "Roman Centurion", avatar: "centurion_longinus.svg", bibleRef: "Matthew 27:54 — 'When the centurion... saw the earthquake and all that had happened, they were terrified, and said, \"Surely he was the Son of God!\"'" },
+    { id: "temple_priest_pashhur", name: "Pashhur", role: "Temple Priest on Shift",       avatar: "pashhur.svg",
+      bibleRef: "Matthew 27:51 — 'At that moment the curtain of the temple was torn in two from top to bottom.'" },
+    { id: "joseph_arimathea", name: "Joseph of Arimathea", role: "Secret Disciple & Council Member", avatar: "senior_scribe.svg", bibleRef: "John 19:38 — 'Joseph of Arimathea asked Pilate for the body of Jesus... With Pilate's permission, he came and took the body away.'" },
+    { id: "none", name: "No One", role: "Divine/Cosmic Event", avatar: "nicodemus.svg", bibleRef: "Amos 8:9; Matthew 27:51 — The signs were acts of God, not human subversion" }
   ],
 
   evidencePool: [
@@ -2011,7 +2138,7 @@ export const act3CaseE = {
       name: "Soldiers' Casting Dice",
       type: "physical",
       relatedProphecy: "psalm_22_16_18",
-      icon: "🎲",
+      icon: "../assets/gfx/dice-duotone.svg",
       location: "Foot of the Central Cross",
       desc: "Four crude bone gaming dice dropped in the dust near a pile of discarded ropes, right where the soldiers gambled for the victim's clothes.",
       bibleRef: "John 19:23–24 — 'Let’s not tear it,' they said to one another. 'Let’s decide by lot who will get it.' This happened that the scripture might be fulfilled...",
@@ -2023,18 +2150,21 @@ export const act3CaseE = {
         { ref: "Psalm 22:18", link: "psalm_2218" }
       ],
       investigatorNote: "The dice indicate a standard, procedural execution routine—until the noon darkness disrupted their shifts.",
+      fake: false,
+      category: 'event',
+      timelineOrder: 1,
       clues: {
-        compare: "Connects with related evidence in this case to confirm the established narrative.",
-        link: "Event Trail — soldiers' casting dice",
-        timeline: "CHRONOLOGY: Recovered during the investigation.",
-        contradict: "RELIABILITY: Corroborated by multiple independent sources and consistent with the narrative."
+        compare: "Sets the tone of routine procedure at the start — a contrast to the split rocks and torn veil that follow.",
+        link: "Event — the dice the execution detail used to gamble for Jesus's seamless tunic.",
+        timeline: "CHRONOLOGY: Cast early in the crucifixion, while the detail treated the execution as routine duty.",
+        contradict: "RELIABILITY: John 19:24 records the soldiers acting exactly as described, fulfilling Psalm 22:18 without any awareness of doing so."
       },
     }, {
       id: "split_rocks",
       name: "Split Rocks",
       type: "physical",
       relatedProphecy: "haggai_2_6_7",
-      icon: "🌎",
+      icon: "../assets/gfx/earth-duotone.svg",
       location: "Golgotha Basal Rift",
       desc: "A freshly sheared section of Jerusalem limestone showing a sharp, jagged vertical fracture path triggered by a massive, sudden seismic wave.",
       bibleRef: "Matthew 27:51 — 'The earth shook, the rocks split and the tombs broke open.'",
@@ -2047,18 +2177,21 @@ export const act3CaseE = {
         { ref: "Haggai 2:6-7", link: "haggai_2_6_7" }
       ],
       investigatorNote: "The split is clean and deep, indicating a severe tectonic movement centered right through the execution hill.",
+      fake: false,
+      category: 'event',
+      timelineOrder: 3,
       clues: {
-        compare: "Connects with related evidence in this case to confirm the established narrative.",
-        link: "Event Trail — split rocks",
-        timeline: "CHRONOLOGY: Recovered during the investigation.",
-        contradict: "RELIABILITY: Corroborated by multiple independent sources and consistent with the narrative."
+        compare: "Occurs at the same moment as the torn veil — both mark the instant of death.",
+        link: "Event — bedrock split clean through by a violent tremor centered on the execution site.",
+        timeline: "CHRONOLOGY: Split at the moment of death, alongside the tearing of the Temple veil.",
+        contradict: "RELIABILITY: A deep, clean fracture consistent with genuine seismic force, not surface damage from human activity."
       },
     }, {
       id: "pierced_spear",
       name: "Blood-Stained Roman Hasta",
       type: "physical",
       relatedProphecy: "zechariah_12_10",
-      icon: "🗡️",
+      icon: "../assets/gfx/dagger-duotone.svg",
       location: "Golgotha Guard Station",
       desc: "A heavy Roman iron spearhead stained with a clear, separated residue of deep red blood crust and transparent pericardial fluid.",
       bibleRef: "John 19:34 — 'Instead, one of the soldiers pierced Jesus’s side with a spear, bringing a sudden flow of blood and water.'",
@@ -2071,18 +2204,21 @@ export const act3CaseE = {
         { ref: "Exodus 12:46", link: "exodus_1246" }
       ],
       investigatorNote: "The fluid separation proves severe internal trauma. The medical signature matches a ruptured heart or extreme pleural effusion.",
+      fake: false,
+      category: 'event',
+      timelineOrder: 4,
       clues: {
-        compare: "Connects with related evidence in this case to confirm the established narrative.",
-        link: "Event Trail — blood-stained roman hasta",
-        timeline: "CHRONOLOGY: Recovered during the investigation.",
-        contradict: "RELIABILITY: Corroborated by multiple independent sources and consistent with the narrative."
+        compare: "Follows the unbroken legs — the alternative the soldiers chose once they found Jesus already dead.",
+        link: "Event — the Roman spear used to confirm death, still bearing traces of blood and fluid.",
+        timeline: "CHRONOLOGY: Used after the two criminals' legs were broken, once the soldiers reached Jesus and found Him already dead.",
+        contradict: "RELIABILITY: The blood-and-water separation is a specific physiological detail John records as an eyewitness, not a generic embellishment."
       },
     }, {
       id: "torn_temple_veil",
       name: "The Torn Temple Veil",
       type: "physical",
       relatedProphecy: "jeremiah_31_31_34",
-      icon: "🧵",
+      icon: "../assets/gfx/link-duotone.svg",
       location: "Temple Outer Courtyard Landing",
       desc: "A heavy twist of woven blue, purple, and scarlet threads, ripped violently apart. The weave is a palm-width thick and incredibly dense.",
       bibleRef: "Luke 23:45 — 'The sun stopped shining. And the curtain of the temple was torn in two.'",
@@ -2095,18 +2231,21 @@ export const act3CaseE = {
         { ref: "Jeremiah 31:31-34", link: "jeremiah_31_31_34" }
       ],
       investigatorNote: "Brought out of the sanctuary by a panicked priest. No human hands could rip material this thick—and the tear started from the top down.",
+      fake: false,
+      category: 'prophecy',
+      timelineOrder: 3,
       clues: {
-        compare: "Connects with related evidence in this case to confirm the established narrative.",
-        link: "Event Trail — the torn temple veil",
-        timeline: "CHRONOLOGY: Recovered during the investigation.",
-        contradict: "RELIABILITY: Corroborated by multiple independent sources and consistent with the narrative."
+        compare: "Simultaneous with the split rocks — together they mark the moment of death with signs at both the Temple and the hill.",
+        link: "Prophecy — a fragment of the sanctuary's inner curtain, torn top to bottom at the moment Jesus died.",
+        timeline: "CHRONOLOGY: Torn at the exact moment of death, brought out by a priest who witnessed it firsthand.",
+        contradict: "RELIABILITY: A curtain this thick could not be torn by human hands, and the top-down direction rules out anyone reaching it from below."
       },
     }, {
       id: "linen_shroud_receipt",
       name: "Joseph's Market Bill for Fine Linen",
       type: "analytical",
       relatedProphecy: "isaiah_53_9",
-      icon: "📜",
+      icon: "../assets/gfx/scroll-duotone.svg",
       location: "Downstairs Lower Market Quarter",
       desc: "A hurried commercial receipt matching a purchase from a wealthy merchant: 'One piece of premium fine linen shroud, paid in full by Joseph, counselor of Arimathea.' Signed just before the city gates closed for Sabbath.",
       bibleRef: "Mark 15:46 — 'So Joseph bought some linen cloth, took down the body, wrapped it in the linen, and placed it in a tomb...'",
@@ -2119,18 +2258,49 @@ export const act3CaseE = {
         { ref: "Isaiah 53:9", link: "isaiah_539" }
       ],
       investigatorNote: "Joseph risked his entire aristocratic standing on the Sanhedrin by publicly claiming the body of a condemned man from Pilate.",
+      fake: false,
+      category: 'event',
+      timelineOrder: 5,
       clues: {
-        compare: "Connects with related evidence in this case to confirm the established narrative.",
-        link: "Prophecy & Scripture — joseph's market bill for fine linen",
-        timeline: "CHRONOLOGY: Recovered during the investigation.",
-        contradict: "RELIABILITY: Corroborated by multiple independent sources and consistent with the narrative."
+        compare: "Follows the pierced spear — Joseph's action once death had been confirmed and the soldiers were done.",
+        link: "Event — Joseph of Arimathea's market receipt for the fine linen used to wrap the body.",
+        timeline: "CHRONOLOGY: Purchased after death was confirmed, as Joseph moved quickly to claim the body before sundown.",
+        contradict: "RELIABILITY: A public market transaction, made in Joseph's own name — a considerable personal and political risk for a Sanhedrin member."
+      },
+    }, {
+      id: "sour_wine_sponge",
+      name: "Sponge Soaked in Sour Wine",
+      type: "physical",
+      relatedProphecy: "psalm_69_21",
+      icon: "../assets/gfx/cup-duotone.svg",
+      location: "Foot of the Central Cross",
+      desc: "A common sponge, still damp with sour wine (posca), attached to a hyssop branch. It was used to offer Jesus a drink.",
+      bibleRef: "John 19:28-29 — 'Later, knowing that everything had now been finished... a jar of wine vinegar was there, so they soaked a sponge in it, put the sponge on a stalk of the hyssop plant, and lifted it to Jesus's lips.'",
+      bibleLink: "john_19_28",
+      propheticLink: "This act directly fulfills Psalm 69:21 ('...for my thirst they gave me sour wine to drink'). The deliberate mention of a hyssop branch also powerfully evokes the Passover (Exodus 12:22), where hyssop was used to apply the lamb's blood for salvation, identifying Jesus as the true Passover Lamb.",
+      bibleRefs: [
+        { ref: "John 19:28-29", link: "john_19_28" }
+      ],
+      propheticRefs: [
+        { ref: "Psalm 69:21", link: "psalm_69_21" },
+        { ref: "Exodus 12:22", link: "exodus_12_22" }
+      ],
+      investigatorNote: "The use of hyssop is a profound theological link. A common plant used for purification becomes the instrument for fulfilling prophecy at the moment of ultimate sacrifice.",
+      fake: false,
+      category: 'event',
+      timelineOrder: 2,
+      clues: {
+        compare: "Comes just before the unbroken legs and the spear thrust — the last act of mercy offered before death was confirmed.",
+        link: "Event — the sponge and hyssop branch used to offer Jesus a final drink before His death.",
+        timeline: "CHRONOLOGY: Offered shortly before Jesus's final words, once He said 'I thirst.'",
+        contradict: "RELIABILITY: John 19:28-29 records the detail of the hyssop branch specifically, tying the moment directly to the Passover lamb imagery of Exodus 12."
       },
     }, {
       id: "unbroken_legs",
       name: "Unbroken Tibiae Report",
       type: "analytical",
       relatedProphecy: "psalm_34_20",
-      icon: "🦴",
+      icon: "../assets/gfx/bone-duotone.svg",
       location: "Golgotha Guard Station",
       desc: "A Roman execution report noting that the legs of the central victim were not broken, as he was already confirmed dead by spear-thrust.",
       bibleRef: "John 19:31–36",
@@ -2141,7 +2311,43 @@ export const act3CaseE = {
       propheticRefs: [
         { ref: "Psalm 34:20", link: "psalm_34_20" }
       ],
-      investigatorNote: "The decision to pierce His side instead of breaking His legs was a procedural choice by the soldiers that had immense prophetic significance."
+      investigatorNote: "The decision to pierce His side instead of breaking His legs was a procedural choice by the soldiers that had immense prophetic significance.",
+      fake: false,
+      category: 'prophecy',
+      timelineOrder: 3,
+      clues: {
+        compare: "The reason the soldiers turned to the spear instead — this is why that piece of evidence exists at all.",
+        link: "Prophecy — the soldiers' own report noting they broke the legs of both criminals, but not Jesus's.",
+        timeline: "CHRONOLOGY: Decided in the same moment as the spear thrust, once the soldiers found Jesus already dead.",
+        contradict: "RELIABILITY: John 19:31–36 explicitly connects this procedural choice to the Passover lamb requirement of Exodus 12:46."
+      },
+    }, {
+      id: "final_words",
+      name: "Final Words Scroll",
+      type: "analytical",
+      relatedProphecy: "psalm_31_5",
+      icon: "../assets/gfx/scroll-duotone.svg",
+      location: "Foot of the Central Cross",
+      desc: "A bystander's hurried transcription of Jesus's last words, spoken in a loud voice just before He breathed His last.",
+      bibleRef: "Luke 23:46 — 'Jesus called out with a loud voice, \"Father, into your hands I commit my spirit.\" When he had said this, he breathed his last.'",
+      bibleLink: "luke_23_46",
+      propheticLink: "Jesus's final words from the cross are a direct quote from Psalm 31:5, a prayer of ultimate trust in God at the moment of death. He did not simply die — He willingly surrendered His life into the Father's hands, quoting Scripture with His last breath.",
+      bibleRefs: [
+        { ref: "Luke 23:46", link: "luke_23_46" }
+      ],
+      propheticRefs: [
+        { ref: "Psalm 31:5", link: "psalm_31_5" }
+      ],
+      investigatorNote: "A dying man does not typically have the composure to quote Scripture with his last breath. The words weren't a cry of despair — they were a declaration of trust.",
+      fake: false,
+      category: 'prophecy',
+      timelineOrder: 3,
+      clues: {
+        compare: "Spoken in the same moment as the earthquake and the torn veil — the last thing Jesus said before He died.",
+        link: "Prophecy — a bystander's transcription of Jesus's final words, quoted directly from Psalm 31:5.",
+        timeline: "CHRONOLOGY: The last words spoken, immediately before Jesus breathed His last and the earth shook.",
+        contradict: "RELIABILITY: Luke 23:46 records the words as a loud, deliberate cry, not a fading whisper — consistent with a willing surrender rather than a slow expiration."
+      },
     }
 
   ],
@@ -2149,7 +2355,6 @@ export const act3CaseE = {
   lab: [
     {
       evidence: "split_dice",
-      suspect: "centurion_longinus",
       result: "**Motive Questioned** (Was a participant, not an instigator)",
       notes: "'They divided up his clothes by casting lots' (Psalm 22:18, Matthew 27:35) — routine duty for the centurion, until 'Surely he was the Son of God' (Matthew 27:54) changed his mind."
     },
@@ -2174,7 +2379,7 @@ export const act3CaseE = {
       role: "Roman Centurion",
       faction: "roman",
       unlocksSuspects: ["centurion_longinus"],
-      avatar: "🪖",
+      avatar: "centurion_longinus.svg",
       profileFile: "centurion_longinus",
       truthfulness: 0.95,
       bibleRef: "Mark 15:39 — 'And when the centurion... saw how he died, he said, \"Surely this man was the Son of God!\"'",
@@ -2202,7 +2407,7 @@ export const act3CaseE = {
       name: "Pashhur",
       role: "Temple Priest on Shift",
       faction: "temple",
-      avatar: "🕌",
+      avatar: "pashhur.svg",
       profileFile: "pashhur",
       truthfulness: 0.4,
       bibleRef: "Luke 23:45; Matthew 27:51",
@@ -2233,7 +2438,7 @@ export const act3CaseE = {
       role: "Secret Disciple & Council Member",
       faction: "scribes",
       unlocksSuspects: ["joseph_arimathea"],
-      avatar: "📜",
+      avatar: "senior_scribe.svg",
       profileFile: "joseph_arimathea",
       truthfulness: 0.9,
       bibleRef: "Luke 23:50–53; John 19:38",
@@ -2260,7 +2465,7 @@ export const act3CaseE = {
       id: "upper_room_prep",
       name: "Upper Room Prep",
       role: "Household Servant",
-      avatar: "🏠",
+      avatar: "upper_room_prep.svg",
       truthfulness: 0.8,
       bibleRef: "Mark 14:12-16",
       hasDialogue: true,
@@ -2277,7 +2482,7 @@ export const act3CaseE = {
       id: "secret_visit",
       name: "Secret Visitor",
       role: "Night Visitor",
-      avatar: "🌙",
+      avatar: "secret_visit.svg",
       truthfulness: 0.5,
       bibleRef: "John 18:1-14",
       hasDialogue: true,
@@ -2294,7 +2499,7 @@ export const act3CaseE = {
       id: "peter_denial",
       name: "Peter (Denial)",
       role: "Broken Disciple",
-      avatar: "😔",
+      avatar: "peter.svg",
       truthfulness: 0.6,
       bibleRef: "Matthew 26:69-75; Mark 14:66-72; Luke 22:54-62; John 18:15-18,25-27",
       hasDialogue: true,
@@ -2311,7 +2516,7 @@ export const act3CaseE = {
       id: "peter_defense_simple",
       name: "Peter (Simple Defense)",
       role: "Disciple",
-      avatar: "🕊️",
+      avatar: "peter.svg",
       truthfulness: 0.7,
       bibleRef: "John 18:15-18",
       hasDialogue: true,
@@ -2328,7 +2533,7 @@ export const act3CaseE = {
       id: "simon_cyrene",
       name: "Simon of Cyrene",
       role: "Cross-Bearer",
-      avatar: "🏋️",
+      avatar: "simon_cyrene.svg",
       truthfulness: 0.8,
       bibleRef: "Matthew 27:32; Mark 15:21; Luke 23:26",
       hasDialogue: true,
@@ -2345,7 +2550,7 @@ export const act3CaseE = {
       id: "temple_curtain",
       name: "Temple Curtain Witness",
       role: "Temple Attendant",
-      avatar: "🏛️",
+      avatar: "pontius_pilate.svg",
       truthfulness: 0.9,
       hasDialogue: true,
       storyFile: "priest_objection_crucifixion",
@@ -2363,7 +2568,7 @@ export const act3CaseE = {
       name: "Crucifixion Guard",
       role: "Roman Execution Detail",
       faction: "roman",
-      avatar: "💂",
+      avatar: "garrison_guard.svg",
       truthfulness: 0.85,
       bibleRef: "Matthew 27:36; John 19:23-24",
       hasDialogue: true,

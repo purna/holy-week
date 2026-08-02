@@ -23,5 +23,16 @@
     "prophecy": "I have waited my whole life to see this prophecy fulfilled."
   },
   "earSize": 1.0,
-  "headSize": 1.0
+  "headSize": 1.0,
+  "colorPalette": {
+    "colorInner": "#544a3e",
+    "colorOuter": "#2f2b25",
+    "colorCloak": "#1a1815",
+    "colorAccent": "#3b3831",
+    "colorGarment2": "#7a6a4a",
+    "colorSkin": "#b58052",
+    "colorHair": "#9c968a",
+    "colorEye": "#3b2a1f",
+    "colorLip": "#8f5245"
+  }
 }

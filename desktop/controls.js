@@ -59,7 +59,7 @@ export class ControlsManager {
 
     displayAlert(msg) {
         const el = document.getElementById('screen-alert');
-        el.innerText = msg;
+        el.innerHTML = msg;
         el.classList.toggle('case-title-alert', msg.startsWith('Case:'));
         el.style.display = 'block';
         setTimeout(() => {
