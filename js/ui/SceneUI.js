@@ -85,8 +85,11 @@ export class SceneUI {
                     const caseProgress = this.ui.cm.getCaseProgress?.(caseId);
                     const alreadyFound = caseProgress?.propheciesFound?.includes(npc.revealsProphecy);
                     if (!alreadyFound) {
-                        this.ui.npcs?.caseManager?.recordProphecyFound?.(npc.revealsProphecy);
-                        this.ui.peopleUI.addSystem(`<img src='../assets/gfx/star-duotone.svg' class='icon-svg' loading='lazy'> Prophecy Revealed: ${prophecy.reference}`, npcId);
+                        const currentStatus = this.ui.cm?.getCodexStatus?.(npc.revealsProphecy);
+                        if (currentStatus === 'unseen') {
+                            this.ui.cm?.setCodexStatus?.(npc.revealsProphecy, 'rumor');
+                        }
+                        this.ui.peopleUI.addSystem(`<img src='../assets/gfx/chat-duotone.svg' class='icon-svg' loading='lazy'> New Rumor: ${prophecy.reference}`, npcId);
                         count++;
                     }
                 }

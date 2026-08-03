@@ -152,7 +152,11 @@ export class LabUI {
     if (result.revealsProphecy) {
       const prophecy = this.es.getProphecyById(result.revealsProphecy);
       if (prophecy) {
-        prophecyHtml = `<p class="result-prophecy"><img src='../assets/gfx/star-duotone.svg' class='icon-svg' loading='lazy'> <strong>Prophecy Revealed:</strong> ${prophecy.reference} — "${prophecy.text.substring(0, 120)}${prophecy.text.length > 120 ? '...' : ''}"</p>`;
+        const currentStatus = this.cm.getCodexStatus(result.revealsProphecy);
+        if (currentStatus === 'unseen') {
+          this.cm.setCodexStatus(result.revealsProphecy, 'rumor');
+        }
+        prophecyHtml = `<p class="result-prophecy"><img src='../assets/gfx/chat-duotone.svg' class='icon-svg' loading='lazy'> <strong>New Rumor:</strong> ${prophecy.reference} — "${prophecy.text.substring(0, 120)}${prophecy.text.length > 120 ? '...' : ''}"</p>`;
       }
     }
     el.innerHTML = `<div class="result-content ${result.isKeyDeduction ? 'result-key' : ''}">

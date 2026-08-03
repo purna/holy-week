@@ -176,8 +176,11 @@ export class ChatUI {
               const caseProgress = this._getCaseManager()?.getCaseProgress?.(this._getActiveCaseId());
               const alreadyFound = caseProgress?.propheciesFound?.includes(npc.revealsProphecy);
               if (!alreadyFound) {
-                this.npcs.caseManager?.recordProphecyFound?.(npc.revealsProphecy);
-                this.addSystem(`<img src='../assets/gfx/star-duotone.svg' class='icon-svg' loading='lazy'> Prophecy Revealed: ${prophecy.reference}`, npcId);
+                const currentStatus = this._getCaseManager()?.getCodexStatus?.(npc.revealsProphecy);
+                if (currentStatus === 'unseen') {
+                  this._getCaseManager()?.setCodexStatus?.(npc.revealsProphecy, 'rumor');
+                }
+                this.addSystem(`<img src='../assets/gfx/chat-duotone.svg' class='icon-svg' loading='lazy'> New Rumor: ${prophecy.reference}`, npcId);
                 count++;
               }
             }

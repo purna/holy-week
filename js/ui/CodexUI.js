@@ -17,126 +17,133 @@ export class CodexUI {
         if (!c) return '';
 
         const propheciesWithStatus = this.es.getPropheciesWithStatus();
-        const lockedProps = propheciesWithStatus.filter(p => !p.discovered);
-        const discoveredProps = propheciesWithStatus.filter(p => p.discovered);
+        const unseenProps = propheciesWithStatus.filter(p => p.status === 'unseen');
+        const rumorProps = propheciesWithStatus.filter(p => p.status === 'rumor');
+        const foundProps = propheciesWithStatus.filter(p => p.status === 'found_scripture');
+        const completeProps = propheciesWithStatus.filter(p => p.status === 'complete');
         const collectedEvidence = this.es.getCollected();
-
-        const selectedEv = this.es.getById(this.selectedCodexEvidenceId);
-        const selectedProp = this.es.getProphecyById(this.selectedCodexProphecyId);
-        const caseProgress = this.cm.getCaseProgress(c.id) || {};
-        const deductionCount = (caseProgress.deductionsMade || []).length;
-        const prophecyCount = (caseProgress.propheciesFound || []).length;
-        const hasLabInsightForNextProphecy = deductionCount > prophecyCount;
-        const canMatchNow = !!(selectedEv && selectedProp && hasLabInsightForNextProphecy);
+        
+        const researchScore = this.cm.getResearchScore();
+        const scholarLevel = this.cm.getScholarLevel();
         const completion = this.es.getProphecyCompletionPercent();
 
         return `
-            <h3 class="section-title">Prophecy Matching</h3>
-            <div class="prophecy-lab-intro">
-                Select evidence from your collection, then choose a locked prophecy below to attempt a link.
-            </div>
-            <div class="prophecy-lab-intro">
-                Lab progress: ${deductionCount} deductions, ${prophecyCount} prophecies unlocked. Each new prophecy requires one additional Lab deduction.
-            </div>
-
-            <div id="codex-feedback" class="codex-feedback" ${!this.codexMatchFeedback ? 'hidden' : ''}>
-                ${this.codexMatchFeedback || ''}
-            </div>
-
-            <div class="codex-matching-columns">
-                <div class="codex-match-column">
-                    <div class="selection-slot ${selectedEv ? 'active' : ''}" id="codex-evidence-slot">
-                        ${selectedEv ? `<span class="slot-icon">${selectedEv.icon.includes('<img') ? selectedEv.icon : `<img src='${selectedEv.icon}' class='icon-svg' loading='lazy'>`}</span><span class="slot-name">${selectedEv.name}</span>` : `<span>Select Evidence...</span>`}
-                    </div>
-                    <h3 class="section-title">Your Evidence</h3>
-                    <div class="picker-grid">
-                        ${collectedEvidence.map(e => `
-                            <button class="picker-card ${this.selectedCodexEvidenceId === e.id ? 'selected-a' : ''}" onclick="window.ui.codexUI.selectEvidenceForMatching('${e.id}')">
-                                <span class="picker-icon" aria-hidden="true">${e.icon.includes('<img') ? e.icon : `<img src='${e.icon}' class='icon-svg' loading='lazy'>`}</span><span class="picker-name">${e.name}</span>
-                                ${this.selectedCodexEvidenceId === e.id ? `<span class="sel-badge" aria-hidden="true" style="background:var(--blue)">A</span>` : ""}
-                            </button>`).join('') || `<p class="picker-empty">Collect evidence first.</p>`}
-                    </div>
+            <div class="codex-header">
+                <div class="codex-score-display">
+                    <div class="codex-score-label">Research Score</div>
+                    <div class="codex-score-value">${researchScore}</div>
+                    <div class="codex-scholar-level">${scholarLevel}</div>
                 </div>
-
-                <div class="codex-match-column">
-                    <div class="selection-slot ${selectedProp ? 'active' : ''}" id="codex-prophecy-slot">
-                        ${selectedProp ? `<span class="slot-icon"><img src='${selectedProp.icon}' class='icon-svg' loading='lazy'></span><span class="slot-name">${selectedProp.reference}</span>` : `<span>Select Prophecy...</span>`}
-                    </div>
-                    <h3 class="section-title">Locked Prophecies</h3>
-                    <div class="picker-grid">
-                        ${lockedProps.map(p => `
-                            <button class="picker-card ${this.selectedCodexProphecyId === p.id ? 'selected-b' : ''}" onclick="window.ui.codexUI.selectProphecyForMatching('${p.id}')">
-                                <span class="picker-icon"><i class="fa-solid fa-lock"></i></span><span class="picker-name">${p.reference}</span>
-                                ${this.selectedCodexProphecyId === p.id ? `<span class="sel-badge" aria-hidden="true" style="background:var(--gold)">B</span>` : ""}
-                            </button>`).join('') || `<p class="picker-empty">All prophecies matched!</p>`}
+                <div class="codex-progress">
+                    <div class="codex-progress-label">Codex Completion: ${completion}%</div>
+                    <div class="progress-bar-wrap">
+                        <div class="progress-fill" style="width:${completion}%"></div>
                     </div>
                 </div>
             </div>
 
-            <button id="btn-match-prophecy" class="evidence-detail-confirm codex-match-btn ${!canMatchNow ? 'is-disabled' : ''}" ${!canMatchNow ? "disabled" : ""} onclick="window.ui.codexUI.attemptProphecyMatch()">Match</button>
+            <h3 class="section-title">Biblical Patterns</h3>
+            <div class="codex-intro">
+                Link scripture fragments to their fulfillments in the Lab to complete your research.
+            </div>
 
-            <h3 class="section-title">Prophecy Library (${completion}% Complete)</h3>
-            <div id="codex-grid" class="codex-grid">
-                ${discoveredProps.map(p => `
-                    <div class="prophecy-card discovered" onclick="window.ui.showProphecyDetail('${p.id}')">
+            ${completeProps.length > 0 ? `
+            <h3 class="section-title">Completed Research (${completeProps.length})</h3>
+            <div class="codex-grid">
+                ${completeProps.map(p => `
+                    <div class="prophecy-card complete" onclick="window.ui.showProphecyDetail('${p.id}')">
                         <div class="prophecy-card-icon">${renderIcon(p.icon)}</div>
                         <div class="prophecy-card-info">
                             <div class="prophecy-card-reference">${p.reference}</div>
                             <div class="prophecy-card-desc">${(p.fulfilledBy || p.desc || '').substring(0, 60)}...</div>
                         </div>
+                        <div class="prophecy-card-badge"><img src='../assets/gfx/check-circle-duotone.svg' class='icon-svg' loading='lazy'></div>
                     </div>`).join('')}
+            </div>` : ''}
+
+            ${foundProps.length > 0 ? `
+            <h3 class="section-title">Scripture Found (${foundProps.length})</h3>
+            <div class="codex-grid">
+                ${foundProps.map(p => `
+                    <div class="prophecy-card found" onclick="window.ui.showProphecyDetail('${p.id}')">
+                        <div class="prophecy-card-icon">${renderIcon(p.icon)}</div>
+                        <div class="prophecy-card-info">
+                            <div class="prophecy-card-reference">${p.reference}</div>
+                            <div class="prophecy-card-desc">${(p.text || '').substring(0, 80)}...</div>
+                        </div>
+                        <div class="prophecy-card-badge"><img src='../assets/gfx/scroll-duotone.svg' class='icon-svg' loading='lazy'></div>
+                    </div>`).join('')}
+            </div>` : ''}
+
+            ${rumorProps.length > 0 ? `
+            <h3 class="section-title">Rumors Heard (${rumorProps.length})</h3>
+            <div class="codex-grid">
+                ${rumorProps.map(p => `
+                    <div class="prophecy-card rumor" onclick="window.ui.showProphecyDetail('${p.id}')">
+                        <div class="prophecy-card-icon"><i class="fa-solid fa-question"></i></div>
+                        <div class="prophecy-card-info">
+                            <div class="prophecy-card-reference">???</div>
+                            <div class="prophecy-card-desc">A rumor heard in conversation...</div>
+                        </div>
+                        <div class="prophecy-card-badge"><img src='../assets/gfx/chat-duotone.svg' class='icon-svg' loading='lazy'></div>
+                    </div>`).join('')}
+            </div>` : ''}
+
+            ${unseenProps.length > 0 ? `
+            <h3 class="section-title">Undiscovered (${unseenProps.length})</h3>
+            <div class="codex-grid">
+                ${unseenProps.map(p => `
+                    <div class="prophecy-card unseen">
+                        <div class="prophecy-card-icon"><i class="fa-solid fa-lock"></i></div>
+                        <div class="prophecy-card-info">
+                            <div class="prophecy-card-reference">???</div>
+                            <div class="prophecy-card-desc">Not yet discovered</div>
+                        </div>
+                    </div>`).join('')}
+            </div>` : ''}
+
+            <div id="codex-feedback" class="codex-feedback" ${!this.codexMatchFeedback ? 'hidden' : ''}>
+                ${this.codexMatchFeedback || ''}
             </div>`;
     }
 
     selectEvidenceForMatching(evidenceId) {
         this.selectedCodexEvidenceId = (this.selectedCodexEvidenceId === evidenceId) ? null : evidenceId;
-        window.ui.switchInvTab('codex'); // Re-render
+        window.ui.switchInvTab('codex');
     }
 
     selectProphecyForMatching(prophecyId) {
         const prophecy = this.es.getProphecyById(prophecyId);
-        if (prophecy && !prophecy.discovered) {
+        const status = this.es.getPropheciesWithStatus().find(p => p.id === prophecyId)?.status;
+        
+        if (prophecy && status === 'complete') {
+            if (typeof window.ui.showProphecyDetail === 'function') {
+                window.ui.showProphecyDetail(prophecyId);
+            }
+        } else if (prophecy && (status === 'found_scripture' || status === 'rumor')) {
+            if (typeof window.ui.showProphecyDetail === 'function') {
+                window.ui.showProphecyDetail(prophecyId);
+            }
+        } else {
             this.selectedCodexProphecyId = (this.selectedCodexProphecyId === prophecyId) ? null : prophecyId;
-        } else if (prophecy && prophecy.discovered) {
-            window.ui.showProphecyDetail(prophecyId);
         }
-        window.ui.switchInvTab('codex'); // Re-render
+        window.ui.switchInvTab('codex');
     }
 
     attemptProphecyMatch() {
-        const evidenceId = this.selectedCodexEvidenceId;
-        const prophecyId = this.selectedCodexProphecyId;
-        const caseProgress = this.cm.getCaseProgress(this.cm.activeCaseId) || {};
-        const deductionCount = (caseProgress.deductionsMade || []).length;
-        const prophecyCount = (caseProgress.propheciesFound || []).length;
+        const result = this.es.attemptProphecyMatch();
+        if (!result) return;
 
-        if (!evidenceId || !prophecyId) {
-            if (this.audio.enabled) this.audio.playError();
-            return;
-        }
-
-        if (deductionCount <= prophecyCount) {
-            if (this.audio.enabled) this.audio.playError();
-            this.codexMatchFeedback = `<div class="codex-feedback-msg error"><img src='../assets/gfx/microscope-duotone.svg' class='icon-svg' loading='lazy'> Run another Lab deduction first<br><small>You need ${prophecyCount + 1} deductions to unlock prophecy #${prophecyCount + 1}.</small></div>`;
+        if (result.success) {
+            if (this.audio.enabled) this.audio.playBonus();
+            this.codexMatchFeedback = `<div class="codex-feedback-msg success"><img src='../assets/gfx/sparkles-duotone.svg' class='icon-svg' loading='lazy'> Research Complete! +20 RP<br><small>${result.message}</small></div>`;
         } else {
-            const evidence = this.es.getById(evidenceId);
-            const prophecy = this.es.getProphecyById(prophecyId);
-            const isMatch = evidence && evidence.relatedProphecy === prophecyId;
-
-            if (isMatch) {
-                this.cm.recordProphecyFound(prophecyId);
-                if (this.audio.enabled) this.audio.playBonus();
-                this.codexMatchFeedback = `<div class="codex-feedback-msg success"><img src='../assets/gfx/sparkles-duotone.svg' class='icon-svg' loading='lazy'> Correct! +10 pts<br><small>${evidence.name} linked to ${prophecy.reference}</small></div>`;
-            } else {
-                this.cm.recordIncorrectProphecyLink();
-                if (this.audio.enabled) this.audio.playError();
-                this.codexMatchFeedback = `<div class="codex-feedback-msg error"><img src='../assets/gfx/x-circle-duotone.svg' class='icon-svg' loading='lazy'> Incorrect Link! +5 Doubt<br><small>This evidence does not fulfill that prophecy.</small></div>`;
-            }
-            this.selectedCodexEvidenceId = null;
-            this.selectedCodexProphecyId = null;
+            if (this.audio.enabled) this.audio.playError();
+            this.codexMatchFeedback = `<div class="codex-feedback-msg error"><img src='../assets/gfx/x-circle-duotone.svg' class='icon-svg' loading='lazy'> ${result.message}</div>`;
         }
-
-        window.ui.switchInvTab('codex'); // Re-render
+        this.selectedCodexEvidenceId = null;
+        this.selectedCodexProphecyId = null;
+        window.ui.switchInvTab('codex');
         setTimeout(() => { this.codexMatchFeedback = null; window.ui.switchInvTab('codex'); }, 4000);
     }
 }

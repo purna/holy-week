@@ -7,6 +7,9 @@ export class CaseManager {
     this.cases = {};
     this.activeCaseId = null;
     this.progress = this._loadProgress();
+    // Initialize global research score and codex if missing
+    if (!this.progress.researchScore) this.progress.researchScore = 0;
+    if (!this.progress.codex) this.progress.codex = {};
     // Refresh HUD values on load if DOM is ready
     if (typeof document !== 'undefined') {
       setTimeout(() => this._refreshMetricsUI(), 100);
@@ -315,12 +318,20 @@ export class CaseManager {
     const doubtEls = document.querySelectorAll('.val-doubt');
     const repEls = document.querySelectorAll('.val-reputation');
     const scoreValEls = document.querySelectorAll('.val-score');
+    const researchValEls = document.querySelectorAll('.val-research');
+    const scholarEls = document.querySelectorAll('.val-scholar');
 
     const newDoubt = this.progress.doubt || 0;
     doubtEls.forEach(el => el.textContent = newDoubt);
 
     const newScoreNum = this.progress.totalScore || 0;
     scoreValEls.forEach(el => el.textContent = newScoreNum);
+
+    const newResearchScore = this.progress.researchScore || 0;
+    researchValEls.forEach(el => el.textContent = newResearchScore);
+
+    const scholarLevel = this.getScholarLevel();
+    scholarEls.forEach(el => el.textContent = scholarLevel);
 
     if (this.progress.reputations) {
       const reps = Object.values(this.progress.reputations);
@@ -340,15 +351,14 @@ export class CaseManager {
     const autoDeductionScore = Object.keys(p.labDeductions || {}).length * 15;
     const deductionScore = manualDeductionScore + autoDeductionScore;
     const challengeScore = (p.breakthroughs || []).length * 10;
-    const prophecyScore = (p.propheciesFound || []).length * 10;
     const baseAccusationScore = correct ? 50 : -25;
     const doubtPenalty = (this.progress.doubt || 0) * 2;
     const perfectBonus = (correct && (p.failedChallenges || 0) === 0) ? 25 : 0;
-    const total = Math.max(0, evidenceScore + deductionScore + challengeScore + prophecyScore + baseAccusationScore + perfectBonus - doubtPenalty);
+    const total = Math.max(0, evidenceScore + deductionScore + challengeScore + baseAccusationScore + perfectBonus - doubtPenalty);
 
     const result = {
       correct, suspectId, truth: c.truth,
-      score: { evidence: evidenceScore, deduction: deductionScore, challenge: challengeScore, prophecy: prophecyScore, accusation: baseAccusationScore, perfectBonus, doubtPenalty, total },
+      score: { evidence: evidenceScore, deduction: deductionScore, challenge: challengeScore, accusation: baseAccusationScore, perfectBonus, doubtPenalty, total },
     };
 
     p.accusation = suspectId;
@@ -367,6 +377,51 @@ export class CaseManager {
     this.progress.totalScore = Math.max(0, (this.progress.totalScore || 0) + delta);
     this._refreshMetricsUI();
     this._saveProgress();
+  }
+
+  addResearchPoints(points) {
+    if (!Number.isFinite(points) || points === 0) return;
+    this.progress.researchScore = Math.max(0, (this.progress.researchScore || 0) + points);
+    this._saveProgress();
+    this._refreshMetricsUI();
+  }
+
+  getResearchScore() {
+    return this.progress.researchScore || 0;
+  }
+
+  getScholarLevel() {
+    const rs = this.getResearchScore();
+    if (rs >= 1500) return "Master";
+    if (rs >= 1000) return "Expert";
+    if (rs >= 750) return "Scholar";
+    if (rs >= 500) return "Rabbi";
+    if (rs >= 250) return "Scribe";
+    if (rs >= 100) return "Student";
+    return "Novice";
+  }
+
+  getCodexStatus(prophecyId) {
+    return this.progress.codex?.[prophecyId] || 'unseen';
+  }
+
+  setCodexStatus(prophecyId, status) {
+    if (!this.progress.codex) this.progress.codex = {};
+    this.progress.codex[prophecyId] = status;
+    this._saveProgress();
+    this._refreshMetricsUI();
+  }
+
+  getCompletedChains() {
+    return this.progress.completedChains || [];
+  }
+
+  recordChainCompleted(chainId) {
+    if (!this.progress.completedChains) this.progress.completedChains = [];
+    if (!this.progress.completedChains.includes(chainId)) {
+      this.progress.completedChains.push(chainId);
+      this._saveProgress();
+    }
   }
 
   _calcRank(score) {

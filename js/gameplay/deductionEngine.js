@@ -36,17 +36,24 @@ export class DeductionEngine {
     const key = `${a.id}+${b.id}`;
     const keyRev = `${b.id}+${a.id}`;
 
-    // Check for case-specific deduction
+    const aIsScripture = a.type === 'scripture';
+    const bIsScripture = b.type === 'scripture';
+    
+    if (aIsScripture || bIsScripture) {
+      return this._handleResearchPair(a, b);
+    }
+
     const specific = c?.deductions?.[key]?.[operation] || c?.deductions?.[keyRev]?.[operation];
 
-    // Lab insights can reveal suspects (e.g. finding a hidden name)
     if (specific && specific.revealsSuspect) {
       this.caseManager.discoverSuspect(specific.revealsSuspect);
     }
 
-    // Lab insights can reveal prophecies
     if (specific && specific.revealsProphecy) {
-      this.caseManager.recordProphecyFound(specific.revealsProphecy);
+      const currentStatus = this.caseManager.getCodexStatus(specific.revealsProphecy);
+      if (currentStatus === 'unseen') {
+        this.caseManager.setCodexStatus(specific.revealsProphecy, 'rumor');
+      }
     }
 
     let result;
@@ -68,6 +75,68 @@ export class DeductionEngine {
       result = this._genericDeduction(operation, a, b);
     }
 
+    this.deductions.push(result);
+    this.caseManager.recordDeduction(result);
+    return result;
+  }
+  
+  _handleResearchPair(a, b) {
+    const aIsScripture = a.type === 'scripture';
+    const bIsScripture = b.type === 'scripture';
+    const scripture = aIsScripture ? a : (bIsScripture ? b : null);
+    const other = aIsScripture ? b : (bIsScripture ? a : null);
+    
+    const c = this.caseManager.getActiveCase();
+    if (!c || !c.prophecies) return { error: "No prophecies available for research." };
+    
+    const matchingProphecy = c.prophecies.find(p => 
+      p.scriptureEvidenceId === scripture.id && p.fulfillmentEvidenceId === other.id
+    );
+    
+    if (matchingProphecy) {
+      const currentStatus = this.caseManager.getCodexStatus(matchingProphecy.id);
+      if (currentStatus === 'complete') {
+        return { text: `Already researched: ${matchingProphecy.reference}`, insight: null, isKeyDeduction: false, score: 0 };
+      }
+      
+      this.caseManager.setCodexStatus(matchingProphecy.id, 'complete');
+      this.caseManager.addResearchPoints(20);
+      this.caseManager.recordProphecyFound(matchingProphecy.id);
+      
+      const result = {
+        deductionId: `research_${matchingProphecy.id}`,
+        operation: 'research',
+        a: scripture.name,
+        aIcon: scripture.icon,
+        b: other.name,
+        bIcon: other.icon,
+        text: `Research Complete: ${matchingProphecy.reference} — ${matchingProphecy.fulfilledBy}`,
+        insight: matchingProphecy.insight,
+        isKeyDeduction: true,
+        revealsProphecy: matchingProphecy.id,
+        score: 15,
+        researchPoints: 20
+      };
+      
+      this.deductions.push(result);
+      this.caseManager.recordDeduction(result);
+      return result;
+    }
+    
+    this.caseManager.updateDoubt(5);
+    const result = {
+      deductionId: `research_failed_${Date.now()}`,
+      operation: 'research',
+      a: a.name,
+      aIcon: a.icon,
+      b: b.name,
+      bIcon: b.icon,
+      text: "This scripture does not match that evidence. +5 Doubt",
+      insight: null,
+      isKeyDeduction: false,
+      score: -5
+    };
+    
     this.deductions.push(result);
     this.caseManager.recordDeduction(result);
     return result;

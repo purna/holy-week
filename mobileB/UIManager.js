@@ -90,6 +90,13 @@ export class UIManager {
     const scoreValEls = document.querySelectorAll('.val-score');
     scoreValEls.forEach(el => el.textContent = progress.totalScore || 0);
 
+    const researchValEls = document.querySelectorAll('.val-research');
+    researchValEls.forEach(el => el.textContent = this.cm.getResearchScore?.() || progress.researchScore || 0);
+
+    const scholarEls = document.querySelectorAll('.val-scholar');
+    const scholarLevel = this.cm.getScholarLevel?.() || "Novice";
+    scholarEls.forEach(el => el.textContent = scholarLevel);
+
     const pct = total ? Math.round((solved / total) * 100) : 0;
     const progressFill = document.getElementById("progress-fill");
     if (progressFill) progressFill.style.width = pct + "%";

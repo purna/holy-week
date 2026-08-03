@@ -2,20 +2,20 @@
 
 ## Table of Contents
 
-- [Games](#gsames)
+- [Games](#games)
 - [Linked Documentation](#linked-documentation)
-- [Prophecy & Typology System](#prophecy--typology-system)
-  - [Categories in the Codex](#categories-in-the-codex)
-  - [Discovery Steps](#discovery-steps)
-- [Codex: Biblical Patterns Section](#codex-biblical-patterns-section)
+- [Core Gameplay Philosophy: Two Progression Paths](#core-gameplay-philosophy-two-progression-paths)
+- [Scoring System](#scoring-system)
+  - [Investigation Score](#investigation-score)
+  - [Research Score & Scholar Level](#research-score--scholar-level)
+- [Prophecy Codex & Research System](#prophecy-codex--research-system)
   - [Predictive Prophecies (Direct OT Predictions)](#predictive-prophecies-direct-ot-predictions)
   - [Typological Fulfilments (Types & Shadows)](#typological-fulfilments-types--shadows)
 - [Typology Deep Dive: The Passover Lamb](#typology-deep-dive-the-passover-lamb)
 - [Typology Deep Dive: The Priest-King of Salem](#typology-deep-dive-the-priest-king-of-salem)
 - [Hidden Detective Chains](#hidden-detective-chains)
-- [Scoring System](#scoring-system)
 - [Prophecy Collection System](#prophecy-collection-system)
-- [Cross-Reference: Story Files vs. `js/act*_case.js`](#-cross-reference-story-files-vs-jsact_casejs)
+- Cross-Reference: Story Files vs. `js/act*_case.js`
 - Appendix: Emoji Reference
 - Appendix: Character Emoji & Icon Reference
 - Appendix: Location Emoji & Icon Reference
@@ -217,36 +217,6 @@ Hidden chains are discovered through the **Codex** tab. When a prophecy from one
 
 ---
 
-## Scoring System
-
-The player's performance in each case is evaluated based on a comprehensive scoring system designed to reward thorough investigation and careful deduction. The final score for a case is calculated when the player submits an accusation.
-
-The score is composed of the following elements:
-
-### Score
-*   **Correct Accusation:** `+50 points`
-    *   Awarded for correctly identifying the culprit (or 'No One' if it was a prophetic act). An incorrect accusation results in a `-25 point` penalty and adds `+25 Doubt`.
-*   **Lab Deductions:** `+15 points` per key deduction, `+8 points` per standard deduction
-    *   Awarded for successfully analyzing evidence in the Lab to reveal its implication on a suspect (e.g., clearing them, implicating them, or identifying them as a witness). Each case's Lab table lists the exact Points/Reputation/Doubt outcome per pairing — see **Lab Actions** below.
-*   **Prophecies Linked:** `+10 points` per prophecy
-    *   Awarded for correctly matching evidence to prophecies in the Codex.
-*   **Successful Challenges:** `+10 points` per breakthrough
-    *   Awarded for successfully challenging an NPC with a contradiction, leading to a breakthrough. Also grants `+5 Reputation` with the challenged NPC's faction.
-*   **Evidence Collected:** `+5 points` per item
-    *   Rewards finding all available physical evidence and testimonials.
-*   **Perfect Case Bonus:** `+25 points`
-    *   A bonus awarded if the accusation is correct and the player made no failed challenges during the case.
-*   **Doubt Penalty:** `-2 points` per doubt point
-    *   The player's final score for the case is reduced by a penalty calculated from their accumulated "Doubt" score.
-*   **Hidden Detective Chains:** `+25 points` + `Codex Entry` per chain unlocked
-    *   Awarded for completing all evidence-to-prophecy links within a cross-case hidden chain. Each unlocked chain grants a bonus Codex entry and contributes `+10 Faith` (a persistent spiritual-progress meter).
-
-### Ranks
-*   **Rookie:** 0–59 points
-*   **Investigator:** 60–99 points
-*   **Analyst:** 100–149 points
-*   **Master Detective:** 150+ points
-
 # Prophecy Collection System
 
 ## Overview
@@ -256,27 +226,38 @@ The prophecy collection system allows players to discover and track biblical pro
 ## Architecture
 
 ### Evidence Type Addition
-- PROPHECY is added to EVIDENCE_TYPES in evidenceSystem.js
-- Prophecies have id, type, icon, location, desc fields
-- Evidence can reference related prophecies via `relatedProphecy` field
-- NPC reactions can reveal prophecies via `revealsProphecy` field
+- A new evidence type, `SCRIPTURE`, is added for scrolls and fragments.
 
 ### Case Manager Tracking
-- `propheciesFound` array tracks discovered prophecy IDs per case
-- `recordProphecyFound(prophecyId)` method records discoveries
-- Progress saved to localStorage under `cases[id].propheciesFound`
+- A `prophecyStatus` object tracks the state of each prophecy: `'unseen'`, `'rumor'`, `'found_scripture'`, `'complete'`.
 
 ### NPC System Integration
-- `showEvidence()` checks for `revealsProphecy` in reactions
-- `challenge()` checks for `revealsProphecy` in contradictions
-- Prophecies unlocked through investigation and deduction
+- Dialogue with `revealsProphecy` sets the prophecy status to `'rumor'`.
 
 ### UI Changes
 - Accuse tab renamed to "Codex"
-- Codex shows discovered prophecies grouped by case
-- Prophecy detail view shows full reference, text, and fulfillment info
-- Completion percentage shown for each case's prophecy collection
-- **Faith meter:** A persistent progress bar tracks hidden chain completions (+10 Faith per chain)
+- The Codex displays all prophecies, filterable by status (Rumor, Found, Complete).
+- A "Biblical Scholar" level and "Research Score" are displayed.
+
+### Prophecy Discovery Flow
+
+A prophecy progresses through four stages before it is considered "Complete."
+
+1.  **Stage 1: Rumor (Heard About)**
+    *   **Action:** An NPC mentions a prophecy in dialogue.
+    *   **Result:** A new, greyed-out entry appears in the Codex, often with a hidden title (e.g., "The Prophecy of the Pierced Shepherd").
+
+2.  **Stage 2: Scripture (Found)**
+    *   **Action:** The player finds the relevant scripture fragment or scroll as a piece of evidence.
+    *   **Result:** The Codex entry updates to show the prophecy's text (e.g., "Zechariah 13:7"). It is marked as "Found" but remains incomplete.
+
+3.  **Stage 3: Evidence (Matched)**
+    *   **Action:** The player collects the piece of evidence that fulfills the prophecy (e.g., `Scattered Disciples' Cloaks`).
+    *   **Result:** The evidence is now available for analysis. The Codex may show a checkmark indicating the fulfillment evidence has been found.
+
+4.  **Stage 4: Research (Complete)**
+    *   **Action:** In the Lab, the player correctly links the **Scripture Evidence** with the **Fulfillment Evidence**.
+    *   **Result:** The research is marked complete. The full Codex entry unlocks, revealing its significance, historical context, and gospel links. This awards a significant amount of **Research Points**.
 
 ## Hidden Chains Integration
 
@@ -285,14 +266,6 @@ The prophecy collection system allows players to discover and track biblical pro
 - `chainsCompleted` array stored in `caseState` per case
 - Cross-case links trigger a "Discovery" notification in the Codex
 - Completing a chain unlocks a bonus Codex entry and awards Faith
-
-## Implementation Pattern
-
-Prophecies follow the same discovery pattern as evidence:
-1. Player shows evidence to NPC
-2. NPC reaction may include `revealsProphecy: "prophecy_id"`
-3. System marks prophecy as discovered
-4. Prophecy appears in Codex tab
 
 ## Prophecy Data Structure
 
@@ -356,14 +329,14 @@ Generated audit of dialogue story files (`story/extras/*.ink` + `story/system/*.
 
 ### Lab Actions
 
-Every case's Lab table includes **Points**, **Reputation**, and **Doubt** columns showing exactly what each pairing awards:
+The Lab is the primary tool for advancing the **Investigation**. Its role is to analyze evidence to generate deductions about suspects and the case, not to directly score prophecy points.
 
 *   **Correct Pairing:** `+15 points`
     *   Awarded when the player combines the listed pair of evidence with the correct operation (Link or Compare) and reaches the stated Result. This is the same `+15 points` "Lab Deductions" reward listed under Score, above.
     *   **Reputation:** unaffected. Unlike NPC challenges, Lab deductions are private research and don't move any faction's trust — the Reputation column always reads `—`.
-    *   **Prophecy:** if the pairing also unlocks a prophecy, that's a notification only; the `+10 points` for a prophecy is earned separately when it's linked in the Codex.
+    *   **Prophecy:** If a pairing completes research on a prophecy, it awards **Research Points**, not Investigation Score.
 *   **Incorrect Pairing:** `-5 points`, `+5 doubt`
-    *   Applied whenever the player submits an evidence pair/operation that doesn't match any correct combination listed for that case. This isn't listed as its own row in every table — it's a standing rule that applies to any mismatch, in every case.
+    *   Applied whenever the player submits an evidence pair/operation that doesn't match any correct combination for that case.
 
 ### Doubt
 
@@ -378,7 +351,7 @@ Doubt is a global penalty meter that accumulates across all cases. It measures h
     *   **Incorrect Lab Pairing:** `+5 doubt`
         *   Awarded when the player submits an evidence pair/operation in the Lab that doesn't match any correct combination for the case. Also carries a `-5 point` penalty — see **Lab Actions** above.
     *   **Incorrect Prophecy Link:** `+5 doubt`
-        *   Awarded when the player links evidence to the wrong prophecy in the Codex.
+        *   Awarded when the player incorrectly links scripture to evidence in the Lab during the "Research" step.
     *   **Incorrect Accusation:** `+25 doubt`
         *   Awarded when the player accuses the wrong suspect (or 'No One') of a crime.
 

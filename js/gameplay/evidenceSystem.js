@@ -10,6 +10,7 @@ export const EVIDENCE_TYPES = {
   ENVIRONMENTAL: { id: "environmental", label: "Environmental", icon: '../assets/gfx/leaf-duotone.svg', color: "#a78bfa" },
   ANALYTICAL:    { id: "analytical",    label: "Analytical",    icon: '../assets/gfx/microscope-duotone.svg', color: "#f472b6" },
   PROPHECY:      { id: "prophecy",      label: "Prophecy",      icon: '../assets/gfx/star-duotone.svg', color: "#facc15" },
+  SCRIPTURE:     { id: "scripture",     label: "Scripture",     icon: '../assets/gfx/scroll-duotone.svg', color: "#fbbf24" },
 };
 
 export class EvidenceSystem {
@@ -60,9 +61,30 @@ export class EvidenceSystem {
     if (!this.collected.includes(evidenceId)) {
       this.collected.push(evidenceId);
       this.caseManager.recordEvidenceFound(evidenceId);
+      
+      const ev = this.getById(evidenceId);
+      if (ev && ev.type === 'scripture') {
+        this._handleScriptureCollected(evidenceId);
+      }
+      
       return this.getById(evidenceId);
     }
     return null;
+  }
+  
+  _handleScriptureCollected(evidenceId) {
+    const caseData = this.caseManager.getActiveCase();
+    if (!caseData || !caseData.prophecies) return;
+    
+    for (const prop of caseData.prophecies) {
+      if (prop.scriptureEvidenceId === evidenceId) {
+        const currentStatus = this.caseManager.getCodexStatus(prop.id);
+        if (currentStatus === 'unseen' || currentStatus === 'rumor') {
+          this.caseManager.setCodexStatus(prop.id, 'found_scripture');
+        }
+        break;
+      }
+    }
   }
 
   isCollected(id) {
@@ -133,12 +155,25 @@ export class EvidenceSystem {
   }
 
   getPropheciesWithStatus() {
-    const linked = this.caseManager.getCaseProgress(this.caseManager.getActiveCase()?.id)?.propheciesFound || [];
-    return this.prophecies.map(p => ({
-      ...p,
-      status: linked.includes(p.id) ? 'linked' : (this.prophecyStatus[p.id] || 'locked'),
-      discovered: linked.includes(p.id || p.reference) // Keep for legacy UI compatibility
-    }));
+    const caseData = this.caseManager.getActiveCase();
+    if (!caseData || !caseData.prophecies) return [];
+    
+    return caseData.prophecies.map(p => {
+      const globalStatus = this.caseManager.getCodexStatus(p.id);
+      const linked = this.caseManager.getCaseProgress(caseData.id)?.propheciesFound || [];
+      const isLinked = linked.includes(p.id);
+      
+      let status = globalStatus;
+      if (isLinked && status !== 'complete') {
+        status = 'complete';
+      }
+      
+      return {
+        ...p,
+        status: status,
+        discovered: status !== 'unseen'
+      };
+    });
   }
 
   getProphecyCompletionPercent() {
@@ -150,16 +185,41 @@ export class EvidenceSystem {
 
   attemptProphecyMatch() {
     if (!this.selectedCodexEvidenceId || !this.selectedCodexProphecyId) return null;
-    if (typeof this.caseManager?.canAttemptProphecyMatch === "function" && !this.caseManager.canAttemptProphecyMatch()) {
-      return { success: false, message: "Run another Lab deduction before matching the next prophecy." };
+    
+    const caseData = this.caseManager.getActiveCase();
+    if (!caseData) return null;
+    
+    const prophecy = caseData.prophecies.find(p => p.id === this.selectedCodexProphecyId);
+    if (!prophecy) return null;
+    
+    const evidence = this.getById(this.selectedCodexEvidenceId);
+    if (!evidence) return null;
+    
+    const caseProgress = this.caseManager.getCaseProgress(caseData.id);
+    const collectedIds = caseProgress?.evidenceFound || [];
+    
+    if (evidence.id === prophecy.scriptureEvidenceId) {
+      if (collectedIds.includes(prophecy.fulfillmentEvidenceId)) {
+        this.caseManager.setCodexStatus(prophecy.id, 'complete');
+        this.caseManager.addResearchPoints(20);
+        this.caseManager.recordProphecyFound(prophecy.id);
+        return { success: true, message: `Research Complete: ${prophecy.reference}`, researchPoints: 20 };
+      } else {
+        return { success: false, message: `Find the fulfillment evidence first.` };
+      }
     }
-    const ev = this.getById(this.selectedCodexEvidenceId);
-    const prop = this.getProphecyById(this.selectedCodexProphecyId);
-    const isMatch = ev.relatedProphecy === prop.id || ev.bibleRef?.includes(prop.reference) || ev.propheticLink?.includes(prop.reference);
-    if (isMatch) {
-      this.caseManager.recordProphecyFound(prop.id || prop.reference);
-      return { success: true, message: `Prophecy Linked: ${prop.reference}` };
+    
+    if (evidence.id === prophecy.fulfillmentEvidenceId) {
+      if (collectedIds.includes(prophecy.scriptureEvidenceId)) {
+        this.caseManager.setCodexStatus(prophecy.id, 'complete');
+        this.caseManager.addResearchPoints(20);
+        this.caseManager.recordProphecyFound(prophecy.id);
+        return { success: true, message: `Research Complete: ${prophecy.reference}`, researchPoints: 20 };
+      } else {
+        return { success: false, message: `Find the scripture fragment first.` };
+      }
     }
-    return { success: false, message: "This evidence does not fulfill this prophecy." };
+    
+    return { success: false, message: "This evidence is not linked to this prophecy." };
   }
 }

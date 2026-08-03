@@ -428,9 +428,7 @@ export const act4CaseA = {
         timeline: "CHRONOLOGY: Reported as occurring at the moment of the resurrection, tied to the same event.",
         contradict: "RELIABILITY: Matthew records this as witnessed by many in Jerusalem, not a private or easily-fabricated claim."
       },
-    }
-    ,
-    {
+    }, {
       id: "psalm22_scroll",
       name: "Resurrection Psalm Scroll",
       type: "analytical",
@@ -456,8 +454,7 @@ export const act4CaseA = {
         timeline: "CHRONOLOGY: Referenced after the resurrection, as the risen Jesus explained the Scriptures concerning Himself.",
         contradict: "RELIABILITY: The Psalm's own structure — suffering giving way to vindication — was written centuries before crucifixion existed as a punishment."
       },
-    },
-    {
+    }, {
       id: "resurrection_fake",
       name: "altered_ascension_witness_token",
       type: "environmental",
@@ -470,8 +467,198 @@ export const act4CaseA = {
         link: "Event — this item is suspiciously convenient.",
         timeline: "CHRONOLOGY: The timeline does not quite fit with the other evidence.",
         contradict: "RELIABILITY: This item was planted to mislead the investigation. It contains inconsistencies that do not match the verified evidence."
+      },
+    }, {
+      id: "psalm_16_10_scroll",
+      name: "Psalm 16:10 Scroll Fragment",
+      type: "scripture",
+      revealsSuspect: "none",
+      category: "prophecy",
+      timelineOrder: 1,
+      pos: [0, 0, 0],
+      location: "Garden Tomb, Golgotha",
+      desc: "A parchment scroll fragment containing the text of Psalm 16:10. The text is clearly legible and matches the known Hebrew/Greek manuscripts.",
+      bibleRef: "Psalm 16:10",
+      bibleLink: "psalm_1610",
+      propheticLink: "This prophecy foretold events that were fulfilled during the events of this case.",
+      bibleRefs: [
+        { ref: "Psalm 16:10", link: "psalm_1610" }
+      ],
+      propheticRefs: [
+        { ref: "Psalm 16:10", link: "psalm_1610" }
+      ],
+      investigatorNote: "This scroll contains the ancient prophecy that was fulfilled during these events.",
+      fake: false,
+      clues: {
+        compare: "This scripture text provides the original prophecy that was fulfilled.",
+        link: "Prophecy — the scroll contains the ancient text that predicted these events.",
+        timeline: "CHRONOLOGY: Written long before the events it describes.",
+        contradict: "RELIABILITY: The text matches known ancient manuscripts and was written centuries before the events."
+      },
+    }, {
+      id: "hosea_6_2_scroll",
+      name: "Hosea 6:2 Scroll Fragment",
+      type: "scripture",
+      revealsSuspect: "none",
+      category: "prophecy",
+      timelineOrder: 1,
+      pos: [0, 0, 0],
+      location: "Garden Tomb, Golgotha",
+      desc: "A parchment scroll fragment containing the text of Hosea 6:2. The text is clearly legible and matches the known Hebrew/Greek manuscripts.",
+      bibleRef: "Hosea 6:2",
+      bibleLink: "hosea_62",
+      propheticLink: "This prophecy foretold events that were fulfilled during the events of this case.",
+      bibleRefs: [
+        { ref: "Hosea 6:2", link: "hosea_62" }
+      ],
+      propheticRefs: [
+        { ref: "Hosea 6:2", link: "hosea_62" }
+      ],
+      investigatorNote: "This scroll contains the ancient prophecy that was fulfilled during these events.",
+      fake: false,
+      clues: {
+        compare: "This scripture text provides the original prophecy that was fulfilled.",
+        link: "Prophecy — the scroll contains the ancient text that predicted these events.",
+        timeline: "CHRONOLOGY: Written long before the events it describes.",
+        contradict: "RELIABILITY: The text matches known ancient manuscripts and was written centuries before the events."
+      },
+    }, {
+      id: "jonah_1_17___matthew_12_40_scroll",
+      name: "Jonah 1:17 / Matthew 12:40 Scroll Fragment",
+      type: "scripture",
+      revealsSuspect: "none",
+      category: "prophecy",
+      timelineOrder: 1,
+      pos: [0, 0, 0],
+      location: "Garden Tomb, Golgotha",
+      desc: "A parchment scroll fragment containing the text of Jonah 1:17 / Matthew 12:40. The text is clearly legible and matches the known Hebrew/Greek manuscripts.",
+      bibleRef: "Jonah 1:17 / Matthew 12:40",
+      bibleLink: "jonah_117___matthew_1240",
+      propheticLink: "This prophecy foretold events that were fulfilled during the events of this case.",
+      bibleRefs: [
+        { ref: "Jonah 1:17 / Matthew 12:40", link: "jonah_117___matthew_1240" }
+      ],
+      propheticRefs: [
+        { ref: "Jonah 1:17 / Matthew 12:40", link: "jonah_117___matthew_1240" }
+      ],
+      investigatorNote: "This scroll contains the ancient prophecy that was fulfilled during these events.",
+      fake: false,
+      clues: {
+        compare: "This scripture text provides the original prophecy that was fulfilled.",
+        link: "Prophecy — the scroll contains the ancient text that predicted these events.",
+        timeline: "CHRONOLOGY: Written long before the events it describes.",
+        contradict: "RELIABILITY: The text matches known ancient manuscripts and was written centuries before the events."
+      },
+    }, {
+      id: "isaiah_53_10_11_scroll",
+      name: "Isaiah 53:10–11 Scroll Fragment",
+      type: "scripture",
+      revealsSuspect: "none",
+      category: "prophecy",
+      timelineOrder: 1,
+      pos: [0, 0, 0],
+      location: "Garden Tomb, Golgotha",
+      desc: "A parchment scroll fragment containing the text of Isaiah 53:10–11. The text is clearly legible and matches the known Hebrew/Greek manuscripts.",
+      bibleRef: "Isaiah 53:10–11",
+      bibleLink: "isaiah_5310_11",
+      propheticLink: "This prophecy foretold events that were fulfilled during the events of this case.",
+      bibleRefs: [
+        { ref: "Isaiah 53:10–11", link: "isaiah_5310_11" }
+      ],
+      propheticRefs: [
+        { ref: "Isaiah 53:10–11", link: "isaiah_5310_11" }
+      ],
+      investigatorNote: "This scroll contains the ancient prophecy that was fulfilled during these events.",
+      fake: false,
+      clues: {
+        compare: "This scripture text provides the original prophecy that was fulfilled.",
+        link: "Prophecy — the scroll contains the ancient text that predicted these events.",
+        timeline: "CHRONOLOGY: Written long before the events it describes.",
+        contradict: "RELIABILITY: The text matches known ancient manuscripts and was written centuries before the events."
+      },
+    }, {
+      id: "psalm_22_1_31_scroll",
+      name: "Psalm 22:1–31 Scroll Fragment",
+      type: "scripture",
+      revealsSuspect: "none",
+      category: "prophecy",
+      timelineOrder: 1,
+      pos: [0, 0, 0],
+      location: "Garden Tomb, Golgotha",
+      desc: "A parchment scroll fragment containing the text of Psalm 22:1–31. The text is clearly legible and matches the known Hebrew/Greek manuscripts.",
+      bibleRef: "Psalm 22:1–31",
+      bibleLink: "psalm_221_31",
+      propheticLink: "This prophecy foretold events that were fulfilled during the events of this case.",
+      bibleRefs: [
+        { ref: "Psalm 22:1–31", link: "psalm_221_31" }
+      ],
+      propheticRefs: [
+        { ref: "Psalm 22:1–31", link: "psalm_221_31" }
+      ],
+      investigatorNote: "This scroll contains the ancient prophecy that was fulfilled during these events.",
+      fake: false,
+      clues: {
+        compare: "This scripture text provides the original prophecy that was fulfilled.",
+        link: "Prophecy — the scroll contains the ancient text that predicted these events.",
+        timeline: "CHRONOLOGY: Written long before the events it describes.",
+        contradict: "RELIABILITY: The text matches known ancient manuscripts and was written centuries before the events."
+      },
+    }, {
+      id: "isaiah_26_19_scroll",
+      name: "Isaiah 26:19 Scroll Fragment",
+      type: "scripture",
+      revealsSuspect: "none",
+      category: "prophecy",
+      timelineOrder: 1,
+      pos: [0, 0, 0],
+      location: "Garden Tomb, Golgotha",
+      desc: "A parchment scroll fragment containing the text of Isaiah 26:19. The text is clearly legible and matches the known Hebrew/Greek manuscripts.",
+      bibleRef: "Isaiah 26:19",
+      bibleLink: "isaiah_2619",
+      propheticLink: "This prophecy foretold events that were fulfilled during the events of this case.",
+      bibleRefs: [
+        { ref: "Isaiah 26:19", link: "isaiah_2619" }
+      ],
+      propheticRefs: [
+        { ref: "Isaiah 26:19", link: "isaiah_2619" }
+      ],
+      investigatorNote: "This scroll contains the ancient prophecy that was fulfilled during these events.",
+      fake: false,
+      clues: {
+        compare: "This scripture text provides the original prophecy that was fulfilled.",
+        link: "Prophecy — the scroll contains the ancient text that predicted these events.",
+        timeline: "CHRONOLOGY: Written long before the events it describes.",
+        contradict: "RELIABILITY: The text matches known ancient manuscripts and was written centuries before the events."
+      },
+    }, {
+      id: "ezekiel_37_12_13_scroll",
+      name: "Ezekiel 37:12–13 Scroll Fragment",
+      type: "scripture",
+      revealsSuspect: "none",
+      category: "prophecy",
+      timelineOrder: 1,
+      pos: [0, 0, 0],
+      location: "Garden Tomb, Golgotha",
+      desc: "A parchment scroll fragment containing the text of Ezekiel 37:12–13. The text is clearly legible and matches the known Hebrew/Greek manuscripts.",
+      bibleRef: "Ezekiel 37:12–13",
+      bibleLink: "ezekiel_3712_13",
+      propheticLink: "This prophecy foretold events that were fulfilled during the events of this case.",
+      bibleRefs: [
+        { ref: "Ezekiel 37:12–13", link: "ezekiel_3712_13" }
+      ],
+      propheticRefs: [
+        { ref: "Ezekiel 37:12–13", link: "ezekiel_3712_13" }
+      ],
+      investigatorNote: "This scroll contains the ancient prophecy that was fulfilled during these events.",
+      fake: false,
+      clues: {
+        compare: "This scripture text provides the original prophecy that was fulfilled.",
+        link: "Prophecy — the scroll contains the ancient text that predicted these events.",
+        timeline: "CHRONOLOGY: Written long before the events it describes.",
+        contradict: "RELIABILITY: The text matches known ancient manuscripts and was written centuries before the events."
       }
     }
+
   ],
 
   lab: [
@@ -922,7 +1109,36 @@ export const act4CaseB = {
         timeline: "CHRONOLOGY: The timeline does not quite fit with the other evidence.",
         contradict: "RELIABILITY: This item was planted to mislead the investigation. It contains inconsistencies that do not match the verified evidence."
       }
-    }
+    },
+
+    {
+      id: "psalm_2_1_2_scroll",
+      name: "Psalm 2:1–2 Scroll Fragment",
+      type: "scripture",
+      revealsSuspect: "none",
+      category: "prophecy",
+      timelineOrder: 1,
+      pos: [0, 0, 0],
+      location: "Garden Tomb, Golgotha",
+      desc: "A parchment scroll fragment containing the text of Psalm 2:1–2. The text is clearly legible and matches the known Hebrew/Greek manuscripts.",
+      bibleRef: "Psalm 2:1–2",
+      bibleLink: "psalm_21_2",
+      propheticLink: "This prophecy foretold events that were fulfilled during the events of this case.",
+      bibleRefs: [
+        { ref: "Psalm 2:1–2", link: "psalm_21_2" }
+      ],
+      propheticRefs: [
+        { ref: "Psalm 2:1–2", link: "psalm_21_2" }
+      ],
+      investigatorNote: "This scroll contains the ancient prophecy that was fulfilled during these events.",
+      fake: false,
+      clues: {
+        compare: "This scripture text provides the original prophecy that was fulfilled.",
+        link: "Prophecy — the scroll contains the ancient text that predicted these events.",
+        timeline: "CHRONOLOGY: Written long before the events it describes.",
+        contradict: "RELIABILITY: The text matches known ancient manuscripts and was written centuries before the events."
+      }
+    },
   ],
   lab: [
     {
@@ -1487,7 +1703,120 @@ export const act4CaseC = {
         timeline: "CHRONOLOGY: The timeline does not quite fit with the other evidence.",
         contradict: "RELIABILITY: This item was planted to mislead the investigation. It contains inconsistencies that do not match the verified evidence."
       }
-    }
+    },
+
+    {
+      id: "zechariah_13_7_scroll",
+      name: "Zechariah 13:7 Scroll Fragment",
+      type: "scripture",
+      revealsSuspect: "none",
+      category: "prophecy",
+      timelineOrder: 1,
+      pos: [0, 0, 0],
+      location: "Sea of Galilee",
+      desc: "A parchment scroll fragment containing the text of Zechariah 13:7. The text is clearly legible and matches the known Hebrew/Greek manuscripts.",
+      bibleRef: "Zechariah 13:7",
+      bibleLink: "zechariah_137",
+      propheticLink: "This prophecy foretold events that were fulfilled during the events of this case.",
+      bibleRefs: [
+        { ref: "Zechariah 13:7", link: "zechariah_137" }
+      ],
+      propheticRefs: [
+        { ref: "Zechariah 13:7", link: "zechariah_137" }
+      ],
+      investigatorNote: "This scroll contains the ancient prophecy that was fulfilled during these events.",
+      fake: false,
+      clues: {
+        compare: "This scripture text provides the original prophecy that was fulfilled.",
+        link: "Prophecy — the scroll contains the ancient text that predicted these events.",
+        timeline: "CHRONOLOGY: Written long before the events it describes.",
+        contradict: "RELIABILITY: The text matches known ancient manuscripts and was written centuries before the events."
+      }
+    },
+    {
+      id: "ezekiel_34_11-16_scroll",
+      name: "Ezekiel 34:11–16 Scroll Fragment",
+      type: "scripture",
+      revealsSuspect: "none",
+      category: "prophecy",
+      timelineOrder: 1,
+      pos: [0, 0, 0],
+      location: "Sea of Galilee",
+      desc: "A parchment scroll fragment containing the text of Ezekiel 34:11–16. The text is clearly legible and matches the known Hebrew/Greek manuscripts.",
+      bibleRef: "Ezekiel 34:11–16",
+      bibleLink: "ezekiel_3411_16",
+      propheticLink: "This prophecy foretold events that were fulfilled during the events of this case.",
+      bibleRefs: [
+        { ref: "Ezekiel 34:11–16", link: "ezekiel_3411_16" }
+      ],
+      propheticRefs: [
+        { ref: "Ezekiel 34:11–16", link: "ezekiel_3411_16" }
+      ],
+      investigatorNote: "This scroll contains the ancient prophecy that was fulfilled during these events.",
+      fake: false,
+      clues: {
+        compare: "This scripture text provides the original prophecy that was fulfilled.",
+        link: "Prophecy — the scroll contains the ancient text that predicted these events.",
+        timeline: "CHRONOLOGY: Written long before the events it describes.",
+        contradict: "RELIABILITY: The text matches known ancient manuscripts and was written centuries before the events."
+      }
+    },
+    {
+      id: "psalm_16_10_scroll",
+      name: "Psalm 16:10 Scroll Fragment",
+      type: "scripture",
+      revealsSuspect: "none",
+      category: "prophecy",
+      timelineOrder: 1,
+      pos: [0, 0, 0],
+      location: "Sea of Galilee",
+      desc: "A parchment scroll fragment containing the text of Psalm 16:10. The text is clearly legible and matches the known Hebrew/Greek manuscripts.",
+      bibleRef: "Psalm 16:10",
+      bibleLink: "psalm_1610",
+      propheticLink: "This prophecy foretold events that were fulfilled during the events of this case.",
+      bibleRefs: [
+        { ref: "Psalm 16:10", link: "psalm_1610" }
+      ],
+      propheticRefs: [
+        { ref: "Psalm 16:10", link: "psalm_1610" }
+      ],
+      investigatorNote: "This scroll contains the ancient prophecy that was fulfilled during these events.",
+      fake: false,
+      clues: {
+        compare: "This scripture text provides the original prophecy that was fulfilled.",
+        link: "Prophecy — the scroll contains the ancient text that predicted these events.",
+        timeline: "CHRONOLOGY: Written long before the events it describes.",
+        contradict: "RELIABILITY: The text matches known ancient manuscripts and was written centuries before the events."
+      }
+    },
+    {
+      id: "isaiah_53_10_11_scroll",
+      name: "Isaiah 53:10–11 Scroll Fragment",
+      type: "scripture",
+      revealsSuspect: "none",
+      category: "prophecy",
+      timelineOrder: 1,
+      pos: [0, 0, 0],
+      location: "Sea of Galilee",
+      desc: "A parchment scroll fragment containing the text of Isaiah 53:10–11. The text is clearly legible and matches the known Hebrew/Greek manuscripts.",
+      bibleRef: "Isaiah 53:10–11",
+      bibleLink: "isaiah_5310_11",
+      propheticLink: "This prophecy foretold events that were fulfilled during the events of this case.",
+      bibleRefs: [
+        { ref: "Isaiah 53:10–11", link: "isaiah_5310_11" }
+      ],
+      propheticRefs: [
+        { ref: "Isaiah 53:10–11", link: "isaiah_5310_11" }
+      ],
+      investigatorNote: "This scroll contains the ancient prophecy that was fulfilled during these events.",
+      fake: false,
+      clues: {
+        compare: "This scripture text provides the original prophecy that was fulfilled.",
+        link: "Prophecy — the scroll contains the ancient text that predicted these events.",
+        timeline: "CHRONOLOGY: Written long before the events it describes.",
+        contradict: "RELIABILITY: The text matches known ancient manuscripts and was written centuries before the events."
+      }
+    },
   ],
 
   lab: [

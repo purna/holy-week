@@ -258,7 +258,10 @@ export class NPCSystem {
 
       // Check for prophecy unlock in reaction
       if (reaction.revealsProphecy) {
-        this.caseManager.recordProphecyFound(reaction.revealsProphecy);
+        const currentStatus = this.caseManager.getCodexStatus(reaction.revealsProphecy);
+        if (currentStatus === 'unseen') {
+          this.caseManager.setCodexStatus(reaction.revealsProphecy, 'rumor');
+        }
       }
 
       this._addMemory(npcId, { type: "shown_evidence", evidenceId, reaction: reaction.text });
@@ -302,7 +305,10 @@ export class NPCSystem {
 
       // Check for prophecy unlock in contradiction
       if (contradiction.revealsProphecy) {
-        this.caseManager.recordProphecyFound(contradiction.revealsProphecy);
+        const currentStatus = this.caseManager.getCodexStatus(contradiction.revealsProphecy);
+        if (currentStatus === 'unseen') {
+          this.caseManager.setCodexStatus(contradiction.revealsProphecy, 'rumor');
+        }
       }
 
       // Reputation Bonus for precise investigation

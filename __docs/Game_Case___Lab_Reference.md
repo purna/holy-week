@@ -190,6 +190,20 @@ const groupDefinitions \= \[
 | Pharisee's Written Complaint (`crowd_testimony`) | `malachi_3_1` | Luke 19:39–40 | The Pharisees recognised the messianic implication of the palm branches and shouts. John 12:19 records their panic: 'Look how the whole world has gone after him!' |
 
 ---
+### Contested Evidence & Forensic Analysis
+
+**Evidence:** Forged Donkey Sale Receipt  
+**ID:** `triumphal_entry_fake`
+
+*   **Initial Conclusion:** The disciples stole the donkey colt.
+*   **Forensic Findings:**
+    *   The ink has not fully soaked into the papyrus fibers, suggesting it was written very recently.
+    *   The signature does not match known samples of Tobias's handwriting.
+    *   The receipt uses a Roman date format, whereas Tobias, a local villager, uses the Hebrew calendar.
+*   **Type of Deception:** Forged.
+*   **Likely Author & Motive:** Eleazar the Sadducee, to reframe a prophetic event as a common crime and discredit Jesus's followers.
+*   **Alternative Narrative Supported:** *Jesus the Thief.* This evidence supports the narrative that Jesus's movement is built on lawlessness, not divine authority.
+
 
 ### Case: `temple_cleansing` (The Overturned Tables)
 
@@ -210,6 +224,20 @@ const groupDefinitions \= \[
 | Discarded Whip of Cords (`whip_of_cords`) | `malachi_3_1` | John 2:15 | John 2:15 specifically details Him weaving this instrument on the spot before initiating the cleansing. |
 
 ---
+### Contested Evidence & Forensic Analysis
+
+**Evidence:** Planted Roman Coin  
+**ID:** `temple_cleansing_fake`
+
+*   **Initial Conclusion:** Jesus's actions were an anti-Roman protest, not a religious one.
+*   **Forensic Findings:**
+    *   The coin is a denarius of Tiberius, but it lacks the grime and wear of other coins found at the scene.
+    *   Unlike the Tyrian shekels, it has no Temple dust in its crevices.
+    *   The coin's mint date is from a batch known to have entered circulation in Jerusalem *after* the cleansing event.
+*   **Type of Deception:** Planted (Genuine but Taken Out of Context).
+*   **Likely Author & Motive:** Malachi the money changer, to escalate the incident from a religious dispute to a state crime, hoping to trigger a Roman military response.
+*   **Alternative Narrative Supported:** *Jesus the Revolutionary.* This evidence supports the narrative that Jesus is a political agitator aiming to overthrow Roman rule.
+
 
 ### Case: `fig_tree_incident` (The Barren Fig Tree)
 
@@ -232,6 +260,20 @@ const groupDefinitions \= \[
 | Jesus's Teaching on Faith (`disciples_faith_lesson`) | `zechariah_4_6_7` | Mark 11:22–24 | Zechariah 4:7 speaks of a 'mighty mountain' becoming 'level ground' by the Spirit. Jesus adopts this imagery to show that faith connects the believer to that same mountain-moving power. |
 
 ---
+### Contested Evidence & Forensic Analysis
+
+**Evidence:** Diseased Fig Leaf  
+**ID:** `fig_tree_incident_fake`
+
+*   **Initial Conclusion:** The fig tree withered due to a natural blight, not a curse.
+*   **Forensic Findings:**
+    *   The leaf shows genuine signs of agricultural blight.
+    *   However, its species (Sycomore-fig) does not match the cursed tree (Common Fig).
+    *   Pollen analysis shows it originated from an orchard on the other side of the Mount of Olives.
+*   **Type of Deception:** Misleading Context (Genuine but Misleading).
+*   **Likely Author & Motive:** A skeptical local (like Jemimah), to provide a rational, naturalistic explanation for the event and dismiss the miracle.
+*   **Alternative Narrative Supported:** *Jesus the Fraud.* This evidence supports the narrative that Jesus's miracles are merely coincidences or staged illusions.
+
 
 ## ACT II: The Teacher
 
@@ -259,6 +301,20 @@ const groupDefinitions \= \[
 | Temple Bystander's Written Account (`witness_scroll`) | - | Matthew 22:46 | Isaiah 11:2 promised the Messiah would have the 'Spirit of wisdom and understanding, the Spirit of counsel and might' — He would answer every challenge with perfect insight. The progressive silencing of each religious faction across one morning is the fulfilment of this promise made 700 years earlier. Daniel 7:13–14 foretold 'one like a son of man' coming with the clouds of heaven to receive an everlasting dominion — the title 'Son of Man' Jesus used for Himself throughout these exchanges. |
 
 ---
+### Contested Evidence & Forensic Analysis
+
+**Evidence:** Altered Scribe's Notes  
+**ID:** `authority_challenged_fake`
+
+*   **Initial Conclusion:** Jesus was openly challenging Roman authority during his Temple debates.
+*   **Forensic Findings:**
+    *   The main body of the scroll matches other witness accounts.
+    *   However, three key lines show different ink composition and a slightly different scribal hand.
+    *   The altered lines change the meaning from theological debate to political sedition (e.g., "Give to God what is God's" is changed to "Give nothing to Caesar").
+*   **Type of Deception:** Altered.
+*   **Likely Author & Motive:** A Herodian sympathizer, to create a pretext for Roman intervention by reframing a religious argument as a political threat.
+*   **Alternative Narrative Supported:** *Jesus the Revolutionary.*
+
 
 ### Case: `lazarus_plot` (The Price of Life)
 
@@ -277,6 +333,20 @@ const groupDefinitions \= \[
 | Intercepted Sadducean Memorandum (`secret_decree`) | - | John 12:10–11 explicitly validates this conspiracy: 'So the chief priests made plans to put Lazarus to death as well.' | - |
 
 ---
+### Contested Evidence & Forensic Analysis
+
+**Evidence:** False Witness Account of Grave Robbery  
+**ID:** `lazarus_plot_fake`
+
+*   **Initial Conclusion:** The disciples stole Lazarus's body to stage a fake resurrection.
+*   **Forensic Findings:**
+    *   The witness claims to have seen the disciples at night but misidentifies the tomb's location.
+    *   The witness is a known associate of Annas's household guard.
+    *   The payment record for the testimony matches funds disbursed from the Temple treasury.
+*   **Type of Deception:** Fabricated.
+*   **Likely Author & Motive:** Annas, to create a preemptive counter-narrative to the miracle, turning it from an act of God into a criminal conspiracy.
+*   **Alternative Narrative Supported:** *Jesus the Fraud.*
+
 
 ### Case: `passover_lamb_chain` (The Anointing at Bethany)
 
@@ -296,6 +366,20 @@ const groupDefinitions \= \[
 | Broken Alabaster Jar (`alabaster_jar`) | `typology_passover_lamb` | Matthew 26:6–7 | The anointing of Jesus's head directly mirrors the way kings like Saul and David were anointed, signifying His royal authority. It also serves as a prophetic act of consecration, setting Him apart as the ultimate High Priest and King who would offer Himself as the final sacrifice. |
 
 ---
+### Contested Evidence & Forensic Analysis
+
+**Evidence:** Merchant's Complaint about Stolen Nard  
+**ID:** `passover_lamb_chain_fake`
+
+*   **Initial Conclusion:** The expensive nard used for the anointing was stolen.
+*   **Forensic Findings:**
+    *   The complaint was filed but never officially submitted to the authorities.
+    *   The handwriting on the complaint matches samples from Judas Iscariot, not the merchant.
+    *   The merchant's own ledger shows the nard was sold legally to Mary of Bethany's household.
+*   **Type of Deception:** Forged (Legal Manipulation).
+*   **Likely Author & Motive:** Judas Iscariot, to create a legal pretext for his outrage over the "wasted" money and to discredit Mary's act of devotion.
+*   **Alternative Narrative Supported:** *Jesus the Thief* (by association with his followers).
+
 
 ### Case: `olivet_discourse` (The End of the Age)
 
@@ -318,6 +402,20 @@ const groupDefinitions \= \[
 | Darkened Sun Record (`darkened_sun_record`) | `isaiah_13_10` | Matthew 24:29 | Isaiah 13:10 foretells the darkening of the heavenly lights. Jesus quotes this same imagery when describing the signs preceding His return. |
 
 ---
+### Contested Evidence & Forensic Analysis
+
+**Evidence:** Zealot Recruitment Pamphlet  
+**ID:** `olivet_discourse_fake`
+
+*   **Initial Conclusion:** Jesus's private teaching on the Mount of Olives was a secret war council.
+*   **Forensic Findings:**
+    *   The pamphlet uses language and symbols associated with the Zealot faction.
+    *   However, it was printed on papyrus sourced from Egypt, a type not used by local Zealot cells but favored by Temple scribes for official documents.
+    *   The location where it was "found" is inconsistent with the disciples' actual gathering spot.
+*   **Type of Deception:** Planted.
+*   **Likely Author & Motive:** A Temple spy (under Caiaphas's direction), to frame the Olivet Discourse as a seditious plot and provide a legal basis for arrest.
+*   **Alternative Narrative Supported:** *Jesus the Revolutionary.*
+
 
 ## ACT III: The Pressure Builds
 
@@ -349,6 +447,20 @@ const groupDefinitions \= \[
 | List of the Twelve (`twelve_roll`) | `isaiah_53_12` | Luke 22:37 | Jesus explicitly applies Isaiah 53:12 ('numbered with the transgressors') to Himself during the Last Supper. |
 
 ---
+### Contested Evidence & Forensic Analysis
+
+**Evidence:** Leavened Bread Fragment  
+**ID:** `last_supper_fake`
+
+*   **Initial Conclusion:** The Last Supper was not a legitimate Passover meal.
+*   **Forensic Findings:**
+    *   The bread fragment contains yeast, which is forbidden during Passover.
+    *   It was found near Judas's seat, separate from the main table's unleavened bread.
+    *   The grain type matches bread sold in the lower city markets, not the ceremonial matzah prepared for the Seder.
+*   **Type of Deception:** Planted.
+*   **Likely Author & Motive:** Judas Iscariot. By introducing leaven, he could argue the meal was ritually impure, thus invalidating any covenants made. This provides him with a legalistic and religious justification for his betrayal.
+*   **Alternative Narrative Supported:** *Jesus the Fraud* (specifically, a religious hypocrite who doesn't follow the Law).
+
 
 ### Case: `gethsemane_arrest` (The Severed Ear)
 
@@ -369,6 +481,20 @@ const groupDefinitions \= \[
 | Unresisting Prisoner's Cord (`prisoner_cord`) | `isaiah_53_7` | Matthew 26:52–54 | Jesus refuses armed resistance and willingly submits to arrest, embodying the silent Lamb led to slaughter as prophesied in Isaiah 53:7. |
 
 ---
+### Contested Evidence & Forensic Analysis
+
+**Evidence:** Planted Second Sword  
+**ID:** `gethsemane_arrest_fake`
+
+*   **Initial Conclusion:** The disciples were armed for a violent insurrection.
+*   **Forensic Findings:**
+    *   The sword is a Roman gladius, not the short sicarii blade used by Galilean rebels.
+    *   It bears the mark of the Antonia Fortress garrison, linking it to the arresting soldiers.
+    *   It was found wiped clean of fingerprints.
+*   **Type of Deception:** Planted.
+*   **Likely Author & Motive:** One of the Temple guards, to exaggerate the threat posed by the disciples and justify the use of a large armed force for the arrest.
+*   **Alternative Narrative Supported:** *Jesus the Revolutionary.*
+
 
 ### Case: `sanhedrin_trial` (The Midnight Tribunal)
 
@@ -393,6 +519,20 @@ const groupDefinitions \= \[
 | Perjured Witness Statement (`perjured_testimony`) | `psalm_35_11` | Mark 14:57–59 | 'Ruthless witnesses come forward' precisely matches the false testimony at the trial, as prophesied in Psalm 35:11. |
 
 ---
+### Contested Evidence & Forensic Analysis
+
+**Evidence:** Fabricated Roman Dispatch  
+**ID:** `sanhedrin_trial_fake`
+
+*   **Initial Conclusion:** The Sanhedrin was under pressure from Rome to secure a quick conviction.
+*   **Forensic Findings:**
+    *   The dispatch uses a Roman seal, but it is a known forgery used by Annas's scribes for internal communications.
+    *   The language is Latin, but contains grammatical errors inconsistent with official Roman correspondence.
+    *   Pilate's own records show no such dispatch was ever sent.
+*   **Type of Deception:** Forged.
+*   **Likely Author & Motive:** Annas, to pressure wavering Sanhedrin members like Nicodemus by creating a false sense of urgency and implying Roman demand for a guilty verdict.
+*   **Alternative Narrative Supported:** *The Disciples Invented Everything* (by suggesting the trial was a legitimate state process, not a Jewish conspiracy).
+
 
 ### Case: `barabbas_choice` (The People's Choice)
 
@@ -413,6 +553,20 @@ const groupDefinitions \= \[
 | Joint Verdict Scroll (`joint_verdict`) | `psalm_2_1_2` | Luke 23:12 | Herod and Pilate become allies against God's Anointed, fulfilling Psalm 2's prophecy of rulers banding together against the LORD. |
 
 ---
+### Contested Evidence & Forensic Analysis
+
+**Evidence:** Pre-made "Barabbas" Sign Fragment  
+**ID:** `barabbas_choice_fake`
+
+*   **Initial Conclusion:** The crowd spontaneously chose to free Barabbas.
+*   **Forensic Findings:**
+    *   The paint on the sign fragment is identical to that used for Temple maintenance notices.
+    *   Multiple identical fragments were found, suggesting mass production.
+    *   Eyewitnesses report seeing agents of the chief priests distributing these signs to the crowd before Pilate offered the choice.
+*   **Type of Deception:** Planted (Evidence of Manipulation).
+*   **Likely Author & Motive:** The chief priests, to orchestrate the crowd's response and ensure they would call for Barabbas's release, forcing Pilate's hand.
+*   **Alternative Narrative Supported:** *Jesus the Revolutionary* (by implying the people preferred a "real" freedom fighter).
+
 
 ### Case: `crucifixion_site` (The Final Sacrifice)
 
@@ -444,6 +598,15 @@ const groupDefinitions \= \[
 | Final Words Scroll (`final_words`) | `psalm_31_5` | Luke 23:46 | Jesus's final words from the cross are a direct quote from Psalm 31:5, a prayer of ultimate trust in God at the moment of death. He did not simply die — He willingly surrendered His life into the Father's hands, quoting Scripture with His last breath. |
 
 ---
+### Fake Evidence & Backstory
+
+| Evidence | ID | Reason for Falsity |
+|---|---|---|
+| **Manufactured Shroud Thread** | `crucifixion_site_fake` | A thread of cheap, common wool "found" on the cross, inconsistent with the fine linen of the actual shroud. This was likely planted by a skeptical guard or bystander to suggest the "fine linen" story was an exaggeration, attempting to discredit Joseph of Arimathea's act of devotion and paint the burial as a common criminal's disposal. |
+
+---
+
+
 
 ## ACT IV: The New Beginning
 
@@ -477,6 +640,20 @@ const groupDefinitions \= \[
 | Resurrection Psalm Scroll (`psalm22_scroll`) | `psalm_22_1_31` | Luke 24:26–27 | The Psalm that begins with suffering ends in worldwide proclamation and vindication, pointing beyond the cross to resurrection. Jesus explained these scriptures to the disciples on the road to Emmaus. |
 
 ---
+### Contested Evidence & Forensic Analysis
+
+**Evidence:** Broken Tomb Seal Fragment  
+**ID:** `resurrection_fake`
+
+*   **Initial Conclusion:** The disciples broke the Roman seal to steal the body.
+*   **Forensic Findings:**
+    *   The clay seal bears the official mark of Pilate's garrison.
+    *   The fracture pattern on the seal is crystalline and sharp, consistent with being broken by a powerful seismic shock, not pried off with a tool.
+    *   The break aligns perfectly with the fissure in the rock caused by the earthquake (`split_rocks` evidence).
+*   **Type of Deception:** Misleading Context. The evidence is genuine, but the initial conclusion is false.
+*   **Likely Author & Motive:** The guards, as part of their "stolen body" cover story, presented this broken seal as proof of a break-in.
+*   **Alternative Narrative Supported:** *The Disciples Invented Everything* (by staging a grave robbery).
+
 
 ### Case: `roman_inquiry` (The Guard's Report)
 
@@ -496,6 +673,20 @@ const groupDefinitions \= \[
 | Official Sanhedrin Report (`sanhedrin_report`) | `psalm_2_1_2` | Matthew 28:11 | This report is the paper trail of the conspiracy itself — the Sanhedrin's own internal record of receiving the guards' account and choosing to suppress rather than investigate it, matching the pattern of rulers plotting against God's anointed described in Psalm 2:1–2. |
 
 ---
+### Contested Evidence & Forensic Analysis
+
+**Evidence:** Guard's "Stolen" Personal Item  
+**ID:** `roman_inquiry_fake`
+
+*   **Initial Conclusion:** The disciples fought the guards and stole from them while taking the body.
+*   **Forensic Findings:**
+    *   The item is a standard-issue Roman legionary clasp.
+    *   It shows no signs of being forcibly removed; the pin is undamaged.
+    *   The guard who "lost" it is the same one who received the largest portion of the bribe money from the priests.
+*   **Type of Deception:** Fabricated.
+*   **Likely Author & Motive:** The bribed guards, to add a layer of personal violation to their "stolen body" report to Pilate, making their failure of duty seem more like the result of a violent struggle.
+*   **Alternative Narrative Supported:** *The Disciples Invented Everything.*
+
 
 ### Case: `peter_restoration` (Peter's Restoration)
 
@@ -519,6 +710,21 @@ const groupDefinitions \= \[
 | Risen Appearance (`galilean_apparition`) | `isaiah_53_10_11` | John 21:12 | Isaiah 53:10–11 foretold that after His suffering the Servant would live again and "see his offspring." Psalm 16:10 declared that God's Holy One would not remain in the grave. The disciples' recognition of Jesus on the shore was not merely a moment of faith—it was eyewitness confirmation that the crucified Messiah was alive, fulfilling the Scriptures. |
 
 ---
+### Contested Evidence & Forensic Analysis
+
+**Evidence:** Fisherman's Net with Ripped Knot  
+**ID:** `peter_restoration_fake`
+
+*   **Initial Conclusion:** The "miraculous catch" was just a broken net spilling a few fish.
+*   **Forensic Findings:**
+    *   The knot was cleanly cut with a sharp blade, not frayed or broken under strain.
+    *   The net itself is of a different weave and material than the one used by Peter's crew.
+    *   The rumor originated from a rival fishing crew in Capernaum known for their jealousy.
+*   **Type of Deception:** Honest Mistake / Rumor (or potentially Planted by rivals).
+*   **Likely Author & Motive:** Rival fishermen, to explain away a supernatural event with a mundane, professional failure, thus preserving their own reputation.
+*   **Alternative Narrative Supported:** *Jesus the Fraud.*
+
+
 ## Hidden Detective Chains
 
 | Chain Name | Codex Reward | Cases Spanned | Evidence Required | Points | Faith |
