@@ -456,12 +456,20 @@ export const act4CaseA = {
       },
     }, {
       id: "resurrection_fake",
-      name: "altered_ascension_witness_token",
+      name: "Broken Tomb Seal Fragment",
       type: "environmental",
       icon: "../assets/gfx/shield-duotone.svg",
       fake: true,
       category: "event",
       timelineOrder: null,
+      desc: "A broken tomb seal fragment used to support the claim that disciples broke the seal to steal the body.",
+      bibleRef: "Matthew 27:66",
+      propheticLink: "No prophetic significance — this is a planted distractor.",
+      bibleRefs: [
+        { ref: "Matthew 27:66", link: "john_1219" }
+      ],
+      propheticRefs: [],
+      investigatorNote: "The fracture pattern is consistent with seismic shock, not tool damage. It aligns with the earthquake fissure, confirming the seal broke naturally.",
       clues: {
         compare: "No matching pair exists for this item.",
         link: "Event — this item is suspiciously convenient.",
@@ -1097,12 +1105,20 @@ export const act4CaseB = {
     },
     {
       id: "roman_inquiry_fake",
-      name: "fabricated_tongue_fragment",
+      name: "Guard's 'Stolen' Personal Item",
       type: "environmental",
       icon: "../assets/gfx/shield-duotone.svg",
       fake: true,
       category: "event",
       timelineOrder: null,
+      desc: "A Roman legionary clasp 'lost' by a guard, used to add a layer of personal violation to the stolen body report.",
+      bibleRef: "Matthew 27:65",
+      propheticLink: "No prophetic significance — this is a planted distractor.",
+      bibleRefs: [
+        { ref: "Matthew 27:65", link: "john_1219" }
+      ],
+      propheticRefs: [],
+      investigatorNote: "The clasp shows no forcible removal and the guard who 'lost' it received the largest bribe portion. It was fabricated to make the guards' failure seem like a violent struggle.",
       clues: {
         compare: "No matching pair exists for this item.",
         link: "Event — this item is suspiciously convenient.",
@@ -1691,12 +1707,20 @@ export const act4CaseC = {
     },
     {
       id: "peter_restoration_fake",
-      name: "planted_persecution_record",
+      name: "Fisherman's Net with Ripped Knot",
       type: "environmental",
       icon: "../assets/gfx/shield-duotone.svg",
       fake: true,
       category: "event",
       timelineOrder: null,
+      desc: "A fisherman's net with a ripped knot, used to explain the miraculous catch as a mundane net failure.",
+      bibleRef: "John 21:11",
+      propheticLink: "No prophetic significance — this is a planted distractor.",
+      bibleRefs: [
+        { ref: "John 21:11", link: "john_1219" }
+      ],
+      propheticRefs: [],
+      investigatorNote: "The knot was cleanly cut with a blade, not frayed under strain. The net is a different weave than Peter's crew used. The rumor came from a rival fishing crew.",
       clues: {
         compare: "No matching pair exists for this item.",
         link: "Event — this item is suspiciously convenient.",

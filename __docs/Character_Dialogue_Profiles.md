@@ -1984,6 +1984,9 @@ These events are recommended as major dialogue hubs, quest chains, or branching 
 - Fear of resurrection rumors
 
 ---
+[Back to Top](#table-of-contents)
+
+---
 
 ## Appendix B: Character Coverage Audit
 
@@ -2026,6 +2029,9 @@ Generated audit of `characters/*.json` against `profileFile` references in `js/a
 - `devout_follower` and `upper_room_prep` have JSON files listed in the audit above but no narrative profile was found anywhere in the source document — they are not included as full entries in the Master Index above since there is nothing to consolidate; treat them as open items if profiles are needed.
 
 ---
+[Back to Top](#table-of-contents)
+
+
 
 ## Appendix C: Consolidation Notes
 
@@ -2036,3 +2042,6 @@ This document was restructured from a working draft that had accumulated signifi
 - **The "Character Dialogue Profiles by Investigation Phase" section removed.** It restructured the same characters by act/phase rather than by role, with no information not already captured in each character's Dialogue Coverage Table above, so it was folded into the master index rather than kept as a separate section.
 - **Genuinely new characters integrated.** Some entries in the old "Additional Character Profiles" section did not appear anywhere else in the document (e.g. Eleazar, Pashhur, Corrupt Seller, Herod's Servant, Claudia Procula, Centurion Longinus, Bethesda Witness, and several others). These were real, non-duplicate content and are now part of the Master Index under the most fitting group, rather than being removed along with the redundant material around them.
 - **Missing fields marked, not invented.** A number of characters — mostly ones only ever given a Dialogue File and a one-line Identity/Linguistic Style — never had Social Status, Age, Stress Level, or Dialogue Tree Function documented anywhere in the source. Those fields are marked *Not documented* rather than filled in.
+
+---
+[Back to Top](#table-of-contents)

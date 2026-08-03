@@ -1064,10 +1064,11 @@ export class GameEngine {
   }
 
   _revealProphecy(prophecyId) {
-    const wasRevealed = this.es.revealProphecy(prophecyId);
-    if (wasRevealed) {
-      this.controls.displayAlert(`Prophecy Revealed: ${this.es.getProphecyById(prophecyId)?.reference}`, 3000, 'var(--gold)');
-      this.updateHUD(this.cm.getActiveCase()); // Force a HUD refresh to update the codex
+    const currentStatus = this.cm.getCodexStatus(prophecyId);
+    if (currentStatus === 'unseen') {
+      this.cm.setCodexStatus(prophecyId, 'rumor');
+      this.controls.displayAlert(`New Rumor: ${this.es.getProphecyById(prophecyId)?.reference}`, 3000, 'var(--gold)');
+      this.updateHUD(this.cm.getActiveCase());
     }
   }
 
@@ -1076,6 +1077,9 @@ export class GameEngine {
     document.querySelectorAll('.val-reputation').forEach(el => el.innerText = p.reputation ?? 100);
     document.querySelectorAll('.val-doubt').forEach(el => el.innerText = p.doubt ?? 0);
     document.querySelectorAll('.val-score').forEach(el => el.innerText = p.totalScore ?? 0);
+    document.querySelectorAll('.val-research').forEach(el => el.innerText = p.researchScore ?? 0);
+    const scholarLevel = this.cm.getScholarLevel?.() || "Novice";
+    document.querySelectorAll('.val-scholar').forEach(el => el.innerText = scholarLevel);
   }
 
   updateActions(caseData) {
@@ -1405,6 +1409,7 @@ export class GameEngine {
   }
 
   renderCodexMatcherContent() {
+    this.renderCodexHeader();
     this.renderCodexEvidenceGrid();
     this.renderCodexProphecyGrid();
     this.renderCodexDiscoveredGrid();
@@ -1428,6 +1433,31 @@ export class GameEngine {
     }
   }
 
+  renderCodexHeader() {
+    const researchScore = this.cm.getResearchScore?.() || 0;
+    const scholarLevel = this.cm.getScholarLevel?.() || "Novice";
+    const completion = this.es.getProphecyCompletionPercent();
+    
+    const headerEl = document.getElementById('codex-header');
+    if (headerEl) {
+      headerEl.innerHTML = `
+        <div class="codex-header-row">
+          <div class="codex-score-display">
+            <div class="codex-score-label">Research Score</div>
+            <div class="codex-score-value">${researchScore}</div>
+            <div class="codex-scholar-level">${scholarLevel}</div>
+          </div>
+          <div class="codex-progress">
+            <div class="codex-progress-label">Codex Completion: ${completion}%</div>
+            <div class="progress-bar-wrap">
+              <div class="progress-fill" style="width:${completion}%"></div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+  }
+
   renderCodexEvidenceGrid() {
     const grid = document.getElementById('codex-evidence-grid');
     const collected = this.es.getCollected();
@@ -1442,28 +1472,59 @@ export class GameEngine {
     const grid = document.getElementById('codex-prophecy-grid');
     if (!grid) return;
     const props = this.es.getPropheciesWithStatus();
-    grid.innerHTML = props.map(p => `
-      <button class="picker-card ${p.discovered ? 'discovered' : (this.es.selectedCodexProphecyId === p.id ? 'selected-b' : '')}"
-              ${p.discovered ? 'disabled' : ''}
-              onclick="window.gameEngine.es.selectedCodexProphecyId='${p.id}'; window.gameEngine.renderCodexMatcherContent();">
-        <i class="fa-lg fa-solid ${p.discovered ? 'fa-circle-check' : 'fa-lock'}"></i> ${p.reference}
-      </button>`).join("");
+    
+    grid.innerHTML = props.map(p => {
+      const status = p.status || 'unseen';
+      const isComplete = status === 'complete';
+      const isFound = status === 'found_scripture';
+      const isRumor = status === 'rumor';
+      
+      let badge = '';
+      let cardClass = 'picker-card';
+      if (isComplete) {
+        badge = '<i class=\"fa-lg fa-solid fa-circle-check\"></i>';
+        cardClass += ' complete';
+      } else if (isFound) {
+        badge = '<i class=\"fa-lg fa-solid fa-scroll\"></i>';
+        cardClass += ' found';
+      } else if (isRumor) {
+        badge = '<i class=\"fa-lg fa-solid fa-question\"></i>';
+        cardClass += ' rumor';
+      } else {
+        badge = '<i class=\"fa-lg fa-solid fa-lock\"></i>';
+        cardClass += ' unseen';
+      }
+      
+      const displayRef = isComplete || isFound ? p.reference : '???';
+      const displayText = isComplete ? (p.fulfilledBy || '').substring(0, 60) + '...' : 
+                          isFound ? (p.text || '').substring(0, 60) + '...' :
+                          isRumor ? 'A rumor heard in conversation...' : 'Not yet discovered';
+      
+      return `
+        <button class=\"${cardClass} ${this.es.selectedCodexProphecyId === p.id ? 'selected-b' : ''}\" 
+                ${isComplete ? 'disabled' : ''}
+                onclick=\"window.gameEngine.es.selectedCodexProphecyId='${p.id}'; window.gameEngine.renderCodexMatcherContent();\">
+          ${badge} ${displayRef}
+        </button>
+        <div class=\"prophecy-card-desc\">${displayText}</div>
+      `;
+    }).join('');
   }
 
   renderCodexDiscoveredGrid() {
     const grid = document.getElementById('codex-discovered-grid');
     if (!grid) return;
-    const discovered = this.es.getPropheciesWithStatus().filter(p => p.discovered);
+    const discovered = this.es.getPropheciesWithStatus().filter(p => p.status === 'complete');
 
     grid.innerHTML = discovered.length === 0
-      ? `<p class="picker-empty">No prophecies linked yet. Match evidence to find truths.</p>`
+      ? `<p class=\"picker-empty\">No prophecies completed yet. Link scripture to fulfillment evidence in the Lab.</p>`
       : discovered.map(p => `
-          <div class="prophecy-card discovered">
-            <div class="prophecy-card-icon"><img src="../assets/gfx/scroll-duotone.svg" class="icon-svg" loading="lazy"/></div>
-            <div class="prophecy-card-reference">${p.reference}</div>
-            <div class="prophecy-card-desc">${p.text.substring(0, 60)}...</div>
+          <div class=\"prophecy-card complete\">
+            <div class=\"prophecy-card-icon\"><img src=\"../assets/gfx/scroll-duotone.svg\" class=\"icon-svg\" loading=\"lazy\"/></div>
+            <div class=\"prophecy-card-reference\">${p.reference}</div>
+            <div class=\"prophecy-card-desc\">${(p.fulfilledBy || p.desc || '').substring(0, 60)}...</div>
           </div>
-        `).join("");
+        `).join('');
   }
 
   updateCodexFeedback() {

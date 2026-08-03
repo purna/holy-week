@@ -100,7 +100,7 @@ export class GameEngine {
     window.showResetModal = this.ui.showResetModal.bind(this.ui);
     window.closeResetModal = this.ui.closeResetModal.bind(this.ui);
     window.playAgain = this.gm.resetGame.bind(this.gm);
-    window.attemptProphecyMatch = this.ui.attemptProphecyMatch.bind(this.ui);
+    window.attemptProphecyMatch = this.ui.codexUI.attemptProphecyMatch.bind(this.ui.codexUI);
     window.closeGameComplete = this.ui.closeGameComplete.bind(this.ui);
     window.showProphecyDetail = this.ui.showProphecyDetail.bind(this.ui);
 

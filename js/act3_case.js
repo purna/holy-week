@@ -431,12 +431,20 @@ export const act3CaseA = {
     },
     {
       id: "last_supper_fake",
-      name: "altered_breadcrumb_evidence",
+      name: "Leavened Bread Fragment",
       type: "environmental",
       icon: "../assets/gfx/shield-duotone.svg",
       fake: true,
       category: "event",
       timelineOrder: null,
+      desc: "A fragment of leavened bread planted near Judas's seat to suggest the Last Supper was not a legitimate Passover meal.",
+      bibleRef: "Matthew 26:26",
+      propheticLink: "No prophetic significance — this is a planted distractor.",
+      bibleRefs: [
+        { ref: "Matthew 26:26", link: "john_1219" }
+      ],
+      propheticRefs: [],
+      investigatorNote: "The bread contains yeast, forbidden during Passover, and the grain type matches lower city markets, not ceremonial matzah.",
       clues: {
         compare: "No matching pair exists for this item.",
         link: "Event — this item is suspiciously convenient.",
@@ -912,12 +920,20 @@ export const act3CaseB = {
     },
     {
       id: "gethsemane_arrest_fake",
-      name: "planted_torch_fragment",
+      name: "Planted Second Sword",
       type: "environmental",
       icon: "../assets/gfx/shield-duotone.svg",
       fake: true,
       category: "event",
       timelineOrder: null,
+      desc: "A Roman gladius planted at the arrest site to suggest the disciples were armed for violent insurrection.",
+      bibleRef: "John 18:10",
+      propheticLink: "No prophetic significance — this is a planted distractor.",
+      bibleRefs: [
+        { ref: "John 18:10", link: "john_1219" }
+      ],
+      propheticRefs: [],
+      investigatorNote: "The sword bears the Antonia Fortress garrison mark and was wiped clean of fingerprints, linking it to the arresting soldiers.",
       clues: {
         compare: "No matching pair exists for this item.",
         link: "Event — this item is suspiciously convenient.",
@@ -1459,12 +1475,20 @@ export const act3CaseC = {
 
     {
       id: "sanhedrin_trial_fake",
-      name: "fabricated_roman_dispatch",
+      name: "Fabricated Roman Dispatch",
       type: "environmental",
       icon: "../assets/gfx/shield-duotone.svg",
       fake: true,
       category: "event",
       timelineOrder: null,
+      desc: "A forged Roman dispatch used to pressure the Sanhedrin into a quick conviction.",
+      bibleRef: "Mark 14:55",
+      propheticLink: "No prophetic significance — this is a planted distractor.",
+      bibleRefs: [
+        { ref: "Mark 14:55", link: "john_1219" }
+      ],
+      propheticRefs: [],
+      investigatorNote: "The seal is a known Annas forgery, the Latin contains grammatical errors, and Pilate's records show no such dispatch was sent.",
       clues: {
         compare: "No matching pair exists for this item.",
         link: "Event — this item is suspiciously convenient.",
@@ -1894,12 +1918,20 @@ export const act3CaseD = {
 
     {
       id: "barabbas_choice_fake",
-      name: "questionable_sign_fragment",
+      name: "Pre-made 'Barabbas' Sign Fragment",
       type: "environmental",
       icon: "../assets/gfx/shield-duotone.svg",
       fake: true,
       category: "event",
       timelineOrder: null,
+      desc: "Pre-made sign fragments used to orchestrate the crowd's choice of Barabbas over Jesus.",
+      bibleRef: "Luke 23:18",
+      propheticLink: "No prophetic significance — this is a planted distractor.",
+      bibleRefs: [
+        { ref: "Luke 23:18", link: "john_1219" }
+      ],
+      propheticRefs: [],
+      investigatorNote: "The paint matches Temple maintenance notices, multiple identical fragments were found, and eyewitnesses report chief priests' agents distributing them.",
       clues: {
         compare: "No matching pair exists for this item.",
         link: "Event — this item is suspiciously convenient.",
@@ -2424,12 +2456,20 @@ export const act3CaseE = {
 
     {
       id: "crucifixion_site_fake",
-      name: "manufactured_shroud_thread",
+      name: "Manufactured Shroud Thread",
       type: "environmental",
       icon: "../assets/gfx/shield-duotone.svg",
       fake: true,
       category: "event",
       timelineOrder: null,
+      desc: "A cheap wool thread found on the cross, planted to discredit Joseph of Arimathea's fine linen burial.",
+      bibleRef: "Mark 15:46",
+      propheticLink: "No prophetic significance — this is a planted distractor.",
+      bibleRefs: [
+        { ref: "Mark 15:46", link: "john_1219" }
+      ],
+      propheticRefs: [],
+      investigatorNote: "The thread is common wool, inconsistent with the fine linen shroud. It was planted by a skeptical guard to suggest an exaggerated burial story.",
       clues: {
         compare: "No matching pair exists for this item.",
         link: "Event — this item is suspiciously convenient.",

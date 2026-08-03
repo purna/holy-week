@@ -21,6 +21,15 @@ export const CHAINS = {
     bonusFaith: 10,
     codexEntry: 'The True Passover Lamb'
   },
+  scattered_sheep_chain: {
+    id: 'scattered_sheep_chain',
+    name: 'The Scattered Sheep',
+    description: 'From abandonment to restoration — the shepherd gathers his scattered flock',
+    evidenceIds: ['abandoned_linen', 'rooster_feather', 'charcoal_fire'],
+    bonusPoints: 25,
+    bonusFaith: 10,
+    codexEntry: 'The Scattered Sheep'
+  },
   day_of_atonement_chain: {
     id: 'day_of_atonement_chain',
     name: 'The Greater Atonement',
@@ -32,7 +41,7 @@ export const CHAINS = {
   },
   new_covenant_chain: {
     id: 'new_covenant_chain',
-    name: 'Covenant of Blood',
+    name: 'The New Covenant',
     description: 'The Jeremiah-prophesied new covenant is inaugurated',
     prophecyIds: ['jeremiah_31_31_34', 'typology_melchizedek', 'exodus_12_1_14'],
     bonusPoints: 25,
@@ -73,15 +82,26 @@ export class ChainManager {
     return this.completedChains.has(chainId);
   }
 
+  isEvidenceUsed(evidenceId) {
+    return this.caseManager.usedEvidence?.has(evidenceId) || false;
+  }
+
   checkChainCompletion(chainId) {
     const chain = CHAINS[chainId];
     if (!chain) return false;
     if (this.completedChains.has(chainId)) return true;
 
-    const allComplete = chain.prophecyIds.every(prophecyId => {
-      const status = this.caseManager.getCodexStatus(prophecyId);
-      return status === 'complete';
-    });
+    let allComplete = false;
+    if (chain.prophecyIds && chain.prophecyIds.length > 0) {
+      allComplete = chain.prophecyIds.every(prophecyId => {
+        const status = this.caseManager.getCodexStatus(prophecyId);
+        return status === 'complete';
+      });
+    } else if (chain.evidenceIds && chain.evidenceIds.length > 0) {
+      allComplete = chain.evidenceIds.every(evidenceId => {
+        return this.isEvidenceUsed(evidenceId);
+      });
+    }
 
     if (allComplete) {
       this.completedChains.add(chainId);
@@ -116,15 +136,26 @@ export class ChainManager {
     const chain = CHAINS[chainId];
     if (!chain) return { completed: 0, total: 0, percent: 0 };
     
-    const completed = chain.prophecyIds.filter(prophecyId => {
-      const status = this.caseManager.getCodexStatus(prophecyId);
-      return status === 'complete';
-    }).length;
+    let completed = 0;
+    let total = 0;
+    
+    if (chain.prophecyIds && chain.prophecyIds.length > 0) {
+      total = chain.prophecyIds.length;
+      completed = chain.prophecyIds.filter(prophecyId => {
+        const status = this.caseManager.getCodexStatus(prophecyId);
+        return status === 'complete';
+      }).length;
+    } else if (chain.evidenceIds && chain.evidenceIds.length > 0) {
+      total = chain.evidenceIds.length;
+      completed = chain.evidenceIds.filter(evidenceId => {
+        return this.isEvidenceUsed(evidenceId);
+      }).length;
+    }
     
     return {
       completed,
-      total: chain.prophecyIds.length,
-      percent: Math.round((completed / chain.prophecyIds.length) * 100)
+      total,
+      percent: total > 0 ? Math.round((completed / total) * 100) : 0
     };
   }
 }

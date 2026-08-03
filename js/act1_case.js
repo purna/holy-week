@@ -409,20 +409,20 @@ export const act1CaseA = {
 
     {
       id: "triumphal_entry_fake",
-      name: "Questionable Cloak Pin",
+      name: "Forged Donkey Sale Receipt",
       type: "environmental",
       icon: "../assets/gfx/shield-duotone.svg",
       fake: true,
       category: "event",
       timelineOrder: null,
-      desc: "A cheap bronze cloak pin found near the eastern gate, stamped with a Roman legion mark that postdates the entry by 30 years. It was likely dropped by a later pilgrim and planted to suggest Roman soldiers were present.",
+      desc: "A forged receipt claiming the donkey was sold to the disciples, but the ink and dating are anachronistic.",
       bibleRef: "John 12:19",
       propheticLink: "No prophetic significance — this is a planted distractor.",
       bibleRefs: [
         { ref: "John 12:19", link: "john_1219" }
       ],
       propheticRefs: [],
-      investigatorNote: "The Roman stamp on this pin is from the 40s AD, decades after the Triumphal Entry. Someone deliberately scattered these pins near the gate to make investigators think Rome had a military presence that the Gospels never mention.",
+      investigatorNote: "The ink composition and Roman date format reveal this as a later forgery. It was planted to reframe a prophetic entry as a common theft.",
       clues: {
         compare: "No matching pair exists for this item.",
         link: "Event — this item is suspiciously convenient.",
@@ -1045,20 +1045,20 @@ export const act1CaseB = {
     },
     {
       id: "temple_cleansing_fake",
-      name: "Fabricated Witness Token",
+      name: "Planted Roman Coin",
       type: "environmental",
       icon: "../assets/gfx/shield-duotone.svg",
       fake: true,
       category: "event",
       timelineOrder: null,
-      desc: "A small clay token bearing the official seal of the Sadducean family, found near the money changers tables. It claims to be a receipt for temple tax payments, but the seal is from a later high priest.",
+      desc: "A Roman denarius found near the money changers, planted to suggest Jesus was protesting Roman rule rather than Temple corruption.",
       bibleRef: "John 2:15",
       propheticLink: "No prophetic significance — this is a planted distractor.",
       bibleRefs: [
-        { ref: "John 2:15", link: "john_215" }
+        { ref: "John 2:15", link: "john_1219" }
       ],
       propheticRefs: [],
-      investigatorNote: "The seal on this token belongs to a high priest who served 20 years after the cleansing. It was planted by someone wanting to frame Jesus for theft — to make it look like He took money from the treasury.",
+      investigatorNote: "The coin lacks the grime and wear of other coins at the scene and its mint date postdates the event. It was planted to escalate the incident from religious to political.",
       clues: {
         compare: "No matching pair exists for this item.",
         link: "Event — this item is suspiciously convenient.",
@@ -1793,21 +1793,21 @@ export const act1CaseC = {
       }
     },
     {
-      id: "withered_fig_tree_fake",
-      name: "Altered Fig Leaf Sample",
+      id: "fig_tree_incident_fake",
+      name: "Diseased Fig Leaf",
       type: "environmental",
       icon: "../assets/gfx/shield-duotone.svg",
       fake: true,
       category: "event",
       timelineOrder: null,
-      desc: "A fig leaf preserved in wax, allegedly from the cursed tree. Testing reveals it was treated with copper salts to make it look freshly picked, when it was actually harvested months earlier.",
-      bibleRef: "Mark 11:13–14",
+      desc: "A diseased fig leaf found near the cursed tree, used to argue the withering was natural blight rather than divine judgment.",
+      bibleRef: "Mark 11:20",
       propheticLink: "No prophetic significance — this is a planted distractor.",
       bibleRefs: [
-        { ref: "Mark 11:13-14", link: "mark_1113_14" }
+        { ref: "Mark 11:20", link: "john_1219" }
       ],
       propheticRefs: [],
-      investigatorNote: "The Pharisees agents collected leaves from a nearby healthy fig tree and treated them with copper salts to make them appear fresh. They planted this sample to suggest the tree was already dead before Jesus approached it.",
+      investigatorNote: "The leaf is from a different species and location than the cursed tree. It was planted to provide a naturalistic explanation for the miracle.",
       clues: {
         compare: "No matching pair exists for this item.",
         link: "Event — this item is suspiciously convenient.",

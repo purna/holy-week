@@ -377,12 +377,20 @@ export const act2CaseA = {
     },
     {
       id: "authority_challenged_fake",
-      name: "forged_challenge_scroll",
+      name: "Altered Scribe's Notes",
       type: "environmental",
       icon: "../assets/gfx/shield-duotone.svg",
       fake: true,
       category: "event",
       timelineOrder: null,
+      desc: "An altered scroll where key lines were changed from theological debate to political sedition.",
+      bibleRef: "Matthew 21:23",
+      propheticLink: "No prophetic significance — this is a planted distractor.",
+      bibleRefs: [
+        { ref: "Matthew 21:23", link: "john_1219" }
+      ],
+      propheticRefs: [],
+      investigatorNote: "Three key lines show different ink composition and scribal hand. The changes reframe a religious argument as a political threat.",
       clues: {
         compare: "No matching pair exists for this item.",
         link: "Event — this item is suspiciously convenient.",
@@ -774,12 +782,20 @@ export const act2CaseB = {
     },
     {
       id: "lazarus_plot_fake",
-      name: "manufactured_gate_record",
+      name: "False Witness Account of Grave Robbery",
       type: "environmental",
       icon: "../assets/gfx/shield-duotone.svg",
       fake: true,
       category: "event",
       timelineOrder: null,
+      desc: "A fabricated witness account claiming the disciples stole Lazarus's body to stage a fake resurrection.",
+      bibleRef: "John 12:10",
+      propheticLink: "No prophetic significance — this is a planted distractor.",
+      bibleRefs: [
+        { ref: "John 12:10", link: "john_1219" }
+      ],
+      propheticRefs: [],
+      investigatorNote: "The witness misidentifies the tomb location and is a known associate of Annas's household guard. Payment matches Temple treasury funds.",
       clues: {
         compare: "No matching pair exists for this item.",
         link: "Event — this item is suspiciously convenient.",
@@ -1409,12 +1425,20 @@ export const act2CaseC = {
     },
     {
       id: "olivet_discourse_fake",
-      name: "fabricated_prophecy_fragment",
+      name: "Zealot Recruitment Pamphlet",
       type: "environmental",
       icon: "../assets/gfx/shield-duotone.svg",
       fake: true,
       category: "event",
       timelineOrder: null,
+      desc: "A Zealot recruitment pamphlet planted near the Mount of Olives to frame Jesus's teaching as a war council.",
+      bibleRef: "Matthew 24:3",
+      propheticLink: "No prophetic significance — this is a planted distractor.",
+      bibleRefs: [
+        { ref: "Matthew 24:3", link: "john_1219" }
+      ],
+      propheticRefs: [],
+      investigatorNote: "The papyrus is from Egypt, not used by local Zealots, and was found at a location inconsistent with the disciples' gathering spot.",
       clues: {
         compare: "No matching pair exists for this item.",
         link: "Event — this item is suspiciously convenient.",
@@ -1781,12 +1805,20 @@ export const act2CaseD = {
     },
     {
       id: "passover_lamb_chain_fake",
-      name: "suspicious_anointing_oil",
+      name: "Merchant's Complaint about Stolen Nard",
       type: "environmental",
       icon: "../assets/gfx/shield-duotone.svg",
       fake: true,
       category: "event",
       timelineOrder: null,
+      desc: "A forged complaint about stolen nard, actually written by Judas to discredit Mary's anointing.",
+      bibleRef: "John 12:3",
+      propheticLink: "No prophetic significance — this is a planted distractor.",
+      bibleRefs: [
+        { ref: "John 12:3", link: "john_1219" }
+      ],
+      propheticRefs: [],
+      investigatorNote: "The handwriting matches Judas Iscariot, not the merchant. The merchant's own ledger shows the nard was sold legally to Mary's household.",
       clues: {
         compare: "No matching pair exists for this item.",
         link: "Event — this item is suspiciously convenient.",

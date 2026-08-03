@@ -5,31 +5,42 @@
 - [Games](#games)
 - [Linked Documentation](#linked-documentation)
 - [Core Gameplay Philosophy: Two Progression Paths](#core-gameplay-philosophy-two-progression-paths)
-- [Scoring System](#scoring-system)
-  - [Investigation Score](#investigation-score)
-  - [Research Score & Scholar Level](#research-score--scholar-level)
-- [Prophecy Codex & Research System](#prophecy-codex--research-system)
+- [Prophecy & Typology System](#prophecy--typology-system)
+  - [Categories in the Codex](#categories-in-the-codex)
+  - [Discovery Steps](#discovery-steps)
+- [Codex: Biblical Patterns Section](#codex-biblical-patterns-section)
   - [Predictive Prophecies (Direct OT Predictions)](#predictive-prophecies-direct-ot-predictions)
   - [Typological Fulfilments (Types & Shadows)](#typological-fulfilments-types--shadows)
 - [Typology Deep Dive: The Passover Lamb](#typology-deep-dive-the-passover-lamb)
+  - [Case Details](#case-details)
+  - [Evidence Items](#evidence-items)
+  - [Lab Mechanics & "Aha!" Moment](#lab-mechanics--aha-moment)
 - [Typology Deep Dive: The Priest-King of Salem](#typology-deep-dive-the-priest-king-of-salem)
 - [Hidden Detective Chains](#hidden-detective-chains)
+  - [Chain 1 — Psalm 22 (Crucifixion Prophecy Chain)](#chain-1--psalm-22-crucifixion-prophecy-chain)
+  - [Chain 2 — Passover Lamb (The True Passover)](#chain-2--passover-lamb-the-true-passover)
+  - [Chain 3 — Day of Atonement (The Greater Atonement)](#chain-3--day-of-atonement-the-greater-atonement)
+  - [Chain 4 — New Covenant (Covenant of Blood)](#chain-4--new-covenant-covenant-of-blood)
+  - [Chain 5 — Resurrection (Death Defeated)](#chain-5--resurrection-death-defeated)
+  - [Cross-Case Discovery Mechanics](#cross-case-discovery-mechanics)
 - [Prophecy Collection System](#prophecy-collection-system)
-- Cross-Reference: Story Files vs. `js/act*_case.js`
-- Appendix: Emoji Reference
-- Appendix: Character Emoji & Icon Reference
-- Appendix: Location Emoji & Icon Reference
+- [Scoring & Gameplay Systems](#scoring--gameplay-systems)
+- [Core Gameplay Systems](#core-gameplay-systems)
+- [Acts & Cases](#acts--cases)
+- [Canonical Runtime Dialogue ID Reference (Auto-Generated)](#canonical-runtime-dialogue-id-reference-auto-generated)
+- [Appendix: Emoji Reference](#appendix-emoji-reference)
+- [Appendix: Character Emoji & Icon Reference](#appendix-character-emoji--icon-reference)
+- [Appendix: Location Emoji & Icon Reference](#appendix-location-emoji--icon-reference)
+- [Appendix: Act & Case Emoji & Icon Reference](#appendix-act--case-emoji--icon-reference)
 
-**Note on Suspects:** All characters involved in a case are considered potential suspects from the start. The final list of accusable suspects is fully unlocked once all prophecies/typologies for that case have been discovered.
+**Note on Suspects:** All characters begin as potential suspects. Lab research unlocks or removes suspects by proving innocence or guilt. Codex completion is optional for solving a case but required for 100% completion and the best ending.
 
 This document serves as the canonical source of truth for the game's narrative structure, characters, and case resolutions for both mobile and desktop versions. It is generated from the `act*.js` case files.
 
 ---
 [Back to Top](#table-of-contents)
 
----
-
-## Gsames
+## Games
 
 Currently 3 versions all using a core gameplay 
 *  [`/mobileA/`](../mobileA/)
@@ -65,10 +76,6 @@ Unlocking prophetic and typological insights is a key mechanics layer for scorin
    - Correct Link: `+10 points`
    - Incorrect Link: `+5 doubt`
 
----
-[Back to Top](#table-of-contents)
-
----
 
 ## Codex: Biblical Patterns Section
 
@@ -104,9 +111,7 @@ The Codex features a dedicated section for **Biblical Patterns & Typology**, dis
 * **Rock Struck for Water** (Exodus 17)
 
 ---
----
 [Back to Top](#table-of-contents)
-
 
 ## Typology Deep Dive: The Passover Lamb
 
@@ -126,10 +131,6 @@ When players link evidence from across multiple cases (e.g., `nard_flask` + `ala
 > **Hidden Pattern Discovered:** 
 > *Jesus is intentionally following the Passover Lamb sequence (Selection -&gt; Inspection -&gt; Anointing -&gt; Sacrifice).*
 
----
-[Back to Top](#table-of-contents)
-
----
 
 ## Typology Deep Dive: The Priest-King of Salem
 
@@ -137,10 +138,6 @@ When players link evidence from across multiple cases (e.g., `nard_flask` + `ala
 *   **Evidence:** `Spilled Wine on the Linen` (`wine_stain`)
 *   **Typology:** Melchizedek, the mysterious priest-king of Salem, blessed Abraham with bread and wine (Genesis 14:18). Jesus, as the ultimate priest-king (Hebrews 7), uses the same elements to establish the New Covenant, fulfilling this ancient pattern.
 
----
-[Back to Top](#table-of-contents)
-
----
 
 ## Hidden Detective Chains
 
@@ -212,11 +209,6 @@ Hidden chains are discovered through the **Codex** tab. When a prophecy from one
 | New Covenant | `last_supper`: `bread_crumbs` → Exodus 12:1–14, `wine_stain` → Melchizedek typology, `new_covenant_declaration` → Jeremiah 31:31–34 | After linking all 3 Last Supper evidence |
 | Resurrection | `crucifixion_site` → `resurrection`: `guard_report`, `opened_tombs`, `empty_tomb`, `mary_encounter` | After linking all 4 resurrection evidence |
 
----
-[Back to Top](#table-of-contents)
-
----
-
 # Prophecy Collection System
 
 ## Overview
@@ -285,10 +277,7 @@ A prophecy progresses through four stages before it is considered "Complete."
 ```
 
 ---
-
-# 🔍 Cross-Reference: Story Files vs. `js/act*_case.js`
-
-Generated audit of dialogue story files (`story/extras/*.ink` + `story/system/*.ink`) against `storyFile` references in `js/act1_case.js`, `js/act2_case.js`, `js/act3_case.js`, and `js/act4_case.js`.
+[Back to Top](#table-of-contents)
 
 * **Story files present:** 79
 * **Distinct `storyFile` references used:** 62
@@ -401,9 +390,6 @@ A new **Actions** tab is available on the main investigation screen, providing a
     *   **❤️‍🩹 Heal:** A context-sensitive action representing spiritual restoration. It provides a visual effect and could be used in specific cases (like "The Severed Ear") to confirm a miracle.
 *   **Gameplay:** These actions are currently for atmospheric effect and do not directly impact scoring or case progression. They are accessible from the "Actions" tab in the main investigation UI for all game versions (`/desktop/`, `/mobileB/`, `/mobileC/`).
 
----
-[Back to Top](#table-of-contents)
-
 ## Acts & Cases
 
 ## Act I: The Arrival
@@ -446,7 +432,8 @@ A new **Actions** tab is available on the main investigation screen, providing a
 
 
 
-
+---
+[Back to Top](#table-of-contents)
 
 
 ##### Character Unlock Table
@@ -560,9 +547,6 @@ A new **Actions** tab is available on the main investigation screen, providing a
 | `Disciples' Astonishment` → Psalm 33:8–9 | Dialogue: Local Traveler |
 | `Jesus's Teaching on Faith` → Zechariah 4:6–7 | Dialogue: John |
  
----
-[Back to Top](#table-of-contents)
-
 ## Act II: The Teacher
 
 ### Case: `authority_challenged` (The Silenced Teacher)
@@ -597,7 +581,8 @@ A new **Actions** tab is available on the main investigation screen, providing a
 | Nathanael (Pharisee) | Talk | — |
 
 
-
+---
+[Back to Top](#table-of-contents)
 
 
 ##### Character Unlock Table
@@ -656,7 +641,8 @@ A new **Actions** tab is available on the main investigation screen, providing a
 | Simon the Leper | Talk | — |
 
 
-
+---
+[Back to Top](#table-of-contents)
 
 
 ##### Character Unlock Table
@@ -719,7 +705,8 @@ A new **Actions** tab is available on the main investigation screen, providing a
 
 
 
-
+---
+[Back to Top](#table-of-contents)
 
 ##### Character Unlock Table
 
@@ -744,9 +731,6 @@ A new **Actions** tab is available on the main investigation screen, providing a
 | `Notes on Cosmic Signs` → Joel 2:30-31 | Dialogue: Thomas |
 | `Notes on Cosmic Signs` → Isaiah 13:10 | Dialogue: John |
  
----
-[Back to Top](#table-of-contents)
-
 ## Act III: The Pressure Builds
 
 ### Case: `last_supper` (The Broken Cup)
@@ -782,7 +766,8 @@ A new **Actions** tab is available on the main investigation screen, providing a
 | Judas Iscariot | Talk | `Dipped Bread Fragment` |
 
 
-
+---
+[Back to Top](#table-of-contents)
 
 
 ##### Character Unlock Table
@@ -842,7 +827,8 @@ A new **Actions** tab is available on the main investigation screen, providing a
 
 
 
-
+---
+[Back to Top](#table-of-contents)
 
 ##### Character Unlock Table
 
@@ -902,7 +888,8 @@ A new **Actions** tab is available on the main investigation screen, providing a
 | Ananias | Talk | `Conflicting Depositions` |
 
 
-
+---
+[Back to Top](#table-of-contents)
 
 
 ##### Character Unlock Table
@@ -962,7 +949,8 @@ A new **Actions** tab is available on the main investigation screen, providing a
 | Barabbas | Talk | `Broken Prison Shackles`, `Pilate's Written Judgment` |
 
 
-
+---
+[Back to Top](#table-of-contents)
 
 
 ##### Character Unlock Table
@@ -1027,7 +1015,8 @@ A new **Actions** tab is available on the main investigation screen, providing a
 | Crucifixion Guard | Talk | `Crucifixion Nails`, `Cry of Abandonment` | Psalm 22:1, Psalm 22:16 |
 | Simon of Cyrene | Talk | `Simon of Cyrene's Burden` | Genesis 22:6 (Isaac) |
 
-
+---
+[Back to Top](#table-of-contents)
 
 
 
@@ -1075,9 +1064,6 @@ A new **Actions** tab is available on the main investigation screen, providing a
 
 **🔓 Hidden Chain:** *The True Passover Lamb* — Link Passover Lamb evidence across `last_supper`, `passover_lamb_chain`, and `crucifixion_site`.
  
----
-[Back to Top](#table-of-contents)
-
 ## Act IV: The New Beginning
 
 ### Case: `resurrection` (The Empty Tomb)
@@ -1116,7 +1102,8 @@ A new **Actions** tab is available on the main investigation screen, providing a
 
 
 
-
+---
+[Back to Top](#table-of-contents)
 
 ##### Character Unlock Table
 
@@ -1180,7 +1167,8 @@ A new **Actions** tab is available on the main investigation screen, providing a
 
 
 
-
+---
+[Back to Top](#table-of-contents)
 
 ##### Character Unlock Table
 
@@ -1194,6 +1182,9 @@ A new **Actions** tab is available on the main investigation screen, providing a
 | Herod's Servant | `herods_servant` | NPC only | Walk up in Scene tab | ✅ Yes (as NPC) |
 | Peter (Restored) | `peter_restored` | NPC only | Walk up in Scene tab | ✅ Yes (as NPC) |
 | No One | `none` | Suspect only | Auto-unlocked | ✅ Yes |
+
+---
+[Back to Top](#table-of-contents)
 
 #### Lab
 
@@ -1238,7 +1229,8 @@ A new **Actions** tab is available on the main investigation screen, providing a
 | Nathanael | Talk | — | Ezekiel 34:11-16 |
 
 
-
+---
+[Back to Top](#table-of-contents)
 
 
 ##### Character Unlock Table
@@ -1269,9 +1261,6 @@ A new **Actions** tab is available on the main investigation screen, providing a
 | `galilean_apparition` → Isaiah 53:10-11 | Lab: `galilean_apparition` + `miraculous_catch` |
 | `threefold_commission` → Ezekiel 34:11-16 | Dialogue: Peter / Nathanael |
  
-
-
-
 ---
 [Back to Top](#table-of-contents)
 
@@ -1361,10 +1350,8 @@ This section is generated from `js/act*_case.js` + `js/gameplay/dialogueMaps.js`
 | Act IV | `roman_inquiry` | `peter_restored` | Peter (Restored) | `peter_restored` | [`../story/act4/case_c_peters_restoration/peter_restored.json`](../story/act4/case_c_peters_restoration/peter_restored.json) | [`../story/act4/case_c_peters_restoration/peter_restored.ink`](../story/act4/case_c_peters_restoration/peter_restored.ink) |
 <!-- AUTO-GENERATED: DIALOGUE-ID-INDEX END -->
 
-
 ---
 [Back to Top](#table-of-contents)
-
 
 ## Appendix: Emoji Reference
 
@@ -1485,11 +1472,8 @@ Phosphor Duotone Icon  are in the /assets/gfx/ folder
 | `❌` | `x-circle-duotone.svg` | X Circle |
 | `✖️` | `x-duotone.svg` | X |
 
-<!-- AUTO-GENERATED: EMOJI-REFERENCE-APPENDIX END -->
-
 ---
 [Back to Top](#table-of-contents)
-
 
 # Appendix: Character Emoji & Icon Reference
 
@@ -1585,7 +1569,6 @@ This table maps each key location in the game to its representative emoji and th
 | `🏺` | Pool of Bethesda | `pool_of_bethesda.svg` |
 | `🌾` | Field of Blood (Akeldama) | `akeldama.svg` |
 
-
 ---
 [Back to Top](#table-of-contents)
 
@@ -1635,3 +1618,6 @@ This table maps each case to its representative emoji and the corresponding SVG 
 | ⚰️ | The Empty Tomb | Act IV | `package-duotone.svg` |
 | 📜 | The Guard's Report | Act IV | `scroll-duotone.svg` |
 | 🐟 | Peter's Restoration | Act IV | `fish-duotone.svg` |
+
+---
+[Back to Top](#table-of-contents)
