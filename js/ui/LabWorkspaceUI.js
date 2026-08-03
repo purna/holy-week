@@ -20,8 +20,8 @@ export class LabWorkspaceUI {
 
           <div class="lab-header-row">
             <h3 class="section-title">Deduction Lab</h3>
-            <button class="lab-view-toggle" data-lab-view="grid" aria-label="Switch to grid view">
-              <i class="fa-solid fa-grip"></i>
+            <button class="lab-view-toggle" data-lab-view="list" aria-label="Switch to grid view">
+              <i class="fa-solid fa-list"></i>
             </button>
           </div>
           <div class="prophecy-lab-intro">
@@ -51,12 +51,12 @@ export class LabWorkspaceUI {
 
           <div id="lw-feedback" class="lw-feedback" role="status" aria-live="polite"></div>
 
-          <div id="lw-panel-compare" class="tab-panel active" role="tabpanel" aria-label="Comparator">
-<div class="actions-bar">
-              <button class="btn-secondary" id="lw-comp-clear">Clear</button>
-              <button class="btn-submit" id="lw-comp-test">Compare</button>
-            </div>
-          <div class="listgrid">  
+           <div id="lw-panel-compare" class="tab-panel active" role="tabpanel" aria-label="Comparator">
+ <div class="actions-bar">
+               <button class="btn-secondary" id="lw-comp-clear">Clear</button>
+               <button class="btn-submit" id="lw-comp-test">Compare</button>
+             </div>
+           <div class="listgrid">  
 
            
 
@@ -167,12 +167,13 @@ export class LabWorkspaceUI {
     if (!this.root) return;
 
     this._initState();
+    this._restoreActiveTab();
     this._setFeedback("Tap items or use buttons to complete each task.");
     this._renderBanks();
 
     this.root.querySelector(".lab-view-toggle")?.addEventListener("click", (e) => {
       const btn = e.currentTarget;
-      const current = btn.dataset.labView;
+      const current = btn.dataset.labView || "list";
       const next = current === "grid" ? "list" : "grid";
       btn.dataset.labView = next;
       btn.setAttribute("aria-label", next === "grid" ? "Switch to grid view" : "Switch to list view");
@@ -191,7 +192,6 @@ export class LabWorkspaceUI {
         this.root.querySelectorAll(".tab-panel").forEach(p => p.classList.remove("active"));
         const panel = this.root.querySelector(`#lw-panel-${tab}`);
         if (panel) panel.classList.add("active");
-        // Update current tab for info buttons
         this.currentTab = tab;
       });
     });
@@ -207,7 +207,7 @@ export class LabWorkspaceUI {
       container.dataset.lwBound = "1";
       container.addEventListener("click", (e) => {
         const slot = e.target.closest(".comparator-slot");
-        if (slot && !e.target.closest(".ev-card, .ev-info-btn")) {
+        if (slot && !e.target.closest(".ev-info-btn")) {
           const idx = parseInt(slot.id.replace("lw-comp-slot-", ""), 10);
           if (this.compareSlots[idx]) {
             this.compareSlots[idx] = null;
@@ -221,10 +221,24 @@ export class LabWorkspaceUI {
           return;
         }
 
+        const folderHeader = e.target.closest(".folder-tray-header");
+        if (folderHeader) {
+          const tray = folderHeader.closest(".folder-tray");
+          if (tray) tray.classList.toggle("expanded");
+          return;
+        }
+
         const folder = e.target.closest(".folder-tray");
         if (folder && !e.target.closest(".ev-card, .ev-info-btn, [data-folder-info]")) {
           this._activeFolderKey = folder.dataset.folder;
           this._setFeedback(`Tap an item to file into ${folderInfoData[this._activeFolderKey]?.title || this._activeFolderKey}.`, "success");
+          return;
+        }
+
+        const stepHeader = e.target.closest(".step-header[data-step-toggle]");
+        if (stepHeader) {
+          const step = stepHeader.closest(".timeline-step");
+          if (step) step.classList.toggle("expanded");
           return;
         }
 
@@ -296,6 +310,8 @@ export class LabWorkspaceUI {
               this.folderState[this._activeFolderKey].push(id);
               this._renderFolderContents();
               this._setFeedback(`Filed ${item.name}.`, "success");
+              const tray = this.root.querySelector(`.folder-tray[data-folder="${this._activeFolderKey}"]`);
+              if (tray) tray.classList.add("expanded");
             } else {
               this.folderState[this._activeFolderKey] = this.folderState[this._activeFolderKey].filter(i => i !== id);
               this._renderFolderContents();
@@ -308,14 +324,9 @@ export class LabWorkspaceUI {
             if (idx >= 0) {
               this.timelineSlots[step].splice(idx, 1);
             } else {
-              const max = step === 3 ? 2 : 1;
-              if (this.timelineSlots[step].length < max) {
-                this.timelineSlots[step].push(id);
-              } else {
-                this._setFeedback(`Step ${step} is full.`, "error");
-                this._activeTimelineStep = null;
-                return;
-              }
+              this.timelineSlots[step].push(id);
+              const stepEl = this.root.querySelector(`.timeline-step[data-step="${step}"]`);
+              if (stepEl) stepEl.classList.add("expanded");
             }
             this._activeTimelineStep = null;
             this._renderTimelineSteps();
@@ -326,7 +337,6 @@ export class LabWorkspaceUI {
             this._renderCandleViewer();
             this._renderDeskBank();
             this.onResult?.({ scoreDelta: -1 });
-            this._setFeedback(`Candlelight inspection costs 1 point.`, "error");
           } else if (this._activeDeskStation === "shredder") {
             this.deskItems = this.deskItems.filter(i => i.id !== id);
             if (!this.shreddedItems.find(i => i.id === id)) this.shreddedItems.push(item);
@@ -414,6 +424,8 @@ export class LabWorkspaceUI {
           if (!alreadyHere) {
             this.folderState[key].push(id);
             this._setFeedback(`Filed item.`, "success");
+            const tray = this.root.querySelector(`.folder-tray[data-folder="${key}"]`);
+            if (tray) tray.classList.add("expanded");
           } else {
             this._setFeedback(`Unfiled item.`, "success");
           }
@@ -427,14 +439,10 @@ export class LabWorkspaceUI {
             if (idx >= 0) this.timelineSlots[s].splice(idx, 1);
           }
           if (!alreadyHere) {
-            const max = step === 3 ? 2 : 1;
-            if (this.timelineSlots[step].length < max) {
-              this.timelineSlots[step].push(id);
-              this._setFeedback(`Placed in Step ${step}.`, "success");
-            } else {
-              this._setFeedback(`Step ${step} is full.`, "error");
-              return;
-            }
+            this.timelineSlots[step].push(id);
+            this._setFeedback(`Placed in Step ${step}.`, "success");
+            const stepEl = this.root.querySelector(`.timeline-step[data-step="${step}"]`);
+            if (stepEl) stepEl.classList.add("expanded");
           } else {
             this._setFeedback(`Removed from Step ${step}.`, "success");
           }
@@ -445,7 +453,6 @@ export class LabWorkspaceUI {
           this._renderCandleViewer();
           this._renderDeskBank();
           this.onResult?.({ scoreDelta: -1 });
-          this._setFeedback(`Candlelight inspection costs 1 point.`, "error");
         } else if (dropZone.id === 'lw-shredder') {
           this.deskItems = this.deskItems.filter(i => i.id !== id);
           if (!this.shreddedItems.find(i => i.id === id)) {
@@ -462,8 +469,8 @@ export class LabWorkspaceUI {
   _initState() {
     this.score = 0;
     const pool = this.es.getEvidencePool?.() || [];
-    const typeMap = { physical: 'physical', testimonial: 'testimonial', analytical: 'direct', environmental: 'circumstantial' };
-    const categoryMap = { people: 'testimonial', event: 'circumstantial', prophecy: 'direct' };
+    const typeMap = { physical: 'physical', testimonial: 'testimonial', analytical: 'analytical', environmental: 'environmental' };
+    const categoryMap = { people: 'testimonial', event: 'environmental', prophecy: 'analytical' };
     this.evidence = pool.map(e => ({
       id: e.id,
       name: e.name,
@@ -547,7 +554,8 @@ export class LabWorkspaceUI {
         slot.innerHTML = this._cardHTML(item, "selected");
         container.classList.add("filled");
       } else {
-        slot.innerHTML = `<span style="font-size:0.72rem; color:var(--text-dim);">Empty</span>`;
+        container.setAttribute("data-empty-label", `Slot ${i === 0 ? 'A' : 'B'}`);
+        slot.innerHTML = "";
         container.classList.remove("filled");
       }
     }
@@ -556,20 +564,22 @@ export class LabWorkspaceUI {
   _renderFolderGrid() {
     const grid = this.root.querySelector("#lw-folder-grid");
     if (!grid) return;
-    const folderTitles = { direct: 'Direct Evidence', circumstantial: 'Circumstantial Evidence', physical: 'Physical (Real) Evidence', testimonial: 'Testimonial & Expert Evidence' };
+    const folderTitles = { physical: 'Physical Evidence', testimonial: 'Testimonial Evidence', analytical: 'Analytical Evidence', environmental: 'Environmental Evidence' };
     const folders = [
       { key: 'physical', title: folderTitles['physical'] },
       { key: 'testimonial', title: folderTitles['testimonial'] },
-      { key: 'direct', title: folderTitles['direct'] },
-      { key: 'circumstantial', title: folderTitles['circumstantial'] }
+      { key: 'analytical', title: folderTitles['analytical'] },
+      { key: 'environmental', title: folderTitles['environmental'] }
     ];
     grid.innerHTML = folders.map(f => `
       <div class="folder-tray" data-folder="${f.key}">
-        <div class="folder-header">
+        <div class="folder-tray-header" data-folder-toggle="${f.key}">
           <span class="folder-header-title">${f.title}</span>
-          <button class="ev-info-btn" data-folder-info="${f.key}">ⓘ</button>
+          <span class="folder-chevron" aria-hidden="true">▼</span>
         </div>
-        <div class="folder-content" id="lw-folder-${f.key}"></div>
+        <div class="folder-tray-body">
+          <div class="folder-content" id="lw-folder-${f.key}"></div>
+        </div>
       </div>
     `).join("");
 
@@ -588,7 +598,7 @@ export class LabWorkspaceUI {
   }
 
   _renderFolderContents() {
-    for (const key of ['direct', 'circumstantial', 'physical', 'testimonial']) {
+    for (const key of ['physical', 'testimonial', 'analytical', 'environmental']) {
       const el = this.root.querySelector(`#lw-folder-${key}`);
       if (!el) continue;
       const ids = this.folderState[key] || [];
@@ -624,12 +634,17 @@ export class LabWorkspaceUI {
       }).join("");
       return `
         <div class="timeline-step ${filled}" data-step="${s.num}">
-          <div class="step-header">
-            <span class="step-title">${s.title}</span>
-            <span class="step-hint">${s.hint}</span>
+          <div class="step-header" data-step-toggle="${s.num}">
+            <div>
+              <span class="step-title">${s.title}</span>
+              <span class="step-hint">${s.hint}</span>
+            </div>
+            <span class="step-chevron" aria-hidden="true">▼</span>
           </div>
-          <div class="step-cards-container" id="lw-timeline-step-${s.num}">
-            ${itemsHtml || `<span style="font-size:0.72rem; color:var(--text-dim);">Tap item then here</span>`}
+          <div class="step-body">
+            <div class="step-cards-container" id="lw-timeline-step-${s.num}">
+              ${itemsHtml || `<span style="font-size:0.72rem; color:var(--text-dim);">Tap item then here</span>`}
+            </div>
           </div>
         </div>
       `;
@@ -661,10 +676,10 @@ export class LabWorkspaceUI {
     const card = viewer.querySelector(".ev-card");
     if (this.candleItem.fake) {
       card?.classList.add("wrong-flash");
-      this._setFeedback(`Warning: ${this.candleItem.name} looks forged under light.`, "error");
+      this._setFeedback(`Warning: ${this.candleItem.name} looks forged under light. (-1 pt)`, "error");
     } else {
       card?.classList.add("correct-flash");
-      this._setFeedback(`${this.candleItem.name} appears genuine.`, "success");
+      this._setFeedback(`${this.candleItem.name} appears genuine. (-1 pt)`, "success");
     }
   }
 
@@ -703,24 +718,34 @@ export class LabWorkspaceUI {
     const clueA = (a.clues?.compare || "").toLowerCase();
     const clueB = (b.clues?.compare || "").toLowerCase();
     const match = clueA && clueB && (clueA.includes(b.name.toLowerCase()) || clueB.includes(a.name.toLowerCase()));
-    slot0?.classList.add(match ? "correct" : "wrong");
-    slot1?.classList.add(match ? "correct" : "wrong");
-    card0?.classList.add(match ? "correct-flash" : "wrong-flash");
-    card1?.classList.add(match ? "correct-flash" : "wrong-flash");
+    
     if (match) {
+      slot0?.classList.add("correct");
+      slot1?.classList.add("correct");
+      card0?.classList.add("correct-flash");
+      card1?.classList.add("correct-flash");
       this._setFeedback(`Match confirmed: ${a.name} & ${b.name}`, "success");
-      this.onResult?.({ scoreDelta: 5 });
+      this.onResult?.({ scoreDelta: 5, feedback: `Match confirmed: ${a.name} & ${b.name}`, feedbackType: "success" });
+      setTimeout(() => {
+        slot0?.classList.remove("correct", "wrong");
+        slot1?.classList.remove("correct", "wrong");
+        card0?.classList.remove("correct-flash", "wrong-flash");
+        card1?.classList.remove("correct-flash", "wrong-flash");
+      }, 1400);
     } else {
-      this._setFeedback("These do not match.", "error");
-      this.onResult?.({ scoreDelta: -3 });
+      slot0?.classList.add("wrong");
+      slot1?.classList.add("wrong");
+      card0?.classList.add("wrong-flash");
+      card1?.classList.add("wrong-flash");
+      this._setFeedback("These do not match. Try again.", "error");
+      this.onResult?.({ scoreDelta: -5, feedback: "These do not match.", feedbackType: "error" });
+      setTimeout(() => {
+        slot0?.classList.remove("correct", "wrong");
+        slot1?.classList.remove("correct", "wrong");
+        card0?.classList.remove("correct-flash", "wrong-flash");
+        card1?.classList.remove("correct-flash", "wrong-flash");
+      }, 1400);
     }
-    this._activeComparatorSlotIndex = null;
-    setTimeout(() => {
-      slot0?.classList.remove("correct", "wrong");
-      slot1?.classList.remove("correct", "wrong");
-      card0?.classList.remove("correct-flash", "wrong-flash");
-      card1?.classList.remove("correct-flash", "wrong-flash");
-    }, 1400);
   }
 
   _submitFolders() {
@@ -774,12 +799,13 @@ export class LabWorkspaceUI {
 
     if (allOk && totalItems === totalExpected && totalExpected > 0) {
       this._setFeedback("Evidence folders verified.", "success");
-      this.onResult?.({ scoreDelta: 5 });
+      this.onResult?.({ type: 'folder_verify', success: true, scoreDelta: 5, feedback: "Evidence folders verified.", feedbackType: "success" });
     } else if (totalExpected === 0) {
       this._setFeedback("No items to file.", "error");
+      this.onResult?.({ type: 'folder_verify', success: false, scoreDelta: -5, feedback: "No items to file.", feedbackType: "error" });
     } else {
       this._setFeedback("Some items are misfiled.", "error");
-      this.onResult?.({ scoreDelta: -3 });
+      this.onResult?.({ type: 'folder_verify', success: false, scoreDelta: -5, feedback: "Some items are misfiled.", feedbackType: "error" });
     }
     setTimeout(() => {
       this.root.querySelectorAll(".ev-card").forEach(el => el.classList.remove("correct-flash", "wrong-flash"));
@@ -823,10 +849,10 @@ export class LabWorkspaceUI {
     });
     if (correct === totalTimelineItems && totalTimelineItems > 0) {
       this._setFeedback("Timeline is correct.", "success");
-      this.onResult?.({ scoreDelta: 5 });
+      this.onResult?.({ type: 'timeline_test', success: true, scoreDelta: 5, feedback: "Timeline is correct.", feedbackType: "success" });
     } else {
       this._setFeedback(`Timeline has ${correct}/${totalTimelineItems} correct placements.`, "error");
-      this.onResult?.({ scoreDelta: -3 });
+      this.onResult?.({ type: 'timeline_test', success: false, scoreDelta: -5, feedback: `Timeline has ${correct}/${totalTimelineItems} correct placements.`, feedbackType: "error" });
     }
     this._activeTimelineStep = null;
     setTimeout(() => {
@@ -836,20 +862,37 @@ export class LabWorkspaceUI {
   }
 
   _submitShredder() {
-    const totalFakes = this.evidence.filter(i => i.fake).length;
-    const fakes = this.shreddedItems.filter(i => i.fake).length;
+    const shreddedIds = new Set(this.shreddedItems.map(i => i.id));
+    const deskIds = new Set(this.deskItems.map(i => i.id));
     const shreddedBank = this.root.querySelector("#lw-shredded-bank");
     const deskBank = this.root.querySelector("#lw-desk-bank");
 
-    if (totalFakes === 0 || fakes >= totalFakes) {
-      shreddedBank?.querySelectorAll(".ev-card").forEach(card => card.classList.add("correct-flash"));
-      deskBank?.querySelectorAll(".ev-card").forEach(card => card.classList.add("wrong-flash"));
-      this._setFeedback(`Shredder verified: ${fakes} fake items removed.`, "success");
-      this.onResult?.({ scoreDelta: 5 });
+    let correctCount = 0;
+    let wrongCount = 0;
+
+    this.evidence.forEach(item => {
+      const isFake = !!item.fake;
+      const isShredded = shreddedIds.has(item.id);
+      const isCorrect = isFake ? isShredded : !isShredded;
+      
+      if (isCorrect) correctCount++;
+      else wrongCount++;
+
+      const card = (isShredded ? shreddedBank : deskBank)?.querySelector(`.ev-card[data-evidence-id="${item.id}"]`);
+      if (card) {
+        card.classList.add(isCorrect ? "correct-flash" : "wrong-flash");
+      }
+    });
+
+    const totalFakes = this.evidence.filter(i => i.fake).length;
+    const success = wrongCount === 0 && correctCount === this.evidence.length;
+
+    if (success) {
+      this._setFeedback(`Shredder verified: ${totalFakes} fake items removed.`, "success");
+      this.onResult?.({ type: 'shredder_test', success: true, scoreDelta: 5, feedback: `Shredder verified: ${totalFakes} fake items removed.`, feedbackType: "success" });
     } else {
-      shreddedBank?.querySelectorAll(".ev-card").forEach(card => card.classList.add("wrong-flash"));
-      this._setFeedback(`Only ${fakes} fake items shredded. Need ${totalFakes}.`, "error");
-      this.onResult?.({ scoreDelta: -3 });
+      this._setFeedback(`Shredder incomplete: ${wrongCount} item${wrongCount !== 1 ? 's' : ''} misplaced.`, "error");
+      this.onResult?.({ type: 'shredder_test', success: false, scoreDelta: -5, feedback: `Shredder incomplete: ${wrongCount} item${wrongCount !== 1 ? 's' : ''} misplaced.`, feedbackType: "error" });
     }
     setTimeout(() => {
       this.root.querySelectorAll(".ev-card").forEach(el => el.classList.remove("correct-flash", "wrong-flash"));
@@ -863,8 +906,18 @@ export class LabWorkspaceUI {
     el.textContent = text;
   }
 
+  _restoreActiveTab() {
+    const tab = this.currentTab || "compare";
+    this.root.querySelectorAll(".lab-btn[data-lw-tab]").forEach(btn => {
+      btn.classList.toggle("active", btn.dataset.lwTab === tab);
+    });
+    this.root.querySelectorAll(".tab-panel").forEach(p => {
+      p.classList.toggle("active", p.id === `lw-panel-${tab}`);
+    });
+  }
+
   _openDetail(evId) {
-    this.onResult?.({ scoreDelta: -1 });
+    this.onResult?.({ type: 'detail_view', scoreDelta: -1 });
     const item = this.evidence.find(e => e.id === evId);
     if (!item) return;
     const iconHtml = typeof item.icon === 'string' && item.icon.endsWith('.svg')
@@ -884,8 +937,8 @@ export class LabWorkspaceUI {
 }
 
 const folderInfoData = {
-  direct: { title: "Direct Evidence", desc: "Proves a fact directly." },
-  circumstantial: { title: "Circumstantial Evidence", desc: "Implies a fact through circumstances." },
-  physical: { title: "Physical (Real) Evidence", desc: "Tangible objects like weapons, DNA, or fibres." },
-  testimonial: { title: "Testimonial & Expert Evidence", desc: "Spoken statements from witnesses or specialists." }
+  physical: { title: "Physical Evidence", desc: "Tangible objects like weapons, DNA, fibres, or physical traces." },
+  testimonial: { title: "Testimonial Evidence", desc: "Spoken or written statements from witnesses or specialists." },
+  analytical: { title: "Analytical Evidence", desc: "Interpretations, prophetic links, or expert conclusions." },
+  environmental: { title: "Environmental Evidence", desc: "Implies a fact through surrounding circumstances or context." }
 };

@@ -397,6 +397,21 @@ export const act1CaseA = {
         timeline: "CHRONOLOGY: The complaint was written during or immediately after the procession.",
         contradict: "RELIABILITY: The Pharisees' alarm confirms the event was real and impactful."
       }
+    },
+    {
+      id: "triumphal_entry_fake",
+      name: "questionable_entry_token",
+      type: "environmental",
+      icon: "../assets/gfx/shield-duotone.svg",
+      fake: true,
+      category: "event",
+      timelineOrder: null,
+      clues: {
+        compare: "No matching pair exists for this item.",
+        link: "Event — this item is suspiciously convenient.",
+        timeline: "CHRONOLOGY: The timeline does not quite fit with the other evidence.",
+        contradict: "RELIABILITY: This item was planted to mislead the investigation. It contains inconsistencies that do not match the verified evidence."
+      }
     }
   ],
 
@@ -917,6 +932,21 @@ export const act1CaseB = {
         timeline: "CHRONOLOGY: The whip was woven on the spot and used during the clearing of the courts.",
         contradict: "RELIABILITY: A reed whip could not seriously injure, confirming the symbolic nature of the act."
       }
+    },
+    {
+      id: "temple_cleansing_fake",
+      name: "fabricated_witness_token",
+      type: "environmental",
+      icon: "../assets/gfx/shield-duotone.svg",
+      fake: true,
+      category: "event",
+      timelineOrder: null,
+      clues: {
+        compare: "No matching pair exists for this item.",
+        link: "Event — this item is suspiciously convenient.",
+        timeline: "CHRONOLOGY: The timeline does not quite fit with the other evidence.",
+        contradict: "RELIABILITY: This item was planted to mislead the investigation. It contains inconsistencies that do not match the verified evidence."
+      }
     }
   ],
 
@@ -1232,6 +1262,20 @@ export const act1CaseB = {
   ],
 
   deductions: {
+    "broken_cages+scattered_shekels": {
+      compare: {
+        text: "The overturned cages and scattered shekels together prove the cleansing was targeted — only the commercial apparatus was destroyed, not the Temple itself.",
+        insight: "A riot would have left coins and cages scattered randomly. The specific targeting of moneychanger tables and dove cages shows this was a controlled prophetic act, not a crime of passion.",
+        isKey: true,
+        bibleRef: "Mark 11:15–17",
+      },
+      link: {
+        text: "The physical evidence of destruction points to the same conclusion as the financial evidence: this was a message, not a robbery.",
+        insight: "Both the cages and the coins were left in disarray, but nothing was taken. The motive was prophetic, not criminal.",
+        isKey: false,
+        bibleRef: "John 2:15",
+      },
+    },
     "broken_cages+whip_of_cords": {
       link: {
         text: "The makeshift whip matches the scattered debris of the marketplace floor.",
@@ -1544,6 +1588,21 @@ export const act1CaseC = {
         link: "Prophecy — Jesus's teaching on faith links to Zechariah 4:7 and the mountain-moving metaphor.",
         timeline: "CHRONOLOGY: The teaching was given Tuesday morning after Peter noticed the withered tree.",
         contradict: "RELIABILITY: The teaching is recorded in multiple Gospel accounts, confirming its authenticity."
+      }
+    },
+    {
+      id: "withered_fig_tree_fake",
+      name: "altered_fig_leaf_sample",
+      type: "environmental",
+      icon: "../assets/gfx/shield-duotone.svg",
+      fake: true,
+      category: "event",
+      timelineOrder: null,
+      clues: {
+        compare: "No matching pair exists for this item.",
+        link: "Event — this item is suspiciously convenient.",
+        timeline: "CHRONOLOGY: The timeline does not quite fit with the other evidence.",
+        contradict: "RELIABILITY: This item was planted to mislead the investigation. It contains inconsistencies that do not match the verified evidence."
       }
     }
   ],

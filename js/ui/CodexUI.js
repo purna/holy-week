@@ -79,7 +79,7 @@ export class CodexUI {
             <div id="codex-grid" class="codex-grid">
                 ${discoveredProps.map(p => `
                     <div class="prophecy-card discovered" onclick="window.ui.showProphecyDetail('${p.id}')">
-                        <div class="prophecy-card-icon">${p.icon || "<img src='../assets/gfx/star-duotone.svg' class='icon-svg' loading='lazy'>"}</div>
+                        <div class="prophecy-card-icon">${renderIcon(p.icon)}</div>
                         <div class="prophecy-card-info">
                             <div class="prophecy-card-reference">${p.reference}</div>
                             <div class="prophecy-card-desc">${(p.fulfilledBy || p.desc || '').substring(0, 60)}...</div>
@@ -128,7 +128,7 @@ export class CodexUI {
                 if (this.audio.enabled) this.audio.playBonus();
                 this.codexMatchFeedback = `<div class="codex-feedback-msg success"><img src='../assets/gfx/sparkles-duotone.svg' class='icon-svg' loading='lazy'> Correct! +10 pts<br><small>${evidence.name} linked to ${prophecy.reference}</small></div>`;
             } else {
-                this.cm.updateDoubt(5);
+                this.cm.recordIncorrectProphecyLink();
                 if (this.audio.enabled) this.audio.playError();
                 this.codexMatchFeedback = `<div class="codex-feedback-msg error"><img src='../assets/gfx/x-circle-duotone.svg' class='icon-svg' loading='lazy'> Incorrect Link! +5 Doubt<br><small>This evidence does not fulfill that prophecy.</small></div>`;
             }

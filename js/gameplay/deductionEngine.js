@@ -100,7 +100,7 @@ export class DeductionEngine {
     const pool = templates[op] || [`Analysis of ${a.name} and ${b.name} complete.`];
     const text = pool[Math.floor(Math.random() * pool.length)];
 
-    return { operation: op, a: a.name, aIcon: a.icon, b: b.name, bIcon: b.icon, text, insight: null, isKeyDeduction: false, score: 4 };
+    return { operation: op, a: a.name, aIcon: a.icon, b: b.name, bIcon: b.icon, text, insight: null, isKeyDeduction: false, score: 8 };
   }
 
   getDeductions() {

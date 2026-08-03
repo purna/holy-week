@@ -59,9 +59,14 @@ export class ChatUI {
       <div class="verdict-card ${res.correct ? 'verdict-correct' : 'verdict-wrong'}">
         <div class="verdict-header">${res.correct ? "<img src='../assets/gfx/trophy-duotone.svg' class='icon-svg' loading='lazy'> CASE SOLVED" : "<img src='../assets/gfx/x-circle-duotone.svg' class='icon-svg' loading='lazy'> INCORRECT ACCUSATION"}</div>
         <div class="verdict-score-grid">
-          <div class="score-row"><span><img src='../assets/gfx/sparkles-duotone.svg' class='icon-svg' loading='lazy'> Deductions:</span> <span>+${s.breakdown?.deductionScore || s.deduction}</span></div>
-          <div class="score-row"><span><img src='../assets/gfx/magnifying-glass-duotone.svg' class='icon-svg' loading='lazy'> Evidence:</span> <span>+${s.breakdown?.evidenceScore || s.evidence}</span></div>
-          <div class="score-total"><span>⭐ Total Score:</span> <span>${s.total}</span></div>
+          <div class="score-row"><span><img src='../assets/gfx/magnifying-glass-duotone.svg' class='icon-svg' loading='lazy'> Evidence:</span> <span>+${s.evidence || 0}</span></div>
+          <div class="score-row"><span><img src='../assets/gfx/sparkles-duotone.svg' class='icon-svg' loading='lazy'> Deductions:</span> <span>+${s.deduction || 0}</span></div>
+          <div class="score-row"><span><img src='../assets/gfx/chat-duotone.svg' class='icon-svg' loading='lazy'> Challenges:</span> <span>+${s.challenge || 0}</span></div>
+          <div class="score-row"><span><img src='../assets/gfx/star-duotone.svg' class='icon-svg' loading='lazy'> Prophecies:</span> <span>+${s.prophecy || 0}</span></div>
+          <div class="score-row"><span>🎯 Accusation:</span> <span>${s.accusation > 0 ? '+' : ''}${s.accusation || 0}</span></div>
+          ${s.perfectBonus ? `<div class="score-row"><span>⭐ Perfect Bonus:</span> <span>+${s.perfectBonus}</span></div>` : ''}
+          <div class="score-row" style="color:var(--red)"><span>😰 Doubt Penalty (x2):</span> <span>-${s.doubtPenalty || 0}</span></div>
+          <div class="score-total"><span>⭐ Total Score:</span> <span>${s.total || 0}</span></div>
         </div>
       </div>`;
   }

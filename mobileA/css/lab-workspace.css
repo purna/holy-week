@@ -48,18 +48,24 @@
 #lab-workspace.lab-list-view .tab-panel {
   display: block;
 }
-#lab-workspace.lab-grid-view .tab-panel {
+#lab-workspace.lab-grid-view .tab-panel.active {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 10px;
   align-items: start;
 }
-#lab-workspace.lab-grid-view .tab-panel > * {
-  grid-column: 1;
+#lab-workspace.lab-grid-view .tab-panel.active > .listgrid,
+#lab-workspace.lab-grid-view .tab-panel.active > .actions-bar,
+#lab-workspace.lab-grid-view .tab-panel.active > .lw-feedback {
+  grid-column: 1 / -1;
 }
-#lab-workspace.lab-grid-view .tab-panel > .card-pool-grid,
-#lab-workspace.lab-grid-view .tab-panel > .trash-archive-box.card-pool-grid {
+#lab-workspace.lab-grid-view .tab-panel.active > .card-pool-grid,
+#lab-workspace.lab-grid-view .tab-panel.active > .trash-archive-box.card-pool-grid {
   grid-column: 2;
+}
+#lab-workspace.lab-grid-view .tab-panel.active > .folder-grid,
+#lab-workspace.lab-grid-view .tab-panel.active > .timeline-vertical-box {
+  grid-column: 1;
 }
 
 /* ── Evidence card base ── */
@@ -146,18 +152,37 @@
 #lab-workspace .comparator-slot {
   border: 2px dashed var(--border2);
   border-radius: var(--radius);
-  padding: 12px;
-  min-height: 60px;
+  padding: 8px;
+  min-height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: border-color 0.2s, background 0.2s;
+  position: relative;
+}
+
+#lab-workspace .comparator-slot::before {
+  content: attr(data-empty-label);
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+#lab-workspace .comparator-slot.filled::before {
+  display: none;
 }
 
 #lab-workspace .comparator-slot.filled {
   border-style: solid;
   border-color: var(--gold);
   background: rgba(245, 200, 66, 0.08);
+  min-height: 52px;
 }
 
 #lab-workspace .comparator-slot.drop-hover {
@@ -176,13 +201,53 @@
   background: rgba(244, 96, 96, 0.1);
 }
 
-/* ── Folder trays ── */
+/* ── Folder trays (accordion) ── */
 #lab-workspace .folder-tray {
   border: 1.5px solid var(--border2);
   border-radius: var(--radius);
-  padding: 10px;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
   transition: border-color 0.2s, background 0.2s;
+  overflow: hidden;
+}
+
+#lab-workspace .folder-tray-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 10px;
+  cursor: pointer;
+  user-select: none;
+  background: var(--surface2);
+}
+
+#lab-workspace .folder-tray-header:hover {
+  background: var(--surface3);
+}
+
+#lab-workspace .folder-tray-header .folder-header-title {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+#lab-workspace .folder-tray-header .folder-chevron {
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  transition: transform 0.2s;
+}
+
+#lab-workspace .folder-tray.expanded .folder-tray-header .folder-chevron {
+  transform: rotate(180deg);
+}
+
+#lab-workspace .folder-tray-body {
+  display: none;
+  padding: 0 10px 10px;
+}
+
+#lab-workspace .folder-tray.expanded .folder-tray-body {
+  display: block;
 }
 
 #lab-workspace .folder-tray.drop-hover {
@@ -191,26 +256,63 @@
   background: rgba(245, 200, 66, 0.12) !important;
 }
 
-#lab-workspace .folder-header {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 8px;
+#lab-workspace .folder-tray.drop-hover .folder-tray-header {
+  background: rgba(245, 200, 66, 0.12);
 }
 
-#lab-workspace .folder-header-title {
+/* ── Timeline steps (accordion) ── */
+#lab-workspace .timeline-step {
+  border: 1.5px solid var(--border2);
+  border-radius: var(--radius);
+  margin-bottom: 6px;
+  transition: border-color 0.2s, background 0.2s;
+  overflow: hidden;
+}
+
+#lab-workspace .step-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  padding: 10px;
+  cursor: pointer;
+  user-select: none;
+  background: var(--surface2);
+}
+
+#lab-workspace .step-header:hover {
+  background: var(--surface3);
+}
+
+#lab-workspace .step-title {
   font-size: 0.78rem;
   font-weight: 700;
   color: var(--text);
 }
 
-/* ── Timeline steps ── */
-#lab-workspace .timeline-step {
-  border: 1.5px solid var(--border2);
-  border-radius: var(--radius);
-  padding: 10px;
-  margin-bottom: 8px;
-  transition: border-color 0.2s, background 0.2s;
+#lab-workspace .step-hint {
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+}
+
+#lab-workspace .step-chevron {
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  transition: transform 0.2s;
+}
+
+#lab-workspace .timeline-step.expanded .step-chevron {
+  transform: rotate(180deg);
+}
+
+#lab-workspace .step-body {
+  display: none;
+  padding: 0 10px 10px;
+}
+
+#lab-workspace .timeline-step.expanded .step-body {
+  display: block;
 }
 
 #lab-workspace .timeline-step.filled {
@@ -225,6 +327,10 @@
   background: rgba(245, 200, 66, 0.12) !important;
 }
 
+#lab-workspace .timeline-step.drop-hover .step-header {
+  background: rgba(245, 200, 66, 0.12);
+}
+
 #lab-workspace .timeline-step.correct {
   border-color: var(--green);
   background: rgba(61, 214, 140, 0.1);
@@ -233,25 +339,6 @@
 #lab-workspace .timeline-step.wrong {
   border-color: var(--red);
   background: rgba(244, 96, 96, 0.1);
-}
-
-#lab-workspace .step-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 6px;
-}
-
-#lab-workspace .step-title {
-  font-size: 0.78rem;
-  font-weight: 700;
-  color: var(--text);
-}
-
-#lab-workspace .step-hint {
-  font-size: 0.65rem;
-  color: var(--text-muted);
-  font-family: var(--font-mono);
 }
 
 #lab-workspace .step-cards-container {

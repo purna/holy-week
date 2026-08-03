@@ -154,7 +154,6 @@ export class CaseManager {
     const c = this.getActiveCase();
     if (p && c && !p.propheciesFound.includes(prophecyId)) {
       p.propheciesFound.push(prophecyId);
-      this.progress.totalScore = (this.progress.totalScore || 0) + 10;
 
       // Check if all prophecies are found to unlock the final accusation
       // and the remaining accusable suspects for this case (per design).
@@ -178,23 +177,8 @@ export class CaseManager {
     if (!Array.isArray(p.deductionsMade)) {
       p.deductionsMade = [];
     }
-    if (!Array.isArray(p.scoredDeductions)) {
-      p.scoredDeductions = [];
-    }
 
     p.deductionsMade.push(deduction);
-
-    const scoreValue = Number.isFinite(deduction?.score) ? deduction.score : 0;
-    if (scoreValue > 0) {
-      const deductionKey = deduction?.deductionId
-        ? `${deduction.deductionId}:${deduction.operation || "op"}`
-        : `${deduction?.operation || "op"}:${deduction?.a || "a"}:${deduction?.b || "b"}`;
-      if (!p.scoredDeductions.includes(deductionKey)) {
-        p.scoredDeductions.push(deductionKey);
-        this.progress.totalScore = Math.max(0, (this.progress.totalScore || 0) + scoreValue);
-        this._refreshMetricsUI();
-      }
-    }
 
     this._saveProgress();
   }
@@ -247,6 +231,7 @@ export class CaseManager {
       if (!p.breakthroughs) p.breakthroughs = [];
       if (!p.breakthroughs.includes(evidenceKey)) {
         p.breakthroughs.push(evidenceKey);
+        this.addScore(10);
         this._saveProgress();
         if (window.audio && typeof window.audio.playClue === 'function') window.audio.playClue();
       }
@@ -266,6 +251,23 @@ export class CaseManager {
     p.suspects[suspectId].notes = result;
     p.labDeductions[evidenceId] = { suspect: suspectId, result };
     this._saveProgress();
+  }
+
+  recordFailedChallenge() {
+    const p = this.progress.cases[this.activeCaseId];
+    if (!p) return;
+    p.failedChallenges = (p.failedChallenges || 0) + 1;
+    this.updateDoubt(10);
+    this._saveProgress();
+  }
+
+  recordIncorrectLabPairing() {
+    this.updateDoubt(5);
+    this.addScore(-5);
+  }
+
+  recordIncorrectProphecyLink() {
+    this.updateDoubt(5);
   }
 
   getSuspectStatus(suspectId) {
@@ -332,14 +334,17 @@ export class CaseManager {
     const p = this.progress.cases[this.activeCaseId];
     if (!c || !p) return null;
     const correct = suspectId === c.truth.culprit;
+
     const evidenceScore = (p.evidenceFound || []).length * 5;
-    const deductionScore = Object.keys(p.labDeductions || {}).length * 15;
+    const manualDeductionScore = (p.deductionsMade || []).reduce((sum, d) => sum + (Number.isFinite(d?.score) ? d.score : 0), 0);
+    const autoDeductionScore = Object.keys(p.labDeductions || {}).length * 15;
+    const deductionScore = manualDeductionScore + autoDeductionScore;
     const challengeScore = (p.breakthroughs || []).length * 10;
     const prophecyScore = (p.propheciesFound || []).length * 10;
     const baseAccusationScore = correct ? 50 : -25;
     const doubtPenalty = (this.progress.doubt || 0) * 2;
     const perfectBonus = (correct && (p.failedChallenges || 0) === 0) ? 25 : 0;
-    const total = Math.max(0, (evidenceScore + deductionScore + challengeScore + prophecyScore + baseAccusationScore + perfectBonus) - doubtPenalty);
+    const total = Math.max(0, evidenceScore + deductionScore + challengeScore + prophecyScore + baseAccusationScore + perfectBonus - doubtPenalty);
 
     const result = {
       correct, suspectId, truth: c.truth,
@@ -365,9 +370,9 @@ export class CaseManager {
   }
 
   _calcRank(score) {
-    if (score >= 90) return "Master Detective";
-    if (score >= 70) return "Analyst";
-    if (score >= 50) return "Investigator";
+    if (score >= 150) return "Master Detective";
+    if (score >= 100) return "Analyst";
+    if (score >= 60) return "Investigator";
     return "Rookie";
   }
 

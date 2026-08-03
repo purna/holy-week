@@ -153,17 +153,37 @@ if (typeof inkjs !== 'undefined') {
   }
 
 window.renderInvestigationBoard = function () {
-     const invBoardContent = document.getElementById('inv-board-content');
-     if (!invBoardContent) return;
-     const labUI = new LabWorkspaceUI(game.de, game.es, game.a11y, (result) => {
-       if (result?.error) return;
-       if (result?.scoreDelta !== undefined) {
-         window.renderInvestigationBoard();
-       }
-     });
-     invBoardContent.innerHTML = labUI.render();
-     labUI.bindEvents(invBoardContent);
-   };
+      const invBoardContent = document.getElementById('inv-board-content');
+      if (!invBoardContent) return;
+      const labUI = new LabWorkspaceUI(game.de, game.es, game.a11y, (result) => {
+        if (result?.error) return;
+        if (result?.type === 'folder_verify' || result?.type === 'timeline_test' || result?.type === 'shredder_test') {
+          if (result.success) {
+            game.cm.addScore(5);
+          } else {
+            game.cm.addScore(-5);
+            game.cm.recordIncorrectLabPairing();
+          }
+        } else if (result?.type === 'detail_view') {
+          game.cm.addScore(-1);
+        } else if (result?.scoreDelta !== undefined) {
+          game.cm.addScore(result.scoreDelta);
+        }
+        if (result?.feedback) {
+          const savedTab = labUI.currentTab;
+          window.renderInvestigationBoard();
+          const newUI = window.__labUI;
+          if (newUI) {
+            newUI.currentTab = savedTab;
+            newUI._restoreActiveTab();
+            newUI._setFeedback(result.feedback, result.feedbackType || "");
+          }
+        }
+      });
+      window.__labUI = labUI;
+      invBoardContent.innerHTML = labUI.render();
+      labUI.bindEvents(invBoardContent);
+    };
 
   window.showInstructionsModal = () => {
     document.getElementById('instructions-modal').classList.add('active');

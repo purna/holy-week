@@ -428,8 +428,22 @@ export const act3CaseA = {
         timeline: "CHRONOLOGY: Reflects the seating for the whole meal, from the first cup through Jesus's final words.",
         contradict: "RELIABILITY: Jesus knowingly kept His betrayer at the table and ministered to him regardless — a detail no fabricated account would need to include."
       },
+    },
+    {
+      id: "last_supper_fake",
+      name: "altered_breadcrumb_evidence",
+      type: "environmental",
+      icon: "../assets/gfx/shield-duotone.svg",
+      fake: true,
+      category: "event",
+      timelineOrder: null,
+      clues: {
+        compare: "No matching pair exists for this item.",
+        link: "Event — this item is suspiciously convenient.",
+        timeline: "CHRONOLOGY: The timeline does not quite fit with the other evidence.",
+        contradict: "RELIABILITY: This item was planted to mislead the investigation. It contains inconsistencies that do not match the verified evidence."
+      }
     }
-
   ],
 
   lab: [
@@ -895,8 +909,22 @@ export const act3CaseB = {
         timeline: "CHRONOLOGY: Used last, once Jesus stopped Peter and submitted to arrest.",
         contradict: "RELIABILITY: The absence of fraying rules out a physical fight — consistent with willing submission, not capture."
       },
+    },
+    {
+      id: "gethsemane_arrest_fake",
+      name: "planted_torch_fragment",
+      type: "environmental",
+      icon: "../assets/gfx/shield-duotone.svg",
+      fake: true,
+      category: "event",
+      timelineOrder: null,
+      clues: {
+        compare: "No matching pair exists for this item.",
+        link: "Event — this item is suspiciously convenient.",
+        timeline: "CHRONOLOGY: The timeline does not quite fit with the other evidence.",
+        contradict: "RELIABILITY: This item was planted to mislead the investigation. It contains inconsistencies that do not match the verified evidence."
+      }
     }
-
   ],
 
   suspects: [
@@ -1011,6 +1039,12 @@ export const act3CaseB = {
 
   deductions: {
     "abandoned_linen+dropped_torch": {
+      compare: {
+        text: "The dropped torch and abandoned linen mark the same moment of panic from two different angles.",
+        insight: "The arresting party was knocked back by Jesus's declaration 'I am He,' while a young disciple fled naked into the brush. Both items are forensic markers of that split-second chaos.",
+        isKey: true,
+        bibleRef: "John 18:6; Mark 14:51-52",
+      },
       link: {
         text: "The placement of the dropped torch and the abandoned linen show a split path of panic.",
         insight: "While the arresting party was knocked off balance, the younger followers of Jesus scattered into the darkness in utter terror, leaving their belongings behind.",
@@ -1026,6 +1060,12 @@ export const act3CaseB = {
       },
     },
     "dropped_torch+severed_ear_wrap": {
+      compare: {
+        text: "The dropped torch and the bloodied scarf together prove Peter struck Malchus in the same moment the arresting party fell backward.",
+        insight: "One item marks the supernatural surrender of the enemy, the other marks the violent attempt by a disciple to defend Jesus. Both are true.",
+        isKey: true,
+        bibleRef: "Luke 22:50–51; John 18:10",
+      },
       link: {
         text: "The proximity of the weapon strike to the fallen military hardware suggests a sudden collision of kingdoms.",
         insight: "Peter attempted a messy tactical defense, but Jesus immediately neutralized the violence by performing a medical miracle on the enemy commander.",
@@ -1251,7 +1291,7 @@ export const act3CaseC = {
   suspects: [
     { id: "chief_priest", name: "Caiaphas", role: "High Priest", avatar: "caiaphas.svg", bibleRef: "Matthew 26:57" },
     { id: "false_witness", name: "Ananias", role: "Hired Accuser", avatar: "ananias_witness.svg", bibleRef: "Mark 14:56" },
-    { id: "peter_denial", name: "Peter", role: "Denying Disciple",       avatar: "peter.svg", bibleRef: "Matthew 26:69-75" },
+    { id: "peter_denial", name: "Peter", role: "Denying Disciple", avatar: "peter.svg", bibleRef: "Matthew 26:69-75" },
     { id: "none", name: "No One", role: "Not Guilty", avatar: "nicodemus.svg", bibleRef: null },
   ],
 
@@ -1415,8 +1455,23 @@ export const act3CaseC = {
         timeline: "CHRONOLOGY: Given early in the proceedings, part of the failed attempt to build a case.",
         contradict: "RELIABILITY: The desperation to produce any usable testimony exposes the weakness of the prosecution's actual case."
       },
-    }
+    },
 
+    {
+      id: "sanhedrin_trial_fake",
+      name: "fabricated_roman_dispatch",
+      type: "environmental",
+      icon: "../assets/gfx/shield-duotone.svg",
+      fake: true,
+      category: "event",
+      timelineOrder: null,
+      clues: {
+        compare: "No matching pair exists for this item.",
+        link: "Event — this item is suspiciously convenient.",
+        timeline: "CHRONOLOGY: The timeline does not quite fit with the other evidence.",
+        contradict: "RELIABILITY: This item was planted to mislead the investigation. It contains inconsistencies that do not match the verified evidence."
+      }
+    }
   ],
 
   npcs: [
@@ -1835,8 +1890,23 @@ export const act3CaseD = {
         timeline: "CHRONOLOGY: Drawn up as the crowd made its demand, shortly before Pilate's basin.",
         contradict: "RELIABILITY: Luke 23:12 independently notes Herod and Pilate became friends that very day, over this case."
       },
-    }
+    },
 
+    {
+      id: "barabbas_choice_fake",
+      name: "questionable_sign_fragment",
+      type: "environmental",
+      icon: "../assets/gfx/shield-duotone.svg",
+      fake: true,
+      category: "event",
+      timelineOrder: null,
+      clues: {
+        compare: "No matching pair exists for this item.",
+        link: "Event — this item is suspiciously convenient.",
+        timeline: "CHRONOLOGY: The timeline does not quite fit with the other evidence.",
+        contradict: "RELIABILITY: This item was planted to mislead the investigation. It contains inconsistencies that do not match the verified evidence."
+      }
+    }
   ],
 
   suspects: [
@@ -2125,8 +2195,10 @@ export const act3CaseE = {
 
   suspects: [
     { id: "centurion_longinus", name: "Longinus", role: "Roman Centurion", avatar: "centurion_longinus.svg", bibleRef: "Matthew 27:54 — 'When the centurion... saw the earthquake and all that had happened, they were terrified, and said, \"Surely he was the Son of God!\"'" },
-    { id: "temple_priest_pashhur", name: "Pashhur", role: "Temple Priest on Shift",       avatar: "pashhur.svg",
-      bibleRef: "Matthew 27:51 — 'At that moment the curtain of the temple was torn in two from top to bottom.'" },
+    {
+      id: "temple_priest_pashhur", name: "Pashhur", role: "Temple Priest on Shift", avatar: "pashhur.svg",
+      bibleRef: "Matthew 27:51 — 'At that moment the curtain of the temple was torn in two from top to bottom.'"
+    },
     { id: "joseph_arimathea", name: "Joseph of Arimathea", role: "Secret Disciple & Council Member", avatar: "senior_scribe.svg", bibleRef: "John 19:38 — 'Joseph of Arimathea asked Pilate for the body of Jesus... With Pilate's permission, he came and took the body away.'" },
     { id: "none", name: "No One", role: "Divine/Cosmic Event", avatar: "nicodemus.svg", bibleRef: "Amos 8:9; Matthew 27:51 — The signs were acts of God, not human subversion" }
   ],
@@ -2348,8 +2420,23 @@ export const act3CaseE = {
         timeline: "CHRONOLOGY: The last words spoken, immediately before Jesus breathed His last and the earth shook.",
         contradict: "RELIABILITY: Luke 23:46 records the words as a loud, deliberate cry, not a fading whisper — consistent with a willing surrender rather than a slow expiration."
       },
-    }
+    },
 
+    {
+      id: "crucifixion_site_fake",
+      name: "manufactured_shroud_thread",
+      type: "environmental",
+      icon: "../assets/gfx/shield-duotone.svg",
+      fake: true,
+      category: "event",
+      timelineOrder: null,
+      clues: {
+        compare: "No matching pair exists for this item.",
+        link: "Event — this item is suspiciously convenient.",
+        timeline: "CHRONOLOGY: The timeline does not quite fit with the other evidence.",
+        contradict: "RELIABILITY: This item was planted to mislead the investigation. It contains inconsistencies that do not match the verified evidence."
+      }
+    }
   ],
 
   lab: [

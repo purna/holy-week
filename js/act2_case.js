@@ -374,7 +374,23 @@ export const act2CaseA = {
         timeline: "CHRONOLOGY: Written at the close of the day's teaching, once no one dared ask another question.",
         contradict: "RELIABILITY: An outside observer with no stake in either faction, describing events that match the Gospel record exactly."
       },
-    },],
+    },
+    {
+      id: "authority_challenged_fake",
+      name: "forged_challenge_scroll",
+      type: "environmental",
+      icon: "../assets/gfx/shield-duotone.svg",
+      fake: true,
+      category: "event",
+      timelineOrder: null,
+      clues: {
+        compare: "No matching pair exists for this item.",
+        link: "Event — this item is suspiciously convenient.",
+        timeline: "CHRONOLOGY: The timeline does not quite fit with the other evidence.",
+        contradict: "RELIABILITY: This item was planted to mislead the investigation. It contains inconsistencies that do not match the verified evidence."
+      }
+    }
+  ],
 
   lab: [
     {
@@ -755,7 +771,68 @@ export const act2CaseB = {
         timeline: "CHRONOLOGY: Drafted last, once the crowd numbers and eyewitness questioning made the threat undeniable.",
         contradict: "RELIABILITY: John 12:10–11 independently confirms the plot in the Gospel text itself."
       },
-    },],
+    },
+    {
+      id: "lazarus_plot_fake",
+      name: "manufactured_gate_record",
+      type: "environmental",
+      icon: "../assets/gfx/shield-duotone.svg",
+      fake: true,
+      category: "event",
+      timelineOrder: null,
+      clues: {
+        compare: "No matching pair exists for this item.",
+        link: "Event — this item is suspiciously convenient.",
+        timeline: "CHRONOLOGY: The timeline does not quite fit with the other evidence.",
+        contradict: "RELIABILITY: This item was planted to mislead the investigation. It contains inconsistencies that do not match the verified evidence."
+      }
+    }
+  ],
+
+  deductions: {
+    "crowd_report+grave_dirt": {
+      compare: {
+        text: "The gate log and the tomb dust together prove eyewitnesses from Bethany were brought into the Sanhedrin's own chambers.",
+        insight: "A surveillance record and physical evidence from the tomb site converge on the same location: inside the council chamber.",
+        isKey: true,
+        bibleRef: "John 12:9; John 11:39",
+      },
+      link: {
+        text: "Both pieces point to the same source: the reality of Lazarus's resurrection and the crowds it drew.",
+        insight: "The council's panic was not based on rumor but on documented crowd movement and physical evidence from the actual tomb.",
+        isKey: false,
+        bibleRef: "John 12:10–11",
+      },
+    },
+    "crowd_report+secret_decree": {
+      compare: {
+        text: "The surveillance record and the secret decree show the escalation from observation to elimination.",
+        insight: "The gate log explains why the Sanhedrin reacted so fast — the crowd numbers triggered the panic that produced the decree.",
+        isKey: true,
+        bibleRef: "John 12:9–11",
+      },
+      link: {
+        text: "The crowd report triggered the council's response documented in the decree.",
+        insight: "A routine gate tally and a secret execution order are linked by the same chain of cause and effect.",
+        isKey: false,
+        bibleRef: "John 12:10",
+      },
+    },
+    "grave_dirt+secret_decree": {
+      compare: {
+        text: "The tomb dust and the decree together prove the council acted on verified intelligence, not mere suspicion.",
+        insight: "The physical evidence from Bethany's tomb was presented inside the council chamber, directly prompting the secret order.",
+        isKey: true,
+        bibleRef: "John 11:39; John 12:10",
+      },
+      link: {
+        text: "Both pieces trace the same path: from Lazarus's tomb to the Sanhedrin's sealed order.",
+        insight: "The council didn't need to verify the miracle — they had the dust and the eyewitnesses already in their chamber.",
+        isKey: false,
+        bibleRef: "John 12:10–11",
+      },
+    },
+  },
 
   lab: [
     {
@@ -1329,8 +1406,22 @@ export const act2CaseC = {
         timeline: "CHRONOLOGY: Referenced partway through the discourse, alongside the other cosmic signs.",
         contradict: "RELIABILITY: A direct quotation match to Isaiah 13:10, not a loose paraphrase."
       },
+    },
+    {
+      id: "olivet_discourse_fake",
+      name: "fabricated_prophecy_fragment",
+      type: "environmental",
+      icon: "../assets/gfx/shield-duotone.svg",
+      fake: true,
+      category: "event",
+      timelineOrder: null,
+      clues: {
+        compare: "No matching pair exists for this item.",
+        link: "Event — this item is suspiciously convenient.",
+        timeline: "CHRONOLOGY: The timeline does not quite fit with the other evidence.",
+        contradict: "RELIABILITY: This item was planted to mislead the investigation. It contains inconsistencies that do not match the verified evidence."
+      }
     }
-
   ],
 
   lab: [
@@ -1687,8 +1778,22 @@ export const act2CaseD = {
         timeline: "CHRONOLOGY: The same days before Passover, at Simon the Leper's table.",
         contradict: "RELIABILITY: Recorded independently in Matthew and Mark, both naming the same house and the same objection from those at the table."
       },
+    },
+    {
+      id: "passover_lamb_chain_fake",
+      name: "suspicious_anointing_oil",
+      type: "environmental",
+      icon: "../assets/gfx/shield-duotone.svg",
+      fake: true,
+      category: "event",
+      timelineOrder: null,
+      clues: {
+        compare: "No matching pair exists for this item.",
+        link: "Event — this item is suspiciously convenient.",
+        timeline: "CHRONOLOGY: The timeline does not quite fit with the other evidence.",
+        contradict: "RELIABILITY: This item was planted to mislead the investigation. It contains inconsistencies that do not match the verified evidence."
+      }
     }
-
   ],
 
   lab: [

@@ -229,7 +229,7 @@ export class UIManager {
       const unlocks = activeNpc.data.unlocksEvidence || [];
       if (unlocks.length > 0 && c) {
         this.cm.unlockEvidenceForScene(c.id, unlocks);
-        this.renderLab();
+        this.switchInvTab('lab');
         unlocks.forEach(id => {
           const ev = this.es.getById(id);
           if (ev) {
@@ -261,8 +261,21 @@ export class UIManager {
   onLabAction(result) {
     if (result.type === "selection") this.renderPeople();
     else result.error ? this.audio.playError() : this.audio.playClue();
-    if (result?.scoreDelta) this.cm.addScore(result.scoreDelta);
-    this.switchInvTab('lab');
+    if (result?.type === 'folder_verify' || result?.type === 'timeline_test' || result?.type === 'shredder_test') {
+      if (result.success) {
+        this.cm.addScore(5);
+      } else {
+        this.cm.addScore(-5);
+        this.cm.recordIncorrectLabPairing();
+      }
+    } else if (result?.type === 'detail_view') {
+      this.cm.addScore(-1);
+    } else if (result?.scoreDelta) {
+      this.cm.addScore(result.scoreDelta);
+    }
+    if (result?.feedback) {
+      this.labUI._setFeedback(result.feedback, result.feedbackType || "");
+    }
     if (!result?.error && result?.operation) {
       const view = document.getElementById("inv-lab");
       this.labUI.showActiveResultModal?.(view);
@@ -285,7 +298,7 @@ export class UIManager {
     const p = this.es.getProphecyById(prophecyId);
     if (!p) return;
 
-    modal.querySelector(".evidence-detail-icon").innerHTML = "<img src='" + (e.icon || '../assets/gfx/star-duotone.svg') + "' class='icon-svg' loading='lazy'>";
+    modal.querySelector(".evidence-detail-icon").innerHTML = "<img src='" + (p.icon || '../assets/gfx/star-duotone.svg') + "' class='icon-svg' loading='lazy'>";
     modal.querySelector(".evidence-detail-name").textContent = p.reference || "Prophecy";
     modal.querySelector(".evidence-detail-type").textContent = "Prophecy";
 

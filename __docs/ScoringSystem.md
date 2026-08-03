@@ -30,9 +30,18 @@ The player's performance in each case is evaluated based on several factors. The
 
 | Action | Points Penalty | Notes |
 | :--- | :--- | :--- |
-| **Incorrect Accusation** | `-25` | A significant penalty for failing to solve the case. |
-| **Incorrect Lab Pairing** | `-5` | For submitting an evidence pair/operation in the Lab that yields no insight. |
+| **Incorrect Accusation** | `-25` | A significant penalty for failing to solve the case. Also adds +25 Doubt. |
+| **Incorrect Lab Pairing** | `-5` | For submitting an evidence pair/operation in the Lab that yields no insight. Also adds +5 Doubt. |
 | **Doubt Penalty** | `-2` per Doubt point | The total accumulated Doubt is multiplied by 2 and subtracted from the final score. |
+
+### Ranks
+
+| Rank | Score Range |
+| :--- | :--- |
+| Rookie | 0 – 59 |
+| Investigator | 60 – 99 |
+| Analyst | 100 – 149 |
+| Master Detective | 150+ |
 
 ---
 
@@ -52,6 +61,10 @@ Doubt is a global penalty meter that tracks investigative missteps. It increases
 | **Failed Challenge** | `+10` | When challenging an NPC with evidence that does not form a valid contradiction. |
 | **Incorrect Lab Pairing** | `+5` | When combining evidence in the Lab that does not yield a specific, scripted insight. |
 | **Incorrect Prophecy Link** | `+5` | When linking a prophecy to the wrong piece of evidence in the Codex. |
+
+### Doubt Reduction
+
+Doubt can only be reduced by starting a new case. It persists across the entire investigation and affects every subsequent case score.
 
 ---
 
@@ -74,6 +87,11 @@ Reputation measures the player's standing with the four major factions in Jerusa
 | :--- | :--- | :--- |
 | **Successful Challenge** | `+5` | Applied to the challenged NPC's faction. Rewards exposing a lie correctly. |
 | **Failed Challenge** | `-15` | Applied to the challenged NPC's faction. A significant penalty for a baseless challenge. |
+
+### Reputation Bonus/Penalty
+
+*   **Average reputation above 80:** Grants a `+10%` bonus to the final case score.
+*   **Average reputation below 30:** Applies a `-10%` penalty to the final case score.
 
 ---
 

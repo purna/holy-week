@@ -306,7 +306,22 @@ export class UIManager {
   onLabAction(result) {
     if (result.type === "selection") this.renderPeople();
     else result.error ? this.audio.playError() : this.audio.playClue();
-    if (result?.scoreDelta) this.cm.addScore(result.scoreDelta);
+    if (result?.type === 'folder_verify' || result?.type === 'timeline_test' || result?.type === 'shredder_test') {
+      if (result.success) {
+        this.cm.addScore(5);
+      } else {
+        this.cm.addScore(-5);
+        this.cm.recordIncorrectLabPairing();
+      }
+    } else if (result?.type === 'detail_view') {
+      this.cm.addScore(-1);
+    } else if (result?.scoreDelta) {
+      this.cm.addScore(result.scoreDelta);
+    }
+    if (result?.feedback) {
+      this.renderLab();
+      this.labUI._setFeedback(result.feedback, result.feedbackType || "");
+    }
     if (!result?.error && result?.operation) {
       const view = document.getElementById("inv-lab");
       this.labUI.showActiveResultModal?.(view);
@@ -423,7 +438,7 @@ export class UIManager {
       <div id="codex-grid" class="codex-grid">
         ${discoveredProps.map(p => `
           <div class="prophecy-card discovered" onclick="window.ui.showProphecyDetail('${p.id}')">
-             <div class="prophecy-card-icon">${p.icon || '<img src=\'../assets/gfx/star-duotone.svg\' class=\'icon-svg\' loading=\'lazy\'>'}</div>
+             <div class="prophecy-card-icon"><img src=\'${p.icon || '../assets/gfx/star-duotone.svg'}\' class=\'icon-svg\' loading=\'lazy\'></div>
             <div class="prophecy-card-info">
               <div class="prophecy-card-reference">${p.reference}</div>
               <div class="prophecy-card-desc">${(p.fulfilledBy || p.desc || '').substring(0, 60)}...</div>
@@ -482,7 +497,7 @@ export class UIManager {
       this.codexMatchFeedback = `<div class="codex-feedback-msg success"><img src='../assets/gfx/sparkles-duotone.svg' class='icon-svg' loading='lazy'> Correct! +10 pts<br><small>${evidence.name} linked to ${prophecy.reference}</small></div>`;
       this.addSystemMessage(`<img src='../assets/gfx/sparkles-duotone.svg' class='icon-svg' loading='lazy'> Correct! ${evidence.name} linked to prophecy. (+10 pts)`, 'codex');
     } else {
-      this.cm.updateDoubt(5);
+      this.cm.recordIncorrectProphecyLink();
       if (this.audio.enabled) this.audio.playError();
       this.codexMatchFeedback = `<div class="codex-feedback-msg error"><img src='../assets/gfx/x-circle-duotone.svg' class='icon-svg' loading='lazy'> Incorrect Link! +5 Doubt<br><small>This evidence does not fulfill that prophecy.</small></div>`;
       this.addSystemMessage(`<img src='../assets/gfx/x-circle-duotone.svg' class='icon-svg' loading='lazy'> Incorrect link. Doubt increased by 5.`, 'codex');
@@ -514,7 +529,7 @@ export class UIManager {
     const p = this.es.getProphecyById(prophecyId);
     if (!p) return;
 
-    modal.querySelector(".evidence-detail-icon").innerHTML = "<img src='" + (e.icon || '../assets/gfx/star-duotone.svg') + "' class='icon-svg' loading='lazy'>";
+    modal.querySelector(".evidence-detail-icon").innerHTML = "<img src='" + (p.icon || '../assets/gfx/star-duotone.svg') + "' class='icon-svg' loading='lazy'>";
     modal.querySelector(".evidence-detail-name").textContent = p.reference || "Prophecy";
     modal.querySelector(".evidence-detail-type").textContent = "Prophecy";
 

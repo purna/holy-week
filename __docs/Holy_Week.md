@@ -194,12 +194,12 @@ Hidden Detective Chains are **cross-case discovery patterns** that unlock bonus 
 
 | Detail | Information |
 |---|---|
-| **Theme** | Christ's resurrection fulfills the Feast of Firstfruits and the Jonah sign |
-| **Cases Involved** | `resurrection` (Act IV) |
-| **Unlock Requirements** | Jonah Record, Firstfruits Offering, Empty Tomb, Resurrection Witnesses |
+| **Theme** | Christ's resurrection fulfills the pattern of Jonah's sign and the hope of resurrection |
+| **Cases Involved** | `crucifixion_site` (Act III) → `resurrection` (Act IV) |
+| **Unlock Requirements** | Guards' Broken Report, Opened Tombs, Empty Tomb, Mary's Testimony |
 | **Reward** | Codex Entry: *Death Defeated* |
 | **Scoring** | +25 bonus points, +10 Faith |
-| **Unlock Conditions** | `sign_of_jonah`, `firstfruits_offering`, `empty_tomb`, and `mary_encounter` evidence all linked across prophecy entries |
+| **Unlock Conditions** | `guard_report`, `opened_tombs`, `empty_tomb`, and `mary_encounter` evidence all linked across prophecy entries |
 
 ### Cross-Case Discovery Mechanics
 
@@ -207,11 +207,10 @@ Hidden chains are discovered through the **Codex** tab. When a prophecy from one
 
 | Chain | Cross-Case Links | Trigger Point |
 |---|---|---|
-| Psalm 22 | `crucifixion_site`: `mockery_crown` → `psalm_22_7_8`, `crucifixion_nails` → `psalm_22_16`, `split_dice` → `psalm_22_18` | After linking all 3 prophecy entries |
-| Passover Lamb | `passover_lamb_chain`: `nard_flask` → `typology_passover_lamb`, `crucifixion_site`: `sour_wine_sponge` → `typology_passover_lamb`, `unbroken_legs` → `exodus_12_46` | After linking evidence from 3 cases |
-| Day of Atonement | `barabbas_choice`: `barabbas_warrant` → scapegoat, `sanhedrin_trial`: high priest evidence, `crucifixion_site`: outside-city execution | After linking trial + execution evidence |
-| New Covenant | `last_supper`: `bread_crumbs` → Exodus 12, `wine_stain` → Jeremiah 31, `new_covenant_declaration` → Jeremiah 31 | After linking all 4 Last Supper evidence |
-| Resurrection | `resurrection`: `sign_of_jonah`, `firstfruits_offering`, `empty_tomb`, `mary_encounter` | After linking all 4 resurrection evidence |
+| Day of Atonement | `sanhedrin_trial`: `torn_robe` → `isaiah_50_6`, `barabbas_choice`: `barabbas_warrant` → scapegoat, `crucifixion_site`: `pierced_spear` → `zechariah_12_10` | After linking all 3 pieces of evidence |
+| Passover Lamb | `passover_lamb_chain`: `nard_flask` / `alabaster_jar` → `typology_passover_lamb`, `last_supper`: `wine_stain` → `typology_melchizedek`, `crucifixion_site`: `unbroken_legs` → `psalm_34_20` | After linking evidence from 3 cases |
+| New Covenant | `last_supper`: `bread_crumbs` → Exodus 12:1–14, `wine_stain` → Melchizedek typology, `new_covenant_declaration` → Jeremiah 31:31–34 | After linking all 3 Last Supper evidence |
+| Resurrection | `crucifixion_site` → `resurrection`: `guard_report`, `opened_tombs`, `empty_tomb`, `mary_encounter` | After linking all 4 resurrection evidence |
 
 ---
 [Back to Top](#table-of-contents)
@@ -817,7 +816,7 @@ A new **Actions** tab is available on the main investigation screen, providing a
 
 | Character | ID | Type | Unlock Method | Unlockable |
 |---|---|---|---|---|
-| John Mark | `john_mark` | NPC + Suspect | Talk to John Mark; Collect `bread_crumbs`, `new_covenant_declaration`, `betrayal_dipped_bread`, `covenant_seal`; Lab: **Witness to Agitation** (Observed the event, but did not cause it) | ✅ Yes |
+| John Mark | `john_mark` | NPC + Suspect | Talk to John Mark; Collect `bread_crumbs`, `new_covenant_declaration`, `betrayal_dipped_bread`, `twelve_roll`; Lab: **Witness to Agitation** (Observed the event, but did not cause it) | ✅ Yes |
 | Rhoda | `servant` | NPC + Suspect | Talk to Rhoda; Collect `water_jug`, `cup_fragments`; Lab: **Witness to Haste** (Saw someone leaving in a hurry) | ✅ Yes |
 | Judas Iscariot | `judas` | NPC + Suspect | Talk to Judas Iscariot; Collect `money_bag_impression`; Lab: **Implicated by Prophecy** (Links him to the betrayal) | ✅ Yes |
 
@@ -1070,9 +1069,9 @@ A new **Actions** tab is available on the main investigation screen, providing a
 | Secret Visitor | `secret_visit` | NPC only | Walk up in Scene tab | ✅ Yes (as NPC) |
 | Peter (Denial) | `peter_denial` | NPC only | Walk up in Scene tab | ✅ Yes (as NPC) |
 | Peter (Simple Defense) | `peter_defense_simple` | NPC only | Walk up in Scene tab | ✅ Yes (as NPC) |
-| Simon of Cyrene | `simon_cyrene` | NPC | Talk to Simon of Cyrene; Collect `simon_cyrene_burden`; Lab: **Isaac Typology** (Carries the wood, just as Isaac did) | ✅ Yes |
+| Simon of Cyrene | `simon_cyrene` | NPC | Talk to Simon of Cyrene; Collect `unbroken_legs`; Lab: **Isaac Typology** (Carries the wood, just as Isaac did) | ✅ Yes |
 | Temple Curtain Witness | `temple_curtain` | NPC only | Walk up in Scene tab | ✅ Yes (as NPC) |
-| Crucifixion Guard | `execution_guard` | NPC | Talk to Crucifixion Guard; Collect `crucifixion_nails`, `last_cry_abandonment`; Lab: **Gospel Details Verified** (Nails and final words confirm Gospel accuracy) | ✅ Yes |
+| Crucifixion Guard | `execution_guard` | NPC | Talk to Crucifixion Guard; Collect `sour_wine_sponge`, `final_words`; Lab: **Gospel Details Verified** (Sponge and final words confirm Gospel accuracy) | ✅ Yes |
 | No One | `none` | Suspect only | Auto-unlocked | ✅ Yes |
 
 #### Lab
@@ -1140,7 +1139,7 @@ A new **Actions** tab is available on the main investigation screen, providing a
 |---|---|---|---|
 | Mary Magdalene | Talk | `rolled_stone`, `empty_tomb`, `burial_linen`, `angelic_witness`, `mary_encounter` | Psalm 16:10 |
 | Marcus | Talk | `guard_report`, `rolled_stone` | Hosea 6:2 |
-| Joseph of Arimathea | Talk | `spice_jars`, `empty_tomb`, `firstfruits_offering` | Isaiah 53:10–11, Leviticus 23:9–14 |
+| Joseph of Arimathea | Talk | `spice_jars` | Isaiah 53:10–11 |
 
 
 
@@ -1176,10 +1175,9 @@ A new **Actions** tab is available on the main investigation screen, providing a
 | `empty_tomb` → Psalm 22:1–31 | Codex: `empty_tomb` (cry of abandonment opens, resurrection closes the psalm) |
 | `rolled_stone` → Psalm 16:10 | Lab: `rolled_stone` (the dead rise and shout for joy) |
 | `opened_tombs` → Ezekiel 37:12-13 | Lab: `opened_tombs` + `guard_report` |
-| `firstfruits_offering` → Leviticus 23:9–14 | Dialogue: Joseph of Arimathea |
 | `empty_tomb` → Psalm 16:10 | Lab: `empty_tomb` (resurrection as guarantee of our own rising) |
 
-**🔓 Hidden Chain:** *Death Defeated* — Link Jonah Record, Firstfruits Offering, Empty Tomb, and Resurrection Witnesses to complete the resurrection prophecy chain.
+**🔓 Hidden Chain:** *Death Defeated* — Link the Soldiers' Broken Report, Opened Tombs Testimony, Empty Burial Chamber, and Mary Magdalene's Testimony to complete the resurrection prophecy chain.
  
 ### Case: `roman_inquiry` (The Guard's Report)
 *   **Title:** The Guard's Report

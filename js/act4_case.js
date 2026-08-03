@@ -456,8 +456,22 @@ export const act4CaseA = {
         timeline: "CHRONOLOGY: Referenced after the resurrection, as the risen Jesus explained the Scriptures concerning Himself.",
         contradict: "RELIABILITY: The Psalm's own structure — suffering giving way to vindication — was written centuries before crucifixion existed as a punishment."
       },
+    },
+    {
+      id: "resurrection_fake",
+      name: "altered_ascension_witness_token",
+      type: "environmental",
+      icon: "../assets/gfx/shield-duotone.svg",
+      fake: true,
+      category: "event",
+      timelineOrder: null,
+      clues: {
+        compare: "No matching pair exists for this item.",
+        link: "Event — this item is suspiciously convenient.",
+        timeline: "CHRONOLOGY: The timeline does not quite fit with the other evidence.",
+        contradict: "RELIABILITY: This item was planted to mislead the investigation. It contains inconsistencies that do not match the verified evidence."
+      }
     }
-
   ],
 
   lab: [
@@ -893,7 +907,23 @@ export const act4CaseB = {
         timeline: "CHRONOLOGY: Filed last, once the council had already chosen to pay for silence rather than investigate.",
         contradict: "RELIABILITY: Its existence proves the council knew the guards' true story before manufacturing a false one to spread instead."
       },
-    },],
+    },
+    {
+      id: "roman_inquiry_fake",
+      name: "fabricated_tongue_fragment",
+      type: "environmental",
+      icon: "../assets/gfx/shield-duotone.svg",
+      fake: true,
+      category: "event",
+      timelineOrder: null,
+      clues: {
+        compare: "No matching pair exists for this item.",
+        link: "Event — this item is suspiciously convenient.",
+        timeline: "CHRONOLOGY: The timeline does not quite fit with the other evidence.",
+        contradict: "RELIABILITY: This item was planted to mislead the investigation. It contains inconsistencies that do not match the verified evidence."
+      }
+    }
+  ],
   lab: [
     {
       evidence: "bribe_shekels",
@@ -1442,7 +1472,23 @@ export const act4CaseC = {
         timeline: "CHRONOLOGY: The very first moment of this appearance, before the catch or the meal.",
         contradict: "RELIABILITY: John notes none of them dared ask who He was — an instinctive certainty, not a case built up over time."
       },
-    },],
+    },
+    {
+      id: "peter_restoration_fake",
+      name: "planted_persecution_record",
+      type: "environmental",
+      icon: "../assets/gfx/shield-duotone.svg",
+      fake: true,
+      category: "event",
+      timelineOrder: null,
+      clues: {
+        compare: "No matching pair exists for this item.",
+        link: "Event — this item is suspiciously convenient.",
+        timeline: "CHRONOLOGY: The timeline does not quite fit with the other evidence.",
+        contradict: "RELIABILITY: This item was planted to mislead the investigation. It contains inconsistencies that do not match the verified evidence."
+      }
+    }
+  ],
 
   lab: [
     {
