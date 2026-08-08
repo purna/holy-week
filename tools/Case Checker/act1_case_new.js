@@ -114,8 +114,6 @@ export const act1CaseA = {
       gospelLink: "Matthew 21:4–5; John 12:14–15",
       insight: "The donkey was not a practical choice — Roman rulers rode horses. The donkey was a deliberate symbol of peace and humility, contrasted with conquering kings on warhorses.",
       explanation: "This prophecy foretold that Israel's true king would arrive not as a conquering general on a warhorse, but as a humble servant of peace on a simple donkey.",
-      scriptureEvidenceId: "prophecy_scroll",
-      fulfillmentEvidenceId: "cloaks",
     },
     {
       reference: "Psalm 118:25–26",
@@ -127,8 +125,6 @@ export const act1CaseA = {
       gospelLink: "Matthew 21:9; Mark 11:9–10",
       insight: "'Hosanna' is the Greek transliteration of the Hebrew 'Hoshana' — a cry for salvation, not merely praise. The crowd was quoting this Psalm as a messianic greeting.",
       explanation: "The crowd's cry of 'Hosanna!' was a direct quote from this messianic psalm. 'Hosanna' is a plea for salvation, meaning 'Save us now!', showing they saw Jesus as a deliverer.",
-      scriptureEvidenceId: "psalm_118_25_26_scroll",
-      fulfillmentEvidenceId: "palm_branch",
     },
     {
       reference: "Genesis 49:10–11",
@@ -140,8 +136,6 @@ export const act1CaseA = {
       gospelLink: "Matthew 21:1–9",
       insight: "Jacob's blessing over Judah, over 1,400 years before the event, described a royal figure arriving on a donkey colt. Early Jewish readers interpreted this as messianic.",
       explanation: "Over 1,400 years earlier, Jacob's blessing over the tribe of Judah described a royal figure associated with a donkey colt, establishing an ancient precedent for this messianic entry.",
-      scriptureEvidenceId: "genesis_49_10_11_scroll",
-      fulfillmentEvidenceId: "cloaks",
     },
     {
       reference: "Malachi 3:1",
@@ -153,8 +147,6 @@ export const act1CaseA = {
       gospelLink: "Mark 11:11",
       insight: "The 'coming to the temple' link connects the triumphal entry with the Temple cleansing the following day — two acts that together announced prophetic fulfilment.",
       explanation: "This prophecy connects the Triumphal Entry directly to the subsequent Temple visit, framing them as a single, authoritative act of the Messiah arriving at His house.",
-      scriptureEvidenceId: "malachi_3_1_scroll",
-      fulfillmentEvidenceId: "crowd_testimony",
     },
   ],
 
@@ -276,7 +268,7 @@ export const act1CaseA = {
       relatedProphecy: "zechariah_9_9",
       revealsSuspect: "none",
       name: "Zechariah 9:9 Scroll Fragment",
-      type: "scripture",
+      type: "analytical",
       icon: "../assets/gfx/scroll-duotone.svg",
       emoji: "", // Retaining for reference, but icon is now SVG
       iconFA: "fa-solid fa-scroll",
@@ -405,121 +397,7 @@ export const act1CaseA = {
         timeline: "CHRONOLOGY: The complaint was written during or immediately after the procession.",
         contradict: "RELIABILITY: The Pharisees' alarm confirms the event was real and impactful."
       }
-    },
-
-    {
-      id: "triumphal_entry_fake",
-      name: "Forged Donkey Sale Receipt",
-      type: "environmental",
-      icon: "../assets/gfx/shield-duotone.svg",
-      fake: true,
-      category: "event",
-      timelineOrder: null,
-      desc: "A forged receipt claiming the donkey was sold to the disciples, but the ink and dating are anachronistic.",
-      bibleRef: "John 12:19",
-      propheticLink: "No prophetic significance — this is a planted distractor.",
-      bibleRefs: [
-        { ref: "John 12:19", link: "john_1219" }
-      ],
-      propheticRefs: [],
-      investigatorNote: "The ink composition and Roman date format reveal this as a later forgery. It was planted to reframe a prophetic entry as a common theft.",
-      clues: {
-        compare: "No matching pair exists for this item.",
-        link: "Event — this item is suspiciously convenient.",
-        timeline: "CHRONOLOGY: The timeline does not quite fit with the other evidence.",
-        contradict: "RELIABILITY: This item was planted to mislead the investigation. It contains inconsistencies that do not match the verified evidence."
-      }
-
-    },
-
-    {
-      id: "psalm_118_25_26_scroll",
-      name: "Psalm 118:25–26 Scroll Fragment",
-      type: "scripture",
-      relatedProphecy: "psalm_118_25_26",
-      revealsSuspect: "none",
-      category: "prophecy",
-      timelineOrder: 1,
-      pos: [0, 0, 0],
-      location: "Bethphage, Mount of Olives",
-      desc: "A parchment scroll fragment containing the text of Psalm 118:25–26. The text is clearly legible and matches the known Hebrew/Greek manuscripts.",
-      bibleRef: "Psalm 118:25–26",
-      bibleLink: "psalm_11825_26",
-      propheticLink: "This prophecy foretold events that were fulfilled during the events of this case.",
-      bibleRefs: [
-        { ref: "Psalm 118:25–26", link: "psalm_11825_26" }
-      ],
-      propheticRefs: [
-        { ref: "Psalm 118:25–26", link: "psalm_11825_26" }
-      ],
-      investigatorNote: "This scroll contains the ancient prophecy that was fulfilled during these events.",
-      fake: false,
-      clues: {
-        compare: "This scripture text provides the original prophecy that was fulfilled.",
-        link: "Prophecy — the scroll contains the ancient text that predicted these events.",
-        timeline: "CHRONOLOGY: Written long before the events it describes.",
-        contradict: "RELIABILITY: The text matches known ancient manuscripts and was written centuries before the events."
-      }
-    },
-
-    {
-      id: "genesis_49_10_11_scroll",
-      name: "Genesis 49:10–11 Scroll Fragment",
-      type: "scripture",
-      relatedProphecy: "genesis_49_10_11",
-      revealsSuspect: "none",
-      category: "prophecy",
-      timelineOrder: 1,
-      pos: [0, 0, 0],
-      location: "Bethphage, Mount of Olives",
-      desc: "A parchment scroll fragment containing the text of Genesis 49:10–11. The text is clearly legible and matches the known Hebrew/Greek manuscripts.",
-      bibleRef: "Genesis 49:10–11",
-      bibleLink: "genesis_4910_11",
-      propheticLink: "This prophecy foretold events that were fulfilled during the events of this case.",
-      bibleRefs: [
-        { ref: "Genesis 49:10–11", link: "genesis_4910_11" }
-      ],
-      propheticRefs: [
-        { ref: "Genesis 49:10–11", link: "genesis_4910_11" }
-      ],
-      investigatorNote: "This scroll contains the ancient prophecy that was fulfilled during these events.",
-      fake: false,
-      clues: {
-        compare: "This scripture text provides the original prophecy that was fulfilled.",
-        link: "Prophecy — the scroll contains the ancient text that predicted these events.",
-        timeline: "CHRONOLOGY: Written long before the events it describes.",
-        contradict: "RELIABILITY: The text matches known ancient manuscripts and was written centuries before the events."
-      }
-    },
-    {
-      id: "malachi_3_1_scroll",
-      name: "Malachi 3:1 Scroll Fragment",
-      type: "scripture",
-      relatedProphecy: "malachi_3_1",
-      revealsSuspect: "none",
-      category: "prophecy",
-      timelineOrder: 1,
-      pos: [0, 0, 0],
-      location: "Bethphage, Mount of Olives",
-      desc: "A parchment scroll fragment containing the text of Malachi 3:1. The text is clearly legible and matches the known Hebrew/Greek manuscripts.",
-      bibleRef: "Malachi 3:1",
-      bibleLink: "malachi_31",
-      propheticLink: "This prophecy foretold events that were fulfilled during the events of this case.",
-      bibleRefs: [
-        { ref: "Malachi 3:1", link: "malachi_31" }
-      ],
-      propheticRefs: [
-        { ref: "Malachi 3:1", link: "malachi_31" }
-      ],
-      investigatorNote: "This scroll contains the ancient prophecy that was fulfilled during these events.",
-      fake: false,
-      clues: {
-        compare: "This scripture text provides the original prophecy that was fulfilled.",
-        link: "Prophecy — the scroll contains the ancient text that predicted these events.",
-        timeline: "CHRONOLOGY: Written long before the events it describes.",
-        contradict: "RELIABILITY: The text matches known ancient manuscripts and was written centuries before the events."
-      }
-    },
+    }
   ],
 
   lab: [
@@ -912,8 +790,6 @@ export const act1CaseB = {
       gospelLink: "Matthew 21:12",
       insight: "Malachi predicted the Messiah would come not as a political puppet for the temple establishment, but as a refining fire to purify it.",
       explanation: "Malachi predicted the Messiah would come not to endorse the Temple system, but to purify it with judgment, like a fire refining metal.",
-      scriptureEvidenceId: "malachi_3_1_b_scroll",
-      fulfillmentEvidenceId: "scattered_shekels",
     },
     {
       reference: "Isaiah 56:7",
@@ -925,8 +801,6 @@ export const act1CaseB = {
       gospelLink: "Mark 11:17",
       insight: "By converting the Court of the Gentiles into a noisy, crowded marketplace, the leaders made it impossible for non-Jewish seekers to worship.",
       explanation: "By turning the Court of the Gentiles (the only area for non-Jews) into a marketplace, the leaders had blocked the nations from worship. Jesus's action restored the court to its intended purpose.",
-      scriptureEvidenceId: "isaiah_56_7_scroll",
-      fulfillmentEvidenceId: "broken_cages",
     },
     {
       reference: "Psalm 69:9",
@@ -938,8 +812,6 @@ export const act1CaseB = {
       gospelLink: "John 2:17 — John explicitly notes that Jesus's disciples remembered this Psalm when He cleared the temple",
       insight: "The disciples recognised the action as scriptural fulfillment. The Temple was meant to be a house of prayer, and Jesus's 'zeal' was not violent rage but covenant faithfulness — the same zeal that burned in David's heart for God's honour.",
       explanation: "The disciples recognized that Jesus's action was not uncontrolled anger but a righteous, covenantal 'zeal' for God's honor, just as David had.",
-      scriptureEvidenceId: "psalm_69_9_scroll",
-      fulfillmentEvidenceId: "whip_of_cords",
     },
   ],
 
@@ -1045,124 +917,13 @@ export const act1CaseB = {
         timeline: "CHRONOLOGY: The whip was woven on the spot and used during the clearing of the courts.",
         contradict: "RELIABILITY: A reed whip could not seriously injure, confirming the symbolic nature of the act."
       }
-    },
-    {
-      id: "temple_cleansing_fake",
-      name: "Planted Roman Coin",
-      type: "environmental",
-      icon: "../assets/gfx/shield-duotone.svg",
-      fake: true,
-      category: "event",
-      timelineOrder: null,
-      desc: "A Roman denarius found near the money changers, planted to suggest Jesus was protesting Roman rule rather than Temple corruption.",
-      bibleRef: "John 2:15",
-      propheticLink: "No prophetic significance — this is a planted distractor.",
-      bibleRefs: [
-        { ref: "John 2:15", link: "john_1219" }
-      ],
-      propheticRefs: [],
-      investigatorNote: "The coin lacks the grime and wear of other coins at the scene and its mint date postdates the event. It was planted to escalate the incident from religious to political.",
-      clues: {
-        compare: "No matching pair exists for this item.",
-        link: "Event — this item is suspiciously convenient.",
-        timeline: "CHRONOLOGY: The timeline does not quite fit with the other evidence.",
-        contradict: "RELIABILITY: This item was planted to mislead the investigation. It contains inconsistencies that do not match the verified evidence."
-
-      }
-    },
-    {
-      id: "malachi_3_1_b_scroll",
-      name: "Malachi 3:1 Scroll Fragment",
-      type: "scripture",
-      relatedProphecy: "malachi_3_1",
-      revealsSuspect: "none",
-      category: "prophecy",
-      timelineOrder: 1,
-      pos: [0, 0, 0],
-      location: "Temple Courts, Jerusalem",
-      desc: "A parchment scroll fragment containing the text of Malachi 3:1. The text is clearly legible and matches the known Hebrew/Greek manuscripts.",
-      bibleRef: "Malachi 3:1",
-      bibleLink: "malachi_31",
-      propheticLink: "This prophecy foretold events that were fulfilled during the events of this case.",
-      bibleRefs: [
-        { ref: "Malachi 3:1", link: "malachi_31" }
-      ],
-      propheticRefs: [
-        { ref: "Malachi 3:1", link: "malachi_31" }
-      ],
-      investigatorNote: "This scroll contains the ancient prophecy that was fulfilled during these events.",
-      fake: false,
-      clues: {
-        compare: "This scripture text provides the original prophecy that was fulfilled.",
-        link: "Prophecy — the scroll contains the ancient text that predicted these events.",
-        timeline: "CHRONOLOGY: Written long before the events it describes.",
-        contradict: "RELIABILITY: The text matches known ancient manuscripts and was written centuries before the events."
-      }
-    },
-    {
-      id: "isaiah_56_7_scroll",
-      name: "isaiah_56_7 Scroll Fragment",
-      type: "scripture",
-      relatedProphecy: "isaiah_56_7",
-      revealsSuspect: "none",
-      category: "prophecy",
-      timelineOrder: 1,
-      pos: [0, 0, 0],
-      location: "Temple Courts, Jerusalem",
-      desc: "A parchment scroll fragment containing the text of isaiah_56_7. The text is clearly legible and matches the known Hebrew/Greek manuscripts.",
-      bibleRef: "isaiah_56_7",
-      bibleLink: "isaiah_567",
-      propheticLink: "This prophecy foretold events that were fulfilled during the events of this case.",
-      bibleRefs: [
-        { ref: "isaiah_56_7", link: "isaiah_567" }
-      ],
-      propheticRefs: [
-        { ref: "isaiah_56_7", link: "isaiah_567" }
-      ],
-      investigatorNote: "This scroll contains the ancient prophecy that was fulfilled during these events.",
-      fake: false,
-      clues: {
-        compare: "This scripture text provides the original prophecy that was fulfilled.",
-        link: "Prophecy — the scroll contains the ancient text that predicted these events.",
-        timeline: "CHRONOLOGY: Written long before the events it describes.",
-        contradict: "RELIABILITY: The text matches known ancient manuscripts and was written centuries before the events."
-      }
-    },
-    {
-      id: "psalm_69_9_scroll",
-      name: "Psalm 69:9 Scroll Fragment",
-      type: "scripture",
-      relatedProphecy: "psalm_69_9",
-      revealsSuspect: "none",
-      category: "prophecy",
-      timelineOrder: 1,
-      pos: [0, 0, 0],
-      location: "Temple Courts, Jerusalem",
-      desc: "A parchment scroll fragment containing the text of Psalm 69:9. The text is clearly legible and matches the known Hebrew/Greek manuscripts.",
-      bibleRef: "Psalm 69:9",
-      bibleLink: "psalm_699",
-      propheticLink: "This prophecy foretold events that were fulfilled during the events of this case.",
-      bibleRefs: [
-        { ref: "Psalm 69:9", link: "psalm_699" }
-      ],
-      propheticRefs: [
-        { ref: "Psalm 69:9", link: "psalm_699" }
-      ],
-      investigatorNote: "This scroll contains the ancient prophecy that was fulfilled during these events.",
-      fake: false,
-      clues: {
-        compare: "This scripture text provides the original prophecy that was fulfilled.",
-        link: "Prophecy — the scroll contains the ancient text that predicted these events.",
-        timeline: "CHRONOLOGY: Written long before the events it describes.",
-        contradict: "RELIABILITY: The text matches known ancient manuscripts and was written centuries before the events."
-      }
-    },
+    }
   ],
 
   lab: [
     {
       evidence: "scattered_shekels",
-      suspect: "none",
+      suspect: "money_changer",
       result: "**Identified as Victim** (Business was disrupted)",
       notes: "Not a coin was pocketed — even Malachi admits it. Overturned tables (Mark 11:15), not a robbery."
     },
@@ -1192,7 +953,7 @@ export const act1CaseB = {
         },
       },
     },
-    { id: "none", name: "No One", role: "Not Stolen", avatar: "question-duotone.svg", bibleRef: null },
+    { id: "none", name: "No One", role: "Not Stolen", avatar:  "question-duotone.svg", bibleRef: null },
   ],
 
   npcs: [
@@ -1471,20 +1232,6 @@ export const act1CaseB = {
   ],
 
   deductions: {
-    "broken_cages+scattered_shekels": {
-      compare: {
-        text: "The overturned cages and scattered shekels together prove the cleansing was targeted — only the commercial apparatus was destroyed, not the Temple itself.",
-        insight: "A riot would have left coins and cages scattered randomly. The specific targeting of moneychanger tables and dove cages shows this was a controlled prophetic act, not a crime of passion.",
-        isKey: true,
-        bibleRef: "Mark 11:15–17",
-      },
-      link: {
-        text: "The physical evidence of destruction points to the same conclusion as the financial evidence: this was a message, not a robbery.",
-        insight: "Both the cages and the coins were left in disarray, but nothing was taken. The motive was prophetic, not criminal.",
-        isKey: false,
-        bibleRef: "John 2:15",
-      },
-    },
     "broken_cages+whip_of_cords": {
       link: {
         text: "The makeshift whip matches the scattered debris of the marketplace floor.",
@@ -1500,14 +1247,15 @@ export const act1CaseB = {
         isKey: false,
         bibleRef: "Luke 19:47–48",
       },
-    }
+    },
   },
+
   truth: {
     culprit: "none",
     motive: "There was no crime. Jesus acted within His rightful authority as the Son of God purifying His Father's house, executing a calculated prophetic sign.",
     method: "Jesus entered the Court of the Gentiles, manufactured a symbolic whip out of local rushes, and cleared out the illegal and predatory commercial stands. The religious authorities were too paralyzed by His moral clarity and the support of the common crowds to arrest Him on the spot.",
     lesson: "The temple cleansing showed that God values genuine, accessible worship for all people over cold, corrupt religious performance. It sealed Jesus's fate with the religious elite, who immediately began plotting His death.",
-    prophesyFulfilled: ["Malachi 3:1", "Isaiah 56:7", "Psalm 69:9"],
+    prophesyFulfilled: ["Malachi 3:1", "Isaiah 56:7", "Jeremiah 7:11"],
     furtherReading: ["Mark 11:15–19", "John 2:13–22"],
   },
 };
@@ -1675,7 +1423,7 @@ export const act1CaseC = {
 
   suspects: [
     { id: "peter_fig_tree", name: "Peter", role: "Disciple, Witness to the Withering", avatar: "peter.svg", bibleRef: "Mark 11:21" },
-    { id: "none", name: "No One", role: "Prophetic Act", avatar: "question-duotone.svg", bibleRef: null },
+    { id: "none", name: "No One", role: "Prophetic Act", avatar:  "question-duotone.svg", bibleRef: null },
   ],
 
   evidencePool: [
@@ -1797,30 +1545,7 @@ export const act1CaseC = {
         timeline: "CHRONOLOGY: The teaching was given Tuesday morning after Peter noticed the withered tree.",
         contradict: "RELIABILITY: The teaching is recorded in multiple Gospel accounts, confirming its authenticity."
       }
-    },
-    {
-      id: "fig_tree_incident_fake",
-      name: "Diseased Fig Leaf",
-      type: "environmental",
-      icon: "../assets/gfx/shield-duotone.svg",
-      fake: true,
-      category: "event",
-      timelineOrder: null,
-      desc: "A diseased fig leaf found near the cursed tree, used to argue the withering was natural blight rather than divine judgment.",
-      bibleRef: "Mark 11:20",
-      propheticLink: "No prophetic significance — this is a planted distractor.",
-      bibleRefs: [
-        { ref: "Mark 11:20", link: "john_1219" }
-      ],
-      propheticRefs: [],
-      investigatorNote: "The leaf is from a different species and location than the cursed tree. It was planted to provide a naturalistic explanation for the miracle.",
-      clues: {
-        compare: "No matching pair exists for this item.",
-        link: "Event — this item is suspiciously convenient.",
-        timeline: "CHRONOLOGY: The timeline does not quite fit with the other evidence.",
-        contradict: "RELIABILITY: This item was planted to mislead the investigation. It contains inconsistencies that do not match the verified evidence."
-      }
-    },
+    }
   ],
 
   lab: [
@@ -1876,6 +1601,7 @@ export const act1CaseC = {
       bibleRef: "Mark 11:20–21",
       hasDialogue: true,
       storyFile: "john_fig_tree",
+      unlocksSuspects: ["john_fig_tree"],
       unlocksEvidence: ["cursed_fig_tree_desc"],
       revealsProphecy: "zechariah_4_6_7",
       background: "John, son of Zebedee, was present with Jesus and Peter during the fig tree incident. He observed the events and heard Jesus's teaching on faith.",
@@ -1906,6 +1632,7 @@ export const act1CaseC = {
       bibleRef: "Mark 11:12-14, 20-25",
       hasDialogue: true,
       storyFile: "nathan_fig_tree",
+      unlocksSuspects: ["nathan_gardener"],
       unlocksEvidence: ["withered_fig_tree_state"],
       revealsProphecy: "micah_7_1",
       background: "A bewildered gardener who maintains the orchards along the path from Bethany. He witnessed the sudden transition of the fig tree.",
@@ -1932,6 +1659,7 @@ export const act1CaseC = {
       bibleRef: "Mark 11:12-14, 20-21",
       hasDialogue: true,
       storyFile: "local_traveler", // Assuming a generic local_traveler story exists
+      unlocksSuspects: ["local_traveler_fig_tree"],
       unlocksEvidence: ["withered_fig_tree_state"],
       revealsProphecy: "psalm_33_8_9",
       background: "A common traveler on the road between Bethany and Jerusalem, who observed the fig tree both on Monday and Tuesday morning.",

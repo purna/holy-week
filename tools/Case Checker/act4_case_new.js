@@ -428,7 +428,9 @@ export const act4CaseA = {
         timeline: "CHRONOLOGY: Reported as occurring at the moment of the resurrection, tied to the same event.",
         contradict: "RELIABILITY: Matthew records this as witnessed by many in Jerusalem, not a private or easily-fabricated claim."
       },
-    }, {
+    }
+    ,
+    {
       id: "psalm22_scroll",
       name: "Resurrection Psalm Scroll",
       type: "analytical",
@@ -454,224 +456,6 @@ export const act4CaseA = {
         timeline: "CHRONOLOGY: Referenced after the resurrection, as the risen Jesus explained the Scriptures concerning Himself.",
         contradict: "RELIABILITY: The Psalm's own structure — suffering giving way to vindication — was written centuries before crucifixion existed as a punishment."
       },
-    }, {
-      id: "resurrection_fake",
-      name: "Broken Tomb Seal Fragment",
-      type: "environmental",
-      icon: "../assets/gfx/shield-duotone.svg",
-      fake: true,
-      category: "event",
-      timelineOrder: null,
-      desc: "A broken tomb seal fragment used to support the claim that disciples broke the seal to steal the body.",
-      bibleRef: "Matthew 27:66",
-      propheticLink: "No prophetic significance — this is a planted distractor.",
-      bibleRefs: [
-        { ref: "Matthew 27:66", link: "john_1219" }
-      ],
-      propheticRefs: [],
-      investigatorNote: "The fracture pattern is consistent with seismic shock, not tool damage. It aligns with the earthquake fissure, confirming the seal broke naturally.",
-      clues: {
-        compare: "No matching pair exists for this item.",
-        link: "Event — this item is suspiciously convenient.",
-        timeline: "CHRONOLOGY: The timeline does not quite fit with the other evidence.",
-        contradict: "RELIABILITY: This item was planted to mislead the investigation. It contains inconsistencies that do not match the verified evidence."
-      },
-    }, {
-      id: "psalm_16_10_scroll",
-      name: "Psalm 16:10 Scroll Fragment",
-      type: "scripture",
-      relatedProphecy: "psalm_16_10",
-      revealsSuspect: "none",
-      category: "prophecy",
-      timelineOrder: 1,
-      pos: [0, 0, 0],
-      location: "Garden Tomb, Golgotha",
-      desc: "A parchment scroll fragment containing the text of Psalm 16:10. The text is clearly legible and matches the known Hebrew/Greek manuscripts.",
-      bibleRef: "Psalm 16:10",
-      bibleLink: "psalm_1610",
-      propheticLink: "This prophecy foretold events that were fulfilled during the events of this case.",
-      bibleRefs: [
-        { ref: "Psalm 16:10", link: "psalm_1610" }
-      ],
-      propheticRefs: [
-        { ref: "Psalm 16:10", link: "psalm_1610" }
-      ],
-      investigatorNote: "This scroll contains the ancient prophecy that was fulfilled during these events.",
-      fake: false,
-      clues: {
-        compare: "This scripture text provides the original prophecy that was fulfilled.",
-        link: "Prophecy — the scroll contains the ancient text that predicted these events.",
-        timeline: "CHRONOLOGY: Written long before the events it describes.",
-        contradict: "RELIABILITY: The text matches known ancient manuscripts and was written centuries before the events."
-      },
-    }, {
-      id: "hosea_6_2_scroll",
-      name: "Hosea 6:2 Scroll Fragment",
-      type: "scripture",
-      relatedProphecy: "hosea_6_2",
-      revealsSuspect: "none",
-      category: "prophecy",
-      timelineOrder: 1,
-      pos: [0, 0, 0],
-      location: "Garden Tomb, Golgotha",
-      desc: "A parchment scroll fragment containing the text of Hosea 6:2. The text is clearly legible and matches the known Hebrew/Greek manuscripts.",
-      bibleRef: "Hosea 6:2",
-      bibleLink: "hosea_62",
-      propheticLink: "This prophecy foretold events that were fulfilled during the events of this case.",
-      bibleRefs: [
-        { ref: "Hosea 6:2", link: "hosea_62" }
-      ],
-      propheticRefs: [
-        { ref: "Hosea 6:2", link: "hosea_62" }
-      ],
-      investigatorNote: "This scroll contains the ancient prophecy that was fulfilled during these events.",
-      fake: false,
-      clues: {
-        compare: "This scripture text provides the original prophecy that was fulfilled.",
-        link: "Prophecy — the scroll contains the ancient text that predicted these events.",
-        timeline: "CHRONOLOGY: Written long before the events it describes.",
-        contradict: "RELIABILITY: The text matches known ancient manuscripts and was written centuries before the events."
-      },
-    }, {
-      id: "jonah_1_17___matthew_12_40_scroll",
-      name: "Jonah 1:17 / Matthew 12:40 Scroll Fragment",
-      type: "scripture",
-      relatedProphecy: "jonah_1_17___matthew_12_40",
-      revealsSuspect: "none",
-      category: "prophecy",
-      timelineOrder: 1,
-      pos: [0, 0, 0],
-      location: "Garden Tomb, Golgotha",
-      desc: "A parchment scroll fragment containing the text of Jonah 1:17 / Matthew 12:40. The text is clearly legible and matches the known Hebrew/Greek manuscripts.",
-      bibleRef: "Jonah 1:17 / Matthew 12:40",
-      bibleLink: "jonah_117___matthew_1240",
-      propheticLink: "This prophecy foretold events that were fulfilled during the events of this case.",
-      bibleRefs: [
-        { ref: "Jonah 1:17 / Matthew 12:40", link: "jonah_117___matthew_1240" }
-      ],
-      propheticRefs: [
-        { ref: "Jonah 1:17 / Matthew 12:40", link: "jonah_117___matthew_1240" }
-      ],
-      investigatorNote: "This scroll contains the ancient prophecy that was fulfilled during these events.",
-      fake: false,
-      clues: {
-        compare: "This scripture text provides the original prophecy that was fulfilled.",
-        link: "Prophecy — the scroll contains the ancient text that predicted these events.",
-        timeline: "CHRONOLOGY: Written long before the events it describes.",
-        contradict: "RELIABILITY: The text matches known ancient manuscripts and was written centuries before the events."
-      },
-    }, {
-      id: "isaiah_53_10_11_scroll",
-      name: "Isaiah 53:10–11 Scroll Fragment",
-      type: "scripture",
-      relatedProphecy: "isaiah_53_10_11",
-      revealsSuspect: "none",
-      category: "prophecy",
-      timelineOrder: 1,
-      pos: [0, 0, 0],
-      location: "Garden Tomb, Golgotha",
-      desc: "A parchment scroll fragment containing the text of Isaiah 53:10–11. The text is clearly legible and matches the known Hebrew/Greek manuscripts.",
-      bibleRef: "Isaiah 53:10–11",
-      bibleLink: "isaiah_5310_11",
-      propheticLink: "This prophecy foretold events that were fulfilled during the events of this case.",
-      bibleRefs: [
-        { ref: "Isaiah 53:10–11", link: "isaiah_5310_11" }
-      ],
-      propheticRefs: [
-        { ref: "Isaiah 53:10–11", link: "isaiah_5310_11" }
-      ],
-      investigatorNote: "This scroll contains the ancient prophecy that was fulfilled during these events.",
-      fake: false,
-      clues: {
-        compare: "This scripture text provides the original prophecy that was fulfilled.",
-        link: "Prophecy — the scroll contains the ancient text that predicted these events.",
-        timeline: "CHRONOLOGY: Written long before the events it describes.",
-        contradict: "RELIABILITY: The text matches known ancient manuscripts and was written centuries before the events."
-      },
-    }, {
-      id: "psalm_22_1_31_scroll",
-      name: "Psalm 22:1–31 Scroll Fragment",
-      type: "scripture",
-      relatedProphecy: "psalm_22_1_31",
-      revealsSuspect: "none",
-      category: "prophecy",
-      timelineOrder: 1,
-      pos: [0, 0, 0],
-      location: "Garden Tomb, Golgotha",
-      desc: "A parchment scroll fragment containing the text of Psalm 22:1–31. The text is clearly legible and matches the known Hebrew/Greek manuscripts.",
-      bibleRef: "Psalm 22:1–31",
-      bibleLink: "psalm_221_31",
-      propheticLink: "This prophecy foretold events that were fulfilled during the events of this case.",
-      bibleRefs: [
-        { ref: "Psalm 22:1–31", link: "psalm_221_31" }
-      ],
-      propheticRefs: [
-        { ref: "Psalm 22:1–31", link: "psalm_221_31" }
-      ],
-      investigatorNote: "This scroll contains the ancient prophecy that was fulfilled during these events.",
-      fake: false,
-      clues: {
-        compare: "This scripture text provides the original prophecy that was fulfilled.",
-        link: "Prophecy — the scroll contains the ancient text that predicted these events.",
-        timeline: "CHRONOLOGY: Written long before the events it describes.",
-        contradict: "RELIABILITY: The text matches known ancient manuscripts and was written centuries before the events."
-      },
-    }, {
-      id: "isaiah_26_19_scroll",
-      name: "Isaiah 26:19 Scroll Fragment",
-      type: "scripture",
-      relatedProphecy: "isaiah_26_19",
-      revealsSuspect: "none",
-      category: "prophecy",
-      timelineOrder: 1,
-      pos: [0, 0, 0],
-      location: "Garden Tomb, Golgotha",
-      desc: "A parchment scroll fragment containing the text of Isaiah 26:19. The text is clearly legible and matches the known Hebrew/Greek manuscripts.",
-      bibleRef: "Isaiah 26:19",
-      bibleLink: "isaiah_2619",
-      propheticLink: "This prophecy foretold events that were fulfilled during the events of this case.",
-      bibleRefs: [
-        { ref: "Isaiah 26:19", link: "isaiah_2619" }
-      ],
-      propheticRefs: [
-        { ref: "Isaiah 26:19", link: "isaiah_2619" }
-      ],
-      investigatorNote: "This scroll contains the ancient prophecy that was fulfilled during these events.",
-      fake: false,
-      clues: {
-        compare: "This scripture text provides the original prophecy that was fulfilled.",
-        link: "Prophecy — the scroll contains the ancient text that predicted these events.",
-        timeline: "CHRONOLOGY: Written long before the events it describes.",
-        contradict: "RELIABILITY: The text matches known ancient manuscripts and was written centuries before the events."
-      },
-    }, {
-      id: "ezekiel_37_12_13_scroll",
-      name: "Ezekiel 37:12–13 Scroll Fragment",
-      type: "scripture",
-      relatedProphecy: "ezekiel_37_12_13",
-      revealsSuspect: "none",
-      category: "prophecy",
-      timelineOrder: 1,
-      pos: [0, 0, 0],
-      location: "Garden Tomb, Golgotha",
-      desc: "A parchment scroll fragment containing the text of Ezekiel 37:12–13. The text is clearly legible and matches the known Hebrew/Greek manuscripts.",
-      bibleRef: "Ezekiel 37:12–13",
-      bibleLink: "ezekiel_3712_13",
-      propheticLink: "This prophecy foretold events that were fulfilled during the events of this case.",
-      bibleRefs: [
-        { ref: "Ezekiel 37:12–13", link: "ezekiel_3712_13" }
-      ],
-      propheticRefs: [
-        { ref: "Ezekiel 37:12–13", link: "ezekiel_3712_13" }
-      ],
-      investigatorNote: "This scroll contains the ancient prophecy that was fulfilled during these events.",
-      fake: false,
-      clues: {
-        compare: "This scripture text provides the original prophecy that was fulfilled.",
-        link: "Prophecy — the scroll contains the ancient text that predicted these events.",
-        timeline: "CHRONOLOGY: Written long before the events it describes.",
-        contradict: "RELIABILITY: The text matches known ancient manuscripts and was written centuries before the events."
-      }
     }
 
   ],
@@ -1109,61 +893,7 @@ export const act4CaseB = {
         timeline: "CHRONOLOGY: Filed last, once the council had already chosen to pay for silence rather than investigate.",
         contradict: "RELIABILITY: Its existence proves the council knew the guards' true story before manufacturing a false one to spread instead."
       },
-    },
-    {
-      id: "roman_inquiry_fake",
-      name: "Guard's 'Stolen' Personal Item",
-      type: "environmental",
-      icon: "../assets/gfx/shield-duotone.svg",
-      fake: true,
-      category: "event",
-      timelineOrder: null,
-      desc: "A Roman legionary clasp 'lost' by a guard, used to add a layer of personal violation to the stolen body report.",
-      bibleRef: "Matthew 27:65",
-      propheticLink: "No prophetic significance — this is a planted distractor.",
-      bibleRefs: [
-        { ref: "Matthew 27:65", link: "john_1219" }
-      ],
-      propheticRefs: [],
-      investigatorNote: "The clasp shows no forcible removal and the guard who 'lost' it received the largest bribe portion. It was fabricated to make the guards' failure seem like a violent struggle.",
-      clues: {
-        compare: "No matching pair exists for this item.",
-        link: "Event — this item is suspiciously convenient.",
-        timeline: "CHRONOLOGY: The timeline does not quite fit with the other evidence.",
-        contradict: "RELIABILITY: This item was planted to mislead the investigation. It contains inconsistencies that do not match the verified evidence."
-      }
-    },
-
-    {
-      id: "psalm_2_1_2_scroll",
-      name: "Psalm 2:1–2 Scroll Fragment",
-      type: "scripture",
-      relatedProphecy: "psalm_2_1_2",
-      revealsSuspect: "none",
-      category: "prophecy",
-      timelineOrder: 1,
-      pos: [0, 0, 0],
-      location: "Garden Tomb, Golgotha",
-      desc: "A parchment scroll fragment containing the text of Psalm 2:1–2. The text is clearly legible and matches the known Hebrew/Greek manuscripts.",
-      bibleRef: "Psalm 2:1–2",
-      bibleLink: "psalm_21_2",
-      propheticLink: "This prophecy foretold events that were fulfilled during the events of this case.",
-      bibleRefs: [
-        { ref: "Psalm 2:1–2", link: "psalm_21_2" }
-      ],
-      propheticRefs: [
-        { ref: "Psalm 2:1–2", link: "psalm_21_2" }
-      ],
-      investigatorNote: "This scroll contains the ancient prophecy that was fulfilled during these events.",
-      fake: false,
-      clues: {
-        compare: "This scripture text provides the original prophecy that was fulfilled.",
-        link: "Prophecy — the scroll contains the ancient text that predicted these events.",
-        timeline: "CHRONOLOGY: Written long before the events it describes.",
-        contradict: "RELIABILITY: The text matches known ancient manuscripts and was written centuries before the events."
-      }
-    },
-  ],
+    },],
   lab: [
     {
       evidence: "bribe_shekels",
@@ -1173,7 +903,7 @@ export const act4CaseB = {
     },
     {
       evidence: "broken_imperial_seal",
-      suspect: "chief_priest_caiaphas",
+      suspect: "caiaphas",
       result: "**Implicated in Conspiracy** (Authored the false report)",
       notes: "'Say, His disciples came during the night and stole him away' (Matthew 28:13) — a story invented by the same council that condemned him."
     }
@@ -1197,21 +927,6 @@ export const act4CaseB = {
           exposed: "You think a handful of unarmed galilean fishermen broke a Roman imperial seal while an elite unit slept right next to it? We didn't sleep! The ground split open, and a light like lightning blinded us. We woke up paralyzed, and the body was gone. The priests paid us to lie because the truth scares them to death!"
         },
       },
-    },
-    {
-      id: "chief_priest_caiaphas",
-      name: "Caiaphas",
-      role: "High Priest, Sadducee",
-      avatar: "caiaphas.svg",
-      color: 0x8844aa,
-      pos: [0, 0, 0],
-      bibleRef: "Matthew 28:11-15",
-      background: "Joseph ben Caiaphas, managing severe institutional damage control by manufacturing an alternate narrative for the empty tomb.",
-      dialogue: {
-        neutral: "The tomb is empty because of common grave-robbing. Frightened Galileans returned under cover of night.",
-        cautious: "The allocation of treasury funds is an internal administrative matter.",
-      },
-      contradictions: {},
     },
     { id: "none", name: "No One", role: "Not Stolen", avatar: "nicodemus.svg", bibleRef: null },
   ],
@@ -1414,7 +1129,7 @@ export const act4CaseB = {
     motive: "There was no grave robbery. The resurrection was a real, supernatural event that shattered the physical boundaries of the tomb, causing the guards to flee in terror.",
     method: "God raised Jesus on the third morning, accompanied by an earthquake and an angelic manifestation. The terrified guards ran to the chief priests, who chose to bribe the soldiers to distribute a fabricated theft narrative to prevent a total collapse of their religious authority.",
     lesson: "The existence of the bribe and the logical vulnerability of the official cover story serve as absolute legal confirmation of the empty tomb. The world's systems will spend any amount of silver to silence the reality of the resurrected King.",
-    prophesyFulfilled: ["Psalm 2:1–2"],
+    prophesyFulfilled: ["Psalm 2:1–4", "Matthew 12:40"],
     furtherReading: ["Matthew 28:11–15"],
   },
 };
@@ -1727,148 +1442,7 @@ export const act4CaseC = {
         timeline: "CHRONOLOGY: The very first moment of this appearance, before the catch or the meal.",
         contradict: "RELIABILITY: John notes none of them dared ask who He was — an instinctive certainty, not a case built up over time."
       },
-    },
-    {
-      id: "peter_restoration_fake",
-      name: "Fisherman's Net with Ripped Knot",
-      type: "environmental",
-      icon: "../assets/gfx/shield-duotone.svg",
-      fake: true,
-      category: "event",
-      timelineOrder: null,
-      desc: "A fisherman's net with a ripped knot, used to explain the miraculous catch as a mundane net failure.",
-      bibleRef: "John 21:11",
-      propheticLink: "No prophetic significance — this is a planted distractor.",
-      bibleRefs: [
-        { ref: "John 21:11", link: "john_1219" }
-      ],
-      propheticRefs: [],
-      investigatorNote: "The knot was cleanly cut with a blade, not frayed under strain. The net is a different weave than Peter's crew used. The rumor came from a rival fishing crew.",
-      clues: {
-        compare: "No matching pair exists for this item.",
-        link: "Event — this item is suspiciously convenient.",
-        timeline: "CHRONOLOGY: The timeline does not quite fit with the other evidence.",
-        contradict: "RELIABILITY: This item was planted to mislead the investigation. It contains inconsistencies that do not match the verified evidence."
-      }
-    },
-
-    {
-      id: "zechariah_13_7_scroll",
-      name: "Zechariah 13:7 Scroll Fragment",
-      type: "scripture",
-      relatedProphecy: "zechariah_13_7",
-      revealsSuspect: "none",
-      category: "prophecy",
-      timelineOrder: 1,
-      pos: [0, 0, 0],
-      location: "Sea of Galilee",
-      desc: "A parchment scroll fragment containing the text of Zechariah 13:7. The text is clearly legible and matches the known Hebrew/Greek manuscripts.",
-      bibleRef: "Zechariah 13:7",
-      bibleLink: "zechariah_137",
-      propheticLink: "This prophecy foretold events that were fulfilled during the events of this case.",
-      bibleRefs: [
-        { ref: "Zechariah 13:7", link: "zechariah_137" }
-      ],
-      propheticRefs: [
-        { ref: "Zechariah 13:7", link: "zechariah_137" }
-      ],
-      investigatorNote: "This scroll contains the ancient prophecy that was fulfilled during these events.",
-      fake: false,
-      clues: {
-        compare: "This scripture text provides the original prophecy that was fulfilled.",
-        link: "Prophecy — the scroll contains the ancient text that predicted these events.",
-        timeline: "CHRONOLOGY: Written long before the events it describes.",
-        contradict: "RELIABILITY: The text matches known ancient manuscripts and was written centuries before the events."
-      }
-    },
-    {
-      id: "ezekiel_34_11-16_scroll",
-      name: "Ezekiel 34:11–16 Scroll Fragment",
-      type: "scripture",
-      relatedProphecy: "ezekiel_34_11-16",
-      revealsSuspect: "none",
-      category: "prophecy",
-      timelineOrder: 1,
-      pos: [0, 0, 0],
-      location: "Sea of Galilee",
-      desc: "A parchment scroll fragment containing the text of Ezekiel 34:11–16. The text is clearly legible and matches the known Hebrew/Greek manuscripts.",
-      bibleRef: "Ezekiel 34:11–16",
-      bibleLink: "ezekiel_3411_16",
-      propheticLink: "This prophecy foretold events that were fulfilled during the events of this case.",
-      bibleRefs: [
-        { ref: "Ezekiel 34:11–16", link: "ezekiel_3411_16" }
-      ],
-      propheticRefs: [
-        { ref: "Ezekiel 34:11–16", link: "ezekiel_3411_16" }
-      ],
-      investigatorNote: "This scroll contains the ancient prophecy that was fulfilled during these events.",
-      fake: false,
-      clues: {
-        compare: "This scripture text provides the original prophecy that was fulfilled.",
-        link: "Prophecy — the scroll contains the ancient text that predicted these events.",
-        timeline: "CHRONOLOGY: Written long before the events it describes.",
-        contradict: "RELIABILITY: The text matches known ancient manuscripts and was written centuries before the events."
-      }
-    },
-    {
-      id: "psalm_16_10_scroll",
-      name: "Psalm 16:10 Scroll Fragment",
-      type: "scripture",
-      relatedProphecy: "psalm_16_10",
-      revealsSuspect: "none",
-      category: "prophecy",
-      timelineOrder: 1,
-      pos: [0, 0, 0],
-      location: "Sea of Galilee",
-      desc: "A parchment scroll fragment containing the text of Psalm 16:10. The text is clearly legible and matches the known Hebrew/Greek manuscripts.",
-      bibleRef: "Psalm 16:10",
-      bibleLink: "psalm_1610",
-      propheticLink: "This prophecy foretold events that were fulfilled during the events of this case.",
-      bibleRefs: [
-        { ref: "Psalm 16:10", link: "psalm_1610" }
-      ],
-      propheticRefs: [
-        { ref: "Psalm 16:10", link: "psalm_1610" }
-      ],
-      investigatorNote: "This scroll contains the ancient prophecy that was fulfilled during these events.",
-      fake: false,
-      clues: {
-        compare: "This scripture text provides the original prophecy that was fulfilled.",
-        link: "Prophecy — the scroll contains the ancient text that predicted these events.",
-        timeline: "CHRONOLOGY: Written long before the events it describes.",
-        contradict: "RELIABILITY: The text matches known ancient manuscripts and was written centuries before the events."
-      }
-    },
-    {
-      id: "isaiah_53_10_11_scroll",
-      name: "Isaiah 53:10–11 Scroll Fragment",
-      type: "scripture",
-      relatedProphecy: "isaiah_53_10_11",
-      revealsSuspect: "none",
-      category: "prophecy",
-      timelineOrder: 1,
-      pos: [0, 0, 0],
-      location: "Sea of Galilee",
-      desc: "A parchment scroll fragment containing the text of Isaiah 53:10–11. The text is clearly legible and matches the known Hebrew/Greek manuscripts.",
-      bibleRef: "Isaiah 53:10–11",
-      bibleLink: "isaiah_5310_11",
-      propheticLink: "This prophecy foretold events that were fulfilled during the events of this case.",
-      bibleRefs: [
-        { ref: "Isaiah 53:10–11", link: "isaiah_5310_11" }
-      ],
-      propheticRefs: [
-        { ref: "Isaiah 53:10–11", link: "isaiah_5310_11" }
-      ],
-      investigatorNote: "This scroll contains the ancient prophecy that was fulfilled during these events.",
-      fake: false,
-      clues: {
-        compare: "This scripture text provides the original prophecy that was fulfilled.",
-        link: "Prophecy — the scroll contains the ancient text that predicted these events.",
-        timeline: "CHRONOLOGY: Written long before the events it describes.",
-        contradict: "RELIABILITY: The text matches known ancient manuscripts and was written centuries before the events."
-      }
-    },
-  ],
+    },],
 
   lab: [
     {
@@ -1879,7 +1453,7 @@ export const act4CaseC = {
     },
     {
       evidence: "miraculous_catch",
-      suspect: "none",
+      suspect: "thomas",
       result: "**Identified as Witness** (His doubt led to physical proof)",
       notes: "'Unless I see the nail marks... I will not believe' (John 20:25) — Thomas's doubt is what makes his eventual confession, 'My Lord and my God,' count as evidence."
     }
@@ -2068,7 +1642,7 @@ export const act4CaseC = {
     motive: "There was no crime to investigate. This was a divine restoration—Peter's threefold denial met with threefold commission, his shame replaced with grace.",
     method: "Jesus appeared to the disciples after resurrection, used the familiar details of fishing and fire to trigger recognition, then privately restored Peter through the threefold dialogue of love and commission.",
     lesson: "Jesus's restoration of Peter shows that failure never disqualifies us from grace. The same hands that warmed at the courtyard fire now warmed at the shoreline fire—receive mercy, then become mercy.",
-    prophesyFulfilled: ["Zechariah 13:7", "Ezekiel 34:11-16"],
+    prophesyFulfilled: ["Zechariah 13:7", "Ezekiel 34:11-16", "Jeremiah 3:14"],
     furtherReading: ["John 21:1-19", "1 Corinthians 1:12-14", "Galatians 2:9-21"],
   },
 };

@@ -99,7 +99,7 @@ This document serves as the master forensic reference for all investigative acts
 
 ## **Act III: Passion & Arrest**
 
-### **Case A: The Midnight Arrest (gethsemane\_arrest)**
+### **Case B: The Severed Ear (gethsemane\_arrest)**
 
 **Prophecies**: Zechariah 13:7, Isaiah 53:7.
 
@@ -188,6 +188,9 @@ const groupDefinitions \= \[
 | Fresh-Cut Palm Branch (`palm_branch`) | `psalm_118_25_26` | John 12:13 | In the Maccabean era, palm branches became a symbol of Jewish national liberation and celebration (1 Maccabees 13:51 — Simon Maccabeus's entry into the Jerusalem citadel, 141 BC). The crowd was making a political and spiritual statement — this man is our king and deliverer. |
 | Cut Rope at the Tethering Post (`rope_fibers`) | - | Mark 11:2 | Jesus specified it must be a colt 'no one has ever ridden' — in Jewish law, an animal used for sacred purposes must be one that has not been used for common work (Numbers 19:2; Deuteronomy 21:3). This detail proves the act was religiously intentional, not criminal. |
 | Pharisee's Written Complaint (`crowd_testimony`) | `malachi_3_1` | Luke 19:39–40 | The Pharisees recognised the messianic implication of the palm branches and shouts. John 12:19 records their panic: 'Look how the whole world has gone after him!' |
+| Psalm 118:25–26 Scroll Fragment (`psalm_118_25_26_scroll`) | `psalm_118_25_26` | Psalm 118:25–26 | Supplementary primary-source scroll evidence for this case's Psalm 118:25–26 fulfilment (paired with `palm_branch`). |
+| Genesis 49:10–11 Scroll Fragment (`genesis_49_10_11_scroll`) | `genesis_49_10_11` | Genesis 49:10–11 | Supplementary primary-source scroll evidence for this case's Genesis 49:10–11 fulfilment (paired with `cloaks`). |
+| Malachi 3:1 Scroll Fragment (`malachi_3_1_scroll`) | `malachi_3_1` | Malachi 3:1 | Supplementary primary-source scroll evidence for this case's Malachi 3:1 fulfilment (paired with `crowd_testimony`). |
 
 ---
 ### Contested Evidence & Forensic Analysis
@@ -222,6 +225,9 @@ const groupDefinitions \= \[
 | Shattered Dove Cages (`broken_cages`) | `isaiah_56_7` | Leviticus 5:7 | Isaiah 56:7 — 'My house shall be called a house of prayer for all nations' — is the prophecy Jesus explicitly quoted as He drove out the sellers. The dove trade was the clearest abuse of it: Leviticus 5:7 allows doves as a concession for poverty, yet the priests exploited this legal requirement with exorbitant commercial markups, locking the poor and the nations out of the very prayer court Isaiah said was for them. That exploitation directly triggered Jesus's anger. |
 | Scattered Tyrian Shekels (`scattered_shekels`) | `malachi_3_1` | Exodus 30:13 | Exodus 30:13 required a half-shekel temple offering. The priests exploited this by mandating Tyrian shekels, forcing pilgrims to pay massive exchange fees. |
 | Discarded Whip of Cords (`whip_of_cords`) | `malachi_3_1` | John 2:15 | John 2:15 specifically details Him weaving this instrument on the spot before initiating the cleansing. |
+| Malachi 3:1 Scroll Fragment (`malachi_3_1_b_scroll`) | `malachi_3_1` | Malachi 3:1 | Supplementary primary-source scroll evidence for this case's Malachi 3:1 fulfilment (paired with `scattered_shekels` / `whip_of_cords`). |
+| Isaiah 56:7 Scroll Fragment (`isaiah_56_7_scroll`) | `isaiah_56_7` | Isaiah 56:7 | Supplementary primary-source scroll evidence for this case's Isaiah 56:7 fulfilment (paired with `broken_cages`). |
+| Psalm 69:9 Scroll Fragment (`psalm_69_9_scroll`) | `psalm_69_9` | Psalm 69:9 | Supplementary primary-source scroll evidence for this case's Psalm 69:9 fulfilment. |
 
 ---
 ### Contested Evidence & Forensic Analysis
@@ -298,7 +304,7 @@ const groupDefinitions \= \[
 | Denarius of Tiberius Caesar (`coin_of_caesar`) | - | Matthew 22:19–21 | The coin bore Caesar's image (imago). Jesus's answer pointed to something deeper: humanity bears God's image (Genesis 1:26–27, imago Dei). The coin question about taxation became a profound statement about identity and allegiance — Caesar's image on metal; God's image on people. |
 | Withered Fig Leaf (`fig_leaf_withered`) | - | Mark 11:20–21 | Micah 7:1 and Jeremiah 8:13 both use a barren fig tree as a symbol for Israel's spiritual fruitlessness. Hosea 9:10 says 'Like grapes in the wilderness, I found Israel.' The withered tree was a living parable — the judgement Jesus described in His Temple parables had already begun in miniature on the roadside. |
 | Two Leptons (Widow's Mites) (`widow_two_coins`) | - | Mark 12:41–44 | 1 Samuel 16:7 — 'Man looks at the outward appearance, but the LORD looks at the heart.' The widow's offering is the practical demonstration of everything Jesus had been teaching against the religious leaders' showy piety. She gave all she had (100%); the wealthy gave from their surplus. |
-| Temple Bystander's Written Account (`witness_scroll`) | - | Matthew 22:46 | Isaiah 11:2 promised the Messiah would have the 'Spirit of wisdom and understanding, the Spirit of counsel and might' — He would answer every challenge with perfect insight. The progressive silencing of each religious faction across one morning is the fulfilment of this promise made 700 years earlier. Daniel 7:13–14 foretold 'one like a son of man' coming with the clouds of heaven to receive an everlasting dominion — the title 'Son of Man' Jesus used for Himself throughout these exchanges. |
+| Temple Bystander's Written Account (`witness_scroll`) | `daniel_7_13_14` | Matthew 22:46 | Isaiah 11:2 promised the Messiah would have the 'Spirit of wisdom and understanding, the Spirit of counsel and might' — He would answer every challenge with perfect insight. The progressive silencing of each religious faction across one morning is the fulfilment of this promise made 700 years earlier. Daniel 7:13–14 foretold 'one like a son of man' coming with the clouds of heaven to receive an everlasting dominion — the title 'Son of Man' Jesus used for Himself throughout these exchanges. |
 
 ---
 ### Contested Evidence & Forensic Analysis
@@ -638,6 +644,13 @@ const groupDefinitions \= \[
 | Mary Magdalene's Testimony (`mary_encounter`) | `isaiah_53_10_11` | John 20:11–18 | Isaiah 53:10–11 promised the Suffering Servant would 'see his offspring and prolong his days' after being crushed — a resurrection paradox. The risen Christ's first act was to call Mary by name (echoing Isaiah 43:1), sending her as the primary witness. In a Roman court a woman's testimony was inadmissible; making a former demoniac the lead witness is exactly the kind of counter-cultural detail that confirms authenticity rather than fabrication. |
 | Opened Tombs Testimony (`opened_tombs`) | `ezekiel_37_12_13` | Matthew 27:52-53 | Ezekiel 37 prophesied that God would open the graves of His people as a sign of His power to restore. The raising of these saints was a literal fulfillment and a powerful preview of the final resurrection. |
 | Resurrection Psalm Scroll (`psalm22_scroll`) | `psalm_22_1_31` | Luke 24:26–27 | The Psalm that begins with suffering ends in worldwide proclamation and vindication, pointing beyond the cross to resurrection. Jesus explained these scriptures to the disciples on the road to Emmaus. |
+| Psalm 16:10 Scroll Fragment (`psalm_16_10_scroll`) | `psalm_16_10` | Psalm 16:10 | Supplementary primary-source scroll evidence for this case's Psalm 16:10 fulfilment (paired with `rolled_stone` / `empty_tomb` / `burial_linen` / `angelic_witness`). |
+| Hosea 6:2 Scroll Fragment (`hosea_6_2_scroll`) | `hosea_6_2` | Hosea 6:2 | Supplementary primary-source scroll evidence for this case's Hosea 6:2 fulfilment (paired with `guard_report`). |
+| Jonah 1:17 / Matthew 12:40 Scroll Fragment (`jonah_1_17___matthew_12_40_scroll`) | `jonah_1_17___matthew_12_40` | Jonah 1:17 / Matthew 12:40 | Supplementary primary-source scroll evidence for this case's sign-of-Jonah fulfilment (paired with `guard_report`). |
+| Isaiah 53:10–11 Scroll Fragment (`isaiah_53_10_11_scroll`) | `isaiah_53_10_11` | Isaiah 53:10–11 | Supplementary primary-source scroll evidence for this case's Isaiah 53:10–11 fulfilment (paired with `mary_encounter`). |
+| Psalm 22:1–31 Scroll Fragment (`psalm_22_1_31_scroll`) | `psalm_22_1_31` | Psalm 22:1–31 | Supplementary primary-source scroll evidence for this case's Psalm 22:1–31 fulfilment (paired with `psalm22_scroll`). |
+| Isaiah 26:19 Scroll Fragment (`isaiah_26_19_scroll`) | `isaiah_26_19` | Isaiah 26:19 | Supplementary primary-source scroll evidence for this case's Isaiah 26:19 fulfilment. |
+| Ezekiel 37:12–13 Scroll Fragment (`ezekiel_37_12_13_scroll`) | `ezekiel_37_12_13` | Ezekiel 37:12–13 | Supplementary primary-source scroll evidence for this case's Ezekiel 37:12–13 fulfilment (paired with `opened_tombs`). |
 
 ---
 ### Contested Evidence & Forensic Analysis
@@ -671,6 +684,7 @@ const groupDefinitions \= \[
 | Snapped Clay Roman Seal (`broken_imperial_seal`) | `psalm_2_1_2` | - | Matthew 27:66 notes they went and made the tomb secure by 'putting a seal on the stone and posting the guard.' |
 | Shattered Pilum Shaft (`shattered_spear`) | `psalm_2_1_2` | - | Matthew 28:2 states there was a violent earthquake, for an angel of the Lord came down from heaven and rolled back the stone. |
 | Official Sanhedrin Report (`sanhedrin_report`) | `psalm_2_1_2` | Matthew 28:11 | This report is the paper trail of the conspiracy itself — the Sanhedrin's own internal record of receiving the guards' account and choosing to suppress rather than investigate it, matching the pattern of rulers plotting against God's anointed described in Psalm 2:1–2. |
+| Psalm 2:1–2 Scroll Fragment (`psalm_2_1_2_scroll`) | `psalm_2_1_2` | Psalm 2:1–2 | Supplementary primary-source scroll evidence for this case's Psalm 2:1–2 fulfilment. |
 
 ---
 ### Contested Evidence & Forensic Analysis
@@ -708,6 +722,10 @@ const groupDefinitions \= \[
 | Bread and Fish Breakfast (`bread_breakfast`) | `ezekiel_34_11-16` | John 21:9 | Ezekiel 34:11–16 promised that the Lord Himself would seek, gather, and feed His scattered sheep. Psalm 23 declares that the Shepherd prepares a table for His people, while Isaiah 25:6–9 foretells the Messianic feast following God's victory over death. The risen Jesus fulfills these promises by preparing bread and fish for His disciples, demonstrating that the Good Shepherd still provides for His flock after conquering the grave. |
 | The Threefold Commission (`threefold_commission`) | `ezekiel_34_11-16` | John 21:15-17 | Peter's three denials (crow, cock, fire) are met with three commissions (feed, tend, shepherd) showing prophetic reversal. |
 | Risen Appearance (`galilean_apparition`) | `isaiah_53_10_11` | John 21:12 | Isaiah 53:10–11 foretold that after His suffering the Servant would live again and "see his offspring." Psalm 16:10 declared that God's Holy One would not remain in the grave. The disciples' recognition of Jesus on the shore was not merely a moment of faith—it was eyewitness confirmation that the crucified Messiah was alive, fulfilling the Scriptures. |
+| Zechariah 13:7 Scroll Fragment (`zechariah_13_7_scroll`) | `zechariah_13_7` | Zechariah 13:7 | Supplementary primary-source scroll evidence for this case's Zechariah 13:7 fulfilment (paired with `charcoal_fire`). |
+| Ezekiel 34:11–16 Scroll Fragment (`ezekiel_34_11-16_scroll`) | `ezekiel_34_11-16` | Ezekiel 34:11–16 | Supplementary primary-source scroll evidence for this case's Ezekiel 34:11–16 fulfilment (paired with `miraculous_catch` / `bread_breakfast` / `threefold_commission`). |
+| Psalm 16:10 Scroll Fragment (`psalm_16_10_scroll`) | `psalm_16_10` | Psalm 16:10 | Supplementary primary-source scroll evidence for this case's Psalm 16:10 fulfilment (paired with `galilean_apparition`). |
+| Isaiah 53:10–11 Scroll Fragment (`isaiah_53_10_11_scroll`) | `isaiah_53_10_11` | Isaiah 53:10–11 | Supplementary primary-source scroll evidence for this case's Isaiah 53:10–11 fulfilment (paired with `galilean_apparition`). |
 
 ---
 ### Contested Evidence & Forensic Analysis

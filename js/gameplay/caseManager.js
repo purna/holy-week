@@ -333,6 +333,13 @@ export class CaseManager {
     const scholarLevel = this.getScholarLevel();
     scholarEls.forEach(el => el.textContent = scholarLevel);
 
+    const propCounts = this.getProphecyCounts();
+    const propValEls = document.querySelectorAll('.val-prophecies');
+    propValEls.forEach(el => el.textContent = `${propCounts.discovered}/${propCounts.total}`);
+
+    const completePropEls = document.querySelectorAll('.val-complete-prophecies');
+    completePropEls.forEach(el => el.textContent = propCounts.complete);
+
     if (this.progress.reputations) {
       const reps = Object.values(this.progress.reputations);
       const avg = Math.round(reps.reduce((a, b) => a + b, 0) / reps.length);
@@ -388,6 +395,18 @@ export class CaseManager {
 
   getResearchScore() {
     return this.progress.researchScore || 0;
+  }
+
+  getProphecyCounts() {
+    const c = this.getActiveCase();
+    if (!c) return { discovered: 0, complete: 0, total: 0 };
+    const allProps = c.prophecies || [];
+    const progress = this.progress.cases[this.activeCaseId] || {};
+    const foundList = progress.propheciesFound || [];
+    const codex = this.progress.codex || {};
+    const discovered = allProps.filter(p => codex[p.id] !== 'unseen').length;
+    const complete = allProps.filter(p => codex[p.id] === 'complete').length;
+    return { discovered, complete, total: allProps.length };
   }
 
   getScholarLevel() {

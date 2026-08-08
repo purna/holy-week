@@ -1013,28 +1013,36 @@ export class GameEngine {
     if (propWrap) {
       propWrap.innerHTML = '';
 
-      // Get unique IDs of prophecies linked to evidence already collected
-      const revealedProphecyIds = new Set(
-        this.collectedEvidence
-          .map(ev => ev.relatedProphecy)
-          .filter(id => !!id)
-      );
-
       caseData.prophecies.forEach(p => {
-        if (!revealedProphecyIds.has(p.id)) return;
+        const status = this.cm.getCodexStatus(p.id);
+        if (status === 'unseen') return;
 
         const div = document.createElement('div');
         div.className = 'prophecy-item';
-        // Move reference to a new line, aligned right, below the text
-        div.innerHTML = `
-          <p>${p.text}</p>
-          <div style="text-align: right; font-size: 0.8rem; opacity: 0.7; margin-top: 4px; font-family: var(--font-main);">
-            — ${p.reference}
-          </div>
-        `;
+        
+        let content = '';
+        if (status === 'complete') {
+          content = `<p>${p.text}</p>
+            <div style="text-align: right; font-size: 0.8rem; opacity: 0.7; margin-top: 4px; font-family: var(--font-main);">
+              — ${p.reference} <img src='../assets/gfx/check-circle-duotone.svg' class='icon-svg' loading='lazy' style='width:14px;height:14px;vertical-align:middle;'>
+            </div>`;
+        } else if (status === 'found_scripture') {
+          content = `<p><em>${p.text}</em></p>
+            <div style="text-align: right; font-size: 0.8rem; opacity: 0.7; margin-top: 4px; font-family: var(--font-main);">
+              — ${p.reference} <img src='../assets/gfx/scroll-duotone.svg' class='icon-svg' loading='lazy' style='width:14px;height:14px;vertical-align:middle;'>
+            </div>
+            <p style='font-size:0.85rem;opacity:0.8;'>Fulfillment evidence not yet found.</p>`;
+        } else if (status === 'rumor') {
+          content = `<p><strong>${p.reference}</strong></p>
+            <div style="font-size: 0.8rem; opacity: 0.7; font-family: var(--font-main);">
+              Rumor — scripture fragment not yet located.
+            </div>`;
+        }
+        
+        div.innerHTML = content;
 
         // Add interactive buttons for each gospel link provided in the case data
-        if (p.gospelLink) {
+        if (p.gospelLink && status === 'complete') {
           const links = p.gospelLink.split(';');
           links.forEach(link => {
             const btn = document.createElement('button');
@@ -1052,7 +1060,7 @@ export class GameEngine {
             div.appendChild(btn);
           });
         }
-
+        
         propWrap.appendChild(div);
       });
     }
@@ -1080,6 +1088,10 @@ export class GameEngine {
     document.querySelectorAll('.val-research').forEach(el => el.innerText = p.researchScore ?? 0);
     const scholarLevel = this.cm.getScholarLevel?.() || "Novice";
     document.querySelectorAll('.val-scholar').forEach(el => el.innerText = scholarLevel);
+    const propCounts = this.cm.getProphecyCounts?.();
+    if (propCounts) {
+      document.querySelectorAll('.val-prophecies').forEach(el => el.innerText = `${propCounts.discovered}/${propCounts.total}`);
+    }
   }
 
   updateActions(caseData) {

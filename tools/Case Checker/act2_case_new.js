@@ -349,7 +349,7 @@ export const act2CaseA = {
       id: "witness_scroll",
       name: "Temple Bystander's Written Account",
       type: "testimonial",
-      relatedProphecy: "daniel_7_13_14",
+      relatedProphecy: "",
       icon: "../assets/gfx/clipboard-duotone.svg",
       location: "Temple North Portico",
       pos: [-15, 0, -5],
@@ -374,31 +374,7 @@ export const act2CaseA = {
         timeline: "CHRONOLOGY: Written at the close of the day's teaching, once no one dared ask another question.",
         contradict: "RELIABILITY: An outside observer with no stake in either faction, describing events that match the Gospel record exactly."
       },
-    },
-    {
-      id: "authority_challenged_fake",
-      name: "Altered Scribe's Notes",
-      type: "environmental",
-      icon: "../assets/gfx/shield-duotone.svg",
-      fake: true,
-      category: "event",
-      timelineOrder: null,
-      desc: "An altered scroll where key lines were changed from theological debate to political sedition.",
-      bibleRef: "Matthew 21:23",
-      propheticLink: "No prophetic significance — this is a planted distractor.",
-      bibleRefs: [
-        { ref: "Matthew 21:23", link: "john_1219" }
-      ],
-      propheticRefs: [],
-      investigatorNote: "Three key lines show different ink composition and scribal hand. The changes reframe a religious argument as a political threat.",
-      clues: {
-        compare: "No matching pair exists for this item.",
-        link: "Event — this item is suspiciously convenient.",
-        timeline: "CHRONOLOGY: The timeline does not quite fit with the other evidence.",
-        contradict: "RELIABILITY: This item was planted to mislead the investigation. It contains inconsistencies that do not match the verified evidence."
-      }
-    }
-  ],
+    },],
 
   lab: [
     {
@@ -575,7 +551,7 @@ export const act2CaseA = {
   },
 
   truth: {
-    culprit: "chief_priest",
+    culprit: "caiaphas",
     motive: "The religious leaders sought to discredit Jesus publicly to protect their institutional authority and prevent the crowds from following Him as the true King of Israel.",
     method: "A coordinated series of intellectual traps using representatives from different factions (Pharisees, Sadducees, Herodians) to catch Jesus in a blasphemous or seditious statement.",
     lesson: "Human attempts to trap divine wisdom only serve to reveal human hypocrisy. Jesus's authority as the cornerstone is established even through the rejection of the builders.",
@@ -779,76 +755,7 @@ export const act2CaseB = {
         timeline: "CHRONOLOGY: Drafted last, once the crowd numbers and eyewitness questioning made the threat undeniable.",
         contradict: "RELIABILITY: John 12:10–11 independently confirms the plot in the Gospel text itself."
       },
-    },
-    {
-      id: "lazarus_plot_fake",
-      name: "False Witness Account of Grave Robbery",
-      type: "environmental",
-      icon: "../assets/gfx/shield-duotone.svg",
-      fake: true,
-      category: "event",
-      timelineOrder: null,
-      desc: "A fabricated witness account claiming the disciples stole Lazarus's body to stage a fake resurrection.",
-      bibleRef: "John 12:10",
-      propheticLink: "No prophetic significance — this is a planted distractor.",
-      bibleRefs: [
-        { ref: "John 12:10", link: "john_1219" }
-      ],
-      propheticRefs: [],
-      investigatorNote: "The witness misidentifies the tomb location and is a known associate of Annas's household guard. Payment matches Temple treasury funds.",
-      clues: {
-        compare: "No matching pair exists for this item.",
-        link: "Event — this item is suspiciously convenient.",
-        timeline: "CHRONOLOGY: The timeline does not quite fit with the other evidence.",
-        contradict: "RELIABILITY: This item was planted to mislead the investigation. It contains inconsistencies that do not match the verified evidence."
-      }
-    }
-  ],
-
-  deductions: {
-    "crowd_report+grave_dirt": {
-      compare: {
-        text: "The gate log and the tomb dust together prove eyewitnesses from Bethany were brought into the Sanhedrin's own chambers.",
-        insight: "A surveillance record and physical evidence from the tomb site converge on the same location: inside the council chamber.",
-        isKey: true,
-        bibleRef: "John 12:9; John 11:39",
-      },
-      link: {
-        text: "Both pieces point to the same source: the reality of Lazarus's resurrection and the crowds it drew.",
-        insight: "The council's panic was not based on rumor but on documented crowd movement and physical evidence from the actual tomb.",
-        isKey: false,
-        bibleRef: "John 12:10–11",
-      },
-    },
-    "crowd_report+secret_decree": {
-      compare: {
-        text: "The surveillance record and the secret decree show the escalation from observation to elimination.",
-        insight: "The gate log explains why the Sanhedrin reacted so fast — the crowd numbers triggered the panic that produced the decree.",
-        isKey: true,
-        bibleRef: "John 12:9–11",
-      },
-      link: {
-        text: "The crowd report triggered the council's response documented in the decree.",
-        insight: "A routine gate tally and a secret execution order are linked by the same chain of cause and effect.",
-        isKey: false,
-        bibleRef: "John 12:10",
-      },
-    },
-    "grave_dirt+secret_decree": {
-      compare: {
-        text: "The tomb dust and the decree together prove the council acted on verified intelligence, not mere suspicion.",
-        insight: "The physical evidence from Bethany's tomb was presented inside the council chamber, directly prompting the secret order.",
-        isKey: true,
-        bibleRef: "John 11:39; John 12:10",
-      },
-      link: {
-        text: "Both pieces trace the same path: from Lazarus's tomb to the Sanhedrin's sealed order.",
-        insight: "The council didn't need to verify the miracle — they had the dust and the eyewitnesses already in their chamber.",
-        isKey: false,
-        bibleRef: "John 12:10–11",
-      },
-    },
-  },
+    },],
 
   lab: [
     {
@@ -1104,12 +1011,31 @@ export const act2CaseB = {
     },
   ],
 
+  deductions: {
+    "crowd_report+secret_decree": {
+      link: {
+        text: "The surge in pilgrim interest matches the exact timeline of the secret execution order.",
+        insight: "Lazarus didn't do anything political; his mere existence as a living miracle is the threat. The Sanhedrin must destroy the evidence of the miracle to neutralize the prophet.",
+        isKey: true,
+        bibleRef: "John 12:11",
+      },
+    },
+    "grave_dirt+secret_decree": {
+      link: {
+        text: "The forensic presence of burial scents inside the courthouse exposes their hypocrisy.",
+        insight: "The council knows the miracle was genuine. They verified the grave scents, yet chose to fight against the Author of Life to protect their alliance with Rome.",
+        isKey: false,
+        bibleRef: "John 11:48",
+      },
+    },
+  },
+
   truth: {
     culprit: "caiaphas",
     motive: "The high priests feared that the massive public following caused by Lazarus's resurrection would spark a Roman military crackdown, destroying their temple and nation.",
     method: "Caiaphas and his inner circle bypassed standard judicial procedures to authorize a shadow assassination plot against Lazarus of Bethany, aiming to eliminate the physical evidence of Jesus's greatest miracle before the Passover feast ended.",
     lesson: "When humans value their religious systems over God's living truth, they end up trying to suppress and destroy the very life God creates. The plot against Lazarus mirrors the impending attempt to seal the tomb of Jesus.",
-    prophesyFulfilled: ["Isaiah 25:8"],
+    prophesyFulfilled: ["Isaiah 25:8", "Psalm 16:10"],
     furtherReading: ["John 11:45–57", "John 12:9–11"],
   },
 };
@@ -1403,36 +1329,14 @@ export const act2CaseC = {
         timeline: "CHRONOLOGY: Referenced partway through the discourse, alongside the other cosmic signs.",
         contradict: "RELIABILITY: A direct quotation match to Isaiah 13:10, not a loose paraphrase."
       },
-    },
-    {
-      id: "olivet_discourse_fake",
-      name: "Zealot Recruitment Pamphlet",
-      type: "environmental",
-      icon: "../assets/gfx/shield-duotone.svg",
-      fake: true,
-      category: "event",
-      timelineOrder: null,
-      desc: "A Zealot recruitment pamphlet planted near the Mount of Olives to frame Jesus's teaching as a war council.",
-      bibleRef: "Matthew 24:3",
-      propheticLink: "No prophetic significance — this is a planted distractor.",
-      bibleRefs: [
-        { ref: "Matthew 24:3", link: "john_1219" }
-      ],
-      propheticRefs: [],
-      investigatorNote: "The papyrus is from Egypt, not used by local Zealots, and was found at a location inconsistent with the disciples' gathering spot.",
-      clues: {
-        compare: "No matching pair exists for this item.",
-        link: "Event — this item is suspiciously convenient.",
-        timeline: "CHRONOLOGY: The timeline does not quite fit with the other evidence.",
-        contradict: "RELIABILITY: This item was planted to mislead the investigation. It contains inconsistencies that do not match the verified evidence."
-      }
     }
+
   ],
 
   lab: [
     {
       evidence: "disciples_questions_notes",
-      suspect: "none",
+      suspect: "peter_olivet",
       result: "**Identified as Primary Witness** (He asked the initial question about the Temple's destruction)",
       notes: "'Tell us, when will this happen?' (Matthew 24:3) — the whole discourse traces back to a question asked in private, on the mountain."
     }
@@ -1452,6 +1356,7 @@ export const act2CaseC = {
       bibleRef: "Matthew 24:3",
       hasDialogue: true,
       storyFile: "peter_olivet",
+      unlocksSuspects: ["peter_olivet"],
       unlocksEvidence: ["disciples_questions_notes"],
       background: "Simon Peter, ever eager for answers, was one of the disciples who privately asked Jesus about the timing of the Temple's destruction and the signs of His coming.",
       dialogue: {
@@ -1481,6 +1386,7 @@ export const act2CaseC = {
       bibleRef: "Matthew 24:3",
       hasDialogue: true,
       storyFile: "john_olivet",
+      unlocksSuspects: ["john_olivet"],
       unlocksEvidence: ["temple_overlook_view"],
       revealsProphecy: "isaiah_13_10",
       background: "John, son of Zebedee, was among the inner circle who heard Jesus's Olivet Discourse. His Gospel often emphasizes themes of light, darkness, and the coming of Christ.",
@@ -1511,6 +1417,7 @@ export const act2CaseC = {
       bibleRef: "Matthew 24:3",
       hasDialogue: true,
       storyFile: "parable_meaning",
+      unlocksSuspects: ["thomas_olivet"],
       unlocksEvidence: ["parable_of_virgins_notes", "cosmic_signs_references"],
       background: "Thomas, known for his analytical mind, would have carefully considered Jesus's prophecies, seeking to understand the practical implications of such profound teachings.",
       dialogue: {
@@ -1780,30 +1687,8 @@ export const act2CaseD = {
         timeline: "CHRONOLOGY: The same days before Passover, at Simon the Leper's table.",
         contradict: "RELIABILITY: Recorded independently in Matthew and Mark, both naming the same house and the same objection from those at the table."
       },
-    },
-    {
-      id: "passover_lamb_chain_fake",
-      name: "Merchant's Complaint about Stolen Nard",
-      type: "environmental",
-      icon: "../assets/gfx/shield-duotone.svg",
-      fake: true,
-      category: "event",
-      timelineOrder: null,
-      desc: "A forged complaint about stolen nard, actually written by Judas to discredit Mary's anointing.",
-      bibleRef: "John 12:3",
-      propheticLink: "No prophetic significance — this is a planted distractor.",
-      bibleRefs: [
-        { ref: "John 12:3", link: "john_1219" }
-      ],
-      propheticRefs: [],
-      investigatorNote: "The handwriting matches Judas Iscariot, not the merchant. The merchant's own ledger shows the nard was sold legally to Mary's household.",
-      clues: {
-        compare: "No matching pair exists for this item.",
-        link: "Event — this item is suspiciously convenient.",
-        timeline: "CHRONOLOGY: The timeline does not quite fit with the other evidence.",
-        contradict: "RELIABILITY: This item was planted to mislead the investigation. It contains inconsistencies that do not match the verified evidence."
-      }
     }
+
   ],
 
   lab: [

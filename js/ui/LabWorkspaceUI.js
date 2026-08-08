@@ -762,6 +762,11 @@ export class LabWorkspaceUI {
       const ids = this.folderState[key] || [];
       const count = ids.length;
       totalItems += count;
+      const folderEl = this.root.querySelector(`#lw-folder-${key}`);
+      if (folderEl) {
+        folderEl.classList.remove('correct', 'wrong');
+        folderEl.classList.add(count >= expected[key] ? 'correct' : 'wrong');
+      }
       if (count < expected[key]) {
         allOk = false;
         this._setFeedback(`Folder ${folderInfoData[key]?.title || key} has ${count}/${expected[key]}.`, "error");
@@ -769,7 +774,6 @@ export class LabWorkspaceUI {
       // Check correctness
       ids.forEach(id => {
         const item = this.evidence.find(e => e.id === id);
-        const folderEl = this.root.querySelector(`#lw-folder-${key}`);
         const card = folderEl?.querySelector(`.ev-card[data-evidence-id="${id}"]`);
         if (item && card) {
           totalCorrect++;
@@ -786,12 +790,10 @@ export class LabWorkspaceUI {
     bank?.querySelectorAll(".ev-card").forEach(card => {
       const id = card.dataset.evidenceId;
       const item = this.evidence.find(e => e.id === id);
-      const folderKey = item?.category;
-      const inFolder = this.folderState[folderKey]?.includes(id);
-      if (item && inFolder && !(item.timelineOrder != null) && !item.fake) {
-        card.classList.add("correct-flash");
-      } else {
+      if (item && !(item.timelineOrder != null) && !item.fake) {
         card.classList.add("wrong-flash");
+      } else {
+        card.classList.add("correct-flash");
       }
     });
 
@@ -809,6 +811,7 @@ export class LabWorkspaceUI {
     }
     setTimeout(() => {
       this.root.querySelectorAll(".ev-card").forEach(el => el.classList.remove("correct-flash", "wrong-flash"));
+      this.root.querySelectorAll("[id^='lw-folder-']").forEach(el => el.classList.remove("correct", "wrong"));
     }, 1400);
   }
 

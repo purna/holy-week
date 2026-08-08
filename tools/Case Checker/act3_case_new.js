@@ -428,30 +428,8 @@ export const act3CaseA = {
         timeline: "CHRONOLOGY: Reflects the seating for the whole meal, from the first cup through Jesus's final words.",
         contradict: "RELIABILITY: Jesus knowingly kept His betrayer at the table and ministered to him regardless — a detail no fabricated account would need to include."
       },
-    },
-    {
-      id: "last_supper_fake",
-      name: "Leavened Bread Fragment",
-      type: "environmental",
-      icon: "../assets/gfx/shield-duotone.svg",
-      fake: true,
-      category: "event",
-      timelineOrder: null,
-      desc: "A fragment of leavened bread planted near Judas's seat to suggest the Last Supper was not a legitimate Passover meal.",
-      bibleRef: "Matthew 26:26",
-      propheticLink: "No prophetic significance — this is a planted distractor.",
-      bibleRefs: [
-        { ref: "Matthew 26:26", link: "john_1219" }
-      ],
-      propheticRefs: [],
-      investigatorNote: "The bread contains yeast, forbidden during Passover, and the grain type matches lower city markets, not ceremonial matzah.",
-      clues: {
-        compare: "No matching pair exists for this item.",
-        link: "Event — this item is suspiciously convenient.",
-        timeline: "CHRONOLOGY: The timeline does not quite fit with the other evidence.",
-        contradict: "RELIABILITY: This item was planted to mislead the investigation. It contains inconsistencies that do not match the verified evidence."
-      }
     }
+
   ],
 
   lab: [
@@ -917,30 +895,8 @@ export const act3CaseB = {
         timeline: "CHRONOLOGY: Used last, once Jesus stopped Peter and submitted to arrest.",
         contradict: "RELIABILITY: The absence of fraying rules out a physical fight — consistent with willing submission, not capture."
       },
-    },
-    {
-      id: "gethsemane_arrest_fake",
-      name: "Planted Second Sword",
-      type: "environmental",
-      icon: "../assets/gfx/shield-duotone.svg",
-      fake: true,
-      category: "event",
-      timelineOrder: null,
-      desc: "A Roman gladius planted at the arrest site to suggest the disciples were armed for violent insurrection.",
-      bibleRef: "John 18:10",
-      propheticLink: "No prophetic significance — this is a planted distractor.",
-      bibleRefs: [
-        { ref: "John 18:10", link: "john_1219" }
-      ],
-      propheticRefs: [],
-      investigatorNote: "The sword bears the Antonia Fortress garrison mark and was wiped clean of fingerprints, linking it to the arresting soldiers.",
-      clues: {
-        compare: "No matching pair exists for this item.",
-        link: "Event — this item is suspiciously convenient.",
-        timeline: "CHRONOLOGY: The timeline does not quite fit with the other evidence.",
-        contradict: "RELIABILITY: This item was planted to mislead the investigation. It contains inconsistencies that do not match the verified evidence."
-      }
     }
+
   ],
 
   suspects: [
@@ -962,21 +918,6 @@ export const act3CaseB = {
           exposed: "Alright! Peter struck me. I should be disfigured, but Jesus repaired what His own disciple broke. I came to chain Him, and He healed me instead. That's why I did not order the arrest of the rest of the disciples."
         },
       },
-    },
-    {
-      id: "simon_peter",
-      name: "Simon Peter",
-      role: "Disciple, Sword-Bearer",
-      avatar: "peter.svg",
-      color: 0x4488cc,
-      pos: [0, 0, 0],
-      bibleRef: "Matthew 26:51-52",
-      background: "One of the Twelve, present at the arrest. Drew a sword and struck the High Priest's servant before Jesus stopped him and healed the wound.",
-      dialogue: {
-        neutral: "I did what I thought was right — defend Him. He told me to put the sword away.",
-        cautious: "'All who draw the sword will die by the sword.' His words, not mine. I still don't fully understand why He stopped me.",
-      },
-      contradictions: {},
     },
     { id: "none", name: "No One", role: "Not Stolen", avatar: "nicodemus.svg", bibleRef: null },
   ],
@@ -1070,12 +1011,6 @@ export const act3CaseB = {
 
   deductions: {
     "abandoned_linen+dropped_torch": {
-      compare: {
-        text: "The dropped torch and abandoned linen mark the same moment of panic from two different angles.",
-        insight: "The arresting party was knocked back by Jesus's declaration 'I am He,' while a young disciple fled naked into the brush. Both items are forensic markers of that split-second chaos.",
-        isKey: true,
-        bibleRef: "John 18:6; Mark 14:51-52",
-      },
       link: {
         text: "The placement of the dropped torch and the abandoned linen show a split path of panic.",
         insight: "While the arresting party was knocked off balance, the younger followers of Jesus scattered into the darkness in utter terror, leaving their belongings behind.",
@@ -1091,12 +1026,6 @@ export const act3CaseB = {
       },
     },
     "dropped_torch+severed_ear_wrap": {
-      compare: {
-        text: "The dropped torch and the bloodied scarf together prove Peter struck Malchus in the same moment the arresting party fell backward.",
-        insight: "One item marks the supernatural surrender of the enemy, the other marks the violent attempt by a disciple to defend Jesus. Both are true.",
-        isKey: true,
-        bibleRef: "Luke 22:50–51; John 18:10",
-      },
       link: {
         text: "The proximity of the weapon strike to the fallen military hardware suggests a sudden collision of kingdoms.",
         insight: "Peter attempted a messy tactical defense, but Jesus immediately neutralized the violence by performing a medical miracle on the enemy commander.",
@@ -1322,7 +1251,7 @@ export const act3CaseC = {
   suspects: [
     { id: "chief_priest", name: "Caiaphas", role: "High Priest", avatar: "caiaphas.svg", bibleRef: "Matthew 26:57" },
     { id: "false_witness", name: "Ananias", role: "Hired Accuser", avatar: "ananias_witness.svg", bibleRef: "Mark 14:56" },
-    { id: "peter_denial", name: "Peter", role: "Denying Disciple", avatar: "peter.svg", bibleRef: "Matthew 26:69-75" },
+    { id: "peter_denial", name: "Peter", role: "Denying Disciple",       avatar: "peter.svg", bibleRef: "Matthew 26:69-75" },
     { id: "none", name: "No One", role: "Not Guilty", avatar: "nicodemus.svg", bibleRef: null },
   ],
 
@@ -1486,31 +1415,8 @@ export const act3CaseC = {
         timeline: "CHRONOLOGY: Given early in the proceedings, part of the failed attempt to build a case.",
         contradict: "RELIABILITY: The desperation to produce any usable testimony exposes the weakness of the prosecution's actual case."
       },
-    },
-
-    {
-      id: "sanhedrin_trial_fake",
-      name: "Fabricated Roman Dispatch",
-      type: "environmental",
-      icon: "../assets/gfx/shield-duotone.svg",
-      fake: true,
-      category: "event",
-      timelineOrder: null,
-      desc: "A forged Roman dispatch used to pressure the Sanhedrin into a quick conviction.",
-      bibleRef: "Mark 14:55",
-      propheticLink: "No prophetic significance — this is a planted distractor.",
-      bibleRefs: [
-        { ref: "Mark 14:55", link: "john_1219" }
-      ],
-      propheticRefs: [],
-      investigatorNote: "The seal is a known Annas forgery, the Latin contains grammatical errors, and Pilate's records show no such dispatch was sent.",
-      clues: {
-        compare: "No matching pair exists for this item.",
-        link: "Event — this item is suspiciously convenient.",
-        timeline: "CHRONOLOGY: The timeline does not quite fit with the other evidence.",
-        contradict: "RELIABILITY: This item was planted to mislead the investigation. It contains inconsistencies that do not match the verified evidence."
-      }
     }
+
   ],
 
   npcs: [
@@ -1660,7 +1566,7 @@ export const act3CaseC = {
   },
 
   truth: {
-    culprit: "chief_priest",
+    culprit: "caiaphas",
     motive: "Blasphemy charge used as political leverage to secure Roman execution.",
     method: "The Sanhedrin manufactured testimony and pressured Jesus to pronounce judgment on Himself through His own words.",
     lesson: "The trial was a collection of procedural illegalities. Peter's failure shows the human condition, while Jesus's silence shows divine resolve.",
@@ -1929,36 +1835,12 @@ export const act3CaseD = {
         timeline: "CHRONOLOGY: Drawn up as the crowd made its demand, shortly before Pilate's basin.",
         contradict: "RELIABILITY: Luke 23:12 independently notes Herod and Pilate became friends that very day, over this case."
       },
-    },
-
-    {
-      id: "barabbas_choice_fake",
-      name: "Pre-made 'Barabbas' Sign Fragment",
-      type: "environmental",
-      icon: "../assets/gfx/shield-duotone.svg",
-      fake: true,
-      category: "event",
-      timelineOrder: null,
-      desc: "Pre-made sign fragments used to orchestrate the crowd's choice of Barabbas over Jesus.",
-      bibleRef: "Luke 23:18",
-      propheticLink: "No prophetic significance — this is a planted distractor.",
-      bibleRefs: [
-        { ref: "Luke 23:18", link: "john_1219" }
-      ],
-      propheticRefs: [],
-      investigatorNote: "The paint matches Temple maintenance notices, multiple identical fragments were found, and eyewitnesses report chief priests' agents distributing them.",
-      clues: {
-        compare: "No matching pair exists for this item.",
-        link: "Event — this item is suspiciously convenient.",
-        timeline: "CHRONOLOGY: The timeline does not quite fit with the other evidence.",
-        contradict: "RELIABILITY: This item was planted to mislead the investigation. It contains inconsistencies that do not match the verified evidence."
-      }
     }
+
   ],
 
   suspects: [
     { id: "barabbas_insurgent", name: "Barabbas", role: "Released Criminal", avatar: "barabbas.svg", bibleRef: "Matthew 27:16" },
-    { id: "pontius_pilate_trial", name: "Pontius Pilate", role: "Roman Prefect", avatar: "pontius_pilate.svg", bibleRef: "Matthew 27:24" },
     { id: "none", name: "No One", role: "Fulfillment", avatar: "nicodemus.svg", bibleRef: null }
   ],
 
@@ -2243,10 +2125,8 @@ export const act3CaseE = {
 
   suspects: [
     { id: "centurion_longinus", name: "Longinus", role: "Roman Centurion", avatar: "centurion_longinus.svg", bibleRef: "Matthew 27:54 — 'When the centurion... saw the earthquake and all that had happened, they were terrified, and said, \"Surely he was the Son of God!\"'" },
-    {
-      id: "temple_priest_pashhur", name: "Pashhur", role: "Temple Priest on Shift", avatar: "pashhur.svg",
-      bibleRef: "Matthew 27:51 — 'At that moment the curtain of the temple was torn in two from top to bottom.'"
-    },
+    { id: "temple_priest_pashhur", name: "Pashhur", role: "Temple Priest on Shift",       avatar: "pashhur.svg",
+      bibleRef: "Matthew 27:51 — 'At that moment the curtain of the temple was torn in two from top to bottom.'" },
     { id: "joseph_arimathea", name: "Joseph of Arimathea", role: "Secret Disciple & Council Member", avatar: "senior_scribe.svg", bibleRef: "John 19:38 — 'Joseph of Arimathea asked Pilate for the body of Jesus... With Pilate's permission, he came and took the body away.'" },
     { id: "none", name: "No One", role: "Divine/Cosmic Event", avatar: "nicodemus.svg", bibleRef: "Amos 8:9; Matthew 27:51 — The signs were acts of God, not human subversion" }
   ],
@@ -2468,37 +2348,13 @@ export const act3CaseE = {
         timeline: "CHRONOLOGY: The last words spoken, immediately before Jesus breathed His last and the earth shook.",
         contradict: "RELIABILITY: Luke 23:46 records the words as a loud, deliberate cry, not a fading whisper — consistent with a willing surrender rather than a slow expiration."
       },
-    },
-
-    {
-      id: "crucifixion_site_fake",
-      name: "Manufactured Shroud Thread",
-      type: "environmental",
-      icon: "../assets/gfx/shield-duotone.svg",
-      fake: true,
-      category: "event",
-      timelineOrder: null,
-      desc: "A cheap wool thread found on the cross, planted to discredit Joseph of Arimathea's fine linen burial.",
-      bibleRef: "Mark 15:46",
-      propheticLink: "No prophetic significance — this is a planted distractor.",
-      bibleRefs: [
-        { ref: "Mark 15:46", link: "john_1219" }
-      ],
-      propheticRefs: [],
-      investigatorNote: "The thread is common wool, inconsistent with the fine linen shroud. It was planted by a skeptical guard to suggest an exaggerated burial story.",
-      clues: {
-        compare: "No matching pair exists for this item.",
-        link: "Event — this item is suspiciously convenient.",
-        timeline: "CHRONOLOGY: The timeline does not quite fit with the other evidence.",
-        contradict: "RELIABILITY: This item was planted to mislead the investigation. It contains inconsistencies that do not match the verified evidence."
-      }
     }
+
   ],
 
   lab: [
     {
       evidence: "split_dice",
-      suspect: "centurion_longinus",
       result: "**Motive Questioned** (Was a participant, not an instigator)",
       notes: "'They divided up his clothes by casting lots' (Psalm 22:18, Matthew 27:35) — routine duty for the centurion, until 'Surely he was the Son of God' (Matthew 27:54) changed his mind."
     },
@@ -2777,7 +2633,7 @@ export const act3CaseE = {
     motive: "The crucifixion was not an unexpected strategic failure, but a calculated, voluntary act of redemption that explicitly leveraged cosmic, geological, and legal parameters to fulfill ancient prophecies.",
     method: "The Roman military machinery carried out the execution, and the Sanhedrin elite initiated the charges to secure political stability. However, the resulting three hours of darkness, the rock-splitting earthquake, the top-down tearing of the Temple veil, and the rich man's burial completely bypassed their control, structurally validating Jesus as the true Messiah and the ultimate Passover Lamb.",
     lesson: "The cross transformed a Roman instrument of shame into history's absolute center of restoration. Every physical detail—from the unbroken bones to the torn curtain—proved that old barriers were shattered, and a New Covenant was established.",
-    prophesyFulfilled: ["Psalm 22:16-18", "Amos 8:9", "Isaiah 53:9", "Zechariah 12:10", "Psalm 34:20"],
+    prophesyFulfilled: ["Psalm 22:16-18", "Amos 8:9", "Isaiah 53:9", "Zechariah 12:10", "Exodus 12:46"],
     furtherReading: ["Matthew 27:32–56", "Mark 15:21–41", "Luke 23:26–49", "John 19:16–37", "Hebrews 10:19–22"],
   },
 };

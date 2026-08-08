@@ -105,6 +105,7 @@ export class Scene2D {
         this.bakeCanvas = null;
         this.bakeCtx = null;
         this.waterTiles = [];
+        this.tilemapSprite = null;
         this.playerG = null;
         this.particlesG = null;
         this.minimapDynamic = null;
@@ -117,7 +118,7 @@ export class Scene2D {
         this.mapPixelSize = 0;
     }
 
-    init(containerId) {
+    async init(containerId) {
         this.container = document.getElementById(containerId);
         if (!this.container) return;
         this.container.innerHTML = `
@@ -144,7 +145,7 @@ export class Scene2D {
         this._bindControls();
         this._setupActionsPanel();
         this._initializeGame();
-        this._initPixi();
+        await this._initPixi();
         this.running = true;
         this._gameLoop();
     }
@@ -557,10 +558,10 @@ export class Scene2D {
         });
     }
 
-    _initPixi() {
+    async _initPixi() {
         if (typeof PIXI === 'undefined') { console.warn('PixiJS not loaded'); return; }
         this.app = new PIXI.Application();
-        this.app.init({ width: VIEW_WIDTH, height: VIEW_HEIGHT, backgroundColor: 0x120f0d, antialias: false, resolution: 1, autoDensity: false });
+        await this.app.init({ width: VIEW_WIDTH, height: VIEW_HEIGHT, backgroundColor: 0x120f0d, antialias: false, resolution: 1, autoDensity: false });
         const gc = document.getElementById('game-container');
         if (gc) gc.insertBefore(this.app.canvas, document.getElementById('lives-display'));
         this.world = new PIXI.Container(); this.app.stage.addChild(this.world);
@@ -572,6 +573,11 @@ export class Scene2D {
     }
 
     _bakeTilemap() {
+        if (this.tilemapSprite) {
+            this.world.removeChild(this.tilemapSprite);
+            this.tilemapSprite.destroy();
+            this.tilemapSprite = null;
+        }
         this.mapPixelSize = MAP_SIZE * TILE_SIZE;
         this.bakeCanvas = document.createElement('canvas'); this.bakeCanvas.width = this.mapPixelSize; this.bakeCanvas.height = this.mapPixelSize;
         this.bakeCtx = this.bakeCanvas.getContext('2d'); this.bakeCtx.imageSmoothingEnabled = false;
@@ -579,8 +585,8 @@ export class Scene2D {
         for (let r = 0; r < MAP_SIZE; r++) { for (let c = 0; c < MAP_SIZE; c++) { const id = this.levelMap[r][c]; if (id === 1) this.waterTiles.push({ col: c, row: r }); const cached = this.tileCache[id]; if (cached) this.bakeCtx.drawImage(cached, c * TILE_SIZE, r * TILE_SIZE); } }
         this.tilemapTexture = PIXI.Texture.from(this.bakeCanvas);
         if (this.tilemapTexture.source) this.tilemapTexture.source.scaleMode = 'nearest';
-        const tilemapSprite = new PIXI.Sprite(this.tilemapTexture);
-        this.world.addChildAt(tilemapSprite, 0);
+        this.tilemapSprite = new PIXI.Sprite(this.tilemapTexture);
+        this.world.addChildAt(this.tilemapSprite, 0);
     }
 
     _refreshWaterTiles() {
@@ -604,6 +610,7 @@ export class Scene2D {
     }
 
     _createNPCEntities() {
+        this.npcLayer.removeChildren();
         this.npcEntities = [];
         this.npcs.forEach(n => {
             n.shadowG = new PIXI.Graphics();
@@ -619,6 +626,7 @@ export class Scene2D {
     }
 
     _createEnemyEntities() {
+        this.enemyLayer.removeChildren();
         this.enemyEntities = [];
         this.enemies.forEach(e => {
             e.spriteG = new PIXI.Graphics();
@@ -631,6 +639,7 @@ export class Scene2D {
     }
 
     _rebuildPixiWorld() {
+        this.uiWorldLayer.removeChildren();
         this._bakeTilemap();
         this._createNPCEntities();
         this._createEnemyEntities();

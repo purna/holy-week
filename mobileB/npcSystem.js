@@ -33,6 +33,8 @@ export const PROFILE_ID_MAP = {
   malachi_moneychanger: profilePath + "/malachi_moneychanger.json",
   trial_rumors: profilePath + "/trial_rumors.json",
   samuel_scribe: profilePath + "/samuel_scribe.json",
+  mary_bethany: profilePath + "/mary_bethany_anointing.json",
+  hillel_scribe: profilePath + "/hillel_scribe.json",
   nathanael_pharisee: profilePath + "/nathanael_pharisee.json",
   caiaphas: profilePath + "/caiaphas.json",
   market_informant: profilePath + "/market_informant.json",

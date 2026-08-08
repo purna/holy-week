@@ -467,6 +467,7 @@ A new **Actions** tab is available on the main investigation screen, providing a
 
 
 
+### Case: `temple_cleansing` (The Overturned Tables)
 *   **Title:** The Overturned Tables
 *   **Characters:**
     *   Malachi (Money Changer) ([`../story/act1/case_b_overturned_tables/money_changer.ink`](../story/act1/case_b_overturned_tables/money_changer.ink)) ([`../characters/malachi_moneychanger.json`](../characters/malachi_moneychanger.json))
@@ -506,6 +507,7 @@ A new **Actions** tab is available on the main investigation screen, providing a
 | `Scattered Shekels` → Malachi 3:1 | Dialogue: Malachi (Money Changer) |
 | `Disciples' Testimony` → Psalm 69:9 | Dialogue: Disciples (generic) |
  
+### Case: `fig_tree_incident` (The Barren Fig Tree)
 *   **Title:** The Barren Fig Tree
 *   **Characters:**
     *   Peter (Disciple) ([`../story/act1/case_c_fig_tree_incident/peter_fig_tree.ink`](../story/act1/case_c_fig_tree_incident/peter_fig_tree.ink)) ([`../characters/peter.json`](../characters/peter.json))
@@ -730,7 +732,50 @@ A new **Actions** tab is available on the main investigation screen, providing a
 | `Disciples' Questions` → Daniel 9:27 | Lab: `Sketch of Temple Stones` + `Disciples' Questions` |
 | `Notes on Cosmic Signs` → Joel 2:30-31 | Dialogue: Thomas |
 | `Notes on Cosmic Signs` → Isaiah 13:10 | Dialogue: John |
- 
+
+### Case: `passover_lamb_chain` (The Anointing at Bethany)
+*   **Title:** The Anointing at Bethany
+*   **Characters:**
+    *   Mary of Bethany ([`../characters/mary_bethany.json`](../characters/mary_bethany.json))
+    *   Judas Iscariot ([`../characters/judas_bethany.json`](../characters/judas_bethany.json))
+    *   Simon the Leper ([`../characters/simon_leper.json`](../characters/simon_leper.json))
+    *   Hillel (Temple Scribe) ([`../characters/temple_scribe_hillel.json`](../characters/temple_scribe_hillel.json))
+*   **Suspects:**
+    *   Judas Iscariot ([`../characters/judas_bethany.json`](../characters/judas_bethany.json))
+    *   Mary of Bethany ([`../characters/mary_bethany.json`](../characters/mary_bethany.json))
+    *   Simon the Leper ([`../characters/simon_leper.json`](../characters/simon_leper.json))
+*   **Culprit:** **No One**. Mary's anointing was an act of costly worship and prophetic preparation for burial, not wrongdoing; Judas's objection exposed his own self-interest.
+*   **Prophecies:** Exodus 12:1–14 (Typological Fulfilment — the Passover Lamb)
+*   **Evidence:**
+    *   `Passover Lamb Market Records`
+    *   `Temple Inspection Notes`
+    *   `Flask of Pure Nard`
+    *   `Broken Alabaster Jar`
+
+#### People
+
+| Character | Action | Unlocks Evidence | Reveals Prophecy |
+|---|---|---|---|
+| Mary of Bethany | Talk | `nard_flask` | Exodus 12:1–14 (typology) |
+| Judas Iscariot | Talk | `alabaster_jar` | — |
+| Simon the Leper | Talk | `alabaster_jar` | — |
+| Hillel (Temple Scribe) | Talk | `inspection_notes`, `lamb_records` | — |
+
+#### Lab
+
+| Evidence Pair | Operation | Result | Prophecy Revealed | Points | Reputation | Doubt |
+|---|---|---|---|---|---|---|
+| `nard_flask` → Mary of Bethany | Present | **Cleared** (An act of costly, unguarded worship, not waste) | — | +15 | — | — |
+| `nard_flask` → Judas Iscariot | Present | **Motive Exposed** (Objection was self-interest, not charity) | — | +15 | — | — |
+| `alabaster_jar` → Simon the Leper | Present | **Cleared** (A gracious host, willing to be associated with a costly act of devotion) | — | +15 | — | — |
+
+#### Codex
+| Evidence + Prophecy = Unlock | Source of Information |
+|---|---|
+| `nard_flask` → Exodus 12:1–14 (typology_passover_lamb) | Dialogue: Mary of Bethany |
+| `inspection_notes` → Exodus 12:1–14 (typology_passover_lamb) | Dialogue: Hillel |
+| `alabaster_jar` → Exodus 12:1–14 (typology_passover_lamb) | Dialogue: Judas Iscariot / Simon the Leper |
+
 ## Act III: The Pressure Builds
 
 ### Case: `last_supper` (The Broken Cup)
@@ -807,6 +852,7 @@ A new **Actions** tab is available on the main investigation screen, providing a
     *   Roman Soldier ([`../story/act3/case_b_severed_ear/guard_report_gethsemane.json`](../story/act3/case_b_severed_ear/guard_report_gethsemane.json)) ([`../characters/garrison_guard.json`](../characters/garrison_guard.json))
 *   **Suspects:**
     *   Malchus ([`../characters/malchus.json`](../characters/malchus.json))
+    *   Simon Peter ([`../characters/peter.json`](../characters/peter.json))
     *   No One ()
 *   **Culprit:** **No One**. The event was a scuffle during the arrest, immediately resolved by Jesus.
 *   **Prophecies:** Isaiah 53:7, Zechariah 13:7
@@ -931,6 +977,7 @@ A new **Actions** tab is available on the main investigation screen, providing a
     *   Barabbas (Released Criminal) ([`../story/act3/case_d_roman_interrogation/barabbas_choice.ink`](../story/act3/case_d_roman_interrogation/barabbas_choice.ink)) ([`../characters/barabbas.json`](../characters/barabbas.json))
 *   **Suspects:**
     *   Barabbas ([`../characters/barabbas.json`](../characters/barabbas.json))
+    *   Pontius Pilate ([`../characters/pontius_pilate.json`](../characters/pontius_pilate.json))
     *   No One ()
 *   **Culprit:** **No One**. The "crime" was the crowd's choice, manipulated by the priests.
 *   **Prophecies:** Isaiah 53:3, Psalm 2:1–2
@@ -1147,6 +1194,7 @@ A new **Actions** tab is available on the main investigation screen, providing a
     *   Pilate's Secretary ([`../story/act3/case_d_roman_interrogation/pilates_secretary.ink`](../story/act3/case_d_roman_interrogation/pilates_secretary.ink)) ([`../characters/pilate_secretary.json`](../characters/pilate_secretary.json))
 *   **Suspects:**
     *   Lucas ([`../characters/garrison_guard.json`](../characters/garrison_guard.json))
+    *   Caiaphas ([`../characters/caiaphas.json`](../characters/caiaphas.json))
     *   No One ()
 *   **Culprit:** **No One**. The crime was the cover-up conspiracy orchestrated by the Sanhedrin.
 *   **Prophecies:** Psalm 2:1–2

@@ -93,6 +93,11 @@ export class UIManager {
     const scholarLevel = this.cm.getScholarLevel?.() || "Novice";
     scholarEls.forEach(el => el.textContent = scholarLevel);
 
+    const propCounts = this.cm.getProphecyCounts?.();
+    if (propCounts) {
+      document.querySelectorAll('.val-prophecies').forEach(el => el.textContent = `${propCounts.discovered}/${propCounts.total}`);
+    }
+
     const pct = total ? Math.round((solved / total) * 100) : 0;
     const progressFill = document.getElementById("progress-fill");
     if (progressFill) progressFill.style.width = pct + "%";

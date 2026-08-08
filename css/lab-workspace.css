@@ -336,6 +336,16 @@
   gap: 6px;
 }
 
+#lab-workspace .folder-content.correct {
+  border: 1px solid var(--lw-green);
+  background: rgba(61, 214, 140, 0.08);
+}
+
+#lab-workspace .folder-content.wrong {
+  border: 1px solid var(--lw-red);
+  background: rgba(244, 96, 96, 0.08);
+}
+
 /* Timeline */
 #lab-workspace .timeline-vertical-box {
   display: flex;
