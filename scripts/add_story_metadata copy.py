@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
-add_story_metadata.py — Add story/prophecy/Bible metadata comments to all .ink files.
+add_story_metadata.py — Add assets/story/prophecy/Bible metadata comments to all .ink files.
 
-This script enriches every .ink file in story/ with a structured comment header containing:
+This script enriches every .ink file in assets/story/ with a structured comment header containing:
   - CHARACTER name and role
   - ACT and CASE assignment
   - PROPHECIES FULFILLED / BIBLICAL REFERENCES for that case
@@ -436,7 +436,7 @@ def process_file(ink_path, case_lookup, dry_run=False, reset=False):
 
 def main():
     parser = __import__('argparse').ArgumentParser(
-        description='Add story/prophecy/bible metadata comments to all .ink files.'
+        description='Add assets/story/prophecy/bible metadata comments to all .ink files.'
     )
     parser.add_argument('--dry-run', action='store_true', help='Preview without writing')
     parser.add_argument('--reset', action='store_true', help='Strip existing metadata first')
@@ -446,7 +446,7 @@ def main():
     ink_files = sorted(story_dir.glob('*.ink'))
 
     if not ink_files:
-        print('No .ink files found in story/', file=sys.stderr)
+        print('No .ink files found in assets/story/', file=sys.stderr)
         sys.exit(1)
 
     # Load all case files

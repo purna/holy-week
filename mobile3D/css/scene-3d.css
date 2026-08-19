@@ -311,8 +311,8 @@
 /* Action buttons overlay on 3D canvas - bottom right, above fixed navbar */
 #scene-mobile-actions {
     position: absolute;
-    bottom: 70px;
-    right: 16px;
+    bottom: 64px;
+    right: 32px;
     display: flex;
     flex-direction: column;
     gap: 8px;

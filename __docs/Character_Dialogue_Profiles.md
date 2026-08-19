@@ -29,7 +29,7 @@
 ### 1. The Senior Scribe / Investigative Mentor
 
 - **Character Profile:** [`characters/senior_scribe.json`](../characters/senior_scribe.json)
-- **Source Dialogue(s):** [`system/board_debate.ink`](../story/system/board_debate.ink) / [`system/board_debate.json`](../story/system/board_debate.json), [`system/board_review.ink`](../story/system/board_review.ink) / [`system/board_review.json`](../story/system/board_review.json)
+- **Source Dialogue(s):** [`system/board_debate.ink`](../assets/story/system/board_debate.ink) / [`system/board_debate.json`](../assets/story/system/board_debate.json), [`system/board_review.ink`](../assets/story/system/board_review.ink) / [`system/board_review.json`](../assets/story/system/board_review.json)
 - **Acts / Cases:** Act IV–V (Case Review / Board Debates)
 - **Role:** Evaluates evidence and guides the player to distinguish between predictive prophecy, historical evidence, and **typological patterns**.
 
@@ -52,8 +52,8 @@
 
 | Act | Case | Dialogue | Dialogue Needed? | Prophecies |
 | --- | --- | --- | --- | --- |
-| Act IV | `Case Review` | [`system/board_debate.ink`](../story/system/board_debate.ink) / [`system/board_debate.json`](../story/system/board_debate.json) | Yes (People tab) | — |
-| Act V | `Board Debates` | [`system/board_review.ink`](../story/system/board_review.ink) / [`system/board_review.json`](../story/system/board_review.json) | Yes (People tab) | — |
+| Act IV | `Case Review` | [`system/board_debate.ink`](../assets/story/system/board_debate.ink) / [`system/board_debate.json`](../assets/story/system/board_debate.json) | Yes (People tab) | — |
+| Act V | `Board Debates` | [`system/board_review.ink`](../assets/story/system/board_review.ink) / [`system/board_review.json`](../assets/story/system/board_review.json) | Yes (People tab) | — |
 
 ---
 [Back to Top](#table-of-contents)
@@ -85,8 +85,8 @@
 
 | Act | Case | Dialogue | Dialogue Needed? | Prophecies |
 | --- | --- | --- | --- | --- |
-| Act II | `authority_challenged` | [`act2/case_a_silenced_teacher/parable_vineyard.ink`](../story/act2/case_a_silenced_teacher/parable_vineyard.ink) / [`parable_vineyard.json`](../story/act2/case_a_silenced_teacher/parable_vineyard.json) | Yes (People tab) | — |
-| Act IV | `peter_restoration` | [`act4/case_c_peters_restoration/thomas_restoration.ink`](../story/act4/case_c_peters_restoration/thomas_restoration.ink) / [`thomas_restoration.json`](../story/act4/case_c_peters_restoration/thomas_restoration.json) | Yes (People tab) | — |
+| Act II | `authority_challenged` | [`act2/case_a_silenced_teacher/parable_vineyard.ink`](../assets/story/act2/case_a_silenced_teacher/parable_vineyard.ink) / [`parable_vineyard.json`](../assets/story/act2/case_a_silenced_teacher/parable_vineyard.json) | Yes (People tab) | — |
+| Act IV | `peter_restoration` | [`act4/case_c_peters_restoration/thomas_restoration.ink`](../assets/story/act4/case_c_peters_restoration/thomas_restoration.ink) / [`thomas_restoration.json`](../assets/story/act4/case_c_peters_restoration/thomas_restoration.json) | Yes (People tab) | — |
 
 ---
 [Back to Top](#table-of-contents)
@@ -117,7 +117,7 @@
 
 | Act | Case | Dialogue | Dialogue Needed? | Prophecies |
 | --- | --- | --- | --- | --- |
-| Act III | `crucifixion_site` | [`act3/case_e_final_sacrifice/pashhur.ink`](../story/act3/case_e_final_sacrifice/pashhur.ink) _(ink only — JSON pending review)_ | Yes (People tab) | — |
+| Act III | `crucifixion_site` | [`act3/case_e_final_sacrifice/pashhur.ink`](../assets/story/act3/case_e_final_sacrifice/pashhur.ink) _(ink only — JSON pending review)_ | Yes (People tab) | — |
 
 ---
 [Back to Top](#table-of-contents)
@@ -148,8 +148,8 @@
 
 | Act | Case | Dialogue | Dialogue Needed? | Prophecies |
 | --- | --- | --- | --- | --- |
-| Act I | `temple_cleansing` | [`act1/case_b_overturned_tables/pharisee_critique.ink`](../story/act1/case_b_overturned_tables/pharisee_critique.ink) / [`pharisee_critique.json`](../story/act1/case_b_overturned_tables/pharisee_critique.json) | Yes (People tab) | — |
-| Act II | `authority_challenged` | [`act2/case_a_silenced_teacher/simon_pharisee_authority.ink`](../story/act2/case_a_silenced_teacher/simon_pharisee_authority.ink) / [`simon_pharisee_authority.json`](../story/act2/case_a_silenced_teacher/simon_pharisee_authority.json) | Yes (People tab) | — |
+| Act I | `temple_cleansing` | [`act1/case_b_overturned_tables/pharisee_critique.ink`](../assets/story/act1/case_b_overturned_tables/pharisee_critique.ink) / [`pharisee_critique.json`](../assets/story/act1/case_b_overturned_tables/pharisee_critique.json) | Yes (People tab) | — |
+| Act II | `authority_challenged` | [`act2/case_a_silenced_teacher/simon_pharisee_authority.ink`](../assets/story/act2/case_a_silenced_teacher/simon_pharisee_authority.ink) / [`simon_pharisee_authority.json`](../assets/story/act2/case_a_silenced_teacher/simon_pharisee_authority.json) | Yes (People tab) | — |
 
 ---
 [Back to Top](#table-of-contents)
@@ -180,8 +180,8 @@
 
 | Act | Case | Dialogue | Dialogue Needed? | Prophecies |
 | --- | --- | --- | --- | --- |
-| Act I | `temple_cleansing` | [`act1/case_b_overturned_tables/priest_objection.ink`](../story/act1/case_b_overturned_tables/priest_objection.ink) / [`priest_objection.json`](../story/act1/case_b_overturned_tables/priest_objection.json) | Yes (People tab) | — |
-| Act III | `crucifixion_site` | [`act3/case_e_final_sacrifice/priest_objection_crucifixion.ink`](../story/act3/case_e_final_sacrifice/priest_objection_crucifixion.ink) / [`priest_objection_crucifixion.json`](../story/act3/case_e_final_sacrifice/priest_objection_crucifixion.json) | Yes (People tab) | — |
+| Act I | `temple_cleansing` | [`act1/case_b_overturned_tables/priest_objection.ink`](../assets/story/act1/case_b_overturned_tables/priest_objection.ink) / [`priest_objection.json`](../assets/story/act1/case_b_overturned_tables/priest_objection.json) | Yes (People tab) | — |
+| Act III | `crucifixion_site` | [`act3/case_e_final_sacrifice/priest_objection_crucifixion.ink`](../assets/story/act3/case_e_final_sacrifice/priest_objection_crucifixion.ink) / [`priest_objection_crucifixion.json`](../assets/story/act3/case_e_final_sacrifice/priest_objection_crucifixion.json) | Yes (People tab) | — |
 
 ---
 [Back to Top](#table-of-contents)
@@ -215,13 +215,13 @@
 
 | Act | Case | Dialogue | Dialogue Needed? | Prophecies |
 | --- | --- | --- | --- | --- |
-| Act I | `triumphal_entry` | [`act1/case_a_missing_donkey/peter_donkey.ink`](../story/act1/case_a_missing_donkey/peter_donkey.ink) / [`peter_donkey.json`](../story/act1/case_a_missing_donkey/peter_donkey.json) | Yes (People tab) | Genesis 49:10–11 |
-| Act I | `fig_tree_incident` | [`act1/case_c_fig_tree_incident/peter_fig_tree.ink`](../story/act1/case_c_fig_tree_incident/peter_fig_tree.ink) / [`peter_fig_tree.json`](../story/act1/case_c_fig_tree_incident/peter_fig_tree.json) | Yes (People tab) | Jeremiah 8:13 |
-| Act II | `olivet_discourse` | [`act2/case_c_olivet_discourse/peter_olivet.ink`](../story/act2/case_c_olivet_discourse/peter_olivet.ink) / [`peter_olivet.json`](../story/act2/case_c_olivet_discourse/peter_olivet.json) | Yes (People tab) | — |
+| Act I | `triumphal_entry` | [`act1/case_a_missing_donkey/peter_donkey.ink`](../assets/story/act1/case_a_missing_donkey/peter_donkey.ink) / [`peter_donkey.json`](../assets/story/act1/case_a_missing_donkey/peter_donkey.json) | Yes (People tab) | Genesis 49:10–11 |
+| Act I | `fig_tree_incident` | [`act1/case_c_fig_tree_incident/peter_fig_tree.ink`](../assets/story/act1/case_c_fig_tree_incident/peter_fig_tree.ink) / [`peter_fig_tree.json`](../assets/story/act1/case_c_fig_tree_incident/peter_fig_tree.json) | Yes (People tab) | Jeremiah 8:13 |
+| Act II | `olivet_discourse` | [`act2/case_c_olivet_discourse/peter_olivet.ink`](../assets/story/act2/case_c_olivet_discourse/peter_olivet.ink) / [`peter_olivet.json`](../assets/story/act2/case_c_olivet_discourse/peter_olivet.json) | Yes (People tab) | — |
 | Act III | `last_supper` |  | N/A (Peter not an NPC in this case) | — |
-| Act III | `gethsemane_arrest` | [`act3/case_b_severed_ear/peter_defense.ink`](../story/act3/case_b_severed_ear/peter_defense.ink) / [`peter_defense.json`](../story/act3/case_b_severed_ear/peter_defense.json) | Yes (People tab) | — |
-| Act III | `sanhedrin_trial` | [`act3/case_c_midnight_tribunal/peter_denial.ink`](../story/act3/case_c_midnight_tribunal/peter_denial.ink) / [`peter_denial.json`](../story/act3/case_c_midnight_tribunal/peter_denial.json) | Yes (People tab) | — |
-| Act IV | `peter_restoration` | [`act4/case_c_peters_restoration/peter_restored.ink`](../story/act4/case_c_peters_restoration/peter_restored.ink) / [`peter_restored.json`](../story/act4/case_c_peters_restoration/peter_restored.json) | Yes (People tab) | — |
+| Act III | `gethsemane_arrest` | [`act3/case_b_severed_ear/peter_defense.ink`](../assets/story/act3/case_b_severed_ear/peter_defense.ink) / [`peter_defense.json`](../assets/story/act3/case_b_severed_ear/peter_defense.json) | Yes (People tab) | — |
+| Act III | `sanhedrin_trial` | [`act3/case_c_midnight_tribunal/peter_denial.ink`](../assets/story/act3/case_c_midnight_tribunal/peter_denial.ink) / [`peter_denial.json`](../assets/story/act3/case_c_midnight_tribunal/peter_denial.json) | Yes (People tab) | — |
+| Act IV | `peter_restoration` | [`act4/case_c_peters_restoration/peter_restored.ink`](../assets/story/act4/case_c_peters_restoration/peter_restored.ink) / [`peter_restored.json`](../assets/story/act4/case_c_peters_restoration/peter_restored.json) | Yes (People tab) | — |
 
 ---
 [Back to Top](#table-of-contents)
@@ -232,7 +232,7 @@
 ### 7. Claudius the Centurion
 
 - **Character Profile:** [`characters/centurion_longinus.json`](../characters/centurion_longinus.json)
-- **Source Dialogue(s):** [`act3/case_e_final_sacrifice/roman_assessment.ink`](../story/act3/case_e_final_sacrifice/roman_assessment.ink) / [`roman_assessment.json`](../story/act3/case_e_final_sacrifice/roman_assessment.json)
+- **Source Dialogue(s):** [`act3/case_e_final_sacrifice/roman_assessment.ink`](../assets/story/act3/case_e_final_sacrifice/roman_assessment.ink) / [`roman_assessment.json`](../assets/story/act3/case_e_final_sacrifice/roman_assessment.json)
 - **Acts / Cases:** Act III (`crucifixion_site`), Act IV–V (Case Review / Board Debates)
 
 **Identity:** A seasoned Roman military commander stationed at the Antonia Fortress, responsible for imperial peacekeeping and tactical security in a volatile province.
@@ -254,9 +254,9 @@
 
 | Act | Case | Dialogue | Dialogue Needed? | Prophecies |
 | --- | --- | --- | --- | --- |
-| Act III | `crucifixion_site` | [`act3/case_e_final_sacrifice/roman_assessment.ink`](../story/act3/case_e_final_sacrifice/roman_assessment.ink) / [`roman_assessment.json`](../story/act3/case_e_final_sacrifice/roman_assessment.json) | Yes (People tab) | — |
-| Act IV | `Case Review` | [`act3/case_e_final_sacrifice/roman_assessment.ink`](../story/act3/case_e_final_sacrifice/roman_assessment.ink) / [`roman_assessment.json`](../story/act3/case_e_final_sacrifice/roman_assessment.json) | Yes (People tab) | — |
-| Act V | `Board Debates` | [`system/board_review.ink`](../story/system/board_review.ink) / [`system/board_review.json`](../story/system/board_review.json) | Yes (People tab) | — |
+| Act III | `crucifixion_site` | [`act3/case_e_final_sacrifice/roman_assessment.ink`](../assets/story/act3/case_e_final_sacrifice/roman_assessment.ink) / [`roman_assessment.json`](../assets/story/act3/case_e_final_sacrifice/roman_assessment.json) | Yes (People tab) | — |
+| Act IV | `Case Review` | [`act3/case_e_final_sacrifice/roman_assessment.ink`](../assets/story/act3/case_e_final_sacrifice/roman_assessment.ink) / [`roman_assessment.json`](../assets/story/act3/case_e_final_sacrifice/roman_assessment.json) | Yes (People tab) | — |
+| Act V | `Board Debates` | [`system/board_review.ink`](../assets/story/system/board_review.ink) / [`system/board_review.json`](../assets/story/system/board_review.json) | Yes (People tab) | — |
 
 ---
 [Back to Top](#table-of-contents)
@@ -265,7 +265,7 @@
 ### 8. The Garrison Guard
 
 - **Character Profile:** [`characters/garrison_guard.json`](../characters/garrison_guard.json)
-- **Source Dialogue(s):** [`act1/case_b_overturned_tables/guard_report.ink`](../story/act1/case_b_overturned_tables/guard_report.ink) / [`guard_report.json`](../story/act1/case_b_overturned_tables/guard_report.json)
+- **Source Dialogue(s):** [`act1/case_b_overturned_tables/guard_report.ink`](../assets/story/act1/case_b_overturned_tables/guard_report.ink) / [`guard_report.json`](../assets/story/act1/case_b_overturned_tables/guard_report.json)
 - **Acts / Cases:** Act I (`temple_cleansing`), Act III (`gethsemane_arrest`, `crucifixion_site`), Act IV (`roman_inquiry`)
 
 **Identity:** A working-class Roman auxiliary or conscripted guard stationed along the high outer walls of the Temple precinct during a public riot.
@@ -287,10 +287,10 @@
 
 | Act | Case | Dialogue | Dialogue Needed? | Prophecies |
 | --- | --- | --- | --- | --- |
-| Act I | `temple_cleansing` | [`act1/case_b_overturned_tables/guard_report.ink`](../story/act1/case_b_overturned_tables/guard_report.ink) / [`guard_report.json`](../story/act1/case_b_overturned_tables/guard_report.json) | Yes (People tab) | — |
-| Act III | `gethsemane_arrest` | [`act3/case_b_severed_ear/guard_report_gethsemane.json`](../story/act3/case_b_severed_ear/guard_report_gethsemane.json) | Yes (People tab) | — |
-| Act III | `crucifixion_site` | [`act3/case_e_final_sacrifice/guard_report_crucifixion.json`](../story/act3/case_e_final_sacrifice/guard_report_crucifixion.json) | Yes (People tab) | — |
-| Act IV | `roman_inquiry` | [`act4/case_b_guards_report/sentry_lucas.ink`](../story/act4/case_b_guards_report/sentry_lucas.ink) / [`sentry_lucas.json`](../story/act4/case_b_guards_report/sentry_lucas.json) | Yes (People tab) | — |
+| Act I | `temple_cleansing` | [`act1/case_b_overturned_tables/guard_report.ink`](../assets/story/act1/case_b_overturned_tables/guard_report.ink) / [`guard_report.json`](../assets/story/act1/case_b_overturned_tables/guard_report.json) | Yes (People tab) | — |
+| Act III | `gethsemane_arrest` | [`act3/case_b_severed_ear/guard_report_gethsemane.json`](../assets/story/act3/case_b_severed_ear/guard_report_gethsemane.json) | Yes (People tab) | — |
+| Act III | `crucifixion_site` | [`act3/case_e_final_sacrifice/guard_report_crucifixion.json`](../assets/story/act3/case_e_final_sacrifice/guard_report_crucifixion.json) | Yes (People tab) | — |
+| Act IV | `roman_inquiry` | [`act4/case_b_guards_report/sentry_lucas.ink`](../assets/story/act4/case_b_guards_report/sentry_lucas.ink) / [`sentry_lucas.json`](../assets/story/act4/case_b_guards_report/sentry_lucas.json) | Yes (People tab) | — |
 
 ---
 [Back to Top](#table-of-contents)
@@ -321,7 +321,7 @@
 
 | Act | Case | Dialogue | Dialogue Needed? | Prophecies |
 | --- | --- | --- | --- | --- |
-| Act I | `temple_cleansing` | [`act1/case_b_overturned_tables/corrupt_seller.ink`](../story/act1/case_b_overturned_tables/corrupt_seller.ink) / [`corrupt_seller.json`](../story/act1/case_b_overturned_tables/corrupt_seller.json) | Yes (People tab) | — |
+| Act I | `temple_cleansing` | [`act1/case_b_overturned_tables/corrupt_seller.ink`](../assets/story/act1/case_b_overturned_tables/corrupt_seller.ink) / [`corrupt_seller.json`](../assets/story/act1/case_b_overturned_tables/corrupt_seller.json) | Yes (People tab) | — |
 
 ---
 [Back to Top](#table-of-contents)
@@ -330,7 +330,7 @@
 ### 10. The Market Informant
 
 - **Character Profile:** [`characters/market_informant.json`](../characters/market_informant.json)
-- **Source Dialogue(s):** [`act1/case_b_overturned_tables/informant_bribe.ink`](../story/act1/case_b_overturned_tables/informant_bribe.ink) / [`informant_bribe.json`](../story/act1/case_b_overturned_tables/informant_bribe.json)
+- **Source Dialogue(s):** [`act1/case_b_overturned_tables/informant_bribe.ink`](../assets/story/act1/case_b_overturned_tables/informant_bribe.ink) / [`informant_bribe.json`](../assets/story/act1/case_b_overturned_tables/informant_bribe.json)
 - **Acts / Cases:** Act I (`temple_cleansing`)
 
 **Identity:** A street-level opportunist, back-alley courier, or minor collaborator trading inside intelligence for physical safety and currency.
@@ -352,7 +352,7 @@
 
 | Act | Case | Dialogue | Dialogue Needed? | Prophecies |
 | --- | --- | --- | --- | --- |
-| Act I | `temple_cleansing` | [`act1/case_b_overturned_tables/informant_bribe.ink`](../story/act1/case_b_overturned_tables/informant_bribe.ink) / [`informant_bribe.json`](../story/act1/case_b_overturned_tables/informant_bribe.json) | Yes (People tab) | — |
+| Act I | `temple_cleansing` | [`act1/case_b_overturned_tables/informant_bribe.ink`](../assets/story/act1/case_b_overturned_tables/informant_bribe.ink) / [`informant_bribe.json`](../assets/story/act1/case_b_overturned_tables/informant_bribe.json) | Yes (People tab) | — |
 
 ---
 [Back to Top](#table-of-contents)
@@ -361,7 +361,7 @@
 ### 11. The Market Vendor
 
 - **Character Profile:** [`characters/market_vendor.json`](../characters/market_vendor.json)
-- **Source Dialogue(s):** [`act1/case_b_overturned_tables/market_rumors.ink`](../story/act1/case_b_overturned_tables/market_rumors.ink) / [`market_rumors.json`](../story/act1/case_b_overturned_tables/market_rumors.json)
+- **Source Dialogue(s):** [`act1/case_b_overturned_tables/market_rumors.ink`](../assets/story/act1/case_b_overturned_tables/market_rumors.ink) / [`market_rumors.json`](../assets/story/act1/case_b_overturned_tables/market_rumors.json)
 - **Acts / Cases:** Act I (`temple_cleansing`)
 
 **Identity:** A local dry-goods or food merchant trying to leverage neighborhood gossip into increased stall foot traffic without drawing the eye of temple guards.
@@ -383,7 +383,7 @@
 
 | Act | Case | Dialogue | Dialogue Needed? | Prophecies |
 | --- | --- | --- | --- | --- |
-| Act I | `temple_cleansing` | [`act1/case_b_overturned_tables/market_rumors.ink`](../story/act1/case_b_overturned_tables/market_rumors.ink) / [`market_rumors.json`](../story/act1/case_b_overturned_tables/market_rumors.json) | Yes (People tab) | — |
+| Act I | `temple_cleansing` | [`act1/case_b_overturned_tables/market_rumors.ink`](../assets/story/act1/case_b_overturned_tables/market_rumors.ink) / [`market_rumors.json`](../assets/story/act1/case_b_overturned_tables/market_rumors.json) | Yes (People tab) | — |
 
 ---
 [Back to Top](#table-of-contents)
@@ -392,7 +392,7 @@
 ### 12. The Nervous Citizen
 
 - **Character Profile:** [`characters/city_gossip.json`](../characters/city_gossip.json)
-- **Source Dialogue(s):** [`act1/case_b_overturned_tables/rumor_whisper.ink`](../story/act1/case_b_overturned_tables/rumor_whisper.ink) / [`rumor_whisper.json`](../story/act1/case_b_overturned_tables/rumor_whisper.json)
+- **Source Dialogue(s):** [`act1/case_b_overturned_tables/rumor_whisper.ink`](../assets/story/act1/case_b_overturned_tables/rumor_whisper.ink) / [`rumor_whisper.json`](../assets/story/act1/case_b_overturned_tables/rumor_whisper.json)
 - **Acts / Cases:** Act I (`temple_cleansing`)
 
 **Identity:** An ordinary resident of Jerusalem caught in the dangerous crossfire of a regional religious and political crackdown.
@@ -414,7 +414,7 @@
 
 | Act | Case | Dialogue | Dialogue Needed? | Prophecies |
 | --- | --- | --- | --- | --- |
-| Act I | `temple_cleansing` | [`act1/case_b_overturned_tables/rumor_whisper.ink`](../story/act1/case_b_overturned_tables/rumor_whisper.ink) / [`rumor_whisper.json`](../story/act1/case_b_overturned_tables/rumor_whisper.json) | Yes (People tab) | — |
+| Act I | `temple_cleansing` | [`act1/case_b_overturned_tables/rumor_whisper.ink`](../assets/story/act1/case_b_overturned_tables/rumor_whisper.ink) / [`rumor_whisper.json`](../assets/story/act1/case_b_overturned_tables/rumor_whisper.json) | Yes (People tab) | — |
 
 ---
 [Back to Top](#table-of-contents)
@@ -447,7 +447,7 @@
 | Act | Case | Dialogue | Dialogue Needed? | Prophecies |
 | --- | --- | --- | --- | --- |
 | Act I | `triumphal_entry` |  | N/A (Vendor not an NPC in this case) | — |
-| Act I | `triumphal_entry` | [`act1/case_a_missing_donkey/galilean_pilgrim.ink`](../story/act1/case_a_missing_donkey/galilean_pilgrim.ink) / [`galilean_pilgrim.json`](../story/act1/case_a_missing_donkey/galilean_pilgrim.json) | Yes (People tab) | Psalm 118:25–26 |
+| Act I | `triumphal_entry` | [`act1/case_a_missing_donkey/galilean_pilgrim.ink`](../assets/story/act1/case_a_missing_donkey/galilean_pilgrim.ink) / [`galilean_pilgrim.json`](../assets/story/act1/case_a_missing_donkey/galilean_pilgrim.json) | Yes (People tab) | Psalm 118:25–26 |
 
 ---
 [Back to Top](#table-of-contents)
@@ -478,8 +478,8 @@
 | Act | Case | Dialogue | Dialogue Needed? | Prophecies |
 | --- | --- | --- | --- | --- |
 | Act I | `triumphal_entry` |  | N/A (Vendor not an NPC in this case) | — |
-| Act I | `temple_cleansing` | [`act1/case_b_overturned_tables/market_rumors.ink`](../story/act1/case_b_overturned_tables/market_rumors.ink) / [`market_rumors.json`](../story/act1/case_b_overturned_tables/market_rumors.json) | Yes (People tab) | — |
-| Act I | `triumphal_entry` | [`act1/case_a_missing_donkey/jerusalem_local.ink`](../story/act1/case_a_missing_donkey/jerusalem_local.ink) / [`jerusalem_local.json`](../story/act1/case_a_missing_donkey/jerusalem_local.json) | Yes (People tab) | — |
+| Act I | `temple_cleansing` | [`act1/case_b_overturned_tables/market_rumors.ink`](../assets/story/act1/case_b_overturned_tables/market_rumors.ink) / [`market_rumors.json`](../assets/story/act1/case_b_overturned_tables/market_rumors.json) | Yes (People tab) | — |
+| Act I | `triumphal_entry` | [`act1/case_a_missing_donkey/jerusalem_local.ink`](../assets/story/act1/case_a_missing_donkey/jerusalem_local.ink) / [`jerusalem_local.json`](../assets/story/act1/case_a_missing_donkey/jerusalem_local.json) | Yes (People tab) | — |
 
 ---
 [Back to Top](#table-of-contents)
@@ -509,7 +509,7 @@
 
 | Act | Case | Dialogue | Dialogue Needed? | Prophecies |
 | --- | --- | --- | --- | --- |
-| Act I | `temple_cleansing` | [`act1/case_b_overturned_tables/market_rumors.ink`](../story/act1/case_b_overturned_tables/market_rumors.ink) / [`market_rumors.json`](../story/act1/case_b_overturned_tables/market_rumors.json) | Yes (People tab) | — |
+| Act I | `temple_cleansing` | [`act1/case_b_overturned_tables/market_rumors.ink`](../assets/story/act1/case_b_overturned_tables/market_rumors.ink) / [`market_rumors.json`](../assets/story/act1/case_b_overturned_tables/market_rumors.json) | Yes (People tab) | — |
 
 ---
 [Back to Top](#table-of-contents)
@@ -542,7 +542,7 @@
 | Act | Case | Dialogue | Dialogue Needed? | Prophecies |
 | --- | --- | --- | --- | --- |
 | Act II | `lazarus_plot` |  | N/A (Vendor not an NPC in this case) | — |
-| Act II | `lazarus_plot` | [`act2/case_b_lazarus_conspiracy/annas_patriarch.ink`](../story/act2/case_b_lazarus_conspiracy/annas_patriarch.ink) / [`annas_patriarch.json`](../story/act2/case_b_lazarus_conspiracy/annas_patriarch.json) | Yes (People tab) | — |
+| Act II | `lazarus_plot` | [`act2/case_b_lazarus_conspiracy/annas_patriarch.ink`](../assets/story/act2/case_b_lazarus_conspiracy/annas_patriarch.ink) / [`annas_patriarch.json`](../assets/story/act2/case_b_lazarus_conspiracy/annas_patriarch.json) | Yes (People tab) | — |
 
 ---
 [Back to Top](#table-of-contents)
@@ -575,10 +575,10 @@
 | Act II | `authority_challenged` |  | N/A (Vendor not an NPC in this case) | — |
 | Act III | `sanhedrin_trial` |  | N/A (Vendor not an NPC in this case) | — |
 | Act IV | `roman_inquiry` |  | N/A (Vendor not an NPC in this case) | — |
-| Act II | `authority_challenged` | [`act2/case_a_silenced_teacher/caiaphas_priest.ink`](../story/act2/case_a_silenced_teacher/caiaphas_priest.ink) / [`caiaphas_priest.json`](../story/act2/case_a_silenced_teacher/caiaphas_priest.json) | Yes (People tab) | — |
-| Act II | `lazarus_plot` | [`act2/case_b_lazarus_conspiracy/caiaphas_lazarus.ink`](../story/act2/case_b_lazarus_conspiracy/caiaphas_lazarus.ink) _(ink only — JSON pending review)_ | Yes (People tab) | — |
-| Act III | `sanhedrin_trial` | [`act3/case_c_midnight_tribunal/caiaphas_priest.ink`](../story/act3/case_c_midnight_tribunal/caiaphas_priest.ink) / [`caiaphas_priest.json`](../story/act3/case_c_midnight_tribunal/caiaphas_priest.json) | Yes (People tab) | — |
-| Act IV | `roman_inquiry` | [`act4/case_b_guards_report/caiaphas_roman_inquiry.ink`](../story/act4/case_b_guards_report/caiaphas_roman_inquiry.ink) _(ink only — JSON pending review)_ | Yes (People tab) | — |
+| Act II | `authority_challenged` | [`act2/case_a_silenced_teacher/caiaphas_priest.ink`](../assets/story/act2/case_a_silenced_teacher/caiaphas_priest.ink) / [`caiaphas_priest.json`](../assets/story/act2/case_a_silenced_teacher/caiaphas_priest.json) | Yes (People tab) | — |
+| Act II | `lazarus_plot` | [`act2/case_b_lazarus_conspiracy/caiaphas_lazarus.ink`](../assets/story/act2/case_b_lazarus_conspiracy/caiaphas_lazarus.ink) _(ink only — JSON pending review)_ | Yes (People tab) | — |
+| Act III | `sanhedrin_trial` | [`act3/case_c_midnight_tribunal/caiaphas_priest.ink`](../assets/story/act3/case_c_midnight_tribunal/caiaphas_priest.ink) / [`caiaphas_priest.json`](../assets/story/act3/case_c_midnight_tribunal/caiaphas_priest.json) | Yes (People tab) | — |
+| Act IV | `roman_inquiry` | [`act4/case_b_guards_report/caiaphas_roman_inquiry.ink`](../assets/story/act4/case_b_guards_report/caiaphas_roman_inquiry.ink) _(ink only — JSON pending review)_ | Yes (People tab) | — |
 
 ---
 [Back to Top](#table-of-contents)
@@ -607,7 +607,7 @@
 
 | Act | Case | Dialogue | Dialogue Needed? | Prophecies |
 | --- | --- | --- | --- | --- |
-| Act I | `triumphal_entry` | [`act1/case_a_missing_donkey/eleazar_sadducee.ink`](../story/act1/case_a_missing_donkey/eleazar_sadducee.ink) / [`eleazar_sadducee.json`](../story/act1/case_a_missing_donkey/eleazar_sadducee.json) | Yes (People tab) | Malachi 3:1 |
+| Act I | `triumphal_entry` | [`act1/case_a_missing_donkey/eleazar_sadducee.ink`](../assets/story/act1/case_a_missing_donkey/eleazar_sadducee.ink) / [`eleazar_sadducee.json`](../assets/story/act1/case_a_missing_donkey/eleazar_sadducee.json) | Yes (People tab) | Malachi 3:1 |
 
 ---
 [Back to Top](#table-of-contents)
@@ -639,8 +639,8 @@
 | --- | --- | --- | --- | --- |
 | Act III | `crucifixion_site` |  | N/A (Vendor not an NPC in this case) | — |
 | Act IV | `resurrection` |  | N/A (Vendor not an NPC in this case) | — |
-| Act III | `crucifixion_site` | [`act3/case_e_final_sacrifice/joseph_arimathea_cross.ink`](../story/act3/case_e_final_sacrifice/joseph_arimathea_cross.ink) _(ink only — JSON pending review)_ | Yes (People tab) | — |
-| Act IV | `resurrection` | [`act4/case_a_empty_tomb/joseph_arimathea.ink`](../story/act4/case_a_empty_tomb/joseph_arimathea.ink) / [`joseph_arimathea.json`](../story/act4/case_a_empty_tomb/joseph_arimathea.json) | Yes (People tab) | — |
+| Act III | `crucifixion_site` | [`act3/case_e_final_sacrifice/joseph_arimathea_cross.ink`](../assets/story/act3/case_e_final_sacrifice/joseph_arimathea_cross.ink) _(ink only — JSON pending review)_ | Yes (People tab) | — |
+| Act IV | `resurrection` | [`act4/case_a_empty_tomb/joseph_arimathea.ink`](../assets/story/act4/case_a_empty_tomb/joseph_arimathea.ink) / [`joseph_arimathea.json`](../assets/story/act4/case_a_empty_tomb/joseph_arimathea.json) | Yes (People tab) | — |
 
 ---
 [Back to Top](#table-of-contents)
@@ -668,7 +668,7 @@
 
 | Act | Case | Dialogue | Dialogue Needed? | Prophecies |
 | --- | --- | --- | --- | --- |
-| Act I | `triumphal_entry` | [`act1/case_a_missing_donkey/sadducee_opposition.ink`](../story/act1/case_a_missing_donkey/sadducee_opposition.ink) / [`sadducee_opposition.json`](../story/act1/case_a_missing_donkey/sadducee_opposition.json) | Yes (People tab) | — |
+| Act I | `triumphal_entry` | [`act1/case_a_missing_donkey/sadducee_opposition.ink`](../assets/story/act1/case_a_missing_donkey/sadducee_opposition.ink) / [`sadducee_opposition.json`](../assets/story/act1/case_a_missing_donkey/sadducee_opposition.json) | Yes (People tab) | — |
 
 ---
 [Back to Top](#table-of-contents)
@@ -705,8 +705,8 @@
 | Act III | `last_supper` |  | N/A (Vendor not an NPC in this case) | — |
 | Act III | `gethsemane_arrest` |  | N/A (Vendor not an NPC in this case) | — |
 | Act IV | `roman_inquiry` |  | N/A (Vendor not an NPC in this case) | — |
-| Act III | `last_supper` | [`act3/case_a_broken_cup/judas_iscariot.ink`](../story/act3/case_a_broken_cup/judas_iscariot.ink) / [`judas_iscariot.json`](../story/act3/case_a_broken_cup/judas_iscariot.json) | Yes (People tab) | — |
-| Act IV | `roman_inquiry` | [`act4/case_b_guards_report/judas_betrayal.ink`](../story/act4/case_b_guards_report/judas_betrayal.ink) / [`judas_betrayal.json`](../story/act4/case_b_guards_report/judas_betrayal.json) | Yes (People tab) | — |
+| Act III | `last_supper` | [`act3/case_a_broken_cup/judas_iscariot.ink`](../assets/story/act3/case_a_broken_cup/judas_iscariot.ink) / [`judas_iscariot.json`](../assets/story/act3/case_a_broken_cup/judas_iscariot.json) | Yes (People tab) | — |
+| Act IV | `roman_inquiry` | [`act4/case_b_guards_report/judas_betrayal.ink`](../assets/story/act4/case_b_guards_report/judas_betrayal.ink) / [`judas_betrayal.json`](../assets/story/act4/case_b_guards_report/judas_betrayal.json) | Yes (People tab) | — |
 
 ---
 [Back to Top](#table-of-contents)
@@ -773,10 +773,10 @@
 | Act II | `olivet_discourse` |  | N/A (Vendor not an NPC in this case) | — |
 | Act III | `last_supper` |  | N/A (Vendor not an NPC in this case) | — |
 | Act IV | `peter_restoration` |  | N/A (Vendor not an NPC in this case) | — |
-| Act I | `triumphal_entry` | [`act1/case_a_missing_donkey/john_donkey.ink`](../story/act1/case_a_missing_donkey/john_donkey.ink) / [`john_donkey.json`](../story/act1/case_a_missing_donkey/john_donkey.json) | Yes (People tab) | — |
-| Act I | `fig_tree_incident` | [`act1/case_c_fig_tree_incident/john_fig_tree.ink`](../story/act1/case_c_fig_tree_incident/john_fig_tree.ink) / [`john_fig_tree.json`](../story/act1/case_c_fig_tree_incident/john_fig_tree.json) | Yes (People tab) | Zechariah 4:6–7 |
-| Act II | `olivet_discourse` | [`act2/case_c_olivet_discourse/john_olivet.ink`](../story/act2/case_c_olivet_discourse/john_olivet.ink) / [`john_olivet.json`](../story/act2/case_c_olivet_discourse/john_olivet.json) | Yes (People tab) | — |
-| Act III | `last_supper` | [`act3/case_a_broken_cup/john_disciple.ink`](../story/act3/case_a_broken_cup/john_disciple.ink) / [`john_disciple.json`](../story/act3/case_a_broken_cup/john_disciple.json) | Yes (People tab) | — |
+| Act I | `triumphal_entry` | [`act1/case_a_missing_donkey/john_donkey.ink`](../assets/story/act1/case_a_missing_donkey/john_donkey.ink) / [`john_donkey.json`](../assets/story/act1/case_a_missing_donkey/john_donkey.json) | Yes (People tab) | — |
+| Act I | `fig_tree_incident` | [`act1/case_c_fig_tree_incident/john_fig_tree.ink`](../assets/story/act1/case_c_fig_tree_incident/john_fig_tree.ink) / [`john_fig_tree.json`](../assets/story/act1/case_c_fig_tree_incident/john_fig_tree.json) | Yes (People tab) | Zechariah 4:6–7 |
+| Act II | `olivet_discourse` | [`act2/case_c_olivet_discourse/john_olivet.ink`](../assets/story/act2/case_c_olivet_discourse/john_olivet.ink) / [`john_olivet.json`](../assets/story/act2/case_c_olivet_discourse/john_olivet.json) | Yes (People tab) | — |
+| Act III | `last_supper` | [`act3/case_a_broken_cup/john_disciple.ink`](../assets/story/act3/case_a_broken_cup/john_disciple.ink) / [`john_disciple.json`](../assets/story/act3/case_a_broken_cup/john_disciple.json) | Yes (People tab) | — |
 
 ---
 [Back to Top](#table-of-contents)
@@ -808,7 +808,7 @@
 | --- | --- | --- | --- | --- |
 | Act II | `lazarus_plot` |  | N/A (Vendor not an NPC in this case) | — |
 | Act III | `last_supper` |  | N/A (Vendor not an NPC in this case) | — |
-| Act II | `lazarus_plot` | [`act2/case_b_lazarus_conspiracy/martha_bethany.ink`](../story/act2/case_b_lazarus_conspiracy/martha_bethany.ink) / [`martha_bethany.json`](../story/act2/case_b_lazarus_conspiracy/martha_bethany.json) | Yes (People tab) | — |
+| Act II | `lazarus_plot` | [`act2/case_b_lazarus_conspiracy/martha_bethany.ink`](../assets/story/act2/case_b_lazarus_conspiracy/martha_bethany.ink) / [`martha_bethany.json`](../assets/story/act2/case_b_lazarus_conspiracy/martha_bethany.json) | Yes (People tab) | — |
 
 ---
 [Back to Top](#table-of-contents)
@@ -842,9 +842,9 @@
 | --- | --- | --- | --- | --- |
 | Act III | `crucifixion_site` |  | N/A (Vendor not an NPC in this case) | — |
 | Act IV | `resurrection` |  | N/A (Vendor not an NPC in this case) | — |
-| Act IV | `resurrection` | [`act4/case_a_empty_tomb/mary_magdalene.ink`](../story/act4/case_a_empty_tomb/mary_magdalene.ink) / [`mary_magdalene.json`](../story/act4/case_a_empty_tomb/mary_magdalene.json) | Yes (People tab) | — |
-| Act IV | `roman_inquiry` | [`act4/case_b_guards_report/mary_resurrection.ink`](../story/act4/case_b_guards_report/mary_resurrection.ink) / [`mary_resurrection.json`](../story/act4/case_b_guards_report/mary_resurrection.json) | Yes (People tab) | — |
-| Act IV | `peter_restoration` | [`act4/case_a_empty_tomb/mary_magdalene.ink`](../story/act4/case_a_empty_tomb/mary_magdalene.ink) / [`mary_magdalene.json`](../story/act4/case_a_empty_tomb/mary_magdalene.json) | Yes (People tab) | — |
+| Act IV | `resurrection` | [`act4/case_a_empty_tomb/mary_magdalene.ink`](../assets/story/act4/case_a_empty_tomb/mary_magdalene.ink) / [`mary_magdalene.json`](../assets/story/act4/case_a_empty_tomb/mary_magdalene.json) | Yes (People tab) | — |
+| Act IV | `roman_inquiry` | [`act4/case_b_guards_report/mary_resurrection.ink`](../assets/story/act4/case_b_guards_report/mary_resurrection.ink) / [`mary_resurrection.json`](../assets/story/act4/case_b_guards_report/mary_resurrection.json) | Yes (People tab) | — |
+| Act IV | `peter_restoration` | [`act4/case_a_empty_tomb/mary_magdalene.ink`](../assets/story/act4/case_a_empty_tomb/mary_magdalene.ink) / [`mary_magdalene.json`](../assets/story/act4/case_a_empty_tomb/mary_magdalene.json) | Yes (People tab) | — |
 
 ---
 [Back to Top](#table-of-contents)
@@ -942,9 +942,9 @@
 | --- | --- | --- | --- | --- |
 | Act III | `barabbas_choice` |  | N/A (Vendor not an NPC in this case) | — |
 | Act IV | `roman_inquiry` |  | N/A (Vendor not an NPC in this case) | — |
-| Act I | `temple_cleansing` | [`act1/case_b_overturned_tables/pilates_secretary.ink`](../story/act1/case_b_overturned_tables/pilates_secretary.ink) / [`pilates_secretary.json`](../story/act1/case_b_overturned_tables/pilates_secretary.json) | Yes (People tab) | — |
-| Act III | `barabbas_choice` | [`act3/case_d_roman_interrogation/pilates_secretary.ink`](../story/act3/case_d_roman_interrogation/pilates_secretary.ink) / [`pilates_secretary.json`](../story/act3/case_d_roman_interrogation/pilates_secretary.json) | Yes (People tab) | — |
-| Act IV | `roman_inquiry` | [`act3/case_d_roman_interrogation/pilates_secretary.ink`](../story/act3/case_d_roman_interrogation/pilates_secretary.ink) / [`pilates_secretary.json`](../story/act3/case_d_roman_interrogation/pilates_secretary.json) | Yes (People tab) | — |
+| Act I | `temple_cleansing` | [`act1/case_b_overturned_tables/pilates_secretary.ink`](../assets/story/act1/case_b_overturned_tables/pilates_secretary.ink) / [`pilates_secretary.json`](../assets/story/act1/case_b_overturned_tables/pilates_secretary.json) | Yes (People tab) | — |
+| Act III | `barabbas_choice` | [`act3/case_d_roman_interrogation/pilates_secretary.ink`](../assets/story/act3/case_d_roman_interrogation/pilates_secretary.ink) / [`pilates_secretary.json`](../assets/story/act3/case_d_roman_interrogation/pilates_secretary.json) | Yes (People tab) | — |
+| Act IV | `roman_inquiry` | [`act3/case_d_roman_interrogation/pilates_secretary.ink`](../assets/story/act3/case_d_roman_interrogation/pilates_secretary.ink) / [`pilates_secretary.json`](../assets/story/act3/case_d_roman_interrogation/pilates_secretary.json) | Yes (People tab) | — |
 
 ---
 [Back to Top](#table-of-contents)
@@ -975,8 +975,8 @@
 | Act | Case | Dialogue | Dialogue Needed? | Prophecies |
 | --- | --- | --- | --- | --- |
 | Act III | `barabbas_choice` |  | N/A (Vendor not an NPC in this case) | — |
-| Act I | `temple_cleansing` | [`act1/case_b_overturned_tables/pontius_pilate_temple.ink`](../story/act1/case_b_overturned_tables/pontius_pilate_temple.ink) / [`pontius_pilate_temple.json`](../story/act1/case_b_overturned_tables/pontius_pilate_temple.json) | Yes (People tab) | — |
-| Act III | `barabbas_choice` | [`act3/case_d_roman_interrogation/pontius_pilate_barabbas.ink`](../story/act3/case_d_roman_interrogation/pontius_pilate_barabbas.ink) / [`pontius_pilate_barabbas.json`](../story/act3/case_d_roman_interrogation/pontius_pilate_barabbas.json) | Yes (People tab) | — |
+| Act I | `temple_cleansing` | [`act1/case_b_overturned_tables/pontius_pilate_temple.ink`](../assets/story/act1/case_b_overturned_tables/pontius_pilate_temple.ink) / [`pontius_pilate_temple.json`](../assets/story/act1/case_b_overturned_tables/pontius_pilate_temple.json) | Yes (People tab) | — |
+| Act III | `barabbas_choice` | [`act3/case_d_roman_interrogation/pontius_pilate_barabbas.ink`](../assets/story/act3/case_d_roman_interrogation/pontius_pilate_barabbas.ink) / [`pontius_pilate_barabbas.json`](../assets/story/act3/case_d_roman_interrogation/pontius_pilate_barabbas.json) | Yes (People tab) | — |
 
 ---
 [Back to Top](#table-of-contents)
@@ -1008,7 +1008,7 @@
 | Act | Case | Dialogue | Dialogue Needed? | Prophecies |
 | --- | --- | --- | --- | --- |
 | Act III | `sanhedrin_trial` |  | N/A (Vendor not an NPC in this case) | — |
-| Act III | `sanhedrin_trial` | [`act3/case_c_midnight_tribunal/false_witness.ink`](../story/act3/case_c_midnight_tribunal/false_witness.ink) / [`false_witness.json`](../story/act3/case_c_midnight_tribunal/false_witness.json) | Yes (People tab) | — |
+| Act III | `sanhedrin_trial` | [`act3/case_c_midnight_tribunal/false_witness.ink`](../assets/story/act3/case_c_midnight_tribunal/false_witness.ink) / [`false_witness.json`](../assets/story/act3/case_c_midnight_tribunal/false_witness.json) | Yes (People tab) | — |
 
 ---
 [Back to Top](#table-of-contents)
@@ -1039,8 +1039,8 @@
 | --- | --- | --- | --- | --- |
 | Act II | `authority_challenged` |  | N/A (Vendor not an NPC in this case) | — |
 | Act IV | `peter_restoration` |  | N/A (Vendor not an NPC in this case) | — |
-| Act I | `triumphal_entry` | [`act1/case_a_missing_donkey/nathanael_pharisee_entry.ink`](../story/act1/case_a_missing_donkey/nathanael_pharisee_entry.ink) _(ink only — JSON pending review)_ | Yes (People tab) | — |
-| Act II | `authority_challenged` | [`act1/case_b_overturned_tables/pharisee_critique.ink`](../story/act1/case_b_overturned_tables/pharisee_critique.ink) / [`pharisee_critique.json`](../story/act1/case_b_overturned_tables/pharisee_critique.json) _(pharisee_critique is from temple cleansing)_ | Yes (People tab) | — |
+| Act I | `triumphal_entry` | [`act1/case_a_missing_donkey/nathanael_pharisee_entry.ink`](../assets/story/act1/case_a_missing_donkey/nathanael_pharisee_entry.ink) _(ink only — JSON pending review)_ | Yes (People tab) | — |
+| Act II | `authority_challenged` | [`act1/case_b_overturned_tables/pharisee_critique.ink`](../assets/story/act1/case_b_overturned_tables/pharisee_critique.ink) / [`pharisee_critique.json`](../assets/story/act1/case_b_overturned_tables/pharisee_critique.json) _(pharisee_critique is from temple cleansing)_ | Yes (People tab) | — |
 
 ---
 [Back to Top](#table-of-contents)
@@ -1070,7 +1070,7 @@
 | Act | Case | Dialogue | Dialogue Needed? | Prophecies |
 | --- | --- | --- | --- | --- |
 | Act II | `lazarus_plot` |  | N/A (Vendor not an NPC in this case) | — |
-| Act II | `lazarus_plot` | [`act2/case_b_lazarus_conspiracy/nicodemus_conflicted.ink`](../story/act2/case_b_lazarus_conspiracy/nicodemus_conflicted.ink) / [`nicodemus_conflicted.json`](../story/act2/case_b_lazarus_conspiracy/nicodemus_conflicted.json) | Yes (People tab) | — |
+| Act II | `lazarus_plot` | [`act2/case_b_lazarus_conspiracy/nicodemus_conflicted.ink`](../assets/story/act2/case_b_lazarus_conspiracy/nicodemus_conflicted.ink) / [`nicodemus_conflicted.json`](../assets/story/act2/case_b_lazarus_conspiracy/nicodemus_conflicted.json) | Yes (People tab) | — |
 
 ---
 [Back to Top](#table-of-contents)
@@ -1079,7 +1079,7 @@
 ### 34. Hillel the Scribe
 
 - **Character Profile:** `characters/hillel_scribe.json`
-- **Source Dialogue(s):** `story/act2/case_d_passover_lamb/hillel_scribe.ink`
+- **Source Dialogue(s):** `assets/story/act2/case_d_passover_lamb/hillel_scribe.ink`
 - **Acts / Cases:** Act II (`passover_lamb_chain`)
 
 **Identity:** A young, meticulous scribe assigned to the Temple's administrative offices. He is responsible for cross-referencing market ledgers for Passover lambs with the priestly inspection records.
@@ -1100,7 +1100,7 @@
 
 | Act | Case | Dialogue | Dialogue Needed? | Prophecies |
 | --- | --- | --- | --- | --- |
-| Act II | `passover_lamb_chain` | `story/act2/case_d_passover_lamb/hillel_scribe.ink` | Yes (People tab) | `typology_passover_lamb` |
+| Act II | `passover_lamb_chain` | `assets/story/act2/case_d_passover_lamb/hillel_scribe.ink` | Yes (People tab) | `typology_passover_lamb` |
 
 ---
 [Back to Top](#table-of-contents)
@@ -1130,7 +1130,7 @@
 | Act | Case | Dialogue | Dialogue Needed? | Prophecies |
 | --- | --- | --- | --- | --- |
 | Act II | `authority_challenged` |  | N/A (Vendor not an NPC in this case) | — |
-| Act II | `authority_challenged` | [`act2/case_a_silenced_teacher/scribe_intro.ink`](../story/act2/case_a_silenced_teacher/scribe_intro.ink) / [`scribe_intro.json`](../story/act2/case_a_silenced_teacher/scribe_intro.json) | Yes (People tab) | — |
+| Act II | `authority_challenged` | [`act2/case_a_silenced_teacher/scribe_intro.ink`](../assets/story/act2/case_a_silenced_teacher/scribe_intro.ink) / [`scribe_intro.json`](../assets/story/act2/case_a_silenced_teacher/scribe_intro.json) | Yes (People tab) | — |
 
 ---
 [Back to Top](#table-of-contents)
@@ -1162,8 +1162,8 @@
 | Act | Case | Dialogue | Dialogue Needed? | Prophecies |
 | --- | --- | --- | --- | --- |
 | Act II | `olivet_discourse` |  | N/A (Vendor not an NPC in this case) | — |
-| Act I | `triumphal_entry` | [`act1/case_a_missing_donkey/john_donkey.ink`](../story/act1/case_a_missing_donkey/john_donkey.ink) / [`john_donkey.json`](../story/act1/case_a_missing_donkey/john_donkey.json) _(Shares file with John (donkey case))_ | Yes (People tab) | — |
-| Act II | `olivet_discourse` | [`act2/case_c_olivet_discourse/andrew_olivet.ink`](../story/act2/case_c_olivet_discourse/andrew_olivet.ink) / [`andrew_olivet.json`](../story/act2/case_c_olivet_discourse/andrew_olivet.json) | Yes (People tab) | — |
+| Act I | `triumphal_entry` | [`act1/case_a_missing_donkey/john_donkey.ink`](../assets/story/act1/case_a_missing_donkey/john_donkey.ink) / [`john_donkey.json`](../assets/story/act1/case_a_missing_donkey/john_donkey.json) _(Shares file with John (donkey case))_ | Yes (People tab) | — |
+| Act II | `olivet_discourse` | [`act2/case_c_olivet_discourse/andrew_olivet.ink`](../assets/story/act2/case_c_olivet_discourse/andrew_olivet.ink) / [`andrew_olivet.json`](../assets/story/act2/case_c_olivet_discourse/andrew_olivet.json) | Yes (People tab) | — |
 
 ---
 [Back to Top](#table-of-contents)
@@ -1193,7 +1193,7 @@
 | Act | Case | Dialogue | Dialogue Needed? | Prophecies |
 | --- | --- | --- | --- | --- |
 | Act III | `last_supper` |  | N/A (Vendor not an NPC in this case) | — |
-| Act III | `last_supper` | [`act3/case_a_broken_cup/john_disciple.ink`](../story/act3/case_a_broken_cup/john_disciple.ink) / [`john_disciple.json`](../story/act3/case_a_broken_cup/john_disciple.json) _(Shares story with John the Apostle in this case)_ | Yes (People tab) | — |
+| Act III | `last_supper` | [`act3/case_a_broken_cup/john_disciple.ink`](../assets/story/act3/case_a_broken_cup/john_disciple.ink) / [`john_disciple.json`](../assets/story/act3/case_a_broken_cup/john_disciple.json) _(Shares story with John the Apostle in this case)_ | Yes (People tab) | — |
 
 ---
 [Back to Top](#table-of-contents)
@@ -1222,8 +1222,8 @@
 
 | Act | Case | Dialogue | Dialogue Needed? | Prophecies |
 | --- | --- | --- | --- | --- |
-| Act II | `lazarus_plot` | [`act2/case_a_silenced_teacher/teaching_mount.ink`](../story/act2/case_a_silenced_teacher/teaching_mount.ink) / [`teaching_mount.json`](../story/act2/case_a_silenced_teacher/teaching_mount.json) | Yes (People tab) | — |
-| Act II | `olivet_discourse` | [`act2/case_a_silenced_teacher/teaching_mount.ink`](../story/act2/case_a_silenced_teacher/teaching_mount.ink) / [`teaching_mount.json`](../story/act2/case_a_silenced_teacher/teaching_mount.json) | Yes (People tab) | — |
+| Act II | `lazarus_plot` | [`act2/case_a_silenced_teacher/teaching_mount.ink`](../assets/story/act2/case_a_silenced_teacher/teaching_mount.ink) / [`teaching_mount.json`](../assets/story/act2/case_a_silenced_teacher/teaching_mount.json) | Yes (People tab) | — |
+| Act II | `olivet_discourse` | [`act2/case_a_silenced_teacher/teaching_mount.ink`](../assets/story/act2/case_a_silenced_teacher/teaching_mount.ink) / [`teaching_mount.json`](../assets/story/act2/case_a_silenced_teacher/teaching_mount.json) | Yes (People tab) | — |
 
 ---
 [Back to Top](#table-of-contents)
@@ -1251,7 +1251,7 @@
 
 | Act | Case | Dialogue | Dialogue Needed? | Prophecies |
 | --- | --- | --- | --- | --- |
-| Act IV | `peter_restoration` | [`act4/case_c_peters_restoration/nathanael_disciple.ink`](../story/act4/case_c_peters_restoration/nathanael_disciple.ink) / [`nathanael_disciple.json`](../story/act4/case_c_peters_restoration/nathanael_disciple.json) | Yes (People tab) | — |
+| Act IV | `peter_restoration` | [`act4/case_c_peters_restoration/nathanael_disciple.ink`](../assets/story/act4/case_c_peters_restoration/nathanael_disciple.ink) / [`nathanael_disciple.json`](../assets/story/act4/case_c_peters_restoration/nathanael_disciple.json) | Yes (People tab) | — |
 
 ---
 [Back to Top](#table-of-contents)
@@ -1284,8 +1284,8 @@
 | Act | Case | Dialogue | Dialogue Needed? | Prophecies |
 | --- | --- | --- | --- | --- |
 | Act III | `barabbas_choice` |  | N/A (Vendor not an NPC in this case) | — |
-| Act I | `temple_cleansing` | [`act1/case_b_overturned_tables/barabbas_insurgent.ink`](../story/act1/case_b_overturned_tables/barabbas_insurgent.ink) / [`barabbas_insurgent.json`](../story/act1/case_b_overturned_tables/barabbas_insurgent.json) | Yes (People tab) | — |
-| Act III | `barabbas_choice` | [`act3/case_d_roman_interrogation/barabbas_choice.ink`](../story/act3/case_d_roman_interrogation/barabbas_choice.ink) _(ink only — JSON pending review)_ | Yes (People tab) | — |
+| Act I | `temple_cleansing` | [`act1/case_b_overturned_tables/barabbas_insurgent.ink`](../assets/story/act1/case_b_overturned_tables/barabbas_insurgent.ink) / [`barabbas_insurgent.json`](../assets/story/act1/case_b_overturned_tables/barabbas_insurgent.json) | Yes (People tab) | — |
+| Act III | `barabbas_choice` | [`act3/case_d_roman_interrogation/barabbas_choice.ink`](../assets/story/act3/case_d_roman_interrogation/barabbas_choice.ink) _(ink only — JSON pending review)_ | Yes (People tab) | — |
 
 ---
 [Back to Top](#table-of-contents)
@@ -1342,7 +1342,7 @@
 | Act | Case | Dialogue | Dialogue Needed? | Prophecies |
 | --- | --- | --- | --- | --- |
 | Act IV | `roman_inquiry` |  | N/A (Vendor not an NPC in this case) | — |
-| Act IV | `roman_inquiry` | [`act4/case_b_guards_report/sentry_lucas.ink`](../story/act4/case_b_guards_report/sentry_lucas.ink) / [[`act4/case_b_guards_report/sentry_lucas.ink`](../story/act4/case_b_guards_report/sentry_lucas.ink) / [`sentry_lucas.json`](../story/act4/case_b_guards_report/sentry_lucas.json)](../story/act4/case_b_guards_report/sentry_lucas.json) | Yes (People tab) | — |
+| Act IV | `roman_inquiry` | [`act4/case_b_guards_report/sentry_lucas.ink`](../assets/story/act4/case_b_guards_report/sentry_lucas.ink) / [[`act4/case_b_guards_report/sentry_lucas.ink`](../assets/story/act4/case_b_guards_report/sentry_lucas.ink) / [`sentry_lucas.json`](../assets/story/act4/case_b_guards_report/sentry_lucas.json)](../assets/story/act4/case_b_guards_report/sentry_lucas.json) | Yes (People tab) | — |
 
 ---
 [Back to Top](#table-of-contents)
@@ -1371,8 +1371,8 @@
 
 | Act | Case | Dialogue | Dialogue Needed? | Prophecies |
 | --- | --- | --- | --- | --- |
-| Act I | `temple_cleansing` | [`act1/case_b_overturned_tables/market_rumors.ink`](../story/act1/case_b_overturned_tables/market_rumors.ink) / [`market_rumors.json`](../story/act1/case_b_overturned_tables/market_rumors.json) | Yes (People tab) | — |
-| Act I | `temple_cleansing` | [`act1/case_b_overturned_tables/money_changer.ink`](../story/act1/case_b_overturned_tables/money_changer.ink) / [`money_changer.json`](../story/act1/case_b_overturned_tables/money_changer.json) | Yes (People tab) | Malachi 3:1 |
+| Act I | `temple_cleansing` | [`act1/case_b_overturned_tables/market_rumors.ink`](../assets/story/act1/case_b_overturned_tables/market_rumors.ink) / [`market_rumors.json`](../assets/story/act1/case_b_overturned_tables/market_rumors.json) | Yes (People tab) | — |
+| Act I | `temple_cleansing` | [`act1/case_b_overturned_tables/money_changer.ink`](../assets/story/act1/case_b_overturned_tables/money_changer.ink) / [`money_changer.json`](../assets/story/act1/case_b_overturned_tables/money_changer.json) | Yes (People tab) | Malachi 3:1 |
 
 ---
 [Back to Top](#table-of-contents)
@@ -1403,7 +1403,7 @@
 | Act | Case | Dialogue | Dialogue Needed? | Prophecies |
 | --- | --- | --- | --- | --- |
 | Act III | `gethsemane_arrest` |  | N/A (Vendor not an NPC in this case) | — |
-| Act III | `gethsemane_arrest` | [`act3/case_b_severed_ear/malchus.ink`](../story/act3/case_b_severed_ear/malchus.ink) / [`malchus.json`](../story/act3/case_b_severed_ear/malchus.json) | Yes (People tab) | — |
+| Act III | `gethsemane_arrest` | [`act3/case_b_severed_ear/malchus.ink`](../assets/story/act3/case_b_severed_ear/malchus.ink) / [`malchus.json`](../assets/story/act3/case_b_severed_ear/malchus.json) | Yes (People tab) | — |
 
 ---
 [Back to Top](#table-of-contents)
@@ -1433,7 +1433,7 @@
 | Act | Case | Dialogue | Dialogue Needed? | Prophecies |
 | --- | --- | --- | --- | --- |
 | Act II | `lazarus_plot` |  | N/A (Vendor not an NPC in this case) | — |
-| Act II | `lazarus_plot` | [`act2/case_b_lazarus_conspiracy/temple_spy.ink`](../story/act2/case_b_lazarus_conspiracy/temple_spy.ink) / [`temple_spy.json`](../story/act2/case_b_lazarus_conspiracy/temple_spy.json) | Yes (People tab) | — |
+| Act II | `lazarus_plot` | [`act2/case_b_lazarus_conspiracy/temple_spy.ink`](../assets/story/act2/case_b_lazarus_conspiracy/temple_spy.ink) / [`temple_spy.json`](../assets/story/act2/case_b_lazarus_conspiracy/temple_spy.json) | Yes (People tab) | — |
 
 ---
 [Back to Top](#table-of-contents)
@@ -1462,7 +1462,7 @@
 
 | Act | Case | Dialogue | Dialogue Needed? | Prophecies |
 | --- | --- | --- | --- | --- |
-| Act I | `temple_cleansing` | [`act1/case_b_overturned_tables/market_rumors.ink`](../story/act1/case_b_overturned_tables/market_rumors.ink) / [`market_rumors.json`](../story/act1/case_b_overturned_tables/market_rumors.json) | Yes (People tab) | — |
+| Act I | `temple_cleansing` | [`act1/case_b_overturned_tables/market_rumors.ink`](../assets/story/act1/case_b_overturned_tables/market_rumors.ink) / [`market_rumors.json`](../assets/story/act1/case_b_overturned_tables/market_rumors.json) | Yes (People tab) | — |
 | Act IV | `resurrection` |  | N/A (Vendor not an NPC in this case) | — |
 
 ---
@@ -1493,7 +1493,7 @@
 | Act | Case | Dialogue | Dialogue Needed? | Prophecies |
 | --- | --- | --- | --- | --- |
 | Act I | `fig_tree_incident` |  | N/A (Vendor not an NPC in this case) | — |
-| Act I | `fig_tree_incident` | [`act1/case_c_fig_tree_incident/nathan_fig_tree.ink`](../story/act1/case_c_fig_tree_incident/nathan_fig_tree.ink) / [`nathan_fig_tree.json`](../story/act1/case_c_fig_tree_incident/nathan_fig_tree.json) | Yes (People tab) | Micah 7:1 |
+| Act I | `fig_tree_incident` | [`act1/case_c_fig_tree_incident/nathan_fig_tree.ink`](../assets/story/act1/case_c_fig_tree_incident/nathan_fig_tree.ink) / [`nathan_fig_tree.json`](../assets/story/act1/case_c_fig_tree_incident/nathan_fig_tree.json) | Yes (People tab) | Micah 7:1 |
 
 ---
 [Back to Top](#table-of-contents)
@@ -1521,7 +1521,7 @@
 
 | Act | Case | Dialogue | Dialogue Needed? | Prophecies |
 | --- | --- | --- | --- | --- |
-| Act III | `last_supper` | [`act3/case_a_broken_cup/upper_room_prep.ink`](../story/act3/case_a_broken_cup/upper_room_prep.ink) / [`upper_room_prep.json`](../story/act3/case_a_broken_cup/upper_room_prep.json) | Yes (People tab) | — |
+| Act III | `last_supper` | [`act3/case_a_broken_cup/upper_room_prep.ink`](../assets/story/act3/case_a_broken_cup/upper_room_prep.ink) / [`upper_room_prep.json`](../assets/story/act3/case_a_broken_cup/upper_room_prep.json) | Yes (People tab) | — |
 
 ---
 [Back to Top](#table-of-contents)
@@ -1552,7 +1552,7 @@
 | Act | Case | Dialogue | Dialogue Needed? | Prophecies |
 | --- | --- | --- | --- | --- |
 | Act III | `last_supper` |  | N/A (Vendor not an NPC in this case) | — |
-| Act III | `last_supper` | [`act3/case_a_broken_cup/rhoda_servant.ink`](../story/act3/case_a_broken_cup/rhoda_servant.ink) / [`rhoda_servant.json`](../story/act3/case_a_broken_cup/rhoda_servant.json) | Yes (People tab) | — |
+| Act III | `last_supper` | [`act3/case_a_broken_cup/rhoda_servant.ink`](../assets/story/act3/case_a_broken_cup/rhoda_servant.ink) / [`rhoda_servant.json`](../assets/story/act3/case_a_broken_cup/rhoda_servant.json) | Yes (People tab) | — |
 
 ---
 [Back to Top](#table-of-contents)
@@ -1583,7 +1583,7 @@
 | Act | Case | Dialogue | Dialogue Needed? | Prophecies |
 | --- | --- | --- | --- | --- |
 | Act III | `crucifixion_site` |  | N/A (Vendor not an NPC in this case) | — |
-| Act III | `crucifixion_site` | [`act3/case_e_final_sacrifice/simon_cyrene.ink`](../story/act3/case_e_final_sacrifice/simon_cyrene.ink) / [`simon_cyrene.json`](../story/act3/case_e_final_sacrifice/simon_cyrene.json) | Yes (People tab) | — |
+| Act III | `crucifixion_site` | [`act3/case_e_final_sacrifice/simon_cyrene.ink`](../assets/story/act3/case_e_final_sacrifice/simon_cyrene.ink) / [`simon_cyrene.json`](../assets/story/act3/case_e_final_sacrifice/simon_cyrene.json) | Yes (People tab) | — |
 
 ---
 [Back to Top](#table-of-contents)
@@ -1613,7 +1613,7 @@
 | Act | Case | Dialogue | Dialogue Needed? | Prophecies |
 | --- | --- | --- | --- | --- |
 | Act II | `lazarus_plot` |  | N/A (Vendor not an NPC in this case) | — |
-| Act II | `lazarus_plot` | [`act2/case_b_lazarus_conspiracy/simon_leper.ink`](../story/act2/case_b_lazarus_conspiracy/simon_leper.ink) / [`simon_leper.json`](../story/act2/case_b_lazarus_conspiracy/simon_leper.json) | Yes (People tab) | — |
+| Act II | `lazarus_plot` | [`act2/case_b_lazarus_conspiracy/simon_leper.ink`](../assets/story/act2/case_b_lazarus_conspiracy/simon_leper.ink) / [`simon_leper.json`](../assets/story/act2/case_b_lazarus_conspiracy/simon_leper.json) | Yes (People tab) | — |
 
 ---
 [Back to Top](#table-of-contents)
@@ -1644,8 +1644,8 @@
 | Act | Case | Dialogue | Dialogue Needed? | Prophecies |
 | --- | --- | --- | --- | --- |
 | Act III | `crucifixion_site` |  | N/A (Vendor not an NPC in this case) | — |
-| Act III | `crucifixion_site` | [`act3/case_e_final_sacrifice/roman_assessment.ink`](../story/act3/case_e_final_sacrifice/roman_assessment.ink) / [[`act3/case_e_final_sacrifice/roman_assessment.ink`](../story/act3/case_e_final_sacrifice/roman_assessment.ink) / [`roman_assessment.json`](../story/act3/case_e_final_sacrifice/roman_assessment.json)](../story/act3/case_e_final_sacrifice/roman_assessment.json) _(Shares roman_assessment with Claudius)_ | Yes (People tab) | — |
-| Act IV | `resurrection` | [`act4/case_a_empty_tomb/execution_soldier.ink`](../story/act4/case_a_empty_tomb/execution_soldier.ink) / [`execution_soldier.json`](../story/act4/case_a_empty_tomb/execution_soldier.json) | Yes (People tab) | — |
+| Act III | `crucifixion_site` | [`act3/case_e_final_sacrifice/roman_assessment.ink`](../assets/story/act3/case_e_final_sacrifice/roman_assessment.ink) / [[`act3/case_e_final_sacrifice/roman_assessment.ink`](../assets/story/act3/case_e_final_sacrifice/roman_assessment.ink) / [`roman_assessment.json`](../assets/story/act3/case_e_final_sacrifice/roman_assessment.json)](../assets/story/act3/case_e_final_sacrifice/roman_assessment.json) _(Shares roman_assessment with Claudius)_ | Yes (People tab) | — |
+| Act IV | `resurrection` | [`act4/case_a_empty_tomb/execution_soldier.ink`](../assets/story/act4/case_a_empty_tomb/execution_soldier.ink) / [`execution_soldier.json`](../assets/story/act4/case_a_empty_tomb/execution_soldier.json) | Yes (People tab) | — |
 
 ---
 [Back to Top](#table-of-contents)
@@ -1675,7 +1675,7 @@
 | Act | Case | Dialogue | Dialogue Needed? | Prophecies |
 | --- | --- | --- | --- | --- |
 | Act I | `triumphal_entry` |  | N/A (Vendor not an NPC in this case) | — |
-| Act I | `triumphal_entry` | [`act1/case_a_missing_donkey/galilean_pilgrim.ink`](../story/act1/case_a_missing_donkey/galilean_pilgrim.ink) / [`galilean_pilgrim.json`](../story/act1/case_a_missing_donkey/galilean_pilgrim.json) _(Runtime uses galilean_pilgrim story (shared))_ | Yes (People tab) | Psalm 118:25–26 |
+| Act I | `triumphal_entry` | [`act1/case_a_missing_donkey/galilean_pilgrim.ink`](../assets/story/act1/case_a_missing_donkey/galilean_pilgrim.ink) / [`galilean_pilgrim.json`](../assets/story/act1/case_a_missing_donkey/galilean_pilgrim.json) _(Runtime uses galilean_pilgrim story (shared))_ | Yes (People tab) | Psalm 118:25–26 |
 
 ---
 [Back to Top](#table-of-contents)
@@ -1705,7 +1705,7 @@
 
 | Act | Case | Dialogue | Dialogue Needed? | Prophecies |
 | --- | --- | --- | --- | --- |
-| Act II | `lazarus_plot` | [`act2/case_b_lazarus_conspiracy/simon_leper.ink`](../story/act2/case_b_lazarus_conspiracy/simon_leper.ink) / [`simon_leper.json`](../story/act2/case_b_lazarus_conspiracy/simon_leper.json) _(witness_healed file is in act2/case_a_silenced_teacher/)_ | Yes (People tab) | — |
+| Act II | `lazarus_plot` | [`act2/case_b_lazarus_conspiracy/simon_leper.ink`](../assets/story/act2/case_b_lazarus_conspiracy/simon_leper.ink) / [`simon_leper.json`](../assets/story/act2/case_b_lazarus_conspiracy/simon_leper.json) _(witness_healed file is in act2/case_a_silenced_teacher/)_ | Yes (People tab) | — |
 
 ---
 [Back to Top](#table-of-contents)
@@ -1733,7 +1733,7 @@
 
 | Act | Case | Dialogue | Dialogue Needed? | Prophecies |
 | --- | --- | --- | --- | --- |
-| Act I | `triumphal_entry` | [`act1/case_a_missing_donkey/jerusalem_local.ink`](../story/act1/case_a_missing_donkey/jerusalem_local.ink) / [`jerusalem_local.json`](../story/act1/case_a_missing_donkey/jerusalem_local.json) _(Runtime uses jerusalem_local story)_ | Yes (People tab) | — |
+| Act I | `triumphal_entry` | [`act1/case_a_missing_donkey/jerusalem_local.ink`](../assets/story/act1/case_a_missing_donkey/jerusalem_local.ink) / [`jerusalem_local.json`](../assets/story/act1/case_a_missing_donkey/jerusalem_local.json) _(Runtime uses jerusalem_local story)_ | Yes (People tab) | — |
 
 ---
 [Back to Top](#table-of-contents)
@@ -1761,7 +1761,7 @@
 
 | Act | Case | Dialogue | Dialogue Needed? | Prophecies |
 | --- | --- | --- | --- | --- |
-| Act I | `fig_tree_incident` | [`act1/case_c_fig_tree_incident/local_traveler.ink`](../story/act1/case_c_fig_tree_incident/local_traveler.ink) / [`local_traveler.json`](../story/act1/case_c_fig_tree_incident/local_traveler.json) | Yes (People tab) | Psalm 33:8–9 |
+| Act I | `fig_tree_incident` | [`act1/case_c_fig_tree_incident/local_traveler.ink`](../assets/story/act1/case_c_fig_tree_incident/local_traveler.ink) / [`local_traveler.json`](../assets/story/act1/case_c_fig_tree_incident/local_traveler.json) | Yes (People tab) | Psalm 33:8–9 |
 
 ---
 [Back to Top](#table-of-contents)
@@ -1789,7 +1789,7 @@
 
 | Act | Case | Dialogue | Dialogue Needed? | Prophecies |
 | --- | --- | --- | --- | --- |
-| Act II | `authority_challenged` | [`act2/case_a_silenced_teacher/rich_young_ruler.ink`](../story/act2/case_a_silenced_teacher/rich_young_ruler.ink) / [`rich_young_ruler.json`](../story/act2/case_a_silenced_teacher/rich_young_ruler.json) | Yes (People tab) | — |
+| Act II | `authority_challenged` | [`act2/case_a_silenced_teacher/rich_young_ruler.ink`](../assets/story/act2/case_a_silenced_teacher/rich_young_ruler.ink) / [`rich_young_ruler.json`](../assets/story/act2/case_a_silenced_teacher/rich_young_ruler.json) | Yes (People tab) | — |
 
 ---
 [Back to Top](#table-of-contents)
@@ -1817,7 +1817,7 @@
 
 | Act | Case | Dialogue | Dialogue Needed? | Prophecies |
 | --- | --- | --- | --- | --- |
-| Act III | `crucifixion_site` | [`act3/case_b_severed_ear/secret_visit.ink`](../story/act3/case_b_severed_ear/secret_visit.ink) / [`secret_visit.json`](../story/act3/case_b_severed_ear/secret_visit.json) | Yes (People tab) | — |
+| Act III | `crucifixion_site` | [`act3/case_b_severed_ear/secret_visit.ink`](../assets/story/act3/case_b_severed_ear/secret_visit.ink) / [`secret_visit.json`](../assets/story/act3/case_b_severed_ear/secret_visit.json) | Yes (People tab) | — |
 
 ---
 [Back to Top](#table-of-contents)
@@ -1866,8 +1866,8 @@
 
 | Act | Case | Dialogue | Dialogue Needed? | Prophecies |
 | --- | --- | --- | --- | --- |
-| Act II | `lazarus_plot` | [`act3/case_c_midnight_tribunal/trial_rumors.ink`](../story/act3/case_c_midnight_tribunal/trial_rumors.ink) / [`trial_rumors.json`](../story/act3/case_c_midnight_tribunal/trial_rumors.json) | Yes (People tab) | — |
-| Act III | `sanhedrin_trial` | [`act3/case_c_midnight_tribunal/trial_rumors.ink`](../story/act3/case_c_midnight_tribunal/trial_rumors.ink) / [`trial_rumors.json`](../story/act3/case_c_midnight_tribunal/trial_rumors.json) | Yes (People tab) | — |
+| Act II | `lazarus_plot` | [`act3/case_c_midnight_tribunal/trial_rumors.ink`](../assets/story/act3/case_c_midnight_tribunal/trial_rumors.ink) / [`trial_rumors.json`](../assets/story/act3/case_c_midnight_tribunal/trial_rumors.json) | Yes (People tab) | — |
+| Act III | `sanhedrin_trial` | [`act3/case_c_midnight_tribunal/trial_rumors.ink`](../assets/story/act3/case_c_midnight_tribunal/trial_rumors.ink) / [`trial_rumors.json`](../assets/story/act3/case_c_midnight_tribunal/trial_rumors.json) | Yes (People tab) | — |
 
 ---
 [Back to Top](#table-of-contents)
@@ -1895,7 +1895,7 @@
 
 | Act | Case | Dialogue | Dialogue Needed? | Prophecies |
 | --- | --- | --- | --- | --- |
-| Act I | `temple_cleansing` | [`act1/case_b_overturned_tables/upset_buyer.ink`](../story/act1/case_b_overturned_tables/upset_buyer.ink) / [`upset_buyer.json`](../story/act1/case_b_overturned_tables/upset_buyer.json) | Yes (People tab) | — |
+| Act I | `temple_cleansing` | [`act1/case_b_overturned_tables/upset_buyer.ink`](../assets/story/act1/case_b_overturned_tables/upset_buyer.ink) / [`upset_buyer.json`](../assets/story/act1/case_b_overturned_tables/upset_buyer.json) | Yes (People tab) | — |
 
 ---
 [Back to Top](#table-of-contents)
@@ -1923,7 +1923,7 @@
 
 | Act | Case | Dialogue | Dialogue Needed? | Prophecies |
 | --- | --- | --- | --- | --- |
-| Act I | `triumphal_entry` | [`act1/case_b_overturned_tables/woman_cloak.ink`](../story/act1/case_b_overturned_tables/woman_cloak.ink) / [`woman_cloak.json`](../story/act1/case_b_overturned_tables/woman_cloak.json) | Yes (People tab) | — |
+| Act I | `triumphal_entry` | [`act1/case_b_overturned_tables/woman_cloak.ink`](../assets/story/act1/case_b_overturned_tables/woman_cloak.ink) / [`woman_cloak.json`](../assets/story/act1/case_b_overturned_tables/woman_cloak.json) | Yes (People tab) | — |
 
 ---
 

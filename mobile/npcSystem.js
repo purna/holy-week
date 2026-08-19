@@ -2,7 +2,7 @@
 // NPC SYSTEM — state machines, dialogue, contradiction tracking
 // ============================================================
 
-const profilePath = '../characters';
+const profilePath = '../assets/characters';
 
 export const PROFILE_ID_MAP = {
   annas: profilePath + "/annas.json",
@@ -58,6 +58,8 @@ export const PROFILE_ID_MAP = {
   judas_iscariot: profilePath + "/judas.json",
   malchus_servant: profilePath + "/malchus.json",
   roman_soldier: profilePath + "/execution_soldier.json",
+  penitent_thief: profilePath + "/penitent_thief.json",
+  execution_guard: profilePath + "/execution_guard.json",
 };
 
 class CharacterLoader {

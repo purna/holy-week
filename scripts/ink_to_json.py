@@ -2,7 +2,7 @@
 """
 ink_to_json.py — Convert Miracle Maker .ink dialogue files to the
 node-based JSON format used by DialogueManager (same shape as the
-existing story/*.json files).
+existing assets/story/*.json files).
 
 Usage:
     python ink_to_json.py                          # convert all .ink → .json
@@ -167,7 +167,7 @@ def main():
     parser.add_argument(
         'inputs',
         nargs='*',
-        help='.ink file(s) or directory to convert (default: story/ in cwd)'
+        help='.ink file(s) or directory to convert (default: assets/story/ in cwd)'
     )
     parser.add_argument(
         '--all', action='store_true',
@@ -199,7 +199,7 @@ def main():
             else:
                 print(f'⚠  skipping {raw} (not .ink)', file=sys.stderr)
     else:
-        # Default: story/ in current working directory
+        # Default: assets/story/ in current working directory
         story_dir = Path('story')
         if story_dir.is_dir():
             targets.extend(ink_paths(story_dir))

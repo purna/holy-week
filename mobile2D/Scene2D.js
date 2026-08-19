@@ -426,6 +426,8 @@ export class Scene2D {
         else talkButton.classList.remove('active');
     }
 
+    updateLivesDisplay() { const el = document.getElementById('lives-display'); if (el) el.textContent = 'Lives: ' + this.player.lives; }
+
     handlePlayerArrested() {
         this.isDialogueOpen = true;
         const overlay = document.createElement('div');
@@ -604,7 +606,8 @@ export class Scene2D {
         this.bakeCtx = this.bakeCanvas.getContext('2d'); this.bakeCtx.imageSmoothingEnabled = false;
         this.waterTiles = [];
         let tileCount = 0;
-        for (let r = 0; r < MAP_SIZE; r++) { for (let c = 0; c < MAP_SIZE; c++) { const id = this.levelMap[r]?.[c]; if (id === 1) this.waterTiles.push({ col: c, row: r }); const cached = this.tileCache[id]; if (cached) { this.bakeCtx.drawImage(cached, c * TILE_SIZE, r * TILE_SIZE); tileCount++; } } }
+        for (let r = 0; r < MAP_SIZE; r++) { for (let c = 0; c < MAP_SIZE; c++) { const id = this.levelMap[r]?.[c] ?? 0; if (id === 1) this.waterTiles.push({ col: c, row: r }); const cached = this.tileCache[id]; if (cached) { this.bakeCtx.drawImage(cached, c * TILE_SIZE, r * TILE_SIZE); tileCount++; } } }
+        console.log('[Scene2D] _bakeTilemap: drew', tileCount, 'tiles, MAP_SIZE:', MAP_SIZE, 'pixelSize:', this.mapPixelSize);
         console.log('[Scene2D] _bakeTilemap: drew', tileCount, 'tiles, MAP_SIZE:', MAP_SIZE, 'pixelSize:', this.mapPixelSize);
         this.tilemapTexture = PIXI.Texture.from(this.bakeCanvas);
         if (this.tilemapTexture.source) this.tilemapTexture.source.scaleMode = 'nearest';
@@ -627,7 +630,7 @@ export class Scene2D {
         const minimapRing = new PIXI.Graphics(); minimapRing.circle(mCx, mCy, mRadius + 3).fill('#2c2219').stroke({ width: 3, color: '#d4a373' }); this.minimapLayer.addChild(minimapRing);
         const minimapMask = new PIXI.Graphics().circle(mCx, mCy, mRadius).fill(0xffffff); this.minimapLayer.addChild(minimapMask);
         const minimapTerrain = new PIXI.Graphics(); minimapTerrain.mask = minimapMask; minimapTerrain.rect(mCx - mRadius, mCy - mRadius, mRadius * 2, mRadius * 2).fill('#120f0d'); minimapTerrain.circle(mCx, mCy, mRadius * 0.4).stroke({ width: 1, color: 'rgba(212, 163, 115, 0.15)' }); minimapTerrain.circle(mCx, mCy, mRadius * 0.7).stroke({ width: 1, color: 'rgba(212, 163, 115, 0.15)' });
-        for (let r = 0; r < MAP_SIZE; r++) { for (let c = 0; c < MAP_SIZE; c++) { const id = this.levelMap[r][c]; if (id === 3) minimapTerrain.rect(mStartX + (c * pSize), mStartY + (r * pSize), pSize, pSize).fill('rgba(233, 196, 106, 0.35)'); else if (id === 1) minimapTerrain.rect(mStartX + (c * pSize), mStartY + (r * pSize), pSize, pSize).fill('rgba(32, 72, 89, 0.6)'); else if (id === 5 || id === 4 || id === 2) minimapTerrain.rect(mStartX + (c * pSize), mStartY + (r * pSize), pSize, pSize).fill('#1c1510'); } }
+        for (let r = 0; r < MAP_SIZE; r++) { for (let c = 0; c < MAP_SIZE; c++) { const id = this.levelMap[r]?.[c] ?? 0; if (id === 3) minimapTerrain.rect(mStartX + (c * pSize), mStartY + (r * pSize), pSize, pSize).fill('rgba(233, 196, 106, 0.35)'); else if (id === 1) minimapTerrain.rect(mStartX + (c * pSize), mStartY + (r * pSize), pSize, pSize).fill('rgba(32, 72, 89, 0.6)'); else if (id === 5 || id === 4 || id === 2) minimapTerrain.rect(mStartX + (c * pSize), mStartY + (r * pSize), pSize, pSize).fill('#1c1510'); } }
         this.minimapLayer.addChild(minimapTerrain);
         this.minimapDynamic = new PIXI.Graphics(); this.minimapDynamic.mask = new PIXI.Graphics().circle(mCx, mCy, mRadius).fill(0xffffff); this.minimapLayer.addChild(this.minimapDynamic.mask); this.minimapLayer.addChild(this.minimapDynamic);
     }

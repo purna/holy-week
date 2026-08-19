@@ -2,7 +2,7 @@
 // NPC SYSTEM — state machines, dialogue, contradiction tracking
 // ============================================================
 
-const profilePath = './../characters';
+const profilePath = './../assets/characters';
 
 export const PROFILE_ID_MAP = {
   annas: profilePath + "/annas.json",
@@ -48,7 +48,16 @@ export const PROFILE_ID_MAP = {
   temple_merchant: profilePath + "/temple_merchant.json",
   upper_room_prep: profilePath + "/upper_room_prep.json",
   secret_visit: profilePath + "/secret_visit.json",
-  simon_cyrene: profilePath + "/simon_cyrene.json"
+  simon_cyrene: profilePath + "/simon_cyrene.json",
+  nathan_gardener: profilePath + "/nathan_gardener.json",
+  andrew_disciple: profilePath + "/andrew_disciple.json",
+  local_traveler: profilePath + "/local_traveler.json",
+  rich_young_ruler: profilePath + "/rich_young_ruler.json",
+  judas_iscariot: profilePath + "/judas.json",
+  malchus_servant: profilePath + "/malchus.json",
+  roman_soldier: profilePath + "/execution_soldier.json",
+  penitent_thief: profilePath + "/penitent_thief.json",
+  execution_guard: profilePath + "/execution_guard.json",
 };
 
 class CharacterLoader {
