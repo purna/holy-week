@@ -1,6 +1,6 @@
 # Prophecy & Evidence Link Reference (v6)
 
-< [Back to Main Document](Holy Week.md)
+< [Back to Main Document](Miracle Maker.md)
 
 ## Table of Contents
 
@@ -240,6 +240,7 @@ The Codex now distinguishes between:
 | Reference | Prophecy ID |
 |---|---|
 | Isaiah 25:8 | `isaiah_25_8` |
+| Psalm 78:2 | `psalm_78_2` |
 
 ### Evidence Links
 
@@ -248,6 +249,7 @@ The Codex now distinguishes between:
 | Bethany Pilgrim Manifest (`crowd_report`) | - | John 12:9 notes that a large crowd found out Jesus was there and came not only because of Him, but also to see Lazarus, whom He had raised. | - |
 | Bethany Limestone Dust (`grave_dirt`) | `isaiah_25_8` | John 11:39 records Martha's objection that after four days there would already be a bad odor | - |
 | Intercepted Sadducean Memorandum (`secret_decree`) | - | John 12:10–11 explicitly validates this conspiracy: 'So the chief priests made plans to put Lazarus to death as well.' | - |
+| Galilean Pilgrim's Testimony (`hidden_treasure_testimony`) | `psalm_78_2` | Matthew 13:34–35 records that Jesus 'did not say anything to them without using a parable,' fulfilling what was spoken through the prophet: 'I will open my mouth in parables, I will utter things hidden since the creation of the world.' | A pilgrim in the Bethany crowd who once heard Jesus teach the Parable of the Hidden Treasure (Matthew 13:44) by the Sea of Galilee now recognises the pattern: a treasure once hidden, now found — the same shape as a life once sealed in a tomb, now walking free. |
 
 ### Fulfillment Links
 
@@ -256,6 +258,17 @@ The Codex now distinguishes between:
 | Bethany Pilgrim Manifest (`crowd_report`) | John 12:9 | john_12_9 |
 | Bethany Limestone Dust (`grave_dirt`) | John 11:39 | john_11_39 |
 | Intercepted Sadducean Memorandum (`secret_decree`) | John 12:10-11 | john_12_10_11 |
+| Thomas's Recollection of the Parable of the Weeds (`parable_notes`) | Matthew 13:24-30, 36-43 | matt_13_24 |
+| Thomas's Recollection of the Parable of the Weeds (`parable_notes`) | Matthew 13:34-35 | matt_13_34 |
+
+### NPC — New
+
+**Thomas (Parable)** (`parable_meaning`, shares `profileFile: "thomas"` with the `parable_vineyard` NPC in Act I)
+- `bibleRef`: Matthew 13:24-30, 36-43; Matthew 13:34-35
+- `storyFile`: `parable_meaning` (new Ink story — Thomas recounts the Parable of the Weeds)
+- `unlocksEvidence`: `["parable_notes"]`
+- `revealsProphecy`: `psalm_78_2`
+- Narrative role: explains why Jesus taught in parables that night (fulfilling Psalm 78:2), and draws the parallel between the parable's "enemy sowing weeds by night" and the Sanhedrin's own secret decree against Lazarus.
 
 ## act2CaseC — The End of the Age
 
@@ -309,7 +322,8 @@ The Codex now distinguishes between:
 | Evidence | `relatedProphecy` (Codex) | `bibleRef` (supporting verse) | Prophetic / Narrative Link Text |
 |---|---|---|---|
 | Unleavened Bread Crumbs (`bread_crumbs`) | `exodus_12_1_14` | Matthew 26:26 | The breaking of the matzah is called the 'afikomen' in the Passover Seder — traditionally hidden and later 'found' again. Early Christians saw this as a picture of Jesus's death and resurrection: broken, buried, and found alive. |
-| Spilled Wine on the Linen (`wine_stain`) | `jeremiah_31_31_34`, `typology_melchizedek` | Luke 22:20 | The third Passover cup — the Cup of Redemption — is the one Jesus transformed into the cup of the New Covenant (Jeremiah 31:31-34). This also fulfills the typology of Melchizedek, the priest-king of Salem who blessed Abraham with bread and wine (Genesis 14:18), an order of priesthood Jesus now embodies (Hebrews 7). |
+| Spilled Wine on the Linen (`wine_stain`) | `jeremiah_31_31_34` | Luke 22:20 | The third Passover cup — the Cup of Redemption — is the one Jesus transformed into the cup of the New Covenant (Jeremiah 31:31-34). |
+| Spilled Wine on the Linen (`wine_stain`) | `typology_melchizedek` | Luke 22:20 | Melchizedek, the priest-king of Salem, blessed Abraham with bread *and* wine (Genesis 14:18). Jesus, as the ultimate priest-king (Hebrews 7), uses both elements to establish the New Covenant. The bread (`bread_crumbs`) begins the typology; the wine (`wine_stain`) completes it. |
 | Shattered Clay Cup (`cup_fragments`) | - | Matthew 26:27 | Breaking pottery in the Jewish tradition was sometimes associated with mourning or the breaking of a covenant (see Jeremiah 19:10–11, where Jeremiah shattered a clay jar as a prophetic act of judgement). A broken cup at the Passover table carries heavy symbolic weight. |
 | Large Stone Water Jug (`water_jug`) | - | John 13:4–5 | Isaiah 52:13–15 describes the Servant who 'shall startle many nations' — and immediately before this, is described as one who acts in a way that astonishes because of His humility. Jesus washing feet with this water fulfilled the spirit of what Isaiah described: the exalted One taking the lowest role. |
 | Imprint of a Money Bag (`money_bag_impression`) | `zechariah_11_12_13` | John 13:29 | Judas carried the communal purse — and had recently agreed to betray Jesus for 30 silver coins (Matthew 26:14–16), fulfilling Zechariah 11:12. The presence of a money bag impression at the preparation table raises serious questions: what was Judas counting before the meal? |
@@ -327,7 +341,7 @@ The Codex now distinguishes between:
 | Unleavened Bread Crumbs (`bread_crumbs`) | Exodus 12:1-14 | exodus_12_1_14 |
 | Spilled Wine on the Linen (`wine_stain`) | Luke 22:20 | luke_22_20 |
 | Spilled Wine on the Linen (`wine_stain`) | Jeremiah 31:31-34 | jeremiah_31_31_34 |
-| Spilled Wine on the Linen (`wine_stain`) | Exodus 6:6-7 | exodus_667 |
+| Spilled Wine on the Linen (`wine_stain`) | Exodus 6:6-7 | exodus_6_6_7 |
 | Spilled Wine on the Linen (`wine_stain`) | Genesis 14:18-20 | genesis_14_18_20 |
 | Shattered Clay Cup (`cup_fragments`) | Matthew 26:27 | matthew_26_27 |
 | Shattered Clay Cup (`cup_fragments`) | Jeremiah 19:10-11 | jeremiah_19_10_11 |
@@ -342,7 +356,7 @@ The Codex now distinguishes between:
 | Fragment of Sop (Dipped Bread) (`betrayal_dipped_bread`) | Psalm 41:9 | psalm_41_9 |
 | Fragment of Sop (Dipped Bread) (`betrayal_dipped_bread`) | John 13:18 | john_13_18 |
 | Written Summary of Jesus's Words (`new_covenant_declaration`) | Luke 22:19-20 | luke_22_19_20 |
-| Written Summary of Jesus's Words (`new_covenant_declaration`) | Corinthians 11:24-25 | corinthians_112425 |
+| Written Summary of Jesus's Words (`new_covenant_declaration`) | Corinthians 11:24-25 | corinthians_11_24_25 |
 | Written Summary of Jesus's Words (`new_covenant_declaration`) | Jeremiah 31:31-34 | jeremiah_31_31_34 |
 | List of the Twelve (`twelve_roll`) | Luke 22:37 | luke_22_37 |
 | List of the Twelve (`twelve_roll`) | Isaiah 53:12 | isaiah_53_12 |
@@ -557,7 +571,8 @@ The Codex now distinguishes between:
 | The Empty Burial Chamber (`empty_tomb`) | `psalm_16_10` | Luke 24:3 | Psalm 16:10 — 'You will not let your holy one see corruption.' The empty tomb is the physical evidence that the Psalm's promise was kept. A body left long enough shows decomposition; no such evidence exists. Psalm 22:1–31 opens with the cry of abandonment Jesus spoke from the cross ('My God, my God, why have you forsaken me?') and closes in resurrection proclamation — the same psalm that describes His hands and feet pierced and His garments divided by lot. |
 | Folded Burial Linens (`burial_linen`) | `psalm_16_10` | John 20:6–8 | The orderly arrangement of the grave cloths, particularly the folded face cloth, convinced John that this was not a grave robbery. It pointed to a deliberate, unhurried departure, fulfilling the promise that the Holy One would not see decay (Psalm 16:10). |
 | The Angelic Proclamation (`angelic_witness`) | `psalm_16_10` | Matthew 28:2–7; Mark 16:5–7; Luke 24:4–7; John 20:12–13 | The angels' message, "He is not here; he has risen," is the divine confirmation that the promise of Psalm 16:10 has been kept. They serve as the official heavenly witnesses to the empty tomb. |
-| The Soldiers' Broken Report (`guard_report`) | `hosea_6_2`, `jonah_1_17___matthew_12_40` | Matthew 28:2–4 | The bribe to the guards fulfils the pattern of institutional deception against God's purposes — similar to how the chief priests had bribed Judas (Matthew 26:14–16). The very people who guarded against resurrection were the first non-disciple witnesses of the supernatural event. Jonah 1:17 / Matthew 12:40 — Jesus named His own third-day resurrection the 'sign of Jonah,' the three days in the tomb mirroring Jonah's three days in the great fish. |
+| The Soldiers' Broken Report (`guard_report`) | `hosea_6_2` | Matthew 28:2–4 | The bribe to the guards fulfils the pattern of institutional deception against God's purposes — similar to how the chief priests had bribed Judas (Matthew 26:14–16). The very people who guarded against resurrection were the first non-disciple witnesses of the supernatural event. Jonah 1:17 / Matthew 12:40 — Jesus named His own third-day resurrection the 'sign of Jonah,' the three days in the tomb mirroring Jonah's three days in the great fish. |
+| The Soldiers' Broken Report (`guard_report`) | `jonah_1_17___matthew_12_40` | Matthew 28:2–4 | The bribe to the guards fulfils the pattern of institutional deception against God's purposes — similar to how the chief priests had bribed Judas (Matthew 26:14–16). The very people who guarded against resurrection were the first non-disciple witnesses of the supernatural event. Jonah 1:17 / Matthew 12:40 — Jesus named His own third-day resurrection the 'sign of Jonah,' the three days in the tomb mirroring Jonah's three days in the great fish. |
 | Unused Burial Spices (`spice_jars`) | - | Mark 16:1 | Nicodemus had already brought 75 pounds of myrrh and aloes for the burial (John 19:39–40), fulfilling the wealthy burial of Isaiah 53:9. The women's additional spices were for the anointing ritual completed after the Sabbath — but there was no body to anoint. The unused jars are a symbol of an interrupted mourning, halted by resurrection. |
 | Mary Magdalene's Testimony (`mary_encounter`) | `isaiah_53_10_11` | John 20:11–18 | Isaiah 53:10–11 promised the Suffering Servant would 'see his offspring and prolong his days' after being crushed — a resurrection paradox. The risen Christ's first act was to call Mary by name (echoing Isaiah 43:1), sending her as the primary witness. In a Roman court a woman's testimony was inadmissible; making a former demoniac the lead witness is exactly the kind of counter-cultural detail that confirms authenticity rather than fabrication. |
       | Broiled Fish Remains (`broiled_fish_remains`) | `isaiah_53_10_11` | Luke 24:41-43 | This act demonstrated the physical, bodily nature of His resurrection, fulfilling the promise that the Suffering Servant would 'see light' and live again after His death (Isaiah 53:10-11). |
@@ -677,7 +692,7 @@ The Codex now distinguishes between:
 | Bread and Fish Breakfast (`bread_breakfast`) | Ezekiel 34:11-16 | ezekiel_34_11_16 |
 | Bread and Fish Breakfast (`bread_breakfast`) | Psalm 23:1-5 | psalm_23_1_5 |
 | Bread and Fish Breakfast (`bread_breakfast`) | Isaiah 25:6-9 | isaiah_25_6_9 |
-| The Threefold Commission (`threefold_commission`) | John 21:15-17 | john_211517 |
+| The Threefold Commission (`threefold_commission`) | John 21:15-17 | john_21_15_17 |
 | The Threefold Commission (`threefold_commission`) | Ezekiel 34:11-16 | ezekiel_34_11_16 |
 | The Threefold Commission (`threefold_commission`) | Jeremiah 3:15 | jeremiah_3_15 |
 | The Threefold Commission (`threefold_commission`) | Isaiah 40:11 | isaiah_40_11 |

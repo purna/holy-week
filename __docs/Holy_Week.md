@@ -632,16 +632,18 @@ A new **Actions** tab is available on the main investigation screen, providing a
     *   Martha (Sister of Lazarus) ([`../story/act2/case_b_lazarus_conspiracy/martha_bethany.ink`](../story/act2/case_b_lazarus_conspiracy/martha_bethany.ink)) ([`../characters/martha.json`](../characters/martha.json))
     *   Nicodemus (Conflicted Pharisee) ([`../story/act2/case_b_lazarus_conspiracy/nicodemus_conflicted.ink`](../story/act2/case_b_lazarus_conspiracy/nicodemus_conflicted.ink)) ([`../characters/nicodemus.json`](../characters/nicodemus.json))
     *   Simon the Leper (Healed Host) ([`../story/act2/case_b_lazarus_conspiracy/simon_leper.ink`](../story/act2/case_b_lazarus_conspiracy/simon_leper.ink)) ([`../characters/simon_leper.json`](../characters/simon_leper.json))
+    *   Eliab (Galilean Pilgrim) ([`../story/act2/case_b_lazarus_conspiracy/eliab_pilgrim.ink`](../story/act2/case_b_lazarus_conspiracy/eliab_pilgrim.ink)) ([`../characters/eliab_pilgrim.json`](../characters/eliab_pilgrim.json))
 *   **Suspects:**
     *   Nicodemus ([`../characters/nicodemus.json`](../characters/nicodemus.json))
     *   Caiaphas ([`../characters/caiaphas.json`](../characters/caiaphas.json))
 *   **Culprit:** **Caiaphas**. He authorized the plot to eliminate Lazarus to contain the political fallout of the miracle.
-*   **Prophecies:** Isaiah 25:8
+*   **Prophecies:** Isaiah 25:8, Psalm 78:2
 
 *   **Evidence:**
     *   `crowd_report` (Bethany Pilgrim Manifest)
     *   `grave_dirt` (Bethany Limestone Dust)
     *   `secret_decree` (Intercepted Sadducean Memorandum)
+    *   `hidden_treasure_testimony` (Galilean Pilgrim's Testimony)
 
 #### People
 
@@ -652,6 +654,7 @@ A new **Actions** tab is available on the main investigation screen, providing a
 | Martha (Sister of Lazarus) | Talk | `grave_dirt` | Isaiah 25:8 |
 | Nicodemus | Talk | — |
 | Simon the Leper | Talk | `crowd_report` |
+| Eliab (Galilean Pilgrim) | Talk | `hidden_treasure_testimony` | Psalm 78:2 |
 
 
 ---
@@ -672,6 +675,7 @@ A new **Actions** tab is available on the main investigation screen, providing a
 | Mount Teacher | `teaching_mount` | NPC only | Walk up in Scene tab | ✅ Yes (as NPC) |
 | Nicodemus | `nicodemus` | NPC only | Walk up in Scene tab | ✅ Yes (as NPC) |
 | Simon the Leper | `simon_leper` | NPC only | Walk up in Scene tab | ✅ Yes (as NPC) |
+| Eliab (Galilean Pilgrim) | `eliab_pilgrim` | NPC only | Walk up in Scene tab | ✅ Yes (as NPC) |
 | Nicodemus | `nicodemus_secret` | Suspect only | Talk to Martha; Lab: **Cleared** (Shows he was a dissenting voice) | ✅ Yes |
 | Caiaphas | `caiaphas` | Suspect only | Talk to Maluch; Lab: **Implicated in Conspiracy** (Directly links him to the plot) | ✅ Yes |
 
@@ -687,6 +691,7 @@ A new **Actions** tab is available on the main investigation screen, providing a
 | Evidence + Prophecy = Unlock | Source of Information |
 |---|---|
 | `grave_dirt` → `isaiah_25_8` | Dialogue: Martha |
+| `hidden_treasure_testimony` → `psalm_78_2` | Dialogue: Eliab (Galilean Pilgrim) |
  
 ### Case: `olivet_discourse` (The End of the Age)
 *   **Title:** The End of the Age

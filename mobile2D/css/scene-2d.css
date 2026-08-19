@@ -39,8 +39,8 @@
 /* Directional pad */
 .dpad {
     position: absolute;
-    bottom: 16px;
-    left: 16px;
+    bottom: 64px;
+    left: 32px;
     width: 120px;
     height: 120px;
     pointer-events: none;
@@ -82,8 +82,8 @@
 /* Action buttons — bottom-right, matching mobile3D style */
 .btn-ui {
     position: absolute;
-    bottom: 16px;
-    right: 16px;
+    bottom: 64px;
+    right: 32px;
     display: flex;
     flex-direction: column;
     gap: 8px;

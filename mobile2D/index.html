@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <link rel="icon" href="favicon.ico" />
   <title>Holy Week — Educational Holy Week Game</title>
   <meta name="description"
     content="A mobile-first educational detective game. Collect clues, interview suspects and solve mysteries." />
@@ -957,7 +958,7 @@
             }
           }
           var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
-          var address = protocol + window.location.host + window.location.pathname + '/ws';
+          var address = protocol + window.location.host + window.location.pathname.replace(/\/$/, '') + '/ws';
           var socket = new WebSocket(address);
           socket.onmessage = function (msg) {
             if (msg.data == 'reload') window.location.reload();

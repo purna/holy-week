@@ -281,11 +281,12 @@ Back to Top
 | 🕙 **Time** | Daytime |
 | 📍 **Location** | Bethany |
 | 👁 **Witnesses** | Jesus, disciples, close followers |
-| 👥 **Characters** | Maluch (Spy), Annas, Martha, Nicodemus |
+| 👥 **Characters** | Maluch (Spy), Annas, Martha, Nicodemus, Eliab (Galilean Pilgrim) |
 | 🎮 **Game Quest** | **The Price of Life** (`lazarus_plot`, Act II): Travel to Bethany and investigate the rumor of a raised man. |
 
 **✡ Prophecy Fulfilled:**
 - [Isaiah 25:8](https://www.biblegateway.com/passage/?search=Isaiah+25:8&version=NIV) — The raising of Lazarus serves as a preview of God "swallowing up death forever."
+- [Psalm 78:2](https://www.biblegateway.com/passage/?search=Psalm+78:2&version=NIV) — Quoted in Matthew 13:34–35 as the reason Jesus taught the crowds in parables. A Galilean pilgrim in the Bethany crowd, having once heard the Parable of the Hidden Treasure (Matthew 13:44), recognises Lazarus's return as the same hidden-then-revealed pattern.
 
 ---
 

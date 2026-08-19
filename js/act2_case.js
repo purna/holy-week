@@ -703,6 +703,17 @@ export const act2CaseB = {
       insight: "Lazarus’s revival was a tactical, localized preview of the ultimate cosmic victory over death that was about to occur on Easter morning.",
       explanation: "The resurrection of Lazarus served as a powerful, localized preview of the ultimate cosmic victory over death that this prophecy describes.",
     },
+    {
+      reference: "Psalm 78:2",
+      id: "psalm_78_2",
+      icon: "../assets/gfx/scroll-duotone.svg",
+      text: `"I will open my mouth in a parable; I will utter dark sayings from of old."`,
+      written: "~1000-950 BC (Asaph)",
+      fulfilledBy: "Jesus teaching the crowds exclusively in parables, then explaining their hidden meaning privately to His disciples",
+      gospelLink: "Matthew 13:34-35",
+      insight: "The Parable of the Weeds — sown secretly by night, exposed only at the harvest — is the same pattern playing out inside the Sanhedrin's own council chamber against Lazarus.",
+      explanation: "Matthew explicitly cites this psalm to explain why Jesus taught in parables that night, uttering things 'hidden since the foundation of the world' — including a warning about hidden evil that would, in time, be brought into the light.",
+    },
   ],
 
   evidencePool: [
@@ -779,6 +790,33 @@ export const act2CaseB = {
         timeline: "CHRONOLOGY: Drafted last, once the crowd numbers and eyewitness questioning made the threat undeniable.",
         contradict: "RELIABILITY: John 12:10–11 independently confirms the plot in the Gospel text itself."
       },
+    }, {
+      id: "parable_notes",
+      name: "Thomas's Recollection of the Parable of the Weeds",
+      relatedProphecy: "psalm_78_2",
+      type: "testimonial",
+      icon: "../assets/gfx/scroll-duotone.svg",
+      pos: [4, 2, 8],
+      snippet: "A disciple's account of a story about wheat, weeds, and an enemy who sows by night.",
+      description: "Thomas's recollection of the Parable of the Weeds — a farmer sows good seed, an enemy secretly sows weeds among it by night, and both are left to grow until the harvest exposes them. Jesus later explained it privately to the disciples.",
+      bibleRef: "Matthew 13:34-35 explains why Jesus taught in parables that night: 'This was to fulfill what was spoken by the prophet: I will open my mouth in parables; I will utter what has been hidden since the foundation of the world.'",
+      bibleRefs: [
+        { ref: "Matthew 13:24-30, 36-43", link: "matt_1324" },
+        { ref: "Matthew 13:34-35", link: "matt_1334" }
+      ],
+      propheticRefs: [
+        { ref: "Psalm 78:2", link: "psalm_78_2" }
+      ],
+      investigatorNote: "The pattern Thomas describes — something sown secretly by night, meant to be discovered only once it can no longer be undone — is the same shape as the Sanhedrin's own decree against Lazarus.",
+      fake: false,
+      category: 'testimony',
+      timelineOrder: 4,
+      clues: {
+        compare: "Reframes the Intercepted Sadducean Memorandum: a plan sown in secret, at night, is exactly the pattern the parable warns will be exposed.",
+        link: "Testimony — an eyewitness account of a parable Jesus told and privately explained.",
+        timeline: "CHRONOLOGY: Recalled after the decree surfaces, giving the investigation a prophetic frame for what the council just did.",
+        contradict: "RELIABILITY: A firsthand disciple's account of something he heard directly and had explained to him privately."
+      },
     },
     {
       id: "lazarus_plot_fake",
@@ -846,6 +884,20 @@ export const act2CaseB = {
         insight: "The council didn't need to verify the miracle — they had the dust and the eyewitnesses already in their chamber.",
         isKey: false,
         bibleRef: "John 12:10–11",
+      },
+    },
+    "secret_decree+parable_notes": {
+      compare: {
+        text: "The decree and Thomas's account of the Parable of the Weeds describe the same pattern: something sown secretly, by night, meant to be found only once it can no longer be undone.",
+        insight: "Psalm 78:2 is fulfilled the moment Jesus explains this parable — and the Sanhedrin's own memorandum becomes a real-time demonstration of it.",
+        isKey: true,
+        bibleRef: "Matthew 13:34-35; John 12:10-11",
+      },
+      link: {
+        text: "One is the conspiracy itself; the other is the prophetic frame that names what a conspiracy like it always looks like.",
+        insight: "The parable was spoken long before this council met, yet it describes their meeting precisely.",
+        isKey: false,
+        bibleRef: "Psalm 78:2",
       },
     },
   },
@@ -983,15 +1035,29 @@ export const act2CaseB = {
       avatar: "thomas.svg",
       profileFile: "thomas",
       truthfulness: 0.9,
-      bibleRef: "Matthew 13:10-17",
+      bibleRef: "Matthew 13:24-30, 36-43; Matthew 13:34-35",
+      pos: [5, 0, 12],
       hasDialogue: true,
       storyFile: "parable_meaning",
-      background: "An inner-circle follower distinguished by analytical, skeptical mindset. Asks hard questions about parables.",
+      unlocksEvidence: ["parable_notes"],
+      revealsProphecy: "psalm_78_2",
+      background: "An inner-circle follower distinguished by an analytical, evidence-first mindset — the same instinct that will later make him demand proof of the resurrection. He pressed Jesus privately until a parable's meaning was plain rather than accepting it at face value.",
       dialogue: {
-        neutral: "Tell me what you know.",
+        neutral: "He told us a story about a farmer's field, and it hasn't left me since. Good seed sown — then an enemy comes by night and sows weeds among it, and slips away before anyone sees his face.",
+        cautious: "The servants wanted to rip the weeds out immediately. Rabbi said no — wait for the harvest, or you'll tear up the wheat with them. I didn't understand it until He explained it to us privately.",
+        pressured: "Think about where we are tonight. A man raised, plainly, publicly, in front of everyone in Bethany — that's the wheat, growing where anyone can see it. And now, quietly, in a council chamber after dark, someone is sowing something else against him.",
+        exposed: "Rabbi said it Himself: 'I will open my mouth in parables; I will utter what has been hidden since the foundation of the world.' He wasn't just telling stories, He was naming what happens in rooms like the one drafting that decree. Nothing sown in secret survives the harvest.",
+        repeat: "I've told you what I heard. Ask me again if it helps it settle — I don't mind saying it twice.",
       },
       reactions: {
-        default: { text: "I have nothing more to add.", isLie: false },
+        secret_decree: { text: "There it is. Sown quietly, at night, meant to be found only once it's already grown too far to stop. He told us this exact pattern before it happened.", isLie: false },
+        grave_dirt: { text: "That dust is the wheat in this — undeniable, out in the open where anyone can go see it for themselves.", isLie: false },
+        crowd_report: { text: "The crowds are the field responding to good seed. They don't need convincing; they've seen the harvest already.", isLie: false },
+      },
+      contradictions: {
+        "secret_decree+grave_dirt": {
+          exposed: "You're holding both halves of the parable in your hands right now — the wheat that grew in plain sight, and the weeds someone tried to sow after dark, thinking no one would notice until it was too late."
+        },
       },
     },
     {

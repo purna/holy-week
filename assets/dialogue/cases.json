@@ -150,6 +150,26 @@
                 "mary_magdalene",
                 "nathanael"
             ]
+        },
+        {
+            "id": "passover_lamb_chain",
+            "name": "Act II: The Passover Lamb",
+            "npcs": [
+                "mary_bethany",
+                "judas_bethany",
+                "simon_leper",
+                "temple_scribe_hillel"
+            ]
+        },
+        {
+            "id": "ascension",
+            "name": "Act IV: The Ascension",
+            "npcs": [
+                "peter_ascension",
+                "john_ascension",
+                "thomas_ascension",
+                "angelic_messengers"
+            ]
         }
     ]
 }
