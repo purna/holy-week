@@ -1,10 +1,10 @@
-# Miracle Maker
+# Holy Week
 
 A powerful tool for creating miracles in your projects.
 
 ## Description
 
-Miracle Maker is designed to help developers achieve extraordinary results with minimal effort. It provides a set of utilities and frameworks that streamline development workflows.
+Holy Week is designed to help developers achieve extraordinary results with minimal effort. It provides a set of utilities and frameworks that streamline development workflows.
 
 ## Installation
 
