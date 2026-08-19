@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Holy Week 3D prototype with dynamic day/night cycle, sun and moon celestial bodies, time progression, and torch lighting. Orbital lighting system with color transitions.">
+    <title>Holy Week 3D - Day Night Cycle</title>
+    <!--
+
+        CORE CONCEPT
+        ------------
+        Day/night cycle prototype with orbital celestial bodies. Sun and moon follow
+        opposing arcs across the sky, dynamically changing lighting intensity and
+        environment colors. Player carries a torch that activates at night.
+
+        KEY FEATURES
+        ------------
+        • Orbital sun/moon system (circular path at radius 450)
+        • Dynamic time progression (0.0001 per frame, auto-cycle)
+        • Day mode: blue sky (0x87CEEB), white sun, bright ambient
+        • Night mode: black space (0x020205), blue moonlight, dim ambient
+        • Torch light on player (PointLight 0x00f2ff, 600 intensity at night)
+        • Player emissive glow (red → red glow at night)
+        • Auto-cycle toggle with 'C' key
+        • Manual cycle button (sun/moon icon)
+        • Day-only sun casting shadows
+        • Night-only moon casting shadows
+        • Ambient trail particles (color changes with time of day)
+        • Landing decals (white in day, black at night)
+
+        CELESTIAL MECHANICS
+        -------------------
+        timeProgress: 0.0–1.0 representing full orbit
+        angle = timeProgress × 2π
+        sunPos: (0, sin(angle)×450, cos(angle)×450)
+        moonPos: opposite (0, -sin(angle)×450, -cos(angle)×450)
+        Daylight threshold: sunPos.y > 0 → day mode
+
+        LIGHTING TRANSITIONS
+        -------------------
+        Sun intensity: 3.5 (day) → 0 (night)
+        Moon intensity: 0 (day) → 1.5 (night)
+        Ambient: 0.6 (day) → 0.2 (night)
+        Hemisphere: 0.5 (day) → 0 (night)
+        Sky/fog color: lerps between blue and black
+        Torch: 0 (day) → 600 (night)
+
+        VISUAL STYLE
+        ------------
+        Planet: standard green (0x3a4a3a) — unchanged
+        Buildings: grey (0x666666)
+        Stars: visible in night only (sky black shows them)
+        Trail: orange-brown (0x966F33) day, cyan blue (0x00f2ff) night
+
+        CONTROLS
+        --------
+        WASD: Move
+        Space: Jump
+        C: Toggle auto-cycle on/off
+        UI Toggle (bottom-right): Manual day/night flip
+
+        TECHNICAL
+        ---------
+        • two-directional lights (sun + moon), swapped based on time
+        • sunSphere mesh visualizes sun position
+        • updateCelestial(instant=false) with lerpFactor 0.02 for smooth transition
+        • Three.js VSMShadowMap for high-quality shadows
+        • Custom decal material color swap based on isNight flag
+        • Particle system: simple trail without VFX class
+
+        UNIQUE ASPECTS
+        --------------
+        Only prototype with time-of-day mechanic.
+        Only prototype with torch light.
+        Only prototype with TrailRenderer-style particles.
+
+        ASSETS: Same as test.html minus voice/chat-specific files
+
+        Known issues: Planet still uses same toon material; could add day/night texture swap
+    -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --accent-primary: #00f2ff;
+            --bg-main: #010105;
+            --btn-size: 12vmin;
+        }
+
+        body {
+            margin: 0;
+            overflow: hidden;
+            background: var(--bg-main);
+            font-family: monospace;
+        }
+
+        .ui-toggle {
+            position: fixed;
+            bottom: 2vmin;
+            right: 2vmin;
+            width: var(--btn-size);
+            height: var(--btn-size);
+            min-width: 48px;
+            min-height: 48px;
+            background: rgba(0, 10, 20, 0.8);
+            border: 1px solid var(--accent-primary);
+            color: var(--accent-primary);
+            cursor: pointer;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 500;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.9);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="start-screen" class="overlay">
+        <h1>Holy Week</h1>
+        <p>WHO WAS HE?</p>
+        <button id="btn-start"
+            style="background:#ffaa00; border:none; padding:15px 40px; cursor:pointer; font-weight:bold; font-size:1.2em; color: black;">START</button>
+    </div>
+
+    <button id="btn-cycle-toggle" class="ui-toggle"><i class="fas fa-sun"></i></button>
+
+    <script type="importmap">{ "imports": { 
+        "three": "https://unpkg.com/three@0.160.0/build/three.module.js", 
+        "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/", 
+        "cannon": "https://unpkg.com/cannon-es@0.20.0/dist/cannon-es.js" 
+    } }</script>
+
+    <script type="module">
+        import * as THREE from 'three';
+        import * as CANNON from 'cannon';
+        import { DecalGeometry } from 'three/addons/geometries/DecalGeometry.js';
+
+        // --- LOGIC ---
+        let started = false;
+        let isDayMode = true;
+        let timeProgress = 0.25;
+        const trailParticles = [];
+        let autoCycle = true; // Set to false to stop automatic day/night progression
+
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(65, window.innerWidth / window.innerHeight, 0.1, 5000);
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+
+        // Enable High Quality Shadows
+        renderer.shadowMap.enabled = true;
+        renderer.shadowMap.type = THREE.VSMShadowMap;
+        document.body.appendChild(renderer.domElement);
+
+        // --- CELESTIAL ELEMENTS ---
+        const skyBlueDay = new THREE.Color(0x87CEEB);
+        const spaceBlackNight = new THREE.Color(0x020205);
+
+        const sunSphere = new THREE.Mesh(
+            new THREE.SphereGeometry(12, 32, 32),
+            new THREE.MeshBasicMaterial({ color: 0xffffee })
+        );
+        scene.add(sunSphere);
+
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
+        scene.add(ambientLight);
+
+        const hemiLight = new THREE.HemisphereLight(0x87CEEB, 0x333333, 0.5);
+        scene.add(hemiLight);
+
+        const sunLight = new THREE.DirectionalLight(0xffffff, 3.5);
+        sunLight.castShadow = true;
+        sunLight.shadow.bias = -0.0005;
+        sunLight.shadow.radius = 6; // Softens shadow edges
+        sunLight.shadow.camera.left = -150;
+        sunLight.shadow.camera.right = 150;
+        sunLight.shadow.camera.top = 150;
+        sunLight.shadow.camera.bottom = -150;
+        sunLight.shadow.camera.far = 1000;
+        sunLight.shadow.mapSize.set(2048, 2048);
+        scene.add(sunLight);
+
+        const moonLight = new THREE.DirectionalLight(0x4444ff, 1.2);
+        scene.add(moonLight);
+
+        scene.background = skyBlueDay.clone();
+        scene.fog = new THREE.FogExp2(0x87CEEB, 0.002);
+
+        // --- WORLD GEOMETRY ---
+        const world = new CANNON.World();
+        const planetR = 50;
+        const planet = new THREE.Mesh(new THREE.IcosahedronGeometry(planetR, 5), new THREE.MeshStandardMaterial({ color: 0x3a4a3a }));
+        planet.receiveShadow = true;
+        scene.add(planet);
+        world.addBody(new CANNON.Body({ mass: 0, shape: new CANNON.Sphere(planetR) }));
+
+        for (let i = 0; i < 40; i++) {
+            const h = 4 + Math.random() * 15;
+            const m = new THREE.Mesh(new THREE.BoxGeometry(2, h, 2), new THREE.MeshStandardMaterial({ color: 0x666666 }));
+            const pos = new THREE.Vector3().randomDirection().multiplyScalar(planetR);
+            m.position.copy(pos);
+            m.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), pos.clone().normalize());
+            m.castShadow = true;
+            m.receiveShadow = true;
+            scene.add(m);
+
+            const body = new CANNON.Body({ mass: 0, shape: new CANNON.Box(new CANNON.Vec3(1, h / 2, 1)) });
+            body.position.copy(pos);
+            body.quaternion.copy(m.quaternion);
+            world.addBody(body);
+        }
+
+        // --- PLAYER ---
+        const pBody = new CANNON.Body({ mass: 1, shape: new CANNON.Box(new CANNON.Vec3(0.5, 1, 0.5)), fixedRotation: true, linearDamping: 0.9 });
+        pBody.position.set(0, planetR + 10, 0);
+        world.addBody(pBody);
+
+        const playerMesh = new THREE.Group();
+        const playerMat = new THREE.MeshStandardMaterial({ color: 0xff3333, emissive: 0x000000, emissiveIntensity: 2 });
+        const pVis = new THREE.Mesh(new THREE.BoxGeometry(1.2, 2, 1.2), playerMat);
+        pVis.castShadow = true;
+
+        pVis.receiveShadow = true;
+        playerMesh.add(pVis);
+
+        const torch = new THREE.PointLight(0x00f2ff, 0, 120);
+        torch.position.set(0, 1.5, 1);
+        playerMesh.add(torch);
+        scene.add(playerMesh);
+
+
+        // --- VFX SYSTEM (Landing Decals) ---
+        class VFXSystem {
+            constructor(scene, planetMesh, planetR) {
+                this.scene = scene;
+                this.planetMesh = planetMesh;
+                this.planetR = planetR;
+                this.decals = [];
+                this.decalMatDay = null;
+                this.isNight = false;
+
+                const loader = new THREE.TextureLoader();
+                loader.load('assets/gfx/dirt.svg', (tex) => {
+                    this.decalMatDay = new THREE.MeshBasicMaterial({
+                        map: tex,
+                        transparent: true,
+                        depthWrite: false,
+                        polygonOffset: true,
+                        polygonOffsetFactor: -4
+                    });
+                });
+            }
+
+            setNightMode(isNight) {
+                this.isNight = isNight;
+            }
+
+            getDecalMaterial() {
+                if (!this.decalMatDay) return null;
+                const mat = this.decalMatDay.clone();
+                mat.color = this.isNight ? new THREE.Color(0xffffff) : new THREE.Color(0x000000);
+                return mat;
+            }
+
+            emitLandingDecal(pos, up) {
+                if (!this.decalMatDay) return;
+
+                const raycaster = new THREE.Raycaster(pos.clone().add(up.clone().multiplyScalar(2)), up.clone().multiplyScalar(-1));
+                const hits = raycaster.intersectObject(this.planetMesh);
+
+                if (hits.length > 0) {
+                    const hit = hits[0];
+                    const size = new THREE.Vector3(4, 4, 4);
+
+                    const m = new THREE.Matrix4();
+                    let dummyUp = new THREE.Vector3(0, 1, 0);
+                    if (Math.abs(hit.normal.dot(dummyUp)) > 0.9) dummyUp.set(1, 0, 0);
+                    m.lookAt(hit.point, hit.point.clone().add(hit.normal), dummyUp);
+                    const orientation = new THREE.Euler().setFromRotationMatrix(m);
+
+                    const geom = new DecalGeometry(this.planetMesh, hit.point, orientation, size);
+                    const mat = this.getDecalMaterial();
+
+                    const mesh = new THREE.Mesh(geom, mat);
+                    this.scene.add(mesh);
+                    this.decals.push({ mesh, life: 1.5, maxLife: 1.5 });
+                }
+            }
+
+            updateDecals(dt) {
+                for (let i = this.decals.length - 1; i >= 0; i--) {
+                    const d = this.decals[i];
+                    d.life -= dt;
+                    d.mesh.material.opacity = Math.max(0, d.life / d.maxLife);
+                    if (d.life <= 0) {
+                        this.scene.remove(d.mesh);
+                        d.mesh.geometry.dispose();
+                        d.mesh.material.dispose();
+                        this.decals.splice(i, 1);
+                    }
+                }
+            }
+        }
+
+        const vfx = new VFXSystem(scene, planet, planetR);
+        let isNight = false;
+
+        const spawnTrail = (pos) => {
+            const geo = new THREE.SphereGeometry(0.3, 6, 6);
+            const color = isNight ? 0x00f2ff : 0x966F33;
+            const mat = new THREE.MeshBasicMaterial({ color: color, transparent: true, opacity: 0.7 });
+            const p = new THREE.Mesh(geo, mat);
+            p.position.copy(pos);
+            scene.add(p);
+            trailParticles.push({ mesh: p, life: 1.0 });
+        };
+
+        const updateCelestial = (instant = false) => {
+            const lerpFactor = instant ? 1 : 0.02;
+            const angle = timeProgress * Math.PI * 2;
+            const orbitDist = 450;
+
+            const sunPos = new THREE.Vector3(0, Math.sin(angle) * orbitDist, Math.cos(angle) * orbitDist);
+            const moonPos = new THREE.Vector3(0, -Math.sin(angle) * orbitDist, -Math.cos(angle) * orbitDist);
+
+            sunLight.position.copy(sunPos);
+            sunSphere.position.copy(sunPos);
+            moonLight.position.copy(moonPos);
+
+            sunLight.intensity = sunLight.position.y > 0 ? 3.5 : 0;
+            moonLight.intensity = moonLight.position.y > 0 ? 1.5 : 0;
+            sunSphere.visible = sunLight.position.y > 0;
+
+            const targetSky = isDayMode ? skyBlueDay : spaceBlackNight;
+            scene.background.lerp(targetSky, lerpFactor);
+            scene.fog.color.lerp(targetSky, lerpFactor);
+
+            ambientLight.intensity = THREE.MathUtils.lerp(ambientLight.intensity, isDayMode ? 0.6 : 0.2, lerpFactor);
+            hemiLight.intensity = THREE.MathUtils.lerp(hemiLight.intensity, isDayMode ? 0.5 : 0, lerpFactor);
+
+            const glowColor = isDayMode ? new THREE.Color(0x000000) : new THREE.Color(0xff0000);
+            playerMat.emissive.lerp(glowColor, lerpFactor);
+            torch.intensity = THREE.MathUtils.lerp(torch.intensity, isDayMode ? 0 : 600, lerpFactor);
+
+            // Update VFX decal colors
+            isNight = !isDayMode;
+            vfx.setNightMode(isNight);
+
+            document.getElementById('btn-cycle-toggle').querySelector('i').className = isDayMode ? "fas fa-sun" : "fas fa-moon";
+        };
+
+        const keys = {};
+        let canJump = true;
+        window.addEventListener('keydown', e => {
+            keys[e.code] = true;
+            if (e.code === 'Space' && canJump && started) {
+                const up = new THREE.Vector3().copy(pBody.position).normalize();
+                pBody.applyImpulse(new CANNON.Vec3(up.x * 12, up.y * 12, up.z * 12), pBody.position);
+                canJump = false;
+            }
+            if (e.code === 'KeyC' && started) {
+                autoCycle = !autoCycle;
+                console.log('Auto cycle:', autoCycle ? 'ON' : 'OFF');
+            }
+        });
+        window.addEventListener('keyup', e => keys[e.code] = false);
+        document.getElementById('btn-cycle-toggle').onclick = () => { isDayMode = !isDayMode; timeProgress = isDayMode ? 0.25 : 0.75; };
+        document.getElementById('btn-start').onclick = () => { document.getElementById('start-screen').style.display = 'none'; started = true; };
+        updateCelestial(true);
+
+        let camHeading = new THREE.Vector3(0, 0, 1);
+        let wasGrounded = true;
+
+        function loop() {
+            requestAnimationFrame(loop);
+            world.step(1 / 60);
+            const pPos = new THREE.Vector3().copy(pBody.position);
+            const up = pPos.clone().normalize();
+            const pVel = new THREE.Vector3().copy(pBody.velocity);
+
+            // Gravity
+            pBody.applyForce(up.clone().multiplyScalar(-75), pBody.position);
+
+            // Ground check
+            const isGrounded = pPos.length() < planetR + 1.6;
+            if (isGrounded) canJump = true;
+
+            if (started) {
+                if (autoCycle) timeProgress = (timeProgress + 0.0001) % 1;
+                updateCelestial();
+
+                const camFwd = pPos.clone().sub(camera.position).projectOnPlane(up).normalize();
+                const camRgt = new THREE.Vector3().crossVectors(up, camFwd).normalize();
+                let moveDir = new THREE.Vector3(0, 0, 0);
+                if (keys['KeyW'] || keys['ArrowUp']) moveDir.add(camFwd);
+                if (keys['KeyS'] || keys['ArrowDown']) moveDir.sub(camFwd);
+                if (keys['KeyA'] || keys['ArrowLeft']) moveDir.add(camRgt);
+                if (keys['KeyD'] || keys['ArrowRight']) moveDir.sub(camRgt);
+
+                if (moveDir.length() > 0) {
+                    pBody.velocity.set(moveDir.x * 18, moveDir.y * 18, moveDir.z * 18);
+                    camHeading.lerp(moveDir, 0.1).normalize();
+                    spawnTrail(pPos.clone().sub(up.clone().multiplyScalar(1.2)));
+                }
+
+                // Landing effect
+                if (isGrounded && !wasGrounded) {
+                    vfx.emitLandingDecal(pPos, up);
+                }
+
+                // Update VFX (decals, particles)
+                vfx.updateDecals(1 / 60);
+
+                for (let i = trailParticles.length - 1; i >= 0; i--) {
+                    const p = trailParticles[i];
+                    p.life -= 0.015;
+                    p.mesh.scale.setScalar(p.life);
+                    p.mesh.material.opacity = p.life;
+                    if (p.life <= 0) {
+                        scene.remove(p.mesh);
+                        trailParticles.splice(i, 1);
+                    }
+                }
+            }
+
+            wasGrounded = isGrounded;
+
+            playerMesh.position.copy(pPos);
+            playerMesh.up.copy(up);
+            playerMesh.lookAt(pPos.clone().add(camHeading.projectOnPlane(up).normalize()));
+            camera.up.copy(up);
+            camera.position.lerp(pPos.clone().add(camHeading.clone().multiplyScalar(-25)).add(up.clone().multiplyScalar(12)), 0.05);
+            camera.lookAt(pPos);
+            renderer.render(scene, camera);
+        }
+        loop();
+    </script>
+</body>
+
+</html>

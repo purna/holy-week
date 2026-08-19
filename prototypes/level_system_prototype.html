@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Holy Week 3D - Integrated Visual Novel Dialogue, Level Selection Orbiting Modal, and Dust VFX Engine.">
+    <title>Holy Week 3D - Unified Level System</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* ===== STYLING VARIABLE TOKENS ===== */
+        :root {
+            --bg-main: #020208;
+            --panel-bg: rgba(7, 15, 28, 0.92);
+            --accent-primary: #00f2ff;
+            --accent-secondary: #ffaa00;
+            --accent-success: #00ffaa;
+            --accent-error: #ff4444;
+            --text-main: #ffffff;
+            --text-muted: #a0b0c5;
+            --glow-soft: 0 0 12px rgba(0, 242, 255, 0.35);
+            --glow-strong: 0 0 25px rgba(0, 242, 255, 0.7);
+            --font-stack: 'Courier New', Courier, monospace;
+        }
+
+        /* ===== BASE RESET & UTILITIES ===== */
+        * { box-sizing: border-box; }
+        body, html {
+            margin: 0; padding: 0; width: 100%; height: 100%;
+            overflow: hidden; background: var(--bg-main);
+            font-family: var(--font-stack); text-transform: uppercase;
+            user-select: none; color: var(--text-main);
+        }
+
+        /* ===== MAIN GAMEPLAY LAYOUT HUD ===== */
+        #canvas-container {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;
+        }
+
+        .hud-layer {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 10; pointer-events: none;
+            display: grid; grid-template-columns: 280px 1fr 320px;
+            grid-template-rows: 70px 1fr 180px;
+            padding: 15px; gap: 15px;
+        }
+        .hud-layer * { pointer-events: auto; }
+
+        /* HUD Panels */
+        .hud-panel {
+            background: var(--panel-bg); border: 1px solid var(--accent-primary);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.7), var(--glow-soft);
+            padding: 15px; backdrop-filter: blur(12px);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        #top-bar {
+            grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 2px solid var(--accent-primary);
+        }
+        .loc-tag { font-size: 1.2rem; color: var(--accent-primary); font-weight: bold; letter-spacing: 2px; }
+        .act-tag { font-size: 0.9rem; color: var(--accent-secondary); }
+
+        #left-sidebar { grid-column: 1; grid-row: 2; display: flex; flex-direction: column; gap: 15px; }
+        #right-sidebar { grid-column: 3; grid-row: 2; display: flex; flex-direction: column; gap: 15px; }
+
+        /* Quest Card UI */
+        .quest-card { border-left: 4px solid var(--accent-secondary); }
+        .quest-title { font-weight: bold; color: var(--accent-secondary); margin-bottom: 5px; font-size: 0.95rem;}
+        .quest-task { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 8px; }
+        .progress-bar-wrap { background: rgba(255,255,255,0.1); height: 6px; border-radius: 3px; overflow: hidden; }
+        .progress-fill { background: var(--accent-secondary); height: 100%; width: 0%; transition: width 0.4s ease; }
+
+        /* Actions Panel */
+        .action-btn {
+            width: 100%; background: rgba(0, 242, 255, 0.1); border: 1px solid var(--accent-primary);
+            color: var(--text-main); padding: 10px; text-align: left; margin-bottom: 8px;
+            cursor: pointer; font-family: var(--font-stack); text-transform: uppercase;
+            display: flex; justify-content: space-between; align-items: center;
+            transition: background 0.2s;
+        }
+        .action-btn:hover { background: rgba(0, 242, 255, 0.25); box-shadow: var(--glow-soft); }
+
+        /* Prophecies Panel */
+        .prophecy-item {
+            font-size: 0.75rem; border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding: 6px 0; color: var(--accent-success);
+        }
+
+        /* Bottom Controls Row */
+        #bottom-bar {
+            grid-column: 1 / -1; grid-row: 3; display: flex; justify-content: space-between; align-items: flex-end;
+            pointer-events: none;
+        }
+        #bottom-bar * { pointer-events: auto; }
+
+        .center-trigger {
+            margin: 0 auto; background: var(--panel-bg); border: 2px solid var(--accent-secondary);
+            color: var(--accent-secondary); font-size: 1.1rem; padding: 12px 35px;
+            cursor: pointer; font-family: var(--font-stack); font-weight: bold;
+            box-shadow: var(--glow-soft); transition: all 0.2s;
+        }
+        .center-trigger:hover {
+            color: var(--text-main); background: var(--accent-secondary);
+            box-shadow: 0 0 15px var(--accent-secondary);
+        }
+
+        /* ===== ADVANCED VISUAL NOVEL DIALOGUE UI ===== */
+        #vn-overlay {
+            position: absolute; bottom: 0; left: 0; width: 100%; height: 100%;
+            z-index: 100; pointer-events: none; display: none;
+            grid-template-rows: 1fr 180px; padding: 30px;
+        }
+        #vn-overlay.active { display: grid; pointer-events: auto; background: rgba(0,0,0,0.4); }
+
+        #vn-box {
+            grid-row: 2; background: rgba(5, 12, 22, 0.96);
+            border: 2px solid var(--accent-primary); box-shadow: var(--glow-strong);
+            padding: 20px; display: grid; grid-template-columns: 200px 1fr; gap: 20px;
+            position: relative; max-width: 1100px; margin: 0 auto; width: 100%;
+        }
+        #vn-speaker {
+            grid-column: 1; border-right: 1px solid rgba(0,242,255,0.3);
+            color: var(--accent-secondary); font-size: 1.2rem; font-weight: bold;
+            display: flex; align-items: center; justify-content: center; text-align: center;
+        }
+        #vn-content-block {
+            grid-column: 2; display: flex; flex-direction: column; justify-content: space-between;
+        }
+        #vn-text {
+            font-size: 1.05rem; line-height: 1.5; color: var(--text-main); letter-spacing: 1px;
+        }
+        #vn-choices {
+            display: flex; gap: 10px; margin-top: 15px; flex-wrap: wrap;
+        }
+        .choice-node {
+            background: rgba(0,242,255,0.15); border: 1px solid var(--accent-primary);
+            color: var(--text-main); padding: 8px 16px; cursor: pointer; font-size: 0.85rem;
+            font-family: var(--font-stack); text-transform: uppercase; transition: all 0.2s;
+        }
+        .choice-node:hover { background: var(--accent-primary); color: #000; font-weight: bold; }
+
+        /* ===== MAP/LEVEL SELECTION OVERLAY MODAL ===== */
+        #modal-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 500; background: rgba(1, 2, 6, 0.96); display: none;
+            flex-direction: column; opacity: 0; transition: opacity 0.3s ease;
+        }
+        #modal-overlay.active { display: flex; opacity: 1; }
+
+        #modal-header {
+            padding: 20px 40px; display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 1px solid rgba(0,242,255,0.25); z-index: 510;
+        }
+        #modal-canvas-wrap {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 501;
+        }
+        #modal-instructions {
+            position: absolute; bottom: 25px; left: 50%; transform: translateX(-50%);
+            z-index: 510; font-size: 0.85rem; color: var(--accent-primary);
+            background: rgba(0,0,0,0.6); padding: 8px 20px; border: 1px solid var(--accent-primary);
+            pointer-events: none; letter-spacing: 1px; text-align: center;
+        }
+
+        .close-modal-btn {
+            background: none; border: 1px solid var(--accent-error); color: var(--accent-error);
+            padding: 8px 18px; cursor: pointer; font-family: var(--font-stack);
+            transition: all 0.2s; font-size: 0.9rem;
+        }
+        .close-modal-btn:hover { background: var(--accent-error); color: #000; font-weight: bold; }
+
+        /* 3D Coordinate HTML Node Anchors */
+        .map-node-dot {
+            position: absolute; width: 16px; height: 16px; margin-left: -8px; margin-top: -8px;
+            border-radius: 50%; z-index: 550; cursor: pointer;
+            box-shadow: 0 0 12px currentColor; transition: transform 0.2s ease;
+            pointer-events: auto;
+        }
+        .map-node-dot:hover { transform: scale(1.4); }
+        .map-node-dot.locked {
+            cursor: not-allowed; border: 2px solid #555 !important; background: #222 !important; color: #555 !important; box-shadow: none;
+        }
+        .map-node-dot.completed::after {
+            content: '\f00c'; font-family: 'Font Awesome 5 Free'; font-weight: 900;
+            position: absolute; top: -18px; left: 50%; transform: translateX(-50%);
+            color: var(--accent-success); font-size: 10px;
+        }
+
+        .map-node-label {
+            position: absolute; z-index: 551; pointer-events: none;
+            font-size: 0.75rem; white-space: nowrap; color: #fff;
+            background: rgba(0,5,15,0.85); padding: 3px 8px; border-radius: 3px;
+            border: 1px solid rgba(255,255,255,0.15); transform: translate(-50%, -32px);
+        }
+        
+        /* ===== SCREEN NOTIFICATION ANCHORS ===== */
+        #screen-alert {
+            position: absolute; top: 90px; left: 50%; transform: translateX(-50%);
+            z-index: 1000; background: var(--panel-bg); border: 1px solid var(--accent-secondary);
+            padding: 12px 25px; font-weight: bold; color: var(--accent-secondary);
+            display: none; box-shadow: var(--glow-strong); letter-spacing: 1px;
+        }
+    </style>
+
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.module.js"
+            }
+        }
+    </script>
+</head>
+<body>
+
+    <div id="canvas-container"></div>
+
+    <div id="screen-alert"></div>
+
+    <div class="hud-layer">
+        <div id="top-bar" class="hud-panel">
+            <div>
+                <span id="loc-name" class="loc-tag">---</span>
+                <span id="act-name" class="act-tag" style="margin-left:15px;">---</span>
+            </div>
+            <div id="level-title-display" style="font-weight: bold; color: var(--accent-primary); letter-spacing:1px;">---</div>
+        </div>
+
+        <div id="left-sidebar">
+            <div class="hud-panel quest-card">
+                <div style="font-size:0.7rem; color:var(--text-muted); margin-bottom:4px;">CURRENT LOOP TASK</div>
+                <div id="quest-title" class="quest-title">GATHERING EVIDENCE</div>
+                <div id="quest-task" class="quest-task">---</div>
+                <div class="progress-bar-wrap">
+                    <div id="quest-progress" class="progress-fill"></div>
+                </div>
+                <div id="quest-count" style="font-size: 0.75rem; text-align: right; margin-top:4px; color:var(--accent-secondary);">0 / 0</div>
+            </div>
+
+            <div class="hud-panel" style="flex: 1; display:flex; flex-direction:column;">
+                <div style="font-size: 0.8rem; font-weight:bold; color:var(--accent-primary); margin-bottom:10px; border-bottom:1px solid rgba(0,242,255,0.25); padding-bottom:4px;">ACTIONS AVAILABLE</div>
+                <div id="actions-list-container" style="flex:1; overflow-y:auto;">
+                    </div>
+            </div>
+        </div>
+
+        <div id="right-sidebar">
+            <div class="hud-panel" style="flex: 1; display: flex; flex-direction: column;">
+                <div style="font-size:0.8rem; font-weight:bold; color:var(--accent-success); margin-bottom:10px; border-bottom:1px solid rgba(0,255,170,0.25); padding-bottom:4px;">FULFILLED PROPHECIES</div>
+                <div id="prophecies-list-container" style="flex:1; overflow-y:auto;">
+                    </div>
+            </div>
+        </div>
+
+        <div id="bottom-bar">
+            <button id="btn-open-map" class="center-trigger">
+                <i class="fa-solid from fa-map-location-dot"></i> OPEN JERUSALEM ARCHIVE MAP
+            </button>
+        </div>
+    </div>
+
+    <div id="vn-overlay">
+        <div id="vn-box">
+            <div id="vn-speaker">NPC SPEAKER</div>
+            <div id="vn-content-block">
+                <div id="vn-text">Dialogue script block loading dynamically onto rendering grid view matrix...</div>
+                <div id="vn-choices">
+                    </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-overlay">
+        <div id="modal-header">
+            <div>
+                <h1 style="margin:0; font-size:1.4rem; color:var(--accent-primary); letter-spacing:2px;">JERUSALEM GAMEPLAY LOOP TREE</h1>
+                <p style="margin:5px 0 0 0; font-size:0.8rem; color:var(--text-muted);">Orbit city mesh using mouse drag. Select unlocked nodes to instantiate levels.</p>
+            </div>
+            <button id="btn-close-map" class="close-modal-btn">CLOSE CONTINUUM</button>
+        </div>
+        
+        <div id="modal-canvas-wrap"></div>
+        
+        <div id="modal-instructions">DRAG TO ORBIT VIEW MATRIX • SELECT SPHERICAL NODE TO LOAD PIPELINE</div>
+    </div>
+
+    <script type="module">
+        import * as THREE from 'three';
+
+        // =========================================================================
+        // DATA MODEL SCHEMA SPECIFICATION: LEVEL HIERARCHIES & QUEST SEQUENCING
+        // =========================================================================
+        const LEVEL_TREE_DATA = [
+            {
+                phase: 1,
+                actLabel: 'ACT 1 – THE ARRIVAL',
+                title: 'The Donkey King',
+                subtitle: 'Jerusalem is packed. Something is happening near the city gate.',
+                location: 'JERUSALEM GATE',
+                color: 0xffcc44,
+                // Spherical position vector values mapping to global city layout frame
+                theta: Math.PI * 0.22,
+                phi: Math.PI * 0.15,
+                unlockAfter: [], // Phase 1 is always unlocked
+                isComplete: false,
+                quest: {
+                    id: 'DONKEY_KING',
+                    name: 'THE DONKEY KING',
+                    task: 'Verify crowds acknowledging prophecy criteria',
+                    cur: 0, tar: 2
+                },
+                prophecies: [
+                    'Zechariah 9:9 — "Your king comes to you, humble and riding on a donkey."'
+                ],
+                npcs: [
+                    { id: 'child_01', name: 'Excited Child', color: 0xffcc44, pos: [6, 1, -5], primitive: 'box', story: 'child_prophecy' },
+                    { id: 'guard_01', name: 'Roman Guard', color: 0xff4444, pos: [-4, 1, -8], primitive: 'box', story: 'roman_tension' }
+                ],
+                actions: [
+                    { name: 'Observe Donkey Entrance', type: 'quest_advance', payload: 1, cost: 'Investigate' },
+                    { name: 'Interview Crowd Gathering', type: 'quest_advance', payload: 1, cost: 'Listen' }
+                ]
+            },
+            {
+                phase: 2,
+                actLabel: 'ACT 1 – THE ARRIVAL',
+                title: 'Marketplace Rumours',
+                subtitle: 'Everyone has an opinion. Who do you believe?',
+                location: 'MARKETPLACE',
+                color: 0xff9944,
+                theta: Math.PI * 0.45,
+                phi: Math.PI * 0.38,
+                unlockAfter: [1], // Requires Phase 1 complete
+                isComplete: false,
+                quest: {
+                    id: 'MARKET_RUMOURS',
+                    name: 'GATHERING RUMOURS',
+                    task: 'Collate opposing testimonies from citizens',
+                    cur: 0, tar: 3
+                },
+                prophecies: [
+                    'Isaiah 61:1 — "To proclaim good news to the poor and brokenhearted."'
+                ],
+                npcs: [
+                    { id: 'trader_01', name: 'Travelling Trader', color: 0xddaa55, pos: [8, 1, 3], primitive: 'box', story: 'trader_feed' },
+                    { id: 'beggar_01', name: 'Lame Beggar', color: 0x996633, pos: [-2, 0.5, 6], primitive: 'box', story: 'beggar_interaction' }
+                ],
+                actions: [
+                    { name: 'Cross-examine Accounts', type: 'quest_advance', payload: 1, cost: 'Analyze' },
+                    { name: 'Collect Bread Shards', type: 'quest_advance', payload: 2, cost: 'Search' }
+                ]
+            },
+            {
+                phase: 3,
+                actLabel: 'ACT 2 – THE TEACHER',
+                title: 'The Man Born Blind',
+                subtitle: 'A structural miracle has turned temple factions against one another.',
+                location: 'TEMPLE COURTS',
+                color: 0xaaddff,
+                theta: Math.PI * 0.75,
+                phi: Math.PI * 0.55,
+                unlockAfter: [2], // Requires Phase 2 complete
+                isComplete: false,
+                quest: {
+                    id: 'BLIND_MAN',
+                    name: 'VERIFYING THE MIRACLE',
+                    task: 'Extract independent legal depositions from witnesses',
+                    cur: 0, tar: 2
+                },
+                prophecies: [
+                    'Isaiah 35:5 — "Then the eyes of the blind shall be systematically opened."'
+                ],
+                npcs: [
+                    { id: 'blind_man', name: 'Healed Witness', color: 0xaaddff, pos: [0, 1, -4], primitive: 'box', story: 'blind_man_testimony' },
+                    { id: 'scribe_01', name: 'Temple Scribe', color: 0x88cc88, pos: [-7, 1, 2], primitive: 'box', story: 'scribe_objection' }
+                ],
+                actions: [
+                    { name: 'Examine Pool of Siloam', type: 'quest_advance', payload: 1, cost: 'Investigate' },
+                    { name: 'Review Sabbath Statutes', type: 'quest_advance', payload: 1, cost: 'Read Legalities' }
+                ]
+            },
+            {
+                phase: 4,
+                actLabel: 'ACT 2 – THE TEACHER',
+                title: 'The Cleansed Temple',
+                subtitle: 'Tables overturned. Coins scattered. Chaos reigns inside the holy precinct.',
+                location: 'THE HOLY TEMPLE',
+                color: 0xff6644,
+                theta: Math.PI * 1.15,
+                phi: Math.PI * 0.72,
+                unlockAfter: [3], // Requires Phase 3 complete
+                isComplete: false,
+                quest: {
+                    id: 'TEMPLE_CLEANSED',
+                    name: 'DEFENDING WORSHIP',
+                    task: 'Assess contextual motivations behind the temple intervention',
+                    cur: 0, tar: 2
+                },
+                prophecies: [
+                    'Malachi 3:1 — "The Lord you seek will suddenly come to His temple."',
+                    'Psalm 69:9 — "Zeal for your house has completely consumed me."'
+                ],
+                npcs: [
+                    { id: 'merchant_01', name: 'Aggrieved Merchant', color: 0xffaa44, pos: [4, 1, -2], primitive: 'box', story: 'merchant_fury' },
+                    { id: 'disciple_01', name: 'Awestruck Follower', color: 0x44aaff, pos: [-3, 1, 5], primitive: 'box', story: 'disciple_revelation' }
+                ],
+                actions: [
+                    { name: 'Return Overturned Coins', type: 'quest_advance', payload: 1, cost: 'Rectify' },
+                    { name: 'Analyze Inflated Exchange Rates', type: 'quest_advance', payload: 1, cost: 'Audit Data' }
+                ]
+            }
+        ];
+
+        // Mock Visual Novel Dialogue Map (Emulating Ink.js execution flow JSON maps)
+        const INK_DIALOGUE_DATABASE = {
+            'child_prophecy': {
+                speaker: 'Excited Child',
+                text: 'He came in just like the prophet Zechariah wrote! Riding humbly on a donkey! Everyone is throwing down palm branches!',
+                choices: [
+                    { text: 'Why branches?', next: 'child_branches' },
+                    { text: 'Is he a conquering war king?', next: 'child_peace' }
+                ]
+            },
+            'child_branches': {
+                speaker: 'Excited Child',
+                text: 'It means royalty! We welcome him as our true deliverer king! Hosanna!',
+                choices: [{ text: '[End Conversation]', next: null, triggerQuestAdvance: true }]
+            },
+            'child_peace': {
+                speaker: 'Excited Child',
+                text: 'No! If he were going to war, he would be on a massive stallion horse. The donkey means he brings peaceful restoration!',
+                choices: [{ text: '[End Conversation]', next: null, triggerQuestAdvance: true }]
+            },
+            'roman_tension': {
+                speaker: 'Roman Guard',
+                text: 'Keep moving, civilian. This crowd is highly volatile. If this self-proclaimed king causes an uprising, Caesar’s legions will crush it immediately.',
+                choices: [{ text: 'Are you anticipating violence?', next: null, triggerQuestAdvance: true }]
+            },
+            'trader_feed': {
+                speaker: 'Travelling Trader',
+                text: 'I witnessed it myself up north! Five thousand men fed using only five barley loaves and two tiny fish. The leftovers filled twelve deep wicker baskets!',
+                choices: [{ text: 'Incredible. Was it a trick?', next: null, triggerQuestAdvance: true }]
+            },
+            'beggar_interaction': {
+                speaker: 'Lame Beggar',
+                text: 'The religious leadership looks right past us. But Jesus sat down in the marketplace dirt, spoke to us as human beings, and gave us profound dignity.',
+                choices: [{ text: 'That is dynamic teaching indeed.', next: null, triggerQuestAdvance: true }]
+            },
+            'blind_man_testimony': {
+                speaker: 'Healed Witness',
+                text: 'I was blind from my mother’s womb. He spit on the ground, made clay, applied it to my eyes, and commanded me to wash. Now, look! I see cleanly!',
+                choices: [{ text: 'What did the temple leadership say?', next: null, triggerQuestAdvance: true }]
+            },
+            'scribe_objection': {
+                speaker: 'Temple Scribe',
+                text: 'This miracle violates structural Sabbath directives! Healing on the holy rest day is work, meaning the perpetrator cannot possibly be from God!',
+                choices: [{ text: 'Should mercy not override legalism?', next: null, triggerQuestAdvance: true }]
+            },
+            'merchant_fury': {
+                speaker: 'Aggrieved Merchant',
+                text: 'He completely destroyed my changing table matrix! The coins went flying everywhere! We provide an essential sacrificial standard service here!',
+                choices: [{ text: 'At highly inflated premium rates, correct?', next: null, triggerQuestAdvance: true }]
+            },
+            'disciple_revelation': {
+                speaker: 'Awestruck Follower',
+                text: 'He shouted: "My house shall be called a house of prayer, but you have corrupted it into a den of thieves!" He is purging structural corporate greed!',
+                choices: [{ text: 'A profound and risky statement.', next: null, triggerQuestAdvance: true }]
+            }
+        };
+
+        // =========================================================================
+        // APPLICATION CORE MANAGEMENT SUBSYSTEMS STATE ARCHITECTURE
+        // =========================================================================
+        class RuntimeApplicationCore {
+            constructor() {
+                this.activeLevel = null;
+                this.scene = null;
+                this.camera = null;
+                this.renderer = null;
+                
+                // Active Actor Object Spawning Pool
+                this.spawnedNPCMeshes = [];
+                
+                // Instantiate Custom Subsystems
+                this.vfxSystem = null;
+                this.mapModal = null;
+                
+                // Key Input Handlers Dictionary Map
+                this.inputKeys = {};
+                
+                // Internal Player Physical Coordinate Vectors
+                this.playerPos = new THREE.Vector3(0, 1, 15);
+                this.playerVelocity = new THREE.Vector3();
+                this.camHeading = new THREE.Vector3(0, 0, -1);
+                this.playerMesh = null;
+                this.isGrounded = true;
+
+                this.initEngine();
+                this.initControls();
+                this.loadLevel(1); // Auto-instantiate Phase 1 level environment mapping
+                this.mapModal = new LevelSelectModal(this);
+                this.animate();
+            }
+
+            initEngine() {
+                const container = document.getElementById('canvas-container');
+                this.scene = new THREE.Scene();
+                this.scene.background = new THREE.Color(0x020309);
+                this.scene.fog = new THREE.FogExp2(0x020309, 0.015);
+
+                this.camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+                
+                this.renderer = new THREE.WebGLRenderer({ antialias: true });
+                this.renderer.setSize(window.innerWidth, window.innerHeight);
+                this.renderer.shadowMap.enabled = true;
+                container.appendChild(this.renderer.domElement);
+
+                // Add Standard Ambient & Sun Lighting Rigs
+                const ambientLight = new THREE.AmbientLight(0xffffff, 0.25);
+                this.scene.add(ambientLight);
+
+                const sunDirectional = new THREE.DirectionalLight(0xddf2ff, 0.8);
+                sunDirectional.position.set(30, 60, 20);
+                sunDirectional.castShadow = true;
+                this.scene.add(sunDirectional);
+
+                // Build Static Procedural Ground Grids
+                const groundGeo = new THREE.PlaneGeometry(200, 200);
+                const groundMat = new THREE.MeshStandardMaterial({ color: 0x141a24, roughness: 0.85 });
+                const ground = new THREE.Mesh(groundGeo, groundMat);
+                ground.rotation.x = -Math.PI / 2;
+                ground.receiveShadow = true;
+                this.scene.add(ground);
+
+                const operationalGrid = new THREE.GridHelper(200, 40, 0x00f2ff, 0x102035);
+                operationalGrid.position.y = 0.01;
+                this.scene.add(operationalGrid);
+
+                // Build Player Proxy Capsule Vector
+                const playerGeo = new THREE.ConeGeometry(0.6, 2, 8);
+                playerGeo.rotateX(Math.PI / 2); // Orient forward point vector alignment
+                const playerMat = new THREE.MeshStandardMaterial({ color: 0x00f2ff, emissive: 0x0055aa });
+                this.playerMesh = new THREE.Mesh(playerGeo, playerMat);
+                this.playerMesh.position.copy(this.playerPos);
+                this.scene.add(this.playerMesh);
+
+                // Instantiate Dust Particle Physics Engine Subsystem
+                this.vfxSystem = new EngineDustVFXSystem(this.scene);
+
+                // Add Some Ambient Blocks to Act as Static City Obstacles
+                for (let i = 0; i < 12; i++) {
+                    const w = Math.random() * 6 + 4;
+                    const h = Math.random() * 15 + 5;
+                    const d = Math.random() * 6 + 4;
+                    const boxGeo = new THREE.BoxGeometry(w, h, d);
+                    const boxMat = new THREE.MeshStandardMaterial({ color: 0x0d1b2a, roughness: 0.7 });
+                    const building = new THREE.Mesh(boxGeo, boxMat);
+                    
+                    building.position.set(
+                        (Math.random() - 0.5) * 100,
+                        h / 2,
+                        (Math.random() - 0.5) * 100
+                    );
+                    // Ensure space around core operational center
+                    if(building.position.distanceTo(new THREE.Vector3(0,0,0)) > 15) {
+                        this.scene.add(building);
+                    }
+                }
+
+                window.addEventListener('resize', () => this.handleResize());
+            }
+
+            initControls() {
+                window.addEventListener('keydown', (e) => this.inputKeys[e.code] = true);
+                window.addEventListener('keyup', (e) => this.inputKeys[e.code] = false);
+
+                document.getElementById('btn-open-map').onclick = () => this.mapModal.open();
+            }
+
+            loadLevel(phaseId) {
+                const targetConfig = LEVEL_TREE_DATA.find(l => l.phase === phaseId);
+                if (!targetConfig) return;
+
+                this.activeLevel = targetConfig;
+
+                // Clear Spawning Contexts
+                this.spawnedNPCMeshes.forEach(mesh => this.scene.remove(mesh));
+                this.spawnedNPCMeshes = [];
+
+                // Reposition Player back to safety baseline vectors
+                this.playerPos.set(0, 1, 15);
+                this.playerVelocity.set(0, 0, 0);
+
+                // Populate Dynamic NPC Entities
+                this.activeLevel.npcs.forEach(def => {
+                    let npcMesh;
+                    // Fulfill constraint requirement: evaluate primitive or mesh options
+                    if (def.primitive === 'box') {
+                        const geo = new THREE.BoxGeometry(1.2, 2, 1.2);
+                        const mat = new THREE.MeshStandardMaterial({ color: def.color, roughness: 0.5 });
+                        npcMesh = new THREE.Mesh(geo, mat);
+                    }
+                    npcMesh.position.set(def.pos[0], def.pos[1], def.pos[2]);
+                    npcMesh.userData = { npcDefinition: def };
+                    
+                    this.scene.add(npcMesh);
+                    this.spawnedNPCMeshes.push(npcMesh);
+                });
+
+                this.refreshHUD();
+                this.displayAlert(`ENTERED LEVEL: ${this.activeLevel.title}`);
+            }
+
+            refreshHUD() {
+                document.getElementById('loc-name').innerText = this.activeLevel.location;
+                document.getElementById('act-name').innerText = this.activeLevel.actLabel;
+                document.getElementById('level-title-display').innerText = this.activeLevel.title;
+
+                const q = this.activeLevel.quest;
+                document.getElementById('quest-title').innerText = q.name;
+                document.getElementById('quest-task').innerText = q.task;
+                document.getElementById('quest-count').innerText = `${q.cur} / ${q.tar}`;
+                
+                const pct = (q.cur / q.tar) * 100;
+                document.getElementById('quest-progress').style.width = `${pct}%`;
+
+                // Re-render Dynamic Actions Panel
+                const actionContainer = document.getElementById('actions-list-container');
+                actionContainer.innerHTML = '';
+                this.activeLevel.actions.forEach(act => {
+                    const btn = document.createElement('button');
+                    btn.className = 'action-btn';
+                    btn.innerHTML = `<span>${act.name} <small style="color:var(--accent-secondary)">[${act.cost}]</small></span> <i class="fa-solid fa-bolt"></i>`;
+                    btn.onclick = () => this.executeContextAction(act);
+                    actionContainer.appendChild(btn);
+                });
+
+                // Re-render Prophecy Array List Layout
+                const prophecyContainer = document.getElementById('prophecies-list-container');
+                prophecyContainer.innerHTML = '';
+                this.activeLevel.prophecies.forEach(str => {
+                    const card = document.createElement('div');
+                    card.className = 'prophecy-item';
+                    card.innerText = str;
+                    prophecyContainer.appendChild(card);
+                });
+            }
+
+            executeContextAction(action) {
+                if (action.type === 'quest_advance') {
+                    this.advanceActiveQuestProgress(action.payload);
+                }
+            }
+
+            advanceActiveQuestProgress(amount) {
+                const q = this.activeLevel.quest;
+                if (q.cur >= q.tar) return;
+
+                q.cur = Math.min(q.tar, q.cur + amount);
+                this.refreshHUD();
+
+                // Trigger Dust VFX burst on target quest progression event criteria
+                this.vfxSystem.triggerExplosionBurst(this.playerPos);
+
+                if (q.cur >= q.tar) {
+                    this.activeLevel.isComplete = true;
+                    this.displayAlert(`LEVEL OBJECTIVE MET: ${this.activeLevel.title} SYSTEM UNLOCKED!`);
+                }
+            }
+
+            interactWithNPC(npcDefinition) {
+                const node = INK_DIALOGUE_DATABASE[npcDefinition.story];
+                if (!node) return;
+
+                const overlay = document.getElementById('vn-overlay');
+                const textFrame = document.getElementById('vn-text');
+                const speakerFrame = document.getElementById('vn-speaker');
+                const choiceFrame = document.getElementById('vn-choices');
+
+                speakerFrame.innerText = node.speaker;
+                textFrame.innerText = node.text;
+                choiceFrame.innerHTML = '';
+
+                node.choices.forEach(c => {
+                    const b = document.createElement('button');
+                    b.className = 'choice-node';
+                    b.innerText = c.text;
+                    b.onclick = () => {
+                        if (c.triggerQuestAdvance) {
+                            this.advanceActiveQuestProgress(1);
+                        }
+                        if (c.next) {
+                            npcDefinition.story = c.next;
+                            this.interactWithNPC(npcDefinition);
+                        } else {
+                            overlay.classList.remove('active');
+                        }
+                    };
+                    choiceFrame.appendChild(b);
+                });
+
+                overlay.classList.add('active');
+            }
+
+            displayAlert(msg) {
+                const alertBox = document.getElementById('screen-alert');
+                alertBox.innerText = msg;
+                alertBox.style.display = 'block';
+                setTimeout(() => { alertBox.style.display = 'none'; }, 4000);
+            }
+
+            handleResize() {
+                this.camera.aspect = window.innerWidth / window.innerHeight;
+                this.camera.updateProjectionMatrix();
+                this.renderer.setSize(window.innerWidth, window.innerHeight);
+            }
+
+            animate() {
+                requestAnimationFrame(() => this.animate());
+
+                // Perform player physics updates if the system modal selection layout is hidden
+                const modalActive = document.getElementById('modal-overlay').classList.contains('active');
+                const dialogueActive = document.getElementById('vn-overlay').classList.contains('active');
+
+                if (!modalActive && !dialogueActive) {
+                    this.processMovementInput();
+                }
+
+                // Render Dust Systems
+                const velocitySq = this.playerVelocity.lengthSq();
+                this.vfxSystem.update(1/60, this.playerPos, this.isGrounded, velocitySq);
+
+                this.renderer.render(this.scene, this.camera);
+            }
+
+            processMovementInput() {
+                const moveDir = new THREE.Vector3();
+                
+                if (this.inputKeys['KeyW'] || this.inputKeys['ArrowUp']) moveDir.z -= 1;
+                if (this.inputKeys['KeyS'] || this.inputKeys['ArrowDown']) moveDir.z += 1;
+                if (this.inputKeys['KeyA'] || this.inputKeys['ArrowLeft']) moveDir.x -= 1;
+                if (this.inputKeys['KeyD'] || this.inputKeys['ArrowRight']) moveDir.x += 1;
+
+                if (moveDir.lengthSq() > 0) {
+                    moveDir.normalize();
+                    // Interp rotation forward alignments
+                    this.camHeading.lerp(moveDir, 0.15).normalize();
+                    
+                    const speed = 12.0;
+                    this.playerVelocity.copy(moveDir).multiplyScalar(speed);
+                    this.playerPos.addScaledVector(this.playerVelocity, 1/60);
+                    
+                    this.playerMesh.position.copy(this.playerPos);
+                    
+                    // Look Vector Assignment Mapping
+                    const lookTarget = this.playerPos.clone().add(this.camHeading);
+                    this.playerMesh.lookAt(lookTarget);
+                } else {
+                    this.playerVelocity.set(0, 0, 0);
+                }
+
+                // Dynamic Third-Person Camera Tracking Interpolation
+                const targetCam = this.playerPos.clone().add(new THREE.Vector3(0, 9, 14));
+                this.camera.position.lerp(targetCam, 0.08);
+                this.camera.lookAt(this.playerPos.clone().add(new THREE.Vector3(0, 1, 0)));
+
+                // Evaluate Proximity Collision Boundaries with Spawns
+                this.spawnedNPCMeshes.forEach(npc => {
+                    const dist = this.playerPos.distanceTo(npc.position);
+                    if (dist < 2.2) {
+                        // Trigger Dialogue Event Vector Immediately
+                        this.playerPos.addScaledVector(this.playerVelocity, -2/60); // Kick back slightly
+                        this.interactWithNPC(npc.userData.npcDefinition);
+                    }
+                });
+            }
+        }
+
+        // =========================================================================
+        // HIGH PERFORMANCE DUST & PARTICLE VFX ENGINE MODEL
+        // =========================================================================
+        class EngineDustVFXSystem {
+            constructor(targetScene) {
+                this.scene = targetScene;
+                this.particleCount = 400;
+                this.geometry = new THREE.BufferGeometry();
+                
+                this.positions = new Float32Array(this.particleCount * 3);
+                this.velocities = [];
+                this.lifetimes = new Float32Array(this.particleCount);
+
+                // Initialize all particle indices as dead vectors safely positioned deep below scene plane
+                for (let i = 0; i < this.particleCount; i++) {
+                    this.positions[i * 3] = 0;
+                    this.positions[i * 3 + 1] = -500;
+                    this.positions[i * 3 + 2] = 0;
+                    this.velocities.push(new THREE.Vector3());
+                    this.lifetimes[i] = 0;
+                }
+
+                this.geometry.setAttribute('position', new THREE.BufferAttribute(this.positions, 3));
+                
+                const mat = new THREE.PointsMaterial({
+                    color: 0x00f2ff,
+                    size: 0.35,
+                    transparent: true,
+                    opacity: 0.6,
+                    blending: THREE.AdditiveBlending
+                });
+
+                this.pointsMesh = new THREE.Points(this.geometry, mat);
+                this.scene.add(this.pointsMesh);
+            }
+
+            spawnParticle(origin, velocity, duration) {
+                // Locate unallocated array resource slot
+                for (let i = 0; i < this.particleCount; i++) {
+                    if (this.lifetimes[i] <= 0) {
+                        this.lifetimes[i] = duration;
+                        this.positions[i * 3] = origin.x + (Math.random() - 0.5) * 0.6;
+                        this.positions[i * 3 + 1] = origin.y - 0.9; // Base of actor entity transforms
+                        this.positions[i * 3 + 2] = origin.z + (Math.random() - 0.5) * 0.6;
+                        this.velocities[i].copy(velocity);
+                        return;
+                    }
+                }
+            }
+
+            update(dt, playerPos, isGrounded, velocitySq) {
+                const posArr = this.pointsMesh.geometry.attributes.position.array;
+
+                // Step 1: Continuous Ground Trail Spawning Loop
+                if (isGrounded && velocitySq > 5.0) {
+                    if (Math.random() < 0.4) {
+                        const rVel = new THREE.Vector3(
+                            (Math.random() - 0.5) * 2,
+                            Math.random() * 3 + 1,
+                            (Math.random() - 0.5) * 2
+                        );
+                        this.spawnParticle(playerPos, rVel, 0.6);
+                    }
+                }
+
+                // Step 2: Far-field Atmospheric Passive Spore Injection Logic
+                if (Math.random() < 0.12) {
+                    const ambientOrigin = playerPos.clone().add(new THREE.Vector3(
+                        (Math.random() - 0.5) * 45,
+                        Math.random() * 12,
+                        (Math.random() - 0.5) * 45
+                    ));
+                    const driftVel = new THREE.Vector3((Math.random() - 0.5) * 0.6, -0.2, (Math.random() - 0.5) * 0.6);
+                    this.spawnParticle(ambientOrigin, driftVel, 4.0);
+                }
+
+                // Step 3: Global Kinematic Coordinate Matrix Transformation Lifecycle Logic
+                for (let i = 0; i < this.particleCount; i++) {
+                    if (this.lifetimes[i] > 0) {
+                        this.lifetimes[i] -= dt;
+
+                        posArr[i * 3] += this.velocities[i].x * dt;
+                        posArr[i * 3 + 1] += this.velocities[i].y * dt;
+                        posArr[i * 3 + 2] += this.velocities[i].z * dt;
+
+                        if (this.lifetimes[i] <= 0) {
+                            posArr[i * 3 + 1] = -500; // Cull from viewport context
+                        }
+                    }
+                }
+                this.pointsMesh.geometry.attributes.position.needsUpdate = true;
+            }
+
+            triggerExplosionBurst(origin) {
+                // Instantiate 60 high velocity explosion matrices immediately
+                for (let i = 0; i < 60; i++) {
+                    const phi = Math.random() * Math.PI * 2;
+                    const theta = Math.acos((Math.random() * 2) - 1);
+                    const speed = Math.random() * 8 + 4;
+                    
+                    const vel = new THREE.Vector3(
+                        Math.sin(theta) * Math.cos(phi) * speed,
+                        Math.abs(Math.cos(theta)) * speed + 2,
+                        Math.sin(theta) * Math.sin(phi) * speed
+                    );
+                    this.spawnParticle(origin, vel, 1.2);
+                }
+            }
+        }
+
+        // =========================================================================
+        // ORBITAL CITY 3D OVERLAY MODAL SELECTION MATRIX SYSTEM
+        // =========================================================================
+        class LevelSelectModal {
+            constructor(coreEngineInstance) {
+                this.core = coreEngineInstance;
+                
+                this.scene = null;
+                this.camera = null;
+                this.renderer = null;
+                this.citySphereMesh = null;
+                
+                this.overlayDOM = document.getElementById('modal-overlay');
+                this.canvasWrapDOM = document.getElementById('modal-canvas-wrap');
+                
+                // Track Orbit Angle Transforms
+                this.rotationTheta = 0;
+                this.rotationPhi = Math.PI / 3;
+                this.isDragging = false;
+                this.prevMousePosition = { x: 0, y: 0 };
+                this.radiusDistance = 32;
+
+                this.nodeHTMLDOMReferences = [];
+                this.rafHandle = null;
+
+                this.initModalEngine();
+                this.bindUIEventHandlers();
+            }
+
+            initModalEngine() {
+                this.scene = new THREE.Scene();
+                this.scene.background = new THREE.Color(0x010206);
+
+                this.camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 500);
+                
+                this.renderer = new THREE.WebGLRenderer({ antialias: true });
+                this.renderer.setSize(window.innerWidth, window.innerHeight);
+                this.canvasWrapDOM.appendChild(this.renderer.domElement);
+
+                // Add Stylized Holographic Matrix Lighting Rigs
+                const ambient = new THREE.AmbientLight(0xffffff, 0.3);
+                this.scene.add(ambient);
+                
+                const cyanGlowPoint = new THREE.PointLight(0x00f2ff, 2, 50);
+                cyanGlowPoint.position.set(0, 0, 0);
+                this.scene.add(cyanGlowPoint);
+
+                // Build Complex Geometric Proxy Representing the Holy City Matrix Structure
+                const cityBaseGeo = new THREE.SphereGeometry(8, 24, 24);
+                const cityBaseMat = new THREE.MeshStandardMaterial({
+                    color: 0x101f38,
+                    wireframe: true,
+                    transparent: true,
+                    opacity: 0.45
+                });
+                this.citySphereMesh = new THREE.Mesh(cityBaseGeo, cityBaseMat);
+                this.scene.add(this.citySphereMesh);
+
+                // Scatter stylized structural bounding blocks inside sphere matrix to serve as city outline markers
+                const innerBoxGeo = new THREE.BoxGeometry(1, 1, 1);
+                const innerBoxMat = new THREE.MeshStandardMaterial({ color: 0x003366, wireframe: false });
+                const instancedMeshProxy = new THREE.InstancedMesh(innerBoxGeo, innerBoxMat, 40);
+                
+                const dummyTransform = new THREE.Object3D();
+                for(let i=0; i<40; i++){
+                    const rRadius = Math.random() * 6.5;
+                    const rLat = Math.acos((Math.random()*2)-1);
+                    const rLng = Math.random() * Math.PI * 2;
+                    
+                    dummyTransform.position.set(
+                        Math.sin(rLat)*Math.cos(rLng)*rRadius,
+                        Math.sin(rLat)*Math.sin(rLng)*rRadius,
+                        Math.cos(rLat)*rRadius
+                    );
+                    dummyTransform.scale.set(Math.random()*2+0.5, Math.random()*5+1, Math.random()*2+0.5);
+                    dummyTransform.updateMatrix();
+                    instancedMeshProxy.setMatrixAt(i, dummyTransform.matrix);
+                }
+                this.citySphereMesh.add(instancedMeshProxy);
+
+                // Build Map Nodes
+                LEVEL_TREE_DATA.forEach(levelDef => {
+                    // Compute transform positioning coordinates maps from spherical components
+                    const nodePos = new THREE.Vector3().setFromSphericalCoords(
+                        8.2, // Offset outward slightly from base city shell diameter
+                        levelDef.phi,
+                        levelDef.theta
+                    );
+
+                    // Add Glowing 3D Node Mesh
+                    const nodeMeshGeo = new THREE.SphereGeometry(0.35, 16, 16);
+                    const nodeMeshMat = new THREE.MeshBasicMaterial({ color: levelDef.color });
+                    const nodeMesh = new THREE.Mesh(nodeMeshGeo, nodeMeshMat);
+                    nodeMesh.position.copy(nodePos);
+                    this.citySphereMesh.add(nodeMesh);
+
+                    // Inject Interactive Coordinate Linked HTML Anchor Elements onto Frame DOM
+                    const dot = document.createElement('div');
+                    dot.className = 'map-node-dot';
+                    dot.style.color = `#${levelDef.color.toString(16)}`;
+                    dot.style.backgroundColor = `#${levelDef.color.toString(16)}`;
+                    
+                    const label = document.createElement('div');
+                    label.className = 'map-node-label';
+                    label.innerText = `PHASE 0${levelDef.phase}: ${levelDef.title}`;
+
+                    this.canvasWrapDOM.appendChild(dot);
+                    this.canvasWrapDOM.appendChild(label);
+
+                    // Track Reference
+                    this.nodeHTMLDOMReferences.push({
+                        definition: levelDef,
+                        meshRef: nodeMesh,
+                        dotDOM: dot,
+                        labelDOM: label
+                    });
+
+                    // Handle Point Selection Trigger Event Wireframe Mapping
+                    dot.onclick = () => {
+                        if (this.evaluateUnlockConstraints(levelDef)) {
+                            this.close();
+                            this.core.loadLevel(levelDef.phase);
+                        } else {
+                            this.core.displayAlert(`LINK ERROR: ENVIRO-LOOP CONSTRAINTS FOR PHASE ${levelDef.phase} NOT MET!`);
+                        }
+                    };
+                });
+            }
+
+            evaluateUnlockConstraints(levelDef) {
+                // Cycle prerequisites array configurations array maps
+                for (let reqPhase of levelDef.unlockAfter) {
+                    const match = LEVEL_TREE_DATA.find(l => l.phase === reqPhase);
+                    if (!match || !match.isComplete) return false;
+                }
+                return true;
+            }
+
+            bindUIEventHandlers() {
+                document.getElementById('btn-close-map').onclick = () => this.close();
+
+                // Mouse Input Event Direct Binding Matrices
+                this.canvasWrapDOM.addEventListener('mousedown', (e) => {
+                    this.isDragging = true;
+                    this.prevMousePosition = { x: e.clientX, y: e.clientY };
+                });
+
+                window.addEventListener('mousemove', (e) => {
+                    if (!this.isDragging) return;
+                    const deltaX = e.clientX - this.prevMousePosition.x;
+                    const deltaY = e.clientY - this.prevMousePosition.y;
+
+                    this.rotationTheta -= deltaX * 0.007;
+                    this.rotationPhi = Math.max(0.1, Math.min(Math.PI - 0.1, this.rotationPhi - deltaY * 0.007));
+
+                    this.prevMousePosition = { x: e.clientX, y: e.clientY };
+                });
+
+                window.addEventListener('mouseup', () => this.isDragging = false);
+                
+                window.addEventListener('resize', () => {
+                    if (!this.overlayDOM.classList.contains('active')) return;
+                    this.camera.aspect = window.innerWidth / window.innerHeight;
+                    this.camera.updateProjectionMatrix();
+                    this.renderer.setSize(window.innerWidth, window.innerHeight);
+                });
+            }
+
+            open() {
+                this.overlayDOM.classList.add('active');
+                
+                // Recalculate size matrix properties cleanly on transition execution frames
+                this.camera.aspect = window.innerWidth / window.innerHeight;
+                this.camera.updateProjectionMatrix();
+                this.renderer.setSize(window.innerWidth, window.innerHeight);
+
+                // Update Lock/Completed Status Classes on DOM Nodes
+                this.nodeHTMLDOMReferences.forEach(node => {
+                    const unlocked = this.evaluateUnlockConstraints(node.definition);
+                    node.dotDOM.classList.toggle('locked', !unlocked);
+                    node.dotDOM.classList.toggle('completed', node.definition.isComplete);
+                });
+
+                this.renderLoop();
+            }
+
+            close() {
+                this.overlayDOM.classList.remove('active');
+                if (this.rafHandle) {
+                    cancelAnimationFrame(this.rafHandle);
+                    this.rafHandle = null;
+                }
+            }
+
+            renderLoop() {
+                this.rafHandle = requestAnimationFrame(() => this.renderLoop());
+
+                // Update Camera Spatial Coordinates via Spherical Transforms
+                this.camera.position.setFromSphericalCoords(
+                    this.radiusDistance,
+                    this.rotationPhi,
+                    this.rotationTheta
+                );
+                this.camera.lookAt(0, 0, 0);
+
+                // Idle Spin City Grid Shell System
+                if (!this.isDragging) {
+                    this.citySphereMesh.rotation.y += 0.002;
+                }
+
+                this.renderer.render(this.scene, this.camera);
+
+                // Update HTML Screen Layout Overlays
+                const rect = this.canvasWrapDOM.getBoundingClientRect();
+                
+                this.nodeHTMLDOMReferences.forEach(node => {
+                    const worldPos = new THREE.Vector3();
+                    node.meshRef.getWorldPosition(worldPos);
+                    
+                    // Project 3D vector to screen canvas coordinates matrix
+                    worldPos.project(this.camera);
+
+                    // Check if node is located behind camera focal plane boundary
+                    if (worldPos.z > 1) {
+                        node.dotDOM.style.display = 'none';
+                        node.labelDOM.style.display = 'none';
+                    } else {
+                        const screenX = (worldPos.x * 0.5 + 0.5) * rect.width;
+                        const screenY = (worldPos.y * -0.5 + 0.5) * rect.height;
+
+                        node.dotDOM.style.display = 'block';
+                        node.labelDOM.style.display = 'block';
+                        node.dotDOM.style.left = `${screenX}px`;
+                        node.dotDOM.style.top = `${screenY}px`;
+                        node.labelDOM.style.left = `${screenX}px`;
+                        node.labelDOM.style.top = `${screenY}px`;
+                    }
+                });
+            }
+        }
+
+        // Initialize Runtime Engine Instantiation Pipeline Execution on DOM Load Completion Frame
+        window.addEventListener('DOMContentLoaded', () => {
+            window.AppCore = new RuntimeApplicationCore();
+        });
+    </script>
+</body>
+</html>

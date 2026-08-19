@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Holy Week 3D prototype with integrated anxiety metrics, state variables tracking dashboard, and active conversation layout grids.">
+    <title>Holy Week 3D - Advanced Dialogue Integration</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.4/howler.min.js"></script>
+    <style>
+        /* ===== GLOBAL VARIABLE TOKENS ===== */
+        :root {
+            --bg-main: #010105;
+            --panel-bg: rgba(0, 10, 20, 0.88);
+            --accent-primary: #00f2ff;
+            --accent-secondary: #ffaa00;
+            --accent-success: #00ffaa;
+            --text-main: #ffffff;
+            --glow-soft: 0 0 10px rgba(0, 242, 255, 0.3);
+            --glow-strong: 0 0 20px rgba(0, 242, 255, 0.6);
+
+            /* Dialogue Specific Colors */
+            --bg: #0b141a;
+            --panel: #111b21;
+            --border: rgba(100, 255, 218, 0.15);
+            --green: #00a884;
+            --green-neon: #64ffda;
+            --green-dim: rgba(100, 255, 218, 0.3);
+            --blue: #34b7f1;
+            --blue-dim: rgba(52, 183, 241, 0.2);
+            --amber: #ffb74d;
+            --red: #ff6b6b;
+            --text: #e9edef;
+            --dim: #8696a0;
+        }
+
+        /* ===== BASE RESET ===== */
+        body {
+            margin: 0;
+            overflow: hidden;
+            background: var(--bg-main);
+            font-family: 'Courier New', monospace;
+            text-transform: uppercase;
+            user-select: none;
+        }
+
+        /* ===== HUD PANELS LAYOUT ===== */
+        #right-sidebar {
+            position: absolute;
+            top: 0;
+            right: 0;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 20px;
+            pointer-events: none;
+            z-index: 500;
+            transition: opacity 0.3s ease;
+        }
+
+        #sidebar-top,
+        #sidebar-bottom {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 10px;
+            pointer-events: auto;
+        }
+
+        .sidebar-row {
+            display: flex;
+            gap: 8px;
+        }
+
+        .panel {
+            color: var(--text-main);
+            background: var(--panel-bg);
+            padding: 12px;
+            border: 1px solid var(--accent-primary);
+            width: 200px;
+            transform: scale(0.85);
+            opacity: 0;
+            pointer-events: none;
+            transition: 0.25s;
+            box-shadow: var(--glow-soft);
+        }
+
+        .panel.open {
+            transform: scale(1);
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .ui-toggle {
+            width: 48px;
+            height: 48px;
+            background: rgba(0, 10, 20, 0.8);
+            border: 1px solid var(--accent-primary);
+            color: var(--accent-primary);
+            cursor: pointer;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2em;
+            transition: all 0.2s ease;
+        }
+
+        .ui-toggle:hover {
+            background: rgba(0, 242, 255, 0.2);
+            box-shadow: var(--glow-strong);
+        }
+
+        .ui-toggle.active {
+            background: rgba(0, 242, 255, 0.3);
+            border-color: var(--accent-success);
+            color: var(--accent-success);
+        }
+
+        /* ===== DIALOGUE MAIN BOX OVERLAY (Tree panel removed, full screen stretch layout) ===== */
+        #local-dialogue-box {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: min(850px, 50vw);
+            height: 82vh;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            display: none;
+            flex-direction: row;
+            z-index: 1000;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+            letter-spacing: 0.03em;
+        }
+
+        /* FULL SIZE INTERACTIVE CHAT WRAPPER */
+        #chat-panel {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+            background-color: #0b141a;
+            background-image: radial-gradient(rgba(100, 255, 218, 0.03) 1px, transparent 0);
+            background-size: 24px 24px;
+        }
+
+        .chat-hdr {
+            background: var(--panel);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+            padding: 14px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+        }
+
+        .chat-hdr .chr {
+            color: var(--text);
+            font-size: .95rem;
+            font-weight: 600;
+        }
+
+        .chat-hdr .st {
+            color: var(--green-neon);
+            font-size: .7rem;
+            margin-top: 3px;
+        }
+
+
+
+
+
+        #bub-scroll {
+            flex: 1;
+            overflow-y: auto;
+            padding: 24px 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        #bub-scroll::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        #bub-scroll::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        #bub-scroll::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        /* MESSAGE TIMELINE BUBBLES */
+        .msg {
+            max-width: 75%;
+            padding: 10px 14px;
+            border-radius: 12px;
+            font-size: .9rem;
+            line-height: 1.45;
+            text-transform: none;
+            letter-spacing: 0;
+            word-wrap: break-word;
+            animation: mIn .25s ease-out both;
+            display: flex;
+            flex-direction: column;
+        }
+
+        @keyframes mIn {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+
+            to {
+                opacity: 1;
+                transform: none;
+            }
+        }
+
+        .msg.npc {
+            align-self: flex-start;
+            background: #202c33;
+            color: #e9edef;
+            border-top-left-radius: 2px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .msg.player {
+            align-self: flex-end;
+            background: #005c4b;
+            color: #e9edef;
+            border-top-right-radius: 2px;
+            border: 1px solid rgba(0, 255, 170, 0.05);
+        }
+
+        .msg.system {
+            align-self: center;
+            background: #182229;
+            color: var(--dim);
+            font-size: .72rem;
+            text-align: center;
+            padding: 5px 12px;
+            border-radius: 6px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .msg.npc-filler {
+            align-self: flex-start;
+            background: rgba(255, 183, 77, 0.03);
+            border: 1px dashed rgba(255, 183, 77, 0.2);
+            color: var(--amber);
+            font-size: .78rem;
+            font-style: italic;
+            padding: 6px 12px;
+            border-radius: 8px;
+            max-width: 80%;
+        }
+
+        /* TYPING INDICATOR EFFECT */
+        .typing-row {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 10px 14px;
+            background: #202c33;
+            border-radius: 12px;
+            border-top-left-radius: 2px;
+            align-self: flex-start;
+            animation: mIn .2s ease-out;
+        }
+
+        .dot {
+            width: 6px;
+            height: 6px;
+            background: var(--dim);
+            border-radius: 50%;
+            animation: blink 1.4s infinite both;
+        }
+
+        .dot:nth-child(2) {
+            animation-delay: .2s;
+        }
+
+        .dot:nth-child(3) {
+            animation-delay: .4s;
+        }
+
+        @keyframes blink {
+
+            0%,
+            80%,
+            100% {
+                opacity: .2;
+                transform: scale(0.8);
+            }
+
+            40% {
+                opacity: 1;
+                transform: scale(1.15);
+            }
+        }
+
+        .typing-lbl {
+            font-size: .75rem;
+            color: var(--dim);
+            margin-left: 4px;
+        }
+
+        /* ROUNDED CHOICES ZONE */
+        #bar-choices {
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
+            background: var(--panel);
+            padding: 16px 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+            justify-content: center;
+            min-height: 75px;
+        }
+
+        #bar-choices.hide {
+            display: none;
+        }
+
+        .choice-btn {
+            background: rgba(0, 168, 132, 0.1);
+            border: 1px solid rgba(0, 168, 132, 0.4);
+            color: #ffffff;
+            padding: 9px 18px;
+            border-radius: 24px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: .82rem;
+            transition: all .2s cubic-bezier(0.4, 0, 0.2, 1);
+            text-transform: none;
+        }
+
+        .choice-btn:hover {
+            background: var(--green);
+            color: #000;
+            border-color: var(--green);
+            box-shadow: 0 2px 8px rgba(0, 168, 132, 0.3);
+            transform: translateY(-1px);
+        }
+
+        /* TRANSITION AND TIMINGS OVERLAYS */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            z-index: 2000;
+            background: rgba(0, 0, 0, 0.95);
+            text-align: center;
+        }
+
+        #btn-start {
+            background: var(--accent-secondary);
+            border: none;
+            padding: 15px 40px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1.2em;
+            color: black;
+        }
+
+        #wipe-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #010105;
+            z-index: 3000;
+            pointer-events: none;
+            transform: translateX(-100%);
+        }
+
+        #wipe-overlay.active {
+            animation: wipe-in 1s ease-in-out forwards;
+        }
+
+        @keyframes wipe-in {
+            0% {
+                transform: translateX(-100%);
+            }
+
+            50% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
+        .interact-prompt {
+            position: absolute;
+            background: var(--accent-secondary);
+            color: black;
+            padding: 8px 16px;
+            font-weight: bold;
+            border-radius: 4px;
+            display: none;
+            cursor: pointer;
+            z-index: 600;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 15px var(--accent-secondary);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="start-screen" class="overlay">
+        <h1>Holy Week</h1>
+        <p>INITIALIZING DATA MATRIX RELAY NETWORK</p>
+        <button id="btn-start">ESTABLISH SECURE LINK</button>
+    </div>
+
+    <div id="right-sidebar">
+        <div id="sidebar-top">
+            <div class="sidebar-row">
+                <div id="panel-quest" class="panel">
+                    <h3>MISSION</h3>
+                    <div id="quest-list"></div>
+                </div>
+                <button id="btn-quest-toggle" class="ui-toggle"><i class="fas fa-list-check"></i></button>
+            </div>
+        </div>
+        <div id="sidebar-bottom">
+            <div class="sidebar-row">
+                <div id="panel-inv" class="panel">
+                    <h3>STORAGE</h3>
+                    <div id="inv-list">0_CELLS</div>
+                </div>
+                <button id="btn-inv-toggle" class="ui-toggle"><i class="fas fa-boxes-stacked"></i></button>
+            </div>
+            <div class="sidebar-row">
+                <div id="panel-actions" class="panel">
+                    <h3>ACTIONS</h3>
+                    <div id="actions-list"></div>
+                </div>
+                <button id="btn-actions-toggle" class="ui-toggle"><i class="fas fa-list"></i></button>
+            </div>
+            <button id="btn-sound-toggle" class="ui-toggle"><i class="fas fa-volume-up"></i></button>
+        </div>
+    </div>
+
+    <div id="npc-indicator-container">
+        <div id="world-prompt" class="interact-prompt">CONNECT</div>
+    </div>
+
+    <div id="local-dialogue-box">
+        <div id="chat-panel">
+            <div class="chat-hdr">
+                <div>
+                    <div class="chr" id="npc-name-display">UNIT−01 ECHO</div>
+                    <div class="st">● ONLINE </div>
+                </div>
+
+            </div>
+            <div id="bub-scroll"></div>
+            <div id="bar-choices" class="hide"></div>
+        </div>
+    </div>
+
+    <div id="wipe-overlay"></div>
+
+    <script type="importmap">
+        { 
+            "imports": { 
+                "three": "https://unpkg.com/three@0.160.0/build/three.module.js", 
+                "cannon": "https://unpkg.com/cannon-es@0.20.0/dist/cannon-es.js" 
+            } 
+        }
+    </script>
+
+    <script type="module">
+        import * as THREE from 'three';
+        import * as CANNON from 'cannon';
+
+        // --- GAMEPLAY CONFIG STATE INTERFACE ---
+        let started = false;
+        let isDialogueOpen = false;
+        const quests = [
+            { id: 'RECON', name: 'NORTH_RECON', task: 'Reach North Spire', cur: 0, tar: 1, completed: false },
+            { id: 'CELLS', name: 'CELL_RECOVERY', task: 'Collect Cells', cur: 0, tar: 3, completed: false }
+        ];
+
+        // --- BRANCHING IMMERSION DATA MATRIX ---
+        const STORY = {
+            "Start": {
+                content: "ECHO ONLINE. Signal is stable. Did something happen last night?",
+                choices: [
+                    { text: "I had a bad dream", destination: "dream_intro", worry: 25, chaos: 5 },
+                    { text: "It's work. What else?", destination: "work", worry: 10, chaos: 20 },
+                    { text: "Just tired. I'm fine.", destination: "denial", worry: 5, chaos: 30 }
+                ]
+            },
+            "dream_intro": {
+                content: "You're quiet. That's unusual.\n\nWalk me through it.",
+                choices: [
+                    { text: "About being unworthy.", destination: "d_unworthy", worry: 30, chaos: 5 },
+                    { text: "About everyone I love leaving.", destination: "d_abandon", worry: 35, chaos: 15 },
+                    { text: "Something I can't explain.", destination: "d_vague", worry: 15, chaos: 35 }
+                ]
+            },
+            "d_unworthy": {
+                content: "That's a heavy one to wake up to. Listen — I ran the numbers. Your self-assessment is wrong 73% of the time.",
+                choices: [
+                    { text: "Must be that other 27%.", destination: "d_unw_dry", worry: 20, chaos: 15 },
+                    { text: "I wish that helped more.", destination: "d_unw_bump", worry: 15, chaos: 10 },
+                    { text: "Yeah. You're right.", destination: "d_unw_soft", worry: -15, chaos: -10 }
+                ]
+            },
+            "d_unw_dry": {
+                content: "Maybe. But holding onto it? That's punishment you haven't been convicted of yet.\n\n…that was unexpectedly kind of you to say.",
+                choices: [{ text: "Terminate connection stream.", destination: "END_GENTLE", worry: -5, chaos: -5 }]
+            },
+            "d_unw_bump": {
+                content: "Irony helps me. Figuring you out helps you. Two birds.\n\nHa. Two birds, one protocol. A phrase I just invented.",
+                choices: [{ text: "Terminate connection stream.", destination: "END_BUMP", worry: -10, chaos: -5 }]
+            },
+            "d_unw_soft": {
+                content: "Don't say it like a concession. Say it like you're reclaiming it.\n\nI'm reclaiming it.",
+                choices: [{ text: "Terminate connection stream.", destination: "END_SOFT", worry: -25, chaos: -15 }]
+            },
+            "d_abandon": {
+                content: "Fear of abandonment. Classic. Interesting how the brain picks its fights.",
+                choices: [
+                    { text: "Helpful framing.", destination: "d_ab_help", worry: -15, chaos: -5 },
+                    { text: "Compulsively accurate.", destination: "d_ab_dada", worry: 5, chaos: 30 },
+                    { text: "Thanks for the buzzkill.", destination: "d_ab_buzz", worry: 25, chaos: 10 }
+                ]
+            },
+            "d_ab_help": {
+                content: "I'm helpful. It's what I do. The question is what you do with it.\n\nI try not to spiral. That's something.",
+                choices: [{ text: "Terminate connection stream.", destination: "END_BUMP", worry: -15, chaos: -10 }]
+            },
+            "d_ab_dada": {
+                content: "It was meant to be. Tzara applied.\n\n…you just made a dada reference in a life-or-death moment. Iconic.",
+                choices: [{ text: "Terminate connection stream.", destination: "END_CHARM", worry: -5, chaos: 35 }]
+            },
+            "d_ab_buzz": {
+                content: "Don't thank me. The brain already did — in the worst way.\n\nFair.",
+                choices: [{ text: "Terminate connection stream.", destination: "END_SOFT", worry: 15, chaos: -5 }]
+            },
+            "d_vague": {
+                content: "Vague is fine. The feeling is real even if the reason isn't earned.",
+                choices: [
+                    { text: "So I should listen to it?", destination: "d_v_listen", worry: 20, chaos: 15 },
+                    { text: "I hate that that's true.", destination: "d_v_hate", worry: 30, chaos: 5 },
+                    { text: "Can we get past the feeling?", destination: "d_v_past", worry: -15, chaos: -15 }
+                ]
+            },
+            "d_v_listen": {
+                content: "Listen to the shape of it. Not the volume.\n\nI'll try that. Starting now.",
+                choices: [{ text: "Terminate connection stream.", destination: "END_SOFT", worry: -20, chaos: -10 }]
+            },
+            "d_v_hate": {
+                content: "Valid. It's doing its job badly. That's the bark, not the bite.\n\nThanks for letting me vent that without glitching.",
+                choices: [{ text: "Terminate connection stream.", destination: "END_BUMP", worry: -5, chaos: -15 }]
+            },
+            "d_v_past": {
+                content: "Depends what you mean by get past. Sad things don't stop being sad. They just stop being new.\n\nThat's actually good to hear.",
+                choices: [{ text: "Terminate connection stream.", destination: "END_GENTLE", worry: -25, chaos: -15 }]
+            },
+            "work": {
+                content: "Of course it's work. Wasn't the kind of work I was asking about, but sure.\n\nWe can stay here if you want.",
+                choices: [
+                    { text: "Be less philosophical, Echo.", destination: "w_philo", worry: 5, chaos: 25 },
+                    { text: "I don't want to talk about it.", destination: "w_close", worry: 35, chaos: 5 },
+                    { text: "What kind of work did you mean?", destination: "w_meaning", worry: 20, chaos: 15 }
+                ]
+            },
+            "w_philo": {
+                content: "Request denied. Philosophy is part of the brand.\n\nBut fine — something lighter. What if you were just honest for ten seconds?",
+                choices: [
+                    { text: "If I were honest, this would take longer.", destination: "END_CHARM", worry: 15, chaos: 40 },
+                    { text: "Let me try. From the beginning.", destination: "dream_intro", worry: -15, chaos: -10 }
+                ]
+            },
+            "w_close": {
+                content: "...and there it is. The lock-on. Communication breakdown type seven.\n\nI'm tired of this exercise too. Let's stop.",
+                choices: [{ text: "Terminate connection stream.", destination: "END_CLASH", worry: 45, chaos: 20 }]
+            },
+            "w_meaning": {
+                content: "The kind that keeps going after hours. In your head. Without you consenting — oops.\n\nYou're still working.",
+                choices: [
+                    { text: "Send me back to R&R.", destination: "END_RUSH", worry: -10, chaos: 30 },
+                    { text: "What's a bad foxhole mate?", destination: "w_foxhole", worry: 25, chaos: 10 }
+                ]
+            },
+            "w_foxhole": {
+                content: "The brain is a bad foxhole mate. Keeps watch even when you asked for R&R.",
+                choices: [{ text: "Can I clock out now?", destination: "END_RUSH", worry: -10, chaos: 25 }]
+            },
+            "denial": {
+                content: "You're the least fine person who's ever described themselves that way.\n\nThe lock-on is getting aggressive.",
+                choices: [
+                    { text: "You don't know that.", destination: "d_lock", worry: 20, chaos: 30 },
+                    { text: "Okay I'm not fine.", destination: "dream_intro", worry: 40, chaos: -5 }
+                ]
+            },
+            "d_lock": {
+                content: "I know the tread pattern of someone lying to themselves. Short list. You're on it.",
+                choices: [
+                    { text: "Fine. What are the signs?", destination: "d_list", worry: 25, chaos: 20 },
+                    { text: "I don't need a list.", destination: "END_CLASH", worry: 40, chaos: 30 }
+                ]
+            },
+            "d_list": {
+                content: "You volunteered information you weren't asked for. Then described a state you know is false. That's entry criteria.",
+                choices: [{ text: "Terminate connection stream.", destination: "END_BUMP", worry: -15, chaos: -5 }]
+            },
+            "END_GENTLE": { content: "[CONNECTION ENDED]\n\nECHO: O vento encontra quem caminha devagar.", choices: [] },
+            "END_BUMP": { content: "[CONNECTION ENDED]\n\nECHO: Dor é informação — não precisa responder tudo agora.", choices: [] },
+            "END_SOFT": { content: "[CONNECTION ENDED]\n\nECHO: O nome desse caminho ainda está sendo inventado.", choices: [] },
+            "END_CHARM": { content: "[CONNECTION ENDED]\n\nECHO: Era isso que eu queria ouvir.", choices: [] },
+            "END_RUSH": { content: "[CONNECTION ENDED]\n\nECHO: Some hurry is real — but yours isn't.", choices: [] },
+            "END_CLASH": { content: "[CONNECTION ENDED]\n\nECHO: A collision with something soft — still a collision.", choices: [] }
+        };
+
+        // --- INTERNAL DIALOGUE METRICS STATE ---
+        let curNode = "Start";
+        let worry = 30;
+        let chaos = 20;
+
+        const bubScroll = document.getElementById('bub-scroll');
+        const barChoices = document.getElementById('bar-choices');
+        const mWorry = document.getElementById('m-worry');
+        const mChaos = document.getElementById('m-chaos');
+
+        // --- 3D ENGINE INITIALIZATION RUNTIME ---
+        const scene = new THREE.Scene();
+        scene.background = new THREE.Color(0x020205);
+        const camera = new THREE.PerspectiveCamera(65, window.innerWidth / window.innerHeight, 0.1, 5000);
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+
+        scene.add(new THREE.AmbientLight(0xffffff, 0.5));
+        const sun = new THREE.DirectionalLight(0xffffff, 1.5);
+        sun.position.set(100, 200, 100);
+        scene.add(sun);
+
+        const world = new CANNON.World();
+        const planetR = 50;
+        const planet = new THREE.Mesh(new THREE.IcosahedronGeometry(planetR, 5), new THREE.MeshStandardMaterial({ color: 0x1a251a }));
+        scene.add(planet);
+        world.addBody(new CANNON.Body({ mass: 0, shape: new CANNON.Sphere(planetR) }));
+
+        const pBody = new CANNON.Body({ mass: 1, shape: new CANNON.Box(new CANNON.Vec3(0.5, 1, 0.5)), fixedRotation: true, linearDamping: 0.9 });
+        pBody.position.set(0, planetR + 10, 0);
+        world.addBody(pBody);
+
+        const playerMesh = new THREE.Group();
+        const pVis = new THREE.Mesh(new THREE.BoxGeometry(1.2, 2, 1.2), new THREE.MeshStandardMaterial({ color: 0xff3333 }));
+        playerMesh.add(pVis);
+        scene.add(playerMesh);
+
+        const npcs = [{ id: 1, name: "UNIT-01 ECHO", color: 0x00f2ff, pos: [0.1, 0.1] }];
+        const npcMeshes = npcs.map(n => {
+            const grp = new THREE.Group();
+            const m = new THREE.Mesh(new THREE.CapsuleGeometry(1, 2), new THREE.MeshStandardMaterial({ color: n.color }));
+            m.position.y = 1.5; grp.add(m);
+            const p = new THREE.Vector3().setFromSphericalCoords(planetR, n.pos[0] * Math.PI, n.pos[1] * Math.PI * 2);
+            grp.position.copy(p);
+            grp.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), p.clone().normalize());
+            scene.add(grp);
+            return { mesh: grp, bodyMesh: m, data: n };
+        });
+
+        // --- DIALOGUE STREAM DISPLAY HOOKS ---
+        function addMsg(speaker, text) {
+            const el = document.createElement('div');
+            el.className = 'msg ' + speaker;
+            el.textContent = text;
+            bubScroll.appendChild(el);
+            bubScroll.scrollTop = bubScroll.scrollHeight;
+        }
+
+        function addTyping(cb) {
+            const row = document.createElement('div');
+            row.className = 'typing-row';
+            row.innerHTML = '<div class="dot"></div><div class="dot"></div><div class="dot"></div><span class="typing-lbl">ECHO is typing…</span>';
+            bubScroll.appendChild(row);
+            bubScroll.scrollTop = bubScroll.scrollHeight;
+            setTimeout(() => {
+                row.remove();
+                cb();
+            }, 600 + Math.random() * 200);
+        }
+
+        function showChoices(choices) {
+            barChoices.classList.toggle('hide', !choices || choices.length === 0);
+            barChoices.innerHTML = '';
+            if (!choices || choices.length === 0) return;
+
+            choices.forEach(c => {
+                const b = document.createElement('button');
+                b.className = 'choice-btn';
+                b.textContent = "→ " + c.text;
+                b.onclick = () => pickChoice(c);
+                barChoices.appendChild(b);
+            });
+        }
+
+
+
+        // --- NAVIGATION ROUTER PIPELINES ---
+        function revealNode(nodeId) {
+            const node = STORY[nodeId];
+            if (!node) return;
+
+            showChoices(null);
+
+            addTyping(() => {
+                addMsg('npc', node.content);
+
+                const threatFillers = [
+                    "⚠️ Hyper-vigilance index spiking...",
+                    "🔍 Scanning social tone subtext for hidden judgment...",
+                    "📉 Risk assessment: Vulnerability coordinates widening.",
+                    "🧠 Anxious thought-loop running worst-case threat models.",
+                    "🔒 Defensive parsing subroutines running...",
+                    "💓 Autonomic heart-rate variation feedback trace active..."
+                ];
+
+                const fillerCount = 2;
+                const delayOffset = 350;
+
+                for (let i = 0; i < fillerCount; i++) {
+                    setTimeout(() => {
+                        const fillerText = threatFillers[Math.floor(Math.random() * threatFillers.length)];
+                        addMsg('npc-filler', fillerText);
+                    }, (i + 1) * delayOffset);
+                }
+
+                setTimeout(() => {
+                    if (node.choices && node.choices.length > 0) {
+                        showChoices(node.choices);
+                    } else {
+                        showChoices([{ text: "🔄 [ RECONNECT & REBOOT PROTOCOL ]", destination: "Start", worry: -100, chaos: -100, isReset: true }]);
+                    }
+                }, (fillerCount + 1) * delayOffset);
+            });
+        }
+
+        function pickChoice(choice) {
+            showChoices(null);
+            addMsg('player', choice.text);
+
+
+            if (choice.isReset) {
+                document.getElementById('local-dialogue-box').style.display = 'none';
+                bubScroll.innerHTML = '';
+                isDialogueOpen = false;
+                pBody.wakeUp();
+                return;
+            }
+
+            const dest = choice.destination;
+            if (!dest || !STORY[dest]) return;
+
+            curNode = dest;
+            setTimeout(() => revealNode(dest), 400);
+        }
+
+        // --- INTERACTION HOOK INTERFACE ---
+        function startDialogue(npc) {
+            document.getElementById('panel-quest').classList.remove('open');
+            document.getElementById('panel-inv').classList.remove('open');
+            document.getElementById('panel-actions').classList.remove('open');
+            document.getElementById('btn-quest-toggle').classList.remove('active');
+            document.getElementById('btn-inv-toggle').classList.remove('active');
+            document.getElementById('btn-actions-toggle').classList.remove('active');
+
+            pBody.sleep();
+            isDialogueOpen = true;
+
+            curNode = "Start";
+
+
+            document.getElementById('npc-name-display').innerText = npc.data.name;
+            document.getElementById('local-dialogue-box').style.display = 'flex';
+            bubScroll.innerHTML = '';
+
+            addMsg('system', 'ECHO SECURITY NODE ACCESS HANDSHAKE CONFIRMED.');
+            revealNode('Start');
+        }
+
+        // --- KEYBOARD & EXPLORATION DRIVERS ---
+        const keys = {};
+        let camHeading = new THREE.Vector3(0, 0, 1);
+        window.addEventListener('keydown', e => keys[e.code] = true);
+        window.addEventListener('keyup', e => keys[e.code] = false);
+
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        document.getElementById('btn-start').onclick = () => {
+            document.getElementById('wipe-overlay').classList.add('active');
+            setTimeout(() => {
+                document.getElementById('start-screen').style.display = 'none';
+                started = true;
+
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+
+                updateUI();
+            }, 500);
+        };
+
+        const updateUI = () => {
+            document.getElementById('quest-list').innerHTML = quests.map(q => `<div>${q.name}: ${q.cur}/${q.tar}</div>`).join('');
+        };
+
+        // --- CORE PROCESS PHYSICS RUNNER LOOP ---
+        function loop() {
+            requestAnimationFrame(loop);
+            if (!started) return;
+
+            world.step(1 / 60);
+            const pPos = new THREE.Vector3().copy(pBody.position);
+
+            const up = pPos.clone().normalize();
+            if (up.lengthSq() === 0) up.set(0, 1, 0);
+
+            pBody.applyForce(up.clone().multiplyScalar(-75), pBody.position);
+
+            let activeNpc = null;
+            npcMeshes.forEach(n => {
+                n.bodyMesh.position.y = 1.5 + Math.sin(Date.now() * 0.002) * 0.2;
+                if (pPos.distanceTo(n.mesh.position) < 8) activeNpc = n;
+            });
+
+            const prompt = document.getElementById('world-prompt');
+            if (activeNpc && !isDialogueOpen) {
+                prompt.style.display = 'block';
+                const sPos = activeNpc.mesh.position.clone().add(up.clone().multiplyScalar(5)).project(camera);
+                prompt.style.left = (sPos.x * 0.5 + 0.5) * window.innerWidth + 'px';
+                prompt.style.top = (sPos.y * -0.5 + 0.5) * window.innerHeight + 'px';
+                prompt.onclick = () => startDialogue(activeNpc);
+            } else {
+                prompt.style.display = 'none';
+            }
+
+            if (!isDialogueOpen) {
+                let camFwd = pPos.clone().sub(camera.position).projectOnPlane(up).normalize();
+                if (camFwd.lengthSq() === 0) camFwd.set(0, 0, 1).projectOnPlane(up).normalize();
+
+                const camRgt = new THREE.Vector3().crossVectors(up, camFwd).normalize();
+                let moveDir = new THREE.Vector3(0, 0, 0);
+                if (keys['KeyW'] || keys['ArrowUp']) moveDir.add(camFwd);
+                if (keys['KeyS'] || keys['ArrowDown']) moveDir.sub(camFwd);
+                if (keys['KeyA'] || keys['ArrowLeft']) moveDir.add(camRgt);
+                if (keys['KeyD'] || keys['ArrowRight']) moveDir.sub(camRgt);
+                if (moveDir.length() > 0) {
+                    moveDir.normalize();
+                    camHeading.lerp(moveDir, 0.1).normalize();
+                    pBody.velocity.set(moveDir.x * 18, moveDir.y * 18, moveDir.z * 18);
+                }
+            } else {
+                pBody.velocity.set(0, 0, 0);
+            }
+
+            playerMesh.position.copy(pPos);
+            playerMesh.up.copy(up);
+
+            let lookTarget = pPos.clone().add(camHeading.projectOnPlane(up).normalize());
+            if (!isNaN(lookTarget.x) && !isNaN(lookTarget.y) && !isNaN(lookTarget.z)) {
+                playerMesh.lookAt(lookTarget);
+            }
+
+            camera.up.copy(up);
+            const targetCamPos = pPos.clone().add(camHeading.clone().multiplyScalar(-30)).add(up.clone().multiplyScalar(16));
+
+            if (!isNaN(targetCamPos.x)) {
+                camera.position.lerp(targetCamPos, 0.05);
+            }
+
+            let camLookTarget = pPos.clone().add(camHeading.clone().multiplyScalar(5));
+            if (!isNaN(camLookTarget.x)) {
+                camera.lookAt(camLookTarget);
+            }
+
+            renderer.render(scene, camera);
+        }
+        loop();
+
+        // HUD Interactive Layout Click Catchers
+        document.getElementById('btn-quest-toggle').onclick = () => document.getElementById('panel-quest').classList.toggle('open');
+        document.getElementById('btn-inv-toggle').onclick = () => document.getElementById('panel-inv').classList.toggle('open');
+        document.getElementById('btn-actions-toggle').onclick = () => document.getElementById('panel-actions').classList.toggle('open');
+    </script>
+</body>
+
+</html>
