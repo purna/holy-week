@@ -555,6 +555,12 @@ export class GameEngine {
       document.getElementById('btn-mobile-analysis')?.classList.add('active');
     };
 
+    document.getElementById('btn-mobile-casefile').onclick = () => {
+      closeAllSidebars();
+      this.renderCaseFile();
+      togglePanel('right-sidebar', 'case-file-panel', 'btn-mobile-casefile');
+    };
+
     // Bind close buttons inside sidebars
     document.querySelectorAll('.modal-close-btn').forEach(btn => {
       btn.onclick = () => {

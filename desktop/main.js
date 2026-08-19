@@ -208,6 +208,8 @@ window.renderInvestigationBoard = function () {
   };
 
   window.resetProgress = () => { game.cm.resetProgress(); window.location.reload(); };
+  window.conclude = () => { game.openConclusionModal(); game.audio.playUI(); };
+  window.showCaseConclusionModal = () => { game.openConclusionModal(); game.audio.playUI(); };
   window.BibleReader = window.BibleReader || { displayPassage() { }, updateTranslation() { }, closeOverlay() { } };
 })();
 
