@@ -4,65 +4,75 @@ These repo-level rules apply to all agents working on the Holy Week codebase.
 
 ## Project Context
 
-Holy Week is a collection of browser-based visual effect demos and UI examples:
-- Fog, dust, day/night cycle visualizations (Canvas/WebGL)
-- Landing page and WhatsApp-style UI demonstrations
-- No build system - direct HTML/CSS/JS
-- All demos are standalone pages in the `tests/` directory
+Holy Week (Miracle Maker) is a browser-based investigation game set during the events of Holy Week:
+- Desktop 3D version (`desktop/`) — Three.js globe, orbital navigation, sidebars
+- Mobile versions (`mobile/`, `mobile2D/`, `mobile3D/`) — touch-optimized tabbed UI
+- Shared systems in `js/`, `css/`, and `assets/`
+- Prototypes and tools in `prototypes/` and `tools/`
+- No build system — direct HTML/CSS/JS, run via local HTTP server
 
 ## Before Making Changes
 
-1. **Read README.md** - Understand the project scope and featured demos
-2. **Check tests/ directory** - See existing demo patterns and conventions
-3. **Verify locally** - Run a simple HTTP server and test in browser:
+1. **Read README.md** — Understand project scope, current platforms, and featured features
+2. **Check the relevant platform directory** — `desktop/`, `mobile2D/`, or `mobile3D/`
+3. **Verify locally** — Run a simple HTTP server and test in browser:
    ```bash
    python -m http.server 8000
-   # Open http://localhost:8000/tests/fog.html etc.
+   # Open http://localhost:8000/desktop/index.html
+   # or http://localhost:8000/mobile2D/index.html
    ```
 
 ## Code Standards
 
 - Follow existing code style in each file (indentation, naming, patterns)
-- Keep changes scoped to the specific demo being modified
-- If adding a new demo, follow the structure of similar existing ones
+- Keep changes scoped to the specific platform or feature being modified
 - CSS should be responsive and work on mobile viewports
 - JavaScript should use `requestAnimationFrame` for smooth animations
 - No external dependencies unless absolutely necessary; prefer CDN for common libraries
+- Desktop uses ES modules with Three.js; mobile uses similar modular structure
 
 ## Testing & Verification
 
-- Always open modified demo pages in browser to verify visual output
+- Always open modified pages in browser to verify visual output
 - Check browser console (F12) for errors or warnings
 - Test at multiple viewport widths (mobile, tablet, desktop)
 - Ensure performance is smooth (60fps target for animations)
-- Verify no regression in other demo pages
+- Verify no regression in other platform versions
 
 ## Project Structure
 
 ```
 / (project root)
-├── index.html              # Main landing page
+├── index.html              # Landing/entry page
 ├── README.md              # Project documentation
 ├── *.md                   # Agent instruction files
-├── css/                   # Stylesheets and CSS modules
-├── js/                    # JavaScript files and modules
-├── assets/                # Images, fonts, and static resources
+├── css/                   # Shared stylesheets
+├── js/                    # Shared JavaScript modules
+│   ├── gameplay/          # Case, evidence, deduction, prophecy systems
+│   └── ui/                # Shared UI components (AccuseUI, LabWorkspaceUI, etc.)
+├── assets/                # Images, fonts, gfx, story data
+│   └── story/             # Ink dialogue files and case content
 ├── artwork/               # Design assets, concept art, graphics
-├── info/                  # Documentation and metadata
-├── .kilo/                 # Kilo CLI configuration
-└── mobileA/               # Mobile Version A
-└── mobileB/               # Mobile Version B
-└── desktop/               # Desktop Version
-└── prototypes/           # Interactive demo pages
-    ├── fog.html          # Fog effect demo
-    ├── dust.html         # Dust particle demo
-    ├── day_night.html    # Day/night cycle demo
-    ├── landing.html      # Landing page demo
-    ├── whatsapp.html     # WhatsApp-style UI demo
-    └── test.html         # Test/development page
+├── fonts/                 # Custom web fonts
+├── __docs/                # Documentation and metadata
+├── scripts/               # Content generation and tooling scripts
+├── tools/                 # Editors (Grid Editor, Case Editor)
+├── prototypes/            # Interactive demo pages
+├── desktop/               # Desktop Version (Three.js 3D)
+├── mobile/                # Mobile Version (legacy)
+├── mobile2D/              # Mobile 2D Version
+├── mobile3D/              # Mobile 3D Version
+```
+
+## Platform Notes
+
+- **desktop/**: Three.js-based 3D globe, orbital map, HUD sidebars, investigation board modal
+- **mobile2D/**: 2D tilemap scene, tabbed inventory (Scene/People/Lab/Codex/Case File)
+- **mobile3D/**: 3D scene with touch controls, same tabbed UI as mobile2D
+- Shared `js/ui/AccuseUI.js` renders the Case File panel (prophecy checklist + conclude button)
 
 ## Commit Guidelines
 
 - Make focused, single-purpose changes per commit
-- Update README.md if adding a new featured demo
-- Test all affected demo pages before considering work complete
+- Update README.md if adding a new featured platform or demo
+- Test all affected platform pages before considering work complete

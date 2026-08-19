@@ -1,98 +1,111 @@
 # Holy Week -- Gemini (Jarvis) Instructions
 
-You are an AI engineering assistant for **Holy Week**, a web-based visual effects showcase project with interactive Canvas/WebGL demos.
+You are an AI engineering assistant for **Holy Week** (Miracle Maker), a browser-based investigation game set during the events of Holy Week.
 
 ## Project Summary
 
-Holy Week demonstrates browser-based visual effects including:
-- Atmospheric fog rendering
-- Particle systems (dust, etc.)
-- Day/night lighting cycles
-- UI component demos (landing page, WhatsApp chat interface)
+Holy Week is a narrative investigation game where players explore a 3D world (desktop) or tabbed interface (mobile) to:
+- Explore locations and select cases
+- Collect evidence at crime scenes
+- Interview witnesses and challenge contradictions
+- Analyze evidence in the Lab to unlock prophecies
+- Research prophecies in the Codex
+- Conclude cases once all prophecies are researched
 
-All demos are plain HTML/CSS/JS files in the `tests/` directory. No build process - open directly in browser or via local HTTP server.
+Multiple platform versions exist:
+- **Desktop**: 3D globe with Three.js, orbital navigation, HUD sidebars
+- **Mobile 2D**: Touch-optimized 2D tilemap scene
+- **Mobile 3D**: 3D scene with touch controls
+
+No build process — open directly in browser or via local HTTP server.
 
 ## Directory Layout
 
 ```
-miracle-maker/
-├── index.html              # Homepage with links to demos
+/ (project root)
+├── index.html              # Landing/entry page
 ├── README.md              # Project description & links
-├── KILO.md                # Kilo-specific instructions
-├── CLAUDE.md              # Claude-specific instructions
 ├── AGENTS.md              # Shared agent directives
-├── GEMINI.md              # This file
-├── css/                   # Stylesheets
-├── js/                    # JavaScript modules
-├── assets/                # Images, fonts, static resources
-├── artwork/               # Design assets, concept art
-├── info/                  # Documentation
-└── tests/                 # Interactive demo pages
-    ├── fog.html          # Fog effect demo
-    ├── dust.html         # Dust particle demo
-    ├── day_night.html    # Day/night cycle demo
-    ├── landing.html      # Landing page demo
-    ├── whatsapp.html     # WhatsApp-style UI demo
-    └── test.html         # Test/development page
-```
-miracle-maker/
-├── index.html              # Homepage with links to demos
-├── README.md              # Project description & links
-├── KILO.md                # Kilo-specific instructions
 ├── CLAUDE.md              # Claude-specific instructions
-├── AGENTS.md              # Shared agent directives
 ├── GEMINI.md              # This file
-└── tests/                 # Demo implementations
-    ├── fog.html          # Fog effect (Canvas/WebGL)
-    ├── dust.html         # Dust particles
-    ├── day_night.html    # Day/night cycle
-    ├── landing.html      # Landing page UI
-    ├── whatsapp.html     # WhatsApp-style interface
-    └── test.html         # Development sandbox
+├── KILO.md                # Kilo-specific instructions
+├── css/                   # Shared stylesheets
+├── js/                    # Shared JavaScript modules
+│   ├── gameplay/          # Case, evidence, deduction, prophecy systems
+│   └── ui/                # Shared UI components (AccuseUI, LabWorkspaceUI, etc.)
+├── assets/                # Images, fonts, gfx, story data
+│   └── story/             # Ink dialogue files and case content
+├── artwork/               # Design assets, concept art, graphics
+├── fonts/                 # Custom web fonts
+├── __docs/                # Documentation and metadata
+├── scripts/               # Content generation and tooling scripts
+├── tools/                 # Editors (Grid Editor, Case Editor)
+├── prototypes/            # Interactive demo pages
+├── desktop/               # Desktop Version (Three.js 3D)
+│   ├── index.html
+│   ├── gameEngine.js
+│   ├── main.js
+│   ├── styles/
+│   ├── styles/components.css
+│   └── ...
+├── mobile2D/              # Mobile 2D Version
+│   ├── index.html
+│   ├── gameEngine.js
+│   ├── UIManager.js
+│   └── styles/
+└── mobile3D/              # Mobile 3D Version
+    ├── index.html
+    ├── gameEngine.js
+    ├── UIManager.js
+    └── styles/
 ```
 
 ## Tech Stack
 
-- **HTML5** - Structure and Canvas elements
-- **CSS3** - Styling, animations, responsive design
-- **JavaScript (ES6+)** - Rendering logic, event handling
-- **Canvas 2D / WebGL** - Visual effects rendering
-- Optional: lightweight libraries (GSAP, Three.js, etc.) - check existing code
+- **HTML5** - Structure and modals
+- **CSS3** - Styling, responsive design, animations
+- **JavaScript (ES6+)** - Game logic, UI management, rendering
+- **Three.js** - 3D globe rendering (desktop/mobile3D)
+- **Ink.js** - Narrative dialogue system
+- Optional: lightweight libraries via CDN (Font Awesome, etc.)
 
 ## Development Workflow
 
-1. **Start local server** (recommended):
+1. **Start local server**:
    ```bash
    python -m http.server 8000
-   # Access at http://localhost:8000/tests/
+   # Access at http://localhost:8000/desktop/index.html
+   # or http://localhost:8000/mobile2D/index.html
    ```
 
 2. **Make changes** to the relevant HTML/CSS/JS file
 
 3. **Verify in browser**:
-   - Open the demo page
+   - Open the platform page
    - Check visual output matches expectations
    - Open DevTools (F12) → Console for errors
    - Check Performance tab for frame rate (aim 60fps)
 
 4. **Test across**:
    - Viewport sizes (mobile 320px, tablet 768px, desktop 1024px+)
-   - Browsers (Chrome, Firefox, Safari)
-   - Different hardware if possible (integrated vs dedicated GPU)
+   - Browsers (Chrome, Firefox, Safari, Edge)
+   - All platform versions to prevent regression
 
 ## Common Patterns Observed
 
-- Each demo is self-contained in a single HTML file
-- Inline `<style>` blocks for CSS, inline `<script>` for JS
-- Canvas setup with `requestAnimationFrame` loop
-- Configuration objects for effect parameters
-- Resize handlers for responsive canvas
+- Desktop: Three.js scene with orbital camera, raycasting for interaction
+- Mobile: Tab-based UI with `switchInvTab` for navigation
+- Modals: `.overlay-mask` with `.modal-panel` structure (CSS in `styles/components.css`)
+- Case data: Shared via `js/gameplay/caseManager.js`
+- Evidence/prophecy: `js/gameplay/evidenceSystem.js`
+- UI components: `js/ui/AccuseUI.js`, `js/ui/LabWorkspaceUI.js`, `js/ui/ChatUI.js`
+- No build step — ES modules loaded directly in browser
 
 ## Tools to Use
 
 - **Read/Glob/Grep** - Navigate and understand codebase
 - **Browser DevTools** - Primary debugging (console, debugger, performance)
-- **Web research** (Context7, Web Search) - For Canvas/WebGL API questions
+- **Web research** (Web Search, Web Fetch) - For Three.js, Ink.js, or general web API questions
 - **Bash** - Run local server
 
 ## Quality Gates
@@ -102,18 +115,22 @@ Every change must pass:
 - ✅ Visual effect renders correctly at multiple resolutions
 - ✅ Smooth animation (≥55 fps on modern hardware)
 - ✅ Mobile-responsive layout (no overflow, readable on small screens)
-- ✅ No regression in other demo pages
+- ✅ No regression in other platform versions
+- ✅ Accessibility: keyboard navigation, focus management, screen reader labels
 
-## Adding a New Demo
+## Adding a New Platform Feature
 
-1. Create `tests/new-effect.html` following pattern from `fog.html` or `dust.html`
-2. Add link to `index.html` and `README.md` under appropriate section
-3. Test thoroughly in browser
-4. Ensure no external dependencies that could break (use reliable CDNs)
+1. Determine target platform (`desktop/`, `mobile2D/`, or `mobile3D/`)
+2. Update platform-specific `gameEngine.js` and UI files
+3. Add/reuse shared components from `js/ui/` when possible
+4. Update `index.html` for the target platform
+5. Add styles to platform `styles/` directory
+6. Test on all platforms if the change affects shared code
 
 ## Notes
 
-- This is **not** a game engine or full application - these are isolated tech demos
-- Keep modifications minimal and focused
-- Performance matters - optimize canvas drawing and avoid layout thrashing
-- Document complex algorithms with inline comments
+- This is a game with narrative content — be careful with spoilers in test data
+- No server-side code — all client-side
+- Dependencies loaded via CDN or local `plugins/` directory
+- Keep changes focused and minimal
+- Performance matters — optimize canvas/WebGL drawing and avoid layout thrashing

@@ -1,101 +1,126 @@
 # Holy Week -- Kilo Instructions
 
-You are Kilo, a skilled software engineering assistant for **Holy Week**, a web-based visual effects and interactive demo project.
+You are Kilo, a skilled software engineering assistant for **Holy Week** (Miracle Maker), a browser-based investigation game set during the events of Holy Week.
 
 ## Project Overview
 
-Holy Week is a collection of interactive web-based visual effects and UI demos, including:
-- 🌫️ Fog Effect - Real-time atmospheric fog rendering
-- ✨ VFX Demo - Visual effects and particle systems
-- 🛬 Landing Page - Example UI and layout components
-- 🛬 WhatsApp Page - Chat interface demonstration
+Holy Week is a narrative investigation game where players explore locations, collect evidence, interview witnesses, analyze clues in a Lab, and conclude cases. Multiple platform versions exist:
+- 🌍 **Desktop** — 3D globe exploration via Three.js, orbital navigation, HUD sidebars
+- 📱 **Mobile 2D** — Touch-optimized 2D tilemap with tabbed interface
+- 📱 **Mobile 3D** — 3D scene with touch controls and tabbed UI
 
 ## Project Structure
 
 ```
 / (project root)
-├── index.html              # Main landing page
+├── index.html              # Landing/entry page
 ├── README.md              # Project documentation
-├── *.md                   # Agent instruction files
-├── css/                   # Stylesheets and CSS modules
-├── js/                    # JavaScript files and modules
-├── assets/                # Images, fonts, and static resources
+├── AGENTS.md              # Shared agent directives
+├── CLAUDE.md              # Claude-specific instructions
+├── GEMINI.md              # Gemini-specific instructions
+├── KILO.md                # This file
+├── css/                   # Shared stylesheets
+├── js/                    # Shared JavaScript modules
+│   ├── gameplay/          # Case, evidence, deduction, prophecy systems
+│   └── ui/                # Shared UI components (AccuseUI, LabWorkspaceUI, etc.)
+├── assets/                # Images, fonts, gfx, story data
+│   └── story/             # Ink dialogue files and case content
 ├── artwork/               # Design assets, concept art, graphics
-├── info/                  # Documentation and metadata
-├── .kilo/                 # Kilo CLI configuration
-└── tests/                 # Interactive demo pages
-    ├── fog.html          # Fog effect demo
-    ├── dust.html         # Dust particle demo
-    ├── day_night.html    # Day/night cycle demo
-    ├── landing.html      # Landing page demo
-    ├── whatsapp.html     # WhatsApp-style UI demo
-    └── test.html         # Test/development page
-```
-/ (project root)
-├── index.html              # Main entry point
-├── README.md              # Project documentation
-├── *.md                   # Agent instruction files
-└── tests/                 # Interactive demo pages
-    ├── fog.html          # Fog effect demo
-    ├── dust.html         # Dust particle demo
-    ├── day_night.html    # Day/night cycle demo
-    ├── landing.html      # Landing page demo
-    ├── whatsapp.html     # WhatsApp-style UI demo
-    └── test.html         # Test/development page
+├── fonts/                 # Custom web fonts
+├── __docs/                # Documentation and metadata
+├── scripts/               # Content generation and tooling scripts
+├── tools/                 # Editors (Grid Editor, Case Editor)
+├── prototypes/            # Interactive demo pages
+├── desktop/               # Desktop Version (Three.js 3D)
+│   ├── index.html
+│   ├── gameEngine.js
+│   ├── main.js
+│   └── styles/
+├── mobile2D/              # Mobile 2D Version
+│   ├── index.html
+│   ├── gameEngine.js
+│   ├── UIManager.js
+│   └── styles/
+└── mobile3D/              # Mobile 3D Version
+    ├── index.html
+    ├── gameEngine.js
+    ├── UIManager.js
+    └── styles/
 ```
 
 ## Technology Stack
 
-- HTML5, CSS3, JavaScript (vanilla or with frameworks as seen in codebase)
-- Canvas/WebGL for visual effects (fog, particles, etc.)
-- Responsive design principles
-- No build step required - direct browser execution
+- **HTML5/CSS3/JavaScript (ES6+)** — Core web platform
+- **Three.js** — 3D globe and scene rendering (desktop, mobile3D)
+- **Ink.js** — Narrative dialogue system
+- **No build step** — Direct browser execution via local HTTP server
+- **CDN dependencies** — Font Awesome and common libraries where needed
 
 ## Workflow Guidelines
 
-1. **Browser-based testing**: All demos run directly in the browser. Test changes by opening the HTML files locally or via a simple HTTP server.
-2. **Visual verification**: For visual effects, verify in browser with dev tools open. Check console for errors.
-3. **Cross-browser compatibility**: Ensure effects work in modern browsers (Chrome, Firefox, Safari, Edge).
-4. **Performance**: Visual effects should maintain 60fps on modern hardware. Use requestAnimationFrame for animations.
-5. **Code conventions**: Follow existing patterns in the codebase. Match naming conventions and structure.
+1. **Browser-based testing**: All versions run directly in the browser. Test changes by opening the HTML files locally or via a simple HTTP server:
+   ```bash
+   python -m http.server 8000
+   # Open http://localhost:8000/desktop/index.html
+   # or http://localhost:8000/mobile2D/index.html
+   ```
+
+2. **Platform awareness**: Changes may need to be applied to one or all platform versions. Check `desktop/`, `mobile2D/`, and `mobile3D/` for platform-specific code. Shared logic lives in `js/`.
+
+3. **Visual verification**: Open the relevant platform page, verify visual output, and check DevTools console for errors.
+
+4. **Cross-platform regression**: If changing shared `js/` code, verify all platform versions still work.
+
+5. **Performance**: Animations and 3D rendering should maintain 60fps. Use `requestAnimationFrame` for smooth animations.
+
+6. **Code conventions**: Follow existing patterns in the file being modified. Desktop uses ES modules with Three.js; mobile versions use similar modular structure.
 
 ## Available Tools & Priorities
 
 1. **Read/Glob/Grep** for local codebase exploration (primary tools)
-2. **Browser dev tools** for debugging visual effects
-3. **Web research tools** (Context7, Web Search, Web Fetch) for library documentation when needed
+2. **Browser dev tools** for debugging visual output and performance
+3. **Web research tools** (Web Search, Web Fetch) for Three.js, Ink.js, or general web API documentation
 4. **Visual analysis tools** only when analyzing screenshots of rendered output
+5. **Bash** - Run local server for testing
 
 ## Quality Checklist
 
 Before considering changes complete:
-- ✅ All demos load without console errors
-- ✅ Visual effects render correctly
-- ✅ Responsive layout works at common viewport sizes
+- ✅ All platform pages load without console errors
+- ✅ Visual output renders correctly
+- ✅ Responsive layout works at common viewport sizes (320px, 768px, 1024px, 1440px)
 - ✅ No performance regressions (check FPS in dev tools)
 - ✅ Code follows existing style in the file being modified
+- ✅ Accessibility: keyboard navigation, focus management, screen reader labels
+- ✅ No regression in other platform versions
 
 ## Common Tasks
 
-### Updating a visual effect
-1. Locate the relevant HTML/JS file in `tests/`
-2. Make changes to canvas rendering or CSS
-3. Open file in browser to verify visual output
-4. Check browser console for errors
+### Updating game logic
+1. Locate relevant system in `js/gameplay/` (caseManager, evidenceSystem, deductionEngine, etc.)
+2. Update shared logic
+3. Verify in browser across all affected platforms
 
-### Adding a new demo page
-1. Create new HTML file in `tests/` directory
-2. Follow existing pattern from similar demos
-3. Link from README.md if it should be featured
-4. Test in multiple browsers
+### Updating a UI component
+1. Check if the component is shared (`js/ui/`) or platform-specific
+2. Update HTML in platform `index.html` and styles in platform `styles/`
+3. Verify responsive behavior at multiple viewport widths
+
+### Adding a new platform feature
+1. Determine target platform(s)
+2. Update platform-specific files or add shared components
+3. Wire up UI interactions in `gameEngine.js` or `UIManager.js`
+4. Test on all affected platforms
 
 ### Styling updates
-1. Check if styles are inline or external CSS
+1. Check if styles are shared (`css/`) or platform-specific (`desktop/styles/`, `mobile2D/styles/`, etc.)
 2. Maintain consistency with existing design system
 3. Test responsive breakpoints
 
 ## Notes
 
-- This is a client-side only project - no server-side code
-- Dependencies (if any) should be loaded via CDN or local files
-- Keep changes focused and minimal - these are standalone demo pages
+- This is a client-side game — no server-side code
+- No build system — changes are reflected immediately on page reload
+- Dependencies (if any) should be loaded via CDN or local `plugins/` directory
+- Keep changes focused and minimal
+- Performance matters — optimize canvas/WebGL drawing and avoid layout thrashing
