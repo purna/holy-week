@@ -140,7 +140,9 @@ export class Scene2D {
         this._bindControls();
         this._setupActionsPanel();
         this._initializeGame();
+        console.log('[Scene2D] Before _initPixi, MAP_SIZE:', MAP_SIZE, 'levelMap rows:', this.levelMap.length);
         await this._initPixi();
+        console.log('[Scene2D] After _initPixi, app:', !!this.app, 'world children:', this.world?.children?.length);
         this.running = true;
         this._gameLoop();
     }
@@ -284,6 +286,8 @@ export class Scene2D {
         const overlay = document.getElementById('game-over-screen');
         if (overlay) overlay.style.display = 'none';
 
+        console.log('[Scene2D] loadCase:', caseId, 'tilemapData keys:', tilemapData ? Object.keys(tilemapData) : 'null');
+
         const npcDefs = this.ui?.cm?.getActiveCase()?.npcs || [];
         const defaultPositions = [{ x: 28, y: 33 }, { x: 42, y: 31 }, { x: 14, y: 31 }];
         npcDefs.forEach((npc, i) => {
@@ -306,6 +310,7 @@ export class Scene2D {
                     this.colliderMap[r][c] = colRow[c] === 'X' ? 1 : 0;
                 }
             }
+            console.log('[Scene2D] levelMap built, rows:', this.levelMap.length, 'cols:', this.levelMap[0]?.length, 'MAP_SIZE:', MAP_SIZE);
             if (tilemapData.npcSpawns && tilemapData.npcSpawns.length > 0) {
                 tilemapData.npcSpawns.forEach((spawn, i) => {
                     const sx = spawn.x ?? spawn.col ?? 0;
@@ -313,6 +318,7 @@ export class Scene2D {
                     this.npcs.push({ id: spawn.id || `npc_${i}`, name: spawn.name || spawn.label || spawn.id || `Witness ${i + 1}`, x: sx, y: sy, location: spawn.location || '', animOffset: (Math.PI / 3) * i, avatar: "<img src='../assets/gfx/user-duotone.svg' class='icon-svg' loading='lazy'>" });
                 });
             }
+            console.log('[Scene2D] npcs after spawns:', this.npcs.length);
             const spawn = this._findWalkableSpawn();
             const pConf = tilemapData.playerConfig || {};
             this.player.x = pConf.startX ?? spawn.x;
@@ -335,7 +341,9 @@ export class Scene2D {
             } else if (tilemapData.enemies) {
                 this._spawnEnemiesFromGrid(tilemapData.enemies);
             }
+            console.log('[Scene2D] enemies after spawns:', this.enemies.length);
             if (this.app) this._rebuildPixiWorld();
+            console.log('[Scene2D] _rebuildPixiWorld done, world children:', this.world?.children?.length, 'npcEntities:', this.npcEntities?.length, 'enemyEntities:', this.enemyEntities?.length);
         }
     }
 
@@ -595,7 +603,9 @@ export class Scene2D {
         this.bakeCanvas = document.createElement('canvas'); this.bakeCanvas.width = this.mapPixelSize; this.bakeCanvas.height = this.mapPixelSize;
         this.bakeCtx = this.bakeCanvas.getContext('2d'); this.bakeCtx.imageSmoothingEnabled = false;
         this.waterTiles = [];
-        for (let r = 0; r < MAP_SIZE; r++) { for (let c = 0; c < MAP_SIZE; c++) { const id = this.levelMap[r][c]; if (id === 1) this.waterTiles.push({ col: c, row: r }); const cached = this.tileCache[id]; if (cached) this.bakeCtx.drawImage(cached, c * TILE_SIZE, r * TILE_SIZE); } }
+        let tileCount = 0;
+        for (let r = 0; r < MAP_SIZE; r++) { for (let c = 0; c < MAP_SIZE; c++) { const id = this.levelMap[r]?.[c]; if (id === 1) this.waterTiles.push({ col: c, row: r }); const cached = this.tileCache[id]; if (cached) { this.bakeCtx.drawImage(cached, c * TILE_SIZE, r * TILE_SIZE); tileCount++; } } }
+        console.log('[Scene2D] _bakeTilemap: drew', tileCount, 'tiles, MAP_SIZE:', MAP_SIZE, 'pixelSize:', this.mapPixelSize);
         this.tilemapTexture = PIXI.Texture.from(this.bakeCanvas);
         if (this.tilemapTexture.source) this.tilemapTexture.source.scaleMode = 'nearest';
         this.tilemapSprite = new PIXI.Sprite(this.tilemapTexture);
@@ -625,6 +635,7 @@ export class Scene2D {
     _createNPCEntities() {
         this.npcLayer.removeChildren();
         this.npcEntities = [];
+        console.log('[Scene2D] _createNPCEntities: npcs count:', this.npcs.length);
         this.npcs.forEach(n => {
             n.shadowG = new PIXI.Graphics();
             n.spriteG = new PIXI.Graphics();
@@ -636,11 +647,13 @@ export class Scene2D {
             n.nameBg.visible = false; n.nameText.visible = false;
             this.npcEntities.push(n);
         });
+        console.log('[Scene2D] _createNPCEntities done, npcEntities:', this.npcEntities.length);
     }
 
     _createEnemyEntities() {
         this.enemyLayer.removeChildren();
         this.enemyEntities = [];
+        console.log('[Scene2D] _createEnemyEntities: enemies count:', this.enemies.length);
         this.enemies.forEach(e => {
             e.spriteG = new PIXI.Graphics();
             e.zzzText = new PIXI.Text({ text: 'Zzz', style: { fontFamily: 'monospace', fontWeight: 'bold', fontSize: 12, fill: 0x00ffff } });
@@ -649,6 +662,7 @@ export class Scene2D {
             this.uiWorldLayer.addChild(e.zzzText);
             this.enemyEntities.push(e);
         });
+        console.log('[Scene2D] _createEnemyEntities done, enemyEntities:', this.enemyEntities.length);
     }
 
     _rebuildPixiWorld() {

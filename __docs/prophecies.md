@@ -20,6 +20,7 @@
 - [act4CaseA — The Empty Tomb](#act4casea-the-empty-tomb)
 - [act4CaseB — The Guard's Report](#act4caseb-the-guards-report)
 - [act4CaseC — Peter's Restoration](#act4casec-peters-restoration)
+- [act4CaseD — The Ascension](#act4cased-the-ascension)
 - [Cross-Case Typology: The Day of Atonement (Leviticus 16)](#cross-case-typology-the-day-of-atonement-leviticus-16)
 - [Cross-Case Typology: Isaac Carrying the Wood (Genesis 22)](#cross-case-typology-isaac-carrying-the-wood-genesis-22)
 - [Cross-Case Typology: The Zechariah 13:7 Scattering Chain](#cross-case-typology-the-zechariah-137-scattering-chain)
@@ -504,11 +505,16 @@ The Codex now distinguishes between:
 | Psalm 22:7–8 | `psalm_22_7_8` |
 | Psalm 38:11 | `psalm_38_11` |
 
+> **✅ Gap drafted (pending merge):** Isaiah 53:12 is not yet defined as a prophecy for this case in `act3_case.js` — even though `truth.prophesyFulfilled` for `crucifixion_site` already lists "Isaiah 53:12," meaning the code makes this claim without backing it. It's currently foretold only at the Last Supper (`act3CaseA`, evidence `twelve_roll` — Jesus applying the verse to Himself in advance). The fix has been drafted (prophecy object, two evidence items, a new witness NPC, and a lab deduction) in `act3_case_crucifixion_isaiah_53_12_patch.js`, with the matching Ink dialogue in `penitent_thief.ink`. See the addition at the end of this section.
+
+> **✅ Gap drafted (pending merge):** `execution_guard` was a dialogue stub (no `unlocksEvidence`) despite Holy_Week.md documenting him as the intended owner of `sour_wine_sponge`, `final_words`, and `unbroken_legs` — leaving all three with no NPC unlock path in the actual code. Also adds the missing `crucifixion_nails` evidence (Psalm 22:16, "pierced my hands and feet" — the piercing itself was never backed by evidence; only the garment-gambling half of the verse, v.18, was). Fleshed-out NPC and new evidence are in `act3_case_crucifixion_stub_npc_patch.js` / `guard_report_crucifixion.ink`.
+
 ### Evidence Links
 
 | Evidence | `relatedProphecy` (Codex) | `bibleRef` (supporting verse) | Prophetic / Narrative Link Text |
 |---|---|---|---|
 | Soldiers' Casting Dice (`split_dice`) | `psalm_22_16_18` | John 19:23–24 | Directly fulfills Psalm 22:18. While the victim hung dying, the indifferent execution detail executed a routine lottery for a high-quality, seamless tunic woven from top to bottom. |
+| 🆕 Iron Crucifixion Nails (`crucifixion_nails`) | `psalm_22_16_18` | John 20:25 | Fulfills the piercing clause of Psalm 22:16 ('they have pierced my hands and my feet') — drafted in `act3_case_crucifixion_stub_npc_patch.js`. Previously `split_dice` was the only evidence linked to `psalm_22_16_18`, covering v.18 (garments) but not v.16 (the actual piercing). |
 | Split Rocks (`split_rocks`) | `haggai_2_6_7` | Matthew 27:51 | The earthquake at the moment of death fulfilled Haggai's prophecy that God would 'shake the heavens and the earth,' signifying a world-altering divine event. |
 | Blood-Stained Roman Hasta (`pierced_spear`) | `zechariah_12_10` | John 19:34 | Fulfills Zechariah 12:10 ('the one they have pierced') and protects the Passover Lamb requirement of Exodus 12:46 ('not one of its bones is to be broken'). The spear thrust proved the victim was already dead, making the leg-breaking unnecessary. |
 | The Torn Temple Veil (`torn_temple_veil`) | `jeremiah_31_31_34` | Luke 23:45 | The Parokhet curtain blocked access to the Holy of Holies. Its top-to-bottom tear, occurring at the moment of death, fulfilled Jeremiah's promise of a New Covenant, granting direct access to the presence of God for all. |
@@ -526,6 +532,8 @@ The Codex now distinguishes between:
 |---|---|---|
 | Soldiers' Casting Dice (`split_dice`) | John 19:23-24 | john_19_23_24 |
 | Soldiers' Casting Dice (`split_dice`) | Psalm 22:18 | psalm_22_18 |
+| Iron Crucifixion Nails (`crucifixion_nails`) | John 20:25 | john_20_25 |
+| Iron Crucifixion Nails (`crucifixion_nails`) | Psalm 22:16 | psalm_22_16 |
 | Split Rocks (`split_rocks`) | Matthew 27:51 | matthew_27_51 |
 | Split Rocks (`split_rocks`) | Haggai 2:6-7 | haggai_2_6_7 |
 | Blood-Stained Roman Hasta (`pierced_spear`) | John 19:34 | john_19_34 |
@@ -548,6 +556,25 @@ The Codex now distinguishes between:
 | Record of the Crowd's Taunt (`mocking_crowd_taunt`) | Psalm 22:7-8 | psalm_22_7_8 |
 | List of Those Watching From Afar (`distant_witnesses`) | Luke 23:49 | luke_23_49 |
 | List of Those Watching From Afar (`distant_witnesses`) | Psalm 38:11 | psalm_38_11 |
+
+### 🆕 Drafted addition — closing the Isaiah 53:12 gap
+
+Not yet merged into `act3_case.js`. Full code patch: `act3_case_crucifixion_isaiah_53_12_patch.js`. Full Ink dialogue: `penitent_thief.ink`.
+
+| Reference | Prophecy ID |
+|---|---|
+| Isaiah 53:12 | `isaiah_53_12` *(reuses the ID already defined in `act3CaseA`; no second ID for the same prophecy)* |
+
+| Evidence | `relatedProphecy` | `bibleRef` | Prophetic / Narrative Link Text |
+|---|---|---|---|
+| Sentencing Record of the Two Thieves (`crucified_with_thieves`) | `isaiah_53_12` | Luke 23:32–33 | Fulfills the first clause of Isaiah 53:12 — "numbered with the transgressors." Roman execution records placed Jesus's cross deliberately between two convicted criminals, publicly branding Him a common lawbreaker rather than a righteous man. |
+| Words of Forgiveness (`crucifiers_forgiven`) | `isaiah_53_12` | Luke 23:34 | Fulfills the second clause — "made intercession for the transgressors." As the nails were driven in, Jesus prayed aloud for the very soldiers executing Him: "Father, forgive them, for they know not what they do." |
+
+**New witness NPC:** Dismas, the Penitent Thief (`penitent_thief`) — crucified at Jesus's right hand (Luke 23:39–43). Unlocks both evidence items above; `revealsProphecy: isaiah_53_12`. Chosen over routing this through the existing `execution_guard` stub because Dismas is the one witness close enough to both experience the sentencing firsthand *and* hear the prayer — giving the prophecy's two clauses a single first-person voice rather than a secondhand report.
+
+**Lab deduction:** `crucified_with_thieves` + `crucifiers_forgiven` → Link → reveals `isaiah_53_12` — "a guilty man could easily be numbered among criminals; almost no one intercedes for their own executioners."
+
+This pairs naturally with the existing `twelve_roll` evidence in `act3CaseA` (where Jesus first applies Isaiah 53:12 to Himself) — a foretelling → fulfillment chain across two cases, the same pattern as the existing Zechariah 13:7 scattering chain (Gethsemane → Peter's Restoration).
 
 ## act4CaseA — The Empty Tomb
 
@@ -705,6 +732,62 @@ The Codex now distinguishes between:
 
 ---
 
+## act4CaseD — The Ascension
+
+> **v7 addition:** this case is fully built in `act4_case.js` (`export const act4CaseD`, case ID `ascension`) but was missing from this reference doc entirely. Location: Mount of Olives. Requires `peter_restoration` to unlock. Culprit: **No One** — a divine event, not a crime.
+
+### Prophecies (defined for this case)
+
+| Reference | Prophecy ID |
+|---|---|
+| Luke 24:50–51 | `luke_24_50_51` |
+| Acts 1:9–11 | `acts_1_9_11` |
+| Matthew 28:19–20 | `matthew_28_19_20` |
+| Luke 24:36–43 | `luke_24_36_43` |
+
+> Note: all four are NT prophecy/fulfillment-of-pattern texts rather than OT predictive prophecy (consistent with this document's Typology vs. Predictive Prophecy distinction — see top of doc). `luke_24_50_51` and `acts_1_9_11` are explicitly tied to OT typology in their evidence links below (Numbers 6:24-26 and Daniel 7:13-14 / Psalm 110:1 respectively).
+
+### Evidence Links
+
+| Evidence | `relatedProphecy` (Codex) | `bibleRef` (supporting verse) | Prophetic / Narrative Link Text |
+|---|---|---|---|
+| Testimony of the Wound Marks (`wound_marks_testimony`) | `luke_24_36_43` | John 20:27 | Jesus's invitation to touch His wounds directly fulfilled the need for tangible proof of His bodily resurrection ("a ghost does not have flesh and bones," Luke 24:39). This physical reality was crucial for the disciples' witness. |
+| Great Commission Mandate (`great_commission_mandate`) | `matthew_28_19_20` | Matthew 28:19–20 | Fulfills OT promises that all nations would come to worship the Lord (Isaiah 2:2-4; Zechariah 8:20-23). Jesus's command initiates the global spread of the Gospel. |
+| Priestly Benediction Account (`priestly_benediction_account`) | `luke_24_50_51` | Luke 24:50–51 | Echoes the priestly blessing of Numbers 6:24-26, signifying Jesus's role as the ultimate High Priest who intercedes for His people and bestows divine favor. |
+| Ascension Eyewitness Account (`ascension_eyewitness_account`) | `acts_1_9_11` | Acts 1:9–11 | This visible, bodily ascension fulfills prophecies of the Messiah's enthronement and return (Daniel 7:13-14; Psalm 110:1). The angels' promise of His return reinforces this prophetic expectation. |
+| Disciples' Hallucination Report (`ascension_fake`) | *(fake — not Codex-linkable)* | Acts 1:9 | Planted distractor: a fabricated claim that the disciples hallucinated the ascension from grief and exhaustion. Ignores the physical proofs of the risen body and the consistent multi-witness testimony. |
+| Luke 24:50–51 Scroll Fragment (`luke_24_50_51_scroll`) | `luke_24_50_51` | Luke 24:50–51 | Supplementary primary-source scroll evidence (paired with `priestly_benediction_account`). |
+| Acts 1:9–11 Scroll Fragment (`acts_1_9_11_scroll`) | `acts_1_9_11` | Acts 1:9–11 | Supplementary primary-source scroll evidence (paired with `ascension_eyewitness_account`). |
+| Matthew 28:19–20 Scroll Fragment (`matthew_28_19_20_scroll`) | `matthew_28_19_20` | Matthew 28:19–20 | Supplementary primary-source scroll evidence (paired with `great_commission_mandate`). |
+| Luke 24:36–43 Scroll Fragment (`luke_24_36_43_scroll`) | `luke_24_36_43` | Luke 24:36–43 | Supplementary primary-source scroll evidence (paired with `wound_marks_testimony`). |
+
+### Fulfillment Links
+
+| Evidence | Reference | Bible ID |
+|---|---|---|
+| Testimony of the Wound Marks (`wound_marks_testimony`) | John 20:27 | john_20_27 |
+| Testimony of the Wound Marks (`wound_marks_testimony`) | Luke 24:39 | luke_24_39 |
+| Great Commission Mandate (`great_commission_mandate`) | Matthew 28:19-20 | matthew_28_19_20 |
+| Great Commission Mandate (`great_commission_mandate`) | Isaiah 2:2-4 | isaiah_2_2_4 |
+| Great Commission Mandate (`great_commission_mandate`) | Zechariah 8:20-23 | zechariah_8_20_23 |
+| Priestly Benediction Account (`priestly_benediction_account`) | Luke 24:50-51 | luke_24_50_51 |
+| Priestly Benediction Account (`priestly_benediction_account`) | Numbers 6:24-26 | numbers_6_24_26 |
+| Ascension Eyewitness Account (`ascension_eyewitness_account`) | Acts 1:9-11 | acts_1_9_11 |
+| Ascension Eyewitness Account (`ascension_eyewitness_account`) | Daniel 7:13-14 | daniel_7_13_14 |
+| Ascension Eyewitness Account (`ascension_eyewitness_account`) | Psalm 110:1 | psalm_110_1 |
+
+**Deductions (Lab pairings):**
+
+| Evidence Pair | Op | Reveals Prophecy | Bible Ref |
+|---|---|---|---|
+| `ascension_eyewitness_account` + `great_commission_mandate` | Compare | `acts_1_9_11` | Acts 1:8-11; Matthew 28:18-20 |
+| `priestly_benediction_account` + `ascension_eyewitness_account` | Link | `luke_24_50_51` | Luke 24:50-51; Hebrews 7:25 |
+| `wound_marks_testimony` + `great_commission_mandate` | Compare | `luke_24_36_43` | Luke 24:39-43; John 20:27; Matthew 28:19-20 |
+
+**Characters:** Peter (`peter_ascension`, reveals `acts_1_9_11`), John (`john_ascension`, reveals `luke_24_50_51`), Thomas (`thomas_ascension`, reveals `luke_24_36_43`), Angelic Messengers (`angelic_messengers`, reveals `acts_1_9_11`).
+
+---
+
 ## Cross-Case Typology: The Day of Atonement (Leviticus 16)
 
 This typological arc spans three Act III cases, using the Jewish High Holy Day of Yom Kippur as its framework.
@@ -727,11 +810,14 @@ This typological arc spans three Act III cases, using the Jewish High Holy Day o
 |---|---|---|---|
 | `last_supper` (act3CaseA) | The Wood (bread and wine of Melchizedek) | `Spilled Wine on the Linen` (`wine_stain`) | `typology_melchizedek` |
 | `gethsemane_arrest` (act3CaseB) | The Binding | `Unresisting Prisoner's Cord` (`prisoner_cord`) | `isaiah_53_7` |
+| `crucifixion_site` (act3CaseE) | **The Wood, Carried** (Simon of Cyrene bears the crossbeam) | 🆕 `Rope-Burn Marks on a Borrowed Shoulder Cloth` (`cross_burden`) | `typology_isaac_wood` |
 | `crucifixion_site` (act3CaseE) | The Sacrifice (Passover Lamb, no bone broken) | `Unbroken Tibiae Report` (`unbroken_legs`) | `psalm_34_20` |
 
-**Fulfillment:** Isaac carried the wood for his sacrifice; Jesus carries the cross. Both were bound, both went willingly to their sacrifice, and both had a substitute provided by God — the ram caught in the thicket, the true Passover Lamb kept without a broken bone. Abraham's question "Where is the lamb?" (Genesis 22:7) is answered 2,000 years later: "Behold the Lamb of God" (John 1:29).
+> **Gap closed:** this chain previously had no evidence for the most literal element of the typology — someone actually carrying wood — despite Holy_Week.md documenting Simon of Cyrene as the intended `Genesis 22:6` reveal. `simon_cyrene` was a dialogue stub with no `unlocksEvidence`. Drafted fix (new evidence `cross_burden`, new typology ID `typology_isaac_wood`, and a fleshed-out Simon NPC) is in `act3_case_crucifixion_stub_npc_patch.js` / `simon_cyrene.ink`.
 
-**Complete Chain Evidence:** `wine_stain` + `prisoner_cord` + `unbroken_legs`
+**Fulfillment:** Isaac carried the wood for his sacrifice; Jesus carries the cross, then collapses under it and has the burden finished by a compelled bystander. Both were bound, both were part of a journey to a hill outside the city, and both had a substitute provided by God — the ram caught in the thicket, the true Passover Lamb kept without a broken bone. Abraham's question "Where is the lamb?" (Genesis 22:7) is answered 2,000 years later: "Behold the Lamb of God" (John 1:29).
+
+**Complete Chain Evidence:** `wine_stain` + `prisoner_cord` + `cross_burden` + `unbroken_legs`
 
 ---
 

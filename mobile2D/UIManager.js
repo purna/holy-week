@@ -105,18 +105,23 @@ export class UIManager {
         if (mount) mount.style.display = "block";
 
         const needsInit = !window.scene2d || !document.contains(window.scene2d.container);
+        console.log('[UIManager] Next clicked, needsInit:', needsInit, 'scene2d:', !!window.scene2d);
         if (needsInit) {
           await this.init2DScene();
         }
 
         const c = this.cm.getActiveCase();
+        console.log('[UIManager] After init, activeCase:', c?.id, 'scene2d.loadCase:', typeof window.scene2d?.loadCase);
         if (c && window.scene2d && window.scene2d.loadCase) {
           const mapPath = this._getTilemapPath(c.id);
+          console.log('[UIManager] mapPath:', mapPath);
           if (mapPath) {
             try {
               const res = await fetch(mapPath);
+              console.log('[UIManager] fetch result:', res.status, res.statusText);
               if (res.ok) {
                 const tileData = await res.json();
+                console.log('[UIManager] tileData keys:', Object.keys(tileData));
                 window.scene2d.loadCase(c.id, tileData);
               }
             } catch (e) {

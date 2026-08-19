@@ -2486,6 +2486,27 @@ export const act3CaseE = {
       gospelLink: "Luke 23:49",
       insight: "Luke specifically notes that those who knew Jesus, including the women who had followed Him from Galilee, 'stood at a distance, watching these things'—the precise posture of grief-stricken avoidance this psalm describes.",
     }
+    ,
+    {
+      reference: "Isaiah 53:12",
+      id: "isaiah_53_12",
+      icon: "../assets/gfx/sparkles-duotone.svg",
+      text: `"He... was numbered with the transgressors; and he bore the sin of many, and made intercession for the transgressors."`,
+      written: "~700 BC",
+      fulfilledBy: "Jesus being crucified between two condemned criminals and praying aloud for the soldiers executing Him",
+      gospelLink: "Luke 23:32–34",
+      insight: "Isaiah's prophecy has two distinct clauses: being 'numbered with the transgressors' (His placement on the cross) and 'making intercession for the transgressors' (His prayer of forgiveness). Both are fulfilled within the same breath at Golgotha — foretold in advance when Jesus applied this verse to Himself at the Last Supper (`twelve_roll`, act3CaseA).",
+    },
+    {
+      reference: "Genesis 22:6",
+      id: "typology_isaac_wood",
+      icon: "../assets/gfx/sparkles-duotone.svg",
+      text: `"Abraham took the wood for the burnt offering and laid it on his son Isaac."`,
+      written: "~1400 BC (event); ~1400s BC (Mosaic authorship)",
+      fulfilledBy: "Simon of Cyrene forced to carry Jesus's cross after He collapsed under its weight",
+      gospelLink: "Matthew 27:32; Mark 15:21; Luke 23:26",
+      insight: "Isaac carried the very wood on which he would nearly be sacrificed — a willing, if unknowing, participant in the pattern of his own offering. Centuries later, the true sacrifice carries His own wood part of the way, before an outsider is compelled to finish bearing it. Both journeys end at a hill outside the city walls.",
+    },
 
   ],
 
@@ -2806,6 +2827,122 @@ export const act3CaseE = {
         contradict: "RELIABILITY: Luke names the group specifically as those who 'knew him' — not hostile crowd members, making the account a credible eyewitness record rather than rumor."
       }
     },
+    {
+      id: "crucifixion_nails",
+      name: "Iron Crucifixion Nails",
+      type: "physical",
+      relatedProphecy: "psalm_22_16_18",
+      icon: "../assets/gfx/nail-duotone.svg",
+      location: "Foot of the Central Cross",
+      desc: "Three iron spikes, roughly 15cm long, recovered from the base of the central cross — driven through the wrists and the crossed feet to fix the body to the wood.",
+      bibleRef: "John 20:25 — 'Unless I see the nail marks in his hands... I will not believe.' (Thomas's later demand confirms the method of execution used here.)",
+      bibleLink: "john_20_25",
+      propheticLink: "Fulfills the piercing clause of Psalm 22:16 — 'they have pierced my hands and my feet' — written roughly a thousand years before crucifixion existed as a method of Roman execution. David had no historical reference point for this method of death, yet described its central mechanism in precise anatomical detail.",
+      bibleRefs: [
+        { ref: "John 20:25", link: "john_20_25" },
+        { ref: "Luke 24:39-40", link: "luke_24_39_40" }
+      ],
+      propheticRefs: [
+        { ref: "Psalm 22:16", link: "psalm_2216" }
+      ],
+      investigatorNote: "Crucifixion was a Roman innovation, not a Hebrew one, and was unknown as a method of execution when this psalm was written centuries earlier. The specificity of 'pierced hands and feet' — rather than the more general 'put to death' — is difficult to explain as coincidence.",
+      fake: false,
+      category: "prophecy",
+      timelineOrder: 1,
+      clues: {
+        compare: "Sits alongside the Soldiers' Casting Dice — together the nails and the dice fulfil both halves of Psalm 22:16–18 in the same scene.",
+        link: "Prophecy — the recovered nails confirm the piercing described in Psalm 22:16.",
+        timeline: "CHRONOLOGY: Driven in at the moment of crucifixion, before the soldiers settled in to gamble for the garments.",
+        contradict: "RELIABILITY: The physical method of execution is independently corroborated by Thomas's later demand to see the 'nail marks' (John 20:25) and Jesus's invitation to inspect His hands and feet (Luke 24:39-40)."
+      },
+    },
+    {
+      id: "cross_burden",
+      name: "Rope-Burn Marks on a Borrowed Shoulder Cloth",
+      type: "physical",
+      relatedProphecy: "typology_isaac_wood",
+      icon: "../assets/gfx/tree-duotone.svg",
+      location: "Via Dolorosa, near the city gate",
+      desc: "A coarse outer cloak, deeply grooved with rope-burn and splinter marks across one shoulder, belonging to a Cyrenian pilgrim who was pulled from the roadside crowd and forced to carry the crossbeam the rest of the way to Golgotha.",
+      bibleRef: "Mark 15:21 — 'A certain man from Cyrene, Simon, the father of Alexander and Rufus, was passing by on his way in from the country, and they forced him to carry the cross.'",
+      bibleLink: "mark_15_21",
+      propheticLink: "Genesis 22:6 records Isaac carrying the wood for his own sacrifice up the mountain. Here the pattern repeats with a twist: Jesus, having already carried the crossbeam from the Praetorium, collapses under the combined weight of the beam and the night's brutal scourging — and an uninvolved bystander is compelled to finish bearing the wood the rest of the way to the hill.",
+      bibleRefs: [
+        { ref: "Mark 15:21", link: "mark_15_21" },
+        { ref: "Matthew 27:32", link: "matthew_27_32" },
+        { ref: "Luke 23:26", link: "luke_23_26" }
+      ],
+      propheticRefs: [
+        { ref: "Genesis 22:6", link: "genesis_22_6" }
+      ],
+      investigatorNote: "Mark names Simon's sons, Alexander and Rufus, as if the original readers would recognise them — suggesting Simon's family became known figures in the early church after this encounter.",
+      fake: false,
+      category: "prophecy",
+      timelineOrder: 0,
+      clues: {
+        compare: "Precedes everything else at Golgotha — this is the last piece of evidence from the road itself, before the crosses were raised.",
+        link: "Prophecy — the marked cloak ties Simon directly to the wood-bearing typology of Genesis 22:6.",
+        timeline: "CHRONOLOGY: Occurred on the Via Dolorosa, the final stretch of the route to Golgotha, before the crucifixion itself.",
+        contradict: "RELIABILITY: Three independent Gospel accounts (Matthew, Mark, Luke) record Simon's compulsion, with Mark adding the specific, checkable detail of his sons' names."
+      },
+    },
+    {
+      id: "crucified_with_thieves",
+      name: "Sentencing Record of the Two Thieves",
+      type: "analytical",
+      relatedProphecy: "isaiah_53_12",
+      icon: "../assets/gfx/scroll-duotone.svg",
+      location: "Golgotha, Place of the Skull",
+      desc: "A Roman execution log noting three crosses raised on the hill that morning — two convicted robbers, and, deliberately placed between them, the man condemned by Pilate.",
+      bibleRef: "Luke 23:32–33 — 'Two other men, both criminals, were also led out with him to be executed. When they came to the place called the Skull, they crucified him there, along with the criminals — one on his right, the other on his left.'",
+      bibleLink: "luke_23_32_33",
+      propheticLink: "Fulfills the first clause of Isaiah 53:12 — 'numbered with the transgressors.' The placement was not incidental: Roman crucifixion sites deliberately positioned the condemned to maximize public shame, and positioning Jesus at the center, flanked by two criminals, branded Him a common lawbreaker in the eyes of every passerby.",
+      bibleRefs: [
+        { ref: "Luke 23:32-33", link: "luke_23_32_33" },
+        { ref: "Mark 15:27-28", link: "mark_15_27_28" }
+      ],
+      propheticRefs: [
+        { ref: "Isaiah 53:12", link: "isaiah_53_12" }
+      ],
+      investigatorNote: "Mark's Gospel explicitly ties this detail back to Isaiah's words — 'he was numbered with the transgressors' — noting that the Scripture was fulfilled in this exact placement.",
+      fake: false,
+      category: "prophecy",
+      timelineOrder: 1,
+      clues: {
+        compare: "Sits alongside the Record of the Crowd's Taunt — both record what happened in the earliest minutes of the crucifixion, as soon as the crosses were raised.",
+        link: "Prophecy — the execution record confirms Jesus's placement fulfilled Isaiah 53:12's 'numbered with the transgressors.'",
+        timeline: "CHRONOLOGY: Recorded at the moment all three crosses were raised, before the mockery and gambling began.",
+        contradict: "RELIABILITY: Both Mark and Luke independently record the detail of two criminals flanking Jesus — consistent multi-source attestation."
+      },
+    },
+    {
+      id: "crucifiers_forgiven",
+      name: "Words of Forgiveness",
+      type: "testimonial",
+      relatedProphecy: "isaiah_53_12",
+      icon: "../assets/gfx/scroll-duotone.svg",
+      location: "Foot of the Central Cross",
+      desc: "A bystander's account of the first words Jesus spoke from the cross — a prayer spoken aloud for the very soldiers driving in the nails.",
+      bibleRef: "Luke 23:34 — 'Jesus said, \"Father, forgive them, for they do not know what they are doing.\" And they divided up his clothes by casting lots.'",
+      bibleLink: "luke_23_34",
+      propheticLink: "Fulfills the second clause of Isaiah 53:12 — the Servant 'made intercession for the transgressors.' Rather than cursing His executioners, as was common among the crucified, Jesus's first recorded words interceded on their behalf — a prayer for the men actively killing Him.",
+      bibleRefs: [
+        { ref: "Luke 23:34", link: "luke_23_34" }
+      ],
+      propheticRefs: [
+        { ref: "Isaiah 53:12", link: "isaiah_53_12" }
+      ],
+      investigatorNote: "Luke places this prayer immediately before the soldiers cast lots for His garments (`split_dice`) — the intercession and the indifference happened side by side, in the same moment.",
+      fake: false,
+      category: "prophecy",
+      timelineOrder: 1,
+      clues: {
+        compare: "Pairs directly with the Sentencing Record of the Two Thieves — together they fulfil both halves of Isaiah 53:12 in the same moment.",
+        link: "Prophecy — the transcribed prayer fulfils the 'made intercession for the transgressors' clause.",
+        timeline: "CHRONOLOGY: Spoken as the cross was raised, before the soldiers' dice game and the crowd's mockery.",
+        contradict: "RELIABILITY: A prayer of forgiveness for one's own executioners is not the kind of detail an inventor would add to a martyr narrative — it runs against the grain of typical hero accounts."
+      },
+    },
 
     {
       id: "crucifixion_site_fake",
@@ -3011,38 +3148,31 @@ export const act3CaseE = {
       },
     },
     {
-      id: "simon_cyrene",
-      name: "Simon of Cyrene",
-      role: "Cross-Bearer",
-      avatar: "simon_cyrene.svg",
-      truthfulness: 0.8,
-      bibleRef: "Matthew 27:32; Mark 15:21; Luke 23:26",
+      id: "penitent_thief",
+      name: "Dismas (The Penitent Thief)",
+      role: "Condemned Criminal, Right-Hand Cross",
+      faction: "condemned",
+      avatar: "barabbas.svg",
+      profileFile: "penitent_thief",
+      truthfulness: 0.95,
+      bibleRef: "Luke 23:39–43 — 'Jesus, remember me when you come into your kingdom.' Jesus answered him, 'Truly I tell you, today you will be with me in paradise.'",
       hasDialogue: true,
-      storyFile: "simon_cyrene",
-      background: "Forced to carry Jesus cross. A foreign pilgrim caught in Roman enforcement.",
+      storyFile: "penitent_thief",
+      unlocksEvidence: ["crucified_with_thieves", "crucifiers_forgiven"],
+      revealsProphecy: "isaiah_53_12",
+      background: "A convicted robber, sentenced to die alongside his accomplice and, deliberately, a third man the Sanhedrin insisted be treated as a fellow criminal. Hanging on the cross to Jesus's right, he had a closer view and a longer conversation with Him than almost anyone else present.",
       dialogue: {
-        neutral: "Tell me what you know.",
+        neutral: "They nailed up three crosses that morning. Mine, my friend's, and His — right between us. Made a point of it.",
+        cautious: "At first I mocked Him too, same as my companion. 'Aren't you the Messiah? Save yourself and us.' It was cheap talk. We were dying men looking for anything.",
+        pressured: "My friend kept at it, cursing Him. I told him to stop — 'Don't you fear God? We're getting what we deserve. This man has done nothing wrong.'",
+        exposed: "The soldiers were still rolling dice for His clothes when I heard it — He wasn't cursing them back. He was praying for them. 'Father, forgive them, they don't know what they're doing.' I asked Him to remember me. He told me I'd be with Him in paradise. That day. Not someday — that day.",
+        repeat: "I was numbered among the criminals. I know exactly what that felt like, dying next to Him.",
       },
       reactions: {
-        default: { text: "I have nothing more to add.", isLie: false },
+        crucified_with_thieves: { text: "They put me on His right, the other man on His left, Him in the middle. It wasn't chance — the charge sheet listed us together, like He was one of us.", isLie: false },
+        crucifiers_forgiven: { text: "I was three feet away. I heard every word. 'Father, forgive them.' The men driving the nails, He meant. I've never heard anything like it, before or since.", isLie: false },
       },
-    },
-    {
-      id: "temple_curtain",
-      name: "Temple Curtain Witness",
-      role: "Temple Attendant",
-      avatar: "pontius_pilate.svg",
-      truthfulness: 0.9,
-      hasDialogue: true,
-      storyFile: "priest_objection_crucifixion",
-      bibleRef: "Matthew 27:51",
-      background: "A priest of the course of Abijah who witnessed the Temple curtain tearing at Jesus' death — the ultimate sign that the old covenant ended.",
-      dialogue: {
-        neutral: "Tell me what you know.",
-      },
-      reactions: {
-        default: { text: "I have nothing more to add.", isLie: false },
-      },
+      contradictions: {},
     },
     {
       id: "execution_guard",
@@ -3050,17 +3180,54 @@ export const act3CaseE = {
       role: "Roman Execution Detail",
       faction: "roman",
       avatar: "garrison_guard.svg",
+      profileFile: "execution_guard",
       truthfulness: 0.85,
       bibleRef: "Matthew 27:36; John 19:23-24",
       hasDialogue: true,
       storyFile: "guard_report_crucifixion",
-      background: "A Roman soldier on the crucifixion detail at Golgotha. He executed many men but was shaken by what he witnessed at Jesus' death.",
+      unlocksEvidence: ["unbroken_legs", "sour_wine_sponge", "final_words", "crucifixion_nails"],
+      revealsProphecy: "psalm_34_20",
+      background: "A Roman soldier on the crucifixion detail at Golgotha, tasked with the physical work of the execution — driving the nails, raising the cross, and standing watch until death was confirmed. He has done this many times before, but never seen a prisoner behave the way this one did.",
       dialogue: {
-        neutral: "Tell me what you know.",
+        neutral: "The prisoner was secured to the crossbeam by the wrists and the feet, standard procedure. Death by suffocation, over time, unless we intervene.",
+        cautious: "He didn't fight the nails. Most men scream, some pass out. He just... let it happen. Strange thing to watch.",
+        pressured: "Near the end He said He was thirsty. We soaked a sponge in the sour wine ration and lifted it to Him on a hyssop branch — standard mercy for a man that far gone.",
+        exposed: "The priests wanted the legs broken to speed up the deaths before sundown. We did the other two. When we got to Him, He was already dead — no need. His last words weren't a scream either. He said something about committing His spirit to His Father, loud and clear, like He meant it. Then it was over.",
+        repeat: "The record stands. Three men crucified. One of them died differently than the other two.",
       },
       reactions: {
-        default: { text: "I have nothing more to add.", isLie: false },
+        unbroken_legs: { text: "Orders were to break the legs of all three before the Sabbath. We did the two thieves. He was already gone by the time we reached Him — nothing left to break.", isLie: false },
+        sour_wine_sponge: { text: "That's the sponge. He asked for something to drink near the end. We gave Him the sour wine ration on a hyssop branch — it's what we had.", isLie: false },
+        final_words: { text: "I heard it myself. Not a cry of pain — a declaration. 'Into your hands I commit my spirit.' Then He bowed His head and it was finished.", isLie: false },
+        crucifixion_nails: { text: "Three nails. Wrists, not palms — palms tear straight through under the weight. Feet crossed and pinned with the third. He didn't cry out when they went in.", isLie: false },
       },
+      contradictions: {},
+    },
+    {
+      id: "simon_cyrene",
+      name: "Simon of Cyrene",
+      role: "Cross-Bearer",
+      faction: "bystander",
+      avatar: "simon_cyrene.svg",
+      profileFile: "simon_cyrene",
+      truthfulness: 0.9,
+      bibleRef: "Matthew 27:32; Mark 15:21; Luke 23:26",
+      hasDialogue: true,
+      storyFile: "simon_cyrene",
+      unlocksEvidence: ["cross_burden"],
+      revealsProphecy: "typology_isaac_wood",
+      background: "A Jewish pilgrim from Cyrene in North Africa, in Jerusalem for the Passover feast. He was simply walking in from the countryside when Roman soldiers pulled him out of the crowd without warning or explanation.",
+      dialogue: {
+        neutral: "I wasn't a follower. I wasn't even from here. I was walking in for the feast, and soldiers grabbed me off the road.",
+        cautious: "He'd already been carrying it Himself, from what I could tell — the wood, the whole beam. But He went down under it. Couldn't get back up carrying that weight, not after what they'd clearly already done to Him.",
+        pressured: "The soldiers didn't ask. They forced my hands onto the beam and pointed me up the hill. I didn't have a choice in it — but I've thought of little else since.",
+        exposed: "I keep thinking of Isaac, carrying the wood up the mountain for his own sacrifice, not knowing what it meant. I carried this man's wood and didn't know what it meant either. Not then.",
+        repeat: "My shoulder still bears the mark of it. I don't think it will ever fully fade.",
+      },
+      reactions: {
+        cross_burden: { text: "That's my own cloak, yes — you can still see where the beam sat. They pulled it from the crowd, put the weight on me, and pointed up the hill. I didn't ask for it. I don't regret it either.", isLie: false },
+      },
+      contradictions: {},
     },
   ],
 
@@ -3107,6 +3274,15 @@ export const act3CaseE = {
         bibleRef: "Isaiah 53:9; Mark 15:46; Matthew 27:57",
       },
     },
+    "crucified_with_thieves+crucifiers_forgiven": {
+      link: {
+        text: "The sentencing record and the transcribed prayer, taken together, complete both halves of a single ancient prophecy within the same few minutes at Golgotha.",
+        insight: "Isaiah 53:12 required two very different things of the same man: to be publicly humiliated as a criminal, and to intercede for those wronging Him. A guilty man could easily do the first. Almost no one, guilty or innocent, does the second — least of all for his own executioners.",
+        isKey: true,
+        revealsProphecy: "isaiah_53_12",
+        bibleRef: "Isaiah 53:12; Luke 23:32-34",
+      },
+    },
   },
 
   truth: {
@@ -3114,7 +3290,7 @@ export const act3CaseE = {
     motive: "The crucifixion was not an unexpected strategic failure, but a calculated, voluntary act of redemption that explicitly leveraged cosmic, geological, and legal parameters to fulfill ancient prophecies.",
     method: "The Roman military machinery carried out the execution, and the Sanhedrin elite initiated the charges to secure political stability. However, the resulting three hours of darkness, the rock-splitting earthquake, the top-down tearing of the Temple veil, and the rich man's burial completely bypassed their control, structurally validating Jesus as the true Messiah and the ultimate Passover Lamb.",
     lesson: "The cross transformed a Roman instrument of shame into history's absolute center of restoration. Every physical detail—from the unbroken bones to the torn curtain—proved that old barriers were shattered, and a New Covenant was established.",
-    prophesyFulfilled: ["Psalm 22:16-18", "Amos 8:9", "Isaiah 53:9", "Zechariah 12:10", "Psalm 34:20", "Isaiah 53:12", "Psalm 22:1", "Psalm 22:7-8", "Psalm 38:11"],
+    prophesyFulfilled: ["Psalm 22:16-18", "Amos 8:9", "Isaiah 53:9", "Zechariah 12:10", "Psalm 34:20", "Isaiah 53:12", "Psalm 22:1", "Psalm 22:7-8", "Psalm 38:11", "Genesis 22:6"],
     furtherReading: ["Matthew 27:32–56", "Mark 15:21–41", "Luke 23:26–49", "John 19:16–37", "Hebrews 10:19–22"],
   },
 };
