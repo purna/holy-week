@@ -2205,7 +2205,7 @@ export const act4CaseD = {
     timeOfDay: "day",
     difficulty: 3,
     requires: "peter_restoration",
-    actLabel: "Act IV - The Resurrection & Ascension",
+    actLabel: "Act IV - The Resurrection",
     color: 0x6a0dad,
     worldModel: "../assets/models/sphere.glb",
     showCityLayer: false,
