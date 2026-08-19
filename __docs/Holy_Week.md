@@ -1,4 +1,17 @@
-# Miracle Maker - Source of Truth
+# Holy Week - Source of Truth
+
+## Game Summary
+
+Holy Week is a browser-based educational detective game set during Holy Week in Jerusalem. The player investigates mysterious events across 4 Acts and 11 Cases, acting as a detective who must gather evidence, interview witnesses, and connect biblical prophecies to their fulfillments.
+
+**Core Loop:** Explore scenes → Talk to NPCs → Collect evidence → Solve Lab puzzles (compare, categorize, timeline, contradiction) → Link prophecies in the Codex → Conclude the case.
+
+**Scoring & Progression:**
+- **Investigation Score:** Earned per case through evidence collection (+5), Lab deductions (+15), successful NPC challenges (+10), prophecy links (+10/+20), and case closure (+50). Doubt accumulates from speculative info clicks (+1), failed challenges (+10), and incorrect Lab pairings (+5), and is subtracted ×2 from the final score at case conclusion.
+- **Research Score:** Persistent track for correctly linking scripture to fulfillment (+20 per prophecy). Higher Scholar levels unlock bonus Codex content.
+- **Honor (Reputation):** Average standing across 4 factions (scribes, temple, roman, local). Successful NPC challenges raise Honor (+5); failed ones damage it (-15). If Honor reaches 0 or Doubt reaches 99, the investigation ends in Game Over.
+
+**Progression:** Cases are unlocked sequentially via the `requires` chain. Concluding one case automatically unlocks the next. The game is won by solving all cases across all Acts.
 
 ## Table of Contents
 

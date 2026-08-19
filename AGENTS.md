@@ -1,10 +1,10 @@
-# Miracle Maker Agent Directives
+# Holy Week Agent Directives
 
-These repo-level rules apply to all agents working on the Miracle Maker codebase.
+These repo-level rules apply to all agents working on the Holy Week codebase.
 
 ## Project Context
 
-Miracle Maker is a collection of browser-based visual effect demos and UI examples:
+Holy Week is a collection of browser-based visual effect demos and UI examples:
 - Fog, dust, day/night cycle visualizations (Canvas/WebGL)
 - Landing page and WhatsApp-style UI demonstrations
 - No build system - direct HTML/CSS/JS

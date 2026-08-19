@@ -1,6 +1,6 @@
 # Prophecy & Evidence Link Reference (v6)
 
-< [Back to Main Document](Miracle Maker.md)
+< [Back to Main Document](Holy Week.md)
 
 ## Table of Contents
 
@@ -738,7 +738,7 @@ This typological arc spans three Act III cases, using the Jewish High Holy Day o
 
 ### Cross-Case Chain Summary
 
-The three typological arcs above correspond to Hidden Detective Chains documented in `Miracle Maker.md` and `Game Case & Lab Reference.md`:
+The three typological arcs above correspond to Hidden Detective Chains documented in `Holy Week.md` and `Game Case & Lab Reference.md`:
 
 | Chain Name | Cross-Case Typology | Cases Spanned | Codex Reward |
 |---|---|---|---|

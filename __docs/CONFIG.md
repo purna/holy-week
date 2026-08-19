@@ -1,6 +1,6 @@
 # Configuration File (js/config.js)
 
-< [Back to Main Document](Miracle Maker.md)
+< [Back to Main Document](Holy Week.md)
 
 ## Table of Contents
 
@@ -44,7 +44,7 @@ This file centralizes all major settings for the 3D world application.
 - Path to background music file
 - Uses Howler.js for audio management (see audioManager.js module)
 - Audio files organized by type: UI sounds (panelOpen, panelClose, buttonClick, questDone, victory, pickup), ambient (birds), music (bgMusic), and NPC-specific enter/exit sounds
-- Stored in `assets/audio/` directory with filenames matching the SOUND object in examples/Miracle Maker_final_v16.html
+- Stored in `assets/audio/` directory with filenames matching the SOUND object in examples/Holy Week_final_v16.html
 
 ### 4. World (`config.world`)
 - `earth`: Path to the earth GLB model

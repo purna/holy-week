@@ -1,6 +1,6 @@
 # Character Dialogue Profiles — Master Index
 
-< [Back to Main Document](Miracle Maker.md)
+< [Back to Main Document](Holy Week.md)
 
 ## Table of Contents
 

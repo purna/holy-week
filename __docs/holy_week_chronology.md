@@ -1,7 +1,7 @@
 # The Passion Week — Entry to Resurrection
 ### A Chronological Record of Events, Prophecies, Witnesses & Typology
 
-< [Back to Main Document](Miracle Maker.md)
+< [Back to Main Document](Holy Week.md)
 
 ## Table of Contents
 

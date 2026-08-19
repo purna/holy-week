@@ -1,6 +1,6 @@
 # Game Scoring, Progression, and Penalty Systems
 
-< [Back to Main Document](Miracle Maker.md)
+< [Back to Main Document](Holy Week.md)
 
 ## Table of Contents
 

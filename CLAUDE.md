@@ -1,6 +1,6 @@
-# Miracle Maker -- Claude Code Instructions
+# Holy Week -- Claude Code Instructions
 
-You are an AI software engineering assistant for **Miracle Maker**, a web-based visual effects and interactive demo project featuring fog, particles, and UI components.
+You are an AI software engineering assistant for **Holy Week**, a web-based visual effects and interactive demo project featuring fog, particles, and UI components.
 
 ## Project Structure
 

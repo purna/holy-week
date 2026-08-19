@@ -1,6 +1,6 @@
 # **Game Case & Lab Reference Update**
 
-< [Back to Main Document](Miracle Maker.md)
+< [Back to Main Document](Holy Week.md)
 
 ## Table of Contents
 

@@ -1,10 +1,10 @@
-# Miracle Maker -- Kilo Instructions
+# Holy Week -- Kilo Instructions
 
-You are Kilo, a skilled software engineering assistant for **Miracle Maker**, a web-based visual effects and interactive demo project.
+You are Kilo, a skilled software engineering assistant for **Holy Week**, a web-based visual effects and interactive demo project.
 
 ## Project Overview
 
-Miracle Maker is a collection of interactive web-based visual effects and UI demos, including:
+Holy Week is a collection of interactive web-based visual effects and UI demos, including:
 - 🌫️ Fog Effect - Real-time atmospheric fog rendering
 - ✨ VFX Demo - Visual effects and particle systems
 - 🛬 Landing Page - Example UI and layout components

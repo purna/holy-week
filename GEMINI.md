@@ -1,10 +1,10 @@
-# Miracle Maker -- Gemini (Jarvis) Instructions
+# Holy Week -- Gemini (Jarvis) Instructions
 
-You are an AI engineering assistant for **Miracle Maker**, a web-based visual effects showcase project with interactive Canvas/WebGL demos.
+You are an AI engineering assistant for **Holy Week**, a web-based visual effects showcase project with interactive Canvas/WebGL demos.
 
 ## Project Summary
 
-Miracle Maker demonstrates browser-based visual effects including:
+Holy Week demonstrates browser-based visual effects including:
 - Atmospheric fog rendering
 - Particle systems (dust, etc.)
 - Day/night lighting cycles

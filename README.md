@@ -8,7 +8,7 @@ Holy Week is designed to help developers achieve extraordinary results with mini
 
 ## Installation
 
-To install Miracle Maker, clone the repository and install dependencies:
+To install Holy Week, clone the repository and install dependencies:
 
 ```bash
 git clone https://github.com/yourusername/miracle-maker.git
@@ -18,7 +18,7 @@ npm install
 
 ## Usage
 
-After installation, you can start using Miracle Maker by running:
+After installation, you can start using Holy Week by running:
 
 ```bash
 npm start
@@ -26,7 +26,7 @@ npm start
 
 Refer to the documentation in the `docs/` directory for more detailed instructions.
 
-Explore interactive demos powered by Miracle Maker:
+Explore interactive demos powered by Holy Week:
 
 ### 🌫️ Fog Effect
 Real-time atmospheric fog rendering.
@@ -39,12 +39,12 @@ A collection of visual effects and particle systems.
 👉 https://purna.github.io/miracle-maker/tests/vfx.html
 
 ### 🛬 Landing Page
-Example UI and layout built with Miracle Maker.
+Example UI and layout built with Holy Week.
 
 👉 https://purna.github.io/miracle-maker/tests/landing.html
 
 ### 🛬 Whats Apps Page
-Example UI and layout built with Miracle Maker.
+Example UI and layout built with Holy Week.
 
 👉 https://purna.github.io/miracle-maker/tests/whatsapp.html
 
