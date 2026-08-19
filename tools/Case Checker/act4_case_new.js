@@ -35,7 +35,7 @@ import { formatIntro } from './utils.js';
 //
 // • Psalm 16:10 — God's Holy One would not see decay.
 // • Hosea 6:2 — Restoration and life on the third day.
-// • Jonah 1:17 / Matthew 12:40 — The sign of Jonah fulfilled.
+// • Jonah 1:17 — The sign of Jonah fulfilled.
 // • Isaiah 53:10–11 — The Suffering Servant lives after His sacrifice.
 // • Psalm 22:1–31 — Suffering gives way to victory and worldwide proclamation.
 // • Isaiah 26:19 — Death gives way to resurrection and rejoicing.
@@ -137,8 +137,8 @@ export const act4CaseA = {
       explanation: "Jesus explicitly identified His resurrection with the 'sign of Jonah.' The timing—on the third day—was a consistent prophetic pattern.",
     },
     {
-      reference: "Jonah 1:17 / Matthew 12:40",
-      id: "jonah_1_17___matthew_12_40",
+      reference: "Jonah 1:17",
+      id: "jonah_1_17",
       icon: "../assets/gfx/sparkles-duotone.svg",
       text: `"For just as Jonah was three days and three nights in the belly of the great fish, so will the Son of Man be three days and three nights in the heart of the earth."`,
       written: "~800 BC / AD 28",
@@ -328,7 +328,8 @@ export const act4CaseA = {
       propheticLink: "The bribe to the guards fulfils the pattern of institutional deception against God's purposes — similar to how the chief priests had bribed Judas (Matthew 26:14–16). The very people who guarded against resurrection were the first non-disciple witnesses of the supernatural event. Jonah 1:17 / Matthew 12:40 — Jesus named His own third-day resurrection the 'sign of Jonah,' the three days in the tomb mirroring Jonah's three days in the great fish.",
       bibleRefs: [
         { ref: "Matthew 28:2-4", link: "matthew_28_2_4" },
-        { ref: "Matthew 28:11-15", link: "matthew_28_11_15" }
+        { ref: "Matthew 28:11-15", link: "matthew_28_11_15" },
+        { ref: "Hosea 6:2", link: "hosea_6_2"}
       ],
       propheticRefs: [
         { ref: "Matthew 26:14-16", link: "matthew_26_14_16" },

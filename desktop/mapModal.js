@@ -21,6 +21,7 @@ export class OrbitalSelectMatrixModal {
         this.prev = { x: 0, y: 0 };
         this.treeEl = null;
         this.activeAct = null;
+        this.actSelected = false;
         this.actGroups = {};
         this.markers = [];
         this.labels = [];
@@ -42,9 +43,8 @@ export class OrbitalSelectMatrixModal {
         const sun = new THREE.DirectionalLight(0xffff00, 0.2);
         sun.position.set(5, 3, 5);
         this.scene.add(sun);
-        this.scene.add(new THREE.AmbientLight(0xffffff, 0.2));
-
-        this.scene.add(new THREE.HemisphereLight(0xffffff, 0x444444, 0.4));
+        this.scene.add(new THREE.AmbientLight(0xffffff, 0.6));
+        this.scene.add(new THREE.HemisphereLight(0xffffff, 0x444444, 0.8));
 
         // Initialize core group (this will hold the earth and markers)
         this.core = new THREE.Group();
@@ -103,41 +103,43 @@ export class OrbitalSelectMatrixModal {
     }
 
     _renderMarkerForCase(c, index, total) {
-        // Distribute markers somewhat realistically around the sphere
-        // This logic can be refined for more precise geographical placement if needed.
-        const p = (index / total) * Math.PI * 2; // Angle around the equator
-        const t = (index % 2 === 0 ? 0.3 : -0.3) + Math.PI / 2; // Angle from the pole (latitude-like)
+        const p = (index / total) * Math.PI * 2;
+        const t = (index % 2 === 0 ? 0.3 : -0.3) + Math.PI / 2;
 
-        // Create the 3D marker (sphere)
         const marker = new THREE.Mesh(
-            new THREE.SphereGeometry(0.45, 16, 16),
+            new THREE.SphereGeometry(0.6, 24, 24),
             new THREE.MeshStandardMaterial({
                 color: c.color || 0x00ffaa,
                 emissive: c.color,
-                emissiveIntensity: 2.0
+                emissiveIntensity: 2.5,
+                roughness: 0.3,
+                metalness: 0.1
             })
         );
-        marker.position.setFromSphericalCoords(7.2, t, p); // Position on the globe
-        marker.userData.caseId = c.id; // Store caseId for raycasting
+        marker.position.setFromSphericalCoords(7.2, t, p);
+        marker.userData.caseId = c.id;
 
         this.core.add(marker);
         this.markers.push(marker);
 
-        // --- Create HTML Label and Dot ---
         const dot = document.createElement('div');
-        dot.className = 'map-node-dot';
-        dot.classList.add('pulse');
-        dot.style.backgroundColor = c.color ? `#${c.color.toString(16).padStart(6, '0')}` : '#60a5fa';
-        dot.style.left = '0';
-        dot.style.top = '0';
-
+        dot.className = 'map-node-dot pulse';
+        const progress = this.cm.getCaseProgress(c.id);
+        const solved = progress?.solved;
         const locked = c.isLocked || (c.requires && !this.cm.getCaseProgress(c.requires)?.solved);
+        
+        if (solved) {
+            dot.classList.add('completed');
+        }
         if (locked) {
             dot.classList.add('locked');
-            dot.innerHTML = '<i class="fa-solid fa-lock" style="font-size: 8px; display: block;"></i>';
-            dot.style.display = 'flex';
-            dot.style.alignItems = 'center';
-            dot.style.justifyContent = 'center';
+            dot.classList.remove('pulse');
+            dot.innerHTML = '<i class="fa-solid fa-lock"></i>';
+        }
+        
+        if (!locked && !solved) {
+            dot.style.backgroundColor = c.color ? `#${c.color.toString(16).padStart(6, '0')}` : '#00ffaa';
+            dot.style.boxShadow = `0 0 20px #${c.color.toString(16).padStart(6, '0') || '00ffaa'}, 0 0 40px rgba(0, 255, 170, 0.3)`;
         }
 
         const label = document.createElement('div');
@@ -145,24 +147,27 @@ export class OrbitalSelectMatrixModal {
         label.style.left = '0';
         label.style.top = '0';
 
-        // Lookup location metadata from the system for a cleaner display name
         const loc = this.ls ? this.ls.getLocation(c.location) : null;
+        const locName = loc ? loc.name.replace(/<[^>]*>/g, '').trim() : (c.location || 'Unknown');
 
         label.innerHTML = `
-            <div class="map-node-loc">${loc.name}</div>
+            <div class="map-node-loc">${locName}</div>
             <div class="map-node-title">${c.title}</div>
         `;
 
-        this.wrapper.appendChild(dot); // Add HTML dot to the wrapper
-        this.wrapper.appendChild(label); // Add HTML label to the wrapper
-        this.labels.push({ dot, label, marker }); // Store references for positioning in loop
+        this.wrapper.appendChild(dot);
+        this.wrapper.appendChild(label);
+        this.labels.push({ dot, label, marker });
 
         const select = () => {
             this.updateSidebarDetails(c);
         };
 
-        dot.onclick = select; // Make the HTML dot clickable
-        marker.callback = select; // Attach callback to 3D marker for raycasting
+        dot.onclick = (e) => {
+            e.stopPropagation();
+            if (!locked) select();
+        };
+        marker.callback = select;
     }
 
     renderActTree() {
@@ -285,6 +290,14 @@ export class OrbitalSelectMatrixModal {
                     chevron.textContent = '▼';
                     // We no longer call showActCasesOnGlobe(act) here so nodes don't disappear
                 }
+
+                this.actSelected = true;
+                const closeBtn = document.getElementById('btn-close-map');
+                if (closeBtn) {
+                    closeBtn.style.opacity = '1';
+                    closeBtn.style.pointerEvents = 'auto';
+                    closeBtn.title = '';
+                }
             };
         });
     }
@@ -331,10 +344,14 @@ export class OrbitalSelectMatrixModal {
         const loadBtn = document.getElementById('btn-load-node-scene');
 
         if (title) title.textContent = c.title;
-        if (emoji) emoji.innerHTML = c.emoji || "<img src='../assets/gfx/map-pin-duotone.svg' class='icon-svg' loading='lazy' /> </div>";
+        if (emoji) emoji.innerHTML = c.emoji || "<img src='../assets/gfx/map-pin-duotone.svg' class='icon-svg' loading='lazy' />";
 
         if (desc) desc.textContent = c.description || 'No detailed intel available for this sector.';
-        if (loc) loc.textContent = c.location || 'Unknown Coordinates';
+        
+        const locationData = this.ls ? this.ls.getLocation(c.location) : null;
+        const locationName = locationData ? locationData.name.replace(/<[^>]*>/g, '').trim() : (c.location || 'Unknown Coordinates');
+        if (loc) loc.textContent = locationName;
+        
         if (actDesc) actDesc.textContent = `ACT_OBJECTIVE: ${c.actLabel || 'Phase I'} - investigation parameters synchronized.`;
 
         if (actionContainer && loadBtn) {
@@ -364,12 +381,28 @@ export class OrbitalSelectMatrixModal {
     }
 
     selectCase(caseId) {
+        this.actSelected = true;
+        const closeBtn = document.getElementById('btn-close-map');
+        if (closeBtn) {
+            closeBtn.style.opacity = '1';
+            closeBtn.style.pointerEvents = 'auto';
+            closeBtn.title = '';
+        }
         this.close();
         this.loadCase(caseId);
     }
 
     bind() {
-        document.getElementById('btn-close-map').onclick = () => this.close();
+        const closeBtn = document.getElementById('btn-close-map');
+        const originalClose = () => this.close();
+        closeBtn.onclick = (e) => {
+            if (!this.actSelected) {
+                e.preventDefault();
+                e.stopPropagation();
+                return;
+            }
+            originalClose();
+        };
 
         let moveThreshold = 5;
         let startPos = { x: 0, y: 0 };
@@ -421,6 +454,14 @@ export class OrbitalSelectMatrixModal {
 
     open() {
         this.overlay.classList.add('active');
+        this.actSelected = false;
+
+        const closeBtn = document.getElementById('btn-close-map');
+        if (closeBtn) {
+            closeBtn.style.opacity = '0.3';
+            closeBtn.style.pointerEvents = 'none';
+            closeBtn.title = 'Select an act first';
+        }
 
         const loadBtn = document.getElementById('btn-load-node-scene');
         if (loadBtn) {
@@ -454,6 +495,48 @@ export class OrbitalSelectMatrixModal {
         this.showAllCasesOnGlobe(); // Automatically show cases on open
         this.updateResolvedArchives();
         this.loop();
+
+        // Default to first available case in Act 1
+        this._selectDefaultActCase();
+    }
+
+    _selectDefaultActCase() {
+        const actLabels = Object.keys(this.actGroups);
+        if (actLabels.length === 0) return;
+
+        // Find Act I or fallback to first act
+        let defaultAct = actLabels.find(label => label.toLowerCase().startsWith('act i'));
+        if (!defaultAct) defaultAct = actLabels[0];
+
+        const cases = this.actGroups[defaultAct];
+        const firstUnlocked = cases.find(c => !(c.isLocked || (c.requires && !this.cm.getCaseProgress(c.requires)?.solved)));
+        if (!firstUnlocked) return;
+
+        // Expand the act in the tree
+        this.activeAct = defaultAct;
+        const actHeader = this.treeEl.querySelector(`.act-tree-header[data-act="${defaultAct}"]`);
+        const caseList = actHeader?.nextElementSibling;
+        const chevron = actHeader?.querySelector('.act-tree-chevron');
+        if (caseList) caseList.style.display = 'block';
+        if (chevron) chevron.textContent = '▼';
+
+        // Update sidebar with the default case
+        this.updateSidebarDetails(firstUnlocked);
+        
+        // Highlight the case in the tree
+        const caseItem = this.treeEl.querySelector(`.tree-item[data-case="${firstUnlocked.id}"]`);
+        if (caseItem) {
+            caseItem.classList.add('active-phase');
+        }
+
+        // Enable close button since a case is now selected
+        this.actSelected = true;
+        const closeBtn = document.getElementById('btn-close-map');
+        if (closeBtn) {
+            closeBtn.style.opacity = '1';
+            closeBtn.style.pointerEvents = 'auto';
+            closeBtn.title = '';
+        }
     }
 
     close() {
@@ -461,6 +544,7 @@ export class OrbitalSelectMatrixModal {
         this.hideAllMarkers();
         cancelAnimationFrame(this.raf);
         this.activeAct = null;
+        this.actSelected = false;
     }
 
     loop() {
@@ -486,7 +570,7 @@ export class OrbitalSelectMatrixModal {
 
             // Determine occlusion: Node is behind the globe if it faces away from the camera
             // Since globe is at origin, worldPos is the normal from center to node.
-            const isBehind = worldPos.dot(this.camera.position) < 0;
+            const isBehind = worldPos.dot(this.camera.position) > 0;
 
             const x = (vector.x * 0.5 + 0.5) * w;
             const y = (vector.y * -0.5 + 0.5) * h; // Invert Y for screen coordinates

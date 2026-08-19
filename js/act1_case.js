@@ -972,7 +972,7 @@ export const act1CaseB = {
       category: 'event',
       timelineOrder: 1,
       clues: {
-        compare: "Pairs with the scattered shekels to show the cleansing was targeted, not a robbery.",
+        compare: "Pairs with the Scattered Tyrian Shekels to show the cleansing was targeted, not a robbery.",
         link: "Event — physical destruction of commercial apparatus in the Temple.",
         timeline: "CHRONOLOGY: The cages were overturned first, before the money was scattered.",
         contradict: "RELIABILITY: The targeted destruction shows controlled action, not random violence."
@@ -1101,7 +1101,7 @@ export const act1CaseB = {
     },
     {
       id: "isaiah_56_7_scroll",
-      name: "isaiah_56_7 Scroll Fragment",
+      name: "Isaiah 56:7 Scroll Fragment",
       type: "scripture",
       relatedProphecy: "isaiah_56_7",
       revealsSuspect: "none",
@@ -1109,15 +1109,15 @@ export const act1CaseB = {
       timelineOrder: 1,
       pos: [0, 0, 0],
       location: "Temple Courts, Jerusalem",
-      desc: "A parchment scroll fragment containing the text of isaiah_56_7. The text is clearly legible and matches the known Hebrew/Greek manuscripts.",
-      bibleRef: "isaiah_56_7",
+      desc: "A parchment scroll fragment containing the text of Isaiah 56:7. The text is clearly legible and matches the known Hebrew/Greek manuscripts.",
+      bibleRef: "Isaiah 56:7",
       bibleLink: "isaiah_567",
       propheticLink: "This prophecy foretold events that were fulfilled during the events of this case.",
       bibleRefs: [
-        { ref: "isaiah_56_7", link: "isaiah_567" }
+        { ref: "Isaiah 56:7", link: "isaiah_567" }
       ],
       propheticRefs: [
-        { ref: "isaiah_56_7", link: "isaiah_567" }
+        { ref: "Isaiah 56:7", link: "isaiah_567" }
       ],
       investigatorNote: "This scroll contains the ancient prophecy that was fulfilled during these events.",
       fake: false,

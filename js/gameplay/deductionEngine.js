@@ -102,6 +102,7 @@ export class DeductionEngine {
       this.caseManager.setCodexStatus(matchingProphecy.id, 'complete');
       this.caseManager.addResearchPoints(20);
       this.caseManager.recordProphecyFound(matchingProphecy.id);
+      this.caseManager.checkAndAutoConclude();
       
       const result = {
         deductionId: `research_${matchingProphecy.id}`,

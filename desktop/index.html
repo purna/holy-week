@@ -57,6 +57,9 @@
 
 <body>
 
+  <!-- Fireworks container for game completion celebration -->
+  <div id="fireworks-container"></div>
+
   <!-- ==========================================================================
      3. PRIMARY APPLICATION STATE SCREENS
      ========================================================================== -->
@@ -81,6 +84,18 @@
   <!-- Screen Wipe Animation Overlay: Implements full-screen slide transitions between case selections -->
   <div id="wipe-overlay"></div>
 
+  <!-- Debug Panel: Top-right floating debug tools -->
+  <div id="debug-panel" class="debug-panel">
+    <div class="debug-panel-header">Debug</div>
+    <div class="debug-panel-actions">
+      <button class="debug-btn debug-toggle" data-debug="unlockAllCaseEvidence">Unlock All Evidence</button>
+      <button class="debug-btn debug-toggle" data-debug="solveAllLabCases">Solve All Lab</button>
+      <button class="debug-btn debug-toggle" data-debug="unlockAllProphecies">Unlock All Prophecies</button>
+      <button class="debug-btn debug-toggle" data-debug="unlockAllPeople">Unlock All People</button>
+      <button class="debug-btn debug-toggle" data-debug="unlockAllCases">Unlock All Cases</button>
+    </div>
+  </div>
+
   <!-- End Game / Case Resolution Screen: Displayed upon a definitive investigation completion -->
   <div id="end-screen" class="end-screen">
     <div class="end-inner">
@@ -104,12 +119,27 @@
 
       <div class="end-btn-row">
         <button class="terminal-btn" onclick="window.location.reload();">New Investigation</button>
-        <button class="terminal-btn" onclick="document.getElementById('end-screen').classList.remove('active')">Continue
-          Exploring</button>
+         <button class="terminal-btn" onclick="window.gameEngine.closeEndScreen()">Continue Exploring</button>
       </div>
     </div>
   </div>
 
+  <div id="game-over-screen" class="end-screen" style="display:none;">
+    <div class="end-inner">
+      <div id="game-over-icon" class="end-icon"><img src='../assets/gfx/x-circle-duotone.svg' class='icon-svg' loading='lazy'></div>
+      <h1 id="game-over-title" class="end-title">GAME OVER</h1>
+      <div class="result-breakdown">
+        <div class="result-truth-box">
+          <div class="result-label">The Investigation Has Failed</div>
+          <p id="game-over-reason" class="end-text">Your doubt has overwhelmed the investigation.</p>
+        </div>
+      </div>
+      <div class="end-btn-row">
+        <button class="terminal-btn" onclick="window.location.reload();">Try Again</button>
+        <button class="terminal-btn" onclick="document.getElementById('game-over-screen').style.display='none'">Continue</button>
+      </div>
+    </div>
+  </div>
 
   <!-- ==========================================================================
      4. PROJECTED IN-WORLD DYNAMIC INTERFACE TAGS
@@ -227,7 +257,6 @@
       <div class="metric-item"><i class="fa-lgfa-solid fa-shield metric-icon"></i> <span class="hidden">Score:</span>
         <span class="val-score">0</span> pts
       </div>
-      <div class="metric-item"><i class="fa-lg fa-solid fa-scroll metric-icon"></i> <span class="hidden">Research:</span> <span class="val-research">0</span> RP</div>
       <div class="metric-item"><i class="fa-lg fa-solid fa-star metric-icon"></i> <span class="hidden">Scholar:</span> <span class="val-scholar">Novice</span></div>
       <div class="metric-item"><i class="fa-lg fa-solid fa-book-open metric-icon"></i> <span class="hidden">Prophecies:</span> <span class="val-prophecies">0/0</span></div>
     </div>
@@ -364,19 +393,46 @@
     </div>
   </div>
 
-  <!-- ══════════════ Accuse Modal (from Example 01) ══════════════ -->
-  <div id="accuse-modal" class="overlay-mask">
-    <div class="modal-panel accuse-modal-panel">
+  <!-- ══════════════ Conclusion Modal ══════════════ -->
+  <div id="conclusion-modal" class="overlay-mask">
+    <div class="modal-panel conclusion-modal-panel">
       <header class="modal-header">
         <div>
-          <h2 class="modal-title-settings">Final Accusation</h2>
-          <h4 class="modal-subtitle-custom">Select the suspect responsible for the mystery</h4>
+          <h2 class="modal-title-settings">Case Conclusion</h2>
+          <h4 class="modal-subtitle-custom">Review the full findings before closing the case</h4>
         </div>
-        <button class="close-icon-btn" onclick="document.getElementById('accuse-modal').classList.remove('active')">
+        <button class="close-icon-btn" onclick="document.getElementById('conclusion-modal').classList.remove('active')">
           <i class="fa-lg fa-solid fa-xmark"></i>
         </button>
       </header>
-      <main class="modal-body accuse-suspect-list" id="accuse-suspect-list">
+      <main class="modal-body conclusion-body">
+        <div class="conclusion-section">
+          <div class="conclusion-label">Verdict</div>
+          <div id="conclusion-verdict" class="conclusion-value"></div>
+        </div>
+        <div class="conclusion-section">
+          <div class="conclusion-label">Motive / Finding</div>
+          <p id="conclusion-truth" class="conclusion-text"></p>
+        </div>
+        <div class="conclusion-section">
+          <div class="conclusion-label">Method / Context</div>
+          <p id="conclusion-method" class="conclusion-text"></p>
+        </div>
+        <div class="conclusion-section">
+          <div class="conclusion-label">Lesson</div>
+          <p id="conclusion-lesson" class="conclusion-text"></p>
+        </div>
+        <div class="conclusion-section">
+          <div class="conclusion-label">Prophecies Fulfilled</div>
+          <div id="conclusion-prophecies" class="conclusion-chips"></div>
+        </div>
+        <div class="conclusion-section">
+          <div class="conclusion-label">Further Reading</div>
+          <div id="conclusion-reading" class="conclusion-chips"></div>
+        </div>
+        <button id="btn-submit-conclusion" class="terminal-btn btn-full-width" style="margin-top: 16px;">
+          <i class="fa-lg fa-solid fa-check"></i> Close Case
+        </button>
       </main>
     </div>
   </div>
@@ -420,6 +476,7 @@
         <div class="evidence-detail-section">
           <div class="evidence-detail-label">Description</div>
           <div class="evidence-detail-desc"></div>
+          <div class="evidence-read-more-container"></div>
         </div>
         <div class="evidence-detail-section">
           <div class="evidence-detail-label">Location Found</div>
@@ -459,6 +516,25 @@
     </div>
   </div>
 
+  <!-- ══════════════ Chain Complete Modal ══════════════ -->
+  <div id="chain-complete-modal" class="overlay-mask" aria-label="Chain Complete">
+    <div class="modal-panel">
+      <header class="modal-header">
+        <div>
+          <h2 class="modal-title-settings chain-complete-title">Hidden Chain Complete</h2>
+        </div>
+        <button class="close-icon-btn" onclick="document.getElementById('chain-complete-modal').classList.remove('active')">
+          <i class="fa-lg fa-solid fa-xmark"></i>
+        </button>
+      </header>
+      <main class="modal-body">
+        <div class="chain-complete-body" style="margin-bottom:10px;"></div>
+        <div class="chain-complete-reward" style="color:var(--accent); margin-bottom:12px;"></div>
+        <button class="evidence-detail-confirm" onclick="document.getElementById('chain-complete-modal').classList.remove('active')">Continue</button>
+      </main>
+    </div>
+  </div>
+
   <!-- ══════════════ Codex Matching Modal (from Example 01) ══════════════ -->
   <div id="codex-modal" class="overlay-mask">
     <div class="modal-panel codex-modal-panel">
@@ -472,7 +548,6 @@
         </button>
       </header>
       <main class="modal-body codex-modal-body">
-        <div id="codex-header" class="codex-header"></div>
         <div class="prophecy-lab-intro">
           Select evidence from your collection, then choose a locked prophecy below to attempt a link.
         </div>
@@ -522,6 +597,9 @@
       </header>
 
       <main class="modal-body modal-body-flush">
+        <!-- Act Tree Sidebar -->
+        <div id="lsm-tree"></div>
+
         <!-- Primary Globe Viewport (The 'Glode') -->
         <div id="modal-canvas-wrap">
           <!-- Satellite Overlay UI -->
@@ -533,6 +611,7 @@
             <div class="satellite-coord">COORD_X: 31.7683° N</div>
             <div class="satellite-coord">COORD_Y: 35.2137° E</div>
           </div>
+          <div class="map-instructions">DRAG TO ROTATE &bull; CLICK NODE TO INSPECT</div>
         </div>
 
         <!-- Investigation Dossier Sidebar -->
@@ -694,33 +773,34 @@
             operation to find new insights.</p>
           <p><strong>5. Prophecies :</strong> when you have revealed the prophecies in the <strong>Codex</strong>.
             Can you unlock them?</p>
-          <p><strong>6. <img src='../assets/gfx/balance-scale-duotone.svg' class='icon-svg' loading='lazy'>Accuse
-              :</strong> Once you have enough proof, make your final verdict. Be careful—wrong
-            guesses increase your <strong>Doubt</strong>.</p>
-          <br>
-          <h4 class="modal-subtitle-custom instructions-subtitle">Scoring System</h4>
-          <div class="modal-subtitle-custom instructions-body">
-            <p><strong>Investigation Score:</strong></p>
-            <p>🔍 <strong>Evidence Collected:</strong> +5 points each</p>
-            <p>🧪 <strong>Lab Deductions:</strong> +15 (Key) / +8 (Standard)</p>
-            <p>⚡ <strong>Successful Challenge:</strong> +10 points each</p>
-            <p>🎯 <strong>Correct Accusation:</strong> +50 points</p>
-            <p>⭐ <strong>Perfect Case Bonus:</strong> +25 points (no failed challenges)</p>
-            <br>
-            <p><strong>Research Score (Codex):</strong></p>
-            <p>📜 <strong>Scripture Fragment Found:</strong> unlocks prophecy in Codex</p>
-            <p>🔗 <strong>Research Complete (Scripture + Fulfillment):</strong> +20 RP</p>
-            <p>⛓️ <strong>Hidden Chain Completed:</strong> +25 RP bonus</p>
-            <br>
-            <p><strong>Lose Points / Gain Doubt:</strong></p>
-            <p>❌ <strong>Incorrect Accusation:</strong> -25 points</p>
-            <p>⚠️ <strong>Doubt Penalty:</strong> Total Doubt × 2 (subtracted from final score)</p>
-            <p>💥 <strong>Failed Challenge:</strong> +10 Doubt</p>
-            <p>🔬 <strong>Incorrect Lab Pairing:</strong> +5 Doubt, -5 points</p>
-            <p>📜 <strong>Incorrect Prophecy Link:</strong> +5 Doubt</p>
-            <br>
-            <p><strong>Scholar Levels:</strong> Novice (0) → Student (100) → Scribe (250) → Rabbi (500) → Scholar (750) → Expert (1000) → Master (1500)</p>
-          </div>
+           <p><strong>6. <img src='../assets/gfx/balance-scale-duotone.svg' class='icon-svg' loading='lazy'>Case File
+                :</strong> Track your prophecy research progress. When every prophecy is fully researched, close the case
+             with a formal conclusion.</p>
+           <br>
+           <!--
+           <h4 class="modal-subtitle-custom instructions-subtitle">Scoring System</h4>
+           <div class="modal-subtitle-custom instructions-body">
+             <p><strong>Investigation Score:</strong></p>
+             <p>🔍 <strong>Evidence Collected:</strong> +5 points each</p>
+             <p>🧪 <strong>Lab Deductions:</strong> +15 (Key) / +8 (Standard)</p>
+             <p>⚡ <strong>Successful Challenge:</strong> +10 points each</p>
+             <p>📋 <strong>Case Closed:</strong> +50 points (all prophecies researched)</p>
+             <p>⭐ <strong>Full Investigation Bonus:</strong> +25 points (no failed challenges or incorrect pairings)</p>
+             <br>
+             <p><strong>Research Score (Codex):</strong></p>
+             <p>📜 <strong>Scripture Fragment Found:</strong> unlocks prophecy in Codex</p>
+             <p>🔗 <strong>Research Complete (Scripture + Fulfillment):</strong> +20 RP</p>
+             <p>⛓️ <strong>Hidden Chain Completed:</strong> +25 RP bonus</p>
+             <br>
+             <p><strong>Lose Points / Gain Doubt:</strong></p>
+             <p>⚠️ <strong>Doubt Penalty:</strong> Total Doubt × 2 (subtracted from final score)</p>
+             <p>💥 <strong>Failed Challenge:</strong> +10 Doubt</p>
+             <p>🔬 <strong>Incorrect Lab Pairing:</strong> +5 Doubt, -5 points</p>
+             <p>📜 <strong>Incorrect Prophecy Link:</strong> +5 Doubt</p>
+             <br>
+             <p><strong>Scholar Levels:</strong> Novice (0) → Student (100) → Scribe (250) → Rabbi (500) → Scholar (750) → Expert (1000) → Master (1500)</p>
+             -->
+            </div>
         </div>
       </div>
       <div class="modal-action-row instructions-actions">
@@ -772,6 +852,7 @@
 
   <!-- Bible Reader API Module: Handles asynchronous fetching and parsing of scriptural data -->
   <script type="module" src="./BibleReader2.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/fireworks-js@2.x/dist/index.umd.js"></script>
   <!-- Main Application Entry Point -->
   <script type="module" src="./main.js"></script>
 </body>

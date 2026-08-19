@@ -52,7 +52,7 @@ export class LabUI {
               <button class="picker-card ${isA ? 'selected-a' : ''} ${isB ? 'selected-b' : ''}" data-evidence-id="${e.id}"
                 aria-label="${e.name}: ${e.desc || e.description || ''}. ${isA ? 'Selected as first clue' : isB ? 'Selected as second clue' : 'Tap to select as clue'}"
                 aria-pressed="${isA || isB}">
-                <span class="picker-icon" aria-hidden="true"><img src='${e.icon}' class='icon-svg' loading='lazy'></span>
+                <span class="picker-icon" aria-hidden="true"><img src='${e.icon || '../assets/gfx/scroll-duotone.svg'}' class='icon-svg' loading='lazy'></span>
                 <span class="picker-name">${e.name}</span>
                 ${isA ? `<span class="sel-badge" aria-hidden="true" style="background:var(--blue)">A</span>` : ""}
                 ${isB ? `<span class="sel-badge" aria-hidden="true" style="background:var(--gold)">B</span>` : ""}

@@ -1,0 +1,32 @@
+{
+  "name": "Miracle Maker: Holy Week",
+  "short_name": "Holy Week",
+  "description": "An educational detective game set during Holy Week. Collect clues, interview suspects, and solve mysteries.",
+  "scope": "/Miracle%20Maker%20V5/desktop/",
+  "start_url": ".",
+  "display": "standalone",
+  "orientation": "landscape",
+  "background_color": "#010105",
+  "theme_color": "#00f2ff",
+  "icons": [
+    {
+      "src": "assets/icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "prefer_related_applications": false
+}

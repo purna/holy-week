@@ -162,6 +162,16 @@ export const act3CaseA = {
       explanation: "Jesus quoted this Psalm at the table just before giving the dipped bread to Judas, showing that even the betrayal was part of God's foreknown plan.",
     },
     {
+      reference: "Psalm 22:16",
+      id: "psalm_22_16_18",
+      icon: "../assets/gfx/sparkles-duotone.svg",
+      text: `"They have pierced my hands and my feet... they divide my garments among them and cast lots for my clothing."`,
+      written: "~1000 BC",
+      fulfilledBy: "Roman soldiers nailing Jesus to the cross and gambling for His seamless garment",
+      gospelLink: "Matthew 27:35; John 19:23–24",
+      insight: "Crucifixion did not exist as a method of execution when David penned this Psalm. Yet, the details match precisely down to the soldiers dividing His outer garments into four parts and casting lots for His single woven tunic.",
+    },
+    {
       reference: "Zechariah 11:12–13",
       id: "zechariah_11_12_13",
       icon: "../assets/gfx/sparkles-duotone.svg",
@@ -176,12 +186,22 @@ export const act3CaseA = {
       reference: "Isaiah 53:12",
       id: "isaiah_53_12",
       icon: "../assets/gfx/sparkles-duotone.svg",
-      text: `"He poured out his soul to death and was numbered with the transgressors; yet he bore the sin of many, and makes intercession for the transgressors."`,
+      text: `"He... was numbered with the transgressors; and he bore the sin of many, and made intercession for the transgressors."`,
       written: "~700 BC",
-      fulfilledBy: "Jesus's prayer for His disciples and for those who would betray and crucify Him (John 17)",
-      gospelLink: "John 17:1–26 (the High Priestly Prayer, delivered the same evening)",
-      insight: "The farewell discourse (John 14–17), delivered after the meal, is the longest recorded prayer of Jesus. Isaiah described the Suffering Servant 'making intercession' — Jesus fulfilled this at the Last Supper by praying for His disciples, for future believers, and — as He would later do from the cross — even for His enemies.",
-      explanation: "The Suffering Servant was prophesied to make 'intercession for the transgressors.' Jesus fulfilled this by praying for His disciples and His enemies during the Last Supper and on the cross.",
+      fulfilledBy: "Jesus being crucified between two thieves and praying 'Father, forgive them'",
+      gospelLink: "Luke 23:33-34",
+      insight: "Isaiah's prophecy had two parts: being 'numbered with the transgressors' and 'making intercession for them'. Both were fulfilled at the cross.",
+      explanation: "Jesus was crucified between two criminals and prayed for His executioners, fulfilling both clauses of this prophecy.",
+    },
+    {
+      reference: "Amos 8:9",
+      id: "amos_8_9",
+      icon: "../assets/gfx/sparkles-duotone.svg",
+      text: `"'In that day,' declares the Sovereign LORD, 'I will make the sun go down at noon and darken the earth in broad daylight.'"`,
+      written: "~750 BC",
+      fulfilledBy: "The supernatural three-hour darkness blanketing Judea from noon until 3:00 PM",
+      gospelLink: "Mark 15:33; Luke 23:44–45",
+      insight: "Passover always occurs during a full moon, making a natural solar eclipse astronomically impossible. The historical record of this prolonged noon darkness was so widely documented that non-Christian historians like Thallos and Phlegon actively tried to find natural explanations for it.",
     },
     {
       reference: "Genesis 14:18-20",
@@ -193,6 +213,17 @@ export const act3CaseA = {
       gospelLink: "Hebrews 7; Luke 22:19-20",
       insight: "Melchizedek, the mysterious priest-king of Salem (Jerusalem), blessed Abraham with bread and wine. The book of Hebrews explains that Jesus is a high priest 'forever in the order of Melchizedek' (quoting Psalm 110), an eternal priesthood outside the Levitical line. Just as Melchizedek offered bread and wine, Jesus institutes the New Covenant with the same elements at the Last Supper.",
       explanation: "Jesus fulfilled the typology of Melchizedek, the priest-king who blessed Abraham with bread and wine, by using the same elements to establish the New Covenant at the Last Supper.",
+    },
+    {
+      reference: "Zechariah 13:7",
+      id: "zechariah_13_7",
+      icon: "../assets/gfx/sparkles-duotone.svg",
+      text: `"'Awake, sword, against my shepherd, against the man who is close to me!' declares the LORD Almighty. 'Strike the shepherd, and the sheep will be scattered, and I will turn my hand against the little ones.'"`,
+      written: "~520 BC",
+      fulfilledBy: "Jesus quoting this exact verse to the Twelve on the way out of the Upper Room, then predicting Peter's specific denial",
+      gospelLink: "Matthew 26:31-35; Mark 14:27-31",
+      insight: "Jesus does not merely allude to this prophecy — He quotes it directly, applying it to Himself as the shepherd and the disciples as the scattered sheep, before naming Peter specifically. It is a rare case of Jesus citing a Messianic prophecy about Himself moments before it begins to unfold.",
+      explanation: "Jesus quoted Zechariah's shepherd-and-sheep prophecy word for word at the table, applying it to His own arrest and the disciples' scattering that same night.",
     },
   ],
 
@@ -348,6 +379,26 @@ export const act3CaseA = {
       },
     }, {
       id: "betrayal_dipped_bread",
+      name: "Roman Nail",
+      type: "physical",
+      relatedProphecy: "psalm_22_16_18",
+      icon: "../assets/gfx/pin-duotone.svg",
+      location: "Golgotha",
+      desc: "A heavy iron nail, of the type used by Roman legionaries for crucifixions.",
+      bibleRef: "John 20:25",
+      propheticLink: "Psalm 22:16 prophesied 'they have pierced my hands and my feet.' This was written centuries before crucifixion was invented.",
+      bibleRefs: [
+        { ref: "John 20:25", link: "john_2025" }
+      ],
+      propheticRefs: [
+        { ref: "Psalm 22:16", link: "psalm_2216" }
+      ],
+      investigatorNote: "The physical evidence of the crucifixion method itself is a direct fulfillment of prophecy.",
+      fake: false,
+      category: 'event',
+      timelineOrder: 2,
+    }, {
+      id: "betrayal_dipped_bread",
       name: "Fragment of Sop (Dipped Bread)",
       type: "physical",
       relatedProphecy: "psalm_41_9",
@@ -397,7 +448,7 @@ export const act3CaseA = {
       category: 'people',
       timelineOrder: 7,
       clues: {
-        compare: "Records the words spoken over the same cup marked by the wine stain.",
+        compare: "Records the words spoken over the same cup marked by the Spilled Wine on the Linen.",
         link: "People — a young scribe's written record of Jesus's words over the bread and the cup.",
         timeline: "CHRONOLOGY: Recorded as Jesus spoke, late in the meal, establishing the new covenant.",
         contradict: "RELIABILITY: Independently corroborated by Paul's nearly identical wording in 1 Corinthians 11:24–25."
@@ -428,6 +479,37 @@ export const act3CaseA = {
         timeline: "CHRONOLOGY: Reflects the seating for the whole meal, from the first cup through Jesus's final words.",
         contradict: "RELIABILITY: Jesus knowingly kept His betrayer at the table and ministered to him regardless — a detail no fabricated account would need to include."
       },
+    },
+    {
+      id: "denial_foretold",
+      name: "Account of the Rooster Warning",
+      type: "testimonial",
+      relatedProphecy: "zechariah_13_7",
+      icon: "../assets/gfx/scroll-duotone.svg",
+      location: "Upper Room, Near the Doorway",
+      desc: "A disciple's recollection of the exchange just before the group left for the Mount of Olives: Jesus quoting the ancient words about the shepherd being struck and the sheep scattering, then turning to Peter directly with a specific, private warning — and Peter's confident refusal to believe it.",
+      bibleRef: "Matthew 26:31-35 — \"'This very night,' Jesus answered, 'before the rooster crows, you will disown me three times.' But Peter declared, 'Even if I have to die with you, I will never disown you.'\"",
+      bibleLink: "matthew_26_31_35",
+      propheticLink: "Jesus quotes Zechariah 13:7 directly — 'I will strike the shepherd, and the sheep of the flock will be scattered' — before adding an even more specific prediction naming Peter and a number: three denials, before the rooster crows. Peter's confident vow makes the prophecy's exactness, and his failure to keep it hours later, all the sharper.",
+      bibleRefs: [
+        { ref: "Matthew 26:31-35", link: "matthew_263135" },
+        { ref: "Mark 14:27-31", link: "mark_142731" },
+        { ref: "Luke 22:31-34", link: "luke_223134" },
+        { ref: "John 13:36-38", link: "john_133638" }
+      ],
+      propheticRefs: [
+        { ref: "Zechariah 13:7", link: "zechariah_137" }
+      ],
+      investigatorNote: "All four Gospels record this exchange independently — unusually strong multiple-attestation for a single private prediction made to one man.",
+      fake: false,
+      category: "prophecy",
+      timelineOrder: 9,
+      clues: {
+        compare: "Sets up everything that follows in the high priest's courtyard — pairs directly with the Rooster Feather found there the next morning as prediction and fulfillment.",
+        link: "Prophecy — Jesus directly quotes Zechariah 13:7, then adds a specific, personal prediction about Peter.",
+        timeline: "CHRONOLOGY: The last exchange recorded before the group left the Upper Room for the Mount of Olives.",
+        contradict: "RELIABILITY: All four Gospel accounts agree on the substance, though Mark alone records two rooster-crows rather than one — a minor variation consistent with independent eyewitness memory, not fabrication."
+      }
     },
     {
       id: "last_supper_fake",
@@ -648,7 +730,7 @@ export const act3CaseA = {
     culprit: "judas",
     motive: "Judas Iscariot had already made his agreement with the chief priests for 30 silver coins. He came to the preparation area before the meal to count his payment, dropping the clay cup in his haste. The broken cup and spilled wine were caused by his agitated state — and by his abrupt departure after Jesus identified him through the dipped bread.",
     method: "Judas moved through the preparation room before the Passover meal began, handling the money bag containing his payment. His nervous energy caused the cup to be knocked and broken near the doorway. During the meal, Jesus gave him the honoured sop of dipped bread — publicly naming him as the betrayer, though only John fully understood. Judas left immediately into the night to alert the Temple guards.",
-    lesson: "Even the betrayal was prophesied. Psalm 41:9, Zechariah 11:12–13, and Isaiah 53:12 all pointed toward this moment centuries in advance. Jesus did not merely endure the betrayal — He identified it from Scripture, gave Judas one final act of grace (the honoured bread), and then let the plan of God proceed.",
+    lesson: "Even the betrayal was prophesied. Psalm 41:9, Zechariah 11:12–13, and Isaiah 53:12 all pointed toward this moment centuries in advance. Jesus did not merely endure the betrayal — He identified it from Scripture, gave Judas one final act of grace (the honored bread), and then let the plan of God proceed.",
     prophesyFulfilled: ["Psalm 41:9", "Zechariah 11:12–13", "Jeremiah 31:31–34", "Exodus 12:1–14", "Isaiah 53:12"],
     furtherReading: ["Matthew 26:17–30", "Mark 14:12–26", "Luke 22:7–23", "John 13:1–30", "1 Corinthians 11:23–26"],
   },
@@ -857,7 +939,7 @@ export const act3CaseB = {
       category: 'event',
       timelineOrder: 1,
       clues: {
-        compare: "Marks the exact spot of the arresting party's advance — pairs with the severed ear wrap for what happened next.",
+        compare: "Marks the exact spot of the arresting party's advance — pairs with the Bloodied Scarf Fragment for what happened next.",
         link: "Event — a Roman military torch, trampled into the mud while still unlit, despite unused pitch remaining.",
         timeline: "CHRONOLOGY: Dropped first, at the moment the detachment fell backward when Jesus said 'I am he' (John 18:6).",
         contradict: "RELIABILITY: An unlit, unburnt torch dropped mid-approach is inconsistent with a routine handoff — consistent with a sudden shock."
@@ -1125,7 +1207,7 @@ export const act3CaseB = {
     culprit: "none",
     motive: "There was no military insurgency. Jesus submitted voluntarily, refusing to allow His disciples to mount an armed rebellion against the legal authorities.",
     method: "Judas betrayed the location, and an armed force arrived. Peter panicked and struck Malchus. Jesus miraculously healed Malchus's ear on the spot, demanded peace, and surrendered Himself willingly to fulfill the Scriptures.",
-    lesson: "The kingdom of Jesus does not advance by carnal weapons. His voluntary surrender proves that His death was an act of deliberate obedience, not a tactical failure.",
+    lesson: "The kingdom of Jesus does not advance by carnal weapons. His voluntary surrender proves that His death was an act of deliberate obedience, not a tactical failure. He would later tell Pilate, 'My kingdom is not of this world. If it were, my servants would fight... but my kingdom is not from here.' (John 18:36)",
     prophesyFulfilled: ["Zechariah 13:7"],
     furtherReading: ["John 18:1–12", "Luke 22:47–53"],
   },
@@ -1272,7 +1354,7 @@ export const act3CaseC = {
       id: "micah_5_1",
       icon: "../assets/gfx/sparkles-duotone.svg",
       text: `"Out of you will come one ruler to rule over a people... Yet I will come to the firstborn of the exiles of Moab, to the one who has been spared among the dry bones."`,
-      written: "~700 BC",
+      written: "~740 BC",
       fulfilledBy: "Jesus remaining silent during His false trial, fulfilling the role of the innocent sufferer",
       gospelLink: "Matthew 27:12-14",
       insight: "Though mocked as a criminal, Jesus fulfilled the prophecy of one who would rule from weakness.",
@@ -1292,7 +1374,33 @@ export const act3CaseC = {
       text: `"Malicious witnesses rise up; they ask me of things that I do not know."`,
       written: "~1000 BC",
       explanation: "The Sanhedrin's trial was a sham, relying on hired accusers whose testimonies contradicted each other, fulfilling the psalmist's prediction.",
-    }
+    },
+    {
+      reference: "Isaiah 50:6",
+      id: "isaiah_50_6",
+      icon: "../assets/gfx/sparkles-duotone.svg",
+      text: `"I offered my back to those who beat me, my cheeks to those who pulled out my beard; I did not hide my face from mocking and spitting."`,
+      written: "~700 BC",
+      fulfilledBy: "The guards and Sanhedrin members striking and spitting on Jesus after the verdict",
+      gospelLink: "Matthew 26:67, Mark 14:65",
+      insight: "The physical abuse was prophesied—the Suffering Servant would endure mockery and spitting as part of the redemptive plan.",
+    },
+    {
+      reference: "Psalm 22:7–8",
+      id: "psalm_22_7_8",
+      icon: "../assets/gfx/sparkles-duotone.svg",
+      text: `"All who see me mock me; they hurl insults, shaking their heads. 'He trusts in the LORD,' they say, 'let the LORD rescue him.'"`,
+      written: "~1000 BC",
+      explanation: "The verdict was immediately followed by the guards spitting on Jesus, blindfolding Him, striking Him, and mocking Him to 'prophesy' who had struck Him — the same derision this psalm describes, echoed again more publicly at the cross.",
+    },
+    {
+      reference: "Psalm 38:11",
+      id: "psalm_38_11",
+      icon: "../assets/gfx/sparkles-duotone.svg",
+      text: `"My friends and companions avoid me because of my wounds; my neighbors stay far away."`,
+      written: "~1000 BC",
+      explanation: "Peter, the disciple who swore he would never abandon Jesus, followed the arrest procession only 'at a distance' — the same isolation this psalm foretold, playing out even before the crucifixion.",
+    },
 
   ],
 
@@ -1367,7 +1475,7 @@ export const act3CaseC = {
       bibleRef: "Matthew 26:65",
       bibleLink: "matthew_26_65",
       propheticLink: "Caiaphas tore his robes to signal blasphemy when Jesus affirmed His divinity.",
-      bibleRefs: [
+      bibleRefs: [ 
         { ref: "Matthew 26:65", link: "matthew_2665" },
         { ref: "Isaiah 50:6", link: "isaiah_506" }
       ],
@@ -1434,6 +1542,35 @@ export const act3CaseC = {
         contradict: "RELIABILITY: John 18:18 places Peter at exactly this fire, warming himself among the guards."
       },
     }, {
+      id: "first_denial_account",
+      name: "Servant Girl's Accusation",
+      type: "testimonial",
+      relatedProphecy: "",
+      icon: "../assets/gfx/chat-duotone.svg",
+      location: "Courtyard Gate",
+      desc: "An account of the servant girl on duty at the gate who recognized Peter as he entered and warmed himself at the fire, and said so aloud in front of the others gathered there.",
+      bibleRef: "Matthew 26:69-70 — \"'You also were with Jesus of Galilee,' she said. But he denied it before them all. 'I don't know what you're talking about,' he said.\"",
+      bibleLink: "matthew_26_69_70",
+      propheticLink: "This is the first of the three denials Jesus predicted hours earlier at the Supper — a low-stakes accusation from a servant girl, met with an immediate, flat denial.",
+      bibleRefs: [
+        { ref: "Matthew 26:69-70", link: "matthew_266970" },
+        { ref: "Mark 14:66-68", link: "mark_146668" },
+        { ref: "John 18:15-17", link: "john_181517" }
+      ],
+      propheticRefs: [
+        { ref: "Matthew 26:34", link: "matthew_2634" }
+      ],
+      investigatorNote: "John's account adds that this servant girl was the one who controlled the gate — she had personally let Peter in, making the recognition immediate.",
+      fake: false,
+      category: 'event',
+      timelineOrder: 1,
+      clues: {
+        compare: "The first of three matching accusations — pairs with the Second Bystander's Accusation as the same pattern repeating.",
+        link: "Event — an eyewitness account of the first accusation made against Peter in the courtyard.",
+        timeline: "CHRONOLOGY: The first denial, made shortly after Peter arrived and sat down at the fire.",
+        contradict: "RELIABILITY: All three Synoptic Gospels and John independently record a servant girl making this first accusation, though they vary slightly on her exact words."
+      },
+    }, {
       id: "guard_reed",
       name: "Guard's Reed",
       type: "physical",
@@ -1487,6 +1624,65 @@ export const act3CaseC = {
         contradict: "RELIABILITY: The desperation to produce any usable testimony exposes the weakness of the prosecution's actual case."
       },
     },
+    {
+      id: "second_denial_account",
+      name: "Second Bystander's Accusation",
+      type: "testimonial",
+      relatedProphecy: "",
+      icon: "../assets/gfx/chat-duotone.svg",
+      location: "Courtyard Fire Pit",
+      desc: "An account of a second accusation, made a little later, when another bystander at the fire looked at Peter and declared to those nearby that he too had been with the Nazarene. This time Peter's denial came with an oath.",
+      bibleRef: "Matthew 26:71-72 — \"'This fellow was with Jesus of Nazareth,' she said. He denied it again, with an oath: 'I don't know the man!'\"",
+      bibleLink: "matthew_26_71_72",
+      propheticLink: "The second of the three predicted denials — and the pattern is worsening. What began as a simple denial has now become a sworn oath.",
+      bibleRefs: [
+        { ref: "Matthew 26:71-72", link: "matthew_267172" },
+        { ref: "Mark 14:69-70", link: "mark_146970" },
+        { ref: "Luke 22:58", link: "luke_2258" }
+      ],
+      propheticRefs: [
+        { ref: "Matthew 26:34", link: "matthew_2634" }
+      ],
+      investigatorNote: "Luke's account has this second accusation coming from a man, not the same servant girl — suggesting word of Peter's presence was spreading around the courtyard.",
+      fake: false,
+      category: 'event',
+      timelineOrder: 2,
+      clues: {
+        compare: "The second of three matching accusations — pairs with the Servant Girl's Accusation as the same pattern intensifying.",
+        link: "Event — an eyewitness account of the second accusation made against Peter, this time answered with an oath.",
+        timeline: "CHRONOLOGY: The second denial, made a short time after the first, as the fire drew more onlookers.",
+        contradict: "RELIABILITY: Luke's Gospel names a different accuser than Matthew and Mark — a small variation consistent with several people noticing Peter over time, not a single scripted moment."
+      },
+    },
+    {
+      id: "peters_bitter_weeping",
+      name: "Witness to Peter's Departure",
+      type: "testimonial",
+      relatedProphecy: "",
+      icon: "../assets/gfx/chat-duotone.svg",
+      location: "Courtyard Gate",
+      desc: "An account of what happened in the seconds after the rooster crowed: as the guards led Jesus out across the courtyard, He turned and looked directly at Peter. Peter did not stay to explain himself — he fled into the night.",
+      bibleRef: "Luke 22:61-62 — \"The Lord turned and looked straight at Peter. Then Peter remembered... And he went outside and wept bitterly.\"",
+      bibleLink: "luke_22_61_62",
+      propheticLink: "This is the moment the prophecy lands. Peter does not need to be told what he has done — a single look is enough. The man who swore he would never disown Jesus breaks down completely.",
+      bibleRefs: [
+        { ref: "Luke 22:61-62", link: "luke_226162" }
+      ],
+      propheticRefs: [
+        { ref: "Matthew 26:34", link: "matthew_2634" },
+        { ref: "Matthew 26:33", link: "matthew_2633" }
+      ],
+      investigatorNote: "Only Luke records that Jesus 'turned and looked' at Peter — a detail that could only come from someone standing close enough to see both of them at once.",
+      fake: false,
+      category: 'event',
+      timelineOrder: 7,
+      clues: {
+        compare: "The direct consequence of the Rooster Feather — the crowing and the look happen in the same instant, closing the arc that began with Peter's vow at the Supper.",
+        link: "Event — an eyewitness account of Peter's reaction in the moments immediately after the third denial.",
+        timeline: "CHRONOLOGY: Immediately after the rooster crowed, as Jesus was being led from the council chamber across the courtyard.",
+        contradict: "RELIABILITY: The specificity of Jesus 'turning and looking' — a small, human detail with no theological point to make — is the kind of detail that argues for an actual eyewitness, not later invention."
+      },
+    },
 
     {
       id: "sanhedrin_trial_fake",
@@ -1528,6 +1724,7 @@ export const act3CaseC = {
       bibleRef: "Matthew 26:57-68; John 11:49-52",
       hasDialogue: true,
       storyFile: "caiaphas_priest",
+      revealsProphecy: "psalm_22_7_8",
       background: "Joseph ben Caiaphas presided over the late-night tribunal. Fearing Roman intervention, he orchestrated Jesus's condemnation.",
       dialogue: {
         neutral: "The council has spoken. The prisoner has condemned Himself.",
@@ -1557,6 +1754,7 @@ export const act3CaseC = {
       bibleRef: "Matthew 26:69-75; Mark 14:66-72; John 18:15-27",
       hasDialogue: true,
       storyFile: "peter_denial",
+      revealsProphecy: "psalm_38_11",
       background: "Peter had boasted he would never deny the Master. Now, in the courtyard, fear has seized him.",
       dialogue: {
         neutral: "I tell you, I do not know the man!",
@@ -1662,8 +1860,8 @@ export const act3CaseC = {
   truth: {
     culprit: "chief_priest",
     motive: "Blasphemy charge used as political leverage to secure Roman execution.",
-    method: "The Sanhedrin manufactured testimony and pressured Jesus to pronounce judgment on Himself through His own words.",
-    lesson: "The trial was a collection of procedural illegalities. Peter's failure shows the human condition, while Jesus's silence shows divine resolve.",
+    method: "The Sanhedrin manufactured testimony and pressured Jesus to pronounce judgment on Himself through His own words. After the verdict, he was mocked and beaten by the guards.",
+    lesson: "The trial was a collection of procedural illegalities. Peter's failure shows the human condition, while Jesus's silence shows divine resolve. The verdict was pre-determined; the trial was a formality to give the appearance of justice.",
     prophesyFulfilled: ["Isaiah 50:6", "Micah 5:1", "Psalm 27:12"],
     furtherReading: ["Matthew 26:57–68", "Mark 14:53–65", "Luke 22:54–71"],
   },
@@ -1804,6 +2002,26 @@ export const act3CaseD = {
       fulfilledBy: "The Roman Governor and Jewish leaders collaborating under public pressure",
       gospelLink: "Luke 23:12",
       insight: "Herod and Pilate became friends on this day, united in their handling of Jesus, fulfilling the pattern of rulers banding together against the Anointed One.",
+    },
+    {
+      reference: "Psalm 22:7–8",
+      id: "psalm_22_7_8",
+      icon: "../assets/gfx/sparkles-duotone.svg",
+      text: `"All who see me mock me; they hurl insults, shaking their heads. 'He trusts in the LORD,' they say, 'let the LORD rescue him.'"`,
+      written: "~1000 BC",
+      fulfilledBy: "Pilate's soldiers mocking Jesus with a purple robe and crown of thorns immediately after sentencing, hailing Him sarcastically as 'King of the Jews'",
+      gospelLink: "Matthew 27:27-31",
+      insight: "The derision this psalm foretold begins the moment the crowd's choice is finalized — before Jesus even leaves the governor's headquarters for Golgotha.",
+    },
+    {
+      reference: "Psalm 38:11",
+      id: "psalm_38_11",
+      icon: "../assets/gfx/sparkles-duotone.svg",
+      text: `"My friends and companions avoid me because of my wounds; my neighbors stay far away."`,
+      written: "~1000 BC",
+      fulfilledBy: "Jesus standing before the crowd with no follower or advocate willing to speak in His defense, while a guilty man is publicly celebrated and released",
+      gospelLink: "Mark 15:6-15",
+      insight: "The contrast is deliberate: Barabbas has a crowd chanting his freedom; Jesus, surrounded by the same crowd, stands utterly alone.",
     }
   ],
 
@@ -1881,7 +2099,7 @@ export const act3CaseD = {
       name: "The Insurgent's Dossier",
       type: "analytical",
       relatedProphecy: "isaiah_53_3",
-      icon: "../assets/gfx/barabbas.svg",
+      icon: "../assets/gfx/clipboard-duotone.svg",
       location: "Antonia Fortress Record Room",
       desc: "A Roman arrest record for 'Jesus Barabbas.' Charges include insurrection, murder, and robbery. He is an ultra-nationalist zealot.",
       bibleRef: "Mark 15:7; John 18:40",
@@ -1974,6 +2192,7 @@ export const act3CaseD = {
       bibleRef: "Luke 23:1-25; John 18:38-40",
       hasDialogue: true,
       storyFile: "pontius_pilate_barabbas",
+      revealsProphecy: "psalm_22_7_8",
       unlocksEvidence: ["pilates_basin", "wifes_letter"],
     },
     {
@@ -1987,6 +2206,7 @@ export const act3CaseD = {
       bibleRef: "Mark 15:6-15",
       hasDialogue: true,
       storyFile: "barabbas_insurgent",
+      revealsProphecy: "psalm_38_11",
       unlocksSuspects: ["barabbas_insurgent"],
       unlocksEvidence: ["barabbas_warrant"],
     }
@@ -2156,7 +2376,7 @@ export const act3CaseE = {
       id: "psalm_22_16_18",
       icon: "../assets/gfx/sparkles-duotone.svg",
       text: `"They have pierced my hands and my feet... they divide my garments among them and cast lots for my clothing."`,
-      written: "~1000 BC",
+      written: "~1000 BC", 
       fulfilledBy: "Roman soldiers nailing Jesus to the cross and gambling for His seamless garment",
       gospelLink: "Matthew 27:35; John 19:23–24",
       insight: "Crucifixion did not exist as a method of execution when David penned this Psalm. Yet, the details match precisely down to the soldiers dividing His outer garments into four parts and casting lots for His single woven tunic.",
@@ -2166,7 +2386,7 @@ export const act3CaseE = {
       id: "amos_8_9",
       icon: "../assets/gfx/sparkles-duotone.svg",
       text: `"'In that day,' declares the Sovereign LORD, 'I will make the sun go down at noon and darken the earth in broad daylight.'"`,
-      written: "~750 BC",
+      written: "~750 BC", 
       fulfilledBy: "The supernatural three-hour darkness blanketing Judea from noon until 3:00 PM",
       gospelLink: "Mark 15:33; Luke 23:44–45",
       insight: "Passover always occurs during a full moon, making a natural solar eclipse astronomically impossible. The historical record of this prolonged noon darkness was so widely documented that non-Christian historians like Thallos and Phlegon actively tried to find natural explanations for it.",
@@ -2176,7 +2396,7 @@ export const act3CaseE = {
       id: "isaiah_53_9",
       icon: "../assets/gfx/sparkles-duotone.svg",
       text: `"He was assigned a grave with the wicked, and with the rich in his death, though he had done no violence."`,
-      written: "~700 BC",
+      written: "~700 BC", 
       fulfilledBy: "Jesus dying alongside criminals but being buried in the clean, private rock-cut tomb of wealthy Joseph of Arimathea",
       gospelLink: "Matthew 27:57–60; John 19:38–42",
       insight: "Executed criminals were routinely thrown into mass, unmarked graves or left to historical decay. The sudden intervention of a wealthy Sanhedrin member fulfilled Isaiah's binary paradox to the letter.",
@@ -2186,7 +2406,7 @@ export const act3CaseE = {
       id: "zechariah_12_10",
       icon: "../assets/gfx/sparkles-duotone.svg",
       text: `"They will look on me, the one they have pierced, and they will mourn for him as one mourns for an only child."`,
-      written: "~520 BC",
+      written: "~520 BC", 
       fulfilledBy: "The legionary piercing Jesus's side with a spear, and the surrounding crowd departing in deep grief",
       gospelLink: "John 19:34–37; Luke 23:48",
       insight: "To ensure death without breaking His legs (which would violate the Passover lamb protocol), a soldier delivered a post-mortem spear thrust. The resulting discharge of blood and water clinically confirmed death by cardiac rupture or extreme physical trauma.",
@@ -2196,7 +2416,7 @@ export const act3CaseE = {
       id: "psalm_34_20",
       icon: "../assets/gfx/sparkles-duotone.svg",
       text: `"He protects all his bones; not one of them will be broken."`,
-      written: "~1000 BC",
+      written: "~1000 BC", 
       explanation: "This prophecy, linked to the Passover lamb requirement (Exodus 12:46), was fulfilled when the soldiers pierced Jesus's side to confirm death instead of breaking His legs.",
     },
     {
@@ -2204,7 +2424,7 @@ export const act3CaseE = {
       id: "psalm_31_5",
       icon: "../assets/gfx/sparkles-duotone.svg",
       text: `"Into your hand I commit my spirit."`,
-      written: "~1000 BC",
+      written: "~1000 BC", 
       explanation: "Jesus's final words from the cross were a direct quote from this Psalm, showing His willing surrender of His life into the Father's hands.",
     }
     ,
@@ -2213,7 +2433,7 @@ export const act3CaseE = {
       id: "psalm_69_21",
       icon: "../assets/gfx/sparkles-duotone.svg",
       text: `"They put gall in my food and gave me vinegar for my thirst."`,
-      written: "~1000 BC",
+      written: "~1000 BC", 
       explanation: "This prophecy was fulfilled when Jesus was offered sour wine (vinegar) on a hyssop branch during His crucifixion.",
     },
     {
@@ -2221,7 +2441,7 @@ export const act3CaseE = {
       id: "jeremiah_31_31_34",
       icon: "../assets/gfx/sparkles-duotone.svg",
       text: `"Behold, the days are coming, declares the LORD, when I will make a new covenant... I will put my law within them, and I will write it on their hearts."`,
-      written: "~627 BC",
+      written: "~627 BC", 
       fulfilledBy: "The tearing of the Temple veil, symbolizing direct access to God under a New Covenant",
       gospelLink: "Matthew 27:51; Hebrews 10:19-22",
       insight: "The thick veil separated humanity from the Holy of Holies. Its tearing from top to bottom at the moment of Jesus's death was a divine sign that the old system was finished and the New Covenant, prophesied by Jeremiah, had begun.",
@@ -2231,10 +2451,40 @@ export const act3CaseE = {
       id: "haggai_2_6_7",
       icon: "../assets/gfx/sparkles-duotone.svg",
       text: `"For thus says the LORD of hosts: Yet once more, in a little while, I am going to shake the heavens and the earth... and I will fill this house with glory."`,
-      written: "~520 BC",
+      written: "~520 BC", 
       fulfilledBy: "The earthquake that struck at the moment of Jesus's death",
       gospelLink: "Matthew 27:51",
       insight: "Haggai prophesied a great shaking that would accompany the coming of God's glory. The earthquake at the cross was a physical manifestation of this cosmic event, signifying a shift in spiritual authority.",
+    },
+    {
+      reference: "Psalm 22:1",
+      id: "psalm_22_1",
+      icon: "../assets/gfx/sparkles-duotone.svg",
+      text: `"My God, my God, why have you forsaken me? Why are you so far from saving me, so far from my cries of anguish?"`,
+      written: "~1000 BC", 
+      fulfilledBy: "Jesus crying out in Aramaic from the cross at the ninth hour, quoting this psalm's opening line word for word",
+      gospelLink: "Matthew 27:46; Mark 15:34",
+      insight: "David opens this psalm of desolation with the exact cry Jesus uttered a thousand years later. The bystanders' confusion—thinking He called for Elijah—only underscores that this was a precise, deliberate quotation, not a wordless scream of pain.",
+    },
+    {
+      reference: "Psalm 22:7–8",
+      id: "psalm_22_7_8",
+      icon: "../assets/gfx/sparkles-duotone.svg",
+      text: `"All who see me mock me; they hurl insults, shaking their heads. 'He trusts in the LORD,' they say, 'let the LORD rescue him. Let him deliver him, since he delights in him.'"`,
+      written: "~1000 BC", 
+      fulfilledBy: "The crowd, chief priests, and passersby mocking Jesus with almost these exact words as He hung on the cross",
+      gospelLink: "Matthew 27:39–43",
+      insight: "The Gospel writers record the mockers' taunt—'He trusts in God, let God rescue him now if he wants him'—as an almost verbatim echo of this thousand-year-old psalm, spoken by people with no apparent awareness they were fulfilling it.",
+    },
+    {
+      reference: "Psalm 38:11",
+      id: "psalm_38_11",
+      icon: "../assets/gfx/sparkles-duotone.svg",
+      text: `"My friends and companions avoid me because of my wounds; my neighbors stay far away."`,
+      written: "~1000 BC", 
+      fulfilledBy: "Jesus's followers and acquaintances watching the crucifixion from a distance rather than standing near the cross",
+      gospelLink: "Luke 23:49",
+      insight: "Luke specifically notes that those who knew Jesus, including the women who had followed Him from Galilee, 'stood at a distance, watching these things'—the precise posture of grief-stricken avoidance this psalm describes.",
     }
 
   ],
@@ -2468,6 +2718,93 @@ export const act3CaseE = {
         timeline: "CHRONOLOGY: The last words spoken, immediately before Jesus breathed His last and the earth shook.",
         contradict: "RELIABILITY: Luke 23:46 records the words as a loud, deliberate cry, not a fading whisper — consistent with a willing surrender rather than a slow expiration."
       },
+    },
+
+    {
+      id: "the_forsaken_cry",
+      name: "Transcript of the Aramaic Cry",
+      type: "testimonial",
+      relatedProphecy: "psalm_22_1",
+      icon: "../assets/gfx/scroll-duotone.svg",
+      location: "Foot of the Central Cross",
+      desc: "A bystander's account of the loud cry Jesus gave in Aramaic at the ninth hour — 'Eli, Eli, lema sabachthani?' — which some in the crowd mistook for a call to the prophet Elijah.",
+      bibleRef: "Matthew 27:46 — 'About three in the afternoon Jesus cried out in a loud voice, \"Eli, Eli, lema sabachthani?\" (which means \"My God, my God, why have you forsaken me?\").'",
+      bibleLink: "matthew_27_46",
+      propheticLink: "Jesus's cry is not a wordless scream but a precise quotation of the opening line of Psalm 22, written a thousand years earlier. Quoting an entire psalm by its first line was a common rabbinic practice — He was pointing His hearers to the whole psalm, including its ending of vindication.",
+      bibleRefs: [
+        { ref: "Matthew 27:46", link: "matthew_27_46" }
+      ],
+      propheticRefs: [
+        { ref: "Psalm 22:1", link: "psalm_22_1" }
+      ],
+      investigatorNote: "The crowd's confusion over 'Eli' sounding like 'Elijah' confirms the words were heard clearly and reported accurately — this was not a garbled account.",
+      fake: false,
+      category: "prophecy",
+      timelineOrder: 2,
+      clues: {
+        compare: "Immediately provokes the reaction recorded in the Sponge Soaked in Vinegar and Hyssop — some in the crowd, hearing 'Eli,' ran to see if Elijah would come.",
+        link: "Prophecy — the transcribed cry quotes Psalm 22:1 word for word.",
+        timeline: "CHRONOLOGY: Cried out at the ninth hour, shortly after the three hours of darkness lifted, and just before the final words.",
+        contradict: "RELIABILITY: Two independent Gospel writers (Matthew and Mark) record the same Aramaic words with only minor spelling variation — consistent transmission, not invention."
+      }
+    },
+
+    {
+      id: "mocking_crowd_taunt",
+      name: "Record of the Crowd's Taunt",
+      type: "testimonial",
+      relatedProphecy: "psalm_22_7_8",
+      icon: "../assets/gfx/scroll-duotone.svg",
+      location: "Golgotha, Roadside",
+      desc: "An account of passersby, chief priests, and teachers of the law wagging their heads and jeering at Jesus on the cross, daring God to rescue Him if He truly delighted in Him.",
+      bibleRef: "Matthew 27:43 — 'He trusts in God. Let God rescue him now if he wants him, for he said, \"I am the Son of God.\"'",
+      bibleLink: "matthew_27_43",
+      propheticLink: "The mockers' taunt echoes Psalm 22:8 so closely it is almost a direct quotation, spoken by people with no apparent awareness they were reciting a thousand-year-old psalm about this very moment.",
+      bibleRefs: [
+        { ref: "Matthew 27:39-43", link: "matthew_27_39" }
+      ],
+      propheticRefs: [
+        { ref: "Psalm 22:7-8", link: "psalm_22_7_8" }
+      ],
+      investigatorNote: "The specificity of the wording — 'let God rescue him now if he wants him' — is too close to the psalm to be coincidence.",
+      fake: false,
+      category: "prophecy",
+      timelineOrder: 1,
+      clues: {
+        compare: "Pairs with the Roman Dice and Garment Fragments — both record what happened in the same early hours of the crucifixion, before the darkness fell.",
+        link: "Prophecy — the recorded taunt matches Psalm 22:7-8 almost word for word.",
+        timeline: "CHRONOLOGY: Mocking began as soon as Jesus was raised on the cross, continuing through the morning hours.",
+        contradict: "RELIABILITY: Multiple Gospel accounts (Matthew, Mark, Luke) independently record the same taunt from different witness groups — chief priests, passersby, and the crowd."
+      }
+    },
+
+    {
+      id: "distant_witnesses",
+      name: "List of Those Watching From Afar",
+      type: "testimonial",
+      relatedProphecy: "psalm_38_11",
+      icon: "../assets/gfx/scroll-duotone.svg",
+      location: "Hillside Overlook, Golgotha",
+      desc: "A record of the women who had followed Jesus from Galilee, along with other acquaintances, standing at a distance from the cross rather than close beside it.",
+      bibleRef: "Luke 23:49 — 'But all those who knew him, including the women who had followed him from Galilee, stood at a distance, watching these things.'",
+      bibleLink: "luke_23_49",
+      propheticLink: "Psalm 38:11 describes the isolation of the sufferer: even friends and companions keep their distance because of his wounds. Luke's careful note that Jesus's own acquaintances 'stood at a distance' fulfills this pattern of grief-stricken avoidance precisely.",
+      bibleRefs: [
+        { ref: "Luke 23:49", link: "luke_23_49" }
+      ],
+      propheticRefs: [
+        { ref: "Psalm 38:11", link: "psalm_38_11" }
+      ],
+      investigatorNote: "Standing 'at a distance' was not necessarily fear of the Romans — crucifixion sites permitted onlookers close to the cross, as the mockers demonstrate. The distance was grief.",
+      fake: false,
+      category: "prophecy",
+      timelineOrder: 5,
+      clues: {
+        compare: "Pairs with the Unused Burial Spices and Linen Shroud Receipt — the same small group watching from a distance is the group that returns to prepare the body for burial.",
+        link: "Prophecy — the witness list reflects the isolation described in Psalm 38:11.",
+        timeline: "CHRONOLOGY: Observed throughout the crucifixion, but most significant in its account of the moments just after Jesus's death.",
+        contradict: "RELIABILITY: Luke names the group specifically as those who 'knew him' — not hostile crowd members, making the account a credible eyewitness record rather than rumor."
+      }
     },
 
     {
@@ -2777,7 +3114,7 @@ export const act3CaseE = {
     motive: "The crucifixion was not an unexpected strategic failure, but a calculated, voluntary act of redemption that explicitly leveraged cosmic, geological, and legal parameters to fulfill ancient prophecies.",
     method: "The Roman military machinery carried out the execution, and the Sanhedrin elite initiated the charges to secure political stability. However, the resulting three hours of darkness, the rock-splitting earthquake, the top-down tearing of the Temple veil, and the rich man's burial completely bypassed their control, structurally validating Jesus as the true Messiah and the ultimate Passover Lamb.",
     lesson: "The cross transformed a Roman instrument of shame into history's absolute center of restoration. Every physical detail—from the unbroken bones to the torn curtain—proved that old barriers were shattered, and a New Covenant was established.",
-    prophesyFulfilled: ["Psalm 22:16-18", "Amos 8:9", "Isaiah 53:9", "Zechariah 12:10", "Psalm 34:20"],
+    prophesyFulfilled: ["Psalm 22:16-18", "Amos 8:9", "Isaiah 53:9", "Zechariah 12:10", "Psalm 34:20", "Isaiah 53:12", "Psalm 22:1", "Psalm 22:7-8", "Psalm 38:11"],
     furtherReading: ["Matthew 27:32–56", "Mark 15:21–41", "Luke 23:26–49", "John 19:16–37", "Hebrews 10:19–22"],
   },
 };

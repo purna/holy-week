@@ -35,7 +35,7 @@ import { formatIntro } from './utils.js';
 //
 // • Psalm 16:10 — God's Holy One would not see decay.
 // • Hosea 6:2 — Restoration and life on the third day.
-// • Jonah 1:17 / Matthew 12:40 — The sign of Jonah fulfilled.
+// • Jonah 1:17  — The sign of Jonah fulfilled.
 // • Isaiah 53:10–11 — The Suffering Servant lives after His sacrifice.
 // • Psalm 22:1–31 — Suffering gives way to victory and worldwide proclamation.
 // • Isaiah 26:19 — Death gives way to resurrection and rejoicing.
@@ -404,6 +404,29 @@ export const act4CaseA = {
       },
     }, {
       id: "opened_tombs",
+      name: "Broiled Fish Remains",
+      type: "physical",
+      relatedProphecy: "isaiah_53_10_11",
+      icon: "../assets/gfx/fish-duotone.svg",
+      location: "Upper Room, Post-Resurrection",
+      desc: "The remains of a piece of broiled fish, eaten by Jesus in the presence of the disciples to prove He was not a ghost.",
+      bibleRef: "Luke 24:41-43",
+      propheticLink: "This act demonstrated the physical, bodily nature of His resurrection, fulfilling the promise that the Suffering Servant would 'see light' and live again after His death (Isaiah 53:10-11).",
+      bibleRefs: [
+        { ref: "Luke 24:41-43", link: "luke_244143" }
+      ],
+      propheticRefs: [
+        { ref: "Isaiah 53:10-11", link: "isaiah_53_10_11" }
+      ],
+      investigatorNote: "A ghost does not eat. This is a direct, physical refutation of any claim that the resurrection was merely spiritual.",
+      fake: false,
+      category: 'event',
+      timelineOrder: 7,
+      clues: {
+        compare: "Provides physical proof to back up Mary's testimony and the angelic proclamation.",
+      },
+    }, {
+      id: "opened_tombs",
       name: "Opened Tombs Testimony",
       type: "testimonial",
       relatedProphecy: "ezekiel_37_12_13",
@@ -533,8 +556,8 @@ export const act4CaseA = {
         contradict: "RELIABILITY: The text matches known ancient manuscripts and was written centuries before the events."
       },
     }, {
-      id: "jonah_1_17___matthew_12_40_scroll",
-      name: "Jonah 1:17 / Matthew 12:40 Scroll Fragment",
+      id: "jonah_1_17_scroll",
+      name: "Jonah 1:17 Scroll Fragment",
       type: "scripture",
       relatedProphecy: "jonah_1_17___matthew_12_40",
       revealsSuspect: "none",
@@ -543,14 +566,16 @@ export const act4CaseA = {
       pos: [0, 0, 0],
       location: "Garden Tomb, Golgotha",
       desc: "A parchment scroll fragment containing the text of Jonah 1:17 / Matthew 12:40. The text is clearly legible and matches the known Hebrew/Greek manuscripts.",
-      bibleRef: "Jonah 1:17 / Matthew 12:40",
-      bibleLink: "jonah_117___matthew_1240",
+      bibleRef: "Jonah 1:17",
+      bibleLink: "jonah_117",
       propheticLink: "This prophecy foretold events that were fulfilled during the events of this case.",
       bibleRefs: [
-        { ref: "Jonah 1:17 / Matthew 12:40", link: "jonah_117___matthew_1240" }
+        { ref: "Jonah 1:17", link: "jonah_117" },
+        { ref: "Matthew 12:40", link: "matthew_1240" }
       ],
       propheticRefs: [
-        { ref: "Jonah 1:17 / Matthew 12:40", link: "jonah_117___matthew_1240" }
+        { ref: "Jonah 1:17 ", link: "jonah_117" },
+        { ref: " Matthew 12:40", link: "matthew_1240" },
       ],
       investigatorNote: "This scroll contains the ancient prophecy that was fulfilled during these events.",
       fake: false,
@@ -1053,7 +1078,7 @@ export const act4CaseB = {
       category: 'event',
       timelineOrder: 1,
       clues: {
-        compare: "The first sign something went wrong at the guard post — pairs with the shattered spear as physical evidence of shock, not theft.",
+        compare: "The first sign something went wrong at the guard post — pairs with the Shattered Pilum Shaft as physical evidence of shock, not theft.",
         link: "Event — the Roman governor's own seal, snapped off the tomb and left in the dirt.",
         timeline: "CHRONOLOGY: Broken at dawn, before the guards ever reached the chief priests.",
         contradict: "RELIABILITY: Breaking this seal without authorisation was a capital offence against Rome — no thief would risk it and then abandon the evidence."
@@ -2061,8 +2086,21 @@ export const act4CaseC = {
         bibleRef: "John 21:12; Isaiah 53:10-11",
       },
     },
+    "broiled_fish_remains+mary_encounter": {
+      compare: {
+        text: "Mary's testimony provides the first eyewitness account of the risen Jesus, while the remains of the broiled fish provide physical, forensic proof of His bodily resurrection later that same day.",
+        insight: "The evidence for the resurrection is not just one person's story. It builds throughout the day, from an emotional garden encounter in the morning to a physical demonstration in a locked room that evening. A spirit or ghost does not eat fish.",
+        isKey: true,
+        bibleRef: "John 20:11-18; Luke 24:41-43",
+      },
+      timeline: {
+        text: "The evidence unfolds chronologically: Mary's encounter at dawn, the Emmaus road in the afternoon, and the meal in the upper room in the evening. Each event reinforces the last.",
+        insight: "The consistency of witness accounts across a single day, from multiple independent groups, strengthens the overall case for the resurrection.",
+        isKey: false,
+        bibleRef: "John 20; Luke 24",
+      },
+    },
   },
-
   truth: {
     culprit: "none",
     motive: "There was no crime to investigate. This was a divine restoration—Peter's threefold denial met with threefold commission, his shame replaced with grace.",
@@ -2071,4 +2109,598 @@ export const act4CaseC = {
     prophesyFulfilled: ["Zechariah 13:7", "Ezekiel 34:11-16"],
     furtherReading: ["John 21:1-19", "1 Corinthians 1:12-14", "Galatians 2:9-21"],
   },
+};
+
+// ============================================================
+// ACT: IV — Resurrection & Ascension
+// CASE: The Ascension
+// CASE ID: ascension
+// CASE EXPORT: act4CaseD
+// SOURCE: act4_case_d_ascension.js
+//
+// LOCATION:
+// Mount of Olives, Jerusalem
+//
+// DIFFICULTY:
+// ★★★ (3/3)
+//
+// BACKGROUND:
+// Forty days after His resurrection, Jesus gathered His disciples on the
+// Mount of Olives. He gave them final instructions, promising the Holy
+// Spirit and commissioning them to be His witnesses to the ends of the
+// earth. As He blessed them, He was lifted up into a cloud and taken
+// out of their sight. Two angels appeared, assuring the disciples that
+// Jesus would return in the same way He had left.
+//
+// BIBLE REFERENCES:
+// Luke 24:44–53
+// Acts 1:1–11
+// Matthew 28:16–20
+// John 20:26–29 (for physical proofs)
+//
+// ------------------------------------------------------------
+// PROPHECIES FULFILLED:
+//
+// • Luke 24:50–51 — Jesus's priestly benediction before His ascent.
+// • Acts 1:9–11 — The visible, bodily ascension into heaven and promise of return.
+// • Matthew 28:19–20 — The Great Commission to make disciples of all nations.
+// • Luke 24:36–43 — Tangible proofs of the physical, resurrected body.
+//
+// ------------------------------------------------------------
+// BIBLICAL CONTEXT:
+//
+// Summary:
+// The risen Jesus spent forty days appearing to His disciples, teaching
+// them about the Kingdom of God. His final act was to commission them
+// for global evangelism, bless them, and then visibly ascend into heaven
+// from the Mount of Olives.
+//
+// Historical Context:
+// The Mount of Olives, a significant location in Jesus's ministry, served
+// as the site of His final departure. The disciples were instructed to
+// wait in Jerusalem for the promise of the Holy Spirit, which would
+// empower them for the global mission. The visible nature of the ascension
+// was crucial for establishing the reality of Jesus's enthronement and
+// the certainty of His return.
+//
+// Spiritual Theme:
+// Enthronement, divine authority, global mission, empowerment by the Holy
+// Spirit, and the promise of Christ's second coming.
+//
+// ------------------------------------------------------------
+// CASE FACTS (Truth Object)
+//
+// Crime:
+// None. This case investigates the culmination of Jesus's earthly ministry
+// and the beginning of the Church's mission.
+//
+// Actual Event:
+// Jesus Christ, after forty days of post-resurrection appearances, visibly
+// ascended into heaven from the Mount of Olives, giving His disciples the
+// Great Commission and a final priestly blessing.
+//
+// Culprit:
+// None. This was a divine act.
+//
+// Motive:
+// To signify Jesus's enthronement at the right hand of God, to empower
+// His disciples for the global spread of the Gospel, and to provide the
+// promise of His future return.
+//
+// Verdict:
+// The physical proofs of Jesus's resurrected body, His final instructions,
+// His priestly blessing, and the eyewitness accounts of His visible
+// ascension, confirmed by angelic testimony, provide irrefutable evidence
+// of His divine authority and the launch of the Church's mission.
+//
+// ============================================================
+
+export const act4CaseD = {
+    id: "ascension",
+    icon: '../assets/gfx/cloud-duotone.svg',
+    title: "The Ascension",
+    subtitle: "Forty days after His resurrection, Jesus gathers His disciples on the Mount of Olives for a final commission and a miraculous departure.",
+    location: "mount_of_olives",
+    eventLocation: "Mount of Olives, Jerusalem",
+    timeOfDay: "day",
+    difficulty: 3,
+    requires: "peter_restoration",
+    actLabel: "Act IV - The Resurrection & Ascension",
+    color: 0x6a0dad,
+    worldModel: "../assets/models/sphere.glb",
+    showCityLayer: false,
+    quest: { name: "Final Mandate", task: "Understand the Great Commission and the Ascension", cur: 0, tar: 7 },
+
+    biblicalContext: {
+        summary: `Forty days after His resurrection, Jesus gathered His disciples on the Mount of Olives. He gave them final instructions, promising the Holy Spirit and commissioning them to be His witnesses to the ends of the earth. As He blessed them, He was lifted up into a cloud and taken out of their sight. Two angels appeared, assuring the disciples that Jesus would return in the same way He had left.`,
+        significance: `The Ascension marks the culmination of Jesus's earthly ministry and the beginning of the Church's mission. It signifies Jesus's enthronement at the right hand of God, His continued intercession for believers, and the promise of His second coming. It also provides the context for the outpouring of the Holy Spirit at Pentecost.`,
+        historicalNote: `The Mount of Olives, a significant location in Jesus's ministry (including the Olivet Discourse and Gethsemane), served as the site of His final departure. The disciples were instructed to wait in Jerusalem for the promise of the Holy Spirit, which would empower them for the global mission.`,
+    },
+
+    prophecies: [
+        {
+            reference: "Luke 24:50–51",
+            id: "luke_24_50_51",
+            icon: "../assets/gfx/sparkles-duotone.svg",
+            text: `"When he had led them out to the vicinity of Bethany, he lifted up his hands and blessed them. While he was blessing them, he left them and was taken up into heaven."`,
+            written: "AD 60-62",
+            fulfilledBy: "Jesus's final act of blessing His disciples before His ascension",
+            gospelLink: "Luke 24:50-51",
+            insight: "Jesus's final act on earth was a priestly benediction, echoing the Old Testament priests who blessed the people. This signifies His ongoing role as our High Priest.",
+            explanation: "Jesus's final act of blessing His disciples before His ascension underscores His priestly role and the transfer of divine authority to His followers.",
+        },
+        {
+            reference: "Acts 1:9–11",
+            id: "acts_1_9_11",
+            icon: "../assets/gfx/sparkles-duotone.svg",
+            text: `"After he said this, he was taken up before their very eyes, and a cloud hid him from their sight... 'This same Jesus, who has been taken from you into heaven, will come back in the same way you have seen him go into heaven.'"`,
+            written: "AD 62-64",
+            fulfilledBy: "Jesus's visible ascent into heaven from the Mount of Olives",
+            gospelLink: "Acts 1:9-11",
+            insight: "The visible, bodily ascension confirmed Jesus's divine authority and the reality of His resurrected body. The promise of His return in the same manner provides hope and direction for the Church.",
+            explanation: "Jesus's visible ascension into heaven, witnessed by His disciples, confirmed His enthronement and promised His future return.",
+        },
+        {
+            reference: "Matthew 28:19–20",
+            id: "matthew_28_19_20",
+            icon: "../assets/gfx/sparkles-duotone.svg",
+            text: `"Therefore go and make disciples of all nations, baptizing them in the name of the Father and of the Son and of the Holy Spirit, and teaching them to obey everything I have commanded you. And surely I am with you always, to the very end of the age."`,
+            written: "AD 50-70",
+            fulfilledBy: "Jesus's final command to His disciples to spread the Gospel globally",
+            gospelLink: "Matthew 28:19-20",
+            insight: "The Great Commission is the marching order for the Church, empowering believers to continue Jesus's mission of making disciples across all cultures and generations.",
+            explanation: "Jesus's final command to His disciples to spread the Gospel globally is the foundational mandate for the Church's mission.",
+        },
+        {
+            reference: "Luke 24:36–43",
+            id: "luke_24_36_43",
+            icon: "../assets/gfx/sparkles-duotone.svg",
+            text: `"Look at my hands and my feet. It is I myself! Touch me and see; a ghost does not have flesh and bones, as you see I have." And when he had said this, he showed them his hands and his feet. While they still did not believe it because of joy and amazement, he asked them, "Do you have anything here to eat?" They gave him a piece of broiled fish, and he took it and ate it in their presence."`,
+            written: "AD 60-62",
+            fulfilledBy: "Jesus demonstrating the physical reality of His resurrected body to His disciples",
+            gospelLink: "Luke 24:36-43",
+            insight: "Jesus actively dispelled doubts about His bodily resurrection by inviting touch and eating food, proving He was not a spirit but truly resurrected in flesh and bone.",
+            explanation: "Jesus's post-resurrection appearances included tangible proofs of His physical body, such as inviting touch and eating food, to confirm the reality of His resurrection.",
+        },
+    ],
+
+    intro: formatIntro(`Forty days after His resurrection, Jesus gathers His disciples on the Mount of Olives. The air is charged with anticipation. He has given them a final mandate: to carry His message to the ends of the earth. As He lifts His hands in a final blessing, a cloud descends, and He is taken from their sight. This is not an ending, but a new beginning. You are the investigative scribe. What evidence confirms this miraculous departure and the profound commission given to His followers?`),
+
+    suspects: [
+        { id: "disciples", name: "The Eleven Disciples", role: "Eyewitnesses to the Ascension", avatar: "peter.svg", bibleRef: "Acts 1:9-11" },
+        { id: "angels", name: "Two Men in White", role: "Divine Messengers", avatar: "angelic_witness.svg", bibleRef: "Acts 1:10-11" },
+        { id: "none", name: "No One", role: "Divine Event", avatar: "nicodemus.svg", bibleRef: null },
+    ],
+
+    evidencePool: [
+        {
+            id: "wound_marks_testimony",
+            name: "Testimony of the Wound Marks",
+            type: "testimonial",
+            relatedProphecy: "luke_24_36_43",
+            icon: "../assets/gfx/hand-duotone.svg",
+            location: "Upper Room, Jerusalem",
+            desc: "Accounts from disciples who touched Jesus's hands and side, confirming the physical reality of His resurrected body, complete with the marks of the crucifixion.",
+            bibleRef: "John 20:27 — 'Then he said to Thomas, \"Put your finger here; see my hands. Reach out your hand and put it into my side. Stop doubting and believe.\"'",
+            propheticLink: "Jesus's invitation to touch His wounds directly fulfilled the need for tangible proof of His bodily resurrection, as described in Luke 24:39 ('a ghost does not have flesh and bones'). This physical reality was crucial for the disciples' witness.",
+            bibleRefs: [
+                { ref: "John 20:27", link: "john_20_27" },
+                { ref: "Luke 24:39", link: "luke_24_39" }
+            ],
+            propheticRefs: [
+                { ref: "Luke 24:36-43", link: "luke_24_36_43" }
+            ],
+            investigatorNote: "The wounds were not healed over, but present, providing undeniable proof that it was the same Jesus who had been crucified, now alive.",
+            fake: false,
+            category: 'people',
+            timelineOrder: 1,
+            clues: {
+                compare: "Complements the 'Broiled Fish Remains' by providing another physical proof of the risen body.",
+                link: "Prophecy — tangible proof of the resurrected body, fulfilling Jesus's own words.",
+                timeline: "CHRONOLOGY: Occurred during post-resurrection appearances, before the Ascension.",
+                contradict: "RELIABILITY: Thomas's initial doubt makes his eventual belief, based on physical touch, exceptionally strong evidence."
+            }
+        },
+        {
+            id: "great_commission_mandate",
+            name: "Great Commission Mandate",
+            type: "analytical",
+            relatedProphecy: "matthew_28_19_20",
+            icon: "../assets/gfx/globe-duotone.svg",
+            location: "Mount of Olives, Jerusalem",
+            desc: "A record of Jesus's final instructions to His disciples: to go and make disciples of all nations, baptizing and teaching them, with the promise of His constant presence.",
+            bibleRef: "Matthew 28:19–20",
+            propheticLink: "This mandate is the fulfillment of Old Testament promises that all nations would come to worship the Lord (e.g., Isaiah 2:2-4, Zechariah 8:20-23). Jesus's command initiates the global spread of the Gospel.",
+            bibleRefs: [
+                { ref: "Matthew 28:19-20", link: "matthew_28_19_20" }
+            ],
+            propheticRefs: [
+                { ref: "Isaiah 2:2-4", link: "isaiah_2_2_4" },
+                { ref: "Zechariah 8:20-23", link: "zechariah_8_20_23" }
+            ],
+            investigatorNote: "This is not merely a suggestion but a divine command, transforming a small group of followers into a global movement.",
+            fake: false,
+            category: 'prophecy',
+            timelineOrder: 2,
+            clues: {
+                compare: "Connects Jesus's authority to the future mission of the Church.",
+                link: "Prophecy — the global mission, fulfilling Old Testament promises of all nations coming to God.",
+                timeline: "CHRONOLOGY: Given just before the Ascension, as a final instruction.",
+                contradict: "RELIABILITY: Recorded in multiple Gospels, emphasizing its central importance."
+            }
+        },
+        {
+            id: "priestly_benediction_account",
+            name: "Priestly Benediction Account",
+            type: "testimonial",
+            relatedProphecy: "luke_24_50_51",
+            icon: "../assets/gfx/hand-heart-duotone.svg",
+            location: "Mount of Olives, Jerusalem",
+            desc: "Eyewitness accounts describing Jesus lifting His hands and blessing His disciples just before He was taken up into heaven.",
+            bibleRef: "Luke 24:50–51",
+            propheticLink: "This act echoes the priestly blessing in the Old Testament (Numbers 6:24-26), signifying Jesus's role as the ultimate High Priest who intercedes for His people and bestows divine favor.",
+            bibleRefs: [
+                { ref: "Luke 24:50-51", link: "luke_24_50_51" },
+                { ref: "Numbers 6:24-26", link: "numbers_6_24_26" }
+            ],
+            propheticRefs: [
+                { ref: "Luke 24:50-51", link: "luke_24_50_51" }
+            ],
+            investigatorNote: "The deliberate act of blessing, with uplifted hands, is a powerful symbolic gesture of divine authority and care.",
+            fake: false,
+            category: 'people',
+            timelineOrder: 3,
+            clues: {
+                compare: "Precedes the visible ascension, showing Jesus's final earthly act was one of blessing.",
+                link: "Prophecy — Jesus's priestly blessing, fulfilling Old Testament patterns of divine intercession.",
+                timeline: "CHRONOLOGY: Occurred immediately before the Ascension.",
+                contradict: "RELIABILITY: A consistent detail across accounts, emphasizing the nature of Jesus's departure."
+            }
+        },
+        {
+            id: "ascension_eyewitness_account",
+            name: "Ascension Eyewitness Account",
+            type: "testimonial",
+            relatedProphecy: "acts_1_9_11",
+            icon: "../assets/gfx/cloud-duotone.svg",
+            location: "Mount of Olives, Jerusalem",
+            desc: "Detailed reports from the disciples describing Jesus being lifted up into a cloud and taken out of their sight, followed by the appearance of two angels.",
+            bibleRef: "Acts 1:9–11",
+            propheticLink: "This visible, bodily ascension fulfills prophecies of the Messiah's enthronement and return (e.g., Daniel 7:13-14, Psalm 110:1). The angels' promise of His return reinforces this prophetic expectation.",
+            bibleRefs: [
+                { ref: "Acts 1:9-11", link: "acts_1_9_11" },
+                { ref: "Daniel 7:13-14", link: "daniel_7_13_14" },
+                { ref: "Psalm 110:1", link: "psalm_110_1" }
+            ],
+            propheticRefs: [
+                { ref: "Acts 1:9-11", link: "acts_1_9_11" }
+            ],
+            investigatorNote: "The visible nature of the ascension, witnessed by many, is crucial for establishing the reality of Jesus's departure and the promise of His return.",
+            fake: false,
+            category: 'people',
+            timelineOrder: 4,
+            clues: {
+                compare: "The ultimate culmination of Jesus's earthly ministry, following His final blessing and commission.",
+                link: "Prophecy — the visible ascent into heaven, fulfilling prophecies of the Messiah's enthronement.",
+                timeline: "CHRONOLOGY: The final event of Jesus's post-resurrection appearances.",
+                contradict: "RELIABILITY: Multiple eyewitnesses, including the apostles, provide consistent accounts of this extraordinary event."
+            }
+        },
+        {
+            id: "ascension_fake",
+            name: "Disciples' Hallucination Report",
+            type: "environmental",
+            icon: "../assets/gfx/shield-duotone.svg",
+            fake: true,
+            category: "event",
+            timelineOrder: null,
+            desc: "A fabricated report claiming the disciples were hallucinating due to grief and lack of sleep, explaining away the ascension as a mass delusion.",
+            bibleRef: "Acts 1:9",
+            propheticLink: "No prophetic significance — this is a planted distractor.",
+            bibleRefs: [
+                { ref: "Acts 1:9", link: "acts_1_9" }
+            ],
+            propheticRefs: [],
+            investigatorNote: "The report ignores the physical proofs of Jesus's resurrected body and the consistent testimony of multiple, independent witnesses.",
+            clues: {
+                compare: "No matching pair exists for this item.",
+                link: "Event — this item is suspiciously convenient.",
+                timeline: "CHRONOLOGY: The timeline does not quite fit with the other evidence.",
+                contradict: "RELIABILITY: This item was planted to mislead the investigation. It contains inconsistencies that do not match the verified evidence."
+            }
+        },
+        {
+            id: "luke_24_50_51_scroll",
+            name: "Luke 24:50–51 Scroll Fragment",
+            type: "scripture",
+            relatedProphecy: "luke_24_50_51",
+            revealsSuspect: "none",
+            category: "prophecy",
+            timelineOrder: 5,
+            pos: [0, 0, 0],
+            location: "Mount of Olives, Jerusalem",
+            desc: "A parchment scroll fragment containing the text of Luke 24:50–51. The text is clearly legible and matches the known Hebrew/Greek manuscripts.",
+            bibleRef: "Luke 24:50–51",
+            bibleLink: "luke_24_50_51",
+            propheticLink: "This prophecy foretold events that were fulfilled during the events of this case.",
+            bibleRefs: [
+                { ref: "Luke 24:50–51", link: "luke_24_50_51" }
+            ],
+            propheticRefs: [
+                { ref: "Luke 24:50–51", link: "luke_24_50_51" }
+            ],
+            investigatorNote: "This scroll contains the ancient prophecy that was fulfilled during these events.",
+            fake: false,
+            clues: {
+                compare: "This scripture text provides the original prophecy that was fulfilled.",
+                link: "Prophecy — the scroll contains the ancient text that predicted these events.",
+                timeline: "CHRONOLOGY: Written long before the events it describes.",
+                contradict: "RELIABILITY: The text matches known ancient manuscripts and was written centuries before the events."
+            }
+        },
+        {
+            id: "acts_1_9_11_scroll",
+            name: "Acts 1:9–11 Scroll Fragment",
+            type: "scripture",
+            relatedProphecy: "acts_1_9_11",
+            revealsSuspect: "none",
+            category: "prophecy",
+            timelineOrder: 6,
+            pos: [0, 0, 0],
+            location: "Mount of Olives, Jerusalem",
+            desc: "A parchment scroll fragment containing the text of Acts 1:9–11. The text is clearly legible and matches the known Hebrew/Greek manuscripts.",
+            bibleRef: "Acts 1:9–11",
+            bibleLink: "acts_1_9_11",
+            propheticLink: "This prophecy foretold events that were fulfilled during the events of this case.",
+            bibleRefs: [
+                { ref: "Acts 1:9–11", link: "acts_1_9_11" }
+            ],
+            propheticRefs: [
+                { ref: "Acts 1:9–11", link: "acts_1_9_11" }
+            ],
+            investigatorNote: "This scroll contains the ancient prophecy that was fulfilled during these events.",
+            fake: false,
+            clues: {
+                compare: "This scripture text provides the original prophecy that was fulfilled.",
+                link: "Prophecy — the scroll contains the ancient text that predicted these events.",
+                timeline: "CHRONOLOGY: Written long before the events it describes.",
+                contradict: "RELIABILITY: The text matches known ancient manuscripts and was written centuries before the events."
+            }
+        },
+        {
+            id: "matthew_28_19_20_scroll",
+            name: "Matthew 28:19–20 Scroll Fragment",
+            type: "scripture",
+            relatedProphecy: "matthew_28_19_20",
+            revealsSuspect: "none",
+            category: "prophecy",
+            timelineOrder: 7,
+            pos: [0, 0, 0],
+            location: "Mount of Olives, Jerusalem",
+            desc: "A parchment scroll fragment containing the text of Matthew 28:19–20. The text is clearly legible and matches the known Hebrew/Greek manuscripts.",
+            bibleRef: "Matthew 28:19–20",
+            bibleLink: "matthew_28_19_20",
+            propheticLink: "This prophecy foretold events that were fulfilled during the events of this case.",
+            bibleRefs: [
+                { ref: "Matthew 28:19–20", link: "matthew_28_19_20" }
+            ],
+            propheticRefs: [
+                { ref: "Matthew 28:19–20", link: "matthew_28_19_20" }
+            ],
+            investigatorNote: "This scroll contains the ancient prophecy that was fulfilled during these events.",
+            fake: false,
+            clues: {
+                compare: "This scripture text provides the original prophecy that was fulfilled.",
+                link: "Prophecy — the scroll contains the ancient text that predicted these events.",
+                timeline: "CHRONOLOGY: Written long before the events it describes.",
+                contradict: "RELIABILITY: The text matches known ancient manuscripts and was written centuries before the events."
+            }
+        },
+        {
+            id: "luke_24_36_43_scroll",
+            name: "Luke 24:36–43 Scroll Fragment",
+            type: "scripture",
+            relatedProphecy: "luke_24_36_43",
+            revealsSuspect: "none",
+            category: "prophecy",
+            timelineOrder: 8,
+            pos: [0, 0, 0],
+            location: "Mount of Olives, Jerusalem",
+            desc: "A parchment scroll fragment containing the text of Luke 24:36–43. The text is clearly legible and matches the known Hebrew/Greek manuscripts.",
+            bibleRef: "Luke 24:36–43",
+            bibleLink: "luke_24_36_43",
+            propheticLink: "This prophecy foretold events that were fulfilled during the events of this case.",
+            bibleRefs: [
+                { ref: "Luke 24:36–43", link: "luke_24_36_43" }
+            ],
+            propheticRefs: [
+                { ref: "Luke 24:36–43", link: "luke_24_36_43" }
+            ],
+            investigatorNote: "This scroll contains the ancient prophecy that was fulfilled during these events.",
+            fake: false,
+            clues: {
+                compare: "This scripture text provides the original prophecy that was fulfilled.",
+                link: "Prophecy — the scroll contains the ancient text that predicted these events.",
+                timeline: "CHRONOLOGY: Written long before the events it describes.",
+                contradict: "RELIABILITY: The text matches known ancient manuscripts and was written centuries before the events."
+            }
+        },
+    ],
+
+    lab: [
+        {
+            evidence: "ascension_eyewitness_account",
+            suspect: "disciples",
+            result: "**Identified as Primary Witnesses** (Their testimony is foundational)",
+            notes: "'He was taken up before their very eyes' (Acts 1:9) — the disciples were the direct, numerous witnesses."
+        },
+        {
+            evidence: "ascension_eyewitness_account",
+            suspect: "angels",
+            result: "**Identified as Divine Messengers** (Confirmed the event and promised return)",
+            notes: "'This same Jesus... will come back in the same way' (Acts 1:11) — the angels provided divine interpretation and future hope."
+        }
+    ],
+
+    npcs: [
+        {
+            id: "peter_ascension",
+            name: "Peter",
+            role: "Apostle, Eyewitness",
+            faction: "disciples",
+            avatar: "peter.svg",
+            profileFile: "peter",
+            truthfulness: 0.95,
+            bibleRef: "Acts 1:8-11",
+            hasDialogue: true,
+            storyFile: "peter_ascension",
+            unlocksSuspects: ["disciples"],
+            unlocksEvidence: ["ascension_eyewitness_account", "great_commission_mandate"],
+            revealsProphecy: "acts_1_9_11",
+            background: "Peter, fully restored and recommissioned, was a key eyewitness to the Ascension and the recipient of the Great Commission.",
+            dialogue: {
+                neutral: "He told us to wait for the Holy Spirit. Then, as He blessed us, He was lifted up. It was glorious.",
+                cautious: "We stood there, staring up into the sky. Two men in white robes appeared and asked us why we were looking up.",
+                pressured: "He gave us a mission: to be His witnesses in Jerusalem, Judea, Samaria, and to the ends of the earth. It's a daunting task.",
+                exposed: "He will come back. The angels said so. In the same way He left. That promise changes everything.",
+                repeat: "We have work to do. The world needs to hear this message.",
+            },
+            reactions: {
+                ascension_eyewitness_account: { text: "Yes, that's exactly how it happened. He was lifted up, and a cloud received Him. We watched until we couldn't see Him anymore.", isLie: false },
+                great_commission_mandate: { text: "That was His final command. To go and make disciples. It's not just for us, but for everyone who believes.", isLie: false },
+                priestly_benediction_account: { text: "His hands were lifted in blessing. It was a final, tender gesture. A High Priest blessing His people.", isLie: false },
+                wound_marks_testimony: { text: "We touched His hands, His feet, His side. He was real. Not a ghost. The same Jesus, but glorified.", isLie: false },
+            },
+            contradictions: {},
+        },
+        {
+            id: "john_ascension",
+            name: "John",
+            role: "Apostle, Eyewitness",
+            faction: "disciples",
+            avatar: "john_apostle.svg",
+            profileFile: "john_apostle",
+            truthfulness: 0.98,
+            bibleRef: "Acts 1:8-11",
+            hasDialogue: true,
+            storyFile: "john_ascension",
+            unlocksSuspects: ["disciples"],
+            unlocksEvidence: ["priestly_benediction_account"],
+            revealsProphecy: "luke_24_50_51",
+            background: "John, the beloved disciple, was present at the Ascension and would later write extensively about Jesus's divine nature.",
+            dialogue: {
+                neutral: "He blessed us. Then He was gone. But not gone forever. We know He will return.",
+                cautious: "The cloud was not a storm cloud. It was a cloud of glory, like the one that covered the tabernacle.",
+                pressured: "His final words were about power—the power of the Holy Spirit. And about being His witnesses.",
+                exposed: "It was a priestly blessing. His hands lifted, just like the High Priest in the Temple. But this was a blessing for all nations.",
+                repeat: "We are to wait. And then we are to go.",
+            },
+            reactions: {
+                ascension_eyewitness_account: { text: "The angels told us not to stand there gazing. He will come back. We have a mission to complete first.", isLie: false },
+                great_commission_mandate: { text: "To all nations. It's a vast task. But He promised to be with us always.", isLie: false },
+                priestly_benediction_account: { text: "I remember His hands. The blessing was for us, for the Church, for the world.", isLie: false },
+                wound_marks_testimony: { text: "Thomas needed to touch. We all needed to know He was truly alive, physically. He showed us.", isLie: false },
+            },
+            contradictions: {},
+        },
+        {
+            id: "thomas_ascension",
+            name: "Thomas",
+            role: "Apostle, Eyewitness",
+            faction: "disciples",
+            avatar: "thomas.svg",
+            profileFile: "thomas",
+            truthfulness: 0.9,
+            bibleRef: "Acts 1:8-11",
+            hasDialogue: true,
+            storyFile: "thomas_ascension",
+            unlocksSuspects: ["disciples"],
+            unlocksEvidence: ["wound_marks_testimony"],
+            revealsProphecy: "luke_24_36_43",
+            background: "Thomas, who famously doubted the resurrection, was now a firm believer and an eyewitness to the Ascension.",
+            dialogue: {
+                neutral: "I needed proof. He gave it to me. Now I have seen Him ascend. There is no more doubt.",
+                cautious: "He showed us His hands and His side. He ate fish with us. He was not a ghost.",
+                pressured: "The mission is clear: to go and make disciples. It's a mission that requires absolute certainty.",
+                exposed: "I touched His wounds. I saw Him eat. I saw Him ascend. My Lord and my God. There is nothing left to question.",
+                repeat: "My doubt is gone. My faith is firm.",
+            },
+            reactions: {
+                ascension_eyewitness_account: { text: "To see Him lifted up, physically, into the clouds... it was a sight that burned itself into my memory.", isLie: false },
+                great_commission_mandate: { text: "He told us to teach everything He commanded. That's a lot to remember. But He promised the Spirit.", isLie: false },
+                priestly_benediction_account: { text: "His blessing was for us. For the journey ahead. For the task He gave us.", isLie: false },
+                wound_marks_testimony: { text: "I put my finger in the nail marks. I put my hand into His side. It was Him. It was truly Him.", isLie: false },
+            },
+            contradictions: {},
+        },
+        {
+            id: "angelic_messengers",
+            name: "Angelic Messengers",
+            role: "Divine Witnesses",
+            faction: "angels",
+            avatar: "angelic_witness.svg",
+            profileFile: "angelic_witness",
+            truthfulness: 1.0,
+            bibleRef: "Acts 1:10-11",
+            hasDialogue: true,
+            storyFile: "angelic_messengers_ascension",
+            unlocksSuspects: ["angels"],
+            unlocksEvidence: ["ascension_eyewitness_account"],
+            revealsProphecy: "acts_1_9_11",
+            background: "Two men in white robes who appeared to the disciples after Jesus's ascension, providing a divine explanation and promise.",
+            dialogue: {
+                neutral: "Men of Galilee, why do you stand gazing into heaven? This same Jesus, who has been taken from you into heaven, will come back in the same way you have seen him go into heaven.",
+                cautious: "The Father's plan is unfolding. The Son has returned to His throne. Your mission is to prepare the way for His return.",
+                pressured: "Do not doubt the promise. He will come again. Your task is to be His witnesses.",
+                exposed: "The Ascension is not an end, but a beginning. The Spirit will empower you. The Gospel will spread. And He will return.",
+                repeat: "The message is clear. Go and obey.",
+            },
+            reactions: {
+                ascension_eyewitness_account: { text: "We were sent to confirm the truth and to remind them of the promise. He will return.", isLie: false },
+                great_commission_mandate: { text: "The command to go to all nations is from the Father. It is His will.", isLie: false },
+                priestly_benediction_account: { text: "His blessing is eternal. It rests upon His Church.", isLie: false },
+                wound_marks_testimony: { text: "The physical body of the Son is glorified. He is truly risen.", isLie: false },
+            },
+            contradictions: {},
+        },
+    ],
+
+    deductions: {
+        "ascension_eyewitness_account+great_commission_mandate": {
+            compare: {
+                text: "The visible ascension into heaven and the global mission mandate are inextricably linked: Jesus's enthronement empowers the Church's mission.",
+                insight: "The Great Commission is not a human endeavor but a divine mandate, empowered by the ascended Christ who possesses all authority in heaven and on earth.",
+                isKey: true,
+                revealsProphecy: "acts_1_9_11",
+                bibleRef: "Acts 1:8-11; Matthew 28:18-20",
+            },
+        },
+        "priestly_benediction_account+ascension_eyewitness_account": {
+            link: {
+                text: "Jesus's final act of blessing His disciples immediately before His ascension highlights His ongoing priestly role from heaven.",
+                insight: "The Ascension is not merely a departure but an enthronement, where Jesus continues to intercede for His people as our High Priest, having offered the perfect sacrifice.",
+                isKey: true,
+                revealsProphecy: "luke_24_50_51",
+                bibleRef: "Luke 24:50-51; Hebrews 7:25",
+            },
+        },
+        "wound_marks_testimony+great_commission_mandate": {
+            compare: {
+                text: "The physical reality of Jesus's resurrected body (evidenced by His wounds) provides the tangible foundation for the disciples' bold witness to the world.",
+                insight: "The disciples were not proclaiming a spiritualized resurrection but a bodily one, a fact confirmed by Jesus's own invitation to touch His wounds. This physical proof empowered their message.",
+                isKey: true,
+                revealsProphecy: "luke_24_36_43",
+                bibleRef: "Luke 24:39-43; John 20:27; Matthew 28:19-20",
+            },
+        },
+    },
+
+    truth: {
+        culprit: "none",
+        motive: "The Ascension was the culmination of Jesus's earthly ministry, signifying His enthronement, empowering His disciples for global mission, and promising His future return.",
+        method: "After forty days of post-resurrection appearances, Jesus gathered His disciples on the Mount of Olives. He gave them the Great Commission, lifted His hands in a priestly blessing, and was visibly taken up into a cloud. Two angels appeared, confirming His return.",
+        lesson: "The Ascension confirms Jesus's divine authority and His ongoing work as High Priest and King. It empowers the Church with a global mission, sustained by the promise of the Holy Spirit and the certainty of Christ's return.",
+        prophesyFulfilled: ["Luke 24:50-51", "Acts 1:9-11", "Matthew 28:19-20", "Luke 24:36-43"],
+        furtherReading: ["Acts 1:1-11", "Luke 24:44-53", "Matthew 28:16-20", "Hebrews 4:14-16"],
+    },
 };

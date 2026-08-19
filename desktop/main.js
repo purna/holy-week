@@ -1,19 +1,23 @@
 import { GameEngine } from "./gameEngine.js";
 import { LabWorkspaceUI } from "../js/ui/LabWorkspaceUI.js";
-import { AccessibilityManager } from "../mobileB/accessibility.js";
+import { AccessibilityManager } from "./accessibility.js";
+import { ChainManager } from "../js/gameplay/chainManager.js";
+import { DEBUG } from "../js/config.js";
 
 
 // ── Configuration ──────────────────────────────────────────
-const CONFIG = {
-  unlockAllCases: true, // Set to true to bypass case requirements for testing
-  unlockAllEvidence: true // Set to true to unlock all evidence for testing
-};
-
+const CONFIG = { DEBUG };
 
 const game = new GameEngine(CONFIG); // Pass the CONFIG object to the GameEngine
 window.gameEngine = game;
 window.a11y = new AccessibilityManager({ app: game });
 window.audio = game.audio;
+
+const chainManager = new ChainManager(game.cm);
+chainManager.onChainCompleted = (chain) => {
+  game.showChainComplete(chain);
+};
+game.chainManager = chainManager;
 
 // Set up inkjs library for dialogue system
 if (typeof inkjs !== 'undefined') {
@@ -169,15 +173,12 @@ window.renderInvestigationBoard = function () {
         } else if (result?.scoreDelta !== undefined) {
           game.cm.addScore(result.scoreDelta);
         }
-        if (result?.feedback) {
-          const savedTab = labUI.currentTab;
-          window.renderInvestigationBoard();
-          const newUI = window.__labUI;
-          if (newUI) {
-            newUI.currentTab = savedTab;
-            newUI._restoreActiveTab();
-            newUI._setFeedback(result.feedback, result.feedbackType || "");
-          }
+        if (result?.feedback && window.__labUI) {
+          window.__labUI._setFeedback(result.feedback, result.feedbackType || "");
+        }
+        if (!result?.error && (result?.type === 'folder_verify' || result?.type === 'timeline_test' || result?.type === 'shredder_test' || result?.type === 'comparator_test')) {
+          game.checkChains?.();
+          game.checkGameOver?.();
         }
       });
       window.__labUI = labUI;

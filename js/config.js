@@ -1,6 +1,5 @@
 // Configuration object - npcs, locations, quests, actions, audio paths
 const basePath = '../assets/audio/';
-const baseNPCPath = '../assets/dialogue/exmaples/';
 const baseModelPath = '../assets/models/';
 const baseIconPath = '../assets/gfx/';
 
@@ -14,12 +13,10 @@ export const COLORS = {
     orange: 0xffaa00,    // Orange accent
     purple: 0xff00ff,    // Purple accent
     green: 0x00ff88,     // Success green
-
     lightRed: 0x440000,  // Light red (for player glow, less intense than pure red)
     red: 0xff0000,       // Alert red (standard bright red)
     torchRed: 0xff3333,   // Bright red for torch light (more vibrant than darkRed)
     darkRed: 0x663300,   // Dark red (for emissive glows)
-
     lightBlue: 0x88ccff,      // Soft blue for stars
     blue: 0x4488ff,      // Info blue
     white: 0xffffff,     // White
@@ -33,7 +30,7 @@ export const COLORS = {
     yellow: 0xffff00,    // Yellow (for sun)
     shard: 0xa020f0,     // Purple for signal shards
     shardEmissive: 0x4a0080, // Dark red emissive for shards
-crystal: 0x00f2ff,   // Cyan for crystal clusters (same as cyan)
+    crystal: 0x00f2ff,   // Cyan for crystal clusters (same as cyan)
     crystalEmissive: 0x004444, // Dark blue emissive for crystals
     bird: 0x333333,   // Dark grey birds
     dust: 0xaa8855,   // Sandy brown dust
@@ -365,4 +362,13 @@ export const CONTROLS = {
     moveBackward: 'KeyS',
     moveLeft: 'KeyA',
     moveRight: 'KeyD'
+};
+
+export const DEBUG = {
+    enabled: false,
+    unlockAllCaseEvidence: false,
+    solveAllLabCases: false,
+    unlockAllProphecies: false,
+    unlockAllCases: false,
+    unlockAllPeople: false,
 };

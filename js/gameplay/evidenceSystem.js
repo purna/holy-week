@@ -30,7 +30,7 @@ export class EvidenceSystem {
   }
 
   loadCase(caseData) {
-    if (this.config.unlockAllEvidence) {
+    if (this.config.DEBUG?.unlockAllCaseEvidence) {
       this.collected = (caseData.evidencePool || []).map(e => e.id);
     } else {
       this.collected = this.caseManager.getCaseProgress(caseData.id)?.evidenceFound || [];

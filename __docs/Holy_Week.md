@@ -33,7 +33,7 @@
 - [Appendix: Location Emoji & Icon Reference](#appendix-location-emoji--icon-reference)
 - [Appendix: Act & Case Emoji & Icon Reference](#appendix-act--case-emoji--icon-reference)
 
-**Note on Suspects:** All characters begin as potential suspects. Lab research unlocks or removes suspects by proving innocence or guilt. Codex completion is optional for solving a case but required for 100% completion and the best ending.
+**Note on Suspects:** All characters begin as potential suspects; Lab research reveals their status (implicated, cleared, etc.) as investigative texture. There is no accusation — a case is solved by fully researching it: finding every piece of evidence and Lab-linking every prophecy tied to that case, then concluding it.
 
 This document serves as the canonical source of truth for the game's narrative structure, characters, and case resolutions for both mobile and desktop versions. It is generated from the `act*.js` case files.
 
@@ -42,9 +42,10 @@ This document serves as the canonical source of truth for the game's narrative s
 
 ## Games
 
-Currently 3 versions all using a core gameplay 
-*  [`/mobileA/`](../mobileA/)
-*  [`/mobileB/`](../mobileB/)
+Currently 4 versions all using a core gameplay 
+*  [`/mobile/`](../mobile/)
+*  [`/mobile3D/`](../mobile3D/)
+*  [`/mobile2D/`](../mobile3D/)
 *  [`/desktop/`](../desktop/)
 
 ## Linked Documentation
@@ -71,10 +72,9 @@ Unlocking prophetic and typological insights is a key mechanics layer for scorin
 
 ### Discovery Steps
 1. **Reveal (Discovery):** Unlocked through NPC conversation or Lab analysis (`revealsProphecy`).
-2. **Link (Codex):** Match revealed prophecy/type to its fulfilling evidence item (+10 points).
-3. **Scoring:**
-   - Correct Link: `+10 points`
-   - Incorrect Link: `+5 doubt`
+2. **Link (Codex):** Match the revealed prophecy's Scripture evidence to its Fulfillment evidence in the Lab.
+3. **Scoring ("Research Complete"):** A correct link in the Lab awards `+20 Research Score` and `+10 Investigation Score`. An incorrect link adds `+5 Doubt` and a `-5` point penalty to the Investigation Score.
+4. **Case Resolution:** A case is solved when all its prophecies are marked `complete` in the Lab. This is the win condition for all cases.
 
 
 ## Codex: Biblical Patterns Section
@@ -211,6 +211,10 @@ Hidden chains are discovered through the **Codex** tab. When a prophecy from one
 
 # Prophecy Collection System
 
+This system has been superseded by the unified Lab-based research flow. Prophecies are discovered, researched by linking `SCRIPTURE` and `FULFILLMENT` evidence in the Lab, and tracked in the Codex. The "Accuse" tab has been repurposed into a "Case File" tab showing prophecy completion status and the "Conclude Case" button.
+
+---
+
 ## Overview
 
 The prophecy collection system allows players to discover and track biblical prophecies that are fulfilled throughout their investigation. Prophecies work similarly to evidence but are categorized separately and displayed in a dedicated Codex tab.
@@ -227,7 +231,7 @@ The prophecy collection system allows players to discover and track biblical pro
 - Dialogue with `revealsProphecy` sets the prophecy status to `'rumor'`.
 
 ### UI Changes
-- Accuse tab renamed to "Codex"
+- The Accuse tab was repurposed into a **Case File** view: a per-case prophecy checklist (each entry showing its Codex status) plus the **Conclude Case** action, enabled once all evidence is found, all prophecies are `complete`, and at least one deduction has been made. It sits alongside the separate, game-wide **Codex** tab, which shows the full Biblical Patterns collection and Scholar level.
 - The Codex displays all prophecies, filterable by status (Rumor, Found, Complete).
 - A "Biblical Scholar" level and "Research Score" are displayed.
 
@@ -316,51 +320,39 @@ A prophecy progresses through four stages before it is considered "Complete."
 * The `chief_priest` → `caiaphas_priest` mismatch was the only broken link; it has been resolved.
 
 
-### Lab Actions
+## Scoring & Gameplay Systems
 
-The Lab is the primary tool for advancing the **Investigation**. Its role is to analyze evidence to generate deductions about suspects and the case, not to directly score prophecy points.
+### Scoring
 
-*   **Correct Pairing:** `+15 points`
-    *   Awarded when the player combines the listed pair of evidence with the correct operation (Link or Compare) and reaches the stated Result. This is the same `+15 points` "Lab Deductions" reward listed under Score, above.
-    *   **Reputation:** unaffected. Unlike NPC challenges, Lab deductions are private research and don't move any faction's trust — the Reputation column always reads `—`.
-    *   **Prophecy:** If a pairing completes research on a prophecy, it awards **Research Points**, not Investigation Score.
-*   **Incorrect Pairing:** `-5 points`, `+5 doubt`
-    *   Applied whenever the player submits an evidence pair/operation that doesn't match any correct combination for that case.
+The **Investigation Score** is calculated when a case is concluded.
+
+*   **Case Closed:** `+50` points.
+*   **Full Investigation Bonus:** `+25` points for a "perfect" case (zero failed challenges/incorrect lab pairings).
+*   **Lab Deduction:** `+15` points for each correct evidence pairing.
+*   **Research Complete:** `+10` points (plus `+20` to the separate Research Score).
+*   **Successful Challenge:** `+10` points.
+*   **Evidence Collected:** `+5` points.
+
+The **Research Score** is a persistent, game-wide track that unlocks bonus content in the Codex.
+
+*   **Complete Research:** `+20` Research Points (RP).
+*   **Complete Hidden Chain:** `+25` RP.
 
 ### Doubt
 
-Doubt is a global penalty meter that accumulates across all cases. It measures how many missteps the investigator has made.
+Doubt is a global penalty meter. The final case score is reduced by `Total Doubt × 2`.
 
-*   **Starting Value:** `0`
-*   **Minimum Value:** `0` (cannot go negative)
-*   **Penalty Calculation:** The player's final case score is reduced by `Doubt × 2` points.
 *   **Accrual Triggers:**
-    *   **Failed Challenge:** `+10 doubt`
-        *   Awarded when the player incorrectly pairs two pieces of evidence during an NPC challenge and no contradiction is found.
-    *   **Incorrect Lab Pairing:** `+5 doubt`
-        *   Awarded when the player submits an evidence pair/operation in the Lab that doesn't match any correct combination for the case. Also carries a `-5 point` penalty — see **Lab Actions** above.
-    *   **Incorrect Prophecy Link:** `+5 doubt`
-        *   Awarded when the player incorrectly links scripture to evidence in the Lab during the "Research" step.
-    *   **Incorrect Accusation:** `+25 doubt`
-        *   Awarded when the player accuses the wrong suspect (or 'No One') of a crime.
+    *   **Failed NPC Challenge:** `+10` Doubt.
+    *   **Incorrect Lab Pairing:** `+5` Doubt.
 
 ### Reputation
 
-Reputation is a faction-based trust meter that tracks how each major group in Jerusalem views the investigator.
+Reputation tracks standing with Jerusalem's four factions (`scribes`, `temple`, `roman`, `local`).
 
-*   **Factions:**
-    *   `scribes` — Religious scholars and teachers
-    *   `temple` — Temple authorities and priests
-    *   `roman` — Roman military and administrative officials
-    *   `local` — Local Jerusalem residents and merchants
-*   **Starting Value:** `100` per faction
-*   **Range:** `0` to `100` (clamped on change)
-*   **Displayed Value:** The UI shows the **average** of all four faction reputations as a single number.
 *   **Change Triggers:**
-    *   **Successful Challenge:** `+5` to the challenged NPC's faction
-        *   Awarded when the player correctly exposes a contradiction without having previously failed that challenge.
-    *   **Failed Challenge:** `-15` to the challenged NPC's faction
-        *   Awarded when the player incorrectly challenges an NPC and fails to find a contradiction.
+    *   **Successful NPC Challenge:** `+5` to the challenged NPC's faction.
+    *   **Failed NPC Challenge:** `-15` to the challenged NPC's faction.
 
 ---
 [Back to Top](#table-of-contents)
@@ -378,7 +370,8 @@ The player's inventory consists of **Evidence** collected during an investigatio
 *   **Usage:**
     *   **Lab:** Combine two pieces of evidence to make a deduction.
     *   **People:** Show evidence to a witness to get a reaction.
-    *   **Codex:** Link evidence to a revealed prophecy to score points.
+    *   **Codex:** Link evidence to a revealed prophecy to score Research and Investigation points.
+    *   **Case File:** Once every prophecy is complete, conclude the case here instead of accusing a suspect.
 
 ### Actions System
 
@@ -413,13 +406,16 @@ A new **Actions** tab is available on the main investigation screen, providing a
 *   **Culprit:** **No One**. The event was a willing fulfillment of prophecy, not a theft.
 *   **Prophecies:** Zechariah 9:9, Psalm 118:25–26, Genesis 49:10–11, Malachi 3:1
 *   **Evidence:**
-    *   `Fresh Hoofprints`
-    *   `Two Disciples' Cloaks`
-    *   `Villager's Testimony`
-    *   `Cut Rope at the Tethering Post`
-    *   `Zechariah 9:9 Scroll Fragment`
-    *   `Fresh-Cut Palm Branch`
-    *   `Pharisee's Written Complaint`
+    *   `cloaks` (Two Disciples' Cloaks)
+    *   `donkey_tracks` (Fresh Hoofprints)
+    *   `witness_account` (Villager's Testimony)
+    *   `prophecy_scroll` (Zechariah 9:9 Scroll Fragment)
+    *   `palm_branch` (Fresh-Cut Palm Branch)
+    *   `rope_fibers` (Cut Rope at the Tethering Post)
+    *   `crowd_testimony` (Pharisee's Written Complaint)
+    *   `psalm_118_25_26_scroll` (Psalm 118:25-26 Scroll Fragment)
+    *   `genesis_49_10_11_scroll` (Genesis 49:10-11 Scroll Fragment)
+    *   `malachi_3_1_scroll` (Malachi 3:1 Scroll Fragment)
 
 #### People
 
@@ -427,8 +423,8 @@ A new **Actions** tab is available on the main investigation screen, providing a
 |---|---|---|---|
 | Peter | Talk | `Two Disciples' Cloaks`, `Cut Rope at the Tethering Post` | Genesis 49:10–11 |
 | John | Talk | `Fresh Hoofprints`, `Villager's Testimony` | — |
-| Tobias | Talk | `Fresh-Cut Palm Branch`, `Zechariah Scroll` | Psalm 118:25–26 |
-| Eleazar | Talk | `Pharisee's Written Complaint` | Malachi 3:1 |
+| Tobias | Talk | `palm_branch`, `prophecy_scroll` | Psalm 118:25–26 |
+| Eleazar | Talk | `crowd_testimony` | Malachi 3:1 |
 
 
 
@@ -453,17 +449,16 @@ A new **Actions** tab is available on the main investigation screen, providing a
 
 | Evidence Pair | Operation | Result | Prophecy Revealed | Points | Reputation | Doubt |
 |---|---|---|---|---|---|---|
-| `Two Disciples' Cloaks` + `Zechariah Scroll` | Compare | **Motive Clarified** for Peter (Acted on instruction) | Zechariah 9:9 | +15 | — | — |
-| `Fresh Hoofprints` + `Villager's Testimony` | Compare | **Cleared** Tobias (Confirmed he willingly lent the colt) | — | +15 | — | — |
+| `cloaks` + `peter` | Link | Motive Clarified | — | +15 | — | — |
 
 #### Codex
  
 | Evidence + Prophecy = Unlock | Source of Information |
 |---|---|
-| `Zechariah Scroll` → Zechariah 9:9 | Lab: `Two Disciples' Cloaks` + `Zechariah Scroll` |
-| `Fresh-Cut Palm Branch` → Psalm 118:25–26 | Dialogue: Tobias |
-| `Two Disciples' Cloaks` → Genesis 49:10–11 | Dialogue: Peter |
-| `Pharisee's Written Complaint` → Malachi 3:1 | Dialogue: Eleazar |
+| `prophecy_scroll` → `zechariah_9_9` | Dialogue with Tobias |
+| `palm_branch` → `psalm_118_25_26` | Dialogue with Tobias |
+| `cloaks` → `genesis_49_10_11` | Dialogue with Peter |
+| `crowd_testimony` → `malachi_3_1` | Dialogue with Eleazar |
 
 
 
@@ -479,26 +474,29 @@ A new **Actions** tab is available on the main investigation screen, providing a
 *   **Culprit:** **No One**. The event was a prophetic act of judgment by Jesus.
 *   **Prophecies:** Malachi 3:1, Isaiah 56:7, Psalm 69:9
 
-*   **Evidence:**
-    *   `Scattered Tyrian Shekels`
-    *   `Shattered Dove Cages`
-    *   `Discarded Whip of Cords`
+*   **Evidence:** 
+    *   `broken_cages` (Shattered Dove Cages)
+    *   `scattered_shekels` (Scattered Tyrian Shekels)
+    *   `whip_of_cords` (Discarded Whip of Cords)
+    *   `malachi_3_1_b_scroll` (Malachi 3:1 Scroll Fragment)
+    *   `isaiah_56_7_scroll` (Isaiah 56:7 Scroll Fragment)
+    *   `psalm_69_9_scroll` (Psalm 69:9 Scroll Fragment)
 
 #### People
 
 | Character | Action | Unlocks Evidence | Reveals Prophecy |
 |---|---|---|---|
-| Malachi (Money Changer) | Talk | `Scattered Shekels` | Malachi 3:1 |
-| Marcus (Garrison Guard) | Talk | `Roman Standard`, `Whip of Cords` | — |
-| Jadan of Bethphage | Talk | `Shattered Dove Cages` | Isaiah 56:7 |
-| Disciples (generic) | Talk | `Disciples' Testimony` | Psalm 69:9 |
+| Malachi (Money Changer) | Talk | `scattered_shekels` | Malachi 3:1 |
+| Marcus (Garrison Guard) | Talk | `whip_of_cords` | — |
+| Jadan of Bethphage | Talk | `broken_cages` | Isaiah 56:7 |
+| Disciples (generic) | Talk | `disciples_recollection` | Psalm 69:9 |
 
 #### Lab
 
 | Evidence Pair | Operation | Result | Prophecy Revealed | Points | Reputation | Doubt |
 |---|---|---|---|---|---|---|
-| `Shattered Dove Cages` + `Whip of Cords` | Link | **Identified as Victim** for Jadan | — | +15 | — | — |
-| `Scattered Shekels` + `Whip of Cords` | Link | **Identified as Victim** for Malachi | — | +15 | — | — |
+| `broken_cages` + `whip_of_cords` | Link | **Identified as Victim** for Jadan | — | +15 | — | — |
+| `scattered_shekels` + `whip_of_cords` | Link | **Identified as Victim** for Malachi | — | +15 | — | — |
 
 #### Codex
 | Evidence + Prophecy = Unlock | Source of Information |
@@ -521,33 +519,33 @@ A new **Actions** tab is available on the main investigation screen, providing a
 *   **Prophecies:** Micah 7:1, Jeremiah 8:13, Psalm 33:8–9, Zechariah 4:6–7
 
 *   **Evidence:**
-    *   `Description of the Fig Tree (Monday)`
-    *   `The Withered Fig Tree (Tuesday)`
-    *   `Peter's Astonished Reaction`
-    *   `Jesus's Teaching on Faith`
+    *   `cursed_fig_tree_desc` (Description of the Fig Tree (Monday))
+    *   `withered_fig_tree_state` (The Withered Fig Tree (Tuesday))
+    *   `peter_astonishment` (Peter's Astonished Reaction)
+    *   `disciples_faith_lesson` (Jesus's Teaching on Faith)
 
 #### People
 
 | Character | Action | Unlocks Evidence | Reveals Prophecy |
 |---|---|---|---|
-| Peter | Talk | `Withered Fig Leaf (Tuesday)`, `Disciples' Astonishment` | Jeremiah 8:13 |
-| John | Talk | `Jesus's Teaching on Faith`, `Disciples' Astonishment` | Zechariah 4:6–7 |
-| Nathan (Gardener) | Talk | `Healthy Fig Leaf (Monday)` | Micah 7:1 |
+| Peter | Talk | `withered_fig_tree_state`, `peter_astonishment` | Jeremiah 8:13 |
+| John | Talk | `disciples_faith_lesson`, `peter_astonishment` | Zechariah 4:6–7 |
+| Nathan (Gardener) | Talk | `cursed_fig_tree_desc` | Micah 7:1 |
 | Local Traveler | Talk | — | Psalm 33:8–9 |
 
 #### Lab
 
 | Evidence Pair | Operation | Result | Prophecy Revealed | Points | Reputation | Doubt |
 |---|---|---|---|---|---|---|
-| `Withered Fig Leaf (Tuesday)` + `Disciples' Astonishment` | Link | **Identified as Witness** for Peter | — | +15 | — | — |
+| `withered_fig_tree_state` + `peter_astonishment` | Link | **Identified as Witness** for Peter | — | +15 | — | — |
 
 #### Codex
 | Evidence + Prophecy = Unlock | Source of Information |
 |---|---|
-| `Healthy Fig Leaf (Monday)` → Micah 7:1 | Dialogue: Nathan (Gardener) |
-| `Withered Fig Leaf (Tuesday)` → Jeremiah 8:13 | Dialogue: Peter |
-| `Disciples' Astonishment` → Psalm 33:8–9 | Dialogue: Local Traveler |
-| `Jesus's Teaching on Faith` → Zechariah 4:6–7 | Dialogue: John |
+| `cursed_fig_tree_desc` → `micah_7_1` | Dialogue: Nathan (Gardener) |
+| `withered_fig_tree_state` → `jeremiah_8_13` | Dialogue: Peter |
+| `peter_astonishment` → `psalm_33_8_9` | Dialogue: Local Traveler |
+| `disciples_faith_lesson` → `zechariah_4_6_7` | Dialogue: John |
  
 ## Act II: The Teacher
 
@@ -566,12 +564,13 @@ A new **Actions** tab is available on the main investigation screen, providing a
 *   **Prophecies:** Psalm 118:22–23, Isaiah 5:1–7, Daniel 7:13–14, Malachi 3:1
 
 *   **Evidence:**
-    *   `The Formal Authority Challenge`
-    *   `Sketch of the Vineyard Parable`
-    *   `Rejected Cornerstone Fragment`
-    *   `Denarius of Tiberius Caesar`
-    *   `Withered Fig Leaf`
-    *   `Two Leptons (Widow's Mites)`
+    *   `question_scroll` (The Formal Authority Challenge)
+    *   `parable_fragments` (Sketch of the Vineyard Parable)
+    *   `cornerstone_carving` (Rejected Cornerstone Fragment)
+    *   `coin_of_caesar` (Denarius of Tiberius Caesar)
+    *   `fig_leaf_withered` (Withered Fig Leaf)
+    *   `widow_two_coins` (Two Leptons (Widow's Mites))
+    *   `witness_scroll` (Temple Bystander's Written Account)
 
 #### People
 
@@ -579,7 +578,7 @@ A new **Actions** tab is available on the main investigation screen, providing a
 |---|---|---|---|
 | Caiaphas | Talk | `Priestly Vestments`, `Rejected Cornerstone Fragment` |
 | Caiaphas | Talk | `Denarius of Tiberius Caesar`, `Two Leptons (Widow's Mites)` |
-| Samuel (Scribe) | Talk | `Sketch of Vineyard Parable`, `Temple Bystander's Written Account` |
+| Samuel (Scribe) | Talk | `parable_fragments`, `witness_scroll` |
 | Nathanael (Pharisee) | Talk | — |
 
 
@@ -601,16 +600,16 @@ A new **Actions** tab is available on the main investigation screen, providing a
 
 | Evidence Pair | Operation | Result | Prophecy Revealed | Points | Reputation | Doubt |
 |---|---|---|---|---|---|---|
-| `Sketch of Vineyard Parable` + `Rejected Cornerstone Fragment` | Link | **Implicated by Parable** for Caiaphas | Psalm 118:22–23 | +15 | — | — |
-| `Priestly Vestments` + `Temple Bystander's Written Account` | Compare | **Identified as Witness** for Samuel | — | +15 | — | — |
+| `parable_fragments` + `cornerstone_carving` | Link | **Implicated by Parable** for Caiaphas | Psalm 118:22–23 | +15 | — | — |
+| `question_scroll` + `witness_scroll` | Compare | **Identified as Witness** for Samuel | — | +15 | — | — |
 
 #### Codex
 | Evidence + Prophecy = Unlock | Source of Information |
 |---|---|
-| `Rejected Cornerstone Fragment` → Psalm 118:22–23 | Lab: `Sketch of Vineyard Parable` + `Rejected Cornerstone Fragment` |
-| `Sketch of Vineyard Parable` → Isaiah 5:1–7 | Dialogue: Samuel (Scribe) |
-| `Priestly Vestments` → Daniel 7:13–14 | Dialogue: Caiaphas |
-| `question_scroll` → Malachi 3:1 | Dialogue: Caiaphas |
+| `cornerstone_carving` → `psalm_118_22_23` | Lab: `parable_fragments` + `cornerstone_carving` |
+| `parable_fragments` → `isaiah_5_1_7` | Dialogue: Samuel (Scribe) |
+| `witness_scroll` → `daniel_7_13_14` | Dialogue: Samuel (Scribe) |
+| `question_scroll` → `malachi_3_1` | Dialogue: Caiaphas |
  
 ### Case: `lazarus_plot` (The Price of Life)
 *   **Title:** The Price of Life
@@ -627,20 +626,19 @@ A new **Actions** tab is available on the main investigation screen, providing a
 *   **Prophecies:** Isaiah 25:8
 
 *   **Evidence:**
-    *   `Bethany Pilgrim Manifest`
-    *   `Bethany Limestone Dust`
-    *   `Intercepted Sadducean Memorandum`
+    *   `crowd_report` (Bethany Pilgrim Manifest)
+    *   `grave_dirt` (Bethany Limestone Dust)
+    *   `secret_decree` (Intercepted Sadducean Memorandum)
 
 #### People
 
 | Character | Action | Unlocks | Reveals Prophecy |
 |---|---|---|---|
-| Maluch (Temple Spy) | Talk | `Report to Caiaphas` |
-| Maluch (Temple Spy) | Talk | `Lazarus's Grave Cloth` |
-| Annas (High Priest Emeritus) | Talk | `Sanhedrin Meeting Scroll` |
+| Maluch (Temple Spy) | Talk | `secret_decree` |
+| Annas (High Priest Emeritus) | Talk | `secret_decree` |
 | Martha (Sister of Lazarus) | Talk | `grave_dirt` | Isaiah 25:8 |
 | Nicodemus | Talk | — |
-| Simon the Leper | Talk | — |
+| Simon the Leper | Talk | `crowd_report` |
 
 
 ---
@@ -668,14 +666,14 @@ A new **Actions** tab is available on the main investigation screen, providing a
 
 | Evidence Pair | Operation | Result | Prophecy Revealed | Points | Reputation | Doubt |
 |---|---|---|---|---|---|---|
-| `Report to Caiaphas` + `Sanhedrin Meeting Scroll` | Link | **Implicated in Conspiracy** for Caiaphas | — | +15 | — | — |
-| `grave_dirt` + `Sanhedrin Meeting Scroll` | Link | **Cleared** Nicodemus (Shows he was a dissenting voice) | — | +15 | — | — |
+| `secret_decree` + `crowd_report` | Link | **Implicated in Conspiracy** for Caiaphas | — | +15 | — | — |
+| `grave_dirt` + `secret_decree` | Link | **Cleared** Nicodemus (Shows he was a dissenting voice) | — | +15 | — | — |
 
 ...
 #### Codex
 | Evidence + Prophecy = Unlock | Source of Information |
 |---|---|
-| `Lazarus's Grave Cloth` → Isaiah 25:8 | Dialogue: Martha |
+| `grave_dirt` → `isaiah_25_8` | Dialogue: Martha |
  
 ### Case: `olivet_discourse` (The End of the Age)
 *   **Title:** The End of the Age
@@ -690,11 +688,11 @@ A new **Actions** tab is available on the main investigation screen, providing a
 *   **Prophecies:** Daniel 9:27, Joel 2:30-31, Isaiah 13:10
 
 *   **Evidence:**
-    *   `View of the Temple from Olivet`
-    *   `Disciples' Questions (Written Notes)`
-    *   `Parable of the Ten Virgins (Notes)`
-    *   `Old Testament Cosmic Sign References`
-    *   `Darkened Sun Record`
+    *   `temple_overlook_view` (View of the Temple from Olivet)
+    *   `disciples_questions_notes` (Disciples' Questions (Written Notes))
+    *   `parable_of_virgins_notes` (Parable of the Ten Virgins (Notes))
+    *   `cosmic_signs_references` (Old Testament Cosmic Sign References)
+    *   `darkened_sun_record` (Darkened Sun Record)
 
 #### People
 
@@ -702,8 +700,8 @@ A new **Actions** tab is available on the main investigation screen, providing a
 |---|---|---|---|
 | Peter | Talk | `Disciples' Questions` | |
 | John | Talk | `Sketch of Temple Stones`, `Notes on Cosmic Signs` | Isaiah 13:10 |
-| Thomas | Talk | `parable_of_virgins_notes`, `cosmic_signs_references` |
-| Andrew | Talk | — |
+| Thomas | Talk | `parable_of_virgins_notes`, `cosmic_signs_references` | Joel 2:30-31 |
+| Andrew | Talk | `disciples_questions_notes` | Daniel 9:27 |
 
 
 
@@ -724,14 +722,14 @@ A new **Actions** tab is available on the main investigation screen, providing a
 
 | Evidence Pair | Operation | Result | Prophecy Revealed | Points | Reputation | Doubt |
 |---|---|---|---|---|---|---|
-| `Sketch of Temple Stones` + `Disciples' Questions` | Link | **Identified as Primary Witness** for Peter | Daniel 9:27 | +15 | — | — |
+| `temple_overlook_view` + `disciples_questions_notes` | Link | **Identified as Primary Witness** for Peter | Daniel 9:27 | +15 | — | — |
 
 #### Codex
 | Evidence + Prophecy = Unlock | Source of Information |
 |---|---|
-| `Disciples' Questions` → Daniel 9:27 | Lab: `Sketch of Temple Stones` + `Disciples' Questions` |
-| `Notes on Cosmic Signs` → Joel 2:30-31 | Dialogue: Thomas |
-| `Notes on Cosmic Signs` → Isaiah 13:10 | Dialogue: John |
+| `disciples_questions_notes` → `daniel_9_27` | Dialogue: Andrew |
+| `cosmic_signs_references` → `joel_2_30_31` | Dialogue: Thomas |
+| `darkened_sun_record` → `isaiah_13_10` | Dialogue: John |
 
 ### Case: `passover_lamb_chain` (The Anointing at Bethany)
 *   **Title:** The Anointing at Bethany
@@ -747,10 +745,10 @@ A new **Actions** tab is available on the main investigation screen, providing a
 *   **Culprit:** **No One**. Mary's anointing was an act of costly worship and prophetic preparation for burial, not wrongdoing; Judas's objection exposed his own self-interest.
 *   **Prophecies:** Exodus 12:1–14 (Typological Fulfilment — the Passover Lamb)
 *   **Evidence:**
-    *   `Passover Lamb Market Records`
-    *   `Temple Inspection Notes`
-    *   `Flask of Pure Nard`
-    *   `Broken Alabaster Jar`
+    *   `lamb_records` (Passover Lamb Market Records)
+    *   `inspection_notes` (Temple Inspection Notes)
+    *   `nard_flask` (Flask of Pure Nard)
+    *   `alabaster_jar` (Broken Alabaster Jar)
 
 #### People
 
@@ -772,9 +770,9 @@ A new **Actions** tab is available on the main investigation screen, providing a
 #### Codex
 | Evidence + Prophecy = Unlock | Source of Information |
 |---|---|
-| `nard_flask` → Exodus 12:1–14 (typology_passover_lamb) | Dialogue: Mary of Bethany |
-| `inspection_notes` → Exodus 12:1–14 (typology_passover_lamb) | Dialogue: Hillel |
-| `alabaster_jar` → Exodus 12:1–14 (typology_passover_lamb) | Dialogue: Judas Iscariot / Simon the Leper |
+| `nard_flask` → `typology_passover_lamb` | Dialogue: Mary of Bethany |
+| `inspection_notes` → `typology_passover_lamb` | Dialogue: Hillel |
+| `alabaster_jar` → `typology_passover_lamb` | Dialogue: Judas Iscariot / Simon the Leper |
 
 ## Act III: The Pressure Builds
 
@@ -790,25 +788,27 @@ A new **Actions** tab is available on the main investigation screen, providing a
     *   Judas Iscariot ([`../characters/judas.json`](../characters/judas.json))
 *   **Culprit:** **Judas Iscariot**. His agitation and haste led to the broken items as he prepared for his betrayal.
 *   **Prophecies:** Exodus 12:1–14, Jeremiah 31:31–34, Exodus 24:8, Psalm 41:9, Zechariah 11:12–13, Isaiah 53:12
-*   **Typologies:** Melchizedek (Genesis 14:18), Passover Meal (Exodus 12)
+*   **Typologies:** `typology_melchizedek` (Genesis 14:18), Passover Meal (Exodus 12)
 
 *   **Evidence:**
-    *   `Unleavened Bread Crumbs`
-    *   `Spilled Wine on the Linen`
-    *   `Shattered Clay Cup`
-    *   `Large Stone Water Jug`
-    *   `Imprint of a Money Bag`
-    *   `Fragment of Sop (Dipped Bread)`
-    *   `Written Summary of Jesus\'s Words`
-    *   `List of the Twelve`
+    *   `bread_crumbs` (Unleavened Bread Crumbs)
+    *   `wine_stain` (Spilled Wine on the Linen)
+    *   `cup_fragments` (Shattered Clay Cup)
+    *   `water_jug` (Large Stone Water Jug)
+    *   `money_bag_impression` (Imprint of a Money Bag)
+    *   `betrayal_dipped_bread` (Fragment of Sop (Dipped Bread))
+    *   `new_covenant_declaration` (Written Summary of Jesus's Words)
+    *   `twelve_roll` (List of the Twelve) 
+    *   `roman_nail` (Roman Nail) 
+    *   `denial_foretold` (Account of the Rooster Warning)
 
 #### People
 
 | Character | Action | Unlocks | Reveals Prophecy |
 |---|---|---|---|
-| John Mark | Talk | `Broken Wine Cup`, `Jeremiah Scroll` | Jeremiah 31:31–34 |
-| Rhoda | Talk | `Spilled Water Basin`, `Passover Lamb Bone`, `Dipped Bread Fragment` | Exodus 12:1–14 |
-| Judas Iscariot | Talk | `Dipped Bread Fragment` |
+| John Mark | Talk | `cup_fragments`, `new_covenant_declaration`, `twelve_roll` | Jeremiah 31:31–34, Isaiah 53:12 |
+| Rhoda | Talk | `water_jug`, `bread_crumbs`, `betrayal_dipped_bread` | Exodus 12:1–14 |
+| Judas Iscariot | Talk | `betrayal_dipped_bread` |
 
 
 ---
@@ -827,20 +827,21 @@ A new **Actions** tab is available on the main investigation screen, providing a
 
 | Evidence Pair | Operation | Result | Prophecy Revealed | Points | Reputation | Doubt |
 |---|---|---|---|---|---|---|
-| `Broken Wine Cup` + `Dipped Bread Fragment` | Link | **Implicated by Prophecy** for Judas Iscariot | Psalm 41:9 | +15 | — | — |
-| `Spilled Water Basin` + `Dipped Bread Fragment` | Link | **Witness to Haste** for Rhoda | — | +15 | — | — |
-| `Broken Wine Cup` + `Spilled Water Basin` | Compare | **Witness to Agitation** for John Mark | — | +15 | — | — |
+| `cup_fragments` + `betrayal_dipped_bread` | Link | **Implicated by Prophecy** for Judas Iscariot | `psalm_41_9` | +15 | — | — |
+| `water_jug` + `betrayal_dipped_bread` | Link | **Witness to Haste** for Rhoda | — | +15 | — | — |
+| `cup_fragments` + `water_jug` | Compare | **Witness to Agitation** for John Mark | — | +15 | — | — |
 
 #### Codex
 | Evidence + Prophecy = Unlock | Source of Information |
 |---|---|
-| `Broken Wine Cup` → Jeremiah 31:31–34 | Dialogue: John Mark |
-| `Dipped Bread Fragment` → Psalm 41:9 | Lab: `Broken Wine Cup` + `Dipped Bread Fragment` |
-| `Passover Lamb Bone` → Exodus 12:1–14 | Dialogue: Rhoda |
-| `Money Bag Impression` → Zechariah 11:12–13 | Lab: betrayal evidence (thirty pieces of silver) |
-| `Dipped Bread Fragment` → Isaiah 53:12 | Not explicitly linked in Lab/People tables |
-| `Jeremiah Scroll` → Exodus 24:8 (Covenant sealed with blood) | Dialogue: John Mark |
-| `Unleavened Bread Crumbs` → Genesis 14:18 (Melchizedek) | Codex: New Covenant Hidden Chain |
+| `new_covenant_declaration` → `jeremiah_31_31_34` | Dialogue: John Mark |
+| `betrayal_dipped_bread` → `psalm_41_9` | Lab: `cup_fragments` + `betrayal_dipped_bread` |
+| `bread_crumbs` → `exodus_12_1_14` | Dialogue: Rhoda |
+| `money_bag_impression` → `zechariah_11_12_13` | Dialogue with Judas |
+| `twelve_roll` → `isaiah_53_12` | Dialogue with John Mark |
+| `wine_stain` → `typology_melchizedek` | Dialogue: John Mark |
+| `denial_foretold` → `zechariah_13_7` | Dialogue with Peter |
+| `roman_nail` → `psalm_22_16_18` | Dialogue with Thomas |
 
 **Hidden Detective Chain:** *The New Covenant* — Links bread, wine, Jeremiah scroll, and Upper Room witness across the Last Supper investigation.
  
@@ -856,20 +857,19 @@ A new **Actions** tab is available on the main investigation screen, providing a
     *   No One ()
 *   **Culprit:** **No One**. The event was a scuffle during the arrest, immediately resolved by Jesus.
 *   **Prophecies:** Isaiah 53:7, Zechariah 13:7
-
 *   **Evidence:**
-    *   `Abandoned Linen Wrapper`
-    *   `Extinguished Roman Torch`
-    *   `Bloodied Scarf Fragment`
-    *   `Unresisting Prisoner's Cord`
+    *   `abandoned_linen` (Abandoned Linen Wrapper)
+    *   `dropped_torch` (Extinguished Roman Torch)
+    *   `severed_ear_wrap` (Bloodied Scarf Fragment)
+    *   `prisoner_cord` (Unresisting Prisoner's Cord)
 
 #### People
 
 | Character | Action | Unlocks | Reveals Prophecy |
 |---|---|---|---|
-| Malchus | Talk | `Bloody Linen Swab` | Isaiah 53:7 |
-| Simon Peter | Talk | `Disciple's Sword` | |
-| Roman Soldier | Talk | `Extinguished Roman Torch`, `Unresisting Prisoner's Cord` | Isaiah 53:7 |
+| Malchus | Talk | `severed_ear_wrap` | Isaiah 53:7 |
+| Simon Peter | Talk | `abandoned_linen` | Zechariah 13:7 |
+| Roman Soldier | Talk | `dropped_torch`, `prisoner_cord` | Isaiah 53:7 |
 
 
 
@@ -889,15 +889,14 @@ A new **Actions** tab is available on the main investigation screen, providing a
 
 | Evidence Pair | Operation | Result | Prophecy Revealed | Points | Reputation | Doubt |
 |---|---|---|---|---|---|---|
-| `Bloody Linen Swab` + `Disciple's Sword` | Link | **Identified as Victim** for Malchus | — | +15 | — | — |
-| `Disciple's Sword` + `Extinguished Roman Torch` | Link | **Implicated as Assailant** for Simon Peter | Zechariah 13:7 | +15 | — | — |
+| `severed_ear_wrap` + `malchus` | Link | **Identified as Victim** for Malchus | — | +15 | — | — |
+| `abandoned_linen` + `peter` | Link | **Implicated as Assailant** for Simon Peter | Zechariah 13:7 | +15 | — | — |
 
 #### Codex
 | Evidence + Prophecy = Unlock | Source of Information |
 |---|---|
-| `Disciple's Sword` → Isaiah 53:7 | Dialogue: Malchus |
-| `Unresisting Prisoner's Cord` → Isaiah 53:7 | Dialogue: Roman Soldier |
-| `Scattered Disciples' Cloaks` → Zechariah 13:7 | Lab: `Disciple's Sword` + `Extinguished Roman Torch` |
+| `prisoner_cord` → `isaiah_53_7` | Dialogue: Roman Soldier |
+| `abandoned_linen` → `zechariah_13_7` | Dialogue: Simon Peter |
 
 **🔗 Cross-Case Chain:** *The Scattered Sheep* — Zechariah 13:7 fulfilled at Gethsemane; its reversal in Peter's Restoration (`peter_restoration` case).
  
@@ -914,24 +913,24 @@ A new **Actions** tab is available on the main investigation screen, providing a
     *   No One ()
 *   **Culprit:** **Caiaphas**. He orchestrated the illegal trial to secure a blasphemy charge.
 *   **Prophecies:** Isaiah 53:7, Isaiah 50:6, Micah 5:1, Psalm 27:12, Psalm 35:11
-
 *   **Evidence:**
-    *   `Rooster Feather`
-    *   `Priestly Robe Fragment`
-    *   `Conflicting Depositions`
-    *   `Mocking Guards' Reed and Spittle`
-    *   `Guard's Reed`
-    *   `Charcoal Briquette`
-     *   `Perjured Witness Statement`
-     *   `Silent Witness Account`
+    *   `rooster_feather` (Rooster Feather)
+    *   `torn_robe` (Priestly Robe Fragment)
+    *   `false_scroll` (Conflicting Depositions)
+    *   `guard_reed` (Guard's Reed)
+    *   `charcoal_remains` (Charcoal Briquette)
+    *   `perjured_testimony` (Perjured Witness Statement)
+    *   `first_denial_account` (Servant Girl's Accusation)
+    *   `second_denial_account` (Second Bystander's Accusation)
+    *   `peters_bitter_weeping` (Witness to Peter's Departure)
 
 #### People
 
 | Character | Action | Unlocks | Reveals Prophecy |
 |---|---|---|---|
-| Caiaphas | Talk | `Torn High Priestly Robe`, `Silent Witness Account` | Isaiah 50:6 & Micah 5:1, Isaiah 53:7 |
-| Peter | Talk | `Courtyard Rooster Feather` | |
-| Ananias | Talk | `Conflicting Depositions` |
+| Caiaphas | Talk | `torn_robe`, `guard_reed` | Isaiah 50:6 & Micah 5:1 |
+| Peter | Talk | `rooster_feather`, `charcoal_remains` | |
+| Ananias | Talk | `false_scroll`, `perjured_testimony` | Psalm 27:12 & Psalm 35:11 |
 
 
 ---
@@ -954,19 +953,17 @@ A new **Actions** tab is available on the main investigation screen, providing a
 
 | Evidence Pair | Operation | Result | Prophecy Revealed | Points | Reputation | Doubt |
 |---|---|---|---|---|---|---|
-| `Torn High Priestly Robe` + `Conflicting Depositions` | Link | **Implicated by Action** for Caiaphas | Isaiah 50:6 & Micah 5:1 | +15 | — | — |
-| `Conflicting Depositions` + `Torn High Priestly Robe` | Compare | **Discredited** Ananias | Psalm 27:12 & Psalm 35:11 | +15 | — | — |
-| `Courtyard Rooster Feather` + `Torn High Priestly Robe` | Compare | **Motive Established** for Peter (Fear, not conspiracy) | — | +15 | — | — |
+| `torn_robe` + `false_scroll` | Link | **Implicated by Action** for Caiaphas | Isaiah 50:6 & Micah 5:1 | +15 | — | — |
+| `false_scroll` + `perjured_testimony` | Compare | **Discredited** Ananias | Psalm 27:12 & Psalm 35:11 | +15 | — | — |
+| `rooster_feather` + `charcoal_remains` | Compare | **Motive Established** for Peter (Fear, not conspiracy) | — | +15 | — | — |
 
 #### Codex
 | Evidence + Prophecy = Unlock | Source of Information |
 |---|---|
-| `Torn High Priestly Robe` → Isaiah 50:6 & Micah 5:1 | Lab: `Torn High Priestly Robe` + `Conflicting Depositions` |
-| `Conflicting Depositions` → Psalm 27:12 & Psalm 35:11 | Lab: `Conflicting Depositions` + `Torn High Priestic Robe` |
-| `Silent Witness Account` → Isaiah 53:7 | Dialogue: Caiaphas |
-| `Mocking Guards' Reed and Spittle` → Isaiah 50:6 | Dialogue: Ananias (false witness account) |
-| `Guard's Reed` → Micah 5:1 | Dialogue: Caiaphas |
-| `Perjured Witness Statement` → Psalm 35:11 | Lab: `Conflicting Depositions` comparison |
+| `torn_robe` → `isaiah_50_6` | Dialogue: Caiaphas |
+| `guard_reed` → `micah_5_1` | Dialogue: Caiaphas |
+| `false_scroll` → `psalm_27_12` | Dialogue: Ananias |
+| `perjured_testimony` → `psalm_35_11` | Dialogue: Ananias |
 
 **🔗 Cross-Case Chain:** *The Greater Atonement* — The Sanhedrin trial (high priest role) and `barabbas_choice` (scapegoat) connect here to `crucifixion_site`, forming the Day of Atonement typology.
  
@@ -983,17 +980,17 @@ A new **Actions** tab is available on the main investigation screen, providing a
 *   **Prophecies:** Isaiah 53:3, Psalm 2:1–2
 
 *   **Evidence:**
-    *   `The Governor's Silver Basin`
-    *   `Claudia's Warning Scroll`
-    *   `The Insurgent's Dossier`
-    *   `Joint Verdict Scroll`
+    *   `pilates_basin` (The Governor's Silver Basin)
+    *   `wifes_letter` (Claudia's Warning Scroll)
+    *   `barabbas_warrant` (The Insurgent's Dossier)
+    *   `joint_verdict` (Joint Verdict Scroll)
 
 #### People
 
 | Character | Action | Unlocks | Reveals Prophecy |
 |---|---|---|---|
-| Pontius Pilate | Talk | `Pilate's Wash Basin` | |
-| Barabbas | Talk | `Broken Prison Shackles`, `Pilate's Written Judgment` |
+| Pontius Pilate | Talk | `pilates_basin`, `wifes_letter` | Psalm 2:1-2 |
+| Barabbas | Talk | `barabbas_warrant`, `joint_verdict` | Isaiah 53:3 |
 
 
 ---
@@ -1013,14 +1010,14 @@ A new **Actions** tab is available on the main investigation screen, providing a
 
 | Evidence Pair | Operation | Result | Prophecy Revealed | Points | Reputation | Doubt |
 |---|---|---|---|---|---|---|
-| `Broken Prison Shackles` + `Pilate's Wash Basin` | Link | **Cleared** Barabbas (Beneficiary, not cause) | Isaiah 53:3 | +15 | — | — |
-| `Pilate's Wash Basin` + `Broken Prison Shackles` | Link | **Has Alibi** for Pontius Pilate (Publicly washed hands) | — | +15 | — | — |
+| `barabbas_warrant` + `pilates_basin` | Link | **Cleared** Barabbas (Beneficiary, not cause) | Isaiah 53:3 | +15 | — | — |
+| `pilates_basin` + `barabbas_warrant` | Link | **Has Alibi** for Pontius Pilate (Publicly washed hands) | — | +15 | — | — |
 
 #### Codex
 | Evidence + Prophecy = Unlock | Source of Information |
 |---|---|
-| `Broken Prison Shackles` → Isaiah 53:3 | Lab: `Broken Prison Shackles` + `Pilate's Wash Basin` |
-| `Broken Prison Shackles` → Psalm 2:1–2 | Not explicitly linked in Lab/People tables |
+| `barabbas_warrant` → `isaiah_53_3` | Dialogue: Barabbas |
+| `joint_verdict` → `psalm_2_1_2` | Dialogue: Pontius Pilate |
  
 ### Case: `crucifixion_site` (The Final Sacrifice)
 *   **Title:** The Final Sacrifice
@@ -1036,21 +1033,20 @@ A new **Actions** tab is available on the main investigation screen, providing a
 *   **Culprit:** **No One**. The event was a divine/cosmic act, not a human crime.
 *   **Prophecies:** Psalm 22:1, Psalm 22:7–8, Psalm 22:16, Psalm 22:18, Psalm 69:21, Amos 8:9, Isaiah 53:9, Zechariah 12:10, Psalm 34:20, Exodus 12:46, Psalm 31:5
 
-*   **Typologies:** Red Heifer (Numbers 19), Isaac Carrying the Wood (Genesis 22)
+*   **Typologies:** `haggai_2_6_7` (Earthquake), `jeremiah_31_31_34` (New Covenant/Torn Veil)
 
 *   **Evidence:**
-    *   `Soldiers' Casting Dice`
-    *   `Crucifixion Nails`
-    *   `Mocking Crown of Thorns`
-    *   `Cry of Abandonment`
-    *   `Blood-Stained Roman Hasta`
-    *   `Shattered Limestone Fragment`
-    *   `Thick Blue and Scarlet Threads`
-    *   `Joseph's Market Bill for Fine Linen`
-    *   `Unbroken Tibiae Report`
-    *   `Final Words Scroll`
-    *   `Sponge Soaked in Sour Wine`
-    *   `Simon of Cyrene's Burden`
+    *   `split_dice` (Soldiers' Casting Dice)
+    *   `split_rocks` (Split Rocks)
+    *   `pierced_spear` (Blood-Stained Roman Hasta)
+    *   `torn_temple_veil` (The Torn Temple Veil)
+    *   `linen_shroud_receipt` (Joseph's Market Bill for Fine Linen)
+    *   `sour_wine_sponge` (Sponge Soaked in Sour Wine)
+    *   `unbroken_legs` (Unbroken Tibiae Report)
+    *   `final_words` (Final Words Scroll)
+    *   `the_forsaken_cry` (Transcript of the Aramaic Cry)
+    *   `mocking_crowd_taunt` (Record of the Crowd's Taunt)
+    *   `distant_witnesses` (List of Those Watching From Afar)
 
 #### People
 
@@ -1058,9 +1054,9 @@ A new **Actions** tab is available on the main investigation screen, providing a
 |---|---|---|---|
 | Centurion Longinus | Talk | `Soldier's Gambling Dice`, `Centurion's Spear`, `Mocking Crown of Thorns` | Psalm 34:20 |
 | Pashhur | Talk | `The Torn Temple Veil`, `Split Rocks` | Amos 8:9 |
-| Joseph of Arimathea | Talk | `Fine Linen Burial Cloth` | Isaiah 53:9 |
-| Crucifixion Guard | Talk | `Crucifixion Nails`, `Cry of Abandonment` | Psalm 22:1, Psalm 22:16 |
-| Simon of Cyrene | Talk | `Simon of Cyrene's Burden` | Genesis 22:6 (Isaac) |
+| Joseph of Arimathea | Talk | `linen_shroud_receipt` | Isaiah 53:9 |
+| Crucifixion Guard | Talk | `the_forsaken_cry`, `mocking_crowd_taunt` | Psalm 22:1, Psalm 22:7-8 |
+| Simon of Cyrene | Talk | `sour_wine_sponge`, `final_words` | Psalm 69:21, Psalm 31:5 |
 
 ---
 [Back to Top](#table-of-contents)
@@ -1087,25 +1083,24 @@ A new **Actions** tab is available on the main investigation screen, providing a
 
 | Evidence Pair | Operation | Result | Prophecy Revealed | Points | Reputation | Doubt |
 |---|---|---|---|---|---|---|
-| `Soldier's Gambling Dice` + `Centurion's Spear` | Link | **Motive Questioned** for Centurion Longinus | Psalm 22:18 | +15 | — | — |
-| `The Torn Temple Veil` + `Soldiers' Gambling Dice` | Compare | **Identified as Witness** for Pashhur | Jeremiah 31:31-34 | +15 | — | — |
-| `Fine Linen Burial Cloth` + `Centurion's Spear` | Link | **Motive Clarified** for Joseph of Arimathea | Isaiah 53:9 | +15 | — | — |
+| `split_dice` + `pierced_spear` | Link | **Motive Questioned** for Centurion Longinus | Psalm 22:18 | +15 | — | — |
+| `torn_temple_veil` + `split_rocks` | Compare | **Identified as Witness** for Pashhur | Haggai 2:6-7 | +15 | — | — |
+| `linen_shroud_receipt` + `pierced_spear` | Link | **Motive Clarified** for Joseph of Arimathea | Isaiah 53:9 | +15 | — | — |
 
 #### Codex
 | Evidence + Prophecy = Unlock | Source of Information |
 |---|---|
-| `Soldier's Gambling Dice` → Psalm 22:18 | Lab: `Soldier's Gambling Dice` + `Centurion's Spear` |
-| `Crucifixion Nails` → Psalm 22:16 | Dialogue: Centurion Longinus |
-| `Mocking Crown of Thorns` → Psalm 22:7–8 | Dialogue: Centurion Longinus |
-| `Cry of Abandonment` → Psalm 22:1 | Dialogue: Centurion Longinus |
-| `The Torn Temple Veil` → Jeremiah 31:31-34 | Lab: `The Torn Temple Veil` + `Soldiers' Gambling Dice` |
-| `Split Rocks` → Haggai 2:6-7 | Dialogue: Pashhur |
-| `Fine Linen Burial Cloth` → Isaiah 53:9 | Lab: `Fine Linen Burial Cloth` + `Centurion's Spear` |
-| `Centurion's Spear` → Psalm 34:20 | Dialogue: Centurion Longinus |
-| `Centurion's Spear` → Zechariah 12:10 | Lab: `Centurion's Spear` (pierced side) |
-| `Shattered Limestone Fragment` → Numbers 19 (Red Heifer) | Dialogue: Pashhur |
-| `Simon of Cyrene's Burden` → Genesis 22:6 (Isaac Carrying the Wood) | Dialogue: Centurion Longinus |
-| `Centurion's Spear` → Psalm 31:5 | Not explicitly linked in Lab/People tables |
+| `split_dice` → `psalm_22_16_18` | Dialogue: Centurion Longinus |
+| `mocking_crowd_taunt` → `psalm_22_7_8` | Dialogue: Crucifixion Guard |
+| `the_forsaken_cry` → `psalm_22_1` | Dialogue: Crucifixion Guard |
+| `sour_wine_sponge` → `psalm_69_21` | Dialogue: Simon of Cyrene |
+| `split_rocks` → `haggai_2_6_7` | Dialogue: Pashhur |
+| `torn_temple_veil` → `jeremiah_31_31_34` | Dialogue: Pashhur |
+| `linen_shroud_receipt` → `isaiah_53_9` | Dialogue: Joseph of Arimathea |
+| `pierced_spear` → `zechariah_12_10` | Dialogue: Centurion Longinus |
+| `unbroken_legs` → `psalm_34_20` | Dialogue: Centurion Longinus |
+| `final_words` → `psalm_31_5` | Dialogue: Simon of Cyrene |
+| `distant_witnesses` → `psalm_38_11` | Dialogue: Joseph of Arimathea |
 
 **🔓 Hidden Chain:** *The Perfect Sacrifice* — Complete the Psalm 22 chain by linking all mocking, piercing, and garment-division evidence.
 
@@ -1126,18 +1121,23 @@ A new **Actions** tab is available on the main investigation screen, providing a
     *   No One ()
 *   **Culprit:** **No One**. The resurrection was a supernatural event.
 *   **Prophecies:** Psalm 16:10, Hosea 6:2, Jonah 1:17 / Matthew 12:40, Isaiah 53:10–11, Psalm 22:1–31, Isaiah 26:19, Leviticus 23:9–14
-
 *   **Evidence:**
-    *   `The Displaced Sealing Stone`
-    *   `The Empty Burial Chamber`
-    *   `Folded Burial Linens`
-    *   `The Angelic Proclamation`
-    *   `The Soldiers' Broken Report`
-    *   `Unused Burial Spices`
-    *   `Mary Magdalene's Testimony`
-    *   `Resurrection Psalm Scroll`
-    *   `Sign of Jonah`
-    *   `Firstfruits Offering`
+    *   `rolled_stone` (The Displaced Sealing Stone)
+    *   `empty_tomb` (The Empty Burial Chamber)
+    *   `burial_linen` (Folded Burial Linens)
+    *   `angelic_witness` (The Angelic Proclamation)
+    *   `guard_report` (The Soldiers' Broken Report)
+    *   `spice_jars` (Unused Burial Spices)
+    *   `mary_encounter` (Mary Magdalene's Testimony)
+    *   `opened_tombs` (Opened Tombs Testimony)
+    *   `psalm22_scroll` (Resurrection Psalm Scroll)
+    *   `psalm_16_10_scroll` (Psalm 16:10 Scroll Fragment)
+    *   `hosea_6_2_scroll` (Hosea 6:2 Scroll Fragment)
+    *   `jonah_1_17___matthew_12_40_scroll` (Jonah 1:17 / Matthew 12:40 Scroll Fragment)
+    *   `isaiah_53_10_11_scroll` (Isaiah 53:10-11 Scroll Fragment)
+    *   `psalm_22_1_31_scroll` (Psalm 22:1-31 Scroll Fragment)
+    *   `isaiah_26_19_scroll` (Isaiah 26:19 Scroll Fragment)
+    *   `ezekiel_37_12_13_scroll` (Ezekiel 37:12-13 Scroll Fragment)
 
 #### People
 
@@ -1145,7 +1145,7 @@ A new **Actions** tab is available on the main investigation screen, providing a
 |---|---|---|---|
 | Mary Magdalene | Talk | `rolled_stone`, `empty_tomb`, `burial_linen`, `angelic_witness`, `mary_encounter` | Psalm 16:10 |
 | Marcus | Talk | `guard_report`, `rolled_stone` | Hosea 6:2 |
-| Joseph of Arimathea | Talk | `spice_jars` | Isaiah 53:10–11 |
+| Joseph of Arimathea | Talk | `spice_jars`, `opened_tombs` | Isaiah 53:10–11, Ezekiel 37:12-13 |
 
 
 
@@ -1165,24 +1165,18 @@ A new **Actions** tab is available on the main investigation screen, providing a
 
 | Evidence Pair | Operation | Result | Prophecy Revealed | Points | Reputation | Doubt |
 |---|---|---|---|---|---|---|
-| `burial_linen` + `rolled_stone` | Compare | **Identified as Witness** for Mary Magdalene | Psalm 16:10 | +15 | — | — |
-| `rolled_stone` + `guard_report` | Compare | **Implicated in Failure** for Marcus | Hosea 6:2 & Jonah 1:17 | +15 | — | — |
-| `spice_jars` + `burial_linen` | Timeline | **Cleared** Joseph of Arimathea | Isaiah 53:10–11 | +15 | — | — |
-| `rolled_stone` + `guard_report` | Link | **Supernatural Event Confirmed** | Psalm 16:10 | +15 | — | — |
-| `empty_tomb` + `burial_linen` | Compare | **Theft Ruled Out** | Psalm 16:10 | +15 | — | — |
-| `angelic_witness` + `mary_encounter` | Compare | **Witness Convergence** | Isaiah 53:10–11 | +15 | — | — |
-| `mary_encounter` + `guard_report` | Contradict | **Independent Accounts** | Jonah 1:17 / Matthew 12:40 | +15 | — | — |
+| `guard_report` + `marcus` | Link | Exposed cover-up | — | +15 | — | — |
 
 #### Codex
 | Evidence + Prophecy = Unlock | Source of Information |
 |---|---|
-| `burial_linen` → Psalm 16:10 | Lab: `burial_linen` + `rolled_stone` |
-| `rolled_stone` → Hosea 6:2 & Jonah 1:17 | Lab: `rolled_stone` + `guard_report` |
-| `spice_jars` → Isaiah 53:10–11 | Lab: `spice_jars` + `burial_linen` |
-| `empty_tomb` → Psalm 22:1–31 | Codex: `empty_tomb` (cry of abandonment opens, resurrection closes the psalm) |
-| `rolled_stone` → Psalm 16:10 | Lab: `rolled_stone` (the dead rise and shout for joy) |
-| `opened_tombs` → Ezekiel 37:12-13 | Lab: `opened_tombs` + `guard_report` |
-| `empty_tomb` → Psalm 16:10 | Lab: `empty_tomb` (resurrection as guarantee of our own rising) |
+| `rolled_stone` → `psalm_16_10` | Dialogue: Mary Magdalene |
+| `guard_report` → `hosea_6_2` | Dialogue: Marcus |
+| `guard_report` → `jonah_1_17___matthew_12_40` | Dialogue: Marcus |
+| `mary_encounter` → `isaiah_53_10_11` | Dialogue: Joseph of Arimathea |
+| `psalm22_scroll` → `psalm_22_1_31` | Dialogue: Mary Magdalene |
+| `opened_tombs` → `ezekiel_37_12_13` | Dialogue: Joseph of Arimathea |
+| `burial_linen` → `isaiah_26_19` | Dialogue: Mary Magdalene |
 
 **🔓 Hidden Chain:** *Death Defeated* — Link the Soldiers' Broken Report, Opened Tombs Testimony, Empty Burial Chamber, and Mary Magdalene's Testimony to complete the resurrection prophecy chain.
  
@@ -1200,10 +1194,11 @@ A new **Actions** tab is available on the main investigation screen, providing a
 *   **Prophecies:** Psalm 2:1–2
 
 *   **Evidence:**
-    *   `High-Grade Sanctuary Coins`
-    *   `Snapped Clay Roman Seal`
-    *   `Shattered Pilum Shaft`
-    *   `Official Sanhedrin Report`
+    *   `bribe_shekels` (High-Grade Sanctuary Coins)
+    *   `broken_imperial_seal` (Snapped Clay Roman Seal)
+    *   `shattered_spear` (Shattered Pilum Shaft)
+    *   `sanhedrin_report` (Official Sanhedrin Report)
+    *   `psalm_2_1_2_scroll` (Psalm 2:1-2 Scroll Fragment)
 
 #### People
 
@@ -1245,7 +1240,7 @@ A new **Actions** tab is available on the main investigation screen, providing a
 #### Codex
 | Evidence + Prophecy = Unlock | Source of Information |
 |---|---|
-| `bribe_shekels` → Psalm 2:1–2 | Lab: `bribe_shekels` + `sanhedrin_report` |
+| `sanhedrin_report` → `psalm_2_1_2` | Dialogue: Caiaphas |
  
 ### Case: `peter_restoration` (Peter's Restoration)
 *   **Title:** Peter's Restoration
@@ -1259,13 +1254,16 @@ A new **Actions** tab is available on the main investigation screen, providing a
     *   No One ()
 *   **Culprit:** **No One**. The event was an act of divine grace and restoration.
 *   **Prophecies:** Zechariah 13:7, Ezekiel 34:11-16
-
 *   **Evidence:**
-    *   `The Charcoal Fire`
-    *   `The Miraculous Catch`
-    *   `Bread and Fish Breakfast`
-    *   `The Threefold Commission`
-    *   `Risen Appearance`
+    *   `charcoal_fire` (The Charcoal Fire)
+    *   `miraculous_catch` (The Miraculous Catch)
+    *   `bread_breakfast` (Bread and Fish Breakfast)
+    *   `threefold_commission` (The Threefold Commission)
+    *   `galilean_apparition` (Risen Appearance)
+    *   `zechariah_13_7_scroll` (Zechariah 13:7 Scroll Fragment)
+    *   `ezekiel_34_11-16_scroll` (Ezekiel 34:11-16 Scroll Fragment)
+    *   `psalm_16_10_scroll` (Psalm 16:10 Scroll Fragment)
+    *   `isaiah_53_10_11_scroll` (Isaiah 53:10-11 Scroll Fragment)
 
 #### People
 
@@ -1274,8 +1272,7 @@ A new **Actions** tab is available on the main investigation screen, providing a
 | Peter | Talk | `charcoal_fire`, `threefold_commission` | Zechariah 13:7 |
 | Thomas | Talk | `miraculous_catch`, `threefold_commission` | Zechariah 13:7 |
 | Mary Magdalene | Talk | `miraculous_catch` | Ezekiel 34:11-16 |
-| Nathanael | Talk | — | Ezekiel 34:11-16 |
-
+| Nathanael | Talk | `bread_breakfast`, `galilean_apparition` | Ezekiel 34:11-16 |
 
 ---
 [Back to Top](#table-of-contents)
@@ -1303,12 +1300,45 @@ A new **Actions** tab is available on the main investigation screen, providing a
 #### Codex
 | Evidence + Prophecy = Unlock | Source of Information |
 |---|---|
-| `charcoal_fire` → Zechariah 13:7 | Lab: `charcoal_fire` + `threefold_commission` |
-| `miraculous_catch` → Ezekiel 34:11-16 | Lab: `miraculous_catch` + `threefold_commission` |
-| `bread_breakfast` → Ezekiel 34:11-16 | Lab: `galilean_apparition` + `bread_breakfast` |
-| `galilean_apparition` → Isaiah 53:10-11 | Lab: `galilean_apparition` + `miraculous_catch` |
-| `threefold_commission` → Ezekiel 34:11-16 | Dialogue: Peter / Nathanael |
+| `charcoal_fire` → `zechariah_13_7` | Dialogue: Peter |
+| `threefold_commission` → `ezekiel_34_11-16` | Dialogue: Peter |
  
+### Case: `ascension` (The Ascension)
+*   **Title:** The Ascension
+*   **Characters:**
+    *   Peter (Apostle)
+    *   John (Apostle)
+    *   Mary Magdalene (Witness)
+*   **Suspects:**
+    *   No One ()
+*   **Culprit:** **No One**. This is a divine event, not a crime.
+*   **Prophecies:** Psalm 68:18, Psalm 110:1, Daniel 7:13-14
+*   **Evidence:**
+    *   `parting_cloud` (The Parting Cloud)
+    *   `angelic_messengers` (The Two Messengers)
+    *   `disciples_gaze` (The Disciples' Upward Gaze)
+
+#### People
+
+| Character | Action | Unlocks | Reveals Prophecy |
+|---|---|---|---|
+| Peter | Talk | `disciples_gaze` | Psalm 110:1 |
+| John | Talk | `parting_cloud` | Daniel 7:13-14 |
+| Mary Magdalene | Talk | `angelic_messengers` | Psalm 68:18 |
+
+#### Lab
+
+| Evidence Pair | Operation | Result | Prophecy Revealed | Points | Reputation | Doubt |
+|---|---|---|---|---|---|---|
+| `parting_cloud` + `angelic_messengers` | Compare | **Divine Departure Confirmed** | Daniel 7:13-14 | +15 | — | — |
+
+#### Codex
+| Evidence + Prophecy = Unlock | Source of Information |
+|---|---|
+| `parting_cloud` → `daniel_7_13_14` | Dialogue: John |
+| `angelic_messengers` → `psalm_68_18` | Dialogue: Mary Magdalene |
+| `disciples_gaze` → `psalm_110_1` | Dialogue: Peter |
+
 ---
 [Back to Top](#table-of-contents)
 

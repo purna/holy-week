@@ -1,90 +1,88 @@
-# Implementation Plan: Decoupling Investigation & Research
+# Implementation Plan: Replacing Accusation with Prophecy-Based Case Resolution
 
-This document outlines the high-level engineering plan to refactor the game's architecture for **all versions (mobile and desktop)**, separating the core detective gameplay from the biblical research and collection systems. This plan is designed to be executed in phases to manage complexity.
+## Why
 
-## Phase 1: Data Structure & System Decoupling
+Of the 15 cases, only 4 have a real `culprit` — the other 11 use `culprit: "none"`:
 
-**Goal:** Establish the foundational data structures for the two new progression tracks without altering major UI components.
+| Case ID | Act | Culprit |
+| :--- | :--- | :--- |
+| triumphal_entry | 1 | none |
+| temple_cleansing | 1 | none |
+| fig_tree_incident | 1 | none |
+| authority_challenged | 2 | chief_priest |
+| lazarus_plot | 2 | caiaphas |
+| olivet_discourse | 2 | none |
+| passover_lamb_chain | 2 | none |
+| last_supper | 3 | judas |
+| gethsemane_arrest | 3 | none |
+| sanhedrin_trial | 3 | chief_priest |
+| barabbas_choice | 3 | none |
+| crucifixion_site | 3 | none |
+| resurrection | 4 | none |
+| roman_inquiry | 4 | none |
+| peter_restoration | 4 | none |
 
-1.  **Update Global State (`gameState.js` or equivalent):**
-    *   Introduce a new persistent, global property: `researchScore`, initialized to `0`.
-    *   Introduce a new persistent, global object: `codex`, to store the status of all prophecies. Example: `codex: { zechariah_9_9: 'unseen', psalm_22_16_18: 'unseen', ... }`.
-    *   The status for each prophecy will be one of: `'unseen'`, `'rumor'`, `'found_scripture'`, `'complete'`.
+Picking a suspect from a list is a hollow "solve the case" moment when 11 of 15 cases have no one to pick. Every case, however, already has at least one linked prophecy (1–6 per case). This plan replaces the accuse mechanic with a single, uniform resolution: **a case is closed when its prophecies are fully investigated (discovered + linked in the Lab)** — the same win condition for all 15 cases, including the 4 with a real culprit.
 
-2.  **Update Case State (`caseManager.js`):**
-    *   The per-case `score` property will now be renamed to `investigationScore` to avoid ambiguity.
-    *   Modify `submitAccusation()` to calculate and store only the `investigationScore` for the completed case.
+**Recommendation on the 4 real-culprit cases:** don't gate resolution on guessing the name. Fold the culprit into the case-closed narrative text as a reveal (`"The evidence points to Caiaphas..."`) rather than a mechanic. This keeps one resolution code path instead of two. Flag if you'd rather keep a lightweight accuse step just for those 4 — noted as an open decision in Phase 4 below.
 
-3.  **Update Evidence System (`evidenceSystem.js`):**
-    *   Add a new evidence type constant: `EVIDENCE_TYPES.SCRIPTURE`.
-    *   Update any logic that categorizes or filters evidence to handle this new type.
+---
 
-4.  **Refactor Case Data (`act*_case.js` files):**
-    *   **Evidence Pool:** Add new evidence items with `type: 'SCRIPTURE'` for each prophecy scroll/fragment. These should be discoverable items in the game world.
-        *   Example: `{ id: 'zechariah_9_9_scroll', name: 'Zechariah 9:9 Scroll Fragment', type: 'SCRIPTURE', ... }`
-    *   **Prophecy Objects:**
-        *   Add a `scriptureEvidenceId` field to each prophecy object, linking it to the new `SCRIPTURE` evidence item. (e.g., `scriptureEvidenceId: 'zechariah_9_9_scroll'`).
-        *   Add a `fulfillmentEvidenceId` field, linking to the evidence that fulfills the prophecy. (e.g., `fulfillmentEvidenceId: 'two_disciples_cloaks'`).
+## Phase 1: Data & State
 
-## Phase 2: Reworking the Lab & Codex Logic
+- **Prerequisite check:** this plan depends on each `prophecy` object carrying `scriptureEvidenceId` and `fulfillmentEvidenceId` (as scoped in the earlier Investigation/Research decoupling plan). If that hasn't shipped to all four `act*_case.js` files yet, it's now a hard blocker — case resolution can't read prophecy completion without it.
+- Add a computed helper: `caseManager.getCaseProphecyStatus(caseId)` → `{ total, complete, allComplete }`, reading from the global `codex` (or `propheciesFound` if `codex` isn't in yet).
+- `truth.culprit` stays in case data as flavor text for the closing narrative — it's no longer read by any gameplay check.
+- `p.accusation` is retired as a gameplay field. Keep reading it on old saves for backward compatibility (see Phase 5) but stop writing it.
 
-**Goal:** Implement the new core mechanics for research and investigation, separating their logic.
+## Phase 2: Scoring Rework (`ScoringSystem.md`)
 
-1.  **Modify Deduction Engine (`deductionEngine.js`):**
-    *   Create two distinct logic paths within the evidence combination function.
-    *   **Investigative Deduction:** If neither evidence item is of type `SCRIPTURE`, proceed with the existing logic to check for a valid investigative deduction. On success, award `investigationScore`.
-    *   **Research Completion:** If one evidence item is `SCRIPTURE` and the other is not, trigger the new research logic.
-        *   Find the prophecy where `prophecy.scriptureEvidenceId` matches the `SCRIPTURE` evidence ID.
-        *   Check if the second evidence item's ID matches `prophecy.fulfillmentEvidenceId`.
-        *   On success:
-            *   Update the prophecy's status in the global `codex` object to `'complete'`.
-            *   Add points to the global `researchScore`.
-            *   Trigger a "Research Complete" UI notification.
-        *   On failure: Add to the `doubt` score.
+Remove, from the Investigation Score table:
+- ~~Correct Accusation (+50)~~
+- ~~Incorrect Accusation (−25, +25 Doubt)~~
+- ~~Perfect Case Bonus~~ tied to accusation correctness
 
-2.  **Update Scoring Logic (`scoringSystem.js` or `caseManager.js`):**
-    *   Remove the old "Prophecies Linked: +10 points" from the `investigationScore` calculation.
-    *   Create a new function `addResearchPoints(points)` that updates the global `researchScore` and handles the "Biblical Scholar" level progression.
+Replace with:
 
-## Phase 3: Implementing the New Discovery Flow & UI
+| Action | Points | Notes |
+| :--- | :--- | :--- |
+| **Case Closed** | `+50` | Awarded once, when the last required prophecy for a case is linked in the Lab. |
+| **Full Investigation Bonus** | `+25` | Case Closed with zero failed NPC challenges and zero incorrect Lab pairings. |
+| Lab Deduction | `+15` | Unchanged. |
+| Successful Challenge | `+10` | Unchanged. |
+| Evidence Collected | `+5` | Unchanged. |
 
-**Goal:** Connect the new systems to the player-facing UI and implement the multi-stage discovery process.
+Doubt and Reputation systems are untouched — they still accrue from failed challenges and incorrect Lab pairings, nothing about how a case ends changes those triggers, except: drop the "Incorrect Accusation → +25 Doubt" row, since there's no accusation left to get wrong.
 
-1.  **Update NPC System (`npcSystem.js` / Dialogue Manager):**
-    *   Modify the logic that handles the `revealsProphecy` tag in dialogue.
-    *   Instead of unlocking the prophecy directly, it should now update the prophecy's status in the global `codex` object to `'rumor'`.
-    *   Trigger a "New Rumor" UI notification.
+## Phase 3: Engine & Code Changes
 
-2.  **Update Evidence Collection Logic (`evidenceSystem.js`):**
-    *   When an evidence item is collected, check if its type is `SCRIPTURE`.
-    *   If it is, find the corresponding prophecy (by matching `prophecy.scriptureEvidenceId`) and update its status in the global `codex` to `'found_scripture'`.
-    *   Trigger a "Scripture Found" UI notification.
+**`caseManager.js`**
+- Replace `submitAccusation(suspectId)` with `submitConclusion()` — no suspect parameter. This is also the method `GameManager.conclude()` already calls but that doesn't exist yet, so this closes that gap.
+- New: `checkAndAutoConclude(caseId)` — called whenever a prophecy is marked `complete`. If it's the last one required for that case, calls `submitConclusion()` automatically. (Alternative: leave it manual — surface a "Conclude Case" button that only enables once `allComplete` is true, if you'd rather the player press something instead of it firing silently. Worth deciding before Phase 3 starts.)
+- `submitConclusion()` score formula: `evidenceScore + labDeductionScore + challengeScore + caseClosedScore(50) + fullInvestigationBonus(25 if no failed challenges/incorrect pairings) − doubtPenalty`.
 
-3.  **Overhaul Codex UI (`codexUI.js`):**
-    *   Rename the "Accuse" or "Prophecy" tab to "Codex".
-    *   The UI should now read from the global `codex` object.
-    *   Render the list of all prophecies, with visual states corresponding to their status:
-        *   `'unseen'`: Not visible or completely hidden.
-        *   `'rumor'`: Greyed out, title might be "???".
-        *   `'found_scripture'`: Title and scripture text are visible.
-        *   `'complete'`: Full entry is visible (significance, context, etc.).
-    *   Add a prominent display for the player's total `Research Score` and their "Biblical Scholar" level (e.g., Novice, Scribe, Master).
+**`GameManager.js`**
+- Delete `accuse(suspectId)` entirely.
+- `conclude()` stays as-is; it already has no suspect dependency.
 
-## Phase 4: Hidden Chains & Bonus Content
+**`gameEngine.js`**
+- Remove `window.accuse` export.
+- The "Accuse" tab (`id: 'accuse'`) gets repurposed — rename to something like "Case File", showing the prophecy checklist for the active case and a status indicator (locked until `allComplete`, or a live progress count).
 
-**Goal:** Implement the meta-game of typologies and reward completionists.
+**UI (not shown in the files you shared, but flagged):** the current Accuse screen (suspect list + submit button) needs to become a prophecy checklist view. This is the single largest piece of net-new UI work in this plan.
 
-1.  **Create Chain Manager (`chainManager.js`):**
-    *   Define the "Hidden Chains" or typologies in a data structure, listing the required prophecy IDs for each chain.
-    *   This manager will listen for events when a prophecy's status changes to `'complete'`.
-    *   When a prophecy is completed, it checks if this completion finishes a chain.
-    *   On chain completion:
-        *   Award a large bonus to `researchScore`.
-        *   Unlock a special "Master Pattern" entry in the Codex.
-        *   Trigger a "New Discovery: The True Passover Lamb" UI notification.
+**`deductionEngine.js` / `evidenceSystem.js`**
+- Hook the prophecy-completion moment (SCRIPTURE + FULFILLMENT matched in the Lab) to call `caseManager.checkAndAutoConclude(activeCaseId)`.
 
-2.  **Expand Codex UI (`codexUI.js`):**
-    *   Add sections for the bonus content unlocked by "Biblical Scholar" levels (maps, timelines, word studies).
-    *   These sections are initially locked and become visible as the player's `researchScore` reaches certain thresholds.
+## Phase 4: Open Decision — the 4 real-culprit cases
 
-This phased approach ensures that the core data model is sound before building the logic and UI on top of it, reducing complexity and making the refactoring process more manageable.
+`authority_challenged`, `lazarus_plot`, `last_supper`, `sanhedrin_trial` have a real `culprit`. Two options:
+
+1. **Uniform (recommended):** treat them exactly like the other 11 — prophecy completion closes the case, culprit is revealed in the result text, not guessed.
+2. **Hybrid:** keep a lightweight accuse step only for these 4, running *after* prophecy completion as an optional "who was really behind it?" bonus round (could award a small side bonus, doesn't gate case-solved).
+
+Let me know which of these you want before Phase 3 is built — it changes whether `submitConclusion()` needs an optional suspect branch at all.
+
+## Phase 5: Save-Data Migration
+
+Old `localStorage` saves have `p.accusation` and `p.score` in the old accusation shape. On load, if a case has an old accusation-shaped score but no prophecy-based conclusion, recompute `p.solved` from the current `codex`/prophecy status rather than trusting the stored value — the codex becomes the single source of truth for "is this case solved" going forward.

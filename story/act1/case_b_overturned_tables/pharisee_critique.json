@@ -1,55 +1,81 @@
 {
-  "start": {
-    "content": "I am Simon the Pharisee. I return from the synagogue and for some this town calls it conversation. For those who respect the Law, this matter is not as straightforward as the crowds claim. A man heals on the Sabbath and claims authority over the Law. Torah asks the question. The crowd needs an answer.",
-    "choices": [
-      {
-        "text": "He healed a man born blind \u2014 on the Sabbath.",
-        "destination": "healing"
-      },
-      {
-        "text": "The crowd follows Him like a king.",
-        "destination": "popularity"
-      }
-    ]
-  },
-  "healing": {
-    "content": "The evidence is troubling. A man blind from birth \u2014 that is a condition no one disputes \u2014 begins to see on the Sabbath. The Pharisees questioned him for hours. His answer was simple: \"I was blind. Now I can see.\" The council couldn't refute it.",
-    "choices": [
-      {
-        "text": "So the miracle is real?",
-        "destination": "law_challenge"
-      }
-    ]
-  },
-  "popularity": {
-    "content": "The crowds are laying cloaks on the road. People are calling Him king. But a king who rides on a donkey colt? A king who refuses to call down legions? The crowd wants a liberator. He seems to be offering something far more disruptive \u2014 truth itself.",
-    "choices": [
-      {
-        "text": "That threatens your system.",
-        "destination": "law_challenge"
-      }
-    ]
-  },
-  "law_challenge": {
-    "content": "He quoted Daniel 7:13 \u2014 the Son of Man coming with the clouds of heaven. He claimed that title openly. In our Law, that is a claim to divine authority. The Sadducees fear it. The Pharisees debate it. I cannot deny the case He is building.",
-    "choices": [
-      {
-        "text": "And the Sabbath healings continue?",
-        "destination": "exposed"
-      }
-    ]
-  },
-  "exposed": {
-    "content": "I asked Him about the greatest commandment \u2014 truly asked. I wanted to trap Him. Instead He answered with a simplicity that shattered my categories. \"Love God with all your heart, soul, mind, and strength, and your neighbour as yourself. On these two commands hang all the Law and the Prophets.\"",
-    "choices": [
-      {
-        "text": "That stopped you.",
-        "destination": "closing"
-      }
-    ]
-  },
-  "closing": {
-    "content": "You are not far from the kingdom of God. Those were His words to me. I have thought about nothing else since.",
-    "choices": []
-  }
+    "inkVersion": 21,
+    "root": [
+        [
+            { "->": "start" },
+            ["done", { "#f": 5, "#n": "g-0" }],
+            null
+        ],
+        "done",
+        {
+            "start": [
+                [
+                    "^I am Simon the Pharisee. I return from the synagogue and for some this town calls it conversation. For those who respect the Law, this matter is not as straightforward as the crowds claim. A man heals on the Sabbath and claims authority over the Law. Torah asks the question. The crowd needs an answer.",
+                    "\n",
+                    "ev", "str", "^He healed a man born blind — on the Sabbath.", "/str", "/ev", { "*": ".^.c-0", "flg": 20 },
+                    "ev", "str", "^The crowd follows Him like a king.", "/str", "/ev", { "*": ".^.c-1", "flg": 20 },
+                    {
+                        "c-0": [ "^ ", { "->": "healing" }, "\n", { "#f": 5 } ],
+                        "c-1": [ "^ ", { "->": "popularity" }, "\n", { "#f": 5 } ]
+                    }
+                ],
+                { "#f": 1 }
+            ],
+            "healing": [
+                [
+                    "^The evidence is troubling. A man blind from birth — that is a condition no one disputes — begins to see on the Sabbath. The Pharisees questioned him for hours. His answer was simple: \"I was blind. Now I can see.\" The council couldn't refute it.",
+                    "\n",
+                    "ev", "str", "^So the miracle is real?", "/str", "/ev", { "*": ".^.c-0", "flg": 20 },
+                    { "c-0": [ "^ ", { "->": "law_challenge" }, "\n", { "#f": 5 } ] }
+                ],
+                { "#f": 1 }
+            ],
+            "popularity": [
+                [
+                    "^The crowds are laying cloaks on the road. People are calling Him king. But a king who rides on a donkey colt? A king who refuses to call down legions? The crowd wants a liberator. He seems to be offering something far more disruptive — truth itself.",
+                    "\n",
+                    "ev", "str", "^That threatens your system.", "/str", "/ev", { "*": ".^.c-0", "flg": 20 },
+                    { "c-0": [ "^ ", { "->": "law_challenge" }, "\n", { "#f": 5 } ] }
+                ],
+                { "#f": 1 }
+            ],
+            "law_challenge": [
+                [
+                    "^He quoted Daniel 7:13 — the Son of Man coming with the clouds of heaven. He claimed that title openly. In our Law, that is a claim to divine authority. The Sadducees fear it. The Pharisees debate it. I cannot deny the case He is building.",
+                    "\n",
+                    "ev", "str", "^And the Sabbath healings continue?", "/str", "/ev", { "*": ".^.c-0", "flg": 20 },
+                    { "c-0": [ "^ ", { "->": "exposed" }, "\n", { "#f": 5 } ] }
+                ],
+                { "#f": 1 }
+            ],
+            "exposed": [
+                [
+                    "^I asked Him about the greatest commandment — truly asked. I wanted to trap Him. Instead He answered with a simplicity that shattered my categories. \"Love God with all your heart, soul, mind, and strength, and your neighbour as yourself. On these two commands hang all the Law and the Prophets.\"",
+                    "\n",
+                    "ev", "str", "^That stopped you.", "/str", "/ev", { "*": ".^.c-0", "flg": 20 },
+                    "ev", "str", "^What happened.", "/str", "/ev", { "*": ".^.c-1", "flg": 20 },
+                    {
+                        "c-0": [ "^ ", { "->": "closing" }, "\n", { "#f": 5 } ],
+                        "c-1": [ "^ ", { "->": "violence" }, "\n", { "#f": 5 } ]
+                    }
+                ],
+                { "#f": 1 }
+            ],
+            "violence": [
+                [
+                    "^A rich young man hread his words but went away said. He couldn't give up all his wealth.",
+                    "\n",
+                    { "->": "closing" },
+                    { "#f": 1 }
+                ],
+                { "#f": 1 }
+            ],
+            "closing": [
+                [ "^You are not far from the kingdom of God (Mark 12:34). Those were His words to me. I have thought about nothing else since.", "\n", "done", { "#f": 1 } ],
+                { "#f": 1 }
+            ],
+            "#f": 1
+        }
+    ],
+    "listDefs": {}
 }

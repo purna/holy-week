@@ -783,6 +783,7 @@ Back to Top
 - [Zechariah 13:7](https://www.biblegateway.com/passage/?search=Zechariah+13:7&version=NIV) — *"Strike the shepherd, and the sheep will be scattered."* (the scattering, here reversed through restoration)
 - [Ezekiel 34:11–16](https://www.biblegateway.com/passage/?search=Ezekiel+34:11-16&version=NIV) — God himself searching for and restoring his scattered sheep — echoed in Jesus's threefold charge to Peter to "feed my sheep."
 
+
 ---
 Back to Top
 
@@ -1108,8 +1109,9 @@ The 15 canonical cases below are sourced directly from `act1_case.js`–`act4_ca
 | IV | `resurrection` | The Empty Tomb | #36 |
 | IV | `roman_inquiry` | The Guard's Report | #37 *(previously missing)* |
 | IV | `peter_restoration` | Peter's Restoration | #38 *(previously missing)* |
+| IV | `ascension` | The Ascension | Post-Resurrection |
 
-**Chronology events not tied to any of the 14 cases** (kept for scriptural completeness; not currently gamified): #2 (Weeps over Jerusalem), #3 (Surveys Temple), #8 (Teaching & Parables), #9 (Widow's Offering), #16 (Farewell Discourse), #19 (Trial before Annas), #22 (Formal Sanhedrin condemnation), #23 (Judas's death), #25 (Trial before Herod), #27 (Mocking & Scourging), #28 (Via Dolorosa), #34 (Burial), #35 (Tomb sealed/guard placed).
+**Chronology events not tied to any of the 15 cases** (kept for scriptural completeness; not currently gamified): #2 (Weeps over Jerusalem), #3 (Surveys Temple), #8 (Teaching & Parables), #9 (Widow's Offering), #16 (Farewell Discourse), #19 (Trial before Annas), #22 (Formal Sanhedrin condemnation), #23 (Judas's death), #25 (Trial before Herod), #27 (Mocking & Scourging), #28 (Via Dolorosa), #34 (Burial), #35 (Tomb sealed/guard placed).
 
 **Case-dependency chain** (from each case's `requires` field): `triumphal_entry` → `temple_cleansing` → (`fig_tree_incident` / `authority_challenged`) → `lazarus_plot` → (`olivet_discourse` / `last_supper`) → `passover_lamb_chain` (requires `olivet_discourse`) → `gethsemane_arrest` (requires `last_supper`) → `sanhedrin_trial` → `barabbas_choice` → `crucifixion_site` → `resurrection` → `roman_inquiry` → `peter_restoration`.
 
@@ -1123,7 +1125,7 @@ Hidden Detective Chains are cross-case discovery patterns that unlock bonus Code
 
 - **Cases spanned:** Sanhedrin Trial → Barabbas Choice → Crucifixion Site
 - **Codex Reward:** *The Greater Atonement*
-- **Chain Evidence:** `Priestly Robe Fragment` (`torn_robe`, Isaiah 50:6 — high priest's role) → `The Insurgent's Dossier` (`barabbas_warrant`, Isaiah 53:3 — scapegoat) → `Blood-Stained Roman Hasta` (`pierced_spear`, Zechariah 12:10 — blood atonement)
+- **Chain Evidence:** `torn_robe` (Isaiah 50:6 — high priest's role) → `barabbas_warrant` (Isaiah 53:3 — scapegoat) → `pierced_spear` (Zechariah 12:10 — blood atonement)
 - **Unlock Condition:** Link Day of Atonement typological evidence across three cases.
 - **Scoring:** +25 points, +10 Faith
 
@@ -1131,7 +1133,7 @@ Hidden Detective Chains are cross-case discovery patterns that unlock bonus Code
 
 - **Cases spanned:** Last Supper → Gethsemane Arrest → Crucifixion Site
 - **Codex Reward:** *The True Passover Lamb*
-- **Chain Evidence:** `Spilled Wine on the Linen` (`wine_stain`, Melchizedek typology) → `Unresisting Prisoner's Cord` (`prisoner_cord`, Isaiah 53:7) → `Unbroken Tibiae Report` (`unbroken_legs`, Psalm 34:20)
+- **Chain Evidence:** `wine_stain` (Melchizedek typology) → `prisoner_cord` (Isaiah 53:7) → `unbroken_legs` (Psalm 34:20)
 - **Unlock Condition:** Link Passover Lamb typological evidence across three cases.
 - **Scoring:** +25 points, +10 Faith
 
@@ -1139,7 +1141,7 @@ Hidden Detective Chains are cross-case discovery patterns that unlock bonus Code
 
 - **Cases spanned:** Gethsemane Arrest → Sanhedrin Trial → Peter's Restoration
 - **Codex Reward:** *The Scattered Sheep*
-- **Chain Evidence:** `Abandoned Linen Wrapper` (`abandoned_linen`, fulfilment) → `Rooster Feather` (`rooster_feather`, contrast — Peter denies while Jesus stays silent) → `The Charcoal Fire` (`charcoal_fire`, reversal)
+- **Chain Evidence:** `abandoned_linen` (fulfilment) → `rooster_feather` (contrast) → `charcoal_fire` (reversal)
 - **Unlock Condition:** Link the scattering-to-gathering evidence across three cases.
 - **Scoring:** +25 points, +10 Faith
 
@@ -1147,7 +1149,7 @@ Hidden Detective Chains are cross-case discovery patterns that unlock bonus Code
 
 - **Cases spanned:** Last Supper (`last_supper` / act3CaseA) only
 - **Codex Reward:** *The New Covenant*
-- **Chain Evidence:** `Unleavened Bread Crumbs` (`bread_crumbs`, Exodus 12:1–14) → `Spilled Wine on the Linen` (`wine_stain`, Melchizedek typology) → `Written Summary of Jesus's Words` (`new_covenant_declaration`, Jeremiah 31:31–34)
+- **Chain Evidence:** `bread_crumbs` (Exodus 12:1–14) → `wine_stain` (Melchizedek typology) → `new_covenant_declaration` (Jeremiah 31:31–34)
 - **Unlock Condition:** Link all three Last Supper covenant-evidence items.
 - **Scoring:** +25 points, +10 Faith
 
@@ -1155,7 +1157,7 @@ Hidden Detective Chains are cross-case discovery patterns that unlock bonus Code
 
 - **Cases spanned:** Crucifixion Site → Resurrection
 - **Codex Reward:** *The Firstfruits of Resurrection*
-- **Chain Evidence:** `The Soldiers' Broken Report` (`guard_report`, dual-linked to Hosea 6:2 and the sign of Jonah) → `Opened Tombs Testimony` (`opened_tombs`, Ezekiel 37:12–13) → `Empty Burial Chamber` (`empty_tomb`, Psalm 16:10) → `Mary Magdalene's Testimony` (`mary_encounter`, Isaiah 53:10–11)
+- **Chain Evidence:** `guard_report` (Hosea 6:2 & Jonah sign) → `opened_tombs` (Ezekiel 37:12–13) → `empty_tomb` (Psalm 16:10) → `mary_encounter` (Isaiah 53:10–11)
 - **Unlock Condition:** Link all four resurrection evidence items.
 - **Scoring:** +25 points, +10 Faith
 

@@ -10,6 +10,7 @@ export class ChatUI {
     this.dm = dialogueManager;
     this.messagesByNPC = {};
     this.challengeResultsByNPC = {};
+    this.talkedToNPCs = new Set();
   }
 
   addMessage(speaker, text, type = "npc", extra = {}, npcId = null) {
@@ -77,7 +78,7 @@ export class ChatUI {
               <div class="npc-actions">
                 <button class="npc-btn" data-action="talk" data-npc="${npc.id}"><img src='../assets/gfx/chat-duotone.svg' class='icon-svg' loading='lazy'> Talk</button>
                 <button class="npc-btn" data-action="show" data-npc="${npc.id}"><img src='../assets/gfx/magnifying-glass-duotone.svg' class='icon-svg' loading='lazy'> Evidence</button>
-                <button class="npc-btn" data-action="challenge" data-npc="${npc.id}" ${!this.es.selectedA ? "aria-disabled='true'" : ""}>⚡ Challenge</button>
+                <button class="npc-btn" data-action="challenge" data-npc="${npc.id}" ${!this.es.selectedA && !this.talkedToNPCs.has(npc.id) ? "aria-disabled='true'" : ""}>⚡ Challenge</button>
               </div>
               <div class="challenge-result" data-npc-challenge="${npc.id}" ${this.challengeResultsByNPC[npc.id] ? '' : 'hidden'}>
                 ${this.challengeResultsByNPC[npc.id] || ''}
@@ -85,7 +86,15 @@ export class ChatUI {
               <div class="show-evidence-picker" data-npc-picker="${npc.id}" hidden>
                 <h3>Select evidence to show:</h3>
                 <div class="evidence-pick-list">
-                  ${this.es.getCollected().map(e => `<button class="evidence-pick-btn" data-evidence="${e.id}" data-npc="${npc.id}">${this._iconMarkup(e.icon)} ${e.name}</button>`).join("")}
+                  ${(() => {
+                    const collected = this.es.getCollected();
+                    const relevantIds = new Set();
+                    (npc.unlocksEvidence || []).forEach(id => relevantIds.add(id));
+                    Object.keys(npc.reactions || {}).forEach(id => relevantIds.add(id));
+                    const filtered = collected.filter(e => relevantIds.has(e.id));
+                    const evidenceToShow = filtered.length > 0 ? filtered : collected;
+                    return evidenceToShow.map(e => `<button class="evidence-pick-btn" data-evidence="${e.id}" data-npc="${npc.id}">${this._iconMarkup(e.icon || '../assets/gfx/scroll-duotone.svg')} ${e.name}</button>`).join("");
+                  })()}
                 </div>
                 <button class="cancel-btn" data-npc="${npc.id}">Cancel</button>
               </div>
@@ -158,6 +167,7 @@ export class ChatUI {
             () => {
               const unlocked = handleUnlocks();
               if (this.onAction) this.onAction({ type: "talk_complete", npcId, unlocked });
+              this.talkedToNPCs.add(npcId);
               this._refreshNPCFeed(npcId, container);
             },
             (text, type) => this.addMessage(type === 'player' ? 'Investigator' : npc.name, text, type, {}, npcId)
@@ -171,6 +181,7 @@ export class ChatUI {
             const unlocked = handleUnlocks();
             this.addMessage(result.speaker, result.text, "npc", { wasCorrected: result.wasCorrected }, npcId);
             this._refreshNPCFeed(npcId, container);
+            this.talkedToNPCs.add(npcId);
             if (this.onAction) this.onAction({ type: "talk_complete", npcId, unlocked });
           }
         }
@@ -213,7 +224,43 @@ export class ChatUI {
     container.querySelectorAll("[data-action='challenge']").forEach(btn => {
       btn.addEventListener("click", () => {
         const npcId = btn.dataset.npc;
-        const result = this.npcs.challenge(npcId, this.es.selectedA?.id, this.es.selectedB?.id);
+        const npc = this.npcs.getNPC(npcId);
+        const evidenceA = this.es.selectedA;
+        const evidenceB = this.es.selectedB;
+        
+        if (!evidenceA || !evidenceB) {
+          if (this.talkedToNPCs.has(npcId) && npc) {
+            const npcState = this.npcs.getState(npcId);
+            const memory = npcState?.memory || [];
+            const reactions = npc.reactions || {};
+            
+            if (memory.length === 0) {
+              this.addMessage("System", "Talk to this witness first, then challenge them on what they said.", "system", {}, npcId);
+              this._refreshNPCFeed(npcId, container);
+              return;
+            }
+            
+            let trustText = `${npc.name}'s statements:\n\n`;
+            memory.forEach(evId => {
+              const ev = this.es.getById(evId);
+              const reaction = reactions[evId];
+              if (ev && reaction) {
+                const status = reaction.isLie ? "❌ FALSE" : "✓ TRUE";
+                trustText += `${status} — About "${ev.name}": "${reaction.text}"\n\n`;
+              }
+            });
+            
+            this.addMessage("System", trustText, "system", {}, npcId);
+            this._refreshNPCFeed(npcId, container);
+            return;
+          }
+          
+          this.addMessage("System", "Select two pieces of evidence in the Lab first to challenge this witness.", "system", {}, npcId);
+          this._refreshNPCFeed(npcId, container);
+          return;
+        }
+        
+        const result = this.npcs.challenge(npcId, evidenceA.id, evidenceB.id);
         if (result) {
           const html = `
             <div class="challenge-result-box ${result.breakthrough ? 'breakthrough' : ''}">

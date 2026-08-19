@@ -36,7 +36,7 @@
             ],
             "crowd_reaction": [
                 [
-                    "^People were hacking palm branches off the trees out toward Jericho and dragging them all the way up the path. It's a miracle someone wasn't blinded by them. And the cloaks — whose garments are those? Left right in the dirt!",
+                    "^People were hacking palm branches off the trees out toward Jericho and dragging them all the way up the path. It's a miracle someone wasn't blinded by them. And the cloaks — whose garments are those? Left right in the dirt! They were laying thier clocks on the ground. Welocmeing the kinginto the city. This was a man who had raised a man from the dead. Who as ever done such a thing before!",
                     "\n",
                     "ev", "str", "^That seems disrespectful.", "/str", "/ev", { "*": ".^.c-0", "flg": 20 },
                     "ev", "str", "^Maybe it's intentional.", "/str", "/ev", { "*": ".^.c-1", "flg": 20 },

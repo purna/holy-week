@@ -77,6 +77,7 @@ export const DIALOGUE_ID_MAP = {
     teaching_mount: '../story/act2/case_a_silenced_teacher/teaching_mount.json',
     chief_priest: '../story/act2/case_a_silenced_teacher/caiaphas_priest.json',
     caiaphas: '../story/act2/case_a_silenced_teacher/caiaphas_priest.json',
+    rich_young_ruler: '../story/act2/case_a_silenced_teacher/rich_young_ruler.json',
 
     // Case B: The Price of Life (Lazarus Conspiracy)
     temple_spy: '../story/act2/case_b_lazarus_conspiracy/temple_spy.json',
@@ -91,8 +92,8 @@ export const DIALOGUE_ID_MAP = {
     john_olivet: '../story/act2/case_c_olivet_discourse/john_olivet.json',
 
     // Case D: The Anointing at Bethany (Passover Lamb Chain)
-    mary_bethany_anointing: '../story/mary_bethany_anointing.json',
-    judas_bethany_objection: '../story/judas_bethany_objection.json',
+    mary_bethany_anointing: '../story/act2/case_d_anointing_at_bethany/mary_bethany_anointing.json',
+    judas_bethany_objection: '../story/act2/case_d_anointing_at_bethany/judas_bethany_objection.json',
     simon_leper_host: '../story/act2/case_d_anointing_at_bethany/simon_leper_host.json',
     temple_inspection_scribe: '../story/act2/case_d_anointing_at_bethany/temple_inspection_scribe.json',
     hillel_scribe: '../story/hillel_scribe.json',
@@ -156,6 +157,5 @@ export const DIALOGUE_ID_MAP = {
     board_review: '../story/system/board_review.json',
     board_debate: '../story/system/board_debate.json',
 
-    // --- Extra Encounters ---
-    rich_young_ruler: '../story/act2/case_a_silenced_teacher/rich_young_ruler.json'
+
 };

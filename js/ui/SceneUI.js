@@ -1,11 +1,11 @@
 import { getIntroHtml, getIntroText } from "../utils.js";
 
 function iconMarkup(icon) {
-    if (!icon) return '';
+    if (!icon) return `<img src="../assets/gfx/scroll-duotone.svg" class="icon-svg" loading="lazy" alt="">`;
     if (String(icon).includes('<img')) return String(icon);
     if (String(icon).endsWith('.svg')) return `<img src="${icon}" class="icon-svg" loading="lazy">`;
     return String(icon);
-}
+  }
 
 export class SceneUI {
     constructor(caseManager, evidenceSystem, accessibility, ui) {

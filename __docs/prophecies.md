@@ -62,7 +62,7 @@ The Codex now distinguishes between:
 | Zechariah 9:9 Scroll Fragment (`prophecy_scroll`) | `zechariah_9_9` | Matthew 21:4–5 | Zechariah 9:9 was written around 520 BC. Zechariah himself arrived back in Judah after the Babylonian exile — a people who desperately needed a king. His vision of a humble, donkey-riding king was a hope that Jesus publicly claimed. |
 | Fresh-Cut Palm Branch (`palm_branch`) | `psalm_118_25_26` | John 12:13 | In the Maccabean era, palm branches became a symbol of Jewish national liberation and celebration (1 Maccabees 13:51 — Simon Maccabeus's entry into the Jerusalem citadel, 141 BC). The crowd was making a political and spiritual statement — this man is our king and deliverer. |
 | Cut Rope at the Tethering Post (`rope_fibers`) | - | Mark 11:2 | Jesus specified it must be a colt 'no one has ever ridden' — in Jewish law, an animal used for sacred purposes must be one that has not been used for common work (Numbers 19:2; Deuteronomy 21:3). This detail proves the act was religiously intentional, not criminal. |
-| Pharisee's Written Complaint (`crowd_testimony`) | `malachi_3_1` | Luke 19:39–40 | The Pharisees recognised the messianic implication of the palm branches and shouts. John 12:19 records their panic: 'Look how the whole world has gone after him!' |
+| Pharisee's Written Complaint (`crowd_testimony`) | `malachi_3_1` | Luke 19:39–40 | Malachi 3:1 prophesied that the Lord would 'suddenly come to his temple.' The Triumphal Entry was the formal, public procession *to* the Temple. The Pharisees' panic was a reaction to seeing the Messianic procession heading directly for the house of God, heralding the imminent fulfillment of Malachi's prophecy. |
 | Psalm 118:25–26 Scroll Fragment (`psalm_118_25_26_scroll`) | `psalm_118_25_26` | Psalm 118:25–26 | Supplementary primary-source scroll evidence for this case's Psalm 118:25–26 fulfilment (paired with `palm_branch`). |
 | Genesis 49:10–11 Scroll Fragment (`genesis_49_10_11_scroll`) | `genesis_49_10_11` | Genesis 49:10–11 | Supplementary primary-source scroll evidence for this case's Genesis 49:10–11 fulfilment (paired with `cloaks`). |
 | Malachi 3:1 Scroll Fragment (`malachi_3_1_scroll`) | `malachi_3_1` | Malachi 3:1 | Supplementary primary-source scroll evidence for this case's Malachi 3:1 fulfilment (paired with `crowd_testimony`). |
@@ -87,8 +87,8 @@ The Codex now distinguishes between:
 | Cut Rope at the Tethering Post (`rope_fibers`) | Numbers 19:2 | numbers_19_2 |
 | Cut Rope at the Tethering Post (`rope_fibers`) | Deuteronomy 21:3 | deuteronomy_21_3 |
 | Pharisee's Written Complaint (`crowd_testimony`) | Luke 19:39-40 | luke_19_39_40 |
-| Pharisee's Written Complaint (`crowd_testimony`) | Malachi 3:1 | malachi_3_1 |
 | Pharisee's Written Complaint (`crowd_testimony`) | John 12:19 | john_12_19 |
+| Pharisee's Written Complaint (`crowd_testimony`) | Malachi 3:1 | malachi_3_1 |
 
 ## act2CaseD — The Anointing at Bethany (New Investigation Chain)
 
@@ -129,7 +129,7 @@ The Codex now distinguishes between:
 |---|---|
 | Malachi 3:1 | `malachi_3_1` |
 | Isaiah 56:7 | `isaiah_56_7` |
-| Psalm 69:9 | `psalm_69_9` |
+| Psalm 69:9 | `psalm_69_9` | Prophecy |
 
 ### Evidence Links
 
@@ -137,7 +137,8 @@ The Codex now distinguishes between:
 |---|---|---|---|
 | Shattered Dove Cages (`broken_cages`) | `isaiah_56_7` | Leviticus 5:7 | Isaiah 56:7 — 'My house shall be called a house of prayer for all nations' — is the prophecy Jesus explicitly quoted as He drove out the sellers. The dove trade was the clearest abuse of it: Leviticus 5:7 allows doves as a concession for poverty, yet the priests exploited this legal requirement with exorbitant commercial markups, locking the poor and the nations out of the very prayer court Isaiah said was for them. That exploitation directly triggered Jesus's anger. |
 | Scattered Tyrian Shekels (`scattered_shekels`) | `malachi_3_1` | Exodus 30:13 | Exodus 30:13 required a half-shekel temple offering. The priests exploited this by mandating Tyrian shekels, forcing pilgrims to pay massive exchange fees. |
-| Discarded Whip of Cords (`whip_of_cords`) | `malachi_3_1` | John 2:15 | John 2:15 specifically details Him weaving this instrument on the spot before initiating the cleansing. |
+| Discarded Whip of Cords (`whip_of_cords`) | `malachi_3_1` | John 2:15 | Malachi 3:1-3 describes the Lord's coming as a 'refiner's fire' that purifies. The whip of cords was the physical instrument of that refining judgment, used to drive out the corruption from His Father's house. |
+| Disciples' Recollection (`disciples_recollection`) | `psalm_69_9` | John 2:17 | After the event, the disciples themselves connected Jesus's fiery passion to this specific prophecy: 'His disciples remembered that it was written, "Zeal for your house will consume me."' |
 | Malachi 3:1 Scroll Fragment (`malachi_3_1_b_scroll`) | `malachi_3_1` | Malachi 3:1 | Supplementary primary-source scroll evidence for this case's Malachi 3:1 fulfilment (paired with `scattered_shekels` / `whip_of_cords`). |
 | Isaiah 56:7 Scroll Fragment (`isaiah_56_7_scroll`) | `isaiah_56_7` | Isaiah 56:7 | Supplementary primary-source scroll evidence for this case's Isaiah 56:7 fulfilment (paired with `broken_cages`). |
 | Psalm 69:9 Scroll Fragment (`psalm_69_9_scroll`) | `psalm_69_9` | Psalm 69:9 | Supplementary primary-source scroll evidence for this case's Psalm 69:9 fulfilment. |
@@ -299,20 +300,24 @@ The Codex now distinguishes between:
 | Zechariah 11:12–13 | `zechariah_11_12_13` | Prophecy |
 | Isaiah 53:12 | `isaiah_53_12` | Prophecy |
 | Genesis 14:18-20 | `typology_melchizedek` | Typological Fulfilment |
+| Zechariah 13:7 | `zechariah_13_7` | Prophecy |
+| Psalm 22:16 | `psalm_22_16_18` | Prophecy |
+| Amos 8:9 | `amos_8_9` | Prophecy |
 
 ### Evidence Links
 
 | Evidence | `relatedProphecy` (Codex) | `bibleRef` (supporting verse) | Prophetic / Narrative Link Text |
 |---|---|---|---|
 | Unleavened Bread Crumbs (`bread_crumbs`) | `exodus_12_1_14` | Matthew 26:26 | The breaking of the matzah is called the 'afikomen' in the Passover Seder — traditionally hidden and later 'found' again. Early Christians saw this as a picture of Jesus's death and resurrection: broken, buried, and found alive. |
-| Spilled Wine on the Linen (`wine_stain`) | `jeremiah_31_31_34` | Luke 22:20 | The third Passover cup — the Cup of Redemption — is the one Jesus transformed into the cup of the New Covenant (Jeremiah 31:31-34). This also fulfills the typology of Melchizedek, the priest-king of Salem who blessed Abraham with bread and wine (Genesis 14:18), an order of priesthood Jesus now embodies (Hebrews 7). |
-| Spilled Wine on the Linen (`wine_stain`) | `typology_melchizedek` | Luke 22:20 | The third Passover cup — the Cup of Redemption — is the one Jesus transformed into the cup of the New Covenant (Jeremiah 31:31-34). This also fulfills the typology of Melchizedek, the priest-king of Salem who blessed Abraham with bread and wine (Genesis 14:18), an order of priesthood Jesus now embodies (Hebrews 7). |
+| Spilled Wine on the Linen (`wine_stain`) | `jeremiah_31_31_34`, `typology_melchizedek` | Luke 22:20 | The third Passover cup — the Cup of Redemption — is the one Jesus transformed into the cup of the New Covenant (Jeremiah 31:31-34). This also fulfills the typology of Melchizedek, the priest-king of Salem who blessed Abraham with bread and wine (Genesis 14:18), an order of priesthood Jesus now embodies (Hebrews 7). |
 | Shattered Clay Cup (`cup_fragments`) | - | Matthew 26:27 | Breaking pottery in the Jewish tradition was sometimes associated with mourning or the breaking of a covenant (see Jeremiah 19:10–11, where Jeremiah shattered a clay jar as a prophetic act of judgement). A broken cup at the Passover table carries heavy symbolic weight. |
 | Large Stone Water Jug (`water_jug`) | - | John 13:4–5 | Isaiah 52:13–15 describes the Servant who 'shall startle many nations' — and immediately before this, is described as one who acts in a way that astonishes because of His humility. Jesus washing feet with this water fulfilled the spirit of what Isaiah described: the exalted One taking the lowest role. |
 | Imprint of a Money Bag (`money_bag_impression`) | `zechariah_11_12_13` | John 13:29 | Judas carried the communal purse — and had recently agreed to betray Jesus for 30 silver coins (Matthew 26:14–16), fulfilling Zechariah 11:12. The presence of a money bag impression at the preparation table raises serious questions: what was Judas counting before the meal? |
+      | Roman Nail (`roman_nail`) | `psalm_22_16_18` | John 20:25 | Psalm 22:16 prophesied 'they have pierced my hands and my feet.' This was written centuries before crucifixion was invented. |
 | Fragment of Sop (Dipped Bread) (`betrayal_dipped_bread`) | `psalm_41_9` | John 13:26–30 | The giving of the dipped sop to Judas is the fulfilment of Psalm 41:9 ('even my close friend... who ate my bread has lifted his heel against me'). Jesus quoted this Psalm earlier that evening (John 13:18), identifying the traitor through an act of table fellowship. |
 | Written Summary of Jesus's Words (`new_covenant_declaration`) | `jeremiah_31_31_34` | Luke 22:19–20; 1 Corinthians 11:24–25 | Jeremiah 31:31–34 promised a 'new covenant' that would supersede the Mosaic Law — written on hearts, not stone. Jesus announced its establishment at this very table. The young scribe recording His words was preserving the fulfilment of a 600-year-old prophecy. |
 | List of the Twelve (`twelve_roll`) | `isaiah_53_12` | Luke 22:37 | Jesus explicitly applies Isaiah 53:12 ('numbered with the transgressors') to Himself during the Last Supper. |
+| Account of the Rooster Warning (`denial_foretold`) | `zechariah_13_7` | Matthew 26:31-35 | Jesus quotes Zechariah 13:7 directly — 'I will strike the shepherd, and the sheep of the flock will be scattered' — before adding an even more specific prediction naming Peter and a number: three denials, before the rooster crows. Peter's confident vow makes the prophecy's exactness, and his failure to keep it hours later, all the sharper. |
 
 ### Fulfillment Links
 
@@ -322,7 +327,7 @@ The Codex now distinguishes between:
 | Unleavened Bread Crumbs (`bread_crumbs`) | Exodus 12:1-14 | exodus_12_1_14 |
 | Spilled Wine on the Linen (`wine_stain`) | Luke 22:20 | luke_22_20 |
 | Spilled Wine on the Linen (`wine_stain`) | Jeremiah 31:31-34 | jeremiah_31_31_34 |
-| Spilled Wine on the Linen (`wine_stain`) | Exodus 6:6-7 | exodus_6_6_7 |
+| Spilled Wine on the Linen (`wine_stain`) | Exodus 6:6-7 | exodus_667 |
 | Spilled Wine on the Linen (`wine_stain`) | Genesis 14:18-20 | genesis_14_18_20 |
 | Shattered Clay Cup (`cup_fragments`) | Matthew 26:27 | matthew_26_27 |
 | Shattered Clay Cup (`cup_fragments`) | Jeremiah 19:10-11 | jeremiah_19_10_11 |
@@ -332,13 +337,20 @@ The Codex now distinguishes between:
 | Imprint of a Money Bag (`money_bag_impression`) | Matthew 26:14-16 | matthew_26_14_16 |
 | Imprint of a Money Bag (`money_bag_impression`) | Zechariah 11:12 | zechariah_11_12 |
 | Fragment of Sop (Dipped Bread) (`betrayal_dipped_bread`) | John 13:26-30 | john_13_26_30 |
+      | Roman Nail (`roman_nail`) | John 20:25 | john_2025 |
+      | Roman Nail (`roman_nail`) | Psalm 22:16 | psalm_2216 |
 | Fragment of Sop (Dipped Bread) (`betrayal_dipped_bread`) | Psalm 41:9 | psalm_41_9 |
 | Fragment of Sop (Dipped Bread) (`betrayal_dipped_bread`) | John 13:18 | john_13_18 |
 | Written Summary of Jesus's Words (`new_covenant_declaration`) | Luke 22:19-20 | luke_22_19_20 |
-| Written Summary of Jesus's Words (`new_covenant_declaration`) | Corinthians 11:24-25 | corinthians_11_24_25 |
+| Written Summary of Jesus's Words (`new_covenant_declaration`) | Corinthians 11:24-25 | corinthians_112425 |
 | Written Summary of Jesus's Words (`new_covenant_declaration`) | Jeremiah 31:31-34 | jeremiah_31_31_34 |
 | List of the Twelve (`twelve_roll`) | Luke 22:37 | luke_22_37 |
 | List of the Twelve (`twelve_roll`) | Isaiah 53:12 | isaiah_53_12 |
+| Account of the Rooster Warning (`denial_foretold`) | Matthew 26:31-35 | matthew_263135 |
+| Account of the Rooster Warning (`denial_foretold`) | Mark 14:27-31 | mark_142731 |
+| Account of the Rooster Warning (`denial_foretold`) | Luke 22:31-34 | luke_223134 |
+| Account of the Rooster Warning (`denial_foretold`) | John 13:36-38 | john_133638 |
+| Account of the Rooster Warning (`denial_foretold`) | Zechariah 13:7 | zechariah_137 |
 
 ## act3CaseB — The Severed Ear
 
@@ -381,6 +393,9 @@ The Codex now distinguishes between:
 | Micah 5:1 | `micah_5_1` |
 | Psalm 27:12 | `psalm_27_12` |
 | Psalm 35:11 | `psalm_35_11` |
+| Psalm 22:7–8 | `psalm_22_7_8` |
+| Psalm 38:11 | `psalm_38_11` |
+
 
 ### Evidence Links
 
@@ -392,6 +407,9 @@ The Codex now distinguishes between:
 | Charcoal Briquette (`charcoal_remains`) | - | John 18:18 | Peter's denial by the fire fulfilled Jesus's prediction that he would deny three times. |
 | Guard's Reed (`guard_reed`) | `micah_5_1` | Matthew 26:67–68 | Micah 5:1 prophesied that Israel's ruler would be struck. The guards' mockery with the reed is a literal fulfillment of this humiliation. |
 | Perjured Witness Statement (`perjured_testimony`) | `psalm_35_11` | Mark 14:57–59 | 'Ruthless witnesses come forward' precisely matches the false testimony at the trial, as prophesied in Psalm 35:11. |
+| Servant Girl's Accusation (`first_denial_account`) | - | Matthew 26:69-70 | This is the first of the three denials Jesus predicted hours earlier at the Supper — a low-stakes accusation from a servant girl, met with an immediate, flat denial. |
+| Second Bystander's Accusation (`second_denial_account`) | - | Matthew 26:71-72 | The second of the three predicted denials — and the pattern is worsening. What began as a simple denial has now become a sworn oath. |
+| Witness to Peter's Departure (`peters_bitter_weeping`) | - | Luke 22:61-62 | This is the moment the prophecy lands. Peter does not need to be told what he has done — a single look is enough. The man who swore he would never disown Jesus breaks down completely. |
 
 ### Fulfillment Links
 
@@ -409,6 +427,17 @@ The Codex now distinguishes between:
 | Guard's Reed (`guard_reed`) | Micah 5:1 | micah_5_1 |
 | Perjured Witness Statement (`perjured_testimony`) | Mark 14:57-59 | mark_14_57_59 |
 | Perjured Witness Statement (`perjured_testimony`) | Psalm 35:11 | psalm_35_11 |
+| Servant Girl's Accusation (`first_denial_account`) | Matthew 26:69-70 | matthew_266970 |
+| Servant Girl's Accusation (`first_denial_account`) | Mark 14:66-68 | mark_146668 |
+| Servant Girl's Accusation (`first_denial_account`) | John 18:15-17 | john_181517 |
+| Servant Girl's Accusation (`first_denial_account`) | Matthew 26:34 | matthew_2634 |
+| Second Bystander's Accusation (`second_denial_account`) | Matthew 26:71-72 | matthew_267172 |
+| Second Bystander's Accusation (`second_denial_account`) | Mark 14:69-70 | mark_146970 |
+| Second Bystander's Accusation (`second_denial_account`) | Luke 22:58 | luke_2258 |
+| Second Bystander's Accusation (`second_denial_account`) | Matthew 26:34 | matthew_2634 |
+| Witness to Peter's Departure (`peters_bitter_weeping`) | Luke 22:61-62 | luke_226162 |
+| Witness to Peter's Departure (`peters_bitter_weeping`) | Matthew 26:34 | matthew_2634 |
+| Witness to Peter's Departure (`peters_bitter_weeping`) | Matthew 26:33 | matthew_2633 |
 
 ## act3CaseD — The People's Choice
 
@@ -418,6 +447,8 @@ The Codex now distinguishes between:
 |---|---|
 | Isaiah 53:3 | `isaiah_53_3` |
 | Psalm 2:1-2 | `psalm_2_1_2` |
+| Psalm 22:7–8 | `psalm_22_7_8` |
+| Psalm 38:11 | `psalm_38_11` |
 
 ### Evidence Links
 
@@ -427,6 +458,7 @@ The Codex now distinguishes between:
 | Claudia's Warning Scroll (`wifes_letter`) | - | Matthew 27:19 | - |
 | The Insurgent's Dossier (`barabbas_warrant`) | `isaiah_53_3` | Mark 15:7; John 18:40 | - |
 | Joint Verdict Scroll (`joint_verdict`) | `psalm_2_1_2` | Luke 23:12 | Herod and Pilate become allies against God's Anointed, fulfilling Psalm 2's prophecy of rulers banding together against the LORD. |
+| Joint Verdict Scroll (`joint_verdict`) | `psalm_2_1_2` | Psalm 2:1-2 | Herod and Pilate become allies against God's Anointed, fulfilling Psalm 2's prophecy of rulers banding together against the LORD. |
 
 ### Fulfillment Links
 
@@ -454,6 +486,9 @@ The Codex now distinguishes between:
 | Psalm 69:21 | `psalm_69_21` |
 | Jeremiah 31:31–34 | `jeremiah_31_31_34` |
 | Haggai 2:6–7 | `haggai_2_6_7` |
+| Psalm 22:1 | `psalm_22_1` |
+| Psalm 22:7–8 | `psalm_22_7_8` |
+| Psalm 38:11 | `psalm_38_11` |
 
 ### Evidence Links
 
@@ -461,12 +496,15 @@ The Codex now distinguishes between:
 |---|---|---|---|
 | Soldiers' Casting Dice (`split_dice`) | `psalm_22_16_18` | John 19:23–24 | Directly fulfills Psalm 22:18. While the victim hung dying, the indifferent execution detail executed a routine lottery for a high-quality, seamless tunic woven from top to bottom. |
 | Split Rocks (`split_rocks`) | `haggai_2_6_7` | Matthew 27:51 | The earthquake at the moment of death fulfilled Haggai's prophecy that God would 'shake the heavens and the earth,' signifying a world-altering divine event. |
-| Blood-Stained Roman Hasta (`pierced_spear`) | `zechariah_12_10` | John 19:34 | Fulfills Zechariah 12:10 ('the one they have pierced') and protects the Passover Lamb requirement of Exodus 12:46 ('not one bone shall be broken'). The spear thrust proved the victim was already dead, making the leg-breaking unnecessary. |
+| Blood-Stained Roman Hasta (`pierced_spear`) | `zechariah_12_10` | John 19:34 | Fulfills Zechariah 12:10 ('the one they have pierced') and protects the Passover Lamb requirement of Exodus 12:46 ('not one of its bones is to be broken'). The spear thrust proved the victim was already dead, making the leg-breaking unnecessary. |
 | The Torn Temple Veil (`torn_temple_veil`) | `jeremiah_31_31_34` | Luke 23:45 | The Parokhet curtain blocked access to the Holy of Holies. Its top-to-bottom tear, occurring at the moment of death, fulfilled Jeremiah's promise of a New Covenant, granting direct access to the presence of God for all. |
 | Joseph's Market Bill for Fine Linen (`linen_shroud_receipt`) | `isaiah_53_9` | Mark 15:46 | Fulfills Isaiah 53:9. Instead of being cast into the criminal dirt pits of Hinnom, Jesus was instantly reassigned to a wealthy man's private, rock-hewn garden tomb. |
 | Sponge Soaked in Sour Wine (`sour_wine_sponge`) | `psalm_69_21` | John 19:28-29 | This act directly fulfills Psalm 69:21 ('...for my thirst they gave me sour wine to drink'). The deliberate mention of a hyssop branch also powerfully evokes the Passover (Exodus 12:22), where hyssop was used to apply the lamb's blood for salvation, identifying Jesus as the true Passover Lamb. |
-| Unbroken Tibiae Report (`unbroken_legs`) | `psalm_34_20` | John 19:31–36 | Jesus' legs were not broken, fulfilling the Passover Lamb imagery (Exodus 12:46) and the specific prophecy of Psalm 34:20. |
+| Unbroken Tibiae Report (`unbroken_legs`) | `psalm_34_20` | John 19:31–36 | Jesus' legs were not broken, fulfilling both the Passover Lamb requirement (Exodus 12:46) and the specific prophecy of Psalm 34:20. |
 | Final Words Scroll (`final_words`) | `psalm_31_5` | Luke 23:46 | Jesus's final words from the cross are a direct quote from Psalm 31:5, a prayer of ultimate trust in God at the moment of death. He did not simply die — He willingly surrendered His life into the Father's hands, quoting Scripture with His last breath. |
+| Transcript of the Aramaic Cry (`the_forsaken_cry`) | `psalm_22_1` | Matthew 27:46 | Jesus's cry is not a wordless scream but a precise quotation of the opening line of Psalm 22, written a thousand years earlier. Quoting an entire psalm by its first line was a common rabbinic practice — He was pointing His hearers to the whole psalm, including its ending of vindication. |
+| Record of the Crowd's Taunt (`mocking_crowd_taunt`) | `psalm_22_7_8` | Matthew 27:43 | The mockers' taunt echoes Psalm 22:8 so closely it is almost a direct quotation, spoken by people with no apparent awareness they were reciting a thousand-year-old psalm about this very moment. |
+| List of Those Watching From Afar (`distant_witnesses`) | `psalm_38_11` | Luke 23:49 | Psalm 38:11 describes the isolation of the sufferer: even friends and companions keep their distance because of his wounds. Luke's careful note that Jesus's own acquaintances 'stood at a distance' fulfills this pattern of grief-stricken avoidance precisely. |
 
 ### Fulfillment Links
 
@@ -490,6 +528,12 @@ The Codex now distinguishes between:
 | Unbroken Tibiae Report (`unbroken_legs`) | Psalm 34:20 | psalm_34_20 |
 | Final Words Scroll (`final_words`) | Luke 23:46 | luke_23_46 |
 | Final Words Scroll (`final_words`) | Psalm 31:5 | psalm_31_5 |
+| Transcript of the Aramaic Cry (`the_forsaken_cry`) | Matthew 27:46 | matthew_27_46 |
+| Transcript of the Aramaic Cry (`the_forsaken_cry`) | Psalm 22:1 | psalm_22_1 |
+| Record of the Crowd's Taunt (`mocking_crowd_taunt`) | Matthew 27:39-43 | matthew_27_39 |
+| Record of the Crowd's Taunt (`mocking_crowd_taunt`) | Psalm 22:7-8 | psalm_22_7_8 |
+| List of Those Watching From Afar (`distant_witnesses`) | Luke 23:49 | luke_23_49 |
+| List of Those Watching From Afar (`distant_witnesses`) | Psalm 38:11 | psalm_38_11 |
 
 ## act4CaseA — The Empty Tomb
 
@@ -511,12 +555,12 @@ The Codex now distinguishes between:
 |---|---|---|---|
 | The Displaced Sealing Stone (`rolled_stone`) | `psalm_16_10` | Matthew 28:2 | Psalm 16:10 — 'You will not abandon me to the realm of the dead, nor will you let your Holy One see decay.' The angel rolled away the stone not to free Jesus, but to reveal that the Holy One had already risen. The empty tomb became the visible evidence that this ancient prophecy had been fulfilled. |
 | The Empty Burial Chamber (`empty_tomb`) | `psalm_16_10` | Luke 24:3 | Psalm 16:10 — 'You will not let your holy one see corruption.' The empty tomb is the physical evidence that the Psalm's promise was kept. A body left long enough shows decomposition; no such evidence exists. Psalm 22:1–31 opens with the cry of abandonment Jesus spoke from the cross ('My God, my God, why have you forsaken me?') and closes in resurrection proclamation — the same psalm that describes His hands and feet pierced and His garments divided by lot. |
-| Folded Burial Linens (`burial_linen`) | `psalm_16_10` | John 20:6–8 | John's Gospel records that the 'other disciple' (John) 'saw and believed' specifically because of how the linens were arranged. A body stolen hastily would leave disordered linens or none at all. The orderly, structured arrangement of the grave cloths pointed to something other than grave robbery. |
-| The Angelic Proclamation (`angelic_witness`) | `psalm_16_10` | Matthew 28:2–7; Mark 16:5–7; Luke 24:4–7; John 20:12–13 | Psalm 103:20 describes angels as those who 'do his bidding.' The angelic announcement at the tomb echoes the angelic announcements at the nativity — both bookend Jesus's earthly life with heavenly proclamation. The consistency of the message across all four Gospel accounts, with slight variations in detail (one angel or two?), reflects the characteristics of independent eyewitness testimony. |
-| The Soldiers' Broken Report (`guard_report`) | `hosea_6_2` | Matthew 28:2–4 | The bribe to the guards fulfils the pattern of institutional deception against God's purposes — similar to how the chief priests had bribed Judas (Matthew 26:14–16). The very people who guarded against resurrection were the first non-disciple witnesses of the supernatural event. Jonah 1:17 / Matthew 12:40 — Jesus named His own third-day resurrection the 'sign of Jonah,' the three days in the tomb mirroring Jonah's three days in the great fish. |
-| The Soldiers' Broken Report (`guard_report`) | `jonah_1_17___matthew_12_40` | Matthew 28:2–4 | The bribe to the guards fulfils the pattern of institutional deception against God's purposes — similar to how the chief priests had bribed Judas (Matthew 26:14–16). The very people who guarded against resurrection were the first non-disciple witnesses of the supernatural event. Jonah 1:17 / Matthew 12:40 — Jesus named His own third-day resurrection the 'sign of Jonah,' the three days in the tomb mirroring Jonah's three days in the great fish. |
+| Folded Burial Linens (`burial_linen`) | `psalm_16_10` | John 20:6–8 | The orderly arrangement of the grave cloths, particularly the folded face cloth, convinced John that this was not a grave robbery. It pointed to a deliberate, unhurried departure, fulfilling the promise that the Holy One would not see decay (Psalm 16:10). |
+| The Angelic Proclamation (`angelic_witness`) | `psalm_16_10` | Matthew 28:2–7; Mark 16:5–7; Luke 24:4–7; John 20:12–13 | The angels' message, "He is not here; he has risen," is the divine confirmation that the promise of Psalm 16:10 has been kept. They serve as the official heavenly witnesses to the empty tomb. |
+| The Soldiers' Broken Report (`guard_report`) | `hosea_6_2`, `jonah_1_17___matthew_12_40` | Matthew 28:2–4 | The bribe to the guards fulfils the pattern of institutional deception against God's purposes — similar to how the chief priests had bribed Judas (Matthew 26:14–16). The very people who guarded against resurrection were the first non-disciple witnesses of the supernatural event. Jonah 1:17 / Matthew 12:40 — Jesus named His own third-day resurrection the 'sign of Jonah,' the three days in the tomb mirroring Jonah's three days in the great fish. |
 | Unused Burial Spices (`spice_jars`) | - | Mark 16:1 | Nicodemus had already brought 75 pounds of myrrh and aloes for the burial (John 19:39–40), fulfilling the wealthy burial of Isaiah 53:9. The women's additional spices were for the anointing ritual completed after the Sabbath — but there was no body to anoint. The unused jars are a symbol of an interrupted mourning, halted by resurrection. |
 | Mary Magdalene's Testimony (`mary_encounter`) | `isaiah_53_10_11` | John 20:11–18 | Isaiah 53:10–11 promised the Suffering Servant would 'see his offspring and prolong his days' after being crushed — a resurrection paradox. The risen Christ's first act was to call Mary by name (echoing Isaiah 43:1), sending her as the primary witness. In a Roman court a woman's testimony was inadmissible; making a former demoniac the lead witness is exactly the kind of counter-cultural detail that confirms authenticity rather than fabrication. |
+      | Broiled Fish Remains (`broiled_fish_remains`) | `isaiah_53_10_11` | Luke 24:41-43 | This act demonstrated the physical, bodily nature of His resurrection, fulfilling the promise that the Suffering Servant would 'see light' and live again after His death (Isaiah 53:10-11). |
 | Opened Tombs Testimony (`opened_tombs`) | `ezekiel_37_12_13` | Matthew 27:52-53 | Ezekiel 37 prophesied that God would open the graves of His people as a sign of His power to restore. The raising of these saints was a literal fulfillment and a powerful preview of the final resurrection. |
 | Resurrection Psalm Scroll (`psalm22_scroll`) | `psalm_22_1_31` | Luke 24:26–27 | The Psalm that begins with suffering ends in worldwide proclamation and vindication, pointing beyond the cross to resurrection. Jesus explained these scriptures to the disciples on the road to Emmaus. |
 | Psalm 16:10 Scroll Fragment (`psalm_16_10_scroll`) | `psalm_16_10` | Psalm 16:10 | Supplementary primary-source scroll evidence for this case's Psalm 16:10 fulfilment (paired with `rolled_stone` / `empty_tomb` / `burial_linen` / `angelic_witness`). |
@@ -536,6 +580,7 @@ The Codex now distinguishes between:
 | The Displaced Sealing Stone (`rolled_stone`) | Acts 2:25–32 | acts_2_25_32 |
 | The Displaced Sealing Stone (`rolled_stone`) | Acts 13:35–37 | acts_13_35_37 |
 | The Displaced Sealing Stone (`rolled_stone`) | John 20:19 | john_20_19 |
+      | Broiled Fish Remains (`broiled_fish_remains`) | Luke 24:41-43 | luke_244143 |
 | The Empty Burial Chamber (`empty_tomb`) | Luke 24:3 | luke_24_3 |
 | The Empty Burial Chamber (`empty_tomb`) | Psalm 16:10 | psalm_16_10 |
 | The Empty Burial Chamber (`empty_tomb`) | Psalm 22:1-31 | psalm_22_1_31 |
@@ -549,6 +594,7 @@ The Codex now distinguishes between:
 | The Soldiers' Broken Report (`guard_report`) | Matthew 28:11-15 | matthew_28_11_15 |
 | The Soldiers' Broken Report (`guard_report`) | Matthew 26:14-16 | matthew_26_14_16 |
 | The Soldiers' Broken Report (`guard_report`) | Jonah 1:17 | jonah_1_17 |
+| The Soldiers' Broken Report (`guard_report`) | Jonah 1:17 | jonah_117 |
 | The Soldiers' Broken Report (`guard_report`) | Matthew 12:40 | matthew_12_40 |
 | Unused Burial Spices (`spice_jars`) | Mark 16:1 | mark_16_1 |
 | Unused Burial Spices (`spice_jars`) | Psalm 16:10 | psalm_16_10 |
@@ -558,6 +604,7 @@ The Codex now distinguishes between:
 | Mary Magdalene's Testimony (`mary_encounter`) | John 20:11-18 | john_20_11_18 |
 | Mary Magdalene's Testimony (`mary_encounter`) | Isaiah 43:1 | isaiah_43_1 |
 | Mary Magdalene's Testimony (`mary_encounter`) | Isaiah 53:10-11 | isaiah_53_10_11 |
+      | Broiled Fish Remains (`broiled_fish_remains`) | Isaiah 53:10-11 | isaiah_53_10_11 |
 | Opened Tombs Testimony (`opened_tombs`) | Matthew 27:52-53 | matthew_27_52_53 |
 | Opened Tombs Testimony (`opened_tombs`) | Ezekiel 37:12-13 | ezekiel_37_12_13 |
 | Resurrection Psalm Scroll (`psalm22_scroll`) | Luke 24:26-27 | luke_24_26_27 |
@@ -610,7 +657,7 @@ The Codex now distinguishes between:
 | The Miraculous Catch (`miraculous_catch`) | `ezekiel_34_11-16` | John 21:10-11 | This echoes the original calling of the disciples (Luke 5:1-11) and demonstrates that obedience to Christ yields supernatural results. |
 | Bread and Fish Breakfast (`bread_breakfast`) | `ezekiel_34_11-16` | John 21:9 | Ezekiel 34:11–16 promised that the Lord Himself would seek, gather, and feed His scattered sheep. Psalm 23 declares that the Shepherd prepares a table for His people, while Isaiah 25:6–9 foretells the Messianic feast following God's victory over death. The risen Jesus fulfills these promises by preparing bread and fish for His disciples, demonstrating that the Good Shepherd still provides for His flock after conquering the grave. |
 | The Threefold Commission (`threefold_commission`) | `ezekiel_34_11-16` | John 21:15-17 | Peter's three denials (crow, cock, fire) are met with three commissions (feed, tend, shepherd) showing prophetic reversal. |
-| Risen Appearance (`galilean_apparition`) | `isaiah_53_10_11` | John 21:12 | Isaiah 53:10–11 foretold that after His suffering the Servant would live again and "see his offspring." Psalm 16:10 declared that God's Holy One would not remain in the grave. The disciples' recognition of Jesus on the shore was not merely a moment of faith—it was eyewitness confirmation that the crucified Messiah was alive, fulfilling the Scriptures. |
+      | Risen Appearance (`galilean_apparition`) | `isaiah_53_10_11`, `psalm_16_10` | John 21:12 | Isaiah 53:10–11 foretold that after His suffering the Servant would live again and "see his offspring." Psalm 16:10 declared that God's Holy One would not remain in the grave. The disciples' recognition of Jesus on the shore was not merely a moment of faith—it was eyewitness confirmation that the crucified Messiah was alive, fulfilling the Scriptures. |
 | Zechariah 13:7 Scroll Fragment (`zechariah_13_7_scroll`) | `zechariah_13_7` | Zechariah 13:7 | Supplementary primary-source scroll evidence for this case's Zechariah 13:7 fulfilment (paired with `charcoal_fire`). |
 | Ezekiel 34:11–16 Scroll Fragment (`ezekiel_34_11-16_scroll`) | `ezekiel_34_11-16` | Ezekiel 34:11–16 | Supplementary primary-source scroll evidence for this case's Ezekiel 34:11–16 fulfilment (paired with `miraculous_catch` / `bread_breakfast` / `threefold_commission`). |
 | Psalm 16:10 Scroll Fragment (`psalm_16_10_scroll`) | `psalm_16_10` | Psalm 16:10 | Supplementary primary-source scroll evidence for this case's Psalm 16:10 fulfilment (paired with `galilean_apparition`). |
@@ -630,7 +677,7 @@ The Codex now distinguishes between:
 | Bread and Fish Breakfast (`bread_breakfast`) | Ezekiel 34:11-16 | ezekiel_34_11_16 |
 | Bread and Fish Breakfast (`bread_breakfast`) | Psalm 23:1-5 | psalm_23_1_5 |
 | Bread and Fish Breakfast (`bread_breakfast`) | Isaiah 25:6-9 | isaiah_25_6_9 |
-| The Threefold Commission (`threefold_commission`) | John 21:15-17 | john_21_15_17 |
+| The Threefold Commission (`threefold_commission`) | John 21:15-17 | john_211517 |
 | The Threefold Commission (`threefold_commission`) | Ezekiel 34:11-16 | ezekiel_34_11_16 |
 | The Threefold Commission (`threefold_commission`) | Jeremiah 3:15 | jeremiah_3_15 |
 | The Threefold Commission (`threefold_commission`) | Isaiah 40:11 | isaiah_40_11 |

@@ -3,7 +3,7 @@
 // Adds: portrait loading, simple HTML sanitiser for Ink content, and sound pack support.
 // Usage: window.inkDialogue.startStoryFromPath('assets/dialogue/Story/Chapter_01/The Basket.json')
 
-(function(){
+(function () {
     const INK_RUNTIME_CDN = 'https://unpkg.com/inkjs/dist/ink.js';
 
     // Inject CSS for the dialogue UI
@@ -69,6 +69,7 @@
     let storyInstance = null;
     let currentPath = null;
     let lastSpeaker = '';
+    let lastFocusedElement = null;
 
     // Sound packs cache: name => { files: ["audio1.mp3", ...], volume: 1 }
     const soundPacks = {};
@@ -144,8 +145,18 @@
         }
     }
 
-    function showContainer() { container.style.display = 'block'; textEl.focus(); }
-    function hideContainer() { container.style.display = 'none'; }
+    function showContainer() {
+        lastFocusedElement = document.activeElement;
+        container.style.display = 'block';
+        textEl.focus();
+    }
+    function hideContainer() {
+        container.style.display = 'none';
+        if (lastFocusedElement && typeof lastFocusedElement.focus === 'function') {
+            lastFocusedElement.focus();
+        }
+        lastFocusedElement = null;
+    }
 
     function clearChoices() { choicesEl.innerHTML = ''; }
 
@@ -158,8 +169,8 @@
     function sanitizeAllowedHtml(dirty) {
         if (!dirty) return '';
         // Allowed tags and attributes
-        const allowedTags = ['b','strong','i','em','br','p','a','ul','ol','li','span'];
-        const allowedAttrs = { 'a': ['href','target','rel'], 'span': ['class'] };
+        const allowedTags = ['b', 'strong', 'i', 'em', 'br', 'p', 'a', 'ul', 'ol', 'li', 'span'];
+        const allowedAttrs = { 'a': ['href', 'target', 'rel'], 'span': ['class'] };
 
         const parser = new DOMParser();
         let doc = parser.parseFromString(dirty, 'text/html');
@@ -189,8 +200,8 @@
                                 if (/^\s*javascript:/i.test(val) || /^\s*data:/i.test(val)) {
                                     node.removeAttribute('href');
                                 } else {
-                                    node.setAttribute('rel','noopener');
-                                    node.setAttribute('target','_blank');
+                                    node.setAttribute('rel', 'noopener');
+                                    node.setAttribute('target', '_blank');
                                 }
                             }
                         } else {
@@ -232,8 +243,8 @@
                             if (/^\s*javascript:/i.test(val) || /^\s*data:/i.test(val)) {
                                 node.removeAttribute('href');
                             } else {
-                                node.setAttribute('rel','noopener');
-                                node.setAttribute('target','_blank');
+                                node.setAttribute('rel', 'noopener');
+                                node.setAttribute('target', '_blank');
                             }
                         }
                         // otherwise keep
@@ -413,7 +424,7 @@
         let layout = 'left';
         for (const t of tags) {
             const key = t.indexOf(':') >= 0 ? t.slice(0, t.indexOf(':')).trim().toLowerCase() : t.trim().toLowerCase();
-            const rawVal = t.indexOf(':') >= 0 ? t.slice(t.indexOf(':')+1).trim() : '';
+            const rawVal = t.indexOf(':') >= 0 ? t.slice(t.indexOf(':') + 1).trim() : '';
             if (key === 'layout') {
                 if (rawVal === 'right') layout = 'right';
                 else layout = 'left';
@@ -553,7 +564,7 @@
             btn.className = 'ink-choice-btn';
             // Allow some basic HTML in choice text
             // Also support small meta line separated by '|' (internal only)
-            const rawLabel = (function(){ try { return (choice && (choice.text || choice.choiceText || choice.content || String(choice))); } catch(e) { return String(choice); } })();
+            const rawLabel = (function () { try { return (choice && (choice.text || choice.choiceText || choice.content || String(choice))); } catch (e) { return String(choice); } })();
             const parts = (rawLabel || '').split('|').map(s => s.trim());
             const main = sanitizeAllowedHtml(parts[0]) || '';
 
@@ -729,7 +740,7 @@
     async function startStoryFromPath(path, opts) {
         try {
             // allow caller to set allowRepeat per invocation (stored on the exposed API)
-            if (opts && typeof opts.allowRepeat !== 'undefined') window.inkDialogue = window.inkDialogue || {} , window.inkDialogue.allowRepeat = !!opts.allowRepeat;
+            if (opts && typeof opts.allowRepeat !== 'undefined') window.inkDialogue = window.inkDialogue || {}, window.inkDialogue.allowRepeat = !!opts.allowRepeat;
             await loadInkRuntime();
             storyInstance = await loadStoryJSON(path);
             currentPath = path;
@@ -781,11 +792,11 @@
     window.inkDialogue.playSoundFromPack = playSoundFromPack; // expose for debug/other usage
     window.inkDialogue.loadSoundPack = loadSoundPack;
     // Check if dialogue is currently active
-    window.inkDialogue.isDialogueActive = function() { return storyInstance !== null; };
+    window.inkDialogue.isDialogueActive = function () { return storyInstance !== null; };
     // Get current story instance (for advanced use)
-    window.inkDialogue.getStoryInstance = function() { return storyInstance; };
+    window.inkDialogue.getStoryInstance = function () { return storyInstance; };
     // allowRepeat: if true, callers (e.g. game) can opt to let NPCs be triggered repeatedly
     if (typeof window.inkDialogue.allowRepeat === 'undefined') window.inkDialogue.allowRepeat = false;
-    window.inkDialogue.setAllowRepeat = function(v) { window.inkDialogue.allowRepeat = !!v; };
+    window.inkDialogue.setAllowRepeat = function (v) { window.inkDialogue.allowRepeat = !!v; };
 
 })();

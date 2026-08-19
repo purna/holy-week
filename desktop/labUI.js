@@ -52,6 +52,17 @@ export class LabUI {
           <span class="result-placeholder">Select two clues, then choose an operation.</span>
         </div>
 
+        <div id="lab-result-modal" class="lab-result-modal" hidden role="dialog" aria-modal="true" aria-label="Deduction result">
+          <div class="lab-result-modal-backdrop"></div>
+          <div class="lab-result-modal-card">
+            <h3 class="section-title">Action Unlocked</h3>
+            <p class="result-text"></p>
+            <p class="result-insight"></p>
+            <p class="lab-modal-score"></p>
+            <button class="evidence-detail-confirm">Confirm</button>
+          </div>
+        </div>
+
         <div class="lab-history" role="region" aria-label="Previous deductions">
           <h3 class="lab-history-title">Deductions (${deductions.length})</h3>
           <div class="lab-history-list">
@@ -130,5 +141,20 @@ bindEvents(container) {
       <p class="result-text">${this.a11y.simplify(result.text)}</p>
       ${result.insight ? `<p class="result-insight">💡 ${this.a11y.simplify(result.insight)}</p>` : ""}
     </div>`;
+    this._showResultModal(container, result);
+  }
+
+  _showResultModal(container, result) {
+    const modal = container.querySelector("#lab-result-modal");
+    if (!modal) return;
+    const textEl = modal.querySelector(".result-text");
+    const insightEl = modal.querySelector(".result-insight");
+    const scoreEl = modal.querySelector(".lab-modal-score");
+    const confirmBtn = modal.querySelector(".evidence-detail-confirm");
+    if (textEl) textEl.textContent = result.text || "";
+    if (insightEl) insightEl.innerHTML = result.insight ? `💡 ${result.insight}` : "";
+    if (scoreEl) scoreEl.textContent = `⭐ +${result.score || 0} score`;
+    modal.hidden = false;
+    confirmBtn.onclick = () => { modal.hidden = true; };
   }
 }

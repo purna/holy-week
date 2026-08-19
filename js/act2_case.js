@@ -195,7 +195,7 @@ export const act2CaseA = {
       category: 'event',
       timelineOrder: 1,
       clues: {
-        compare: "Pairs with the witness scroll to show the formal challenge was answered publicly and completely.",
+        compare: "Pairs with the Temple Bystander's Written Account to show the formal challenge was answered publicly and completely.",
         link: "Event — the official written challenge that opened the day's confrontations.",
         timeline: "CHRONOLOGY: Presented first, as Jesus began teaching in the Temple courts that morning.",
         contradict: "RELIABILITY: Three priestly seals confirm this was a planned, sanctioned delegation, not a spontaneous question."
@@ -750,7 +750,7 @@ export const act2CaseB = {
       category: 'event',
       timelineOrder: 2,
       clues: {
-        compare: "Physically ties a Bethany eyewitness to the inside of the Sanhedrin's own council chamber.",
+        compare: "Physically ties a Bethany eyewitness to the same chamber that produced the Intercepted Sadducean Memorandum.",
         link: "Event — limestone and burial-spice residue tracked in from Lazarus's actual tomb.",
         timeline: "CHRONOLOGY: Left behind during an interrogation, after the crowd reports had already alarmed the council.",
         contradict: "RELIABILITY: The specific mix of limestone and burial aloes matches a real tomb, not a fabricated story."
@@ -1775,7 +1775,7 @@ export const act2CaseD = {
       category: 'event',
       timelineOrder: 4,
       clues: {
-        compare: "A second anointing, at the head rather than the feet — completing the royal and priestly weight of the pattern the nard flask began.",
+        compare: "A second anointing, at the head rather than the feet — completing the royal and priestly weight of the pattern the Flask of Pure Nard began.",
         link: "Event — the shattered jar used to anoint Jesus's head at the same Bethany dinner.",
         timeline: "CHRONOLOGY: The same days before Passover, at Simon the Leper's table.",
         contradict: "RELIABILITY: Recorded independently in Matthew and Mark, both naming the same house and the same objection from those at the table."

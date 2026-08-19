@@ -15,6 +15,7 @@ import { OrbitalSelectMatrixModal } from "./mapModal.js";
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { MODELS } from '../js/config.js';
 import { iVFXSystem } from "./iVFXSystem.js";
+import { renderIcon } from "../js/utils.js";
 
 import { act1CaseA, act1CaseB, act1CaseC } from "./../js/act1_case.js";
 import { act2CaseA, act2CaseB, act2CaseC, act2CaseD } from "./../js/act2_case.js";
@@ -28,7 +29,7 @@ export class GameEngine {
     // how much bigger the visual earth is than the walkable navmesh sphere.
     // 1.0 = flush with the ground, >1 = buildings/terrain poke through (e.g. 1.04 = 4% larger)
     this.earthVisibleScale = this.config.earthVisibleScale ?? 1.04;
-    this.cm = new CaseManager();
+    this.cm = new CaseManager(this.config);
     this.a11y = new AccessibilityManager();
     this.a11y.restorePreferences();
     this.es = new EvidenceSystem(this.cm, this.config);
@@ -67,6 +68,91 @@ export class GameEngine {
     this.trailParticles = [];
     this.worldObjects = [];
     this.vfx = null;
+    this._initDebugPanel();
+  }
+
+  _initDebugPanel() {
+    const panel = document.getElementById('debug-panel');
+    if (!panel) return;
+    const cfg = this.config || {};
+    if (!cfg.DEBUG?.enabled) return;
+    panel.classList.add('active');
+
+    panel.querySelectorAll('.debug-btn').forEach(btn => {
+      const action = btn.dataset.debug;
+      const isActive = !!cfg.DEBUG[action];
+      btn.classList.toggle('active', isActive);
+      btn.addEventListener('click', () => {
+        const next = !btn.classList.contains('active');
+        btn.classList.toggle('active', next);
+        this._applyDebugToggle(action, next);
+      });
+    });
+  }
+
+  _applyDebugToggle(action, enabled) {
+    switch (action) {
+      case 'unlockAllCaseEvidence':
+        if (enabled) {
+          const c = this.cm.getActiveCase();
+          if (c) {
+            (c.evidencePool || []).forEach(ev => this.cm.recordEvidenceFound(ev.id));
+            this.cm.unlockEvidenceForScene(c.id, (c.evidencePool || []).map(ev => ev.id));
+          }
+        }
+        break;
+      case 'solveAllLabCases':
+        if (enabled) {
+          const c = this.cm.getActiveCase();
+          if (c) {
+            (c.lab || []).forEach(entry => {
+              if (entry.evidence && entry.result) {
+                this.cm.recordLabDeduction(entry.evidence, entry.suspect, entry.result);
+              }
+            });
+            (c.prophecies || []).forEach(p => {
+              this.cm.setCodexStatus(p.id, 'found_scripture');
+              this.cm.setCodexStatus(p.id, 'complete');
+              this.cm.recordProphecyFound(p.id);
+            });
+            this.cm.checkAndAutoConclude();
+          }
+        }
+        break;
+      case 'unlockAllProphecies':
+        if (enabled) {
+          const c = this.cm.getActiveCase();
+          if (c) {
+            (c.prophecies || []).forEach(p => {
+              this.cm.setCodexStatus(p.id, 'found_scripture');
+              this.cm.setCodexStatus(p.id, 'complete');
+              this.cm.recordProphecyFound(p.id);
+            });
+          }
+        }
+        break;
+      case 'unlockAllPeople':
+        if (enabled) {
+          const c = this.cm.getActiveCase();
+          if (c) {
+            (c.npcs || []).forEach(npc => this.cm.discoverSuspect(npc.id));
+            (c.suspects || []).forEach(s => this.cm.discoverSuspect(s.id));
+          }
+        }
+        break;
+      case 'unlockAllCases':
+        this.cm.config.DEBUG.unlockAllCases = enabled;
+        if (enabled) {
+          this.cm.getAllCases().forEach(caseItem => {
+            if (caseItem.requires) {
+              const req = this.cm.getCaseProgress(caseItem.requires);
+              if (req) { req.solved = true; req.concluded = true; }
+            }
+          });
+        }
+        this.cm._saveProgress();
+        break;
+    }
   }
 
   registerAllCases() {
@@ -77,7 +163,7 @@ export class GameEngine {
       act4CaseA, act4CaseB, act4CaseC
     ];
     cases.forEach(c => {
-      if (this.config.unlockAllCases) c.requires = null;
+      if (this.config.DEBUG?.unlockAllCases) c.requires = null;
       this.cm.registerCase(c);
     });
     if (typeof inkjs !== 'undefined') this.dm.setInkLib(inkjs);
@@ -563,6 +649,11 @@ export class GameEngine {
         this.animate();
       }, 1000);
     };
+
+    document.getElementById('btn-submit-conclusion').onclick = () => {
+      this.audio.playUI();
+      this.handleConclusion();
+    };
   }
 
   _openMapModal() {
@@ -699,6 +790,9 @@ export class GameEngine {
     caseData.evidencePool.forEach(item => {
       this.lockedEvidence[item.id] = item;
     });
+
+    this.collectedEvidence = this.es.getCollected();
+    this.updateEvidenceGrid();
 
     this.updateHUD(caseData);
 
@@ -1085,7 +1179,6 @@ export class GameEngine {
     document.querySelectorAll('.val-reputation').forEach(el => el.innerText = p.reputation ?? 100);
     document.querySelectorAll('.val-doubt').forEach(el => el.innerText = p.doubt ?? 0);
     document.querySelectorAll('.val-score').forEach(el => el.innerText = p.totalScore ?? 0);
-    document.querySelectorAll('.val-research').forEach(el => el.innerText = p.researchScore ?? 0);
     const scholarLevel = this.cm.getScholarLevel?.() || "Novice";
     document.querySelectorAll('.val-scholar').forEach(el => el.innerText = scholarLevel);
     const propCounts = this.cm.getProphecyCounts?.();
@@ -1109,16 +1202,18 @@ export class GameEngine {
     };
     actWrap.appendChild(challengeBtn);
 
-    const accuseBtn = document.createElement('button');
-    accuseBtn.className = 'action-btn accuse-action-btn';
-    accuseBtn.style.borderLeft = '3px solid var(--gold)';
-    accuseBtn.style.background = 'rgba(255, 183, 77, 0.1)';
-    accuseBtn.innerHTML = `<span><i class="fa-lg fa-solid fa-scale-balanced"></i> Accuse</span> <small>[Verdict]</small>`;
-    accuseBtn.onclick = () => {
+    const canConclude = this.cm.canConcludeCase();
+    const concludeBtn = document.createElement('button');
+    concludeBtn.className = 'action-btn conclude-action-btn';
+    concludeBtn.style.borderLeft = '3px solid var(--accent)';
+    concludeBtn.style.background = 'rgba(0, 245, 212, 0.1)';
+    concludeBtn.innerHTML = `<span><i class="fa-lg fa-solid fa-gavel"></i> Conclude</span> <small>[Case Closed]</small>`;
+    concludeBtn.disabled = !canConclude;
+    concludeBtn.onclick = () => {
       this.audio.playUI();
-      this.openAccuseModal();
+      this.openConclusionModal();
     };
-    actWrap.appendChild(accuseBtn);
+    actWrap.appendChild(concludeBtn);
 
     if (this.nearestNPC && !this.inDialogue) {
       const n = this.nearestNPC.userData.config;
@@ -1130,52 +1225,95 @@ export class GameEngine {
     }
   }
 
-  openAccuseModal() {
+  openConclusionModal() {
     const caseData = this.cm.getActiveCase();
     if (!caseData) return;
-    this.cm.refreshUnlockedSuspects();
+    const truth = caseData.truth;
 
-    const list = document.getElementById('accuse-suspect-list');
-    list.innerHTML = '';
+    document.getElementById('conclusion-verdict').textContent = truth.culprit === 'none' ? 'No Crime Committed' : 'Case Concluded';
+    document.getElementById('conclusion-truth').textContent = truth.motive || 'The investigation has reached its end.';
+    document.getElementById('conclusion-method').textContent = truth.method || '';
+    document.getElementById('conclusion-lesson').textContent = truth.lesson || '';
 
-    const prog = this.cm.getCaseProgress(caseData.id);
-    const unlockedSuspects = prog?.unlockedSuspects || [];
+    const fulfilled = truth.prophesyFulfilled || [];
+    const fulfilledEl = document.getElementById('conclusion-prophecies');
+    fulfilledEl.innerHTML = fulfilled.map(ref => `<span class="prophecy-chip">${ref}</span>`).join('') || '<span>None listed</span>';
 
-    caseData.suspects.forEach(s => {
-      if (!unlockedSuspects.includes(s.id)) return;
-      const status = this.cm.getSuspectStatus(s.id);
-      const card = document.createElement('div');
-      card.className = 'picker-card';
-      card.innerHTML = `
-        <span class="picker-icon">${(s.avatar || '').endsWith('.svg') ? `<img src="${s.avatar}" class="icon-svg" loading="lazy">` : (s.avatar || '<img src="assets/gfx/user-duotone.svg" class="icon-svg" loading="lazy">')}</span>
-        <span class="picker-name">${s.name}</span>
-        <small style="display:block; font-size:0.6rem; opacity:0.7; margin-bottom:4px;">${s.role}</small>
-        <div style="font-size:0.65rem; margin-bottom:8px; opacity:0.85;">Status: <strong>${status.status}</strong></div>
-        <div style="font-size:0.6rem; margin-bottom:8px; opacity:0.7; line-height:1.3;">${status.notes || ''}</div>
-        <button class="terminal-btn" style="width:100%; margin:0;">Accuse</button>
-      `;
-      card.querySelector('button').onclick = () => {
-        this.handleAccusation(s);
-      };
-      list.appendChild(card);
-    });
+    const further = truth.furtherReading || [];
+    const furtherEl = document.getElementById('conclusion-reading');
+    furtherEl.innerHTML = further.map(ref => `<span class="reading-chip">${ref}</span>`).join('') || '<span>None listed</span>';
 
-    document.getElementById('accuse-modal').classList.add('active');
+    document.getElementById('conclusion-modal').classList.add('active');
   }
 
-  handleAccusation(suspect) {
-    const result = this.cm.submitAccusation(suspect.id);
-    document.getElementById('accuse-modal').classList.remove('active');
+  handleConclusion() {
+    const result = this.cm.submitConclusion();
+    document.getElementById('conclusion-modal').classList.remove('active');
 
-    if (result.correct) {
+    if (result) {
       this.audio.playComplete();
-      this.controls.displayAlert(`CORRECT: ${suspect.name} identified.`, 5000);
+      this.controls.displayAlert('CASE CLOSED: Investigation complete.', 5000);
+
+      const caseData = this.cm.getActiveCase();
+      if (caseData) {
+        document.getElementById('result-truth').textContent = result.truth.motive || 'All evidence collected and mysteries solved.';
+        const scoreEl = document.getElementById('final-score-value');
+        if (scoreEl) scoreEl.textContent = result.score.total;
+      }
+
       document.getElementById('end-screen').style.display = 'flex';
       setTimeout(() => document.getElementById('end-screen').style.opacity = '1', 10);
-    } else {
-      this.audio.playError();
-      this.controls.displayAlert(`INCORRECT: ${suspect.name} was not the culprit. (+25 Doubt)`, 4000);
-      this.updateHUD(this.cm.getActiveCase());
+      this._startFireworks();
+      this.checkChains?.();
+      this.checkGameOver?.();
+    }
+  }
+
+  _startFireworks() {
+    if (typeof Fireworks === 'undefined') return;
+    try {
+      if (!this._fireworksInstance) {
+        this._fireworksInstance = new Fireworks.default(document.getElementById('fireworks-container'), {
+          autoresize: true,
+          opacity: 0.8,
+          acceleration: 1.05,
+          friction: 0.95,
+          gravity: 1.5,
+          particles: 50,
+          traceLength: 3,
+          traceSpeed: 10,
+          explosion: 5,
+          intensity: 30,
+          flickering: 50,
+          lineStyle: 'round',
+          hue: { min: 0, max: 360 },
+          delay: { min: 30, max: 60 },
+          rocketsPoint: { min: 20, max: 80 },
+          lineWidth: { explosion: { min: 1, max: 3 }, trace: { min: 1, max: 2 } },
+          brightness: { min: 50, max: 80 },
+          decay: { min: 0.015, max: 0.03 },
+          mouse: { click: false, move: false, max: 1 }
+        });
+      }
+      this._fireworksInstance.start();
+    } catch (e) {
+      console.warn('Fireworks failed to start:', e);
+    }
+  }
+
+  _stopFireworks() {
+    if (this._fireworksInstance) {
+      try { this._fireworksInstance.stop(true); } catch (e) {}
+      this._fireworksInstance = null;
+    }
+  }
+
+  closeEndScreen() {
+    this._stopFireworks();
+    const screen = document.getElementById('end-screen');
+    if (screen) {
+      screen.style.display = 'none';
+      screen.style.opacity = '0';
     }
   }
 
@@ -1187,6 +1325,72 @@ export class GameEngine {
     }
   }
 
+  checkChains() {
+    if (!this.chainManager) return;
+    const completed = this.chainManager.checkAllChains();
+    completed.forEach(chain => {
+      this.showChainComplete(chain);
+    });
+  }
+
+  checkGameOver() {
+    const progress = this.cm.getProgress();
+    if (!progress) return false;
+
+    const doubt = progress.doubt || 0;
+    if (doubt >= 99) {
+      this.showGameOver('doubt');
+      return true;
+    }
+
+    if (progress.reputations) {
+      const reps = Object.values(progress.reputations);
+      if (reps.some(r => r <= 0)) {
+        this.showGameOver('reputation');
+        return true;
+      }
+    }
+
+    return false;
+  }
+
+  showGameOver(reason) {
+    const screen = document.getElementById('game-over-screen');
+    const titleEl = document.getElementById('game-over-title');
+    const reasonEl = document.getElementById('game-over-reason');
+    const iconEl = document.getElementById('game-over-icon');
+    
+    if (reason === 'doubt') {
+      titleEl.textContent = "⚠️ Investigation Failed";
+      reasonEl.textContent = "Your doubt has overwhelmed the investigation. The people no longer trust your judgment.";
+      if (iconEl) iconEl.innerHTML = "<img src='../assets/gfx/x-circle-duotone.svg' class='icon-svg' loading='lazy'>";
+    } else if (reason === 'reputation') {
+      titleEl.textContent = "⚠️ Reputation Lost";
+      reasonEl.textContent = "Your standing with the community has collapsed. Without trust, you cannot continue.";
+      if (iconEl) iconEl.innerHTML = "<img src='../assets/gfx/x-circle-duotone.svg' class='icon-svg' loading='lazy'>";
+    } else {
+      titleEl.textContent = "⚠️ Game Over";
+      reasonEl.textContent = "The investigation has ended.";
+    }
+    
+    screen.style.display = 'flex';
+    setTimeout(() => screen.style.opacity = '1', 10);
+    if (this.a11y) this.a11y.speak("Game over. The investigation has failed.", 'assertive');
+  }
+
+  showChainComplete(chain) {
+    const modal = document.getElementById('chain-complete-modal');
+    if (!modal) return;
+    const title = modal.querySelector('.chain-complete-title');
+    const body = modal.querySelector('.chain-complete-body');
+    const reward = modal.querySelector('.chain-complete-reward');
+    if (title) title.textContent = `Hidden Chain: ${chain.name}`;
+    if (body) body.textContent = chain.description || '';
+    if (reward) reward.textContent = `Reward: +${chain.bonusPoints} pts, +${chain.bonusFaith} faith — Codex: ${chain.codexEntry}`;
+    modal.classList.add('active');
+    if (this.a11y) this.a11y.speak(`Hidden detective chain completed: ${chain.name}.`, 'assertive');
+  }
+
   _playerChallengedNPC(npcConfig, idA, idB) {
     const result = this.ns.challenge(npcConfig.id, idA, idB);
     if (result) {
@@ -1196,20 +1400,29 @@ export class GameEngine {
           this._revealProphecy(result.revealsProphecy);
         }
         this.updateHUD(this.cm.getActiveCase());
+        this.checkChains?.();
       }
       this.controls.displayAlert(result.breakthrough ? "Breakthrough!" : "No contradiction found.");
     }
   }
 
+  _iconMarkup(icon) {
+    if (!icon) return '';
+    if (String(icon).includes('<img')) return String(icon);
+    if (String(icon).endsWith('.svg')) return `<img src="${icon}" class="icon-svg" loading='lazy'>`;
+    return String(icon);
+  }
+
   updateEvidenceGrid() {
     const grid = document.getElementById('evidence-slots-grid');
     grid.innerHTML = '';
-    for (let i = 0; i < 8; i++) {
-      const ev = this.collectedEvidence[i];
+    const collected = this.collectedEvidence || [];
+    for (let i = 0; i < collected.length; i++) {
+      const ev = collected[i];
       const slot = document.createElement('div');
       slot.className = 'evidence-slot-btn' + (ev ? ' filled' : '');
       if (ev) {
-        slot.innerHTML = ev.emoji || '🛡️';
+        slot.innerHTML = this._iconMarkup(ev.icon || ev.emoji || '🛡️');
         if (this.es.selectedA?.id === ev.id) slot.classList.add('sel-a');
         if (this.es.selectedB?.id === ev.id) slot.classList.add('sel-b');
         slot.onclick = () => {
@@ -1276,7 +1489,7 @@ export class GameEngine {
         <div class="evidence-detail-label" style="margin-top:15px;">Related Evidence</div>
         <div class="picker-grid">
             ${relatedEvidence.map(ev => `<div class="picker-card"><span class="picker-icon">
-              <img src="${ev.emoji}" class="icon-svg" loading="lazy">
+              <img src="${ev.icon || ev.emoji || '../assets/gfx/scroll-duotone.svg'}" class="icon-svg" loading="lazy">
             </span><span class="picker-name">${ev.name}</span></div>`).join('') || '<small>No evidence linked yet.</small>'}
         </div>
         <div class="evidence-detail-label" style="margin-top:20px;">Conversation Record</div>
@@ -1303,8 +1516,8 @@ export class GameEngine {
     const modal = document.getElementById('evidence-detail-modal');
 
     // Header & Basic Info
-    const evIcon = ev.emoji || ev.icon || '';
-    modal.querySelector('.evidence-detail-icon').innerHTML = evIcon.includes('<img') ? evIcon : (evIcon.endsWith('.svg') ? `<img src="${evIcon}" class="icon-svg" loading="lazy">` : evIcon || '<img src="assets/gfx/shield-duotone.svg" class="icon-svg" loading="lazy">');
+    const evIcon = ev.icon || ev.emoji || '';
+    modal.querySelector('.evidence-detail-icon').innerHTML = evIcon.includes('<img') ? evIcon : (evIcon.endsWith('.svg') ? `<img src="${evIcon}" class="icon-svg" loading="lazy">` : evIcon || '<img src="../assets/gfx/shield-duotone.svg" class="icon-svg" loading="lazy">');
     modal.querySelector('.evidence-detail-name').textContent = ev.name;
     modal.querySelector('.evidence-detail-type').textContent = ev.type || 'Physical';
     modal.querySelector('.evidence-detail-desc').textContent = ev.desc || ev.description || 'No description available.';
@@ -1349,7 +1562,7 @@ export class GameEngine {
           bibleRefs.forEach(ref => {
             const btn = document.createElement('button');
             btn.className = 'read-more-btn';
-            btn.innerHTML = `<img src="assets/gfx/book-open-duotone.svg" class="icon-svg" loading="lazy"> Read ${ref}`;
+            btn.innerHTML = `<img src="../assets/gfx/book-open-duotone.svg" class="icon-svg" loading="lazy"> Read ${ref}`;
             btn.onclick = () => this.fetchVerseInline(ref, bibleVerseContent, btn);
             bibleContainer.appendChild(btn);
           });
@@ -1373,7 +1586,7 @@ export class GameEngine {
           propheticRefs.forEach(ref => {
             const btn = document.createElement('button');
             btn.className = 'read-more-btn';
-            btn.innerHTML = `<img src="assets/gfx/book-open-duotone.svg" class="icon-svg" loading="lazy"> Read ${ref}`;
+            btn.innerHTML = `<img src="../assets/gfx/book-open-duotone.svg" class="icon-svg" loading="lazy"> Read ${ref}`;
             btn.onclick = () => this.fetchVerseInline(ref, prophetVerseContent, btn);
             prophetContainer.appendChild(btn);
           });
@@ -1405,7 +1618,7 @@ export class GameEngine {
       const r = await fetch(`https://bible-api.com/${apiRef}?translation=web`);
       const j = await r.json();
       targetEl.innerHTML = `<div style="margin-bottom:8px;">"${j.verses[0].text}"</div>
-        <button class="read-more-btn" style="width:100%" onclick="window.BibleReader.displayPassage('${j.id}')"><img src="assets/gfx/book-open-duotone.svg" class="icon-svg" loading="lazy"> Read Full Passage</button>`;
+        <button class="read-more-btn" style="width:100%" onclick="window.BibleReader.displayPassage('${j.id}')"><img src="../assets/gfx/book-open-duotone.svg" class="icon-svg" loading="lazy"> Read Full Passage</button>`;
       this.audio.playClue();
     } catch (err) {
       targetEl.innerHTML = `Could not load verse.`;
@@ -1421,7 +1634,6 @@ export class GameEngine {
   }
 
   renderCodexMatcherContent() {
-    this.renderCodexHeader();
     this.renderCodexEvidenceGrid();
     this.renderCodexProphecyGrid();
     this.renderCodexDiscoveredGrid();
@@ -1439,34 +1651,10 @@ export class GameEngine {
             this.es.selectedCodexEvidenceId = null;
             this.es.selectedCodexProphecyId = null;
             this.renderCodexMatcherContent();
+            this.checkChains?.();
           }
         }
       };
-    }
-  }
-
-  renderCodexHeader() {
-    const researchScore = this.cm.getResearchScore?.() || 0;
-    const scholarLevel = this.cm.getScholarLevel?.() || "Novice";
-    const completion = this.es.getProphecyCompletionPercent();
-    
-    const headerEl = document.getElementById('codex-header');
-    if (headerEl) {
-      headerEl.innerHTML = `
-        <div class="codex-header-row">
-          <div class="codex-score-display">
-            <div class="codex-score-label">Research Score</div>
-            <div class="codex-score-value">${researchScore}</div>
-            <div class="codex-scholar-level">${scholarLevel}</div>
-          </div>
-          <div class="codex-progress">
-            <div class="codex-progress-label">Codex Completion: ${completion}%</div>
-            <div class="progress-bar-wrap">
-              <div class="progress-fill" style="width:${completion}%"></div>
-            </div>
-          </div>
-        </div>
-      `;
     }
   }
 
@@ -1476,7 +1664,7 @@ export class GameEngine {
     grid.innerHTML = collected.map(e => `
       <button class="picker-card ${this.es.selectedCodexEvidenceId === e.id ? 'selected-a' : ''}" 
               onclick="window.gameEngine.es.selectedCodexEvidenceId='${e.id}'; window.gameEngine.renderCodexMatcherContent();">
-        <img src='${e.icon}' class='icon-svg' loading='lazy'> ${e.name}
+        <img src='${e.icon || '../assets/gfx/scroll-duotone.svg'}' class='icon-svg' loading='lazy'> ${e.name}
       </button>`).join("");
   }
 
@@ -1500,14 +1688,14 @@ export class GameEngine {
         badge = '<i class=\"fa-lg fa-solid fa-scroll\"></i>';
         cardClass += ' found';
       } else if (isRumor) {
-        badge = '<i class=\"fa-lg fa-solid fa-question\"></i>';
+        badge = renderIcon(p.icon);
         cardClass += ' rumor';
       } else {
         badge = '<i class=\"fa-lg fa-solid fa-lock\"></i>';
         cardClass += ' unseen';
       }
       
-      const displayRef = isComplete || isFound ? p.reference : '???';
+      const displayRef = p.reference || '???';
       const displayText = isComplete ? (p.fulfilledBy || '').substring(0, 60) + '...' : 
                           isFound ? (p.text || '').substring(0, 60) + '...' :
                           isRumor ? 'A rumor heard in conversation...' : 'Not yet discovered';
@@ -1561,7 +1749,7 @@ export class GameEngine {
 
     if (evSlot) {
       evSlot.className = 'selection-slot' + (selectedEv ? ' active' : '');
-      evSlot.innerHTML = selectedEv ? `<span>${selectedEv.emoji || '🛡️'} ${selectedEv.name}</span>` : '<span>Select Evidence...</span>';
+      evSlot.innerHTML = selectedEv ? `<span>${this._iconMarkup(selectedEv.icon || selectedEv.emoji || '🛡️')} ${selectedEv.name}</span>` : '<span>Select Evidence...</span>';
     }
     if (propSlot) {
       propSlot.className = 'selection-slot' + (selectedProp ? ' active' : '');
@@ -1574,7 +1762,7 @@ export class GameEngine {
     const previewEl = document.getElementById('codex-evidence-preview');
     if (selectedEv) {
       previewEl.hidden = false;
-      document.getElementById('codex-preview-name').textContent = `${selectedEv.emoji || '🛡️'} ${selectedEv.name}`;
+      document.getElementById('codex-preview-name').innerHTML = `${this._iconMarkup(selectedEv.icon || selectedEv.emoji || '🛡️')} ${selectedEv.name}`;
       document.getElementById('codex-preview-desc').textContent = selectedEv.desc || selectedEv.description || 'No notes available.';
     } else {
       previewEl.hidden = true;
@@ -1679,7 +1867,7 @@ export class GameEngine {
         const unlocked = this.es.unlock(data.id);
         if (unlocked) {
           this.collectedEvidence.push(unlocked);
-          this.showEvidencePopup(unlocked.name, unlocked.desc || '', unlocked.emoji);
+          this.showEvidencePopup(unlocked.name, unlocked.desc || '', unlocked.icon);
           this.advanceQuest(1);
           this.controls.displayAlert(`Evidence collected: ${unlocked.name} <a href="#" id="evidence-alert-link" data-evidence-id="${unlocked.id}" style="color:#00f5d4;text-decoration:underline;margin-left:8px;">View details</a>`);
 
@@ -1702,8 +1890,8 @@ export class GameEngine {
     this.updateHUD(caseData);
   }
 
-  showEvidencePopup(title, desc, emoji) {
-    document.getElementById('popup-evidence-title').innerHTML = `<i class="fa-lg fa-solid fa-file-shield"></i> ${emoji || ''} ${title}`;
+  showEvidencePopup(title, desc, icon) {
+    document.getElementById('popup-evidence-title').innerHTML = `<i class="fa-lg fa-solid fa-file-shield"></i> ${this._iconMarkup(icon || '🛡️')} ${title}`;
     document.getElementById('popup-evidence-body').innerText = desc;
     document.getElementById('evidence-popup-card').style.display = 'block';
   }

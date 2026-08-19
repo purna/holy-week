@@ -13,98 +13,109 @@ export class CodexUI {
     }
 
     render() {
-        const c = this.cm.getActiveCase();
-        if (!c) return '';
+        const allProphecies = this.cm.getAllPropheciesWithStatus();
+        const total = allProphecies.length;
+        const discoveredCount = allProphecies.filter(p => p.status !== 'unseen').length;
 
-        const propheciesWithStatus = this.es.getPropheciesWithStatus();
-        const unseenProps = propheciesWithStatus.filter(p => p.status === 'unseen');
-        const rumorProps = propheciesWithStatus.filter(p => p.status === 'rumor');
-        const foundProps = propheciesWithStatus.filter(p => p.status === 'found_scripture');
-        const completeProps = propheciesWithStatus.filter(p => p.status === 'complete');
-        const collectedEvidence = this.es.getCollected();
-        
-        const researchScore = this.cm.getResearchScore();
-        const scholarLevel = this.cm.getScholarLevel();
-        const completion = this.es.getProphecyCompletionPercent();
+        const statusLabel = (s) => {
+            if (s === 'complete') return 'Completed Research';
+            if (s === 'found_scripture') return 'Scripture Found';
+            if (s === 'rumor') return 'Rumors Heard';
+            return 'Undiscovered';
+        };
 
-        return `
-            <div class="codex-header">
-                <div class="codex-score-display">
-                    <div class="codex-score-label">Research Score</div>
-                    <div class="codex-score-value">${researchScore}</div>
-                    <div class="codex-scholar-level">${scholarLevel}</div>
-                </div>
-                <div class="codex-progress">
-                    <div class="codex-progress-label">Codex Completion: ${completion}%</div>
-                    <div class="progress-bar-wrap">
-                        <div class="progress-fill" style="width:${completion}%"></div>
-                    </div>
-                </div>
-            </div>
+        const groups = {};
+        for (const p of allProphecies) {
+            const key = p.caseTitle || p.caseId || 'Unknown';
+            if (!groups[key]) groups[key] = [];
+            groups[key].push(p);
+        }
 
+        let html = `
             <h3 class="section-title">Biblical Patterns</h3>
             <div class="codex-intro">
-                Link scripture fragments to their fulfillments in the Lab to complete your research.
+                ${discoveredCount} of ${total} prophecies discovered. Link scripture fragments to their fulfillments in the Lab to complete your research.
             </div>
+        `;
 
-            ${completeProps.length > 0 ? `
-            <h3 class="section-title">Completed Research (${completeProps.length})</h3>
-            <div class="codex-grid">
-                ${completeProps.map(p => `
-                    <div class="prophecy-card complete" onclick="window.ui.showProphecyDetail('${p.id}')">
-                        <div class="prophecy-card-icon">${renderIcon(p.icon)}</div>
-                        <div class="prophecy-card-info">
-                            <div class="prophecy-card-reference">${p.reference}</div>
-                            <div class="prophecy-card-desc">${(p.fulfilledBy || p.desc || '').substring(0, 60)}...</div>
-                        </div>
-                        <div class="prophecy-card-badge"><img src='../assets/gfx/check-circle-duotone.svg' class='icon-svg' loading='lazy'></div>
-                    </div>`).join('')}
-            </div>` : ''}
+        for (const [caseTitle, props] of Object.entries(groups)) {
+            const completeProps = props.filter(p => p.status === 'complete');
+            const foundProps = props.filter(p => p.status === 'found_scripture');
+            const rumorProps = props.filter(p => p.status === 'rumor');
+            const unseenProps = props.filter(p => p.status === 'unseen');
 
-            ${foundProps.length > 0 ? `
-            <h3 class="section-title">Scripture Found (${foundProps.length})</h3>
-            <div class="codex-grid">
-                ${foundProps.map(p => `
-                    <div class="prophecy-card found" onclick="window.ui.showProphecyDetail('${p.id}')">
-                        <div class="prophecy-card-icon">${renderIcon(p.icon)}</div>
-                        <div class="prophecy-card-info">
-                            <div class="prophecy-card-reference">${p.reference}</div>
-                            <div class="prophecy-card-desc">${(p.text || '').substring(0, 80)}...</div>
-                        </div>
-                        <div class="prophecy-card-badge"><img src='../assets/gfx/scroll-duotone.svg' class='icon-svg' loading='lazy'></div>
-                    </div>`).join('')}
-            </div>` : ''}
+            html += `<h3 class="section-title">${caseTitle}</h3>`;
 
-            ${rumorProps.length > 0 ? `
-            <h3 class="section-title">Rumors Heard (${rumorProps.length})</h3>
-            <div class="codex-grid">
-                ${rumorProps.map(p => `
-                    <div class="prophecy-card rumor" onclick="window.ui.showProphecyDetail('${p.id}')">
-                        <div class="prophecy-card-icon"><i class="fa-solid fa-question"></i></div>
-                        <div class="prophecy-card-info">
-                            <div class="prophecy-card-reference">???</div>
-                            <div class="prophecy-card-desc">A rumor heard in conversation...</div>
-                        </div>
-                        <div class="prophecy-card-badge"><img src='../assets/gfx/chat-duotone.svg' class='icon-svg' loading='lazy'></div>
-                    </div>`).join('')}
-            </div>` : ''}
+            if (completeProps.length > 0) {
+                html += `
+                <h3 class="section-title">${statusLabel('complete')} (${completeProps.length})</h3>
+                <div class="codex-grid">
+                    ${completeProps.map(p => `
+                        <div class="prophecy-card complete" onclick="window.ui.showProphecyDetail('${p.id}')">
+                            <div class="prophecy-card-icon">${renderIcon(p.icon)}</div>
+                            <div class="prophecy-card-info">
+                                <div class="prophecy-card-reference">${p.reference}</div>
+                                <div class="prophecy-card-desc">${(p.fulfilledBy || p.desc || '').substring(0, 60)}...</div>
+                            </div>
+                            <div class="prophecy-card-badge"><img src='../assets/gfx/check-circle-duotone.svg' class='icon-svg' loading='lazy'></div>
+                        </div>`).join('')}
+                </div>`;
+            }
 
-            ${unseenProps.length > 0 ? `
-            <h3 class="section-title">Undiscovered (${unseenProps.length})</h3>
-            <div class="codex-grid">
-                ${unseenProps.map(p => `
-                    <div class="prophecy-card unseen">
-                        <div class="prophecy-card-icon"><i class="fa-solid fa-lock"></i></div>
-                        <div class="prophecy-card-info">
-                            <div class="prophecy-card-reference">???</div>
-                            <div class="prophecy-card-desc">Not yet discovered</div>
-                        </div>
-                    </div>`).join('')}
-            </div>` : ''}
+            if (foundProps.length > 0) {
+                html += `
+                <h3 class="section-title">${statusLabel('found_scripture')} (${foundProps.length})</h3>
+                <div class="codex-grid">
+                    ${foundProps.map(p => `
+                        <div class="prophecy-card found" onclick="window.ui.showProphecyDetail('${p.id}')">
+                            <div class="prophecy-card-icon">${renderIcon(p.icon)}</div>
+                            <div class="prophecy-card-info">
+                                <div class="prophecy-card-reference">${p.reference}</div>
+                                <div class="prophecy-card-desc">${(p.text || '').substring(0, 80)}...</div>
+                            </div>
+                            <div class="prophecy-card-badge"><img src='../assets/gfx/scroll-duotone.svg' class='icon-svg' loading='lazy'></div>
+                        </div>`).join('')}
+                </div>`;
+            }
 
+            if (rumorProps.length > 0) {
+                html += `
+                <h3 class="section-title">${statusLabel('rumor')} (${rumorProps.length})</h3>
+                <div class="codex-grid">
+                    ${rumorProps.map(p => `
+                        <div class="prophecy-card rumor" onclick="window.ui.showProphecyDetail('${p.id}')">
+                            <div class="prophecy-card-icon">${renderIcon(p.icon)}</div>
+                            <div class="prophecy-card-info">
+                                <div class="prophecy-card-reference">${p.reference || '???'}</div>
+                                <div class="prophecy-card-desc">A rumor heard in conversation...</div>
+                            </div>
+                            <div class="prophecy-card-badge"><img src='../assets/gfx/chat-duotone.svg' class='icon-svg' loading='lazy'></div>
+                        </div>`).join('')}
+                </div>`;
+            }
+
+            if (unseenProps.length > 0) {
+                html += `
+                <h3 class="section-title">${statusLabel('unseen')} (${unseenProps.length})</h3>
+                <div class="codex-grid">
+                    ${unseenProps.map(p => `
+                        <div class="prophecy-card unseen">
+                            <div class="prophecy-card-icon"><i class="fa-solid fa-lock"></i></div>
+                            <div class="prophecy-card-info">
+                                <div class="prophecy-card-reference">???</div>
+                                <div class="prophecy-card-desc">Not yet discovered</div>
+                            </div>
+                        </div>`).join('')}
+                </div>`;
+            }
+        }
+
+        html += `
             <div id="codex-feedback" class="codex-feedback" ${!this.codexMatchFeedback ? 'hidden' : ''}>
                 ${this.codexMatchFeedback || ''}
             </div>`;
+
+        return html;
     }
 
     selectEvidenceForMatching(evidenceId) {
@@ -113,9 +124,9 @@ export class CodexUI {
     }
 
     selectProphecyForMatching(prophecyId) {
-        const prophecy = this.es.getProphecyById(prophecyId);
-        const status = this.es.getPropheciesWithStatus().find(p => p.id === prophecyId)?.status;
-        
+        const prophecy = this.cm.getActiveCase()?.prophecies?.find(p => p.id === prophecyId);
+        const status = this.cm.getCodexStatus(prophecyId);
+
         if (prophecy && status === 'complete') {
             if (typeof window.ui.showProphecyDetail === 'function') {
                 window.ui.showProphecyDetail(prophecyId);
@@ -137,6 +148,9 @@ export class CodexUI {
         if (result.success) {
             if (this.audio.enabled) this.audio.playBonus();
             this.codexMatchFeedback = `<div class="codex-feedback-msg success"><img src='../assets/gfx/sparkles-duotone.svg' class='icon-svg' loading='lazy'> Research Complete! +20 RP<br><small>${result.message}</small></div>`;
+            if (typeof window.ui?.checkChains === 'function') {
+              window.ui.checkChains();
+            }
         } else {
             if (this.audio.enabled) this.audio.playError();
             this.codexMatchFeedback = `<div class="codex-feedback-msg error"><img src='../assets/gfx/x-circle-duotone.svg' class='icon-svg' loading='lazy'> ${result.message}</div>`;

@@ -654,6 +654,14 @@
       margin-bottom: 2px;
       font-size: 0.68rem;
     }
+
+    .result-modal .modal-title {
+      color: #fbbf24;
+    }
+
+    #result-modal-mask {
+      z-index: 110;
+    }
   </style>
 </head>
 
@@ -847,6 +855,18 @@
       </div>
       <div id="modal-body" class="modal-body">Description...</div>
       <div id="modal-detail"></div>
+    </div>
+  </div>
+
+  <!-- Result Modal Dialog -->
+  <div id="result-modal-mask" class="modal-mask" onclick="closeResultModal()">
+    <div class="modal-card result-modal" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <div id="result-modal-title" class="modal-title">Action Unlocked</div>
+        <button class="modal-close" onclick="closeResultModal()">✕</button>
+      </div>
+      <div id="result-modal-body" class="modal-body"></div>
+      <div id="result-modal-detail"></div>
     </div>
   </div>
 
@@ -1262,6 +1282,9 @@
       if (validPairs.includes(pair)) {
         setFeedback("✔ MATCH CONFIRMED! (+5 pts)", "success");
         updateScore(5);
+        const itemA = evidence.find(e => e.id === comparatorSlots[0]);
+        const itemB = evidence.find(e => e.id === comparatorSlots[1]);
+        showResultModal('Compare Unlocked', 'Match confirmed!', `<strong>Insight:</strong> ${itemA?.clues?.compare || itemB?.clues?.compare || 'Connection established.'}<br><strong>Score:</strong> +5`);
       } else {
         setFeedback("✖ NO MATCH. (-3 pts)", "error");
         updateScore(-3);
@@ -1347,6 +1370,7 @@
       if (allCorrect && totalFiled === evidence.length) {
         setFeedback("✔ Perfect! All legal evidence categories accurately filed. (+5 pts)", "success");
         updateScore(5);
+        showResultModal('Link Unlocked', 'Evidence folders verified. All items correctly classified.', '<strong>Insight:</strong> Direct, circumstantial, physical, and testimonial evidence properly organized.<br><strong>Score:</strong> +5');
       } else {
         setFeedback("✖ Classification incorrect or incomplete! Red items are misfiled. (-3 pts)", "error");
         updateScore(-3);
@@ -1421,6 +1445,7 @@
       if (failedIndex === -1 && fuseSockets.every(Boolean)) {
         setFeedback("⚡ CIRCUIT POWERED! Sequence correct. (+5 pts)", "success");
         updateScore(5);
+        showResultModal('Timeline Unlocked', 'Chronology verified. All events in correct order.', '<strong>Insight:</strong> The sequence of events has been established.<br><strong>Score:</strong> +5');
       } else {
         setFeedback(`💥 BREAK AT NODE #${failedIndex + 1}! Tap node card to unslot. (-3 pts)`, "error");
         updateScore(-3);
@@ -1485,6 +1510,8 @@
       if (fakeIds === shreddedIds) {
         setFeedback("✔ Verification Complete! Only false items are shredded. (+5 pts)", "success");
         updateScore(5);
+        const fakeNames = evidence.filter(e => e.fake).map(e => e.name).join(', ');
+        showResultModal('Contradict Unlocked', 'Shredder verified. All fake items correctly removed.', `<strong>Insight:</strong> ${fakeNames}<br><strong>Score:</strong> +5`);
       } else {
         setFeedback("✖ Incorrect items in Shredder Bin. Tap shredded card to restore. (-3 pts)", "error");
         updateScore(-3);
@@ -1514,6 +1541,17 @@
 
     function closeModal() {
       document.getElementById('modal-mask').style.display = 'none';
+    }
+
+    function showResultModal(title, body, detail) {
+      document.getElementById('result-modal-title').textContent = title;
+      document.getElementById('result-modal-body').textContent = body;
+      document.getElementById('result-modal-detail').innerHTML = detail;
+      document.getElementById('result-modal-mask').style.display = 'flex';
+    }
+
+    function closeResultModal() {
+      document.getElementById('result-modal-mask').style.display = 'none';
     }
   </script>
 

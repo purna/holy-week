@@ -640,6 +640,26 @@
       background: #431407
     }
 
+    .result-modal {
+      border-color: #fbbf24;
+      box-shadow: 0 0 20px rgba(251, 191, 36, 0.2);
+    }
+
+    .result-modal .score-gain {
+      color: #fbbf24;
+    }
+
+    #result-modal-mask {
+      z-index: 9500;
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, .8);
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+
     .detail-row {
       display: flex;
       gap: 6px;
@@ -805,6 +825,15 @@
     </div>
   </div>
 
+  <div id="result-modal-mask" onclick="closeResultModal()">
+    <div class="modal result-modal" id="result-modal">
+      <h3 id="result-modal-title">Action Unlocked</h3>
+      <p id="result-modal-body"></p>
+      <div id="result-modal-detail"></div>
+      <button class="close-btn" onclick="closeResultModal()">Confirm</button>
+    </div>
+  </div>
+
   <script>
     (() => {
       const EVIDENCE_COST = 3;
@@ -901,7 +930,7 @@
         });
       }
       function toggleCompare(id) { if (usedEvidence.has(id)) return; const i = compareSelected.indexOf(id); if (i >= 0) compareSelected.splice(i, 1); else if (compareSelected.length < 2) compareSelected.push(id); renderCompare(); document.getElementById('btn-compare').disabled = compareSelected.length !== 2; document.getElementById('compare-hint').textContent = compareSelected.length < 2 ? 'Select 2 items (A + B).' : 'A: ' + evidence.find(e => e.id === compareSelected[0]).name + ' / B: ' + evidence.find(e => e.id === compareSelected[1]).name; }
-      function submitCompare() { if (compareSelected.length !== 2) return; tries.compare++; const a = compareSelected[0], b = compareSelected[1]; const ok = (a === 'cloaks' && b === 'zechariah') || (a === 'hoofprints' && b === 'testimony'); if (ok) { addScore('deduction', 10); addScore('evidence', 3); showFeedback('feedback-compare', 'Compared correctly. Deduction unlocked.', 'success'); markUsed(a); markUsed(b); helped.compare = false; } else { const ds = diffSettings[difficulty]; addScore('doubt', Math.round(5 * ds.penaltyMul)); helped.compare = true; showFeedback('feedback-compare', 'Not a recognized connection for this case. Try - Helping Hand available.', 'error'); } compareSelected = []; renderCompare(); document.getElementById('btn-compare').disabled = true; document.getElementById('compare-hint').textContent = 'Select 2 items.'; updateProgress('compare'); }
+      function submitCompare() { if (compareSelected.length !== 2) return; tries.compare++; const a = compareSelected[0], b = compareSelected[1]; const ok = (a === 'cloaks' && b === 'zechariah') || (a === 'hoofprints' && b === 'testimony'); if (ok) { addScore('deduction', 10); addScore('evidence', 3); showFeedback('feedback-compare', 'Compared correctly. Deduction unlocked.', 'success'); markUsed(a); markUsed(b); helped.compare = false; const evA = evidence.find(e => e.id === a); const evB = evidence.find(e => e.id === b); showResultModal('Compare Unlocked', `Match confirmed: ${evA?.name || a} & ${evB?.name || b}`, `<strong>Insight:</strong> ${evA?.clues?.compare || evB?.clues?.compare || 'Connection established.'}<br><strong>Score:</strong> +10 Deduction, +3 Evidence`); } else { const ds = diffSettings[difficulty]; addScore('doubt', Math.round(5 * ds.penaltyMul)); helped.compare = true; showFeedback('feedback-compare', 'Not a recognized connection for this case. Try - Helping Hand available.', 'error'); } compareSelected = []; renderCompare(); document.getElementById('btn-compare').disabled = true; document.getElementById('compare-hint').textContent = 'Select 2 items.'; updateProgress('compare'); }
       function markUsed(id) { usedEvidence.add(id); }
 
       function renderLinkBanks() {
@@ -953,7 +982,7 @@
         });
       }
       function syncLinkBtn() { document.getElementById('btn-link').disabled = !(linkSelected.evidence && linkSelected.target); document.getElementById('link-hint').textContent = linkSelected.evidence ? ('Target: ' + targets.find(t => t.id === linkSelected.target)?.name) : 'Pick 1 evidence + 1 target.'; }
-      function submitLink() { if (!linkSelected.evidence || !linkSelected.target) return; tries.link++; const ok = correctLinks[linkSelected.evidence] === linkSelected.target; if (ok) { addScore('evidence', 5); addScore('deduction', 5); showFeedback('feedback-link', 'Linked correctly. +5 Evidence and +5 Deduction.', 'success'); helped.link = false; } else { const ds = diffSettings[difficulty]; addScore('doubt', Math.round(5 * ds.penaltyMul)); helped.link = true; showFeedback('feedback-link', 'Incorrect link. Try - Helping Hand available.', 'error'); } markUsed(linkSelected.evidence); linkSelected = { evidence: null, target: null }; renderLinkBanks(); document.getElementById('btn-link').disabled = true; updateProgress('link'); }
+      function submitLink() { if (!linkSelected.evidence || !linkSelected.target) return; tries.link++; const ok = correctLinks[linkSelected.evidence] === linkSelected.target; if (ok) { addScore('evidence', 5); addScore('deduction', 5); showFeedback('feedback-link', 'Linked correctly. +5 Evidence and +5 Deduction.', 'success'); helped.link = false; const ev = evidence.find(e => e.id === linkSelected.evidence); const tgt = targets.find(t => t.id === linkSelected.target); showResultModal('Link Unlocked', `Linked correctly: ${ev?.name || linkSelected.evidence} → ${tgt?.name || linkSelected.target}`, `<strong>Insight:</strong> ${ev?.clues?.link || 'Evidence connection established.'}<br><strong>Score:</strong> +5 Evidence, +5 Deduction`); } else { const ds = diffSettings[difficulty]; addScore('doubt', Math.round(5 * ds.penaltyMul)); helped.link = true; showFeedback('feedback-link', 'Incorrect link. Try - Helping Hand available.', 'error'); } markUsed(linkSelected.evidence); linkSelected = { evidence: null, target: null }; renderLinkBanks(); document.getElementById('btn-link').disabled = true; updateProgress('link'); }
       function setLinkFilter(f) { linkFilter = f; document.querySelectorAll('#link-filters .btn-filter').forEach(b => b.classList.toggle('active', b.dataset.filter === f)); renderLinkBanks(); }
 
       function renderTimeline() {
@@ -1053,6 +1082,9 @@
           addScore('deduction', 10);
           showFeedback('feedback-timeline', 'Timeline correct. +10 Deduction.', 'success');
           helped.timeline = false;
+          const placed = timelineSlots.filter(Boolean).map(id => evidence.find(e => e.id === id)).filter(Boolean);
+          const insight = placed.map(e => e.clues?.timeline).filter(Boolean).join(' ') || 'Chronology established.';
+          showResultModal('Timeline Unlocked', 'Chronology verified. All events in correct order.', `<strong>Insight:</strong> ${insight}<br><strong>Score:</strong> +10 Deduction`);
         } else {
           const ds = diffSettings[difficulty];
           addScore('doubt', Math.round(5 * ds.penaltyMul));
@@ -1110,7 +1142,7 @@
         hint.textContent = 'Pick at least 2 suspicious items.' + (contradictSelected.size > 0 ? ` (${contradictSelected.size} selected)` : '');
       }
       function toggleContradict(id) { if (contradictSelected.has(id)) contradictSelected.delete(id); else contradictSelected.add(id); renderContradict(); }
-      function submitContradict() { if (contradictSelected.size < 2) return; tries.contradict++; const fakes = evidence.filter(e => e.fake).map(e => e.id); const ok = contradictSelected.size === fakes.length && fakes.every(id => contradictSelected.has(id)); if (ok) { addScore('challenge', 15); showFeedback('feedback-contradict', 'All fake items identified. +15 Challenge.', 'success'); helped.contradict = false; } else { const ds = diffSettings[difficulty]; addScore('doubt', Math.round(10 * ds.penaltyMul)); helped.contradict = true; showFeedback('feedback-contradict', 'Wrong selection. Try - Helping Hand available.', 'error'); } updateProgress('contradict'); }
+      function submitContradict() { if (contradictSelected.size < 2) return; tries.contradict++; const fakes = evidence.filter(e => e.fake).map(e => e.id); const ok = contradictSelected.size === fakes.length && fakes.every(id => contradictSelected.has(id)); if (ok) { addScore('challenge', 15); showFeedback('feedback-contradict', 'All fake items identified. +15 Challenge.', 'success'); helped.contradict = false; const fakeNames = evidence.filter(e => fakes.includes(e.id)).map(e => e.name).join(', '); showResultModal('Contradict Unlocked', 'All fake items identified and removed.', `<strong>Insight:</strong> ${fakeNames}<br><strong>Score:</strong> +15 Challenge`); } else { const ds = diffSettings[difficulty]; addScore('doubt', Math.round(10 * ds.penaltyMul)); helped.contradict = true; showFeedback('feedback-contradict', 'Wrong selection. Try - Helping Hand available.', 'error'); } updateProgress('contradict'); }
 
       function spendHint(challenge) { if (hintsUsed[challenge]) { showFeedback('feedback-' + challenge, 'Hint already used.', 'hint'); return; } const cost = diffSettings[difficulty].hintCost; if (!spend('evidence', cost)) { showFeedback('feedback-' + challenge, 'Not enough Evidence.', 'error'); return; } hintsUsed[challenge] = true; hintRevealed[challenge] = hints[challenge]; const box = document.getElementById('hint-' + challenge); box.textContent = hints[challenge]; box.classList.add('show'); document.getElementById('btn-' + challenge + '-hint').disabled = true; }
       function showFeedback(id, msg, type) { const el = document.getElementById(id); el.className = 'feedback show ' + type; el.innerHTML = msg; }
@@ -1118,10 +1150,12 @@
 
       function openDetail(ev) { const mask = document.getElementById('modal-mask'); document.getElementById('modal-title').textContent = ev.name; document.getElementById('modal-body').textContent = ev.desc; const det = document.getElementById('modal-detail'); det.innerHTML = '<div class="detail-row"><strong>Status</strong><span>' + (ev.fake ? 'FAKE / Misleading' : 'REAL') + '</span></div><div class="detail-row"><strong>Detail</strong><span>' + ev.detail + '</span></div>'; mask.style.display = 'flex'; }
       function closeModal(e) { if (e && e.target !== document.getElementById('modal-mask')) return; document.getElementById('modal-mask').style.display = 'none'; }
+      function showResultModal(title, body, detail) { document.getElementById('result-modal-title').textContent = title; document.getElementById('result-modal-body').textContent = body; document.getElementById('result-modal-detail').innerHTML = detail; document.getElementById('result-modal-mask').style.display = 'flex'; }
+      function closeResultModal() { document.getElementById('result-modal-mask').style.display = 'none'; }
 
       window.setDifficulty = setDifficulty; window.switchTab = switchTab; window.setLinkFilter = setLinkFilter;
       window.spendHint = spendHint; window.submitCompare = submitCompare; window.submitLink = submitLink; window.submitTimeline = submitTimeline; window.submitContradict = submitContradict;
-      window.openDetail = openDetail; window.closeModal = closeModal;
+      window.openDetail = openDetail; window.closeModal = closeModal; window.showResultModal = showResultModal; window.closeResultModal = closeResultModal;
 
       (function init() {
         renderCompare(); renderLinkBanks(); renderTimeline(); renderContradict(); refreshScores(); updateTimelineBtn();

@@ -1,44 +1,58 @@
-function avatarMarkup(a){if(!a)return'';if(a.endsWith('.svg'))return`<img src="../assets/characters/${a}"style="width:1.5em;height:1.5em;vertical-align:middle;object-fit:contain;"alt="">`;return a;}
-
 export class AccuseUI {
     constructor(caseManager) {
         this.cm = caseManager;
     }
 
-    render() {
+    render(options = {}) {
         const c = this.cm.getActiveCase();
         if (!c) return '';
 
-        const prog = this.cm.getCaseProgress(c.id);
-        const unlockedSuspects = prog?.unlockedSuspects || prog?.discoveredSuspects || [];
+        const prophecies = (c.prophecies || []).map(p => ({
+            ...p,
+            status: this.cm.getCodexStatus(p.id)
+        }));
+        const total = prophecies.length;
+        const complete = prophecies.filter(p => p.status === 'complete').length;
+        const canConclude = options.canConclude ? this.cm.canConcludeCase() : false;
+        const isConcluded = options.isConcluded || false;
 
-        return `<h3 class="section-title">Make Your Accusation</h3>
+        const statusIcon = (status) => {
+            if (status === 'complete') return '<i class="fa-solid fa-check"></i>';
+            if (status === 'found_scripture') return '<i class="fa-solid fa-scroll"></i>';
+            if (status === 'rumor') return '<i class="fa-solid fa-question"></i>';
+            return '<i class="fa-solid fa-circle-dot"></i>';
+        };
+
+        let concludeButton;
+        if (isConcluded) {
+            concludeButton = `<button class="conclude-btn concluded" onclick="showConclusionResult()"><i class="fa-solid fa-gavel"></i> Concluded Case</button>`;
+        } else if (canConclude) {
+            concludeButton = `<button class="conclude-btn" onclick="conclude()"><i class="fa-solid fa-gavel"></i> Conclude Case</button>`;
+        } else {
+            concludeButton = `<button class="conclude-btn" disabled title="Find all evidence and complete all prophecies to unlock"><i class="fa-solid fa-gavel"></i> Conclude Case</button>`;
+        }
+
+        return `<h3 class="section-title">Case File</h3>
             <div class="prophecy-accuse-intro">
-                When you have uncovered the truth, name the culprit. A wrong accusation costs you the case.
+                Close this case once every prophecy has been researched in the Lab. The truth behind it is revealed when you do.
             </div>
             <div class="accuse-panel">
-                <div class="suspect-list">
-                    ${c.suspects.map(s => {
-                        const isLocked = !unlockedSuspects.includes(s.id);
-                        const status = this.cm.getSuspectStatus(s.id);
-                        return `<div class="suspect-accordion">
-                                    <button class="suspect-btn ${isLocked ? 'locked' : ''}" onclick="toggleSuspect(this)" aria-expanded="false">
-                                        <span class="suspect-btn-avatar"><img src="../assets/characters/${s.avatar}" style="width:1.5em;height:1.5em;vertical-align:middle;object-fit:contain;" alt=""></span>
-                                        <div class="suspect-btn-info"><div class="suspect-btn-name">${s.name}</div><div class="suspect-btn-role">${s.role}</div></div>
-                                        <span class="accordion-chevron" aria-hidden="true">▶</span>
-                                    </button>
-                                    <div class="suspect-details">
-                                        <div class="suspect-details-content">
-                                            <div class="suspect-detail-row"><span class="suspect-detail-label">Bible Reference</span><span class="suspect-detail-value">${s.bibleRef || '—'}</span></div>
-                                            <div class="suspect-detail-row"><span class="suspect-detail-label">Status</span><span class="suspect-detail-value">${status.status}</span></div>
-                                            <div class="suspect-action-row">
-                                                <button class="accuse-btn ${isLocked ? 'locked' : ''}" onclick="accuse('${s.id}')" ${isLocked ? 'disabled' : ''}>${isLocked ? "<img src='../assets/gfx/lock-duotone.svg' class='icon-svg' loading='lazy'> Locked" : 'Accuse →'}</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>`;
-                    }).join("")}
+                <div class="case-file-progress">
+                    <div class="case-file-progress-label">Prophecies Researched</div>
+                    <div class="case-file-progress-value">${complete} / ${total}</div>
                 </div>
+                 <div class="prophecy-checklist">
+                     ${prophecies.map(p => {
+                         const isClickable = p.status === 'complete' || p.status === 'found_scripture';
+                         const clickHandler = isClickable ? `onclick="window.ui.showProphecyDetail('${p.id}')"` : '';
+                         return `
+                         <div class="prophecy-checklist-item status-${p.status}" ${clickHandler}>
+                             <span class="prophecy-checklist-icon" aria-hidden="true">${statusIcon(p.status)}</span>
+                             <span class="prophecy-checklist-name">${p.status === 'unseen' ? '???' : p.reference}</span>
+                         </div>`;
+                     }).join("")}
+                 </div>
+                ${concludeButton}
             </div>`;
     }
 }
