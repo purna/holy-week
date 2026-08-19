@@ -311,6 +311,12 @@
         <div class="panel-header">Key Discoveries</div>
         <div id="prophecies-container" class="prophecies-container"></div>
       </section>
+
+      <!-- Case File: Prophecy checklist and case conclusion -->
+      <section class="hud-panel sidebar-panel-fill case-file-panel">
+        <div class="panel-header"><i class="fa-lg fa-solid fa-gavel"></i> Case File</div>
+        <div id="case-file-container" class="case-file-container"></div>
+      </section>
     </aside>
 
     <!-- Footer Row: Holds the 2D vector coordinate radar/minimap tracker -->
@@ -331,6 +337,8 @@
             class="fa-lg fa-solid fa-key"></i><span>Keys</span></button>
         <button id="btn-mobile-analysis" class="mobile-nav-btn"><i
             class="fa-lg fa-solid fa-flask"></i><span>Lab</span></button>
+        <button id="btn-mobile-casefile" class="mobile-nav-btn"><i
+            class="fa-lg fa-solid fa-gavel"></i><span>File</span></button>
       </nav>
 
       <div id="minimap" class="minimap-panel">
@@ -801,17 +809,15 @@
              <p><strong>Scholar Levels:</strong> Novice (0) → Student (100) → Scribe (250) → Rabbi (500) → Scholar (750) → Expert (1000) → Master (1500)</p>
              -->
             </div>
+            <div class="modal-action-row instructions-actions">
+              <button class="terminal-btn btn-flex btn-save-settings-accent" onclick="window.closeInstructionsModal()">Start
+                Investigation</button>
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="modal-action-row instructions-actions">
-        <button class="terminal-btn btn-flex btn-save-settings-accent" onclick="window.closeInstructionsModal()">Start
-          Investigation</button>
       </div>
     </div>
   </div>
-  </div>
-
-  <!-- ══════════════  Reset Progress Overlay ══════════════ -->
   <div id="reset-modal" class="overlay-mask">
     <div class="modal-panel reset-modal-panel">
       <button class="close-icon-btn" onclick="window.closeResetModal()" aria-label="Close">✕</button>

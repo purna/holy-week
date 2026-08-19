@@ -8,6 +8,7 @@ import { AccessibilityManager } from "../js/ui/AccessibilityManager.js";
 import { ChatUI } from "../js/ui/ChatUI.js";
 import { AudioManager } from "./audioManager.js"; // Desktop uses its own AudioManager
 import { DialogueManager } from "./dialogueManager.js";
+import { AccuseUI } from "../js/ui/AccuseUI.js";
 
 import { ControlsManager } from "./controls.js";
 import { EnvironmentManager } from "./environment.js";
@@ -38,6 +39,7 @@ export class GameEngine {
     this.ls = new LocationSystem(this.cm);
     this.audio = new AudioManager();
     this.dm = new DialogueManager(this.audio);
+    this.accuseUI = new AccuseUI(this.cm);
 
     this.registerAllCases();
 
@@ -1244,6 +1246,25 @@ export class GameEngine {
     furtherEl.innerHTML = further.map(ref => `<span class="reading-chip">${ref}</span>`).join('') || '<span>None listed</span>';
 
     document.getElementById('conclusion-modal').classList.add('active');
+  }
+
+  renderCaseFile() {
+    const container = document.getElementById('case-file-container');
+    if (!container) return;
+    const c = this.cm.getActiveCase();
+    if (!c) {
+      container.innerHTML = '<p style="color: var(--text-muted); font-size: 0.85rem;">Select a case from the map to view its file.</p>';
+      return;
+    }
+    const isConcluded = this.cm.getCaseProgress(c.id)?.concluded || false;
+    container.innerHTML = this.accuseUI.render({ canConclude: true, isConcluded: isConcluded });
+    const concludeBtn = container.querySelector('.conclude-btn.concluded');
+    if (concludeBtn) {
+      concludeBtn.onclick = () => this.openConclusionModal();
+    }
+    if (!isConcluded && this.cm.canConcludeCase()) {
+      this._startFireworks();
+    }
   }
 
   handleConclusion() {

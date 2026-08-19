@@ -3049,9 +3049,143 @@ body.reduce-motion * {
 
 /* Action/prophecy containers */
 .actions-container,
-.prophecies-container {
+.prophecies-container,
+.case-file-container {
     flex: 1;
     overflow-y: auto;
+}
+
+/* Case File panel */
+.case-file-container .section-title {
+    font-size: 0.95rem;
+    margin-bottom: 8px;
+}
+
+.case-file-container .prophecy-accuse-intro {
+    font-size: 0.8rem;
+    margin-bottom: 12px;
+    color: var(--text-muted);
+}
+
+.case-file-container .case-file-progress {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.25);
+    border: 1px solid var(--border-subtle);
+    border-radius: 2px;
+    padding: 8px 12px;
+    margin-bottom: 10px;
+}
+
+.case-file-container .case-file-progress-label {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.case-file-container .case-file-progress-value {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--gold);
+}
+
+.case-file-container .prophecy-checklist {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 10px;
+}
+
+.case-file-container .prophecy-checklist-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 10px;
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--border-subtle);
+    border-radius: 2px;
+    font-size: 0.82rem;
+}
+
+.case-file-container .prophecy-checklist-item.status-complete {
+    border-color: var(--accent-success);
+    background: rgba(143, 191, 106, 0.08);
+    cursor: pointer;
+}
+
+.case-file-container .prophecy-checklist-item.status-found_scripture {
+    border-color: var(--gold);
+    background: rgba(232, 197, 106, 0.08);
+    cursor: pointer;
+}
+
+.case-file-container .prophecy-checklist-item.status-rumor {
+    opacity: 0.85;
+}
+
+.case-file-container .prophecy-checklist-item.status-unseen {
+    border-style: dashed;
+    opacity: 0.55;
+}
+
+.case-file-container .prophecy-checklist-icon {
+    width: 1.1em;
+    text-align: center;
+    color: var(--text-muted);
+    flex-shrink: 0;
+}
+
+.case-file-container .status-complete .prophecy-checklist-icon {
+    color: var(--accent-success);
+}
+
+.case-file-container .status-found_scripture .prophecy-checklist-icon {
+    color: var(--gold);
+}
+
+.case-file-container .prophecy-checklist-name {
+    flex: 1;
+    font-weight: 600;
+}
+
+.case-file-container .conclude-btn {
+    width: 100%;
+    padding: 10px 12px;
+    background: var(--accent-success);
+    color: #1a1208;
+    border: none;
+    border-radius: 2px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: opacity 0.15s, transform 0.12s;
+    margin-top: 8px;
+    font-family: var(--font-body);
+}
+
+.case-file-container .conclude-btn:hover:not([disabled]) {
+    opacity: 0.9;
+}
+
+.case-file-container .conclude-btn:active:not([disabled]) {
+    transform: scale(0.97);
+}
+
+.case-file-container .conclude-btn[disabled] {
+    background: var(--dim);
+    color: var(--text-muted);
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.case-file-container .conclude-btn.concluded {
+    background: var(--gold);
+    color: #1a1208;
+    cursor: default;
+    opacity: 1;
 }
 
 /* Minimap grid circles */
