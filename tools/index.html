@@ -215,49 +215,73 @@
             Built with Three.js, Cannon-es, Ink, and Howler.
         </div>
 
-        <div class="grid">
-
+        <div class="grid" id="tools-grid">
             <div class="card">
-                <span class="tag">Editor Tool</span>
-                <h2>Earth Grid Editor</h2>
-                <p>Flatten the planet into a 60×30 longitude/latitude grid. Hover to select cells, choose an object
-                    type, and click or double-click to place. Shows all 3D object positions on the 2D map. Export or
-                    import the full grid as JSON.</p>
-                <a href="grid-editor2.html">Open Demo →</a>
+                <span class="tag">Loading</span>
+                <h2>Loading tools...</h2>
+                <p>Fetching tools manifest.</p>
             </div>
-
-            <div class="card">
-                <span class="tag">Editor Tool</span>
-                <h2>Dialogue Editor</h2>
-                <p>Visual tool for creating and editing Ink-based dialogue graphs. Features include node-based editing,
-                    live preview, Ink script synchronization, export/import capabilities, and responsive design for
-                    desktop and mobile use.</p>
-                <a href="DialogueEditor.html">Open Demo →</a>
-            </div>
-
-            <div class="card">
-                <span class="tag">Editor Tool</span>
-                <h2>Dialogue Viewer</h2>
-                <p>Visual tool for viewing Ink-based dialogue graphs. Features include node-based visualization,
-                    live preview.</p>
-                <a href="DialogueViewer.html">Open Demo →</a>
-            </div>
-
-            <div class="card">
-                <span class="tag">Tilemap Editor</span>
-                <h2>Tilemap Designer</h2>
-                <p>Create the tilemaps for the 2d game.</p>
-                <a href="tilemap-editor.html">Open Demo →</a>
-            </div>
-
-            <div class="card">
-                <span class="tag">Story-Telling</span>
-                <h2>Before the Rooster Crows</h2>
-                <p>A responsive, mobile-first visual novel engine for telling linear, choice-driven stories. Features a scroll-based panel system, dynamic mood lighting, and progress tracking.</p>
-                <a href="story-teller.html">Open Demo →</a>
-            </div>
-
         </div>
+
+        <script>
+            async function loadTools() {
+                const grid = document.getElementById('tools-grid');
+                try {
+                    const res = await fetch('tools.json');
+                    if (!res.ok) throw new Error('Failed to load tools.json');
+                    const tools = await res.json();
+                    grid.innerHTML = '';
+
+                    tools.forEach(tool => {
+                        const card = document.createElement('div');
+                        card.className = 'card';
+
+                        const tag = document.createElement('span');
+                        tag.className = 'tag';
+                        tag.textContent = tool.tag || 'Tool';
+                        card.appendChild(tag);
+
+                        const title = document.createElement('h2');
+                        title.textContent = tool.name;
+                        card.appendChild(title);
+
+                        const desc = document.createElement('p');
+                        desc.textContent = tool.description || '';
+                        card.appendChild(desc);
+
+                        const links = document.createElement('div');
+                        links.style.marginTop = '12px';
+                        links.style.display = 'flex';
+                        links.style.flexDirection = 'column';
+                        links.style.gap = '6px';
+
+                        const basePath = tool.path.endsWith('/') ? tool.path : tool.path + '/';
+
+                        (tool.files || []).forEach(file => {
+                            const a = document.createElement('a');
+                            a.href = basePath + file;
+                            a.textContent = file.replace(/\.(html|js)$/, '');
+                            a.style.fontSize = '0.85em';
+                            a.style.opacity = '0.9';
+                            links.appendChild(a);
+                        });
+
+                        card.appendChild(links);
+                        grid.appendChild(card);
+                    });
+                } catch (err) {
+                    grid.innerHTML = `
+                        <div class="card">
+                            <span class="tag">Error</span>
+                            <h2>Could not load tools</h2>
+                            <p>${err.message}</p>
+                        </div>
+                    `;
+                }
+            }
+
+            loadTools();
+        </script>
 
         <div class="footer-links">
             <a href="../index.html">← Back to Holy Week</a>

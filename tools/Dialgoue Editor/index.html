@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dialogue Story Viewer</title>
-    <script src="../js/plugins/ink.js"></script>
+    <script src="../../js/plugins/ink.js"></script>
     <style>
         :root {
             --bg-color: #1a1a1a;
@@ -210,7 +210,10 @@
     <h1>Dialogue Story Viewer</h1>
 
     <div class="toolbar">
-        <select id="case-select">
+        <select id="act-select">
+            <option value="">-- Select Act --</option>
+        </select>
+        <select id="case-select" disabled>
             <option value="">-- Select Case --</option>
         </select>
         <select id="story-select" disabled>
@@ -238,10 +241,18 @@
     </div>
 
     <script type="module">
-        const DIALOGUE_MAP_PATH = '../js/gameplay/dialogueMaps.js';
+        const DIALOGUE_MAP_PATH = '../../js/gameplay/dialogueMaps.js';
+
+        function resolveRootPath(path) {
+            if (path.startsWith('../')) {
+                return '../../' + path.slice(3);
+            }
+            return path;
+        }
 
         let inkLib;
         let dialogueMap;
+        let storyData = {};
         let currentStoryInstance;
         let currentStoryPath;
         let currentInkText = null;
@@ -251,6 +262,7 @@
         let currentChunkIndex = 0;
 
         const caseSelect = document.getElementById('case-select');
+        const actSelect = document.getElementById('act-select');
         const storySelect = document.getElementById('story-select');
         const restartBtn = document.getElementById('restart-btn');
         const openInkBtn = document.getElementById('open-ink-btn');
@@ -270,8 +282,9 @@
 
                 const mapModule = await import(DIALOGUE_MAP_PATH);
                 dialogueMap = mapModule.DIALOGUE_ID_MAP;
+                storyData = buildStoryData(dialogueMap);
 
-                await populateCaseSelect();
+                await populateActSelect();
                 testAllBtn.disabled = false;
             } catch (error) {
                 console.error("Failed to initialize:", error);
@@ -279,40 +292,97 @@
             }
         }
 
-        async function populateCaseSelect() {
-            const cases = new Set();
-            Object.values(dialogueMap).forEach(path => {
-                const parts = path.split('/');
-                if (parts.length > 3 && parts[1] === 'story') {
-                    cases.add(parts[3]);
-                }
-            });
+        function buildStoryData(map) {
+            const data = {};
+            Object.entries(map).forEach(([storyId, rawPath]) => {
+                const parts = rawPath.split('/');
+                if (parts.length < 5 || parts[2] !== 'story') return;
 
-            caseSelect.innerHTML = '<option value="">-- Select Case --</option>';
-            [...cases].sort().forEach(caseId => {
+                const act = parts[3];
+                const caseFolder = parts[4];
+                const caseName = caseFolder.replace(/\.json$/i, '');
+                const storyFile = parts.slice(5).join('/');
+                const storyName = storyFile.replace(/\.(json|ink)$/i, '');
+
+                if (!data[act]) data[act] = {};
+                if (!data[act][caseName]) data[act][caseName] = [];
+
+                data[act][caseName].push({
+                    id: storyId,
+                    name: storyName,
+                    path: rawPath,
+                });
+            });
+            return data;
+        }
+
+        async function populateActSelect() {
+            const acts = Object.keys(storyData).sort();
+            actSelect.innerHTML = '<option value="">-- Select Act --</option>';
+            acts.forEach(act => {
                 const option = document.createElement('option');
-                option.value = caseId;
-                option.textContent = caseId.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+                option.value = act;
+                option.textContent = act.replace(/^act/i, 'Act ').replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+                actSelect.appendChild(option);
+            });
+        }
+
+        function populateCaseSelect() {
+            const act = actSelect.value;
+            caseSelect.innerHTML = '<option value="">-- Select Case --</option>';
+
+            if (!act || !storyData[act]) {
+                caseSelect.disabled = true;
+                return;
+            }
+
+            caseSelect.disabled = false;
+            const cases = Object.keys(storyData[act]).sort();
+            cases.forEach(caseName => {
+                const option = document.createElement('option');
+                option.value = caseName;
+                option.textContent = caseName.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
                 caseSelect.appendChild(option);
             });
         }
 
-        caseSelect.addEventListener('change', () => {
-            const caseId = caseSelect.value;
-            if (caseId) {
-                populateStorySelect(caseId);
-                storySelect.disabled = false;
-            } else {
-                storySelect.innerHTML = '<option value="">-- Select Story --</option>';
+        function populateStorySelect() {
+            const act = actSelect.value;
+            const caseName = caseSelect.value;
+            storySelect.innerHTML = '<option value="">-- Select Story --</option>';
+
+            if (!act || !caseName || !storyData[act] || !storyData[act][caseName]) {
                 storySelect.disabled = true;
+                return;
             }
+
+            storySelect.disabled = false;
+            const stories = storyData[act][caseName].sort((a, b) => a.id.localeCompare(b.id));
+            stories.forEach(story => {
+                const option = document.createElement('option');
+                option.value = story.id;
+                option.textContent = story.name;
+                storySelect.appendChild(option);
+            });
+        }
+
+        actSelect.addEventListener('change', () => {
+            populateCaseSelect();
+            caseSelect.disabled = !actSelect.value;
+            storySelect.innerHTML = '<option value="">-- Select Story --</option>';
+            storySelect.disabled = true;
+            resetPreview();
+        });
+
+        caseSelect.addEventListener('change', () => {
+            populateStorySelect();
             resetPreview();
         });
 
         storySelect.addEventListener('change', async () => {
             const storyId = storySelect.value;
             if (storyId) {
-                currentStoryPath = dialogueMap[storyId];
+                currentStoryPath = resolveRootPath(dialogueMap[storyId]);
                 copyPathBtn.textContent = 'Copy JSON Path';
                 copyPathBtn.classList.remove('copied');
                 await loadAndPreviewStory(currentStoryPath);
@@ -367,7 +437,7 @@
             for (let i = 0; i < entries.length; i++) {
                 const [storyId, path] = entries[i];
                 try {
-                    const response = await fetch(path);
+                    const response = await fetch(resolveRootPath(path));
                     if (!response.ok) throw new Error(`HTTP ${response.status}`);
                     await response.json();
                     results.push({ storyId, path, status: 'OK' });
@@ -410,18 +480,6 @@
             }
         });
 
-        function populateStorySelect(caseId) {
-            storySelect.innerHTML = '<option value="">-- Select Story --</option>';
-            Object.entries(dialogueMap)
-                .filter(([_, path]) => path.includes(`/${caseId}/`))
-                .sort(([idA], [idB]) => idA.localeCompare(idB))
-                .forEach(([storyId, _]) => {
-                    const option = document.createElement('option');
-                    option.value = storyId;
-                    option.textContent = storyId;
-                    storySelect.appendChild(option);
-                });
-        }
         async function loadAndPreviewStory(storyPath) {
             resetPreview();
             try {

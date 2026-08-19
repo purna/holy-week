@@ -1,6 +1,7 @@
 class CaseEditor {
     constructor() {
         this.fileInput = document.getElementById('file-input');
+        this.preloadBtn = document.getElementById('preload-btn');
         this.actSelect = document.getElementById('act-select');
         this.caseSelect = document.getElementById('case-select');
         this.searchInput = document.getElementById('search-input');
@@ -29,6 +30,7 @@ class CaseEditor {
 
     bindEvents() {
         this.fileInput.addEventListener('change', (e) => this.handleFiles(e.target.files));
+        this.preloadBtn.addEventListener('click', () => this.preloadDefaultCases());
         this.actSelect.addEventListener('change', () => {
             if (!this.confirmDiscardIfNeeded()) { this.actSelect.value = this.lastActValue || ''; return; }
             this.lastActValue = this.actSelect.value;
@@ -56,6 +58,42 @@ class CaseEditor {
         return Object.values(this.filesData).some((cases) => cases.some((c) => c.modified));
     }
 
+    async preloadDefaultCases() {
+        if (!window.confirm('Preload act1_case.js through act4_case.js from the repo? Unsaved changes will be lost.')) return;
+        this.clearLoadedFiles();
+
+        const basePath = '../../js/';
+        const files = ['act1_case.js', 'act2_case.js', 'act3_case.js', 'act4_case.js'];
+        this.setStatus('Preloading default case files...');
+
+        for (const fileName of files) {
+            try {
+                const response = await fetch(basePath + fileName);
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                const text = await response.text();
+                const cases = this.parseCasesFromSource(text, fileName);
+                this.fileSources[fileName] = text;
+                this.filesData[fileName] = cases;
+            } catch (err) {
+                console.error(`Failed to preload ${fileName}:`, err);
+                this.setStatus(`Error preloading ${fileName}: ${err.message}`);
+            }
+        }
+
+        this.populateActSelect();
+        const totalCases = Object.values(this.filesData).reduce((sum, arr) => sum + arr.length, 0);
+        this.setStatus(`Preloaded ${Object.keys(this.filesData).length} file(s), ${totalCases} case(s) found. Choose an Act and Case to begin.`);
+    }
+
+    clearLoadedFiles() {
+        this.fileSources = {};
+        this.filesData = {};
+        this.currentCase = null;
+        this.actSelect.innerHTML = '<option value="">-- Select an Act --</option>';
+        this.caseSelect.innerHTML = '<option value="">-- Select a Case --</option>';
+        this.clearEditor();
+    }
+
     // ---------- Loading & parsing ----------
 
     async handleFiles(fileList) {
@@ -65,12 +103,7 @@ class CaseEditor {
         for (const file of Array.from(fileList)) {
             try {
                 const text = await this.readFile(file);
-                const cases = this.parseCasesFromSource(text, file.name);
-                if (!cases.length) {
-                    console.warn(`No "export const NAME = { ... }" objects found in ${file.name}`);
-                }
-                this.fileSources[file.name] = text;
-                this.filesData[file.name] = cases;
+                this.processSource(text, file.name);
             } catch (err) {
                 console.error(`Failed to parse ${file.name}`, err);
                 this.setStatus(`Error parsing ${file.name}: ${err.message}`);
@@ -81,6 +114,15 @@ class CaseEditor {
         const totalCases = Object.values(this.filesData).reduce((sum, arr) => sum + arr.length, 0);
         this.setStatus(`Loaded ${Object.keys(this.filesData).length} file(s), ${totalCases} case(s) found. Choose an Act and Case to begin.`);
         this.fileInput.value = '';
+    }
+
+    processSource(text, fileName) {
+        const cases = this.parseCasesFromSource(text, fileName);
+        if (!cases.length) {
+            console.warn(`No "export const NAME = { ... }" objects found in ${fileName}`);
+        }
+        this.fileSources[fileName] = text;
+        this.filesData[fileName] = cases;
     }
 
     readFile(file) {

@@ -20,7 +20,7 @@ import { renderIcon } from "../js/utils.js";
 import { act1CaseA, act1CaseB, act1CaseC } from "./../js/act1_case.js";
 import { act2CaseA, act2CaseB, act2CaseC, act2CaseD } from "./../js/act2_case.js";
 import { act3CaseA, act3CaseB, act3CaseC, act3CaseD, act3CaseE } from "./../js/act3_case.js";
-import { act4CaseA, act4CaseB, act4CaseC } from "./../js/act4_case.js";
+import { act4CaseA, act4CaseB, act4CaseC, act4CaseD} from "./../js/act4_case.js";
 
 export class GameEngine {
   constructor(config = {}) {
@@ -160,7 +160,7 @@ export class GameEngine {
       act1CaseA, act1CaseB, act1CaseC,
       act2CaseA, act2CaseB, act2CaseC, act2CaseD,
       act3CaseA, act3CaseB, act3CaseC, act3CaseD, act3CaseE,
-      act4CaseA, act4CaseB, act4CaseC
+      act4CaseA, act4CaseB, act4CaseC, act4CaseD
     ];
     cases.forEach(c => {
       if (this.config.DEBUG?.unlockAllCases) c.requires = null;

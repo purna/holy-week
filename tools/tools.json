@@ -1,0 +1,51 @@
+[
+  {
+    "name": "Case Checker",
+    "path": "Case Checker/",
+    "tag": "Editor Tool",
+    "description": "Case validation and inspection dashboard for reviewing act data, JSON structure, and dialogue files.",
+    "files": ["index.html"]
+  },
+  {
+    "name": "Case Editor",
+    "path": "Case Editor/",
+    "tag": "Editor Tool",
+    "description": "Iterative case editing environment.",
+    "files": ["case-editor.html"]
+  },
+  {
+    "name": "Character Head Generator",
+    "path": "Character Head Generator/",
+    "tag": "Asset Tool",
+    "description": "Generate and preview character head assets.",
+    "files": ["index.html"]
+  },
+  {
+    "name": "Dialogue Editor",
+    "path": "Dialgoue Editor/",
+    "tag": "Editor Tool",
+    "description": "Visual node-based editor for Ink dialogue graphs with live preview and export.",
+    "files": ["index.html"]
+  },
+  {
+    "name": "Grid Editor",
+    "path": "Grid Editor/",
+    "tag": "Editor Tool",
+    "description": "3D grid and map editor for placing objects on a longitude/latitude grid.",
+    "files": ["index.html"]
+  },
+  {
+    "name": "Icon Generator",
+    "path": "Ico Generator/",
+    "tag": "Asset Tool",
+    "description": "Generate and export UI icons and sprite assets.",
+    "files": ["index.html"]
+  },
+  {
+    "name": "Tilemap Editor",
+    "path": "Tilemap Editor/",
+    "tag": "Tilemap Editor",
+    "description": "Design 2D tilemaps for the game world.",
+    "files": ["index.html"]
+  }
+]

@@ -17,6 +17,11 @@
             </div>
 
             <div class="field">
+                <label>&nbsp;</label>
+                <button id="preload-btn" class="preload-btn" type="button">Preload Default Cases</button>
+            </div>
+
+            <div class="field">
                 <label for="act-select">Act</label>
                 <select id="act-select">
                     <option value="">-- Load files first --</option>
@@ -37,13 +42,15 @@
 
             <div class="field export-field">
                 <label>&nbsp;</label>
-                <button id="export-btn" class="hidden">Export as JSON</button>
+                <div class="button-row">
+                    <button id="reset-btn" class="hidden" type="button" title="Discard edits to this case and reload it as originally imported">Reset Case</button>
+                    <button id="export-btn" class="hidden" type="button">Export Case JSON</button>
+                    <button id="save-file-btn" class="hidden" type="button" title="Download the whole act file (.js) with all your edits spliced back in">Save Act File (.js)</button>
+                </div>
             </div>
         </div>
 
         <div id="status">Load act1_case.js, act2_case.js, act3_case.js and act4_case.js to begin (you can select all four at once, or add them one at a time).</div>
-
-        <nav id="toc" class="toc hidden" aria-label="Section table of contents"></nav>
 
         <div id="sections-container"></div>
     </div>

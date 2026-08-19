@@ -44,7 +44,8 @@ export const ACT_REGISTRY = {
     cases: [
       act4CaseA,
       act4CaseB,
-      act4CaseC
+      act4CaseC,
+      act4CaseD
     ].filter(Boolean)
   }
 };
