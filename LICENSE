@@ -1,4 +1,4 @@
-MIT License
+# Pixelagent Attribution License
 
 Copyright (c) 2026 Pixelagent
 
@@ -6,11 +6,43 @@ Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
 in the Software without restriction, including without limitation the rights
 to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+copies of the Software, subject to the following conditions:
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+1. **Attribution Required**
+
+   Any person or organisation using, modifying, distributing, publishing,
+   sublicensing, or incorporating the Software, or any substantial portion
+   thereof, must provide clear and reasonable attribution to **Pixelagent**
+   as the original author.
+
+   The attribution must include the following notice, or substantially
+   equivalent wording:
+
+   > "Original software created by Pixelagent, Copyright (c) 2026 Pixelagent."
+
+2. **License and Copyright Notice**
+
+   The above copyright notice, this license, and the required attribution
+   notice must be included in all copies or substantial portions of the
+   Software.
+
+3. **Modified Versions**
+
+   If the Software is modified, the attribution must remain intact. Modified
+   versions must not remove or obscure the original Pixelagent copyright
+   notice or attribution.
+
+4. **Redistribution**
+
+   When redistributing the Software or a substantial portion of it, whether
+   in source or compiled form, the required attribution must be reasonably
+   visible and accessible to users of the Software.
+
+5. **No Trademark Grant**
+
+   This license does not grant permission to use the name "Pixelagent" or
+   any associated trademarks, logos, or branding for purposes other than the
+   attribution required by this license.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
