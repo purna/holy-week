@@ -523,7 +523,7 @@ export class LabWorkspaceUI {
 
   _initState() {
     this.score = 0;
-    const pool = this.es.getEvidencePool?.() || [];
+    const pool = this.es.getCollected?.() || this.es.getEvidencePool?.().filter(e => this.es.isCollected(e.id)) || [];
     const typeMap = { physical: 'physical', testimonial: 'testimonial', analytical: 'analytical', environmental: 'environmental' };
     const categoryMap = { people: 'testimonial', event: 'environmental', prophecy: 'analytical' };
     this.evidence = pool.map(e => ({
