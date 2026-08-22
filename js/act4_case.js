@@ -1568,7 +1568,7 @@ export const act4CaseC = {
     },
     {
       reference: "Ezekiel 34:11-16",
-      id: "ezekiel_34_11-16",
+      id: "ezekiel_34_11_16",
       icon: "../assets/gfx/sparkles-duotone.svg",
       text: `"For thus says the Lord GOD: I will seek my sheep... I will rescue them... I will feed them... I will bind up the injured... I will bring back the strayed."`,
       written: "~580 BC",
@@ -1641,7 +1641,7 @@ export const act4CaseC = {
     }, {
       id: "miraculous_catch",
       name: "The Miraculous Catch",
-      relatedProphecy: "ezekiel_34_11-16",
+      relatedProphecy: "ezekiel_34_11_16",
       type: "physical",
       icon: "../assets/gfx/fish-duotone.svg",
       location: "Nets on the Beach",
@@ -1667,7 +1667,7 @@ export const act4CaseC = {
     }, {
       id: "bread_breakfast",
       name: "Bread and Fish Breakfast",
-      relatedProphecy: "ezekiel_34_11-16",
+      relatedProphecy: "ezekiel_34_11_16",
       type: "physical",
       icon: "../assets/gfx/bread-duotone.svg",
       location: "Shoreline Meal",
@@ -1696,7 +1696,7 @@ export const act4CaseC = {
       id: "threefold_commission",
       name: "The Threefold Commission",
       revealsSuspect: "none",
-      relatedProphecy: "ezekiel_34_11-16",
+      relatedProphecy: "ezekiel_34_11_16",
       type: "testimonial",
       icon: "../assets/gfx/scroll-duotone.svg",
       location: "Dialogue with Peter",
@@ -1807,10 +1807,10 @@ export const act4CaseC = {
       }
     },
     {
-      id: "ezekiel_34_11-16_scroll",
+      id: "ezekiel_34_11_16_scroll",
       name: "Ezekiel 34:11–16 Scroll Fragment",
       type: "scripture",
-      relatedProphecy: "ezekiel_34_11-16",
+      relatedProphecy: "ezekiel_34_11_16",
       revealsSuspect: "none",
       category: "prophecy",
       timelineOrder: 1,
@@ -1818,13 +1818,13 @@ export const act4CaseC = {
       location: "Sea of Galilee",
       desc: "A parchment scroll fragment containing the text of Ezekiel 34:11–16. The text is clearly legible and matches the known Hebrew/Greek manuscripts.",
       bibleRef: "Ezekiel 34:11–16",
-      bibleLink: "ezekiel_3411_16",
+      bibleLink: "ezekiel_34_11_16",
       propheticLink: "This prophecy foretold events that were fulfilled during the events of this case.",
       bibleRefs: [
-        { ref: "Ezekiel 34:11–16", link: "ezekiel_3411_16" }
+        { ref: "Ezekiel 34:11–16", link: "ezekiel_34_11_16" }
       ],
       propheticRefs: [
-        { ref: "Ezekiel 34:11–16", link: "ezekiel_3411_16" }
+        { ref: "Ezekiel 34:11–16", link: "ezekiel_34_11_16" }
       ],
       investigatorNote: "This scroll contains the ancient prophecy that was fulfilled during these events.",
       fake: false,
@@ -1990,7 +1990,7 @@ export const act4CaseC = {
       hasDialogue: true,
       storyFile: "mary_magdalene",
       unlocksEvidence: ["miraculous_catch"],
-      revealsProphecy: "ezekiel_34_11-16",
+      revealsProphecy: "ezekiel_34_11_16",
       background: "Mary had witnessed the empty tomb, and now stood by as Jesus restored Peter—the same Peter who had been so sure of his own loyalty.",
       dialogue: {
         neutral: "I was there at the tomb. I was there on the shore. I've seen what resurrection does to broken people.",
@@ -2020,7 +2020,7 @@ export const act4CaseC = {
       hasDialogue: true,
       storyFile: "nathanael_disciple",
       background: "Nathanael, whom Jesus called 'an Israelite in whom there is no guile,' was present as a witness to this restoration.",
-      revealsProphecy: "ezekiel_34_11-16",
+      revealsProphecy: "ezekiel_34_11_16",
       dialogue: {
         neutral: "I came from Cana that morning. They told me about the catch, about the fire. I saw Peter's face.",
         cautious: "Peter was different after. Not just healed—redefined. He carried himself like a man who'd been given back his soul.",
@@ -2058,7 +2058,7 @@ export const act4CaseC = {
         text: "First: obedience to Christ's command yields the catch. Then: obedience to Christ's commission yields the calling.",
         insight: "Peter's failure came during his independent action (denying). His restoration came through submitting to Christ's word.",
         isKey: true,
-        revealsProphecy: "ezekiel_34_11-16",
+        revealsProphecy: "ezekiel_34_11_16",
         bibleRef: "John 21:3, 15-17",
       },
       link: {
@@ -2073,7 +2073,7 @@ export const act4CaseC = {
         text: "The risen Christ eats with his disciples—God incarnate sharing a meal with human witnesses.",
         insight: "This confirms the physical resurrection. The appearances were not visions or dreams but real encounters with a bodily raised Jesus.",
         isKey: true,
-        revealsProphecy: "ezekiel_34_11-16",
+        revealsProphecy: "ezekiel_34_11_16",
         bibleRef: "Luke 24:38-43; John 21:12",
       },
     },
@@ -2639,7 +2639,6 @@ export const act4CaseD = {
             role: "Divine Witnesses",
             faction: "angels",
             avatar: "angelic_witness.svg",
-            profileFile: "angelic_witness",
             truthfulness: 1.0,
             bibleRef: "Acts 1:10-11",
             hasDialogue: true,

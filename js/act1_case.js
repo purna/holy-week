@@ -166,7 +166,6 @@ export const act1CaseA = {
     { id: "owner", name: "Tobias", role: "Donkey Owner / Sympathiser", avatar: "tobias_owner.svg", bibleRef: "Mark 11:3–6 (unnamed owner)" },
     { id: "villager", name: "Local Villager", role: "Eyewitness", avatar: "local_traveler.svg", bibleRef: "Mark 11:3–6 (unnamed villager who witnessed the exchange)" },
     { id: "pharisee", name: "Pharisee", role: "Religious Authority", avatar: "simon_pharisee.svg", bibleRef: "Luke 19:39–40; John 12:19" },
-    { id: "local_skeptic", name: "Jemimah", role: "Jerusalem Local", avatar: "jemimah.svg", bibleRef: "Matthew 21:10-11" },
     { id: "none", name: "No One", role: "Not Stolen", avatar: "question-duotone.svg", bibleRef: null },
   ],
 
@@ -1261,6 +1260,38 @@ export const act1CaseB = {
       },
       contradictions: {
         "broken_cages+scattered_shekels": { exposed: "The priests tried to frame this as an armed insurrection to Pilate. But we logged it as a domestic religious cleanup. The Galilean wasn't fighting Rome; He was fighting the merchants' corruption." }
+      }
+    }
+    ,
+    {
+      id: "hillel_scribe",
+      name: "Hillel",
+      role: "Junior Temple Scribe",
+      faction: "scribes",
+      avatar: "hillel_scribe.svg",
+      profileFile: "hillel_scribe",
+      color: 0x6b8e9f,
+      pos: [-8, 0, 8],
+      truthfulness: 0.9,
+      bibleRef: "Mark 11:15",
+      hasDialogue: true,
+      storyFile: "hillel_scribe",
+      unlocksEvidence: ["scattered_shekels", "broken_cages"],
+      revealsProphecy: "malachi_3_1",
+      background: "A young, meticulous scribe assigned to the Temple's administrative offices. Hillel is responsible for cross-referencing market ledgers for Passover lambs with priestly inspection records. His data-driven perspective reveals the economic disruption's impact on sacrificial readiness.",
+      dialogue: {
+        neutral: "My ledgers show a 40 percent spike in moneychanger fees since Tuesday. The lamb inspectors were supposed to begin Nisan 10 — four days ago. Instead, the Court of Gentiles is a marketplace, and the lambs are queued outside the walls.",
+        cautious: "I cannot say whether the Galilean's timing was deliberate. But I can tell you the market operates at peak volume on festival mornings. When He cleared the courts, He disrupted the highest-revenue transaction window of the week.",
+        exposed: "Look at the timestamps in my ledgers. The moneychangers were already open for business before dawn. The lamb inspection queue was pushed to the outer court. The one thing required for Passover was crowded out by the one thing forbidden.",
+        repeat: "The numbers do not lie. After the tables were overturned, the inspectors resumed two hours later and the lambs went through. Order returned — but only after the commerce stopped."
+      },
+      reactions: {
+        scattered_shekels: { text: "Those Tyrian shekels were left in the dust. My ledgers show the exchange rate was 24 percent above the Temple's posted fee that morning. The merchants were gouging pilgrims at the moment of maximum foot traffic.", isLie: false },
+        whip_of_cords: { text: "A reed whip? That is not a weapon. It is a shooing tool — meant to clear livestock, not men. The ledgers show the merchants fled before the disciples arrived, not because of violence, but because of His presence.", isLie: false },
+        broken_cages: { text: "Jadan's dove cages. I have the original purchase order here. The cages were worth four shekels. He could have paid for twenty doves out of His own pocket and still had change. That is not the act of a thief.", isLie: false }
+      },
+      contradictions: {
+        "scattered_shekels+whip_of_cords": { exposed: "The money changer claimed the Galilean was violent and stole silver. My ledgers prove the opposite: no coins were taken, and the reed whip was used to drive out animals, not people.", corrects: "neutral" }
       }
     }
     ,

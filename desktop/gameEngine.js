@@ -17,6 +17,7 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { MODELS } from '../js/config.js';
 import { iVFXSystem } from "./iVFXSystem.js";
 import { renderIcon } from "../js/utils.js";
+import { createPalmTree, createBush, createJar } from "./proceduralModels.js";
 
 import { act1CaseA, act1CaseB, act1CaseC } from "./../js/act1_case.js";
 import { act2CaseA, act2CaseB, act2CaseC, act2CaseD } from "./../js/act2_case.js";
@@ -784,6 +785,7 @@ export class GameEngine {
       this.pPos.setLength(this.surfaceRadius + 1.1);
 
       // Populate level details ONLY after the terrain is ready to prevent occlusion
+      this._loadTilemap(caseData);
       this._populateWorldPrimitives();
       this._addLocationMarkers();
       this._placeNPCs(caseData);
@@ -953,6 +955,90 @@ export class GameEngine {
     }, undefined, (error) => {
       console.warn('[Player] Failed to load player.glb, using fallback:', error);
     });
+  }
+
+  async _loadTilemap(caseData) {
+    const mapPath = `./maps/${caseData.id}.json`;
+    try {
+      const res = await fetch(mapPath);
+      if (!res.ok) return;
+      const data = await res.json();
+      if (!data || !data.gridSize) return;
+      const { rows, cols } = data.gridSize;
+      const numLat = rows, numLon = cols;
+
+      const tileModels = {
+        background: {
+          R: { type: 'glb', path: '../assets/models/building_tall.glb', scale: 2.0, density: 0.08 },
+          '#': { type: 'glb', path: '../assets/models/building_short.glb', scale: 2.0, density: 0.15 },
+          '=': null,
+          '~': null,
+        },
+        decoration: {
+          T: { type: 'proc', fn: () => createBush(), density: 1.0 },
+          P: { type: 'proc', fn: () => createPalmTree(), density: 1.0 },
+          K: { type: 'glb', path: '../assets/models/rocks.glb', scale: 1.5, density: 1.0 },
+          U: { type: 'proc', fn: () => createBush(), density: 1.0 },
+          J: { type: 'proc', fn: () => createJar(), density: 1.0 },
+        },
+      };
+
+      const gltfLoader = new GLTFLoader();
+
+      for (const layerName of ['background', 'decoration']) {
+        const grid = data[layerName];
+        if (!grid) continue;
+        const mapping = tileModels[layerName];
+        if (!mapping) continue;
+
+        for (let r = 0; r < rows; r++) {
+          const row = grid[r];
+          if (!row || typeof row !== 'string') continue;
+          for (let c = 0; c < cols; c++) {
+            const ch = row[c];
+            const def = mapping[ch];
+            if (!def) continue;
+
+            if (def.density < 1.0) {
+              const hash = ((r * 73856093) ^ (c * 19349663)) % 100;
+              if (hash > def.density * 100) continue;
+            }
+
+            const pos = this._gridCellToSurface(r, c, numLat, numLon, 0);
+
+            if (def.type === 'proc') {
+              const obj = def.fn();
+              if (!obj) continue;
+              obj.position.copy(pos);
+              this._alignToSurface(obj);
+              this.worldObjects.push(obj);
+            } else if (def.type === 'glb') {
+              gltfLoader.load(def.path, (gltf) => {
+                const model = gltf.scene;
+                model.traverse(node => {
+                  if (node.isMesh) {
+                    node.castShadow = true;
+                    node.receiveShadow = true;
+                  }
+                });
+                model.scale.setScalar(def.scale);
+                const box = new THREE.Box3().setFromObject(model);
+                const size = box.getSize(new THREE.Vector3());
+                model.userData.collisionRadius = Math.max(size.x, size.z) * 0.5 * def.scale;
+                model.position.copy(pos);
+                this._alignToSurface(model);
+                this.worldObjects.push(model);
+              }, undefined, (err) => {
+                console.warn(`[Tilemap] Failed to load ${def.path}:`, err);
+              });
+            }
+          }
+        }
+      }
+      console.log(`[Tilemap] Loaded desktop/maps/${caseData.id}.json`);
+    } catch (e) {
+      console.warn(`[Tilemap] Failed to load ${mapPath}:`, e);
+    }
   }
 
   _populateWorldPrimitives() {

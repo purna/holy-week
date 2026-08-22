@@ -14,7 +14,7 @@ export class OrbitalSelectMatrixModal {
         this.renderer = null;
         this.core = null;
         this.overlay = document.getElementById('modal-overlay');
-        this.wrapper = document.getElementById('modal-canvas-wrap');
+        this.wrapper = document.getElementById('menu-modal-canvas-wrap');
         this.theta = 0;
         this.phi = Math.PI / 3;
         this.dragging = false;
@@ -34,16 +34,17 @@ export class OrbitalSelectMatrixModal {
     init() {
         this.scene = new THREE.Scene();
         this.scene.background = new THREE.Color(0x05070b);
+        this.scene.fog = new THREE.FogExp2(0x05070b, 0.003);
 
         this.camera = new THREE.PerspectiveCamera(45, 1, 0.1, 500);
         this.renderer = new THREE.WebGLRenderer({ antialias: true });
         this.renderer.setPixelRatio(window.devicePixelRatio);
         this.wrapper.appendChild(this.renderer.domElement);
-        // yellow 
-        const sun = new THREE.DirectionalLight(0xffff00, 0.2);
+
+        const sun = new THREE.DirectionalLight(0xffffff, 1.2);
         sun.position.set(5, 3, 5);
         this.scene.add(sun);
-        this.scene.add(new THREE.AmbientLight(0xffffff, 0.6));
+        this.scene.add(new THREE.AmbientLight(0xffffff, 0.4));
         this.scene.add(new THREE.HemisphereLight(0xffffff, 0x444444, 0.8));
 
         // Initialize core group (this will hold the earth and markers)
@@ -55,28 +56,30 @@ export class OrbitalSelectMatrixModal {
         loader.load(MODELS.planet, (gltf) => {
             const model = gltf.scene;
 
-            // Auto-scale normalization to ensure earth is solid and visible
             const box = new THREE.Box3().setFromObject(model);
             const size = box.getSize(new THREE.Vector3());
+            const center = box.getCenter(new THREE.Vector3());
             const maxDim = Math.max(size.x, size.y, size.z);
             const scale = this.globeScale / maxDim;
-            model.scale.set(scale, scale, scale);
 
-            // Sync material properties with in-game engine to ensure correct color and reduced reflections
+            model.traverse((node) => {
+                if (node.isMesh) {
+                    node.position.sub(center);
+                }
+            });
+            model.scale.setScalar(scale);
+            model.position.set(0, 0, 0);
+
             model.traverse((node) => {
                 if (node.isMesh && node.material) {
                     const materials = Array.isArray(node.material) ? node.material : [node.material];
                     materials.forEach(mat => {
-                        if (mat.color) {
-                            mat.color.set(0xffd700);
-                        }
-                        mat.roughness = 0.9;
+                        mat.roughness = 1.0;
                         mat.metalness = 0.0;
                     });
                 }
             });
 
-            // Ensure the city layer is visible for the map modal
             const cityLayer = model.getObjectByName('cities');
             if (cityLayer) {
                 cityLayer.visible = true;
@@ -161,6 +164,7 @@ export class OrbitalSelectMatrixModal {
 
         const select = () => {
             this.updateSidebarDetails(c);
+            this.showInfoPanel();
         };
 
         dot.onclick = (e) => {
@@ -171,30 +175,30 @@ export class OrbitalSelectMatrixModal {
     }
 
     renderActTree() {
-        // Clear existing tree
-        if (this.treeEl) this.treeEl.remove();
-
-        const tree = document.createElement('div');
-        tree.id = 'lsm-tree';
-        tree.className = 'lsm-tree';
-        const panel = this.overlay.querySelector('.modal-panel');
-        if (panel) {
-            panel.appendChild(tree);
-        } else {
-            this.overlay.appendChild(tree);
-        }
+        // Reuse the real #lsm-tree placeholder that already lives inside
+        // .modal-body-flush (next to the map). Previously this created a
+        // *second* element with the same id and appended it to .modal-panel
+        // directly, which put the populated menu outside the 2-column row
+        // entirely (stacked below the map instead of beside it).
+        const tree = document.getElementById('lsm-tree');
+        if (!tree) return;
+        tree.innerHTML = '';
         this.treeEl = tree;
 
         const hdr = document.createElement('div');
+        hdr.id = 'act-tree-title';
         hdr.className = 'lsm-tree-header';
         hdr.textContent = 'INVESTIGATION ACTS';
         this.treeEl.appendChild(hdr);
 
         Object.entries(this.actGroups).forEach(([actLabel, cases]) => {
+            const sanitized = actLabel.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
             const actContainer = document.createElement('div');
+            actContainer.id = `act-group-${sanitized}`;
             actContainer.className = 'act-container';
 
             const actHeader = document.createElement('div');
+            actHeader.id = `act-header-${sanitized}`;
             actHeader.className = 'act-tree-header';
             actHeader.dataset.act = actLabel;
 
@@ -216,6 +220,7 @@ export class OrbitalSelectMatrixModal {
 
             // Cases list (hidden initially)
             const caseList = document.createElement('div');
+            caseList.id = `act-cases-${sanitized}`;
             caseList.className = 'act-cases-list';
             caseList.style.display = 'none';
 
@@ -234,6 +239,7 @@ export class OrbitalSelectMatrixModal {
                 }
 
                 const dot = document.createElement('div');
+                dot.id = `tree-dot-${c.id}`;
                 dot.className = `tree-dot ${locked ? 'locked' : solved ? 'solved' : 'available'}`;
 
                 if (locked) {
@@ -247,6 +253,7 @@ export class OrbitalSelectMatrixModal {
                 info.className = 'tree-info';
 
                 const title = document.createElement('div');
+                title.id = `tree-title-${c.id}`;
                 title.className = 'tree-title';
                 if (locked) {
                     const lock = document.createElement('i');
@@ -264,7 +271,12 @@ export class OrbitalSelectMatrixModal {
                 item.appendChild(info);
 
                 if (!locked) {
-                    item.onclick = () => this.selectCase(c.id);
+                    item.onclick = () => {
+                        this.treeEl.querySelectorAll('.tree-item.active-phase').forEach(el => el.classList.remove('active-phase'));
+                        item.classList.add('active-phase');
+                        this.updateSidebarDetails(c);
+                        this.showInfoPanel();
+                    };
                 }
                 caseList.appendChild(item);
             });
@@ -300,6 +312,16 @@ export class OrbitalSelectMatrixModal {
                 }
             };
         });
+    }
+
+    showInfoPanel() {
+        const panel = document.getElementById('map-node-info-panel');
+        if (panel) panel.classList.add('active');
+    }
+
+    hideInfoPanel() {
+        const panel = document.getElementById('map-node-info-panel');
+        if (panel) panel.classList.remove('active');
     }
 
     hideAllMarkers() {
@@ -393,6 +415,14 @@ export class OrbitalSelectMatrixModal {
     }
 
     bind() {
+        const closeInfoBtn = document.getElementById('btn-close-map-info');
+        if (closeInfoBtn) {
+            closeInfoBtn.onclick = (e) => {
+                e.stopPropagation();
+                this.hideInfoPanel();
+            };
+        }
+
         const closeBtn = document.getElementById('btn-close-map');
         const originalClose = () => this.close();
         closeBtn.onclick = (e) => {
@@ -455,6 +485,7 @@ export class OrbitalSelectMatrixModal {
     open() {
         this.overlay.classList.add('active');
         this.actSelected = false;
+        this.hideInfoPanel();
 
         const closeBtn = document.getElementById('btn-close-map');
         if (closeBtn) {
@@ -485,11 +516,6 @@ export class OrbitalSelectMatrixModal {
                 this.camera.updateProjectionMatrix();
             }
         }, 50);
-
-        const panel = this.overlay.querySelector('.modal-panel');
-        if (this.treeEl && panel) {
-            panel.appendChild(this.treeEl);
-        }
 
         this.hideAllMarkers(); // Start with a clean globe
         this.showAllCasesOnGlobe(); // Automatically show cases on open
@@ -541,6 +567,7 @@ export class OrbitalSelectMatrixModal {
 
     close() {
         this.overlay.classList.remove('active');
+        this.hideInfoPanel();
         this.hideAllMarkers();
         cancelAnimationFrame(this.raf);
         this.activeAct = null;
@@ -568,9 +595,9 @@ export class OrbitalSelectMatrixModal {
             // Project world position to screen space
             const vector = worldPos.clone().project(this.camera);
 
-            // Determine occlusion: Node is behind the globe if it faces away from the camera
+            // Determine occlusion: Node is occluded by the globe when it faces away from the camera
             // Since globe is at origin, worldPos is the normal from center to node.
-            const isBehind = worldPos.dot(this.camera.position) > 0;
+            const isBehind = worldPos.dot(this.camera.position) < 0;
 
             const x = (vector.x * 0.5 + 0.5) * w;
             const y = (vector.y * -0.5 + 0.5) * h; // Invert Y for screen coordinates

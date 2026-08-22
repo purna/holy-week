@@ -439,7 +439,8 @@ const groupDefinitions \= \[
 | Genesis 14:18-20 | `typology_melchizedek` | Typological Fulfilment |
 | Zechariah 13:7 | `zechariah_13_7` | Prophecy |
 | Psalm 22:16–18 | `psalm_22_16_18` | Prophecy |
-| Amos 8:9 | `amos_8_9` | Prophecy |
+
+> ⚠️ **Bug fix:** `Amos 8:9` was removed from this list — it was defined here but never used by any evidence item or NPC in this case (pure copy-paste from `crucifixion_site`, where it's fully built via Pashhur). Deleted, no replacement needed.
 
 #### Evidence Items
 
@@ -450,7 +451,7 @@ const groupDefinitions \= \[
 | Shattered Clay Cup (`cup_fragments`) | - | Matthew 26:27 | Breaking pottery in the Jewish tradition was sometimes associated with mourning or the breaking of a covenant (see Jeremiah 19:10–11, where Jeremiah shattered a clay jar as a prophetic act of judgement). A broken cup at the Passover table carries heavy symbolic weight. |
 | Large Stone Water Jug (`water_jug`) | - | John 13:4–5 | Isaiah 52:13–15 describes the Servant who 'shall startle many nations' — and immediately before this, is described as one who acts in a way that astonishes because of His humility. Jesus washing feet with this water fulfilled the spirit of what Isaiah described: the exalted One taking the lowest role. |
 | Imprint of a Money Bag (`money_bag_impression`) | `zechariah_11_12_13` | John 13:29 | Judas carried the communal purse — and had recently agreed to betray Jesus for 30 silver coins (Matthew 26:14–16), fulfilling Zechariah 11:12. The presence of a money bag impression at the preparation table raises serious questions: what was Judas counting before the meal? |
-| Roman Nail (`roman_nail`) | `psalm_22_16_18` | John 20:25 | Psalm 22:16 prophesied 'they have pierced my hands and my feet.' This was written centuries before crucifixion was invented. |
+| Roman Nail (`roman_nail`) | `psalm_22_16_18` | John 20:25 | Psalm 22:16 prophesied 'they have pierced my hands and my feet.' This was written centuries before crucifixion was invented. *(⚠️ Note: this item does not exist in the current `act3_case.js` — it appears here as a design placeholder but was never built. The actual fix for this same gap lives in `crucifixion_site` instead, as the newly-drafted `crucifixion_nails` item — narratively the more appropriate location, since the piercing itself happens at the crucifixion, not the supper. Recommend removing this row or repurposing it as a foreshadowing item distinct from `crucifixion_nails`.)* |
 | Fragment of Sop (Dipped Bread) (`betrayal_dipped_bread`) | `psalm_41_9` | John 13:26–30 | The giving of the dipped sop to Judas is the fulfilment of Psalm 41:9 ('even my close friend... who ate my bread has lifted his heel against me'). Jesus quoted this Psalm earlier that evening (John 13:18), identifying the traitor through an act of table fellowship. |
 | Written Summary of Jesus's Words (`new_covenant_declaration`) | `jeremiah_31_31_34` | Luke 22:19–20; 1 Corinthians 11:24–25 | Jeremiah 31:31–34 promised a 'new covenant' that would supersede the Mosaic Law — written on hearts, not stone. Jesus announced its establishment at this very table. The young scribe recording His words was preserving the fulfilment of a 600-year-old prophecy. |
 | List of the Twelve (`twelve_roll`) | `isaiah_53_12` | Luke 22:37 | Jesus explicitly applies Isaiah 53:12 ('numbered with the transgressors') to Himself during the Last Supper. |
@@ -519,12 +520,15 @@ const groupDefinitions \= \[
 | Psalm 22:7–8 | `psalm_22_7_8` | Prophecy |
 | Psalm 38:11 | `psalm_38_11` | Prophecy |
 
+> ⚠️ **Bug fix:** `torn_robe`'s `relatedProphecy` was `isaiah_50_6`, but its content (Caiaphas ritually tearing his own robe over the blasphemy verdict) is unrelated to Isaiah 50:6 ("beat me... mocking and spitting"). Isaiah 50:6 had zero real evidence. New item `spittle_stained_blindfold` (Mark 14:65) now fulfils it properly. Full patch: `act3_case_sanhedrin_isaiah_50_6_patch.js`.
+
 #### Evidence Items
 
 | Evidence | `relatedProphecy` (Codex) | `bibleRef` (supporting verse) | Prophetic / Narrative Link Text |
 |---|---|---|---|
 | Rooster Feather (`rooster_feather`) | `-` | Matthew 26:74-75 | The third denial led to the third crowing, fulfilling Jesus's own prediction of Peter's failure (Matthew 26:34). Supporting/narrative evidence — not directly Codex-linkable to one of this case's four defined prophecies. |
-| Priestly Robe Fragment (`torn_robe`) | `isaiah_50_6` | Matthew 26:65 | Caiaphas tore his robes to signal blasphemy when Jesus affirmed His divinity. |
+| Priestly Robe Fragment (`torn_robe`) | ~~`isaiah_50_6`~~ → *(none)* | Matthew 26:65 | Caiaphas tore his robes to signal blasphemy when Jesus affirmed His divinity. |
+| 🆕 Spittle-Stained Blindfold (`spittle_stained_blindfold`) | `isaiah_50_6` | Mark 14:65 | Fulfills Isaiah 50:6 precisely — spitting and blindfolding, distinct from the Guard's Reed (Micah 5:1, the mock-scepter striking). |
 | Conflicting Depositions (`false_scroll`) | `psalm_27_12` | Mark 14:56-59 | The lack of consistent testimony exposes the trial as a fabrication. |
 | Charcoal Briquette (`charcoal_remains`) | - | John 18:18 | Peter's denial by the fire fulfilled Jesus's prediction that he would deny three times. |
 | Guard's Reed (`guard_reed`) | `micah_5_1` | Matthew 26:67–68 | Micah 5:1 prophesied that Israel's ruler would be struck. The guards' mockery with the reed is a literal fulfillment of this humiliation. |
@@ -603,12 +607,20 @@ const groupDefinitions \= \[
 | Psalm 22:1 | `psalm_22_1` | Prophecy |
 | Psalm 22:7–8 | `psalm_22_7_8` | Prophecy |
 | Psalm 38:11 | `psalm_38_11` | Prophecy |
+| 🆕 Isaiah 53:12 | `isaiah_53_12` | Prophecy |
+| 🆕 Genesis 22:6 | `typology_isaac_wood` | Typological Fulfilment |
+
+> ⚠️ **Bug fix:** `truth.prophesyFulfilled` for this case already lists "Isaiah 53:12," but the prophecy was never defined and had no evidence — foretold only at the Last Supper (`twelve_roll`). New evidence: `crucified_with_thieves` (Luke 23:32-33) + `crucifiers_forgiven` (Luke 23:34), unlocked by a new witness NPC, Dismas the Penitent Thief. Also: Psalm 22:16's piercing clause ("pierced my hands and my feet") had zero dedicated evidence — only `split_dice` (v.18, garments) existed. New evidence: `crucifixion_nails`. Also: Genesis 22:6 (Isaac carrying the wood) was documented elsewhere as Simon of Cyrene's reveal but had no evidence at all — new evidence `cross_burden`, completing the Isaac typology chain (see Hidden Detective Chains below). Full patches: `act3_case_crucifixion_isaiah_53_12_patch.js`, `act3_case_crucifixion_stub_npc_patch.js`. Ink files: `penitent_thief.ink`, `guard_report_crucifixion.ink`, `simon_cyrene.ink`.
 
 #### Evidence Items
 
 | Evidence | `relatedProphecy` (Codex) | `bibleRef` (supporting verse) | Prophetic / Narrative Link Text |
 |---|---|---|---|
 | Soldiers' Casting Dice (`split_dice`) | `psalm_22_16_18` | John 19:23–24 | Directly fulfills Psalm 22:18. While the victim hung dying, the indifferent execution detail executed a routine lottery for a high-quality, seamless tunic woven from top to bottom. |
+| 🆕 Iron Crucifixion Nails (`crucifixion_nails`) | `psalm_22_16_18` | John 20:25 | Fulfills the piercing clause of Psalm 22:16 — previously `split_dice` was the only evidence linked to this prophecy, covering v.18 (garments) but not v.16 (the piercing). |
+| 🆕 Sentencing Record of the Two Thieves (`crucified_with_thieves`) | `isaiah_53_12` | Luke 23:32–33 | Fulfills the first clause of Isaiah 53:12 — 'numbered with the transgressors.' Roman execution records placed Jesus's cross deliberately between two convicted criminals. |
+| 🆕 Words of Forgiveness (`crucifiers_forgiven`) | `isaiah_53_12` | Luke 23:34 | Fulfills the second clause — 'made intercession for the transgressors.' Jesus prayed aloud for the soldiers executing Him. |
+| 🆕 Rope-Burn Marks on a Borrowed Shoulder Cloth (`cross_burden`) | `typology_isaac_wood` | Mark 15:21 | Isaac carried the wood for his own sacrifice (Genesis 22:6); Simon of Cyrene is compelled to finish carrying the crossbeam after Jesus collapses under it. |
 | Split Rocks (`split_rocks`) | `haggai_2_6_7` | Matthew 27:51 | The earthquake at the moment of death fulfilled Haggai's prophecy that God would 'shake the heavens and the earth,' signifying a world-altering divine event. |
 | Blood-Stained Roman Hasta (`pierced_spear`) | `zechariah_12_10` | John 19:34 | Fulfills Zechariah 12:10 ('the one they have pierced') and protects the Passover Lamb requirement of Exodus 12:46 ('not one bone shall be broken'). The spear thrust proved the victim was already dead, making the leg-breaking unnecessary. |
 | The Torn Temple Veil (`torn_temple_veil`) | `jeremiah_31_31_34` | Luke 23:45 | The Parokhet curtain blocked access to the Holy of Holies. Its top-to-bottom tear, occurring at the moment of death, fulfilled Jeremiah's promise of a New Covenant, granting direct access to the presence of God for all. |
@@ -730,6 +742,8 @@ const groupDefinitions \= \[
 | Psalm 16:10 | `psalm_16_10` | Prophecy |
 | Isaiah 53:10–11 | `isaiah_53_10_11` | Prophecy |
 
+> ⚠️ **Bug fix (naming only, not a content gap):** this prophecy is fully built and correctly listed in `truth.prophesyFulfilled` — but its ID is spelled three different ways across the case: `ezekiel_34_11-16` (hyphen, drives actual evidence unlocking), `ezekiel_34_11_16` (underscores, 2×), and `ezekiel_3411_16` (typo, 3×, on the scroll fragment). If the Codex UI resolves reference links by exact string match, the mismatched ones would silently fail. Fix: standardize on `ezekiel_34_11_16`. Patch: `patch4_amos_ezekiel_id_fix.js`.
+
 #### Evidence Items
 
 | Evidence | `relatedProphecy` (Codex) | `bibleRef` (supporting verse) | Prophetic / Narrative Link Text |
@@ -760,24 +774,55 @@ const groupDefinitions \= \[
 *   **Alternative Narrative Supported:** *Jesus the Fraud.*
 
 
+### 🆕 Case: `ascension` (The Ascension)
+
+> This case is fully built in `act4_case.js` (`export const act4CaseD`) but was missing from this reference document entirely — added here to match. Location: Mount of Olives. Requires `peter_restoration`. Culprit: **No One** — a divine event, not a crime.
+
+#### Prophecies & Typologies
+
+| Reference | ID | Category |
+|---|---|---|
+| Luke 24:50–51 | `luke_24_50_51` | Prophecy (NT, typed to Numbers 6:24-26) |
+| Acts 1:9–11 | `acts_1_9_11` | Prophecy (NT, typed to Daniel 7:13-14 / Psalm 110:1) |
+| Matthew 28:19–20 | `matthew_28_19_20` | Prophecy (NT) |
+| Luke 24:36–43 | `luke_24_36_43` | Prophecy (NT) |
+
+#### Evidence Items
+
+| Evidence | `relatedProphecy` (Codex) | `bibleRef` (supporting verse) | Prophetic / Narrative Link Text |
+|---|---|---|---|
+| Testimony of the Wound Marks (`wound_marks_testimony`) | `luke_24_36_43` | John 20:27 | Jesus's invitation to touch His wounds directly fulfilled the need for tangible proof of His bodily resurrection ('a ghost does not have flesh and bones,' Luke 24:39). |
+| Great Commission Mandate (`great_commission_mandate`) | `matthew_28_19_20` | Matthew 28:19–20 | Fulfills OT promises that all nations would come to worship the Lord (Isaiah 2:2-4; Zechariah 8:20-23). |
+| Priestly Benediction Account (`priestly_benediction_account`) | `luke_24_50_51` | Luke 24:50–51 | Echoes the priestly blessing of Numbers 6:24-26, signifying Jesus's role as the ultimate High Priest. |
+| Ascension Eyewitness Account (`ascension_eyewitness_account`) | `acts_1_9_11` | Acts 1:9–11 | This visible, bodily ascension fulfills prophecies of the Messiah's enthronement (Daniel 7:13-14; Psalm 110:1). |
+| Luke 24:50–51 / Acts 1:9–11 / Matthew 28:19–20 / Luke 24:36–43 Scroll Fragments | *(paired to each above)* | *(as above)* | Supplementary primary-source scroll evidence, one per prophecy. |
+
+**Fake evidence:** `Disciples' Hallucination Report` (`ascension_fake`) — a planted distractor claiming the disciples hallucinated the ascension from grief and exhaustion; ignores the physical proofs of the risen body and consistent multi-witness testimony.
+
+**Characters:** Peter (`peter_ascension`, reveals `acts_1_9_11`), John (`john_ascension`, reveals `luke_24_50_51`), Thomas (`thomas_ascension`, reveals `luke_24_36_43`), Angelic Messengers (`angelic_messengers`, reveals `acts_1_9_11`).
+
+
 ## Hidden Detective Chains
 
 | Chain Name | Codex Reward | Cases Spanned | Evidence Required | Points | Faith |
 |---|---|---|---|---|---|
-| The Greater Atonement | *The Greater Atonement* | `sanhedrin_trial` → `barabbas_choice` → `crucifixion_site` | `torn_robe` + `barabbas_warrant` + `pierced_spear` | +25 | +10 |
-| The True Passover Lamb | *The True Passover Lamb* | `last_supper` → `gethsemane_arrest` → `crucifixion_site` | `wine_stain` → `typology_melchizedek` + `prisoner_cord` → `isaiah_53_7` + `unbroken_legs` → `psalm_34_20` | +25 | +10 |
+| The Greater Atonement | *The Greater Atonement* | `sanhedrin_trial` → `barabbas_choice` → `crucifixion_site` | `spittle_stained_blindfold` 🆕 + `barabbas_warrant` + `pierced_spear` | +25 | +10 |
+| The True Passover Lamb | *The True Passover Lamb* | `last_supper` → `gethsemane_arrest` → `crucifixion_site` | `wine_stain` → `typology_melchizedek` + `prisoner_cord` → `isaiah_53_7` + 🆕 `cross_burden` → `typology_isaac_wood` + `unbroken_legs` → `psalm_34_20` | +25 | +10 |
 | The Scattered Sheep | *The Scattered Sheep* | `gethsemane_arrest` → `sanhedrin_trial` → `peter_restoration` | `abandoned_linen` + `rooster_feather` + `charcoal_fire` | +25 | +10 |
 | The New Covenant | *The New Covenant* | `last_supper` only | `bread_crumbs` → `exodus_12_1_14` + `wine_stain` → `typology_melchizedek` + `new_covenant_declaration` → `jeremiah_31_31_34` | +25 | +10 |
 | Death Defeated | *The Firstfruits of Resurrection* | `crucifixion_site` → `resurrection` | `guard_report` → `jonah_1_17___matthew_12_40` + `opened_tombs` → `ezekiel_37_12_13` + `empty_tomb` → `psalm_16_10` + `mary_encounter` → `isaiah_53_10_11` | +25 | +10 |
+| 🆕 The Silent Intercessor | *The Silent Intercessor* | `last_supper` → `crucifixion_site` | `twelve_roll` → `isaiah_53_12` + `crucified_with_thieves` → `isaiah_53_12` + `crucifiers_forgiven` → `isaiah_53_12` | +25 | +10 |
 
 ### Cross-Case Chain Notes
 
-- **Greater Atonement:** The `Priestly Robe Fragment` (`torn_robe`) evidence in `sanhedrin_trial` represents the high priest's role (Isaiah 50:6); `The Insurgent's Dossier` (`barabbas_warrant`) in `barabbas_choice` represents the scapegoat (Isaiah 53:3); the `Blood-Stained Roman Hasta` (`pierced_spear`) in `crucifixion_site` represents the blood atonement (Zechariah 12:10).
+- **Greater Atonement:** ⚠️ **Updated per the Isaiah 50:6 bug fix above.** The chain previously keyed off `torn_robe`, mislabeled as Isaiah 50:6 — `torn_robe` is actually about the blasphemy verdict, not physical suffering. The chain now uses the new `Spittle-Stained Blindfold` (`spittle_stained_blindfold`) evidence in `sanhedrin_trial`, which genuinely represents the high priest's guards' role in Isaiah 50:6 (mocking and spitting); `The Insurgent's Dossier` (`barabbas_warrant`) in `barabbas_choice` represents the scapegoat (Isaiah 53:3); the `Blood-Stained Roman Hasta` (`pierced_spear`) in `crucifixion_site` represents the blood atonement (Zechariah 12:10).
 
-- **True Passover Lamb:** The `Spilled Wine on the Linen` (`wine_stain`) evidence, mapped to `typology_melchizedek`, must be linked with the `Unresisting Prisoner's Cord` (`prisoner_cord`) → `isaiah_53_7` and the `Unbroken Tibiae Report` (`unbroken_legs`) → `psalm_34_20` to form the complete typological arc from the Last Supper through the crucifixion.
+- **True Passover Lamb:** ⚠️ **Updated to include the newly-closed Isaac typology gap.** The `Spilled Wine on the Linen` (`wine_stain`) evidence, mapped to `typology_melchizedek`, must be linked with the `Unresisting Prisoner's Cord` (`prisoner_cord`) → `isaiah_53_7`, the new `Rope-Burn Marks on a Borrowed Shoulder Cloth` (`cross_burden`) → `typology_isaac_wood` (Simon of Cyrene carrying the wood, previously undocumented anywhere), and the `Unbroken Tibiae Report` (`unbroken_legs`) → `psalm_34_20`, to form the complete typological arc from the Last Supper through the crucifixion.
 
 - **Scattered Sheep:** The `Abandoned Linen Wrapper` (`abandoned_linen`) evidence in `gethsemane_arrest` fulfils Zechariah 13:7's scattering directly; the `Rooster Feather` (`rooster_feather`) in `sanhedrin_trial` marks Peter's denial in contrast to Jesus's silence before His accusers; `The Charcoal Fire` (`charcoal_fire`) in `peter_restoration` completes the arc as the Shepherd gathers the scattered sheep.
 
 - **New Covenant:** All three Last Supper evidence items must be linked to complete the chain: unleavened bread (`bread_crumbs` → Exodus 12:1-14), wine (`wine_stain` → the Melchizedek typology), and declaration (`new_covenant_declaration` → Jeremiah 31:31–34).
 
 - **Death Defeated:** The Soldiers' Broken Report (`guard_report`) evidence, dual-linked to Hosea 6:2 and the sign of Jonah (`jonah_1_17___matthew_12_40`), must be linked with the `Opened Tombs Testimony` (`opened_tombs`) → `ezekiel_37_12_13`, the `Empty Burial Chamber` (`empty_tomb`) → `psalm_16_10`, and `Mary Magdalene's Testimony` (`mary_encounter`) → `isaiah_53_10_11` across the resurrection case.
+
+- 🆕 **The Silent Intercessor:** New chain closing the Isaiah 53:12 gap. `List of the Twelve` (`twelve_roll`) in `last_supper` records Jesus applying Isaiah 53:12 to Himself in advance; `Sentencing Record of the Two Thieves` (`crucified_with_thieves`) and `Words of Forgiveness` (`crucifiers_forgiven`), both in `crucifixion_site`, fulfil the verse's two clauses — being numbered with criminals, and interceding for one's own executioners — within the same few minutes at Golgotha.

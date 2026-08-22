@@ -596,8 +596,8 @@
     <div class="modal-panel map-modal-panel">
       <header class="modal-header modal-header-map-custom">
         <div>
-          <h2 class="modal-title modal-title-map">HOLY WEEK</h2>
-          <h4 class="modal-subtitle modal-subtitle-custom">Jerusalem Investigation</h4>
+          <h2 id="map-modal-title" class="modal-title modal-title-map">HOLY WEEK</h2>
+          <h4 id="map-modal-subtitle" class="modal-subtitle modal-subtitle-custom">Jerusalem Investigation</h4>
         </div>
         <button id="btn-close-map" class="close-icon-btn" aria-label="Close">
           <i class="fa-lg fa-solid fa-xmark"></i>
@@ -606,68 +606,73 @@
 
       <main class="modal-body modal-body-flush">
         <!-- Act Tree Sidebar -->
-        <div id="lsm-tree"></div>
+        <div id="lsm-tree" class="act-tree-container"></div>
 
         <!-- Primary Globe Viewport (The 'Glode') -->
-        <div id="modal-canvas-wrap">
-          <!-- Satellite Overlay UI -->
-          <div class="satellite-overlay satellite-overlay-top">
-            <div class="satellite-grid-ver">GRID_OS_VER_4.2</div>
-            <div class="satellite-scan-text">SCANNING_FOR_UNLOCKED_NODES...</div>
-          </div>
-          <div class="satellite-overlay satellite-overlay-bottom">
-            <div class="satellite-coord">COORD_X: 31.7683° N</div>
-            <div class="satellite-coord">COORD_Y: 35.2137° E</div>
-          </div>
-          <div class="map-instructions">DRAG TO ROTATE &bull; CLICK NODE TO INSPECT</div>
-        </div>
-
-        <!-- Investigation Dossier Sidebar -->
-        <div id="map-node-info-panel">
-
-          <div class="map-node-intel-header">
-            <div class="map-node-header-row">
-              <div id="map-node-emoji"><img src='../assets/gfx/map-pin-duotone.svg' class='icon-svg' loading='lazy'>
-              </div>
-              <h3 id="map-node-title">Select Act</h3>
+        <div id="menu-modal-canvas-wrap" class="globe-viewport">
+          <div id="globe-canvas-wrap" class="globe-canvas-wrap">
+            <!-- Satellite Overlay UI -->
+            <div id="satellite-overlay-top" class="satellite-overlay satellite-overlay-top">
+              <div id="satellite-version" class="satellite-grid-ver">GRID_OS_VER_4.2</div>
+              <div id="satellite-scan-status" class="satellite-scan-text">SCANNING_FOR_UNLOCKED_NODES...</div>
             </div>
-            <div id="map-node-location">Satellite Sync Required</div>
+            <div id="satellite-overlay-bottom" class="satellite-overlay satellite-overlay-bottom">
+              <div id="satellite-coord-x" class="satellite-coord">COORD_X: 31.7683° N</div>
+              <div id="satellite-coord-y" class="satellite-coord">COORD_Y: 35.2137° E</div>
+            </div>
+            <div id="map-instructions" class="map-instructions">DRAG TO ROTATE &bull; CLICK NODE TO INSPECT</div>
           </div>
 
-          <div class="map-node-dossier">
-            <div class="dossier-section">
-              <div class="dossier-section-label">Intelligence Brief</div>
-              <p id="map-node-description">Interact with pins on the orbital map to view localized case summaries and
-                historical context. Unlocked cases are highlighted in primary green.</p>
-            </div>
-
-            <div id="map-act-description">Mission objectives will populate here upon node synchronization.</div>
-
-            <!-- Completed Archives -->
-            <div id="completed-cases-section">
-              <div id="completed-cases-section-label">
-                <i class="fa-lg fa-solid fa-database"></i> Resolved Archives
-              </div>
-              <div id="completed-cases-list">
-                <span class="completed-cases-placeholder">Sifting data for completed investigations...</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Load Scene Action -->
-          <div id="map-node-action-container">
-            <button id="btn-load-node-scene" class="terminal-btn">
-              <i class="fa-lg fa-solid fa-play"></i> INITIALIZE INVESTIGATION
+          <!-- Investigation Dossier Sidebar — overlays the map, shown once a case is selected -->
+          <div id="map-node-info-panel" class="info-panel">
+            <button id="btn-close-map-info" class="close-icon-btn" aria-label="Close details">
+              <i class="fa-solid fa-xmark"></i>
             </button>
-          </div>
 
-          <!-- Status Legend -->
-          <div class="map-legend">
-            <span class="map-legend-item"><i class="fa-lg fa-solid fa-circle-dot map-legend-icon-sm"></i>
-              Unlocked</span>
-            <span class="map-legend-item completed"><i class="fa-lg fa-solid fa-circle-check map-legend-icon-md"></i>
-              Completed</span>
-            <span class="map-legend-item locked"><i class="fa-lg fa-solid fa-lock map-legend-icon-md"></i> Locked</span>
+            <div class="map-node-intel-header">
+              <div class="map-node-header-row">
+                <div id="map-node-emoji"><img src='../assets/gfx/map-pin-duotone.svg' class='icon-svg' loading='lazy'>
+                </div>
+                <h3 id="map-node-title">Select Act</h3>
+              </div>
+              <div id="map-node-location">Satellite Sync Required</div>
+            </div>
+
+            <div class="map-node-dossier">
+              <div class="dossier-section">
+                <div class="dossier-section-label">Intelligence Brief</div>
+                <p id="map-node-description">Interact with pins on the orbital map to view localized case summaries and
+                  historical context. Unlocked cases are highlighted in primary green.</p>
+              </div>
+
+              <div id="map-act-description">Mission objectives will populate here upon node synchronization.</div>
+
+              <!-- Completed Archives -->
+              <div id="completed-cases-section">
+                <div id="completed-cases-section-label">
+                  <i class="fa-lg fa-solid fa-database"></i> Resolved Archives
+                </div>
+                <div id="completed-cases-list">
+                  <span class="completed-cases-placeholder">Sifting data for completed investigations...</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Load Scene Action -->
+            <div id="map-node-action-container">
+              <button id="btn-load-node-scene" class="terminal-btn">
+                <i class="fa-lg fa-solid fa-play"></i> INITIALIZE INVESTIGATION
+              </button>
+            </div>
+
+            <!-- Status Legend -->
+            <div id="map-legend" class="map-legend">
+              <span class="map-legend-item"><i class="fa-lg fa-solid fa-circle-dot map-legend-icon-sm"></i>
+                Unlocked</span>
+              <span class="map-legend-item completed"><i class="fa-lg fa-solid fa-circle-check map-legend-icon-md"></i>
+                Completed</span>
+              <span class="map-legend-item locked"><i class="fa-lg fa-solid fa-lock map-legend-icon-md"></i> Locked</span>
+            </div>
           </div>
         </div>
       </main>

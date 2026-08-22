@@ -194,16 +194,6 @@ export const act3CaseA = {
       explanation: "Jesus was crucified between two criminals and prayed for His executioners, fulfilling both clauses of this prophecy.",
     },
     {
-      reference: "Amos 8:9",
-      id: "amos_8_9",
-      icon: "../assets/gfx/sparkles-duotone.svg",
-      text: `"'In that day,' declares the Sovereign LORD, 'I will make the sun go down at noon and darken the earth in broad daylight.'"`,
-      written: "~750 BC",
-      fulfilledBy: "The supernatural three-hour darkness blanketing Judea from noon until 3:00 PM",
-      gospelLink: "Mark 15:33; Luke 23:44–45",
-      insight: "Passover always occurs during a full moon, making a natural solar eclipse astronomically impossible. The historical record of this prolonged noon darkness was so widely documented that non-Christian historians like Thallos and Phlegon actively tried to find natural explanations for it.",
-    },
-    {
       reference: "Genesis 14:18-20",
       id: "typology_melchizedek",
       icon: "../assets/gfx/sparkles-duotone.svg",
@@ -1345,8 +1335,8 @@ export const act3CaseC = {
       icon: "../assets/gfx/sparkles-duotone.svg",
       text: `"I offered my back to those who beat me, my cheeks to those who pulled out my beard; I did not hide my face from mocking and spitting."`,
       written: "~700 BC",
-      fulfilledBy: "The guards and Sanhedrin members striking and spitting on Jesus after the verdict",
-      gospelLink: "Matthew 26:67",
+      fulfilledBy: "The guards spitting on, blindfolding, and striking Jesus after the verdict",
+      gospelLink: "Matthew 26:67-68; Mark 14:65",
       insight: "The physical abuse was prophesied—the Suffering Servant would endure mockery and spitting as part of the redemptive plan.",
     },
     {
@@ -1374,16 +1364,6 @@ export const act3CaseC = {
       text: `"Malicious witnesses rise up; they ask me of things that I do not know."`,
       written: "~1000 BC",
       explanation: "The Sanhedrin's trial was a sham, relying on hired accusers whose testimonies contradicted each other, fulfilling the psalmist's prediction.",
-    },
-    {
-      reference: "Isaiah 50:6",
-      id: "isaiah_50_6",
-      icon: "../assets/gfx/sparkles-duotone.svg",
-      text: `"I offered my back to those who beat me, my cheeks to those who pulled out my beard; I did not hide my face from mocking and spitting."`,
-      written: "~700 BC",
-      fulfilledBy: "The guards and Sanhedrin members striking and spitting on Jesus after the verdict",
-      gospelLink: "Matthew 26:67, Mark 14:65",
-      insight: "The physical abuse was prophesied—the Suffering Servant would endure mockery and spitting as part of the redemptive plan.",
     },
     {
       reference: "Psalm 22:7–8",
@@ -1467,7 +1447,7 @@ export const act3CaseC = {
     }, {
       id: "torn_robe",
       name: "Priestly Robe Fragment",
-      relatedProphecy: "isaiah_50_6",
+      relatedProphecy: "",
       type: "physical",
       icon: "../assets/gfx/shield-duotone.svg",
       location: "Judgment Seat",
@@ -1476,8 +1456,7 @@ export const act3CaseC = {
       bibleLink: "matthew_26_65",
       propheticLink: "Caiaphas tore his robes to signal blasphemy when Jesus affirmed His divinity.",
       bibleRefs: [ 
-        { ref: "Matthew 26:65", link: "matthew_2665" },
-        { ref: "Isaiah 50:6", link: "isaiah_506" }
+        { ref: "Matthew 26:65", link: "matthew_2665" }
       ],
       propheticRefs: [],
       investigatorNote: "The tear was ritual declaration that Jesus had committed the unforgivable offense.",
@@ -1622,6 +1601,35 @@ export const act3CaseC = {
         link: "People — a single false witness's statement, contradicted by every other account given that night.",
         timeline: "CHRONOLOGY: Given early in the proceedings, part of the failed attempt to build a case.",
         contradict: "RELIABILITY: The desperation to produce any usable testimony exposes the weakness of the prosecution's actual case."
+      },
+    },
+    {
+      id: "spittle_stained_blindfold",
+      name: "Spittle-Stained Blindfold",
+      type: "physical",
+      relatedProphecy: "isaiah_50_6",
+      icon: "../assets/gfx/shield-duotone.svg",
+      location: "Council Chamber",
+      desc: "A strip of coarse cloth, damp and soiled, used to cover the prisoner's eyes while guards took turns striking Him and demanding He 'prophesy' who had struck Him.",
+      bibleRef: "Mark 14:65",
+      bibleLink: "mark_14_65",
+      propheticLink: "Fulfills Isaiah 50:6 precisely: 'I offered my back to those who beat me, my cheeks to those who pulled out my beard; I did not hide my face from mocking and spitting.' Distinct from the Guard's Reed (Micah 5:1, the mock-scepter striking) — here the specific acts named are spitting and covering the face, matched clause for clause by Isaiah's language.",
+      bibleRefs: [
+        { ref: "Mark 14:65", link: "mark_14_65" },
+        { ref: "Matthew 26:67-68", link: "matthew_26_67_68" }
+      ],
+      propheticRefs: [
+        { ref: "Isaiah 50:6", link: "isaiah_50_6" }
+      ],
+      investigatorNote: "Mark's account groups spitting, blindfolding, and the 'Prophesy!' taunt together as one continuous episode, distinct from the reed-mockery Matthew records separately.",
+      fake: false,
+      category: "prophecy",
+      timelineOrder: 4,
+      clues: {
+        compare: "Sits alongside the Guard's Reed — both record mockery in the same window after the verdict, but fulfil two different prophecies (Isaiah 50:6 vs. Micah 5:1).",
+        link: "Prophecy — the blindfold and its condition confirm the specific 'mocking and spitting' Isaiah described.",
+        timeline: "CHRONOLOGY: Immediately after the council's verdict, as the guards began their mockery.",
+        contradict: "RELIABILITY: Mark and Matthew both record this episode independently, agreeing on the core acts (spitting, blindfolding, striking) even where minor details of order and phrasing vary."
       },
     },
     {
@@ -1817,8 +1825,16 @@ export const act3CaseC = {
         text: "The torn high-priestly robe and the conflicting witness testimonies together reveal the orchestrated nature of the trial.",
         insight: "Caiaphas's own actions—tearing his robes at the 'right' moment—combined with Ananias's paid testimony, expose the pre-planned condemnation of Jesus.",
         isKey: true,
+        bibleRef: "Matthew 26:59-68",
+      },
+    },
+    "guard_reed+spittle_stained_blindfold": {
+      compare: {
+        text: "The mock-scepter reed and the spittle-stained blindfold record two distinct acts of contempt inflicted in the same window of time, immediately after the verdict.",
+        insight: "Between them, the guards' mockery fulfils two separate prophecies written centuries apart: Micah's ruler struck with a rod, and Isaiah's Servant who did not hide His face from mocking and spitting.",
+        isKey: true,
         revealsProphecy: "isaiah_50_6",
-        bibleRef: "Matthew 26:59-68; Isaiah 50:6",
+        bibleRef: "Mark 14:65; Matthew 26:67-68; Isaiah 50:6",
       },
     },
     "false_scroll+torn_robe": {
@@ -1862,7 +1878,7 @@ export const act3CaseC = {
     motive: "Blasphemy charge used as political leverage to secure Roman execution.",
     method: "The Sanhedrin manufactured testimony and pressured Jesus to pronounce judgment on Himself through His own words. After the verdict, he was mocked and beaten by the guards.",
     lesson: "The trial was a collection of procedural illegalities. Peter's failure shows the human condition, while Jesus's silence shows divine resolve. The verdict was pre-determined; the trial was a formality to give the appearance of justice.",
-    prophesyFulfilled: ["Isaiah 50:6", "Micah 5:1", "Psalm 27:12"],
+    prophesyFulfilled: ["Isaiah 50:6", "Micah 5:1", "Psalm 27:12", "Psalm 35:11"],
     furtherReading: ["Matthew 26:57–68", "Mark 14:53–65", "Luke 22:54–71"],
   },
 };

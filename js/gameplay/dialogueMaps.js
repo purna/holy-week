@@ -96,14 +96,14 @@ export const DIALOGUE_ID_MAP = {
     judas_bethany_objection: '../assets/story/act2/case_d_anointing_at_bethany/judas_bethany_objection.json',
     simon_leper_host: '../assets/story/act2/case_d_anointing_at_bethany/simon_leper_host.json',
     temple_inspection_scribe: '../assets/story/act2/case_d_anointing_at_bethany/temple_inspection_scribe.json',
-    hillel_scribe: '../assets/story/hillel_scribe.json',
+    hillel_scribe: '../assets/story/act1/case_b_overturned_tables/hillel_scribe.json',
 
     // --- Act III: The Passion ---
     // Case A: The Broken Cup (Last Supper)
     john_disciple: '../assets/story/act3/case_a_broken_cup/john_disciple.json',
     rhoda_servant: '../assets/story/act3/case_a_broken_cup/rhoda_servant.json',
     judas_iscariot: '../assets/story/act3/case_a_broken_cup/judas_iscariot.json',
-    upper_room_prep: '../assets/story/act3/case_a_broken_cup/upper_room_prep.json',
+    upper_room_prep: '../assets/story/act3/case_e_final_sacrifice/upper_room_prep.json',
 
     // Case B: The Severed Ear (Gethsemane)
     peter_defense: '../assets/story/act3/case_b_severed_ear/peter_defense.json',
@@ -133,6 +133,7 @@ export const DIALOGUE_ID_MAP = {
     priest_objection_crucifixion: '../assets/story/act3/case_e_final_sacrifice/priest_objection_crucifixion.json',
     guard_report_crucifixion: '../assets/story/act3/case_e_final_sacrifice/guard_report_crucifixion.json',
     centurion_witness: '../assets/story/act3/case_e_final_sacrifice/centurion_witness.json',
+    penitent_thief: '../assets/story/act3/case_e_final_sacrifice/penitent_thief.json',
 
     // --- Act IV: Dawn of the New Age ---
     // Case A: The Empty Tomb (Resurrection)
@@ -152,6 +153,12 @@ export const DIALOGUE_ID_MAP = {
     jesus_reinstatement: '../assets/story/act4/case_c_peters_restoration/jesus_reinstatement.json',
     peter_reinstated: '../assets/story/act4/case_c_peters_restoration/peter_reinstated.json',
     thomas_restoration: '../assets/story/act4/case_c_peters_restoration/thomas_restoration.json',
+
+    // Case D: The Ascension (Mount of Olives)
+    peter_ascension: '../assets/story/act4/case_d_ascension/peter_ascension.json',
+    john_ascension: '../assets/story/act4/case_d_ascension/john_ascension.json',
+    thomas_ascension: '../assets/story/act4/case_d_ascension/thomas_ascension.json',
+    angelic_messengers_ascension: '../assets/story/act4/case_d_ascension/angelic_messengers_ascension.json',
 
     // --- System & Metadata ---
     board_review: '../assets/story/system/board_review.json',

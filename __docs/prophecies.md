@@ -316,7 +316,8 @@ The Codex now distinguishes between:
 | Genesis 14:18-20 | `typology_melchizedek` | Typological Fulfilment |
 | Zechariah 13:7 | `zechariah_13_7` | Prophecy |
 | Psalm 22:16 | `psalm_22_16_18` | Prophecy |
-| Amos 8:9 | `amos_8_9` | Prophecy |
+
+> **⚠️ Confirmed bug — orphaned entry:** `amos_8_9` (darkness at noon) was defined here but never used by any evidence item or NPC in this case — pure dead weight, likely a copy-paste from `crucifixion_site`, where it's fully built (Pashhur reveals it there). No natural Last Supper scene fits it as foreshadowing. Fix: delete the entry outright — drafted in `patch4_amos_ezekiel_id_fix.js`.
 
 ### Evidence Links
 
@@ -411,13 +412,15 @@ The Codex now distinguishes between:
 | Psalm 22:7–8 | `psalm_22_7_8` |
 | Psalm 38:11 | `psalm_38_11` |
 
+> **⚠️ Confirmed bug (matches the gap flagged in message 1 of this thread):** `torn_robe`'s `relatedProphecy` is `isaiah_50_6`, but its content — Caiaphas ritually tearing his own robe over the blasphemy verdict — has nothing to do with Isaiah 50:6 ("I offered my back to those who beat me... mocking and spitting"). That means **Isaiah 50:6 has zero real evidence in this case**, despite appearing in `truth.prophesyFulfilled`. The mislabel cascades into the deduction `"torn_robe+false_scroll"`, which also incorrectly claims `revealsProphecy: "isaiah_50_6"`, **and into the "Greater Atonement" Hidden Detective Chain** in `Game_Case___Lab_Reference.md`, which also cites `torn_robe` as representing Isaiah 50:6. There's also a literal duplicate of the `isaiah_50_6` prophecy object in this case's `prophecies` array (copy-pasted twice, byte-identical). Separately, `Psalm 35:11` *does* have real, working evidence (`perjured_testimony`) but is missing from `truth.prophesyFulfilled` — a plain omission. Full fix drafted in `act3_case_sanhedrin_isaiah_50_6_patch.js`: dedupe the prophecy entry, clear `torn_robe`'s mislabel, add a new evidence item (`spittle_stained_blindfold`, Mark 14:65) that actually fulfils Isaiah 50:6, fix the cascaded deduction, and add Psalm 35:11 to the fulfilled list. No new Ink file needed — this case's evidence is scene-pickup only, not NPC-gated (`npcs` here unlock *suspects* for interrogation, not evidence).
 
 ### Evidence Links
 
 | Evidence | `relatedProphecy` (Codex) | `bibleRef` (supporting verse) | Prophetic / Narrative Link Text |
 |---|---|---|---|
 | Rooster Feather (`rooster_feather`) | `-` | Matthew 26:74-75 | The third denial led to the third crowing, fulfilling Jesus's own prediction of Peter's failure (Matthew 26:34). Supporting/narrative evidence — not directly Codex-linkable to one of this case's four defined prophecies. |
-| Priestly Robe Fragment (`torn_robe`) | `isaiah_50_6` | Matthew 26:65 | Caiaphas tore his robes to signal blasphemy when Jesus affirmed His divinity. |
+| Priestly Robe Fragment (`torn_robe`) | ~~`isaiah_50_6`~~ → *(none — see gap note above)* | Matthew 26:65 | Caiaphas tore his robes to signal blasphemy when Jesus affirmed His divinity. |
+| 🆕 Spittle-Stained Blindfold (`spittle_stained_blindfold`) | `isaiah_50_6` | Mark 14:65 | Fulfills Isaiah 50:6 precisely: 'I offered my back to those who beat me... I did not hide my face from mocking and spitting.' Distinct from the Guard's Reed (Micah 5:1) — spitting and blindfolding, matched clause for clause. |
 | Conflicting Depositions (`false_scroll`) | `psalm_27_12` | Mark 14:56-59 | The lack of consistent testimony exposes the trial as a fabrication. |
 | Charcoal Briquette (`charcoal_remains`) | - | John 18:18 | Peter's denial by the fire fulfilled Jesus's prediction that he would deny three times. |
 | Guard's Reed (`guard_reed`) | `micah_5_1` | Matthew 26:67–68 | Micah 5:1 prophesied that Israel's ruler would be struck. The guards' mockery with the reed is a literal fulfillment of this humiliation. |
@@ -441,6 +444,9 @@ The Codex now distinguishes between:
 | Guard's Reed (`guard_reed`) | Matthew 26:67-68 | matthew_26_67_68 |
 | Guard's Reed (`guard_reed`) | Micah 5:1 | micah_5_1 |
 | Perjured Witness Statement (`perjured_testimony`) | Mark 14:57-59 | mark_14_57_59 |
+| Perjured Witness Statement (`perjured_testimony`) | Psalm 35:11 | psalm_35_11 |
+| 🆕 Spittle-Stained Blindfold (`spittle_stained_blindfold`) | Mark 14:65 | mark_14_65 |
+| 🆕 Spittle-Stained Blindfold (`spittle_stained_blindfold`) | Isaiah 50:6 | isaiah_50_6 |
 | Perjured Witness Statement (`perjured_testimony`) | Psalm 35:11 | psalm_35_11 |
 | Servant Girl's Accusation (`first_denial_account`) | Matthew 26:69-70 | matthew_266970 |
 | Servant Girl's Accusation (`first_denial_account`) | Mark 14:66-68 | mark_146668 |
@@ -690,6 +696,8 @@ This pairs naturally with the existing `twelve_roll` evidence in `act3CaseA` (wh
 | Ezekiel 34:11-16 | `ezekiel_34_11-16` |
 | Psalm 16:10 | `psalm_16_10` |
 | Isaiah 53:10–11 | `isaiah_53_10_11` |
+
+> **⚠️ Confirmed bug — inconsistent ID spelling, not a missing prophecy.** (Correction: an earlier automated scan in this thread wrongly flagged Ezekiel 34:11-16 as entirely undefined in this case — that was a false positive caused by the scanner's own regex failing on the hyphenated ID below, not a real gap. The prophecy is fully built: `charcoal_fire`, `miraculous_catch`, `bread_breakfast`, and `threefold_commission` all correctly unlock it, and it's correctly listed in `truth.prophesyFulfilled`.) The actual issue is that the ID is spelled three different ways across the case: `ezekiel_34_11-16` (hyphen, 10 occurrences — the one evidence-unlocking actually keys off), `ezekiel_34_11_16` (all underscores, 2 occurrences, in a couple of `propheticRefs.link` fields), and `ezekiel_3411_16` (typo, 3 occurrences, on the scroll fragment item). If the Codex UI resolves "jump to prophecy" links by exact string match, the 2nd and 3rd variants would silently fail to resolve even though evidence unlocking itself works fine. Fix: standardize on `ezekiel_34_11_16` (matching the codebase's usual all-underscore convention) everywhere — drafted in `patch4_amos_ezekiel_id_fix.js`.
 
 ### Evidence Links
 

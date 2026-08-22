@@ -51,6 +51,11 @@ export class MobileApp {
       }
     });
 
+    const activeEl = document.activeElement;
+    if (activeEl && activeEl.closest('.screen') && !activeEl.closest('.screen.active')) {
+      activeEl.blur();
+    }
+
     this.onTabChange(id);
   }
 
@@ -94,6 +99,11 @@ export class MobileApp {
       s.classList.toggle('active', s.id === id);
       s.setAttribute('aria-hidden', s.id !== id);
     });
+
+    const activeEl = document.activeElement;
+    if (activeEl && activeEl.closest('.screen') && !activeEl.closest('.screen.active')) {
+      activeEl.blur();
+    }
   }
 
   announce(text) {
