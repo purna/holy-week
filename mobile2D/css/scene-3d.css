@@ -2,7 +2,7 @@
 #inv-scene {
     position: relative;
     background: #010105;
-    overflow: visible;
+    overflow-y: auto;
     border: 2px solid var(--surface2);
     box-shadow: 0 0 20px rgba(245, 200, 66, 0.6);
 }

@@ -142,7 +142,7 @@ export class OrbitalSelectMatrixModal {
         
         if (!locked && !solved) {
             dot.style.backgroundColor = c.color ? `#${c.color.toString(16).padStart(6, '0')}` : '#00ffaa';
-            dot.style.boxShadow = `0 0 20px #${c.color.toString(16).padStart(6, '0') || '00ffaa'}, 0 0 40px rgba(0, 255, 170, 0.3)`;
+            dot.style.boxShadow = `0 0 6px #${c.color.toString(16).padStart(6, '0') || '00ffaa'}, 0 0 12px rgba(0, 255, 170, 0.15)`;
         }
 
         const label = document.createElement('div');
@@ -366,7 +366,7 @@ export class OrbitalSelectMatrixModal {
         const loadBtn = document.getElementById('btn-load-node-scene');
 
         if (title) title.textContent = c.title;
-        if (emoji) emoji.innerHTML = c.emoji || "<img src='../assets/gfx/map-pin-duotone.svg' class='icon-svg' loading='lazy' />";
+        if (emoji) emoji.innerHTML = `<img src='${c.icon}' class='icon-svg' loading='lazy' />`;
 
         if (desc) desc.textContent = c.description || 'No detailed intel available for this sector.';
         

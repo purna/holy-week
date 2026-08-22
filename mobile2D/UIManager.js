@@ -190,7 +190,7 @@ export class UIManager {
         const caseCount = act.cases.length;
         const solvedCount = act.solvedCases;
         return `
-        <div class="location-card ${status}" role="listitem" tabindex="0" onclick="openAct('${act.label}')">
+        <div class="location-card ${status}" role="listitem" tabindex="0" onclick="openAct('${act.label}')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openAct('${act.label}');}">
           <div class="location-inner">
             <div class="location-icon" aria-hidden="true"><img src='${act.cases[0].icon || '../assets/gfx/scroll-duotone.svg'}' class='icon-svg' loading='lazy'></div>
             <div class="location-info">

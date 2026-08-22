@@ -90,10 +90,31 @@ export class MobileApp {
   }
 
   showScreen(id) {
+    const previous = document.activeElement;
+
     document.querySelectorAll('.screen').forEach(s => {
       s.classList.toggle('active', s.id === id);
       s.setAttribute('aria-hidden', s.id !== id);
     });
+
+    if (previous && previous !== document.body) {
+      let ancestor = previous.parentElement;
+      while (ancestor && ancestor !== document.body) {
+        if (ancestor.getAttribute && ancestor.getAttribute('aria-hidden') === 'true') {
+          const target = document.getElementById(id);
+          if (target) {
+            const focusable = target.querySelector('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+            if (focusable) focusable.focus();
+            else {
+              target.setAttribute('tabindex', '-1');
+              target.focus();
+            }
+          }
+          break;
+        }
+        ancestor = ancestor.parentElement;
+      }
+    }
   }
 
   announce(text) {

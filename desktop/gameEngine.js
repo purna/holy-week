@@ -958,7 +958,13 @@ export class GameEngine {
   }
 
   async _loadTilemap(caseData) {
-    const mapPath = `./maps/${caseData.id}.json`;
+    const actFolder = {
+      'Act I - The Triumphal Entry': 'act1',
+      'Act II - The Temple Courts': 'act2',
+      'Act III - The Last Supper': 'act3',
+      'Act IV - The Resurrection': 'act4',
+    }[caseData.actLabel] || 'act1';
+    const mapPath = `./maps/${actFolder}/${caseData.id}.json`;
     try {
       const res = await fetch(mapPath);
       if (!res.ok) return;
