@@ -63,6 +63,15 @@
     margin-bottom: 16px;
 }
 
+.loading-title-icon {
+    width: 100%;
+    height: auto;
+    max-width: 240px;
+    display: block;
+    margin: 0 auto 12px;
+    opacity: 0.95;
+}
+
 .loading-inner,
 .end-inner {
     text-align: center;
@@ -140,9 +149,11 @@
 
 .hint {
     color: var(--text-muted);
-    font-size: 0.72rem;
-    letter-spacing: 1px;
-    font-style: italic;
+    font-size: 0.78rem;
+    letter-spacing: 0.5px;
+    font-style: normal;
+    font-family: 'Space Mono', monospace;
+    font-weight: 400;
     margin-top: 8px;
 }
 
