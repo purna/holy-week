@@ -7,6 +7,13 @@
     <meta name="description" content="Holy Week — Educational Holy Week detective game. Investigate, collect evidence, and connect biblical prophecies.">
     <title>Holy Week — Holy Week Detective Game</title>
 
+    <link rel="icon" type="image/png" href="/holy-week/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/holy-week/favicon.svg" />
+    <link rel="shortcut icon" href="/holy-week/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/holy-week/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="Holy Week" />
+    <link rel="manifest" href="/holy-week/site.webmanifest" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -70,12 +77,19 @@
             margin-bottom: 50px;
         }
 
+        .logo {
+            width: 140px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
         h1 {
             color: var(--gold);
             font-size: 2.8em;
             margin: 0;
             letter-spacing: 3px;
             text-shadow: 0 0 25px rgba(245, 197, 66, 0.4);
+            display: none;
         }
 
         .subtitle {
@@ -196,6 +210,7 @@
 <body>
     <div class="container">
         <header>
+            <img src="assets/images/holy-week-logo.svg" alt="Holy Week Logo" class="logo">
             <h1>HOLY WEEK</h1>
             <div class="subtitle">Holy Week — Educational Detective Game</div>
         </header>

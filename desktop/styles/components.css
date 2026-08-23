@@ -57,6 +57,12 @@
     transition: opacity 0.5s ease;
 }
 
+.loading-logo {
+    width: 140px;
+    height: auto;
+    margin-bottom: 16px;
+}
+
 .loading-inner,
 .end-inner {
     text-align: center;
@@ -4100,6 +4106,14 @@ h4.modal-subtitle-custom {
     letter-spacing: 4px;
     color: var(--accent-primary);
     font-family: 'Source Code Pro', monospace;
+}
+
+.map-modal-title-icon {
+    width: 1.1em;
+    height: 1.1em;
+    vertical-align: middle;
+    margin-right: 6px;
+    opacity: 0.9;
 }
 
 .modal-subtitle-custom {

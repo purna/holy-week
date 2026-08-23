@@ -8,6 +8,13 @@
     content="Holy Week - Collect evidence by moving around the scene. Use actions and chat to NPCs when found.">
   <title>Holy Week - Evidence Collection Adventure</title>
 
+  <link rel="icon" type="image/png" href="/holy-week/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/holy-week/favicon.svg" />
+  <link rel="shortcut icon" href="/holy-week/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/holy-week/apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-title" content="Holy Week" />
+  <link rel="manifest" href="/holy-week/site.webmanifest" />
+
   <!-- ==========================================================================
      1. THIRD-PARTY DEPENDENCIES & CORE ASSETS
      ========================================================================== -->
@@ -67,6 +74,7 @@
   <!-- Initial Loading & Gate Screen: Halts user until all background resources are initialized -->
   <div id="loading-screen" class="loading-screen">
     <div class="loading-inner">
+      <img src="../assets/images/holy-week-logo.svg" alt="Holy Week Logo" class="loading-logo">
       <h1 class="loading-title">HOLY WEEK</h1>
       <p id="loading-text" class="loading-text loading-subtitle">
         Loading investigation environment and evidence archives...
@@ -596,7 +604,7 @@
     <div class="modal-panel map-modal-panel">
       <header class="modal-header modal-header-map-custom">
         <div>
-          <h2 id="map-modal-title" class="modal-title modal-title-map">HOLY WEEK</h2>
+          <h2 id="map-modal-title" class="modal-title modal-title-map"><img src="../assets/images/holy-week-icon.svg" class="map-modal-title-icon" loading="lazy"> HOLY WEEK</h2>
           <h4 id="map-modal-subtitle" class="modal-subtitle modal-subtitle-custom">Jerusalem Investigation</h4>
         </div>
         <button id="btn-close-map" class="close-icon-btn" aria-label="Close">
