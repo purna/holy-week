@@ -1,6 +1,6 @@
 # Game Scoring, Progression, and Penalty Systems
 
-< [Back to Main Document](Holy Week.md)
+< [Back to Main Document](Holy_Week.md)
 
 ## Table of Contents
 
@@ -12,6 +12,8 @@
 - [6. Game Over Conditions](#6-game-over-conditions)
 
 This document provides a comprehensive overview of the game's progression tracks (Investigation, Research, Honor) and the penalty systems (Doubt) that affect them.
+
+This is the maintained design source of truth for scoring, progression, Doubt, Honor, ranks, and case-conclusion rewards. Case-specific requirements and relationships remain canonical in [`act1_case.js`](../js/act1_case.js) through [`act4_case.js`](../js/act4_case.js); Lab interaction behaviour is specified in [`LAB_SYSTEM.md`](LAB_SYSTEM.md).
 
 ---
 

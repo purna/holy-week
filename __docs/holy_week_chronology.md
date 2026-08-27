@@ -1,7 +1,9 @@
 # The Passion Week — Entry to Resurrection
 ### A Chronological Record of Events, Prophecies, Witnesses & Typology
 
-< [Back to Main Document](Holy Week.md)
+This document is the biblical and historical chronology, not the runtime case specification. Game case IDs, evidence, prophecy relationships, witnesses, and solutions are canonical in [`act1_case.js`](../js/act1_case.js) through [`act4_case.js`](../js/act4_case.js). The former Game Case Reference appendix has been removed to prevent duplication.
+
+< [Back to Main Document](Holy_Week.md)
 
 ## Table of Contents
 
@@ -1088,80 +1090,3 @@ For further study into the criteria used to analyze these events historically (s
 * **Wright, N.T.** *The Resurrection of the Son of God.* (Fortress Press, 2003). A massive, thorough historical investigation into 1st-century Jewish and Roman beliefs about death, burial, and the emergence of the early Christian movement.
 
 ---
-
-# Appendix: Game Case Reference
-
-The 15 canonical cases below are sourced directly from `act1_case.js`–`act4_case.js` (id, title, and subtitle taken verbatim from each case object). Every case now has exactly one tagged chronology entry above. Anything in this document that does *not* correspond to one of these 15 ids — sub-events, historical/archaeological corroboration, the location index — is supplementary material, not part of the current game.
-
-| Act | Case ID | Title | Chronology Event(s) |
-|---|---|---|---|
-| I | `triumphal_entry` | The Missing Donkey | #1 |
-| I | `temple_cleansing` | The Overturned Tables | #5 |
-| I | `fig_tree_incident` | The Barren Fig Tree | #6 (cause: #4) |
-| II | `authority_challenged` | The Silenced Teacher | #7 |
-| II | `lazarus_plot` | The Price of Life | #11 (Day 4) |
-| II | `passover_lamb_chain` | The Anointing at Bethany *(New Investigation Chain)* | Typological Timeline #1–2 |
-| II | `olivet_discourse` | The End of the Age | #10 |
-| III | `last_supper` | The Broken Cup | #12–15 |
-| III | `gethsemane_arrest` | The Severed Ear | #17–18 |
-| III | `sanhedrin_trial` | The Midnight Tribunal | #20 (+ #21 Peter's denials) |
-| III | `barabbas_choice` | The People's Choice | #26 (lead-in: #24–25) |
-| III | `crucifixion_site` | The Final Sacrifice | #29 (+ #30–33) |
-| IV | `resurrection` | The Empty Tomb | #36 |
-| IV | `roman_inquiry` | The Guard's Report | #37 *(previously missing)* |
-| IV | `peter_restoration` | Peter's Restoration | #38 *(previously missing)* |
-| IV | `ascension` | The Ascension | Post-Resurrection |
-
-**Chronology events not tied to any of the 15 cases** (kept for scriptural completeness; not currently gamified): #2 (Weeps over Jerusalem), #3 (Surveys Temple), #8 (Teaching & Parables), #9 (Widow's Offering), #16 (Farewell Discourse), #19 (Trial before Annas), #22 (Formal Sanhedrin condemnation), #23 (Judas's death), #25 (Trial before Herod), #27 (Mocking & Scourging), #28 (Via Dolorosa), #34 (Burial), #35 (Tomb sealed/guard placed).
-
-**Case-dependency chain** (from each case's `requires` field): `triumphal_entry` → `temple_cleansing` → (`fig_tree_incident` / `authority_challenged`) → `lazarus_plot` → (`olivet_discourse` / `last_supper`) → `passover_lamb_chain` (requires `olivet_discourse`) → `gethsemane_arrest` (requires `last_supper`) → `sanhedrin_trial` → `barabbas_choice` → `crucifixion_site` → `resurrection` → `roman_inquiry` → `peter_restoration`.
-
----
-
-## Hidden Detective Chains
-
-Hidden Detective Chains are cross-case discovery patterns that unlock bonus Codex entries when the player links all related evidence items from multiple cases. Each chain represents a complete theological arc spanning multiple days of Holy Week.
-
-### 1. The Greater Atonement (Day of Atonement Typology)
-
-- **Cases spanned:** Sanhedrin Trial → Barabbas Choice → Crucifixion Site
-- **Codex Reward:** *The Greater Atonement*
-- **Chain Evidence:** `torn_robe` (Isaiah 50:6 — high priest's role) → `barabbas_warrant` (Isaiah 53:3 — scapegoat) → `pierced_spear` (Zechariah 12:10 — blood atonement)
-- **Unlock Condition:** Link Day of Atonement typological evidence across three cases.
-- **Scoring:** +25 points, +10 Faith
-
-### 2. The True Passover Lamb
-
-- **Cases spanned:** Last Supper → Gethsemane Arrest → Crucifixion Site
-- **Codex Reward:** *The True Passover Lamb*
-- **Chain Evidence:** `wine_stain` (Melchizedek typology) → `prisoner_cord` (Isaiah 53:7) → `unbroken_legs` (Psalm 34:20)
-- **Unlock Condition:** Link Passover Lamb typological evidence across three cases.
-- **Scoring:** +25 points, +10 Faith
-
-### 3. The Scattered Sheep (Zechariah 13:7 Chain)
-
-- **Cases spanned:** Gethsemane Arrest → Sanhedrin Trial → Peter's Restoration
-- **Codex Reward:** *The Scattered Sheep*
-- **Chain Evidence:** `abandoned_linen` (fulfilment) → `rooster_feather` (contrast) → `charcoal_fire` (reversal)
-- **Unlock Condition:** Link the scattering-to-gathering evidence across three cases.
-- **Scoring:** +25 points, +10 Faith
-
-### 4. The New Covenant
-
-- **Cases spanned:** Last Supper (`last_supper` / act3CaseA) only
-- **Codex Reward:** *The New Covenant*
-- **Chain Evidence:** `bread_crumbs` (Exodus 12:1–14) → `wine_stain` (Melchizedek typology) → `new_covenant_declaration` (Jeremiah 31:31–34)
-- **Unlock Condition:** Link all three Last Supper covenant-evidence items.
-- **Scoring:** +25 points, +10 Faith
-
-### 5. Death Defeated (Resurrection Chain)
-
-- **Cases spanned:** Crucifixion Site → Resurrection
-- **Codex Reward:** *The Firstfruits of Resurrection*
-- **Chain Evidence:** `guard_report` (Hosea 6:2 & Jonah sign) → `opened_tombs` (Ezekiel 37:12–13) → `empty_tomb` (Psalm 16:10) → `mary_encounter` (Isaiah 53:10–11)
-- **Unlock Condition:** Link all four resurrection evidence items.
-- **Scoring:** +25 points, +10 Faith
-
----
-
-**Note:** Each Hidden Detective Chain corresponds to one Codex Unlock entry documented in the individual day sections above. Completing a chain grants +25 investigation points, +10 Faith meter boost, and unlocks a bonus Codex entry that synthesizes the theological arc.

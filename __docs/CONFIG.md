@@ -1,6 +1,8 @@
 # Configuration File (js/config.js)
 
-< [Back to Main Document](Holy Week.md)
+This document covers configuration and technical architecture. It does not define case content; runtime case data is canonical in [`act1_case.js`](../js/act1_case.js) through [`act4_case.js`](../js/act4_case.js). See [`Holy_Week.md`](Holy_Week.md) for the documentation map.
+
+< [Back to Main Document](Holy_Week.md)
 
 ## Table of Contents
 

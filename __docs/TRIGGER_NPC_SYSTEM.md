@@ -1,6 +1,10 @@
 /# Trigger & NPC Auto-Binding System
 
-< [Back to Main Document](Holy Week.md)
+< [Back to Main Document](Holy_Week.md)
+
+# Trigger and NPC System
+
+This document covers trigger/NPC integration and naming. Character voice belongs in [`Character_Dialogue_Profiles.md`](Character_Dialogue_Profiles.md), while runtime case assignments and dialogue mappings are canonical in [`act1_case.js`](../js/act1_case.js) through [`act4_case.js`](../js/act4_case.js).
 
 ## Table of Contents
 

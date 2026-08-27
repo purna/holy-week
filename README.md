@@ -1,8 +1,8 @@
 # Holy Week
 
-A browser-based educational detective game set during Holy Week in Jerusalem. Investigate mysterious events across **4 Acts** and **11 Cases**, gather evidence, interview witnesses, and connect biblical prophecies to their fulfillments.
+A browser-based educational detective game set during Holy Week in Jerusalem. Investigate mysterious events across **4 Acts** and **16 Cases**, gather evidence, interview witnesses, and connect biblical prophecies to their fulfillments.
 
-> **Four Acts. Eleven Cases. One truth.**
+> **Four Acts. Sixteen Cases. One truth.**
 
 ---
 
@@ -78,10 +78,14 @@ Or open `index.html` directly in a modern browser.
 
 ## Documentation
 
-- [`__docs/Holy_Week.md`](__docs/Holy_Week.md) — Canonical source of truth: narrative structure, cases, characters, prophecy system
+- [`__docs/Holy_Week.md`](__docs/Holy_Week.md) — Concise game and design overview
+- [`js/act1_case.js`](js/act1_case.js)–[`js/act4_case.js`](js/act4_case.js) — Canonical runtime case data
+- [`__docs/holy_week_chronology.md`](__docs/holy_week_chronology.md) — Biblical and historical chronology
+- [`__docs/LAB_SYSTEM.md`](__docs/LAB_SYSTEM.md) — Lab mechanics, UI, difficulty, and state
+- [`__docs/GENERATED_PROPHECY_REFERENCE.md`](__docs/GENERATED_PROPHECY_REFERENCE.md) — Generated combined prophecy, typology, and evidence reference
 - [`__docs/ScoringSystem.md`](__docs/ScoringSystem.md) — Comprehensive scoring, doubt, and reputation mechanics
 - [`__docs/CONFIG.md`](__docs/CONFIG.md) — System architecture and configuration
-- [`__docs/prophecies.md`](__docs/prophecies.md) — Prophecy and evidence link mappings
+- [`__docs/DOCUMENTATION_RETIREMENT.md`](__docs/DOCUMENTATION_RETIREMENT.md) — Documentation removal and archival list
 
 ---
 

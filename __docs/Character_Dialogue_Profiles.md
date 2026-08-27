@@ -1,6 +1,8 @@
 # Character Dialogue Profiles — Master Index
 
-< [Back to Main Document](Holy Week.md)
+< [Back to Main Document](Holy_Week.md)
+
+This document is the specialist source for character voice, authoring guidance, and dialogue coverage. Runtime case assignments and dialogue IDs are canonical in [`act1_case.js`](../js/act1_case.js) through [`act4_case.js`](../js/act4_case.js); this index should describe authoring intent rather than duplicate case evidence or prophecy data.
 
 ## Table of Contents
 
