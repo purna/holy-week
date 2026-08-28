@@ -1092,8 +1092,9 @@
 
     <script>
       // <![CDATA[  <-- For SVG support
-      if ('WebSocket' in window) {
-        (function () {
+      if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+        if ('WebSocket' in window) {
+          (function () {
           function refreshCSS() {
             var sheets = [].slice.call(document.getElementsByTagName("link"));
             var head = document.getElementsByTagName("head")[0];
@@ -1124,7 +1125,7 @@
       } else {
         console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
       }
-      // ]]>
+      }
     </script>
     <div id="prophecy-people-intro-data" hidden>Talk to witnesses for clues, show them evidence, or challenge a contradiction once two clues are selected.</div>
 
