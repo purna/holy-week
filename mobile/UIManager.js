@@ -528,38 +528,51 @@ export class UIManager {
     });
   }
 
+  _setOverlayOpen(id, open) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.classList.toggle("active", open);
+    el.setAttribute("aria-hidden", String(!open));
+    if (open) {
+      const focusTarget = el.querySelector("button, [href], input, select, textarea, [tabindex]:not([tabindex='-1'])");
+      if (focusTarget) focusTarget.focus();
+    } else if (el.contains(document.activeElement)) {
+      document.activeElement.blur();
+    }
+  }
+
   showInstructionsModal(isFirstPlay = false) {
     const logo = document.getElementById("instructions-logo");
     if (logo) logo.style.display = isFirstPlay ? "block" : "none";
-    document.getElementById("instructions-modal").classList.add("active");
+    this._setOverlayOpen("instructions-modal", true);
     if (this.audio) this.audio.playHighStakes();
   }
 
   closeInstructionsModal() {
-    document.getElementById("instructions-modal").classList.remove("active");
+    this._setOverlayOpen("instructions-modal", false);
   }
 
   showResetModal() {
-    document.getElementById("reset-modal").classList.add("active");
+    this._setOverlayOpen("reset-modal", true);
     if (this.audio) this.audio.playHighStakes();
   }
 
   closeResetModal() {
-    document.getElementById("reset-modal").classList.remove("active");
+    this._setOverlayOpen("reset-modal", false);
   }
 
   showGameComplete(score, rank) {
     const modal = document.getElementById("game-complete-modal");
     document.getElementById("final-score-value").textContent = score || 0;
     document.getElementById("final-score-rank").textContent = rank || "Rookie";
-    modal.classList.add("active");
+    this._setOverlayOpen("game-complete-modal", true);
     this._startFireworks();
     this.a11y.speak(`Game complete! Your final score is ${score || 0} points.`, "assertive");
   }
 
   closeGameComplete() {
     this._stopFireworks();
-    document.getElementById("game-complete-modal").classList.remove("active");
+    this._setOverlayOpen("game-complete-modal", false);
     this.showScreen("map");
   }
 
@@ -581,11 +594,11 @@ export class UIManager {
     } else {
       readingEl.innerHTML = "";
     }
-    modal.classList.add("active");
+    this._setOverlayOpen("conclusion-modal", true);
   }
 
   closeConclusionModal() {
-    document.getElementById("conclusion-modal").classList.remove("active");
+    this._setOverlayOpen("conclusion-modal", false);
   }
 
   _startFireworks() {
@@ -647,12 +660,12 @@ export class UIManager {
       reasonEl.textContent = "";
     }
 
-    modal.classList.add("active");
+    this._setOverlayOpen("game-over-modal", true);
     this.a11y.speak("Game over. The investigation has failed.", "assertive");
   }
 
   closeGameOver() {
-    document.getElementById("game-over-modal").classList.remove("active");
+    this._setOverlayOpen("game-over-modal", false);
     location.reload();
   }
 
@@ -672,12 +685,12 @@ export class UIManager {
     if (title) title.textContent = `Hidden Chain: ${chain.name}`;
     if (body) body.textContent = chain.description || "";
     if (reward) reward.textContent = `Reward: ${chain.bonusPoints} points, +${chain.bonusFaith} faith — Codex: ${chain.codexEntry}`;
-    modal.classList.add("active");
+    this._setOverlayOpen("chain-complete-modal", true);
     this.a11y.speak(`Hidden detective chain completed: ${chain.name}.`, "assertive");
   }
 
   closeChainComplete() {
-    document.getElementById("chain-complete-modal").classList.remove("active");
+    this._setOverlayOpen("chain-complete-modal", false);
   }
 
   openEvidenceDetail(evidenceId) {

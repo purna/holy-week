@@ -96,8 +96,16 @@ export class MobileApp {
 
   showScreen(id) {
     document.querySelectorAll('.screen').forEach(s => {
-      s.classList.toggle('active', s.id === id);
-      s.setAttribute('aria-hidden', s.id !== id);
+      const isActive = s.id === id;
+      s.classList.toggle('active', isActive);
+      if (s.id.startsWith('screen-')) {
+        // Navigation screens: aria-hidden reflects their active state.
+        s.setAttribute('aria-hidden', String(!isActive));
+      } else {
+        // Overlay modals are managed by their own open/close handlers; when a
+        // screen transition happens they are treated as closed (hidden from AT).
+        s.setAttribute('aria-hidden', 'true');
+      }
     });
 
     const activeEl = document.activeElement;
