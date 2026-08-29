@@ -168,7 +168,7 @@ export class GameManager {
       this.de.loadCase();
 
       this._setCaseLoadProgress(35, 'Opening investigation…');
-      await this.ui.setupInvestigation(c);
+      this.ui.setupInvestigation(c);
 
       this._setCaseLoadProgress(55, 'Loading witnesses…');
 

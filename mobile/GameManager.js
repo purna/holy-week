@@ -167,7 +167,7 @@ export class GameManager {
       this.de.loadCase();
 
       this._setCaseLoadProgress(35, 'Opening investigation…');
-      await this.ui.setupInvestigation(c);
+      this.ui.setupInvestigation(c);
 
       this._setCaseLoadProgress(55, 'Loading witnesses…');
 
@@ -201,7 +201,6 @@ export class GameManager {
         console.error(`[GameManager] Scene setup failed for ${caseId}:`, sceneErr);
       }
 
-      this.loadWorldModel(c);
       this._setCaseLoadProgress(90, finalMessage);
 
       if (this.ui.renderPeople) {
