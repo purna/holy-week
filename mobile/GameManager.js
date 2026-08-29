@@ -164,7 +164,7 @@ export class GameManager {
         return;
       }
 
-      this._showCaseLoader(c.title, 15, 'Preparing evidence…');
+      this._showCaseLoader(c.title, 15, 'Loading case — please wait…');
       await new Promise((resolve) => requestAnimationFrame(resolve));
 
       this.ge.resetDebugToggles(['unlockAllCaseEvidence', 'solveAllLabCases', 'unlockAllProphecies', 'unlockAllPeople']);
