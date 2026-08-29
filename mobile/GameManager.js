@@ -108,7 +108,7 @@ export class GameManager {
   }
 
   /** Shows the loading overlay. */
-  _showCaseLoader(caseTitle = '') {
+  _showCaseLoader(caseTitle = '', percent = 5, message = 'Opening case file…') {
     const overlay = this._getCaseLoader();
     const title = document.getElementById('case-loading-title');
 
@@ -116,8 +116,8 @@ export class GameManager {
       title.textContent = caseTitle ? `Opening: ${caseTitle}` : 'Preparing case…';
     }
 
+    this._setCaseLoadProgress(percent, message);
     overlay.style.display = 'flex';
-    this._setCaseLoadProgress(5, 'Opening case file…');
   }
 
   /** Updates the loading progress. */
@@ -151,8 +151,7 @@ export class GameManager {
       const c = this.cm.getCase(caseId);
 
       if (!started || !c) {
-        this._showCaseLoader(c?.title);
-        this._setCaseLoadProgress(100, 'The case could not be opened. Please try again.');
+        this._showCaseLoader(c?.title, 100, 'The case could not be opened. Please try again.');
         if (this.ui?.a11y?.announce) {
           this.ui.a11y.announce('The case could not be opened. Please try again.', true);
         }
@@ -161,15 +160,14 @@ export class GameManager {
         return;
       }
 
-      this._showCaseLoader(c.title);
-      this._setCaseLoadProgress(15, 'Preparing evidence…');
+      this._showCaseLoader(c.title, 15, 'Preparing evidence…');
 
       this.ge.resetDebugToggles(['unlockAllCaseEvidence', 'solveAllLabCases', 'unlockAllProphecies', 'unlockAllPeople']);
       this.es.loadCase(c);
       this.de.loadCase();
 
       this._setCaseLoadProgress(35, 'Opening investigation…');
-      this.ui.setupInvestigation(c);
+      await this.ui.setupInvestigation(c);
 
       this._setCaseLoadProgress(55, 'Loading witnesses…');
 
