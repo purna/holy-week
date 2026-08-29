@@ -170,6 +170,8 @@ export class GameManager {
       this._setCaseLoadProgress(35, 'Opening investigation…');
       this.ui.setupInvestigation(c);
 
+      await new Promise((resolve) => requestAnimationFrame(resolve));
+
       this._setCaseLoadProgress(55, 'Loading witnesses…');
 
       if (this.ui.audio && c.actLabel) {
