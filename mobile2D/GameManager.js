@@ -152,6 +152,12 @@ export class GameManager {
       const c = this.cm.getCase(caseId);
 
       if (!started || !c) {
+        this._showCaseLoader(c?.title);
+        this._setCaseLoadProgress(100, 'The case could not be opened. Please try again.');
+        if (this.ui?.a11y?.announce) {
+          this.ui.a11y.announce('The case could not be opened. Please try again.', true);
+        }
+        window.setTimeout(() => this._hideCaseLoader(), 1800);
         console.error(`[GameManager] Unable to start case: ${caseId}`);
         return;
       }
@@ -179,16 +185,19 @@ export class GameManager {
         }
       }
 
+      let finalMessage = 'Finalising witnesses…';
+
       try {
         await this.ns.loadCase(c);
-        this._setCaseLoadProgress(90, 'Finalising witnesses…');
-
-        if (this.ui.renderPeople) {
-          this.ui.renderPeople();
-        }
       } catch (npcErr) {
         console.error(`[GameManager] NPC setup failed for ${caseId}:`, npcErr);
-        this._setCaseLoadProgress(90, 'Case opened — some witness data may be unavailable.');
+        finalMessage = 'Case opened — some witness data may be unavailable.';
+      }
+
+      this._setCaseLoadProgress(90, finalMessage);
+
+      if (this.ui.renderPeople) {
+        this.ui.renderPeople();
       }
 
       this._setCaseLoadProgress(100, 'Ready');
