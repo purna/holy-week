@@ -119,6 +119,10 @@ export class GameManager {
 
     this._setCaseLoadProgress(percent, message);
     overlay.style.display = 'flex';
+
+    if (this.ui?.a11y?.announce && message) {
+      this.ui.a11y.announce(message);
+    }
   }
 
   /** Updates the loading progress. */
@@ -162,6 +166,7 @@ export class GameManager {
       }
 
       this._showCaseLoader(c.title, 15, 'Preparing evidence…');
+      await new Promise((resolve) => requestAnimationFrame(resolve));
 
       this.ge.resetDebugToggles(['unlockAllCaseEvidence', 'solveAllLabCases', 'unlockAllProphecies', 'unlockAllPeople']);
       this.es.loadCase(c);
