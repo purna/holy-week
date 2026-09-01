@@ -1,5 +1,5 @@
 const CACHE_PREFIX = 'holy-week-cache';
-const CACHE_VERSION = 'v1.2'; // Increment this to force an update
+const CACHE_VERSION = 'v1.4'; // Increment this to force an update
 const CACHE_NAME = `${CACHE_PREFIX}-${CACHE_VERSION}`;
 
 // List all critical assets that need to be cached for offline use.
@@ -26,6 +26,7 @@ const urlsToCache = [
 
   // Shared JS modules (adjust paths as needed)
   '../js/config.js',
+  '../js/audio/WildlifeSoundscape.js',
   '../js/utils.js',
   '../js/gameplay/caseManager.js',
   '../js/gameplay/evidenceSystem.js',
@@ -73,18 +74,6 @@ const urlsToCache = [
   '../js/plugins/three.module.js',
   '../js/plugins/GLTFLoader.js',
   '../js/plugins/cannon-es.js',
-
-  // Local Font and Icon Assets
-  '../fonts/fontawesome/css/all.min.css',
-  '../fonts/fontawesome/webfonts/fa-solid-900.woff2',
-  '../fonts/fontawesome/webfonts/fa-regular-400.woff2',
-  '../fonts/google-fonts.css',
-  '../fonts/syne/syne-v15-latin-regular.woff2',
-  '../fonts/syne/syne-v15-latin-600.woff2',
-  '../fonts/syne/syne-v15-latin-700.woff2',
-  '../fonts/syne/syne-v15-latin-800.woff2',
-  '../fonts/space-mono/space-mono-v13-latin-regular.woff2',
-  '../fonts/space-mono/space-mono-v13-latin-700.woff2',
 
   // UI Icons from config.js
   '../assets/gfx/list.svg',
@@ -260,7 +249,7 @@ self.addEventListener('install', (event) => {
     caches.open(CACHE_NAME).then((cache) => {
       console.log('[Service Worker] Caching app shell');
       return cache.addAll(urlsToCache);
-    })
+    }).then(() => self.skipWaiting())
   );
 });
 
@@ -274,7 +263,7 @@ self.addEventListener('activate', (event) => {
           }
         })
       );
-    })
+    }).then(() => self.clients.claim())
   );
 });
 

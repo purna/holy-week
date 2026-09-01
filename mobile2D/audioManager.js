@@ -1,4 +1,6 @@
 // audioManager.js — handles sound effects for game events using Web Audio API
+import { WildlifeSoundscape } from '../js/audio/WildlifeSoundscape.js';
+
 export class AudioManager {
   constructor() {
     this.enabled = true;
@@ -6,6 +8,7 @@ export class AudioManager {
     this.bgMusic = null;  // Howler for background music
     this.timeAmbience = null;  // Day/night Howl instance
     this.currentAct = null;
+    this.wildlife = new WildlifeSoundscape({ volume: this.volume * 0.25 });
 
     const basePath = './../assets/audio/';
     const musicPath = './../assets/music/';
@@ -17,11 +20,7 @@ export class AudioManager {
       error: basePath + 'clang_and_wobble.mp3',
       ui: basePath + 'button_click.mp3',
       pickup: basePath + 'pickup.mp3',
-      victory: basePath + 'victory_fanfare.mp3',
-      morning: basePath + 'morning_birds.mp3',
-      outdoor: basePath + 'countryside_day.mp3',
-      day: basePath + 'countryside_day.mp3',
-      night: basePath + 'night_crickets.mp3'
+      victory: basePath + 'victory_fanfare.mp3'
     };
 
     // Background music tracks for each act. .ogg first for its seamless loop point; Howler falls
@@ -125,6 +124,7 @@ export class AudioManager {
 
   setEnabled(enabled) {
     this.enabled = enabled;
+    this.wildlife.setEnabled(enabled);
     // Pause everything (kept resumable) when muted, and resume it when sound is switched back on
     if (!enabled) this.pauseAll();
     else this.resumeAll();
@@ -132,6 +132,7 @@ export class AudioManager {
 
   setVolume(volume) {
     this.volume = Math.max(0, Math.min(1, volume));
+    this.wildlife.setVolume(this.volume * 0.25);
 
     // Update ambience volumes
     Object.values(this.ambienceSources).forEach(source => {
@@ -192,57 +193,11 @@ export class AudioManager {
 
   // Ambience controls
   playMorningAmbience() {
-    if (!this.enabled || !this.audioContext) return;
-
-    // Initialize audio context if needed
-    if (!this.ambienceSources.morning) {
-      this._createAmbienceOscillators();
-    }
-
-    const source = this.ambienceSources.morning;
-    if (!source.active) {
-      // Create irregular bird-like chirping pattern
-      const chirp = () => {
-        if (!this.enabled || !this.audioContext) return;
-
-        // Random frequency between 600-1000 Hz for bird-like sound
-        const freq = 600 + Math.random() * 400;
-        source.oscillator.frequency.setValueAtTime(freq, this.audioContext.currentTime);
-
-        // Quick attack and decay
-        source.gain.gain.cancelScheduledValues(this.audioContext.currentTime);
-        source.gain.gain.setValueAtTime(0, this.audioContext.currentTime);
-        source.gain.gain.linearRampToValueAtTime(this.volume * 0.15, this.audioContext.currentTime + 0.01);
-        source.gain.gain.exponentialRampToValueAtTime(0.001, this.audioContext.currentTime + 0.2);
-
-        source.active = true;
-
-        // Schedule next chirp (random interval between 1-3 seconds)
-        setTimeout(chirp, 1000 + Math.random() * 2000);
-      };
-
-      // Start the chirping pattern
-      chirp();
-    }
+    this.wildlife.start('dawn');
   }
 
   playOutdoorAmbience() {
-    if (!this.enabled || !this.audioContext) return;
-
-    // Initialize audio context if needed
-    if (!this.ambienceSources.outdoor) {
-      this._createAmbienceOscillators();
-    }
-
-    const source = this.ambienceSources.outdoor;
-    if (!source.active) {
-      // Constant deeper outdoor ambience
-      source.gain.gain.cancelScheduledValues(this.audioContext.currentTime);
-      source.gain.gain.setValueAtTime(0, this.audioContext.currentTime);
-      source.gain.gain.linearRampToValueAtTime(this.volume * 0.1, this.audioContext.currentTime + 0.1);
-
-      source.active = true;
-    }
+    this.wildlife.start('day');
   }
 
 
@@ -300,20 +255,12 @@ export class AudioManager {
   // Day/night ambient based on case timeOfDay
   playTimeAmbience(timeOfDay) {
     if (!this.enabled) return;
-    const key = timeOfDay === 'night' ? 'night' : 'day';
-    if (!this.sounds[key]) return;
     this.stopTimeAmbience();
-    // html5: true streams the loop via <audio> rather than blocking on a full decode
-    this.timeAmbience = new Howl({
-      src: [this.sounds[key]],
-      volume: this.volume * 0.4,
-      loop: true,
-      html5: true
-    });
-    this.timeAmbience.play();
+    this.wildlife.start(timeOfDay);
   }
 
   stopTimeAmbience() {
+    this.wildlife.stop();
     if (this.timeAmbience) {
       this.timeAmbience.fade(this.timeAmbience.volume(), 0, 300);
       setTimeout(() => {
@@ -326,6 +273,7 @@ export class AudioManager {
   }
 
   stopAllAmbience() {
+    this.wildlife.stop();
     if (!this.audioContext) return;
 
     Object.values(this.ambienceSources).forEach(source => {
@@ -339,6 +287,7 @@ export class AudioManager {
 
   /** Pauses all playing sound so the game can be safely backgrounded (tab hidden, app minimized). */
   pauseAll() {
+    this.wildlife.pause();
     if (this.bgMusic && this.bgMusic.playing()) {
       this._pausedByVisibility = true;
       this.bgMusic.pause();
@@ -355,6 +304,7 @@ export class AudioManager {
   /** Resumes sound that was paused by pauseAll() once the game returns to the foreground. */
   resumeAll() {
     if (!this.enabled) return;
+    this.wildlife.resume();
     if (this._pausedByVisibility && this.bgMusic) {
       this.bgMusic.play();
       this._pausedByVisibility = false;

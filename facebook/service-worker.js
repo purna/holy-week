@@ -1,5 +1,5 @@
 const CACHE_PREFIX = 'holy-week-cache';
-const CACHE_VERSION = 'v1.2'; // Increment this to force an update
+const CACHE_VERSION = 'v1.3'; // Increment this to force an update
 const CACHE_NAME = `${CACHE_PREFIX}-${CACHE_VERSION}`;
 
 // List all critical assets that need to be cached for offline use.
@@ -24,6 +24,7 @@ const urlsToCache = [
 
   // Shared JS modules (adjust paths as needed)
   '../js/config.js',
+  '../js/audio/WildlifeSoundscape.js',
   '../js/utils.js',
   '../js/gameplay/caseManager.js',
   '../js/gameplay/evidenceSystem.js',

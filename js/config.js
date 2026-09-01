@@ -245,8 +245,6 @@ export const SOUND = {
     questDone: basePath + 'quest_complete.mp3',
     victory: basePath + 'victory_fanfare.mp3',
     pickup: basePath + 'pickup.mp3',
-    // Ambient
-    birds: basePath + 'bird_song.mp3',
     // Music
     bgMusic: basePath + 'bg_music.mp3',
     // NPC-specific (by ID)

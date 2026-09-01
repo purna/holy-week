@@ -1,4 +1,6 @@
 // audioManager.js — handles sound effects and ambience using Howler.js
+import { WildlifeSoundscape } from '../js/audio/WildlifeSoundscape.js';
+
 export class AudioManager {
   constructor() {
     this.enabled = true;
@@ -14,11 +16,7 @@ export class AudioManager {
       error: basePath + 'clang_and_wobble.mp3',
       ui: basePath + 'button_click.mp3',
       pickup: basePath + 'pickup.mp3',
-      victory: basePath + 'victory_fanfare.mp3',
-      morning: basePath + 'morning_birds.mp3',
-      outdoor: basePath + 'countryside_day.mp3',
-      day: basePath + 'countryside_day.mp3',
-      night: basePath + 'night_crickets.mp3'
+      victory: basePath + 'victory_fanfare.mp3'
     };
 
     // Background music tracks for each act. .ogg first for its seamless loop point; Howler falls
@@ -36,6 +34,7 @@ export class AudioManager {
     this.currentAmbient = null;
     this._pausedByVisibility = false;
     this._ambiencePaused = false;
+    this.wildlife = new WildlifeSoundscape({ volume: this.volume * 0.35 });
 
     // Pause all sound when the tab/app is backgrounded, resume when it returns to the foreground
     document.addEventListener('visibilitychange', () => {
@@ -52,6 +51,7 @@ export class AudioManager {
 
   setEnabled(enabled) {
     this.enabled = enabled;
+    this.wildlife.setEnabled(enabled);
     if (typeof Howler !== 'undefined') {
       Howler.mute(!enabled);
       if (this.bgMusic) {
@@ -68,6 +68,7 @@ export class AudioManager {
 
   setVolume(volume) {
     this.volume = Math.max(0, Math.min(1, volume));
+    this.wildlife.setVolume(this.volume * 0.35);
     if (typeof Howler !== 'undefined') {
       Howler.volume(this.volume);
     }
@@ -143,18 +144,15 @@ export class AudioManager {
   playJump() { this.play('ui'); }
 
   playMorningAmbience() {
-    this.stopAllAmbience();
-    this.currentAmbient = 'morning';
-    this.play('morning', true);
+    this.wildlife.start('dawn');
   }
 
   playOutdoorAmbience() {
-    this.stopAllAmbience();
-    this.currentAmbient = 'outdoor';
-    this.play('outdoor', true);
+    this.wildlife.start('night');
   }
 
   stopAllAmbience() {
+    this.wildlife.stop();
     if (this.currentAmbient && this._howls[this.currentAmbient]) {
       this._howls[this.currentAmbient].stop();
     }
@@ -163,6 +161,7 @@ export class AudioManager {
 
   /** Pauses all playing sound so the game can be safely backgrounded (tab hidden, app minimized). */
   pauseAll() {
+    this.wildlife.pause();
     if (this.bgMusic && this.bgMusic.playing()) {
       this._pausedByVisibility = true;
       this.bgMusic.pause();
@@ -177,6 +176,7 @@ export class AudioManager {
   /** Resumes sound that was paused by pauseAll() once the game returns to the foreground. */
   resumeAll() {
     if (!this.enabled) return;
+    this.wildlife.resume();
     if (this._pausedByVisibility && this.bgMusic) {
       this.bgMusic.play();
       this._pausedByVisibility = false;

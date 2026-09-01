@@ -3,6 +3,8 @@
 // ============================================================
 
 export class CaseManager {
+  static STORAGE_KEY = "detective_progress";
+
   constructor(config = {}) {
     this.config = config;
     this.cases = {};
@@ -605,10 +607,56 @@ export class CaseManager {
   }
 
   _loadProgress() {
-    const raw = localStorage.getItem("detective_progress");
-    return raw ? JSON.parse(raw) : { cases: {}, totalScore: 0, rank: "Rookie", doubt: 0, reputations: { scribes: 100, temple: 100, roman: 100, local: 100 } };
+    const defaults = {
+      cases: {},
+      totalScore: 0,
+      rank: "Rookie",
+      doubt: 0,
+      reputations: { scribes: 100, temple: 100, roman: 100, local: 100 }
+    };
+
+    try {
+      const raw = localStorage.getItem(CaseManager.STORAGE_KEY);
+      if (!raw) return defaults;
+
+      const saved = JSON.parse(raw);
+      if (!saved || typeof saved !== "object" || Array.isArray(saved)) {
+        throw new TypeError("Saved progress is not an object");
+      }
+
+      return {
+        ...defaults,
+        ...saved,
+        cases: saved.cases && typeof saved.cases === "object" && !Array.isArray(saved.cases)
+          ? saved.cases
+          : {},
+        reputations: {
+          ...defaults.reputations,
+          ...(saved.reputations && typeof saved.reputations === "object" ? saved.reputations : {})
+        }
+      };
+    } catch (error) {
+      console.warn("[CaseManager] Saved progress could not be loaded; starting safely with new progress.", error);
+      return defaults;
+    }
   }
 
-  _saveProgress() { localStorage.setItem("detective_progress", JSON.stringify(this.progress)); }
-  resetProgress() { localStorage.removeItem("detective_progress"); location.reload(); }
+  _saveProgress() {
+    try {
+      localStorage.setItem(CaseManager.STORAGE_KEY, JSON.stringify(this.progress));
+      return true;
+    } catch (error) {
+      console.warn("[CaseManager] Progress could not be saved on this device.", error);
+      return false;
+    }
+  }
+
+  resetProgress() {
+    try {
+      localStorage.removeItem(CaseManager.STORAGE_KEY);
+    } catch (error) {
+      console.warn("[CaseManager] Saved progress could not be cleared.", error);
+    }
+    location.reload();
+  }
 }
