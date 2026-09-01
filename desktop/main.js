@@ -198,14 +198,23 @@ window.renderInvestigationBoard = function () {
     }
   };
 
-  window.showResetModal = () => {
-    document.getElementById('reset-modal').classList.add('active');
-    game.audio.playUI();
-  };
+   window.showResetModal = () => {
+     document.getElementById('reset-modal').classList.add('active');
+     game.audio.playUI();
+   };
 
-  window.closeResetModal = () => {
-    document.getElementById('reset-modal').classList.remove('active');
-  };
+   window.closeResetModal = () => {
+     document.getElementById('reset-modal').classList.remove('active');
+   };
+
+   window.showCreditsModal = () => {
+     document.getElementById('credits-modal').classList.add('active');
+     game.audio.playUI();
+   };
+
+   window.closeCreditsModal = () => {
+     document.getElementById('credits-modal').classList.remove('active');
+   };
 
   window.resetProgress = () => { game.cm.resetProgress(); window.location.reload(); };
   window.conclude = () => { game.openConclusionModal(); game.audio.playUI(); };

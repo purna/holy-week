@@ -4439,6 +4439,19 @@ h4.modal-subtitle-custom {
     margin: 10px 0 18px;
 }
 
+/* Credits Modal */
+#credits-modal .modal-panel {
+    max-width: 420px;
+}
+
+#credits-modal .evidence-detail-desc a {
+    color: var(--accent-blue);
+}
+
+#credits-modal .evidence-detail-desc a:hover {
+    color: var(--accent-secondary);
+}
+
 /* Codex Modal */
 #codex-modal .modal-panel {
     max-width: 800px;
