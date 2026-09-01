@@ -92,13 +92,28 @@
        margin:auto;
      }
 
-     #instructions-modal .evidence-detail-content,
-     #credits-modal .evidence-detail-content {
-       height: auto;
-       max-width: 420px;
-       position: relative;
-       margin:  auto;
-     }
+      #instructions-modal .evidence-detail-content,
+      #credits-modal .evidence-detail-content {
+        height: auto;
+        max-width: 420px;
+        position: relative;
+        margin:  auto;
+      }
+
+      #credits-modal .evidence-detail-label .icon-svg {
+        width: 1.1em;
+        height: 1.1em;
+        margin-right: 4px;
+        vertical-align: -0.1em;
+      }
+
+      #instructions-modal .evidence-detail-desc .icon-svg {
+        width: 1.4em;
+        height: 1.4em;
+        margin-right: 6px;
+        vertical-align: -0.1em;
+      }
+
 
     #instructions-logo {
       text-align: center;
@@ -964,7 +979,7 @@
            <div class="evidence-detail-body">
 
               <div class="evidence-detail-section">
-                <div class="evidence-detail-label">Game</div>
+                <div class="evidence-detail-label"><img src='../assets/gfx/trophy-duotone.svg' class='icon-svg' loading='lazy'> Game</div>
                 <div class="evidence-detail-desc">
                   <p>Holy Week &mdash; Educational Investigation Game</p>
                   <p><strong>Creative direction & development:</strong> <a href="https://www.pixelagent.co.uk" target="_blank" rel="noopener">Pixelagent</a></p>
@@ -975,7 +990,7 @@
               </div>
 
               <div class="evidence-detail-section">
-                <div class="evidence-detail-label">Built with</div>
+                <div class="evidence-detail-label"><img src='../assets/gfx/laptop-code.svg' class='icon-svg' loading='lazy'> Built with</div>
                 <div class="evidence-detail-desc">
                   <p><small><a href="https://threejs.org/" target="_blank" rel="noopener">Three.js</a> &mdash; 3D engine (MIT)</small></p>
                   <p><small><a href="https://github.com/schtekinm87/cannon-es" target="_blank" rel="noopener">cannon-es</a> &mdash; Physics engine (MIT)</small></p>
@@ -986,7 +1001,7 @@
               </div>
 
               <div class="evidence-detail-section">
-                <div class="evidence-detail-label">Assets &amp; Fonts</div>
+                <div class="evidence-detail-label"><img src='../assets/gfx/pencil-duotone.svg' class='icon-svg' loading='lazy'> Assets &amp; Fonts</div>
                 <div class="evidence-detail-desc">
                   <p><small><a href="https://fontawesome.com/" target="_blank" rel="noopener">Font Awesome</a> &mdash; Icons (CC BY 4.0)</small></p>
                   <p><small><a href="https://fonts.google.com/" target="_blank" rel="noopener">Google Fonts</a> &mdash; Syne &amp; Space Mono (OFL)</small></p>
@@ -996,14 +1011,14 @@
               </div>
 
               <div class="evidence-detail-section">
-                <div class="evidence-detail-label">How to Play</div>
+                <div class="evidence-detail-label"><img src='../assets/gfx/book-open-duotone.svg' class='icon-svg' loading='lazy'> How to Play</div>
                 <div class="evidence-detail-desc">
                   <button class="evidence-detail-confirm" onclick="closeCreditsModal(); showInstructionsModal();" style="margin-top:0;">How to Play</button>
                 </div>
               </div>
 
               <div class="evidence-detail-section">
-                <div class="evidence-detail-label">Find more</div>
+                <div class="evidence-detail-label"><img src='../assets/gfx/link-duotone.svg' class='icon-svg' loading='lazy'> Find more</div>
                 <div class="evidence-detail-desc">
                   <p><a href="https://www.pixelagent.co.uk" target="_blank" rel="noopener">www.pixelagent.co.uk</a></p>
                 </div>

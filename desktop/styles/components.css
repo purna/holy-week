@@ -4452,6 +4452,19 @@ h4.modal-subtitle-custom {
     color: var(--accent-secondary);
 }
 
+#credits-modal .evidence-detail-label .icon-svg {
+    width: 1.1em;
+    height: 1.1em;
+    margin-right: 4px;
+}
+
+#instructions-modal .instructions-body .icon-svg {
+    width: 1.4em;
+    height: 1.4em;
+    margin-right: 6px;
+    vertical-align: -0.1em;
+}
+
 /* Codex Modal */
 #codex-modal .modal-panel {
     max-width: 800px;
