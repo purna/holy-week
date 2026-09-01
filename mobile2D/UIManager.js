@@ -640,6 +640,17 @@ export class UIManager {
     document.getElementById("reset-modal").classList.remove("active");
   }
 
+  showCreditsModal() {
+    const modal = document.getElementById("credits-modal");
+    if (modal) modal.classList.add("active");
+    if (this.audio) this.audio.playHighStakes();
+  }
+
+  closeCreditsModal() {
+    const modal = document.getElementById("credits-modal");
+    if (modal) modal.classList.remove("active");
+  }
+
   showGameComplete(score, rank) {
     const modal = document.getElementById("game-complete-modal");
     document.getElementById("final-score-value").textContent = score || 0;

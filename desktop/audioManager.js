@@ -21,18 +21,27 @@ export class AudioManager {
       night: basePath + 'night_crickets.mp3'
     };
 
-    // Background music tracks for each act
+    // Background music tracks for each act. .ogg first for its seamless loop point; Howler falls
+    // back to .mp3 if the browser can't play ogg/vorbis.
     this.actMusicMap = {
-      'Act I - The Triumphal Entry': musicPath + 'act1_sunlight_on_marble.mp3',
-      'Act II - The Temple Courts': musicPath + 'act2_shackles_on_the_stone.mp3',
-      'Act III - The Last Supper': musicPath + 'act3_laurel_and_iron.mp3',
-      'Act IV - The Resurrection': musicPath + 'act4_victory_at_the_sunlit_gate.mp3'
+      'Act I - The Triumphal Entry': [musicPath + 'act1_sunlight_on_marble.ogg', musicPath + 'act1_sunlight_on_marble.mp3'],
+      'Act II - The Temple Courts': [musicPath + 'act2_shackles_on_the_stone.ogg', musicPath + 'act2_shackles_on_the_stone.mp3'],
+      'Act III - The Last Supper': [musicPath + 'act3_laurel_and_iron.ogg', musicPath + 'act3_laurel_and_iron.mp3'],
+      'Act IV - The Resurrection': [musicPath + 'act4_victory_at_the_sunlit_gate.ogg', musicPath + 'act4_victory_at_the_sunlit_gate.mp3']
     };
 
     this._howls = {};
     this.bgMusic = null;
     this.currentActLabel = null;
     this.currentAmbient = null;
+    this._pausedByVisibility = false;
+    this._ambiencePaused = false;
+
+    // Pause all sound when the tab/app is backgrounded, resume when it returns to the foreground
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) this.pauseAll();
+      else this.resumeAll();
+    });
 
     // Sync Howler global state with initial manager settings immediately
     if (typeof Howler !== 'undefined') {
@@ -101,7 +110,7 @@ export class AudioManager {
         return;
       }
       this.bgMusic = new Howl({
-        src: [nextTrackPath],
+        src: nextTrackPath,
         loop: true,
         volume: 0,
         html5: true,
@@ -150,5 +159,32 @@ export class AudioManager {
       this._howls[this.currentAmbient].stop();
     }
     this.currentAmbient = null;
+  }
+
+  /** Pauses all playing sound so the game can be safely backgrounded (tab hidden, app minimized). */
+  pauseAll() {
+    if (this.bgMusic && this.bgMusic.playing()) {
+      this._pausedByVisibility = true;
+      this.bgMusic.pause();
+    }
+    const ambientHowl = this.currentAmbient && this._howls[this.currentAmbient];
+    if (ambientHowl && ambientHowl.playing()) {
+      this._ambiencePaused = true;
+      ambientHowl.pause();
+    }
+  }
+
+  /** Resumes sound that was paused by pauseAll() once the game returns to the foreground. */
+  resumeAll() {
+    if (!this.enabled) return;
+    if (this._pausedByVisibility && this.bgMusic) {
+      this.bgMusic.play();
+      this._pausedByVisibility = false;
+    }
+    const ambientHowl = this.currentAmbient && this._howls[this.currentAmbient];
+    if (this._ambiencePaused && ambientHowl) {
+      ambientHowl.play();
+      this._ambiencePaused = false;
+    }
   }
 }

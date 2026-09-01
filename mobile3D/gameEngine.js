@@ -180,7 +180,7 @@ export class GameEngine {
 
   async init() {
     this.a11y.restorePreferences();
-    
+
     // Global exports for HTML event handlers
     window.cm = this.cm;
     window.ui = this.ui;
@@ -206,6 +206,8 @@ export class GameEngine {
     window.closeInstructionsModal = this.ui.closeInstructionsModal.bind(this.ui);
     window.showResetModal = this.ui.showResetModal.bind(this.ui);
     window.closeResetModal = this.ui.closeResetModal.bind(this.ui);
+    window.showCreditsModal = this.ui.showCreditsModal.bind(this.ui);
+    window.closeCreditsModal = this.ui.closeCreditsModal.bind(this.ui);
     window.playAgain = this.gm.resetGame.bind(this.gm);
     window.attemptProphecyMatch = this.ui.codexUI.attemptProphecyMatch.bind(this.ui.codexUI);
     window.closeGameComplete = this.ui.closeGameComplete.bind(this.ui);
@@ -221,6 +223,7 @@ export class GameEngine {
     // Keep the loader visible for at least a second so fast connections still see it complete
     const remaining = 1000 - (performance.now() - loadStart);
     if (remaining > 0) await new Promise(r => setTimeout(r, remaining));
+
     this._hideLoadingScreen();
 
     setTimeout(() => {
@@ -237,15 +240,25 @@ export class GameEngine {
     setTimeout(() => screen.remove(), 500);
   }
 
-  async preloadAssets() {
+  /** Collects NPC profile URLs and dialogue-bearing NPCs for a set of cases. */
+  _collectCaseAssets(cases) {
     const profileUrls = new Set();
     const storyNpcs = [];
-    this.cm.getAllCases().forEach(c => {
+    cases.forEach(c => {
       (c.npcs || []).forEach(npc => {
         if (npc.profileFile) profileUrls.add(PROFILE_ID_MAP[npc.profileFile] || npc.profileFile);
         if (npc.hasDialogue) storyNpcs.push({ caseId: c.id, npc });
       });
     });
+    return { profileUrls, storyNpcs };
+  }
+
+  async preloadAssets() {
+    // Only the cases already playable right now need to block the loading screen;
+    // everything else is warmed in the background once gameplay is unblocked.
+    const unlockedIds = new Set(this.cm.getUnlockedCases().map(c => c.id));
+    const allCases = this.cm.getAllCases();
+    const { profileUrls, storyNpcs } = this._collectCaseAssets(allCases.filter(c => unlockedIds.has(c.id)));
 
     const statusEl = document.getElementById('loading-status');
     const barEl = document.getElementById('loading-bar-fill');
@@ -261,5 +274,12 @@ export class GameEngine {
     const storyLoads = storyNpcs.map(({ caseId, npc }) => this.dm.loadStoryForNPC(npc, caseId).then(tick, tick));
     const profileLoads = Array.from(profileUrls).map(url => this.ns.loader.loadProfile(url).then(tick, tick));
     await Promise.all([...storyLoads, ...profileLoads]);
+
+    // Warm the cache for not-yet-unlocked cases in the background without blocking the loading screen
+    const later = this._collectCaseAssets(allCases.filter(c => !unlockedIds.has(c.id)));
+    Promise.all([
+      ...later.storyNpcs.map(({ caseId, npc }) => this.dm.loadStoryForNPC(npc, caseId)),
+      ...Array.from(later.profileUrls).map(url => this.ns.loader.loadProfile(url))
+    ]).catch(() => {});
   }
 }

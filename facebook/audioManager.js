@@ -3,12 +3,10 @@ export class AudioManager {
   constructor() {
     this.enabled = true;
     this.volume = 0.5;
-    this.bgMusic = null;  
+    this.bgMusic = null;  // Howler for background music
     this.timeAmbience = null;  // Day/night Howl instance
-    this.currentActLabel = null;
     this.currentAct = null;
 
-    
     const basePath = './../assets/audio/';
     const musicPath = './../assets/music/';
     this.sounds = {
@@ -20,36 +18,36 @@ export class AudioManager {
       ui: basePath + 'button_click.mp3',
       pickup: basePath + 'pickup.mp3',
       victory: basePath + 'victory_fanfare.mp3',
-
-      //ambient sounds for day/night cycles
       morning: basePath + 'morning_birds.mp3',
       outdoor: basePath + 'countryside_day.mp3',
       day: basePath + 'countryside_day.mp3',
-      night: basePath + 'night_crickets.mp3',
-      npc: {
-        1: { enter: basePath + 'echo_enter.mp3', exit: basePath + 'echo_exit.mp3' },
-        2: { enter: basePath + 'horizon_enter.mp3', exit: basePath + 'horizon_exit.mp3' },
-        3: { enter: basePath + 'spire_enter.mp3', exit: basePath + 'spire_exit.mp3' },
-        4: { enter: basePath + 'keeper_enter.mp3', exit: basePath + 'keeper_exit.mp3' }
-      }
+      night: basePath + 'night_crickets.mp3'
     };
 
-    
-    // Background music tracks for each act
+    // Background music tracks for each act. .ogg first for its seamless loop point; Howler falls
+    // back to .mp3 if the browser can't play ogg/vorbis.
     this.bgTracks = {
-      'Act I - The Triumphal Entry': musicPath + 'act1_sunlight_on_marble.mp3',
-      'Act II - The Temple Courts': musicPath + 'act2_shackles_on_the_stone.mp3',
-      'Act III - The Last Supper': musicPath + 'act3_laurel_and_iron.mp3',
-      'Act IV - The Resurrection': musicPath + 'act4_victory_at_the_sunlit_gate.mp3'
+      'Act I - The Triumphal Entry': [musicPath + 'act1_sunlight_on_marble.ogg', musicPath + 'act1_sunlight_on_marble.mp3'],
+      'Act II - The Temple Courts': [musicPath + 'act2_shackles_on_the_stone.ogg', musicPath + 'act2_shackles_on_the_stone.mp3'],
+      'Act III - The Last Supper': [musicPath + 'act3_laurel_and_iron.ogg', musicPath + 'act3_laurel_and_iron.mp3'],
+      'Act IV - The Resurrection': [musicPath + 'act4_victory_at_the_sunlit_gate.ogg', musicPath + 'act4_victory_at_the_sunlit_gate.mp3']
     };
     this.audioContext = null;
     this.ambienceSources = {};
-    
+
     // Initialize audio context on first user interaction (required by browsers)
     this._initAudioContext = this._initAudioContext.bind(this);
     document.addEventListener('click', this._initAudioContext);
     document.addEventListener('keydown', this._initAudioContext);
-    
+
+    // Pause all sound when the tab/app is backgrounded, resume when it returns to the foreground
+    this._pausedByVisibility = false;
+    this._timeAmbiencePaused = false;
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) this.pauseAll();
+      else this.resumeAll();
+    });
+
     // Bind play methods to ensure they can be called from event listeners
     this.playCollect = this.playCollect.bind(this);
     this.playClue = this.playClue.bind(this);
@@ -68,7 +66,7 @@ export class AudioManager {
         this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
         this._createAmbienceOscillators();
       }
-      
+
       if (this.audioContext.state === 'suspended') {
         this.audioContext.resume();
       }
@@ -88,7 +86,7 @@ export class AudioManager {
       filter: this.audioContext.createBiquadFilter(),
       active: false
     };
-    
+
     // Outdoor ambience - deeper, more constant sound (lower frequency)
     this.ambienceSources.outdoor = {
       oscillator: this.audioContext.createOscillator(),
@@ -96,30 +94,30 @@ export class AudioManager {
       filter: this.audioContext.createBiquadFilter(),
       active: false
     };
-    
+
     // Configure morning ambience (bird-like chirps)
     this.ambienceSources.morning.oscillator.type = 'sine';
     this.ambienceSources.morning.filter.type = 'bandpass';
     this.ambienceSources.morning.filter.frequency.value = 800; // Bird-like frequency
     this.ambienceSources.morning.filter.Q.value = 2;
     this.ambienceSources.morning.gain.gain.value = 0;
-    
+
     // Configure outdoor ambience (deeper, constant tone)
     this.ambienceSources.outdoor.oscillator.type = 'sine';
     this.ambienceSources.outdoor.filter.type = 'lowpass';
     this.ambienceSources.outdoor.filter.frequency.value = 200; // Deeper tone
     this.ambienceSources.outdoor.filter.Q.value = 1;
     this.ambienceSources.outdoor.gain.gain.value = 0;
-    
+
     // Connect the chains: oscillator -> filter -> gain -> destination
     this.ambienceSources.morning.oscillator.connect(this.ambienceSources.morning.filter);
     this.ambienceSources.morning.filter.connect(this.ambienceSources.morning.gain);
     this.ambienceSources.morning.gain.connect(this.audioContext.destination);
-    
+
     this.ambienceSources.outdoor.oscillator.connect(this.ambienceSources.outdoor.filter);
     this.ambienceSources.outdoor.filter.connect(this.ambienceSources.outdoor.gain);
     this.ambienceSources.outdoor.gain.connect(this.audioContext.destination);
-    
+
     // Start oscillators
     this.ambienceSources.morning.oscillator.start();
     this.ambienceSources.outdoor.oscillator.start();
@@ -127,22 +125,14 @@ export class AudioManager {
 
   setEnabled(enabled) {
     this.enabled = enabled;
-    if (!enabled) {
-      // Stop any playing sounds by setting gain to 0
-      Object.values(this.ambienceSources).forEach(source => {
-        if (source.active) {
-          source.gain.gain.setValueAtTime(0, this.audioContext.currentTime);
-          source.active = false;
-        }
-      });
-      // Stop background music
-      this.stopBackgroundMusic();
-    }
+    // Pause everything (kept resumable) when muted, and resume it when sound is switched back on
+    if (!enabled) this.pauseAll();
+    else this.resumeAll();
   }
 
   setVolume(volume) {
     this.volume = Math.max(0, Math.min(1, volume));
-    
+
     // Update ambience volumes
     Object.values(this.ambienceSources).forEach(source => {
       if (source.active) {
@@ -154,7 +144,7 @@ export class AudioManager {
 
   play(event) {
     if (!this.enabled) return;
-    
+
     // Use Howler sounds if available, otherwise fall back to oscillator
     if (this.sounds[event]) {
       const sound = new Howl({
@@ -164,7 +154,7 @@ export class AudioManager {
       sound.play();
       return;
     }
-    
+
     // Fallback to oscillator for events without sound files
     if (!this.audioContext || this.audioContext.state === 'suspended') return;
     const now = this.audioContext.currentTime;
@@ -172,7 +162,7 @@ export class AudioManager {
     const gain = this.audioContext.createGain();
     oscillator.connect(gain);
     gain.connect(this.audioContext.destination);
-    switch(event) {
+    switch (event) {
       case 'bonus':
         oscillator.type = 'sine';
         oscillator.frequency.setValueAtTime(500, now);
@@ -203,34 +193,34 @@ export class AudioManager {
   // Ambience controls
   playMorningAmbience() {
     if (!this.enabled || !this.audioContext) return;
-    
+
     // Initialize audio context if needed
     if (!this.ambienceSources.morning) {
       this._createAmbienceOscillators();
     }
-    
+
     const source = this.ambienceSources.morning;
     if (!source.active) {
       // Create irregular bird-like chirping pattern
       const chirp = () => {
         if (!this.enabled || !this.audioContext) return;
-        
+
         // Random frequency between 600-1000 Hz for bird-like sound
         const freq = 600 + Math.random() * 400;
         source.oscillator.frequency.setValueAtTime(freq, this.audioContext.currentTime);
-        
+
         // Quick attack and decay
         source.gain.gain.cancelScheduledValues(this.audioContext.currentTime);
         source.gain.gain.setValueAtTime(0, this.audioContext.currentTime);
         source.gain.gain.linearRampToValueAtTime(this.volume * 0.15, this.audioContext.currentTime + 0.01);
         source.gain.gain.exponentialRampToValueAtTime(0.001, this.audioContext.currentTime + 0.2);
-        
+
         source.active = true;
-        
+
         // Schedule next chirp (random interval between 1-3 seconds)
         setTimeout(chirp, 1000 + Math.random() * 2000);
       };
-      
+
       // Start the chirping pattern
       chirp();
     }
@@ -238,19 +228,19 @@ export class AudioManager {
 
   playOutdoorAmbience() {
     if (!this.enabled || !this.audioContext) return;
-    
+
     // Initialize audio context if needed
     if (!this.ambienceSources.outdoor) {
       this._createAmbienceOscillators();
     }
-    
+
     const source = this.ambienceSources.outdoor;
     if (!source.active) {
       // Constant deeper outdoor ambience
       source.gain.gain.cancelScheduledValues(this.audioContext.currentTime);
       source.gain.gain.setValueAtTime(0, this.audioContext.currentTime);
       source.gain.gain.linearRampToValueAtTime(this.volume * 0.1, this.audioContext.currentTime + 0.1);
-      
+
       source.active = true;
     }
   }
@@ -259,9 +249,9 @@ export class AudioManager {
   // Background music with crossfade between acts
   fadeToAct(actLabel, duration = 2) {
     if (!this.enabled || !this.bgTracks[actLabel] || actLabel === this.currentAct) return;
-    
+
     const fadeTime = duration * 500; // ms
-    
+
     // Fade out current track
     if (this.bgMusic) {
       this.bgMusic.fade(this.bgMusic.volume(), 0, fadeTime);
@@ -272,44 +262,19 @@ export class AudioManager {
         }
       }, fadeTime);
     }
-    
-    // Fade in new track
+
+    // Fade in new track. html5: true streams via a plain <audio> element instead of
+    // decoding the whole file up front, so playback isn't blocked on a full download.
     this.bgMusic = new Howl({
-      src: [this.bgTracks[actLabel]],
+      src: this.bgTracks[actLabel],
       volume: 0,
-      loop: true
+      loop: true,
+      html5: true
     });
-    
+
     this.bgMusic.play();
     this.bgMusic.fade(0, this.volume * 0.8, fadeTime * 1.6);
     this.currentAct = actLabel;
-  }
-
-  updateActMusic(actLabel) {
-    const tracks = this.bgTracks || this.actMusicMap;
-    if (this.currentActLabel === actLabel || !tracks[actLabel]) return;
-    this.currentActLabel = actLabel;
-    const nextTrackPath = tracks[actLabel];
-    const fadeTime = 4000;
-
-    const startNext = () => {
-      this.bgMusic = new Howl({ src: [nextTrackPath], loop: true, volume: 0, html5: true });
-      if (this.enabled) {
-        this.bgMusic.play();
-        this.bgMusic.fade(0, this.volume * 0.8, fadeTime);
-      }
-    };
-
-    if (this.bgMusic) {
-      this.bgMusic.fade(this.bgMusic.volume() || 0, 0, fadeTime);
-      const old = this.bgMusic;
-      setTimeout(() => {
-        old.stop();
-        startNext();
-      }, fadeTime);
-    } else {
-      startNext();
-    }
   }
 
   stopBackgroundMusic() {
@@ -338,10 +303,12 @@ export class AudioManager {
     const key = timeOfDay === 'night' ? 'night' : 'day';
     if (!this.sounds[key]) return;
     this.stopTimeAmbience();
+    // html5: true streams the loop via <audio> rather than blocking on a full decode
     this.timeAmbience = new Howl({
       src: [this.sounds[key]],
       volume: this.volume * 0.4,
-      loop: true
+      loop: true,
+      html5: true
     });
     this.timeAmbience.play();
   }
@@ -360,7 +327,7 @@ export class AudioManager {
 
   stopAllAmbience() {
     if (!this.audioContext) return;
-    
+
     Object.values(this.ambienceSources).forEach(source => {
       if (source.active) {
         source.gain.gain.cancelScheduledValues(this.audioContext.currentTime);
@@ -370,34 +337,34 @@ export class AudioManager {
     });
   }
 
-  playQuestComplete() { this.play('complete'); }
-  playVictory() { this.play('victory'); }
-  pauseMusic() { this.stopBackgroundMusic(); }
-  get soundEnabled() { return this.enabled; }
-  toggleMusic() {
-    this.enabled = !this.enabled;
-    if (this.enabled) {
-      this.startMusic();
-    } else {
-      this.stopBackgroundMusic();
+  /** Pauses all playing sound so the game can be safely backgrounded (tab hidden, app minimized). */
+  pauseAll() {
+    if (this.bgMusic && this.bgMusic.playing()) {
+      this._pausedByVisibility = true;
+      this.bgMusic.pause();
     }
-    return this.enabled;
+    if (this.timeAmbience && this.timeAmbience.playing()) {
+      this._timeAmbiencePaused = true;
+      this.timeAmbience.pause();
+    }
+    if (this.audioContext && this.audioContext.state === 'running') {
+      this.audioContext.suspend();
+    }
   }
-  startMusic() {
-    const act = this.bgTracks['Act I - The Triumphal Entry'];
-    if (act) {
-      this.bgMusic = new Howl({ src: [act], loop: true, volume: this.volume * 0.8 });
+
+  /** Resumes sound that was paused by pauseAll() once the game returns to the foreground. */
+  resumeAll() {
+    if (!this.enabled) return;
+    if (this._pausedByVisibility && this.bgMusic) {
       this.bgMusic.play();
-      this.currentAct = 'Act I - The Triumphal Entry';
+      this._pausedByVisibility = false;
+    }
+    if (this._timeAmbiencePaused && this.timeAmbience) {
+      this.timeAmbience.play();
+      this._timeAmbiencePaused = false;
+    }
+    if (this.audioContext && this.audioContext.state === 'suspended') {
+      this.audioContext.resume();
     }
   }
-  startAmbient() { this.playTimeAmbience('day'); }
-  playNpcSound(npcId, state) {
-    const npcSnd = this.sounds.npc && this.sounds.npc[npcId];
-    if (npcSnd) {
-      const sound = new Howl({ src: [npcSnd[state]], volume: this.volume * 0.5 });
-      sound.play();
-    }
-  }
-  playPickup() { this.play('collect'); }
 }

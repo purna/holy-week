@@ -2197,7 +2197,7 @@ export const act4CaseC = {
 
 export const act4CaseD = {
     id: "ascension",
-    icon: '../assets/gfx/cloud-duotone.svg',
+    icon: '../assets/gfx/arrow-up-duotone.svg',
     title: "The Ascension",
     subtitle: "Forty days after His resurrection, Jesus gathers His disciples on the Mount of Olives for a final commission and a miraculous departure.",
     location: "mount_of_olives",

@@ -1,0 +1,113 @@
+/* ═══════════════════════════════════════════
+       LOADING SCREEN
+    ═══════════════════════════════════════════ */
+
+/* Full-screen gate shown until preloadAssets() resolves; fades out and is removed once ready. */
+.loading-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 9000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg);
+    transition: opacity 0.4s var(--ease-out);
+}
+
+.loading-screen.loading-hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.loading-inner {
+    text-align: center;
+    padding: 32px;
+    max-width: 320px;
+}
+
+.loading-logo {
+    width: 72px;
+    height: auto;
+    margin-bottom: 16px;
+    opacity: 0.9;
+}
+
+.loading-title {
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--gold);
+    text-shadow: 0 0 20px rgba(245, 200, 66, 0.35);
+    margin-bottom: 24px;
+}
+
+.loading-screen .spinner {
+    width: 36px;
+    height: 36px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    border: 3px solid var(--border2);
+    border-top-color: var(--gold);
+    animation: loading-spin 0.9s linear infinite;
+}
+
+@keyframes loading-spin {
+    to { transform: rotate(360deg); }
+}
+
+.loading-bar-track {
+    width: 220px;
+    height: 6px;
+    margin: 0 auto 14px;
+    border-radius: 999px;
+    background: var(--surface3);
+    overflow: hidden;
+}
+
+.loading-bar-fill {
+    height: 100%;
+    width: 0%;
+    background: var(--gold);
+    border-radius: 999px;
+    transition: width 0.25s var(--ease-out);
+}
+
+.loading-text {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    letter-spacing: 0.5px;
+}
+
+/* ═══════════════════════════════════════════
+       SCREENS
+    ═══════════════════════════════════════════ */
+
+/* Every screen is absolutely positioned and toggled via .active. */
+.screen {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(12px);
+    transition: opacity 0.28s var(--ease-out), transform 0.28s var(--ease-out);
+}
+
+.screen.active {
+    opacity: 1;
+    pointer-events: all;
+    transform: translateY(0);
+    z-index: 1;
+}
+
+.modal-badge{
+    margin: 1rem 0 0 0;
+    border-radius: 0.5rem;
+    border: 1px solid var(--border2);
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    font-weight:700;
+}

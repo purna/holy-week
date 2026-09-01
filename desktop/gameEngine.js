@@ -643,16 +643,26 @@ export class GameEngine {
     };
   }
 
-  /** Preloads NPC profiles and dialogue for all cases so the loading screen only clears once content is ready. */
-  async preloadAssets() {
+  /** Collects NPC profile URLs and dialogue-bearing NPCs for a set of cases. */
+  _collectCaseAssets(cases) {
     const profileUrls = new Set();
     const storyNpcs = [];
-    this.cm.getAllCases().forEach(c => {
+    cases.forEach(c => {
       (c.npcs || []).forEach(npc => {
         if (npc.profileFile) profileUrls.add(PROFILE_ID_MAP[npc.profileFile] || npc.profileFile);
         if (npc.hasDialogue || npc.dialogueId || npc.storyFile) storyNpcs.push(npc);
       });
     });
+    return { profileUrls, storyNpcs };
+  }
+
+  /** Preloads NPC profiles and dialogue for unlocked cases so the loading screen only clears once content is ready. */
+  async preloadAssets() {
+    // Only the cases already playable right now need to block the loading screen;
+    // everything else is warmed in the background once gameplay is unblocked.
+    const unlockedIds = new Set(this.cm.getUnlockedCases().map(c => c.id));
+    const allCases = this.cm.getAllCases();
+    const { profileUrls, storyNpcs } = this._collectCaseAssets(allCases.filter(c => unlockedIds.has(c.id)));
 
     const statusEl = document.getElementById('loading-text');
     const barEl = document.getElementById('loading-bar-fill');
@@ -668,6 +678,13 @@ export class GameEngine {
     const storyLoads = storyNpcs.map(npc => this.dm.loadStoryForNPC(npc).then(tick, tick));
     const profileLoads = Array.from(profileUrls).map(url => this.ns.loader.loadProfile(url).then(tick, tick));
     await Promise.all([...storyLoads, ...profileLoads]);
+
+    // Warm the cache for not-yet-unlocked cases in the background without blocking the loading screen
+    const later = this._collectCaseAssets(allCases.filter(c => !unlockedIds.has(c.id)));
+    Promise.all([
+      ...later.storyNpcs.map(npc => this.dm.loadStoryForNPC(npc)),
+      ...Array.from(later.profileUrls).map(url => this.ns.loader.loadProfile(url))
+    ]).catch(() => {});
   }
 
   bindGlobalUIEvents() {

@@ -24,12 +24,13 @@ export class AudioManager {
       night: basePath + 'night_crickets.mp3'
     };
 
-    // Background music tracks for each act
+    // Background music tracks for each act. .ogg first for its seamless loop point; Howler falls
+    // back to .mp3 if the browser can't play ogg/vorbis.
     this.bgTracks = {
-      'Act I - The Triumphal Entry': musicPath + 'act1_sunlight_on_marble.mp3',
-      'Act II - The Temple Courts': musicPath + 'act2_shackles_on_the_stone.mp3',
-      'Act III - The Last Supper': musicPath + 'act3_laurel_and_iron.mp3',
-      'Act IV - The Resurrection': musicPath + 'act4_victory_at_the_sunlit_gate.mp3'
+      'Act I - The Triumphal Entry': [musicPath + 'act1_sunlight_on_marble.ogg', musicPath + 'act1_sunlight_on_marble.mp3'],
+      'Act II - The Temple Courts': [musicPath + 'act2_shackles_on_the_stone.ogg', musicPath + 'act2_shackles_on_the_stone.mp3'],
+      'Act III - The Last Supper': [musicPath + 'act3_laurel_and_iron.ogg', musicPath + 'act3_laurel_and_iron.mp3'],
+      'Act IV - The Resurrection': [musicPath + 'act4_victory_at_the_sunlit_gate.ogg', musicPath + 'act4_victory_at_the_sunlit_gate.mp3']
     };
     this.audioContext = null;
     this.ambienceSources = {};
@@ -265,7 +266,7 @@ export class AudioManager {
     // Fade in new track. html5: true streams via a plain <audio> element instead of
     // decoding the whole file up front, so playback isn't blocked on a full download.
     this.bgMusic = new Howl({
-      src: [this.bgTracks[actLabel]],
+      src: this.bgTracks[actLabel],
       volume: 0,
       loop: true,
       html5: true
