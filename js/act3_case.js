@@ -106,7 +106,7 @@ import { formatIntro } from './utils.js';
 
 export const act3CaseA = {
   id: "last_supper",
-  icon: '../assets/gfx/cup-duotone.svg',
+  icon: '../assets/gfx/wine-duotone.svg',
   title: "The Broken Cup",
   subtitle: "The Passover preparations in the upper room have been disturbed — and someone is hiding what they know.",
   location: "upperroom",

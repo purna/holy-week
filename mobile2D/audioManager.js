@@ -10,15 +10,18 @@ export class AudioManager {
     const basePath = './../assets/audio/';
     const musicPath = './../assets/music/';
    this.sounds = {
-      collect: basePath + 'ping_pong.mp3',
+      collect: basePath + 'collectable.mp3',
       clue: basePath + 'ping_pong.mp3',
-      complete: basePath + 'ping_pong.mp3',
-      talk: basePath + 'ping_pong.mp3',
-      error: basePath + 'ping_pong.mp3',
-      ui: basePath + 'ping_pong.mp3',
-      morning: basePath + 'day.mp3',
-      outdoor: basePath + 'day.mp3',
-      day: basePath + 'day.mp3'
+      complete: basePath + 'quest_complete.mp3',
+      talk: basePath + 'npc.mp3',
+      error: basePath + 'clang_and_wobble.mp3',
+      ui: basePath + 'button_click.mp3',
+      pickup: basePath + 'pickup.mp3',
+      victory: basePath + 'victory_fanfare.mp3',
+      morning: basePath + 'morning_birds.mp3',
+      outdoor: basePath + 'countryside_day.mp3',
+      day: basePath + 'countryside_day.mp3',
+      night: basePath + 'night_crickets.mp3'
     };
 
     // Background music tracks for each act
@@ -35,6 +38,14 @@ export class AudioManager {
     this._initAudioContext = this._initAudioContext.bind(this);
     document.addEventListener('click', this._initAudioContext);
     document.addEventListener('keydown', this._initAudioContext);
+
+    // Pause all sound when the tab/app is backgrounded, resume when it returns to the foreground
+    this._pausedByVisibility = false;
+    this._timeAmbiencePaused = false;
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) this.pauseAll();
+      else this.resumeAll();
+    });
 
     // Bind play methods to ensure they can be called from event listeners
     this.playCollect = this.playCollect.bind(this);
@@ -113,17 +124,9 @@ export class AudioManager {
 
   setEnabled(enabled) {
     this.enabled = enabled;
-    if (!enabled) {
-      // Stop any playing sounds by setting gain to 0
-      Object.values(this.ambienceSources).forEach(source => {
-        if (source.active) {
-          source.gain.gain.setValueAtTime(0, this.audioContext.currentTime);
-          source.active = false;
-        }
-      });
-      // Stop background music
-      this.stopBackgroundMusic();
-    }
+    // Pause everything (kept resumable) when muted, and resume it when sound is switched back on
+    if (!enabled) this.pauseAll();
+    else this.resumeAll();
   }
 
   setVolume(volume) {
@@ -259,11 +262,13 @@ export class AudioManager {
       }, fadeTime);
     }
 
-    // Fade in new track
+    // Fade in new track. html5: true streams via a plain <audio> element instead of
+    // decoding the whole file up front, so playback isn't blocked on a full download.
     this.bgMusic = new Howl({
       src: [this.bgTracks[actLabel]],
       volume: 0,
-      loop: true
+      loop: true,
+      html5: true
     });
 
     this.bgMusic.play();
@@ -297,10 +302,12 @@ export class AudioManager {
     const key = timeOfDay === 'night' ? 'night' : 'day';
     if (!this.sounds[key]) return;
     this.stopTimeAmbience();
+    // html5: true streams the loop via <audio> rather than blocking on a full decode
     this.timeAmbience = new Howl({
       src: [this.sounds[key]],
       volume: this.volume * 0.4,
-      loop: true
+      loop: true,
+      html5: true
     });
     this.timeAmbience.play();
   }
@@ -327,5 +334,36 @@ export class AudioManager {
         source.active = false;
       }
     });
+  }
+
+  /** Pauses all playing sound so the game can be safely backgrounded (tab hidden, app minimized). */
+  pauseAll() {
+    if (this.bgMusic && this.bgMusic.playing()) {
+      this._pausedByVisibility = true;
+      this.bgMusic.pause();
+    }
+    if (this.timeAmbience && this.timeAmbience.playing()) {
+      this._timeAmbiencePaused = true;
+      this.timeAmbience.pause();
+    }
+    if (this.audioContext && this.audioContext.state === 'running') {
+      this.audioContext.suspend();
+    }
+  }
+
+  /** Resumes sound that was paused by pauseAll() once the game returns to the foreground. */
+  resumeAll() {
+    if (!this.enabled) return;
+    if (this._pausedByVisibility && this.bgMusic) {
+      this.bgMusic.play();
+      this._pausedByVisibility = false;
+    }
+    if (this._timeAmbiencePaused && this.timeAmbience) {
+      this.timeAmbience.play();
+      this._timeAmbiencePaused = false;
+    }
+    if (this.audioContext && this.audioContext.state === 'suspended') {
+      this.audioContext.resume();
+    }
   }
 }

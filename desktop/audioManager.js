@@ -7,15 +7,18 @@ export class AudioManager {
     const basePath = './../assets/audio/';
     const musicPath = './../assets/music/';
     this.sounds = {
-      collect: basePath + 'ping_pong.mp3',
+      collect: basePath + 'collectable.mp3',
       clue: basePath + 'ping_pong.mp3',
-      complete: basePath + 'ping_pong.mp3',
-      talk: basePath + 'ping_pong.mp3',
-      error: basePath + 'ping_pong.mp3',
-      ui: basePath + 'ping_pong.mp3',
-      morning: basePath + 'day.mp3',
-      outdoor: basePath + 'day.mp3',
-      day: basePath + 'day.mp3'
+      complete: basePath + 'quest_complete.mp3',
+      talk: basePath + 'npc.mp3',
+      error: basePath + 'clang_and_wobble.mp3',
+      ui: basePath + 'button_click.mp3',
+      pickup: basePath + 'pickup.mp3',
+      victory: basePath + 'victory_fanfare.mp3',
+      morning: basePath + 'morning_birds.mp3',
+      outdoor: basePath + 'countryside_day.mp3',
+      day: basePath + 'countryside_day.mp3',
+      night: basePath + 'night_crickets.mp3'
     };
 
     // Background music tracks for each act

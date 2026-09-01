@@ -789,7 +789,7 @@
         }
 
         // ===== AUDIO CONFIG (update filenames here) =====
-        const basePath = ''; // './assets/sounds/'
+        const basePath = './assets/audio/';
         const SOUND = {
 
             // UI sounds
@@ -1225,8 +1225,8 @@
                     pBody.wakeUp();
                     pBody.velocity.set(0, 0, 0);
                     mouseTarget = null;
-                    // Play NPC onExit sound
-                    if (activeNpc) playNpcSound(activeNpc.data.id, 'onExit');
+            // Play NPC onExit sound
+                     if (activeNpc) playNpcSound(activeNpc.data.id, 'exit');
                 };
                 choiceEl.appendChild(b);
             }
@@ -1263,7 +1263,7 @@
             document.getElementById('local-dialogue-box').style.display = 'block';
 
             // Play NPC onEnter sound
-            playNpcSound(activeNpc.data.id, 'onEnter');
+            playNpcSound(activeNpc.data.id, 'enter');
 
             try {
                 inkStory = new inkLib.Story(npcStories[activeNpc.data.id]);
