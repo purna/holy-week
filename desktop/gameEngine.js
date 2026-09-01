@@ -643,6 +643,33 @@ export class GameEngine {
     };
   }
 
+  /** Preloads NPC profiles and dialogue for all cases so the loading screen only clears once content is ready. */
+  async preloadAssets() {
+    const profileUrls = new Set();
+    const storyNpcs = [];
+    this.cm.getAllCases().forEach(c => {
+      (c.npcs || []).forEach(npc => {
+        if (npc.profileFile) profileUrls.add(PROFILE_ID_MAP[npc.profileFile] || npc.profileFile);
+        if (npc.hasDialogue || npc.dialogueId || npc.storyFile) storyNpcs.push(npc);
+      });
+    });
+
+    const statusEl = document.getElementById('loading-text');
+    const barEl = document.getElementById('loading-bar-fill');
+    const total = storyNpcs.length + profileUrls.size;
+    let loaded = 0;
+    const tick = () => {
+      loaded++;
+      const pct = total ? Math.round((loaded / total) * 100) : 100;
+      if (statusEl) statusEl.textContent = `Loading investigation environment and evidence archives\u2026 ${pct}%`;
+      if (barEl) barEl.style.width = `${pct}%`;
+    };
+
+    const storyLoads = storyNpcs.map(npc => this.dm.loadStoryForNPC(npc).then(tick, tick));
+    const profileLoads = Array.from(profileUrls).map(url => this.ns.loader.loadProfile(url).then(tick, tick));
+    await Promise.all([...storyLoads, ...profileLoads]);
+  }
+
   bindGlobalUIEvents() {
     document.getElementById('btn-open-map').onclick = () => {
       this.audio.playUI();

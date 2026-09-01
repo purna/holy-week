@@ -555,6 +555,19 @@
 
 <body>
 
+  <!-- Initial Loading Gate: blocks interaction until case/NPC data is preloaded, so the first tap on a Case is never left waiting on a slow connection -->
+  <div id="loading-screen" class="loading-screen">
+    <div class="loading-inner">
+      <img src="../assets/images/holy-week-icon-small.svg" class="loading-logo" alt="" loading="lazy">
+      <div class="loading-title">Holy Week</div>
+      <div class="spinner" aria-hidden="true"></div>
+      <div class="loading-bar-track" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-label="Loading progress">
+        <div class="loading-bar-fill" id="loading-bar-fill"></div>
+      </div>
+      <div class="loading-text" id="loading-status">Loading investigation archives… 0%</div>
+    </div>
+  </div>
+
   <!-- Fireworks container for game completion celebration -->
   <div id="fireworks-container"></div>
 

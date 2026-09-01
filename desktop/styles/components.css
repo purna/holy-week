@@ -36,6 +36,23 @@
     }
 }
 
+.loading-bar-track {
+    width: 240px;
+    height: 6px;
+    margin: 0 auto 8px;
+    border-radius: 999px;
+    background: rgba(200, 150, 90, 0.15);
+    overflow: hidden;
+}
+
+.loading-bar-fill {
+    height: 100%;
+    width: 0%;
+    background: var(--accent-secondary);
+    border-radius: 999px;
+    transition: width 0.25s ease;
+}
+
 .loading-screen,
 .end-screen {
     position: fixed;

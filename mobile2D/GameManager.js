@@ -2,7 +2,6 @@
  * GameManager orchestrates high-level game flow, including case progression,
  * act milestones, and overall completion logic.
  */
-import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 export class GameManager {
   constructor(cm, ui, es, ns, de, chainManager, ge) {
     this.cm = cm;
@@ -212,11 +211,6 @@ export class GameManager {
     } finally {
       this._startingCase = false;
     }
-  }
-
-  /** Loads the 3D model for the current case. */
-  loadWorldModel(caseData) {
-    // mobileC uses 2D scene; no world model loading needed
   }
 
   /** Processes a case conclusion when all evidence, prophecies, and deductions are complete. */

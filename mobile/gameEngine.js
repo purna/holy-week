@@ -214,13 +214,26 @@ export class GameEngine {
     this.audio.setEnabled(this.a11y.getAll().sound);
     this.audio.playMorningAmbience();
 
-    this.preloadAssets();
+    // Gate interaction behind the loading screen so a Case tap never appears unresponsive while content fetches
+    const loadStart = performance.now();
+    await this.preloadAssets();
+    // Keep the loader visible for at least a second so fast connections still see it complete
+    const remaining = 1000 - (performance.now() - loadStart);
+    if (remaining > 0) await new Promise(r => setTimeout(r, remaining));
+    this._hideLoadingScreen();
 
     setTimeout(() => {
       this.ui.showInstructionsModal(true);
       this.gm.checkGameComplete();
       this.gm.checkChains();
     }, 800);
+  }
+
+  _hideLoadingScreen() {
+    const screen = document.getElementById('loading-screen');
+    if (!screen) return;
+    screen.classList.add('loading-hidden');
+    setTimeout(() => screen.remove(), 500);
   }
 
   async preloadAssets() {
@@ -232,8 +245,20 @@ export class GameEngine {
         if (npc.hasDialogue) storyNpcs.push({ caseId: c.id, npc });
       });
     });
-    const storyLoads = storyNpcs.map(({ caseId, npc }) => this.dm.loadStoryForNPC(npc, caseId));
-    const profileLoads = Array.from(profileUrls).map(url => this.ns.loader.loadProfile(url));
+
+    const statusEl = document.getElementById('loading-status');
+    const barEl = document.getElementById('loading-bar-fill');
+    const total = storyNpcs.length + profileUrls.size;
+    let loaded = 0;
+    const tick = () => {
+      loaded++;
+      const pct = total ? Math.round((loaded / total) * 100) : 100;
+      if (statusEl) statusEl.textContent = `Loading investigation archives\u2026 ${pct}%`;
+      if (barEl) barEl.style.width = `${pct}%`;
+    };
+
+    const storyLoads = storyNpcs.map(({ caseId, npc }) => this.dm.loadStoryForNPC(npc, caseId).then(tick, tick));
+    const profileLoads = Array.from(profileUrls).map(url => this.ns.loader.loadProfile(url).then(tick, tick));
     await Promise.all([...storyLoads, ...profileLoads]);
   }
 }

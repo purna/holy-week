@@ -214,5 +214,12 @@ window.renderInvestigationBoard = function () {
 })();
 
 game.init();
-// Show start button when game is loaded
-document.getElementById('loading-screen').classList.add('ready');
+// Preload case/NPC data before revealing the start button so it's never left waiting on the map/case screen
+const loadStart = performance.now();
+game.preloadAssets().finally(() => {
+  // Keep the loader visible for at least a second so fast connections still see it complete
+  const remaining = 1000 - (performance.now() - loadStart);
+  setTimeout(() => {
+    document.getElementById('loading-screen').classList.add('ready');
+  }, Math.max(0, remaining));
+});

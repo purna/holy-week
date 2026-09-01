@@ -2,7 +2,6 @@
  * GameManager orchestrates high-level game flow, including case progression,
  * act milestones, and overall completion logic.
  */
-import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 export class GameManager {
   constructor(cm, ui, es, ns, de, chainManager, ge) {
     this.cm = cm;
@@ -222,33 +221,6 @@ export class GameManager {
     } finally {
       this._startingCase = false;
     }
-  }
-
-  /** Loads the 3D model for the current case. */
-  loadWorldModel(caseData) {
-    if (!window.scene3d || !caseData.worldModel) return;
-
-    const scene = window.scene3d.sceneMgr.scene;
-    const loader = new GLTFLoader();
-
-    // Clear existing model
-    if (window.scene3d.worldModel) {
-      scene.remove(window.scene3d.worldModel);
-    }
-
-    loader.load(caseData.worldModel, (gltf) => {
-      const model = gltf.scene;
-      window.scene3d.worldModel = model;
-
-      // Optional: Apply case-specific properties like city layer visibility
-      const showCityLayer = caseData.showCityLayer !== false;
-      const cityLayer = model.getObjectByName('cities');
-      if (cityLayer) {
-        cityLayer.visible = showCityLayer;
-      }
-
-      scene.add(model);
-    });
   }
 
   /** Processes a case conclusion when all evidence, prophecies, and deductions are complete. */
