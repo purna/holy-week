@@ -689,9 +689,10 @@
   border-color: var(--lw-gold);
 }
 
+
 #lab-workspace .lab-btn.active .lab-btn-label,
 #lab-workspace .lab-btn.active .lab-btn-icon {
-  color: var(--lw-text);
+  color: var(--lw-surface3);
 }
 
 #lab-workspace .lab-btn.active:hover .lab-btn-label,

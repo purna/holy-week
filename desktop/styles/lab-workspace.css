@@ -116,8 +116,8 @@
 }
 
 #lab-workspace .lab-btn.active {
-  background: var(--lw-gold);
-  color: #080c14;
+  background: var(--lw-ink);
+  color: var(--lw-gold);
   border-color: var(--lw-gold);
 }
 

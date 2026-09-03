@@ -1899,6 +1899,8 @@
     letter-spacing: 0.04em;
 }
 
+
+
 .lab-btn:hover:not([aria-disabled='true']) {
     background: rgba(200, 150, 90, 0.16);
     border-color: var(--accent-primary);
