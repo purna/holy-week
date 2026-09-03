@@ -715,24 +715,6 @@ export class UIManager {
     const descEl = modal.querySelector(".evidence-detail-desc");
     descEl.textContent = e.desc || e.description || "";
 
-    const descReadMoreContainer = modal.querySelector(".evidence-read-more-container");
-    if (descReadMoreContainer) {
-      descReadMoreContainer.innerHTML = "";
-      if (e.bibleRef) {
-        const refs = (e.bibleRefs && e.bibleRefs.length > 0) ? e.bibleRefs.map(r => r.ref) : this.extractBibleReferences(e.bibleRef);
-        refs.forEach(ref => {
-          const btn = document.createElement("button");
-          btn.className = "read-more-btn";
-          btn.innerHTML = `<img src='../assets/gfx/book-open-duotone.svg' class='icon-svg' loading='lazy'> Read ${ref}`;
-          btn.onclick = () => {
-            const target = modal.querySelector(".verse-content[data-target='bible-verse-content']");
-            this.fetchVerseInline(ref, target, btn);
-          };
-          descReadMoreContainer.appendChild(btn);
-        });
-      }
-    }
-
     const locationEl = modal.querySelector(".evidence-detail-location");
     if (locationEl) {
       locationEl.textContent = e.location || "";

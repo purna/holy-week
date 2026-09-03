@@ -2306,7 +2306,8 @@ export const act3CaseD = {
 //
 // • Psalm 22:16–18 — Hands and feet pierced; soldiers cast lots for
 //   His garments.
-// • Amos 8:9 — Supernatural darkness at midday.
+// • Amos 8:9 / Exodus 10:23 — Supernatural darkness at midday,
+//   echoing the plague of darkness over Egypt.
 // • Isaiah 53:9 — Buried with the rich despite dying among criminals.
 // • Zechariah 12:10 — His side was pierced.
 // • Psalm 34:20 / Exodus 12:46 — None of His bones were broken.
@@ -2398,14 +2399,14 @@ export const act3CaseE = {
       insight: "Crucifixion did not exist as a method of execution when David penned this Psalm. Yet, the details match precisely down to the soldiers dividing His outer garments into four parts and casting lots for His single woven tunic.",
     },
     {
-      reference: "Amos 8:9",
+      reference: "Amos 8:9; Exodus 10:23",
       id: "amos_8_9",
       icon: "../assets/gfx/sparkles-duotone.svg",
-      text: `"'In that day,' declares the Sovereign LORD, 'I will make the sun go down at noon and darken the earth in broad daylight.'"`,
+      text: `"'In that day,' declares the Sovereign LORD, 'I will make the sun go down at noon and darken the earth in broad daylight.'" / "No one could see anyone else or move about for three days."`,
       written: "~750 BC", 
-      fulfilledBy: "The supernatural three-hour darkness blanketing Judea from noon until 3:00 PM",
-      gospelLink: "Mark 15:33; Luke 23:44–45",
-      insight: "Passover always occurs during a full moon, making a natural solar eclipse astronomically impossible. The historical record of this prolonged noon darkness was so widely documented that non-Christian historians like Thallos and Phlegon actively tried to find natural explanations for it.",
+      fulfilledBy: "The supernatural three-hour darkness blanketing Judea from noon until 3:00 PM as Jesus hung on the cross",
+      gospelLink: "Matthew 27:45; Mark 15:33; Luke 23:44–45",
+      insight: "Matthew's darkness at the crucifixion directly matches Amos's image of the sun going down at noon and echoes Exodus 10:23, when the plague of darkness covered Egypt while God's people had light. At Passover, the echo frames Jesus's death as both divine judgment and a new exodus leading to deliverance.",
     },
     {
       reference: "Isaiah 53:9",
@@ -3306,7 +3307,7 @@ export const act3CaseE = {
     motive: "The crucifixion was not an unexpected strategic failure, but a calculated, voluntary act of redemption that explicitly leveraged cosmic, geological, and legal parameters to fulfill ancient prophecies.",
     method: "The Roman military machinery carried out the execution, and the Sanhedrin elite initiated the charges to secure political stability. However, the resulting three hours of darkness, the rock-splitting earthquake, the top-down tearing of the Temple veil, and the rich man's burial completely bypassed their control, structurally validating Jesus as the true Messiah and the ultimate Passover Lamb.",
     lesson: "The cross transformed a Roman instrument of shame into history's absolute center of restoration. Every physical detail—from the unbroken bones to the torn curtain—proved that old barriers were shattered, and a New Covenant was established.",
-    prophesyFulfilled: ["Psalm 22:16-18", "Amos 8:9", "Isaiah 53:9", "Zechariah 12:10", "Psalm 34:20", "Isaiah 53:12", "Psalm 22:1", "Psalm 22:7-8", "Psalm 38:11", "Genesis 22:6"],
+    prophesyFulfilled: ["Psalm 22:16-18", "Amos 8:9 / Exodus 10:23", "Isaiah 53:9", "Zechariah 12:10", "Psalm 34:20", "Isaiah 53:12", "Psalm 22:1", "Psalm 22:7-8", "Psalm 38:11", "Genesis 22:6"],
     furtherReading: ["Matthew 27:32–56", "Mark 15:21–41", "Luke 23:26–49", "John 19:16–37", "Hebrews 10:19–22"],
   },
 };
