@@ -248,7 +248,13 @@ self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
       console.log('[Service Worker] Caching app shell');
-      return cache.addAll(urlsToCache);
+      return Promise.allSettled(
+        urlsToCache.map((url) =>
+          cache.add(url).catch((err) => {
+            console.warn('[Service Worker] Failed to cache:', url, err);
+          })
+        )
+      );
     }).then(() => self.skipWaiting())
   );
 });
