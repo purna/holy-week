@@ -14,10 +14,11 @@ document.addEventListener('click', (e) => {
 });
 
 // Initialize the engine when the script loads
-game.init();
+game.init().catch(err => {
+  console.error('[Facebook] Game initialization failed:', err);
+});
 
-// Register the service worker for offline play; silently no-ops where SW registration
-// is unsupported or blocked (e.g. inside a third-party iframe on Facebook).
+// Register the service worker for offline play
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('./service-worker.js').catch(err => {

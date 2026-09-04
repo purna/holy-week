@@ -643,6 +643,21 @@
     color: var(--accent-primary);
 }
 
+/* ── Very small screens ── */
+@media (max-width: 360px) {
+  .metrics-bar {
+    font-size: 0.78rem !important;
+    padding: 0 10px !important;
+    gap: 8px !important;
+  }
+  .metric-item {
+    font-size: 0.7rem !important;
+  }
+  .metric-icon {
+    font-size: 0.9rem !important;
+  }
+}
+
 /* ==========================================================================
    IN-WORLD TAGS
    ========================================================================== */
@@ -4798,7 +4813,10 @@ h4.modal-subtitle-custom {
         max-height: 100vh !important;
         border-radius: 0 !important;
     }
+
 }
+
+
 
 @media (max-width: 640px) {
     .modal-header-map-custom {
@@ -4821,6 +4839,8 @@ h4.modal-subtitle-custom {
         font-size: 0.6rem !important;
         padding: 6px 14px !important;
     }
+
+
 }
 
 /* ==========================================================================

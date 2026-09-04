@@ -411,3 +411,13 @@
     color: var(--green);
 }
 
+.npc-result-modal-card .modal-avatar img {
+    width: 33.33% !important;
+    max-width: 300px !important;
+    height: auto !important;
+    display: block;
+    margin: 0 auto;
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.45));
+    margin-bottom: 14px;
+}
+

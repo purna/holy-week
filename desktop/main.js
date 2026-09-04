@@ -225,7 +225,7 @@ window.renderInvestigationBoard = function () {
 game.init();
 
 // Register the service worker for offline play; silently no-ops where SW registration
-// is unsupported or blocked (e.g. inside a third-party iframe on Facebook).
+// is unsupported or blocked (e.g. inside a third-party iframe).
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('./service-worker.js').catch(err => {

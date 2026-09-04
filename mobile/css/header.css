@@ -127,3 +127,18 @@
 #fixed-navbar .a11y-btn.active {
     color: var(--gold);
 }
+
+/* ── Very small screens ── */
+@media (max-width: 360px) {
+  .metrics-bar {
+    font-size: 0.78rem !important;
+    padding: 4px !important;
+  }
+  .metrics-bar .metric-icon {
+    font-size: 1rem !important;
+  }
+  .header-metric,
+  .header-score {
+    font-size: 0.68rem !important;
+  }
+}

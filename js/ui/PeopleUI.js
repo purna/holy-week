@@ -135,10 +135,10 @@ export class PeopleUI {
             </div>
           </div>
           <div data-npc-modal-result hidden>
-            <div style="display:flex;align-items:center;gap:10px;">
-              <span class="modal-avatar" style="font-size:1.8rem;"></span>
-              <h3 class="section-title modal-title" style="margin:0;"></h3>
+            <div style="text-align:center;">
+              <span class="modal-avatar" style="font-size:1.8rem;display:inline-block;"></span>
             </div>
+            <h3 class="section-title modal-title" style="margin:0;text-align:center;"></h3>
             <p class="result-text modal-text" style="margin:0;line-height:1.5;"></p>
             <p class="modal-badge"></p>
             <div style="display:flex;justify-content:flex-end;margin-top:4px;">

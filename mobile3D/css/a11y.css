@@ -5,11 +5,14 @@
     min-width: 360px;
     height: auto;
     min-height: 640px;
+    max-height: 100vh;
+    max-height: 100dvh;
     margin: auto;
     inset: 0;
     border: 1px solid var(--border);
     border-radius: var(--radius-lg);
     box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    overflow: hidden;
 }
 
 .a11y-scroll {
