@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Data Deletion — Holy Week</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Cinzel:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-main: #1a1208;
+      --panel-bg: rgba(28, 18, 8, 0.94);
+      --accent-primary: #c8965a;
+      --accent-secondary: #e8c56a;
+      --accent-success: #8fbf6a;
+      --accent-error: #c94040;
+      --accent-blue: #7aa8c0;
+      --accent: #c8965a;
+      --gold: #e8c56a;
+      --red: #c94040;
+      --dim: #7a6a52;
+      --text: #e9edef;
+      --text-main: #f0e6ce;
+      --text-muted: #9a8870;
+      --font-stack: "Cinzel", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+      --font-body: "IM Fell English", "Palatino Linotype", Georgia, serif;
+      --border: rgba(100, 255, 218, 0.18);
+      --border-subtle: rgba(200, 150, 90, 0.18);
+      --border-accent: rgba(200, 150, 90, 0.45);
+      --border-gold: rgba(232, 197, 106, 0.50);
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      width: 100%;
+      min-height: 100vh;
+      background: var(--bg-main);
+      font-family: var(--font-body);
+      color: var(--text-main);
+      line-height: 1.7;
+      background-image:
+        radial-gradient(ellipse at 20% 50%, rgba(80, 45, 10, 0.40) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 20%, rgba(60, 30, 5, 0.30) 0%, transparent 50%);
+    }
+
+    h1, h2, h3 {
+      font-family: var(--font-stack);
+      letter-spacing: 0.08em;
+    }
+
+    a {
+      color: var(--accent-secondary);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem 5rem;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .header-logo {
+      width: 80px;
+      height: auto;
+      margin-bottom: 1rem;
+    }
+
+    .header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--gold);
+      text-shadow: 0 0 15px rgba(245, 200, 66, 0.4);
+      margin: 0 0 0.5rem;
+    }
+
+    .header .updated {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-family: var(--font-body);
+    }
+
+    .content {
+      background: var(--panel-bg);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 2rem;
+    }
+
+    .content h2 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--gold);
+      margin: 1.5rem 0 0.75rem;
+    }
+
+    .content h2:first-child {
+      margin-top: 0;
+    }
+
+    .content h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin: 1.25rem 0 0.5rem;
+    }
+
+    .content p {
+      font-size: 0.95rem;
+      color: var(--text-main);
+      margin-bottom: 1rem;
+    }
+
+    .content ul {
+      margin: 0.5rem 0 1rem 1.5rem;
+      line-height: 1.8;
+    }
+
+    .content li {
+      font-size: 0.95rem;
+      color: var(--text-main);
+      margin-bottom: 0.35rem;
+    }
+
+    .content hr {
+      border: none;
+      border-top: 1px solid var(--border-subtle);
+      margin: 2rem 0;
+    }
+
+    .content .note {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+
+    .content .highlight-box {
+      background: rgba(200, 150, 90, 0.1);
+      border: 1px solid var(--border-accent);
+      border-radius: 8px;
+      padding: 1rem;
+      margin: 1rem 0;
+    }
+
+    .content .highlight-box p {
+      margin-bottom: 0.5rem;
+    }
+
+    .content .highlight-box p:last-child {
+      margin-bottom: 0;
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 2rem 1rem 3rem;
+      }
+      .content {
+        padding: 1.5rem;
+      }
+      .header h1 {
+        font-size: 1.6rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <img src="../assets/images/holy-week-icon-small.svg" alt="Holy Week" class="header-logo">
+      <h1>Data Deletion</h1>
+      <p class="updated">Last updated: September 2026</p>
+    </div>
+
+    <div class="content">
+      <h2>How to Delete Your Data</h2>
+      <p>Holy Week stores game progress locally on your device and, if you are signed in, in our cloud database. You can delete your data at any time using the methods below.</p>
+
+      <div class="highlight-box">
+        <h3>Quick Delete (Local Data)</h3>
+        <p>To immediately delete all locally stored game progress, open the game and tap the <strong>Reset</strong> button in the bottom navigation bar. This will clear all case progress, scores, and accessibility settings from your device.</p>
+      </div>
+
+      <h2>Delete Account & Cloud Data</h2>
+      <p>If you have signed in with Google and have cloud-synced progress, you can request full account deletion by emailing us at <a href="mailto:privacy@pixelagent.co.uk">privacy@pixelagent.co.uk</a> with the subject line <strong>"Delete My Holy Week Account"</strong>.</p>
+
+      <p>Please include:</p>
+      <ul>
+        <li>The email address associated with your account</li>
+        <li>A brief request to delete your account and all associated data</li>
+      </ul>
+
+      <p>We will process your request within <strong>30 days</strong> and confirm once your data has been permanently deleted from our servers.</p>
+
+      <h2>Data Deletion Callback</h2>
+      <p>Meta requires that apps provide a data deletion callback endpoint. This endpoint allows Meta to trigger account deletion on behalf of users.</p>
+
+      <div class="highlight-box">
+        <p><strong>Data Deletion Callback URL:</strong></p>
+        <p><code>https://pixelagent.co.uk/holy-week/data-deletion</code></p>
+        <p><strong>Status:</strong> Endpoint placeholder — implementation pending server-side processing</p>
+      </div>
+
+      <p>When a user requests deletion through Meta, a POST request will be sent to this endpoint with a user identifier. Our server will then:</p>
+      <ul>
+        <li>Delete all user data from Firestore</li>
+        <li>Clear any cached data</li>
+        <li>Return a confirmation response to Meta</li>
+      </ul>
+
+      <p><em>Note: The callback endpoint is currently a placeholder. For immediate data deletion, please use the in-app Reset button or email us directly at privacy@pixelagent.co.uk.</em></p>
+
+      <h2>What Data We Delete</h2>
+      <p>When you request deletion, we remove:</p>
+      <ul>
+        <li>Game progress (completed cases, scores, evidence collected)</li>
+        <li>Accessibility preferences</li>
+        <li>Any cloud-synced account information</li>
+        <li>All associated records from our database</li>
+      </ul>
+
+      <h2>Retention Policy</h2>
+      <p>Deleted data cannot be recovered. We retain backup copies for a maximum of <strong>30 days</strong> before permanent erasure, as required by our infrastructure provider.</p>
+
+      <hr>
+
+      <p class="note">For any questions about data deletion or privacy, please contact us at <a href="mailto:privacy@pixelagent.co.uk">privacy@pixelagent.co.uk</a>.</p>
+    </div>
+  </div>
+</body>
+</html>
