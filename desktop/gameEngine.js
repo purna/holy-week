@@ -188,6 +188,16 @@ export class GameEngine {
     };
   }
 
+  _getMapModelPath(caseData) {
+    const actFolder = {
+      'Act I - The Triumphal Entry': 'act1',
+      'Act II - The Temple Courts': 'act2',
+      'Act III - The Last Supper': 'act3',
+      'Act IV - The Resurrection': 'act4',
+    }[caseData.actLabel] || 'act1';
+    return `./maps/${actFolder}/${caseData.id}.glb`;
+  }
+
   // Converts a grid cell (row/col) from earth-grid.json into a world position
   // on the navmesh surface, using the same lat/lon math as the grid editor.
   _gridCellToSurface(r, c, numLat, numLon, yOffset = 1.1) {
@@ -779,8 +789,8 @@ export class GameEngine {
 
     // 3. Load the specific environment model for this location
     const loader = new GLTFLoader();
-    // Load the model specified in the case data.
-    const modelPath = caseData.worldModel;
+    const mapModelPath = this._getMapModelPath(caseData);
+    const modelPath = mapModelPath;
 
     // Transition UI for loading state
     const wipeOverlay = document.getElementById('wipe-overlay');
@@ -830,7 +840,7 @@ export class GameEngine {
 
       // Populate level details ONLY after the terrain is ready to prevent occlusion
       this._loadTilemap(caseData);
-      this._populateWorldPrimitives();
+      this._populateWorldPrimitives(caseData);
       this._addLocationMarkers();
       this._placeNPCs(caseData);
       this._loadGridObjects(caseData);
@@ -1002,13 +1012,8 @@ export class GameEngine {
   }
 
   async _loadTilemap(caseData) {
-    const actFolder = {
-      'Act I - The Triumphal Entry': 'act1',
-      'Act II - The Temple Courts': 'act2',
-      'Act III - The Last Supper': 'act3',
-      'Act IV - The Resurrection': 'act4',
-    }[caseData.actLabel] || 'act1';
-    const mapPath = `./maps/${actFolder}/${caseData.id}.json`;
+    const mapPath = `./maps/${this._getMapModelPath(caseData).replace('./maps/', '').replace('.glb', '.json')}`;
+    const mapModelPath = this._getMapModelPath(caseData);
     try {
       const res = await fetch(mapPath);
       if (!res.ok) return;
@@ -1019,8 +1024,8 @@ export class GameEngine {
 
       const tileModels = {
         background: {
-          R: { type: 'glb', path: '../assets/models/building_tall.glb', scale: 2.0, density: 0.08 },
-          '#': { type: 'glb', path: '../assets/models/building_short.glb', scale: 2.0, density: 0.15 },
+          R: { type: 'glb', path: mapModelPath, scale: 2.0, density: 0.08 },
+          '#': { type: 'glb', path: mapModelPath, scale: 2.0, density: 0.15 },
           '=': null,
           '~': null,
         },
@@ -1091,14 +1096,15 @@ export class GameEngine {
     }
   }
 
-  _populateWorldPrimitives() {
+  _populateWorldPrimitives(caseData) {
     const gltfLoader = new GLTFLoader();
+    const mapModelPath = caseData ? this._getMapModelPath(caseData) : null;
 
     // --- Custom GLB Models from assets folder ---
-    // Assuming the 'assets' folder is at the same level as '_prototypeB'
+    // Buildings now use case-specific map models from /desktop/maps/
     const customModels = [
-      { path: '../assets/models/building_tall.glb', scale: 2, count: 5 },
-      { path: '../assets/models/building_short.glb', scale: 2, count: 10 },
+      { path: mapModelPath || '../assets/models/building_tall.glb', scale: 2, count: 5 },
+      { path: mapModelPath || '../assets/models/building_short.glb', scale: 2, count: 10 },
       { path: '../assets/models/tree_palm.glb', scale: 2, count: 15 },
       { path: '../assets/models/archway.glb', scale: 2, count: 3 }
     ];

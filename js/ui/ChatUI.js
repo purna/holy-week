@@ -124,7 +124,10 @@ export class ChatUI {
         <div class="npc-result-modal-backdrop" data-npc-modal-close style="position:absolute;inset:0;background:rgba(0,0,0,0.6);"></div>
         <div class="npc-result-modal-card" style="position:relative;z-index:1;background:var(--surface2,#1b2230);border:1px solid var(--border,#2e3a50);border-radius:12px;padding:20px;max-width:560px;width:100%;display:flex;flex-direction:column;gap:12px;box-shadow:0 10px 30px rgba(0,0,0,0.35);">
           <div data-npc-modal-picker>
-            <h3 class="section-title" style="margin:0;">Select Evidence</h3>
+            <div style="text-align:center;">
+              <span class="modal-avatar" style="font-size:1.8rem;display:inline-block;"></span>
+            </div>
+            <h3 class="section-title" style="margin:0;text-align:center;">Select Evidence</h3>
             ${this.evidencePickerIntro ? `<p class="prophecy-people-intro" style="margin:0 0 10px;">${this.evidencePickerIntro}</p>` : ""}
             <div class="evidence-pick-list" data-modal-picker-list>
               
@@ -411,6 +414,12 @@ export class ChatUI {
     const result = modal.querySelector("[data-npc-modal-result]");
     if (picker) picker.hidden = false;
     if (result) result.hidden = true;
+
+    const pickerAvatarEl = modal.querySelector("[data-npc-modal-picker] .modal-avatar");
+    const npc = this.npcs.getNPC(npcId);
+    if (pickerAvatarEl && npc) {
+      pickerAvatarEl.innerHTML = avatarMarkup(npc.avatar || '');
+    }
 
     const pickerList = modal.querySelector("[data-modal-picker-list]");
     if (pickerList) {
