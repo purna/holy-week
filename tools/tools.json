@@ -14,10 +14,17 @@
     "files": ["case-editor.html"]
   },
   {
-    "name": "Character Head Generator",
-    "path": "Character Head Generator/",
+    "name": "Character Generator 2D",
+    "path": "Character Generator 2D/",
     "tag": "Asset Tool",
     "description": "Generate and preview character head assets.",
+    "files": ["index.html"]
+  },
+    {
+    "name": "Character Generator 3D",
+    "path": "Character Generator 3D/",
+    "tag": "Asset Tool",
+    "description": "Generate and preview 3d character assets.",
     "files": ["index.html"]
   },
   {

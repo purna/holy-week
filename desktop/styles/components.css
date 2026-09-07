@@ -3622,6 +3622,44 @@ h4.modal-subtitle-custom {
     font-size: 0.85rem;
 }
 
+.what-happened-section {
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px solid var(--border-subtle);
+}
+
+.what-happened-label {
+    display: block;
+    font-family: var(--font-stack);
+    font-size: 0.85rem;
+    color: var(--gold);
+    margin-bottom: 8px;
+    letter-spacing: 0.05em;
+}
+
+.what-happened-input {
+    width: 100%;
+    padding: 10px;
+    background: var(--panel-2);
+    color: var(--text-main);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    resize: vertical;
+    min-height: 80px;
+}
+
+.what-happened-input:focus {
+    outline: 2px solid var(--accent);
+    outline-offset: 1px;
+}
+
+.what-happened-input::placeholder {
+    color: var(--text-muted);
+    opacity: 0.7;
+}
+
 .codex-matching-columns .picker-card:hover {
     border-color: var(--accent-primary);
     background: rgba(0, 242, 255, 0.06);

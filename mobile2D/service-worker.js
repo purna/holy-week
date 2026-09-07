@@ -8,7 +8,7 @@ const CACHE_NAME = `${CACHE_PREFIX}-${CACHE_VERSION}`;
 // Paths are relative to the service worker's location (e.g., './' for index.html).
 const urlsToCache = [
   // Core App Shell
-  './index.html',
+  '../mobile2d.html',
   './favicon.ico',
   './main.js',
   './gameEngine.js',

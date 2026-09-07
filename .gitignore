@@ -1,6 +1,12 @@
 # This .gitignore file should be placed at the root of your project directory
 #
-
 /[Aa]rtwork/
 
+.DS_Store
+*.DS_Store
 *.log
+.kilo/*
+*.kilo
+*.kilo/*
+.vscode/*
+.vscode

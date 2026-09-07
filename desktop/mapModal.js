@@ -38,7 +38,7 @@ export class OrbitalSelectMatrixModal {
 
         this.camera = new THREE.PerspectiveCamera(45, 1, 0.1, 500);
         this.renderer = new THREE.WebGLRenderer({ antialias: true });
-        this.renderer.setPixelRatio(window.devicePixelRatio);
+        this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
         this.wrapper.appendChild(this.renderer.domElement);
 
         const sun = new THREE.DirectionalLight(0xffffff, 1.2);
@@ -473,13 +473,58 @@ export class OrbitalSelectMatrixModal {
 
         const raycaster = new THREE.Raycaster();
         raycaster.setFromCamera(mouse, this.camera);
-        const intersects = raycaster.intersectObjects(this.markers);
+        const visibleMarkers = this.markers.filter(m => m.visible);
+        const intersects = raycaster.intersectObjects(visibleMarkers);
 
         if (intersects.length > 0) {
             const m = intersects[0].object;
             if (m.callback) m.callback();
             if (this.audio) this.audio.playUI();
         }
+    }
+
+    _updateMarkerVisibility() {
+        const frustum = new THREE.Frustum();
+        const matrix = new THREE.Matrix4().multiplyMatrices(
+            this.camera.projectionMatrix,
+            this.camera.matrixWorldInverse
+        );
+        frustum.setFromProjectionMatrix(matrix);
+
+        const w = this.wrapper.clientWidth;
+        const h = this.wrapper.clientHeight;
+
+        this.labels.forEach((item) => {
+            const worldPos = new THREE.Vector3();
+            item.marker.getWorldPosition(worldPos);
+
+            const isBehind = worldPos.dot(this.camera.position) < 0;
+            const inFrustum = frustum.containsPoint(worldPos);
+
+            const vector = worldPos.clone().project(this.camera);
+            const x = (vector.x * 0.5 + 0.5) * w;
+            const y = (vector.y * -0.5 + 0.5) * h;
+            const margin = 60;
+            const inViewport = x >= -margin && x <= w + margin && y >= -margin && y <= h + margin;
+
+            const visible = !isBehind && inFrustum && inViewport;
+            item.marker.visible = visible;
+            item.visible = visible;
+
+            if (visible) {
+                item.dot.style.left = `${x}px`;
+                item.dot.style.top = `${y}px`;
+                item.label.style.left = `${x}px`;
+                item.label.style.top = `${y - 25}px`;
+                item.dot.style.opacity = '1';
+                item.label.style.opacity = '1';
+                item.dot.style.pointerEvents = 'auto';
+            } else {
+                item.dot.style.opacity = '0';
+                item.label.style.opacity = '0';
+                item.dot.style.pointerEvents = 'none';
+            }
+        });
     }
 
     open() {
@@ -579,39 +624,9 @@ export class OrbitalSelectMatrixModal {
         this.camera.position.setFromSphericalCoords(21, this.phi, this.theta);
         this.camera.lookAt(0, 0, 0);
 
-        // Significantly slowed rotation for cinematic effect
         if (!this.dragging && this.core) this.core.rotation.y += 0.0005;
 
         this.renderer.render(this.scene, this.camera);
-
-        const w = this.wrapper.clientWidth;
-        const h = this.wrapper.clientHeight;
-
-        this.labels.forEach((item) => {
-            // Get world position of the marker
-            const worldPos = new THREE.Vector3();
-            item.marker.getWorldPosition(worldPos);
-
-            // Project world position to screen space
-            const vector = worldPos.clone().project(this.camera);
-
-            // Determine occlusion: Node is occluded by the globe when it faces away from the camera
-            // Since globe is at origin, worldPos is the normal from center to node.
-            const isBehind = worldPos.dot(this.camera.position) < 0;
-
-            const x = (vector.x * 0.5 + 0.5) * w;
-            const y = (vector.y * -0.5 + 0.5) * h; // Invert Y for screen coordinates
-
-            // Use left/top for base position so CSS transform is free for animations/hover
-            item.dot.style.left = `${x}px`;
-            item.dot.style.top = `${y}px`;
-
-            item.label.style.left = `${x}px`;
-            item.label.style.top = `${y - 25}px`;
-
-            item.dot.style.opacity = isBehind ? '0' : '1';
-            item.label.style.opacity = isBehind ? '0' : '1';
-            item.dot.style.pointerEvents = isBehind ? 'none' : 'auto';
-        });
+        this._updateMarkerVisibility();
     }
 }

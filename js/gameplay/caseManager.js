@@ -56,6 +56,7 @@ export class CaseManager {
         unlockedSuspects: [],
         suspects: this._initializeSuspects(this.cases[id]),
         score: null,
+        theories: [],
       };
     }
     if (!isNew) {
@@ -593,6 +594,7 @@ export class CaseManager {
         unlockedSuspects: [],
         suspects: this._initializeSuspects(nextCase),
         score: null,
+        theories: [],
       };
     }
     this._saveProgress();
@@ -649,6 +651,19 @@ export class CaseManager {
       console.warn("[CaseManager] Progress could not be saved on this device.", error);
       return false;
     }
+  }
+
+  recordTheory(caseId, theory) {
+    if (!caseId) return;
+    const c = this.cases[caseId];
+    if (!c) return;
+    const p = this._ensureProgress(caseId);
+    if (!p.theories) p.theories = [];
+    p.theories.push({
+      text: theory,
+      timestamp: Date.now()
+    });
+    this._saveProgress();
   }
 
   resetProgress() {

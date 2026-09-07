@@ -10,10 +10,11 @@ A browser-based educational detective game set during Holy Week in Jerusalem. In
 
 | Version | Description |
 |---------|-------------|
-| [`/desktop/`](desktop/) | Full 3D desktop experience with globe map, HUD panels, and keyboard/mouse controls |
-| [`/mobile/`](mobile/) | Mobile-first interface with touch controls and streamlined panels |
-| [`/mobile2D/`](mobile2D/) | 2D mobile variant |
-| [`/mobile3D/`](mobile3D/) | 3D mobile variant with deduction engine |
+| [`/desktop.html`](desktop.html) | Full 3D desktop experience with globe map, HUD panels, and keyboard/mouse controls |
+| [`/mobile.html`](mobile.html) | Mobile-first interface with touch controls and streamlined panels |
+| [`/mobile2d.html`](mobile2d.html) | 2D mobile variant |
+| [`/mobile3d.html`](mobile3d.html) | 3D mobile variant with deduction engine |
+| [`/facebook.html`](facebook.html) | Facebook Instant Games variant |
 
 ---
 

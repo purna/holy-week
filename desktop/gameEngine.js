@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import { CaseManager } from './../js/gameplay/caseManager.js';
 import { EvidenceSystem } from './../js/gameplay/evidenceSystem.js';
-import { NPCSystem, PROFILE_ID_MAP } from "./NPCSystem.js";
+import { NPCSystem, PROFILE_ID_MAP, CHARACTER_MODEL_MAP } from "./NPCSystem.js";
 import { DeductionEngine } from './../js/gameplay/deductionEngine.js';
 import { LocationSystem } from './../js/gameplay/locationSystem.js';
 import { AccessibilityManager } from "../js/ui/AccessibilityManager.js";
@@ -472,7 +472,7 @@ export class GameEngine {
       }
     });
 
-    // Unified Mouse Listener: Left-click for Interaction/Selection, Right-click for Movement
+    // Unified Mouse Listener: Left-click for Interaction/Selection OR Movement
     this.renderer.domElement.addEventListener('mousedown', (e) => {
       const mouseCoords = new THREE.Vector2(
         (e.clientX / window.innerWidth) * 2 - 1,
@@ -481,7 +481,7 @@ export class GameEngine {
       const raycaster = new THREE.Raycaster();
       raycaster.setFromCamera(mouseCoords, this.camera);
 
-      if (e.button === 0) { // Left-click: Node/Pin Selection
+      if (e.button === 0) { // Left-click: Interaction OR Movement
         // Check intersection with NPCs, Evidence, and World Markers (pins)
         const interactivePool = [...this.npcMeshes, ...this.evidenceMeshes, ...this.worldObjects];
         const hits = raycaster.intersectObjects(interactivePool, true);
@@ -497,12 +497,16 @@ export class GameEngine {
           if (target && target.userData && target.userData.caseId) {
             this.audio.playUI();
             this.loadCase(target.userData.caseId);
+            return;
           }
         }
-      } else if (e.button === 2) { // Right-click: Point-and-Click Navigation
+
+        // If no interactive object was clicked, move player to clicked ground position
         const groundTargets = this.worldEarth ? [this.groundSphere, this.worldEarth] : [this.groundSphere];
-        const hits = raycaster.intersectObjects(groundTargets, true);
-        if (hits.length > 0) this.mouseTarget = hits[0].point;
+        const groundHits = raycaster.intersectObjects(groundTargets, true);
+        if (groundHits.length > 0) {
+          this.mouseTarget = groundHits[0].point;
+        }
       }
     });
   }
@@ -877,10 +881,11 @@ export class GameEngine {
 
   _loadNPCModel(npc, pos, index) {
     const loader = new GLTFLoader();
-    const modelFiles = ['npc_horizon.glb', 'npc_echo.glb', 'npc_keeper.glb', 'npc_spire.glb'];
-    const modelFile = modelFiles[index % modelFiles.length];
+    const characterModel = CHARACTER_MODEL_MAP[npc.id];
+    const modelFile = characterModel || ['npc_horizon.glb', 'npc_echo.glb', 'npc_keeper.glb', 'npc_spire.glb'][index % 4];
+    const modelPath = characterModel ? modelFile : `../assets/models/npcs/${modelFile}`;
 
-    loader.load(`../assets/models/npcs/${modelFile}`, (gltf) => {
+    loader.load(modelPath, (gltf) => {
       const model = gltf.scene;
       model.position.copy(pos);
       this._alignToSurface(model);
@@ -914,7 +919,7 @@ export class GameEngine {
       model.add(halo);
       model.userData.halo = halo;
     }, undefined, (error) => {
-      console.warn(`[NPC] Failed to load ${modelFile}, using fallback box:`, error);
+      console.warn(`[NPC] Failed to load ${modelPath}, using fallback box:`, error);
       const npcGeo = new THREE.BoxGeometry(1.2, 2.2, 1.2);
       const npcMat = new THREE.MeshStandardMaterial({
         color: npc.color || 0x444444,
@@ -1013,7 +1018,6 @@ export class GameEngine {
 
   async _loadTilemap(caseData) {
     const mapPath = `./maps/${this._getMapModelPath(caseData).replace('./maps/', '').replace('.glb', '.json')}`;
-    const mapModelPath = this._getMapModelPath(caseData);
     try {
       const res = await fetch(mapPath);
       if (!res.ok) return;
@@ -1024,8 +1028,8 @@ export class GameEngine {
 
       const tileModels = {
         background: {
-          R: { type: 'glb', path: mapModelPath, scale: 2.0, density: 0.08 },
-          '#': { type: 'glb', path: mapModelPath, scale: 2.0, density: 0.15 },
+          R: { type: 'prim', fn: 'tall', density: 0.08 },
+          '#': { type: 'prim', fn: 'short', density: 0.15 },
           '=': null,
           '~': null,
         },
@@ -1038,7 +1042,9 @@ export class GameEngine {
         },
       };
 
-      const gltfLoader = new GLTFLoader();
+      const buildingMaterial = new THREE.MeshStandardMaterial({ color: 0x8c7a6b, roughness: 0.9 });
+      const buildingTallGeo = new THREE.BoxGeometry(1, 3.5, 1);
+      const buildingShortGeo = new THREE.BoxGeometry(1.2, 1.6, 1.2);
 
       for (const layerName of ['background', 'decoration']) {
         const grid = data[layerName];
@@ -1067,25 +1073,15 @@ export class GameEngine {
               obj.position.copy(pos);
               this._alignToSurface(obj);
               this.worldObjects.push(obj);
-            } else if (def.type === 'glb') {
-              gltfLoader.load(def.path, (gltf) => {
-                const model = gltf.scene;
-                model.traverse(node => {
-                  if (node.isMesh) {
-                    node.castShadow = true;
-                    node.receiveShadow = true;
-                  }
-                });
-                model.scale.setScalar(def.scale);
-                const box = new THREE.Box3().setFromObject(model);
-                const size = box.getSize(new THREE.Vector3());
-                model.userData.collisionRadius = Math.max(size.x, size.z) * 0.5 * def.scale;
-                model.position.copy(pos);
-                this._alignToSurface(model);
-                this.worldObjects.push(model);
-              }, undefined, (err) => {
-                console.warn(`[Tilemap] Failed to load ${def.path}:`, err);
-              });
+            } else if (def.type === 'prim') {
+              const geo = def.fn === 'tall' ? buildingTallGeo : buildingShortGeo;
+              const mesh = new THREE.Mesh(geo, buildingMaterial);
+              mesh.position.copy(pos);
+              mesh.castShadow = true;
+              mesh.receiveShadow = true;
+              mesh.userData.collisionRadius = 0.6;
+              this._alignToSurface(mesh);
+              this.worldObjects.push(mesh);
             }
           }
         }
@@ -1098,60 +1094,56 @@ export class GameEngine {
 
   _populateWorldPrimitives(caseData) {
     const gltfLoader = new GLTFLoader();
-    const mapModelPath = caseData ? this._getMapModelPath(caseData) : null;
 
-    // --- Custom GLB Models from assets folder ---
-    // Buildings now use case-specific map models from /desktop/maps/
+    const buildingMaterial = new THREE.MeshStandardMaterial({ color: 0x8c7a6b, roughness: 0.9 });
+    const tallGeo = new THREE.BoxGeometry(1, 3.5, 1);
+    const shortGeo = new THREE.BoxGeometry(1.2, 1.6, 1.2);
+
     const customModels = [
-      { path: mapModelPath || '../assets/models/building_tall.glb', scale: 2, count: 5 },
-      { path: mapModelPath || '../assets/models/building_short.glb', scale: 2, count: 10 },
-      { path: '../assets/models/tree_palm.glb', scale: 2, count: 15 },
-      { path: '../assets/models/archway.glb', scale: 2, count: 3 }
+      { type: 'prim', geo: tallGeo, mat: buildingMaterial, scale: 2, count: 5 },
+      { type: 'prim', geo: shortGeo, mat: buildingMaterial, scale: 2, count: 10 },
+      { type: 'glb', path: '../assets/models/tree_palm.glb', scale: 2, count: 15 },
+      { type: 'glb', path: '../assets/models/archway.glb', scale: 2, count: 3 }
     ];
 
     customModels.forEach(modelDef => {
       for (let i = 0; i < modelDef.count; i++) {
-        const x = (Math.random() - 0.5) * 180; // Wider spread for models
+        const x = (Math.random() - 0.5) * 180;
         const z = (Math.random() - 0.5) * 180;
-        // Ensure we don't spawn directly on the center
-        if (Math.abs(x) < 10 && Math.abs(z) < 10) continue; // Avoid spawning too close to origin
+        if (Math.abs(x) < 10 && Math.abs(z) < 10) continue;
 
-        gltfLoader.load(modelDef.path, (gltf) => {
-          const model = gltf.scene;
-          // Calculate height offset based on model's bounding box
-          const bbox = new THREE.Box3().setFromObject(model);
-          const size = bbox.getSize(new THREE.Vector3()).multiplyScalar(modelDef.scale);
-          // GLB origins are usually at the base, so offset is 0
-          const pos = this._projectToSurface(x, 0, z); // x, y_offset=0, z
-          model.position.copy(pos);
-          this._alignToSurface(model);
-          model.userData.collisionRadius = Math.max(size.x, size.z) * 0.5;
+        const pos = this._projectToSurface(x, 0, z);
 
-          model.traverse(node => {
-            if (node.isMesh) {
-              node.castShadow = true;
-              node.receiveShadow = true;
-            }
+        if (modelDef.type === 'prim') {
+          const mesh = new THREE.Mesh(modelDef.geo, modelDef.mat);
+          mesh.position.copy(pos);
+          mesh.scale.setScalar(modelDef.scale);
+          mesh.castShadow = true;
+          mesh.receiveShadow = true;
+          mesh.userData.collisionRadius = 0.6 * modelDef.scale;
+          this._alignToSurface(mesh);
+          this.worldObjects.push(mesh);
+        } else if (modelDef.type === 'glb') {
+          gltfLoader.load(modelDef.path, (gltf) => {
+            const model = gltf.scene;
+            const bbox = new THREE.Box3().setFromObject(model);
+            const size = bbox.getSize(new THREE.Vector3()).multiplyScalar(modelDef.scale);
+            model.position.copy(pos);
+            this._alignToSurface(model);
+            model.userData.collisionRadius = Math.max(size.x, size.z) * 0.5;
+
+            model.traverse(node => {
+              if (node.isMesh) {
+                node.castShadow = true;
+                node.receiveShadow = true;
+              }
+            });
+            model.scale.setScalar(modelDef.scale);
+            this.worldObjects.push(model);
+          }, undefined, (error) => {
+            console.warn(`Failed to load custom model ${modelDef.path}:`, error);
           });
-
-          // Objects are added to the scene root, so we use their intended world scale directly
-          model.scale.setScalar(modelDef.scale);
-          this.worldObjects.push(model);
-        }, undefined, (error) => {
-          console.warn(`Failed to load custom model ${modelDef.path}:`, error);
-          // Fallback to a primitive if GLB fails
-          const fallbackGeo = new THREE.BoxGeometry(modelDef.scale, modelDef.scale * 2, modelDef.scale);
-          const fallbackMat = new THREE.MeshStandardMaterial({ color: 0x888888 });
-          const fallbackMesh = new THREE.Mesh(fallbackGeo, fallbackMat);
-          const fallbackPos = this._projectToSurface(x, modelDef.scale, z); // x, y_offset=modelDef.scale, z
-          fallbackMesh.position.copy(fallbackPos);
-          fallbackMesh.scale.setScalar(1.0);
-          this._alignToSurface(fallbackMesh);
-          fallbackMesh.castShadow = true;
-          fallbackMesh.receiveShadow = true;
-          this.worldObjects.push(fallbackMesh);
-          fallbackMesh.userData.collisionRadius = modelDef.scale;
-        });
+        }
       }
     });
 
@@ -1410,6 +1402,25 @@ export class GameEngine {
     if (concludeBtn) {
       concludeBtn.onclick = () => this.openConclusionModal();
     }
+
+    const submitTheoryBtn = container.querySelector('#btn-submit-theory');
+    if (submitTheoryBtn) {
+      submitTheoryBtn.onclick = () => {
+        const input = container.querySelector('#what-happened-input');
+        const theory = input?.value?.trim();
+        if (!theory) {
+          this.controls.displayAlert('Please describe what you think happened before submitting.', 3000);
+          return;
+        }
+        this.audio.playUI();
+        this.cm.recordTheory(c.id, theory);
+        this.controls.displayAlert('Theory submitted. Good luck, detective.', 3000);
+        if (input) input.value = '';
+        submitTheoryBtn.disabled = true;
+        setTimeout(() => { if (submitTheoryBtn) submitTheoryBtn.disabled = false; }, 2000);
+      };
+    }
+
     if (!isConcluded && this.cm.canConcludeCase()) {
       this._startFireworks();
     }

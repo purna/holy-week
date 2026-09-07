@@ -5,8 +5,7 @@ const CACHE_NAME = `${CACHE_PREFIX}-${CACHE_VERSION}`;
 // This list MUST be updated with all files required for the desktop version to run offline.
 const urlsToCache = [
   // Core App Shell
-  './',
-  './index.html',
+  '../desktop.html',
   './manifest.json',
   './favicon.ico',
 

@@ -184,7 +184,11 @@ export class GameEngine {
     // Facebook Instant Games integration: no-op everywhere else, since FBInstant only exists on Facebook
     const fb = typeof FBInstant !== 'undefined' ? FBInstant : null;
     if (fb) {
-      try { await fb.initializeAsync(); } catch (e) { console.warn('[FBInstant] initializeAsync failed:', e); }
+      try {
+        await this._awaitFacebookStep(fb.initializeAsync(), 'initializeAsync');
+      } catch (e) {
+        console.warn('[FBInstant] initializeAsync failed:', e);
+      }
     }
     
     // Global exports for HTML event handlers
@@ -230,7 +234,11 @@ export class GameEngine {
     if (remaining > 0) await new Promise(r => setTimeout(r, remaining));
 
     if (fb) {
-      try { await fb.startGameAsync(); } catch (e) { console.warn('[FBInstant] startGameAsync failed:', e); }
+      try {
+        await this._awaitFacebookStep(fb.startGameAsync(), 'startGameAsync');
+      } catch (e) {
+        console.warn('[FBInstant] startGameAsync failed:', e);
+      }
       try { fb.onPause(() => this.audio.pauseAll()); } catch (e) { /* not supported in this FBInstant version */ }
     }
     this._hideLoadingScreen();
@@ -240,6 +248,15 @@ export class GameEngine {
       this.gm.checkGameComplete();
       this.gm.checkChains();
     }, 800);
+  }
+
+  _awaitFacebookStep(promise, step, timeoutMs = 5000) {
+    return Promise.race([
+      promise,
+      new Promise((_, reject) => setTimeout(() => {
+        reject(new Error(`${step} timed out outside the Facebook host`));
+      }, timeoutMs))
+    ]);
   }
 
   _hideLoadingScreen() {

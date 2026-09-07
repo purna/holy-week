@@ -42,17 +42,26 @@ export class AccuseUI {
                     <div class="case-file-progress-value">${complete} / ${total}</div>
                 </div>
                  <div class="prophecy-checklist">
-                     ${prophecies.map(p => {
-                         const isClickable = p.status === 'complete' || p.status === 'found_scripture';
-                         const clickHandler = isClickable ? `onclick="window.ui.showProphecyDetail('${p.id}')"` : '';
-                         return `
-                         <div class="prophecy-checklist-item status-${p.status}" ${clickHandler}>
-                             <span class="prophecy-checklist-icon" aria-hidden="true">${statusIcon(p.status)}</span>
-                             <span class="prophecy-checklist-name">${p.status === 'unseen' ? '???' : p.reference}</span>
-                         </div>`;
-                     }).join("")}
-                 </div>
+                      ${prophecies.map(p => {
+                          const isClickable = p.status === 'complete' || p.status === 'found_scripture';
+                          const clickHandler = isClickable ? `onclick="window.ui.showProphecyDetail('${p.id}')"` : '';
+                          return `
+                          <div class="prophecy-checklist-item status-${p.status}" ${clickHandler}>
+                              <span class="prophecy-checklist-icon" aria-hidden="true">${statusIcon(p.status)}</span>
+                              <span class="prophecy-checklist-name">${p.status === 'unseen' ? '???' : p.reference}</span>
+                          </div>`;
+                      }).join("")}
+                  </div>
                 ${concludeButton}
+                <div class="what-happened-section" style="margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--border-subtle);">
+                    <label class="what-happened-label" style="display: block; font-family: var(--font-stack); font-size: 0.85rem; color: var(--gold); margin-bottom: 8px; letter-spacing: 0.05em;">
+                        What happened?
+                    </label>
+                    <textarea id="what-happened-input" class="what-happened-input" rows="4" placeholder="Describe what you believe happened in this case..." style="width: 100%; padding: 10px; background: var(--panel-2); color: var(--text-main); border: 1px solid var(--border); border-radius: 6px; font-family: var(--font-body); font-size: 0.9rem; resize: vertical;"></textarea>
+                    <button id="btn-submit-theory" class="conclude-btn" style="margin-top: 10px;" ${isConcluded ? 'disabled' : ''}>
+                        <i class="fa-solid fa-paper-plane"></i> Submit Theory
+                    </button>
+                </div>
             </div>`;
     }
 }

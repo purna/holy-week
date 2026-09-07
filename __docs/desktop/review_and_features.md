@@ -17,6 +17,14 @@ Adds critical characters for the Lazarus plot:
 - **NPC Interaction System:** [IN PROGRESS] The player needs the UI hook to trigger these new Ink files via proximity.
 - **Analysis Depth:** The deductions in Case B are thinner than Case A.
 
+## Performance Requirements
+### Globe/Map Modal Rendering
+The orbital map modal ("Glode") must render only the player's visible area to keep the browser responsive:
+- **Viewport culling:** Case markers/labels outside the camera frustum must not be rendered or updated each frame.
+- **Occlusion culling:** Markers behind the globe must be skipped from both WebGL rendering and DOM label updates.
+- **Pixel-ratio cap:** The modal renderer must cap `setPixelRatio` to avoid oversized canvases on high-DPI screens.
+- **Selective DOM updates:** HTML labels/dots must only be updated when their corresponding marker is actually visible.
+
 ## Suggested Improvements
 1.  **"Accuse Anyone" System:** 
     - Implement a proximity-based interaction where walking up to *any* NPC opens a "Challenge" menu.
