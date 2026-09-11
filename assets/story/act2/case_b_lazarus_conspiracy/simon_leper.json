@@ -1,1 +1,55 @@
-{"inkVersion":21,"root":[[{"->":"start"},["done",{"#f":5,"#n":"g-0"}],null],"done",{"start":[["^My house was a place of exclusion once. Now, it is a place where the Son of God eats. The perfume Mary poured on him... the scent is still in the rafters. The disciples grumbled about the cost, but Jesus saw it as a preparation.","\n","ev","str","^What did Jesus say about his burial?","/str","/ev",{"*":".^.c-0","flg":20},"ev","str","^How was your leprosy healed?","/str","/ev",{"*":".^.c-1","flg":20},{"c-0":["^ ",{"->":"probe_burial"},"\n",{"#f":5}],"c-1":["^ ",{"->":"healing"},"\n",{"#f":5}]}],{"#f":1}],"healing":[["^He touched me. Nobody touches a leper. The Law says I am unclean, but his touch made the Law irrelevant. I am clean because he willed it. My house is his house now.","\n","ev","str","^What about the perfume?","/str","/ev",{"*":".^.c-0","flg":20},{"c-0":["^ ",{"->":"probe_burial"},"\n",{"#f":5}]}],{"#f":1}],"probe_burial":[["^He said she was anointing him for his burial. He said it so calmly, while we were all laughing and eating. It was as if he was already looking past the cross.","\n","ev","str","^Was there a Temple spy here?","/str","/ev",{"*":".^.c-0","flg":20},{"c-0":["^ ",{"->":"spy"},"\n",{"#f":5}]}],{"#f":1}],"spy":[["^A man in a Temple robe came to the door. He didn't come to eat. He came to count the guests. He asked if Lazarus was here. I told him the King's table is open to all, but his eyes were cold.","\n","ev","str","^Continue.","/str","/ev",{"*":".^.c-0","flg":20},{"c-0":["^ ",{"->":"closing"},"\n",{"#f":5}]}],{"#f":1}],"closing":[["^The Temple spy left a silver coin on the table. A bribe to tell them when Jesus leaves for the Garden. I threw it into the street. I have been clean long enough to know the smell of corruption.","\n","done",{"#f":1}],{"#f":1}],"#f":1}],"listDefs":{}}
+{
+  "start": {
+    "content": "My house was a place of exclusion once. The Law declared me unclean. Now, it is a place where the Son of God eats bread. Lazarus, another man who has defeated a tomb, sits at my table. And Mary... she has just filled the air with the scent of a king's burial.",
+    "choices": [
+      {
+        "text": "Tell me about the anointing.",
+        "destination": "anointing"
+      },
+      {
+        "text": "Lazarus is here as well?",
+        "destination": "lazarus"
+      }
+    ]
+  },
+  "anointing": {
+    "content": "The disciples saw the cost. I saw the courage. To bring something so valuable and break it for Him... it was an act of total surrender. The Teacher said it was to prepare Him for burial. The mood in the room changed after He said that.",
+    "choices": [
+      {
+        "text": "How did the disciples react?",
+        "destination": "disciples_reaction"
+      }
+    ]
+  },
+  "lazarus": {
+    "content": "He sits there, eating and breathing. A living miracle. He is the reason the chief priests are so afraid. They cannot deny a man who was dead for four days. So they plot to kill him again. My house is full of life, and the city is full of death warrants.",
+    "choices": [
+      {
+        "text": "closing",
+        "destination": "closing"
+      }
+    ]
+  },
+  "disciples_reaction": {
+    "content": "Judas was angry. He spoke of the poor, but his hands are always near the money bag. The others were quiet, but you could see them doing the math in their heads. They do not yet understand the economy of His kingdom.",
+    "choices": [
+      {
+        "text": "And Jesus?",
+        "destination": "jesus_reaction"
+      }
+    ]
+  },
+  "jesus_reaction": {
+    "content": "He looked at Mary with such kindness. He honored her gift above all their objections. He saw her heart, not the price of the perfume. In my own house, I saw a man who was once unclean be honored, a man who was dead be welcomed, and a woman's love be treasured. This is the kingdom He speaks of.",
+    "choices": [
+      {
+        "text": "closing",
+        "destination": "closing"
+      }
+    ]
+  },
+  "closing": {
+    "content": "They can watch my house. They can send their spies. But what happened in here tonight... it cannot be undone.",
+    "choices": []
+  }
+}

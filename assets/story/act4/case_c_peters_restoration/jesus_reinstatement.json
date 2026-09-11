@@ -1,135 +1,86 @@
 {
-    "inkVersion": 21,
-    "root": [
-        [
-            {
-                "->": "start"
-            },
-            [
-                "done",
-                {
-                    "#n": "g-0"
-                }
-            ],
-            null
-        ],
-        "done",
-        {
-            "start": [
-                [
-                    "^'Children, do you have any fish?'",
-                    {
-                        "*": "cast_net",
-                        "flg": 2,
-                        "s": [
-                            "^No, we have caught nothing all night."
-                        ]
-                    },
-                    {
-                        "*": "identity",
-                        "flg": 2,
-                        "s": [
-                            "^Who is asking?"
-                        ]
-                    },
-                    null
-                ],
-                null
-            ],
-            "cast_net": [
-                [
-                    "^'Cast the net on the right side of the boat, and you will find some.'",
-                    {
-                        "*": "catch",
-                        "flg": 2,
-                        "s": [
-                            "^We will try once more."
-                        ]
-                    },
-                    null
-                ],
-                null
-            ],
-            "identity": [
-                [
-                    "^The light of the morning reflects off the water. 'It is the Lord!' John whispers beside you.",
-                    {
-                        "*": "shore",
-                        "flg": 2,
-                        "s": [
-                            "^Peter jumps into the sea."
-                        ]
-                    },
-                    null
-                ],
-                null
-            ],
-            "catch": [
-                [
-                    "^The net strains, nearly tearing with the weight of one hundred and fifty-three large fish.",
-                    {
-                        "*": "shore",
-                        "flg": 2,
-                        "s": [
-                            "^It is the Lord!"
-                        ]
-                    },
-                    null
-                ],
-                null
-            ],
-            "shore": [
-                [
-                    "^A charcoal fire is burning on the sand, with fish on it and some bread. 'Come and have breakfast,' Jesus says.",
-                    {
-                        "*": "restoration",
-                        "flg": 2,
-                        "s": [
-                            "^Sit and eat."
-                        ]
-                    },
-                    null
-                ],
-                null
-            ],
-            "restoration": [
-                [
-                    "^He turns to Simon Peter. 'Simon, son of John, do you love me more than these?'",
-                    {
-                        "*": "feeding",
-                        "flg": 2,
-                        "s": [
-                            "^He is asking about the love that stays."
-                        ]
-                    },
-                    null
-                ],
-                null
-            ],
-            "feeding": [
-                [
-                    "^'Feed my lambs... Tend my sheep... Feed my sheep.' Three times He asks, and three times He commissions the one who fled.",
-                    {
-                        "*": "closing",
-                        "flg": 2,
-                        "s": [
-                            "^Continue."
-                        ]
-                    },
-                    null
-                ],
-                null
-            ],
-            "closing": [
-                [
-                    "^'Follow me,' He says. The investigation of the empty tomb leads here\u2014to a life given back and a mission that will change the world.",
-                    "^-> DONE",
-                    null
-                ],
-                null
-            ]
-        }
-    ],
-    "globals": {},
-    "listDefs": {}
+  "start": {
+    "content": "\"Children, do you have any fish?\" We had caught nothing all night. Who is asking?",
+    "choices": [
+      {
+        "text": "No, we have caught nothing.",
+        "destination": "cast_net"
+      },
+      {
+        "text": "Who is asking?",
+        "destination": "identity"
+      }
+    ]
+  },
+  "cast_net": {
+    "content": "\"Cast the net on the right side of the boat, and you will find some.\" We will try once more.",
+    "choices": [
+      {
+        "text": "Cast the net.",
+        "destination": "catch"
+      }
+    ]
+  },
+  "catch": {
+    "content": "The net strains, nearly tearing with the weight of 153 large fish.",
+    "choices": [
+      {
+        "text": "It is the Lord!",
+        "destination": "shore"
+      }
+    ]
+  },
+  "identity": {
+    "content": "The light of the morning reflects off the water. \"It is the Lord!\" John whispers beside you. Peter jumps into the sea.",
+    "choices": [
+      {
+        "text": "Go to the shore.",
+        "destination": "shore"
+      }
+    ]
+  },
+  "shore": {
+    "content": "A charcoal fire is burning on the sand, with fish on it and some bread. \"Come and have breakfast,\" Jesus says.",
+    "choices": [
+      {
+        "text": "Sit and eat.",
+        "destination": "restoration"
+      }
+    ]
+  },
+  "restoration": {
+    "content": "He turns to Simon Peter. \"Simon, son of John, do you love Me more than these?\" He is asking about the love that stays.\nThe question echoes across seven years of memory — \"Even before you deny Me three times...\" And yet He asks again. Not with accusation. With invitation.",
+    "choices": [
+      {
+        "text": "Feed my lambs...",
+        "destination": "feeding"
+      },
+      {
+        "text": "What did Peter say?",
+        "destination": "peter_answer"
+      }
+    ]
+  },
+  "peter_answer": {
+    "content": "\"Yes, Lord, you know that I love you.\" Three times. Each answer a little more fragile than the last. The third time, Jesus uses the word Peter himself had chosen — \"phileo\" — brotherly love, not \"agapao\" — divine love.\nPeter's face crumples. He understands. Three denials. Three affirmations. Three wounds healed by three questions.",
+    "choices": [
+      {
+        "text": "Feed my sheep.",
+        "destination": "feeding"
+      }
+    ]
+  },
+  "feeding": {
+    "content": "\"Feed my lambs. Tend my sheep. Feed my sheep.\" Three times He commissions the one who fled. The same charcoal fire. The same threefold exchange.\n\"Follow me.\"\nThe words that began everything — the same Sea of Galilee, three years before — now end it. Or begin it again.",
+    "choices": [
+      {
+        "text": "Continue.",
+        "destination": "closing"
+      }
+    ]
+  },
+  "closing": {
+    "content": "He forgave me. Not with words of reproach, but with a calling. \"Feed my sheep.\" \"Follow me.\"\nI am the rock that was shattered and made whole. The church would be built on this restored love.\nThe investigation of the empty tomb leads here — to a life given back and a mission that will change the world.\n# UNLOCK_EVIDENCE: peter_restored\n# UNLOCK_EVIDENCE: three_fold_commission",
+    "choices": []
+  }
 }

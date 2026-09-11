@@ -52,8 +52,8 @@ export class ChatUI {
       <div class="verdict-card ${res.correct ? 'verdict-correct' : 'verdict-wrong'}">
         <div class="verdict-header">${res.correct ? "<img src='../assets/gfx/trophy-duotone.svg' class='icon-svg' loading='lazy'> CASE SOLVED" : "<img src='../assets/gfx/x-circle-duotone.svg' class='icon-svg' loading='lazy'> INCORRECT ACCUSATION"}</div>
         <div class="verdict-score-grid">
-          <div class="score-row"><span>💡 Deductions:</span> <span>+${s.breakdown?.deductionScore || s.deduction}</span></div>
-          <div class="score-row"><span><img src='../assets/gfx/magnifying-glass-duotone.svg' class='icon-svg' loading='lazy'> Evidence:</span> <span>+${s.breakdown?.evidenceScore || s.evidence}</span></div>
+          <div class="score-row"><span>💡 Insights solved:</span> <span>+${s.insights || 0}</span></div>
+          <div class="score-row"><span>✅ Case closed:</span> <span>+${s.conclusion || 0}</span></div>
           <div class="score-total"><span>⭐ Total Score:</span> <span>${s.total}</span></div>
         </div>
       </div>`;

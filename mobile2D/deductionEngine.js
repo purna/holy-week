@@ -56,16 +56,13 @@ export class DeductionEngine {
         text: specific.text,
         insight: specific.insight || null,
         isKeyDeduction: specific.isKey || false,
-        score: specific.isKey ? 15 : 8,
+        score: 10,
+        isValidatedInsight: true,
       };
     } else {
-      // Per "Source of Truth" doc, incorrect pairings have a penalty.
-      // A generic deduction is treated as an incorrect pairing for scoring purposes.
-      this.caseManager.addDoubt(5);
       result = {
         ...this._genericDeduction(operation, a, b),
-        score: -5, // Penalty for incorrect pairing
-        isPenalty: true
+        score: 0
       };
     }
 

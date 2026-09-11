@@ -1,25 +1,115 @@
 {
   "start": {
-    "content": "When we sat on the Mount of Olives, He told us the Temple would fall stone from stone. I asked when these things would happen and what sign would mark His coming.",
+    "content": "When we sat on the Mount of Olives and looked back at the city, I asked Him directly: when will these things happen, and what will be the sign of your coming and of the end of the age? I thought it was a straightforward question. It turned out to be the most important question I have ever asked.",
     "choices": [
-      { "text": "What signs did He emphasize?", "destination": "signs" },
-      { "text": "How did that affect you?", "destination": "impact" }
+      {
+        "text": "What signs did He emphasize?",
+        "destination": "signs"
+      },
+      {
+        "text": "How did the answer affect you?",
+        "destination": "impact"
+      }
     ]
   },
   "signs": {
-    "content": "He warned us about wars, famines, earthquakes, and false messiahs. He called them birth pains, not the end itself. The command was to endure and stay watchful.",
+    "content": "Wars, famines, earthquakes — He called them birth pains. Not the end, but the beginning of something. He warned us of false messiahs performing signs convincing enough to deceive even the elect if that were possible. He told us: do not follow men who say \"he is here\" or \"he is there.\" Do not run after reports. Stay at the task.",
     "choices": [
-      { "text": "And the Temple?", "destination": "temple" }
+      {
+        "text": "The desolating sacrilege?",
+        "destination": "specific_sign"
+      },
+      {
+        "text": "And the Temple itself?",
+        "destination": "temple_warning"
+      }
     ]
   },
   "impact": {
-    "content": "I expected quick victory, not a long road of tribulation. His words shifted us from timelines to faithfulness: keep awake, keep serving, keep trusting the Father.",
+    "content": "I expected quick victory. A throne. A restored kingdom of Israel with a timetable I could carry in my head. He gave me endurance instead. He shifted us from asking \"when?\" to asking \"am I ready?\" Faithfulness over calculation. That has been the hardest lesson of my life to hold onto.",
     "choices": [
-      { "text": "So readiness matters more than dates.", "destination": "temple" }
+      {
+        "text": "But you asked about the Temple stones.",
+        "destination": "temple_warning"
+      },
+      {
+        "text": "What preparation did He give you?",
+        "destination": "specific_sign"
+      }
     ]
   },
-  "temple": {
-    "content": "Yes. The stones looked eternal from that hill, but He said they would collapse. The true warning was spiritual: do not be deceived, and do not lose heart.",
+  "specific_sign": {
+    "content": "He described a desolating sacrilege standing in the holy place — he told us to look at what Daniel wrote, which pointed to a specific desecration. When we see that, we are to flee Jerusalem without delay. Do not go back for belongings. He said flee to the mountains immediately. There was a clarity to it that felt like a military briefing. He was protecting us from a future event with exact, practical instruction.",
+    "choices": [
+      {
+        "text": "He was thinking of those who would be alive then.",
+        "destination": "temple_warning"
+      },
+      {
+        "text": "That is not mystical language — it is a survival instruction.",
+        "destination": "endure_commission"
+      }
+    ]
+  },
+  "temple_warning": {
+    "content": "He told us not one of those Temple stones would be left on another. I remember thinking the stones were the size of houses — the Herodian masonry was the pride of every Galilean who had ever made a pilgrimage. And He looked at them with grief and said: the question is not if, but when. That shifted something permanently for me. Nothing built by human hands is the real house of God.",
+    "choices": [
+      {
+        "text": "The Temple as symbol, not destination.",
+        "destination": "endure_commission"
+      },
+      {
+        "text": "Within your generation?",
+        "destination": "this_generation"
+      }
+    ]
+  },
+  "this_generation": {
+    "content": "He said this generation would not pass away before all these things took place. We understood Him to mean within our lifetimes. The Temple judgment is near. The cosmic judgment extends further. The near one was His warning to us. The far one is His promise to the world.",
+    "choices": [
+      {
+        "text": "Different timetables for different events.",
+        "destination": "endure_commission"
+      }
+    ]
+  },
+  "endure_commission": {
+    "content": "Yes. And then He gave us the command for both timescales: endure to the end. The one who endures to the end will be saved. Not the one who calculates correctly. Not the one who avoids all hardship. The one who holds on through the birth pains and keeps doing the work.",
+    "choices": [
+      {
+        "text": "A command more than a prediction.",
+        "destination": "readiness"
+      },
+      {
+        "text": "What does holding on look like?",
+        "destination": "readiness"
+      }
+    ]
+  },
+  "readiness": {
+    "content": "He said keep awake. He gave three parables — a householder who does not know the hour of the thief, servants who must keep working while the master is away, bridesmaids who must keep their lamps filled because the bridegroom arrives unexpectedly. All of them said the same thing in different voices: you do not know when, so do not stop being ready.",
+    "choices": [
+      {
+        "text": "How have you applied that?",
+        "destination": "closing"
+      },
+      {
+        "text": "And the Son of Man coming with great power?",
+        "destination": "son_of_man"
+      }
+    ]
+  },
+  "son_of_man": {
+    "content": "He quoted Daniel 7. The Son of Man coming on the clouds, receiving an everlasting kingdom, gathering his elect from the four winds. He was quoting a vision of God conferring all authority on a human figure — and He was saying He was that figure. We understood what He was claiming. We did not fully understand yet that the path from here to that glory ran through a Roman cross and an empty tomb. But we would.",
+    "choices": [
+      {
+        "text": "The discourse was His announcement.",
+        "destination": "closing"
+      }
+    ]
+  },
+  "closing": {
+    "content": "The stones look eternal from that hill. But He said they would collapse. The real warning was not seismic — it was spiritual: do not be deceived, and do not lose heart. Whatever happens to the stones, whatever happens to us, He comes again with great power. So hold on. Keep awake. Do the work. That is the whole of what He said, distilled.",
     "choices": []
   }
 }

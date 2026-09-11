@@ -1,6 +1,6 @@
 {
   "start": {
-    "content": "I am a merchant from Tyre. I trade in spices and stories \u2014 both travel well along the Roman roads. I heard the Galilean tell the story of the vineyard in the Temple courtyard.",
+    "content": "I am a merchant from Tyre. I trade in spices and stories — both travel well along the Roman roads. I heard the Galilean tell the story of the vineyard in the Temple courtyard.",
     "choices": [
       {
         "text": "What is the story?",
@@ -13,25 +13,56 @@
     ]
   },
   "vineyard": {
-    "content": "There was a man who planted a vineyard. He put a fence around it, dug a winepress, and built a watchtower. Then he leased it to tenants and went away. At harvest, he sent servants to collect his fruit. The tenants beat one, killed another, stoned a third.",
+    "content": "There was a man who planted a vineyard. He chose the best hill, cleared the stones, and dug a winepress. Around it he built a fence and a watchtower to guard it. Then he leased it to tenants and went away.\nAt harvest, he sent a servant to collect some of the fruit. The tenants beat him. Another servant came; they killed him. A third came, and they stoned him. Many servants followed the same fate.\nFinally, the owner said, \"They will respect my son.\"\nThe tenants saw the heir and said, \"This is the one we will kill, so that the inheritance is ours.\"",
     "choices": [
       {
         "text": "And then?",
+        "destination": "vineyard_expansion"
+      }
+    ]
+  },
+  "vineyard_expansion": {
+    "content": "It was not just a story. It was Isaiah 5 sung aloud in a new voice:\n\"My beloved had a vineyard on a very fertile hill. He expected it to produce good grapes, but it yielded wild fruit. And now I will tell you what I will do to my vineyard...\"\nThe Galilean was telling a story that Isaiah had written centuries before. The vineyard was Israel. The owner was God. The tenants were the leaders entrusted with the people. The servants were the prophets sent again and again, rejected and killed. The son was the heir, sent last, and also condemned.",
+    "choices": [
+      {
+        "text": "Did the crowd understand?",
+        "destination": "reaction"
+      },
+      {
+        "text": "What happens to the vineyard then?",
+        "destination": "vineyard_judgment"
+      }
+    ]
+  },
+  "vineyard_judgment": {
+    "content": "Jesus asked:\n\"When the owner comes, what will he do to those tenants?\"\nEven the leaders could answer. Judgment would come. The vineyard would be taken from them and given to others who would produce its fruit.\nThen He said:\n\"The stone the builders rejected has become the cornerstone.\"\nIt was not just a story. It was prophecy. Judgment. Hope.",
+    "choices": [
+      {
+        "text": "How did the leaders react?",
         "destination": "reaction"
       }
     ]
   },
   "reaction": {
-    "content": "The crowd murmured. They knew the story. It was Isaiah 5, sung in the synagogues every year. But this time, the tenants were standing in the front row \u2014 and the teller was looking right at them.",
+    "content": "The crowd murmured in awe and fear. They had heard Isaiah 5 many times, but this time, the story pointed to people they could see, sitting right in front of them.\nThe chief priests turned pale. The Pharisees whispered. Many left early, unwilling to hear the rest.",
     "choices": [
       {
-        "text": "That is dangerous.",
+        "text": "And the stone?",
+        "destination": "stone"
+      }
+    ]
+  },
+  "stone": {
+    "content": "The rejected stone becomes the cornerstone. The owner’s son, once cast out and killed, becomes the foundation. God’s plan cannot be stopped, even if men reject it.",
+    "choices": [
+      {
+        "text": "Thomas, what does it all mean?",
         "destination": "closing"
       }
     ]
   },
   "closing": {
-    "content": "The stone the builders rejected has become the cornerstone. That is how the story ended. The chief priests left early. They did not want to hear the rest.",
+    "content": "I trade in stories, but some answers are plain enough that even a listener cannot ignore them:\nA vineyard planted in hope. Servants sent and slain. A son rejected. A stone made the cornerstone.\nThe Galilean spoke in parables, but the meaning was clear: those who reject God’s messengers risk losing the vineyard itself.\nThe prists hated the way he behaved like God's words where about him.",
     "choices": []
   }
 }

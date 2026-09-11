@@ -1,239 +1,341 @@
 {
   "start": {
-    "content": "I am Pontius Pilate, governor of Judea. I have no interest in your Jewish temple disputes. I deal in order, not theology. But a disturbance in the Court of the Gentiles is a Roman concern. The priests came to me this morning, pale-faced, claiming insurrection. I investigated personally. What I found was not rebellion. It was a single man with a whip of rushes and a message.",
+    "content": "I am Pontius Pilate, governor of Judea. I have no interest in\nyour Jewish temple disputes. I deal in order, not theology.\nBut a disturbance in the Court of the Gentiles is a Roman concern.\nThe priests came to me this morning, pale-faced, claiming insurrection.\nI investigated personally. What I found was not rebellion. It was\na single man with a whip of rushes and a message.",
     "choices": [
-      { "text": "What did you find at the scene?", "destination": "scene" },
-      { "text": "Did you see the Galilean?", "destination": "galilean" }
+      {
+        "text": "What did you find at the scene?",
+        "destination": "scene"
+      },
+      {
+        "text": "Did you see the Galilean?",
+        "destination": "galilean"
+      }
     ]
   },
   "scene": {
-    "content": "The money tables were overturned. Dove cages broken. But the silver — the Tyrian shekels — was scattered, not stolen. The birds were released, not captured. A thief takes. A zealot destroys. This man... discarded the instruments of corruption and left the merchants standing there, unharmed. That is not insurrection. That is contempt.",
+    "content": "The money tables were overturned. Dove cages broken. But\nthe silver — the Tyrian shekels — was scattered, not stolen.\nThe birds were released, not captured.\nA thief takes. A zealot destroys. This man... discarded the\ninstruments of corruption and left the merchants standing\nthere, unharmed.\nThat is not insurrection. That is contempt.",
     "choices": [
-      { "text": "Why didn't you arrest Him?", "destination": "justice" },
-      { "text": "What did the priests say?", "destination": "priests" }
+      {
+        "text": "Why didn't you arrest Him?",
+        "destination": "justice"
+      },
+      {
+        "text": "What did the priests say?",
+        "destination": "priests"
+      }
     ]
   },
   "galilean": {
-    "content": "I saw Him from the parapet. He stood in the middle of the court, surrounded by merchants cowering on the ground. He said nothing. Just looked at them. When He left, the crowd followed Him like sheep. Not a weapon among them. Not a threat to Rome. Just... a man on a mission.",
+    "content": "I saw Him from the parapet. He stood in the middle of\nthe court, surrounded by merchants cowering on the ground.\nHe said nothing. Just looked at them.\nWhen He left, the crowd followed Him like sheep. Not a\nweapon among them. Not a threat to Rome. Just... a man\non a mission.",
     "choices": [
-      { "text": "What mission?", "destination": "mission" },
-      { "text": "That sounds dangerous.", "destination": "dangerous" }
+      {
+        "text": "What mission?",
+        "destination": "mission"
+      },
+      {
+        "text": "That sounds dangerous.",
+        "destination": "dangerous"
+      }
     ]
   },
   "mission": {
-    "content": "His disciples quoted a Psalm afterward. 'Zeal for your house will consume me.' Psalm 69. David wrote it about the temple. This man... He lived it. I have crucified men for less. But this one... He has a fire in Him that does not come from Rome.",
+    "content": "His disciples quoted a Psalm afterward. \"Zeal for your\nhouse will consume me.\" Psalm 69. David wrote it about\nthe temple. This man... He lived it.\nI have crucified men for less. But this one... He has a\nfire in Him that does not come from Rome.",
     "choices": [
-      { "text": "That fire could burn your province.", "destination": "burning" },
-      { "text": "Then He is a prophet, not a rebel.", "destination": "prophet" }
+      {
+        "text": "That fire could burn your province.",
+        "destination": "burning"
+      },
+      {
+        "text": "Then He is a prophet, not a rebel.",
+        "destination": "prophet"
+      }
     ]
   },
   "dangerous": {
-    "content": "Dangerous? A man who destroys property without shedding blood is not dangerous to Rome. He is dangerous to the priesthood. And the priests know it. That is why they are so angry. Not because of the shekels. Because He exposed their system for what it is: a profit margin dressed in incense.",
+    "content": "Dangerous? A man who destroys property without shedding\nblood is not dangerous to Rome. He is dangerous to the\npriesthood.\nAnd the priests know it. That is why they are so angry.\nNot because of the shekels. Because He exposed their\nsystem for what it is: a profit margin dressed in incense.",
     "choices": [
-      { "text": "Will they try to arrest Him?", "destination": "arrest" },
-      { "text": "And your role?", "destination": "role" }
+      {
+        "text": "Will they try to arrest Him?",
+        "destination": "arrest"
+      },
+      {
+        "text": "And your role?",
+        "destination": "role"
+      }
     ]
   },
   "justice": {
-    "content": "Arrest Him for what? Cleaning up a market? The Romans do not execute men for disturbing Jewish commerce. That is their problem. Their sacred business. Unless... unless the priests make it my problem. They are already framing this as sedition.",
+    "content": "Arrest Him for what? Cleaning up a market? The Romans do\nnot execute men for disturbing Jewish commerce. That is\ntheir problem. Their sacred business.\nUnless... unless the priests make it my problem. They are\nalready framing this as sedition. They will say the Galilean\nincited the crowd to violence.",
     "choices": [
-      { "text": "Did He incite violence?", "destination": "violence" },
-      { "text": "Will you believe the priests?", "destination": "believe" }
+      {
+        "text": "Did He?",
+        "destination": "violence"
+      },
+      {
+        "text": "Will you believe them?",
+        "destination": "believe"
+      }
     ]
   },
   "priests": {
-    "content": "The high priest's household came to me personally. They used the word 'insurrection.' They showed me overturned tables and scattered coins. I asked them: where are the dead? Where are the wounded? Where is the Roman damage? They had no answer. Because there was none. This was a domestic theological dispute. Not a Roman concern. Not yet.",
+    "content": "The high priest's household came to me personally. They\nused the word 'insurrection.' They showed me overturned\ntables and scattered coins.\nI asked them: where are the dead? Where are the wounded?\nWhere is the Roman damage? They had no answer.\nBecause there was none. This was a domestic theological\ndispute. Not a Roman concern. Not yet.",
     "choices": [
-      { "text": "Not yet?", "destination": "yet" },
-      { "text": "So you dismissed them?", "destination": "dismissed" }
+      {
+        "text": "Not yet?",
+        "destination": "yet"
+      },
+      {
+        "text": "So you dismissed them?",
+        "destination": "dismissed"
+      }
     ]
   },
   "burning": {
-    "content": "Let it burn. The temple system is rotten. The priests line their pockets with temple tax while the poor bring doves they cannot afford. I have watched this for years. But a province that burns is a province Rome must pacify. And pacification is ugly. I have crucified entire villages for less than this.",
+    "content": "Let it burn. The temple system is rotten. The priests\nline their pockets with temple tax while the poor bring\ndoves they cannot afford. I have watched this for years.\nBut a province that burns is a province Rome must pacify.\nAnd pacification is ugly. I have crucified entire villages\nfor less than this.",
     "choices": [
-      { "text": "And yet you did nothing.", "destination": "nothing" },
-      { "text": "You fear what He might become.", "destination": "become" }
+      {
+        "text": "And yet you did nothing.",
+        "destination": "nothing"
+      },
+      {
+        "text": "You fear what He might become.",
+        "destination": "become"
+      }
     ]
   },
   "prophet": {
-    "content": "A prophet. Yes. That is what He claims to be. And prophets are more dangerous than rebels. Rebels can be crucified. Prophets... cannot be killed so easily. The priests understand this. That is why they are so afraid. They can deal with a military messiah. They cannot deal with a man who quotes their own Scriptures and turns their own courts against them.",
+    "content": "A prophet. Yes. That is what He claims to be. And prophets\nare more dangerous than rebels. Rebels can be crucified.\nProphets... cannot be killed so easily.\nThe priests understand this. That is why they are so afraid.\nThey can deal with a military messiah. They cannot deal with\na man who quotes their own Scriptures and turns their own\ncourts against them.",
     "choices": [
-      { "text": "What will you do?", "destination": "closing" },
-      { "text": "This will end badly.", "destination": "badly" }
+      {
+        "text": "What will you do?",
+        "destination": "closing"
+      },
+      {
+        "text": "This will end badly.",
+        "destination": "badly"
+      }
     ]
   },
   "arrest": {
-    "content": "They are already plotting. I have informants in the Sanhedrin. They want Him arrested for blasphemy — their charge, not mine. But they cannot execute Him without Roman approval. And I will not sign a death warrant for a man who has committed no crime against Rome.",
+    "content": "They are already plotting. I have informants in the Sanhedrin.\nThey want Him arrested for blasphemy — their charge, not mine.\nBut they cannot execute Him without Roman approval. And I\nwill not sign a death warrant for a man who has committed\nno crime against Rome.",
     "choices": [
-      { "text": "Not yet.", "destination": "closing" },
-      { "text": "You sound uncertain.", "destination": "uncertain" }
+      {
+        "text": "Not yet.",
+        "destination": "closing"
+      },
+      {
+        "text": "You sounded uncertain.",
+        "destination": "uncertain"
+      }
     ]
   },
   "role": {
-    "content": "My role is to keep the peace. If the Galilean continues to disrupt the temple courts, the priests will incite the crowd. The crowd will turn on Rome. And I will have no choice but to send in the cohorts. Not to protect the priests. To protect the Pax Romana.",
+    "content": "My role is to keep the peace. If the Galilean continues\nto disrupt the temple courts, the priests will incite the\ncrowd. The crowd will turn on Rome.\nAnd I will have no choice but to send in the cohorts. Not\nto protect the priests. To protect the Pax Romana.",
     "choices": [
-      { "text": "And if the crowd turns on the priests instead?", "destination": "crowd" },
-      { "text": "Then you will crucify an innocent man.", "destination": "innocent" }
+      {
+        "text": "And if the crowd turns on the priests instead?",
+        "destination": "crowd"
+      },
+      {
+        "text": "Then you will crucify an innocent man.",
+        "destination": "innocent"
+      }
     ]
   },
   "violence": {
-    "content": "Did He? I watched from the Antonia fortress. I saw the dove cages break. I saw the coins scatter. I did not see a single sword. Not a single stone thrown. The priests will say there was violence. They will fabricate witnesses. They always do. But my record will say: a man with a whip of rushes and a Psalm on his lips.",
+    "content": "Did He? I watched from the Antonia fortress. I saw the\ndove cages break. I saw the coins scatter. I did not\nsee a single sword. Not a single stone thrown.\nThe priests will say there was violence. They will\nfabricate witnesses. They always do. But my record\nwill say: a man with a whip of reeds. A temple full\nof scattered coins. A crowd of terrified merchants.",
     "choices": [
-      { "text": "That record may not save Him.", "destination": "save" },
-      { "text": "And your conscience?", "destination": "conscience" }
-    ]
-  },
-  "believe": {
-    "content": "Believe the priests? They are the ones who run the temple tax racket. They are the ones who profit from the poor bringing doves. Of course they want Him silenced. But I am a Roman. I do not take sides in Jewish theological wars. I take orders. And my orders are to prevent sedition. Not to protect corrupt priests from prophets.",
-    "choices": [
-      { "text": "So you will protect the Galilean?", "destination": "protect" },
-      { "text": "For now.", "destination": "fornow" }
+      {
+        "text": "That record may not save Him.",
+        "destination": "save"
+      },
+      {
+        "text": "And your conscience?",
+        "destination": "conscience"
+      }
     ]
   },
   "yet": {
-    "content": "Not yet. But the priests will not let this go. They will find a way to make it my problem. They will fabricate a Roman charge. They will bring Him to my praetorium. And when they do... I will have to choose. Between a prophet and a province. Between justice and peace.",
+    "content": "Not yet. But the priests will not let this go. They will\nfind a way to make it my problem. They will fabricate a\nsedition charge. They will bring Him to my praetorium.\nAnd when they do... I will have to choose. Between\na prophet and a province. Between justice and peace.",
     "choices": [
-      { "text": "Choose justice.", "destination": "justice_choice" },
-      { "text": "Choose peace.", "destination": "peace_choice" }
+      {
+        "text": "Choose justice.",
+        "destination": "justice_choice"
+      },
+      {
+        "text": "Choose peace.",
+        "destination": "peace_choice"
+      }
     ]
   },
   "dismissed": {
-    "content": "I dismissed them. Politely. I told them the disturbance was domestic. I told them to handle their own prophet. But they will not stop. They are already planning. I can see it in their eyes. They want Him dead. And they will use my court to do it.",
+    "content": "I dismissed them. Politely. I told them the disturbance\nwas domestic. I told them to handle their own prophet.\nBut they will not stop. They are already planning. I can\nsee it in their eyes. They want Him dead. And they will\nuse my court to do it.",
     "choices": [
-      { "text": "Will you let them?", "destination": "let_them" },
-      { "text": "You are a pawn in their game.", "destination": "pawn" }
+      {
+        "text": "Will you let them?",
+        "destination": "let_them"
+      },
+      {
+        "text": "You are a pawn in their game.",
+        "destination": "pawn"
+      }
     ]
   },
   "nothing": {
-    "content": "I did nothing. Because there was nothing to do. A man cleansed a market. He did not burn a fortress. He did not kill a centurion. If I had arrested Him, I would have been the tool of corrupt priests. And I will not be anyone's tool.",
+    "content": "I did nothing. Because there was nothing to do. A man\ncleansed a market. He did not burn a fortress. He did\nnot kill a centurion.\nIf I had arrested Him, I would have been the tool of\ncorrupt priests. And I will not be anyone's tool.",
     "choices": [
-      { "text": "Not even Rome's?", "destination": "rome" },
-      { "text": "So you let Him go.", "destination": "closing" }
+      {
+        "text": "Not even Rome's?",
+        "destination": "rome_option"
+      },
+      {
+        "text": "So you let Him go.",
+        "destination": "closing"
+      }
     ]
   },
   "become": {
-    "content": "I do not fear what He is. I fear what the priests will make Him. They will turn this cleansing into a revolution. They will use the crowd to force my hand. And when they do, I will have to choose. Between a man who quotes Psalms and a province that burns.",
+    "content": "I do not fear what He is. I fear what the priests\nwill make Him. They will turn this cleansing into\na revolution. They will use the crowd to force\nmy hand.\nAnd when they do, I will have to choose. Between\na man who quotes Psalms and a province that burns.",
     "choices": [
-      { "text": "Choose the Psalm.", "destination": "psalm_choice" },
-      { "text": "Choose the province.", "destination": "province_choice" }
+      {
+        "text": "Choose the Psalms.",
+        "destination": "psalm_choice"
+      },
+      {
+        "text": "Choose the province.",
+        "destination": "province_choice"
+      }
     ]
-  },
-  "crowd": {
-    "content": "Then the priests will look like the oppressors. And the Galilean will look like a liberator. That is the danger. Not to Rome. To the temple establishment. But the crowd is fickle. Today they welcome Him with palms. Tomorrow they will demand His death. I have seen it before. I will see it again.",
-    "choices": [
-      { "text": "And you will do nothing?", "destination": "closing" },
-      { "text": "History will judge your inaction.", "destination": "history" }
-    ]
-  },
-  "innocent": {
-    "content": "Innocent? By Roman law, yes. By Jewish law... that is not my jurisdiction. I govern Judea. I do not interpret their Torah. But I am not a monster. If the priests bring me a man who has committed no crime against Rome, I will not crucify Him. Not for them. Not for anyone.",
-    "choices": [
-      { "text": "Promise me.", "destination": "promise" },
-      { "text": "That is not good enough.", "destination": "not_enough" }
-    ]
-  },
-  "save": {
-    "content": "That record — the whip of rushes, the scattered coins, the unharmed merchants — it is the only thing that might save Him. If the priests bring Him to me on a Roman charge, I will judge. But if they bring Him on a Jewish charge... I will wash my hands.",
-    "choices": [
-      { "text": "You are a better man than you pretend.", "destination": "closing" },
-      { "text": "That is not the same as saving Him.", "destination": "closing" }
-    ]
-  },
-  "conscience": {
-    "content": "My conscience is a Roman governor's conscience. It sleeps soundly as long as the legions are paid and the taxes are collected. But even a Roman conscience has limits. I will not sign a death warrant for a man who has done nothing to Rome. That is my limit.",
-    "choices": [
-      { "text": "That is not much of a limit.", "destination": "closing" },
-      { "text": "It is enough.", "destination": "closing" }
-    ]
-  },
-  "protect": {
-    "content": "Protect Him? I do not protect Jewish prophets. I maintain Roman order. As long as He does not threaten the Pax Romana, He is not my concern. But if the priests make Him my concern... if they fabricate a sedition charge... then I will have to act. And I will act according to Roman law, not Jewish hysteria.",
-    "choices": [
-      { "text": "And what does Roman law say?", "destination": "closing" },
-      { "text": "You are walking a fine line.", "destination": "closing" }
-    ]
-  },
-  "fornow": {
-    "content": "For now. But the priests will not let this go. They will bring Him to me. They will demand His blood. And I will face a crowd the size of a legion.",
-    "choices": [
-      { "text": "Be a Roman.", "destination": "closing" },
-      { "text": "Be a man.", "destination": "closing" }
-    ]
-  },
-  "closing": {
-    "content": "Investigate all you want. The Galilean disturbed the temple courts. He scattered the priests' silver. He released their birds. But He did not commit a Roman crime. And I will not execute a man for quoting Psalms.",
-    "choices": []
   },
   "justice_choice": {
-    "content": "Justice. You ask a Roman governor to choose justice. In this province, justice is a luxury. Peace is a necessity. But you are right. If I choose peace over justice, I am no better than the priests I despise. I will wait. I will see what charges they bring. And I will judge according to Roman law, not their religious fury.",
+    "content": "Justice. You ask a Roman governor to choose\njustice. In this province, justice is a luxury.\nPeace is a necessity.\nBut you are right. If I choose peace over\njustice, I am no better than the priests I\ndespise.\nI will wait. I will see what charges they\nbring. And I will judge according to Roman\nlaw, not their religious fury.",
     "choices": [
-      { "text": "Thank you.", "destination": "closing" }
+      {
+        "text": "closing",
+        "destination": "closing"
+      }
     ]
   },
   "peace_choice": {
-    "content": "Peace. Always peace. A dead prophet is a martyr. A living prophet is a problem. But a dead prophet can ignite a province. I will choose peace. I will give them Barabbas. I will wash my hands. And I will go back to Caesarea knowing I sent an innocent man to the cross.",
+    "content": "Peace. Always peace. A dead prophet is a\nmartyr. A living prophet is a problem. But\na dead prophet can ignite a province.\nI will choose peace. I will give them Barabbas.\nI will wash my hands. And I will go back to\nCaesarea knowing I sent an innocent man to\nthe cross.",
     "choices": [
-      { "text": "That is not peace. That is cowardice.", "destination": "closing" }
+      {
+        "text": "closing",
+        "destination": "closing"
+      }
     ]
   },
+  "closing": {
+    "content": "Investigate all you want. The Galilean disturbed\nthe temple courts. He scattered the priests' silver.\nHe released their birds.\nBut He did not commit a Roman crime. And I will\nnot execute a man for quoting Psalms.",
+    "choices": []
+  },
   "let_them": {
-    "content": "Let them bring Him. I will judge according to Roman law. And Roman law does not execute men for cleaning up corrupt markets. Unless... unless they fabricate a sedition charge. Then I will have no choice.",
+    "content": "Let them bring Him. I will judge according\nto Roman law. And Roman law does not execute\nmen for cleaning up corrupt markets.\nUnless... unless they fabricate a sedition\ncharge. Then I will have no choice.",
     "choices": [
-      { "text": "You know they will.", "destination": "closing" }
+      {
+        "text": "Will you have no choice?",
+        "destination": "closing"
+      }
     ]
   },
   "pawn": {
-    "content": "I am always a pawn. The emperor sends me to Judea to keep the peace. The priests use me to legitimize their murders. The crowds use me to satisfy their bloodlust. A Roman governor is never a man. He is a function. A tool. A basin of water for washing hands that are never clean.",
+    "content": "I am always a pawn. The emperor sends me to\nJudea to keep the peace. The priests use\nme to legitimize their murders. The crowds\nuse me to satisfy their bloodlust.\nA Roman governor is never a man. He is a\nfunction. A tool. A basin of water for\nwashing hands that are never clean.",
     "choices": [
-      { "text": "Then be a man.", "destination": "closing" }
+      {
+        "text": "Then break the pattern.",
+        "destination": "closing"
+      }
     ]
   },
-  "rome": {
-    "content": "Rome wants taxes. Rome wants order. Rome does not care which prophet the priests kill, as long as the silver keeps flowing. But I do care. Not because I am a good man. Because I am a Roman. And Romans do not execute innocent men for the convenience of corrupt priests.",
+  "rome_option": {
+    "content": "Rome wants taxes. Rome wants order. Rome\ndoes not care which prophet the priests\nkill, as long as the silver keeps flowing.\nBut I do care. Not because I am a good\nman. Because I am a Roman. And Romans\ndo not execute innocent men for the\nconvenience of corrupt priests.",
     "choices": [
-      { "text": "Then stand up to them.", "destination": "closing" }
-    ]
-  },
-  "history": {
-    "content": "History is written by the victors. And in this province, the victors are always the ones with the legions. Let history judge. I have a province to govern. And a prophet to watch.",
-    "choices": [
-      { "text": "History will not be kind.", "destination": "closing" }
-    ]
-  },
-  "promise": {
-    "content": "I cannot promise you anything. The priests will bring Him to me. They will demand His blood. And I will face a crowd the size of a legion. But I will not crucify a man for quoting Isaiah. That is my promise. Not to you. To myself.",
-    "choices": [
-      { "text": "That is all we can ask.", "destination": "closing" }
-    ]
-  },
-  "not_enough": {
-    "content": "Nothing is ever good enough for a prophet's followers. You want a guarantee. I can give you only a probability. The probability is this: I will not execute a man who has committed no Roman crime. That is the best a governor can offer in this province.",
-    "choices": [
-      { "text": "We will take it.", "destination": "closing" }
-    ]
-  },
-  "psalm_choice": {
-    "content": "Choose the Psalm. You ask a Roman governor to choose a Jewish Psalm over Roman peace. You have more faith in this province than I do. But perhaps you are right. A man who quotes Psalms and cleanses temples is not a rebel. He is a reformer. And Rome needs reformers, not martyrs.",
-    "choices": [
-      { "text": "Then choose wisely.", "destination": "closing" }
-    ]
-  },
-  "province_choice": {
-    "content": "Choose the province. A thousand dead Jews is a statistical error. One dead prophet is a theological earthquake. I will choose the province. I will choose peace. I will choose to forget that I ever saw a man with a whip of rushes and a fire in His eyes.",
-    "choices": [
-      { "text": "You will not forget.", "destination": "closing" }
+      {
+        "text": "You are walking a fine line.",
+        "destination": "closing"
+      },
+      {
+        "text": "You care about the wrong things.",
+        "destination": "closing"
+      }
     ]
   },
   "badly": {
-    "content": "It always ends badly for prophets. I have seen it a hundred times. The crowd cheers on Sunday. The crowd demands crucifixion on Friday. That is the rhythm of this province.",
+    "content": "This will end badly. The priests will get\ntheir execution. The crowd will get their\nblood. And I will get my peace — at the\ncost of an innocent man's life.\nThe weight of that peace will follow\nme to my grave.",
     "choices": [
-      { "text": "Then do something to stop it.", "destination": "closing" }
+      {
+        "text": "You know the cost.",
+        "destination": "closing"
+      },
+      {
+        "text": "The peace is false.",
+        "destination": "closing"
+      }
     ]
   },
   "uncertain": {
-    "content": "I am not uncertain. I am a Roman governor. I am certain of my duty. My duty is to maintain order. And if order requires the sacrifice of one prophet to prevent a provincial war... then I will make that sacrifice.",
+    "content": "Uncertain? I appear certain because I am\na governor. Governors must project confidence.\nBut inside — inside, I wonder if I am\nprotecting the province or betraying\nthe truth.",
     "choices": [
-      { "text": "Even if He is innocent?", "destination": "closing" }
+      {
+        "text": "The uncertainty shows wisdom.",
+        "destination": "closing"
+      },
+      {
+        "text": "Truth demands a choice.",
+        "destination": "closing"
+      }
+    ]
+  },
+  "save": {
+    "content": "That record is all I have. A man with\na whip of reeds. A temple full of\nscattered coins. A crowd of\nterrified merchants.\nIt will not save Him from the\nSanhedrin. But it might save Him\nfrom Rome. And in this province,\nthat is the only salvation that\nmatters.",
+    "choices": [
+      {
+        "text": "You are a better man than you pretend.",
+        "destination": "closing"
+      },
+      {
+        "text": "That is not the same as saving Him.",
+        "destination": "closing"
+      }
+    ]
+  },
+  "conscience": {
+    "content": "My conscience is a Roman governor's\nconscience. It sleeps soundly as\nlong as the legions are paid and\nthe taxes are collected.\nBut even a Roman conscience has\nlimits. I will not sign a death\nwarrant for a man who has done\nnothing to Rome. That is my limit.",
+    "choices": [
+      {
+        "text": "That is not much of a limit.",
+        "destination": "closing"
+      },
+      {
+        "text": "It is enough.",
+        "destination": "closing"
+      }
+    ]
+  },
+  "believe": {
+    "content": "Believe the priests? They are the\nones who run the temple tax racket.\nThey are the ones who profit from\nthe poor bringing doves. Of course\nthey want Him silenced.\nBut I am a Roman. I do not take\nsides in Jewish theological wars.\nI take orders. And my orders are\nto prevent sedition. Not to protect\ncorrupt priests from prophets.",
+    "choices": [
+      {
+        "text": "So you will protect the Galilean?",
+        "destination": "closing"
+      },
+      {
+        "text": "For now.",
+        "destination": "closing"
+      }
+    ]
+  },
+  "not_yet": {
+    "content": "For now. But the priests will\nnot let this go. They will\nbring Him to me. They will\ndemand His blood. And I will\nface a crowd the size of a legion.\nAnd I will have to decide\nwhether to be a Roman or a pawn.",
+    "choices": [
+      {
+        "text": "Be a Roman.",
+        "destination": "closing"
+      },
+      {
+        "text": "Be a man.",
+        "destination": "closing"
+      }
     ]
   }
 }

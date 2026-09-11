@@ -1,0 +1,76 @@
+{
+  "start": {
+    "content": "(A nervous citizen glances sideways before leaning close.) Last Sabbath a man blind from birth walked out of the Pool of Siloam and now says he sees. The Pharisees asked for details. He said, \"I was blind. Now I can see.\" I will not say my name, but you should find him and ask.",
+    "choices": [
+      {
+        "text": "Why are you telling me this?",
+        "destination": "nervous_tell"
+      },
+      {
+        "text": "The Pharisees didn't believe him?",
+        "destination": "pharisee_response"
+      }
+    ]
+  },
+  "nervous_tell": {
+    "content": "Jesus put mud on his eyes and when it came off he could see. Because what happened at that pool was not natural. The man had been blind since birth — the disciples themselves had asked Jesus about him once. Now he's seeing. The Pharisees want the story buried.",
+    "choices": [
+      {
+        "text": "What did they do?",
+        "destination": "pharisee_response"
+      }
+    ]
+  },
+  "pharisee_response": {
+    "content": "They questioned him closely. Not about the healing — about the voice. They wanted to know who spoke to him. He said \"the man they call Jesus.\" They didn't like that answer. How was he healed?",
+    "choices": [
+      {
+        "text": "Talk to the blind man?",
+        "destination": "blindman"
+      },
+      {
+        "text": "How was he healed?",
+        "destination": "blindman"
+      }
+    ]
+  },
+  "blindman": {
+    "content": "(An older man stands near the pool. His eyes wander across the city as though he is seeing everything for the first time.)\n\"You've come to ask about what happened to me, haven't you? I understand. Everyone is asking.\"\n\"I was blind from birth. Not injured. Not sick and then healed. Blind from the day I was born. I knew the streets by touch and sound. I knew voices better than faces because I had never seen a face.\"\n\"That morning a man named Jesus approached. He spat on the ground, made mud, and spread it over my eyes. Then he told me, 'Go and wash in the Pool of Siloam.'\"\n\"I did not understand why, but I obeyed.\"\n\"When I washed the mud away, light rushed in. Colors. Shapes. Faces. For the first time in my life I could see.\"\n(The man pauses, looking around in wonder.)\n\"My neighbors scarcely recognized me. Some said, 'This is the man who used to beg.' Others said, 'No, he only looks like him.' I kept telling them, 'I am the man.'\"\n\"They asked how it happened. I told them exactly what I have told you: Jesus put mud on my eyes, I washed, and now I see.\"\n\"The Pharisees questioned me afterward. They wanted explanations I could not give. They asked who Jesus was. I told them only what I knew.\"\n(He shrugs.)\n\"I cannot explain the miracle. I only know this: I was blind. Now I can see.\"",
+    "choices": [
+      {
+        "text": "What happened after the Pharisees questioned you?",
+        "destination": "pharisee_after"
+      },
+      {
+        "text": "Where is Jesus now?",
+        "destination": "jesus_where"
+      },
+      {
+        "text": "Thank you for your testimony.",
+        "destination": "closing"
+      }
+    ]
+  },
+  "pharisee_after": {
+    "content": "\"They argued among themselves. Some said a man who heals cannot be a sinner. Others said no sinner could do such signs. They could not agree.\"",
+    "choices": [
+      {
+        "text": "Return",
+        "destination": "blindman"
+      }
+    ]
+  },
+  "jesus_where": {
+    "content": "\"I do not know where he is. When I first received my sight, he had already gone. But I know what he did. And I know what it means.\"",
+    "choices": [
+      {
+        "text": "Return",
+        "destination": "blindman"
+      }
+    ]
+  },
+  "closing": {
+    "content": "The conversation is over. Go in peace.",
+    "choices": []
+  }
+}

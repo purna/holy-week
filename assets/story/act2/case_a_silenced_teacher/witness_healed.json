@@ -1,1 +1,63 @@
-{"inkVersion":21,"root":[[{"->":"start"},["done",{"#f":5,"#n":"g-0"}],null],"done",{"start":[["^The man who was healed — he was brought to the priests immediately. The elders questioned him closely. Not about the healing, but about the voice.","\n","ev","str","^What did the elders do?","/str","/ev",{"*":".^.c-0","flg":20},"ev","str","^What did he tell you?","/str","/ev",{"*":".^.c-1","flg":20},{"c-0":["^ ",{"->":"elders"},"\n",{"#f":5}],"c-1":["^ ",{"->":"testimony"},"\n",{"#f":5}]}],{"#f":1}],"elders":[["^They wanted to know who had healed him. When he said \"Jesus of Nazareth,\" some of them began to question whether such a thing was possible on the Sabbath.","\n","ev","str","^Were they angry?","/str","/ev",{"*":".^.c-0","flg":20},{"c-0":["^ ",{"->":"testimony"},"\n",{"#f":5}]}],{"#f":1}],"testimony":[["^He told them the plain truth: he had never seen, but now he sees. That was enough to make the Pharisees call a council meeting.","\n","ev","str","^Go on.","/str","/ev",{"*":".^.c-0","flg":20},{"c-0":["^ ",{"->":"closing"},"\n",{"#f":5}]}],{"#f":1}],"closing":["^The conversation is over. Go in peace.","\n","done",{"#f":1}],"#f":1}],"listDefs":{}}
+{
+  "start": {
+    "content": "The man who was healed was taken straight to the priests.\nAt first, I thought they would rejoice. A miracle had happened in plain sight. A man who had lived in darkness could suddenly see.\nBut they scarcely spoke of the healing.\nTheir questions were all about the one who performed it.",
+    "choices": [
+      {
+        "text": "What did the elders ask?",
+        "destination": "elders"
+      },
+      {
+        "text": "What did the healed man say?",
+        "destination": "testimony"
+      }
+    ]
+  },
+  "elders": {
+    "content": "They pressed him again and again.\n\"Who healed you?\"\n\"How did he do it?\"\n\"What is his name?\"\nWhen he answered, \"Jesus of Nazareth,\" the mood in the room changed.\nSome exchanged uneasy glances. Others frowned.\nThe discussion quickly turned to the Sabbath.\nAccording to their interpretation of the Law, no work was to be done on that day (Jeremiah 17:22). To some of them, healing a man was work.\nThe miracle stood before them, yet they argued over whether it should have happened at all.",
+    "choices": [
+      {
+        "text": "Were they angry?",
+        "destination": "anger"
+      },
+      {
+        "text": "What happened next?",
+        "destination": "testimony"
+      }
+    ]
+  },
+  "anger": {
+    "content": "Angry? Some were.\nOthers were afraid.\nA miracle creates a problem for those who have already decided what is possible and what is not.\nThe more the healed man spoke, the more divided they became.",
+    "choices": [
+      {
+        "text": "Go on.",
+        "destination": "testimony"
+      }
+    ]
+  },
+  "testimony": {
+    "content": "The man never changed his story.\nHis words were simple.\n\"I was blind. Now I see.\"\nNo elaborate explanation. No clever argument.\nJust a fact no one could deny.\nYet instead of celebrating, the Pharisees called for further questioning. Some demanded witnesses. Others searched for a reason to dismiss what had happened.\nThe evidence stood before them, but many refused to accept what it meant.",
+    "choices": [
+      {
+        "text": "Why wouldn't they believe him?",
+        "destination": "blindman"
+      }
+    ]
+  },
+  "blindman": {
+    "content": "That is the question, isn't it?\nA man born blind receives his sight.\nHis neighbors know him.\nHis family confirms it.\nHe stands before the council seeing the world for the first time.\nWhat more proof could they ask for?\nAnd yet some hearts are harder to open than blind eyes.",
+    "choices": [
+      {
+        "text": "What happened to Jesus?",
+        "destination": "closing"
+      },
+      {
+        "text": "Go on.",
+        "destination": "closing"
+      }
+    ]
+  },
+  "closing": {
+    "content": "The testimony ends there.\nWhether the miracle changed their minds, I cannot say.\nBut the healed man never wavered.\n\"I was blind, and now I see.\"\nSometimes the simplest truth is the hardest to deny.",
+    "choices": []
+  }
+}

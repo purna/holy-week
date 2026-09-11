@@ -383,20 +383,11 @@ export class UIManager {
   onLabAction(result) {
     if (result.type === "selection") this.renderPeople();
     else result.error ? this.audio.playError() : this.audio.playClue();
-    if (result?.type === 'folder_verify' || result?.type === 'timeline_test' || result?.type === 'shredder_test') {
-      if (result.success) {
-        this.cm.addScore(5);
-      } else {
-        this.cm.addScore(-5);
-        this.cm.recordIncorrectLabPairing();
-      }
-    } else if (result?.type === 'detail_view') {
-      this.cm.addScore(-1);
-    } else if (result?.scoreDelta) {
-      this.cm.addScore(result.scoreDelta);
+    if (result?.success && ['folder_verify', 'timeline_test', 'shredder_test', 'comparator_test'].includes(result.type)) {
+      const suffix = result.insightId ? `:${result.insightId}` : '';
+      this.cm.awardInsight(`lab:${result.type}${suffix}`, 'Lab insight');
     }
     if (result?.feedback) {
-      this.renderLab();
       this.labUI._setFeedback(result.feedback, result.feedbackType || "");
     }
     if (!result?.error && result?.operation) {
@@ -565,13 +556,8 @@ export class UIManager {
           <i class="fas fa-chevron-down"></i> Scroll Down <i class="fas fa-chevron-down"></i>
         </div>
         <div class="score-grid" aria-label="Your score breakdown">
-          <div class="score-item"><div class="score-item-value">${result.score.evidence}</div><div class="score-item-label">Evidence</div></div>
-          <div class="score-item"><div class="score-item-value">${result.score.deduction}</div><div class="score-item-label">Deductions</div></div>
-          <div class="score-item"><div class="score-item-value">${result.score.challenge || 0}</div><div class="score-item-label">Challenges</div></div>
-          <div class="score-item"><div class="score-item-value">${result.score.prophecy || 0}</div><div class="score-item-label">Prophecies</div></div>
+          <div class="score-item"><div class="score-item-value">+${result.score.insights || 0}</div><div class="score-item-label">Insights Solved</div></div>
           <div class="score-item" style="border: 1px solid var(--gold);"><div class="score-item-value" style="color:var(--green)">+${result.score.conclusion || 0}</div><div class="score-item-label">Case Closed</div></div>
-          ${result.score.fullInvestigationBonus ? `<div class="score-item" style="border: 1px solid var(--gold);"><div class="score-item-value" style="color:var(--green)">+${result.score.fullInvestigationBonus}</div><div class="score-item-label">Full Investigation</div></div>` : ''}
-          ${result.score.doubtPenalty ? `<div class="score-item"><div class="score-item-value" style="color:var(--red)">-${result.score.doubtPenalty}</div><div class="score-item-label">Doubt (x2)</div></div>` : ''}
           <div class="score-item"><div class="score-item-value">${result.score.total}</div><div class="score-item-label">Total</div></div>
         </div>
         <button class="result-continue-btn" onclick="showScreen('map')" aria-label="Continue to world map">Continue →</button>

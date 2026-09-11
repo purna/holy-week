@@ -20,7 +20,7 @@ After the Galilean was led away, the council rushed into emergency session. The 
 The ones who testified were not surprise witnesses. The arrest had been planned for days — the witnesses were assembled before the kiss in the garden. Two witnesses came forward to say he could rebuild the temple in the three day. 
 * [Legal witnesses are required.] -> exposed
 === exposed ===
-The Law requires two or three witnesses. They had them ready. The conviction was pre-arranged. The sentence was decided before the accused entered the chamber. What he said was herasy.
+The Law requires two or three witnesses. They had them ready. The conviction was pre-arranged. The sentence was decided before the accused entered the chamber. What he said was heresy.
 * [So the trial was a formality.] -> closing
 === closing ===
 The council chamber was closed to many of us tonight. Whatever decisions were made inside, they were final.

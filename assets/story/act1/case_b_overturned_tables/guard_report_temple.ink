@@ -335,4 +335,4 @@ Truth-teller? I tell the truth about what I see. A man with a whip. A Temple in 
 === closing_guard ===
 I was on the wall. I saw the whole thing. The whip. The coins. The doves. The crowd. The peace. And I know... I know that man is who they say He is. The Son of God. The Savior. The Lamb. And I... I watched Him die. And I couldn't stop it. But I can tell the story. I can be a witness. And I will. For the rest of my life. Until He comes again.
 
--> END
+-> DONE

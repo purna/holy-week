@@ -1,5 +1,5 @@
 const CACHE_PREFIX = 'holy-week-desktop-cache';
-const CACHE_VERSION = 'v1.1';
+const CACHE_VERSION = 'v1.3'; // Authored Lab progression update
 const CACHE_NAME = `${CACHE_PREFIX}-${CACHE_VERSION}`;
 
 // This list MUST be updated with all files required for the desktop version to run offline.

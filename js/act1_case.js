@@ -722,6 +722,15 @@ export const act1CaseA = {
     }
   ],
 
+  timelineEvidenceIds: ["donkey_tracks", "witness_account", "palm_branch", "crowd_testimony"],
+  timelineInsight: "The sequence moves from an authorised colt being collected to a public royal welcome. The order shows deliberate preparation followed by an unmistakable public response.",
+  timelineBibleRef: "Mark 11:1–10; John 12:12–19",
+  requiredConnections: [
+    { pair: "donkey_tracks+witness_account", operation: "compare" },
+    { pair: "prophecy_scroll+palm_branch", operation: "link" },
+    { pair: "crowd_testimony+witness_account", operation: "compare" },
+  ],
+
   deductions: {
     "cloaks+prophecy_scroll": {
       compare: {
@@ -1501,6 +1510,14 @@ export const act1CaseB = {
     },
   ],
 
+  timelineEvidenceIds: ["broken_cages", "scattered_shekels", "whip_of_cords"],
+  timelineInsight: "The damaged cages, scattered money, and discarded cords trace a targeted interruption of commerce rather than an attack on worshippers or the Temple itself.",
+  timelineBibleRef: "Mark 11:15–17; John 2:14–17",
+  requiredConnections: [
+    { pair: "broken_cages+scattered_shekels", operation: "compare" },
+    { pair: "broken_cages+whip_of_cords", operation: "link" },
+  ],
+
   deductions: {
     "broken_cages+scattered_shekels": {
       compare: {
@@ -1980,6 +1997,14 @@ export const act1CaseC = {
       },
       contradictions: {},
     },
+  ],
+
+  timelineEvidenceIds: ["cursed_fig_tree_desc", "withered_fig_tree_state", "peter_astonishment", "disciples_faith_lesson"],
+  timelineInsight: "The tree is addressed before it is found withered. Peter's reaction then prompts Jesus's lesson, connecting the sign to faith, prayer, and spiritual fruitfulness.",
+  timelineBibleRef: "Mark 11:12–14, 20–25",
+  requiredConnections: [
+    { pair: "cursed_fig_tree_desc+withered_fig_tree_state", operation: "link" },
+    { pair: "peter_astonishment+disciples_faith_lesson", operation: "compare" },
   ],
 
   deductions: {

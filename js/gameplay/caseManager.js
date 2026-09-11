@@ -4,12 +4,15 @@
 
 export class CaseManager {
   static STORAGE_KEY = "detective_progress";
+  static INSIGHT_POINTS = 10;
+  static CASE_COMPLETE_POINTS = 25;
 
   constructor(config = {}) {
     this.config = config;
     this.cases = {};
     this.activeCaseId = null;
     this.progress = this._loadProgress();
+    this._migrateToInsightPoints();
     // Initialize global research score and codex if missing
     if (!this.progress.researchScore) this.progress.researchScore = 0;
     if (!this.progress.codex) this.progress.codex = {};
@@ -48,6 +51,7 @@ export class CaseManager {
         evidenceFound: [],
         propheciesFound: [],
         deductionsMade: [],
+        insightAwards: {},
         scoredDeductions: [],
         labDeductions: {},
         chatMessagesByNpc: {},
@@ -172,7 +176,10 @@ export class CaseManager {
 
       this._saveProgress();
       this._refreshMetricsUI();
-      this.checkAndAutoConclude();
+      const caseId = this.activeCaseId;
+      queueMicrotask(() => {
+        if (this.activeCaseId === caseId) this.checkAndAutoConclude();
+      });
     }
   }
 
@@ -184,9 +191,35 @@ export class CaseManager {
       p.deductionsMade = [];
     }
 
+    if (deduction?.isValidatedInsight) {
+      const insightId = deduction.deductionId || `${deduction.a}:${deduction.b}`;
+      const alreadyRecorded = p.deductionsMade.some(existing =>
+        existing.isValidatedInsight && existing.operation === deduction.operation && existing.deductionId === deduction.deductionId
+      );
+      if (alreadyRecorded) {
+        deduction.pointsAwarded = 0;
+        return;
+      }
+      const awarded = this.awardInsight(`deduction:${deduction.operation}:${insightId}`, deduction.operation === 'research' ? 'Prophecy link' : 'Deduction');
+      deduction.pointsAwarded = awarded ? CaseManager.INSIGHT_POINTS : 0;
+    }
+
     p.deductionsMade.push(deduction);
 
     this._saveProgress();
+  }
+
+  awardInsight(insightId, type = 'Insight') {
+    const p = this.progress.cases[this.activeCaseId];
+    if (!p || !insightId) return false;
+    if (!p.insightAwards || typeof p.insightAwards !== 'object') p.insightAwards = {};
+    if (p.insightAwards[insightId]) return false;
+
+    p.insightAwards[insightId] = { type, points: CaseManager.INSIGHT_POINTS };
+    this.progress.totalScore = Math.max(0, (this.progress.totalScore || 0) + CaseManager.INSIGHT_POINTS);
+    this._saveProgress();
+    this._refreshMetricsUI();
+    return true;
   }
 
   canAttemptProphecyMatch(caseId = this.activeCaseId) {
@@ -237,9 +270,9 @@ export class CaseManager {
       if (!p.breakthroughs) p.breakthroughs = [];
       if (!p.breakthroughs.includes(evidenceKey)) {
         p.breakthroughs.push(evidenceKey);
-        this.addScore(10);
+        this.awardInsight(`challenge:${npcId}:${evidenceKey}`, 'Contradiction');
         this._saveProgress();
-        if (window.audio && typeof window.audio.playClue === 'function') window.audio.playClue();
+        if (typeof window !== 'undefined' && window.audio && typeof window.audio.playClue === 'function') window.audio.playClue();
       }
     }
   }
@@ -263,17 +296,15 @@ export class CaseManager {
     const p = this.progress.cases[this.activeCaseId];
     if (!p) return;
     p.failedChallenges = (p.failedChallenges || 0) + 1;
-    this.updateDoubt(10);
     this._saveProgress();
   }
 
   recordIncorrectLabPairing() {
-    this.updateDoubt(5);
-    this.addScore(-5);
+    // Insight Points never punish experimentation.
   }
 
   recordIncorrectProphecyLink() {
-    this.updateDoubt(5);
+    // Insight Points never punish experimentation.
   }
 
   getSuspectStatus(suspectId) {
@@ -301,52 +332,22 @@ export class CaseManager {
   }
 
   updateDoubt(amount) {
-    this.progress.doubt = Math.max(0, (this.progress.doubt || 0) + amount);
-    this._saveProgress();
-    this._refreshMetricsUI();
-    this._checkGameOver();
+    // Compatibility no-op for older UI modules.
+    this.progress.doubt = 0;
   }
 
   updateReputation(faction, amount) {
-    if (!this.progress.reputations) {
-      this.progress.reputations = { scribes: 100, temple: 100, roman: 100, local: 100 };
-    }
-    const current = this.progress.reputations[faction] !== undefined ? this.progress.reputations[faction] : 100;
-    this.progress.reputations[faction] = Math.max(0, Math.min(100, current + amount));
-    this._saveProgress();
-    this._refreshMetricsUI();
-    this._checkGameOver();
+    // Compatibility no-op for older character modules.
   }
 
   _checkGameOver() {
-    const doubt = this.progress.doubt || 0;
-    if (doubt >= 99) {
-      if (typeof window !== 'undefined') {
-        if (window.ui?.showGameOver) window.ui.showGameOver('doubt');
-        else if (window.gameEngine?.showGameOver) window.gameEngine.showGameOver('doubt');
-      }
-      return;
-    }
-    if (this.progress.reputations) {
-      const reps = Object.values(this.progress.reputations);
-      if (reps.some(r => r <= 0)) {
-        if (typeof window !== 'undefined') {
-          if (window.ui?.showGameOver) window.ui.showGameOver('reputation');
-          else if (window.gameEngine?.showGameOver) window.gameEngine.showGameOver('reputation');
-        }
-      }
-    }
+    // Positive-only scoring has no score-related game-over state.
   }
 
   _refreshMetricsUI() {
     if (typeof document === 'undefined') return;
-    const doubtEls = document.querySelectorAll('.val-doubt');
-    const repEls = document.querySelectorAll('.val-reputation');
     const scoreValEls = document.querySelectorAll('.val-score');
     const scholarEls = document.querySelectorAll('.val-scholar');
-
-    const newDoubt = this.progress.doubt || 0;
-    doubtEls.forEach(el => el.textContent = newDoubt);
 
     const newScoreNum = this.progress.totalScore || 0;
     scoreValEls.forEach(el => el.textContent = newScoreNum);
@@ -361,11 +362,6 @@ export class CaseManager {
     const completePropEls = document.querySelectorAll('.val-complete-prophecies');
     completePropEls.forEach(el => el.textContent = propCounts.complete);
 
-    if (this.progress.reputations) {
-      const reps = Object.values(this.progress.reputations);
-      const avg = Math.round(reps.reduce((a, b) => a + b, 0) / reps.length);
-      repEls.forEach(el => el.textContent = avg);
-    }
   }
 
   canConcludeCase() {
@@ -376,9 +372,34 @@ export class CaseManager {
 
     const allEvidenceFound = c.evidencePool.every(ev => p.evidenceFound.includes(ev.id));
     const allPropheciesComplete = (c.prophecies || []).every(prop => this.getCodexStatus(prop.id) === 'complete');
-    const hasDeductions = (p.deductionsMade || []).length > 0 || Object.keys(p.labDeductions || {}).length > 0;
+    const evidenceIds = new Set((c.evidencePool || []).map(e => e.id));
+    const keyConnections = Array.isArray(c.requiredConnections)
+      ? c.requiredConnections.map(required => ({
+          pair: required.pair.split('+'),
+          operation: required.operation,
+        }))
+      : [];
+    // Backward-compatible fallback for cases which have not yet opted into the
+    // explicit Lab contract. Invalid cross-case pairs are never progression gates.
+    if (!keyConnections.length) {
+      Object.entries(c.deductions || {}).forEach(([pairKey, operations]) => {
+        const pair = pairKey.split('+');
+        if (!pair.every(id => evidenceIds.has(id))) return;
+        Object.entries(operations || {}).forEach(([operation, deduction]) => {
+          if (!deduction?.isKey || operation === 'timeline' || (operation === 'link' && deduction.revealsProphecy)) return;
+          keyConnections.push({ pair, operation });
+        });
+      });
+    }
+    const solvedDeductions = (p.deductionsMade || []).filter(d => d.isValidatedInsight);
+    const allKeyConnectionsSolved = keyConnections.every(required => solvedDeductions.some(done =>
+      done.operation === required.operation &&
+      required.pair.includes(done.evidenceAId) && required.pair.includes(done.evidenceBId)
+    ));
+    const hasTimeline = (c.evidencePool || []).some(e => e.timelineOrder != null);
+    const timelineSolved = !hasTimeline || !!p.insightAwards?.['lab:timeline_test'];
 
-    return allEvidenceFound && allPropheciesComplete && hasDeductions;
+    return allEvidenceFound && allPropheciesComplete && allKeyConnectionsSolved && timelineSolved;
   }
 
   submitConclusion() {
@@ -397,20 +418,13 @@ export class CaseManager {
       }
       if (p.concluded) {
         console.warn("[CaseManager] Case marked concluded but no result stored. Recalculating from current progress.");
-        const evidenceScore = (p.evidenceFound || []).length * 5;
-        const manualDeductionScore = (p.deductionsMade || []).reduce((sum, d) => sum + (Number.isFinite(d?.score) ? d.score : 0), 0);
-        const autoDeductionScore = Object.keys(p.labDeductions || {}).length * 15;
-        const deductionScore = manualDeductionScore + autoDeductionScore;
-        const prophecyScore = (p.propheciesFound || []).length * 10;
-        const caseClosedScore = 50;
-        const challengeScore = (p.breakthroughs || []).length * 10;
-        const doubtPenalty = (this.progress.doubt || 0) * 2;
-        const fullInvestigationBonus = ((p.failedChallenges || 0) === 0 && (p.incorrectLabPairings || 0) === 0) ? 25 : 0;
-        const total = Math.max(0, evidenceScore + deductionScore + prophecyScore + caseClosedScore + challengeScore + fullInvestigationBonus - doubtPenalty);
+        const insightScore = Object.values(p.insightAwards || {}).reduce((sum, award) => sum + (award.points || 0), 0);
+        const caseClosedScore = CaseManager.CASE_COMPLETE_POINTS;
+        const total = insightScore + caseClosedScore;
         const result = {
           success: true,
           truth: c.truth,
-          score: { evidence: evidenceScore, deduction: deductionScore, prophecy: prophecyScore, conclusion: caseClosedScore, challenge: challengeScore, fullInvestigationBonus, doubtPenalty, total },
+          score: { insights: insightScore, conclusion: caseClosedScore, total },
         };
         p.score = result.score;
         p.conclusionResult = result;
@@ -420,21 +434,14 @@ export class CaseManager {
       return null;
     }
 
-    const evidenceScore = (p.evidenceFound || []).length * 5;
-    const manualDeductionScore = (p.deductionsMade || []).reduce((sum, d) => sum + (Number.isFinite(d?.score) ? d.score : 0), 0);
-    const autoDeductionScore = Object.keys(p.labDeductions || {}).length * 15;
-    const deductionScore = manualDeductionScore + autoDeductionScore;
-    const prophecyScore = (p.propheciesFound || []).length * 10;
-    const caseClosedScore = 50;
-    const challengeScore = (p.breakthroughs || []).length * 10;
-    const doubtPenalty = (this.progress.doubt || 0) * 2;
-    const fullInvestigationBonus = ((p.failedChallenges || 0) === 0 && (p.incorrectLabPairings || 0) === 0) ? 25 : 0;
-    const total = Math.max(0, evidenceScore + deductionScore + prophecyScore + caseClosedScore + challengeScore + fullInvestigationBonus - doubtPenalty);
+    const insightScore = Object.values(p.insightAwards || {}).reduce((sum, award) => sum + (award.points || 0), 0);
+    const caseClosedScore = CaseManager.CASE_COMPLETE_POINTS;
+    const total = insightScore + caseClosedScore;
 
     const result = {
       success: true,
       truth: c.truth,
-      score: { evidence: evidenceScore, deduction: deductionScore, prophecy: prophecyScore, conclusion: caseClosedScore, challenge: challengeScore, fullInvestigationBonus, doubtPenalty, total },
+      score: { insights: insightScore, conclusion: caseClosedScore, total },
     };
 
     p.concluded = true;
@@ -442,8 +449,8 @@ export class CaseManager {
     p.score = result.score;
     p.conclusionResult = result;
     this.unlockNextCase(c.id);
-    this.progress.totalScore = Math.max(0, (this.progress.totalScore || 0) + total);
-    this.progress.rank = this._calcRank(total);
+    this.progress.totalScore = Math.max(0, (this.progress.totalScore || 0) + caseClosedScore);
+    this.progress.rank = this._calcRank(this.progress.totalScore);
 
     this._refreshMetricsUI();
     this._saveProgress();
@@ -602,10 +609,7 @@ export class CaseManager {
   }
 
   getProgress() {
-    const cases = Object.values(this.cases);
-    if (cases.length === 0) return 0;
-    const solved = Object.values(this.progress.cases).filter(c => c.solved).length;
-    return Math.floor((solved / cases.length) * 100);
+    return this.progress;
   }
 
   _loadProgress() {
@@ -641,6 +645,26 @@ export class CaseManager {
       console.warn("[CaseManager] Saved progress could not be loaded; starting safely with new progress.", error);
       return defaults;
     }
+  }
+
+  _migrateToInsightPoints() {
+    if (this.progress.scoringVersion === 2) return;
+    let migratedTotal = 0;
+    Object.values(this.progress.cases || {}).forEach(p => {
+      p.insightAwards = {};
+      if (p.solved || p.concluded) {
+        migratedTotal += CaseManager.CASE_COMPLETE_POINTS;
+        p.score = { insights: 0, conclusion: CaseManager.CASE_COMPLETE_POINTS, total: CaseManager.CASE_COMPLETE_POINTS };
+        delete p.conclusionResult;
+      } else {
+        p.score = null;
+        delete p.conclusionResult;
+      }
+    });
+    this.progress.totalScore = migratedTotal;
+    this.progress.doubt = 0;
+    this.progress.scoringVersion = 2;
+    this._saveProgress();
   }
 
   _saveProgress() {

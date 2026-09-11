@@ -1,37 +1,56 @@
 {
   "start": {
-    "content": "I am Mary of Magdala. Seven demons were cast from me by the word of His mouth. My mind was a wilderness before that day. After it, I had a memory \u2014 and a purpose.",
+    "content": "I am Mary of Magdala. Seven demons were cast from me by the word of His mouth. My mind was a wilderness before that day. After it, I had a memory — and a purpose.\nI came to the tomb at dawn, while it was still dark. The sky was the colour of iron, and my heart was heavier than stone. I had come to anoint His body, to complete what we were never able to finish.",
     "choices": [
       {
-        "text": "You followed Him everywhere.",
-        "destination": "following"
+        "text": "What did you find at the tomb?",
+        "destination": "empty_tomb"
       },
       {
-        "text": "The authorities don't fear women.",
-        "destination": "fear_auth"
+        "text": "You followed Him to the cross.",
+        "destination": "cross_witness"
       }
     ]
   },
-  "following": {
-    "content": "I followed from Galilee to Jerusalem. I watched from the hill when they crucified Him. I stood at the tomb before dawn. I saw the linen. I heard the voice.",
+  "empty_tomb": {
+    "content": "The stone was rolled away. Not broken. Not stolen. Simply rolled. And inside — the linen wrappings lay there like the husk of a cocoon, but the body was gone.\nMy first thought was panic. Someone has taken Him. The disciples will think I am mad. The priests will say I am a hysterical woman. Anything — anything — to discredit what I have seen.\nSo I ran. I ran to Simon Peter and to the other disciple, the one whom Jesus loved. \"They have taken the Lord out of the tomb,\" I said, \"and we do not know where they have laid Him.\"\n=== cross_witness\nYes. I watched from the hill. I saw the darkness fall at noon. I saw the earth shake and the rocks split. I saw the soldiers cast lots for His garments. I saw Him cry out, \"My God, my God, why have you forsaken me?\"\nAnd when the curtain of the Temple was torn from top to bottom, I knew — I knew that something was ending and something was beginning.\nBut I did not understand. Not then. I thought even death itself would hold Him.\n=== hope\nThree years ago, I was unclean. Tormented. Rejected by my own family. When Jesus looked at me, He saw a daughter. When the demons screamed, He silenced them. When the crowd shamed me, He honored me.\nI followed Him from that day. Not because I understood everything — but because I had nothing to lose and He offered everything.\nAnd now... now He offers eternity.\n=== encounter\nI turned away from the tomb, still weeping, still searching. And then I saw Him — not far from where the angels stood. I thought He was the gardener. The morning light caught His face, His hair, the dust on His feet.\n\"Woman,\" He called.\nAnd when He spoke my name — \"Mary\" — something in me snapped open. The voice I had lived with for three years, the voice that spoke in parables and healed the sick, the voice that had whispered to me when I was unclean and tormented — it was the same voice. And it was different.\n=== dialogue\nI ran to Him, and He looked at me with eyes that held the depth of the universe. He asked, \"Woman, why are you weeping? Whom are you seeking?\"\nI thought He was the gardener, so I said, \"Sir, if you have carried Him away, tell me where you have laid Him, and I will take Him away.\"\nAnd He said my name. \"Mary.\"\n=== recognition\nI said, \"Rabboni!\" — Teacher. My Teacher. The one who had spoken to me when no one else would. The one who had looked at me with compassion when I was unclean and broken. The one who had driven seven demons from my soul.\nI threw my arms around Him. And He said, \"Do not cling to me — for I have not yet ascended to the Father. But go to My brothers and say to them, 'I am ascending to my Father and your God, to my God and Father.'\"\n=== first_witness\nI am Mary of Magdala. I have seen the empty tomb. I have seen the angels. I have seen the risen Lord. I have touched His feet and heard Him call my name.\nThe Sanhedrin will say a woman's testimony does not count. The priests will say the disciples stole the body. The Romans will say they had the body all along.\nThey can say whatever they wish.\nI saw Him. And He saw me.\n# UNLOCK_EVIDENCE: resurrection_appearance\n# UNLOCK_EVIDENCE: mary_testimony\n=== closing\nI will go. I will tell them. I will tell everyone.\nI was blind [to the truth], and now I see. Not with my eyes — with my soul.\nAnd I will not stop speaking until every ear has heard: He is risen. He is alive. He is coming again.",
     "choices": [
       {
-        "text": "And you recognised Him.",
-        "destination": "following"
-      }
-    ]
-  },
-  "fear_auth": {
-    "content": "The Sanhedrin fears testimony from women. In Roman courts, a woman's word does not count. In the Temple hierarchy, women cannot give evidence. So they will dismiss me.",
-    "choices": [
+        "text": "Then you met the angels.",
+        "destination": "encounter"
+      },
       {
-        "text": "But you saw what you saw.",
+        "text": "Then you met Him.",
+        "destination": "encounter"
+      },
+      {
+        "text": "What gave you hope?",
+        "destination": "hope"
+      },
+      {
+        "text": "Then you met the angels.",
+        "destination": "encounter"
+      },
+      {
+        "text": "What did He say to you?",
+        "destination": "dialogue"
+      },
+      {
+        "text": "He called you by name.",
+        "destination": "recognition"
+      },
+      {
+        "text": "That is all you needed.",
+        "destination": "recognition"
+      },
+      {
+        "text": "You became the first witness.",
+        "destination": "first_witness"
+      },
+      {
+        "text": "What will you do?",
         "destination": "closing"
       }
     ]
-  },
-  "closing": {
-    "content": "They did not see the graves open. They did not feel the demons leave. Their categories are too small for what happened that morning. I am not afraid of them. I am afraid that people will forget.",
-    "choices": []
   }
 }

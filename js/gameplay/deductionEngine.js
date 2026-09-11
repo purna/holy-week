@@ -61,6 +61,8 @@ export class DeductionEngine {
       result = {
         deductionId: specific.id || key,
         operation,
+        evidenceAId: a.id,
+        evidenceBId: b.id,
         a: a.name,
         aIcon: a.icon,
         b: b.name,
@@ -69,7 +71,10 @@ export class DeductionEngine {
         insight: specific.insight || null,
         isKeyDeduction: specific.isKey || false,
         revealsProphecy: specific.revealsProphecy || null,
-        score: specific.isKey ? 15 : 8,
+        bibleRef: specific.bibleRef || null,
+        relationship: specific.relationship || this._relationshipFor(operation, specific),
+        score: 10,
+        isValidatedInsight: true,
       };
     } else {
       result = this._genericDeduction(operation, a, b);
@@ -100,9 +105,7 @@ export class DeductionEngine {
       }
       
       this.caseManager.setCodexStatus(matchingProphecy.id, 'complete');
-      this.caseManager.addResearchPoints(20);
       this.caseManager.recordProphecyFound(matchingProphecy.id);
-      this.caseManager.checkAndAutoConclude();
       
       const result = {
         deductionId: `research_${matchingProphecy.id}`,
@@ -115,16 +118,16 @@ export class DeductionEngine {
         insight: matchingProphecy.insight,
         isKeyDeduction: true,
         revealsProphecy: matchingProphecy.id,
-        score: 15,
-        researchPoints: 20
+        score: 10,
+        isValidatedInsight: true
       };
       
       this.deductions.push(result);
       this.caseManager.recordDeduction(result);
+      this.caseManager.checkAndAutoConclude();
       return result;
     }
-    
-    this.caseManager.updateDoubt(5);
+
     const result = {
       deductionId: `research_failed_${Date.now()}`,
       operation: 'research',
@@ -132,10 +135,10 @@ export class DeductionEngine {
       aIcon: a.icon,
       b: b.name,
       bIcon: b.icon,
-      text: "This scripture does not match that evidence. +5 Doubt",
+      text: "This scripture does not match that evidence. Try another connection.",
       insight: null,
       isKeyDeduction: false,
-      score: -5
+      score: 0
     };
     
     this.deductions.push(result);
@@ -170,7 +173,15 @@ export class DeductionEngine {
     const pool = templates[op] || [`Analysis of ${a.name} and ${b.name} complete.`];
     const text = pool[Math.floor(Math.random() * pool.length)];
 
-    return { operation: op, a: a.name, aIcon: a.icon, b: b.name, bIcon: b.icon, text, insight: null, isKeyDeduction: false, score: 8 };
+    return { operation: op, a: a.name, aIcon: a.icon, b: b.name, bIcon: b.icon, text, insight: null, isKeyDeduction: false, score: 0 };
+  }
+
+  _relationshipFor(operation, deduction = {}) {
+    if (operation === 'compare') return 'Corroborates';
+    if (operation === 'contradict') return 'Challenges';
+    if (operation === 'timeline') return 'Precedes';
+    if (operation === 'link' && deduction.revealsProphecy) return 'Fulfils';
+    return 'Fulfils / explains';
   }
 
   getDeductions() {

@@ -1,21 +1,19 @@
- 
 // ============================================================
-// CHARACTER: Thomas (Parable)
+// CHARACTER: Thomas (Parable Meaning)
 // ACT: Act II
 // CASE: The Price of Life
 // CASE ID: lazarus_plot
 // SOURCE: js/act2_case.js -> NPC 'parable_meaning' (Analytical Disciple)
 // ------------------------------------------------------------
 // ============================================================
-//
 
 -> start
 === start ===
 
-
 He told us a story about a farmer's field, and it hasn't left me since.
 A man sows good seed. That night, while everyone sleeps, his enemy comes and sows weeds among the wheat — then slips away before anyone sees his face.
 The servants want to rip the weeds out immediately. The master says no. Wait. Let them grow together until the harvest, or you'll tear up the wheat with them.
+
 * [What does the harvest mean?] -> harvest
 * [Why does the enemy sow at night?] -> night
 * [What does this have to do with Lazarus?] -> lazarus

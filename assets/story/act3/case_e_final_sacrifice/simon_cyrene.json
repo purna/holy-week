@@ -1,1 +1,46 @@
-{"inkVersion":21,"root":[[{"->":"intro"},["done",{"#f":5,"#n":"g-0"}],null],"done",{"intro":["^A pilgrim sits apart from the crowd, still catching his breath,","\n","^rubbing at one shoulder beneath a cloak worn through at the seam.","\n","^He looks like a man who arrived in Jerusalem expecting a feast,","\n","^not this.","\n","^\"I wasn't a follower. I wasn't even from here. I was walking in","\n","^from the countryside for the feast, and Roman hands grabbed me","\n","^off the road. No warning. No explanation.\"","\n",{"->":"main_hub"},{"#f":1}],"main_hub":[["ev","str","^Ask what happened on the road","/str","/ev",{"*":".^.c-0","flg":4},"ev","str","^Ask why the soldiers chose him","/str","/ev",{"*":".^.c-1","flg":4},"ev","str","^Ask what he makes of it now","/str","/ev",{"*":".^.c-2","flg":4},"ev","str","^Leave him","/str","/ev",{"*":".^.c-3","flg":4},{"c-0":["^ ",{"->":"cautious_stage"},"\n",{"#f":5}],"c-1":["^ ",{"->":"pressured_stage"},"\n",{"#f":5}],"c-2":["^ ",{"->":"exposed_stage"},"\n",{"#f":5}],"c-3":["^ ",{"->":"repeat_stage"},"\n",{"#f":5}]}],{"#f":1}],"cautious_stage":[["^\"He'd already been carrying it Himself, from what I could tell —","\n","^the whole beam, on His own back. But He went down under it.","\n","^Couldn't get back up carrying that weight, not after what they'd","\n","^clearly already done to Him before I ever saw Him.\"","\n","ev","str","^Continue","/str","/ev",{"*":".^.c-0","flg":20},{"c-0":["^ ",{"->":"main_hub"},"\n",{"#f":5}]}],{"#f":1}],"pressured_stage":[["^\"The soldiers didn't ask. They pulled me straight out of the","\n","^crowd, forced my hands onto the beam, pointed me up the hill.","\n","^I didn't have a choice in any of it. Wrong place, wrong moment","\n","^— that's all it was, far as I understood it then.\"","\n","ev","str","^Continue","/str","/ev",{"*":".^.c-0","flg":20},{"c-0":["^ ",{"->":"main_hub"},"\n",{"#f":5}]}],{"#f":1}],"exposed_stage":["^\"I keep thinking of Isaac. Carrying the wood up the mountain for","\n","^his own sacrifice, not knowing what it meant, trusting his father","\n","^without understanding why. I carried this man's wood up a","\n","^different mountain, and I didn't know what it meant either.","\n","^Not then. I think about it every day since.\"","\n","ev",{"VAR?":"evidence_cross_burden"},"!","/ev",[{"->":".^.b","c":true},{"b":["\n","ev",true,"/ev",{"VAR=":"evidence_cross_burden","re":true},"#","^UNLOCK_EVIDENCE: cross_burden","/#",{"->":".^.^.^.15"},null]}],"nop","\n",{"->":"main_hub"},{"#f":1}],"repeat_stage":["^\"My shoulder still bears the mark of it. I don't think it will","\n","^ever fully fade. I'm not sure I want it to.\"","\n","end",{"#f":1}],"global decl":["ev",false,{"VAR=":"evidence_cross_burden"},"/ev","end",null],"#f":1}],"listDefs":{}}
+{
+  "intro": {
+    "content": "A pilgrim sits apart from the crowd, still catching his breath,\nrubbing at one shoulder beneath a cloak worn through at the seam.\nHe looks like a man who arrived in Jerusalem expecting a feast,\nnot this.\n\"I wasn't a follower. I wasn't even from here. I was walking in\nfrom the countryside for the feast, and Roman hands grabbed me\noff the road. No warning. No explanation.\"",
+    "choices": [
+      {
+        "text": "main_hub",
+        "destination": "main_hub"
+      }
+    ]
+  },
+  "main_hub": {
+    "content": "+ [Ask what happened on the road] -> cautious_stage\n+ [Ask why the soldiers chose him] -> pressured_stage\n+ [Ask what he makes of it now] -> exposed_stage\n+ [Leave him] -> repeat_stage",
+    "choices": []
+  },
+  "cautious_stage": {
+    "content": "\"He'd already been carrying it Himself, from what I could tell —\nthe whole beam, on His own back. But He went down under it.\nCouldn't get back up carrying that weight, not after what they'd\nclearly already done to Him before I ever saw Him.\"",
+    "choices": [
+      {
+        "text": "Continue",
+        "destination": "main_hub"
+      }
+    ]
+  },
+  "pressured_stage": {
+    "content": "\"The soldiers didn't ask. They pulled me straight out of the\ncrowd, forced my hands onto the beam, pointed me up the hill.\nI didn't have a choice in any of it. Wrong place, wrong moment\n— that's all it was, far as I understood it then.\"",
+    "choices": [
+      {
+        "text": "Continue",
+        "destination": "main_hub"
+      }
+    ]
+  },
+  "exposed_stage": {
+    "content": "\"I keep thinking of Isaac. Carrying the wood up the mountain for\nhis own sacrifice, not knowing what it meant, trusting his father\nwithout understanding why. I carried this man's wood up a\ndifferent mountain, and I didn't know what it meant either.\nNot then. I think about it every day since.\"\n{ not evidence_cross_burden:\n    ~ evidence_cross_burden = true\n    # UNLOCK_EVIDENCE: cross_burden\n}",
+    "choices": [
+      {
+        "text": "main_hub",
+        "destination": "main_hub"
+      }
+    ]
+  },
+  "repeat_stage": {
+    "content": "\"My shoulder still bears the mark of it. I don't think it will\never fully fade. I'm not sure I want it to.\"\nVAR evidence_cross_burden = false",
+    "choices": []
+  }
+}

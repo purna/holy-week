@@ -1,55 +1,108 @@
 {
   "start": {
-    "content": "I am Marcus. I was on duty. I will read this scene plainly and let you draw your own conclusions. Last Sabbath, outside the outer court \u2014 tables overturned, animals scattered, the crowd orange with excitement. He called it My Father's house. The merchants called it their living. I called it my afternoon.",
+    "content": "I am Marcus. I was on duty. I have seen men die, but this day was unlike any other. Outside the city, on Golgotha, three crosses cast long shadows. One man in the center drew every eye — condemned, silent, yet commanding attention.",
     "choices": [
       {
-        "text": "What did the merchants do?",
-        "destination": "merchants"
+        "text": "What happened first?",
+        "destination": "crucifixion_begins"
       },
       {
-        "text": "Did He hurt anyone?",
-        "destination": "violence"
+        "text": "How did the crowd behave?",
+        "destination": "crowd_behavior"
       }
     ]
   },
-  "merchants": {
-    "content": "The money changers scattered first \u2014 Tyrian shekels rolling into the drainage cracks. Then the livestock dealers. Within minutes the court was cleared and the crowd was singing.",
+  "crowd_behavior": {
+    "content": "Crowds are predictable.\nSome came for justice.\nSome came for entertainment.\nSome simply followed everyone else.\nThe priests stood close enough to watch but far enough to avoid association. They mocked Him openly.\nPassersby joined in. They pointed at the sign above His head and repeated the accusations from the trial.\nYet not everyone mocked.\nA group of women remained nearby despite the danger. They wept openly.\nA few men stood with them, saying very little.\nAs the hours passed, the crowd changed.\nMockery is easy in daylight.\nSilence comes more naturally when the sky turns black.",
     "choices": [
       {
-        "text": "The crowd supported Him?",
-        "destination": "crowd_support"
+        "text": "The sky turned black?",
+        "destination": "darkness"
+      },
+      {
+        "text": "What were the priests saying?",
+        "destination": "priests"
       }
     ]
   },
-  "violence": {
-    "content": "No blade was drawn. No centurion was summoned. He simply stood there while the merchants fled. It was the most disciplined crowd-disruption I have ever witnessed.",
+  "priests": {
+    "content": "The chief priests seemed pleased at first.\nThey called out:\n\"He saved others; let Him save Himself.\"\nThey demanded a sign while standing beneath one.\nWhen the darkness came, the shouting became less frequent.\nBy the time the earth began to shake, many had already started moving toward the city.",
     "choices": [
       {
-        "text": "That sounds rehearsed.",
-        "destination": "opening"
+        "text": "What happened when darkness fell?",
+        "destination": "darkness"
       }
     ]
   },
-  "crowd_support": {
-    "content": "The people were already agitated from the triumphal entry two days prior. This was not a random crowd \u2014 this was a movement with momentum.",
+  "crucifixion_begins": {
+    "content": "They brought Him forward.\nThe nails went through hands and feet.\nI held the hammer; another held His arms. I had seen this before. Only this time, I noticed His calm. Not a struggle. Not a curse.\nThe robbers on either side jeered. One cursed. The other rebuked him and asked for mercy from this man in the middle.",
     "choices": [
       {
-        "text": "And the priests?",
-        "destination": "priestly_response"
+        "text": "What did the robbers say?",
+        "destination": "criminals"
+      },
+      {
+        "text": "Did He respond?",
+        "destination": "words"
       }
     ]
   },
-  "priestly_response": {
-    "content": "The priests are meeting emergency sessions day and night. They are not meeting about the coinage. They are meeting about the man.",
+  "criminals": {
+    "content": "One mocked: \"If You are the Messiah, save Yourself and us.\"\nThe other said quietly: \"Do you not fear God? We are punished rightly, but this man has done nothing wrong.\"\nEven from my perch, I could see His eyes turn toward him.",
     "choices": [
       {
-        "text": "Show me your official dispatch.",
+        "text": "What did He say?",
+        "destination": "words"
+      }
+    ]
+  },
+  "words": {
+    "content": "He said nothing to the mocker.\nHe spoke to the penitent one: \"Today you will be with Me in Paradise.\"\nI did not understand how words so few could silence a man, calm a thief, and enrage priests all at once.",
+    "choices": [
+      {
+        "text": "What about the soldiers?",
+        "destination": "vinegar"
+      }
+    ]
+  },
+  "vinegar": {
+    "content": "Later, they offered Him sour wine.\nHe tasted it. He refused it at first, then drank.\nSome soldiers joked about mercy. I did not. I held my spear ready.\nWhen He cried out, \"It is finished,\" I did not move. Then, as the others prepared for Him to be taken down, I thrust the spear into His side. Blood and water poured out.\nEven hardened soldiers murmured.",
+    "choices": [
+      {
+        "text": "What happened then?",
+        "destination": "darkness"
+      }
+    ]
+  },
+  "darkness": {
+    "content": "The sky grew black. Midday, and yet the sun hid its face.\nThe ground shook. Stones cracked. The Temple curtain tore from top to bottom.\nEven the priests fled to safe distance. A few, perhaps, wondered what they had done.",
+    "choices": [
+      {
+        "text": "What did you record officially?",
+        "destination": "report"
+      }
+    ]
+  },
+  "report": {
+    "content": "I reported: \"Three men executed. Middle victim silent. Witnesses among criminals: one justified, one mocking. Darkness and earthquake observed. Curtain torn. Soldier used spear; blood and water observed.\"\nI wrote it plainly. I do not interpret miracles. I note facts.",
+    "choices": [
+      {
+        "text": "Anything else extraordinary?",
+        "destination": "extraordinary"
+      }
+    ]
+  },
+  "extraordinary": {
+    "content": "The centurion near me fell to his knees. He said, \"Surely this was the Son of God.\"\nSome in the crowd wept. Some ran. The darkness lasted hours. The ground still trembled long after the crosses were removed.\nI have never seen death wear such majesty.",
+    "choices": [
+      {
+        "text": "Closing statement",
         "destination": "closing"
       }
     ]
   },
   "closing": {
-    "content": "I am on duty. I will stick to what I observed. The rest belongs to the archives and the Sanhedrin's emergency sessions.",
+    "content": "I am Marcus. I held the hammer. I held the spear. I watched the sky go dark.\nThe man on the center cross commanded the attention of all — criminals, soldiers, priests, and the crowd alike.\nI record only what I saw. What it means belongs to those who follow Him.",
     "choices": []
   }
 }

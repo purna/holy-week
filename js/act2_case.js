@@ -526,6 +526,14 @@ export const act2CaseA = {
     },
   ],
 
+  timelineEvidenceIds: ["question_scroll", "parable_fragments", "coin_of_caesar", "witness_scroll", "widow_two_coins"],
+  timelineInsight: "Successive challenges fail before Jesus turns attention to the widow. The order contrasts public contests over authority with a quiet act that reveals true allegiance and value.",
+  timelineBibleRef: "Matthew 21:23–22:46; Mark 12:41–44",
+  requiredConnections: [
+    { pair: "question_scroll+witness_scroll", operation: "compare" },
+    { pair: "coin_of_caesar+widow_two_coins", operation: "compare" },
+  ],
+
   deductions: {
     "question_scroll+witness_scroll": {
       compare: {
@@ -841,6 +849,15 @@ export const act2CaseB = {
         contradict: "RELIABILITY: This item was planted to mislead the investigation. It contains inconsistencies that do not match the verified evidence."
       }
     }
+  ],
+
+  timelineEvidenceIds: ["crowd_report", "grave_dirt", "secret_decree", "parable_notes"],
+  timelineInsight: "Reports about Lazarus become verified intelligence and then a secret order. The chronology exposes how public evidence of life provoked an organised attempt to silence it.",
+  timelineBibleRef: "John 11:45–53; John 12:9–11",
+  requiredConnections: [
+    { pair: "crowd_report+grave_dirt", operation: "compare" },
+    { pair: "crowd_report+secret_decree", operation: "compare" },
+    { pair: "secret_decree+parable_notes", operation: "compare" },
   ],
 
   deductions: {
@@ -1612,6 +1629,14 @@ export const act2CaseC = {
     }
   ],
 
+  timelineEvidenceIds: ["temple_overlook_view", "disciples_questions_notes", "cosmic_signs_references", "darkened_sun_record", "parable_of_virgins_notes"],
+  timelineInsight: "A question prompted by the Temple leads from warning signs to a call for readiness. Prediction is framed as a reason for faithful living, not speculation.",
+  timelineBibleRef: "Matthew 24:1–44; Matthew 25:1–13",
+  requiredConnections: [
+    { pair: "temple_overlook_view+disciples_questions_notes", operation: "link" },
+    { pair: "parable_of_virgins_notes+cosmic_signs_references", operation: "compare" },
+  ],
+
   deductions: {
     "temple_overlook_view+disciples_questions_notes": {
       link: {
@@ -2008,6 +2033,14 @@ export const act2CaseD = {
       },
       contradictions: {},
     }
+  ],
+
+  timelineEvidenceIds: ["lamb_records", "inspection_notes", "nard_flask", "alabaster_jar"],
+  timelineInsight: "Passover lambs are selected and inspected while Jesus is publicly examined, then costly anointing prepares for His death. The parallel gives the week's timing its meaning.",
+  timelineBibleRef: "Exodus 12:3–6; Mark 11:27–33; John 12:1–8",
+  requiredConnections: [
+    { pair: "lamb_records+inspection_notes", operation: "compare" },
+    { pair: "nard_flask+alabaster_jar", operation: "link" },
   ],
 
   deductions: {

@@ -315,11 +315,6 @@ export class NPCSystem {
         }
       }
 
-      // Reputation Bonus for precise investigation
-      if (!state.hasFailedChallenge && npc.faction) {
-        this.caseManager.updateReputation(npc.faction, 5);
-      }
-
       this.caseManager.recordBreakthrough(npcId, key);
 
       return {
@@ -337,12 +332,6 @@ export class NPCSystem {
     state.pressureLevel = Math.min(100, state.pressureLevel + 5);
     this._updateMood(npcId, state);
 
-    if (typeof this.caseManager.updateDoubt === 'function') {
-      this.caseManager.updateDoubt(10);
-    }
-    if (npc.faction && typeof this.caseManager.updateReputation === 'function') {
-      this.caseManager.updateReputation(npc.faction, -15);
-    }
     if (typeof this.caseManager.recordFailedChallenge === 'function') {
       this.caseManager.recordFailedChallenge();
     }

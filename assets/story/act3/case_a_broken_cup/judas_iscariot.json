@@ -1,44 +1,59 @@
 {
   "start": {
-    "content": "You look at me and you see the treasurer. I've carried the group's bag for three years, accounting for every mite and denarius while the others dreamed of thrones. But tonight, the weight of the silver is different.",
+    "content": "You trace my steps with your ink and parchment, little scribe. You think you are tracking a simple exchange of silver. You have no understanding of what it means to watch three years of momentum evaporate into poetry and feet-washing. We were supposed to hold the gates of the city! Now he speaks of tombs and broken bread. Someone must force his hand to action.",
     "choices": [
       {
-        "text": "What were you counting at the preparation table?",
-        "destination": "money_bag"
+        "text": "You sold Him for thirty pieces.",
+        "destination": "motives"
       },
       {
-        "text": "Tell me about the bread Jesus gave you.",
-        "destination": "sop_bread"
+        "text": "You regret it.",
+        "destination": "regret"
       }
     ]
   },
-  "money_bag": {
-    "content": "I set the bag down on the preparation table for only a moment to confirm the weight. If it left an impression in the dust, it is because thirty pieces of Temple silver weigh more than a man's conscience. It was the price they offered — the price of a slave.",
+  "motives": {
+    "content": "Thirty pieces of silver. The price of a slave. That is what the Temple assessed the Son of God to be worth. And they paid me to deliver Him.",
     "choices": [
       {
-        "text": "Why thirty pieces?",
-        "destination": "prophecy_link"
+        "text": "The money bag seems heavy tonight.",
+        "destination": "bag_heavy"
       },
       {
-        "text": "And the bread?",
-        "destination": "sop_bread"
+        "text": "Jesus spoke of a new covenant.",
+        "destination": "new_covenant"
       }
     ]
   },
-  "sop_bread": {
-    "content": "He dipped the bread in the bitter herbs and handed it to me. The seat of honor. He knew what was in my heart, yet He gave me the guest's portion anyway. 'Do quickly,' He said. I dropped a fragment of it by the door as I fled. I couldn't stay in that light any longer.",
+  "bag_heavy": {
+    "content": "The money bag seems heavy tonight. Thirty silver coins is the weight of a life in this city. A slave's price. I did what was necessary for the group.\n# reveal:money_bag_impression\n/#\nJesus told us to be prepared. I am merely ensuring we are.",
     "choices": [
-      { "text": "Continue.", "destination": "closing" }
+      {
+        "text": "closing",
+        "destination": "closing"
+      }
     ]
   },
-  "prophecy_link": {
-    "content": "Zechariah spoke of it centuries ago. They weighed out my wages — thirty pieces of silver. I am just a gear in a machine that was built before I was born. Let the priests have their man.",
+  "new_covenant": {
+    "content": "He speaks of many things. Blood, wine, bread. I look at the silver and I see reality. He is walking into a trap he will not avoid.",
     "choices": [
-      { "text": "Continue.", "destination": "closing" }
+      {
+        "text": "closing",
+        "destination": "closing"
+      }
+    ]
+  },
+  "regret": {
+    "content": "I watched three years of expectation curdle into disappointment. The Messiah was supposed to be a king. Instead He washed feet. Instead He spoke of dying. The Zealots wanted a general. I wanted a winner. I was wrong.",
+    "choices": [
+      {
+        "text": "What happened to the money?",
+        "destination": "closing"
+      }
     ]
   },
   "closing": {
-    "content": "The transaction is nearly complete. The Chief Priests are waiting for the signal. It is night, and there is no turning back now.",
+    "content": "Silver is a ledger entry. Disappointment is a fire. The Temple priests counted it out. I took it. And then I saw Him look at me from across the courtyard. I threw the silver at them and ran. I can no longer live with what I have done.",
     "choices": []
   }
 }

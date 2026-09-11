@@ -1,1 +1,479 @@
-{"inkVersion":21,"root":[[{"->":"start"},["done",{"#f":5,"#n":"g-0"}],null],"done",{"start":[["^I had bled for twelve years. Not a woman's course, but a constant, wasting flow that made me an outcast. I heard He was passing through the crowd, and I thought — if I could just touch the hem of His garment...","\n","ev","str","^You touched His cloak?","/str","/ev",{"*":".^.c-0","flg":20},"ev","str","^What happened when you did?","/str","/ev",{"*":".^.c-1","flg":20},{"c-0":["^ ",{"->":"touch"},"\n",{"#f":5}],"c-1":["^ ",{"->":"healing"},"\n",{"#f":5}]}],{"#f":1}],"healing":[["^TBC","\n","ev","str","^Were you afraid?","/str","/ev",{"*":".^.c-0","flg":20},{"c-0":["^ ",{"->":"afraid"},"\n",{"#f":5}]}],{"#f":1}],"touch":[["^I pushed through men with their eyes fixed ahead, not caring who brushed against them. My fingers found the fringe of His tallit — the blue cord woven through the corner. I scarcely made contact when I felt the flow stop. Not slow, not easing... but stopping. Like a spring dammed in an instant.","\n","ev","str","^Did He know?","/str","/ev",{"*":".^.c-0","flg":20},"ev","str","^Were you afraid?","/str","/ev",{"*":".^.c-1","flg":20},{"c-0":["^ ",{"->":"jesus_feels"},"\n",{"#f":5}],"c-1":["^ ",{"->":"afraid"},"\n",{"#f":5}]}],{"#f":1}],"afraid":[["^Of course I trembled! To be touched by a woman in public — the crowd would have stoned me. But He turned. His eyes found mine through that sea of faces. Not with anger, but... recognition. As if He had been waiting for me.","\n","ev","str","^What did He say?","/str","/ev",{"*":".^.c-0","flg":20},{"c-0":["^ ",{"->":"jesus_feels"},"\n",{"#f":5}]}],{"#f":1}],"jesus_feels":[["^'Who touched Me?' He asked — not harshly, but clearly. His disciples looked around bewildered. 'Why ask?' they said. 'All touch You, and the crowd presses in.' But He insisted. Then His gaze landed on me.","\n","ev","str","^What happened next?","/str","/ev",{"*":".^.c-0","flg":20},{"c-0":["^ ",{"->":"confession"},"\n",{"#f":5}]}],{"#f":1}],"confession":[["^I fell at His feet, quaking. I told Him the truth — all of it. The physicians, the expenses, the growing worse. And how in that single moment of touching His garment, I felt the power go out from Him. I was healed. Completely.","\n","ev","str","^What did He say to you?","/str","/ev",{"*":".^.c-0","flg":20},{"c-0":["^ ",{"->":"grace"},"\n",{"#f":5}]}],{"#f":1}],"grace":[["^He didn't rebuke me. He called me 'daughter.' As if I were clean. As if I were whole. 'Your faith has healed you,' He said. 'Go in peace.' And I felt what I had not felt in twelve years — truly whole. Not just the bleeding stopped, but my very soul.","\n","ev","str","^Continue.","/str","/ev",{"*":".^.c-0","flg":20},{"c-0":["^ ",{"->":"closing"},"\n",{"#f":5}]}],{"#f":1}],"closing":["^I am no one remarkable. Just a woman who touched a thread of His cloak. Yet He stopped for me. He saw me. If He notices a broken woman in a crowd of thousands, what might He do for those who seek Him openly?","\n","done",{"#f":1}],"#f":1}],"listDefs":{}}
+{
+  "start": {
+    "content": "I had bled for twelve years. Not a woman's course, but a\nconstant, wasting flow that made me an outcast. I heard\nHe was passing through the crowd, and I thought — if I\ncould just touch the hem of His garment...",
+    "choices": [
+      {
+        "text": "You touched His cloak?",
+        "destination": "touch"
+      },
+      {
+        "text": "What happened when you did?",
+        "destination": "healing"
+      },
+      {
+        "text": "How long had you suffered?",
+        "destination": "suffering"
+      }
+    ]
+  },
+  "suffering": {
+    "content": "Twelve years of bleeding. Twelve years of isolation.\nTwelve years of ritual uncleanness that made me\nuntouchable to my own family. The physicians took\nmy money and gave me nothing. The priests declared\nme ceremonially unclean. And still — the flow\nwould not stop.",
+    "choices": [
+      {
+        "text": "You were completely alone.",
+        "destination": "alone"
+      },
+      {
+        "text": "Faith sustained you.",
+        "destination": "faith_sustained"
+      }
+    ]
+  },
+  "alone": {
+    "content": "Completely alone. My husband divorced me — the\nLaw required it. Leviticus 15 declares a woman\nwith a discharge ritually unclean. My own\nchildren were told to avoid me. Even the\nbeast of burden was cleaner than I.",
+    "choices": [
+      {
+        "text": "How did you survive?",
+        "destination": "survive"
+      },
+      {
+        "text": "The isolation was crushing.",
+        "destination": "crushing"
+      }
+    ]
+  },
+  "faith_sustained": {
+    "content": "Faith sustained me — faith in the promises\nof the prophets, faith in the mercies\nof God, faith that someday the flowing\nwould stop. But faith alone cannot\nstop bleeding. Faith alone cannot\npurify the body. Faith alone...\ncan lead me to the hem of His garment.",
+    "choices": [
+      {
+        "text": "The hem of His garment.",
+        "destination": "touch"
+      },
+      {
+        "text": "Faith becomes action.",
+        "destination": "faith_action"
+      }
+    ]
+  },
+  "survive": {
+    "content": "I survived on alms. On the kindness\nof strangers who threw scraps\nfrom their tables without looking\nme in the eye. On the charity\nof women who whispered prayers\nfor my soul while crossing\nthe street to avoid my shadow.",
+    "choices": [
+      {
+        "text": "Kindness without contact.",
+        "destination": "distant_kindness"
+      },
+      {
+        "text": "You hoped for healing.",
+        "destination": "hoped"
+      }
+    ]
+  },
+  "crushing": {
+    "content": "The isolation was crushing.\nTwelve years without a\nhuman touch that was\nnot born of duty\nor fear. Twelve\nyears wondering\nif God had\nforgotten\nmy name.",
+    "choices": [
+      {
+        "text": "God never forgets.",
+        "destination": "god_remembers"
+      },
+      {
+        "text": "The loneliness was deafening.",
+        "destination": "deafening_loneliness"
+      }
+    ]
+  },
+  "touch": {
+    "content": "I pushed through men with their eyes\nfixed ahead, not caring who brushed\nagainst them. My fingers found the\nfringe of His tallit — the blue cord\nwoven through the corner. I scarcely\nmade contact when I felt the flow\nstop. Not slow, not easing... but\nstopping. Like a spring dammed in\nan instant.",
+    "choices": [
+      {
+        "text": "Did He know?",
+        "destination": "jesus_feels"
+      },
+      {
+        "text": "Were you afraid?",
+        "destination": "afraid"
+      },
+      {
+        "text": "The touch was electric.",
+        "destination": "electric_touch"
+      }
+    ]
+  },
+  "electric_touch": {
+    "content": "The touch was electric.\nNot with pain — with\npower. I felt His energy\nflow into me like a\nriver breaking\nthrough a dam.\nThe twelve\nyears of\nemptiness\nfilled at\nonce.",
+    "choices": [
+      {
+        "text": "The power was immediate.",
+        "destination": "power_immediate"
+      },
+      {
+        "text": "The river of life.",
+        "destination": "river_life"
+      },
+      {
+        "text": "The dam broke in your favor.",
+        "destination": "dam_broke"
+      }
+    ]
+  },
+  "power_immediate": {
+    "content": "Immediate.\nNot gradual.\nNot partial.\nBut total.\nComplete.\nWhole.\nAs if\nthe moment\nmy fingers\ntouched\nthe hem\nof His\ngarment,\nthe entire\ntwelve\nyears\nof\nsuffering\nwas\nundone.",
+    "choices": [
+      {
+        "text": "The undoing was complete.",
+        "destination": "undoing_complete"
+      },
+      {
+        "text": "Twelve years in an instant.",
+        "destination": "twelve_instant"
+      },
+      {
+        "text": "Healing beyond healing.",
+        "destination": "healing_beyond"
+      }
+    ]
+  },
+  "river_life": {
+    "content": "The river of life.\nThat is what\nflowed from\nthat single\npoint of\ncontact.\nThe river\nthat Ezekiel\nsaw in\nhis vision.\nThe river\nthat makes\nthe dead\nlive.\nThe river\nthat\ntransforms\neverything\nit touches.",
+    "choices": [
+      {
+        "text": "Ezekiel's river.",
+        "destination": "ezekiel_river"
+      },
+      {
+        "text": "The dead live.",
+        "destination": "dead_live"
+      },
+      {
+        "text": "Transformation flows.",
+        "destination": "transformation_flows"
+      }
+    ]
+  },
+  "dam_broke": {
+    "content": "The dam broke\nin my favor.\nNot in my\nface. Not\nagainst me.\nBut FOR me.\nAs if\nthe very\nheavens\nhad\naligned\nto\nrelease\nwhat\nhad\nbeen\nheld\nback\nfor\ntwelve\nlong\nyears.",
+    "choices": [
+      {
+        "text": "Heaven aligned.",
+        "destination": "heaven_aligned"
+      },
+      {
+        "text": "Released in favor.",
+        "destination": "released_favor"
+      },
+      {
+        "text": "The tide turned.",
+        "destination": "tide_turned"
+      }
+    ]
+  },
+  "undoing_complete": {
+    "content": "The undoing\nwas complete.\nNot a single\nthread of\nmy twelve-year\ndisease\nremained.\nNot a\nsingle\nmemory\nof pain.\nNot\na\nsingle\ntrace\nof\nuncleanness.\nJust...\nwholeness.\nPure\nand\ncomplete.",
+    "choices": [
+      {
+        "text": "Wholeness beyond healing.",
+        "destination": "wholeness_beyond"
+      },
+      {
+        "text": "Pure and complete.",
+        "destination": "pure_complete"
+      },
+      {
+        "text": "The old was gone.",
+        "destination": "old_gone"
+      }
+    ]
+  },
+  "twelve_instant": {
+    "content": "Twelve\nyears\nin\nan\ninstant.\nTwelve\nyears\nof\nsuffering\nreduced\nto\ntwelve\nseconds\nof\ntouch.\nTwelve\nyears\nof\nisolation\nended\nby\none\nmoment\nof\nfaith.\nTime\ncollapsed.\nPain\ndissolved.\nLife\nreturned.",
+    "choices": [
+      {
+        "text": "Time collapsed.",
+        "destination": "time_collapsed"
+      },
+      {
+        "text": "Pain dissolved.",
+        "destination": "pain_dissolved"
+      },
+      {
+        "text": "Life returned.",
+        "destination": "life_returned"
+      }
+    ]
+  },
+  "healing_beyond": {
+    "content": "Healing\nbeyond\nhealing.\nNot\njust\nthe\nstopping\nof\nblood.\nNot\njust\nthe\ncleansing\nof\nuncleanness.\nBut\nthe\nrestoration\nof\ndignity.\nOf\nconnection.\nOf\nbelonging.\nThe\nhealing\nwas\ntotal.",
+    "choices": [
+      {
+        "text": "Dignity restored.",
+        "destination": "dignity_restored"
+      },
+      {
+        "text": "Connection restored.",
+        "destination": "connection_restored"
+      },
+      {
+        "text": "Belonging restored.",
+        "destination": "belonging_restored"
+      }
+    ]
+  },
+  "jesus_feels": {
+    "content": "\"Who touched Me?\"\nHe asked — not harshly, but clearly.\nHis disciples looked around bewildered.\n\"Why ask?\" they said. \"All touch You,\nand the crowd presses in.\" But He insisted.\nThen His gaze landed on me.",
+    "choices": [
+      {
+        "text": "What happened next?",
+        "destination": "confession"
+      },
+      {
+        "text": "He called you daughter.",
+        "destination": "called_daughter"
+      },
+      {
+        "text": "The gaze found you.",
+        "destination": "gaze_found"
+      }
+    ]
+  },
+  "called_daughter": {
+    "content": "He called me \"daughter.\" Not \"woman.\"\nNot \"unclean.\" \"Daughter.\" As if\ntwelve years of bleeding had never\nhappened. As if my isolation meant\nnothing. As if I were the most\nwelcome guest at His table.",
+    "choices": [
+      {
+        "text": "The word was healing.",
+        "destination": "word_healing"
+      },
+      {
+        "text": "Dignity restored.",
+        "destination": "dignity_restored2"
+      },
+      {
+        "text": "Belonging restored.",
+        "destination": "belonging_restored2"
+      }
+    ]
+  },
+  "gaze_found": {
+    "content": "His gaze\nfound me\nthrough\nthe crowd.\nNot because\nI was loud.\nNot because\nI was\nimportant.\nBut because\nsomehow —\nsomehow —\nHe knew.\nHe knew\nthat\namong\nall\nthese\npeople,\none\nheart\nhad\nreached\nout\nin\nfaith.\nAnd\nHe\nfound\nthat\nheart.",
+    "choices": [
+      {
+        "text": "He knows all hearts.",
+        "destination": "knows_hearts"
+      },
+      {
+        "text": "The gaze connected.",
+        "destination": "gaze_connected"
+      },
+      {
+        "text": "Faith is seen.'",
+        "destination": "faith_seen"
+      }
+    ]
+  },
+  "confession": {
+    "content": "I fell at His feet, quaking.\nI told Him the truth — all of it.\nThe physicians, the expenses,\nthe growing worse. And how in\nthat single moment of touching\nHis garment, I felt the power\ngo out from Him. I was healed.\nCompletely.",
+    "choices": [
+      {
+        "text": "What did He say to you?",
+        "destination": "grace"
+      },
+      {
+        "text": "His power flowed to you.",
+        "destination": "power_flow"
+      },
+      {
+        "text": "The truth was safe.",
+        "destination": "truth_safe"
+      }
+    ]
+  },
+  "grace": {
+    "content": "He didn't rebuke me. He called me\n\"daughter.\" As if I were clean.\nAs if I were whole. \"Your faith\nhas healed you,\" He said. \"Go in\npeace.\" And I felt what I had\nnot felt in twelve years —\ntruly whole. Not just the bleeding\nstopped, but my very soul.",
+    "choices": [
+      {
+        "text": "Peace after pain.",
+        "destination": "peace_after"
+      },
+      {
+        "text": "The soul was healed too.",
+        "destination": "soul_healed"
+      },
+      {
+        "text": "Faith received everything.",
+        "destination": "faith_received"
+      }
+    ]
+  },
+  "peace_after": {
+    "content": "Peace\nafter\npain.\nRest\nafter\nturmoil.\nSilence\nafter\ntwelve\nyears\nof\nweeping.\nThe\npeace\nof\nGod —\nwhich\npasses\nunderstanding —\nflooded\nthrough\nevery\ncell\nof my\nbeing.\nI\nwas\nat\npeace.\nNot\njust\nin\nmy\nbody.\nNot\njust\nin\nmy\nspirit.\nBut\nin\nmy\n very\n soul.",
+    "choices": [
+      {
+        "text": "The peace was total.",
+        "destination": "peace_total"
+      },
+      {
+        "text": "Understanding passed by.",
+        "destination": "understanding_passed"
+      },
+      {
+        "text": "The soul found rest.",
+        "destination": "soul_rest"
+      }
+    ]
+  },
+  "soul_healed": {
+    "content": "The\nsoul\nwas\nhealed\ntoo.\nNot\njust\nthe\nbody.\nNot\njust\nthe\nspirit.\nBut\nthe\nsoul —\nthe\ndeepest\npart,\nthe\npart\nthat\nhad\nbeen\nbruised\nby\ntwelve\nyears\nof\nisolation,\ntwelve\nyears\nof\nrejection,\ntwelve\nyears\nof\nbelieving\nthat\nGod\nhad\nforgotten.\nThe\nsoul\nwas\nmade\nwhole.",
+    "choices": [
+      {
+        "text": "The bruised soul healed.",
+        "destination": "soul_healed"
+      },
+      {
+        "text": "The deep place restored.",
+        "destination": "deep_restored"
+      },
+      {
+        "text": "The forgotten remembered.",
+        "destination": "forgotten_remembered"
+      }
+    ]
+  },
+  "faith_received": {
+    "content": "Faith\nreceived\neverything.\nNot\njust\nhealing.\nNot\njust\npeace.\nNot\njust\nrestoration.\nBut\nrecognition.\nValidation.\nBelonging.\nFaith\nreached\nout\nand\ngrasped\nnot\njust\na\ngarment\nbut\nthe\nheart\nof\nthe\n Son\nof\nGod.\nAnd\nHe\ngave\nback\nmore\nthan\nshe\nhad\nasked.",
+    "choices": [
+      {
+        "text": "The heart reached back.",
+        "destination": "heart_reached"
+      },
+      {
+        "text": "More than asked.",
+        "destination": "more_than_asked"
+      },
+      {
+        "text": "Faith grasped grace.",
+        "destination": "faith_grace"
+      }
+    ]
+  },
+  "word_healing2": {
+    "content": "The\nword\nwas\nhealing —\n\"daughter.\"\nNot\n\"woman.\"\nNot\n\"sinner.\"\n\"Daughter.\"\nThe\nmost\nintimate\nterm\nof\nendearment\nin\nour\nculture.\nA\nchild.\nBeloved.\nAccepted.\nThe\nword\nhealed\nwhat\nthe\ntouch\nbegan.\nAnd\nthe\ntouch\nhealed\nwhat\nthe\nword\nconfirmed.",
+    "choices": [
+      {
+        "text": "Word and touch united.",
+        "destination": "word_touch"
+      },
+      {
+        "text": "Intimacy over institution.",
+        "destination": "intimacy_inst2"
+      },
+      {
+        "text": "The word created worth.",
+        "destination": "word_worth"
+      }
+    ]
+  },
+  "dignity_restored2": {
+    "content": "Dignity\nrestored.\nTwelve\nyears\nof\nbeing\nuntouchable\nended\nwith\ntwelve\nwords:\n\"Your\nfaith\nhas\nhealed\nyou.\"\nDignity\nrestored.\nWorth\naffirmed.\nValue\nestablished.\nNot\nby\nmy\nfamily.\nNot\nby\nmy\nwealth.\nBut\nby\nthe\nSon\nof\nGod.",
+    "choices": [
+      {
+        "text": "Worth beyond worthiness.",
+        "destination": "worth_beyond"
+      },
+      {
+        "text": "Value through grace.",
+        "destination": "value_grace"
+      },
+      {
+        "text": "Established by divinity.",
+        "destination": "established_divine2"
+      }
+    ]
+  },
+  "belonging_restored2": {
+    "content": "Belonging\nrestored.\nTwelve\nyears\nof\nisolation\nended\nin\na\nmoment.\nI\nwas\nno\nlonger\nan\noutcast.\nI\nwas\na\ndaughter.\nI\nwas\nwelcome.\nI\nwas\nhome.",
+    "choices": [
+      {
+        "text": "Home at last.",
+        "destination": "home_at_last"
+      },
+      {
+        "text": "The outcast welcomed.",
+        "destination": "outcast_welcomed"
+      },
+      {
+        "text": "Belonging through faith.",
+        "destination": "belonging_faith"
+      }
+    ]
+  },
+  "truth_safe": {
+    "content": "The\ntruth\nwas\nsafe\nwith\nHim.\nNot\njudged.\nNot\ncondemned.\nNot\ndismissed.\nBut\nreceived.\nUnderstood.\nHonored.\nMy\ntwelve\nyears\nof\nshame —\nHe\nheld\nthem\ngently.\nMy\nconfession —\nHe\nmet\nwith\n compassion.\nMy\nfaith —\nHe\nhonored.",
+    "choices": [
+      {
+        "text": "Compassion over judgment.",
+        "destination": "compassion_judgment"
+      },
+      {
+        "text": "Shame held gently.",
+        "destination": "shame_gently"
+      },
+      {
+        "text": "Faith honored completely.",
+        "destination": "faith_honored"
+      }
+    ]
+  },
+  "more_than_welcome": {
+    "content": "More\nthan\nwelcome.\nMore\nthan\naccepted.\nMore\nthan\nunderstood.\nI\nwas\ncelebrated.\nMy\nfaith\nwas\npraised.\nMy\njourney\nwas\nhonored.\nAnd\nmy\nhealing\nwas\npresented\nas\na\ntestimony\nto\nall.",
+    "choices": [
+      {
+        "text": "Celebrated, not hidden.",
+        "destination": "celebrated"
+      },
+      {
+        "text": "The testimony shared.",
+        "destination": "testimony_shared"
+      },
+      {
+        "text": "Honored in community.",
+        "destination": "honored_community"
+      }
+    ]
+  },
+  "healing_flowed": {
+    "content": "The\nhealing\nflowed\nbeyond\nmy\nbody.\nIt\nflowed\nto\nthe\ncrowd\nwho\nwitnessed\nit.\nIt\nflowed\nto\nthe\ndisciples\nwho\nrecorded\nit.\nIt\nflowed\nto\nevery\ngeneration\nthat\nwould\nhear\nmy\nstory.\nOne\ntouch.\nOne\nword.\nOne\nmoment.\nAnd\nthe\n ripple\nof\nhealing\nreaches\nto\nthe\nends\nof\nthe\nearth.",
+    "choices": [
+      {
+        "text": "The ripple continues.",
+        "destination": "ripple"
+      },
+      {
+        "text": "Healing spreads.'",
+        "destination": "healing_spreads"
+      },
+      {
+        "text": "One touch changes all.'",
+        "destination": "changes_all"
+      }
+    ]
+  },
+  "closer_to_you": {
+    "content": "I am\ncloser\nto\nyou\nnow\nthan\nI\never\nwas.\nNot\nin\ndistance.\nNot\nin\ntime.\nBut\nin\nconnection.\nIn\nunderstanding.\nIn\nthe\nshared\nknowledge\nthat\nhealing\nis\nnot\nearned.\nIt\nis\ngiven.\nAnd\nthose\nwho\nreceive\nit\nare\ncalled\nto\nshare\nit.",
+    "choices": [
+      {
+        "text": "Given, not earned.",
+        "destination": "given_not_earned"
+      },
+      {
+        "text": "Healing to share.",
+        "destination": "healing_share"
+      },
+      {
+        "text": "The gift multiplies.",
+        "destination": "gift_multiplies"
+      }
+    ]
+  },
+  "closing": {
+    "content": "I am no one remarkable. Just a woman who\ntouched a thread of His cloak. Yet He stopped\nfor me. He saw me. If He notices a broken\nwoman in a crowd of thousands, what might\nHe do for those who seek Him openly?",
+    "choices": []
+  }
+}

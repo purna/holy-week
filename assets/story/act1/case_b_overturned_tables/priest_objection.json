@@ -1,37 +1,1045 @@
 {
   "start": {
-    "content": "I was on duty when it happened. I will tell you only what I witnessed \u2014 nothing more. Last Sabbath, outside the outer court \u2014 tables overturned, animals scattered, the crowd orange with excitement. He called it My Father's house. The merchants called it their living. I called it my afternoon.",
+    "content": "I am a priest of the course of Abijah, serving in the Temple\nof the Lord. The Law of Sinai does not bend for crowds or\nhealings. A man claims to be Lord of the Sabbath and calls\nthis house his own. Torah knows what to do with such questions.\nBy turning the Court of the Gentiles into a riot, He has given\nRome every excuse to restrict our ceremonies and profane\nour sacred courts.",
     "choices": [
       {
-        "text": "Did He strike anyone?",
-        "destination": "violence"
+        "text": "Did He have a legitimate complaint?",
+        "destination": "complaint"
       },
       {
-        "text": "What did the priests do?",
-        "destination": "priestly"
+        "text": "What about the Psalm He quoted?",
+        "destination": "psalm_69"
       }
     ]
   },
-  "violence": {
-    "content": "No blade was drawn. No centurion was summoned. He simply stood there while the merchants fled. It was the most disciplined crowd-disruption I have ever witnessed in this province.",
+  "complaint": {
+    "content": "Legitimate? The Court of the Gentiles is not a marketplace.\nIt is the only place on earth where a non-Jew can come to\npray to the God of Israel. By driving out the merchants, He\nmade it impossible for the nations to worship. That is not\nzeal. That is sabotage against the very purpose of the Temple.",
     "choices": [
       {
-        "text": "That is unusual.",
-        "destination": "priestly"
+        "text": "The merchants were exploiting the poor.",
+        "destination": "exploiting"
+      },
+      {
+        "text": "He said the Temple had become a den of thieves.",
+        "destination": "den_thieves"
       }
     ]
   },
-  "priestly": {
-    "content": "The merchants ran straight to the priests. By evening, the Sanhedrin was in emergency session. They were not discussing the disruption. They were discussing the man.",
+  "psalm_69": {
+    "content": "Psalm 69:9. \"Zeal for your house will consume me.\" Even a\nzealot can be a prophet. But a prophet who attacks the\npriesthood's authority without divine commission is a\nblasphemer. The Sanhedrin will decide. But mark my words:\nthis man has declared war on the Temple, and the Temple\nwill not fall without a fight.",
     "choices": [
       {
-        "text": "And the following days?",
-        "destination": "closing"
+        "text": "The Temple needs reform, not war.",
+        "destination": "reform"
+      },
+      {
+        "text": "What will the Sanhedrin do?",
+        "destination": "sanhedrin_action"
       }
     ]
   },
-  "closing": {
-    "content": "I have my instructions. I watch. I report. The Galilean's movement is being catalogued, questioned, and debated at every level of authority in this city. The outcome is not in doubt.",
+  "exploiting": {
+    "content": "Exploiting? The exchange rates are set by the priestly\nfamilies according to Torah. The half-shekel tax is\nrequired by Moses. If there is exploitation, it is our\nsystem, not His to destroy. He should have come to the\nSanhedrin. Presented his case. Argued his point. Not\npicked up a whip like a common zealot.",
+    "choices": [
+      {
+        "text": "The Sanhedrin would not have listened.",
+        "destination": "not_listen"
+      },
+      {
+        "text": "He acted with prophetic authority.",
+        "destination": "prophetic_auth"
+      }
+    ]
+  },
+  "den_thieves": {
+    "content": "\"Den of thieves.\" He quoted Isaiah 56:7 and turned it\nagainst us. The merchants operate under priestly license.\nTheir profits maintain the Temple. Their sacrifices provide\nfor the poor. By destroying their cages, He has made it\nimpossible for the poor to offer their doves. That is not\njustice. That is cruelty.",
+    "choices": [
+      {
+        "text": "The cages were a business, not a mitzvah.",
+        "destination": "business"
+      },
+      {
+        "text": "He freed the birds.",
+        "destination": "freed"
+      }
+    ]
+  },
+  "reform": {
+    "content": "Reform comes from within. From the Sanhedrin. From the\npriests who have spent lifetimes studying the Law. Not\nfrom a Galilean carpenter with a whip and a crowd. This\nman offers destruction, not reform. And destruction is\nalways easier than rebuilding.",
+    "choices": [
+      {
+        "text": "Destruction can be prophetic.",
+        "destination": "prophetic_destruction"
+      },
+      {
+        "text": "The system is beyond reform.",
+        "destination": "beyond_reform"
+      }
+    ]
+  },
+  "sanhedrin_action": {
+    "content": "The Sanhedrin will convene. We will examine the charges.\nWe will hear the witnesses. We will apply the Law. If He\nis a blasphemer, He will be stoned. If He is a prophet,\nwe will acknowledge Him. There is no middle ground for\na man who claims to be Lord of the Sabbath.",
+    "choices": [
+      {
+        "text": "And if He is both?",
+        "destination": "both"
+      },
+      {
+        "text": "You have already decided.",
+        "destination": "decided"
+      }
+    ]
+  },
+  "not_listen": {
+    "content": "Would they? The High Priest has already declared Him a threat.\nThe Sadducees have already plotted. The Sanhedrin is a court,\nnot a debating society. It judges. It does not listen.\nEspecially not to Galilean prophets who disrupt the courts\nwith whips.",
+    "choices": [
+      {
+        "text": "Then the Sanhedrin is corrupt.",
+        "destination": "corrupt"
+      },
+      {
+        "text": "You are all guilty of the same crime.",
+        "destination": "guilty"
+      }
+    ]
+  },
+  "prophetic_auth": {
+    "content": "Prophetic authority? The prophets of old called the people\nto repentance. They wept over Jerusalem. They interceded\nfor the nation. They did not pick up whips and break cages.\nThis man is not a prophet. He is a revolutionary. And\nrevolutionaries get crucified.",
+    "choices": [
+      {
+        "text": "He offered a different kind of kingdom.",
+        "destination": "kingdom"
+      },
+      {
+        "text": "You fear what you cannot control.",
+        "destination": "fear_control"
+      }
+    ]
+  },
+  "business": {
+    "content": "A business that serves the poor. The dove merchants provide\nsacrifices the Law requires. Without them, the lepers have\nno offerings. The poor have no access to atonement. The\nTemple closes its doors to the very people it was built\nto serve. That is not a business. That is a sacred trust.",
+    "choices": [
+      {
+        "text": "The trust was broken by the priests.",
+        "destination": "broken_trust"
+      },
+      {
+        "text": "He offered direct access to God.",
+        "destination": "direct_access"
+      }
+    ]
+  },
+  "freed": {
+    "content": "He freed them. And now the poor have no way to offer.\nThe Temple stands empty of the very people it was\nbuilt for. That is not freedom. That is abandonment.\nAnd abandonment is not a virtue.",
+    "choices": [
+      {
+        "text": "He freed them from exploitation.",
+        "destination": "free_exploit"
+      },
+      {
+        "text": "The priests will replace the cages.",
+        "destination": "replace"
+      }
+    ]
+  },
+  "prophetic_destruction": {
+    "content": "Prophetic destruction? Jeremiah destroyed the scroll.\nEzekiel burned the hair. But they did it with God's\ncommand. With prophetic authority. This man has no\ncommission. No call. No authority from the Sanhedrin.\nHe is a prophet without a portfolio. A voice without\na call.",
+    "choices": [
+      {
+        "text": "His call is from the Father.",
+        "destination": "father_call"
+      },
+      {
+        "text": "You reject what you cannot control.",
+        "destination": "reject_control"
+      }
+    ]
+  },
+  "beyond_reform": {
+    "content": "Beyond reform? Never. The Temple has survived worse.\nIt has survived Babylon. Greece. Rome. It will survive\na Galilean with a whip. The cages will be mended.\nThe coins will be recollected. The merchants will\nreturn. And the system will continue. Because\nGod protects His own.",
+    "choices": [
+      {
+        "text": "God protects the humble, not the system.",
+        "destination": "humble"
+      },
+      {
+        "text": "The system is falling.",
+        "destination": "falling"
+      }
+    ]
+  },
+  "both": {
+    "content": "Both? A man cannot be both Messiah and blasphemer.\nIf He is the Christ, He must sit on David's throne.\nIf He is a blasphemer, He must be stoned. The Sanhedrin\nwill decide. And the decision will be according to\nthe Law, not according to crowds or prophecies\nor wishes.",
+    "choices": [
+      {
+        "text": "The Law is not your tool.",
+        "destination": "law_tool"
+      },
+      {
+        "text": "You will condemn an innocent man.",
+        "destination": "innocent_condemned"
+      }
+    ]
+  },
+  "corrupt": {
+    "content": "Corrupt? The Sanhedrin has guided Israel for centuries.\nWe have preserved the Law through every empire. We are\nnot corrupt. We are survivors. And survival requires\nhard choices.",
+    "choices": [
+      {
+        "text": "Survival is not the same as righteousness.",
+        "destination": "survival_righteousness"
+      },
+      {
+        "text": "You are surviving by destroying innocence.",
+        "destination": "destroying_innocence"
+      }
+    ]
+  },
+  "guilty": {
+    "content": "Guilty? Of what? Of serving the Law? Of protecting the\nTemple? Of preserving the covenant? If those are crimes,\nthen I am guilty. And I will stand guilty before the God\nof Israel with a clean conscience.",
+    "choices": [
+      {
+        "text": "Your conscience is not clean.",
+        "destination": "unclean_conscience"
+      },
+      {
+        "text": "God sees the heart.",
+        "destination": "heart"
+      }
+    ]
+  },
+  "kingdom": {
+    "content": "A different kingdom? Every prophet claims a different\nkingdom. The Zealots claim a military kingdom. The\nEssenes claim a holy kingdom. This man claims a spiritual\nkingdom. But kingdoms require power. And power requires\nauthority. And authority requires... proof.",
+    "choices": [
+      {
+        "text": "His proof is in the miracles.",
+        "destination": "miracles"
+      },
+      {
+        "text": "His kingdom is not of this world.",
+        "destination": "not_this_world"
+      }
+    ]
+  },
+  "fear_control": {
+    "content": "Fear? I am a priest of the living God. I do not fear\nGalilean prophets. I fear the Lord. And the Lord has\ngiven me the Law. The Law commands me to purge\nblasphemy from Israel. That is my duty. Not fear.\nDuty.",
+    "choices": [
+      {
+        "text": "Your duty is to justice.",
+        "destination": "duty_justice"
+      },
+      {
+        "text": "You confuse duty with fear.",
+        "destination": "duty_fear"
+      }
+    ]
+  },
+  "broken_trust": {
+    "content": "Broken? The trust is three thousand years old. It has\nsurvived every empire, every conquest, every persecution.\nIt will survive a Galilean with a whip. The cages will\nbe rebuilt. The coins will be recollected. The trust\nwill endure.",
+    "choices": [
+      {
+        "text": "Not if the people reject it.",
+        "destination": "reject_trust"
+      },
+      {
+        "text": "Endurance is not the same as righteousness.",
+        "destination": "endurance_righteousness"
+      }
+    ]
+  },
+  "direct_access": {
+    "content": "Direct access? There is no direct access to God.\nThere is only the Law. The sacrifices. The priesthood.\nThat is the system God ordained. This man would\nabolish the system and leave the people with nothing\nbut his own authority. And that is not access.\nThat is chaos.",
+    "choices": [
+      {
+        "text": "He is the way.",
+        "destination": "the_way"
+      },
+      {
+        "text": "You are the barrier.",
+        "destination": "barrier_priest"
+      }
+    ]
+  },
+  "free_exploit": {
+    "content": "From exploitation? The Law protects the poor. The dove\nmerchants serve the poor. The exchange rates serve the\npoor. If there is exploitation, it is in the hearts of\nmen, not in the system. And you do not fix hearts\nby breaking cages.",
+    "choices": [
+      {
+        "text": "You preserve exploitation.",
+        "destination": "preserve_exploit"
+      },
+      {
+        "text": "The Law should protect the vulnerable.",
+        "destination": "vulnerable"
+      }
+    ]
+  },
+  "replace": {
+    "content": "Replace?\nThey\nwill\nreplace\nthem\nby\nsundown.\nThe\nmerchants\nwill\nreturn.\nThe\ncoins\nwill\nbe\nreset.\nThe\ncages\nwill\nbe\nmended.\nThe\nsystem\nwill\ncontinue.\nBecause\nthe\nsystem\nis\nnot\nmade\nof\nwood\nand\nstring.\nIt\nis\nmade\nof\nLaw\nand\ncovenant.\nAnd\nthose\ncannot\nbe\nbroken\nby\na\nwhip.",
+    "choices": [
+      {
+        "text": "The covenant is broken by your hearts.'",
+        "destination": "broken_covenant"
+      },
+      {
+        "text": "The system is already broken.'",
+        "destination": "already_broken"
+      }
+    ]
+  },
+  "father_call": {
+    "content": "From the Father? Every prophet claims that. Every\nfalse messiah claims that. The test is not the claim.\nThe test is the fruit. And the fruit of today is\nbroken cages and a Sanhedrin that must now decide\nwhether to stone a prophet or acknowledge a Messiah.",
+    "choices": [
+      {
+        "text": "The fruit is corruption exposed.",
+        "destination": "exposed_fruit"
+      },
+      {
+        "text": "You will choose to stone.",
+        "destination": "choose_stone"
+      }
+    ]
+  },
+  "reject_control": {
+    "content": "Reject? I do not reject. I judge. I apply the Law.\nThe Law is clear: a prophet who acts without\nauthority is a false prophet. And a false prophet\nmust be silenced. Not because I fear Him. Because\nI love the Law more than my own safety.",
+    "choices": [
+      {
+        "text": "You love the Law more than the Lawgiver.",
+        "destination": "lawgiver_priest"
+      },
+      {
+        "text": "The Law is love.",
+        "destination": "law_love"
+      }
+    ]
+  },
+  "humble": {
+    "content": "The humble? The poor who bring their doves? The widows\nwho give their coins? The Temple serves them every day.\nThis man disrupted their worship. He made it impossible\nfor them to offer. That is not humility. That is arrogance.",
+    "choices": [
+      {
+        "text": "He offered something better.",
+        "destination": "better_offering"
+      },
+      {
+        "text": "You serve the system, not the people.",
+        "destination": "system_not_people"
+      }
+    ]
+  },
+  "falling": {
+    "content": "Falling? The Temple has stood for a thousand years.\nIt will stand for a thousand more. This man will fall.\nHis movement will fall. The crowds will disperse.\nAnd the Temple will remain. Because the Temple is\nnot built by human hands. It is built by God.",
+    "choices": [
+      {
+        "text": "God is not confined to a building.",
+        "destination": "not_bound"
+      },
+      {
+        "text": "The Temple fell in AD 70.",
+        "destination": "fell_70"
+      }
+    ]
+  },
+  "law_tool": {
+    "content": "Not a tool? The Law is the sword of God. It cuts\nboth ways. It protects the innocent. It punishes\nthe guilty. If this man is guilty of blasphemy,\nthe Law demands his death. Not because I say so.\nBecause God says so.",
+    "choices": [
+      {
+        "text": "God's sword is justice, not murder.",
+        "destination": "sword_justice"
+      },
+      {
+        "text": "You have blood on your hands.",
+        "destination": "blood_hands"
+      }
+    ]
+  },
+  "innocent_condemned": {
+    "content": "Innocent? By whose standard? By the standard of\nthe Galilean? By the standard of the crowd? By\nthe standard of the Romans? I answer to the Law.\nTo the Torah. To the covenant. And if the Law\nsays He is guilty, He is guilty. Not because\nI say so. Because God says so.",
+    "choices": [
+      {
+        "text": "God does not condemn the innocent.",
+        "destination": "god_innocent"
+      },
+      {
+        "text": "You are condemning God's Son.",
+        "destination": "condemning_son"
+      }
+    ]
+  },
+  "unclean_conscience": {
+    "content": "Clean? My conscience is alive. It speaks every\ntime I enter the Holy Place. It speaks every\ntime I read the prophets. It speaks every time\nI see the poor bringing their offerings. And\ntoday, it speaks in the wreckage of the Court\nof the Gentiles. A dead conscience would not\nfeel this weight.",
+    "choices": [
+      {
+        "text": "Then act on it.",
+        "destination": "act_conscience"
+      },
+      {
+        "text": "Weight is not the same as action.",
+        "destination": "weight_action"
+      }
+    ]
+  },
+  "heart": {
+    "content": "God sees the heart? Then He sees mine. He sees\na priest who has served Him for forty years.\nHe sees a guardian of the Law. He sees one\nwho has preserved the covenant through\ncenturies of turmoil. If God condemns that,\nthen His judgment is harsher than I imagined.",
+    "choices": [
+      {
+        "text": "Preservation without faith.",
+        "destination": "preservation_faith"
+      },
+      {
+        "text": "The heart is what matters.",
+        "destination": "heart_matters"
+      },
+      {
+        "text": "Service without sacrifice.",
+        "destination": "service_sacrifice"
+      }
+    ]
+  },
+  "survival_righteousness": {
+    "content": "Survival is righteousness? When Israel survives,\nrighteousness endures. When Israel falls,\nrighteousness perishes. I choose survival. Not\nbecause I love power. Because I love the\ncovenant. And the covenant requires a people.\nA Temple. A Law. Without these, there is nothing.",
+    "choices": [
+      {
+        "text": "The covenant is bigger than the Temple.",
+        "destination": "bigger_covenant"
+      },
+      {
+        "text": "You are preserving a corpse.",
+        "destination": "corpse"
+      }
+    ]
+  },
+  "destroying_innocence": {
+    "content": "Destroying innocence? I am preserving the Law.\nThe Law is innocent. The Temple is innocent.\nThe covenant is innocent. If condemning this\nman preserves these things, then I will condemn\nHim. Not with joy. With sorrow. But with resolve.",
+    "choices": [
+      {
+        "text": "That is not sorrow. That is murder.",
+        "destination": "murder"
+      },
+      {
+        "text": "The Law is not innocent if it kills the innocent.",
+        "destination": "law_not_innocent"
+      }
+    ]
+  },
+  "miracles": {
+    "content": "Miracles? Moses performed miracles. Elijah performed\nmiracles. But they did so with God's authority. With\na call. With a commission. This man has no commission.\nNo call. No authority from the Sanhedrin. His miracles\nare impressive. But they prove nothing about his\nmessiahship.",
+    "choices": [
+      {
+        "text": "His miracles prove His Father's approval.",
+        "destination": "father_approval"
+      },
+      {
+        "text": "You reject the evidence.",
+        "destination": "reject_evidence"
+      }
+    ]
+  },
+  "not_this_world": {
+    "content": "Not of this world? Then why does He act in this\nworld? Why does He disrupt our courts? Why does\nHe challenge our authority? A kingdom not of\nthis world does not interfere in the governance\nof this world. This man interferes constantly.",
+    "choices": [
+      {
+        "text": "His kingdom is advancing.",
+        "destination": "advancing"
+      },
+      {
+        "text": "You are threatened by a greater kingdom.",
+        "destination": "greater_kingdom"
+      }
+    ]
+  },
+  "duty_justice": {
+    "content": "Justice? The Law is justice. The Law demands\nblood for blasphemy. If this man is guilty of\nblasphemy, justice demands his death. If He\nis innocent, justice demands his release. I\nwill apply the Law fairly. Not because I am\njust. Because the Law is just.",
+    "choices": [
+      {
+        "text": "The Law is not just if it condemns the innocent.",
+        "destination": "unjust_law"
+      },
+      {
+        "text": "You will find Him guilty.",
+        "destination": "find_guilty"
+      }
+    ]
+  },
+  "duty_fear": {
+    "content": "Duty and fear are not opposites. A priest who\nfears God fears His Law. And the Law is\nterrifying. It demands perfection. It condemns\nimperfection. It kills the blasphemer. If I\nfear the Law, it is because I know its power.\nAnd its power is absolute.",
+    "choices": [
+      {
+        "text": "The Law is love.",
+        "destination": "law_love"
+      },
+      {
+        "text": "You have turned the Law into a terror.",
+        "destination": "law_terror"
+      }
+    ]
+  },
+  "reject_trust": {
+    "content": "Reject it? The people need the Temple. They need\nthe sacrifices. They need the Law. Without these,\nthey are lost. This man offers them nothing but\nchaos. And chaos is not what Israel needs.\nIsrael needs order. Covenant. Sacrifice.\nThe things that have sustained us\nfor millennia.",
+    "choices": [
+      {
+        "text": "Israel needs a Messiah.",
+        "destination": "messiah_needed"
+      },
+      {
+        "text": "You mistake control for care.",
+        "destination": "control_care"
+      }
+    ]
+  },
+  "endurance_righteousness": {
+    "content": "Endurance is righteousness? The righteous\nendure. The wicked fall. The Temple has\nendured because it is righteous. This man\nwill fall because He opposes the very\nthings that make Israel great.",
+    "choices": [
+      {
+        "text": "He is the righteousness of Israel.",
+        "destination": "righteousness_israel"
+      },
+      {
+        "text": "You have it backwards.",
+        "destination": "backwards"
+      }
+    ]
+  },
+  "law_love": {
+    "content": "The\nLaw\nis\nlove.\nLove\nis\nthe\nLaw.\nTo\nlove\nGod\nis\nto\nkeep\nHis\ncommandments.\nAnd\nHis\ncommandments\nare\nnot\nburden\nbut\nfreedom.\nThis\nman\nproclaims\nfreedom.\nI\nproclaim\nthe\nLaw.\nPerhaps\nwe\nare\nnot\nas\ndifferent\nas\nI\nhave\nsupposed.",
+    "choices": [
+      {
+        "text": "The difference is authority.'",
+        "destination": "authority_diff"
+      },
+      {
+        "text": "Freedom in the Law.'",
+        "destination": "freedom_law"
+      },
+      {
+        "text": "Love fulfills the Law.'",
+        "destination": "love_fulfills"
+      }
+    ]
+  },
+  "law_terror": {
+    "content": "Terror?\nThe Law\nterrifies\nbecause\nsin is\nserious.\nBut this\nman makes\nlight of\nterror.\nHe tells\nsinners\nto go\nand sin\nno more.\nHe tells\nthe\nself-righteous\nthat\nthey\nare\nworse\nthan\nsinners.\nHe turns\nthe Law\ninside\nout.",
+    "choices": [
+      {
+        "text": "The law turned right-side up.",
+        "destination": "law_right"
+      },
+      {
+        "text": "Terror that converts.",
+        "destination": "terror_converts"
+      },
+      {
+        "text": "Light that exposes darkness.",
+        "destination": "exposes_darkness"
+      }
+    ]
+  },
+  "bigger_covenant": {
+    "content": "Bigger? The covenant is the\nTemple. The sacrifices. The Law.\nThe people. You cannot separate\nthem. If you remove the Temple,\nyou remove the covenant. If\nyou remove the covenant, you\nremove Israel. And if you\nremove Israel, you remove\nGod from the earth.",
+    "choices": [
+      {
+        "text": "God is not confined to a building.",
+        "destination": "not_confined"
+      },
+      {
+        "text": "The new covenant is in His blood.",
+        "destination": "new_covenant"
+      }
+    ]
+  },
+  "corpse": {
+    "content": "A corpse? The Temple is\nalive. The sacrifices continue.\nThe priests serve. The people\ncome. It is alive. It is\nvibrant. It is the heart\nof Israel. This man would\nstop the heart. And if\nhe does, Israel dies.",
+    "choices": [
+      {
+        "text": "Israel will survive the Temple.",
+        "destination": "survive_temple"
+      },
+      {
+        "text": "The heart is already dead.",
+        "destination": "dead_heart"
+      }
+    ]
+  },
+  "sword_justice": {
+    "content": "God's sword is justice.\nJustice is not murder.\nJustice is truth. Truth\ndemands that the guilty\nbe punished and the\ninnocent be protected.\nIf this man is blasphemer,\njustice demands his death.\nNot because I want it.\nBecause the Law requires it.",
+    "choices": [
+      {
+        "text": "The Law was fulfilled in Him.",
+        "destination": "fulfilled_law"
+      },
+      {
+        "text": "You wield the Law as a weapon.",
+        "destination": "weapon_law"
+      }
+    ]
+  },
+  "blood_hands": {
+    "content": "Blood on my hands?\nEvery priest who\nserves at the altar\nhas blood on his\nhands. The blood\nof bulls. The blood\nof goats. The blood\nof sacrifice. If\nmy hands are stained,\nit is with the blood\nof obedience, not\nmurder.",
+    "choices": [
+      {
+        "text": "Obedience to a corrupt system.",
+        "destination": "corrupt_obedience"
+      },
+      {
+        "text": "The blood cries out.",
+        "destination": "blood_cries"
+      },
+      {
+        "text": "Innocent blood stains more.",
+        "destination": "innocent_stains"
+      }
+    ]
+  },
+  "god_innocent": {
+    "content": "God does not condemn\nthe innocent. I agree.\nAnd if this man is\ninnocent, God will\nvindicate Him. But\nmy duty is not to\nvindicate. My duty\nis to judge\naccording to the\nLaw. And the Law\nwill decide His\ninnocence or guilt.",
+    "choices": [
+      {
+        "text": "The Law has already decided.",
+        "destination": "law_decided"
+      },
+      {
+        "text": "You are playing God.",
+        "destination": "playing_god"
+      }
+    ]
+  },
+  "condemning_son": {
+    "content": "God's Son?\nEvery Jew is\nGod's son.\nEvery priest\nis God's\nson. Every\nIsraelite is\na child of\nthe covenant.\nThis man is\nno different.\nExcept that\nHe claims\nto be the\nSon. And\nthat claim\nmakes Him\na blasphemer.\nBecause\nthere is\nonly one\nSon.\nAnd He\nis not\na Galilean\ncarpenter.",
+    "choices": [
+      {
+        "text": "He is the Son of God.",
+        "destination": "son_of_god"
+      },
+      {
+        "text": "You have condemned yourself.",
+        "destination": "condemned_self"
+      }
+    ]
+  },
+  "act_conscience": {
+    "content": "Act on it?\nMy conscience\ntells me to\nserve God.\nTo preserve\nthe covenant.\nTo maintain\nthe Temple.\nIf acting\non my conscience\nmeans opposing\nthis man,\nthen I will\noppose him.\nMy conscience\nis clear.",
+    "choices": [
+      {
+        "text": "Conscience without truth is delusion.",
+        "destination": "conscience_delusion"
+      },
+      {
+        "text": "Your conscience is trained to obey.",
+        "destination": "trained_conscience"
+      },
+      {
+        "text": "The conscience has been seared.",
+        "destination": "seared_conscience"
+      }
+    ]
+  },
+  "weight_action": {
+    "content": "Weight is\nnot the\nsame as\naction.\nThe burden\nof guilt\nis real.\nBut the\nburden of\npreservation\nis heavier.\nI carry\nboth. And\nI choose\npreservation.\nBecause\npreservation\nserves\nmore people.",
+    "choices": [
+      {
+        "text": "Preservation without truth serves nothing.",
+        "destination": "nothing_preserved"
+      },
+      {
+        "text": "The weight is too great.",
+        "destination": "weight_too_great"
+      },
+      {
+        "text": "Action without preservation is chaos.",
+        "destination": "chaos_preservation"
+      }
+    ]
+  },
+  "not_revolutionary": {
+    "content": "Not a revolutionary?\nHe disrupted\nthe Temple\nwith a whip.\nHe scattered\nthe tax.\nHe released\nthe doves.\nHe incited\nthe crowd.\nIf that\nis not\nrevolution,\nwhat is?\nA man\nwho acts\nlike a\nrevolutionary\nwill die\nlike a\nrevolutionary.",
+    "choices": [
+      {
+        "text": "He died like a lamb.",
+        "destination": "lamb"
+      },
+      {
+        "text": "You will make Him a martyr.",
+        "destination": "martyr"
+      }
+    ]
+  },
+  "law_not_innocent": {
+    "content": "The Law is\nnot innocent\nif it kills\nthe innocent.\nThe Law was\ngiven to\nprotect life,\nnot destroy\nit. If the\nLaw is used\nto condemn\nthe innocent,\nthen the\nLaw has\nbeen\nmisused.",
+    "choices": [
+      {
+        "text": "You misuse the Law.",
+        "destination": "misuse_law"
+      },
+      {
+        "text": "The misuse is institutional.",
+        "destination": "institutional_misuse"
+      },
+      {
+        "text": "The institution has become the crime.",
+        "destination": "institution_crime"
+      }
+    ]
+  },
+  "father_approval": {
+    "content": "His miracles\nprove His\nFather's\napproval?\nMiracles\nhappen in\nmany traditions.\nThe Egyptians\nperformed signs.\nThe Chaldeans\npredicted futures.\nSigns are not\nproof of divine\napproval. They\nare tricks\nthat clever\nmen perform.",
+    "choices": [
+      {
+        "text": "His tricks serve the poor.",
+        "destination": "tricks_poor"
+      },
+      {
+        "text": "His signs serve truth.",
+        "destination": "signs_truth"
+      },
+      {
+        "text": "No tricks, only truth.",
+        "destination": "truth_only"
+      }
+    ]
+  },
+  "reject_evidence": {
+    "content": "I do not\nreject the\nevidence.\nI evaluate\nit. A\nhealing here.\nA miracle there.\nThese are\nanecdotes, not\nproof. The\nburden of proof\nrests on him.\nAnd he has\nnot borne it.",
+    "choices": [
+      {
+        "text": "The evidence accumulates.",
+        "destination": "evidence_accum"
+      },
+      {
+        "text": "Anecdotes become testimony.",
+        "destination": "anecdotes_testimony"
+      },
+      {
+        "text": "The burden is on him.",
+        "destination": "burden_him"
+      }
+    ]
+  },
+  "advancing": {
+    "content": "His kingdom\nadvances?\nThen\nlet it\nadvance\nto the\nTemple courts.\nLet it\nadvance\nto the\nSanhedrin\nchamber.\nLet it\nadvance\nto the\nRoman\npraetorium.\nWe will\nsee how\nfar it\nadvances\nwhen\nfaced\nwith\nestablished\npower.",
+    "choices": [
+      {
+        "text": "Power reveals itself.",
+        "destination": "power_reveals"
+      },
+      {
+        "text": "Power tested by power.",
+        "destination": "power_tested"
+      },
+      {
+        "text": "Power meets resistance.",
+        "destination": "power_resistance"
+      }
+    ]
+  },
+  "greater_kingdom": {
+    "content": "Greater kingdom?\nI am a\npriest of\nthe God\nof Israel.\nMy kingdom\nis the\nkingdom\nof heaven\non earth.\nIt is\nestablished.\nIt is\npermanent.\nIt is\nthe\nTemple.\nHis\nkingdom\nis...\na dream.",
+    "choices": [
+      {
+        "text": "Dreams become reality.",
+        "destination": "dreams_reality"
+      },
+      {
+        "text": "The kingdom is here.",
+        "destination": "kingdom_here"
+      },
+      {
+        "text": "The temple dreams of stone.",
+        "destination": "temple_dreams"
+      }
+    ]
+  },
+  "unjust_law": {
+    "content": "The Law is\nnot just\nif it\ncondemns\nthe innocent.\nJustice\nrequires\ntruth.\nTruth\nrequires\nevidence.\nAnd the\nevidence\npoints to\na man who\nheals\nthe sick,\nfeeds the\nhungry,\nwelcomes\nthe outcast.\nIf that\nis\nblasphemy...\nthen\nblasphemy\nis the\nhighest\nvirtue.",
+    "choices": [
+      {
+        "text": "The highest virtue.",
+        "destination": "highest_virtue"
+      },
+      {
+        "text": "The law inverted.",
+        "destination": "law_inverted"
+      },
+      {
+        "text": "Justice demands more.",
+        "destination": "justice_demands"
+      }
+    ]
+  },
+  "find_guilty": {
+    "content": "I will\nfind Him\nguilty\nbecause\nthe Law\ndemands\nit.\nBecause\nHis\nclaims\nthreaten\nthe\norder.\nBecause\nHis\nfollowers\nthreaten\nthe\npeace.\nBecause\nHis\nmiracles\nthreaten\nour\nunderstanding.",
+    "choices": [
+      {
+        "text": "The understanding was wrong.",
+        "destination": "understanding_wrong"
+      },
+      {
+        "text": "The order needs reforming.",
+        "destination": "order_reforming"
+      },
+      {
+        "text": "The peace is false.",
+        "destination": "false_peace"
+      }
+    ]
+  },
+  "not_confined": {
+    "content": "God is\nnot confined\nto a\nbuilding.\nBut He\nchooses\nto dwell\namong His\npeople.\nIn the\nTemple.\nThrough\nthe\npriesthood.\nThrough\nthe\nsacrifices.\nThis\nman would\nremove\nthe\ndwelling\nplace.\nAnd with\nit,\nthe\npeople's\nconnection\nto God.",
+    "choices": [
+      {
+        "text": "Connection through Christ.",
+        "destination": "connection_christ"
+      },
+      {
+        "text": "The dwelling moves.'",
+        "destination": "dwelling_moves"
+      },
+      {
+        "text": "The building becomes the body.",
+        "destination": "building_body"
+      }
+    ]
+  },
+  "new_covenant": {
+    "content": "The new\ncovenant\nis in\nHis blood.\nI have\nread the\nprophets.\nI know\nwhat they\nsay. But\nI also\nknow\nwhat\nthe\nTemple\nhas meant\nfor\nthree\ngenerations\nof my\nfamily.\nTo\nabandon\nthat\ntrust...\nis to\nabandon\neverything.",
+    "choices": [
+      {
+        "text": "Trust in the system.'",
+        "destination": "trust_system"
+      },
+      {
+        "text": "Everything needs rethinking.'",
+        "destination": "needs_rethinking"
+      },
+      {
+        "text": "The blood is sufficient.'",
+        "destination": "blood_sufficient"
+      }
+    ]
+  },
+  "survive_temple": {
+    "content": "Israel\nwill\nsurvive\nthe\nTemple.\nBut\nthe\nTemple\nwill\nnot\nsurvive\nwithout\nthe\npeople's\nfaith.\nAnd\nif\nthe\npeople's\nfaith\nis in\na man\non a\ncross...\nthen\nthe\nTemple\nis\nalready\ndead.",
+    "choices": [
+      {
+        "text": "Faith moves from stone to flesh.'",
+        "destination": "stone_flesh"
+      },
+      {
+        "text": "The dead temple is rebuilt.'",
+        "destination": "rebuilt_temple"
+      },
+      {
+        "text": "The people's faith is the foundation.'",
+        "destination": "faith_found"
+      }
+    ]
+  },
+  "dead_heart": {
+    "content": "The\nheart\nof\nthe\nnation\nis\nalready\ndead.\nIt\nbeats\nwith\nritual,\nnot\nlife.\nIt\npumps\nwith\nceremony,\nnot\npurpose.\nIt\nyearns\nfor\nspectacle,\nnot\nsubstance.\nThe\nTemple\nserves\na\npeople\nwho\nhave\nforgotten\nhow\nto\nworship.",
+    "choices": [
+      {
+        "text": "The remedy is in the cross.'",
+        "destination": "remedy_cross"
+      },
+      {
+        "text": "Worship restored.'",
+        "destination": "worship_restored"
+      },
+      {
+        "text": "The heart beats again.'",
+        "destination": "heart_beats"
+      }
+    ]
+  },
+  "law_leads_christ": {
+    "content": "The\nLaw\nleads\nto\nChrist?\nI\nhave\nstudied\nthe\nLaw\nmy\nentire\nlife.\nI\nknow\nwhat\nit\ndemands.\nI\nknow\nwhat\nit\nprovides.\nIt\nprovides\na\nsystem\nof\nsacrifice,\na\nframework\nof\norder,\na\npathway\nof\naccess.\nNot\na\nperson.\nA\nsystem.",
+    "choices": [
+      {
+        "text": "The system points to the person.'",
+        "destination": "points_person"
+      },
+      {
+        "text": "The pathway becomes the destination.'",
+        "destination": "destination_path"
+      },
+      {
+        "text": "The sacrifice demands the sacrifice.'",
+        "destination": "demands_sacrifice"
+      }
+    ]
+  },
+  "law_purpose": {
+    "content": "The\nLaw's\npurpose\nis\nto\nreveal\nsin.\nTo\nexpose\nthe\nbrokenness.\nTo\ndrive\nthe\npeople\nto\ndesperation.\nAnd\nthen —\nand\nthen —\nto\npoint\nthem\nto\nthe\nsacrifice\nthat\natones.\nThe\nTemple\nsacrifices\nare\nreminders\nof\nthat\natonement.\nThey\nare\nnot\nthe\natonement\nitself.",
+    "choices": [
+      {
+        "text": "The Temple points beyond itself.'",
+        "destination": "points_beyond"
+      },
+      {
+        "text": "The reminders become idols.'",
+        "destination": "idols_reminders"
+      },
+      {
+        "text": "The atonement is sufficient.'",
+        "destination": "atonement_sufficient"
+      }
+    ]
+  },
+  "preserve_exploit": {
+    "content": "Preserve\nexploitation?\nThe\nsystem\nprovides\nsacrifices\nfor\nthe\npoor.\nAccess\nto\nGod\nthrough\nthe\npriesthood.\nOrder\nthrough\nthe\nLaw.\nIf\nthere\nis\nexploitation,\nit\nis\nin\nthe\nhearts\nof\nmen,\nnot\nin\nthe\nsystem.\nAnd\nyou\ndo\nnot\nfix\nhearts\nby\nbreaking\ncages.",
+    "choices": [
+      {
+        "text": "The cages cage the poor.'",
+        "destination": "cages_poor"
+      },
+      {
+        "text": "Hearts fix hearts.'",
+        "destination": "hearts_fix"
+      },
+      {
+        "text": "The system is the cage.'",
+        "destination": "system_cage"
+      }
+    ]
+  },
+  "vulnerable": {
+    "content": "The\nLaw\nprotects\nthe\nvulnerable.\nThe\ndove\nmerchants\nserve\nthe\npoor.\nThe\nexchange\nrates\nserve\nthe\npoor.\nIf\nthere\nis\nexploitation,\nit\nis\nin\nthe\nhearts\nof\nmen,\nnot\nin\nthe\nsystem.\nAnd\nyou\ndo\nnot\nfix\nhearts\nby\nbreaking\ncages.",
+    "choices": [
+      {
+        "text": "The cages cage the poor.'",
+        "destination": "cages_poor"
+      },
+      {
+        "text": "Hearts fix hearts.'",
+        "destination": "hearts_fix"
+      },
+      {
+        "text": "The system is the cage.'",
+        "destination": "system_cage"
+      }
+    ]
+  },
+  "broken_covenant": {
+    "content": "The\ncovenant\nis\nbroken\nby\nyour\nhearts.\nNot\nby\nyour\nhands.\nNot\nby\na\nGalilean's\nwhip.\nThe\ncovenant\nwas\nbroken\nwhen\nyou\nchose\npower\nover\ntruth.\nWhen\nyou\nchose\nwealth\nover\nrighteousness.\nWhen\nyou\nchose\norder\nover\nmercy.",
+    "choices": [
+      {
+        "text": "Mercy over order.'",
+        "destination": "mercy_order"
+      },
+      {
+        "text": "Truth over power.'",
+        "destination": "truth_power"
+      },
+      {
+        "text": "Righteousness over wealth.'",
+        "destination": "righteousness_wealth"
+      }
+    ]
+  },
+  "already_broken": {
+    "content": "The\nsystem\nis\nalready\nbroken.\nThe\nTemple\nis\na\nden\nof\nthieves.\nThe\npriesthood\nis\na\nfamily\nbusiness.\nThe\nLaw\nis\nweaponized.\nThe\npoor\nare\nexploited.\nThe\ntruth\nis\nsuppressed.\nThe\nsystem\nis\nbroken\nand\neveryone\nknows\nit.",
+    "choices": [
+      {
+        "text": "The broken system must fall.'",
+        "destination": "broken_fall"
+      },
+      {
+        "text": "God tears what cannot be repaired.'",
+        "destination": "tears_repair"
+      },
+      {
+        "text": "The system needs replacement.'",
+        "destination": "needs_replacement"
+      }
+    ]
+  },
+  "expose_fruit": {
+    "content": "The\nfruit\nis\ncorruption\nexposed.\nThe\ncages\nare\nempty.\nThe\ncoins\nare\nscattered.\nThe\npeople\nsee\nwhat\nthe\npriests\nhave\nbuilt.\nNot\na\nhouse\nof\nprayer.\nA\nhouse\nof\nprofit.\nAnd\nthe\nprofit\nhas\nno\nplace\nin\nthe\nkingdom\nof\nGod.",
+    "choices": [
+      {
+        "text": "The kingdom is here.'",
+        "destination": "kingdom_here"
+      },
+      {
+        "text": "The profit has no foundation.'",
+        "destination": "profit_no_foundation"
+      },
+      {
+        "text": "The kingdom builds without profit.'",
+        "destination": "kingdom_no_profit"
+      }
+    ]
+  },
+  "choose_stone": {
+    "content": "You\nwill\nchoose\nto\nstone.\nBecause\nthe\nLaw\ndemands\nit.\nBecause\nthe\nprophecy\ndemands\nit.\nBecause\nthe\nsystem\ndemands\nit.\nYou\nwill\nstone\nthe\nprophet.\nThe\nprophet.\nThe\nhealer.\nThe\nteacher.\nThe\nking.\nAnd\nthe\nstones\nwill\ncry\nout\nthat\nyou\nwere\nwrong.",
+    "choices": [
+      {
+        "text": "The stones will speak.'",
+        "destination": "stones_speak"
+      },
+      {
+        "text": "The king will rise.'",
+        "destination": "king_rise"
+      },
+      {
+        "text": "The system will fall.'",
+        "destination": "system_fall"
+      }
+    ]
+  },
+  "lawgiver_priest": {
+    "content": "You\nlove\nthe\nLaw\nmore\nthan\nthe\nLawgiver.\nYou\nserve\nthe\nsystem\nmore\nthan\nthe\nSavior.\nYou\npreserve\nthe\nTemple\nmore\nthan\nthe\nTruth.\nAnd\nthe\nTruth\nis\nstanding\nin\nfront\nof\nyou,\nlooking\nat\nyou\nwith\ngrief\nand\nlove\nand\nthe\nsame\npatience\nHe\nshowed\nthe\nwoman\ncaught\nin\nadultery.",
+    "choices": [
+      {
+        "text": "The patience will not last forever.'",
+        "destination": "patience_fade"
+      },
+      {
+        "text": "The grief is for you.'",
+        "destination": "grief_for"
+      },
+      {
+        "text": "The love will overcome.'",
+        "destination": "love_overcome"
+      }
+    ]
+  },
+  "law_terror2": {
+    "content": "The\nLaw\nterrifies\nbecause\nit\nreveals\nthe\ndepth\nof\nour\nbrokenness.\nBut\nthis\nman\ndoes\nnot\nterrify.\nHe\nheals.\nHe\nwelcomes.\nHe\ndines.\nAnd\nin\nHis\npresence,\nthe\nLaw's\nterror\nis\ntransformed\ninto\ncomfort.",
+    "choices": [
+      {
+        "text": "Terror transformed into comfort.'",
+        "destination": "terror_comfort"
+      },
+      {
+        "text": "The Law's purpose fulfilled.'",
+        "destination": "law_fulfilled"
+      },
+      {
+        "text": "Comfort through Christ.'",
+        "destination": "comfort_christ"
+      }
+    ]
+  },
+  "repentance_needed": {
+    "content": "The\nTemple\nneeds\nrepair.\nThe\npriesthood\nneeds\nreform.\nThe\nLaw\nneeds\nliving\nembodiment.\nAnd\nthis\nman\n—\nthis\nGalilean\n —\nclaims\nto\nbe\nthat\nembodiment.\nIf\nhe\nis\nlying,\nhe\nis\ndangerous.\nIf\nhe\nis\ntruthful,\nhe\nis\ntransformative.",
+    "choices": [
+      {
+        "text": "The choice is stark.'",
+        "destination": "stark_choice"
+      },
+      {
+        "text": "Truth over system.'",
+        "destination": "truth_over"
+      },
+      {
+        "text": "Repentance over preservation.'",
+        "destination": "repentance_pres"
+      }
+    ]
+  },
+  "closing_priest": {
+    "content": "I\nhave\nspoken\nmy\npiece.\nMy\nconscience\nis\nclear.\nThe\nTemple\nis\nprotected.\nThe\nLaw\nis\npreserved.\nThe\nsystem\nendures.\nIf\nthis\nman's\nclaims\nare\ntrue,\nthen\nI\nam\na\nfalse\npriest.\nIf\nthey\nare\nfalse,\nthen\nI\nam\na\nfaithful\nguardian.\nThe\nchoice\nis\nmine\nto\nmake.\nAnd\nI\nchoose\nfaithfulness\nto\n what\n I\n have\n been\ngiven.",
+    "choices": []
+  },
+  "final_choice": {
+    "content": "But\nthe\nweight\nburdens\nme.\nThe\nscribal\nrecord.\nThe\nTemple\nledger.\nThe\npriestly\nline.\nAll\nof it\n rests\non\nmy\n shoulders.\nDo\n I\nprotect\na\n system\nthat\nserves\n God\n—\nor\na\n man\nwho\nclaims\nto\nbe\nGod\nincarnate?\nThe\n Law\ndemands\nan\nanswer.\nMy\nconscience\ndemands\ntruth.\nAnd\nthe\nsilence\nof\nthe\n crowd\ndemands\nthat\nsomeone\nspeak.",
     "choices": []
   }
 }

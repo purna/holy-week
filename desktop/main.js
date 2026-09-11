@@ -161,17 +161,9 @@ window.renderInvestigationBoard = function () {
       if (!invBoardContent) return;
       const labUI = new LabWorkspaceUI(game.de, game.es, game.a11y, (result) => {
         if (result?.error) return;
-        if (result?.type === 'folder_verify' || result?.type === 'timeline_test' || result?.type === 'shredder_test') {
-          if (result.success) {
-            game.cm.addScore(5);
-          } else {
-            game.cm.addScore(-5);
-            game.cm.recordIncorrectLabPairing();
-          }
-        } else if (result?.type === 'detail_view') {
-          game.cm.addScore(-1);
-        } else if (result?.scoreDelta !== undefined) {
-          game.cm.addScore(result.scoreDelta);
+        if (result?.success && ['folder_verify', 'timeline_test', 'shredder_test', 'comparator_test'].includes(result.type)) {
+          const suffix = result.insightId ? `:${result.insightId}` : '';
+          game.cm.awardInsight(`lab:${result.type}${suffix}`, 'Lab insight');
         }
         if (result?.feedback && window.__labUI) {
           window.__labUI._setFeedback(result.feedback, result.feedbackType || "");

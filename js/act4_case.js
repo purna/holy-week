@@ -817,6 +817,15 @@ export const act4CaseA = {
     },
   ],
 
+  timelineEvidenceIds: ["rolled_stone", "empty_tomb", "burial_linen", "angelic_witness", "mary_encounter"],
+  timelineInsight: "The opened tomb is investigated before proclamation becomes personal encounter. Physical evidence and independent testimony accumulate rather than resting on one claim.",
+  timelineBibleRef: "Matthew 28:1–10; John 20:1–18",
+  requiredConnections: [
+    { pair: "rolled_stone+guard_report", operation: "compare" },
+    { pair: "empty_tomb+burial_linen", operation: "compare" },
+    { pair: "angelic_witness+mary_encounter", operation: "compare" },
+  ],
+
   deductions: {
     "rolled_stone+guard_report": {
       compare: {
@@ -1395,6 +1404,13 @@ export const act4CaseB = {
         default: { text: "I have nothing more to add.", isLie: false },
       },
     },
+  ],
+
+  timelineEvidenceIds: ["broken_imperial_seal", "bribe_shekels", "sanhedrin_report"],
+  timelineInsight: "The disturbed Roman security comes before the payment and official explanation. That order reveals the report as a response to the event, not an independent account.",
+  timelineBibleRef: "Matthew 27:65–66; Matthew 28:2–15",
+  requiredConnections: [
+    { pair: "sanhedrin_report+bribe_shekels", operation: "contradict" },
   ],
 
   deductions: {
@@ -2037,6 +2053,14 @@ export const act4CaseC = {
     },
   ],
 
+  timelineEvidenceIds: ["charcoal_fire", "miraculous_catch", "bread_breakfast", "threefold_commission"],
+  timelineInsight: "Recognition, provision, fellowship, and recommission unfold in order. Jesus restores Peter relationally before entrusting him with responsibility.",
+  timelineBibleRef: "John 21:1–19",
+  requiredConnections: [
+    { pair: "charcoal_fire+threefold_commission", operation: "compare" },
+    { pair: "galilean_apparition+bread_breakfast", operation: "compare" },
+  ],
+
   deductions: {
     "charcoal_fire+threefold_commission": {
       compare: {
@@ -2662,6 +2686,14 @@ export const act4CaseD = {
             },
             contradictions: {},
         },
+    ],
+
+    timelineEvidenceIds: ["wound_marks_testimony", "great_commission_mandate", "priestly_benediction_account", "ascension_eyewitness_account", "acts_1_9_11_scroll"],
+    timelineInsight: "The disciples verify the risen Jesus, receive their mission and blessing, and then witness His ascension. The mission is grounded in resurrection and directed by His authority.",
+    timelineBibleRef: "Luke 24:36–53; Acts 1:3–11; Matthew 28:18–20",
+    requiredConnections: [
+      { pair: "ascension_eyewitness_account+great_commission_mandate", operation: "compare" },
+      { pair: "wound_marks_testimony+great_commission_mandate", operation: "compare" },
     ],
 
     deductions: {

@@ -1,55 +1,729 @@
 {
-    "inkVersion": 21,
-    "root": [
-        [
-            { "->": "start" },
-            ["done", { "#f": 5, "#n": "g-0" }],
-            null
-        ],
-        "done",
-        {
-            "start": [
-                [
-                    "^We have just come down from the Mount of Olives. The crowd was massive! I have never heard so many people shouting the same thing at once. I was busy recording the names of the witnesses for my own account.",
-                    "\n",
-                    "ev", "str", "^Tell me about the crowd's testimony.", "/str", "/ev", { "*": ".^.c-0", "flg": 20 },
-                    "ev", "str", "^Did you see which way the donkey went?", "/str", "/ev", { "*": ".^.c-1", "flg": 20 },
-                    {
-                        "c-0": [ "^ ", { "->": "testimony" }, "\n", { "#f": 5 } ],
-                        "c-1": [ "^ ", { "->": "tracks" }, "\n", { "#f": 5 } ]
-                    }
-                ],
-                { "#f": 1 }
-            ],
-            "testimony": [
-                [
-                    "^They were shouting 'Hosanna!' from the tops of their lungs. I saw the Pharisees scribbling down complaints. I'm keeping a record of their written threats; it's significant evidence of their rejection.",
-                    "\n",
-                    "ev", "str", "^What about the donkey?", "/str", "/ev", { "*": ".^.c-0", "flg": 20 },
-                    { "c-0": [ "^ ", { "->": "tracks" }, "\n", { "#f": 5 } ] }
-                ],
-                { "#f": 1 }
-            ],
-            "tracks": [
-                [
-                    "^The donkey tracks lead right down the western slope. We followed them all the way. A villager near the gate stopped us and asked why we were untying it, but he let us go once we spoke the words.",
-                    "\n",
-                    "ev", "str", "^Continue.", "/str", "/ev", { "*": ".^.c-0", "flg": 20 },
-                    { "c-0": [ "^ ", { "->": "closing" }, "\n", { "#f": 5 } ] }
-                ],
-                { "#f": 1 }
-            ],
-            "closing": [
-                [
-                    "^Everything is happening as it was written. We are just witnesses.",
-                    "\n",
-                    "done",
-                    { "#f": 1 }
-                ],
-                { "#f": 1 }
-            ],
-            "#f": 1
-        }
-    ],
-    "listDefs": {}
+  "start": {
+    "content": "I have walked with the Teacher for three years, but today — today\nI understood something I had never grasped before. From my place\namong the disciples, I watched the crowds recognize in Him the\nfulfillment of prophecies written centuries before our birth.",
+    "choices": [
+      {
+        "text": "Tell me about the crowd.",
+        "destination": "crowd"
+      },
+      {
+        "text": "Did you see the prophecy fulfilled?",
+        "destination": "fulfilled"
+      },
+      {
+        "text": "What about the donkey colt?",
+        "destination": "colt"
+      }
+    ]
+  },
+  "crowd": {
+    "content": "The road from Bethphage to Jerusalem was a river of people.\nPilgrims from Galilee, Judea, and beyond — all streaming\ndown the Mount of Olives. When we emerged from the garden\nwith the colt, the crowd simply knew. They understood without\nbeing told. Children waved palm branches. Elders fell to their\nknees. Even the soldiers on the walls looked uncertain.",
+    "choices": [
+      {
+        "text": "The people recognized the moment.",
+        "destination": "recognition"
+      },
+      {
+        "text": "The soldiers seemed confused.",
+        "destination": "soldiers"
+      }
+    ]
+  },
+  "fulfilled": {
+    "content": "Every detail matched exactly. The donkey — never ridden.\nThe cloaks spread on the road. The palm branches waving.\n\"Hosanna to the Son of David!\" — that cry rose like incense.\nI kept thinking of Zechariah's words: \"Your king comes to\nyou... humble and riding on a donkey.\" It was living prophecy.",
+    "choices": [
+      {
+        "text": "Did the people know what they were saying?",
+        "destination": "hosanna_meaning"
+      },
+      {
+        "text": "The detail was divine.",
+        "destination": "divine_detail"
+      }
+    ]
+  },
+  "colt": {
+    "content": "The colt had never been ridden — our mothers taught us that\nsuch an animal is set apart. When the Lord said \"the Lord\nneeds it,\" the owner understood at once. \"Let my lord go\nin peace,\" he surely meant. No transaction. No payment.\nJust recognition that this was the moment.",
+    "choices": [
+      {
+        "text": "The owner was a prophet too.",
+        "destination": "owner_recognized"
+      },
+      {
+        "text": "No one questioned it.",
+        "destination": "no_questions"
+      }
+    ]
+  },
+  "recognition": {
+    "content": "I watched old men weep as they recognized the scene.\nThey had studied the same scriptures their whole lives.\nSuddenly the words had feet, had voice, had presence.\nThe crowd sang in fragments I recognized — Psalms my\ngrandmother taught me as a child. But now the Psalms\nwere alive with meaning.",
+    "choices": [
+      {
+        "text": "The scriptures became real.",
+        "destination": "scriptures_alive"
+      },
+      {
+        "text": "Prophecy walking among them.",
+        "destination": "prophecy_alive"
+      }
+    ]
+  },
+  "soldiers": {
+    "content": "The Antonia garrison was positioned on the walls. I saw\nthem tense — spears half-raised, eyes scanning the crowd\nfor signs of unrest. But we gave them no cause. The\ncrowd was too focused on the Teacher, too caught up in\nthe joy of recognition.",
+    "choices": [
+      {
+        "text": "Rome had no cause for alarm.",
+        "destination": "no_rebellion"
+      },
+      {
+        "text": "The soldiers watched silently.",
+        "destination": "watching_silently"
+      }
+    ]
+  },
+  "hosanna_meaning": {
+    "content": "\"Hosanna\" — that word echoed from every throat.\n\"Save now, we beseech You!\" It is not praise.\nIt is desperation. A cry for salvation.\nThe crowd knew what they needed.\nThe crowd knew what they were asking for.",
+    "choices": [
+      {
+        "text": "They asked for salvation.",
+        "destination": "salvation_asked"
+      },
+      {
+        "text": "The moment was urgent.",
+        "destination": "urgent_moment"
+      }
+    ]
+  },
+  "divine_detail": {
+    "content": "Every detail was arranged — the exact colt, the precise\ntiming, the crowd's movement like a choreographed dance.\nThe Teacher did not arrive by accident. He orchestrated\nthe convergence of prophecy, prophecy-fulfillment, and\npeople ready to receive their king.",
+    "choices": [
+      {
+        "text": "This was divine appointment.",
+        "destination": "divine_appointment"
+      },
+      {
+        "text": "Nothing was left to chance.",
+        "destination": "divine_sovereignty"
+      }
+    ]
+  },
+  "owner_recognized": {
+    "content": "The owner of the colt — his name was Tobias — I\nrecognized his face from Bethphage. When the Teacher's\ndisciple spoke the words, Tobias simply nodded. He had\nbeen waiting. His entire life he had prepared for this\nmoment. The colt was his offering.",
+    "choices": [
+      {
+        "text": "Waiting his whole life.",
+        "destination": "prophetic_waiting"
+      },
+      {
+        "text": "A willing sacrifice.",
+        "destination": "willing_sacrifice"
+      }
+    ]
+  },
+  "no_questions": {
+    "content": "No one questioned. No one challenged. The owner\nreleased his best animal without a second thought.\nThe crowd made room without hesitation. Even the\nsoldiers on the wall stood back.\nBecause everyone recognized:\nthis was not theft or rebellion.\nThis was worship.",
+    "choices": [
+      {
+        "text": "Worship in motion.",
+        "destination": "worship_in_motion"
+      },
+      {
+        "text": "The city bowed.",
+        "destination": "city_bowed"
+      }
+    ]
+  },
+  "scriptures_alive": {
+    "content": "I had read Zechariah dozens of times. But today —\ntoday the words breathed. Today the prophecy walked\ninto the city. I understood Isaiah too, suddenly:\n\"How beautiful upon the mountains are the feet of\nhim who brings good news.\"",
+    "choices": [
+      {
+        "text": "The beauty of the moment.",
+        "destination": "beauty"
+      },
+      {
+        "text": "Feet that bring news.",
+        "destination": "good_news"
+      }
+    ]
+  },
+  "prophecy_alive": {
+    "content": "Zechariah's words — \"gentle and riding on a donkey\" —\nthey were not poetry on parchment. They were a\nblueprint living in real-time. Every step the Teacher\ntook was measured against prophecy written centuries\nbefore.",
+    "choices": [
+      {
+        "text": "The plan was precise.",
+        "destination": "plan_precise"
+      },
+      {
+        "text": "Ancient words, modern reality.",
+        "destination": "ancient_modern"
+      }
+    ]
+  },
+  "no_rebellion": {
+    "content": "No rebellion. No revolt. No threat to Rome.\nThe crowd was too busy recognizing their king\nto plot against their emperor. The soldiers\non the wall could see — this was religious\nenthusiasm, not political sedition.",
+    "choices": [
+      {
+        "text": "Rome misunderstood their own threat level.",
+        "destination": "rome_understands"
+      },
+      {
+        "text": "The king they offered was different.",
+        "destination": "different_king"
+      }
+    ]
+  },
+  "watching_silently": {
+    "content": "The soldiers watched from their positions.\nSpears at sides. Eyes alert.\nBut no movement to draw swords.\nA prophet with a whip of rushes —\nthey could handle that.\nA prophet with the crowd's devotion —\nthat was something else entirely.",
+    "choices": [
+      {
+        "text": "They could not contain joy.",
+        "destination": "cannot_contain"
+      },
+      {
+        "text": "Joy is not rebellion.",
+        "destination": "joy_not_rebellion"
+      }
+    ]
+  },
+  "salvation_asked": {
+    "content": "\"Save now\" — in Hebrew it means \"bring salvation.\"\nThe crowd knew they were not asking for\npolitical liberation. They were asking for\nsomething deeper — spiritual deliverance.\nA salvation the Romans could not provide.",
+    "choices": [
+      {
+        "text": "They recognized a deeper need.",
+        "destination": "deeper_need"
+      },
+      {
+        "text": "The crowd understood the moment.",
+        "destination": "moment_understanding"
+      }
+    ]
+  },
+  "urgent_moment": {
+    "content": "The urgency in their voices —\n\"Hosanna in the highest!\" —\nthey were crying out to the God\nof Israel to act now, today,\nas He had acted in their\nhistory. The heavens felt near.",
+    "choices": [
+      {
+        "text": "The heavens were near.",
+        "destination": "heavens_near"
+      },
+      {
+        "text": "History was happening.",
+        "destination": "history_happening"
+      }
+    ]
+  },
+  "divine_appointment": {
+    "content": "Every hoof-beat of the colt's\nhooves on the stone road,\nevery ripple of a cloak,\nevery shout of \"Hosanna\" —\nall of it was foreknown.\nForeordained. Divine.",
+    "choices": [
+      {
+        "text": "Every detail arranged.",
+        "destination": "every_detail"
+      },
+      {
+        "text": "The Teacher's sovereignty.",
+        "destination": "teacher_sovereign"
+      }
+    ]
+  },
+  "divine_sovereignty": {
+    "content": "The Teacher knew the\nexact location of the colt.\nThe exact words to speak.\nThe exact timing of His\narrival. Nothing was\nleft to chance or impulse.",
+    "choices": [
+      {
+        "text": "This was the king's entrance.",
+        "destination": "king_entrance"
+      },
+      {
+        "text": "Divine orchestration.",
+        "destination": "orchestration"
+      }
+    ]
+  },
+  "prophetic_waiting": {
+    "content": "Tobias had kept the colt\nset apart since birth.\nNever ridden.\nNever sold.\nNever used for common\nwork. Reserved.\nWaiting. Prepared.\nFor this moment.",
+    "choices": [
+      {
+        "text": "A life prepared.",
+        "destination": "life_prepared"
+      },
+      {
+        "text": "The preparation mattered.",
+        "destination": "preparation_matters"
+      }
+    ]
+  },
+  "willing_sacrifice": {
+    "content": "\"The Lord needs it\" —\nand Tobias gave it freely.\nNot because he was forced.\nBut because he recognized\nthe holiness of the moment.\nA willing sacrifice for\na willing king.",
+    "choices": [
+      {
+        "text": "Sacrifice with joy.",
+        "destination": "joy_sacrifice"
+      },
+      {
+        "text": "The offering was accepted.",
+        "destination": "offering_accepted"
+      }
+    ]
+  },
+  "worship_in_motion": {
+    "content": "People fell to their knees.\nChildren danced in the streets.\nElders wept tears of joy.\nWomen sang fragments of\nancient songs. The whole\ncity became a cathedral\nof recognition.",
+    "choices": [
+      {
+        "text": "The city became a temple.",
+        "destination": "city_temple"
+      },
+      {
+        "text": "Worship without walls.",
+        "destination": "worship_nowalls"
+      }
+    ]
+  },
+  "city_bowed": {
+    "content": "From the hill to the gate,\nfrom the Tower of Antonia\nto the Pool of Bethesda,\nJerusalem bowed before\nher king. Not with swords\nand shields. With palms\nand praise.",
+    "choices": [
+      {
+        "text": "The king they wanted.",
+        "destination": "king_wanted"
+      },
+      {
+        "text": "Peace, not conquest.",
+        "destination": "peace_conquest"
+      }
+    ]
+  },
+  "beauty": {
+    "content": "\"How beautiful upon the\nmountains are the feet of\nhim who brings good news!\"\nI thought of that verse\nas I watched the scene unfold.\nThe beauty was not in the\nspectacle — it was in the\nrecognition.",
+    "choices": [
+      {
+        "text": "Beauty in recognition.",
+        "destination": "beauty_recognized"
+      },
+      {
+        "text": "The moment was complete.",
+        "destination": "moment_complete"
+      }
+    ]
+  },
+  "good_news": {
+    "content": "The Teacher brought news —\nnot of political liberation,\nbut of personal salvation.\nNot of temporary relief,\nbut of eternal restoration.\nThe crowd understood.\nThey were celebrating\nsomething far greater\nthan political freedom.",
+    "choices": [
+      {
+        "text": "The news was divine.",
+        "destination": "divine_news"
+      },
+      {
+        "text": "Salvation is personal.",
+        "destination": "personal_salvation"
+      }
+    ]
+  },
+  "rome_understands": {
+    "content": "The soldiers knew the\ndifference between\nreligious enthusiasm\nand political rebellion.\nThis was clearly the\nformer. A prophet with\nthe people's approval.\nNot a threat to Rome.\nA challenge to the\npriesthood.",
+    "choices": [
+      {
+        "text": "The threat was internal.",
+        "destination": "internal_threat"
+      },
+      {
+        "text": "Not Rome's concern.",
+        "destination": "rome_no_concern"
+      }
+    ]
+  },
+  "different_king": {
+    "content": "The king they wanted\nwas not Caesar's enemy.\nNot Rome's threat.\nBut the priests'\nworst nightmare —\na king who spoke\ntruth to power,\nwho healed the sick,\nwho welcomed children,\nwho forgave sinners.",
+    "choices": [
+      {
+        "text": "A different kind of king.",
+        "destination": "different_kind"
+      },
+      {
+        "text": "The priests' nightmare.",
+        "destination": "priests_nightmare"
+      }
+    ]
+  },
+  "cannot_contain": {
+    "content": "They cannot contain\njoy. They cannot\nsuppress recognition.\nThey cannot stop\na people who have\nseen the fulfillment\nof their deepest\nhopements.",
+    "choices": [
+      {
+        "text": "Not even anger.",
+        "destination": "even_anger"
+      },
+      {
+        "text": "Recognition spreads.",
+        "destination": "recognition_spreads"
+      }
+    ]
+  },
+  "joy_not_rebellion": {
+    "content": "The joy was infectious.\nThe crowd was unified.\nBut they posed no threat\nto Rome. They were not\ncalling for revolution.\nThey were calling for\nthe kingdom of God.",
+    "choices": [
+      {
+        "text": "The kingdom they sought.",
+        "destination": "kingdom_sought"
+      },
+      {
+        "text": "Peace over revolution.",
+        "destination": "peace_revolution"
+      }
+    ]
+  },
+  "deeper_need": {
+    "content": "They were asking for\nsomething the Senate\ncould not provide.\nSomething money\ncould not buy.\nSomething power\ncould not enforce.\nSalvation.\nForgiveness.\nRestoration.",
+    "choices": [
+      {
+        "text": "The need was spiritual.",
+        "destination": "spiritual_need"
+      },
+      {
+        "text": "The answer was divine.",
+        "destination": "divine_answer"
+      }
+    ]
+  },
+  "moment_understanding": {
+    "content": "I understood as I\nwatched — the crowd\nwas celebrating their\nown salvation story.\nThey were recognizing\nthe culmination of\neverything their\nancestors had hoped\nfor. Everything.",
+    "choices": [
+      {
+        "text": "The moment was complete.",
+        "destination": "moment_was_complete"
+      },
+      {
+        "text": "Hope realized.",
+        "destination": "hope_realized"
+      }
+    ]
+  },
+  "heavens_near": {
+    "content": "The air felt different.\nThicker. Charged.\nAs if the veil between\nearth and heaven\nhad grown thin.\nThe crowd sensed it.\nThe soldiers felt it.\nEven the stones\nseemed to hold their\nbreath.",
+    "choices": [
+      {
+        "text": "The veil was thin.",
+        "destination": "veil_thin"
+      },
+      {
+        "text": "Heaven touched earth.",
+        "destination": "heaven_earth"
+      }
+    ]
+  },
+  "history_happening": {
+    "content": "This was not just\na religious ceremony.\nThis was history.\nLiving, breathing\nhistory. The kind\nthat changes\neverything. The\nkind that\nscholars debate\nfor generations\nto come.",
+    "choices": [
+      {
+        "text": "Living history.",
+        "destination": "living_history"
+      },
+      {
+        "text": "The word made flesh.",
+        "destination": "word_flesh"
+      }
+    ]
+  },
+  "king_entrance": {
+    "content": "The Teacher rode\nas a king enters\na city that\nhas been waiting\nfor His return.\nNot on a charger.\nOn a colt.\nNot with\nconquering sword.\nWith open hands.",
+    "choices": [
+      {
+        "text": "The king they received.",
+        "destination": "king_received"
+      },
+      {
+        "text": "Gentleness over glory.",
+        "destination": "gentleness_glory"
+      }
+    ]
+  },
+  "orchestration": {
+    "content": "Every detail was\norchestrated by\nthe One who\nwrote the\nscriptures in\nthe first place.\nThe colt.\nThe crowd.\nThe timing.\nThe words.\nAll orchestrated\nby divine\nintelligence.",
+    "choices": [
+      {
+        "text": "God's hand visible.",
+        "destination": "gods_hand"
+      },
+      {
+        "text": "The plan was perfect.",
+        "destination": "plan_perfect"
+      }
+    ]
+  },
+  "life_prepared": {
+    "content": "The colt had\nbeen prepared\nsince birth.\nNot for\ncommon labor.\nNot for\nordinary work.\nSet apart.\nReserved.\nPrepared\nfor this\nsacred moment.",
+    "choices": [
+      {
+        "text": "Every life has purpose.",
+        "destination": "purpose"
+      },
+      {
+        "text": "Preparation matters.",
+        "destination": "prep_matters"
+      }
+    ]
+  },
+  "offering_accepted": {
+    "content": "Tobias gave\nthe colt freely.\nThe crowd\naccepted the\nking freely.\nAnd the king\naccepted\ntheir worship\nfreely.\nFreely.\nAll freely.",
+    "choices": [
+      {
+        "text": "Freely given.",
+        "destination": "freely_given"
+      },
+      {
+        "text": "Freely received.",
+        "destination": "freely_received"
+      }
+    ]
+  },
+  "city_temple": {
+    "content": "Jerusalem became\na cathedral that\nday — not built\nof stone, but\nof hearts bowed\nin worship.\nThe Temple\ncould not contain\nthe people.\nThe streets\nbecame the\nsanctuary.",
+    "choices": [
+      {
+        "text": "Worship without walls.",
+        "destination": "worship_without_walls"
+      },
+      {
+        "text": "The city transformed.",
+        "destination": "city_transformed"
+      }
+    ]
+  },
+  "worship_nowalls": {
+    "content": "No walls to\ncontain it.\nNo ceiling\nto hold it.\nNo altar\nto mark it.\nJust people\nwho recognized\ntheir king\nand responded\nwith everything\nthey had.",
+    "choices": [
+      {
+        "text": "Recognition is worship.",
+        "destination": "recognition_worship"
+      },
+      {
+        "text": "The king accepted.",
+        "destination": "king_accepted"
+      }
+    ]
+  },
+  "king_wanted": {
+    "content": "The king they\nwanted was\nthe one who\nwould save\nthem.\nNot from\nRome.\nFrom\nthemselves.\nFrom\ntheir\nbrokenness.\nFrom\ntheir\nsin.",
+    "choices": [
+      {
+        "text": "The salvation they sought.",
+        "destination": "salvation_sought"
+      },
+      {
+        "text": "Not political liberation.",
+        "destination": "not_political"
+      }
+    ]
+  },
+  "peace_conquest": {
+    "content": "Peace, not\nconquest.\nGentleness,\nnot glory.\nLove,\nnot\nlegions.\nThe king\nthey\nreceived\nwas the\nking\nthe\nworld\ndid\nnot\nexpect.",
+    "choices": [
+      {
+        "text": "The unexpected king.",
+        "destination": "unexpected_king"
+      },
+      {
+        "text": "This was the hour.",
+        "destination": "hour_arrived"
+      }
+    ]
+  },
+  "plan_precise": {
+    "content": "Every detail\nwas precise.\nEvery step\nwas ordained.\nEvery word\nwas foreknown.\nAnd every\nperson who\nrecognized\nthe king\nwas part\nof the\nprecision.",
+    "choices": [
+      {
+        "text": "Precision in love.",
+        "destination": "precision_love"
+      },
+      {
+        "text": "Every soul counted.",
+        "destination": "counted"
+      }
+    ]
+  },
+  "teacher_sovereign": {
+    "content": "The Teacher\nwas not\ncaught\nin circumstances.\nHe created\nthe circumstances.\nHe orchestrated\nthe convergence\nof prophecy,\npeople,\nand purpose.\nHe was sovereign.",
+    "choices": [
+      {
+        "text": "Sovereignty in action.",
+        "destination": "sovereignty_action"
+      },
+      {
+        "text": "Divine control.",
+        "destination": "divine_control"
+      }
+    ]
+  },
+  "life_prepared2": {
+    "content": "The colt had\nbeen prepared\nsince birth.\nNot for\ncommon labor.\nNot for\nordinary work.\nSet apart.\nReserved.\nPrepared\nfor this\nsacred moment.",
+    "choices": [
+      {
+        "text": "Preparation matters.",
+        "destination": "prep_matters2"
+      },
+      {
+        "text": "Purpose in all things.",
+        "destination": "purpose_all"
+      }
+    ]
+  },
+  "prep_matters": {
+    "content": "The preparation\nof the colt, the\npreparation of the\ncrowd, the\npreparation of\nthe city — all\nwere signs\nthat this\nmoment was\nworthy of\neternal\nremembrance.",
+    "choices": [
+      {
+        "text": "Worth remembrance.",
+        "destination": "worth_remembering"
+      },
+      {
+        "text": "Prepared purpose.",
+        "destination": "prepared_purpose"
+      }
+    ]
+  },
+  "worth_remembering": {
+    "content": "This day is\nworth remembering\nforever.\nThe king\nentered.\nThe crowd\nrecognized.\nAnd\neverything\nchanged.",
+    "choices": [
+      {
+        "text": "The kingdom arrived.",
+        "destination": "kingdom_arrived"
+      },
+      {
+        "text": "Everything changed.",
+        "destination": "everything_changes"
+      }
+    ]
+  },
+  "prepared_purpose": {
+    "content": "The colt was\nprepared for\nits purpose.\nThe crowd was\nprepared for\ntheir moment.\nAnd the king\nwas prepared\nto enter\nand claim\nhis throne\nof grace.",
+    "choices": [
+      {
+        "text": "Grace over glory.",
+        "destination": "grace_over_glory"
+      },
+      {
+        "text": "The invitation extended.",
+        "destination": "invitation_extended"
+      }
+    ]
+  },
+  "freely_given": {
+    "content": "The colt was\ngiven freely.\nThe king was\nreceived freely.\nAnd the\nsalvation was\noffered\nfreely.\nAll freely.",
+    "choices": [
+      {
+        "text": "Grace abounds.",
+        "destination": "grace_abounds"
+      },
+      {
+        "text": "Freely given.",
+        "destination": "freely_given_again"
+      }
+    ]
+  },
+  "freely_received": {
+    "content": "We receive\nfreely what\nwas given\nfreely.\nNo merit.\nNo worthiness.\nJust\nrecognition.\nJust\nreception.\nJust\nresponse.",
+    "choices": [
+      {
+        "text": "The gospel is free.",
+        "destination": "gospel_free"
+      },
+      {
+        "text": "Received with joy.",
+        "destination": "received_joy"
+      }
+    ]
+  },
+  "worship_without_walls": {
+    "content": "The Temple\nwalls could\nnot contain\nthis worship.\nThe city\nstreets became\nholy ground.\nEvery heart\nthat\nrecognized\nthe king\nbecame\na temple\nof the\nliving God.",
+    "choices": [
+      {
+        "text": "Every heart a temple.",
+        "destination": "heart_temple"
+      },
+      {
+        "text": "Worship everywhere.",
+        "destination": "worship_everywhere"
+      }
+    ]
+  },
+  "city_transformed": {
+    "content": "Jerusalem\ntransformed\nin a\nsingle\nafternoon.\nNot by\nconquest.\nNot by\nforce.\nBut by\nrecognition.\nBy\nacceptance.\nBy\nworship.",
+    "choices": [
+      {
+        "text": "Transformation through worship.",
+        "destination": "transform_worship"
+      },
+      {
+        "text": "The city was ready.",
+        "destination": "city_ready"
+      }
+    ]
+  },
+  "recognized_worship": {
+    "content": "Recognition\nis the\nbeginning\nof worship.\nAnd worship\nis the\nbeginning\nof transformation.\nThe crowd\nrecognized\nthe king.\nThe king\naccepted\ntheir worship.\nThe city\nwould\nnever\nbe the\nsame.",
+    "choices": [
+      {
+        "text": "All of Jerusalem.",
+        "destination": "all_jerusalem"
+      },
+      {
+        "text": "Recognition changed everything.",
+        "destination": "recognition_changed"
+      }
+    ]
+  },
+  "king_accepted": {
+    "content": "The king\naccepted\ntheir\nworship.\nNot grudgingly.\nNot reluctantly.\nBut joyfully.\nGently.\nWith\nopen\narms\nand\na\nshepherd's\nheart.",
+    "choices": [
+      {
+        "text": "The gentle king.",
+        "destination": "gentle_king"
+      },
+      {
+        "text": "Joy in acceptance.",
+        "destination": "joy_acceptance"
+      }
+    ]
+  },
+  "salvation_sought": {
+    "content": "What\nthe\ncrowd\nsought\nwas\nsalvation.\nNot\npolitical\nfreedom\nfrom\nRome.\nBut\nspiritual\nfreedom\nfrom\nsin.\nAnd\nthey\nfound\nit\nin\ntheir\nking.",
+    "choices": [
+      {
+        "text": "Salvation found.",
+        "destination": "salvation_found"
+      },
+      {
+        "text": "Freedom from sin.",
+        "destination": "freedom_sin"
+      }
+    ]
+  },
+  "not_political": {
+    "content": "The\nking\nthey\nsought\nwas\nnot\na\npolitical\nfigure.\nHe\nwas\na\nspiritual\nsavior.\nHe\ndid\nnot\ncome\nto\noverthrow\nempires.\nHe\ncame\nto\noverthrow\ndeath.",
+    "choices": [
+      {
+        "text": "Death conquered.",
+        "destination": "death_conquered"
+      },
+      {
+        "text": "Spiritual over political.",
+        "destination": "spiritual_political"
+      }
+    ]
+  },
+  "unexpected_king": {
+    "content": "The\nking\nthey\nreceived\nwas\nnot\nthe\nking\nthey\nexpected.\nBut\nit\nwas\nexactly\nthe\nking\nthey\nneeded.\nA\nking\nof\nlove.\nA\nking\nof\nsacrifice.\nA\nking\nwho\nwould\ndie\nfor\nhis\npeople.",
+    "choices": [
+      {
+        "text": "The king of love.",
+        "destination": "king_love"
+      },
+      {
+        "text": "Sacrifice over power.",
+        "destination": "sacrifice_power"
+      }
+    ]
+  },
+  "hour_arrived": {
+    "content": "The\nhour\nhad\narrived.\nThe\nmoment\nforetold.\nThe\nprophecy\nfulfilled.\nThe\nking\nentered.\nThe\npeople\nrecognized.\nAnd\nhistory\nwas\nchanged\nforever.",
+    "choices": []
+  },
+  "final": {
+    "content": "I am John.\nI have\nwalked\nwith\nthe\nTeacher\nfor\nthree\nyears.\nI\nhave\nseen\nhis\nmiracles.\nI\nhave\nheard\nhis\nteachings.\nBut\ntoday\n—\ntoday\nI\nunderstood\nwho\nhe\ntruly\nwas.\nAnd\nI\nknew\n—\nfrom\nthis\nmoment\nforward\n—\neverything\nwould\nbe\ndifferent.",
+    "choices": []
+  }
 }

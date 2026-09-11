@@ -81,3 +81,5 @@ button:focus-visible {
 
 
 .icon-svg { width: 1em; height: 1em; vertical-align: -0.125em; display: inline-block; color: #3b82f6; }
+/* The hidden attribute must win over component display rules. */
+[hidden] { display: none !important; }

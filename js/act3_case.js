@@ -645,6 +645,15 @@ export const act3CaseA = {
     },
   ],
 
+  timelineEvidenceIds: ["bread_crumbs", "water_jug", "money_bag_impression", "wine_stain", "denial_foretold"],
+  timelineInsight: "Preparation, betrayal, covenant, and warning unfold within one meal. Jesus interprets His approaching death and prepares His disciples before the arrest begins.",
+  timelineBibleRef: "Luke 22:14–34; John 13:21–38",
+  requiredConnections: [
+    { pair: "betrayal_dipped_bread+money_bag_impression", operation: "compare" },
+    { pair: "wine_stain+new_covenant_declaration", operation: "link" },
+    { pair: "money_bag_impression+new_covenant_declaration", operation: "contradict" },
+  ],
+
   deductions: {
     "betrayal_dipped_bread+money_bag_impression": {
       compare: {
@@ -1138,6 +1147,14 @@ export const act3CaseB = {
       },
       contradictions: {},
     },
+  ],
+
+  timelineEvidenceIds: ["dropped_torch", "severed_ear_wrap", "abandoned_linen", "prisoner_cord"],
+  timelineInsight: "The arrest moves from confrontation and injury to panic and voluntary submission. The order distinguishes Jesus's surrender from the violence and fear surrounding Him.",
+  timelineBibleRef: "Mark 14:43–52; Luke 22:47–53; John 18:1–12",
+  requiredConnections: [
+    { pair: "dropped_torch+severed_ear_wrap", operation: "compare" },
+    { pair: "prisoner_cord+severed_ear_wrap", operation: "contradict" },
   ],
 
   deductions: {
@@ -1811,6 +1828,15 @@ export const act3CaseC = {
     },
   ],
 
+  timelineEvidenceIds: ["charcoal_remains", "false_scroll", "torn_robe", "guard_reed", "rooster_feather"],
+  timelineInsight: "Manufactured testimony leads to a dramatic verdict and abuse while Peter's denials unfold nearby. The chronology places institutional injustice beside personal failure.",
+  timelineBibleRef: "Matthew 26:57–75; Mark 14:53–72",
+  requiredConnections: [
+    { pair: "torn_robe+false_scroll", operation: "link" },
+    { pair: "guard_reed+spittle_stained_blindfold", operation: "compare" },
+    { pair: "false_scroll+charcoal_remains", operation: "contradict" },
+  ],
+
   deductions: {
     "rooster_feather+torn_robe": {
       timeline: {
@@ -2226,6 +2252,14 @@ export const act3CaseD = {
       unlocksSuspects: ["barabbas_insurgent"],
       unlocksEvidence: ["barabbas_warrant"],
     }
+  ],
+
+  timelineEvidenceIds: ["wifes_letter", "barabbas_warrant", "joint_verdict", "pilates_basin"],
+  timelineInsight: "Pilate receives a warning and reviews the evidence before yielding to the verdict and washing his hands. The order shows responsibility cannot be removed by a final gesture.",
+  timelineBibleRef: "Matthew 27:15–26; Luke 23:12–25",
+  requiredConnections: [
+    { pair: "pilates_basin+wifes_letter", operation: "link" },
+    { pair: "barabbas_warrant+joint_verdict", operation: "compare" },
   ],
 
   deductions: {
@@ -3246,6 +3280,14 @@ export const act3CaseE = {
       },
       contradictions: {},
     },
+  ],
+
+  timelineEvidenceIds: ["cross_burden", "split_dice", "sour_wine_sponge", "torn_temple_veil", "linen_shroud_receipt"],
+  timelineInsight: "The path to the cross, the soldiers' actions, Jesus's death, the torn veil, and burial preparations form one sequence connecting public execution with its theological meaning.",
+  timelineBibleRef: "Matthew 27:31–61; Mark 15:20–47",
+  requiredConnections: [
+    { pair: "split_rocks+torn_temple_veil", operation: "compare" },
+    { pair: "linen_shroud_receipt+split_dice", operation: "compare" },
   ],
 
   deductions: {

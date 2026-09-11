@@ -291,23 +291,6 @@ export class GameManager {
 
   /** Checks if the player has lost due to excessive doubt or zero reputation. */
   checkGameOver() {
-    const progress = this.cm.getProgress();
-    if (!progress) return false;
-
-    const doubt = progress.doubt || 0;
-    if (doubt >= 50) {
-      this.ui.showGameOver('doubt');
-      return true;
-    }
-
-    if (progress.reputations) {
-      const reps = Object.values(progress.reputations);
-      if (reps.some(r => r <= 0)) {
-        this.ui.showGameOver('reputation');
-        return true;
-      }
-    }
-
     return false;
   }
 

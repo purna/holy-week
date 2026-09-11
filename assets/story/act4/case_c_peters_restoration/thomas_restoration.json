@@ -1,38 +1,94 @@
 {
   "start": {
-    "content": "Peter and I fished together all night and caught nothing. Then He stood on the shore and called to us — none of us asked who He was. We simply knew. And yet I, of all people, needed to see before I could believe.",
+    "content": "Peter and I fished together all night and caught nothing. Then He stood on the shore and called to us — none of us asked who He was. We simply knew. And yet I, of all people, needed to see before I could believe. I had already seen by then. But the beach made it final.",
     "choices": [
-      { "text": "You doubted the resurrection?", "destination": "doubt" },
-      { "text": "What did you see on the shore?", "destination": "shore_scene" }
+      {
+        "text": "You doubted the resurrection?",
+        "destination": "doubt"
+      },
+      {
+        "text": "What did you see on the shore?",
+        "destination": "shore_scene"
+      }
     ]
   },
   "doubt": {
-    "content": "A week after the resurrection I had said I would not believe unless I touched His wounds myself. He appeared again — and He let me touch them. 'Stop doubting and believe.' I did not need to touch anything. The sight of Him was enough.",
+    "content": "A week after the resurrection I had told the others: unless I see the nail marks and put my finger where the nails were and put my hand into his side, I will not believe. He appeared again while I was present. He said: \"Put your finger here, Thomas. Stop doubting and believe.\" I did not need to touch anything. The sight of Him was sufficient. And then I said the only thing that was left to say: \"My Lord and my God.\"",
     "choices": [
-      { "text": "And now you believe completely?", "destination": "shore_scene" }
+      {
+        "text": "And now?",
+        "destination": "shore_scene"
+      },
+      {
+        "text": "He invited the doubt rather than condemning it.",
+        "destination": "doubt_addressed"
+      }
     ]
   },
   "shore_scene": {
-    "content": "He made a charcoal fire on the beach and invited us to breakfast. The risen Lord — cooking fish. He could have appeared in glory. He chose intimacy. After we ate, He took Peter aside, away from the rest of us.",
+    "content": "He made a charcoal fire on the beach and invited us to breakfast. The risen Lord — cooking fish. He could have appeared in glory. He chose intimacy. A fire, bread, fish, seven tired fishermen who had caught nothing all night and were pulling in a net they could barely lift. He fed us before He said anything important. That order matters.",
     "choices": [
-      { "text": "What passed between them?", "destination": "peter_commission" },
-      { "text": "Why Peter specifically?", "destination": "peter_denial_context" }
+      {
+        "text": "What passed between Him and Peter?",
+        "destination": "peter_commission"
+      },
+      {
+        "text": "Why a charcoal fire?",
+        "destination": "charcoal_meaning"
+      }
     ]
   },
-  "peter_denial_context": {
-    "content": "Because Peter had denied Him three times. Three times, beside a charcoal fire very much like this one. He needed a restoration that matched the weight of the failure — not one question, but three.",
+  "doubt_addressed": {
+    "content": "He did not scold me for being absent the first time. He did not explain why I had been excluded from the initial appearance. He simply came to where I was and gave me exactly what I had asked for — and then one question more: \"Have you believed because you have seen? Blessed are those who have not seen and yet have believed.\" He corrected me and included me in the same moment.",
     "choices": [
-      { "text": "And what was the restoration?", "destination": "peter_commission" }
+      {
+        "text": "Then you were ready for the shore.",
+        "destination": "shore_scene"
+      }
+    ]
+  },
+  "charcoal_meaning": {
+    "content": "There was a charcoal fire in the High Priest's courtyard the night of the arrest. John 18:18. Peter denied Him three times beside that fire. Here was another charcoal fire. He was not repeating the context accidentally. The restoration was built on the same material as the wound.",
+    "choices": [
+      {
+        "text": "Three questions.",
+        "destination": "peter_commission"
+      }
     ]
   },
   "peter_commission": {
-    "content": "Three times He asked: 'Do you love me?' Three times Peter answered yes. Three times He said: 'Feed my sheep.' Peter wept on the third question. We all understood — this was not interrogation. This was grace, precisely calibrated to undo a precise wound.",
+    "content": "Three times He asked Peter if he loved Him. Three times Peter answered yes. Three times He commissioned: \"Feed my lambs. Tend my sheep. Feed my sheep.\" Peter wept on the third question — he understood what was happening. A surgical repair of three denials with three affirmations. The same number, the same context, the same man.",
     "choices": [
-      { "text": "Then Peter is restored?", "destination": "closing" }
+      {
+        "text": "Then Peter is restored?",
+        "destination": "restoration"
+      },
+      {
+        "text": "Why did Peter weep?",
+        "destination": "why_weep"
+      }
+    ]
+  },
+  "why_weep": {
+    "content": "Because by the third question he knew Jesus was counting deliberately. And because on the third answer, Jesus used the word Peter had been using — the ordinary brotherly love — rather than the higher word. Jesus came down to where Peter was. He met the failure on its own level and restored it from there. Weeping was the only honest response to that kind of precision.",
+    "choices": [
+      {
+        "text": "Then Peter is restored.",
+        "destination": "restoration"
+      }
+    ]
+  },
+  "restoration": {
+    "content": "Then Jesus said \"Follow me.\" The first two words He ever said to Peter beside this same sea, three years before. After everything — the calling, the walking on water, the confession at Caesarea Philippi, the denial, the cross, the resurrection — everything circled back to two words. Follow me. Peter stood up and followed. His face was a man who had been given his life back.",
+    "choices": [
+      {
+        "text": "And you. Where does this leave you?",
+        "destination": "closing"
+      }
     ]
   },
   "closing": {
-    "content": "Restored and commissioned. He told Peter to follow Him — the same two words He used at the very beginning beside the Sea of Galilee. Three years, a death, a resurrection, and it ends with the same invitation. Follow me. I think that is the point.",
+    "content": "I am a man who required evidence and received it. Twice — once in the upper room and once on this shore. The question Jesus asked me: \"Blessed are those who have not seen and yet believed\" — I think He was already speaking of the people who would come after. Those who read what I saw and believe without having been there. That is the message I will carry. Not the doubt, though that is part of it. The belief that came through the doubt. That is the story.",
     "choices": []
   }
 }

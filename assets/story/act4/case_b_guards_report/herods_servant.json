@@ -1,28 +1,55 @@
 {
   "start": {
-    "content": "I have served in the house of Antipas long enough to know when the air turns sour. My master is a man haunted by ghosts. Ever since the business with the Baptist in the dungeon of Machaerus, he jumps ",
+    "content": "I have served in the house of Antipas long enough to know when the air turns sour. My master is a man haunted by ghosts. Ever since the business with the Baptist in the dungeon of Machaerus, he jumps at every shadow.",
     "choices": [
       {
-        "text": "Tell me more.",
-        "destination": "more"
+        "text": "The Baptist's beheading?",
+        "destination": "baptist"
       },
       {
-        "text": "That is enough.",
-        "destination": "closing"
+        "text": "He met the Nazarene?",
+        "destination": "jesus_meeting"
       }
     ]
   },
-  "more": {
-    "content": "I have more to say on this matter.",
+  "baptist": {
+    "content": "A grim night. A dance, a drunken promise, and a head on a platter. Herod didn't want to do it—he feared the man—but he feared his guests more. Now he thinks Jesus is John come back from the grave to claim his own.",
     "choices": [
       {
-        "text": "Go on.",
+        "text": "And when Jesus arrived?",
+        "destination": "jesus_meeting"
+      }
+    ]
+  },
+  "jesus_meeting": {
+    "content": "They sent Him from Pilate like a gift. Herod was delighted. He wanted a miracle—a magic trick to entertain the court. He asked a hundred questions, shouting, demanding, pleading.",
+    "choices": [
+      {
+        "text": "How did Jesus respond?",
+        "destination": "silence"
+      }
+    ]
+  },
+  "silence": {
+    "content": "Silence. Absolute, crushing silence. The King of the Jews didn't say a word. He stood there in a royal robe they threw on Him for a joke, looking at Herod as if He were the judge and the Tetrarch the prisoner.",
+    "choices": [
+      {
+        "text": "Herod didn't like that.",
+        "destination": "reaction"
+      }
+    ]
+  },
+  "reaction": {
+    "content": "He mocked Him. The soldiers joined in. But beneath the laughter, I saw Herod's hands shaking. You don't mock a man who carries that kind of silence unless you are terrified of what He represents.",
+    "choices": [
+      {
+        "text": "Continue.",
         "destination": "closing"
       }
     ]
   },
   "closing": {
-    "content": "That is all I can tell you.",
+    "content": "My wife, Joanna, is out there somewhere following Him. She saw the healing power Herod so desperately wanted to consume for sport. I stay here, in a palace built on blood and regret, recording the end of an era. Go quickly—the guards are returning.",
     "choices": []
   }
 }

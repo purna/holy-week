@@ -2419,8 +2419,82 @@
       <label class="field" for="characterPresetSelect"><strong>Select Character</strong></label>
       <div class="preset-row">
         <select id="characterPresetSelect">
-          <!-- populated dynamically -->
-        </select>
+          <option value="">-- Select --</option>
+        <optgroup label="Scribes & Observers">
+          <option value="senior_scribe">Senior Scribe</option>
+          <option value="thomas">Thomas</option>
+          <option value="samuel_scribe">Samuel the Scribe</option>
+          <option value="hillel_scribe">Hillel the Scribe</option>
+        </optgroup>
+        <optgroup label="Institutional Authorities">
+          <option value="simon_pharisee">Simon the Pharisee</option>
+          <option value="temple_priest">The Temple Priest</option>
+          <option value="caiaphas">Caiaphas</option>
+          <option value="annas">Annas</option>
+          <option value="eleazar">Eleazar ben Simon</option>
+          <option value="nicodemus">Nicodemus</option>
+          <option value="pashhur">Pashhur</option>
+          <option value="nathanael_pharisee">Nathanael</option>
+          <option value="nathanael_disciple">Nathanael the Disciple</option>
+          <option value="sadducee_authority">Sadducee Opposer</option>
+        </optgroup>
+        <optgroup label="Inner Circle & Followers">
+          <option value="peter">Simon Peter</option>
+          <option value="john_apostle">John</option>
+          <option value="judas">Judas Iscariot</option>
+          <option value="mary_magdalene">Mary Magdalene</option>
+          <option value="mary_bethany">Mary of Bethany</option>
+          <option value="simon_leper">Simon (Leper)</option>
+          <option value="jemimah">Jemimah</option>
+          <option value="martha">Martha</option>
+          <option value="andrew">Andrew</option>
+          <option value="john_mark">John Mark</option>
+          <option value="ananias">Ananias of Damascus</option>
+          <option value="upper_room_prep">Upper Room Preparer</option>
+          <option value="devout_follower">Woman Who Gave Cloak</option>
+        </optgroup>
+        <optgroup label="Imperial & Secular Powers">
+          <option value="pontius_pilate">Pontius Pilate</option>
+          <option value="pilates_secretary">Pilate's Secretary</option>
+          <option value="claudia_procula">Claudia Procula</option>
+          <option value="centurion_longinus">Centurion Longinus</option>
+          <option value="sentry_lucas">Garrison Guard / Lucas</option>
+          <option value="execution_soldier">Execution Detail Soldier</option>
+        </optgroup>
+        <optgroup label="Market, Street & Witnesses">
+          <option value="galilean_pilgrim">Galilean Pilgrim</option>
+          <option value="jerusalem_local">Jerusalem Local</option>
+          <option value="market_vendor">Market Vendor</option>
+          <option value="market_informant">Market Informant</option>
+          <option value="malachi_moneychanger">Temple Money Changer</option>
+          <option value="temple_merchant">Corrupt Seller</option>
+          <option value="displaced_merchant">Upset Buyer</option>
+          <option value="temple_spy">Temple Spy / Maluch</option>
+          <option value="city_gossip">City Gossip</option>
+          <option value="nathan_gardener">Nathan Gardener</option>
+          <option value="simon_cyrene">Simon of Cyrene</option>
+          <option value="joseph_arimathea">Joseph of Arimathea</option>
+          <option value="barabbas">Barabbas</option>
+          <option value="malchus">Malchus</option>
+          <option value="marcus">Marcus the Guard</option>
+          <option value="rhoda">Rhoda</option>
+          <option value="tobias_owner">Tobias</option>
+          <option value="secret_visit">Secret Visitor</option>
+        </optgroup>
+        <optgroup label="Additional Encounters">
+          <option value="rich_young_ruler">Rich Young Ruler</option>
+          <option value="local_traveler">Local Traveler</option>
+          <option value="bethesda_witness">Bethesda Witness</option>
+          <option value="mount_teacher">Rabbi on the Mount</option>
+          <option value="trial_rumors">Trial by Rumors</option>
+        </optgroup>
+        <optgroup label="Resurrection & Aftermath">
+          <option value="peter_simple_defense">Peter (Simple Defense)</option>
+          <option value="mary_resurrection">Mary (Resurrection)</option>
+          <option value="judas_betrayal">Judas (Betrayal)</option>
+          <option value="peter_restored">Peter (Restored)</option>
+        </optgroup>
+      </select>
         <button id="load-preset">Load</button>
       </div>
       <div id="preset-status" style="display:none; font-size:.72rem; color:#c98a5a; margin-top:8px; line-height:1.4;"></div>
@@ -2536,18 +2610,6 @@
           <option value="crown_braids">Crown Braids</option>
           <option value="locs">Locs</option>
           <option value="shaved_sides">Shaved Sides</option>
-          <optgroup label="Imported Hair — Woman Vol. 4">
-            <option value="woman_vol4_1">Woman Vol. 4 — Style 1</option>
-            <option value="woman_vol4_2">Woman Vol. 4 — Style 2</option>
-            <option value="woman_vol4_3">Woman Vol. 4 — Style 3</option>
-            <option value="woman_vol4_4">Woman Vol. 4 — Style 4</option>
-            <option value="woman_vol4_5">Woman Vol. 4 — Style 5</option>
-            <option value="woman_vol4_6">Woman Vol. 4 — Style 6</option>
-            <option value="woman_vol4_7">Woman Vol. 4 — Style 7</option>
-            <option value="woman_vol4_8">Woman Vol. 4 — Style 8</option>
-            <option value="woman_vol4_9">Woman Vol. 4 — Style 9</option>
-            <option value="woman_vol4_10">Woman Vol. 4 — Style 10</option>
-          </optgroup>
         </select>
       </label>
       <label class="field">
@@ -2603,7 +2665,6 @@
           <option value="peasant_rags">Peasant Rags</option>
           <option value="work_tunic">Work Tunic</option>
           <option value="traveller_cloak">Traveller Cloak</option>
-          <option value="hooded_cloak_tunic">Hooded Cloak + Belted Tunic</option>
           <option value="desert_mantle">Desert Mantle</option>
           <option value="prophet_mantle">Prophet Mantle</option>
           <option value="court_dress">Court Dress</option>
@@ -2622,6 +2683,24 @@
           <option value="plain">Plain Cloth</option>
         </select>
       </label>
+      <label class="field">Belt / Girdle
+        <select id="belt-style">
+          <option value="none">None</option>
+          <option value="rope_cord">Rope Cord</option>
+          <option value="leather_strap">Leather Strap</option>
+          <option value="wide_leather">Wide Leather (tool loop)</option>
+          <option value="woven_sash">Woven Sash</option>
+          <option value="ornate_metal">Ornate Metal Girdle</option>
+        </select>
+      </label>
+      <div class="checkbox-row">
+        <input type="checkbox" id="has-hood">
+        <label for="has-hood">Cloak hood (draped at back — Layered Robe, Traveller Cloak, Desert Mantle, Prophet Mantle, Royal Robes only)</label>
+      </div>
+      <div class="checkbox-row">
+        <input type="checkbox" id="has-fashion-layer">
+        <label for="has-fashion-layer">Fashion layer — necklace &amp; trim accents (not shown on Peasant Rags / Work Tunic)</label>
+      </div>
     </div>
 
     <div class="control-group">
@@ -2675,7 +2754,6 @@
 </div>
 
 <script src="character_presets.js"></script>
-<script src="imported_hair_assets.js"></script>
 <script>
 /* ==========================================================
    3D CHARACTER RENDER LOGIC (Three.js)
@@ -2893,7 +2971,8 @@ function clothMaterial(hex, materialStyle) {
         map: getClothColorTexture(hex, materialStyle),
         bumpMap: getPatternTexture(materialStyle),
         bumpScale: materialStyle === 'plain' ? 0 : 0.01,
-        roughness: 0.85, metalness: 0.02
+        roughness: 0.85, metalness: 0.02,
+        side: THREE.DoubleSide
     }));
 }
 function metalMaterial(hex) {
@@ -2907,7 +2986,7 @@ function skinMaterial(hex) {
     return sharedMaterial(`skin:${hex}`, () => new THREE.MeshStandardMaterial({
         color: col(hex),
         map: getSkinGradientTexture(hex),
-        roughness: 0.48, metalness: 0.0
+        roughness: 0.65, metalness: 0.0
     }));
 }
 function hairMaterial(hex) {
@@ -2920,7 +2999,7 @@ function hairMaterial(hex) {
 
 /* Small constant materials (no per-character color) — created once, ever. */
 function eyeWhiteMaterial() {
-    return sharedMaterial('eye-white', () => new THREE.MeshStandardMaterial({ color: 0xfffbf2, roughness: 0.22 }));
+    return sharedMaterial('eye-white', () => new THREE.MeshStandardMaterial({ color: 0xfdfaf1, roughness: 0.3 }));
 }
 function eyePupilMaterial() {
     return sharedMaterial('eye-pupil', () => new THREE.MeshStandardMaterial({ color: 0x1a1410, roughness: 0.2 }));
@@ -2990,19 +3069,6 @@ function buildHead(state) {
     const group = new THREE.Group();
     group.add(mesh);
 
-    // Warm, barely-there cheek pads give the face the friendly toy/animation
-    // finish used by the visual references without baking detail into a texture.
-    const blushMat = sharedMaterial(`blush:${state.colorSkin}`, () => new THREE.MeshStandardMaterial({
-        color: col(shadeColor(state.colorSkin, 18)), transparent: true, opacity: 0.34,
-        roughness: 0.7, depthWrite: false
-    }));
-    [-1, 1].forEach(sign => {
-        const cheek = new THREE.Mesh(new THREE.SphereGeometry(0.105, 16, 12), blushMat);
-        cheek.scale.set(1.25, 0.62, 0.28);
-        cheek.position.set(sign * 0.31, 1.51, 0.485);
-        group.add(cheek);
-    });
-
     if (state.chinShape === 'cleft') {
         const grooveGeo = new THREE.BoxGeometry(0.02, 0.10, 0.06);
         const groove = new THREE.Mesh(grooveGeo, skinMaterial(shadeColor(state.colorSkin, -35)));
@@ -3054,13 +3120,11 @@ function buildEyes(state) {
 
     const mkEye = (sign) => {
         const eyeGroup = new THREE.Group();
-        const white = new THREE.Mesh(new THREE.SphereGeometry(0.092, 18, 14), whiteMat);
-        const iris = new THREE.Mesh(new THREE.SphereGeometry(0.050, 14, 12), irisMat);
-        const pupil = new THREE.Mesh(new THREE.SphereGeometry(0.027, 10, 10), pupilMat);
-        const glint = new THREE.Mesh(new THREE.SphereGeometry(0.010, 8, 8), gemMaterial());
-        iris.position.z = 0.073; pupil.position.z = 0.105;
-        glint.position.set(-0.010, 0.014, 0.128);
-        eyeGroup.add(white, iris, pupil, glint);
+        const white = new THREE.Mesh(new THREE.SphereGeometry(0.075, 14, 12), whiteMat);
+        const iris = new THREE.Mesh(new THREE.SphereGeometry(0.038, 12, 10), irisMat);
+        const pupil = new THREE.Mesh(new THREE.SphereGeometry(0.016, 8, 8), pupilMat);
+        iris.position.z = 0.06; pupil.position.z = 0.09;
+        eyeGroup.add(white, iris, pupil);
 
         switch(state.eyeShape) {
             case 'round': eyeGroup.scale.set(1.15, 1.15, 1); break;
@@ -3134,7 +3198,7 @@ function buildNose(state) {
             break;
         }
         case 'button': {
-            const ball = new THREE.Mesh(new THREE.SphereGeometry(0.072, 16, 12), mat);
+            const ball = new THREE.Mesh(new THREE.SphereGeometry(0.05, 12, 10), mat);
             ball.position.set(0, 1.58, 0.54);
             group.add(ball);
             break;
@@ -3214,8 +3278,7 @@ function buildMouth(state) {
         }
         case 'neutral':
         default: {
-            mesh = new THREE.Mesh(new THREE.SphereGeometry(0.075, 14, 10), mat);
-            mesh.scale.set(1, 0.12, 0.28);
+            mesh = new THREE.Mesh(new THREE.BoxGeometry(0.15, 0.02, 0.025), mat);
             mesh.position.set(0, 1.34, 0.53);
         }
     }
@@ -3226,56 +3289,10 @@ function buildMouth(state) {
 }
 
 /* ---------- HAIR ---------- */
-const importedHairGeometryCache = {};
-function decodeBase64Bytes(encoded) {
-    const binary = atob(encoded);
-    const bytes = new Uint8Array(binary.length);
-    for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
-    return bytes;
-}
-function importedHairGeometry(styleNumber) {
-    if (importedHairGeometryCache[styleNumber]) return importedHairGeometryCache[styleNumber];
-    if (typeof IMPORTED_HAIR_ASSETS === 'undefined' || !IMPORTED_HAIR_ASSETS[styleNumber]) return null;
-    const asset = IMPORTED_HAIR_ASSETS[styleNumber];
-    const positions = decodeBase64Bytes(asset.p);
-    const normals = decodeBase64Bytes(asset.n);
-    const indices = decodeBase64Bytes(asset.i);
-    const geometry = new THREE.BufferGeometry();
-    geometry.setAttribute('position', new THREE.BufferAttribute(new Float32Array(positions.buffer), 3));
-    geometry.setAttribute('normal', new THREE.BufferAttribute(new Float32Array(normals.buffer), 3));
-    const IndexArray = asset.it === 5125 ? Uint32Array : Uint16Array;
-    geometry.setIndex(new THREE.BufferAttribute(new IndexArray(indices.buffer), 1));
-    geometry.computeBoundingSphere();
-    importedHairGeometryCache[styleNumber] = geometry;
-    return geometry;
-}
-
 function buildHair(state) {
     const group = new THREE.Group();
     if (state.hairStyle === 'bald') return group;
     const mat = hairMaterial(state.colorHair);
-    const importedMatch = /^woman_vol4_(\d+)$/.exec(state.hairStyle);
-    if (importedMatch) {
-        const styleNumber = importedMatch[1];
-        const geometry = importedHairGeometry(styleNumber);
-        if (geometry) {
-            const asset = IMPORTED_HAIR_ASSETS[styleNumber];
-            const mesh = new THREE.Mesh(geometry, mat);
-            mesh.name = 'Imported_Hair_Woman_Vol4_' + styleNumber;
-            const fitScale = 3.8;
-            const centerX = (asset.min[0] + asset.max[0]) * 0.5;
-            mesh.scale.setScalar(fitScale);
-            mesh.position.set(-centerX * fitScale, 2.18 - asset.max[1] * fitScale, 0.06);
-            group.add(mesh);
-        }
-        group.scale.multiplyScalar(state.hairSize);
-        group.position.y += 1.75 * (1 - state.hairSize);
-        const wrap = new THREE.Group();
-        wrap.add(group);
-        wrap.scale.setScalar(state.headSize);
-        wrap.position.y = 1.6 * (1 - state.headSize);
-        return wrap;
-    }
     const foreheadY = state.foreheadHeight === 'high' ? 2.08 : (state.foreheadHeight === 'low' ? 1.92 : 2.00);
     const scalpTop = new THREE.Vector3(0, foreheadY - 0.30, 0);
     const scalpY = scalpTop.y;
@@ -3519,31 +3536,12 @@ function buildBeard(state) {
 /* ---------- HEAD COVERING ---------- */
 function buildHat(state) {
     const group = new THREE.Group();
-    const wardrobeHood = state.clothingType === 'hooded_cloak_tunic';
-    if (state.hatStyle === 'none' && !wardrobeHood) return group;
+    if (state.hatStyle === 'none') return group;
     const inner = state.hatMatchHair ? state.colorHair : state.colorInner;
     const outer = state.hatMatchHair ? state.colorHair : state.colorOuter;
     const cMat = clothMaterial(outer, 'plain');
     const cMatInner = clothMaterial(inner, 'plain');
     const mMat = metalMaterial(state.colorAccent);
-
-    // This hood belongs to the cloak rather than the hat selector.  Its thick,
-    // rounded opening frames the face while the rear shell joins the mantle.
-    if (wardrobeHood) {
-        const hoodMat = clothMaterial(state.colorCloak, state.materialStyle);
-        const shell = new THREE.Mesh(
-            new THREE.SphereGeometry(0.73, 22, 16, Math.PI, Math.PI, 0, Math.PI * 0.72),
-            hoodMat
-        );
-        shell.scale.set(1, 1.12, 0.82);
-        shell.position.set(0, 1.62, -0.12);
-        group.add(shell);
-
-        const opening = new THREE.Mesh(new THREE.TorusGeometry(0.53, 0.105, 10, 28), hoodMat);
-        opening.scale.set(0.92, 1.08, 0.72);
-        opening.position.set(0, 1.63, 0.36);
-        group.add(opening);
-    }
 
     switch(state.hatStyle) {
         case 'hood': {
@@ -3665,6 +3663,35 @@ function buildHat(state) {
 }
 
 /* ---------- TORSO / WARDROBE ---------- */
+
+// Builds a revolved-profile mesh (curved silhouette, not a straight cone/
+// cylinder taper) and optionally perturbs its cross-section with a sine
+// wave around the circumference to read as draped/gathered fabric rather
+// than a perfectly smooth tube.
+// profilePoints: [[radius, y], ...] bottom-to-top or top-to-bottom, either
+// order works since LatheGeometry just connects them in sequence.
+function foldedLathe(profilePoints, { segments = 28, foldCount = 0, foldDepth = 0, foldMaxY = Infinity, foldMinY = -Infinity } = {}) {
+    const pts = profilePoints.map(([r, y]) => new THREE.Vector2(Math.max(r, 0.0001), y));
+    const geo = new THREE.LatheGeometry(pts, segments);
+    if (foldCount > 0 && foldDepth > 0) {
+        const pos = geo.attributes.position;
+        for (let i = 0; i < pos.count; i++) {
+            const x = pos.getX(i), y = pos.getY(i), z = pos.getZ(i);
+            if (y > foldMaxY || y < foldMinY) continue;
+            const radius = Math.sqrt(x * x + z * z);
+            if (radius < 0.0001) continue;
+            const angle = Math.atan2(z, x);
+            const newRadius = radius + Math.sin(angle * foldCount) * foldDepth;
+            const scale = newRadius / radius;
+            pos.setX(i, x * scale);
+            pos.setZ(i, z * scale);
+        }
+        pos.needsUpdate = true;
+        geo.computeVertexNormals();
+    }
+    return geo;
+}
+
 function buildTorso(state) {
     const group = new THREE.Group();
     const inner = clothMaterial(state.colorInner, state.materialStyle);
@@ -3678,14 +3705,33 @@ function buildTorso(state) {
     neck.position.set(0, 1.05, 0);
     group.add(neck);
 
+    // basic body underneath the clothing — a plain skin-toned cylinder so
+    // there's something solid behind any gap, seam, or thin/folded patch
+    // in the outer garment layers instead of seeing through to empty space.
+    const bodyBase = new THREE.Mesh(new THREE.CylinderGeometry(0.30, 0.40, 1.3, 16), skinMaterial(state.colorSkin));
+    bodyBase.position.set(0, 0.35, 0);
+    group.add(bodyBase);
+
     // base torso (bust — cut off at the bottom, matches the medallion framing)
-    const base = new THREE.Mesh(new THREE.CylinderGeometry(0.44, 0.85, 1.2, 20, 1, true), outer);
+    // A curved profile (waist tucked in, chest/shoulders eased back out)
+    // reads as a body wearing cloth, not a cone.
+    const base = new THREE.Mesh(foldedLathe([
+        [0.85, -0.6],  // hem
+        [0.72, -0.4],  // waist taper begins
+        [0.62, -0.2],  // waist
+        [0.65,  0.0],  // ribcage easing back out
+        [0.60,  0.2],  // chest
+        [0.50,  0.4],  // upper chest
+        [0.44,  0.6],  // shoulder/neckline
+    ], { segments: 24, foldCount: 10, foldDepth: 0.012 }), outer);
     base.position.set(0, 0.35, 0);
     group.add(base);
 
     switch(state.clothingType) {
         case 'layered_robe': {
-            const layer = new THREE.Mesh(new THREE.CylinderGeometry(0.5, 0.95, 1.3, 20, 1, true), inner);
+            const layer = new THREE.Mesh(foldedLathe([
+                [0.95, -0.65], [0.80, -0.35], [0.68, -0.05], [0.72, 0.25], [0.5, 0.65],
+            ], { segments: 24, foldCount: 9, foldDepth: 0.02 }), inner);
             layer.position.set(0, 0.25, -0.06);
             layer.scale.set(1.08, 1, 1.08);
             group.add(layer);
@@ -3731,14 +3777,13 @@ function buildTorso(state) {
             }
             break;
         }
-        case 'work_tunic': {
-            const belt = new THREE.Mesh(new THREE.TorusGeometry(0.62, 0.05, 8, 20), accentCloth);
-            belt.rotation.x = Math.PI/2; belt.position.set(0, 0.05, 0);
-            group.add(belt);
+        case 'work_tunic':
+            // belt now comes from the unified Belt / Girdle selector below
             break;
-        }
         case 'traveller_cloak': {
-            const cl = new THREE.Mesh(new THREE.CylinderGeometry(0.55, 1.05, 1.5, 20, 1, true), cloak);
+            const cl = new THREE.Mesh(foldedLathe([
+                [1.05, -0.75], [0.85, -0.35], [0.68, 0.0], [0.75, 0.25], [0.55, 0.75],
+            ], { segments: 24, foldCount: 8, foldDepth: 0.025 }), cloak);
             cl.position.set(0, 0.15, -0.1);
             cl.scale.set(1.15, 1, 1.15);
             group.add(cl);
@@ -3747,38 +3792,10 @@ function buildTorso(state) {
             group.add(clasp);
             break;
         }
-        case 'hooded_cloak_tunic': {
-            // Open-front mantle: the missing front wedge reveals the tunic and
-            // belt instead of replacing them with a closed cone of cloth.
-            const mantle = new THREE.Mesh(
-                new THREE.CylinderGeometry(0.56, 1.08, 1.58, 28, 1, true, 0.58, Math.PI * 2 - 1.16),
-                cloak
-            );
-            mantle.position.set(0, 0.16, -0.10);
-            mantle.scale.set(1.14, 1, 1.14);
-            group.add(mantle);
-
-            const shoulderWrap = new THREE.Mesh(new THREE.TorusGeometry(0.60, 0.10, 10, 28), cloak);
-            shoulderWrap.rotation.x = Math.PI / 2;
-            shoulderWrap.position.set(0, 0.83, 0);
-            group.add(shoulderWrap);
-
-            const belt = new THREE.Mesh(new THREE.TorusGeometry(0.63, 0.065, 10, 28), accentCloth);
-            belt.rotation.x = Math.PI / 2;
-            belt.position.set(0, 0.05, 0);
-            group.add(belt);
-
-            const buckle = new THREE.Mesh(new THREE.TorusGeometry(0.085, 0.022, 8, 18), accentMat);
-            buckle.position.set(0, 0.05, 0.64);
-            group.add(buckle);
-
-            const clasp = new THREE.Mesh(new THREE.SphereGeometry(0.065, 12, 10), accentMat);
-            clasp.position.set(0, 0.84, 0.56);
-            group.add(clasp);
-            break;
-        }
         case 'desert_mantle': {
-            const cl = new THREE.Mesh(new THREE.CylinderGeometry(0.5, 0.98, 1.35, 20, 1, true), cloak);
+            const cl = new THREE.Mesh(foldedLathe([
+                [0.98, -0.675], [0.80, -0.4], [0.65, -0.1], [0.7, 0.15], [0.5, 0.675],
+            ], { segments: 24, foldCount: 9, foldDepth: 0.02 }), cloak);
             cl.position.set(0, 0.25, -0.08);
             group.add(cl);
             const ring = new THREE.Mesh(new THREE.TorusGeometry(0.62, 0.04, 8, 20), accentCloth);
@@ -3787,7 +3804,9 @@ function buildTorso(state) {
             break;
         }
         case 'prophet_mantle': {
-            const cl = new THREE.Mesh(new THREE.CylinderGeometry(0.5, 1.0, 1.45, 20, 1, true), cloak);
+            const cl = new THREE.Mesh(foldedLathe([
+                [1.0, -0.725], [0.82, -0.4], [0.66, -0.05], [0.72, 0.2], [0.5, 0.725],
+            ], { segments: 24, foldCount: 7, foldDepth: 0.03 }), cloak);
             cl.position.set(0, 0.15, -0.08);
             group.add(cl);
             break;
@@ -3802,7 +3821,9 @@ function buildTorso(state) {
             break;
         }
         case 'royal_robes': {
-            const cl = new THREE.Mesh(new THREE.CylinderGeometry(0.58, 1.1, 1.55, 20, 1, true), cloak);
+            const cl = new THREE.Mesh(foldedLathe([
+                [1.1, -0.775], [0.88, -0.4], [0.7, -0.05], [0.78, 0.25], [0.58, 0.775],
+            ], { segments: 26, foldCount: 10, foldDepth: 0.03 }), cloak);
             cl.position.set(0, 0.1, -0.1);
             cl.scale.set(1.2, 1, 1.2);
             group.add(cl);
@@ -3824,6 +3845,74 @@ function buildTorso(state) {
         group.add(stripe);
     }
 
+    // ---- Belt / Girdle (a separate "versatile layer" piece, worn over any
+    // clothing type — historically it held the tunic in, and doubled as a
+    // place to carry tools, a pouch, or a sling) ----
+    switch (state.beltStyle) {
+        case 'rope_cord': {
+            const cord = new THREE.Mesh(new THREE.TorusGeometry(0.60, 0.025, 6, 20), accentCloth);
+            cord.rotation.x = Math.PI/2; cord.position.set(0, 0.04, 0);
+            group.add(cord);
+            break;
+        }
+        case 'leather_strap': {
+            const strap = new THREE.Mesh(new THREE.TorusGeometry(0.61, 0.04, 8, 20), accentCloth);
+            strap.rotation.x = Math.PI/2; strap.position.set(0, 0.04, 0);
+            group.add(strap);
+            break;
+        }
+        case 'wide_leather': {
+            const wide = new THREE.Mesh(new THREE.TorusGeometry(0.62, 0.075, 8, 20), accentCloth);
+            wide.rotation.x = Math.PI/2; wide.position.set(0, 0.04, 0);
+            group.add(wide);
+            const pouch = new THREE.Mesh(new THREE.BoxGeometry(0.14, 0.16, 0.08), accentCloth);
+            pouch.position.set(0.35, -0.06, 0.5);
+            group.add(pouch);
+            break;
+        }
+        case 'woven_sash': {
+            const sash = new THREE.Mesh(new THREE.TorusGeometry(0.63, 0.06, 8, 20), accentCloth);
+            sash.rotation.x = Math.PI/2; sash.position.set(0, 0.04, 0);
+            group.add(sash);
+            const tail = new THREE.Mesh(new THREE.BoxGeometry(0.14, 0.5, 0.03), accentCloth);
+            tail.position.set(0.25, -0.32, 0.55);
+            group.add(tail);
+            break;
+        }
+        case 'ornate_metal': {
+            const girdle = new THREE.Mesh(new THREE.TorusGeometry(0.61, 0.05, 8, 20), accentMat);
+            girdle.rotation.x = Math.PI/2; girdle.position.set(0, 0.04, 0);
+            group.add(girdle);
+            const clasp = new THREE.Mesh(new THREE.SphereGeometry(0.055, 10, 8), accentMat);
+            clasp.position.set(0, 0.04, 0.61);
+            group.add(clasp);
+            break;
+        }
+        case 'none':
+        default:
+            break;
+    }
+
+    // ---- Cloak hood ("versatile layer" worn down, draped at the back —
+    // only makes sense over a cloak/mantle-type outer layer) ----
+    if (state.hasHood && ['layered_robe','traveller_cloak','desert_mantle','prophet_mantle','royal_robes'].includes(state.clothingType)) {
+        const hood = new THREE.Mesh(new THREE.ConeGeometry(0.26, 0.55, 12, 1, true), cloak);
+        hood.rotation.x = Math.PI * 0.94;
+        hood.position.set(0, 1.12, -0.38);
+        group.add(hood);
+    }
+
+    // ---- Fashion layer (optional decoration — historically a marker of
+    // wealth, so it's withheld for the poor-coded garments) ----
+    if (state.hasFashionLayer && !['peasant_rags','work_tunic'].includes(state.clothingType)) {
+        const necklace = new THREE.Mesh(new THREE.TorusGeometry(0.24, 0.02, 8, 20), accentMat);
+        necklace.rotation.x = Math.PI/2; necklace.position.set(0, 0.92, 0.15);
+        group.add(necklace);
+        const pendant = new THREE.Mesh(new THREE.SphereGeometry(0.03, 8, 8), gemMaterial());
+        pendant.position.set(0, 0.75, 0.28);
+        group.add(pendant);
+    }
+
     return group;
 }
 
@@ -3834,9 +3923,25 @@ function buildSkirt(state) {
     const outer = clothMaterial(state.colorOuter, state.materialStyle);
     const hemMat = clothMaterial(state.colorInner, state.materialStyle);
 
+    // basic body underneath the skirt/robe — same reasoning as the torso's
+    // body cylinder: keeps folds, hems, and any thin patches from reading
+    // as see-through by giving them something solid to sit in front of.
+    const legs = new THREE.Mesh(new THREE.CylinderGeometry(0.24, 0.30, 1.75, 14), skinMaterial(state.colorSkin));
+    legs.position.set(0, -1.0, 0);
+    group.add(legs);
+
     // continues the torso's silhouette (which ends at radius 0.85, y=-0.25)
-    // down to the floor, flaring slightly toward the hem like a robe.
-    const skirt = new THREE.Mesh(new THREE.CylinderGeometry(0.85, 1.0, 1.5, 24, 1, true), outer);
+    // down to the floor. An S-curve profile (tucks in slightly below the
+    // hip, then flares toward the hem) plus soft fold ripples reads as
+    // draped cloth falling under its own weight, not a traffic cone.
+    const skirt = new THREE.Mesh(foldedLathe([
+        [1.05, -0.75],  // hem
+        [1.0,  -0.55],  // flare toward the floor
+        [0.85, -0.2],
+        [0.78,  0.15],  // slight tuck below the hip
+        [0.80,  0.5],
+        [0.85,  0.75],  // continues torso hem
+    ], { segments: 28, foldCount: 12, foldDepth: 0.03, foldMaxY: 0.5 }), outer);
     skirt.position.set(0, -1.0, 0);
     group.add(skirt);
 
@@ -3845,45 +3950,6 @@ function buildSkirt(state) {
     hem.position.set(0, -1.75, 0);
     group.add(hem);
 
-    return group;
-}
-
-/* ---------- STORYBOOK LIMBS ----------
-   Tapered sleeves, mitten-like hands and simple sandals complete the compact
-   figurine silhouette while staying readable at small sprite sizes. */
-function buildLimbs(state) {
-    const group = new THREE.Group();
-    const sleeveMat = clothMaterial(state.colorOuter, state.materialStyle);
-    const skinMat = skinMaterial(state.colorSkin);
-    const leatherMat = clothMaterial(shadeColor(state.colorAccent, -32), 'plain');
-
-    [-1, 1].forEach(sign => {
-        const arm = new THREE.Mesh(new THREE.CylinderGeometry(0.13, 0.17, 0.72, 16), sleeveMat);
-        arm.position.set(sign * 0.72, 0.40, 0.04);
-        arm.rotation.z = sign * -0.13;
-        group.add(arm);
-
-        const hand = new THREE.Mesh(new THREE.SphereGeometry(0.145, 16, 12), skinMat);
-        hand.scale.set(0.82, 1.06, 0.78);
-        hand.position.set(sign * 0.79, 0.02, 0.12);
-        group.add(hand);
-
-        const foot = new THREE.Mesh(new THREE.SphereGeometry(0.22, 16, 12), skinMat);
-        foot.scale.set(1.15, 0.48, 1.55);
-        foot.position.set(sign * 0.36, -1.79, 0.30);
-        group.add(foot);
-
-        const sole = new THREE.Mesh(new THREE.SphereGeometry(0.19, 14, 10), leatherMat);
-        sole.scale.set(1.22, 0.24, 1.62);
-        sole.position.set(sign * 0.36, -1.88, 0.35);
-        group.add(sole);
-
-        const strap = new THREE.Mesh(new THREE.TorusGeometry(0.13, 0.026, 7, 16, Math.PI), leatherMat);
-        strap.rotation.x = Math.PI/2;
-        strap.rotation.z = sign * 0.10;
-        strap.position.set(sign * 0.36, -1.76, 0.47);
-        group.add(strap);
-    });
     return group;
 }
 
@@ -3896,7 +3962,6 @@ function rebuildCharacter(state) {
     characterGroup.name = 'Character_' + slugify(state.name || 'custom');
     characterGroup.add(buildSkirt(state));
     characterGroup.add(buildTorso(state));
-    characterGroup.add(buildLimbs(state));
     characterGroup.add(buildEars(state));
     characterGroup.add(buildHead(state));
     characterGroup.add(buildEyes(state));
@@ -3949,21 +4014,14 @@ function initThree() {
     renderer.setSize(w, h);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.outputEncoding = THREE.sRGBEncoding;
-    renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 1.18;
-    renderer.shadowMap.enabled = true;
-    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     container.appendChild(renderer.domElement);
 
-    const ambient = new THREE.HemisphereLight(0xfff3df, 0x64718a, 0.82);
-    const key = new THREE.DirectionalLight(0xffe5c2, 1.35);
+    const ambient = new THREE.AmbientLight(0xffffff, 0.55);
+    const key = new THREE.DirectionalLight(0xfff3e0, 1.0);
     key.position.set(2, 3, 3);
-    key.castShadow = true;
-    const rim = new THREE.DirectionalLight(0x91b6d8, 0.52);
+    const rim = new THREE.DirectionalLight(0x8899ff, 0.4);
     rim.position.set(-3, 1.5, -2);
-    const fill = new THREE.DirectionalLight(0xffd7b0, 0.32);
-    fill.position.set(-2, 1, 3);
-    scene.add(ambient, key, rim, fill);
+    scene.add(ambient, key, rim);
 
     // floor grid — scale reference for a game-engine viewport, sized in meters
     const grid = new THREE.GridHelper(4, 8, 0x4a5c78, 0x2a2a35);
@@ -4037,6 +4095,7 @@ const FALLBACK_PRESET = {
     earSize: 1.0, earShape: "round", headSize: 1.0, hairSize: 1.0, hatSize: 1.0,
     hatMatchHair: false,
     dualStripe: false,
+    beltStyle: "leather_strap", hasHood: false, hasFashionLayer: false,
     colorInner: "#4a423a", colorOuter: "#2f2b25", colorCloak: "#1a1815",
     colorAccent: "#3b3831", colorGarment2: "#8a7a5a",
     colorSkin: "#c49366", colorHair: "#241c14", colorEye: "#4a3b32", colorLip: "#9a5f52"
@@ -4047,9 +4106,8 @@ let state = { ...FALLBACK_PRESET };
 function loadPresets() {
     if (typeof CHARACTER_PRESETS_DATA !== "undefined" && CHARACTER_PRESETS_DATA && Object.keys(CHARACTER_PRESETS_DATA).length) {
         presets = CHARACTER_PRESETS_DATA;
-        populatePresetSelect();
         const firstKey = (typeof CHARACTER_PRESETS_META !== "undefined" && CHARACTER_PRESETS_META.defaultPreset) || Object.keys(presets)[0];
-        state = { hairSize: 1.0, hatSize: 1.0, hatMatchHair: false, ...presets[firstKey] };
+        state = { hairSize: 1.0, hatSize: 1.0, hatMatchHair: false, beltStyle: "leather_strap", hasHood: false, hasFashionLayer: false, ...presets[firstKey] };
         hidePresetError();
     } else {
         console.error("CHARACTER_PRESETS_DATA not found — character_presets.js did not load.");
@@ -4057,27 +4115,6 @@ function loadPresets() {
     }
     writeStateIntoUI();
     render();
-}
-
-function populatePresetSelect() {
-    const select = document.getElementById("characterPresetSelect");
-    select.innerHTML = '<option value="">-- Select --</option>';
-    const groups = {
-      "story": { label: (typeof CHARACTER_PRESETS_META !== "undefined" ? CHARACTER_PRESETS_META.groupLabel : "Story characters"), characters: Object.keys(presets) }
-    };
-    Object.values(groups).forEach(group => {
-        const optgroup = document.createElement("optgroup");
-        optgroup.label = group.label;
-        group.characters.forEach(key => {
-            if (presets[key]) {
-                const option = document.createElement("option");
-                option.value = key;
-                option.textContent = presets[key].name;
-                optgroup.appendChild(option);
-            }
-        });
-        select.appendChild(optgroup);
-    });
 }
 
 function showPresetError() {
@@ -4095,7 +4132,7 @@ function hidePresetError() {
 /* ==========================================================
    UI CONTROLLER (mirrors the 2D tool's field ids)
    ========================================================== */
-const ids = ["face-shape:faceShape","forehead-height:foreheadHeight","eye-spacing:eyeSpacing","ear-size:earSize","head-size:headSize","hair-size:hairSize","hat-size:hatSize","chin-shape:chinShape","eye-shape:eyeShape","eyebrow-style:eyebrowStyle","nose-shape:noseShape","mouth-style:mouthStyle","hair-style:hairStyle","beard-style:beardStyle","hat-style:hatStyle","clothing-type:clothingType","material-style:materialStyle","ear-shape:earShape"];
+const ids = ["face-shape:faceShape","forehead-height:foreheadHeight","eye-spacing:eyeSpacing","ear-size:earSize","head-size:headSize","hair-size:hairSize","hat-size:hatSize","chin-shape:chinShape","eye-shape:eyeShape","eyebrow-style:eyebrowStyle","nose-shape:noseShape","mouth-style:mouthStyle","hair-style:hairStyle","beard-style:beardStyle","hat-style:hatStyle","clothing-type:clothingType","material-style:materialStyle","ear-shape:earShape","belt-style:beltStyle"];
 const colorIds = ["color-inner:colorInner","color-outer:colorOuter","color-cloak:colorCloak","color-accent:colorAccent","color-skin:colorSkin","color-hair:colorHair","color-eye:colorEye","color-lip:colorLip","color-garment2:colorGarment2"];
 
 function formatName(str) { return str.replace(/_/g, " ").replace(/\b\w/g, l => l.toUpperCase()); }
@@ -4118,6 +4155,8 @@ function readUIIntoState() {
     state.hatSize = parseFloat(document.getElementById("hat-size").value);
     state.hatMatchHair = document.getElementById("hat-match-hair").checked;
     state.dualStripe = document.getElementById("dual-stripe").checked;
+    state.hasHood = document.getElementById("has-hood").checked;
+    state.hasFashionLayer = document.getElementById("has-fashion-layer").checked;
     document.getElementById("nose-scale-val").textContent = state.noseScale.toFixed(2) + "×";
     document.getElementById("eye-spacing-val").textContent = state.eyeSpacing.toFixed(1) + "×";
     document.getElementById("ear-size-val").textContent = state.earSize.toFixed(1) + "×";
@@ -4147,12 +4186,14 @@ function writeStateIntoUI() {
     document.getElementById("hat-match-hair").checked = !!state.hatMatchHair;
     document.getElementById("dual-stripe").checked = !!state.dualStripe;
     document.getElementById("stripe-row").style.display = state.dualStripe ? "flex" : "none";
+    document.getElementById("has-hood").checked = !!state.hasHood;
+    document.getElementById("has-fashion-layer").checked = !!state.hasFashionLayer;
 }
 
 const presetSelect = document.getElementById("characterPresetSelect");
 document.getElementById("load-preset").addEventListener("click", () => {
     const key = presetSelect.value;
-    if (presets[key]) { state = { hairSize: 1.0, hatSize: 1.0, hatMatchHair: false, ...presets[key] }; writeStateIntoUI(); render(); }
+    if (presets[key]) { state = { hairSize: 1.0, hatSize: 1.0, hatMatchHair: false, beltStyle: "leather_strap", hasHood: false, hasFashionLayer: false, ...presets[key] }; writeStateIntoUI(); render(); }
 });
 document.querySelectorAll(".sidebar input, .sidebar select").forEach(el => {
     if (el.id !== "characterPresetSelect") el.addEventListener("input", readUIIntoState);
@@ -4244,7 +4285,7 @@ document.getElementById("export-batch").addEventListener("click", async () => {
         const zip = new JSZip();
         cameraYaw = 0; updateCameraPosition();
         for (const [key, preset] of Object.entries(presets)) {
-            const presetState = { hairSize: 1.0, hatSize: 1.0, hatMatchHair: false, ...preset };
+            const presetState = { hairSize: 1.0, hatSize: 1.0, hatMatchHair: false, beltStyle: "leather_strap", hasHood: false, hasFashionLayer: false, ...preset };
             rebuildCharacter(presetState);
             const blob = await captureFrame();
             zip.file(`${key}.png`, blob);

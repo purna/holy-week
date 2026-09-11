@@ -1,0 +1,111 @@
+{
+    "inkVersion": 21,
+    "root": [
+        [
+            { "->": "start" },
+            ["done", { "#f": 5, "#n": "g-0" }],
+            null
+        ],
+        "done",
+        {
+            "start": [
+                [
+                    "^This man teaches as one who has authority — not as the scribes. Do you understand what that implies? The scribes cite precedent. Prophets claim divine mandate. But He does neither. He simply says: \"I tell you the truth.\" That is either supreme arrogance or something far more dangerous.",
+                    "\n",
+                    "ev", "str", "^Why more dangerous?", "/str", "/ev", { "*": ".^.c-0", "flg": 20 },
+                    "ev", "str", "^The crowds seem to love it.", "/str", "/ev", { "*": ".^.c-1", "flg": 20 },
+                    {
+                        "c-0": [ "^ ", { "->": "dangerous" }, "\n", { "#f": 5 } ],
+                        "c-1": [ "^ ", { "->": "crowd_response" }, "\n", { "#f": 5 } ]
+                    }
+                ],
+                { "#f": 1 }
+            ],
+            "dangerous": [
+                [
+                    "^Because if He is right — if He genuinely speaks with authority over the Law itself — then every institution built to interpret the Law is made redundant overnight. The Sanhedrin, the scribal tradition, the whole system of oral Torah. Gone. You see the problem.",
+                    "\n",
+                    "ev", "str", "^Have you tested His teaching?", "/str", "/ev", { "*": ".^.c-0", "flg": 20 },
+                    { "c-0": [ "^ ", { "->": "testing" }, "\n", { "#f": 5 } ] }
+                ],
+                { "#f": 1 }
+            ],
+            "crowd_response": [
+                [
+                    "^The crowd loves spectacle. They loved John the Baptist too, until Herod removed him from the equation. Crowds are not theologians. They cannot distinguish a brilliant teacher from a legitimate prophet from a dangerous revolutionary.",
+                    "\n",
+                    "ev", "str", "^Which is He?", "/str", "/ev", { "*": ".^.c-0", "flg": 20 },
+                    { "c-0": [ "^ ", { "->": "testing" }, "\n", { "#f": 5 } ] }
+                ],
+                { "#f": 1 }
+            ],
+            "testing": [
+                [
+                    "^We sent three separate delegations. The coin of Caesar — He turned it back on both Rome and the Pharisees simultaneously. \"Render to Caesar what is Caesar's, and to God what is God's.\" Neither side could object without contradicting themselves. The Sadducees tried the resurrection question — He silenced them with a text they use in the morning service every week. And I myself asked about the greatest commandment.",
+                    "\n",
+                    "ev", "str", "^What happened with the commandment question?", "/str", "/ev", { "*": ".^.c-0", "flg": 20 },
+                    "ev", "str", "^You could not trap Him.", "/str", "/ev", { "*": ".^.c-1", "flg": 20 },
+                    {
+                        "c-0": [ "^ ", { "->": "commandment" }, "\n", { "#f": 5 } ],
+                        "c-1": [ "^ ", { "->": "commandment" }, "\n", { "#f": 5 } ]
+                    }
+                ],
+                { "#f": 1 }
+            ],
+            "commandment": [
+                [
+                    "^He quoted Deuteronomy 6 and Leviticus 19 in a combination no school had framed before — \"Love God with all your heart, soul, mind, and strength, and love your neighbour as yourself.\" Then He said: \"On these two commandments hang all the Law and the Prophets.\" I could not find a flaw. I told Him so. He told me I was not far from the Kingdom of God.",
+                    "\n",
+                    "ev", "str", "^Not far.", "/str", "/ev", { "*": ".^.c-0", "flg": 20 },
+                    "ev", "str", "^And then?", "/str", "/ev", { "*": ".^.c-1", "flg": 20 },
+                    {
+                        "c-0": [ "^ ", { "->": "not_far" }, "\n", { "#f": 5 } ],
+                        "c-1": [ "^ ", { "->": "then_reversed" }, "\n", { "#f": 5 } ]
+                    }
+                ],
+                { "#f": 1 }
+            ],
+            "not_far": [
+                [
+                    "^Not far. Not arrived. Not inside. Not far. I have spent thirty years studying the Law and He placed me on the threshold and did not open the door. That has occupied my thoughts since.",
+                    "\n",
+                    "ev", "str", "^What is the door?", "/str", "/ev", { "*": ".^.c-0", "flg": 20 },
+                    "ev", "str", "^You could not answer Him.", "/str", "/ev", { "*": ".^.c-1", "flg": 20 },
+                    {
+                        "c-0": [ "^ ", { "->": "the_door" }, "\n", { "#f": 5 } ],
+                        "c-1": [ "^ ", { "->": "then_reversed" }, "\n", { "#f": 5 } ]
+                    }
+                ],
+                { "#f": 1 }
+            ],
+            "then_reversed": [
+                [
+                    "^After my question He asked us one: \"What do you think about the Messiah — whose son is He?\" We said David's. He quoted Psalm 110: \"The Lord said to my Lord — sit at my right hand.\" He asked: if David calls him Lord, how is He David's son? A son does not outrank the father in that culture. If the Messiah is David's Lord, He must be more than David's descendant. No one could answer. From that moment, no one dared ask Him another question.",
+                    "\n",
+                    "ev", "str", "^Silenced by His own question.", "/str", "/ev", { "*": ".^.c-0", "flg": 20 },
+                    "ev", "str", "^The son who is also the Lord.", "/str", "/ev", { "*": ".^.c-1", "flg": 20 },
+                    {
+                        "c-0": [ "^ ", { "->": "closing" }, "\n", { "#f": 5 } ],
+                        "c-1": [ "^ ", { "->": "the_door" }, "\n", { "#f": 5 } ]
+                    }
+                ],
+                { "#f": 1 }
+            ],
+            "the_door": [
+                [
+                    "^A Messiah who is simultaneously the Son of David and David's Lord. A descendant who predates the ancestor. A king whose kingdom begins not with a military victory but with a question no scribe could answer. I have been in the Law since I was seven years old. He asked one question and I stood mute. That tells me something I am not fully ready to say aloud yet.",
+                    "\n",
+                    "ev", "str", "^Say it anyway.", "/str", "/ev", { "*": ".^.c-0", "flg": 20 },
+                    { "c-0": [ "^ ", { "->": "closing" }, "\n", { "#f": 5 } ] }
+                ],
+                { "#f": 1 }
+            ],
+            "closing": [
+                [ "^After the commandment question, no one dared ask Him anything further. I am a man of the Law. I have studied it for thirty years. And I could not find a single flaw in His answers. That should terrify you. It terrifies me.", "\n", "done", { "#f": 1 } ],
+                { "#f": 1 }
+            ],
+            "#f": 1
+        }
+    ],
+    "listDefs": {}
+}

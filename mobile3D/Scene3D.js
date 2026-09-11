@@ -831,14 +831,6 @@ export class Scene3D {
                         })();
 
                     if (isNewSceneCollect) {
-                        // Award 5 points per evidence collected (persisted)
-                        if (typeof this.ui.cm.addScore === "function") {
-                            this.ui.cm.addScore(5);
-                        } else {
-                            this.ui.cm.progress.totalScore = (this.ui.cm.progress.totalScore || 0) + 5;
-                            if (typeof this.ui.cm._saveProgress === "function") this.ui.cm._saveProgress();
-                            if (typeof this.ui.cm._refreshMetricsUI === "function") this.ui.cm._refreshMetricsUI();
-                        }
                         if (typeof this.ui.es.collect === "function") this.ui.es.collect(pickup.id);
                         else if (typeof this.ui.es.discover === "function") this.ui.es.discover(pickup.id);
                         this.ui.renderLab();

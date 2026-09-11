@@ -1,1 +1,140 @@
-{"inkVersion":21,"root":[[{"->":"start"},["done",{"#f":5,"#n":"g-0"}],null],"done",{"start":[["^They have prepared the room for the evening meal. Whatever happened in the temple courts changed everything. The atmosphere in the upper city tonight is not celebration — it is something far heavier.","\n","ev","str","^Who prepared this room?","/str","/ev",{"*":".^.c-0","flg":20},"ev","str","^What happened in the Temple?","/str","/ev",{"*":".^.c-1","flg":20},{"c-0":["^ ",{"->":"preparers"},"\n",{"#f":5}],"c-1":["^ ",{"->":"temple"},"\n",{"#f":5}]}],{"#f":1}],"preparers":[["^Peter and John were sent ahead. They followed a man carrying a water jar — that was the sign. The house belongs to a woman named Mary, John Mark's mother. The room was ready by mid-afternoon.","\n","ev","str","^Something was disturbed.","/str","/ev",{"*":".^.c-0","flg":20},{"c-0":["^ ",{"->":"temple"},"\n",{"#f":5}]}],{"#f":1}],"temple":[["^The Galilean overturned the money changers' tables in the outer court. He called it His Father's house. The merchants called it their living. The priests called it the last straw.","\n","ev","str","^This was deliberate.","/str","/ev",{"*":".^.c-0","flg":20},{"c-0":["^ ",{"->":"closing"},"\n",{"#f":5}]}],{"#f":1}],"closing":["^Whatever happens tonight, it is not a coincidence. Every element of this Passover has been coloured by what happened in those courts yesterday.","\n","done",{"#f":1}],"#f":1}],"listDefs":{}}
+{
+  "start": {
+    "content": "They have prepared the room for the evening meal.\nWhatever happened in the Temple courts changed everything.\nThe atmosphere in the upper city tonight is not celebration. It is expectation. Tension. The feeling that everyone is waiting for something they cannot yet name.",
+    "choices": [
+      {
+        "text": "Who prepared this room?",
+        "destination": "preparers"
+      },
+      {
+        "text": "What happened when they arrived?",
+        "destination": "arrival"
+      }
+    ]
+  },
+  "preparers": {
+    "content": "Peter and John were sent ahead.\nThey followed a man carrying a water jar — the sign He had given them.\nThe city was overflowing with pilgrims. Every guest room in Jerusalem should have been occupied.\nYet the room was waiting.\nReady.\nFurnished.\nPrepared.\nHe told them where to go, whom they would meet, and what they would find.\nHow could He know?",
+    "choices": [
+      {
+        "text": "This was deliberate.",
+        "destination": "deliberate"
+      },
+      {
+        "text": "What happened when everyone gathered?",
+        "destination": "arrival"
+      }
+    ]
+  },
+  "deliberate": {
+    "content": "Nothing about this evening feels accidental.\nThe room.\nThe timing.\nThe city.\nThe meal.\nHe has been moving toward this night for a very long time.",
+    "choices": [
+      {
+        "text": "What happened when everyone gathered?",
+        "destination": "arrival"
+      }
+    ]
+  },
+  "arrival": {
+    "content": "The disciples arrived expecting Passover.\nInstead, the evening unfolded unlike any Passover they had ever known.\nThe table was prepared.\nThe lamps were lit.\nThe city below hummed with thousands of pilgrims celebrating.\nInside the room, however, there was a strange uneasiness.\nNo one seemed willing to speak first.",
+    "choices": [
+      {
+        "text": "Why the uneasiness?",
+        "destination": "washing"
+      }
+    ]
+  },
+  "washing": {
+    "content": "Because no servant appeared.\nNo one washed the dust from anyone's feet.\nThe roads of Jerusalem are not kind to sandals.\nEveryone noticed.\nNo one volunteered.\nThen Jesus stood.\nHe removed His outer garment, wrapped a towel around His waist, poured water into a basin, and began washing feet.\nOne by one.\nThe Teacher washing His students.\nThe Master serving His servants.",
+    "choices": [
+      {
+        "text": "How did they react?",
+        "destination": "peter_wash"
+      }
+    ]
+  },
+  "peter_wash": {
+    "content": "Peter objected immediately.\n\"Lord, are You going to wash my feet?\"\nThe room became uncomfortable.\nJesus continued.\nWhen Peter refused, Jesus answered:\n\"Unless I wash you, you have no part with Me.\"\nPeter changed his mind very quickly.\nAs Peter often did.",
+    "choices": [
+      {
+        "text": "What happened after that?",
+        "destination": "betrayal"
+      }
+    ]
+  },
+  "betrayal": {
+    "content": "After the washing, they returned to the table.\nThe mood did not improve.\nJesus spoke quietly:\n\"One of you will betray Me.\"\nThe room froze.\nNo accusation could have shocked them more.\nEach man began asking the same question:\n\"Surely not I?\"\nEven the innocent sounded uncertain.",
+    "choices": [
+      {
+        "text": "Did He reveal who it was?",
+        "destination": "judas"
+      }
+    ]
+  },
+  "judas": {
+    "content": "He identified the betrayer indirectly.\nA morsel of bread.\nA shared dish.\nA final opportunity to turn back.\nJudas left the room.\nThe others assumed he was attending to Passover business.\nFew understood what was happening.\nThe night outside seemed darker after he departed.",
+    "choices": [
+      {
+        "text": "What happened next?",
+        "destination": "bread"
+      }
+    ]
+  },
+  "bread": {
+    "content": "Then Jesus took bread.\nHe gave thanks.\nHe broke it.\n\"This is My body, given for you.\"\nNo rabbi speaks that way during Passover.\nThe room grew silent.\nThe bread was no longer only a remembrance of Egypt.\nHe was making Himself the center of the meal.",
+    "choices": [
+      {
+        "text": "And the cup?",
+        "destination": "cup"
+      }
+    ]
+  },
+  "cup": {
+    "content": "After supper He took the cup.\n\"This cup is the new covenant in My blood, poured out for many.\"\nThe words were unsettling.\nCovenants required sacrifice.\nBlood.\nDeath.\nThe disciples did not yet understand.\nYears later, they would remember every word.",
+    "choices": [
+      {
+        "text": "Did they understand any of it?",
+        "destination": "understanding"
+      }
+    ]
+  },
+  "understanding": {
+    "content": "Not much.\nNot yet.\nSome believed He was speaking in symbols.\nOthers thought He was preparing them for some great public victory.\nNone expected the next twenty-four hours.",
+    "choices": [
+      {
+        "text": "What did He tell them afterward?",
+        "destination": "peter_warning"
+      }
+    ]
+  },
+  "peter_warning": {
+    "content": "He warned them that all of them would stumble.\nPeter protested the loudest.\nPeter always did.\n\"Even if everyone else falls away, I never will.\"\nJesus answered gently.\nBefore dawn.\nBefore the rooster crowed twice.\nPeter would deny Him three times.\nThe room fell quiet again.",
+    "choices": [
+      {
+        "text": "What happened before they left?",
+        "destination": "farewell"
+      }
+    ]
+  },
+  "farewell": {
+    "content": "He spoke for a long time.\nAbout love.\nAbout service.\nAbout the coming Helper.\nAbout remaining in Him as branches remain connected to a vine.\nHe prayed for those around the table.\nThen He prayed for those who would one day believe through their testimony.\nIt sounded less like a sermon and more like a farewell.",
+    "choices": [
+      {
+        "text": "Where did they go afterward?",
+        "destination": "departure"
+      }
+    ]
+  },
+  "departure": {
+    "content": "They sang the Passover hymns.\nThe same psalms sung by generations before them.\nThen they left the upper room and crossed the city toward the Mount of Olives.\nThe lamps remained burning behind them.\nThe bread remained on the table.\nThe cups remained half-empty.\nNo one knew it then, but the meal was over.\nThe trial had already begun.",
+    "choices": [
+      {
+        "text": "This was all deliberate.",
+        "destination": "closing"
+      }
+    ]
+  },
+  "closing": {
+    "content": "Whatever happened in that room was not a coincidence.\nThe Teacher chose the place.\nThe hour.\nThe meal.\nThe towel.\nThe bread.\nThe cup.\nEven the betrayal unfolded exactly where He said it would.\nJerusalem celebrated Passover that night.\nIn an upper room, something greater was taking place.",
+    "choices": []
+  }
+}

@@ -131,3 +131,5 @@ h3 {
 ::-webkit-scrollbar-thumb:hover {
     background: rgba(200, 150, 90, 0.55);
 }
+/* The hidden attribute must win over component display rules. */
+[hidden] { display: none !important; }

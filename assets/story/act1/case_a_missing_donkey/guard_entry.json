@@ -1,1 +1,40 @@
-{"inkVersion":21,"root":[[{"->":"start"},["done",{"#f":5,"#n":"g-0"}],null],"done",{"start":["^Halt! This is a restricted area. The procession is about to begin - keep back or face the tribune's wrath!","\n","end",{"#f":1}],"#f":1}],"listDefs":{}}
+{
+  "start": {
+    "content": "Halt! This is a restricted area. The procession is about to begin - keep back or face the tribune's wrath!",
+    "choices": [
+      {
+        "text": "Who is being processed?",
+        "destination": "procession"
+      },
+      {
+        "text": "I'm not a threat.",
+        "destination": "not_threat"
+      }
+    ]
+  },
+  "procession": {
+    "content": "The High Priest's own guard is here today. We have instructions to maintain the eastern wall corridor clear for the chief priests as they observe the entry. Pilgrims are... energetic.",
+    "choices": [
+      {
+        "text": "They are celebrating.",
+        "destination": "celebrating"
+      },
+      {
+        "text": "Are the priests watching?",
+        "destination": "priests_watch"
+      }
+    ]
+  },
+  "celebrating": {
+    "content": "Celebrating? Perhaps. Or perhaps forgetting that every shout of \"Son of David\" echoes against Roman walls. We keep the gates clear for those who would call it sedition.",
+    "choices": []
+  },
+  "not_threat": {
+    "content": "Everyone claims they're not a threat. The crowd was not a threat until it became one. Step back from the gate.",
+    "choices": []
+  },
+  "priests_watch": {
+    "content": "They are watching. And they are not pleased. The noise from the lower road is carrying voices that the Sanhedrin would rather silence. We are ordered to prevent escalation, not to stop the celebration itself.",
+    "choices": []
+  }
+}

@@ -1318,8 +1318,6 @@ export class GameEngine {
 
   updateMetrics() {
     const p = this.cm.getProgress();
-    document.querySelectorAll('.val-reputation').forEach(el => el.innerText = p.reputation ?? 100);
-    document.querySelectorAll('.val-doubt').forEach(el => el.innerText = p.doubt ?? 0);
     document.querySelectorAll('.val-score').forEach(el => el.innerText = p.totalScore ?? 0);
     const scholarLevel = this.cm.getScholarLevel?.() || "Novice";
     document.querySelectorAll('.val-scholar').forEach(el => el.innerText = scholarLevel);
@@ -1514,23 +1512,6 @@ export class GameEngine {
   }
 
   checkGameOver() {
-    const progress = this.cm.getProgress();
-    if (!progress) return false;
-
-    const doubt = progress.doubt || 0;
-    if (doubt >= 99) {
-      this.showGameOver('doubt');
-      return true;
-    }
-
-    if (progress.reputations) {
-      const reps = Object.values(progress.reputations);
-      if (reps.some(r => r <= 0)) {
-        this.showGameOver('reputation');
-        return true;
-      }
-    }
-
     return false;
   }
 

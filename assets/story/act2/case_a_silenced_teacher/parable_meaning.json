@@ -1,46 +1,103 @@
 {
   "start": {
-    "content": "I am Thomas. Ask more questions than I answer. The honest ones. Jesus told a story about tenants who kept killing the servants the owner sent. Eventually they killed the owner's son. I heard it in the Temple courtyard.",
+    "content": "I am Thomas. Ask more questions than I answer. The honest ones.\nIn the Temple courts, Jesus told a story about a vineyard, its tenants, and a son who never returned home. Some stories explain the world. Others expose it.",
     "choices": [
       {
-        "text": "The crowd heard it too.",
-        "destination": "crowd"
+        "text": "Tell me the story.",
+        "destination": "story"
       },
       {
-        "text": "What is the vineyard?",
+        "text": "Why did He tell it?",
+        "destination": "why"
+      }
+    ]
+  },
+  "story": {
+    "content": "A landowner planted a vineyard, built a wall around it, dug a winepress, and leased it to tenants before departing.\nWhen harvest came, he sent servants to collect his share of the fruit.\nThe tenants beat one servant, killed another, and stoned a third.\nMore servants came. They suffered the same fate.\nFinally, the owner said, \"They will respect my son.\"\nInstead, the tenants saw the heir and said, \"Come, let us kill him and take his inheritance.\"\nSo they cast him out of the vineyard and killed him.",
+    "choices": [
+      {
+        "text": "Who are these people meant to be?",
+        "destination": "vineyard"
+      },
+      {
+        "text": "What happened when Jesus finished?",
+        "destination": "reaction"
+      }
+    ]
+  },
+  "why": {
+    "content": "The chief priests had demanded to know by what authority Jesus taught.\nHe answered with questions, then with stories.\nA parable can slip past a man's defenses before he realizes it is describing him.",
+    "choices": [
+      {
+        "text": "So who are the tenants?",
         "destination": "vineyard"
       }
     ]
   },
-  "crowd": {
-    "content": "The crowd was silent after that. When someone tells a story about murderous tenants and the owner's son, and then looks at the chief priests while saying it \u2014 the silence is the answer.",
+  "vineyard": {
+    "content": "The vineyard is Israel.\nThe owner is God.\nThe tenants are the religious leaders entrusted with God's people.\nThe servants are the prophets sent generation after generation.\nThe son is the heir.\nBy this point, many in the crowd understood exactly where the story was leading.",
     "choices": [
       {
-        "text": "And the stone?",
+        "text": "Did the priests understand?",
+        "destination": "reaction"
+      },
+      {
+        "text": "What happened to the son?",
+        "destination": "son"
+      }
+    ]
+  },
+  "son": {
+    "content": "The son is cast out of the vineyard and killed.\nJesus did not need to explain every detail.\nSome truths arrive before their fulfillment.\nThe story sounded like a warning. Later it would sound like a memory.",
+    "choices": [
+      {
+        "text": "And then?",
         "destination": "stone"
       }
     ]
   },
-  "vineyard": {
-    "content": "The vineyard is Israel. The owner is God. The tenants are the chief priests and elders. The servants are the prophets. The son \u2014 that is where the story ends in the telling.",
+  "reaction": {
+    "content": "Jesus asked a question:\n\"When the owner of the vineyard comes, what will he do to those tenants?\"\nEven His opponents knew the answer.\nThe wicked tenants would be judged, and the vineyard entrusted to others who would produce its fruit.\nThe chief priests and Pharisees realized the parable was about them.\nThat was the moment the silence began.",
     "choices": [
       {
-        "text": "And the builders' rejected stone?",
+        "text": "And the stone He mentioned?",
         "destination": "stone"
       }
     ]
   },
   "stone": {
-    "content": "The stone the builders rejected becomes the cornerstone. That is Psalm 118. The crowd did not look where He was pointing. They were too busy watching the priests turn pale.",
+    "content": "Then Jesus quoted the psalm:\n\"The stone the builders rejected has become the cornerstone.\"\nThat is Psalm 118.\nThe rejected stone becomes the foundation.\nThe leaders heard a story about rebellious tenants, a murdered son, and a rejected stone. They heard judgment and warning in the same breath.",
     "choices": [
       {
-        "text": "Thomas, you understand the parables.",
+        "text": "What did the crowd think?",
+        "destination": "crowd"
+      },
+      {
+        "text": "Thomas, what does the stone mean?",
+        "destination": "cornerstone"
+      }
+    ]
+  },
+  "crowd": {
+    "content": "Some were astonished.\nSome were afraid.\nMany simply watched the faces of the chief priests.\nThe crowd could see what the leaders could not admit aloud: the parable had found its target.",
+    "choices": [
+      {
+        "text": "And the cornerstone?",
+        "destination": "cornerstone"
+      }
+    ]
+  },
+  "cornerstone": {
+    "content": "The builders rejected the stone because they did not recognize its value.\nYet God chose that very stone as the cornerstone.\nThe leaders could reject Jesus.\nThat did not mean they could stop what God was building.",
+    "choices": [
+      {
+        "text": "Thomas, you understand these parables.",
         "destination": "closing"
       }
     ]
   },
   "closing": {
-    "content": "I ask questions. That is my trade. But some answers are so clear, even a questioner has to pause. The man from Nazareth speaks truth in a way that makes the comfortable very uncomfortable.",
+    "content": "I ask questions. That is my trade.\nBut some answers stand in the open for everyone to see.\nA vineyard. Servants. A son.\nA rejected stone becoming the cornerstone.\nThe man from Nazareth told stories that sounded simple enough for a child. Yet somehow the most learned men in Jerusalem heard them and became afraid.",
     "choices": []
   }
 }

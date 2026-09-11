@@ -814,3 +814,110 @@
   0%, 100% { opacity: 1; }
   50% { opacity: 0.7; }
 }
+#lab-workspace .lab-relationship-select {
+  min-height: 42px;
+  padding: 0 12px;
+  border: 1px solid var(--border, #725c36);
+  border-radius: 8px;
+  background: var(--panel, #211b14);
+  color: var(--text, #f4ead5);
+  font: inherit;
+}
+
+#lab-workspace .reliability-task { padding: 12px; border: 1px solid var(--border, #725c36); border-radius: 10px; }
+
+#lab-workspace .ev-card:focus-visible, #lab-workspace .comparator-slot:focus-visible, #lab-workspace .timeline-step:focus-visible { outline: 3px solid var(--gold, #e4b95b); outline-offset: 3px; }
+#lab-workspace .compare-progress-optional { margin-left: auto; color: var(--text-muted); font-size: 0.78rem; }
+@media (max-width: 520px) {
+  #lab-workspace .actions-bar { flex-wrap: wrap; }
+  #lab-workspace .lab-relationship-select { flex: 1 1 100%; order: -1; width: 100%; }
+  #lab-workspace .actions-bar .btn-secondary, #lab-workspace .actions-bar .btn-submit { flex: 1 1 calc(50% - 6px); }
+  #lab-workspace .compare-progress { align-items: flex-start; flex-direction: column; }
+  #lab-workspace .compare-progress-optional { margin-left: 0; }
+}
+
+/* ── Simplified Lab navigation and relationship challenge ── */
+#lab-workspace .lab-actions {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(132px, 1fr));
+  gap: 10px;
+  margin: 10px 0 14px;
+  width: 100%;
+}
+
+#lab-workspace .lab-btn {
+  min-height: 54px;
+  flex-direction: row;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 14px;
+}
+
+#lab-workspace .connections-actions {
+  display: grid;
+  grid-template-columns: minmax(88px, 0.55fr) minmax(190px, 1.35fr) minmax(145px, 1fr);
+  align-items: stretch;
+  gap: 10px;
+  margin: 12px 0 14px;
+}
+
+#lab-workspace .relationship-field {
+  position: relative;
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+  padding: 5px 34px 5px 11px;
+  border: 1px solid var(--lw-border2);
+  border-radius: var(--lw-radius-sm);
+  background: linear-gradient(180deg, var(--lw-surface3), var(--lw-surface2));
+}
+
+#lab-workspace .relationship-field::after {
+  content: "⌄";
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  color: var(--lw-gold);
+  font-size: 1.15rem;
+  line-height: 1;
+  transform: translateY(-45%);
+  pointer-events: none;
+}
+
+#lab-workspace .relationship-field label {
+  color: var(--lw-text-muted);
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+#lab-workspace .relationship-field .lab-relationship-select {
+  appearance: none;
+  width: 100%;
+  min-height: 26px;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--lw-text);
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 750;
+  cursor: pointer;
+}
+
+#lab-workspace .relationship-field:focus-within {
+  border-color: var(--lw-gold);
+  box-shadow: 0 0 0 3px rgba(245, 200, 66, 0.16);
+}
+
+@media (max-width: 520px) {
+  #lab-workspace .lab-actions { grid-template-columns: 1fr 1fr; }
+  #lab-workspace .connections-actions { grid-template-columns: 1fr 1fr; }
+  #lab-workspace .connections-actions .relationship-field { grid-column: 1 / -1; grid-row: 1; }
+  #lab-workspace .connections-actions .btn-secondary,
+  #lab-workspace .connections-actions .btn-submit { min-height: 44px; }
+}

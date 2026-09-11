@@ -1,1 +1,567 @@
-{"inkVersion":21,"root":[[{"->":"start"},["done",{"#f":5,"#n":"g-0"}],null],"done",{"start":[["^I have watched this city receive prophets before. They come at Passover, they excite the crowds, they disappear. This one is different. The palm branches concern me more than the man himself.","\n","ev","str","^Why the palm branches?","/str","/ev",{"*":".^.c-0","flg":20},"ev","str","^You know who He is.","/str","/ev",{"*":".^.c-1","flg":20},{"c-0":["^ ",{"->":"palm_branches"},"\n",{"#f":5}],"c-1":["^ ",{"->":"know_who"},"\n",{"#f":5}]}],{"#f":1}],"palm_branches":[["^The last time Jerusalem waved palms in the streets was when Simon Maccabaeus liberated the city from the Seleucids. The crowd knows exactly what they are invoking. This is not a greeting — it is a coronation gesture. And the man on the donkey is letting them do it.","\n","ev","str","^So you see this as a political act.","/str","/ev",{"*":".^.c-0","flg":20},"ev","str","^Is He claiming to be king?","/str","/ev",{"*":".^.c-1","flg":20},{"c-0":["^ ",{"->":"political_act"},"\n",{"#f":5}],"c-1":["^ ",{"->":"king_claim"},"\n",{"#f":5}]}],{"#f":1}],"know_who":[["^I know He is a teacher from Galilee who has accumulated a following large enough to change the mood of Jerusalem in a single afternoon. Whether He is who the crowd claims He is — I am not prepared to answer that today. I am a Pharisee. I deal in evidence.","\n","ev","str","^What evidence do you have?","/str","/ev",{"*":".^.c-0","flg":20},"ev","str","^The entry itself is evidence.","/str","/ev",{"*":".^.c-1","flg":20},{"c-0":["^ ",{"->":"evidence_question"},"\n",{"#f":5}],"c-1":["^ ",{"->":"entry_evidence"},"\n",{"#f":5}]}],{"#f":1}],"political_act":[["^Every symbol is a political act in this city at Passover. But yes — He is framing this entrance with deliberate precision. The donkey colt. The road from Bethany. The crowd from the city meeting pilgrims from the north. He could have arrived quietly by the north gate at dawn. He chose this road, this crowd, this hour.","\n","ev","str","^He is fulfilling prophecy.","/str","/ev",{"*":".^.c-0","flg":20},"ev","str","^That kind of staging implies intention.","/str","/ev",{"*":".^.c-1","flg":20},{"c-0":["^ ",{"->":"prophecy_fulfil"},"\n",{"#f":5}],"c-1":["^ ",{"->":"intention"},"\n",{"#f":5}]}],{"#f":1}],"king_claim":[["^He has not spoken a word of self-proclamation. He has done something more dangerous — He has let the crowd proclaim for Him. If the Romans arrest a man for sedition, the charge is his words. But if the crowd does the talking, the charge spreads across ten thousand people simultaneously.","\n","ev","str","^Clever.","/str","/ev",{"*":".^.c-0","flg":20},"ev","str","^Or He cannot stop the crowd.","/str","/ev",{"*":".^.c-1","flg":20},{"c-0":["^ ",{"->":"clever_reframe"},"\n",{"#f":5}],"c-1":["^ ",{"->":"cannot_stop"},"\n",{"#f":5}]}],{"#f":1}],"evidence_question":[["^The raising of Lazarus in Bethany is four days old. The city has been talking of nothing else since it reached the pilgrimage camps. I was sent to interview witnesses. Every account is consistent. Every location is specific. The detail is not the detail of fabricated story.","\n","ev","str","^You think the resurrection of Lazarus is real.","/str","/ev",{"*":".^.c-0","flg":20},"ev","str","^Consistent testimony does not prove a miracle.","/str","/ev",{"*":".^.c-1","flg":20},{"c-0":["^ ",{"->":"lazarus_real"},"\n",{"#f":5}],"c-1":["^ ",{"->":"consistent_testimony"},"\n",{"#f":5}]}],{"#f":1}],"entry_evidence":[["^Yes. He is riding a colt that has never been ridden before. Any Pharisee schooled in Zechariah 9 hears that and recognises the image immediately: \"Your king comes to you... humble and mounted on a donkey.\" He is not just entering Jerusalem. He is citing the Prophet in motion.","\n","ev","str","^So you believe He is fulfilling prophecy.","/str","/ev",{"*":".^.c-0","flg":20},"ev","str","^Or He has read Zechariah and is staging it.","/str","/ev",{"*":".^.c-1","flg":20},{"c-0":["^ ",{"->":"prophecy_fulfil"},"\n",{"#f":5}],"c-1":["^ ",{"->":"staged_entry"},"\n",{"#f":5}]}],{"#f":1}],"prophecy_fulfil":[["^That is the question I have been arguing with myself since the road from Bethphage. Zechariah's prophecy is not obscure. Any child who sat through Sabbath reading knows it. Did He choose the donkey because He knows the prophecy — or because He is the subject of it?","\n","ev","str","^Which conclusion do you reach?","/str","/ev",{"*":".^.c-0","flg":20},"ev","str","^The two options are very different.","/str","/ev",{"*":".^.c-1","flg":20},{"c-0":["^ ",{"->":"conclusion"},"\n",{"#f":5}],"c-1":["^ ",{"->":"two_options"},"\n",{"#f":5}]}],{"#f":1}],"intention":[["^Which means He is either the most calculating political strategist this city has seen since Herod, or He is operating on a different kind of authority entirely. Both possibilities unsettle me in different ways.","\n","ev","str","^Which unsettles you more?","/str","/ev",{"*":".^.c-0","flg":20},{"c-0":["^ ",{"->":"which_unsettles"},"\n",{"#f":5}]}],{"#f":1}],"clever_reframe":[["^It is not clever if He is who the crowd believes He is. Clever is a word for men who manoeuvre within the existing system. If there is a different authority at work here, clever is entirely the wrong word.","\n","ev","str","^You are edging toward belief.","/str","/ev",{"*":".^.c-0","flg":20},"ev","str","^What would convince you?","/str","/ev",{"*":".^.c-1","flg":20},{"c-0":["^ ",{"->":"edge_belief"},"\n",{"#f":5}],"c-1":["^ ",{"->":"convincing_evidence"},"\n",{"#f":5}]}],{"#f":1}],"cannot_stop":[["^I watched Him not trying to stop them. That is meaningful. A man who wishes to avoid the political implication silences the crowd or takes a different road. He came down this hill with full knowledge of what the crowd would do. The donkey was arranged in advance. Nothing about this arrival was accidental.","\n","ev","str","^Deliberate prophecy fulfilment.","/str","/ev",{"*":".^.c-0","flg":20},{"c-0":["^ ",{"->":"prophecy_fulfil"},"\n",{"#f":5}]}],{"#f":1}],"lazarus_real":[["^The evidence I gathered suggests yes. That puts me in a position I did not expect to occupy this week. A Pharisee who believes in resurrection — our school accepts that doctrine. A Pharisee who believes in the specific resurrection of a named man by a specific individual... that is a different theological category entirely.","\n","ev","str","^One that points in a dangerous direction.","/str","/ev",{"*":".^.c-0","flg":20},{"c-0":["^ ",{"->":"dangerous_direction"},"\n",{"#f":5}]}],{"#f":1}],"consistent_testimony":[["^No. But the absence of contradictions across twelve independent accounts, with no shared connection between witnesses, in a case involving four days of documented death — that is not fabrication. I have interrogated fabricated testimony for twenty years. I know its shape. This does not have that shape.","\n","ev","str","^What shape does it have?","/str","/ev",{"*":".^.c-0","flg":20},{"c-0":["^ ",{"->":"truth_shape"},"\n",{"#f":5}]}],{"#f":1}],"staged_entry":[["^The staging argument requires Him to have arranged the colt in advance in a village He may not have visited in years. It requires Him to have cultivated a crowd large enough to flood the road from two directions simultaneously. And it requires the crowd, spontaneously, to invoke the exact psalm — Hosanna, Son of David — that the prophecy demands. Stagecraft breaks down at some point. This does not break down.","\n","ev","str","^You are building a case for something you are not ready to say.","/str","/ev",{"*":".^.c-0","flg":20},{"c-0":["^ ",{"->":"edge_belief"},"\n",{"#f":5}]}],{"#f":1}],"two_options":[["^A scholar cites the Prophet to demonstrate learning. The subject of a prophecy fulfils it because it is true. The first possibility explains everything except the miracles. The second possibility explains everything including the miracles.","\n","ev","str","^And you cannot dismiss the miracles.","/str","/ev",{"*":".^.c-0","flg":20},{"c-0":["^ ",{"->":"lazarus_real"},"\n",{"#f":5}]}],{"#f":1}],"conclusion":[["^I have not reached one. And I am a man who builds conclusions for a living. That absence is itself data.","\n","ev","str","^You are closer to faith than you admit.","/str","/ev",{"*":".^.c-0","flg":20},"ev","str","^What will you do?","/str","/ev",{"*":".^.c-1","flg":20},{"c-0":["^ ",{"->":"edge_belief"},"\n",{"#f":5}],"c-1":["^ ",{"->":"what_do"},"\n",{"#f":5}]}],{"#f":1}],"which_unsettles":[["^The strategist unsettles me because it means He is exploiting a suffering people's hope for political leverage. The second authority unsettles me because it means I have spent my entire career studying a text that is being fulfilled in real time, and I nearly missed it because I was looking for the wrong shape of arrival.","\n","ev","str","^What shape were you expecting?","/str","/ev",{"*":".^.c-0","flg":20},{"c-0":["^ ",{"->":"expected_shape"},"\n",{"#f":5}]}],{"#f":1}],"edge_belief":[["^I went to Nicodemus last night. I am not the only member of the council who has been asking these questions after dark. We are not yet ready to say it in public. But the entry this morning has made silence feel more dangerous than speech.","\n","ev","str","^Then speak.","/str","/ev",{"*":".^.c-0","flg":20},"ev","str","^What would change that?","/str","/ev",{"*":".^.c-1","flg":20},{"c-0":["^ ",{"->":"closing"},"\n",{"#f":5}],"c-1":["^ ",{"->":"closing"},"\n",{"#f":5}]}],{"#f":1}],"convincing_evidence":[["^A miracle I witness personally, in daylight, with no crowd to distort perception and no prior loyalty to the result. I am aware that is a high bar. I am also aware that men who set high bars for truth sometimes find themselves on the wrong side of history when the truth arrives.","\n","ev","str","^The entry is happening in daylight.","/str","/ev",{"*":".^.c-0","flg":20},{"c-0":["^ ",{"->":"closing"},"\n",{"#f":5}]}],{"#f":1}],"dangerous_direction":[["^Yes. A direction my training gave me every tool to evaluate and no permission to act on. The council has made its position clear. But the council has never had to debate a man who raised a body from a four-day tomb. We do not have a precedent for this.","\n","ev","str","^Then perhaps you need a new framework.","/str","/ev",{"*":".^.c-0","flg":20},{"c-0":["^ ",{"->":"closing"},"\n",{"#f":5}]}],{"#f":1}],"truth_shape":[["^It has the shape of something that happened. Not something manufactured to be believed — something reported because it could not be kept quiet. There is a difference. Fabrication wants to convince. Truth simply states.","\n","ev","str","^And this testimony simply states.","/str","/ev",{"*":".^.c-0","flg":20},{"c-0":["^ ",{"->":"closing"},"\n",{"#f":5}]}],{"#f":1}],"expected_shape":[["^Power. A general. A priest-king like the Maccabees. Someone who took the city, not someone who arrived on a borrowed donkey surrounded by Galilean fishermen. I expected Rome to be afraid. Rome is not afraid. But I am. And that is worth examining.","\n","ev","str","^Fear is not always the wrong response.","/str","/ev",{"*":".^.c-0","flg":20},{"c-0":["^ ",{"->":"closing"},"\n",{"#f":5}]}],{"#f":1}],"what_do":[["^Watch. Record everything. Go home and open Zechariah again from the beginning. And pray that my fear means something I am not yet prepared to say out loud.","\n","ev","str","^That is a beginning.","/str","/ev",{"*":".^.c-0","flg":20},{"c-0":["^ ",{"->":"closing"},"\n",{"#f":5}]}],{"#f":1}],"closing":["^The Pharisees said among themselves, \"Look how the whole world has gone after him.\" We said it as a lament. I wonder now if we said it more truly than we knew.","\n","done",{"#f":1}],"#f":1}],"listDefs":{}}
+{
+  "start": {
+    "content": "The crowd was calling \"Hosanna to the Son of David!\" and waving\npalm branches like the days of the Maccabees. I watched from the\nTemple steps, noting the political overtones. This is not a gentle\nreligious gathering — this is a coronation gesture with deep\nnationalist implications.",
+    "choices": [
+      {
+        "text": "The palm branches were loaded with political meaning.",
+        "destination": "palm"
+      },
+      {
+        "text": "You knew immediately this was dangerous.",
+        "destination": "danger_immediate"
+      },
+      {
+        "text": "The crowd seemed unified in purpose.",
+        "destination": "unified"
+      }
+    ]
+  },
+  "palm": {
+    "content": "The last time Jerusalem waved palms in the streets was when Simon\nMaccabaeus liberated the city from the Seleucids. When I saw the\ncrowd cutting branches and shouting \"Hosanna,\" I understood —\nthey were invoking messiah-king, not merely prophet. The language\nof liberation was unmistakable. This was not enthusiasm. This was\nrevolution dressed in religious symbolism.",
+    "choices": [
+      {
+        "text": "They invoked the Maccabean precedent.",
+        "destination": "maccabi"
+      },
+      {
+        "text": "Could they have meant it differently?",
+        "destination": "spiritual_reading"
+      },
+      {
+        "text": "The Roman response would be swift.",
+        "destination": "roman_response"
+      }
+    ]
+  },
+  "danger_immediate": {
+    "content": "I knew immediately. A crowd this size, declaring a Galilean teacher\nas king, threatens the fragile peace we maintain with Rome. The\nSanhedrin walks a tightrope between religious authority and\nRoman tolerance. This — this was the edge of the rope snapping.",
+    "choices": [
+      {
+        "text": "The Sanhedrin's dilemma.",
+        "destination": "sanhedrin_dilemma"
+      },
+      {
+        "text": "They needed to act fast.",
+        "destination": "quick_action"
+      },
+      {
+        "text": "The teachers should have seen this coming.",
+        "destination": "prophetic_blindness"
+      }
+    ]
+  },
+  "unified": {
+    "content": "They seemed unified in purpose — all shouting the same words,\nall moving with the same rhythm. But crowds are deceptive. Behind\nthe surface unity, I saw competing interests. The pilgrims wanted\na king. The locals wanted order. The priests wanted control. And\nthe Temple officials... they wanted silence.",
+    "choices": [
+      {
+        "text": "No voice for the silent.",
+        "destination": "silent_majority"
+      },
+      {
+        "text": "The unity was superficial.",
+        "destination": "superficial_unity"
+      },
+      {
+        "text": "The competing visions.",
+        "destination": "competing_visions"
+      }
+    ]
+  },
+  "maccabi": {
+    "content": "The Maccabean precedent — Simon entering Jerusalem with palm\nbranches and sacred song after expelling the Seleucid oppressors.\nThe crowd today was invoking that memory deliberately. They were\nsaying: this Teacher will do what the Maccabees did — drive out\nthe occupiers and establish Jewish independence. That is sedition\nin its purest form.",
+    "choices": [
+      {
+        "text": "The Romans would see it the same way.",
+        "destination": "same_interpretation"
+      },
+      {
+        "text": "Historical precedent matters.",
+        "destination": "history_matters"
+      },
+      {
+        "text": "The crowd was dangerous.",
+        "destination": "dangerous_crowd"
+      }
+    ]
+  },
+  "spiritual_reading": {
+    "content": "Could they have meant it differently? Spiritually rather than\npolitically? Perhaps. But the symbols they chose — palms, cloaks\non the road, shouts of \"Son of David\" — these are not spiritual\nmetaphors. They are political declarations. A king who enters on\na donkey is still a king claiming dominion.",
+    "choices": [
+      {
+        "text": "Symbols have multiple meanings.",
+        "destination": "symbol_multi"
+      },
+      {
+        "text": "The political reading is dominant.",
+        "destination": "political_dominant"
+      },
+      {
+        "text": "They invited Roman attention.",
+        "destination": "roman_attention"
+      }
+    ]
+  },
+  "roman_response": {
+    "content": "The Roman response would be swift and merciless. Five cohorts\nof legionaries surround Jerusalem for Passover. The prefect does\nnot tolerate rivals. If the crowd's \"Hosanna\" becomes \"Caesar\nis nothing,\" the blood of thousands will stain these streets\nagain. I have seen it happen.",
+    "choices": [
+      {
+        "text": "The memory of past massacres.",
+        "destination": "massacre_memory"
+      },
+      {
+        "text": "The prefect's patience is limited.",
+        "destination": "prefect_limited"
+      },
+      {
+        "text": "They risked everything.",
+        "destination": "risked_all"
+      }
+    ]
+  },
+  "sanhedrin_dilemma": {
+    "content": "The Sanhedrin walks a tightrope. On one side — the people's\nexpectations of a messianic king. On the other — Roman\ntolerance of the Temple system. This crowd threatens both\nbanks of the rope. If they support the Teacher, Rome destroys\nthe Temple. If they oppose Him, they lose the people's devotion.\nA dilemma built into the foundation of their power.",
+    "choices": [
+      {
+        "text": "The people's devotion matters.",
+        "destination": "peoples_devotion"
+      },
+      {
+        "text": "The Temple's survival is at stake.",
+        "destination": "temple_survival"
+      },
+      {
+        "text": "No good options.",
+        "destination": "no_options"
+      }
+    ]
+  },
+  "quick_action": {
+    "content": "We needed to act fast — before the crowd's enthusiasm translated\ninto organized rebellion. The priests began murmuring among\nthemselves. I heard one say, \"Look at this rabble.\" But it was\nnot rabble. It was the people of Israel, recognizing their king.",
+    "choices": [
+      {
+        "text": "Rabble or revelation?",
+        "destination": "revelation_or"
+      },
+      {
+        "text": "The priests dismissed it.",
+        "destination": "priests_dismissed"
+      },
+      {
+        "text": "Recognition cannot be stopped.",
+        "destination": "cannot_stop_recog"
+      }
+    ]
+  },
+  "prophetic_blindness": {
+    "content": "The teachers should have seen this coming. Zechariah's prophecy\nwas clear: \"Your king comes to you... humble and riding on a\ndonkey.\" The donkey is not a war-horse. The humility is not\nweakness. But they have read the prophecy so many times, they\nhave grown blind to its meaning.",
+    "choices": [
+      {
+        "text": "Familiarity breeds blindness.",
+        "destination": "familiarity_blind"
+      },
+      {
+        "text": "They studied the letter.",
+        "destination": "letter_study"
+      },
+      {
+        "text": "They missed the spirit.",
+        "destination": "missed_spirit"
+      }
+    ]
+  },
+  "silent_majority": {
+    "content": "There was no voice for the silent. The crowd shouted. The priests\nmurmured. The soldiers watched. But the silent majority —\nthe merchants closing their shops, the women drawing their\ncurtains, the children hiding behind their mothers — their\nsilence spoke volumes. They understood the danger even as\nthey recognized the prophecy.",
+    "choices": [
+      {
+        "text": "Silence is also testimony.",
+        "destination": "silence_testimony"
+      },
+      {
+        "text": "The silent knew better.",
+        "destination": "silent_knew"
+      },
+      {
+        "text": "Complicity through inaction.",
+        "destination": "inaction_complicit"
+      }
+    ]
+  },
+  "superficial_unity": {
+    "content": "The unity was superficial. Behind the shouts of \"Hosanna,\"\nI saw competing agendas. The pilgrims from Galilee shouted\nfor their hometown prophet. The locals from Judea shouted\nfor political liberation. The priests shouted for order.\nAnd the children... the children simply shouted because\nit sounded good.",
+    "choices": [
+      {
+        "text": "Children are not political.",
+        "destination": "children_not_political"
+      },
+      {
+        "text": "The agendas diverged.",
+        "destination": "agendas_diverged"
+      },
+      {
+        "text": "Unity through confusion.",
+        "destination": "unity_confusion"
+      }
+    ]
+  },
+  "competing_vision": {
+    "content": "The competing visions were clear even to me. Some saw a\nreligious teacher. Some saw a political king. Some saw\na threat to the Temple system. And some — the children\nmost of all — simply saw something beautiful and wanted\nto celebrate it. Each vision was valid. None were\ncompatible.",
+    "choices": [
+      {
+        "text": "The visions could not coexist.",
+        "destination": "cannot_coexist"
+      },
+      {
+        "text": "Beauty attracted the children.",
+        "destination": "beauty_attracted"
+      },
+      {
+        "text": "Vision determines response.",
+        "destination": "vision_response"
+      }
+    ]
+  },
+  "same_interpretation": {
+    "content": "The Romans read the same symbols I did. Palms = rebellion.\nCloaks on the road = royal proclamation. Shouts of \"Son of\nDavid\" = claim to kingship. The Prefect's spies in the\ncrowd would report this immediately. Within hours, the\ngarrison would be on alert.",
+    "choices": [
+      {
+        "text": "The spies already reported.",
+        "destination": "spies_reported"
+      },
+      {
+        "text": "The garrison was warned.",
+        "destination": "garrison_warned"
+      },
+      {
+        "text": "No room for error.",
+        "destination": "no_error_room"
+      }
+    ]
+  },
+  "history_matters": {
+    "content": "Historical precedent matters in politics. The Maccabean\nrevolution began with a crowd, expanded to a rebellion,\nand ended with independence. If this crowd is the beginning\nof another Maccabean moment, the consequences will be\nmeasured in blood and ashes.",
+    "choices": [
+      {
+        "text": "The pattern repeats.",
+        "destination": "pattern_repeats"
+      },
+      {
+        "text": "Independence has a price.",
+        "destination": "independence_price"
+      },
+      {
+        "text": "The people forgot the cost.",
+        "destination": "forgot_cost"
+      }
+    ]
+  },
+  "dangerous_crowd": {
+    "content": "This crowd was dangerous. Not because they were violent —\nthey were singing hymns. Not because they were armed —\nthey carried palm branches. But because they were unified\nin purpose and that purpose was kingship. A king is\na claim. A royal claim is a political act even on a donkey.",
+    "choices": [
+      {
+        "text": "The kingship claim was political.",
+        "destination": "kingship_political"
+      },
+      {
+        "text": "Even gentleness carries power.",
+        "destination": "gentleness_power"
+      },
+      {
+        "text": "They declared war on Rome.",
+        "destination": "declared_war"
+      }
+    ]
+  },
+  "peoples_devotion": {
+    "content": "The people's devotion is real. I have seen it with my own\neyes. Mothers lifting children to see over the crowd.\nElderly men weeping with joy. Merchants closing shops\nto follow. This is not manufactured enthusiasm. This is\ngenuine conviction. And genuine conviction is the\nmost dangerous force in politics.",
+    "choices": [
+      {
+        "text": "Conviction motivates action.",
+        "destination": "conviction_motivates"
+      },
+      {
+        "text": "The devotion was authentic.",
+        "destination": "devotion_authentic"
+      },
+      {
+        "text": "Dangerous believers.",
+        "destination": "dangerous_believers"
+      }
+    ]
+  },
+  "temple_survival": {
+    "content": "The Temple's survival depends on Roman tolerance. The\nSanhedrin's authority depends on Temple legitimacy. This\ncrowd threatens both. If Rome intervenes, the Temple\nwill be destroyed. If the people continue to recognize\nthis Teacher as king, the Sanhedrin will be sidelined.\nA lose-lose scenario of the worst kind.",
+    "choices": [
+      {
+        "text": "The scenario was catastrophic.",
+        "destination": "catastrophic"
+      },
+      {
+        "text": "No good outcome.",
+        "destination": "no_good"
+      },
+      {
+        "text": "The system collapsed.",
+        "destination": "system_collapsed"
+      }
+    ]
+  },
+  "no_options": {
+    "content": "No good options. The Sanhedrin could try to redirect\nthe crowd — but the Teacher's authority made that\nimpossible. They could try to arrest Him — but the\ncrowd's size made that dangerous. They could try\nto negotiate with Rome — but Rome does not negotiate\nwith rebels. They were between the people and\nempire, with no escape route.",
+    "choices": [
+      {
+        "text": "The squeeze tightened.",
+        "destination": "squeeze_tightens"
+      },
+      {
+        "text": "No escape route.",
+        "destination": "no_escape"
+      },
+      {
+        "text": "Trapped between powers.",
+        "destination": "trapped_powers"
+      }
+    ]
+  },
+  "revelation_or": {
+    "content": "Rabble or revelation? In the moment, it was unclear.\nThe crowd had the enthusiasm of revolution but the\nmethods of worship. The shouts had the urgency of\npolitics but the language of prophecy. Perhaps that\nis why the priests were so confused — they could\nnot categorize a movement that defied categories.",
+    "choices": [
+      {
+        "text": "Categories matter to the powerful.",
+        "destination": "categories_matter"
+      },
+      {
+        "text": "The movement defied definition.",
+        "destination": "defied_definition"
+      },
+      {
+        "text": "Confusion is the weapon.",
+        "destination": "confusion_weapon"
+      }
+    ]
+  },
+  "priests_dismissed": {
+    "content": "The priests dismissed it as enthusiasm. \"Look at this rabble,\"\nthey muttered. But I saw their faces — the concern beneath\nthe dismissal. They knew something the crowd did not. They\nknew that enthusiasm fades but consequences endure.",
+    "choices": [
+      {
+        "text": "The priests knew the cost.",
+        "destination": "priests_knew_cost"
+      },
+      {
+        "text": "Enthusiasm fades, consequences don't.",
+        "destination": "enthusiasm_fades"
+      },
+      {
+        "text": "They saw the end from the beginning.",
+        "destination": "saw_end"
+      }
+    ]
+  },
+  "cannot_stop_recog": {
+    "content": "Recognition cannot be stopped — once it happens. Once\na person sees the king, they cannot unsee Him. Once\na heart recognizes truth, it will not accept substitutes.\nThe crowd had seen. Now they would seek. And seeking,\nas our scriptures teach, leads to finding.",
+    "choices": [
+      {
+        "text": "Seeking leads to finding.",
+        "destination": "seeking_finding"
+      },
+      {
+        "text": "Once seen, never unsee.",
+        "destination": "once_seen"
+      },
+      {
+        "text": "The seeking begins.",
+        "destination": "seeking_begins"
+      }
+    ]
+  },
+  "same_interpretation2": {
+    "content": "The Romans read the same symbols. Palms = rebellion.\nCloaks = royalty. \"Son of David\" = kingship. The Prefect's\nintelligence network would have this report in Caesarea\nwithin hours. Within days, the garrison would be on\nhigh alert. The city would be surrounded.",
+    "choices": [
+      {
+        "text": "The city would be surrounded.",
+        "destination": "city_surrounded"
+      },
+      {
+        "text": "The intelligence was swift.",
+        "destination": "intelligence_swift"
+      },
+      {
+        "text": "No time to prepare.",
+        "destination": "no_preparation"
+      }
+    ]
+  },
+  "same_response2": {
+    "content": "The Roman response was predictable. History\nrepeated itself. Revolt. Bloodshed. Destruction.\nForty-one years ago, a similar crowd in a similar\nprocession would have met the same end. I was\nyoung then. I watched from these same steps.\nThe memory still haunts me.",
+    "choices": [
+      {
+        "text": "History haunts.",
+        "destination": "history_haunts"
+      },
+      {
+        "text": "The pattern is clear.",
+        "destination": "pattern_clear"
+      },
+      {
+        "text": "They should have learned.",
+        "destination": "should_have_learned"
+      }
+    ]
+  },
+  "familiarity_blind": {
+    "content": "Familiarity breeds blindness. We read Zechariah's\nprophecy every year at this season. We recite the\nwords. We discuss the meaning. But when the words\nstep out of the text and into the street, we\ncannot recognize them. We have studied the letter\nso thoroughly that we have forgotten how to see\nthe spirit.",
+    "choices": [
+      {
+        "text": "The letter without the spirit.",
+        "destination": "letter_spirit"
+      },
+      {
+        "text": "Study without sight.",
+        "destination": "study_without"
+      },
+      {
+        "text": "Knowledge without wisdom.",
+        "destination": "knowledge_wisdom"
+      }
+    ]
+  },
+  "letter_study": {
+    "content": "We studied the letter. The exact Hebrew. The precise\nGreek. The vowel points that distinguish meaning.\nWe can parse the grammar in our sleep. But we\ncannot read the present moment. We have become\nscribes of the text rather than students of truth.",
+    "choices": [
+      {
+        "text": "Scribes of text, not truth.",
+        "destination": "text_not_truth"
+      },
+      {
+        "text": "Grammar without grace.",
+        "destination": "grammar_grace"
+      },
+      {
+        "text": "The study became an idol.",
+        "destination": "study_idol"
+      }
+    ]
+  },
+  "missed_spirit": {
+    "content": "We missed the spirit. Not through malice — through\ncomplacency. The prophecy was right there in front\nus, walking into the city on a donkey. But we were\ntoo busy debating its interpretation to notice\nits fulfillment. We studied the map so intently\nwe forgot to look at the territory.",
+    "choices": [
+      {
+        "text": "Map over territory.",
+        "destination": "map_territory"
+      },
+      {
+        "text": "The territory appeared.",
+        "destination": "territory_appeared"
+      },
+      {
+        "text": "They forgot to see.",
+        "destination": "forgot_to_see"
+      }
+    ]
+  },
+  "massacre_memory": {
+    "content": "The memory of past massacres haunts our people.\nThe Sicarii's revolt. The Zealots' final stand.\nThe bandits who thought they could shake off\nthe Roman yoke. Thousands dead. Cities\ndestroyed. Families scattered. The priests\nremember. The soldiers remember. The people\ntry to forget.",
+    "choices": [
+      {
+        "text": "Forget at peril.",
+        "destination": "forget_peril"
+      },
+      {
+        "text": "The scars remain.",
+        "destination": "scars_remain"
+      },
+      {
+        "text": "Memory should warn.",
+        "destination": "memory_warn"
+      }
+    ]
+  },
+  "prefect_limited": {
+    "content": "The Prefect's patience is limited. He maintains\norder in this province with a fraction of the\nforces available to him in Caesarea. One\nsignificant incident and he will call for\nreinforcements. One declaration of kingship\nand he will see it as rebellion. His response\nwill be swift, final, and utterly without\nmercy.",
+    "choices": [
+      {
+        "text": "Swift and final.",
+        "destination": "swift_final"
+      },
+      {
+        "text": "No mercy in Rome.",
+        "destination": "no_mercy_rome"
+      },
+      {
+        "text": "The prefect's patience was thin.",
+        "destination": "patience_thin"
+      }
+    ]
+  },
+  "risked_all": {
+    "content": "They risked all — their safety, their property,\ntheir future — for a dream. The dream of a king\nwho would restore Israel's independence. The\ndream of liberation from Roman rule. The dream\nof returning to the glory days of David and\nSolomon. A beautiful dream. A deadly one.",
+    "choices": [
+      {
+        "text": "Dreams can be deadly.",
+        "destination": "deadly_dreams"
+      },
+      {
+        "text": "Liberation has a cost.",
+        "destination": "liberation_cost"
+      },
+      {
+        "text": "The dream blinded them.",
+        "destination": "dream_blinded"
+      }
+    ]
+  },
+  "revelation_or2": {
+    "content": "The crowd was not revelation but enthusiasm.\nBut perhaps that is a distinction without a\ndifference. Whether genuine prophecy or\ncollective hallucination, the effect is the\nsame — the city holds its breath, the priests\npanic, and the soldiers tense their grip\non their weapons.",
+    "choices": [
+      {
+        "text": "The effect is identical.",
+        "destination": "effect_identical"
+      },
+      {
+        "text": "Enthusiasm and revelation both move crowds.",
+        "destination": "both_move"
+      },
+      {
+        "text": "The result is the same.",
+        "destination": "same_result"
+      }
+    ]
+  },
+  "priests_knew_cost": {
+    "content": "The priests knew the cost better than anyone.\nThey had lived through previous uprisings.\nThey had seen the aftermath. They understood\nthat enthusiasm, however genuine, inevitably\nled to bloodshed. And bloodshed inevitably\nled to Roman retaliation against the entire\npopulation.",
+    "choices": [
+      {
+        "text": "Retaliation against all.",
+        "destination": "retaliation_all"
+      },
+      {
+        "text": "The innocent suffer with the guilty.",
+        "destination": "innocent_suffer"
+      },
+      {
+        "text": "Cost calculated.",
+        "destination": "cost_calculated"
+      }
+    ]
+  },
+  "enthusiasm_fades": {
+    "content": "Enthusiasm fades. The crowd that shouts\n\"Hosanna\" today will forget the Teacher's\nteachings tomorrow when the next charismatic\nspeaker arrives. But consequences — Roman\nretribution, Temple destruction, the end of\nthe priestly system — these endure forever.",
+    "choices": [
+      {
+        "text": "Consequences are permanent.",
+        "destination": "consequences_permanent"
+      },
+      {
+        "text": "Enthusiasm is temporary.",
+        "destination": "enthusiasm_temporary"
+      },
+      {
+        "text": "The contrast is stark.",
+        "destination": "contrast_stark"
+      }
+    ]
+  },
+  "closing_nathanael": {
+    "content": "I watched the procession from the Temple steps,\nnoting every detail, recording every symbol,\ncalculating every risk. The crowd was\ncelebrating. The priests were conspiring. The\nsoldiers were watching. And I — I was\ntrying to understand what I had just\nwitnessed.\nThe Teacher rode into Jerusalem on a donkey.\nAnd I, a Pharisee trained in the Law,\ncould not recognize the moment\nfor what it was.\nThe king had come.\nAnd I, like my colleagues,\nwas on the wrong side\nof history.",
+    "choices": []
+  }
+}

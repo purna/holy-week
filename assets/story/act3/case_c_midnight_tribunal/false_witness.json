@@ -1,79 +1,102 @@
 {
-    "inkVersion": 21,
-    "root": [
-        [
-            {
-                "->": "start"
-            },
-            [
-                "done",
-                {
-                    "#n": "g-0"
-                }
-            ],
-            null
-        ],
-        "done",
-        {
-            "start": [
-                [
-                    "^I heard him say it myself! 'I will destroy this Temple and rebuild it in three days!'",
-                    {
-                        "*": "stone",
-                        "flg": 2,
-                        "s": [
-                            "^He spoke of the temple of His body."
-                        ]
-                    },
-                    {
-                        "*": "nationalist",
-                        "flg": 2,
-                        "s": [
-                            "^Why did your story change just now?"
-                        ]
-                    },
-                    null
-                ],
-                null
-            ],
-            "stone": [
-                [
-                    "^He spoke of stone and mortar! He is a threat to the Law. Caiaphas agrees with me.",
-                    {
-                        "*": "closing",
-                        "flg": 2,
-                        "s": [
-                            "^Continue."
-                        ]
-                    },
-                    null
-                ],
-                null
-            ],
-            "nationalist": [
-                [
-                    "^The room is noisy! It is hard to keep every word straight. But the High Priest knows the truth.",
-                    {
-                        "*": "closing",
-                        "flg": 2,
-                        "s": [
-                            "^Continue."
-                        ]
-                    },
-                    null
-                ],
-                null
-            ],
-            "closing": [
-                [
-                    "^He is a blasphemer. That is all you need to record, scribe.",
-                    "^-> DONE",
-                    null
-                ],
-                null
-            ]
-        }
-    ],
-    "globals": {},
-    "listDefs": {}
+  "start": {
+    "content": "I heard him say it myself! \"I will destroy this Temple and rebuild it in three days!\" I was standing three cubits away. Both my colleague and I heard the same words.",
+    "choices": [
+      {
+        "text": "He spoke of the Temple of His body.",
+        "destination": "body_clarification"
+      },
+      {
+        "text": "Why did your story change between hearings?",
+        "destination": "story_changed"
+      }
+    ]
+  },
+  "body_clarification": {
+    "content": "He spoke of stone and mortar! The Great Temple — the one behind us! A direct threat to the sacred institution. Caiaphas agrees with me. So does the second witness.",
+    "choices": [
+      {
+        "text": "Your second witness gave a different version.",
+        "destination": "story_changed"
+      },
+      {
+        "text": "Threatening the Temple carries a death sentence.",
+        "destination": "death_implications"
+      }
+    ]
+  },
+  "story_changed": {
+    "content": "The room is noisy! It is difficult to keep every word perfectly straight under pressure. But the substance is the same — He is a threat to the Law. The High Priest has affirmed that.",
+    "choices": [
+      {
+        "text": "The Law requires two witnesses with identical testimony.",
+        "destination": "law_requirement"
+      },
+      {
+        "text": "You are improvising under cross-examination.",
+        "destination": "improvising"
+      }
+    ]
+  },
+  "law_requirement": {
+    "content": "The High Priest has the authority to proceed on the spirit of the charge! The letter of the procedure—",
+    "choices": [
+      {
+        "text": "The letter is the procedure. Without it you have no case.",
+        "destination": "exposed"
+      },
+      {
+        "text": "Your testimony is legally invalid.",
+        "destination": "exposed"
+      }
+    ]
+  },
+  "death_implications": {
+    "content": "A man who threatens Rome's most valued institution in this city during Passover is a threat to everyone. The High Priest is protecting the people.",
+    "choices": [
+      {
+        "text": "By using testimony that does not align.",
+        "destination": "story_changed"
+      }
+    ]
+  },
+  "improvising": {
+    "content": "I am stating what I heard! The acoustics of the outer courts are difficult. Perhaps I paraphrased. But the meaning was clear — He is dangerous.",
+    "choices": [
+      {
+        "text": "Paraphrase is not testimony. Testimony is exact.",
+        "destination": "exposed"
+      },
+      {
+        "text": "You were paid to be here.",
+        "destination": "payment_question"
+      }
+    ]
+  },
+  "payment_question": {
+    "content": "I— that is a serious accusation. My presence here is voluntary, as a civic-minded member of—",
+    "choices": [
+      {
+        "text": "Your presence was arranged through the Temple steward two days ago.",
+        "destination": "exposed"
+      }
+    ]
+  },
+  "exposed": {
+    "content": "He is a blasphemer. That is all you need to record, Scribe. The High Priest knows the truth. Whatever procedural objections you raise, the council has already made its determination.",
+    "choices": [
+      {
+        "text": "A determination built on contradicted testimony.",
+        "destination": "closing"
+      },
+      {
+        "text": "The procedure is not an obstacle. It is the justice.",
+        "destination": "closing"
+      }
+    ]
+  },
+  "closing": {
+    "content": "Write what you like. The verdict will not change. Caiaphas has spoken. He is a blasphemer. That is sufficient.",
+    "choices": []
+  }
 }

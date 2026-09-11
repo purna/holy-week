@@ -1,55 +1,120 @@
 {
   "start": {
-    "content": "Governments are not built on passion, young man. They are built on stone and historical continuity. I have watched procurators come and go. They all think they command Judea, but the temple remains. This Galilean speaks well, but he does not recognize that systems outlive prophets.",
+    "content": "Annas speaks of systems and history, as if morality were subordinate to administration. But the truth cannot be hidden behind rhetoric.",
     "choices": [
       {
-        "text": "Why was Jesus brought in at midnight?",
-        "destination": "midnight"
+        "text": "Systems do not justify murder.",
+        "destination": "systems_lie"
       },
       {
-        "text": "Do you fear His popularity?",
-        "destination": "popularity"
+        "text": "You call a miracle a threat?",
+        "destination": "miracle_lie"
+      },
+      {
+        "text": "How can raising Lazarus cause chaos?",
+        "destination": "chaos_lie"
       }
     ]
   },
-  "midnight": {
-    "content": "Daylight belongs to the crowds, and crowds are easily confused by noise. Silence allows for careful administrative evaluation. Certain matters require discretion \u2014 particularly when a man's following threatens both religious and civil order simultaneously.",
+  "systems_lie": {
+    "content": "You claim governments are built on stone, not passion, yet you would destroy a man who embodies divine truth to protect your power. That is not governance — that is tyranny.",
     "choices": [
       {
-        "text": "What did the council decide?",
-        "destination": "decree_reveal"
+        "text": "So your concern is power, not order.",
+        "destination": "power_lie"
+      },
+      {
+        "text": "Morality matters even to rulers.",
+        "destination": "morality_assertion"
       }
     ]
   },
-  "popularity": {
-    "content": "A crowd that shouts \"Hosanna\" on Sunday will shout something entirely different by Friday if the narrative shifts. Popularity is water \u2014 it finds the lowest level and erodes everything it touches. We saw the palm branches and the disciples' cloaks on the road. The Galilean must be stopped before Passover ends.",
+  "miracle_lie": {
+    "content": "You say Jesus’s popularity is like water, eroding structures, yet you ignore that the structure itself is rotten. The crowd celebrates life, not rebellion. Labeling virtue as threat does not make it true.",
     "choices": [
       {
-        "text": "So there is a plan against Him.",
-        "destination": "decree_reveal"
+        "text": "Popularity is not a crime.",
+        "destination": "popularity_expose"
+      },
+      {
+        "text": "So you're afraid of truth.",
+        "destination": "fear_truth"
       }
     ]
   },
-  "decree_reveal": {
-    "content": "The council is reviewing its options. I have drafted a memorandum \u2014 a secret decree to handle this structural problem. When a man can raise the dead, the Sanhedrin does not act hastily, but it does act decisively.",
+  "chaos_lie": {
+    "content": "You suggest that Lazarus’s survival threatens Jerusalem, yet it is your own fear and scheming that endanger the city. Miracles inspire, but murder invites ruin.",
     "choices": [
       {
-        "text": "But Lazarus is alive \u2014 you can't undo that.",
-        "destination": "exposed"
+        "text": "So this is political fear, not public safety.",
+        "destination": "political_fear"
+      },
+      {
+        "text": "The miracle itself is not dangerous.",
+        "destination": "miracle_safety"
       }
     ]
   },
-  "exposed": {
-    "content": "You think a dynamic miracle justifies civic chaos? If a man is raised from the dead after four days, and you find trace limestone dust from a Bethany tomb on our own courthouse floor, his existence sparks a war that levels Jerusalem. His life is an unacceptable expense. The security of the temple requires the eradication of the asset.",
+  "power_lie": {
+    "content": "Admit it — your concern is not the law or the temple, but retaining influence over people. You manipulate the council to justify your personal authority. That is corruption, plain and simple.",
     "choices": [
       {
-        "text": "You're planning to kill Lazarus.",
-        "destination": "closing"
+        "text": "And that justifies nothing.",
+        "destination": "moral_closure"
+      },
+      {
+        "text": "The council acts out of fear, not justice.",
+        "destination": "moral_closure"
       }
     ]
   },
-  "closing": {
-    "content": "Our conversation has reached its logical conclusion. Guard, show this investigator out.",
+  "morality_assertion": {
+    "content": "Even the highest priests are accountable. No system can sanctify murder. A man’s life cannot be sacrificed to preserve privilege.",
+    "choices": [
+      {
+        "text": "Then you are exposing hypocrisy.",
+        "destination": "moral_closure"
+      }
+    ]
+  },
+  "popularity_expose": {
+    "content": "A crowd’s voice reflects longing for truth, not chaos. You twist reality to label righteousness as dangerous. Your words are clever, but they are lies.",
+    "choices": [
+      {
+        "text": "Truth cannot be silenced.",
+        "destination": "moral_closure"
+      }
+    ]
+  },
+  "fear_truth": {
+    "content": "Yes, fear is the real motivator. Fear of exposure, fear of losing control, fear of recognizing God’s authority. That is the lie hidden behind every procedural argument you make.",
+    "choices": [
+      {
+        "text": "Fear is not a policy.",
+        "destination": "moral_closure"
+      }
+    ]
+  },
+  "political_fear": {
+    "content": "Exactly. Your council debates are smokescreens for self-preservation. You act as if protecting the temple requires murder, but it only protects your reputation.",
+    "choices": [
+      {
+        "text": "Power over people, not protection of God.",
+        "destination": "moral_closure"
+      }
+    ]
+  },
+  "miracle_safety": {
+    "content": "Raising Lazarus is not destruction — it is revelation. Your claims of civil unrest are excuses for inaction in the face of divine truth. You fear, therefore you lie.",
+    "choices": [
+      {
+        "text": "Your lies fail under scrutiny.",
+        "destination": "moral_closure"
+      }
+    ]
+  },
+  "moral_closure": {
+    "content": "Every claim you made crumbles under questioning. Systems, fear, law — none justify sin. Your words are clever, but the truth stands unshaken: you plot murder to preserve privilege.",
     "choices": []
   }
 }
