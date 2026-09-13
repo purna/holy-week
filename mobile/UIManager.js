@@ -63,6 +63,7 @@ export class UIManager {
         const c = this.cm.getActiveCase();
         const isConcluded = c ? (this.cm.getCaseProgress(c.id)?.concluded || false) : false;
         view.innerHTML = this.accuseUI.render({ canConclude: true, isConcluded: isConcluded });
+        this.accuseUI.bindEvents(view);
         const concludeBtn = view.querySelector('.conclude-btn.concluded');
         if (concludeBtn) concludeBtn.onclick = () => window.showCaseConclusionModal();
         if (c && !isConcluded && this.cm.canConcludeCase() && this._concludeFireworksCaseId !== c.id) {

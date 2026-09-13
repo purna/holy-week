@@ -368,6 +368,19 @@
   }
 }
 
+/* Compact three-way relationship control */
+#lab-workspace .connections-actions { grid-template-columns: minmax(88px, .55fr) minmax(330px, 2.2fr) minmax(145px, 1fr); }
+#lab-workspace .relationship-switch { min-width: 0; margin: 0; padding: 6px 8px 7px; border: 1px solid var(--lw-border2); border-radius: var(--lw-radius-sm); background: linear-gradient(180deg, var(--lw-surface3), var(--lw-surface2)); }
+#lab-workspace .relationship-switch legend { padding: 0 4px; color: var(--lw-text-muted); font-size: .6rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+#lab-workspace .relationship-switch-options { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; }
+#lab-workspace .relationship-switch-options label { min-width: 0; cursor: pointer; }
+#lab-workspace .relationship-switch-options input { position: absolute; opacity: 0; pointer-events: none; }
+#lab-workspace .relationship-switch-options span { display: grid; min-height: 34px; place-items: center; padding: 4px 6px; border: 1px solid var(--lw-border2); border-radius: 6px; color: var(--lw-text-muted); font-size: .7rem; font-weight: 750; line-height: 1.15; text-align: center; }
+#lab-workspace .relationship-switch-options input:checked + span { border-color: var(--lw-gold); background: rgba(245, 200, 66, .14); color: var(--lw-text); box-shadow: inset 0 0 0 1px rgba(245, 200, 66, .25); }
+#lab-workspace .relationship-switch-options input:focus-visible + span { outline: 2px solid var(--lw-gold); outline-offset: 2px; }
+#lab-workspace .relationship-help { margin: 5px 2px 0; color: var(--lw-text-muted); font-size: .67rem; line-height: 1.25; }
+@media (max-width: 700px) { #lab-workspace .connections-actions { grid-template-columns: 1fr 1fr; } #lab-workspace .connections-actions .relationship-switch { grid-column: 1 / -1; grid-row: 1; } }
+
 #lab-workspace .folder-tray {
   background: var(--lw-surface2);
   border: 1px solid var(--lw-border2);
@@ -974,6 +987,74 @@
 }
 
 /* ── Simplified Lab navigation and relationship challenge ── */
+#lab-workspace .lab-task-guide {
+  margin: 12px 0 14px;
+  padding: 14px;
+  border: 1px solid var(--lw-border2);
+  border-left: 4px solid var(--lw-gold);
+  border-radius: var(--lw-radius-sm);
+  background: linear-gradient(135deg, rgba(245, 200, 66, 0.1), var(--lw-surface2));
+  color: var(--lw-text);
+}
+
+#lab-workspace .lab-task-guide-heading {
+  display: grid;
+  gap: 3px;
+  margin-bottom: 10px;
+}
+
+#lab-workspace .lab-task-guide-kicker {
+  color: var(--lw-gold);
+  font-size: 0.64rem;
+  font-weight: 850;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+#lab-workspace .lab-task-guide h4 {
+  margin: 0;
+  color: var(--lw-text);
+  font-size: 0.96rem;
+  line-height: 1.3;
+}
+
+#lab-workspace .lab-task-steps {
+  display: grid;
+  gap: 7px;
+  margin: 0;
+  padding-left: 22px;
+  color: var(--lw-text-muted);
+  font-size: 0.8rem;
+  line-height: 1.45;
+}
+
+#lab-workspace .lab-task-steps li::marker {
+  color: var(--lw-gold);
+  font-weight: 800;
+}
+
+#lab-workspace .lab-task-steps strong,
+#lab-workspace .relationship-key strong {
+  color: var(--lw-text);
+}
+
+#lab-workspace .relationship-key {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 12px;
+}
+
+#lab-workspace .relationship-key span {
+  padding: 8px 9px;
+  border: 1px solid var(--lw-border);
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.14);
+  color: var(--lw-text-muted);
+  font-size: 0.72rem;
+  line-height: 1.35;
+}
+
 #lab-workspace .lab-actions {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(132px, 1fr));
@@ -1051,10 +1132,24 @@
   box-shadow: 0 0 0 3px rgba(245, 200, 66, 0.16);
 }
 
+#lab-workspace .folder-info-btn { margin-left: auto; border: 0; background: transparent; color: var(--lw-gold); font: inherit; cursor: pointer; }
+#lab-workspace .folder-type-description { margin: 6px 0 8px; color: var(--lw-text-muted); font-size: 0.72rem; line-height: 1.4; }
+#lab-workspace .folder-empty, #lab-workspace .lab-bank-label { color: var(--lw-text-muted); font-size: 0.72rem; }
+#lab-workspace .lab-bank-label { margin: 12px 0 6px; }
+
 @media (max-width: 520px) {
+  #lab-workspace .relationship-key { grid-template-columns: 1fr; }
   #lab-workspace .lab-actions { grid-template-columns: 1fr 1fr; }
   #lab-workspace .connections-actions { grid-template-columns: 1fr 1fr; }
   #lab-workspace .connections-actions .relationship-field { grid-column: 1 / -1; grid-row: 1; }
   #lab-workspace .connections-actions .btn-secondary,
   #lab-workspace .connections-actions .btn-submit { min-height: 44px; }
 }
+
+#lab-workspace .connections-actions { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+#lab-workspace .connections-actions .relationship-switch { grid-column: 1 / -1; grid-row: 1; }
+#lab-workspace .connections-actions .btn-secondary { grid-column: 1; grid-row: 2; }
+#lab-workspace .connections-actions .btn-submit { grid-column: 2; grid-row: 2; }
+#lab-workspace .connections-quick-guide { margin: 10px 0 0; padding: 9px 11px; border-left: 3px solid var(--lw-gold); border-radius: 6px; background: var(--lw-surface2); color: var(--lw-text-muted); font-size: .72rem; line-height: 1.45; }
+#lab-workspace .connections-quick-guide strong { color: var(--lw-gold); }
+#lab-workspace .connections-quick-guide span { padding: 0 3px; color: var(--lw-text-muted); }

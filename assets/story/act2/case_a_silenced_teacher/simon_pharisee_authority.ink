@@ -7,6 +7,12 @@
 // BIBLE REFERENCE: Matthew 22:15–46; Mark 12:13–34; Luke 20:20–40
 // ------------------------------------------------------------
 // PURPOSE: Pharisee reflects on being unable to answer Jesus — three failed traps
+// BIBLICAL CONTEXT:
+//   Religious groups tested Jesus in Jerusalem with questions about
+//   Roman taxes, resurrection, and the greatest commandment. His
+//   answers silenced each challenge while joining love of God with
+//   love of neighbour. Jesus then used Psalm 110 to show that the
+//   Messiah is both David's descendant and David's Lord.
 // ============================================================
 
 -> start

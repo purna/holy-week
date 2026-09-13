@@ -18,6 +18,16 @@
 //     Gospel: The imprinted face cloth
 //     Insight: "I know my Redeemer lives... I shall see God with my own flesh." The face cloth preserves His countenance beyond death.
 // ------------------------------------------------------------
+// BIBLICAL CONTEXT:
+//   Summary: Joseph of Arimathea, a wealthy member of the Sanhedrin
+//   who had not consented to the council's action against Jesus,
+//   asked Pilate for the body, wrapped it in clean linen, and laid
+//   it in his own new tomb cut into the rock.
+//   Significance: A rich and respected council member risked his
+//   own standing to give Jesus an honorable burial, fulfilling
+//   Isaiah's prophecy that the Suffering Servant would be "with the
+//   rich in His death."
+// ------------------------------------------------------------
 //
  
 -> start

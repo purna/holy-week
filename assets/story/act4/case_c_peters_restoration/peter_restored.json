@@ -1,37 +1,99 @@
 {
   "start": {
-    "content": "I saw Him on the beach. We had fished all night and caught nothing. Then He stood there — alive. He spoke to me about love. Three times He asked, and three times I answered.",
+    "content": "I want to tell it the way it happened, not the way it is easier to tell.\nThree days before the beach, I did not believe the women. Not to their faces — but I did not believe them. \"Idle tales,\" is how Luke recorded it plainly enough. [Luke 24:11] Mary of Magdala came running, out of breath, saying the tomb was open and He was alive, and my first thought was that grief was talking, not truth.",
     "choices": [
       {
-        "text": "Tell me about the questions.",
-        "destination": "questions"
+        "text": "But you went to look anyway.",
+        "destination": "ran_to_tomb"
       },
       {
-        "text": "What did He say to you?",
-        "destination": "commission"
+        "text": "Tell me about the beach.",
+        "destination": "beach"
+      }
+    ]
+  },
+  "ran_to_tomb": {
+    "content": "I ran anyway. John outran me — younger legs — but I went in first. Linen wrappings, lying there. No body. I went home \"wondering at that which was come to pass.\" [Luke 24:12] Not believing yet. Wondering.\nA woman's word carried no legal weight in a court in those days — the Law would not receive it. It should have carried weight with me regardless. I had walked with Him three years. I still needed more.",
+    "choices": [
+      {
+        "text": "What happened next?",
+        "destination": "beach"
+      }
+    ]
+  },
+  "beach": {
+    "content": "We went fishing. Not from unbelief exactly — from not knowing what a forgiven-but-unrestored man does with his hands. We caught nothing all night.\nAt dawn a stranger on the shore asked if we had any fish. We said no. \"Cast the net on the right side,\" He said, and we did, and it would not come up — a hundred and fifty-three of them. [John 21:11]",
+    "choices": [
+      {
+        "text": "How did you know it was Him?",
+        "destination": "recognition"
+      },
+      {
+        "text": "What happened when you reached the shore?",
+        "destination": "fire"
+      }
+    ]
+  },
+  "recognition": {
+    "content": "John said it before I understood it. \"It is the Lord.\" [John 21:7] I did not wait for the boat. I put my coat on — a strange thing to do before swimming, but I would not go to Him half-dressed — and went into the water.",
+    "choices": [
+      {
+        "text": "Continue.",
+        "destination": "fire"
+      }
+    ]
+  },
+  "fire": {
+    "content": "# UNLOCK_EVIDENCE: charcoal_fire\nA charcoal fire. Fish already cooking. Bread.\nI had warmed my hands at a charcoal fire once before — the courtyard, the night I said three times that I did not know Him. [John 18:18, 25-27] He did not have to build this fire on this beach. He chose to.",
+    "choices": [
+      {
+        "text": "What did He ask you?",
+        "destination": "questions"
       }
     ]
   },
   "questions": {
-    "content": "'Do you love me more than these?' He asked. I said yes. 'Do you love me?' Again, I said yes. 'Do you love me?' A third time — my heart broke. The threefold question for my threefold denial.",
+    "content": "# UNLOCK_EVIDENCE: threefold_commission\n\"Simon, son of John, do you love Me more than these?\" Three times. I answered yes three times. The third time He used my own word back to me — not the love that costs everything, but the ordinary love of a friend — and I understood He was meeting me exactly where I had fallen, not where I wished I still stood.\nEach answer, He gave me something to do. \"Feed My lambs.\" \"Tend My sheep.\" \"Feed My sheep.\" [John 21:15-17]",
     "choices": [
       {
-        "text": "And your answer?",
-        "destination": "commission"
+        "text": "You wrote about that later, didn't you?",
+        "destination": "later_writing"
+      },
+      {
+        "text": "Then He said \"Follow Me.\"",
+        "destination": "follow"
       }
     ]
   },
-  "commission": {
-    "content": "'Simon, son of John, do you love me?' Yes, Lord. 'Feed my lambs.' Again — 'Do you love me?' Yes, Lord. 'Feed my sheep.' The third time — 'Lord, you know all things. You know that I love you.' 'Feed my sheep.'",
+  "later_writing": {
+    "content": "Years after, writing to churches scattered across Asia Minor, I could not help myself: \"Ye were as sheep going astray; but are now returned unto the Shepherd and Bishop of your souls.\" [1 Peter 2:25] I did not plan to write my own restoration into that line. It came out anyway.\nAnd when I told the elders how to lead: \"Feed the flock of God which is among you... and when the chief Shepherd shall appear, ye shall receive a crown of glory that fadeth not away.\" [1 Peter 5:2-4] Every shepherd I ever taught to feed a flock, I taught with His words still in my mouth.",
     "choices": [
       {
-        "text": "The Great Commission?",
+        "text": "Then He said \"Follow Me.\"",
+        "destination": "follow"
+      }
+    ]
+  },
+  "follow": {
+    "content": "\"Follow Me.\" [John 21:19]\nTwo words. The same two He used the first day, on this same water. Three years, a denial, a death, an empty tomb, and it ends — begins again — exactly where it started.",
+    "choices": [
+      {
+        "text": "Is that where it stopped, for you?",
+        "destination": "pentecost"
+      }
+    ]
+  },
+  "pentecost": {
+    "content": "No. Fifty days later I stood up in Jerusalem, in front of a crowd that had watched Him die, and quoted David to them: \"Thou wilt not leave my soul in hell, neither wilt thou suffer thine Holy One to see corruption.\" [Acts 2:27; Psalm 16:10] I told them the empty tomb was the proof. I did not learn to say that on my own — I had stood in front of an empty tomb myself, three days after doubting a woman who had told me the truth.",
+    "choices": [
+      {
+        "text": "Continue.",
         "destination": "closing"
       }
     ]
   },
   "closing": {
-    "content": "He forgave me. Not with words of reproach, but with a calling. 'Follow me.' I am the rock that was shattered and made whole. The church would be built on this restored love.",
+    "content": "No explanation was demanded of me for the denial. Only love, asked three times — and a flock built on the answer. The Shepherd who was struck lives, [Zechariah 13:7] and sent the sheep who scattered to gather others. [Ezekiel 34:11-16]\nI am the rock that was shattered and given back whole. I spent the rest of my life proving I meant every \"yes.\"",
     "choices": []
   }
 }

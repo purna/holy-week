@@ -6,6 +6,12 @@
 // SOURCE: ORPHAN FILE (not referenced in any case file)
 // BIBLE: Matthew 19:16–30, Mark 10:17–31, Luke 18:18–30
 // ------------------------------------------------------------
+// BIBLICAL CONTEXT:
+//   A wealthy young ruler asked Jesus how to inherit eternal life.
+//   Jesus lovingly exposed the man's deepest allegiance by telling
+//   him to sell his possessions, give to the poor, and follow Him.
+//   The ruler departed sorrowfully, prompting Jesus to teach that
+//   salvation is impossible for people but possible with God.
 // ============================================================
 //
 

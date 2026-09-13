@@ -1,6 +1,6 @@
 {
   "start": {
-    "content": "Am I an expert in your laws, Judean? Your priests drag this man to my praetorium at dawn and expect me to sign a death warrant for words. But the disturbance is not only in the streets; it has entered my own sleeping chambers.",
+    "content": "Am I an expert in your theological disputes? Your priests drag this man to my praetorium at dawn and expect me to sign a death warrant for philosophical claims. But the disturbance is not only in the streets; it has entered my own sleeping chambers.",
     "choices": [
       {
         "text": "Your wife sent a message?",
@@ -17,16 +17,33 @@
     ]
   },
   "wifes_warning": {
-    "content": "She is a Roman of noble blood, not given to the superstitions of this province. Yet she sent a frantic note to the judgement seat: 'Have nothing to do with that righteous man.' She has suffered a great deal in a dream today because of him. She sees a guilt in this room that my ledgers cannot account for.",
+    "content": "Claudia sent a frantic note to the judgment seat: \"Have nothing to do with that righteous man.\" She has suffered a great deal in a dream today because of him. She sees a guilt in this room that my ledgers cannot account for. A Roman of noble blood, not given to the superstitions of this province — yet she saw his face in torment.",
     "choices": [
       {
         "text": "Does her dream worry you?",
         "destination": "truth_question"
+      },
+      {
+        "text": "You dismissed her concern.",
+        "destination": "dismiss_warning"
+      }
+    ]
+  },
+  "dismiss_warning": {
+    "content": "I told her it was only a dream. Roman discipline does not bend to visions. Yet I found myself asking the prisoner to speak — and received silence instead. His wife sees a righteous man; the Sanhedrin sees a rebel. I see a man who makes the silence heavier than a shield wall.",
+    "choices": [
+      {
+        "text": "But you will execute Him.",
+        "destination": "crowd_response"
+      },
+      {
+        "text": "Why did He not answer?",
+        "destination": "silence"
       }
     ]
   },
   "truth_question": {
-    "content": "What is truth to a man holding three legions? I asked him the same. He spoke of a kingdom not of this world. My wife sees a righteous man; the Sanhedrin sees a rebel. I see a man who makes the silence heavier than a shield wall.",
+    "content": "What is truth to a man holding three legions? I asked him the same. He spoke of a kingdom not of this world. My wife sees a righteous man; the priests see a rebel. I see a man who makes the silence heavier than a shield wall.",
     "choices": [
       {
         "text": "But you will execute Him.",

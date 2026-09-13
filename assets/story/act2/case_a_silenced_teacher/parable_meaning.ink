@@ -6,6 +6,12 @@
 // SOURCE: ORPHAN FILE (not referenced in any case file)
 // BIBLE: Matthew 21:33–46, Mark 12:1–12, Luke 20:9–19, Psalm 118:22–23
 // ------------------------------------------------------------
+// BIBLICAL CONTEXT:
+//   In the Temple courts, Jesus told the parable of tenants who
+//   abused the landowner's servants and finally killed his son.
+//   The vineyard evokes Israel, the servants represent the prophets,
+//   and the rejected son points to Jesus. The religious leaders
+//   understood that the warning was directed against them.
 // ============================================================
 //
 

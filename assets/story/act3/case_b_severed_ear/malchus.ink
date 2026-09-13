@@ -7,6 +7,17 @@
 // BIBLE REFERENCE: John 18:10–11; Luke 22:50–51; Matthew 26:52
 // ------------------------------------------------------------
 // PURPOSE: Malchus describes the arrest at Gethsemane — the violence and the healing
+// ------------------------------------------------------------
+// BIBLICAL CONTEXT:
+//   Summary: When the arresting party seized Jesus in Gethsemane,
+//   Peter drew a sword and struck Malchus, the high priest's
+//   servant, severing his ear. Jesus rebuked the violence, touched
+//   the wound, and healed it before being led away.
+//   Significance: As the one man in the arresting party who was
+//   personally, physically harmed and then personally healed by
+//   Jesus, Malchus is an eyewitness uniquely positioned to testify
+//   that Jesus's power and compassion extended even to those
+//   arresting Him.
 // ============================================================
 
 -> start

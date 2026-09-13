@@ -1291,6 +1291,8 @@ export const act4CaseB = {
       truthfulness: 0.30,
       bibleRef: "Matthew 28:11-12; John 11:49-50",
       background: "Joseph ben Caiaphas, managing severe institutional damage control[cite: 1]. He must maintain the stability of the Temple state and protect the nation from an immediate Roman military crackdown by manufacturing an alternate narrative for the empty tomb.",
+      hasDialogue: true,
+      storyFile: "caiaphas_roman_inquiry",
       revealsProphecy: "psalm_2_1_2",
       dialogue: {
         neutral: "The tomb is empty because of common grave-robbing. Frightened Galileans returned under cover of night to stage a dynamic event.",
@@ -2110,12 +2112,13 @@ export const act4CaseC = {
         bibleRef: "John 21:12; Isaiah 53:10-11",
       },
     },
-    "broiled_fish_remains+mary_encounter": {
-      compare: {
-        text: "Mary's testimony provides the first eyewitness account of the risen Jesus, while the remains of the broiled fish provide physical, forensic proof of His bodily resurrection later that same day.",
-        insight: "The evidence for the resurrection is not just one person's story. It builds throughout the day, from an emotional garden encounter in the morning to a physical demonstration in a locked room that evening. A spirit or ghost does not eat fish.",
+    "galilean_apparition+psalm_16_10_scroll": {
+      link: {
+        text: "The disciples' instant, wordless recognition of the risen Jesus on the shore and this scroll's thousand-year-old promise that God's Holy One would not see decay are the same claim — one lived that morning, one written long before it.",
+        insight: "David's words only work as prophecy once someone actually walks out of a grave undecayed. Peter himself later stood up in Jerusalem and read this exact verse aloud as proof of what he had personally seen (Acts 2:25-32) — the man restored on this beach became the one publicly preaching the promise that restored him.",
         isKey: true,
-        bibleRef: "John 20:11-18; Luke 24:41-43",
+        revealsProphecy: "psalm_16_10",
+        bibleRef: "Psalm 16:10; John 21:12; Acts 2:25-32",
       },
       timeline: {
         text: "The evidence unfolds chronologically: Mary's encounter at dawn, the Emmaus road in the afternoon, and the meal in the upper room in the evening. Each event reinforces the last.",
@@ -2130,8 +2133,8 @@ export const act4CaseC = {
     motive: "There was no crime to investigate. This was a divine restoration—Peter's threefold denial met with threefold commission, his shame replaced with grace.",
     method: "Jesus appeared to the disciples after resurrection, used the familiar details of fishing and fire to trigger recognition, then privately restored Peter through the threefold dialogue of love and commission.",
     lesson: "Jesus's restoration of Peter shows that failure never disqualifies us from grace. The same hands that warmed at the courtyard fire now warmed at the shoreline fire—receive mercy, then become mercy.",
-    prophesyFulfilled: ["Zechariah 13:7", "Ezekiel 34:11-16"],
-    furtherReading: ["John 21:1-19", "1 Corinthians 1:12-14", "Galatians 2:9-21"],
+    prophesyFulfilled: ["Zechariah 13:7", "Ezekiel 34:11-16", "Psalm 16:10", "Isaiah 53:10-11"],
+    furtherReading: ["John 21:1-19", "1 Corinthians 1:12-14", "Galatians 2:9-21", "Acts 2:14-36"],
   },
 };
 

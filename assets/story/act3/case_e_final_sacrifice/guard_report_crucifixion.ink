@@ -5,6 +5,16 @@
 // UNLOCKS: unbroken_legs, sour_wine_sponge, final_words, crucifixion_nails
 // REVEALS PROPHECY: psalm_34_20
 // SOURCE: John 19:28-36, Luke 23:46
+// ------------------------------------------------------------
+// BIBLICAL CONTEXT:
+//   Summary: A Roman soldier on the execution detail describes the
+//   practical details of the crucifixion — the nails, the breaking
+//   of the two thieves' legs to hasten death, the sour wine offered
+//   on a sponge, and Jesus's final words before He died.
+//   Significance: Because Jesus was already dead, the soldiers did
+//   not break His legs as they did the others, fulfilling the
+//   requirement that the Passover lamb — and, by type, the Messiah —
+//   have no bone broken (Psalm 34:20; Exodus 12:46).
 // ============================================================
 
 -> intro

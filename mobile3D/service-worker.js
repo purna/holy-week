@@ -1,5 +1,5 @@
 const CACHE_PREFIX = 'holy-week-cache';
-const CACHE_VERSION = 'v1.4'; // Authored Lab progression update
+const CACHE_VERSION = 'v2.2'; // Lock Case File answers until prophecy research is complete
 const CACHE_NAME = `${CACHE_PREFIX}-${CACHE_VERSION}`;
 
 // List all critical assets that need to be cached for offline use.

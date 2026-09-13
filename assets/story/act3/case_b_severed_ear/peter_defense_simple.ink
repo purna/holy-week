@@ -7,6 +7,16 @@
 // ------------------------------------------------------------
 // NOTE: This is a simplified variant of peter_defense.ink.
 // See peter_defense.ink for the full testimony.
+// ------------------------------------------------------------
+// BIBLICAL CONTEXT:
+//   Summary: Peter recalls denying Jesus three times before the
+//   rooster crowed, catching Jesus's gaze across the courtyard in
+//   the moment of the third denial, then later encountering the
+//   risen Jesus, who forgave and recommissioned him without Peter
+//   needing to ask.
+//   Significance: This condensed testimony distills Peter's arc —
+//   failure, grief, and unearned restoration — into its simplest
+//   form: a man who fell completely and was raised up all the same.
 // ============================================================
 
 -> start

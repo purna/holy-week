@@ -5,7 +5,16 @@
 // CASE ID: resurrection
 // CASE EXPORT: crucifixion_det
 // SOURCE: act4_case_2d.js → NPC 'marcus'
+// BIBLE REFERENCE: Matthew 27:45-54; Mark 15:33-39; Luke 23:44-47
 // ------------------------------------------------------------
+// BIBLICAL CONTEXT:
+//   Summary: A Roman centurion stood guard at the crucifixion,
+//   witnessing darkness fall over the land from noon until three,
+//   Jesus's final cry, and the temple curtain tearing in two at the
+//   moment of His death.
+//   Significance: Struck by what he had seen, the centurion
+//   declared, "Surely this man was the Son of God" — a Gentile
+//   soldier becoming an unexpected witness to Jesus's identity.
 // ============================================================
 //
 

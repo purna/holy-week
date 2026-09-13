@@ -1,6 +1,6 @@
 {
   "start": {
-    "content": "We fell asleep. The night was long. The Galilean's disciples came during the darkness and stole the body while we slumbered. That is our authorized statement, and that is what I will repeat to anyone who asks.",
+    "content": "The shift began at 2100 hours. Standard post at the garden tomb. The imperial seal was intact. Four of us — rotating watch. The disciples' report said we were asleep. That is the official story.",
     "choices": [
       {
         "text": "A Roman guard sleeping on post faces execution.",
@@ -9,72 +9,232 @@
       {
         "text": "Where did those coins in your locker come from?",
         "destination": "bribe_question"
+      },
+      {
+        "text": "You were awake when it happened.",
+        "destination": "truth_claim"
       }
     ]
   },
   "execution_threat": {
-    "content": "Which is why the High Priest has given his personal word to Pilate that our unit will not face the standard military penalty. The Sanhedrin covers our negligence. In return, we keep the official story. This is how the province functions.",
+    "content": "Which is why the High Priest gave his personal word to Pilate. Under Lex Julia, sleeping at your post during a sacred assignment carried the death sentence. But Caiaphas held a letter from the procurator.",
     "choices": [
       {
-        "text": "That sounds like a bribe.",
-        "destination": "bribe_question"
+        "text": "The letter from Pilate.",
+        "destination": "pilate_letter"
       },
       {
-        "text": "Pilate agreed to that arrangement?",
+        "text": "Pilate agreed to suppress.",
         "destination": "pilate_arrangement"
       }
     ]
   },
+  "pilate_letter": {
+    "content": "The letter from Pilate — I saw it. \"No harm to the body of the prisoner.\" Those were his exact words. He instructed his agents to ensure the corpse remained intact.\n# UNLOCK_EVIDENCE: broken_imperial_seal",
+    "choices": [
+      {
+        "text": "The seal was intact",
+        "destination": "seal_intact"
+      },
+      {
+        "text": "What happened at dawn?",
+        "destination": "dawn_events"
+      }
+    ]
+  },
   "bribe_question": {
-    "content": "That silver is a security stipend. A goodwill payment for our cooperation in maintaining public order. The chief priests counted it out to us directly in the Sanhedrin chamber. It has nothing to do with the body.",
+    "content": "That silver is a \"security stipend.\" The chief priests counted it out in the Sanhedrin chamber.\n# UNLOCK_EVIDENCE: bribe_shekels",
     "choices": [
       {
-        "text": "Then tell me what you actually saw.",
-        "destination": "pressure"
+        "text": "How many shekels?",
+        "destination": "shekel_count"
       },
       {
-        "text": "How much was paid?",
-        "destination": "pressure"
+        "text": "The coins were Temple currency.",
+        "destination": "temple_currency"
       }
     ]
   },
-  "pilate_arrangement": {
-    "content": "Pilate and Caiaphas have a working relationship. The Sanhedrin keeps the crowds under control during Passover. Pilate keeps his cohorts out of the Temple courts. One guard unit's negligence is a small price for that arrangement to continue.",
+  "shekel_count": {
+    "content": "Fifty shekels each — enough to buy a small vineyard. The steward distributed them with practiced efficiency. The weight in my palm was unmistakable.",
     "choices": [
       {
-        "text": "So you are protected.",
-        "destination": "pressure"
-      }
-    ]
-  },
-  "pressure": {
-    "content": "I cannot give you anything beyond the authorized narrative. I have a unit to protect. Soldiers who talk outside the chain of command have short careers and shorter lives in this province.",
-    "choices": [
-      {
-        "text": "The seal was shattered from inside, not pried. Nothing human did that.",
-        "destination": "truth"
+        "text": "The payment was unprecedented.",
+        "destination": "unprecedented_payment"
       },
       {
-        "text": "You were awake when it happened. All of you were.",
-        "destination": "truth"
+        "text": "The weight felt wrong.",
+        "destination": "felt_wrong"
       }
     ]
   },
-  "truth": {
-    "content": "We did not close our eyes! No human thief could have bypassed our array without drawing steel. The earth groaned — the ground shook with a force that knocked every man flat. Then a light, white like lightning but silent, and the stone moved as if it weighed nothing. We woke up paralyzed. When our sight returned, the tomb was empty. We ran straight to the Temple because Pilate would have nailed us to a timber for it.",
+  "unprecedented_payment": {
+    "content": "The payment was unprecedented. The amount could buy a small vineyard or fund a new start. The steward acted as if buying witness silence was routine. The machinery of cover-up was well-oiled.",
     "choices": [
       {
-        "text": "So you witnessed the impossible.",
-        "destination": "closing"
+        "text": "The machinery was sophisticated.",
+        "destination": "sophisticated"
       },
       {
-        "text": "You ran to the priests before you reported to your commanding officer.",
-        "destination": "closing"
+        "text": "The practice was routine.",
+        "destination": "routine_bribery"
       }
     ]
   },
-  "closing": {
-    "content": "We witnessed something that has no place in a Roman military report. So the priests gave us a story that does. Call me a liar — but understand that I am a liar because the truth is more terrifying than any court martial I have ever faced.",
+  "sophisticated": {
+    "content": "The machinery was sophisticated. The Sanhedrin knew how to handle inconvenient witnesses. Bribe money. A letter from the procurator. A pre-approved narrative.\n# UNLOCK_EVIDENCE: sanhedrin_report",
+    "choices": [
+      {
+        "text": "The cover was comprehensive.",
+        "destination": "cover_comprehensive"
+      },
+      {
+        "text": "The truth would out.",
+        "destination": "truth_will_out"
+      }
+    ]
+  },
+  "truth_will_out": {
+    "content": "The truth will out. It always does. No amount of silver can erase the earthquake. No letter can explain the light. No approved narrative can make the dead stay dead.",
+    "choices": [
+      {
+        "text": "The truth was unshakeable.",
+        "destination": "unshakeable"
+      },
+      {
+        "text": "The evidence was divine.",
+        "destination": "divine_evidence"
+      }
+    ]
+  },
+  "dawn_events": {
+    "content": "Dawn brought the earthquake. A focused, violent shaking knocked every man flat. Dust filled the air. And in the chaos, a light white as lightning filled the garden.",
+    "choices": [
+      {
+        "text": "The light appeared.",
+        "destination": "light_appears"
+      },
+      {
+        "text": "The soldiers were paralyzed.",
+        "destination": "paralyzed"
+      }
+    ]
+  },
+  "light_appears": {
+    "content": "The light appeared — white as lightning, brighter than the noonday sun, yet silent. It filled the garden, touched the tomb entrance, and the stone began to move.",
+    "choices": [
+      {
+        "text": "The recognition was divine.",
+        "destination": "divine_recognition"
+      },
+      {
+        "text": "The spear broke.",
+        "destination": "spear_breaks"
+      }
+    ]
+  },
+  "paralyzed": {
+    "content": "Paralyzed by something beyond physical force. Awe and terror gripped us as we witnessed the divine intervention unfolding.\n# UNLOCK_EVIDENCE: shattered_spear",
+    "choices": [
+      {
+        "text": "The evidence was complete.",
+        "destination": "evidence_complete"
+      }
+    ]
+  },
+  "spear_breaks": {
+    "content": "My spear — the pilum that served me eight years — snapped clean in two. The wood fibers showed compression failure.\n# UNLOCK_EVIDENCE: shattered_spear",
+    "choices": [
+      {
+        "text": "The force was supernatural.",
+        "destination": "supernatural_force"
+      },
+      {
+        "text": "The evidence was physical.",
+        "destination": "physical_evidence"
+      }
+    ]
+  },
+  "evidence_complete": {
+    "content": "The evidence was complete. We ran to the priests — not to Pilate. The priests smiled. And they counted out the coins.\n# UNLOCK_EVIDENCE: sanhedrin_report",
+    "choices": [
+      {
+        "text": "The report was filed.",
+        "destination": "report_filed"
+      },
+      {
+        "text": "The truth was purchased.",
+        "destination": "purchased"
+      }
+    ]
+  },
+  "report_filed": {
+    "content": "The Sanhedrin report was filed in triplicate. One copy for the procurator. One for the Temple elders. One — the one I keep hidden — for the day someone asks questions.",
+    "choices": [
+      {
+        "text": "The admission is in writing.",
+        "destination": "written_admission"
+      },
+      {
+        "text": "The cover-up is documented.",
+        "destination": "documented"
+      }
+    ]
+  },
+  "truth_claim": {
+    "content": "I will repeat the authorized statement: \"We fell asleep. The disciples stole the body.\" But the Sanhedrin knows we did not sleep. The coins prove it. The report proves it. The spear proves it.\n# UNLOCK_EVIDENCE: sanhedrin_report",
+    "choices": [
+      {
+        "text": "The contradiction is in their records.",
+        "destination": "contradiction"
+      },
+      {
+        "text": "The truth is in the evidence.",
+        "destination": "evidence_proves"
+      }
+    ]
+  },
+  "contradiction": {
+    "content": "The contradiction is in their own records. The Sanhedrin report admits receiving our account. The bribe coins were minted by the Temple. The broken seal bears the procurator's stamp.",
+    "choices": [
+      {
+        "text": "The evidence is overwhelming.",
+        "destination": "overwhelming_evidence"
+      },
+      {
+        "text": "The cover-up is complete.",
+        "destination": "complete_cover"
+      }
+    ]
+  },
+  "overwhelming_evidence": {
+    "content": "The evidence is overwhelming. The coins. The seal. The spear. The report. All of it points to the same conclusion: something beyond human explanation occurred at the garden tomb.",
+    "choices": [
+      {
+        "text": "The testimony is true.",
+        "destination": "truth_undeniable"
+      },
+      {
+        "text": "The witnesses will testify.",
+        "destination": "witnesses_testify"
+      }
+    ]
+  },
+  "truth_undeniable": {
+    "content": "The testimony is undeniable. We are Roman soldiers. We do not fabricate. The earth shook. The light appeared. The stone moved. The tomb was empty.\n# UNLOCK_EVIDENCE: resurrection_appearance",
+    "choices": [
+      {
+        "text": "The explanation was divine.",
+        "destination": "divine_explanation"
+      },
+      {
+        "text": "The testimony is eternal.",
+        "destination": "eternal"
+      }
+    ]
+  },
+  "eternal": {
+    "content": "The testimony is eternal. The evidence will speak. And the truth — that something beyond human comprehension happened in a garden outside Jerusalem — will echo through every generation until the Son of Man returns.",
     "choices": []
   }
 }

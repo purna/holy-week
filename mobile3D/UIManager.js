@@ -613,6 +613,7 @@ export class UIManager {
     if (!c || !view) return;
     const isConcluded = c ? (this.cm.getCaseProgress(c.id)?.concluded || false) : false;
     view.innerHTML = this.accuseUI.render({ canConclude: true, isConcluded: isConcluded });
+    this.accuseUI.bindEvents(view);
     if (isConcluded) {
       const concludeBtn = view.querySelector('.conclude-btn.concluded');
       if (concludeBtn) concludeBtn.onclick = () => window.showCaseConclusionModal();

@@ -1,14 +1,218 @@
 {
-    "id": "simon_leper_host",
-    "name": "Simon the Leper",
-    "title": "Dinner Host",
-    "faction": "disciples",
-    "icon": "house-duotone.svg",
-    "description": "Once known only by his disease, Simon was healed by Jesus and now hosts a dinner in his own home. His table becomes the setting for one of the most significant acts of worship in the Gospel narrative — Mary's anointing of Jesus with expensive perfume.",
-    "attitude": {
-        "neutral": "Grateful, humble, and somewhat bemused by the attention his table receives.",
-        "positive": "Proud to host Jesus and the disciples, moved by the devotion shown at his dinner.",
-        "negative": "Defensive of his household and the memory of the night, aware that some still judge him by his past."
-    },
-    "background": "Simon the Leper was likely healed by Jesus at some point before this dinner. His willingness to host Jesus publicly, despite his past condition, shows the transformative power of his encounter with Christ. The dinner at his house becomes a stage for both extravagant worship and hidden betrayal."
+  "start": {
+    "content": "They still call me \"the Leper,\" even now. It reminds everyone at my table what was done for me. When the Master first came to my door, they crossed the street to avoid me.",
+    "choices": [
+      {
+        "text": "You were healed by Jesus.",
+        "destination": "healed_by_jesus"
+      },
+      {
+        "text": "The dinner was arranged.",
+        "destination": "dinner_arranged"
+      },
+      {
+        "text": "Mary performed the anointing.",
+        "destination": "mary_act"
+      }
+    ]
+  },
+  "healed_by_jesus": {
+    "content": "Healed -- yes. Leprosy took my skin, my fingernails, the flesh of my arms and legs. The physicians tried their poultices. Nothing worked. Then He touched me and said, \"Be clean.\" And I was clean.",
+    "choices": [
+      {
+        "text": "The touch was divine.",
+        "destination": "divine_touch"
+      },
+      {
+        "text": "Your community rejected you.",
+        "destination": "community_reaction"
+      }
+    ]
+  },
+  "divine_touch": {
+    "content": "The touch was divine. The Master looked at my rotting flesh and saw something worth restoring. The villagers said it was unclean to be near me. He said it was unclean to stay away.",
+    "choices": [
+      {
+        "text": "Why did He risk it?",
+        "destination": "why_risk"
+      },
+      {
+        "text": "The healing was immediate.",
+        "destination": "healing_immediate"
+      }
+    ]
+  },
+  "why_risk": {
+    "content": "Why risk ceremonial uncleanness? The Law required separation. Yet He crossed the street to reach me, and the Law yielded. I have thought about this often -- what divine authority allows Him to override the purity code?",
+    "choices": [
+      {
+        "text": "The authority was greater.",
+        "destination": "authority_greater"
+      },
+      {
+        "text": "The Law was incomplete.",
+        "destination": "law_incomplete"
+      }
+    ]
+  },
+  "authority_greater": {
+    "content": "The authority was greater than the Law itself. He did not need to consult the priests, did not need to purify afterward, did not need to make offerings for His own cleansing. He simply touched and it was done. If He had power over disease, what else could He do?",
+    "choices": [
+      {
+        "text": "Power over death.",
+        "destination": "power_over_death"
+      },
+      {
+        "text": "The scope was cosmic.",
+        "destination": "scope_cosmic"
+      }
+    ]
+  },
+  "dinner_arranged": {
+    "content": "The dinner was arranged because gratitude demanded it. How do you feed a man who gave you back your life? I offered my table -- and my forgiveness. Let my home be known for what happened that evening.\n# UNLOCK_EVIDENCE: evidence_alabaster_jar",
+    "choices": [
+      {
+        "text": "The guests arrived.",
+        "destination": "guests_arrived"
+      },
+      {
+        "text": "What preparations did you make?",
+        "destination": "preparations"
+      }
+    ]
+  },
+  "preparations": {
+    "content": "The preparations took all day. The finest lambs from my flock, the best wine from my cellar, bread baked fresh with honey. My servants set the table with my best linen. I wanted everything proper -- this was the Master's table.",
+    "choices": [
+      {
+        "text": "The proper preparations.",
+        "destination": "proper_prep"
+      },
+      {
+        "text": "The guests were notable.",
+        "destination": "notable_guests"
+      }
+    ]
+  },
+  "guests_arrived": {
+    "content": "The guests arrived -- disciples, Pharisees, local townspeople. Lazarus was there, walking, talking, eating -- a walking miracle of the Master's power. My own sister Martha bustled about, ensuring everything was proper.",
+    "choices": [
+      {
+        "text": "Lazarus's presence amazed them.",
+        "destination": "lazarus_present"
+      },
+      {
+        "text": "Martha was busy serving.",
+        "destination": "martha_service"
+      }
+    ]
+  },
+  "lazarus_present": {
+    "content": "Lazarus's presence -- the man who had been dead four days, now alive and eating fish from my table. The crowd whispered. The children pointed. The priests shifted uncomfortably. No one spoke of how he had been buried, how the earth had been sealed.",
+    "choices": [
+      {
+        "text": "The silence was strange.",
+        "destination": "strange_silence"
+      },
+      {
+        "text": "The miracle was undeniable.",
+        "destination": "undeniable_miracle"
+      }
+    ]
+  },
+  "mary_act": {
+    "content": "Then -- Mary moved. She opened a sealed alabaster jar and poured expensive nard on the Master's feet. The fragrance filled the entire house.\n# UNLOCK_EVIDENCE: evidence_house_filled",
+    "choices": [
+      {
+        "text": "The fragrance was intense.",
+        "destination": "fragrance_intense"
+      },
+      {
+        "text": "Judas objected loudly.",
+        "destination": "judas_objection"
+      }
+    ]
+  },
+  "fragrance_intense": {
+    "content": "The fragrance was intense -- pure spikenard from the mountains of India, imported at great cost. The scent clung to every guest, filled every corner of the house. I could still smell it the next morning when I opened the door.",
+    "choices": [
+      {
+        "text": "The cost was great.",
+        "destination": "cost_great"
+      },
+      {
+        "text": "Judas's complaint followed.",
+        "destination": "judas_complaint"
+      }
+    ]
+  },
+  "judas_objection": {
+    "content": "Judas objected loudly: \"Why wasn't this sold for three hundred denarii and given to the poor?\" He said it with the tone of compassion, but I knew him better. He kept the money bag, and the Master had noted that already.\n# UNLOCK_EVIDENCE: evidence_judas_complaint",
+    "choices": [
+      {
+        "text": "His true motive was greed.",
+        "destination": "judas_motive"
+      },
+      {
+        "text": "The Master saw through him.",
+        "destination": "masters_response"
+      }
+    ]
+  },
+  "judas_motive": {
+    "content": "His true motive was not compassion. The Gospel writer John saw it plainly -- Judas handled the money bag, and yes, he used to steal from it. His concern for the poor was a cover for his own greed. The Master knew.",
+    "choices": [
+      {
+        "text": "The Master knew his heart.",
+        "destination": "master_knew"
+      },
+      {
+        "text": "His response was devastating.",
+        "destination": "response_quiet"
+      }
+    ]
+  },
+  "masters_response": {
+    "content": "The Master's response was quiet but devastating: \"Let her alone -- she has done a beautiful thing to me. The poor you will always have with you, but you will not always have me.\" He saw what no one else did -- this was preparation for His burial.",
+    "choices": [
+      {
+        "text": "Preparation for burial.",
+        "destination": "burial_prep"
+      },
+      {
+        "text": "The meaning was deeper.",
+        "destination": "meaning_deeper"
+      }
+    ]
+  },
+  "burial_prep": {
+    "content": "Preparation for burial. Mary understood what Judas could not -- the Master was not just entering Jerusalem as a king, but as a sacrifice. The anointing oil was the chrism, the fragrance the offering, the house the temple.",
+    "choices": [
+      {
+        "text": "The parallel was clear.",
+        "destination": "parallel_clear"
+      },
+      {
+        "text": "The pattern emerged.",
+        "destination": "pattern_emerged"
+      }
+    ]
+  },
+  "pattern_emerged": {
+    "content": "The pattern emerged clearly -- selection on Palm Sunday (triumphal entry), inspection in the Temple courts (the questioning), anointing at Bethany (Mary's act), and soon the sacrifice itself. The Passover lamb, just as the Exodus records it.",
+    "choices": [
+      {
+        "text": "The Exodus connection.",
+        "destination": "exodus_connection"
+      },
+      {
+        "text": "The pattern was precise.",
+        "destination": "pattern_precise"
+      }
+    ]
+  },
+  "closing": {
+    "content": "I have very little left to give that would embarrass me to give. Let my house be remembered for what happened at my table, not for what I once was. Please -- eat. There is more than enough.",
+    "choices": []
+  }
 }

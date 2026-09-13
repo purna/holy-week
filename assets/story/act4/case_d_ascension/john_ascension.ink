@@ -13,6 +13,15 @@
 //   - Acts 1:9-11
 //     Gospel: Acts 1:9-11
 //     Insight: The visible ascension confirms Jesus's enthronement and promises His return.
+// ------------------------------------------------------------
+// BIBLICAL CONTEXT:
+//   Summary: John, the disciple closest to Jesus, stood among the
+//   Eleven on the Mount of Olives at the close of the forty days of
+//   resurrection appearances, watching Jesus lift His hands in
+//   blessing before being taken up and hidden by a cloud.
+//   Significance: John's testimony ties the ascension to everything
+//   he had witnessed — the Last Supper, the cross, the empty tomb —
+//   framing it as the culmination of Jesus's earthly ministry.
 // ============================================================
 
 -> start

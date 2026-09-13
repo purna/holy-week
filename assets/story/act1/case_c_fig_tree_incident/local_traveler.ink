@@ -38,9 +38,9 @@ I saw the Galilean teacher and his disciples pass by both mornings. Yesterday, h
 * [Challenge: Did you see them do anything?] -> exposed
 
 === exposed ===
-No, I didn't see them do anything. Just look. But the way the teacher looked at it yesterday... it was a look that could curdle milk. And then today, it was dead. Coincidence? I don't know. But it was strange.
-
+No, I didn't see them do anything. Just look. But the way the teacher looked at it yesterday... it was a look that could curdle milk. And this morning, one of his followers told me what he'd said to it out loud, the day before — "Let no one eat fruit from you ever again." I didn't think much of it at the time. Words are cheap on this road. But the tree is dead, and the words weren't.
 * [Move forward.] -> closing
 
 === closing ===
+I don't know what to make of any of it, if I'm honest. I've walked this road for years and trees don't die like that — not overnight, not from a sentence. All I can tell you is what my own eyes saw on two mornings running: leaves on Monday, and a dead tree on Tuesday, and a teacher who seemed to know which one was coming before I did.
 -> DONE

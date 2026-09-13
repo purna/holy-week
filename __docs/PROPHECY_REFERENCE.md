@@ -2335,7 +2335,7 @@ No additional evidence points to this prophecy ID.
 - **Location:** Sea of Galilee
 - **Time:** dawn
 - **Case Bible references:** John 21:1-19; 1 Corinthians 1:12-14; Galatians 2:9-21
-- **Truth record — prophecies fulfilled:** Zechariah 13:7; Ezekiel 34:11-16
+- **Truth record — prophecies fulfilled:** Zechariah 13:7; Ezekiel 34:11-16; Psalm 16:10; Isaiah 53:10-11 (corrected — `truth.prophesyFulfilled` in `act4_case.js` previously listed only the first two; Psalm 16:10 also had no working deduction path at all until a new `galilean_apparition+psalm_16_10_scroll` deduction was added — see `prophecies.md` for detail)
 
 ### Biblical context
 

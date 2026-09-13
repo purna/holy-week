@@ -13,6 +13,15 @@
 //   - Daniel 7:13-14
 //     Gospel: Acts 1:9-11
 //     Insight: The Son of Man's ascension to the Ancient of Days, fulfilling Daniel's vision of divine enthronement.
+// ------------------------------------------------------------
+// BIBLICAL CONTEXT:
+//   Summary: As the disciples stood on the Mount of Olives watching
+//   Jesus rise into a cloud, two men in white suddenly stood among
+//   them and asked why they were staring into the sky, declaring
+//   that this same Jesus would return in the same way He left.
+//   Significance: The angels' announcement turns the disciples from
+//   passive spectators into commissioned witnesses, anchoring the
+//   promise of Christ's visible, bodily return.
 // ============================================================
 
 -> start

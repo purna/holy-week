@@ -1,19 +1,19 @@
 {
   "start": {
-    "content": "\"Children, do you have any fish?\" We had caught nothing all night. Who is asking?",
+    "content": "\"Children\" — the word for grown men who had fished all night — \"have you caught anything?\"\nNothing. Not one fish since the light left the sky.",
     "choices": [
       {
-        "text": "No, we have caught nothing.",
+        "text": "We have caught nothing.",
         "destination": "cast_net"
       },
       {
-        "text": "Who is asking?",
+        "text": "Who calls us \"children\" from the shore?",
         "destination": "identity"
       }
     ]
   },
   "cast_net": {
-    "content": "\"Cast the net on the right side of the boat, and you will find some.\" We will try once more.",
+    "content": "\"Cast the net on the right side of the boat, and you will find some.\" [John 21:6]\nNo proof offered first. Only the instruction — the same kind given the first time this net was cast at His word, three years and a lifetime ago.",
     "choices": [
       {
         "text": "Cast the net.",
@@ -22,16 +22,16 @@
     ]
   },
   "catch": {
-    "content": "The net strains, nearly tearing with the weight of 153 large fish.",
+    "content": "The net does not merely fill. It strains, bulges, drags the boat sideways — a hundred and fifty-three fish, and still it does not tear. [John 21:11]",
     "choices": [
       {
         "text": "It is the Lord!",
-        "destination": "shore"
+        "destination": "identity"
       }
     ]
   },
   "identity": {
-    "content": "The light of the morning reflects off the water. \"It is the Lord!\" John whispers beside you. Peter jumps into the sea.",
+    "content": "John says it first, quietly, almost to himself. \"It is the Lord.\" [John 21:7]\nPeter does not wait for the boat. He ties his outer garment around him and goes into the water.",
     "choices": [
       {
         "text": "Go to the shore.",
@@ -40,38 +40,51 @@
     ]
   },
   "shore": {
-    "content": "A charcoal fire is burning on the sand, with fish on it and some bread. \"Come and have breakfast,\" Jesus says.",
+    "content": "A charcoal fire burns on the sand. Fish already laid on the coals. Bread beside it.\n\"Bring some of the fish you have just caught... Come and have breakfast.\" [John 21:10, 12]\nNo question yet about the water that night, or the courtyard three nights before. Feed them first.",
     "choices": [
       {
         "text": "Sit and eat.",
+        "destination": "restoration"
+      },
+      {
+        "text": "Why a fire, of all things?",
+        "destination": "fire_meaning"
+      }
+    ]
+  },
+  "fire_meaning": {
+    "content": "There was another fire. A courtyard, three nights past, where a servant girl asked a question and a man denied he ever knew Me. [John 18:18, 25-27]\nThat fire has not been forgotten. This one was built on purpose.",
+    "choices": [
+      {
+        "text": "Continue.",
         "destination": "restoration"
       }
     ]
   },
   "restoration": {
-    "content": "He turns to Simon Peter. \"Simon, son of John, do you love Me more than these?\" He is asking about the love that stays.\nThe question echoes across seven years of memory — \"Even before you deny Me three times...\" And yet He asks again. Not with accusation. With invitation.",
+    "content": "# UNLOCK_EVIDENCE: charcoal_fire\n# UNLOCK_EVIDENCE: threefold_commission\nWhen they have eaten, the question turns to Simon Peter. Not to the group. To him.\n\"Simon, son of John, do you love Me more than these?\" [John 21:15]\nIt does not accuse. It waits.",
     "choices": [
+      {
+        "text": "What does Peter answer?",
+        "destination": "peter_answer"
+      },
       {
         "text": "Feed my lambs...",
         "destination": "feeding"
-      },
-      {
-        "text": "What did Peter say?",
-        "destination": "peter_answer"
       }
     ]
   },
   "peter_answer": {
-    "content": "\"Yes, Lord, you know that I love you.\" Three times. Each answer a little more fragile than the last. The third time, Jesus uses the word Peter himself had chosen — \"phileo\" — brotherly love, not \"agapao\" — divine love.\nPeter's face crumples. He understands. Three denials. Three affirmations. Three wounds healed by three questions.",
+    "content": "\"Yes, Lord; You know that I love You.\"\n\"Feed My lambs.\" [John 21:15]\nAgain: \"Simon, son of John, do you love Me?\"\n\"Yes, Lord; You know that I love You.\"\n\"Tend My sheep.\" [John 21:16]\nA third time — and the word changes. Not the love that holds nothing back, but the word Peter himself has been using all along: the ordinary love of a friend. Peter is grieved. He understands, at last, that he is being met on his own terms, not accused on someone else's.\n\"Lord, You know all things; You know that I love You.\"\n\"Feed My sheep.\" [John 21:17]",
     "choices": [
       {
-        "text": "Feed my sheep.",
+        "text": "Three questions. Three answers. Three commissions.",
         "destination": "feeding"
       }
     ]
   },
   "feeding": {
-    "content": "\"Feed my lambs. Tend my sheep. Feed my sheep.\" Three times He commissions the one who fled. The same charcoal fire. The same threefold exchange.\n\"Follow me.\"\nThe words that began everything — the same Sea of Galilee, three years before — now end it. Or begin it again.",
+    "content": "Three denials, spoken beside a fire, in the dark, to strangers who meant nothing to him.\nThree affirmations, spoken beside a fire, in the daylight, to the One who means everything.\nThe wound and the healing share the same shape.\n\"Follow Me.\" [John 21:19]\nThe same two words that began it all, on this same water, three years before.",
     "choices": [
       {
         "text": "Continue.",
@@ -80,7 +93,7 @@
     ]
   },
   "closing": {
-    "content": "He forgave me. Not with words of reproach, but with a calling. \"Feed my sheep.\" \"Follow me.\"\nI am the rock that was shattered and made whole. The church would be built on this restored love.\nThe investigation of the empty tomb leads here — to a life given back and a mission that will change the world.\n# UNLOCK_EVIDENCE: peter_restored\n# UNLOCK_EVIDENCE: three_fold_commission",
+    "content": "No explanation was demanded for the failure. Only love, three times — and a flock built on the answer.\nThe tomb is empty. The Shepherd who was struck lives. [Zechariah 13:7] And the sheep who scattered — Simon first among them — is sent now to gather others. [Ezekiel 34:11-16]",
     "choices": []
   }
 }

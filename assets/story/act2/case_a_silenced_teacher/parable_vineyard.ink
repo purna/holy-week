@@ -6,6 +6,12 @@
 // SOURCE: ORPHAN FILE (not referenced in any case file)
 // BIBLE: Matthew 21:33–46, Mark 12:1–12, Luke 20:9–19, Isaiah 5
 // ------------------------------------------------------------
+// BIBLICAL CONTEXT:
+//   Jesus's parable develops Isaiah's song of Israel as God's
+//   vineyard. The tenants reject the owner's messengers and murder
+//   his beloved son, exposing the leaders' rejection of the prophets
+//   and of Jesus. Psalm 118 adds the promise that the stone rejected
+//   by the builders will become the cornerstone.
 // ============================================================
 //
 

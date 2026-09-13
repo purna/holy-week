@@ -8,6 +8,18 @@
 // ------------------------------------------------------------
 // PURPOSE: Pilate's account — the trial, the choice, the failure
 // (Ink version of pontius_pilate_barabbas.json — condensed for branching play)
+// ------------------------------------------------------------
+// BIBLICAL CONTEXT:
+//   Summary: Pilate privately questioned Jesus, found no crime
+//   worthy of death, and tried to release Him under the Passover
+//   custom — but the chief priests stirred the crowd to demand
+//   Barabbas instead, and Pilate, warned by his wife's dream and
+//   pressed by threats of unrest, gave in and sentenced Jesus to
+//   crucifixion.
+//   Significance: Pilate's repeated declarations of Jesus's
+//   innocence, followed by his surrender to political pressure,
+//   frame the crucifixion as a miscarriage of justice knowingly
+//   permitted rather than a legitimate verdict.
 // ============================================================
 
 -> start

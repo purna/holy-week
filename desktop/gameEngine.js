@@ -1396,27 +1396,10 @@ export class GameEngine {
     }
     const isConcluded = this.cm.getCaseProgress(c.id)?.concluded || false;
     container.innerHTML = this.accuseUI.render({ canConclude: true, isConcluded: isConcluded });
+    this.accuseUI.bindEvents(container);
     const concludeBtn = container.querySelector('.conclude-btn.concluded');
     if (concludeBtn) {
       concludeBtn.onclick = () => this.openConclusionModal();
-    }
-
-    const submitTheoryBtn = container.querySelector('#btn-submit-theory');
-    if (submitTheoryBtn) {
-      submitTheoryBtn.onclick = () => {
-        const input = container.querySelector('#what-happened-input');
-        const theory = input?.value?.trim();
-        if (!theory) {
-          this.controls.displayAlert('Please describe what you think happened before submitting.', 3000);
-          return;
-        }
-        this.audio.playUI();
-        this.cm.recordTheory(c.id, theory);
-        this.controls.displayAlert('Theory submitted. Good luck, detective.', 3000);
-        if (input) input.value = '';
-        submitTheoryBtn.disabled = true;
-        setTimeout(() => { if (submitTheoryBtn) submitTheoryBtn.disabled = false; }, 2000);
-      };
     }
 
     if (!isConcluded && this.cm.canConcludeCase()) {

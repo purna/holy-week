@@ -77,7 +77,7 @@ Thirty pieces of silver. The price of a slave. That is what the Temple assessed 
 === bag_heavy ===
 The money bag seems heavy tonight. Thirty silver coins is the weight of a life in this city. A slave's price. I did what was necessary for the group.
 
-# reveal:money_bag_impression
+# UNLOCK_EVIDENCE: evidence_money_bag_impression
 /#
 
 Jesus told us to be prepared. I am merely ensuring we are.

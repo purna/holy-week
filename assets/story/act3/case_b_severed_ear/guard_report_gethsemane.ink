@@ -7,6 +7,16 @@
 // BIBLE REFERENCE: John 18:3
 // ------------------------------------------------------------
 // PURPOSE: A Roman soldier's perspective on the arrest in Gethsemane.
+// ------------------------------------------------------------
+// BIBLICAL CONTEXT:
+//   Summary: A detachment of Roman soldiers, unusually joined with
+//   the Temple guard, was sent to arrest Jesus in the garden of
+//   Gethsemane — a combined military and religious operation for
+//   what was framed as a dangerous rebel.
+//   Significance: The scale of the force sent for one unarmed
+//   teacher, and His calm command of the arrest scene, struck even
+//   the Roman soldiers as strange, suggesting they expected
+//   resistance that never came.
 // ============================================================
 
 -> start

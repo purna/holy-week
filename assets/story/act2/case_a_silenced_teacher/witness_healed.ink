@@ -4,8 +4,14 @@
 // CASE: The Price of Life
 // CASE ID: lazarus_plot
 // SOURCE: ORPHAN FILE (not referenced in any case file)
-// BIBLE: Jeremiah 17:22
+// BIBLE: John 9:1–41; Jeremiah 17:22
 // ------------------------------------------------------------
+// BIBLICAL CONTEXT:
+//   Jesus healed a man blind from birth on the Sabbath. The man's
+//   neighbours and parents confirmed his identity, yet the Pharisees
+//   focused on Sabbath rules and repeatedly questioned him. His plain
+//   testimony — that he had been blind and could now see — exposed
+//   the spiritual blindness of those unwilling to accept the sign.
 // ============================================================
 
 -> start

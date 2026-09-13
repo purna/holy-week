@@ -1,14 +1,209 @@
 {
-    "id": "temple_inspection_scribe",
-    "name": "Hillel",
-    "title": "Temple Court Scribe",
-    "faction": "scribes",
-    "icon": "pencil-duotone.svg",
-    "description": "A court scribe tasked with recording the formal questioning of Jesus in the Temple courts and the routine business of the livestock markets ahead of Passover. His dual records reveal a striking parallel between the inspection of Passover lambs and the public examination of Jesus.",
-    "attitude": {
-        "neutral": "Professional, precise, and focused on documenting what actually happened.",
-        "positive": "Becomes animated when pointing out the pattern between the lamb records and Jesus's trial.",
-        "negative": "Cautious about drawing conclusions that might be seen as heretical by his superiors."
-    },
-    "background": "Hillel's role gives him a unique vantage point on both the Temple's commercial operations and the religious authorities' attempts to trap Jesus. His records of the Passover lamb selection and inspection schedule provide the key to understanding the typological pattern the investigator is uncovering."
+  "start": {
+    "content": "I am Hillel, a junior scribe assigned to the Court of the Gentiles. My hands are stained with ink from record-keeping and dust from the inspection ledgers. You wish to understand the proceedings? My records speak clearly.",
+    "choices": [
+      {
+        "text": "What have you recorded this week?",
+        "destination": "temple_proceedings"
+      },
+      {
+        "text": "The Passover lamb records?",
+        "destination": "lamb_records"
+      },
+      {
+        "text": "What of the questioning?",
+        "destination": "questioning_records"
+      }
+    ]
+  },
+  "temple_proceedings": {
+    "content": "The Temple proceedings this week have been extraordinary. I have documented four separate factions challenging the Galilean's authority, each using different legal precedents, each leaving without an answer.",
+    "choices": [
+      {
+        "text": "The factions were coordinated.",
+        "destination": "factions_coordinated"
+      },
+      {
+        "text": "None could trap Him.",
+        "destination": "none_trapped"
+      },
+      {
+        "text": "The crowd's reaction?",
+        "destination": "crowd_reaction_scribe"
+      }
+    ]
+  },
+  "factions_coordinated": {
+    "content": "The factions were coordinated -- chief priests, Pharisees, Sadducees, Herodians. Each brought a different angle, a different scripture, a different legal precedent. They approached it like seasoned prosecutors. But their case collapsed repeatedly.\n# UNLOCK_EVIDENCE: evidence_inspection_notes",
+    "choices": [
+      {
+        "text": "The collapses were recorded.",
+        "destination": "collapses_recorded"
+      },
+      {
+        "text": "What went wrong for them?",
+        "destination": "went_wrong"
+      }
+    ]
+  },
+  "none_trapped": {
+    "content": "None could trap Him. The Herodians came with their tax question, the Sadducees with their resurrection puzzle, the Pharisees with their law question, the chief priests with their authority challenge. Each question answered in a way that turned the questioner's own weapon against them.",
+    "choices": [
+      {
+        "text": "The weapons were turned.",
+        "destination": "weapons_turned"
+      },
+      {
+        "text": "The questions were answered.",
+        "destination": "questions_answered"
+      }
+    ]
+  },
+  "questioning_records": {
+    "content": "My questioning records span seventeen columns of careful script. The chief priests asked about authority -- He answered about John's baptism. The Pharisees asked about resurrection -- He spoke of Abraham's calling. The Herodians asked about taxes -- He spoke of Caesar and God.\n# UNLOCK_EVIDENCE: evidence_inspection_notes",
+    "choices": [
+      {
+        "text": "The answers were profound.",
+        "destination": "answers_profound"
+      },
+      {
+        "text": "The record is complete.",
+        "destination": "record_complete"
+      }
+    ]
+  },
+  "answers_profound": {
+    "content": "The answers were profound in their simplicity. Not lengthy treatises, not legal citations, but single sentences that reframed the entire question. When asked about resurrection, He did not argue theology -- He simply stated, \"God is not the God of the dead, but of the living.\" A grammatical observation that undermined their entire premise.\n# UNLOCK_EVIDENCE: evidence_inspection_notes",
+    "choices": [
+      {
+        "text": "The precision was startling.",
+        "destination": "precision_startling"
+      },
+      {
+        "text": "The silence followed.",
+        "destination": "silence_followed"
+      }
+    ]
+  },
+  "record_complete": {
+    "content": "The record is complete. Every question, every hesitation in the crowd, every glance exchanged between the questioners. I was trained to record details -- dates, names, locations -- but this day required something beyond mere documentation. I felt I was witnessing history being made.",
+    "choices": [
+      {
+        "text": "The history was visible.",
+        "destination": "history_visible"
+      },
+      {
+        "text": "The significance was clear.",
+        "destination": "significance_clear"
+      }
+    ]
+  },
+  "lamb_records": {
+    "content": "The lamb records -- I keep the official schedules for the Temple's livestock market. Passover lambs are selected on the tenth of Nisan, inspected daily until the fourteenth, and slaughtered at twilight. Each animal marked, each blemish noted, each breath counted. It is a rigorous process.\n# UNLOCK_EVIDENCE: evidence_lamb_records",
+    "choices": [
+      {
+        "text": "The schedule was precise.",
+        "destination": "schedule_precise"
+      },
+      {
+        "text": "The inspection was thorough.",
+        "destination": "inspection_thorough"
+      }
+    ]
+  },
+  "schedule_precise": {
+    "content": "The schedule was precise. Ten days of selection, four days of inspection, one night of sacrifice. Same as it has been for centuries. Same as it will be for generations to come. The reliability is the point -- the lamb must be flawless, the record must be unbroken.",
+    "choices": [
+      {
+        "text": "The parallel is unmistakable.",
+        "destination": "parallel_unmistakable"
+      },
+      {
+        "text": "The pattern is clear.",
+        "destination": "pattern_clear_lamb"
+      }
+    ]
+  },
+  "inspection_thorough": {
+    "content": "The inspection was thorough. Priests examined each lamb for blemish, deformity, age, and health. A lame lamb was disqualified. A blind lamb was set aside. A bull or goat with any imperfection was rejected. And yet --",
+    "choices": [
+      {
+        "text": "And yet what?",
+        "destination": "yet_what"
+      },
+      {
+        "text": "The inspection passed.",
+        "destination": "inspection_passed"
+      }
+    ]
+  },
+  "yet_what": {
+    "content": "And yet the one being inspected was not an animal. He was a man -- a carpenter's son from Nazareth. For four days, the religious authorities had subjected Him to the same scrutiny they give to sacrificial animals. The same questions, the same challenges, the same demand for perfection.",
+    "choices": [
+      {
+        "text": "The scrutiny was divine.",
+        "destination": "scrutiny_divine"
+      },
+      {
+        "text": "The perfection was proven.",
+        "destination": "perfection_proven"
+      }
+    ]
+  },
+  "inspection_passed": {
+    "content": "The inspection passed -- no blemish found, no flaw detected. The Herodians could not catch Him in His words. The Sadducees could not ensnare Him with their theology. The Pharisees could not trip Him up in the Law. Each test revealed the same result: spotless, blameless, without defect.\n# UNLOCK_EVIDENCE: evidence_fig_leaf_withered",
+    "choices": [
+      {
+        "text": "The result was conclusive.",
+        "destination": "result_conclusive"
+      },
+      {
+        "text": "The records prove it.",
+        "destination": "records_prove_it"
+      }
+    ]
+  },
+  "records_prove_it": {
+    "content": "The records prove it. My ledgers, meticulously maintained, show that every challenge was met, every question answered, every trap sprung back upon its setter. The ink is permanent, the testimony is true, and the conclusion is unavoidable.\n# UNLOCK_EVIDENCE: evidence_archives_authentic",
+    "choices": [
+      {
+        "text": "The archives are trusted.",
+        "destination": "archives_trusted"
+      },
+      {
+        "text": "The testimony stands.",
+        "destination": "testimony_stands_scribe"
+      }
+    ]
+  },
+  "collapses_recorded": {
+    "content": "The collapses were recorded. Every faction that approached the Galilean left without victory. The scholars would later discuss these encounters -- \"The debates of that month,\" they called them, \"when the Son of Man silenced every challenger.\"",
+    "choices": [
+      {
+        "text": "The Talmud recorded them?",
+        "destination": "talmud_recorded"
+      },
+      {
+        "text": "The silence was total.",
+        "destination": "silence_totally"
+      }
+    ]
+  },
+  "crowd_reaction_scribe": {
+    "content": "The crowd's reaction was mixed -- amazement at His answers, confusion at their implications, discomfort at their own inadequacy. The Gospel writers would later record: \"The chief priests and the scribes... were looking for a way to kill Him, for they feared Him because the whole crowd was amazed at His teaching.\"",
+    "choices": [
+      {
+        "text": "The fear was real.",
+        "destination": "fear_was_real"
+      },
+      {
+        "text": "The amazement was public.",
+        "destination": "amazement_public"
+      }
+    ]
+  },
+  "closing_scribe": {
+    "content": "Read the two ledgers side by side, if you like. The lamb records and the questioning records. I only write down what happens. But the pattern emerging from the records is unmistakable: the Passover lamb is being selected, inspected, challenged, and proven flawless. The same sequence, the same days, the same outcome.\n# UNLOCK_EVIDENCE: evidence_lamb_records",
+    "choices": []
+  }
 }

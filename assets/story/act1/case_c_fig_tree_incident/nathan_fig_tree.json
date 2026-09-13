@@ -83,16 +83,16 @@
     ]
   },
   "symbolic_judgment": {
-    "content": "I have heard that. A vine and a fig tree representing the nation — Micah, I think. If the Teacher was speaking to more than the tree, then what I saw this morning is heavier than I want to carry on a Tuesday. I will stick to my orchards and leave the symbols to people better equipped.",
+    "content": "I have heard that. A vine and a fig tree representing the nation — Micah, I think, or one of his contemporaries. If the Teacher was speaking to more than the tree, then what I saw this morning is heavier than I want to carry on a Tuesday. I will stick to my orchards and leave the symbols to people better equipped.",
     "choices": [
       {
-        "text": "Be careful with that one.",
+        "text": "Thank you, Nathan.",
         "destination": "closing"
       }
     ]
   },
   "closing": {
-    "content": "Be careful with that one. His words have weight. I have been tending these trees for twenty years. I have never seen a word do what His word did this morning. Write that down carefully.",
+    "content": "His words have weight, Scribe. I have been tending these trees for twenty years. I have never once seen a word do what His word did this morning. Write that down carefully.",
     "choices": []
   }
 }

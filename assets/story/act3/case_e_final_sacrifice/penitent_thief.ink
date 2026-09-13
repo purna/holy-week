@@ -5,6 +5,17 @@
 // UNLOCKS: crucified_with_thieves, crucifiers_forgiven
 // REVEALS PROPHECY: isaiah_53_12
 // SOURCE: Luke 23:32-33, Luke 23:34, Luke 23:39-43
+// ------------------------------------------------------------
+// BIBLICAL CONTEXT:
+//   Summary: One of the two criminals crucified beside Jesus
+//   rebuked the other for mocking Him, admitted their own guilt,
+//   and asked Jesus to remember him when He came into His kingdom —
+//   receiving the promise, "Today you will be with me in paradise."
+//   Significance: Jesus was crucified between two criminals,
+//   fulfilling Isaiah 53:12's prophecy that the Suffering Servant
+//   would be "numbered with the transgressors," while the thief's
+//   deathbed faith shows salvation offered without any work beyond
+//   belief.
 // ============================================================
 
 -> intro
@@ -47,7 +58,7 @@ something sticks."
 "My friend wouldn't let up on Him. Cursing, jeering, same as the
 crowd below. I told him to stop. 'Don't you fear God? We're
 getting exactly what we deserve. This man's done nothing wrong.'
-{penitent_confessed: I don't know why I said it. It just came out true.}
+I don't know why I said it. It just came out true.
 
 ~ penitent_confessed = true
 
@@ -78,6 +89,7 @@ what that felt like, dying next to Him instead of far from Him."
     ~ evidence_crucified_with_thieves = true
     # UNLOCK_EVIDENCE: crucified_with_thieves
 }
+
 -> DONE
 
 === unlock_crucifiers_forgiven ===
@@ -85,6 +97,7 @@ what that felt like, dying next to Him instead of far from Him."
     ~ evidence_crucifiers_forgiven = true
     # UNLOCK_EVIDENCE: crucifiers_forgiven
 }
+
 -> DONE
 
 // ------------------------------------------------------------

@@ -1,23 +1,200 @@
 {
   "start": {
-    "content": "You trace my steps with your ink and your parchment, little scribe. You think you are tracking a simple exchange of silver. You have no understanding of what it means to watch three years of momentum evaporate into poetry and feet-washing. We were supposed to hold the gates of the city! Now he speaks of tombs and broken bread. Someone must force his hand to action.",
+    "content": "You trace my steps with ink and parchment, little scribe, as though thirty pieces of silver were the whole of the story. You cannot know what it means to sit at the table of the Son of God and contemplate the weight of what the prophets have written. I saw the path ahead and thought I could shorten the journey by force. I was wrong.",
     "choices": [
       {
-        "text": "You sold Him for thirty pieces.",
-        "destination": "motives"
+        "text": "You sold Him for thirty pieces of silver.",
+        "destination": "motivations"
       },
       {
-        "text": "You regret it.",
+        "text": "You regret it now.",
         "destination": "regret"
+      },
+      {
+        "text": "What did Jesus say to you at the supper?",
+        "destination": "supper_quote"
       }
     ]
   },
-  "motives": {
-    "content": "Thirty pieces of silver. The price of a slave. That is what the Temple assessed the Son of God to be worth. And they paid me to deliver Him.",
+  "motivations": {
+    "content": "Thirty pieces of silver. The Torah sets that exact sum as the price paid when a slave is gored — Exodus 21:32. That is what the chief priests weighed into my hand: not a fortune, but a slave's price.\n# UNLOCK_EVIDENCE: evidence_judas_betrayal_price",
     "choices": [
+      {
+        "text": "Zechariah wrote of this exact price.",
+        "destination": "zechariah_price"
+      },
       {
         "text": "The money bag seems heavy tonight.",
         "destination": "bag_heavy"
+      },
+      {
+        "text": "Peter's reaction at the table.",
+        "destination": "peter_table"
+      }
+    ]
+  },
+  "zechariah_price": {
+    "content": "You know your prophets. \"So they weighed for my price thirty pieces of silver... and I cast them to the potter in the house of the LORD.\" Zechariah wrote this four hundred years before I was born. I fulfilled it to the coin without ever reading his scroll. If the price was written before I chose it, whose hand was really moving mine?",
+    "choices": [
+      {
+        "text": "Whose hand guided yours?",
+        "destination": "whose_hand"
+      },
+      {
+        "text": "The silver was prophetic.",
+        "destination": "silver_prophetic"
+      }
+    ]
+  },
+  "whose_hand": {
+    "content": "Whose hand guided mine? The same hand that guided Moses, that guided David, that guided the prophets who spoke of this very moment. All of it was written before the foundation of the world. I was the instrument, not the author.",
+    "choices": [
+      {
+        "text": "The betrayal was foreknown.",
+        "destination": "foreknown_betrayal"
+      },
+      {
+        "text": "The price was agreed.",
+        "destination": "price_agreed_detail"
+      }
+    ]
+  },
+  "foreknown_betrayal": {
+    "content": "Foreknown by the Father before the foundation of the world — yet I chose. The Scriptures declare: \"He was foreknown before the foundation of the world.\" The Lamb was slain. And yet I am responsible.",
+    "choices": [
+      {
+        "text": "The choice was real.",
+        "destination": "choice_was_real"
+      },
+      {
+        "text": "The responsibility was mine.",
+        "destination": "responsibility_mine"
+      }
+    ]
+  },
+  "choice_was_real": {
+    "content": "The choice was real. My silver bought a field. His sacrifice bought a kingdom. I chose the lesser price. The wages of sin is death.",
+    "choices": [
+      {
+        "text": "The field was bought.",
+        "destination": "field_bought"
+      },
+      {
+        "text": "The price was different.",
+        "destination": "price_different"
+      }
+    ]
+  },
+  "responsibility_mine": {
+    "content": "The responsibility was mine. Not God's. Not the Scriptures'. Mine. \"Repent therefore, and be converted, that sins may be blotted out.\"",
+    "choices": [
+      {
+        "text": "The refusal was mine.",
+        "destination": "refusal_was_mine"
+      },
+      {
+        "text": "The light remained.",
+        "destination": "light_remained"
+      }
+    ]
+  },
+  "refusal_was_mine": {
+    "content": "The refusal was mine. The invitation was extended to me as to all. I chose the darkness I preferred to the light I had seen.",
+    "choices": [
+      {
+        "text": "The field calls.",
+        "destination": "field_calls"
+      },
+      {
+        "text": "What became of the silver?",
+        "destination": "silver_became"
+      }
+    ]
+  },
+  "silver_prophetic": {
+    "content": "The silver was prophetic — not because I sought prophecy, but because the prophecy sought me. \"They paid for me seventeen pieces of silver\" — Zechariah. \"Thirty pieces of silver\" — the price that could not be paid back.\n# UNLOCK_EVIDENCE: evidence_judas_betrayal_price",
+    "choices": [
+      {
+        "text": "The payment was counted.",
+        "destination": "payment_counted"
+      },
+      {
+        "text": "The testimony was buried.",
+        "destination": "testimony_buried"
+      }
+    ]
+  },
+  "field_calls": {
+    "content": "The field calls — and answered. Akeldama. The blood of the prophet, mixed with the price of betrayal, soaked into soil that welcomed it as it had welcomed Abel's blood.\n# UNLOCK_EVIDENCE: evidence_field_of_blood",
+    "choices": [
+      {
+        "text": "Akeldama's testimony.",
+        "destination": "akeldama_testimony"
+      },
+      {
+        "text": "The soil remembers.",
+        "destination": "soil_remembers"
+      }
+    ]
+  },
+  "silver_became": {
+    "content": "Silver became soil. Soil became testimony. Testimony became history. History became the foundation of a kingdom.",
+    "choices": [
+      {
+        "text": "The testimony endures.",
+        "destination": "testimony_endures_detail"
+      },
+      {
+        "text": "The field still grows.",
+        "destination": "field_still_grows"
+      }
+    ]
+  },
+  "testimony_endures_detail": {
+    "content": "The testimony endures. Mary Magdalene first, whose testimony the priests tried to counter with a lie. Then Peter, restored. Then the centurion confessing.",
+    "choices": [
+      {
+        "text": "The witnesses multiplied.",
+        "destination": "witnesses_multiplied_detail"
+      },
+      {
+        "text": "The testimony spread.",
+        "destination": "testimony_spread_detail"
+      }
+    ]
+  },
+  "witnesses_multiplied_detail": {
+    "content": "The witnesses multiplied. Mary Magdalene first. Then Peter and John. Then the women with their message of joy. Then the centurion with his confession.",
+    "choices": [
+      {
+        "text": "The testimony spread.",
+        "destination": "testimony_spread_detail"
+      },
+      {
+        "text": "The lie could not hold.",
+        "destination": "lie_could_not_hold"
+      }
+    ]
+  },
+  "testimony_spread_detail": {
+    "content": "The testimony spread. Each witness added credibility. Each appearance multiplied the evidence. The women rejected became the foundation of the Gospel message.",
+    "choices": [
+      {
+        "text": "The foundation was weak.",
+        "destination": "foundation_weak_detail"
+      },
+      {
+        "text": "The kingdom was built on weak things.",
+        "destination": "weak_things"
+      }
+    ]
+  },
+  "bag_heavy": {
+    "content": "The money bag does seem heavy tonight. Thirty silver coins — the weight of a life. I did what was necessary, or so I told myself.\n~ money_bag_impression = true",
+    "choices": [
+      {
+        "text": "What was necessary.",
+        "destination": "was_necessary"
       },
       {
         "text": "Jesus spoke of a new covenant.",
@@ -25,35 +202,346 @@
       }
     ]
   },
-  "bag_heavy": {
-    "content": "The money bag seems heavy tonight. Thirty silver coins is the weight of a life in this city. A slave's price. I did what was necessary for the group.\n# reveal:money_bag_impression\n/#\nJesus told us to be prepared. I am merely ensuring we are.",
+  "was_necessary": {
+    "content": "What was necessary — to force His hand, to fulfill the Scriptures. Peter will tell you I was possessed by Satan. But the Scriptures were precise. The price was exact.",
     "choices": [
       {
-        "text": "closing",
-        "destination": "closing"
+        "text": "The definition mattered.",
+        "destination": "definition_mattered"
+      },
+      {
+        "text": "Satan's role.",
+        "destination": "satans_role"
       }
     ]
   },
-  "new_covenant": {
-    "content": "He speaks of many things. Blood, wine, bread. I look at the silver and I see reality. He is walking into a trap he won't avoid.",
+  "definition_mattered": {
+    "content": "The definition mattered. Judas Iscariot — not \"the disciple who betrayed Him,\" but \"Judas, a common name.\" Forty pieces of silver, the price of a slave. The Scriptures were precise.",
     "choices": [
       {
-        "text": "closing",
-        "destination": "closing"
+        "text": "The price was exact.",
+        "destination": "price_exact_detail"
+      },
+      {
+        "text": "The betrayal was sealed.",
+        "destination": "betrayal_sealed"
+      }
+    ]
+  },
+  "supper_quote": {
+    "content": "He knew before I had even risen from the table. He dipped the bread and gave it to me, saying: \"That thou doest, do quickly.\" John thought He meant an errand. Only I understood — He was releasing me, not stopping me.",
+    "choices": [
+      {
+        "text": "He quoted a psalm about you first.",
+        "destination": "psalm_quote_detail"
+      },
+      {
+        "text": "John recorded this.",
+        "destination": "john_recorded"
+      }
+    ]
+  },
+  "psalm_quote_detail": {
+    "content": "Earlier that evening, He said: \"He that eateth bread with me hath lifted up my heel against me.\" David wrote those words a thousand years before. I had eaten His bread every night.",
+    "choices": [
+      {
+        "text": "Jesus knew.",
+        "destination": "jesus_knew_detail"
+      },
+      {
+        "text": "The prediction was clear.",
+        "destination": "prediction_clear"
+      }
+    ]
+  },
+  "jesus_knew_detail": {
+    "content": "Jesus knew. He had spoken of His death and resurrection three times. The silver was waiting. The trap was laid. Judas of Kerioth — the man trusted with the bag, chose the outer darkness.",
+    "choices": [
+      {
+        "text": "The path was clear.",
+        "destination": "path_was_clear_detail"
+      },
+      {
+        "text": "The regret began.",
+        "destination": "regret_begins_detail"
       }
     ]
   },
   "regret": {
-    "content": "I watched three years of expectation curdle into disappointment. The Messiah was supposed to be a king. Instead He washed feet. Instead He spoke of dying. The Zealots wanted a general. I wanted a winner. I was wrong.",
+    "content": "I watched three years of expectation curdle. The Messiah was supposed to be a king who broke Rome. Instead He washed feet. Instead He spoke of dying. The Zealots wanted a general. I wanted a winner. I was wrong.\n# UNLOCK_EVIDENCE: evidence_peter_contrast",
     "choices": [
       {
         "text": "What happened to the money?",
-        "destination": "closing"
+        "destination": "field_of_blood_detail"
+      },
+      {
+        "text": "He prayed for you.",
+        "destination": "jesus_prayed_detail"
       }
     ]
   },
-  "closing": {
-    "content": "Silver is a ledger entry. Disappointment is a fire. The Temple priests counted it out. I took it. And then I saw Him look at me from across the courtyard. I threw the silver at them and ran.",
+  "field_of_blood_detail": {
+    "content": "I took it back. I threw thirty pieces of silver onto the floor, telling the priests: \"I have sinned.\" They said: \"What is that to us? See to it yourself.\" Then I went and hanged myself.\n# UNLOCK_EVIDENCE: evidence_field_of_blood",
+    "choices": [
+      {
+        "text": "Akeldama's echo.",
+        "destination": "akeldama_echo"
+      },
+      {
+        "text": "The earth bore witness.",
+        "destination": "earth_bore_witness"
+      }
+    ]
+  },
+  "jesus_prayed_detail": {
+    "content": "John records that Jesus prayed for His disciples — and for all who would believe, including me. \"I pray for those you have given me.\" I was among those He had been given.",
+    "choices": [
+      {
+        "text": "The prayer included the traitor.",
+        "destination": "prayer_included_traitor"
+      },
+      {
+        "text": "The forgiveness was offered.",
+        "destination": "forgiveness_offered_detail"
+      }
+    ]
+  },
+  "prayer_included_traitor": {
+    "content": "The prayer included the traitor. The forgiveness was offered before the betrayal was complete. The redemption was planned before the silver was paid.",
+    "choices": [
+      {
+        "text": "Before the foundation.",
+        "destination": "before_foundation_detail"
+      },
+      {
+        "text": "The betrayal was instrument.",
+        "destination": "betrayal_instrument"
+      }
+    ]
+  },
+  "betrayal_instrument": {
+    "content": "The betrayal was not the interruption of divine plan — it was the instrument of divine purpose. The Lamb was slain before the foundation of the world.",
+    "choices": [
+      {
+        "text": "The redemption was sufficient.",
+        "destination": "redemption_sufficient"
+      },
+      {
+        "text": "The gift was free.",
+        "destination": "gift_was_free"
+      }
+    ]
+  },
+  "gift_was_free": {
+    "content": "The gift was free. The wages of sin is death, but the gift of God is eternal life. My thirty pieces could not buy back what I had sold.",
+    "choices": [
+      {
+        "text": "The salvation was offered.",
+        "destination": "salvation_offered_detail"
+      },
+      {
+        "text": "The rejection was mine.",
+        "destination": "rejection_was_mine"
+      }
+    ]
+  },
+  "salvation_offered_detail": {
+    "content": "The salvation was offered — to me, Peter, the centurion, Mary, to all who would believe. The rejection was mine. But the offer stands.",
+    "choices": [
+      {
+        "text": "The testimony is complete.",
+        "destination": "testimony_complete_detail"
+      },
+      {
+        "text": "The light endures.",
+        "destination": "light_endures"
+      }
+    ]
+  },
+  "testimony_complete_detail": {
+    "content": "The testimony is complete. The witnesses have spoken. The tomb is empty. The earth has borne witness. The Scriptures have been fulfilled.",
+    "choices": [
+      {
+        "text": "The final word.",
+        "destination": "final_word_detail"
+      },
+      {
+        "text": "The dawn breaks.",
+        "destination": "dawn_breaks_final_detail"
+      }
+    ]
+  },
+  "light_endures": {
+    "content": "The light endures. The dawn breaks. And the testimony — \"I am the resurrection and the life\" — endures still. My silver bought a field for strangers. His sacrifice bought a kingdom for all.",
+    "choices": [
+      {
+        "text": "The testimony spreads still.",
+        "destination": "testimony_spreads_still"
+      },
+      {
+        "text": "The earth testifies.",
+        "destination": "earth_testifies_final"
+      }
+    ]
+  },
+  "testimony_spreads_still": {
+    "content": "The testimony spreads still — from that hill to the ends of the earth. From my silver, a field was bought. From His sacrifice, a kingdom was won. From my silence, a warning. From His voice — eternal life.",
+    "choices": [
+      {
+        "text": "Every knee bows.",
+        "destination": "every_knee_final"
+      },
+      {
+        "text": "The blood calls.",
+        "destination": "blood_calls"
+      }
+    ]
+  },
+  "every_knee_final": {
+    "content": "Every knee bows — even mine, in the day when I stand before the throne. \"Repent therefore, and be converted, that sins may be blotted out.\"",
+    "choices": [
+      {
+        "text": "The throne awaits.",
+        "destination": "throne_awaits"
+      },
+      {
+        "text": "The judgment comes.",
+        "destination": "judgment_comes"
+      }
+    ]
+  },
+  "throne_awaits": {
+    "content": "The throne awaits. The books are open. Every deed stands recorded. My silver — a slave's price. His sacrifice — a king's ransom. My field — Akeldama. His cross — the Tree of Life.",
+    "choices": [
+      {
+        "text": "The contrast is etched.",
+        "destination": "contrast_etched"
+      },
+      {
+        "text": "The choice remains.",
+        "destination": "choice_remains_final"
+      }
+    ]
+  },
+  "contrast_etched": {
+    "content": "The contrast is etched in stone and blood and testimony. My silver could not purchase redemption. But His blood — shed once for all — paid the price I could never pay.",
+    "choices": [
+      {
+        "text": "The price was paid.",
+        "destination": "price_paid_final"
+      },
+      {
+        "text": "The gift accepted.",
+        "destination": "gift_accepted"
+      }
+    ]
+  },
+  "price_paid_final": {
+    "content": "The price was paid. It is finished. The debt is canceled. The handwriting that accused me — nailed to the cross — is gone.",
+    "choices": [
+      {
+        "text": "The record erased.",
+        "destination": "record_erased"
+      },
+      {
+        "text": "The testimony complete.",
+        "destination": "testimony_complete_final"
+      }
+    ]
+  },
+  "record_erased": {
+    "content": "The record erased — blotted out the charge that was against me, nailing it to the cross. What was written against me, sealed with the thirty pieces of silver — gone. What was written for me, sealed with the blood of the cross — eternal.",
+    "choices": [
+      {
+        "text": "The blood was sufficient.",
+        "destination": "blood_sufficient"
+      },
+      {
+        "text": "The covenant stands.",
+        "destination": "covenant_stands"
+      }
+    ]
+  },
+  "blood_sufficient": {
+    "content": "The blood was sufficient. More than sufficient. \"The blood of Jesus, His Son, cleanses us from all sin.\" Not some sins. Not many sins. All sin. Even mine.",
+    "choices": [
+      {
+        "text": "The cleansing is complete.",
+        "destination": "cleansing_complete"
+      },
+      {
+        "text": "The forgiveness is full.",
+        "destination": "forgiveness_full"
+      }
+    ]
+  },
+  "cleansing_complete": {
+    "content": "The cleansing is complete. The forgiveness is full. The invitation remains.",
+    "choices": [
+      {
+        "text": "The invitation stands.",
+        "destination": "invitation_stands_final"
+      },
+      {
+        "text": "The light beckons.",
+        "destination": "light_beckons"
+      }
+    ]
+  },
+  "invitation_stands_final": {
+    "content": "The invitation stands. Not because I deserved it, but because He is faithful. \"Come, for all things are now ready.\"",
+    "choices": [
+      {
+        "text": "The readiness is here.",
+        "destination": "readiness_here"
+      },
+      {
+        "text": "The table is set.",
+        "destination": "table_set"
+      }
+    ]
+  },
+  "readiness_here": {
+    "content": "The readiness is here. The table is set. The lamb is slain. The cup is poured. The testimony is true. He who overcomes — He shall eat of the tree of life.",
+    "choices": [
+      {
+        "text": "The tree of life.",
+        "destination": "tree_of_life"
+      },
+      {
+        "text": "The testimony endures.",
+        "destination": "testimony_endures_final"
+      }
+    ]
+  },
+  "tree_of_life": {
+    "content": "The tree of life — once barred to me, now opened. The gates of the city stand open. The river of life flows from the throne.",
+    "choices": [
+      {
+        "text": "The river flows.",
+        "destination": "river_flows"
+      },
+      {
+        "text": "The gates stand open.",
+        "destination": "gates_open"
+      }
+    ]
+  },
+  "river_flows": {
+    "content": "The river flows. The testimony flows. The light flows. And in that light, I see — not my failure, but His victory. Not my silver, but His sacrifice. Not Akeldama, but the Tree of Life.",
+    "choices": [
+      {
+        "text": "The victory is His.",
+        "destination": "victory_is_his"
+      },
+      {
+        "text": "The testimony complete.",
+        "destination": "testimony_complete_victory"
+      }
+    ]
+  },
+  "victory_is_his": {
+    "content": "The victory is His. The testimony complete. The dawn breaks. The earth remembers. The testimony endures.",
     "choices": []
   }
 }

@@ -1,14 +1,118 @@
 {
-    "id": "judas_bethany_objection",
-    "name": "Judas (Bethany Objection)",
-    "title": "Disciple & Treasurer",
-    "faction": "disciples",
-    "icon": "coins-duotone.svg",
-    "description": "Judas Iscariot, the keeper of the disciples' money bag. At the dinner in Bethany, he objects to Mary's anointing of Jesus with expensive perfume, claiming the money could have been given to the poor. His objection is a mask for his own greed.",
-    "attitude": {
-        "neutral": "Publicly concerned with finances and charity, but privately resentful and avaricious.",
-        "positive": "Feigns practicality and concern for the poor to justify his criticism.",
-        "negative": "Becomes defensive and dismissive when his motives are questioned or when Jesus overrides his financial judgment."
-    },
-    "background": "As the group's treasurer, Judas has a history of pilfering from the money bag (John 12:6). His objection at Bethany is not born of compassion but of frustration that a valuable asset was spent instead of being added to the purse he controlled. This event hardens his resolve to betray Jesus."
+  "start": {
+    "content": "Twenty pieces of silver would have fed a family for months. I said it quietly at first — \"Why was this ointment not sold for three hundred denarii and given to the poor?\" Three hundred — the weight of a slave's life in this city. The perfume was expensive. The gesture — unnecessary.",
+    "choices": [
+      {
+        "text": "You were concerned for the poor.",
+        "destination": "concern_claim"
+      },
+      {
+        "text": "Why did you object so strongly?",
+        "destination": "strong_objection"
+      },
+      {
+        "text": "What did Lazarus's raising have to do with it?",
+        "destination": "lazarus_reflect"
+      }
+    ]
+  },
+  "concern_claim": {
+    "content": "Concern for the poor! Of course it was. I have walked these streets and seen children eat dust while the Temple priests count coins. Three hundred denarii — that is not a trifle to waste on perfume when children cry for bread in the alleys behind the temple courts.\n# UNLOCK_EVIDENCE: evidence_judas_motive_exposed",
+    "choices": [
+      {
+        "text": "Your motives weren't questioned?",
+        "destination": "questioned_motives"
+      },
+      {
+        "text": "The money could have done much.",
+        "destination": "money_potential"
+      }
+    ]
+  },
+  "questioned_motives": {
+    "content": "",
+    "choices": []
+  },
+  "what_he_said": {
+    "content": "\"For you always have the poor with you, but you do not always have me. She has done a beautiful thing to me — for she prepared me for the burial.\" He said it was for His burial! Not celebration, but preparation for death.",
+    "choices": [
+      {
+        "text": "Preparation for burial.",
+        "destination": "burial_prep"
+      },
+      {
+        "text": "Why did that unsettle you?",
+        "destination": "unsettled"
+      }
+    ]
+  },
+  "unsettled": {
+    "content": "",
+    "choices": []
+  },
+  "good_deed": {
+    "content": "",
+    "choices": []
+  },
+  "cost_considered": {
+    "content": "",
+    "choices": []
+  },
+  "money_potential": {
+    "content": "",
+    "choices": []
+  },
+  "practical_rejected": {
+    "content": "",
+    "choices": []
+  },
+  "dinner_table": {
+    "content": "",
+    "choices": []
+  },
+  "coins_handled": {
+    "content": "",
+    "choices": []
+  },
+  "plan_forming": {
+    "content": "=== plan_forming ==\nThe plan began forming — not that night, but weeks before. The money bag was not the only thing I could offer the high priest. Information was more valuable than silver. Access was more valuable than coins.",
+    "choices": [
+      {
+        "text": "What information did you offer?",
+        "destination": "information_offered"
+      },
+      {
+        "text": "The price was discussed.",
+        "destination": "price_discussed"
+      }
+    ]
+  },
+  "price_discussed": {
+    "content": "",
+    "choices": []
+  },
+  "agreement_sealed": {
+    "content": "",
+    "choices": []
+  },
+  "betrayal_bargained": {
+    "content": "",
+    "choices": []
+  },
+  "zechariah_wrote": {
+    "content": "",
+    "choices": []
+  },
+  "field_of_blood_detail": {
+    "content": "",
+    "choices": []
+  },
+  "earth_testimony": {
+    "content": "",
+    "choices": []
+  },
+  "testimony_stands_detail": {
+    "content": "",
+    "choices": []
+  }
 }

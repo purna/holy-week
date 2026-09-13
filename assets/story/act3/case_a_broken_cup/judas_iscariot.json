@@ -26,7 +26,7 @@
     ]
   },
   "bag_heavy": {
-    "content": "The money bag seems heavy tonight. Thirty silver coins is the weight of a life in this city. A slave's price. I did what was necessary for the group.\n# reveal:money_bag_impression\n/#\nJesus told us to be prepared. I am merely ensuring we are.",
+    "content": "The money bag seems heavy tonight. Thirty silver coins is the weight of a life in this city. A slave's price. I did what was necessary for the group.\n# UNLOCK_EVIDENCE: evidence_money_bag_impression\n/#\nJesus told us to be prepared. I am merely ensuring we are.",
     "choices": [
       {
         "text": "closing",

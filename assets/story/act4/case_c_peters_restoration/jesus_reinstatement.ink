@@ -1,88 +1,145 @@
 // ============================================================
 // CHARACTER: Jesus at the Sea of Galilee
-// ACT: Act IV/V
+// ACT: Act IV
 // CASE: The Reinstatement of Peter
 // CASE ID: peter_restoration
-// SOURCE: John 21:1-17
+// SOURCE: John 21:1-19
 // ------------------------------------------------------------
-// PROPHECIES FULFILLED IN THIS CASE:
-//   - Genesis 12:2-3
-//     Gospel: "Feed my sheep" — Peter becomes the foundation
-//     Insight: The patriarch's call to "make your name great" finds
-//     its ultimate expression in Peter's commission to shepherd
-//     Christ's flock.
-//   - Ezekiel 34:11-16
-//     Gospel: John 21:15-17 — "Feed my sheep"
-//     Insight: God Himself promised to seek out His scattered sheep.
-//     Jesus's three-fold commission to Peter enacts this prophecy —
-//     the shepherd who was struck is now the one who shepherds.
-//   - John 21:12
-//     Gospel: "If you have caught anything..."
-//     Insight: In the dawn light, the same Sea of Galilee where
-//     Peter first met Jesus now witnesses the restoration of the
-//     disciple who denied Him.
+// PROPHECIES FULFILLED IN THIS CASE (canonical — act4_case.js / peter_restoration):
+//   - Zechariah 13:7  [evidence: charcoal_fire — John 21:9]
+//     Gospel: "I will strike the shepherd, and the sheep of the
+//     flock will be scattered" (Matthew 26:31).
+//     Insight: The same charcoal fire that witnessed Peter's denial
+//     (John 18:18) becomes the setting of his restoration — the
+//     scattered sheep gathered back to the Shepherd who was struck.
+//   - Ezekiel 34:11-16  [evidence: miraculous_catch, bread_breakfast,
+//     threefold_commission — John 21:9-17]
+//     Gospel: "I myself will search for my sheep and look after
+//     them... I will tend them in a good pasture."
+//     Insight: The threefold commission — feed, tend, feed —
+//     enacts this promise directly, reversing Peter's threefold
+//     denial one answer at a time.
+//   - Psalm 16:10  [evidence: galilean_apparition — John 21:12]
+//     Gospel: "You will not abandon me to the realm of the dead,
+//     nor will you let your faithful one see decay."
+//     Insight: The disciples' recognition of the risen Jesus on the
+//     shore is eyewitness confirmation of this thousand-year-old
+//     promise (cf. Acts 2:25-32, later preached by Peter himself).
+//   - Isaiah 53:10-11  [evidence: galilean_apparition — John 21:12]
+//     Gospel: After His suffering, the Servant "will see his
+//     offspring and prolong his days."
+//     Insight: The risen Christ appearing alive to His disciples is
+//     the Servant's promised vindication after death, made visible.
+// ------------------------------------------------------------
+// BIBLICAL CONTEXT:
+//   Summary: After a night of catching nothing, the disciples saw
+//   a figure on the shore who told them to cast their net on the
+//   right side; the resulting catch of 153 fish revealed it was
+//   Jesus. Over a charcoal fire, He asked Peter three times whether
+//   he loved Him, answering each reply with a commission to feed
+//   and shepherd His flock.
+//   Significance: The threefold question mirrors Peter's threefold
+//   denial around a different charcoal fire, turning failure into
+//   commissioning and restoring Peter to leadership.
 // ------------------------------------------------------------
 
 -> start
 
 === start ===
-"Children, do you have any fish?" We had caught nothing all night. Who is asking?
+"Children" — the word for grown men who had fished all night — "have you caught anything?"
 
-* [No, we have caught nothing.] -> cast_net
-* [Who is asking?] -> identity
+Nothing. Not one fish since the light left the sky.
+
+* [We have caught nothing.] -> cast_net
+* [Who calls us "children" from the shore?] -> identity
 
 === cast_net ===
-"Cast the net on the right side of the boat, and you will find some." We will try once more.
+"Cast the net on the right side of the boat, and you will find some." [John 21:6]
+
+No proof offered first. Only the instruction — the same kind given the first time this net was cast at His word, three years and a lifetime ago.
 
 * [Cast the net.] -> catch
 
 === catch ===
-The net strains, nearly tearing with the weight of 153 large fish.
+The net does not merely fill. It strains, bulges, drags the boat sideways — a hundred and fifty-three fish, and still it does not tear. [John 21:11]
 
-* [It is the Lord!] -> shore
+* [It is the Lord!] -> identity
 
 === identity ===
-The light of the morning reflects off the water. "It is the Lord!" John whispers beside you. Peter jumps into the sea.
+John says it first, quietly, almost to himself. "It is the Lord." [John 21:7]
+
+Peter does not wait for the boat. He ties his outer garment around him and goes into the water.
 
 * [Go to the shore.] -> shore
 
 === shore ===
-A charcoal fire is burning on the sand, with fish on it and some bread. "Come and have breakfast," Jesus says.
+A charcoal fire burns on the sand. Fish already laid on the coals. Bread beside it.
+
+"Bring some of the fish you have just caught... Come and have breakfast." [John 21:10, 12]
+
+No question yet about the water that night, or the courtyard three nights before. Feed them first.
 
 * [Sit and eat.] -> restoration
+* [Why a fire, of all things?] -> fire_meaning
+
+=== fire_meaning ===
+There was another fire. A courtyard, three nights past, where a servant girl asked a question and a man denied he ever knew Me. [John 18:18, 25-27]
+
+That fire has not been forgotten. This one was built on purpose.
+
+* [Continue.] -> restoration
 
 === restoration ===
-He turns to Simon Peter. "Simon, son of John, do you love Me more than these?" He is asking about the love that stays.
+# UNLOCK_EVIDENCE: charcoal_fire
+# UNLOCK_EVIDENCE: threefold_commission
+When they have eaten, the question turns to Simon Peter. Not to the group. To him.
 
-The question echoes across seven years of memory — "Even before you deny Me three times..." And yet He asks again. Not with accusation. With invitation.
+"Simon, son of John, do you love Me more than these?" [John 21:15]
 
+It does not accuse. It waits.
+
+* [What does Peter answer?] -> peter_answer
 * [Feed my lambs...] -> feeding
-* [What did Peter say?] -> peter_answer
 
 === peter_answer ===
-"Yes, Lord, you know that I love you." Three times. Each answer a little more fragile than the last. The third time, Jesus uses the word Peter himself had chosen — "phileo" — brotherly love, not "agapao" — divine love.
+"Yes, Lord; You know that I love You."
+"Feed My lambs." [John 21:15]
 
-Peter's face crumples. He understands. Three denials. Three affirmations. Three wounds healed by three questions.
+Again: "Simon, son of John, do you love Me?"
+"Yes, Lord; You know that I love You."
+"Tend My sheep." [John 21:16]
 
-* [Feed my sheep.] -> feeding
+A third time — and the word changes. Not the love that holds nothing back, but the word Peter himself has been using all along: the ordinary love of a friend. Peter is grieved. He understands, at last, that he is being met on his own terms, not accused on someone else's.
+
+"Lord, You know all things; You know that I love You."
+"Feed My sheep." [John 21:17]
+
+* [Three questions. Three answers. Three commissions.] -> feeding
 
 === feeding ===
-"Feed my lambs. Tend my sheep. Feed my sheep." Three times He commissions the one who fled. The same charcoal fire. The same threefold exchange.
+Three denials, spoken beside a fire, in the dark, to strangers who meant nothing to him.
+Three affirmations, spoken beside a fire, in the daylight, to the One who means everything.
 
-"Follow me."
+The wound and the healing share the same shape.
 
-The words that began everything — the same Sea of Galilee, three years before — now end it. Or begin it again.
+"Follow Me." [John 21:19]
+
+The same two words that began it all, on this same water, three years before.
 
 * [Continue.] -> closing
 
 === closing ===
-He forgave me. Not with words of reproach, but with a calling. "Feed my sheep." "Follow me."
+No explanation was demanded for the failure. Only love, three times — and a flock built on the answer.
 
-I am the rock that was shattered and made whole. The church would be built on this restored love.
-
-The investigation of the empty tomb leads here — to a life given back and a mission that will change the world.
-
-# UNLOCK_EVIDENCE: peter_restored
-# UNLOCK_EVIDENCE: three_fold_commission
+The tomb is empty. The Shepherd who was struck lives. [Zechariah 13:7] And the sheep who scattered — Simon first among them — is sent now to gather others. [Ezekiel 34:11-16]
 
 -> DONE
+
+// NOTE: IDs corrected to match evidencePool in act4_case.js
+// (peter_restored / three_fold_commission were not real evidence
+// IDs). This file also has no matching NPC entry in act4_case.js —
+// no "jesus" storyFile exists in peter_restoration's npcs[] — so
+// these tags do not currently fire through the live NPC-unlock
+// path (npc.unlocksEvidence / reactions[].revealedClue). Flagging
+// for the team to confirm whether this file is wired in elsewhere
+// (e.g. a scripted intro) or should be attached to an NPC entry.

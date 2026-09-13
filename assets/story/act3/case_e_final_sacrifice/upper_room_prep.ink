@@ -6,6 +6,16 @@
 // SOURCE: ORPHAN FILE (not referenced in any case file)
 // BIBLE: Matthew 26:17–35, Mark 14:12–31, Luke 22:7–38, John 13–17
 // ------------------------------------------------------------
+// BIBLICAL CONTEXT:
+//   Summary: Peter and John were sent ahead into Jerusalem to
+//   prepare the upper room for the Passover meal, following a man
+//   carrying a water jar as the prearranged sign Jesus had given
+//   them to identify the house.
+//   Significance: The precise, prearranged sign — unusual since
+//   carrying water was typically women's work — shows Jesus
+//   directing the events of His final night with deliberate
+//   foreknowledge, even down to logistical details.
+// ------------------------------------------------------------
 // ============================================================
 //
 

@@ -4,7 +4,14 @@
 // CASE: The Price of Life
 // CASE ID: lazarus_plot
 // SOURCE: ORPHAN FILE (not referenced in any case file)
+// BIBLE REFERENCE: Matthew 21:42–46; Mark 12:10–12; Psalm 118:22–23
 // ------------------------------------------------------------
+// BIBLICAL CONTEXT:
+//   During His final week in Jerusalem, Jesus used parables to expose
+//   the hearts of His hearers and quoted the rejected stone of Psalm
+//   118. He identified Himself with the stone the builders dismissed
+//   but God made the cornerstone, asserting an authority that alarmed
+//   the religious leaders who understood the warning.
 // ============================================================
 //
 

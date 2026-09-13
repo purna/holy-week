@@ -1,51 +1,243 @@
 // ============================================================
-// CHARACTER: Judas Iscariot (Betrayal Context)
+// CHARACTER: Judas Iscariot (Betrayal and Remorse)
 // ACT: Act III/IV
-// CASE: The Empty Tomb (Resurrection Investigation)
+// CASE: The Guard's Report
 // CASE ID: roman_inquiry
-// CASE EXPORT: resurrection
-// SOURCE: act4_case_2d.js → NPC 'judas' (dialogueId: judas_betrayal)
-// BIBLE REFERENCE: Matthew 26:14-16; Matthew 27:3-10
+// SOURCE: js/act3_case.js -> NPC 'judas'
+// BIBLE REFERENCE: Matthew 26:14-16; Matthew 26:20-25; Matthew 27:3-10;
+//   John 13:18-30; John 17:1-25; Acts 1:18-19
 // ------------------------------------------------------------
-// PROPHECIES FULFILLED IN THIS CASE:
-//   - Zechariah 11:12–13
-//     Gospel: Matthew 26:15; Matthew 27:3–10
-//     Insight: Thirty silver pieces was the price of a slave (Exodus 21:32) — the religious leaders effectively valued Jesus as the lowest possible commodity. The amount was prophetic, not coincidental.
-//   - Psalm 41:9
-//     Gospel: John 13:18 — Jesus quotes this Psalm directly at the supper
-//     Insight: "Even my close friend, in whom I trusted, who ate my bread, has lifted up his heel against me." Jesus explicitly quoted this Psalm and said it was being fulfilled.
-//   - Isaiah 53:12
-//     Gospel: John 17:1–26 (the High Priestly Prayer)
-//     Insight: After the betrayal, Jesus prayed for Judas — showing that even this act of evil served the larger purpose of prophetic fulfillment.
+// WITNESS CROSS-REFERENCES:
+//   - Caiaphas (caiaphas_roman_inquiry.ink): accepted Judas's silver
+//   - Peter (peter_defense.ink): denial and restoration as parallel
+//   - Mary Magdalene (mary_resurrection.ink): first witness
 // ------------------------------------------------------------
-// BIBLICAL CONTEXT:
-//   Summary: After betraying Jesus for thirty pieces of silver, Judas was overcome with remorse when he saw the consequences of his action. He returned the money and took his own life.
-//   Historical Note: The field of blood (Akeldama) was purchased with Judas's blood money — fulfilling prophecy about the potter's field (Zechariah 11:13).
-//   Significance: Judas's betrayal was not an accident but prophetic fulfillment. Jesus told him "What you have done, do quickly" (John 13:27), showing predetermined purpose.
+// EVIDENCE UNLOCKED:
+//   - evidence_judas_betrayal_price (thirty pieces of silver)
+//   - evidence_field_of_blood (Akeldama, potter's field)
+//   - evidence_peter_contrast (Peter's denial and restoration)
 // ------------------------------------------------------------
-//
+// PROPHECIES FULFILLED:
+//   - Zechariah 11:12-13 — "Thirty pieces of silver"
+//   - Psalm 41:9 — "He who ate my bread has lifted up his heel"
+//   - Psalm 55:12-14 — Ahithophel's betrayal prefigures Judas's
+// ============================================================
 
 -> start
 === start ===
-You trace my steps with your ink and your parchment, little scribe. You think you are tracking a simple exchange of silver. You have no understanding of what it means to watch three years of momentum evaporate into poetry and feet-washing. We were supposed to hold the gates of the city! Now he speaks of tombs and broken bread. Someone must force his hand to action.
-* [You sold Him for thirty pieces.] -> motives
-* [You regret it.] -> regret
-=== motives ===
-Thirty pieces of silver. The price of a slave. That is what the Temple assessed the Son of God to be worth. And they paid me to deliver Him.
+You trace my steps with ink and parchment, little scribe, as though thirty pieces of silver were the whole of the story. You cannot know what it means to sit at the table of the Son of God and contemplate the weight of what the prophets have written. I saw the path ahead and thought I could shorten the journey by force. I was wrong.
+* [You sold Him for thirty pieces of silver.] -> motivations
+* [You regret it now.] -> regret
+* [What did Jesus say to you at the supper?] -> supper_quote
+
+=== motivations ===
+Thirty pieces of silver. The Torah sets that exact sum as the price paid when a slave is gored — Exodus 21:32. That is what the chief priests weighed into my hand: not a fortune, but a slave's price.
+# UNLOCK_EVIDENCE: evidence_judas_betrayal_price
+* [Zechariah wrote of this exact price.] -> zechariah_price
 * [The money bag seems heavy tonight.] -> bag_heavy
-* [Jesus spoke of a new covenant.] -> new_covenant
+* [Peter's reaction at the table.] -> peter_table
+
+=== zechariah_price ===
+You know your prophets. "So they weighed for my price thirty pieces of silver... and I cast them to the potter in the house of the LORD." Zechariah wrote this four hundred years before I was born. I fulfilled it to the coin without ever reading his scroll. If the price was written before I chose it, whose hand was really moving mine?
+* [Whose hand guided yours?] -> whose_hand
+* [The silver was prophetic.] -> silver_prophetic
+
+=== whose_hand ===
+Whose hand guided mine? The same hand that guided Moses, that guided David, that guided the prophets who spoke of this very moment. All of it was written before the foundation of the world. I was the instrument, not the author.
+* [The betrayal was foreknown.] -> foreknown_betrayal
+* [The price was agreed.] -> price_agreed_detail
+
+=== foreknown_betrayal ===
+Foreknown by the Father before the foundation of the world — yet I chose. The Scriptures declare: "He was foreknown before the foundation of the world." The Lamb was slain. And yet I am responsible.
+* [The choice was real.] -> choice_was_real
+* [The responsibility was mine.] -> responsibility_mine
+
+=== choice_was_real ===
+The choice was real. My silver bought a field. His sacrifice bought a kingdom. I chose the lesser price. The wages of sin is death.
+* [The field was bought.] -> field_bought
+* [The price was different.] -> price_different
+
+=== responsibility_mine ===
+The responsibility was mine. Not God's. Not the Scriptures'. Mine. "Repent therefore, and be converted, that sins may be blotted out."
+* [The refusal was mine.] -> refusal_was_mine
+* [The light remained.] -> light_remained
+
+=== refusal_was_mine ===
+The refusal was mine. The invitation was extended to me as to all. I chose the darkness I preferred to the light I had seen.
+* [The field calls.] -> field_calls
+* [What became of the silver?] -> silver_became
+
+=== silver_prophetic ===
+The silver was prophetic — not because I sought prophecy, but because the prophecy sought me. "They paid for me seventeen pieces of silver" — Zechariah. "Thirty pieces of silver" — the price that could not be paid back.
+# UNLOCK_EVIDENCE: evidence_judas_betrayal_price
+* [The payment was counted.] -> payment_counted
+* [The testimony was buried.] -> testimony_buried
+
+=== field_calls ===
+The field calls — and answered. Akeldama. The blood of the prophet, mixed with the price of betrayal, soaked into soil that welcomed it as it had welcomed Abel's blood.
+# UNLOCK_EVIDENCE: evidence_field_of_blood
+* [Akeldama's testimony.] -> akeldama_testimony
+* [The soil remembers.] -> soil_remembers
+
+=== silver_became ===
+Silver became soil. Soil became testimony. Testimony became history. History became the foundation of a kingdom.
+* [The testimony endures.] -> testimony_endures_detail
+* [The field still grows.] -> field_still_grows
+
+=== testimony_endures_detail ===
+The testimony endures. Mary Magdalene first, whose testimony the priests tried to counter with a lie. Then Peter, restored. Then the centurion confessing.
+* [The witnesses multiplied.] -> witnesses_multiplied_detail
+* [The testimony spread.] -> testimony_spread_detail
+
+=== witnesses_multiplied_detail ===
+The witnesses multiplied. Mary Magdalene first. Then Peter and John. Then the women with their message of joy. Then the centurion with his confession.
+* [The testimony spread.] -> testimony_spread_detail
+* [The lie could not hold.] -> lie_could_not_hold
+
+=== testimony_spread_detail ===
+The testimony spread. Each witness added credibility. Each appearance multiplied the evidence. The women rejected became the foundation of the Gospel message.
+* [The foundation was weak.] -> foundation_weak_detail
+* [The kingdom was built on weak things.] -> weak_things
+
 === bag_heavy ===
-The money bag seems heavy tonight. Thirty silver coins is the weight of a life in this city. A slave's price. I did what was necessary for the group.
-# reveal:money_bag_impression
-/#
-Jesus told us to be prepared. I am merely ensuring we are.
--> closing
-=== new_covenant ===
-He speaks of many things. Blood, wine, bread. I look at the silver and I see reality. He is walking into a trap he won't avoid.
--> closing
+The money bag does seem heavy tonight. Thirty silver coins — the weight of a life. I did what was necessary, or so I told myself.
+~ money_bag_impression = true
+* [What was necessary.] -> was_necessary
+* [Jesus spoke of a new covenant.] -> new_covenant
+
+=== was_necessary ===
+What was necessary — to force His hand, to fulfill the Scriptures. Peter will tell you I was possessed by Satan. But the Scriptures were precise. The price was exact.
+* [The definition mattered.] -> definition_mattered
+* [Satan's role.] -> satans_role
+
+=== definition_mattered ===
+The definition mattered. Judas Iscariot — not "the disciple who betrayed Him," but "Judas, a common name." Forty pieces of silver, the price of a slave. The Scriptures were precise.
+* [The price was exact.] -> price_exact_detail
+* [The betrayal was sealed.] -> betrayal_sealed
+
+=== supper_quote ===
+He knew before I had even risen from the table. He dipped the bread and gave it to me, saying: "That thou doest, do quickly." John thought He meant an errand. Only I understood — He was releasing me, not stopping me.
+* [He quoted a psalm about you first.] -> psalm_quote_detail
+* [John recorded this.] -> john_recorded
+
+=== psalm_quote_detail ===
+Earlier that evening, He said: "He that eateth bread with me hath lifted up my heel against me." David wrote those words a thousand years before. I had eaten His bread every night.
+* [Jesus knew.] -> jesus_knew_detail
+* [The prediction was clear.] -> prediction_clear
+
+=== jesus_knew_detail ===
+Jesus knew. He had spoken of His death and resurrection three times. The silver was waiting. The trap was laid. Judas of Kerioth — the man trusted with the bag, chose the outer darkness.
+* [The path was clear.] -> path_was_clear_detail
+* [The regret began.] -> regret_begins_detail
+
 === regret ===
-I watched three years of expectation curdle into disappointment. The Messiah was supposed to be a king. Instead He washed feet. Instead He spoke of dying. The Zealots wanted a general. I wanted a winner. I was wrong.
-* [What happened to the money?] -> closing
-=== closing ===
-Silver is a ledger entry. Disappointment is a fire. The Temple priests counted it out. I took it. And then I saw Him look at me from across the courtyard. I threw the silver at them and ran.
+I watched three years of expectation curdle. The Messiah was supposed to be a king who broke Rome. Instead He washed feet. Instead He spoke of dying. The Zealots wanted a general. I wanted a winner. I was wrong.
+# UNLOCK_EVIDENCE: evidence_peter_contrast
+* [What happened to the money?] -> field_of_blood_detail
+* [He prayed for you.] -> jesus_prayed_detail
+
+=== field_of_blood_detail ===
+I took it back. I threw thirty pieces of silver onto the floor, telling the priests: "I have sinned." They said: "What is that to us? See to it yourself." Then I went and hanged myself.
+# UNLOCK_EVIDENCE: evidence_field_of_blood
+* [Akeldama's echo.] -> akeldama_echo
+* [The earth bore witness.] -> earth_bore_witness
+
+=== jesus_prayed_detail ===
+John records that Jesus prayed for His disciples — and for all who would believe, including me. "I pray for those you have given me." I was among those He had been given.
+* [The prayer included the traitor.] -> prayer_included_traitor
+* [The forgiveness was offered.] -> forgiveness_offered_detail
+
+=== prayer_included_traitor ===
+The prayer included the traitor. The forgiveness was offered before the betrayal was complete. The redemption was planned before the silver was paid.
+* [Before the foundation.] -> before_foundation_detail
+* [The betrayal was instrument.] -> betrayal_instrument
+
+=== betrayal_instrument ===
+The betrayal was not the interruption of divine plan — it was the instrument of divine purpose. The Lamb was slain before the foundation of the world.
+* [The redemption was sufficient.] -> redemption_sufficient
+* [The gift was free.] -> gift_was_free
+
+=== gift_was_free ===
+The gift was free. The wages of sin is death, but the gift of God is eternal life. My thirty pieces could not buy back what I had sold.
+* [The salvation was offered.] -> salvation_offered_detail
+* [The rejection was mine.] -> rejection_was_mine
+
+=== salvation_offered_detail ===
+The salvation was offered — to me, Peter, the centurion, Mary, to all who would believe. The rejection was mine. But the offer stands.
+* [The testimony is complete.] -> testimony_complete_detail
+* [The light endures.] -> light_endures
+
+=== testimony_complete_detail ===
+The testimony is complete. The witnesses have spoken. The tomb is empty. The earth has borne witness. The Scriptures have been fulfilled.
+* [The final word.] -> final_word_detail
+* [The dawn breaks.] -> dawn_breaks_final_detail
+
+=== light_endures ===
+The light endures. The dawn breaks. And the testimony — "I am the resurrection and the life" — endures still. My silver bought a field for strangers. His sacrifice bought a kingdom for all.
+* [The testimony spreads still.] -> testimony_spreads_still
+* [The earth testifies.] -> earth_testifies_final
+
+=== testimony_spreads_still ===
+The testimony spreads still — from that hill to the ends of the earth. From my silver, a field was bought. From His sacrifice, a kingdom was won. From my silence, a warning. From His voice — eternal life.
+* [Every knee bows.] -> every_knee_final
+* [The blood calls.] -> blood_calls
+
+=== every_knee_final ===
+Every knee bows — even mine, in the day when I stand before the throne. "Repent therefore, and be converted, that sins may be blotted out."
+* [The throne awaits.] -> throne_awaits
+* [The judgment comes.] -> judgment_comes
+
+=== throne_awaits ===
+The throne awaits. The books are open. Every deed stands recorded. My silver — a slave's price. His sacrifice — a king's ransom. My field — Akeldama. His cross — the Tree of Life.
+* [The contrast is etched.] -> contrast_etched
+* [The choice remains.] -> choice_remains_final
+
+=== contrast_etched ===
+The contrast is etched in stone and blood and testimony. My silver could not purchase redemption. But His blood — shed once for all — paid the price I could never pay.
+* [The price was paid.] -> price_paid_final
+* [The gift accepted.] -> gift_accepted
+
+=== price_paid_final ===
+The price was paid. It is finished. The debt is canceled. The handwriting that accused me — nailed to the cross — is gone.
+* [The record erased.] -> record_erased
+* [The testimony complete.] -> testimony_complete_final
+
+=== record_erased ===
+The record erased — blotted out the charge that was against me, nailing it to the cross. What was written against me, sealed with the thirty pieces of silver — gone. What was written for me, sealed with the blood of the cross — eternal.
+* [The blood was sufficient.] -> blood_sufficient
+* [The covenant stands.] -> covenant_stands
+
+=== blood_sufficient ===
+The blood was sufficient. More than sufficient. "The blood of Jesus, His Son, cleanses us from all sin." Not some sins. Not many sins. All sin. Even mine.
+* [The cleansing is complete.] -> cleansing_complete
+* [The forgiveness is full.] -> forgiveness_full
+
+=== cleansing_complete ===
+The cleansing is complete. The forgiveness is full. The invitation remains.
+* [The invitation stands.] -> invitation_stands_final
+* [The light beckons.] -> light_beckons
+
+=== invitation_stands_final ===
+The invitation stands. Not because I deserved it, but because He is faithful. "Come, for all things are now ready."
+* [The readiness is here.] -> readiness_here
+* [The table is set.] -> table_set
+
+=== readiness_here ===
+The readiness is here. The table is set. The lamb is slain. The cup is poured. The testimony is true. He who overcomes — He shall eat of the tree of life.
+* [The tree of life.] -> tree_of_life
+* [The testimony endures.] -> testimony_endures_final
+
+=== tree_of_life ===
+The tree of life — once barred to me, now opened. The gates of the city stand open. The river of life flows from the throne.
+* [The river flows.] -> river_flows
+* [The gates stand open.] -> gates_open
+
+=== river_flows ===
+The river flows. The testimony flows. The light flows. And in that light, I see — not my failure, but His victory. Not my silver, but His sacrifice. Not Akeldama, but the Tree of Life.
+* [The victory is His.] -> victory_is_his
+* [The testimony complete.] -> testimony_complete_victory
+
+=== victory_is_his ===
+The victory is His. The testimony complete. The dawn breaks. The earth remembers. The testimony endures.
 -> DONE
+

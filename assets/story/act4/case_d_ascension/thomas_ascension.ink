@@ -13,6 +13,15 @@
 //   - Acts 1:9-11
 //     Gospel: Acts 1:9-11
 //     Insight: The bodily ascension confirms Jesus's divine authority and the promise of His return.
+// ------------------------------------------------------------
+// BIBLICAL CONTEXT:
+//   Summary: Thomas, who once refused to believe without touching
+//   Jesus's wounds, stood among the disciples on the Mount of
+//   Olives and watched the same risen, physical body ascend into
+//   the clouds forty days after the resurrection.
+//   Significance: Thomas's arc from doubt to conviction gives the
+//   ascension added weight — the one who demanded proof became a
+//   direct eyewitness to Christ's final earthly appearance.
 // ============================================================
 
 -> start

@@ -25,6 +25,93 @@
       }
     ]
   },
+  "death_implications": {
+    "content": "A man who threatens Jerusalem's holiest site during Passion week is a threat to everyone. The High Priest knows the gravity. You cannot speak treason against the Temple and expect mercy.",
+    "choices": [
+      {
+        "text": "Did anyone catch the irony?",
+        "destination": "irony"
+      },
+      {
+        "text": "What exactly did He say?",
+        "destination": "actual_quote"
+      }
+    ]
+  },
+  "actual_quote": {
+    "content": "\"I will destroy this Temple, and in three days I will raise it up.\" The words hung in the courtyard air. He did not flinch. He did not retract. When the scribe asked for clarification, our witness suddenly seemed uncertain about the distance — \"near\" versus \"within arm's reach.\"",
+    "choices": [
+      {
+        "text": "The story was shaky.",
+        "destination": "story_changed"
+      },
+      {
+        "text": "What did the crowd understand by this?",
+        "destination": "crowd_understanding"
+      }
+    ]
+  },
+  "irony": {
+    "content": "The irony was not lost on the senior priests afterward. \"Destroy this Temple\" — and what happened on the third day? The stone chamber was empty. The guards were silent. The Roman centurion declared, \"Truly this was the Son of God.\" The false testimony had become an unwitting prophecy.",
+    "choices": [
+      {
+        "text": "The prophecy fulfilled itself.",
+        "destination": "story_changed"
+      },
+      {
+        "text": "Did you know what you were saying?",
+        "destination": "payment_question"
+      }
+    ]
+  },
+  "crowd_understanding": {
+    "content": "The crowd understood the reference immediately. John's Gospel records that after the resurrection, the disciples remembered these words. The Temple in question was not Herod's marble — it was the body that died and rose again. The false witnesses had heard a statement about resurrection and filed it as a threat to the physical sanctuary.",
+    "choices": [
+      {
+        "text": "They misunderstood the resurrection language.",
+        "destination": "story_changed"
+      },
+      {
+        "text": "Did you see the resurrection?",
+        "destination": "payment_question"
+      }
+    ]
+  },
+  "witness_contradiction": {
+    "content": "The second witness came forward with: \"The man claimed he would destroy the Temple made by human hands and rebuild it in three days.\" But when pressed on details — timing, method, witnesses — the two testimonies diverged like two paths that began at the same gate and never meet again.",
+    "choices": [
+      {
+        "text": "The Law requires identical testimony.",
+        "destination": "law_requirement"
+      },
+      {
+        "text": "How did Caiaphas react?",
+        "destination": "caiaphas_reaction"
+      }
+    ]
+  },
+  "law_requirement": {
+    "content": "The Law requires two or three witnesses. They had them ready. The conviction was pre-arranged. The sentence was decided before the accused entered the chamber. What he said was heresy.",
+    "choices": [
+      {
+        "text": "So the trial was a formality.",
+        "destination": "closing"
+      },
+      {
+        "text": "The procedure is the justice.",
+        "destination": "closing"
+      }
+    ]
+  },
+  "caiaphas_reaction": {
+    "content": "Caiaphas dismissed both witnesses without ceremony. \"We have what we need,\" he said. The false testimony was a disappointment — useful for motive, but insufficient for conviction. That is exactly why he resorted to the divine adjuration: \"I adjure you by the living God...\"",
+    "choices": [
+      {
+        "text": "The adjuration worked.",
+        "destination": "closing"
+      }
+    ]
+  },
   "story_changed": {
     "content": "The room is noisy! It is difficult to keep every word perfectly straight under pressure. But the substance is the same — He is a threat to the Law. The High Priest has affirmed that.",
     "choices": [
@@ -38,33 +125,11 @@
       }
     ]
   },
-  "law_requirement": {
-    "content": "The High Priest has the authority to proceed on the spirit of the charge! The letter of the procedure—",
-    "choices": [
-      {
-        "text": "The letter is the procedure. Without it you have no case.",
-        "destination": "exposed"
-      },
-      {
-        "text": "Your testimony is legally invalid.",
-        "destination": "exposed"
-      }
-    ]
-  },
-  "death_implications": {
-    "content": "A man who threatens Rome's most valued institution in this city during Passover is a threat to everyone. The High Priest is protecting the people.",
-    "choices": [
-      {
-        "text": "By using testimony that does not align.",
-        "destination": "story_changed"
-      }
-    ]
-  },
   "improvising": {
     "content": "I am stating what I heard! The acoustics of the outer courts are difficult. Perhaps I paraphrased. But the meaning was clear — He is dangerous.",
     "choices": [
       {
-        "text": "Paraphrase is not testimony. Testimony is exact.",
+        "text": "Paraphrase is not testimony.",
         "destination": "exposed"
       },
       {

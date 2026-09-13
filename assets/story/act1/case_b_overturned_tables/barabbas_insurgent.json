@@ -1,46 +1,436 @@
 {
   "start": {
-    "content": "(A heavy chain rattles against the stone floor of the lower cell as he laughs roughly.) The crowd wants an assassin, scribe! They do not want a teacher who tells them to love the legions. Rome only understands the edge of a curved blade, and the people out there know it. My hands are stained with Roman blood, and today, that makes me a hero.",
+    "content": "They brought me out of the dungeon that morning in chains. My hands still bore the marks of the manacles — iron on iron, day on day. I was a prince among robbers, a name whispered in the hills. And now the priests wanted me to walk free.",
     "choices": [
       {
-        "text": "You killed Romans?",
-        "destination": "kiling_record"
+        "text": "What was their plan?",
+        "destination": "priest_deal"
       },
       {
-        "text": "Why do the priests want you released?",
-        "destination": "priest_deal"
-      }
-    ]
-  },
-  "kiling_record": {
-    "content": "I killed seven. With my own hands. The governor put a price on my head three years ago. The Sicarii use my tactics. The Zealots bring me targets. Tonight, the High Priest needed a riot to force Pilate's signature on an execution — and I am the best riot money can buy.",
-    "choices": [
+        "text": "Why were you in chains?",
+        "destination": "imprisonment"
+      },
       {
-        "text": "And today's crowd chose you.",
-        "destination": "crowd_choice"
+        "text": "The crowd's reaction.",
+        "destination": "crowd_mood"
       }
     ]
   },
   "priest_deal": {
-    "content": "The priests needed a crowd to demand a prisoner's release — any prisoner — to satisfy the mob and get their man executed. Barabbas the insurgent was already in their calculations before I arrived this morning.",
+    "content": "The priests needed a crowd to demand a prisoner's release — any prisoner — to satisfy the mob and get their man executed. They knew the crowd would never choose an unknown preacher. So they made sure I was on the slate. It was political theater, and I was the unwilling star.",
     "choices": [
       {
-        "text": "So this was political theatre.",
-        "destination": "closing"
+        "text": "Political theater?",
+        "destination": "theater"
+      },
+      {
+        "text": "What role did you play?",
+        "destination": "unwilling_star"
       }
     ]
   },
-  "crowd_choice": {
-    "content": "The crowd chose me. Not because I am innocent — because I am useful. The priests whispered in the right ears. The Galilean stood silent before Pilate while this city screamed for blood. I return to the hills. The knives are already sharpened.",
+  "imprisonment": {
+    "content": "They threw me into the cistern when I resisted the census. A Zealot with too much fire and not enough wisdom. They beat me, chained me, left me to rot in the dark. My hands still shake from those manacles. But I never stopped planning — my next raid, my next strike, my next chance to bleed the Romans white.",
     "choices": [
       {
-        "text": "And the Galilean goes to the hill of execution.",
+        "text": "You were a rebel all your life?",
+        "destination": "rebel_life"
+      },
+      {
+        "text": "The chains that bound you.",
+        "destination": "chains"
+      }
+    ]
+  },
+  "rebel_life": {
+    "content": "A rebel all my life. My father taught me that the Romans take what they want and give nothing back. My brother died at the lash for refusing to carry a Roman officer's pack. I learned early that mercy is a luxury the oppressed cannot afford. The sword is the only language Rome understands.",
+    "choices": [
+      {
+        "text": "But you were sentenced to death?",
+        "destination": "death_sentence"
+      },
+      {
+        "text": "The revolution lives on?",
+        "destination": "revolution_continues"
+      }
+    ]
+  },
+  "death_sentence": {
+    "content": "Yes — I was sentenced to die. Four nails through my wrists, a spear through my heart. But the crowd chose me instead of the Nazarene. The substitution was total. I walked free while He walked to the cross. I am alive because the innocent died.",
+    "choices": [
+      {
+        "text": "The weight of survival.",
+        "destination": "survival_weight"
+      },
+      {
+        "text": "What you think about the substitution.",
+        "destination": "substitution_reflection"
+      }
+    ]
+  },
+  "survival_weight": {
+    "content": "The weight of survival is heavier than any iron chain. I look at my hands — hands that have killed, hands stained with blood — and I know they should be nailed to a cross. Instead, I am free. Free because another died in my place. Free because the innocent took my sentence.",
+    "choices": [
+      {
+        "text": "Do you feel worthy?",
+        "destination": "unworthy"
+      },
+      {
+        "text": "This freedom is a gift.",
+        "destination": "grace_received"
+      }
+    ]
+  },
+  "substitution_reflection": {
+    "content": "The substitution was not accidental. The priests needed a criminal released to justify a righteous man's execution. But who can say whether this was their plan — or God's? Isaiah wrote that all we like sheep have gone astray, and the Lord has laid on Him the iniquity of us all. I was the sheep that went astray. He was the Lamb.",
+    "choices": [
+      {
+        "text": "The scriptures were fulfilled.",
+        "destination": "scripture_fulfilled"
+      },
+      {
+        "text": "What does this mean?",
+        "destination": "gospel_meaning"
+      }
+    ]
+  },
+  "scripture_fulfilled": {
+    "content": "The scriptures were fulfilled that day. Every prophet who wrote of the suffering servant converging on the hill called Skull. I was the living proof — the guilty released, the innocent condemned. The greatest substitution in human history played out before my eyes.\n# UNLOCK_EVIDENCE: barabbas_substitution\n# UNLOCK_EVIDENCE: pilate_offers\n# UNLOCK_EVIDENCE: crowd_manipulation\n# UNLOCK_EVIDENCE: jesus_silent",
+    "choices": [
+      {
+        "text": "The meaning is staggering.",
+        "destination": "staggering"
+      },
+      {
+        "text": "What of the one who died?",
+        "destination": "the_one_who_died"
+      }
+    ]
+  },
+  "gospel_meaning": {
+    "content": "It means that God's love reaches into the depths of sin and says: \"I will take your place.\" The guilty go free. The innocent dies. And the universe itself is reconfigured around that single, shocking truth.",
+    "choices": [
+      {
+        "text": "The meaning is staggering.",
+        "destination": "staggering"
+      },
+      {
+        "text": "What of the one who died?",
+        "destination": "the_one_who_died"
+      }
+    ]
+  },
+  "staggering": {
+    "content": "Staggering. A criminal who had spilled blood walks free while the Son of Man hangs on a cross. The irony is so complete, so terrible, that it turns into something holy. The universe itself bows to a love that takes the guilty's place.",
+    "choices": [
+      {
+        "text": "The irony was divine.",
+        "destination": "divine_irony"
+      },
+      {
+        "text": "What you carry now.",
+        "destination": "carrying_it"
+      }
+    ]
+  },
+  "carrying_it": {
+    "content": "What I carry now is not guilt — it is gratitude. Every day, I ask: what would He think of the man I have become? He died for the man I was.",
+    "choices": [
+      {
+        "text": "The transformation.",
+        "destination": "transformation"
+      },
+      {
+        "text": "He sees the heart.",
+        "destination": "heart_seen"
+      }
+    ]
+  },
+  "heart_seen": {
+    "content": "He sees the heart. Not my deeds. Not my crimes. He sees the heart — and He died for the heart He found there. Even in rebellion, even in darkness — He was already there, preparing to take my place.",
+    "choices": [
+      {
+        "text": "The love that endured.",
+        "destination": "divine_irony"
+      }
+    ]
+  },
+  "divine_irony": {
+    "content": "They did not know what they did. Caiaphas thought he was protecting the nation. The crowd thought they were choosing a hero. None realized they were instruments of redemption — the worst decision became God's best provision.",
+    "choices": [
+      {
+        "text": "They chose poorly.",
+        "destination": "poor_choice"
+      },
+      {
+        "text": "Yet it was planned.",
+        "destination": "scripture_fulfilled"
+      }
+    ]
+  },
+  "poor_choice": {
+    "content": "They chose poorly — and perfectly. Their greatest sin became the instrument of salvation. The logic of the cross defies every human calculation.",
+    "choices": [
+      {
+        "text": "The redemption was planned.",
+        "destination": "scripture_fulfilled"
+      },
+      {
+        "text": "The love transcends time.",
+        "destination": "divine_irony"
+      }
+    ]
+  },
+  "theater": {
+    "content": "Political theater, yes — but whose theater? Behind the stage, behind the curtain of human agency, the Author was writing His story. I was the unwilling star — but born for this moment, as was He.",
+    "choices": [
+      {
+        "text": "The Author writes all stories.",
+        "destination": "divine_irony"
+      },
+      {
+        "text": "Even rebellion serves Him.",
+        "destination": "unknowing"
+      }
+    ]
+  },
+  "unwilling_star": {
+    "content": "I was the unwilling star of their production. My freedom was purchased at the price of His death. I never auditioned for this role — but I was born for it, as was He.",
+    "choices": [
+      {
+        "text": "Born for such a time.",
+        "destination": "scripture_fulfilled"
+      },
+      {
+        "text": "The role was predetermined.",
+        "destination": "predetermined"
+      }
+    ]
+  },
+  "predetermined": {
+    "content": "The role was predetermined by a love that transcends time. Before the foundation of the world, the Lamb was slain. I am Barabbas — and my name means \"son of the father.\" In the end, we all are.",
+    "choices": [
+      {
+        "text": "The redemption was planned.",
+        "destination": "scripture_fulfilled"
+      },
+      {
+        "text": "The love transcends time.",
+        "destination": "divine_irony"
+      }
+    ]
+  },
+  "chains": {
+    "content": "The chains that bound me were not just iron. They were fear, hatred, revenge. The man on the cross loosened them, one nail at a time.",
+    "choices": [
+      {
+        "text": "The real freedom.",
+        "destination": "grace_received"
+      },
+      {
+        "text": "The heart was freed.",
+        "destination": "heart_seen"
+      }
+    ]
+  },
+  "crowd_mood": {
+    "content": "The crowd was a living thing that morning. When the priests whispered in the right ears, the tide turned. One moment they asked for Jesus. The next, they screamed for Barabbas. I watched my freedom purchased with the blood of another — and I did not deserve it.",
+    "choices": [
+      {
+        "text": "They chose a criminal over Christ.",
+        "destination": "poor_choice"
+      },
+      {
+        "text": "The crowd was manipulated.",
+        "destination": "unknowing"
+      }
+    ]
+  },
+  "unworthy": {
+    "content": "Worthy? No. I am a murderer, a rebel, a man who cursed the God who judges me. I deserve the cross more than any man. Yet they chose me. And they crucified Him. The injustice is absolute — and that is precisely why it is justice.",
+    "choices": [
+      {
+        "text": "The injustice is justice.",
+        "destination": "grace_received"
+      },
+      {
+        "text": "The gift is undeserved.",
+        "destination": "grace_received"
+      }
+    ]
+  },
+  "grace_received": {
+    "content": "Grace is not fair. It is the guilty going free while the innocent dies. It is the criminal receiving life instead of death. It is what I received when I did not deserve it — and what Christ gave when I was still His enemy.",
+    "choices": [
+      {
+        "text": "What you do with this gift?",
+        "destination": "response"
+      },
+      {
+        "text": "The grace is overwhelming.",
+        "destination": "staggering"
+      }
+    ]
+  },
+  "response": {
+    "content": "I have done nothing worthy of this gift. All I can do is live differently — as one who has been bought with a price too high to count. Every act of violence I once committed, every moment of hatred — all ends today.",
+    "choices": [
+      {
+        "text": "A life transformed.",
+        "destination": "transformation"
+      },
+      {
+        "text": "The price is too high.",
+        "destination": "scripture_fulfilled"
+      }
+    ]
+  },
+  "transformation": {
+    "content": "A life transformed by the realization that the innocent died for the guilty. The Righteous One took my place. The Son of God looked down from the cross at the man who would succeed where the priests failed — not in killing a threat, but in witnessing to the power of resurrection love.",
+    "choices": [
+      {
+        "text": "The witness was complete.",
+        "destination": "the_one_who_died"
+      }
+    ]
+  },
+  "the_one_who_died": {
+    "content": "The one who died was not just another criminal. He was the Author of life itself, the Creator who spoke galaxies into being. When He died, it was not defeat — it was victory. The greatest act of love in human history.",
+    "choices": [
+      {
+        "text": "The victory over death.",
+        "destination": "victory"
+      },
+      {
+        "text": "The love endures.",
+        "destination": "love_endures"
+      }
+    ]
+  },
+  "victory": {
+    "content": "The victory over death. Three days later, the tomb was empty. My freedom — purchased at such a cost — was the proof that no sinner is beyond grace.",
+    "choices": [
+      {
+        "text": "The power that raised Him.",
+        "destination": "power_raise"
+      },
+      {
+        "text": "The love transforms.",
+        "destination": "grace_received"
+      }
+    ]
+  },
+  "love_endures": {
+    "content": "The love endures beyond the cross, beyond the tomb, beyond the grave. The same love that took my place now calls me to take up my cross and follow — not in rebellion, but in love that gives itself completely.",
+    "choices": [
+      {
+        "text": "Following in His footsteps.",
+        "destination": "follow"
+      },
+      {
+        "text": "The love transforms.",
+        "destination": "grace_received"
+      }
+    ]
+  },
+  "follow": {
+    "content": "Following in His footsteps means laying down the sword that once brought me power. It means picking up the cross that once was my enemy's weapon. It means living for the One who died for me — not dying for causes I believe in.",
+    "choices": [
+      {
+        "text": "The sword becomes a plowshare.",
+        "destination": "plowshare"
+      },
+      {
+        "text": "The cross becomes a banner.",
+        "destination": "cross_banner"
+      }
+    ]
+  },
+  "plowshare": {
+    "content": "The sword becomes a plowshare. The dagger becomes a pen. The rebellion becomes redemption. Every weapon I once used to tear down now builds up. The God who stopped my violence with His sacrifice now calls me to stop violence with His love.",
+    "choices": [
+      {
+        "text": "The transformation is complete.",
+        "destination": "completion"
+      },
+      {
+        "text": "The weapons are reversed.",
+        "destination": "reversed_weapons"
+      }
+    ]
+  },
+  "reversed_weapons": {
+    "content": "The weapons are reversed. Where I once used the sword to take life, I now use love to give life. Where I once cursed those who stood against me, I now bless those who curse me.",
+    "choices": [
+      {
+        "text": "The enemy becomes the ally.",
+        "destination": "ally"
+      },
+      {
+        "text": "The cycle breaks.",
+        "destination": "cycle_breaks"
+      }
+    ]
+  },
+  "ally": {
+    "content": "The enemy becomes the ally. The executioner becomes the executed. The victim becomes the victor. And the one who died on the cross — He is not the victim. He is the Victor.",
+    "choices": [
+      {
+        "text": "The victory is complete.",
+        "destination": "completion"
+      },
+      {
+        "text": "The story continues.",
+        "destination": "story_continues"
+      }
+    ]
+  },
+  "cycle_breaks": {
+    "content": "The cycle of violence breaks on a cross. For two thousand years, humanity has responded to hatred with hatred. But the cross whispers: love. Forgiveness. Grace. Redemption.",
+    "choices": [
+      {
+        "text": "Love fights the real battles.",
+        "destination": "love_fights"
+      },
+      {
+        "text": "The cross changes everything.",
+        "destination": "changes_everything"
+      }
+    ]
+  },
+  "love_fights": {
+    "content": "Love fights the real battles. Not with swords and shields. But with sacrifice and service. With forgiveness and mercy. With a willingness to take the place of the guilty and die for the undeserving.",
+    "choices": [
+      {
+        "text": "The conversion of a killer.",
+        "destination": "completion"
+      },
+      {
+        "text": "The kingdom advances.",
+        "destination": "kingdom_advances"
+      }
+    ]
+  },
+  "kingdom_advances": {
+    "content": "The kingdom advances not by the might of men, but by the mercy of God. Not by the force of arms, but by the power of love. Not by the sword of rebellion, but by the cross of redemption. I am Barabbas — and my freedom is the proof that no sinner is beyond the reach of grace.",
+    "choices": [
+      {
+        "text": "The proof endures.",
+        "destination": "completion"
+      }
+    ]
+  },
+  "completion": {
+    "content": "The proof endures. The freedman walks in peace. The killer finds rest. The grave that once held my name has been emptied by love. And the man who died in my place — He lives, and His Kingdom lives on.",
+    "choices": [
+      {
+        "text": "The freedman's testimony.",
         "destination": "closing"
       }
     ]
   },
   "closing": {
-    "content": "I go back to the hills. The Galilean goes to the hill of execution, and I return to the war. Let history decide who was useful.",
+    "content": "I go back to the hills. But the knives I carry now are not for killing — they are for cutting the bonds that still bind my people. The Galilean goes to the hill of execution, and I go to the hill of testimony. Let history decide who was useful — the criminal who was freed, or the Savior who died that I might live.",
     "choices": []
   }
 }

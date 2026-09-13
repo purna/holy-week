@@ -146,6 +146,7 @@ export const DIALOGUE_ID_MAP = {
     judas_betrayal: '../assets/story/act4/case_b_guards_report/judas_betrayal.json',
     herods_servant: '../assets/story/act4/case_b_guards_report/herods_servant.json',
     sentry_lucas: '../assets/story/act4/case_b_guards_report/sentry_lucas.json',
+    caiaphas_roman_inquiry: '../assets/story/act4/case_b_guards_report/caiaphas_roman_inquiry.json',
 
     // Case C: Peter's Restoration (Sea of Galilee)
     nathanael_disciple: '../assets/story/act4/case_c_peters_restoration/nathanael_disciple.json',

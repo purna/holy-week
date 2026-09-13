@@ -1,14 +1,107 @@
 {
-    "id": "mary_bethany_anointing",
-    "name": "Mary of Bethany",
-    "title": "Worshipper at Bethany",
-    "faction": "disciples",
-    "icon": "jar-duotone.svg",
-    "description": "Sister of Martha and Lazarus, Mary is known for her quiet, contemplative devotion. While her sister Martha is occupied with the duties of hospitality, Mary often sits at Jesus's feet to listen to His teaching. Her most notable act is anointing Jesus with expensive perfume at a dinner in Bethany, an act of extravagant worship that Jesus defends as a preparation for His burial.",
-    "attitude": {
-        "neutral": "Quiet, observant, and deeply devoted, focused more on the person of Jesus than the surrounding events.",
-        "positive": "Expresses profound love and worship, unconcerned with the practical or financial cost.",
-        "negative": "Becomes sorrowful and withdrawn when confronted with unbelief or misunderstanding of Jesus's mission."
-    },
-    "background": "Living in Bethany with her siblings, Mary's home is a frequent resting place for Jesus and His disciples. Her act of anointing Jesus is a pivotal moment, highlighting the theme of sacrificial love just before the Passion Week begins."
+  "start": {
+    "content": "I had waited for this moment every day since the tomb was emptied — six days, counted carefully, watching the man who called Lazarus forth from death prepare to enter Jerusalem. I had seen the stone rolled away, heard the voice that spoke my brother back to life. If such power lived in that voice — then every breath He took was a gift the world could not afford to waste.",
+    "choices": [
+      {
+        "text": "The voice that called Lazarus.",
+        "destination": "lazarus_voice"
+      },
+      {
+        "text": "You knew what you must do.",
+        "destination": "knew_must_do"
+      },
+      {
+        "text": "How did you prepare for this?",
+        "destination": "preparation"
+      }
+    ]
+  },
+  "lazarus_voice": {
+    "content": "",
+    "choices": []
+  },
+  "hour_coming": {
+    "content": "",
+    "choices": []
+  },
+  "knew_must_do": {
+    "content": "",
+    "choices": []
+  },
+  "fitting_sacrifice": {
+    "content": "",
+    "choices": []
+  },
+  "oil_expensive": {
+    "content": "",
+    "choices": []
+  },
+  "familys_savings": {
+    "content": "",
+    "choices": []
+  },
+  "choice_final": {
+    "content": "",
+    "choices": []
+  },
+  "seal_broken": {
+    "content": "",
+    "choices": []
+  },
+  "pouring_complete": {
+    "content": "",
+    "choices": []
+  },
+  "feet_anointed": {
+    "content": "",
+    "choices": []
+  },
+  "hair_unbound": {
+    "content": "",
+    "choices": []
+  },
+  "healing_complete": {
+    "content": "",
+    "choices": []
+  },
+  "tears_mixed": {
+    "content": "",
+    "choices": []
+  },
+  "cost_counted": {
+    "content": "",
+    "choices": []
+  },
+  "richness_spiritual": {
+    "content": "",
+    "choices": []
+  },
+  "satisfaction_real": {
+    "content": "",
+    "choices": []
+  },
+  "dawn_would_come": {
+    "content": "",
+    "choices": []
+  },
+  "testimony_endure": {
+    "content": "",
+    "choices": []
+  },
+  "prophecy_fulfilled_detail": {
+    "content": "",
+    "choices": []
+  },
+  "resurrection_come": {
+    "content": "",
+    "choices": []
+  },
+  "flow_complete": {
+    "content": "",
+    "choices": []
+  },
+  "testimony_true": {
+    "content": "",
+    "choices": []
+  }
 }

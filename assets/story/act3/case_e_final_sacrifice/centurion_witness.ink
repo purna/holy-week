@@ -13,6 +13,16 @@
 //   - Zechariah 12:10
 //     Gospel: John 19:34
 //     Insight: The spear thrust was a standard Roman verification, yet it fulfilled a 500-year-old Jewish prophecy of the Pierced One.
+// ------------------------------------------------------------
+// BIBLICAL CONTEXT:
+//   Summary: A centurion on duty at Golgotha recounts the darkness
+//   at noon, the words exchanged with the two thieves, the sour
+//   wine offered on a hyssop branch, and the earthquake and spear
+//   thrust that followed Jesus's death.
+//   Significance: Told first-hand from a professional executioner
+//   who has "seen men die" many times, the account's power comes
+//   from a hardened soldier admitting he had never witnessed
+//   anything like this.
 // ============================================================
 //
 

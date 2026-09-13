@@ -26,7 +26,7 @@
     ]
   },
   "pressured_stage": {
-    "content": "\"My friend wouldn't let up on Him. Cursing, jeering, same as the\ncrowd below. I told him to stop. 'Don't you fear God? We're\ngetting exactly what we deserve. This man's done nothing wrong.'\n{penitent_confessed: I don't know why I said it. It just came out true.}\n~ penitent_confessed = true",
+    "content": "\"My friend wouldn't let up on Him. Cursing, jeering, same as the\ncrowd below. I told him to stop. 'Don't you fear God? We're\ngetting exactly what we deserve. This man's done nothing wrong.'\nI don't know why I said it. It just came out true.\n~ penitent_confessed = true",
     "choices": [
       {
         "text": "Continue",

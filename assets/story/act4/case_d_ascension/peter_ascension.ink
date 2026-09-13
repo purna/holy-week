@@ -13,6 +13,15 @@
 //   - Luke 24:50-51
 //     Gospel: Luke 24:50-51
 //     Insight: Jesus's final act of blessing His disciples before His ascension underscores His priestly role.
+// ------------------------------------------------------------
+// BIBLICAL CONTEXT:
+//   Summary: Forty days after the resurrection, having appeared
+//   repeatedly to His disciples, Jesus led them to the Mount of
+//   Olives, blessed them, and was taken up before their eyes.
+//   Significance: For Peter — who had denied Jesus and then been
+//   restored — witnessing the ascension confirmed that the man he
+//   had followed, failed, and been forgiven by was truly exalted
+//   to divine authority.
 // ============================================================
 
 -> start

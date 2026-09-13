@@ -3660,6 +3660,22 @@ h4.modal-subtitle-custom {
     opacity: 0.7;
 }
 
+.case-outcome-fieldset { margin: 0; padding: 0; border: 0; }
+.case-outcome-instruction { margin: 0 0 10px; color: var(--text-muted); font-size: .82rem; line-height: 1.4; }
+.case-outcome-options { display: grid; gap: 8px; }
+.case-outcome-option { display: grid; grid-template-columns: 18px 1fr; align-items: start; gap: 9px; padding: 10px; border: 1px solid var(--border); border-radius: 7px; background: var(--panel-2); color: var(--text-main); font-size: .84rem; line-height: 1.4; cursor: pointer; }
+.case-outcome-option:hover { border-color: var(--gold); }
+.case-outcome-option:has(input:checked) { border-color: var(--gold); background: rgba(200, 150, 90, .12); }
+.case-outcome-option input { width: 17px; height: 17px; margin: 2px 0 0; accent-color: var(--gold); }
+.case-outcome-option:focus-within { outline: 2px solid var(--accent); outline-offset: 2px; }
+.case-outcome-option.incorrect { border-color: var(--red, #d45b5b); }
+.case-outcome-feedback { min-height: 1.3em; margin-top: 9px; font-size: .8rem; font-weight: 650; }
+.case-outcome-feedback.success { color: var(--green, #79c989); }
+.case-outcome-feedback.error { color: var(--red, #e17878); }
+.what-happened-section.locked .case-outcome-options { opacity: .42; }
+.what-happened-section.locked .case-outcome-option { cursor: not-allowed; }
+.what-happened-section.locked .case-outcome-instruction { color: var(--gold); }
+
 .codex-matching-columns .picker-card:hover {
     border-color: var(--accent-primary);
     background: rgba(0, 242, 255, 0.06);

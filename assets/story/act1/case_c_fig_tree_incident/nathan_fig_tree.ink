@@ -6,7 +6,25 @@
 // SOURCE: NPC 'nathan_fig_tree'
 // BIBLE REFERENCE: Mark 11:12–14, 20–25; Matthew 21:18–22
 // ------------------------------------------------------------
+// PROPHECIES / OT BACKGROUND ECHOED IN THIS CASE:
+//   - Jeremiah 8:13
+//     Gospel: Mark 11:13-14, 20
+//     Insight: "I will surely consume them... there shall be no
+//     grapes on the vine, nor figs on the fig tree" — the same
+//     judgment Nathan watches happen to a single tree in real time.
+// ------------------------------------------------------------
 // PURPOSE: Nathan witnesses the cursed fig tree — immediate withering from roots up
+// ------------------------------------------------------------
+// BIBLICAL CONTEXT:
+//   Summary: A local gardener, working orchards along the Bethany
+//   road, watched the fig tree Jesus spoke to wither completely
+//   within a single day — a professional witness whose expertise
+//   rules out any natural explanation.
+//   Significance: Nathan's trade gives his testimony a weight the
+//   other witnesses can't offer: he knows exactly how slowly blight
+//   actually kills a tree, which makes his account of an overnight,
+//   root-to-crown collapse serve as expert corroboration rather than
+//   a layman's impression.
 // ============================================================
 
 -> start
@@ -44,9 +62,9 @@ I am a gardener, not a theologian. What it means to me is that He has authority 
 * [Thank you, Nathan.] -> closing
 
 === symbolic_judgment ===
-I have heard that. A vine and a fig tree representing the nation — Micah, I think. If the Teacher was speaking to more than the tree, then what I saw this morning is heavier than I want to carry on a Tuesday. I will stick to my orchards and leave the symbols to people better equipped.
-* [Be careful with that one.] -> closing
+I have heard that. A vine and a fig tree representing the nation — Micah, I think, or one of his contemporaries. If the Teacher was speaking to more than the tree, then what I saw this morning is heavier than I want to carry on a Tuesday. I will stick to my orchards and leave the symbols to people better equipped.
+* [Thank you, Nathan.] -> closing
 
 === closing ===
-Be careful with that one. His words have weight. I have been tending these trees for twenty years. I have never seen a word do what His word did this morning. Write that down carefully.
+His words have weight, Scribe. I have been tending these trees for twenty years. I have never once seen a word do what His word did this morning. Write that down carefully.
 -> DONE

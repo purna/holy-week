@@ -8,6 +8,18 @@ Scoring values shared with the wider game are canonical in [`ScoringSystem.md`](
 
 ## Lab sections
 
+### Link (evidence types)
+
+The player sorts every collected clue into one of four evidence-type folders, then verifies the filing.
+
+- `Physical Evidence` contains tangible objects and material traces.
+- `Testimonial Evidence` contains spoken or written witness accounts.
+- `Analytical Evidence` contains interpretations, researched connections, and expert conclusions.
+- `Environmental Evidence` contains contextual facts supplied by the location, timing, or surrounding event.
+- Each folder explains its evidence type before the player submits.
+- Evidence can be filed by selecting a folder and then a card, or by dragging a card into a folder.
+- Incorrect filing identifies which cards need reconsideration without moving or consuming them.
+
 ### Connections (required)
 
 The player selects two evidence items, labels their relationship, and tests the connection. The case's `deductions` data is the source of truth.
@@ -106,6 +118,7 @@ let currentTab = 'connections';
 
 let connectionSelected = [];
 let connectionRelationship = 'compare';
+let folderState = {};
 let timelineSlots = [];        // evidenceId | null
 let completedConnectionIds = new Set();
 

@@ -5,6 +5,16 @@
 // UNLOCKS: cross_burden
 // REVEALS PROPHECY: typology_isaac_wood
 // SOURCE: Matthew 27:32, Mark 15:21, Luke 23:26
+// ------------------------------------------------------------
+// BIBLICAL CONTEXT:
+//   Summary: Simon, a pilgrim from Cyrene arriving in Jerusalem for
+//   Passover, was seized by Roman soldiers and compelled to carry
+//   Jesus's cross after Jesus, weakened from the scourging, could
+//   no longer bear it alone.
+//   Significance: Simon's forced participation echoes Isaac
+//   carrying the wood for his own sacrifice up Mount Moriah — an
+//   outsider with no prior connection to Jesus made to share,
+//   however briefly, in the burden of the cross.
 // ============================================================
 
 -> intro

@@ -9,11 +9,24 @@
       {
         "text": "What did you see on the shore?",
         "destination": "shore_scene"
+      },
+      {
+        "text": "Why should anyone believe reports like these?",
+        "destination": "witness_reliability"
+      }
+    ]
+  },
+  "witness_reliability": {
+    "content": "Paul, years later, wrote out the list like a legal record: He appeared to Cephas, then to the Twelve, then to more than five hundred at once — most of them still alive when Paul wrote it, so anyone could go and ask them — then to James, then to all the apostles, and last of all to Paul himself. [1 Corinthians 15:5-8] That is not the language of a private vision. That is the language of a man daring you to go check.\nAnd before any of that list — before Cephas, before the Twelve — the first report came from women at a tomb. Their word carried no legal weight under the Law. No one inventing this story would have opened it with witnesses a court would not even hear. We opened with them because that is who found Him first.",
+    "choices": [
+      {
+        "text": "And you needed more, even so.",
+        "destination": "doubt"
       }
     ]
   },
   "doubt": {
-    "content": "A week after the resurrection I had told the others: unless I see the nail marks and put my finger where the nails were and put my hand into his side, I will not believe. He appeared again while I was present. He said: \"Put your finger here, Thomas. Stop doubting and believe.\" I did not need to touch anything. The sight of Him was sufficient. And then I said the only thing that was left to say: \"My Lord and my God.\"",
+    "content": "A week after the resurrection I told the others plainly: unless I see the nail marks and put my finger where the nails were and put my hand into His side, I will not believe. [John 20:25] He appeared again while I was present. \"Put your finger here, Thomas... stop doubting and believe.\" [John 20:27] I did not need to touch anything. The sight of Him was sufficient. And then I said the only thing left to say: \"My Lord and my God.\" [John 20:28]",
     "choices": [
       {
         "text": "And now?",
@@ -25,8 +38,17 @@
       }
     ]
   },
+  "doubt_addressed": {
+    "content": "He did not scold me for being absent the first time. He simply came to where I was and gave me exactly what I had asked for — and then one thing more: \"Have you believed because you have seen? Blessed are those who have not seen and yet have believed.\" [John 20:29] He corrected me and included me in the same breath.",
+    "choices": [
+      {
+        "text": "Then you were ready for the shore.",
+        "destination": "shore_scene"
+      }
+    ]
+  },
   "shore_scene": {
-    "content": "He made a charcoal fire on the beach and invited us to breakfast. The risen Lord — cooking fish. He could have appeared in glory. He chose intimacy. A fire, bread, fish, seven tired fishermen who had caught nothing all night and were pulling in a net they could barely lift. He fed us before He said anything important. That order matters.",
+    "content": "# UNLOCK_EVIDENCE: charcoal_fireHe made a charcoal fire on the beach and invited us to breakfast. [John 21:9] The risen Lord — cooking fish with His own hands. He could have appeared in glory. He chose intimacy. He fed us before He said anything that mattered. That order matters.",
     "choices": [
       {
         "text": "What passed between Him and Peter?",
@@ -38,17 +60,8 @@
       }
     ]
   },
-  "doubt_addressed": {
-    "content": "He did not scold me for being absent the first time. He did not explain why I had been excluded from the initial appearance. He simply came to where I was and gave me exactly what I had asked for — and then one question more: \"Have you believed because you have seen? Blessed are those who have not seen and yet have believed.\" He corrected me and included me in the same moment.",
-    "choices": [
-      {
-        "text": "Then you were ready for the shore.",
-        "destination": "shore_scene"
-      }
-    ]
-  },
   "charcoal_meaning": {
-    "content": "There was a charcoal fire in the High Priest's courtyard the night of the arrest. John 18:18. Peter denied Him three times beside that fire. Here was another charcoal fire. He was not repeating the context accidentally. The restoration was built on the same material as the wound.",
+    "content": "There was a charcoal fire in the high priest's courtyard the night of the arrest. [John 18:18] Peter denied Him three times beside that fire. Here was another. Not repeated by accident. The shepherd who was struck, the sheep who scattered — Zechariah wrote that centuries before any of us existed. [Zechariah 13:7] The restoration was built on the same material as the wound.",
     "choices": [
       {
         "text": "Three questions.",
@@ -57,7 +70,7 @@
     ]
   },
   "peter_commission": {
-    "content": "Three times He asked Peter if he loved Him. Three times Peter answered yes. Three times He commissioned: \"Feed my lambs. Tend my sheep. Feed my sheep.\" Peter wept on the third question — he understood what was happening. A surgical repair of three denials with three affirmations. The same number, the same context, the same man.",
+    "content": "# UNLOCK_EVIDENCE: threefold_commissionThree times He asked Peter if he loved Him. Three times Peter answered yes. Three times He commissioned: \"Feed My lambs. Tend My sheep. Feed My sheep.\" [John 21:15-17] Peter wept on the third question — he understood what was happening. A precise repair of three denials with three affirmations. The same number, the same context, the same man.",
     "choices": [
       {
         "text": "Then Peter is restored?",
@@ -70,7 +83,7 @@
     ]
   },
   "why_weep": {
-    "content": "Because by the third question he knew Jesus was counting deliberately. And because on the third answer, Jesus used the word Peter had been using — the ordinary brotherly love — rather than the higher word. Jesus came down to where Peter was. He met the failure on its own level and restored it from there. Weeping was the only honest response to that kind of precision.",
+    "content": "Because by the third question he knew Jesus was counting on purpose. And on the third answer, Jesus used the ordinary word Peter had been using all along, not the higher one. He came down to where Peter was and restored him from there. Weeping was the only honest response to that kind of precision.",
     "choices": [
       {
         "text": "Then Peter is restored.",
@@ -79,7 +92,7 @@
     ]
   },
   "restoration": {
-    "content": "Then Jesus said \"Follow me.\" The first two words He ever said to Peter beside this same sea, three years before. After everything — the calling, the walking on water, the confession at Caesarea Philippi, the denial, the cross, the resurrection — everything circled back to two words. Follow me. Peter stood up and followed. His face was a man who had been given his life back.",
+    "content": "Then Jesus said \"Follow Me.\" [John 21:19] The first two words He ever said to Peter beside this same sea, three years before. After everything — the calling, the water-walking, the confession at Caesarea Philippi, the denial, the cross, the resurrection — everything circled back to two words. Peter stood up and followed.",
     "choices": [
       {
         "text": "And you. Where does this leave you?",
@@ -88,7 +101,7 @@
     ]
   },
   "closing": {
-    "content": "I am a man who required evidence and received it. Twice — once in the upper room and once on this shore. The question Jesus asked me: \"Blessed are those who have not seen and yet believed\" — I think He was already speaking of the people who would come after. Those who read what I saw and believe without having been there. That is the message I will carry. Not the doubt, though that is part of it. The belief that came through the doubt. That is the story.",
+    "content": "I am a man who required evidence and received it — and a man who has since watched a fisherman get his life handed back to him on a beach for saying nothing more than \"I love You,\" three times. \"Blessed are those who have not seen and yet believed\" [John 20:29] — I think He was already speaking of the people who would come after. Those who will read what women told us at a tomb, and what I saw with my own hands, and believe it without having stood on that shore themselves.\nThat is the story I will carry: not that doubt is shameful, but that even doubt, honestly carried, can end at \"My Lord and my God.\"",
     "choices": []
   }
 }
