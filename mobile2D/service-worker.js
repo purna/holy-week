@@ -1,5 +1,5 @@
 const CACHE_PREFIX = 'holy-week-cache';
-const CACHE_VERSION = 'v2.2'; // Lock Case File answers until prophecy research is complete
+const CACHE_VERSION = 'v2.10'; // Dialogue-driven evidence unlocks
 const CACHE_NAME = `${CACHE_PREFIX}-${CACHE_VERSION}`;
 
 // List all critical assets that need to be cached for offline use.
@@ -141,6 +141,7 @@ const urlsToCache = [
   '../assets/gfx/theater-masks-duotone.svg',
   '../assets/gfx/arrow-right-duotone.svg',
   '../assets/gfx/check-circle-duotone.svg',
+  '../assets/gfx/holy-week-solved-seal.svg',
   '../assets/gfx/lock-duotone.svg',
   '../assets/gfx/map-pin-duotone.svg',
   '../assets/gfx/trophy-duotone.svg',

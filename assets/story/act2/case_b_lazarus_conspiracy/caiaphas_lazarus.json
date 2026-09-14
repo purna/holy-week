@@ -13,7 +13,7 @@
     ]
   },
   "what_happened": {
-    "content": "Four days dead, sealed in a tomb, bound in burial linen — and then walking out at the command of this Galilean. I do not dismiss it. I cannot. Even our own sources in Bethany confirm it. That is exactly the problem.",
+    "content": "# UNLOCK_EVIDENCE: grave_dirt\nFour days dead, sealed in a tomb, bound in burial linen — and then walking out at the command of this Galilean. I do not dismiss it. I cannot. Even our own sources in Bethany confirm it. That is exactly the problem.",
     "choices": [
       {
         "text": "You accept the miracle happened?",
@@ -39,7 +39,7 @@
     ]
   },
   "council_plan": {
-    "content": "The council is divided between fear and argument. Some want to wait. Some want to question Him publicly. I ended that discussion. There is only one calculation that matters: if we let Him continue, the Romans come, and both our Temple and our nation are destroyed.",
+    "content": "# UNLOCK_EVIDENCE: grave_dirt\nThe council is divided between fear and argument. Some want to wait. Some want to question Him publicly. I ended that discussion. There is only one calculation that matters: if we let Him continue, the Romans come, and both our Temple and our nation are destroyed.",
     "choices": [
       {
         "text": "One man's life for the nation's survival.",

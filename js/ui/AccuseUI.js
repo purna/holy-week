@@ -114,6 +114,7 @@ export class AccuseUI {
             status: this.cm.getCodexStatus(p.id)
         }));
         const total = prophecies.length;
+        const unlocked = prophecies.filter(p => p.status === 'found_scripture' || p.status === 'complete').length;
         const complete = prophecies.filter(p => p.status === 'complete').length;
         const canConclude = options.canConclude ? this.cm.canConcludeCase() : false;
         const isConcluded = options.isConcluded || false;
@@ -142,8 +143,8 @@ export class AccuseUI {
             </div>
             <div class="accuse-panel">
                 <div class="case-file-progress">
-                    <div class="case-file-progress-label">Prophecies Researched</div>
-                    <div class="case-file-progress-value">${complete} / ${total}</div>
+                    <div class="case-file-progress-label">Prophecies Unlocked</div>
+                    <div class="case-file-progress-value">${unlocked} / ${total}</div>
                 </div>
                  <div class="prophecy-checklist">
                       ${prophecies.map(p => {

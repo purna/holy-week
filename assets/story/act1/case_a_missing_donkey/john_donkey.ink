@@ -37,6 +37,9 @@ fulfillment of prophecies written centuries before our birth.
 * [What about the donkey colt?] -> colt
 
 === crowd ===
+# UNLOCK_EVIDENCE: donkey_tracks
+# UNLOCK_EVIDENCE: crowd_testimony
+# UNLOCK_EVIDENCE: witness_account
 The road from Bethphage to Jerusalem was a river of people.
 Pilgrims from Galilee, Judea, and beyond — all streaming
 down the Mount of Olives. When we emerged from the garden
@@ -48,6 +51,9 @@ knees. Even the soldiers on the walls looked uncertain.
 * [The soldiers seemed confused.] -> soldiers
 
 === fulfilled ===
+# UNLOCK_EVIDENCE: donkey_tracks
+# UNLOCK_EVIDENCE: crowd_testimony
+# UNLOCK_EVIDENCE: witness_account
 Every detail matched exactly. The donkey — never ridden.
 The cloaks spread on the road. The palm branches waving.
 "Hosanna to the Son of David!" — that cry rose like incense.
@@ -58,6 +64,9 @@ you... humble and riding on a donkey." It was living prophecy.
 * [The detail was divine.] -> divine_detail
 
 === colt ===
+# UNLOCK_EVIDENCE: donkey_tracks
+# UNLOCK_EVIDENCE: crowd_testimony
+# UNLOCK_EVIDENCE: witness_account
 The colt had never been ridden — our mothers taught us that
 such an animal is set apart. When the Lord said "the Lord
 needs it," the owner understood at once. "Let my lord go

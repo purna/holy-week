@@ -13,7 +13,7 @@
     ]
   },
   "catalogue": {
-    "content": "The faces of the men who came to hear the Galilean today. The chief priests, the scribes, the Pharisees — they all came with questions. He answered every one.",
+    "content": "# UNLOCK_EVIDENCE: crowd_report\nThe faces of the men who came to hear the Galilean today. The chief priests, the scribes, the Pharisees — they all came with questions. He answered every one.",
     "choices": [
       {
         "text": "And the answers?",
@@ -22,7 +22,7 @@
     ]
   },
   "employer": {
-    "content": "The High Priest's household employs many watchers. I watch the Temple because the Temple is where power assembles. And power, when challenged, remembers.",
+    "content": "# UNLOCK_EVIDENCE: crowd_report\nThe High Priest's household employs many watchers. I watch the Temple because the Temple is where power assembles. And power, when challenged, remembers.",
     "choices": [
       {
         "text": "You heard the teachings?",

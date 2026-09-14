@@ -22,16 +22,19 @@ I walk this road every day between Bethany and Jerusalem. I saw that fig tree ye
 * [Press: Did you see anyone near it?] -> pressure
 
 === yesterday ===
+# UNLOCK_EVIDENCE: withered_fig_tree_state
 It was a fine-looking tree, lots of leaves. But no figs. Not a single one. A bit early in the season, perhaps, but still, a shame. All show, no substance.
 
 * [Continue.] -> this_morning
 
 === this_morning ===
+# UNLOCK_EVIDENCE: withered_fig_tree_state
 Withered. Completely. From the roots up. Blackened leaves, brittle branches. Like it had been struck by lightning, but there was no storm. It happened overnight.
 
 * [Continue.] -> pressure
 
 === pressure ===
+# UNLOCK_EVIDENCE: withered_fig_tree_state
 I saw the Galilean teacher and his disciples pass by both mornings. Yesterday, he stopped and looked at it. This morning, one of his men pointed it out, astonished. They seemed to know something about it.
 
 * [Accept: They were involved.] -> closing

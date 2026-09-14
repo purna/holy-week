@@ -34,9 +34,12 @@ Look at this mess! Ink spilled everywhere, ledgers torn, Tyrian shekels scattere
 * [Why Tyrian coinage specifically?] -> tyrian
 * [Where did the crowd go after the tables fell?] -> crowd
 === tyrian ===
+# UNLOCK_EVIDENCE: broken_cages
 The Law forbids images of foreign kings in the inner house. Tyrian silver is pure — it has no emperor's face on it. It is logistics - the coins have the head of the god Melqart, not greed! 
 * [The disciples were violent too?] -> closing
 === crowd ===
+# UNLOCK_EVIDENCE: scattered_shekels
+# UNLOCK_EVIDENCE: broken_cages
 They scattered toward the outer gates, singing like madmen. The priests are inside meeting right now. This will not stand.
 * [What happened to the animals?] -> closing
 === closing ===

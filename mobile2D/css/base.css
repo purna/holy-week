@@ -13,6 +13,11 @@
     --blue: #66ccff;
 }
 
+.solved-seal-icon { width: 1.7em; height: 1.7em; vertical-align: middle; object-fit: contain; filter: drop-shadow(0 2px 2px rgba(20, 0, 2, .55)); }
+.location-badge .solved-seal-icon { width: 42px; height: 42px; }
+.case-status-label .solved-seal-icon,
+.location-status .solved-seal-icon { margin-right: 4px; }
+
 .large-text {
     font-size: 118%;
 }

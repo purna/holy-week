@@ -17,7 +17,7 @@
     ]
   },
   "systems_lie": {
-    "content": "You claim governments are built on stone, not passion, yet you would destroy a man who embodies divine truth to protect your power. That is not governance — that is tyranny.",
+    "content": "# UNLOCK_EVIDENCE: secret_decree\nYou claim governments are built on stone, not passion, yet you would destroy a man who embodies divine truth to protect your power. That is not governance — that is tyranny.",
     "choices": [
       {
         "text": "So your concern is power, not order.",
@@ -30,7 +30,7 @@
     ]
   },
   "miracle_lie": {
-    "content": "You say Jesus’s popularity is like water, eroding structures, yet you ignore that the structure itself is rotten. The crowd celebrates life, not rebellion. Labeling virtue as threat does not make it true.",
+    "content": "# UNLOCK_EVIDENCE: secret_decree\nYou say Jesus’s popularity is like water, eroding structures, yet you ignore that the structure itself is rotten. The crowd celebrates life, not rebellion. Labeling virtue as threat does not make it true.",
     "choices": [
       {
         "text": "Popularity is not a crime.",
@@ -43,7 +43,7 @@
     ]
   },
   "chaos_lie": {
-    "content": "You suggest that Lazarus’s survival threatens Jerusalem, yet it is your own fear and scheming that endanger the city. Miracles inspire, but murder invites ruin.",
+    "content": "# UNLOCK_EVIDENCE: secret_decree\nYou suggest that Lazarus’s survival threatens Jerusalem, yet it is your own fear and scheming that endanger the city. Miracles inspire, but murder invites ruin.",
     "choices": [
       {
         "text": "So this is political fear, not public safety.",

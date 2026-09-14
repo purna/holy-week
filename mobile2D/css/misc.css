@@ -542,8 +542,18 @@
   border-color: #16a34a;
 }
 
+#instructions-logo .header-title .icon-svg {
+  width: 3em !important;
+  height: 3em !important;
+  vertical-align: -1.25em;
+}
+
+#instructions-logo .header-title {
+  font-size: 1.7rem !important;
+}
+
 @media (max-width: 479px) {
   #instructions-logo .header-title {
-    font-size: 1.7rem;
+    font-size: 1.7rem !important;
   }
 }

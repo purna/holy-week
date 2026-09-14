@@ -17,7 +17,7 @@
     ]
   },
   "yesterday": {
-    "content": "It was a fine-looking tree, lots of leaves. But no figs. Not a single one. A bit early in the season, perhaps, but still, a shame. All show, no substance.",
+    "content": "# UNLOCK_EVIDENCE: withered_fig_tree_state\nIt was a fine-looking tree, lots of leaves. But no figs. Not a single one. A bit early in the season, perhaps, but still, a shame. All show, no substance.",
     "choices": [
       {
         "text": "Continue.",
@@ -26,7 +26,7 @@
     ]
   },
   "this_morning": {
-    "content": "Withered. Completely. From the roots up. Blackened leaves, brittle branches. Like it had been struck by lightning, but there was no storm. It happened overnight.",
+    "content": "# UNLOCK_EVIDENCE: withered_fig_tree_state\nWithered. Completely. From the roots up. Blackened leaves, brittle branches. Like it had been struck by lightning, but there was no storm. It happened overnight.",
     "choices": [
       {
         "text": "Continue.",
@@ -35,7 +35,7 @@
     ]
   },
   "pressure": {
-    "content": "I saw the Galilean teacher and his disciples pass by both mornings. Yesterday, he stopped and looked at it. This morning, one of his men pointed it out, astonished. They seemed to know something about it.",
+    "content": "# UNLOCK_EVIDENCE: withered_fig_tree_state\nI saw the Galilean teacher and his disciples pass by both mornings. Yesterday, he stopped and looked at it. This morning, one of his men pointed it out, astonished. They seemed to know something about it.",
     "choices": [
       {
         "text": "Accept: They were involved.",

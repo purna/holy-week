@@ -13,7 +13,7 @@
     ]
   },
   "judas": {
-    "content": "His eyes kept moving. Not like he was worried about being caught — like he had somewhere else to be. Something urgent. Then Jesus gave him a piece of bread, dipped in the bitter herbs. \"Do quickly,\" He said. Judas left immediately. It was night.",
+    "content": "# UNLOCK_EVIDENCE: betrayal_dipped_bread\nHis eyes kept moving. Not like he was worried about being caught — like he had somewhere else to be. Something urgent. Then Jesus gave him a piece of bread, dipped in the bitter herbs. \"Do quickly,\" He said. Judas left immediately. It was night.",
     "choices": [
       {
         "text": "You knew what was happening.",
@@ -22,7 +22,7 @@
     ]
   },
   "table": {
-    "content": "Jesus took the bread and broke it. \"This is my body.\" Then the cup: \"This cup is the new covenant in my blood.\" We didn't understand. We were still thinking in terms of kingdoms and swords. He was speaking of something far greater — and far more terrible.",
+    "content": "# UNLOCK_EVIDENCE: bread_crumbs\n# UNLOCK_EVIDENCE: new_covenant_declaration\n# UNLOCK_EVIDENCE: betrayal_dipped_bread\nJesus took the bread and broke it. \"This is my body.\" Then the cup: \"This cup is the new covenant in my blood.\" We didn't understand. We were still thinking in terms of kingdoms and swords. He was speaking of something far greater — and far more terrible.",
     "choices": [
       {
         "text": "You wrote it down.",

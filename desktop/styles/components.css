@@ -3586,6 +3586,44 @@ h4.modal-subtitle-custom {
     box-shadow: none;
 }
 
+.npc-result-modal-card .challenge-modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: stretch;
+    gap: 10px;
+    margin-top: 4px;
+}
+
+.npc-result-modal-card .challenge-modal-actions .evidence-detail-confirm {
+    width: auto;
+    min-width: 0;
+    min-height: 44px;
+    margin: 0;
+}
+
+.npc-result-modal-card .challenge-modal-cancel {
+    flex: 0 1 110px;
+    background: transparent;
+    color: var(--text-primary, #f7f3e8);
+    border: 1px solid var(--border, #2e3a50);
+}
+
+.npc-result-modal-card .npc-challenge-confirm {
+    flex: 1 1 190px;
+    max-width: 240px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+@media (max-width: 420px) {
+    .npc-result-modal-card .challenge-modal-actions {
+        display: grid;
+        grid-template-columns: minmax(90px, 0.75fr) minmax(0, 1.4fr);
+    }
+}
+
 .codex-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
@@ -4786,10 +4824,6 @@ h4.modal-subtitle-custom {
     max-width: 420px;
 }
 
-.instructions-logo {
-    text-align: center;
-    margin-bottom: 24px;
-}
 
 .instructions-title {
     font-size: 1.4rem;

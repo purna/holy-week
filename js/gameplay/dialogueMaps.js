@@ -23,6 +23,7 @@ export const PROFILE_ID_MAP = {
     "mary_magdalene": "mary_magdalene",
     "nicodemus": "nicodemus",
     "pashhur": "pashhur_the_priest",
+    "lazarus": "lazarus",
 };
 
 export const DIALOGUE_ID_MAP = {
@@ -37,11 +38,13 @@ export const DIALOGUE_ID_MAP = {
     jerusalem_local: '../assets/story/act1/case_a_missing_donkey/jerusalem_local.json',
     eleazar_sadducee: '../assets/story/act1/case_a_missing_donkey/eleazar_sadducee.json',
     sadducee_opposition: '../assets/story/act1/case_a_missing_donkey/sadducee_opposition.json',
+    nathanael_pharisee_entry: '../assets/story/act1/case_a_missing_donkey/nathanael_pharisee_entry.json',
 
     // Case B: The Overturned Tables (Temple Cleansing)
     money_changer: '../assets/story/act1/case_b_overturned_tables/money_changer.json',
     guard_report: '../assets/story/act1/case_b_overturned_tables/guard_report.json',
     barabbas_insurgent: '../assets/story/act1/case_b_overturned_tables/barabbas_insurgent.json',
+    barabbas_choice: '../assets/story/act3/case_d_roman_interrogation/barabbas_choice.json',
     informant_bribe: '../assets/story/act1/case_b_overturned_tables/informant_bribe.json',
     market_rumors: '../assets/story/act1/case_b_overturned_tables/market_rumors.json',
     pontius_pilate: '../assets/story/act1/case_b_overturned_tables/pontius_pilate.json',
@@ -52,7 +55,7 @@ export const DIALOGUE_ID_MAP = {
     guard_report_temple: '../assets/story/act1/case_b_overturned_tables/guard_report_temple.json',
     pontius_pilate_temple: '../assets/story/act1/case_b_overturned_tables/pontius_pilate_temple.json',
     upset_buyer: '../assets/story/act1/case_b_overturned_tables/upset_buyer.json',
-    rumor_whisper: '../assets/story/act1/case_b_overturned_tables/rumor_whisper.json',
+    rumor_whisper: '../assets/story/act2/case_b_lazarus_conspiracy/rumor_whisper.json',
     woman_cloak: '../assets/story/act1/case_b_overturned_tables/woman_cloak.json',
     corrupt_seller: '../assets/story/act1/case_b_overturned_tables/corrupt_seller.json',
 
@@ -71,7 +74,9 @@ export const DIALOGUE_ID_MAP = {
     nathanael_pharisee: '../assets/story/act2/case_a_silenced_teacher/simon_pharisee_authority.json',
     simon_pharisee_authority: '../assets/story/act2/case_a_silenced_teacher/simon_pharisee_authority.json',
     caiaphas_temple: '../assets/story/act2/case_a_silenced_teacher/caiaphas_priest.json',
-    parable_meaning: '../assets/story/act2/case_a_silenced_teacher/parable_meaning.json',
+    parable_meaning: '../assets/story/act2/case_a_silenced_teacher/parable_meaning.json', // Legacy fallback
+    parable_meaning_lazarus: '../assets/story/act2/case_b_lazarus_conspiracy/parable_meaning.json',
+    parable_meaning_olivet: '../assets/story/act2/case_c_olivet_discourse/parable_meaning_olivet.json',
     parable_vineyard: '../assets/story/act2/case_a_silenced_teacher/parable_vineyard.json',
     witness_healed: '../assets/story/act2/case_a_silenced_teacher/witness_healed.json',
     teaching_mount: '../assets/story/act2/case_a_silenced_teacher/teaching_mount.json',
@@ -85,6 +90,8 @@ export const DIALOGUE_ID_MAP = {
     martha_bethany: '../assets/story/act2/case_b_lazarus_conspiracy/martha_bethany.json',
     nicodemus_conflicted: '../assets/story/act2/case_b_lazarus_conspiracy/nicodemus_conflicted.json',
     simon_leper: '../assets/story/act2/case_b_lazarus_conspiracy/simon_leper.json',
+    caiaphas_lazarus: '../assets/story/act2/case_b_lazarus_conspiracy/caiaphas_lazarus.json',
+    the_king: '../assets/story/act2/case_b_lazarus_conspiracy/the_king.json',
 
     // Case C: The End of the Age (Olivet Discourse)
     andrew_olivet: '../assets/story/act2/case_c_olivet_discourse/andrew_olivet.json',
@@ -128,16 +135,23 @@ export const DIALOGUE_ID_MAP = {
 
     // Case E: The Final Sacrifice (Crucifixion)
     roman_assessment: '../assets/story/act3/case_e_final_sacrifice/roman_assessment.json',
+    centurion_background: '../assets/story/act3/case_e_final_sacrifice/centurion_background.json',
+    joseph_arimathea_cross: '../assets/story/act3/case_e_final_sacrifice/joseph_arimathea_cross.json',
+    pashhur: '../assets/story/act3/case_e_final_sacrifice/pashhur.json',
     simon_cyrene: '../assets/story/act3/case_e_final_sacrifice/simon_cyrene.json',
     temple_curtain: '../assets/story/act3/case_e_final_sacrifice/temple_curtain.json',
     priest_objection_crucifixion: '../assets/story/act3/case_e_final_sacrifice/priest_objection_crucifixion.json',
     guard_report_crucifixion: '../assets/story/act3/case_e_final_sacrifice/guard_report_crucifixion.json',
     centurion_witness: '../assets/story/act3/case_e_final_sacrifice/centurion_witness.json',
     penitent_thief: '../assets/story/act3/case_e_final_sacrifice/penitent_thief.json',
+    mary_james_joses: '../assets/story/act3/case_e_final_sacrifice/mary_james_joses.json',
+    salome_crucifixion: '../assets/story/act3/case_e_final_sacrifice/salome_crucifixion.json',
 
     // --- Act IV: Dawn of the New Age ---
     // Case A: The Empty Tomb (Resurrection)
-    mary_magdalene: '../assets/story/act4/case_a_empty_tomb/mary_magdalene.json',
+    mary_magdalene: '../assets/story/act4/case_a_empty_tomb/mary_magdalene.json', // Legacy fallback
+    mary_magdalene_empty_tomb: '../assets/story/act4/case_a_empty_tomb/mary_magdalene.json',
+    mary_magdalene_restoration: '../assets/story/act4/case_c_peters_restoration/mary_magdalene_restoration.json',
     execution_soldier: '../assets/story/act4/case_a_empty_tomb/execution_soldier.json',
     joseph_arimathea: '../assets/story/act4/case_a_empty_tomb/joseph_arimathea.json',
 

@@ -17,7 +17,7 @@
     ]
   },
   "mourning": {
-    "content": "I had not slept. Not since the afternoon they took Him away. The weight of a lifeless body in the tomb, the scent of spices and myrrh, the knowledge that death itself had won — these were the things I brought with me as I walked the garden path.",
+    "content": "# UNLOCK_EVIDENCE: mary_encounter\n# UNLOCK_EVIDENCE: empty_tomb\n# UNLOCK_EVIDENCE: burial_linen\nI had not slept. Not since the afternoon they took Him away. The weight of a lifeless body in the tomb, the scent of spices and myrrh, the knowledge that death itself had won — these were the things I brought with me as I walked the garden path.",
     "choices": [
       {
         "text": "The stone blocked the way.",
@@ -30,7 +30,7 @@
     ]
   },
   "hope_before": {
-    "content": "Hope? No — hope had died with Him on the cross. I came to anoint what was dead. To touch what was cold. To perform the last rites of love on a body that would never rise. Grief was my companion. Faith was a memory.",
+    "content": "# UNLOCK_EVIDENCE: angelic_witness\n# UNLOCK_EVIDENCE: empty_tomb\n# UNLOCK_EVIDENCE: burial_linen\nHope? No — hope had died with Him on the cross. I came to anoint what was dead. To touch what was cold. To perform the last rites of love on a body that would never rise. Grief was my companion. Faith was a memory.",
     "choices": [
       {
         "text": "How could you keep coming?",
@@ -43,7 +43,7 @@
     ]
   },
   "grief_weight": {
-    "content": "Grief is heavier than marble. It settles in the chest like stone. It makes the legs unsteady. It turns the world gray. I carried that weight — the weight of a life that meant everything to me, now gone. The weight of a love that had nowhere to go but to the tomb.",
+    "content": "# UNLOCK_EVIDENCE: mary_encounter\n# UNLOCK_EVIDENCE: angelic_witness\n# UNLOCK_EVIDENCE: empty_tomb\n# UNLOCK_EVIDENCE: burial_linen\nGrief is heavier than marble. It settles in the chest like stone. It makes the legs unsteady. It turns the world gray. I carried that weight — the weight of a life that meant everything to me, now gone. The weight of a love that had nowhere to go but to the tomb.",
     "choices": [
       {
         "text": "You still came to the tomb.",

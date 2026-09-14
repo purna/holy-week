@@ -61,12 +61,16 @@ Two men came for my donkey colt this morning. They said "The Lord needs it." I k
 * [The rope was cut, not untied.] -> rope_question
 
 === set_apart ===
+# UNLOCK_EVIDENCE: prophecy_scroll
+# UNLOCK_EVIDENCE: palm_branch
 I've had that colt set apart since it was born. Never let anyone ride it. Some things you hold in reserve for the right moment.
 
 * [And this was the moment.] -> palm_reveal
 * [What about the cloaks?] -> cloak_reveal
 
 === rope_question ===
+# UNLOCK_EVIDENCE: prophecy_scroll
+# UNLOCK_EVIDENCE: palm_branch
 The rope was cut? I didn't cut it - I untied the knot myself and handed the colt to them. Someone else must have cut it after. I wasn't watching the post after they left.
 
 * [Then who?] -> palm_reveal

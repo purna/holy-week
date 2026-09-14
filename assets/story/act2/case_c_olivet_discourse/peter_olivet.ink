@@ -16,11 +16,13 @@ When we sat on the Mount of Olives and looked back at the city, I asked Him dire
 * [How did the answer affect you?] -> impact
 
 === signs ===
+# UNLOCK_EVIDENCE: disciples_questions_notes
 Wars, famines, earthquakes — He called them birth pains. Not the end, but the beginning of something. He warned us of false messiahs performing signs convincing enough to deceive even the elect if that were possible. He told us: do not follow men who say "he is here" or "he is there." Do not run after reports. Stay at the task.
 * [The desolating sacrilege?] -> specific_sign
 * [And the Temple itself?] -> temple_warning
 
 === impact ===
+# UNLOCK_EVIDENCE: disciples_questions_notes
 I expected quick victory. A throne. A restored kingdom of Israel with a timetable I could carry in my head. He gave me endurance instead. He shifted us from asking "when?" to asking "am I ready?" Faithfulness over calculation. That has been the hardest lesson of my life to hold onto.
 * [But you asked about the Temple stones.] -> temple_warning
 * [What preparation did He give you?] -> specific_sign

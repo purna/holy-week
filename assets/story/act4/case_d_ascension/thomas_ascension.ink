@@ -30,9 +30,11 @@ I had doubted. I admit it freely. When the others said He was alive, I needed pr
 * [What did the ascension look like?] -> ascent
 * [How is your faith now?] -> faith
 === ascent ===
+# UNLOCK_EVIDENCE: wound_marks_testimony
 He was lifted up. Not like a balloon rising, but with purpose — upward, steadily, until a cloud covered Him and He disappeared from our sight. There was no wind, no sound. Just a slow, deliberate departure into the presence of the Father. I strained my eyes until the cloud passed and the sky was empty.
 * [Were you afraid?] -> faith
 === faith ===
+# UNLOCK_EVIDENCE: wound_marks_testimony
 Afraid? No. Astonished. The man I had doubted was now the man I would follow to the ends of the earth. His wounds are real. His ascension is real. His promise is real. 'Because you have seen me, you have believed,' He said to me. 'Blessed are those who have not seen and yet have believed.' I carry those words.
 * [What about the mission?] -> mission
 === mission ===

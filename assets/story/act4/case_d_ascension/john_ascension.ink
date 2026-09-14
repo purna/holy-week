@@ -30,9 +30,11 @@ I was there. Not at the edge of the crowd, but near Him. I had leaned against Hi
 * [What did you see?] -> cloud
 * [How did you feel?] -> feeling
 === cloud ===
+# UNLOCK_EVIDENCE: priestly_benediction_account
 It was not a storm cloud. It was the glory cloud — the same one that led Israel through the wilderness, the same one that filled the Temple at its dedication. It swallowed Him whole, and when it parted, He was gone. But the glory remained.
 * [Did you understand what happened?] -> understanding
 === feeling ===
+# UNLOCK_EVIDENCE: priestly_benediction_account
 Grief had been my companion for weeks. But in that moment, it was replaced by something else. A fullness. He had said, 'I am with you always.' And as He rose, I understood — He was not leaving us orphaned. He was sending the Helper.
 * [What about the angels?] -> angels
 === understanding ===

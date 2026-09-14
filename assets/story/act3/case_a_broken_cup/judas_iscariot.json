@@ -13,7 +13,7 @@
     ]
   },
   "motives": {
-    "content": "Thirty pieces of silver. The price of a slave. That is what the Temple assessed the Son of God to be worth. And they paid me to deliver Him.",
+    "content": "# UNLOCK_EVIDENCE: money_bag_impression\nThirty pieces of silver. The price of a slave. That is what the Temple assessed the Son of God to be worth. And they paid me to deliver Him.",
     "choices": [
       {
         "text": "The money bag seems heavy tonight.",
@@ -44,7 +44,7 @@
     ]
   },
   "regret": {
-    "content": "I watched three years of expectation curdle into disappointment. The Messiah was supposed to be a king. Instead He washed feet. Instead He spoke of dying. The Zealots wanted a general. I wanted a winner. I was wrong.",
+    "content": "# UNLOCK_EVIDENCE: money_bag_impression\nI watched three years of expectation curdle into disappointment. The Messiah was supposed to be a king. Instead He washed feet. Instead He spoke of dying. The Zealots wanted a general. I wanted a winner. I was wrong.",
     "choices": [
       {
         "text": "What happened to the money?",

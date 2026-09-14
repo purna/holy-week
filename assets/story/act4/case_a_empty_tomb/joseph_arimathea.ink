@@ -38,6 +38,7 @@ I went to the tomb early on the first day of the week. The stone was rolled away
 * [What did you see?] -> empty_tomb
 
 === my_tomb ===
+# UNLOCK_EVIDENCE: spice_jars
 It was my new tomb. Never used. Cut from solid rock in my own garden, close to Golgotha — the kind of resting place only a wealthy man could commission for himself. When I asked for His body, I broke ranks with the council. I was a secret disciple — but I could not let them leave Him to the criminals' burial pits at Hinnom, thrown among the condemned like refuse. That tomb had never held the dead before His body entered it.
 * [Why take the risk?] -> risk_taken
 * [Why does the tomb itself matter?] -> tomb_prophecy
@@ -51,6 +52,7 @@ The soldiers knew Pilate's permission was secured. They had no choice but to let
 * [After the burial?] -> examination
 
 === examination ===
+# UNLOCK_EVIDENCE: spice_jars
 Peter entered first, stooping to look inside. We saw the strips of linen, the face cloth — but no body. The bindings were not undone. They lay as if He had simply passed through them. Peter counted the grave clothes separately, noting the sudarium was not with the main wrappings but rolled up by itself.
 * [What did you take?] -> shroud_kept
 
@@ -59,6 +61,7 @@ I took them all. The main burial cloths, the face cloth. I wrapped them carefull
 * [His image on the cloth?] -> image_revealed
 
 === empty_tomb ===
+# UNLOCK_EVIDENCE: spice_jars
 The tomb was open. The stone rolled away. The guards had fled. And there, in the burial niche — the linen wrappings lay empty. This was no theft. No grave robber would unwrap a body with such reverence, leaving the clothes in precise folds.
 * [Peter examined them?] -> examination
 

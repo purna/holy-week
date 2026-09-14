@@ -31,9 +31,11 @@ Keep moving, scribe. Do not look at me directly. I am cataloguing the faces near
 * [What are you cataloguing?] -> catalogue
 * [For whom do you work?] -> employer
 === catalogue ===
+# UNLOCK_EVIDENCE: crowd_report
 The faces of the men who came to hear the Galilean today. The chief priests, the scribes, the Pharisees — they all came with questions. He answered every one.
 * [And the answers?] -> employer
 === employer ===
+# UNLOCK_EVIDENCE: crowd_report
 The High Priest's household employs many watchers. I watch the Temple because the Temple is where power assembles. And power, when challenged, remembers.
 * [You heard the teachings?] -> closing
 === closing ===

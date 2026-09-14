@@ -39,6 +39,8 @@ with him twice, the way they tell it."
 + [Leave him be] -> repeat_stage
 
 === neutral_stage ===
+# UNLOCK_EVIDENCE: crucified_with_thieves
+# UNLOCK_EVIDENCE: crucifiers_forgiven
 "They nailed up three crosses that morning. Mine, my friend's,
 and His — right between us. Made a point of it, putting Him in
 the middle. Wasn't an accident. The charge sheet listed the three
@@ -47,6 +49,8 @@ of us together."
 * [Continue] -> unlock_crucified_with_thieves -> main_hub
 
 === cautious_stage ===
+# UNLOCK_EVIDENCE: crucified_with_thieves
+# UNLOCK_EVIDENCE: crucifiers_forgiven
 "At first I mocked Him too. Same as my friend on the other side.
 'Aren't you the Messiah? Save yourself — and us, while you're at
 it.' Cheap talk. When you're dying, you'll say anything, hoping
@@ -55,6 +59,8 @@ something sticks."
 * [Continue] -> main_hub
 
 === pressured_stage ===
+# UNLOCK_EVIDENCE: crucified_with_thieves
+# UNLOCK_EVIDENCE: crucifiers_forgiven
 "My friend wouldn't let up on Him. Cursing, jeering, same as the
 crowd below. I told him to stop. 'Don't you fear God? We're
 getting exactly what we deserve. This man's done nothing wrong.'
@@ -65,6 +71,8 @@ I don't know why I said it. It just came out true.
 * [Continue] -> main_hub
 
 === exposed_stage ===
+# UNLOCK_EVIDENCE: crucified_with_thieves
+# UNLOCK_EVIDENCE: crucifiers_forgiven
 "The soldiers were still rolling dice for His clothes when I heard
 it. He wasn't cursing back at anyone. He was praying — for them.
 'Father, forgive them, they don't know what they're doing.'
@@ -76,6 +84,8 @@ Today. Not someday. <i>Today.</i>"
 * [Continue] -> unlock_crucifiers_forgiven -> main_hub
 
 === repeat_stage ===
+# UNLOCK_EVIDENCE: crucified_with_thieves
+# UNLOCK_EVIDENCE: crucifiers_forgiven
 "I was numbered among the criminals, same as Him. I know exactly
 what that felt like, dying next to Him instead of far from Him."
 -> DONE

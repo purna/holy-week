@@ -25,11 +25,13 @@ I was there. I stood where the crowd was thinnest, on the east side of the hill,
 * [You are a Sanhedrin member.] -> sanhedrin_member
 
 === why_there ===
+# UNLOCK_EVIDENCE: linen_shroud_receipt
 Because I believed in Him. Quietly, carefully, in secret — the way cowardice disguises itself as prudence. I had listened to every teaching I could manage without being seen listening. I voted against the condemnation. I was outnumbered and I said nothing public. Today I am paying the price of that silence in a different currency.
 * [You watched the man you believed in die.] -> watching_die
 * [You could have spoken at the trial.] -> spoken_at_trial
 
 === sanhedrin_member ===
+# UNLOCK_EVIDENCE: linen_shroud_receipt
 A Sanhedrin member watching his teacher crucified by a decision he voted against and did not have the courage to contest openly. Yes. That is exactly what I am. Let the record note it clearly.
 * [Why the secrecy until now?] -> secrecy_reason
 * [What changed today?] -> what_changed

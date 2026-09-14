@@ -1,0 +1,88 @@
+{
+  "start": {
+    "content": "I am Salome. I followed Jesus in Galilee and helped care for the needs of His ministry. Mary Magdalene and Mary the mother of James the younger and Joses stood with me near Golgotha. Many other women who had come up with Him to Jerusalem were also there. We were not repeating a report received later. We watched.",
+    "choices": [
+      {
+        "text": "Did you hear the Aramaic cry?",
+        "destination": "heard_cry"
+      },
+      {
+        "text": "What was unusual about His death?",
+        "destination": "saw_death"
+      },
+      {
+        "text": "Why does the group of women matter?",
+        "destination": "many_women"
+      }
+    ]
+  },
+  "heard_cry": {
+    "content": "I heard Him call, “Eloi, Eloi, lema sabachthani?” The words reached us clearly through the darkness. Some said, “Listen, He is calling Elijah.” But He had quoted Psalm 22: “My God, my God, why have you forsaken me?” Their misunderstanding preserves the sound of what He actually said.\n# UNLOCK_EVIDENCE: the_forsaken_cry",
+    "choices": [
+      {
+        "text": "Mary heard the same words?",
+        "destination": "mary_confirmed"
+      },
+      {
+        "text": "What followed the cry?",
+        "destination": "saw_death"
+      }
+    ]
+  },
+  "mary_confirmed": {
+    "content": "Mary heard them. So did the soldiers and the people close enough to confuse “Eloi” with Elijah. We remembered the same words because they were unlike the cries around Him. Even in suffering, He spoke Scripture.\n# UNLOCK_EVIDENCE: the_forsaken_cry",
+    "choices": [
+      {
+        "text": "Then tell me how He died.",
+        "destination": "saw_death"
+      },
+      {
+        "text": "Tell me about the other women.",
+        "destination": "many_women"
+      }
+    ]
+  },
+  "saw_death": {
+    "content": "The centurion was standing directly in front of Him. Jesus gave a loud cry and breathed His last, and the officer—someone accustomed to executions—responded to the manner of His death by declaring, “Surely this man was the Son of God.” We saw the same composure, the same final act, and the same sudden end from farther back.\n# UNLOCK_EVIDENCE: manner_of_death_testimony",
+    "choices": [
+      {
+        "text": "A Roman and the women agree.",
+        "destination": "independent_accounts"
+      },
+      {
+        "text": "Who remained to witness it?",
+        "destination": "many_women"
+      }
+    ]
+  },
+  "many_women": {
+    "content": "Mark names Mary Magdalene, Mary the mother of James the younger and Joses, and me. Then he adds that many other women who had come up with Jesus to Jerusalem were also there. That matters. His death was public, observed by a group who had known Him in Galilee and could identify Him. We did not lose track of which cross held Him or which tomb received Him.\n# UNLOCK_EVIDENCE: distant_witnesses",
+    "choices": [
+      {
+        "text": "You followed the body to the burial.",
+        "destination": "burial_continuity"
+      },
+      {
+        "text": "Return to the cry.",
+        "destination": "heard_cry"
+      }
+    ]
+  },
+  "independent_accounts": {
+    "content": "The centurion watched from the execution detail. We watched as followers. His confession and our testimony came from different positions, but both turn on the same fact: the manner in which Jesus died was extraordinary.\n# UNLOCK_EVIDENCE: manner_of_death_testimony",
+    "choices": [
+      {
+        "text": "And Mary can corroborate the words.",
+        "destination": "mary_confirmed"
+      },
+      {
+        "text": "The other women strengthen the account.",
+        "destination": "many_women"
+      }
+    ]
+  },
+  "burial_continuity": {
+    "content": "Mary Magdalene and Mary the mother of Joses watched where Joseph laid Him. After the Sabbath, Mary Magdalene, Mary the mother of James, and I brought spices to the same tomb. The witnesses to His death were also witnesses to His burial and to the discovery that followed.\n# UNLOCK_EVIDENCE: distant_witnesses",
+    "choices": []
+  }
+}

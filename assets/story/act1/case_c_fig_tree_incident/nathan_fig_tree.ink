@@ -34,11 +34,13 @@ I don't understand it, Scribe. That tree was lush yesterday morning when I passe
 * [Is this a common blight?] -> blight_denial
 
 === witness_detail ===
+# UNLOCK_EVIDENCE: withered_fig_tree_state
 The Nazarene and His followers passed by on the road from Bethany. He looked for fruit — the leaves were full so the tree should have had early figs — and found none. He spoke to the tree. I thought He was frustrated. Then the disciples moved on and I stayed to look, and I watched the leaves turn grey before my eyes.
 * [He spoke to it? What did He say?] -> what_said
 * [The leaves turned while you watched.] -> immediate_wither
 
 === blight_denial ===
+# UNLOCK_EVIDENCE: withered_fig_tree_state
 No blight works this fast. I tend orchards on both sides of this road. Fig blight is slow — you see yellowing over weeks, then brown margins, then the branch dies back over a season. This was not gradual. This was a command. It withered from the roots up.
 * [You saw that — from the roots?] -> root_wither
 * [What could cause roots to fail overnight?] -> root_wither

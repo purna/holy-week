@@ -15,7 +15,7 @@ export class PeopleUI {
     this._loadedCaseId = null;
     this.activeModalResult = null;
     this.talkedToNPCs = new Set();
-    this.peopleIntroHtml = "Some witnesses are hidden until you find them. Explore the <strong><img src='../assets/gfx/magnifying-glass-duotone.svg' class='icon-svg' loading='lazy'> Scene</strong> tab and walk up to a person to discover them — they'll appear here unlocked. Once found, talk to witnesses for clues, show them evidence, or challenge a contradiction once two clues are selected.<button class=\"people-intro-scene-btn\" type=\"button\" onclick=\"window.switchInvTab && window.switchInvTab('scene')\"><img src='../assets/gfx/magnifying-glass-duotone.svg' class='icon-svg' loading='lazy'> Go to Scene</button>";
+    this.peopleIntroHtml = "Some witnesses are hidden until you find them. Explore the <strong><img src='../assets/gfx/magnifying-glass-duotone.svg' class='icon-svg' loading='lazy'> Scene</strong> tab and walk up to a person to discover them — they'll appear here unlocked. Once found, talk to witnesses, present one clue with <strong>Evidence</strong>, or use <strong>Challenge</strong> to choose two clues and test a contradiction.<button class=\"people-intro-scene-btn\" type=\"button\" onclick=\"window.switchInvTab && window.switchInvTab('scene')\"><img src='../assets/gfx/magnifying-glass-duotone.svg' class='icon-svg' loading='lazy'> Go to Scene</button>";
     this.evidencePickerIntro = "Choose evidence to present to this witness.";
   }
 
@@ -107,7 +107,7 @@ export class PeopleUI {
               <div class="npc-actions">
                 <button class="npc-btn" data-action="talk" data-npc="${npc.id}"><img src='../assets/gfx/chat-duotone.svg' class='icon-svg' loading='lazy'> Talk</button>
                 <button class="npc-btn" data-action="show" data-npc="${npc.id}"><img src='../assets/gfx/magnifying-glass-duotone.svg' class='icon-svg' loading='lazy'> Evidence</button>
-                <button class="npc-btn" data-action="challenge" data-npc="${npc.id}" ${!this.es.selectedA && !this.talkedToNPCs.has(npc.id) ? "aria-disabled='true'" : ""}><img src='../assets/gfx/sparkles-duotone.svg' class='icon-svg' loading='lazy'> Challenge</button>
+                <button class="npc-btn" data-action="challenge" data-npc="${npc.id}"><img src='../assets/gfx/sparkles-duotone.svg' class='icon-svg' loading='lazy'> Challenge</button>
               </div>
               <div class="challenge-result" data-npc-challenge="${npc.id}" ${this.challengeResultsByNPC[npc.id] ? '' : 'hidden'}>
                 ${this.challengeResultsByNPC[npc.id] || ''}
@@ -156,10 +156,10 @@ export class PeopleUI {
         const npcId = btn.dataset.npc;
         const npc = this.npcs.getNPC(npcId);
 
-        const handleUnlocks = () => {
+        const handleUnlocks = (includeLegacyEvidence = false) => {
           let count = 0;
 
-          if (Array.isArray(npc?.unlocksEvidence)) {
+          if (includeLegacyEvidence && Array.isArray(npc?.unlocksEvidence)) {
             npc.unlocksEvidence.forEach(id => {
               const alreadyCollected = typeof this.es.isCollected === "function" ? this.es.isCollected(id) : false;
               if (alreadyCollected) return;
@@ -227,7 +227,8 @@ export class PeopleUI {
               this.talkedToNPCs.add(npcId);
               this._refreshNPCFeed(npcId, container);
             },
-            (text, type) => this.addMessage(type === 'player' ? 'Investigator' : npc.name, text, type, {}, npcId)
+            (text, type) => this.addMessage(type === 'player' ? 'Investigator' : npc.name, text, type, {}, npcId),
+            tag => this._handleDialogueTag(tag, npcId)
           );
         } else {
           const talkFn =
@@ -235,7 +236,7 @@ export class PeopleUI {
             (typeof this.npcs.talk === "function" && this.npcs.talk.bind(this.npcs));
           const result = talkFn ? talkFn(npcId) : null;
           if (result) {
-            const unlocked = handleUnlocks();
+            const unlocked = handleUnlocks(true);
             this.addMessage(result.speaker, result.text, "npc", { wasCorrected: result.wasCorrected }, npcId);
             this._refreshNPCFeed(npcId, container);
             this.talkedToNPCs.add(npcId);
@@ -258,81 +259,18 @@ export class PeopleUI {
         this._hideNPCModal(container);
         const npcId = btn.dataset.npc;
         const npc = this.npcs.getNPC(npcId);
-        const evidenceA = this.es.selectedA;
-        const evidenceB = this.es.selectedB;
-        
-        if (!evidenceA || !evidenceB) {
-          if (this.talkedToNPCs.has(npcId) && npc) {
-            const npcState = this.npcs.getState(npcId);
-            const memory = npcState?.memory || [];
-            const reactions = npc.reactions || {};
-            
-            if (memory.length === 0) {
-              this.activeModalResult = {
-                avatar: npc?.avatar,
-                title: `Challenging ${npc.name}`,
-                text: "Talk to this witness first, then challenge them on what they said.",
-                badge: null
-              };
-              this._showNPCModal(container);
-              return;
-            }
-            
-            let trustText = `${npc.name}'s statements:\n\n`;
-            memory.forEach(evId => {
-              const ev = this.es.getById(evId);
-              const reaction = reactions[evId];
-              if (ev && reaction) {
-                const status = reaction.isLie ? "❌ FALSE" : "✓ TRUE";
-                trustText += `${status} — About "${ev.name}": "${reaction.text}"\n\n`;
-              }
-            });
-            
-            this.activeModalResult = {
-              avatar: npc?.avatar,
-              title: `Challenging ${npc.name}`,
-              text: trustText,
-              badge: null
-            };
-            this._showNPCModal(container);
-            return;
-          }
-          
+        const collected = this.es.getCollected?.() || [];
+        if (collected.length < 2) {
           this.activeModalResult = {
             avatar: npc?.avatar,
             title: npc ? `Challenging ${npc.name}` : "Challenge Result",
-            text: "Select two pieces of evidence in the Lab first to challenge this witness.",
+            text: `Collect at least two pieces of evidence before challenging this witness. You currently have ${collected.length}/2.`,
             badge: null
           };
           this._showNPCModal(container);
           return;
         }
-        
-        const result = this.npcs.challenge(npcId, evidenceA.id, evidenceB.id);
-        if (result) {
-          const html = `
-            <div class="challenge-result-box ${result.breakthrough ? 'breakthrough' : ''}">
-              <div class="challenge-result-text">${result.text}</div>
-            </div>`;
-          const resultPanel = btn.closest(".npc-card").querySelector(`[data-npc-challenge="${npcId}"]`);
-          if (resultPanel) {
-            resultPanel.hidden = false;
-            resultPanel.innerHTML = html;
-            this.challengeResultsByNPC[npcId] = html;
-          } else {
-            this.addMessage(result.speaker, result.text, "npc", { breakthrough: result.breakthrough, revealedProphecy: result.revealedProphecy }, npcId);
-            this._refreshNPCFeed(npcId, container);
-          }
-
-          this.activeModalResult = {
-            avatar: npc?.avatar,
-            title: npc ? `Challenging ${npc.name}` : "Challenge Result",
-            text: result.text,
-            badge: result.breakthrough ? "<img src='../assets/gfx/sparkles-duotone.svg' class='icon-svg' loading='lazy'> Contradiction found!" : null,
-            revealedProphecy: result.revealedProphecy
-          };
-          this._showNPCModal(container);
-        }
+        this._showChallengeEvidencePicker(container, npcId, npc, collected);
       });
     });
 
@@ -344,6 +282,7 @@ export class PeopleUI {
 
         const pickBtn = e.target.closest(".evidence-pick-btn");
         if (pickBtn) {
+          if (pickBtn.hasAttribute("data-challenge-pick")) return;
           const npcId = pickBtn.dataset.npc;
           const evId = pickBtn.dataset.evidence;
           const npc = this.npcs.getNPC(npcId);
@@ -371,6 +310,144 @@ export class PeopleUI {
           this._refreshNPCFeed(npcId, container);
         }
       });
+    }
+  }
+
+  _handleDialogueTag(rawTag, npcId) {
+    const tag = String(rawTag || '').trim();
+    const match = tag.match(/^(?:UNLOCK_EVIDENCE|reveal)\s*:\s*(.+)$/i);
+    if (!match) return false;
+
+    let unlocked = false;
+    match[1].split(',').map(id => id.trim()).filter(Boolean).forEach(id => {
+      // A dialogue can be reused by more than one case. Ignore rewards which do
+      // not belong to the currently active case, while still granting its own.
+      if (!this.es.getById?.(id)) return;
+      if (this.es.isCollected?.(id)) return;
+      const evidence = this.es.discover?.(id);
+      if (!evidence) return;
+      unlocked = true;
+      this.addSystem(`<img src='../assets/gfx/lock-open-duotone.svg' class='icon-svg' loading='lazy'> Evidence unlocked: ${evidence.name}`, npcId);
+      this.a11y.announce?.(`Evidence unlocked: ${evidence.name}`);
+      this.onAction?.({ type: 'evidence_unlocked', evidenceId: id, npcId });
+    });
+    return unlocked;
+  }
+
+  _showChallengeEvidencePicker(container, npcId, npc, collected) {
+    this._challengeNPCId = npcId;
+    this._challengeNPC = npc;
+    this._challengeSelected = [];
+
+    const modal = container.querySelector("[data-npc-result-modal]");
+    if (!modal) return;
+
+    const picker = modal.querySelector("[data-npc-modal-picker]");
+    const result = modal.querySelector("[data-npc-modal-result]");
+    if (picker) picker.hidden = false;
+    if (result) result.hidden = true;
+
+    picker.innerHTML = `
+      <div style="text-align:center;">
+        <span class="modal-avatar" style="font-size:1.8rem;display:inline-block;">${avatarMarkup(npc?.avatar || '')}</span>
+      </div>
+      <h3 class="section-title" style="margin:0;text-align:center;">Select Two Pieces of Evidence</h3>
+      <p class="prophecy-people-intro" style="margin:0 0 10px;">Choose two clues that expose a contradiction in ${npc?.name || 'this witness'}'s account. Tap a selected clue again to remove it.</p>
+      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;margin-bottom:8px;">
+        <strong data-challenge-count aria-live="polite">0/2 selected</strong>
+        <span data-challenge-summary style="font-size:0.8rem;color:var(--text-dim);">No evidence selected</span>
+      </div>
+      <div class="evidence-pick-list" id="challenge-evidence-picker">
+        ${collected.map(e => `
+          <button type="button" class="evidence-pick-btn challenge-evidence-pick-btn" data-challenge-pick data-evidence="${e.id}" aria-pressed="false" style="background:var(--surface3,#253044);border:1px solid var(--border,#2e3a50);color:var(--text);border-radius:8px;padding:10px;display:flex;align-items:center;gap:8px;width:100%;cursor:pointer;">
+            <img src="${e.icon || '../assets/gfx/scroll-duotone.svg'}" class="icon-svg" loading="lazy" alt="" style="width:24px;height:24px;object-fit:contain;">
+            <span>${e.name}</span>
+          </button>`).join('')}
+      </div>
+      <div class="challenge-modal-actions">
+        <button class="evidence-detail-confirm challenge-modal-cancel" data-npc-modal-close>Cancel</button>
+        <button class="evidence-detail-confirm npc-challenge-confirm" data-challenge-confirm disabled><img src='../assets/gfx/sparkles-duotone.svg' class='icon-svg' loading='lazy' alt=""> Challenge Witness</button>
+      </div>
+    `;
+
+    modal.hidden = false;
+    modal.style.display = "flex";
+
+    const cardClickHandler = (e) => {
+      const card = e.target.closest(".challenge-evidence-pick-btn");
+      if (!card) return;
+      e.preventDefault();
+      e.stopPropagation();
+      const id = card.dataset.evidence;
+      if (this._challengeSelected.includes(id)) {
+        this._challengeSelected = this._challengeSelected.filter(i => i !== id);
+      } else if (this._challengeSelected.length < 2) {
+        this._challengeSelected.push(id);
+      }
+      this._updateChallengeSelection(picker, collected);
+    };
+
+    picker.querySelector("#challenge-evidence-picker").addEventListener("click", cardClickHandler);
+
+    const confirmBtn = picker.querySelector("[data-challenge-confirm]");
+    if (confirmBtn) {
+      confirmBtn.addEventListener("click", () => {
+        if (this._challengeSelected.length < 2) return;
+        const idA = this._challengeSelected[0];
+        const idB = this._challengeSelected[1];
+        const evA = collected.find(e => e.id === idA);
+        const evB = collected.find(e => e.id === idB);
+        this._hideNPCModal(container);
+        this.addMessage("Investigator", `Challenged ${npc?.name || 'the witness'} with ${evA?.name || idA} and ${evB?.name || idB}.`, "player", {}, npcId);
+        this._refreshNPCFeed(npcId, container);
+        const result2 = this.npcs.challenge(npcId, idA, idB);
+        if (result2) {
+          this._showChallengeResult(container, npcId, npc, result2);
+        }
+      });
+    }
+  }
+
+  _updateChallengeSelection(picker, collected) {
+    picker.querySelectorAll(".challenge-evidence-pick-btn").forEach(button => {
+      const selected = this._challengeSelected.includes(button.dataset.evidence);
+      button.classList.toggle("selected", selected);
+      button.setAttribute("aria-pressed", String(selected));
+    });
+    const countEl = picker.querySelector("[data-challenge-count]");
+    const summaryEl = picker.querySelector("[data-challenge-summary]");
+    const confirmBtn = picker.querySelector("[data-challenge-confirm]");
+    if (countEl) countEl.textContent = `${this._challengeSelected.length}/2 selected`;
+    if (summaryEl) {
+      const names = this._challengeSelected.map(id => collected.find(e => e.id === id)?.name || id);
+      summaryEl.textContent = names.length ? names.join(" + ") : "No evidence selected";
+    }
+    if (confirmBtn) confirmBtn.disabled = this._challengeSelected.length < 2;
+  }
+
+  _showChallengeResult(container, npcId, npc, result) {
+    if (result) {
+      const html = `
+        <div class="challenge-result-box ${result.breakthrough ? 'breakthrough' : ''}">
+          <div class="challenge-result-text">${result.text}</div>
+        </div>`;
+      const resultPanel = container.querySelector(`[data-npc-challenge="${npcId}"]`);
+      if (resultPanel) {
+        resultPanel.hidden = false;
+        resultPanel.innerHTML = html;
+        this.challengeResultsByNPC[npcId] = html;
+      } else {
+        this.addMessage(result.speaker, result.text, "npc", { breakthrough: result.breakthrough, revealedProphecy: result.revealedProphecy }, npcId);
+        this._refreshNPCFeed(npcId, container);
+      }
+      this.activeModalResult = {
+        avatar: npc?.avatar,
+        title: npc ? `Challenging ${npc.name}` : "Challenge Result",
+        text: result.text,
+        badge: result.breakthrough ? "<img src='../assets/gfx/sparkles-duotone.svg' class='icon-svg' loading='lazy'> Contradiction found!" : null,
+        revealedProphecy: result.revealedProphecy
+      };
+      this._showNPCModal(container);
     }
   }
 
@@ -411,32 +488,32 @@ export class PeopleUI {
     if (picker) picker.hidden = false;
     if (result) result.hidden = true;
 
-    const pickerAvatarEl = modal.querySelector("[data-npc-modal-picker] .modal-avatar");
     const npc = this.npcs.getNPC(npcId);
-    if (pickerAvatarEl && npc) {
-      pickerAvatarEl.innerHTML = avatarMarkup(npc.avatar || '');
+    const npcState = this.npcs.getState(npcId);
+    const collected = this.es.getCollected();
+    const relevantIds = new Set();
+    if (npc) {
+      (npc.unlocksEvidence || []).forEach(id => relevantIds.add(id));
+      Object.keys(npc.reactions || {}).forEach(id => relevantIds.add(id));
+      (npcState?.memory || []).forEach(id => relevantIds.add(id));
     }
+    const filtered = collected.filter(e => relevantIds.has(e.id));
+    const evidenceToShow = filtered.length > 0 ? filtered : collected;
 
-    const pickerList = modal.querySelector("[data-modal-picker-list]");
-    if (pickerList) {
-      const npc = this.npcs.getNPC(npcId);
-      const npcState = this.npcs.getState(npcId);
-      const collected = this.es.getCollected();
-      
-      const relevantIds = new Set();
-      if (npc) {
-        (npc.unlocksEvidence || []).forEach(id => relevantIds.add(id));
-        Object.keys(npc.reactions || {}).forEach(id => relevantIds.add(id));
-        (npcState?.memory || []).forEach(id => relevantIds.add(id));
-      }
-      
-      const filtered = collected.filter(e => relevantIds.has(e.id));
-      const evidenceToShow = filtered.length > 0 ? filtered : collected;
-      
-      pickerList.innerHTML = evidenceToShow.map(e =>
-        `<button class="evidence-pick-btn" data-evidence="${e.id}" data-npc="${npcId}" style="background:var(--surface3,#253044);border:1px solid var(--border,#2e3a50);color:var(--text);border-radius:8px;padding:10px;display:flex;align-items:center;gap:8px;width:100%;cursor:pointer;"><img src='${e.icon || '../assets/gfx/scroll-duotone.svg'}' class='icon-svg' loading='lazy' style='width:24px;height:24px;object-fit:contain;'> <span>${e.name}</span></button>`
-      ).join('') || '<p class="picker-empty">No evidence collected yet.</p>';
-    }
+    picker.innerHTML = `
+      <div style="text-align:center;">
+        <span class="modal-avatar" style="font-size:1.8rem;display:inline-block;">${avatarMarkup(npc?.avatar || '')}</span>
+      </div>
+      <h3 class="section-title" style="margin:0;text-align:center;">Select Evidence</h3>
+      ${this.evidencePickerIntro ? `<p class="prophecy-people-intro" style="margin:0 0 10px;">${this.evidencePickerIntro}</p>` : ""}
+      <div class="evidence-pick-list" data-modal-picker-list>
+        ${evidenceToShow.map(e =>
+          `<button class="evidence-pick-btn" data-evidence="${e.id}" data-npc="${npcId}" style="background:var(--surface3,#253044);border:1px solid var(--border,#2e3a50);color:var(--text);border-radius:8px;padding:10px;display:flex;align-items:center;gap:8px;width:100%;cursor:pointer;"><img src='${e.icon || '../assets/gfx/scroll-duotone.svg'}' class='icon-svg' loading='lazy' style='width:24px;height:24px;object-fit:contain;'> <span>${e.name}</span></button>`
+        ).join('') || '<p class="picker-empty">No evidence collected yet.</p>'}
+      </div>
+      <div style="display:flex;justify-content:flex-end;margin-top:4px;">
+        <button class="evidence-detail-confirm" data-npc-modal-close style="min-width:140px;">Cancel</button>
+      </div>`;
 
     modal.hidden = false;
     modal.style.display = "flex";

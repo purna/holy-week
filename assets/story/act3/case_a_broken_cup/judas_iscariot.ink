@@ -69,6 +69,7 @@ You trace my steps with your ink and parchment, little scribe. You think you are
 * [You regret it.] -> regret
 
 === motives ===
+# UNLOCK_EVIDENCE: money_bag_impression
 Thirty pieces of silver. The price of a slave. That is what the Temple assessed the Son of God to be worth. And they paid me to deliver Him.
 
 * [The money bag seems heavy tonight.] -> bag_heavy
@@ -88,6 +89,7 @@ He speaks of many things. Blood, wine, bread. I look at the silver and I see rea
 -> closing
 
 === regret ===
+# UNLOCK_EVIDENCE: money_bag_impression
 I watched three years of expectation curdle into disappointment. The Messiah was supposed to be a king. Instead He washed feet. Instead He spoke of dying. The Zealots wanted a general. I wanted a winner. I was wrong.
 
 * [What happened to the money?] -> closing

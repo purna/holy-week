@@ -38,6 +38,10 @@ They're not the same question. Ask carefully."
 + [Leave him] -> repeat_stage
 
 === unlock_nails ===
+# UNLOCK_EVIDENCE: unbroken_legs
+# UNLOCK_EVIDENCE: sour_wine_sponge
+# UNLOCK_EVIDENCE: final_words
+# UNLOCK_EVIDENCE: crucifixion_nails
 "Three nails. Wrists, not the palms — palms tear straight through
 once the body's full weight comes down on them. Feet crossed and
 pinned with the third, through the arch. He didn't cry out when
@@ -50,6 +54,10 @@ they went in. Most men do."
 -> main_hub
 
 === unlock_legs ===
+# UNLOCK_EVIDENCE: unbroken_legs
+# UNLOCK_EVIDENCE: sour_wine_sponge
+# UNLOCK_EVIDENCE: final_words
+# UNLOCK_EVIDENCE: crucifixion_nails
 "Orders came down from the priests — break the legs of all three
 before sundown, get the bodies off the crosses before the Sabbath.
 Standard procedure, speeds up the death. We did the two thieves.
@@ -63,6 +71,10 @@ break."
 -> main_hub
 
 === unlock_sponge ===
+# UNLOCK_EVIDENCE: unbroken_legs
+# UNLOCK_EVIDENCE: sour_wine_sponge
+# UNLOCK_EVIDENCE: final_words
+# UNLOCK_EVIDENCE: crucifixion_nails
 "Near the end He said He was thirsty. One word, barely audible.
 We soaked a sponge in the sour wine ration — what we drink on
 duty, not fine stuff — and lifted it up to Him on a hyssop branch.
@@ -75,6 +87,10 @@ Wasn't cruelty. It's what we had."
 -> main_hub
 
 === unlock_final_words ===
+# UNLOCK_EVIDENCE: unbroken_legs
+# UNLOCK_EVIDENCE: sour_wine_sponge
+# UNLOCK_EVIDENCE: final_words
+# UNLOCK_EVIDENCE: crucifixion_nails
 "I heard it myself, clear as anything. Not a scream, not a groan
 — a declaration. 'Father, into your hands I commit my spirit.'
 Then He bowed His head, and it was finished. Loud. Deliberate.
@@ -87,6 +103,10 @@ Like a man choosing the moment, not one being dragged into it."
 -> main_hub
 
 === repeat_stage ===
+# UNLOCK_EVIDENCE: unbroken_legs
+# UNLOCK_EVIDENCE: sour_wine_sponge
+# UNLOCK_EVIDENCE: final_words
+# UNLOCK_EVIDENCE: crucifixion_nails
 "Three men crucified today. One of them died differently than the
 other two. I've been doing this a long time. I don't have a good
 explanation for that."

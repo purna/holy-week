@@ -22,9 +22,12 @@ You have questions about the market? I have ledgers. Every sacrifice registered 
 * [What about the Passover lambs?] -> lambs
 * [Did Jesus disrupt the schedule?] -> schedule
 === lambs ===
+# UNLOCK_EVIDENCE: broken_cages
 The inspectors were supposed to screen for blemishes from Nisan 10 onward. That was four days ago. Instead, the merchants are crowded into the Court of Gentiles while the priests argue over inspection fees. The lambs are queued outside the walls. The one thing required for Passover is being crowded out by the one thing forbidden — commerce.
 * [So the Temple priorities are inverted?] -> schedule
 === schedule ===
+# UNLOCK_EVIDENCE: scattered_shekels
+# UNLOCK_EVIDENCE: broken_cages
 If the Galilean's timing was intentional, He chose the morning of the inspection rush. Not when the priests were relaxed, but when every desk was full, every ledger open, every merchant shouting over prices. He crashed the peak transaction window.
 * [That sounds calculated.] -> closing
 * [Why would He do that?] -> closing

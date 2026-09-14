@@ -17,7 +17,7 @@
     ]
   },
   "my_tomb": {
-    "content": "It was my new tomb. Never used. Cut from solid rock in my own garden, close to Golgotha — the kind of resting place only a wealthy man could commission for himself. When I asked for His body, I broke ranks with the council. I was a secret disciple — but I could not let them leave Him to the criminals' burial pits at Hinnom, thrown among the condemned like refuse. That tomb had never held the dead before His body entered it.",
+    "content": "# UNLOCK_EVIDENCE: spice_jars\nIt was my new tomb. Never used. Cut from solid rock in my own garden, close to Golgotha — the kind of resting place only a wealthy man could commission for himself. When I asked for His body, I broke ranks with the council. I was a secret disciple — but I could not let them leave Him to the criminals' burial pits at Hinnom, thrown among the condemned like refuse. That tomb had never held the dead before His body entered it.",
     "choices": [
       {
         "text": "Why take the risk?",
@@ -48,7 +48,7 @@
     ]
   },
   "examination": {
-    "content": "Peter entered first, stooping to look inside. We saw the strips of linen, the face cloth — but no body. The bindings were not undone. They lay as if He had simply passed through them. Peter counted the grave clothes separately, noting the sudarium was not with the main wrappings but rolled up by itself.",
+    "content": "# UNLOCK_EVIDENCE: spice_jars\nPeter entered first, stooping to look inside. We saw the strips of linen, the face cloth — but no body. The bindings were not undone. They lay as if He had simply passed through them. Peter counted the grave clothes separately, noting the sudarium was not with the main wrappings but rolled up by itself.",
     "choices": [
       {
         "text": "What did you take?",
@@ -66,7 +66,7 @@
     ]
   },
   "empty_tomb": {
-    "content": "The tomb was open. The stone rolled away. The guards had fled. And there, in the burial niche — the linen wrappings lay empty. This was no theft. No grave robber would unwrap a body with such reverence, leaving the clothes in precise folds.",
+    "content": "# UNLOCK_EVIDENCE: spice_jars\nThe tomb was open. The stone rolled away. The guards had fled. And there, in the burial niche — the linen wrappings lay empty. This was no theft. No grave robber would unwrap a body with such reverence, leaving the clothes in precise folds.",
     "choices": [
       {
         "text": "Peter examined them?",

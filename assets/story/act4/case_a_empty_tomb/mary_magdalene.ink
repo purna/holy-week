@@ -58,16 +58,26 @@ I am Mary of Magdala. Seven demons were cast from me by the word of His mouth. M
 * [The weight of grief.] -> grief_weight
 
 === mourning ===
+# UNLOCK_EVIDENCE: mary_encounter
+# UNLOCK_EVIDENCE: empty_tomb
+# UNLOCK_EVIDENCE: burial_linen
 I had not slept. Not since the afternoon they took Him away. The weight of a lifeless body in the tomb, the scent of spices and myrrh, the knowledge that death itself had won — these were the things I brought with me as I walked the garden path.
 * [The stone blocked the way.] -> stone_rolled
 * [You expected to grieve in silence.] -> grief_weight
 
 === hope_before ===
+# UNLOCK_EVIDENCE: angelic_witness
+# UNLOCK_EVIDENCE: empty_tomb
+# UNLOCK_EVIDENCE: burial_linen
 Hope? No — hope had died with Him on the cross. I came to anoint what was dead. To touch what was cold. To perform the last rites of love on a body that would never rise. Grief was my companion. Faith was a memory.
 * [How could you keep coming?] -> perseverance
 * [The love that brought you.] -> grief_weight
 
 === grief_weight ===
+# UNLOCK_EVIDENCE: mary_encounter
+# UNLOCK_EVIDENCE: angelic_witness
+# UNLOCK_EVIDENCE: empty_tomb
+# UNLOCK_EVIDENCE: burial_linen
 Grief is heavier than marble. It settles in the chest like stone. It makes the legs unsteady. It turns the world gray. I carried that weight — the weight of a life that meant everything to me, now gone. The weight of a love that had nowhere to go but to the tomb.
 * [You still came to the tomb.] -> stone_rolled
 * [What gave you strength?] -> strength_dawn

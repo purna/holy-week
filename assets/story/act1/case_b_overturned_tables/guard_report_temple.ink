@@ -33,12 +33,14 @@ I am on duty at the Antonia fortress. I have been stationed on the high outer wa
 + [Why didn't you intervene?] -> intervene
 
 === saw ===
+# UNLOCK_EVIDENCE: whip_of_cords
 I saw tables overturned. Coins flying. Doves scattering. Merchants running. The Galilean standing in the middle of it all, looking like He owned the place. He didn't strike anyone. Didn't yell. Didn't even raise His voice. Just... looked at them. And they ran. Like sheep before a shepherd. Or convicts before a centurion.
 
 + [What was He saying?] -> saying
 + [The crowd followed Him?] -> crowd
 
 === intervene ===
+# UNLOCK_EVIDENCE: whip_of_cords
 Intervene? Our orders were clear: do not engage unless there is a full-scale rebellion. Flipped tables don't count. Scattered coins don't count. Even a broken dove cage doesn't count. The Romans don't die for Jewish commerce. We die for Roman order. And this... this was not a threat to Roman order.
 
 + [It was a threat to the Temple.] -> temple_threat

@@ -7,8 +7,7 @@
 // ------------------------------------------------------------
 // PROPHECIES FULFILLED: Isaiah 53:10 — offering for sin
 // ------------------------------------------------------------
-// Evidence unlocked: evidence_alabaster_jar, evidence_house_filled,
-//   evidence_judas_complaint
+// Evidence unlocked: alabaster_jar
 // ============================================================
 
 -> start
@@ -19,6 +18,7 @@ They still call me "the Leper," even now. It reminds everyone at my table what w
 * [Mary performed the anointing.] -> mary_act
 
 === healed_by_jesus ===
+# UNLOCK_EVIDENCE: alabaster_jar
 Healed -- yes. Leprosy took my skin, my fingernails, the flesh of my arms and legs. The physicians tried their poultices. Nothing worked. Then He touched me and said, "Be clean." And I was clean.
 * [The touch was divine.] -> divine_touch
 * [Your community rejected you.] -> community_reaction
@@ -40,7 +40,7 @@ The authority was greater than the Law itself. He did not need to consult the pr
 
 === dinner_arranged ===
 The dinner was arranged because gratitude demanded it. How do you feed a man who gave you back your life? I offered my table -- and my forgiveness. Let my home be known for what happened that evening.
-# UNLOCK_EVIDENCE: evidence_alabaster_jar
+# UNLOCK_EVIDENCE: alabaster_jar
 * [The guests arrived.] -> guests_arrived
 * [What preparations did you make?] -> preparations
 
@@ -60,8 +60,8 @@ Lazarus's presence -- the man who had been dead four days, now alive and eating 
 * [The miracle was undeniable.] -> undeniable_miracle
 
 === mary_act ===
+# UNLOCK_EVIDENCE: alabaster_jar
 Then -- Mary moved. She opened a sealed alabaster jar and poured expensive nard on the Master's feet. The fragrance filled the entire house.
-# UNLOCK_EVIDENCE: evidence_house_filled
 * [The fragrance was intense.] -> fragrance_intense
 * [Judas objected loudly.] -> judas_objection
 
@@ -72,7 +72,6 @@ The fragrance was intense -- pure spikenard from the mountains of India, importe
 
 === judas_objection ===
 Judas objected loudly: "Why wasn't this sold for three hundred denarii and given to the poor?" He said it with the tone of compassion, but I knew him better. He kept the money bag, and the Master had noted that already.
-# UNLOCK_EVIDENCE: evidence_judas_complaint
 * [His true motive was greed.] -> judas_motive
 * [The Master saw through him.] -> masters_response
 

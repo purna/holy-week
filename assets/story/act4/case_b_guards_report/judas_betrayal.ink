@@ -19,6 +19,8 @@
 // ------------------------------------------------------------
 // PROPHECIES FULFILLED:
 //   - Zechariah 11:12-13 — "Thirty pieces of silver"
+//   - Matthew 27:3-10 — silver returned, death, and the potter's field;
+//     Matthew attributes the combined prophetic pattern to Jeremiah
 //   - Psalm 41:9 — "He who ate my bread has lifted up his heel"
 //   - Psalm 55:12-14 — Ahithophel's betrayal prefigures Judas's
 // ============================================================
@@ -38,9 +40,29 @@ Thirty pieces of silver. The Torah sets that exact sum as the price paid when a 
 * [Peter's reaction at the table.] -> peter_table
 
 === zechariah_price ===
-You know your prophets. "So they weighed for my price thirty pieces of silver... and I cast them to the potter in the house of the LORD." Zechariah wrote this four hundred years before I was born. I fulfilled it to the coin without ever reading his scroll. If the price was written before I chose it, whose hand was really moving mine?
+You know your prophets. "So they weighed for my price thirty pieces of silver... and I cast them to the potter in the house of the LORD." Zechariah wrote this centuries before I was born. I fulfilled it to the coin without setting out to follow his scroll. If the price was written before I chose it, whose hand was really moving mine?
 * [Whose hand guided yours?] -> whose_hand
 * [The silver was prophetic.] -> silver_prophetic
+* [Why does Matthew name Jeremiah?] -> jeremiah_attribution
+
+=== jeremiah_attribution ===
+Matthew records what followed and says that the words spoken through Jeremiah were fulfilled: thirty pieces returned to the sanctuary, then used to buy the potter's field. The price and the casting of the silver echo Zechariah 11:12–13. Jeremiah supplies the wider image — the potter, the shattered vessel, and a field purchased under judgment and hope in Jeremiah 19 and 32. Matthew gathers those prophetic threads under Jeremiah's name and shows them converging in what the priests did with my blood money.
+# UNLOCK_EVIDENCE: evidence_field_of_blood
+* [Trace what happened to each coin.] -> matthew_fulfillment
+* [So two prophetic pictures converge.] -> prophetic_threads
+
+=== matthew_fulfillment ===
+Matthew 27:3–10 traces it step by step. I saw that Jesus was condemned. I returned the thirty pieces and confessed that I had betrayed innocent blood. The priests refused responsibility. I threw the coins into the sanctuary and went away to hang myself. Because they called the money blood money, they would not return it to the treasury. Instead they bought the potter's field as a burial place for foreigners. Price, sanctuary, potter, field — the details became evidence after my voice was gone.
+# UNLOCK_EVIDENCE: evidence_judas_betrayal_price
+# UNLOCK_EVIDENCE: evidence_field_of_blood
+* [The Field of Blood preserved the testimony.] -> akeldama_testimony
+* [The priests completed what they tried to contain.] -> prophetic_threads
+
+=== prophetic_threads ===
+Two prophetic pictures converge. Zechariah gives the rejected shepherd's contemptible wage — thirty silver pieces thrown to the potter in the house of the LORD. Jeremiah gives the potter and the field as signs of judgment, while a purchased field also becomes a witness that God's purpose reaches beyond disaster. Matthew does not let the priests' transaction remain bookkeeping. He reads it as fulfilment.
+# UNLOCK_EVIDENCE: evidence_field_of_blood
+* [The transaction became testimony.] -> testimony_endures_detail
+* [Return to what happened at the field.] -> field_calls
 
 === whose_hand ===
 Whose hand guided mine? The same hand that guided Moses, that guided David, that guided the prophets who spoke of this very moment. All of it was written before the foundation of the world. I was the instrument, not the author.
@@ -68,7 +90,7 @@ The refusal was mine. The invitation was extended to me as to all. I chose the d
 * [What became of the silver?] -> silver_became
 
 === silver_prophetic ===
-The silver was prophetic — not because I sought prophecy, but because the prophecy sought me. "They paid for me seventeen pieces of silver" — Zechariah. "Thirty pieces of silver" — the price that could not be paid back.
+The silver was prophetic — not because I sought prophecy, but because the prophecy sought me. "They weighed out as my wages thirty pieces of silver" — Zechariah. Thirty pieces: the price I could not take back.
 # UNLOCK_EVIDENCE: evidence_judas_betrayal_price
 * [The payment was counted.] -> payment_counted
 * [The testimony was buried.] -> testimony_buried
@@ -111,7 +133,7 @@ What was necessary — to force His hand, to fulfill the Scriptures. Peter will 
 * [Satan's role.] -> satans_role
 
 === definition_mattered ===
-The definition mattered. Judas Iscariot — not "the disciple who betrayed Him," but "Judas, a common name." Forty pieces of silver, the price of a slave. The Scriptures were precise.
+The definition mattered. Judas Iscariot — not "the disciple who betrayed Him," but "Judas, a common name." Thirty pieces of silver, the price of a slave. The Scriptures were precise.
 * [The price was exact.] -> price_exact_detail
 * [The betrayal was sealed.] -> betrayal_sealed
 
@@ -141,6 +163,7 @@ I took it back. I threw thirty pieces of silver onto the floor, telling the prie
 # UNLOCK_EVIDENCE: evidence_field_of_blood
 * [Akeldama's echo.] -> akeldama_echo
 * [The earth bore witness.] -> earth_bore_witness
+* [Why does Matthew name Jeremiah?] -> jeremiah_attribution
 
 === jesus_prayed_detail ===
 John records that Jesus prayed for His disciples — and for all who would believe, including me. "I pray for those you have given me." I was among those He had been given.
@@ -240,4 +263,3 @@ The river flows. The testimony flows. The light flows. And in that light, I see 
 === victory_is_his ===
 The victory is His. The testimony complete. The dawn breaks. The earth remembers. The testimony endures.
 -> DONE
-

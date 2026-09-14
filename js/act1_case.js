@@ -719,7 +719,23 @@ export const act1CaseA = {
           corrects: "neutral"
         }
       }
-    }
+    },
+    {
+      id: "nathanael_pharisee_entry",
+      name: "Nathanael",
+      role: "Pharisee, Religious Authority",
+      avatar: "simon_pharisee.svg",
+      profileFile: "nathanael_pharisee",
+      truthfulness: 0.75,
+      bibleRef: "Matthew 21:15-16; John 12:19; Zechariah 9:9; Psalm 118:25-26",
+      pos: [5, 0, 5],
+      hasDialogue: true,
+      storyFile: "nathanael_pharisee_entry",
+      background: "A Pharisee who witnessed crowds hailing Jesus as King at the Triumphal Entry. His records of the event reveal both political alarm and reluctant acknowledgment of prophecy fulfilled.",
+      dialogue: {
+        neutral: "The crowd was chanting 'Hosanna to the Son of David!' — waving palm branches like nationalist rebels. I watched from the Temple steps, noting the political implications.",
+      },
+    },
   ],
 
   timelineEvidenceIds: ["donkey_tracks", "witness_account", "palm_branch", "crowd_testimony"],

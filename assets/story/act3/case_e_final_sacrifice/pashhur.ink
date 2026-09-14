@@ -28,11 +28,15 @@ I was serving in the inner courts when it happened. Third rotation of the day. T
 * [Were you aware of the crucifixion?] -> aware_crucifixion
 
 === what_saw ===
+# UNLOCK_EVIDENCE: torn_temple_veil
+# UNLOCK_EVIDENCE: split_rocks
 At the ninth hour — the hour of the afternoon sacrifice — the whole building moved. Not the way the ground moves in the hills. The Temple has its own weight, its own presence. When it moved, every man in the courts felt it as something interior, not just structural.
 * [The earthquake.] -> earthquake
 * [Was there a sound?] -> the_sound
 
 === aware_crucifixion ===
+# UNLOCK_EVIDENCE: torn_temple_veil
+# UNLOCK_EVIDENCE: split_rocks
 Every priest on duty that morning knew. The Galilean had been condemned through the night and executed by the third hour. There had been debate in the service quarters about whether any of us should leave our posts to watch. We stayed. Attending the altar during Passover preparation is not optional.
 * [So you were at your post when it happened.] -> what_saw
 * [Did you know Jesus personally?] -> know_jesus

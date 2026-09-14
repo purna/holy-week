@@ -35,18 +35,21 @@ Annas speaks of systems and history, as if morality were subordinate to administ
 * [How can raising Lazarus cause chaos?] -> chaos_lie
 
 === systems_lie ===
+# UNLOCK_EVIDENCE: secret_decree
 You claim governments are built on stone, not passion, yet you would destroy a man who embodies divine truth to protect your power. That is not governance — that is tyranny. 
 
 * [So your concern is power, not order.] -> power_lie
 * [Morality matters even to rulers.] -> morality_assertion
 
 === miracle_lie ===
+# UNLOCK_EVIDENCE: secret_decree
 You say Jesus’s popularity is like water, eroding structures, yet you ignore that the structure itself is rotten. The crowd celebrates life, not rebellion. Labeling virtue as threat does not make it true.
 
 * [Popularity is not a crime.] -> popularity_expose
 * [So you're afraid of truth.] -> fear_truth
 
 === chaos_lie ===
+# UNLOCK_EVIDENCE: secret_decree
 You suggest that Lazarus’s survival threatens Jerusalem, yet it is your own fear and scheming that endanger the city. Miracles inspire, but murder invites ruin.
 
 * [So this is political fear, not public safety.] -> political_fear

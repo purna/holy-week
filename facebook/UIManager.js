@@ -123,8 +123,8 @@ export class UIManager {
     if (container) {
       container.innerHTML = actData.map(act => {
         const status = !act.isUnlocked ? "locked" : act.allSolved ? "solved" : "open";
-        const badge = act.allSolved ? "<img src='../assets/gfx/check-circle-duotone.svg' class='icon-svg' loading='lazy'>" : act.isUnlocked ? "<img src='../assets/gfx/magnifying-glass-duotone.svg' class='icon-svg' loading='lazy'>" : "<img src='../assets/gfx/lock-duotone.svg' class='icon-svg' loading='lazy'>";
-        const statusText = { locked: "<img src='../assets/gfx/lock-duotone.svg' class='icon-svg' loading='lazy'> Locked", open: "<img src='../assets/gfx/magnifying-glass-duotone.svg' class='icon-svg' loading='lazy'> Cases available", solved: "<img src='../assets/gfx/check-circle-duotone.svg' class='icon-svg' loading='lazy'> All solved" }[status];
+        const badge = act.allSolved ? "<img src='../assets/gfx/holy-week-solved-seal.svg' class='solved-seal-icon' loading='lazy'>" : act.isUnlocked ? "<img src='../assets/gfx/magnifying-glass-duotone.svg' class='icon-svg' loading='lazy'>" : "<img src='../assets/gfx/lock-duotone.svg' class='icon-svg' loading='lazy'>";
+        const statusText = { locked: "<img src='../assets/gfx/lock-duotone.svg' class='icon-svg' loading='lazy'> Locked", open: "<img src='../assets/gfx/magnifying-glass-duotone.svg' class='icon-svg' loading='lazy'> Cases available", solved: "<img src='../assets/gfx/holy-week-solved-seal.svg' class='solved-seal-icon' loading='lazy'> All solved" }[status];
         const caseCount = act.cases.length;
         const solvedCount = act.solvedCases;
         return `
@@ -181,7 +181,7 @@ export class UIManager {
                 <div class="case-title"><img src='${c.icon}' class='icon-svg' loading='lazy'> ${c.title}</div>
                 <div class="case-subtitle">${c.subtitle}</div>
                 ${c.eventLocation ? `<div class="case-event-location"><img src='../assets/gfx/pin-duotone.svg' class='icon-svg' loading='lazy'> ${c.eventLocation}</div>` : ''}
-                <span class="case-status-label">${prog?.solved ? `<img src='../assets/gfx/check-circle-duotone.svg' class='icon-svg' loading='lazy'> Solved — ${prog.score?.total} pts` : c.isLocked ? "<img src='../assets/gfx/lock-duotone.svg' class='icon-svg' loading='lazy'> Locked" : "<img src='../assets/gfx/magnifying-glass-duotone.svg' class='icon-svg' loading='lazy'> Open"}</span>
+                <span class="case-status-label">${prog?.solved ? `<img src='../assets/gfx/holy-week-solved-seal.svg' class='solved-seal-icon' loading='lazy'> Solved — ${prog.score?.total} pts` : c.isLocked ? "<img src='../assets/gfx/lock-duotone.svg' class='icon-svg' loading='lazy'> Locked" : "<img src='../assets/gfx/magnifying-glass-duotone.svg' class='icon-svg' loading='lazy'> Open"}</span>
               </div>`;
     }).join("");
   }
@@ -218,7 +218,7 @@ export class UIManager {
                 <div class="case-title"><img src='${c.icon}' class='icon-svg' loading='lazy'> ${c.title}</div>
                 <div class="case-subtitle">${c.subtitle}</div>
                 ${c.eventLocation ? `<div class="case-event-location"><img src='../assets/gfx/pin-duotone.svg' class='icon-svg' loading='lazy'> ${c.eventLocation}</div>` : ''}
-                <span class="case-status-label">${prog?.solved ? `<img src='../assets/gfx/check-circle-duotone.svg' class='icon-svg' loading='lazy'> Solved — ${prog.score?.total} pts` : c.isLocked ? "<img src='../assets/gfx/lock-duotone.svg' class='icon-svg' loading='lazy'> Locked" : "<img src='../assets/gfx/magnifying-glass-duotone.svg' class='icon-svg' loading='lazy'> Open"}</span>
+                <span class="case-status-label">${prog?.solved ? `<img src='../assets/gfx/holy-week-solved-seal.svg' class='solved-seal-icon' loading='lazy'> Solved — ${prog.score?.total} pts` : c.isLocked ? "<img src='../assets/gfx/lock-duotone.svg' class='icon-svg' loading='lazy'> Locked" : "<img src='../assets/gfx/magnifying-glass-duotone.svg' class='icon-svg' loading='lazy'> Open"}</span>
               </div>`;
     }).join("");
   }
@@ -257,20 +257,6 @@ export class UIManager {
       const loadedStory = this.dm.getStory(activeNpc.data.id, caseId);
 
       // Handle evidence unlocks for grid NPCs
-      const unlocks = activeNpc.data.unlocksEvidence || [];
-      if (unlocks.length > 0 && c) {
-        this.cm.unlockEvidenceForScene(c.id, unlocks);
-        this.switchInvTab('lab');
-        unlocks.forEach(id => {
-          const ev = this.es.getById(id);
-          if (ev) {
-            const msg = `Evidence unlocked: ${ev.name}. <button class="evidence-toast-link" data-evidence-id="${ev.id}">View details</button>`;
-            this.a11y.announce(`Evidence unlocked: ${ev.name}`);
-            this._showEvidenceToast(msg);
-          }
-        });
-      }
-
       if (loadedStory) {
         const story = this.dm.createStory(activeNpc.data.id, caseId);
         this.dm.openDialogue(activeNpc.data, story,
@@ -278,7 +264,9 @@ export class UIManager {
             this.renderPeople();
             // Spawn any newly unlocked evidence after dialogue
             if (window.scene3d) window.scene3d.spawnUnlockedEvidence();
-          }, (text, type) => this.peopleUI.addMessage(type === 'player' ? 'Investigator' : activeNpc.data.name, text, type, {}, activeNpc.data.id)
+          },
+          (text, type) => this.peopleUI.addMessage(type === 'player' ? 'Investigator' : activeNpc.data.name, text, type, {}, activeNpc.data.id),
+          tag => this.peopleUI._handleDialogueTag(tag, activeNpc.data.id)
         );
       } else {
         // Grid NPC without story - show simple message
@@ -413,7 +401,7 @@ export class UIManager {
         if (bibleVerseContent) { bibleVerseContent.innerHTML = ""; bibleVerseContent.hidden = true; }
       }
 
-      prophetLinkEl.textContent = "Fulfilled By: ???";
+      prophetLinkEl.textContent = `Fulfilled By: ${p.fulfilledBy || p.insight || 'Fulfilment details not recorded'}`;
       prophetLinkEl.closest(".evidence-detail-section").hidden = false;
       if (prophetReadMoreContainer) prophetReadMoreContainer.innerHTML = "";
       if (prophetVerseContent) { prophetVerseContent.innerHTML = ""; prophetVerseContent.hidden = true; }

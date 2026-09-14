@@ -27,11 +27,15 @@ I am Malchus, servant to the High Priest. Tonight I came to arrest a man my mast
 * [How do you account for the healing?] -> healing_account
 
 === garden_account ===
+# UNLOCK_EVIDENCE: abandoned_linen
+# UNLOCK_EVIDENCE: dropped_torch
 The garden was dark — torches and lanterns moving between the trees. The Galilean's group was gathered near the centre. I was near the front of our column when the disciple struck. He was not a soldier. The blade caught the side of my head and took the ear completely. I fell.
 * [And then?] -> healing_account
 * [Which disciple struck you?] -> which_disciple
 
 === healing_account ===
+# UNLOCK_EVIDENCE: abandoned_linen
+# UNLOCK_EVIDENCE: dropped_torch
 He came toward me. Not to flee, not to fight — He came to me. He said one word to the disciple — something about the sword — and then He picked up what had been cut away and He pressed it to the side of my head. I felt warmth. Not pain. Warmth. And it was whole again.
 * [A man being arrested stopped to heal the soldier arresting him.] -> paradox
 * [The disciple — was he disciplined?] -> which_disciple

@@ -9,11 +9,28 @@
     ]
   },
   "main_hub": {
-    "content": "+ [Ask what happened on the road] -> cautious_stage\n+ [Ask why the soldiers chose him] -> pressured_stage\n+ [Ask what he makes of it now] -> exposed_stage\n+ [Leave him] -> repeat_stage",
-    "choices": []
+    "content": "",
+    "choices": [
+      {
+        "text": "Ask what happened on the road",
+        "destination": "cautious_stage"
+      },
+      {
+        "text": "Ask why the soldiers chose him",
+        "destination": "pressured_stage"
+      },
+      {
+        "text": "Ask what he makes of it now",
+        "destination": "exposed_stage"
+      },
+      {
+        "text": "Leave him",
+        "destination": "repeat_stage"
+      }
+    ]
   },
   "cautious_stage": {
-    "content": "\"He'd already been carrying it Himself, from what I could tell —\nthe whole beam, on His own back. But He went down under it.\nCouldn't get back up carrying that weight, not after what they'd\nclearly already done to Him before I ever saw Him.\"",
+    "content": "# UNLOCK_EVIDENCE: cross_burden\n\"He'd already been carrying it Himself, from what I could tell —\nthe whole beam, on His own back. But He went down under it.\nCouldn't get back up carrying that weight, not after what they'd\nclearly already done to Him before I ever saw Him.\"",
     "choices": [
       {
         "text": "Continue",
@@ -22,7 +39,7 @@
     ]
   },
   "pressured_stage": {
-    "content": "\"The soldiers didn't ask. They pulled me straight out of the\ncrowd, forced my hands onto the beam, pointed me up the hill.\nI didn't have a choice in any of it. Wrong place, wrong moment\n— that's all it was, far as I understood it then.\"",
+    "content": "# UNLOCK_EVIDENCE: cross_burden\n\"The soldiers didn't ask. They pulled me straight out of the\ncrowd, forced my hands onto the beam, pointed me up the hill.\nI didn't have a choice in any of it. Wrong place, wrong moment\n— that's all it was, far as I understood it then.\"",
     "choices": [
       {
         "text": "Continue",
@@ -31,7 +48,7 @@
     ]
   },
   "exposed_stage": {
-    "content": "\"I keep thinking of Isaac. Carrying the wood up the mountain for\nhis own sacrifice, not knowing what it meant, trusting his father\nwithout understanding why. I carried this man's wood up a\ndifferent mountain, and I didn't know what it meant either.\nNot then. I think about it every day since.\"\n{ not evidence_cross_burden:\n    ~ evidence_cross_burden = true\n    # UNLOCK_EVIDENCE: cross_burden\n}",
+    "content": "# UNLOCK_EVIDENCE: cross_burden\n\"I keep thinking of Isaac. Carrying the wood up the mountain for\nhis own sacrifice, not knowing what it meant, trusting his father\nwithout understanding why. I carried this man's wood up a\ndifferent mountain, and I didn't know what it meant either.\nNot then. I think about it every day since.\"\n{ not evidence_cross_burden:\n    ~ evidence_cross_burden = true\n    # UNLOCK_EVIDENCE: cross_burden\n}",
     "choices": [
       {
         "text": "main_hub",
@@ -40,7 +57,7 @@
     ]
   },
   "repeat_stage": {
-    "content": "\"My shoulder still bears the mark of it. I don't think it will\never fully fade. I'm not sure I want it to.\"\nVAR evidence_cross_burden = false",
+    "content": "# UNLOCK_EVIDENCE: cross_burden\n\"My shoulder still bears the mark of it. I don't think it will\never fully fade. I'm not sure I want it to.\"\nVAR evidence_cross_burden = false",
     "choices": []
   }
 }

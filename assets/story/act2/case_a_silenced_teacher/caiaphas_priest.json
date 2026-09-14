@@ -1,6 +1,6 @@
 {
   "start": {
-    "content": "You look at a single man, scribe, and you see a moral puzzle. I look at this city and I see an entire nation facing absolute erasure.\n# UNLOCK_EVIDENCE: evidence_national_security\nIf the legions move to clear these courts, Sinai becomes a memory. It is expedient that one man should die for the people. Do you understand the weight of this chair?",
+    "content": "You look at a single man, scribe, and you see a moral puzzle. I look at this city and I see an entire nation facing absolute erasure.\nIf the legions move to clear these courts, Sinai becomes a memory. It is expedient that one man should die for the people. Do you understand the weight of this chair?",
     "choices": [
       {
         "text": "Is justice something that can be bartered for national security?",
@@ -17,7 +17,7 @@
     ]
   },
   "security": {
-    "content": "Without a nation, there is no altar. Without an altar, there is no law. Order is the highest form of justice we can offer under Rome. The Romans do not distinguish between religious dispute and political sedition -- neither do I when the alternative is the eagle standard in our holy of holies.\n# UNLOCK_EVIDENCE: evidence_temple_authority",
+    "content": "# UNLOCK_EVIDENCE: evidence_national_security\nWithout a nation, there is no altar. Without an altar, there is no law. Order is the highest form of justice we can offer under Rome. The Romans do not distinguish between religious dispute and political sedition -- neither do I when the alternative is the eagle standard in our holy of holies.\n# UNLOCK_EVIDENCE: evidence_temple_authority",
     "choices": [
       {
         "text": "The temple's authority is at stake.",
@@ -182,7 +182,7 @@
     ]
   },
   "trial": {
-    "content": "We will hear them all. The truth will reveal itself, but the public safety verdict cannot be delayed. Let the witnesses speak -- let them contradict themselves if they must. The Sanhedrin does not act without due process, even under pressure.\n# UNLOCK_EVIDENCE: evidence_temple_authority",
+    "content": "# UNLOCK_EVIDENCE: evidence_national_security\nWe will hear them all. The truth will reveal itself, but the public safety verdict cannot be delayed. Let the witnesses speak -- let them contradict themselves if they must. The Sanhedrin does not act without due process, even under pressure.\n# UNLOCK_EVIDENCE: evidence_temple_authority",
     "choices": [
       {
         "text": "The due process is questioned.",
@@ -191,6 +191,19 @@
       {
         "text": "The pressure is mounting.",
         "destination": "pressure_mounting"
+      }
+    ]
+  },
+  "lazarus_danger": {
+    "content": "# UNLOCK_EVIDENCE: evidence_national_security\nLazarus was dead, and now he walks openly in Bethany. Every pilgrim who sees him becomes another witness the council cannot dismiss. That is why one man's return has become a danger to the order of an entire nation.",
+    "choices": [
+      {
+        "text": "Is truth dangerous only when authority cannot control it?",
+        "destination": "security"
+      },
+      {
+        "text": "Then the witnesses matter.",
+        "destination": "trial"
       }
     ]
   },

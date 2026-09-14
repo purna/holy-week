@@ -16,11 +16,13 @@ From the ridge we watched Jerusalem below us while He spoke of the end of the ag
 * [Where was the hope?] -> hope
 
 === warning ===
+# UNLOCK_EVIDENCE: temple_overlook_view
 He said many would come in His name claiming to be the Messiah. Wars and rumours of wars. Nations against nations. Famines, earthquakes, persecution of believers. He called these birth pains — the travail before delivery. We were told not to be alarmed, not because the events would not be terrible, but because they would not be final.
 * [The birth pains lead to something.] -> hope
 * [And the specific sign for Jerusalem?] -> jerusalem_sign
 
 === hope ===
+# UNLOCK_EVIDENCE: temple_overlook_view
 He promised the gospel would reach all nations. He promised the Son of Man would come with power and great glory. He said this generation would not pass away before the Temple judgment came to pass — but He also stretched the horizon far beyond our generation for the cosmic conclusion. History is not chaos to Him; it is appointment.
 * [The near prophecy and the far prophecy.] -> two_horizons
 * [He promised to come back.] -> return_promise

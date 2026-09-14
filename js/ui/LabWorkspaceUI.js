@@ -53,15 +53,15 @@ export class LabWorkspaceUI {
 
            <div id="lw-panel-connections" class="tab-panel active" role="tabpanel" aria-label="Evidence connections">
         
-              <section class="lab-task-guide" aria-labelledby="lw-link-goal">
+              <section class="lab-task-guide" aria-labelledby="lw-connections-goal">
               <div class="lab-task-guide-heading">
                 <span class="lab-task-guide-kicker">Your task</span>
-                <h4 id="lw-link-goal">Work out the relationship</h4>
+                <h4 id="lw-connections-goal">Connect evidence that relates to the same story</h4>
               </div>
               <ol class="lab-task-steps">
-                <li>Select two cards </li>
-                <li>Choose their relationship </li>
-                <li>Test the connection</li>
+                <li><strong>Select two evidence cards</strong> from the pool below. Drag them into the two comparison slots, or click the slots to pick cards.</li>
+                <li><strong>Choose the relationship</strong> that best describes how they connect: <em>Corroborates</em> (both support the same point), <em>Fulfils / explains</em> (one clarifies or completes the other), or <em>Challenges</em> (one questions or contradicts the other).</li>
+                <li><strong>Test the connection</strong> by clicking "Test Connection". A correct match reveals a key insight; an incorrect match removes the cards so you can try again.</li>
               </ol>
             </section>
  <div class="actions-bar connections-actions">
@@ -116,17 +116,21 @@ export class LabWorkspaceUI {
                 <h4 id="lw-link-goal">Sort every clue into the correct evidence folder</h4>
               </div>
               <ol class="lab-task-steps">
-                <li><strong>Choose a folder</strong> to see the kind of evidence it contains.</li>
-                <li><strong>Select an unfiled evidence card</strong> to place it in that folder. You can also drag cards into folders.</li>
+                <li><strong>Select an evidence card</strong> from the unfiled pool below.</li>
+                <li><strong>Choose a destination folder</strong> from the dropdown, or drag the card into the folder tray.</li>
                 <li><strong>File every card,</strong> then select Verify Folders to check your work.</li>
               </ol>
             </section>
             <div class="actions-bar">
+              <select id="lw-folder-move" class="folder-move-select" aria-label="Move selected evidence to folder">
+                <option value="">Move to folder…</option>
+              </select>
               <button class="btn-submit" id="lw-folder-submit">Verify Folders</button>
             </div>
             <div class="folder-grid" id="lw-folder-grid"></div>
             <p class="lab-bank-label">Unfiled evidence:</p>
             <div class="card-pool-grid" id="lw-folder-bank"></div>
+            <div class="timeline-mini-bar" id="lw-folder-timeline-bar" role="img" aria-label="Evidence count by category"></div>
           </div>
 
           <div id="lw-panel-timeline" class="tab-panel" role="tabpanel" aria-label="Timeline">
@@ -244,6 +248,7 @@ export class LabWorkspaceUI {
       input.addEventListener('change', () => this._updateRelationshipHelp());
     });
     this.root.querySelector("#lw-folder-submit")?.addEventListener("click", () => this._submitFolders());
+    this.root.querySelector("#lw-folder-move")?.addEventListener("change", () => this._moveSelectedItemToFolder());
     this.root.querySelector("#lw-timeline-clear")?.addEventListener("click", () => this._clearTimeline());
     this.root.querySelector("#lw-timeline-test")?.addEventListener("click", () => this._testTimeline());
 
@@ -324,6 +329,7 @@ export class LabWorkspaceUI {
           const id = card.dataset.evidenceId;
           const item = this.evidence.find(i => i.id === id);
           if (!item) return;
+          this.selectedCardId = id;
 
           // Clicking a card that's already in a comparator slot removes it
           const slot = card.closest(".comparator-slot");
@@ -539,11 +545,32 @@ export class LabWorkspaceUI {
     this._renderComparatorBank();
     this._renderFolderGrid();
     this._renderFolderContents();
+    this._populateFolderMoveDropdown();
+    this._renderTimelineMiniBar();
     this._renderTimelineSteps();
     this._renderTimelineBank();
     this._renderMatchedPairs();
     this._updateCompareProgress();
     this._renderReliabilityTasks();
+  }
+
+  _renderTimelineMiniBar() {
+    const bar = this.root.querySelector("#lw-folder-timeline-bar");
+    if (!bar) return;
+    const byCategory = {};
+    this.evidence.forEach(e => {
+      byCategory[e.category] = (byCategory[e.category] || 0) + 1;
+    });
+    const maxCount = Math.max(...Object.values(byCategory), 1);
+    bar.innerHTML = Object.entries(byCategory).map(([cat, count]) => {
+      const heightPct = Math.round((count / maxCount) * 100);
+      return `
+        <div class="mini-bar-item">
+          <div class="mini-bar-fill" style="height: ${heightPct}%;"></div>
+          <span class="mini-bar-count">${count}</span>
+          <span class="mini-bar-label">${cat}</span>
+        </div>`;
+    }).join('');
   }
 
   _getActiveCase() {
@@ -757,6 +784,33 @@ export class LabWorkspaceUI {
     this.folderState[folderKey].push(id);
   }
 
+    _populateFolderMoveDropdown() {
+    const select = this.root.querySelector("#lw-folder-move");
+    if (!select) return;
+    select.innerHTML = '<option value="">Move selected to folder…</option>';
+    Object.entries(folderInfoData).forEach(([key, info]) => {
+      const opt = document.createElement("option");
+      opt.value = key;
+      opt.textContent = info.title;
+      select.appendChild(opt);
+    });
+  }
+
+  _moveSelectedItemToFolder() {
+    const select = this.root.querySelector("#lw-folder-move");
+    if (!select || !select.value || !this.selectedCardId) {
+      if (!this.selectedCardId) this._setFeedback("Select an evidence card first.", "error");
+      return;
+    }
+    const id = this.selectedCardId;
+    const item = this.evidence.find(e => e.id === id);
+    const folderKey = select.value;
+    this._moveEvidenceToFolder(id, folderKey);
+    this._renderFolderContents();
+    select.value = "";
+    this._setFeedback(`Moved ${item?.name || 'evidence'} to ${folderInfoData[folderKey]?.title || folderKey}.`, "success");
+  }
+
   _showFolderInfo(key) {
     const info = folderInfoData[key];
     if (!info) return;
@@ -772,11 +826,13 @@ export class LabWorkspaceUI {
   _renderTimelineSteps() {
     const stepsEl = this.root.querySelector("#lw-timeline-steps");
     if (!stepsEl) return;
-    const timelineEvidence = this._getTimelineEvidence();
-    const orders = [...new Set(timelineEvidence.map(e => e.timelineOrder))].sort((a, b) => a - b);
+    const allTimelineEvidence = this._getAllTimelineEvidence();
+    const collectedEvidence = this._getCollectedTimelineEvidence();
+    const orders = [...new Set(allTimelineEvidence.map(e => e.timelineOrder))].sort((a, b) => a - b);
     const steps = orders.map((num, idx) => {
-      const count = timelineEvidence.filter(e => e.timelineOrder === num).length;
-      return { num, title: `Event ${num}`, hint: `${count} item${count !== 1 ? 's' : ''}` };
+      const allAtOrder = allTimelineEvidence.filter(e => e.timelineOrder === num);
+      const collectedAtOrder = collectedEvidence.filter(e => e.timelineOrder === num);
+      return { num, title: `Event ${num}`, hint: `${allAtOrder.length} item${allAtOrder.length !== 1 ? 's' : ''}` };
     });
     stepsEl.innerHTML = steps.map(s => {
       const ids = this.timelineSlots[s.num] || [];
@@ -785,10 +841,11 @@ export class LabWorkspaceUI {
         const item = this.evidence.find(e => e.id === id);
         return item ? this._cardHTML(item, "selected") : "";
       }).join("");
-      const requiredCount = timelineEvidence.filter(e => e.timelineOrder === s.num).length;
-      const badgeHtml = requiredCount > 0 ? `<span class="timeline-badge">${ids.length}/${requiredCount}</span>` : '';
+      const requiredCount = allTimelineEvidence.filter(e => e.timelineOrder === s.num).length;
+      const collectedCount = this.evidence.filter(e => e.timelineOrder === s.num).length;
+      const badgeHtml = requiredCount > 0 ? `<span class="timeline-badge">${collectedCount}/${requiredCount} collected</span>` : '';
       return `
-        <div class="timeline-step ${filled}" data-step="${s.num}" role="button" tabindex="0" aria-label="Event ${s.num}, ${ids.length} of ${requiredCount} evidence items placed">
+        <div class="timeline-step ${filled}" data-step="${s.num}" role="button" tabindex="0" aria-label="Event ${s.num}, ${collectedCount} of ${requiredCount} evidence items collected">
           <div class="step-header" data-step-toggle="${s.num}">
             <div>
               <span class="step-title">${s.title}</span>
@@ -799,7 +856,7 @@ export class LabWorkspaceUI {
           </div>
           <div class="step-body">
             <div class="step-cards-container" id="lw-timeline-step-${s.num}">
-              ${itemsHtml || `<span style="font-size:0.72rem; color:var(--text-dim);">Tap item then here</span>`}
+              ${itemsHtml || `<span class="timeline-placeholder">Drag evidence here</span>`}
             </div>
           </div>
         </div>
@@ -812,10 +869,32 @@ export class LabWorkspaceUI {
     if (!bank) return;
     const assigned = new Set(Object.values(this.timelineSlots).flat());
     const unassigned = this._getTimelineEvidence().filter(e => !assigned.has(e.id));
-    bank.innerHTML = unassigned.length ? unassigned.map(i => this._cardHTML(i)).join("") : `<span style="font-size:0.72rem; color:var(--text-dim);">All placed</span>`;
+    bank.innerHTML = unassigned.length ? unassigned.map(i => this._cardHTML(i)).join("") : `<span class="timeline-placeholder">All placed</span>`;
   }
 
-  _getTimelineEvidence() {
+  _getAllTimelineEvidence() {
+    const pool = this.es.getEvidencePool?.() || [];
+    const authoredIds = this._getActiveCase()?.timelineEvidenceIds;
+    if (Array.isArray(authoredIds) && authoredIds.length) {
+      const allPool = pool.map(e => ({
+        id: e.id, name: e.name, icon: e.icon || e.emoji || '',
+        timelineOrder: e.timelineOrder ?? null,
+        fake: !!e.fake, desc: e.desc || e.name
+      }));
+      return authoredIds.slice(0, 5).map(id => allPool.find(e => e.id === id)).filter(e => e?.timelineOrder != null);
+    }
+    return pool
+      .filter(e => e.timelineOrder != null)
+      .sort((a, b) => a.timelineOrder - b.timelineOrder)
+      .slice(0, 5)
+      .map(e => ({
+        id: e.id, name: e.name, icon: e.icon || e.emoji || '',
+        timelineOrder: e.timelineOrder ?? null,
+        fake: !!e.fake, desc: e.desc || e.name
+      }));
+  }
+
+  _getCollectedTimelineEvidence() {
     const authoredIds = this._getActiveCase()?.timelineEvidenceIds;
     if (Array.isArray(authoredIds) && authoredIds.length) {
       return authoredIds.slice(0, 5).map(id => this.evidence.find(e => e.id === id)).filter(e => e?.timelineOrder != null);
@@ -828,6 +907,10 @@ export class LabWorkspaceUI {
         if (!byEvent.has(e.timelineOrder) && byEvent.size < 5) byEvent.set(e.timelineOrder, e);
       });
     return [...byEvent.values()];
+  }
+
+  _getTimelineEvidence() {
+    return this._getCollectedTimelineEvidence();
   }
 
   _cardHTML(item, extraClass = "", badge = null) {

@@ -469,3 +469,47 @@
     filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.45));
     margin-bottom: 14px;
 }
+
+.npc-result-modal-card .challenge-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: stretch;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.npc-result-modal-card .challenge-modal-actions .evidence-detail-confirm {
+  width: auto;
+  min-width: 0;
+  min-height: 44px;
+  margin: 0;
+}
+
+.npc-result-modal-card .challenge-modal-cancel {
+  flex: 0 1 110px;
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border, #2e3a50);
+}
+
+.npc-result-modal-card .npc-challenge-confirm {
+  flex: 1 1 190px;
+  max-width: 240px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.npc-result-modal-card .npc-challenge-confirm:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  filter: grayscale(0.65);
+}
+
+@media (max-width: 420px) {
+  .npc-result-modal-card .challenge-modal-actions {
+    display: grid;
+    grid-template-columns: minmax(90px, 0.75fr) minmax(0, 1.4fr);
+  }
+}

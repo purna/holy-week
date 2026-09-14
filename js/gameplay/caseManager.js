@@ -471,12 +471,18 @@ export class CaseManager {
     const allCases = Object.values(this.cases);
     const result = [];
     for (const c of allCases) {
+      // The Lab and Case File own in-progress prophecy research. The global
+      // Codex is the permanent archive. Keep every prophecy visible in its
+      // catalogue, but do not reveal its progress until the case is closed.
+      const caseProgress = this.progress.cases[c.id];
+      const caseClosed = !!(caseProgress?.solved || caseProgress?.concluded);
       const props = c.prophecies || [];
       for (const p of props) {
+        const status = caseClosed ? this.getCodexStatus(p.id) : 'unseen';
         result.push({
           ...p,
-          status: this.getCodexStatus(p.id),
-          discovered: this.getCodexStatus(p.id) !== 'unseen',
+          status,
+          discovered: status !== 'unseen',
           caseId: c.id,
           caseTitle: c.title
         });

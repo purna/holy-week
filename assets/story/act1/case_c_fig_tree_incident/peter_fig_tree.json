@@ -17,7 +17,7 @@
     ]
   },
   "peter_noticed": {
-    "content": "I was. If anyone ever sets our story down properly, Scribe, I expect it will read something like: \"Peter, calling to remembrance, saith unto him, Master, behold, the fig tree which thou cursedst is withered away.\" I don't know why it should matter who spotted it first. But it was me. I always seem to be the one who blurts things out before I fully understand what I'm looking at.",
+    "content": "# UNLOCK_EVIDENCE: peter_astonishment\n# UNLOCK_EVIDENCE: disciples_faith_lesson\nI was. If anyone ever sets our story down properly, Scribe, I expect it will read something like: \"Peter, calling to remembrance, saith unto him, Master, behold, the fig tree which thou cursedst is withered away.\" I don't know why it should matter who spotted it first. But it was me. I always seem to be the one who blurts things out before I fully understand what I'm looking at.",
     "choices": [
       {
         "text": "It makes you realize who you're walking with.",
@@ -30,7 +30,7 @@
     ]
   },
   "miracle": {
-    "content": "It makes you realize who we're really walking with. He didn't just teach us a lesson with words; He showed us He has authority over the very roots of the earth we stand on. A tree, dead by morning, from a single sentence spoken the day before.",
+    "content": "# UNLOCK_EVIDENCE: peter_astonishment\n# UNLOCK_EVIDENCE: disciples_faith_lesson\nIt makes you realize who we're really walking with. He didn't just teach us a lesson with words; He showed us He has authority over the very roots of the earth we stand on. A tree, dead by morning, from a single sentence spoken the day before.",
     "choices": [
       {
         "text": "What did He say about the mountain?",
@@ -61,7 +61,7 @@
     ]
   },
   "judgment": {
-    "content": "The Master is walking into Jerusalem to face the men who run that Temple, and that tree was a mirror held up before He ever reached the gates. It looked healthy from a distance — green, full, promising — the same as the sacrifices and the courts and all the rest of it. But there was no fruit for God underneath the leaves. He said as much of the tree that morning, and He said as much of the Temple two hours later.",
+    "content": "# UNLOCK_EVIDENCE: peter_astonishment\n# UNLOCK_EVIDENCE: disciples_faith_lesson\nThe Master is walking into Jerusalem to face the men who run that Temple, and that tree was a mirror held up before He ever reached the gates. It looked healthy from a distance — green, full, promising — the same as the sacrifices and the courts and all the rest of it. But there was no fruit for God underneath the leaves. He said as much of the tree that morning, and He said as much of the Temple two hours later.",
     "choices": [
       {
         "text": "What did He teach about faith?",

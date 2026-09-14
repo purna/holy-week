@@ -13,7 +13,7 @@
     ]
   },
   "blessing": {
-    "content": "It was not a theatrical performance. It was a priest's hands — the same hands that had been pierced, now lifted in favor over the eleven of us. The same voice that called Lazarus from the grave now spoke peace over our confusion. 'You will receive power when the Holy Spirit comes upon you,' He said. 'And you will be my witnesses.'",
+    "content": "# UNLOCK_EVIDENCE: great_commission_mandate\nIt was not a theatrical performance. It was a priest's hands — the same hands that had been pierced, now lifted in favor over the eleven of us. The same voice that called Lazarus from the grave now spoke peace over our confusion. 'You will receive power when the Holy Spirit comes upon you,' He said. 'And you will be my witnesses.'",
     "choices": [
       {
         "text": "Witnesses to what?",
@@ -22,7 +22,7 @@
     ]
   },
   "leaving": {
-    "content": "He had said before, 'I go to prepare a place for you.' We thought it was a figure of speech. We did not expect the mechanics of it. As He blessed us, He began to rise. Not flying, not vanishing — being taken. A cloud received Him, and the sky swallowed Him up until we could no longer see.",
+    "content": "# UNLOCK_EVIDENCE: ascension_eyewitness_account\n# UNLOCK_EVIDENCE: great_commission_mandate\nHe had said before, 'I go to prepare a place for you.' We thought it was a figure of speech. We did not expect the mechanics of it. As He blessed us, He began to rise. Not flying, not vanishing — being taken. A cloud received Him, and the sky swallowed Him up until we could no longer see.",
     "choices": [
       {
         "text": "Were you afraid?",

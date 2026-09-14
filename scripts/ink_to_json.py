@@ -27,7 +27,7 @@ from pathlib import Path
 # ── Ink parser ───────────────────────────────────────────────────────────────
 
 INK_NODE_RE = re.compile(r'^===\s*(\w+)\s*===\s*$', re.MULTILINE)
-CHOICE_RE   = re.compile(r'^\s*\*\s*\[(.+?)\]\s*->\s*(\w+)\s*$')
+CHOICE_RE   = re.compile(r'^\s*[+*]\s*\[(.+?)\]\s*->\s*([\w.-]+)\s*$')
 DIVERT_RE   = re.compile(r'^->\s*(DONE|END|\w+)\s*$')
 COMMENT_RE  = re.compile(r'^\s*//.*$')
 BLANK_RE    = re.compile(r'^\s*$')

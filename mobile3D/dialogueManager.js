@@ -233,7 +233,7 @@ export class DialogueManager {
      * @param {Function} onClose   — Called when the player ends the conversation
      * @param {Function} onMessage — Optional callback for each message added
      */
-    openDialogue(npc, inkStory, onClose, onMessage) {
+    openDialogue(npc, inkStory, onClose, onMessage, onTag) {
         // Close sidebar panels
         ['panel-quest', 'panel-inv', 'panel-actions'].forEach(id => {
             document.getElementById(id)?.classList.remove('open');
@@ -267,7 +267,7 @@ export class DialogueManager {
 
         // System handshake message, then start story
         this.addMsg('SECURE CONNECTION ESTABLISHED.', 'system');
-        this._stepStory(inkStory, onClose);
+        this._stepStory(inkStory, onClose, onTag);
     }
 
     closeDialogue(onClose) {
@@ -300,7 +300,7 @@ export class DialogueManager {
       * @param {object}   story - inkjs.Story instance
       * @param {Function} onClose
       */
-    _stepStory(story, onClose) {
+    _stepStory(story, onClose, onTag) {
         if (!story) return;
 
         this.addTyping(() => {
@@ -309,6 +309,9 @@ export class DialogueManager {
             while (story.canContinue && safety < 20) {
                 let chunk = story.Continue();
                 text += chunk;
+                if (story.currentTags && typeof onTag === 'function') {
+                    story.currentTags.forEach(tag => onTag(tag));
+                }
                 if (story.currentChoices.length > 0) break;
                 safety++;
             }
@@ -322,7 +325,7 @@ export class DialogueManager {
                     if (choice.index !== -1) {
                         this.addMsg(choice.text, 'player');
                         story.ChooseChoiceIndex(choice.index);
-                        setTimeout(() => this._stepStory(story, onClose), 400);
+                        setTimeout(() => this._stepStory(story, onClose, onTag), 400);
                     } else {
                         this.closeDialogue(onClose);
                     }
@@ -384,6 +387,10 @@ class SimpleStoryAdapter {
     Continue() {
         if (!this.currentNode) return "";
         const txt = this.currentNode.content || "";
+        this.currentTags = txt.split(/\r?\n/)
+            .map(line => line.trim())
+            .filter(line => /^#\s*(?:UNLOCK_EVIDENCE|reveal)\s*:/i.test(line))
+            .map(line => line.replace(/^#\s*/, ''));
         // Transform choices to match Ink format { text, index }
         this.currentChoices = (this.currentNode.choices || []).map((c, i) => ({
             text: c.text,
@@ -391,7 +398,9 @@ class SimpleStoryAdapter {
             destination: c.destination
         }));
         this.canContinue = false;
-        return txt;
+        return txt.split(/\r?\n/)
+            .filter(line => !/^\s*#\s*(?:UNLOCK_EVIDENCE|reveal)\s*:/i.test(line))
+            .join('\n');
     }
 
     ChooseChoiceIndex(idx) {

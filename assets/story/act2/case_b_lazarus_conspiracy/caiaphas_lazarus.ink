@@ -30,6 +30,7 @@ I am Caiaphas. We called an emergency session of the council this morning. The r
 * [What does the council intend to do?] -> council_plan
 
 === what_happened ===
+# UNLOCK_EVIDENCE: grave_dirt
 Four days dead, sealed in a tomb, bound in burial linen — and then walking out at the command of this Galilean. I do not dismiss it. I cannot. Even our own sources in Bethany confirm it. That is exactly the problem.
 * [You accept the miracle happened?] -> accept_miracle
 * [Yet you still plan to stop Him.] -> stop_anyway
@@ -40,6 +41,7 @@ Accepting it as fact does not change my position. If anything, it hardens it. A 
 * [So the miracle itself is the threat.] -> miracle_threat
 
 === council_plan ===
+# UNLOCK_EVIDENCE: grave_dirt
 The council is divided between fear and argument. Some want to wait. Some want to question Him publicly. I ended that discussion. There is only one calculation that matters: if we let Him continue, the Romans come, and both our Temple and our nation are destroyed.
 * [One man's life for the nation's survival.] -> utilitarian_logic
 * [You have already decided He must die.] -> already_decided

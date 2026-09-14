@@ -34,7 +34,7 @@
     ]
   },
   "zechariah_price": {
-    "content": "You know your prophets. \"So they weighed for my price thirty pieces of silver... and I cast them to the potter in the house of the LORD.\" Zechariah wrote this four hundred years before I was born. I fulfilled it to the coin without ever reading his scroll. If the price was written before I chose it, whose hand was really moving mine?",
+    "content": "You know your prophets. \"So they weighed for my price thirty pieces of silver... and I cast them to the potter in the house of the LORD.\" Zechariah wrote this centuries before I was born. I fulfilled it to the coin without setting out to follow his scroll. If the price was written before I chose it, whose hand was really moving mine?",
     "choices": [
       {
         "text": "Whose hand guided yours?",
@@ -43,6 +43,49 @@
       {
         "text": "The silver was prophetic.",
         "destination": "silver_prophetic"
+      },
+      {
+        "text": "Why does Matthew name Jeremiah?",
+        "destination": "jeremiah_attribution"
+      }
+    ]
+  },
+  "jeremiah_attribution": {
+    "content": "Matthew records what followed and says that the words spoken through Jeremiah were fulfilled: thirty pieces returned to the sanctuary, then used to buy the potter's field. The price and the casting of the silver echo Zechariah 11:12–13. Jeremiah supplies the wider image — the potter, the shattered vessel, and a field purchased under judgment and hope in Jeremiah 19 and 32. Matthew gathers those prophetic threads under Jeremiah's name and shows them converging in what the priests did with my blood money.\n# UNLOCK_EVIDENCE: evidence_field_of_blood",
+    "choices": [
+      {
+        "text": "Trace what happened to each coin.",
+        "destination": "matthew_fulfillment"
+      },
+      {
+        "text": "So two prophetic pictures converge.",
+        "destination": "prophetic_threads"
+      }
+    ]
+  },
+  "matthew_fulfillment": {
+    "content": "Matthew 27:3–10 traces it step by step. I saw that Jesus was condemned. I returned the thirty pieces and confessed that I had betrayed innocent blood. The priests refused responsibility. I threw the coins into the sanctuary and went away to hang myself. Because they called the money blood money, they would not return it to the treasury. Instead they bought the potter's field as a burial place for foreigners. Price, sanctuary, potter, field — the details became evidence after my voice was gone.\n# UNLOCK_EVIDENCE: evidence_judas_betrayal_price\n# UNLOCK_EVIDENCE: evidence_field_of_blood",
+    "choices": [
+      {
+        "text": "The Field of Blood preserved the testimony.",
+        "destination": "akeldama_testimony"
+      },
+      {
+        "text": "The priests completed what they tried to contain.",
+        "destination": "prophetic_threads"
+      }
+    ]
+  },
+  "prophetic_threads": {
+    "content": "Two prophetic pictures converge. Zechariah gives the rejected shepherd's contemptible wage — thirty silver pieces thrown to the potter in the house of the LORD. Jeremiah gives the potter and the field as signs of judgment, while a purchased field also becomes a witness that God's purpose reaches beyond disaster. Matthew does not let the priests' transaction remain bookkeeping. He reads it as fulfilment.\n# UNLOCK_EVIDENCE: evidence_field_of_blood",
+    "choices": [
+      {
+        "text": "The transaction became testimony.",
+        "destination": "testimony_endures_detail"
+      },
+      {
+        "text": "Return to what happened at the field.",
+        "destination": "field_calls"
       }
     ]
   },
@@ -112,7 +155,7 @@
     ]
   },
   "silver_prophetic": {
-    "content": "The silver was prophetic — not because I sought prophecy, but because the prophecy sought me. \"They paid for me seventeen pieces of silver\" — Zechariah. \"Thirty pieces of silver\" — the price that could not be paid back.\n# UNLOCK_EVIDENCE: evidence_judas_betrayal_price",
+    "content": "The silver was prophetic — not because I sought prophecy, but because the prophecy sought me. \"They weighed out as my wages thirty pieces of silver\" — Zechariah. Thirty pieces: the price I could not take back.\n# UNLOCK_EVIDENCE: evidence_judas_betrayal_price",
     "choices": [
       {
         "text": "The payment was counted.",
@@ -216,7 +259,7 @@
     ]
   },
   "definition_mattered": {
-    "content": "The definition mattered. Judas Iscariot — not \"the disciple who betrayed Him,\" but \"Judas, a common name.\" Forty pieces of silver, the price of a slave. The Scriptures were precise.",
+    "content": "The definition mattered. Judas Iscariot — not \"the disciple who betrayed Him,\" but \"Judas, a common name.\" Thirty pieces of silver, the price of a slave. The Scriptures were precise.",
     "choices": [
       {
         "text": "The price was exact.",
@@ -290,6 +333,10 @@
       {
         "text": "The earth bore witness.",
         "destination": "earth_bore_witness"
+      },
+      {
+        "text": "Why does Matthew name Jeremiah?",
+        "destination": "jeremiah_attribution"
       }
     ]
   },

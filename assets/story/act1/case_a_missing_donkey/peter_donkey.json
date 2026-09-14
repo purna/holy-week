@@ -1,6 +1,6 @@
 {
   "start": {
-    "content": "The morning dawned differently from any other. The Teacher's voice\ncarried an urgency I had never heard. \"Go into the village ahead of\nyou,\" He told James and John and me. \"You will find a colt tied\nnear the gate — a young donkey that has never been ridden. Untie it\nand bring it to Me. If anyone asks, say, 'The Lord needs it.'\"",
+    "content": "The morning dawned differently from any\nother. The Teacher's voice carried an\nurgency I had never heard. \"Go into the\nvillage ahead of you,\" He told James and\nJohn and me. \"You will find a colt tied\nnear the gate — a young donkey that has\nnever been ridden. Untie it and bring it\nto Me. If anyone asks, say, 'My Lord\nneeds it.'\"",
     "choices": [
       {
         "text": "The colt was prepared?",
@@ -17,7 +17,7 @@
     ]
   },
   "prepared_colt": {
-    "content": "I have tended animals since childhood — my nets were not the only\nthing I knew how to handle. This colt was exceptional. Its coat shone\nlike polished chestnut in the morning light. Its ears pricked at every\nsound. It was not skittish — it was... waiting. As if it knew.",
+    "content": "# UNLOCK_EVIDENCE: rope_fibers\n# UNLOCK_EVIDENCE: cloaks\nI have tended animals since childhood —\nmy nets were not the only thing I knew\nhow to handle. This colt was exceptional.\nIts coat shone like polished chestnut in\nthe morning light. Its ears pricked at\nevery sound. It was not skittish — it was\n... waiting. As if it knew.\n# UNLOCK_EVIDENCE: rope_fibers",
     "choices": [
       {
         "text": "The colt knew what was coming.",
@@ -30,7 +30,7 @@
     ]
   },
   "specific_words": {
-    "content": "\"The Lord needs it.\" James thought I was mad when the Teacher\ngave us those exact words. But He knew — He knew the owner\nwould recognize the phrase. Tobias, the man who kept the colt,\nhe had been expecting this moment for decades. His grandfather\nhad owned the animal's sire. Three generations of preparation.",
+    "content": "# UNLOCK_EVIDENCE: rope_fibers\n# UNLOCK_EVIDENCE: cloaks\n\"My Lord needs it.\" James thought I was\nmad when the Teacher gave us those exact\nwords. But He knew — He knew the owner\nwould recognize the phrase. Tobias, the\nman who kept the colt, had been expecting\nthis moment for decades. His grandfather\nhad owned the animal's sire. Three\ngenerations of preparation.",
     "choices": [
       {
         "text": "Prophecy prepared.",
@@ -43,7 +43,7 @@
     ]
   },
   "owner_recognized": {
-    "content": "Tobias looked at us, then at the colt, then at the road ahead.\nHis eyes were bright with unshed tears. \"The Lord needs it,\"\nhe repeated. As if to himself. As if confirming what he already\nknew. Then he handed us the reins without another word.",
+    "content": "# UNLOCK_EVIDENCE: rope_fibers\n# UNLOCK_EVIDENCE: cloaks\nTobias looked at us, then at the colt,\nthen at the road ahead. His eyes were\nbright with unshed tears. \"My Lord needs\nit,\" he repeated. As if to himself. As if\nconfirming what he already knew. Then he\nhanded us the reins without another word.\n# UNLOCK_EVIDENCE: cloaks",
     "choices": [
       {
         "text": "He had been waiting.",
@@ -56,7 +56,7 @@
     ]
   },
   "knowing_animal": {
-    "content": "Animals know when something is holy. This colt did not\nresist. It stepped forward as we approached. It allowed\nthe garments to be laid upon it without hesitation. It\nwalked with purpose down the road — head high, steps\nmeasured. Even the disciples who had trained with us\nin handling beasts of burden were surprised by its\ncomposure.",
+    "content": "Animals know when something is holy.\nThis colt did not resist. It stepped\nforward as we approached. It allowed the\ngarments to be laid upon it without\nhesitation. It walked with purpose down\nthe road — head high, steps measured.\nEven the disciples who had trained with\nus in handling beasts of burden were\nsurprised by its composure.",
     "choices": [
       {
         "text": "Peace before power.",
@@ -69,7 +69,7 @@
     ]
   },
   "never_ridden_peter": {
-    "content": "In our law, an animal that has never been ridden is set\napart for sacred work. To ride it is to claim a holy\nmoment. The Teacher knew this. He was not simply\nborrowing transportation. He was claiming His\nmessianic identity through the most precise\nfulfillment of scripture possible.",
+    "content": "In our law, an animal that has never been\nridden is set apart for sacred work. To\nride it is to claim a holy moment. The\nTeacher knew this. He was not simply\nborrowing transportation. He was claiming\nHis messianic identity through the most\nprecise fulfillment of scripture possible.",
     "choices": [
       {
         "text": "More than transportation.",
@@ -82,7 +82,7 @@
     ]
   },
   "generational_preparation": {
-    "content": "Tobias told us — his voice shaking slightly — that\nhis family had kept this line of donkeys for over\na century. Each generation prepared for the moment\nwhen the king would come. They never knew exactly\nwhen. But they kept the colts unridden, just in case.",
+    "content": "Tobias told us — his voice shaking\nslightly — that his family had kept this\nline of donkeys for over a century. Each\ngeneration prepared for the moment when\nthe king would come. They never knew\nexactly when. But they kept the colts\nunridden, just in case.",
     "choices": [
       {
         "text": "Centuries of waiting.",
@@ -95,7 +95,7 @@
     ]
   },
   "phrase_key": {
-    "content": "\"The Lord needs it\" — James called it the password\nof prophecy. The owner's face changed when he heard\nit. Relief. Recognition. Surrender. He did not ask\nfor payment. He did not ask for questions. He simply\nstepped aside and let the moment unfold.",
+    "content": "\"The Lord needs it\" — James called it\nthe password of prophecy. The owner's\nface changed when he heard it. Relief.\nRecognition. Surrender. He did not ask\nfor payment. He did not ask for questions.\nHe simply stepped aside and let the\nmoment unfold.",
     "choices": [
       {
         "text": "The phrase unlocked more than the colt.",
@@ -108,7 +108,7 @@
     ]
   },
   "prophetic_waiting": {
-    "content": "His grandfather had told him the story — Zechariah's\nprophecy, written five centuries before the Teacher\nwas born. \"Your king comes to you... humble and\nriding on a donkey.\" Tobias had waited his whole\nlife for someone to ask. When we came, he ran to\nmeet us.",
+    "content": "His grandfather had told him the story —\nZechariah's prophecy, written five\ncenturies before the Teacher was born.\n\"Your king comes to you... humble and\nriding on a donkey.\" Tobias had waited\nhis whole life for someone to ask. When\nwe came, he ran to meet us.",
     "choices": [
       {
         "text": "Waiting for a promise.",
@@ -121,7 +121,7 @@
     ]
   },
   "no_charge": {
-    "content": "No charge, no contract, no receipt. Just an old\nman placing a precious colt into the hands of\nGalilean fishermen. The crowd that gathered\nsaw it happen. They understood. A king who\nenters without cost will reign without price.",
+    "content": "No charge, no contract, no receipt.\nJust an old man placing a precious colt\ninto the hands of Galilean fishermen.\nThe crowd that gathered saw it happen.\nThey understood. A king who enters\nwithout cost will reign without price.",
     "choices": [
       {
         "text": "The entry was free.",
@@ -134,7 +134,7 @@
     ]
   },
   "peace_power": {
-    "content": "As we made our way down\nthe road, the colt moving\npeacefully beneath us,\nI understood: the Teacher\nwas not just entering\nJerusalem. He was\nentering history.\nAnd we were part\nof the story.",
+    "content": "The colt walked peacefully. Not in fear.\nNot in confusion. But with the dignity\nof one who knew its purpose. It was the\nperfect symbol — power restrained.\nStrength submitted. Authority expressed\nthrough gentleness. As we made our way\ndown the road, the colt moving peacefully\nbeneath us, I understood: the Teacher\nwas not just entering Jerusalem. He was\nentering history. And we were part of\nthe story.",
     "choices": [
       {
         "text": "Part of something bigger.",
@@ -143,11 +143,19 @@
       {
         "text": "History in motion.",
         "destination": "history_motion"
+      },
+      {
+        "text": "Gentleness as strength.",
+        "destination": "gentleness_strength"
+      },
+      {
+        "text": "Power under control.",
+        "destination": "power_control"
       }
     ]
   },
   "colt_cooperated": {
-    "content": "The colt did not need to be forced. It did not\nneed to be driven. When we placed the garments\non its back, it lowered itself naturally to\nreceive them. As if it understood that what\nwas about to happen was greater than\ntransportation. Greater than ceremony.",
+    "content": "The colt did not need to be forced. It\ndid not need to be driven. When we\nplaced the garments on its back, it\nlowered itself naturally to receive\nthem. As if it understood that what was\nabout to happen was greater than\ntransportation. Greater than ceremony.",
     "choices": [
       {
         "text": "Surrender to sacred purpose.",
@@ -160,7 +168,7 @@
     ]
   },
   "more_than_transport": {
-    "content": "The Teacher did not need the colt for mobility.\nHe needed it for meaning. Every detail of\nprophecy was being fulfilled: the unridden\nbeast, the humble mount, the cloaks as\nsaddle. This was not convenience. This was\nconsecration.",
+    "content": "The Teacher did not need the colt for\nmobility. He needed it for meaning.\nEvery detail of prophecy was being\nfulfilled: the unridden beast, the\nhumble mount, the cloaks as saddle.\nThis was not convenience. This was\nconsecration.",
     "choices": [
       {
         "text": "Every detail symbolic.",
@@ -173,7 +181,7 @@
     ]
   },
   "sacred_symbolism": {
-    "content": "The donkey of peace. The colt of humility.\nThe unridden beast of sacred purpose. All\nof Israel knew what these symbols meant.\nA king who comes on a donkey comes\nnot to conquer but to reconcile.\nNot to destroy but to redeem.",
+    "content": "The donkey of peace. The colt of\nhumility. The unridden beast of sacred\npurpose. All of Israel knew what these\nsymbols meant. A king who comes on a\ndonkey comes not to conquer but to\nreconcile. Not to destroy but to redeem.",
     "choices": [
       {
         "text": "Reconciliation over conquest.",
@@ -186,7 +194,7 @@
     ]
   },
   "centuries_waiting": {
-    "content": "Five hundred years of waiting. Five centuries\nof promises written in the margins of scrolls.\nFive centuries of elders telling children,\n\"Someday, a king will come like this.\"\nAnd on this morning, the someday arrived.",
+    "content": "Five hundred years of waiting. Five\ncenturies of promises written in the\nmargins of scrolls. Five centuries of\nelders telling children, \"Someday, a\nking will come like this.\" And on this\nmorning, the someday arrived.",
     "choices": [
       {
         "text": "The waiting was worth it.",
@@ -199,7 +207,7 @@
     ]
   },
   "faith_generations": {
-    "content": "Each generation that kept the colts unridden\nwas making a statement: we believe the\nprophecy. We are preparing. We are\nwaiting. And when the stranger came\nasking for a colt, they recognized\nthe fulfillment.",
+    "content": "Each generation that kept the colts\nunridden was making a statement: we\nbelieve the prophecy. We are preparing.\nWe are waiting. And when the stranger\ncame asking for a colt, they recognized\nthe fulfillment.",
     "choices": [
       {
         "text": "Faith preserved.",
@@ -207,12 +215,12 @@
       },
       {
         "text": "Waiting rewarded.",
-        "destination": "waiting_rewards"
+        "destination": "faith_rewards"
       }
     ]
   },
   "unlocked_moment": {
-    "content": "The phrase unlocked more than\nthe colt. It unlocked Tobias's\nheart. It unlocked the crowd's\nrecognition. It unlocked the\nfulfillment of prophecy. \"The\nLord needs it\" — and suddenly\neverything made sense.",
+    "content": "The phrase unlocked more than the colt.\nIt unlocked Tobias's heart. It unlocked\nthe crowd's recognition. It unlocked\nthe fulfillment of prophecy. \"The Lord\nneeds it\" — and suddenly everything\nmade sense.",
     "choices": [
       {
         "text": "Preparation completed.",
@@ -225,7 +233,7 @@
     ]
   },
   "password_faith": {
-    "content": "\"The Lord needs it\" — the\npassword of faith. Spoken\nby disciples. Recognized by\nthe owner. Verified by\nprophecy. And the colt\nstepped forward to\nserve its king.",
+    "content": "\"The Lord needs it\" — the password of\nfaith. Spoken by disciples. Recognized\nby the owner. Verified by prophecy.\nAnd the colt stepped forward to serve\nits king.",
     "choices": [
       {
         "text": "Faith spoken in words.",
@@ -238,7 +246,7 @@
     ]
   },
   "entry_free": {
-    "content": "No price was paid.\nNo contract was signed.\nNo tax was collected.\nThe king entered\nfreely, because the\npeople recognized\nthat what was given\nfreely is worth\nmore than\nanything that\ncan be purchased.",
+    "content": "No price was paid. No contract was\nsigned. No tax was collected. The king\nentered freely, because the people\nrecognized that what was given freely\nis worth more than anything that can\nbe purchased.",
     "choices": [
       {
         "text": "Freedom as gift.",
@@ -251,7 +259,7 @@
     ]
   },
   "grace_before": {
-    "content": "We entered Jerusalem\nnot with the pomp of\nkings, but with the\ngrace of servants.\nThe Teacher had\nwashed our feet\njust days before.\nNow He rode on\na beast that\nhad never been\nridden — because\nHis kingdom\ndoes not\nride on\nforce.",
+    "content": "We entered Jerusalem not with the pomp\nof kings, but with the grace of\nservants. The Teacher had washed our\nfeet just days before. Now He rode on\na beast that had never been ridden —\nbecause His kingdom does not ride on\nforce.",
     "choices": [
       {
         "text": "Grace over power.",
@@ -264,7 +272,7 @@
     ]
   },
   "gentleness_strength": {
-    "content": "The colt was gentle.\nThe Teacher was\ngentle. But there\nwas power in that\ngentleness. The\npower to\ntransform. The\npower to\nheal. The power\nto save.\nGentleness was\nnot weakness.\nIt was\nauthority\nperfectly\nexercised.",
+    "content": "The colt was gentle. The Teacher was\ngentle. But there was power in that\ngentleness. The power to transform.\nThe power to heal. The power to save.\nGentleness was not weakness. It was\nauthority perfectly exercised.",
     "choices": [
       {
         "text": "Perfect authority.",
@@ -277,7 +285,7 @@
     ]
   },
   "power_control": {
-    "content": "The power was\ncontrolled. The\nstrength was\nchanneled. The\nauthority was\nexercised\nthrough\ngentleness and\npeace. The\nking on the\ndonkey did\nnot\nthreaten\nRome.\nHe\nchallenged\nhearts.",
+    "content": "The power was controlled. The strength\nwas channeled. The authority was\nexercised through gentleness and peace.\nThe king on the donkey did not threaten\nRome. He challenged hearts.",
     "choices": [
       {
         "text": "Heart over empire.",
@@ -290,7 +298,7 @@
     ]
   },
   "symbolic_detail": {
-    "content": "Every detail was\nsymbolic. The\ncolt. The\ngarments. The\nroad. The\ncrowd. The\ntiming. All\nof it worked\ntogether\nto declare:\nthe king\nhas come.\nin\npeace.\nin\ntruth.\nin\nlove.",
+    "content": "Every detail was symbolic. The colt.\nThe garments. The road. The crowd.\nThe timing. All of it worked together\nto declare: the king has come, in\npeace, in truth, in love.",
     "choices": [
       {
         "text": "The symbol speaks.",
@@ -303,7 +311,7 @@
     ]
   },
   "meaning_means": {
-    "content": "The meaning\nwas not\nin the\nmeans.\nThe means\nwere\nthe message.\nThe donkey\nwas not\ntransportation.\nIt was\ntestimony.\nThe colt\nwas not\na tool.\nIt was\na\ntestament.\nTo the\nkingdom\nthat\nwas\ncoming.",
+    "content": "The meaning was not in the means. The\nmeans were the message. The donkey was\nnot transportation. It was testimony.\nThe colt was not a tool. It was a\ntestament to the kingdom that was\ncoming.",
     "choices": [
       {
         "text": "Testimony in motion.",
@@ -316,11 +324,124 @@
     ]
   },
   "reconcile_conquer": {
-    "content": "The king who\nconquers by\nreconciliation.\nWho defeats\nby\nforgiveness.\nWho wins\nby\nloving\nhis\nenemies.\nThe\ndonkey\nwas not\na\nmilitary\nsteed.\nIt was\na\nstatement\nof peace.\nOf\nreconciliation.\nOf\na\ndifferent\nkind\nof\nvictory.",
-    "choices": []
+    "content": "The king who conquers by reconciliation.\nWho defeats by forgiveness. Who wins by\nloving his enemies. The donkey was not\na military steed. It was a statement of\npeace, of reconciliation, of a different\nkind of victory.",
+    "choices": [
+      {
+        "text": "closing_peter",
+        "destination": "closing_peter"
+      }
+    ]
   },
   "closing_peter": {
-    "content": "Now I understand\nwhy the Teacher\nwept over Jerusalem.\nNot because of\nwhat it would\nface. But\nbecause of what\nit had\nreceived.\nThe king had\ncome.\nIn peace.\nIn truth.\nIn love.\nAnd\nJerusalem\nwould\nnever\nbe\nthe\nsame.",
+    "content": "Now I understand why the Teacher wept\nover Jerusalem. Not because of what it\nwould face. But because of what it had\nreceived. The king had come. In peace.\nIn truth. In love. And Jerusalem would\nnever be the same.",
+    "choices": []
+  },
+  "waiting_promise": {
+    "content": "",
+    "choices": []
+  },
+  "faith_rewarded": {
+    "content": "",
+    "choices": []
+  },
+  "sacred_surrender": {
+    "content": "",
+    "choices": []
+  },
+  "animal_holiness": {
+    "content": "",
+    "choices": []
+  },
+  "symbol_speaks": {
+    "content": "",
+    "choices": []
+  },
+  "symbols_spoke": {
+    "content": "",
+    "choices": []
+  },
+  "details_matter_peter": {
+    "content": "",
+    "choices": []
+  },
+  "testimony_motion": {
+    "content": "",
+    "choices": []
+  },
+  "kingdom_declared": {
+    "content": "",
+    "choices": []
+  },
+  "waiting_worth": {
+    "content": "",
+    "choices": []
+  },
+  "promises_kept": {
+    "content": "",
+    "choices": []
+  },
+  "faith_preserved": {
+    "content": "",
+    "choices": []
+  },
+  "faith_rewards": {
+    "content": "",
+    "choices": []
+  },
+  "preparation_done": {
+    "content": "",
+    "choices": []
+  },
+  "moment_revealed": {
+    "content": "",
+    "choices": []
+  },
+  "faith_words": {
+    "content": "",
+    "choices": []
+  },
+  "password_worked": {
+    "content": "",
+    "choices": []
+  },
+  "bigger_story": {
+    "content": "",
+    "choices": []
+  },
+  "history_motion": {
+    "content": "",
+    "choices": []
+  },
+  "freedom_gift": {
+    "content": "",
+    "choices": []
+  },
+  "grace_glory_peter": {
+    "content": "",
+    "choices": []
+  },
+  "grace_over_peter": {
+    "content": "",
+    "choices": []
+  },
+  "kingdom_arrives_peter": {
+    "content": "",
+    "choices": []
+  },
+  "perfect_authority": {
+    "content": "",
+    "choices": []
+  },
+  "strength_gentle": {
+    "content": "",
+    "choices": []
+  },
+  "heart_empire": {
+    "content": "",
+    "choices": []
+  },
+  "authority_perfect": {
+    "content": "",
     "choices": []
   }
 }

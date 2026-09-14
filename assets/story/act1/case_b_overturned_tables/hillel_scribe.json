@@ -13,7 +13,7 @@
     ]
   },
   "lambs": {
-    "content": "The inspectors were supposed to screen for blemishes from Nisan 10 onward. That was four days ago. Instead, the merchants are crowded into the Court of Gentiles while the priests argue over inspection fees. The lambs are queued outside the walls. The one thing required for Passover is being crowded out by the one thing forbidden — commerce.",
+    "content": "# UNLOCK_EVIDENCE: broken_cages\nThe inspectors were supposed to screen for blemishes from Nisan 10 onward. That was four days ago. Instead, the merchants are crowded into the Court of Gentiles while the priests argue over inspection fees. The lambs are queued outside the walls. The one thing required for Passover is being crowded out by the one thing forbidden — commerce.",
     "choices": [
       {
         "text": "So the Temple priorities are inverted?",
@@ -22,7 +22,7 @@
     ]
   },
   "schedule": {
-    "content": "If the Galilean's timing was intentional, He chose the morning of the inspection rush. Not when the priests were relaxed, but when every desk was full, every ledger open, every merchant shouting over prices. He crashed the peak transaction window.",
+    "content": "# UNLOCK_EVIDENCE: scattered_shekels\n# UNLOCK_EVIDENCE: broken_cages\nIf the Galilean's timing was intentional, He chose the morning of the inspection rush. Not when the priests were relaxed, but when every desk was full, every ledger open, every merchant shouting over prices. He crashed the peak transaction window.",
     "choices": [
       {
         "text": "That sounds calculated.",

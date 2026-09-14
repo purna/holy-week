@@ -13,7 +13,7 @@
     ]
   },
   "what_saw": {
-    "content": "At the ninth hour — the hour of the afternoon sacrifice — the whole building moved. Not the way the ground moves in the hills. The Temple has its own weight, its own presence. When it moved, every man in the courts felt it as something interior, not just structural.",
+    "content": "# UNLOCK_EVIDENCE: torn_temple_veil\n# UNLOCK_EVIDENCE: split_rocks\nAt the ninth hour — the hour of the afternoon sacrifice — the whole building moved. Not the way the ground moves in the hills. The Temple has its own weight, its own presence. When it moved, every man in the courts felt it as something interior, not just structural.",
     "choices": [
       {
         "text": "The earthquake.",
@@ -26,7 +26,7 @@
     ]
   },
   "aware_crucifixion": {
-    "content": "Every priest on duty that morning knew. The Galilean had been condemned through the night and executed by the third hour. There had been debate in the service quarters about whether any of us should leave our posts to watch. We stayed. Attending the altar during Passover preparation is not optional.",
+    "content": "# UNLOCK_EVIDENCE: torn_temple_veil\n# UNLOCK_EVIDENCE: split_rocks\nEvery priest on duty that morning knew. The Galilean had been condemned through the night and executed by the third hour. There had been debate in the service quarters about whether any of us should leave our posts to watch. We stayed. Attending the altar during Passover preparation is not optional.",
     "choices": [
       {
         "text": "So you were at your post when it happened.",

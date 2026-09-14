@@ -17,7 +17,7 @@
     ]
   },
   "what_was_it_like": {
-    "content": "It was... quiet. A deep, dreamless sleep. There was no pain, no memory. It is the waking that is the shock. To feel the sun again, to taste water, to hear my sisters weeping for joy. His voice... it reached where no other sound could.",
+    "content": "# UNLOCK_EVIDENCE: crowd_report\nIt was... quiet. A deep, dreamless sleep. There was no pain, no memory. It is the waking that is the shock. To feel the sun again, to taste water, to hear my sisters weeping for joy. His voice... it reached where no other sound could.",
     "choices": [
       {
         "text": "closing",
@@ -26,7 +26,7 @@
     ]
   },
   "are_you_afraid": {
-    "content": "Afraid? I have already been through the worst that can happen to a man. They can take this body, but they cannot take the life He gave me. The one who called me from the tomb is sitting at my table. What is there to fear?",
+    "content": "# UNLOCK_EVIDENCE: crowd_report\nAfraid? I have already been through the worst that can happen to a man. They can take this body, but they cannot take the life He gave me. The one who called me from the tomb is sitting at my table. What is there to fear?",
     "choices": [
       {
         "text": "But they plot against Him, too.",
@@ -35,7 +35,7 @@
     ]
   },
   "why_he_did_it": {
-    "content": "My sister Martha believed He was the one. My sister Mary knew it. He told Martha, 'I am the resurrection and the life.' I think... I think I was the proof. He did it so that all could see His words are true.",
+    "content": "# UNLOCK_EVIDENCE: crowd_report\nMy sister Martha believed He was the one. My sister Mary knew it. He told Martha, 'I am the resurrection and the life.' I think... I think I was the proof. He did it so that all could see His words are true.",
     "choices": [
       {
         "text": "closing",

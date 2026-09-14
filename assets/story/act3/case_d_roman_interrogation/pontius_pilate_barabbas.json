@@ -13,7 +13,7 @@
     ]
   },
   "sentence": {
-    "content": "I am not the one sentencing Him. The crowd is. I offered them a choice under the Passover amnesty: Barabbas — a murderer, an insurrectionist — or this Galilean prophet. They chose Barabbas. They demanded crucifixion. I have been governor of difficult provinces. I have never seen anything like that crowd.",
+    "content": "# UNLOCK_EVIDENCE: pilates_basin\n# UNLOCK_EVIDENCE: wifes_letter\nI am not the one sentencing Him. The crowd is. I offered them a choice under the Passover amnesty: Barabbas — a murderer, an insurrectionist — or this Galilean prophet. They chose Barabbas. They demanded crucifixion. I have been governor of difficult provinces. I have never seen anything like that crowd.",
     "choices": [
       {
         "text": "What about your wife's warning?",
@@ -26,7 +26,7 @@
     ]
   },
   "crowd_wants": {
-    "content": "The crowd wants blood. The priests have spent three days turning the Passover pilgrims against the man they were celebrating at the beginning of the week. The same crowd that spread cloaks on the road shouted \"Crucify Him\" five days later. Crowds are not the same thing twice.",
+    "content": "# UNLOCK_EVIDENCE: pilates_basin\n# UNLOCK_EVIDENCE: wifes_letter\nThe crowd wants blood. The priests have spent three days turning the Passover pilgrims against the man they were celebrating at the beginning of the week. The same crowd that spread cloaks on the road shouted \"Crucify Him\" five days later. Crowds are not the same thing twice.",
     "choices": [
       {
         "text": "You could have stopped it.",

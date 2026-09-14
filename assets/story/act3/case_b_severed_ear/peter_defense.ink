@@ -68,6 +68,7 @@ I am Simon Peter. I followed Him for three years. I healed others, asked impossi
 * [The denials.] -> denials
 
 === sword ===
+# UNLOCK_EVIDENCE: severed_ear_wrap
 It happened so fast. Judas appeared with torches and weapons. The moment I saw them close in on Him, something snapped. I drew my sword — the one I carried since the day He called me to leave my nets. My blade found its mark, and the ear of the high priest's servant fell to the ground.
 
 Jesus turned. Not to fight. Not to flee. He looked at me — at all of us — and said one word. "Put your sword back." Then He knelt and touched the wound. Warmth flooded through the garden, and I felt the ear whole again.
@@ -89,6 +90,7 @@ Power? Yes. The power to command an army to fall. The power to heal a severed ea
 * [Then you ran too.] -> denials
 
 === denials ===
+# UNLOCK_EVIDENCE: severed_ear_wrap
 Three times before the rooster crowed twice. "I do not know the man." "I do not know him." Then cursing and swearing. Each denial carved deeper than the last. But when He turned — "Jesus looked at me" — I saw not anger, but grief. And love. And I ran. I wept. And somehow, I was still following.
 
 * [How did you get here?] -> redemption

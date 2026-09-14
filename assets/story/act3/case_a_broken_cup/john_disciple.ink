@@ -42,9 +42,13 @@ The candles are burning down, and He keeps speaking about washing feet and break
 * [You saw Judas watching the door?] -> judas
 * [What happened at the table?] -> table
 === judas ===
+# UNLOCK_EVIDENCE: betrayal_dipped_bread
 His eyes kept moving. Not like he was worried about being caught — like he had somewhere else to be. Something urgent. Then Jesus gave him a piece of bread, dipped in the bitter herbs. "Do quickly," He said. Judas left immediately. It was night.
 * [You knew what was happening.] -> table
 === table ===
+# UNLOCK_EVIDENCE: bread_crumbs
+# UNLOCK_EVIDENCE: new_covenant_declaration
+# UNLOCK_EVIDENCE: betrayal_dipped_bread
 Jesus took the bread and broke it. "This is my body." Then the cup: "This cup is the new covenant in my blood." We didn't understand. We were still thinking in terms of kingdoms and swords. He was speaking of something far greater — and far more terrible.
 * [You wrote it down.] -> closing
 === closing ===

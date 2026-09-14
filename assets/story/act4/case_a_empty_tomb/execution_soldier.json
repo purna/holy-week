@@ -13,7 +13,7 @@
     ]
   },
   "crowd_behavior": {
-    "content": "Crowds are predictable.\nSome came for justice.\nSome came for entertainment.\nSome simply followed everyone else.\nThe priests stood close enough to watch but far enough to avoid association. They mocked Him openly.\nPassersby joined in. They pointed at the sign above His head and repeated the accusations from the trial.\nYet not everyone mocked.\nA group of women remained nearby despite the danger. They wept openly.\nA few men stood with them, saying very little.\nAs the hours passed, the crowd changed.\nMockery is easy in daylight.\nSilence comes more naturally when the sky turns black.",
+    "content": "# UNLOCK_EVIDENCE: guard_report\n# UNLOCK_EVIDENCE: rolled_stone\nCrowds are predictable.\nSome came for justice.\nSome came for entertainment.\nSome simply followed everyone else.\nThe priests stood close enough to watch but far enough to avoid association. They mocked Him openly.\nPassersby joined in. They pointed at the sign above His head and repeated the accusations from the trial.\nYet not everyone mocked.\nA group of women remained nearby despite the danger. They wept openly.\nA few men stood with them, saying very little.\nAs the hours passed, the crowd changed.\nMockery is easy in daylight.\nSilence comes more naturally when the sky turns black.",
     "choices": [
       {
         "text": "The sky turned black?",
@@ -35,7 +35,7 @@
     ]
   },
   "crucifixion_begins": {
-    "content": "They brought Him forward.\nThe nails went through hands and feet.\nI held the hammer; another held His arms. I had seen this before. Only this time, I noticed His calm. Not a struggle. Not a curse.\nThe robbers on either side jeered. One cursed. The other rebuked him and asked for mercy from this man in the middle.",
+    "content": "# UNLOCK_EVIDENCE: guard_report\n# UNLOCK_EVIDENCE: rolled_stone\nThey brought Him forward.\nThe nails went through hands and feet.\nI held the hammer; another held His arms. I had seen this before. Only this time, I noticed His calm. Not a struggle. Not a curse.\nThe robbers on either side jeered. One cursed. The other rebuked him and asked for mercy from this man in the middle.",
     "choices": [
       {
         "text": "What did the robbers say?",

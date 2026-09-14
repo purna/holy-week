@@ -30,9 +30,12 @@ Forty days. That is how long He stayed with us after the empty tomb. Not every d
 * [What did the blessing feel like?] -> blessing
 * [Did you know He was leaving?] -> leaving
 === blessing ===
+# UNLOCK_EVIDENCE: great_commission_mandate
 It was not a theatrical performance. It was a priest's hands — the same hands that had been pierced, now lifted in favor over the eleven of us. The same voice that called Lazarus from the grave now spoke peace over our confusion. 'You will receive power when the Holy Spirit comes upon you,' He said. 'And you will be my witnesses.'
 * [Witnesses to what?] -> witnesses
 === leaving ===
+# UNLOCK_EVIDENCE: ascension_eyewitness_account
+# UNLOCK_EVIDENCE: great_commission_mandate
 He had said before, 'I go to prepare a place for you.' We thought it was a figure of speech. We did not expect the mechanics of it. As He blessed us, He began to rise. Not flying, not vanishing — being taken. A cloud received Him, and the sky swallowed Him up until we could no longer see.
 * [Were you afraid?] -> witnesses
 === witnesses ===

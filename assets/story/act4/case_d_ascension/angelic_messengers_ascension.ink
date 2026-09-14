@@ -30,9 +30,11 @@ We stood on the Mount of Olives, watching the cloud receive Him. The disciples s
 * [Why did you appear?] -> purpose
 * [What did you say to them?] -> message
 === purpose ===
+# UNLOCK_EVIDENCE: ascension_eyewitness_account
 He had told them to wait in Jerusalem for the promise of the Father. They had heard the words, but they did not grasp the weight of them. They were still asking, 'Lord, are you at this time going to restore the kingdom to Israel?' They needed a reset. A divine interruption to shift their gaze from the sky to the world.
 * [What was the message?] -> message
 === message ===
+# UNLOCK_EVIDENCE: ascension_eyewitness_account
 'Men of Galilee, why do you stand gazing into heaven? This same Jesus, who has been taken from you into heaven, will come back in the same way you have seen him go into heaven.' It was not a greeting. It was a commission wrapped in a promise. The ascension was not an ending — it was a departure for a return.
 * [Did they believe you?] -> belief
 === belief ===

@@ -35,14 +35,17 @@ I was gone. I remember the sickness, the darkness... and then, nothing. The next
 * [Why do you think He did it?] -> why_he_did_it
 
 === what_was_it_like ===
+# UNLOCK_EVIDENCE: crowd_report
 It was... quiet. A deep, dreamless sleep. There was no pain, no memory. It is the waking that is the shock. To feel the sun again, to taste water, to hear my sisters weeping for joy. His voice... it reached where no other sound could.
 -> closing
 
 === are_you_afraid ===
+# UNLOCK_EVIDENCE: crowd_report
 Afraid? I have already been through the worst that can happen to a man. They can take this body, but they cannot take the life He gave me. The one who called me from the tomb is sitting at my table. What is there to fear?
 * [But they plot against Him, too.] -> plot_against_him
 
 === why_he_did_it ===
+# UNLOCK_EVIDENCE: crowd_report
 My sister Martha believed He was the one. My sister Mary knew it. He told Martha, 'I am the resurrection and the life.' I think... I think I was the proof. He did it so that all could see His words are true.
 -> closing
 

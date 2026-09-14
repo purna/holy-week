@@ -1,8 +1,9 @@
 import { DIALOGUE_ID_MAP } from "../gameplay/dialogueMaps.js";
+import { PeopleUI } from "./PeopleUI.js";
 
 function avatarMarkup(a) { if (!a) return ''; if (a.endsWith('.svg')) return `<img src="../assets/characters/${a}"style="width:1.5em;height:1.5em;vertical-align:middle;object-fit:contain;"alt="">`; return a; }
 
-export class ChatUI {
+class LegacyChatUI {
   constructor(npcSystem, evidenceSystem, accessibility, onAction, audioManager, dialogueManager) {
     this.npcs = npcSystem;
     this.es = evidenceSystem;
@@ -500,3 +501,7 @@ export class ChatUI {
     if (typeof cm._saveProgress === "function") cm._saveProgress();
   }
 }
+
+// Desktop and secondary 3D views use the same witness interaction as the
+// People tab, keeping Evidence and two-clue Challenge behaviour consistent.
+export class ChatUI extends PeopleUI {}

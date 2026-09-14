@@ -1,0 +1,50 @@
+{
+  "start": {
+    "content": "I was there at the tomb, and I watched what resurrection did to all of us. Peter carried his failure differently from the rest.",
+    "choices": [
+      {
+        "text": "What happened on the shore?",
+        "destination": "shore"
+      },
+      {
+        "text": "Why was Peter so troubled?",
+        "destination": "peter"
+      },
+      {
+        "text": "What did restoration mean to you?",
+        "destination": "restoration"
+      }
+    ]
+  },
+  "shore": {
+    "content": "# UNLOCK_EVIDENCE: miraculous_catch\nThe disciples had fished through the night and caught nothing. At dawn, Jesus called from the shore and told them where to cast the net. It came up so full they could scarcely haul it in.\nJohn recognized Him first. Peter did not wait for the boat. He threw himself into the water and went straight to Him.",
+    "choices": [
+      {
+        "text": "closing",
+        "destination": "closing"
+      }
+    ]
+  },
+  "peter": {
+    "content": "# UNLOCK_EVIDENCE: miraculous_catch\nPeter had promised he would never abandon Jesus, yet denied Him three times beside a charcoal fire.\nOn the shore, Jesus asked him three times, \"Do you love me?\" He did not pretend the failure had never happened. He answered it with a new commission: feed my sheep.",
+    "choices": [
+      {
+        "text": "closing",
+        "destination": "closing"
+      }
+    ]
+  },
+  "restoration": {
+    "content": "# UNLOCK_EVIDENCE: miraculous_catch\nAt the tomb He called my name, and despair released me. On the shore He called Peter back to his purpose.\nThat is what the risen Jesus does. He knows the whole failure, speaks directly to it, and still entrusts broken people with His work.",
+    "choices": [
+      {
+        "text": "closing",
+        "destination": "closing"
+      }
+    ]
+  },
+  "closing": {
+    "content": "The empty net became full. The disciple who denied Him was trusted again. Neither change came from human strength.",
+    "choices": []
+  }
+}

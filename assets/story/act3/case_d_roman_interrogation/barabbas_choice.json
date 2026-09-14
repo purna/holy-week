@@ -13,7 +13,7 @@
     ]
   },
   "why_not": {
-    "content": "Because the man they took instead of me is on a hill outside the city wall, and I put him there. Not with my own hands — with a crowd's voice and a governor's weakness. But I put him there.",
+    "content": "# UNLOCK_EVIDENCE: barabbas_warrant\nBecause the man they took instead of me is on a hill outside the city wall, and I put him there. Not with my own hands — with a crowd's voice and a governor's weakness. But I put him there.",
     "choices": [
       {
         "text": "You didn't ask to be released.",
@@ -26,7 +26,7 @@
     ]
   },
   "know_what": {
-    "content": "I know exactly what happened. I've been in that cell long enough to understand Roman process. The Passover amnesty. One prisoner released by crowd vote. They put my name against a teacher from Galilee and the crowd voted my life back to me. I do not know why.",
+    "content": "# UNLOCK_EVIDENCE: barabbas_warrant\nI know exactly what happened. I've been in that cell long enough to understand Roman process. The Passover amnesty. One prisoner released by crowd vote. They put my name against a teacher from Galilee and the crowd voted my life back to me. I do not know why.",
     "choices": [
       {
         "text": "The chief priests pushed the crowd.",

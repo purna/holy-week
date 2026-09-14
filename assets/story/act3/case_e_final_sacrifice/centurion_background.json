@@ -13,7 +13,7 @@
     ]
   },
   "investigation": {
-    "content": "Yes. Earlier in my career, I had heard reports of a miracle worker from Capernaum — a man who stilled a storm with a word, healed a centurion's servant from a distance, and calmed the fears of those around him. The boy — he was dying of the plague. I sent word. The man never came. But the boy lived. Three days later, the fever broke. I attributed it to medicine. Now I know better.",
+    "content": "# UNLOCK_EVIDENCE: split_dice\n# UNLOCK_EVIDENCE: pierced_spear\nYes. Earlier in my career, I had heard reports of a miracle worker from Capernaum — a man who stilled a storm with a word, healed a centurion's servant from a distance, and calmed the fears of those around him. The boy — he was dying of the plague. I sent word. The man never came. But the boy lived. Three days later, the fever broke. I attributed it to medicine. Now I know better.",
     "choices": [
       {
         "text": "You studied His ways.",
@@ -282,7 +282,7 @@
     ]
   },
   "different": {
-    "content": "My servant's healing. The words He spoke from the cross. The darkness that fell at noon. The way the centurion's sword found its mark in the side that bore the weight of the world. These were not the signs of a dying man. These were the signs of divinity made manifest in human flesh.",
+    "content": "# UNLOCK_EVIDENCE: split_dice\n# UNLOCK_EVIDENCE: pierced_spear\nMy servant's healing. The words He spoke from the cross. The darkness that fell at noon. The way the centurion's sword found its mark in the side that bore the weight of the world. These were not the signs of a dying man. These were the signs of divinity made manifest in human flesh.",
     "choices": [
       {
         "text": "You believed.",

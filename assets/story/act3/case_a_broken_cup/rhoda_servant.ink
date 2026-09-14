@@ -22,12 +22,16 @@ I am Rhoda. I have been serving this household since I was a child. Preparing fo
 * [Tell me about the man who left early?] -> judas_exit
 
 === clinking_coins ===
+# UNLOCK_EVIDENCE: water_jug
+# UNLOCK_EVIDENCE: cup_fragments
 I was bringing up the extra lamps. As I passed the preparation table, I heard the sharp, heavy clink of silver coins hitting the wood. One of the men was standing there, his hands inside a heavy bag. It didn't sound like the copper mites we usually see - it had the ring of high-purity Temple silver.
 
 * [Which man was it?] -> judas_exit
 * [And the water jug?] -> water_jug
 
 === judas_exit ===
+# UNLOCK_EVIDENCE: water_jug
+# UNLOCK_EVIDENCE: cup_fragments
 He was the one carrying the purse. He looked pale, even in the torchlight. Later, right in the middle of the meal, he practically ran down the stairs. I heard a clay cup shatter against the stone floor near the landing as he fled.
 
 * [Continue.] -> closing

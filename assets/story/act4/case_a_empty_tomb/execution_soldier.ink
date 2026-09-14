@@ -26,6 +26,8 @@ I am Marcus. I was on duty. I have seen men die, but this day was unlike any oth
 * [How did the crowd behave?] -> crowd_behavior
 
 === crowd_behavior ===
+# UNLOCK_EVIDENCE: guard_report
+# UNLOCK_EVIDENCE: rolled_stone
 Crowds are predictable.
 
 Some came for justice.
@@ -70,6 +72,8 @@ By the time the earth began to shake, many had already started moving toward the
 
 
 === crucifixion_begins ===
+# UNLOCK_EVIDENCE: guard_report
+# UNLOCK_EVIDENCE: rolled_stone
 They brought Him forward.
 
 The nails went through hands and feet.

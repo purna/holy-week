@@ -1267,7 +1267,7 @@ export class GameEngine {
             <div style="text-align: right; font-size: 0.8rem; opacity: 0.7; margin-top: 4px; font-family: var(--font-main);">
               — ${p.reference} <img src='../assets/gfx/scroll-duotone.svg' class='icon-svg' loading='lazy' style='width:14px;height:14px;vertical-align:middle;'>
             </div>
-            <p style='font-size:0.85rem;opacity:0.8;'>Fulfillment evidence not yet found.</p>`;
+            <p style='font-size:0.85rem;opacity:0.8;'><strong>Fulfilled By:</strong> ${p.fulfilledBy || p.insight || 'Fulfilment details not recorded'}</p>`;
         } else if (status === 'rumor') {
           content = `<p><strong>${p.reference}</strong></p>
             <div style="font-size: 0.8rem; opacity: 0.7; font-family: var(--font-main);">
@@ -1816,9 +1816,11 @@ export class GameEngine {
     const grid = document.getElementById('codex-prophecy-grid');
     if (!grid) return;
     const props = this.es.getPropheciesWithStatus();
+    const caseProgress = this.cm.getCaseProgress(this.cm.activeCaseId);
+    const caseClosed = !!(caseProgress?.solved || caseProgress?.concluded);
     
     grid.innerHTML = props.map(p => {
-      const status = p.status || 'unseen';
+      const status = caseClosed ? (p.status || 'unseen') : 'unseen';
       const isComplete = status === 'complete';
       const isFound = status === 'found_scripture';
       const isRumor = status === 'rumor';
@@ -1846,7 +1848,7 @@ export class GameEngine {
       
       return `
         <button class=\"${cardClass} ${this.es.selectedCodexProphecyId === p.id ? 'selected-b' : ''}\" 
-                ${isComplete ? 'disabled' : ''}
+                ${isComplete || !caseClosed ? 'disabled' : ''}
                 onclick=\"window.gameEngine.es.selectedCodexProphecyId='${p.id}'; window.gameEngine.renderCodexMatcherContent();\">
           ${badge} ${displayRef}
         </button>
@@ -1858,10 +1860,14 @@ export class GameEngine {
   renderCodexDiscoveredGrid() {
     const grid = document.getElementById('codex-discovered-grid');
     if (!grid) return;
-    const discovered = this.es.getPropheciesWithStatus().filter(p => p.status === 'complete');
+    const caseProgress = this.cm.getCaseProgress(this.cm.activeCaseId);
+    const caseClosed = !!(caseProgress?.solved || caseProgress?.concluded);
+    const discovered = caseClosed
+      ? this.es.getPropheciesWithStatus().filter(p => p.status === 'complete')
+      : [];
 
     grid.innerHTML = discovered.length === 0
-      ? `<p class=\"picker-empty\">No prophecies completed yet. Link scripture to fulfillment evidence in the Lab.</p>`
+      ? `<p class=\"picker-empty\">${caseClosed ? 'No prophecies completed for this case.' : 'Complete the case before its prophecies are added to the Codex.'}</p>`
       : discovered.map(p => `
           <div class=\"prophecy-card complete\">
             <div class=\"prophecy-card-icon\"><img src=\"../assets/gfx/scroll-duotone.svg\" class=\"icon-svg\" loading=\"lazy\"/></div>
@@ -1942,14 +1948,14 @@ export class GameEngine {
       this.dm.openDialogue(npcConfig, story, () => {
         // Restore original addMsg
         this.dm.addMsg = originalAddMsg;
-        if (npcConfig.unlocksEvidence) npcConfig.unlocksEvidence.forEach(id => this._unlockEvidence(id));
         if (npcConfig.revealsProphecy) {
           this._revealProphecy(npcConfig.revealsProphecy);
         }
         this.inDialogue = false;
         this.updateActions(this.cm.getActiveCase());
       }, (tag) => {
-        if (tag.startsWith('reveal:')) this._unlockEvidence(tag.split(':')[1]);
+        const match = String(tag || '').trim().match(/^(?:UNLOCK_EVIDENCE|reveal)\s*:\s*(.+)$/i);
+        if (match) match[1].split(',').map(id => id.trim()).filter(Boolean).forEach(id => this._unlockEvidence(id));
       });
     } else if (npcConfig.hasDialogue || npcConfig.dialogueId) {
       // Fallback to simple talk when no Ink story is available
@@ -1996,7 +2002,7 @@ export class GameEngine {
     halo.lookAt(0, 100, 0);
     sphere.add(halo);
 
-    this.controls.displayAlert(`Evidence revealed: ${ev.name} <a href="#" id="evidence-alert-link" data-evidence-id="${ev.id}" style="color:#00f5d4;text-decoration:underline;margin-left:8px;">View details</a>`);
+    this.controls.displayAlert(`Evidence unlocked: ${ev.name} <a href="#" id="evidence-alert-link" data-evidence-id="${ev.id}" style="color:#00f5d4;text-decoration:underline;margin-left:8px;">View details</a>`);
   }
 
   collectEvidence() {

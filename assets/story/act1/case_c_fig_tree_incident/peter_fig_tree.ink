@@ -33,11 +33,15 @@ Rabbi — look! The tree You spoke to yesterday. It's completely withered, from 
 * [You're the one who noticed it, aren't you?] -> peter_noticed
 
 === peter_noticed ===
+# UNLOCK_EVIDENCE: peter_astonishment
+# UNLOCK_EVIDENCE: disciples_faith_lesson
 I was. If anyone ever sets our story down properly, Scribe, I expect it will read something like: "Peter, calling to remembrance, saith unto him, Master, behold, the fig tree which thou cursedst is withered away." I don't know why it should matter who spotted it first. But it was me. I always seem to be the one who blurts things out before I fully understand what I'm looking at.
 * [It makes you realize who you're walking with.] -> miracle
 * [What did He say about the mountain?] -> faith
 
 === miracle ===
+# UNLOCK_EVIDENCE: peter_astonishment
+# UNLOCK_EVIDENCE: disciples_faith_lesson
 It makes you realize who we're really walking with. He didn't just teach us a lesson with words; He showed us He has authority over the very roots of the earth we stand on. A tree, dead by morning, from a single sentence spoken the day before.
 * [What did He say about the mountain?] -> faith
 
@@ -51,6 +55,8 @@ That's the part I did not expect, right in the middle of a lesson about witherin
 * [Continue.] -> closing
 
 === judgment ===
+# UNLOCK_EVIDENCE: peter_astonishment
+# UNLOCK_EVIDENCE: disciples_faith_lesson
 The Master is walking into Jerusalem to face the men who run that Temple, and that tree was a mirror held up before He ever reached the gates. It looked healthy from a distance — green, full, promising — the same as the sacrifices and the courts and all the rest of it. But there was no fruit for God underneath the leaves. He said as much of the tree that morning, and He said as much of the Temple two hours later.
 * [What did He teach about faith?] -> faith
 

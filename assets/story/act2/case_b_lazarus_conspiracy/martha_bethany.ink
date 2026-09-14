@@ -53,11 +53,13 @@ There are thirteen extra mouths to feed tonight, and the road to Jerusalem is mo
 * [How is Mary handling all this?] -> mary
 
 === lazarus ===
+# UNLOCK_EVIDENCE: grave_dirt
 He is the proof they want to destroy. A man who was dead for four days walking around is a living problem for the Sadducees. We keep him out of sight. The authorities have already been asking questions in Bethany.
 
 * [What questions?] -> danger
 
 === mary ===
+# UNLOCK_EVIDENCE: grave_dirt
 Mary has always been the listener. She sits at the feet of teachers while Martha handles the serving. Tonight, I understand her. He is speaking words that feed the soul.
 
 * [But you are afraid?] -> danger

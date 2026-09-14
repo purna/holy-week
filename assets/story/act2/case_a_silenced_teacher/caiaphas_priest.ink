@@ -30,13 +30,13 @@
 -> start
 === start ===
 You look at a single man, scribe, and you see a moral puzzle. I look at this city and I see an entire nation facing absolute erasure.
-# UNLOCK_EVIDENCE: evidence_national_security
 If the legions move to clear these courts, Sinai becomes a memory. It is expedient that one man should die for the people. Do you understand the weight of this chair?
 * [Is justice something that can be bartered for national security?] -> security
 * [What about the witnesses at the trial?] -> trial
 * [The Lazarus event was dangerous.] -> lazarus_danger
 
 === security ===
+# UNLOCK_EVIDENCE: evidence_national_security
 Without a nation, there is no altar. Without an altar, there is no law. Order is the highest form of justice we can offer under Rome. The Romans do not distinguish between religious dispute and political sedition -- neither do I when the alternative is the eagle standard in our holy of holies.
 # UNLOCK_EVIDENCE: evidence_temple_authority
 * [The temple's authority is at stake.] -> temple_stakes
@@ -103,10 +103,17 @@ The greatest story -- for me, for this council, for this nation, for the world -
 * [The record stands.] -> closing
 
 === trial ===
+# UNLOCK_EVIDENCE: evidence_national_security
 We will hear them all. The truth will reveal itself, but the public safety verdict cannot be delayed. Let the witnesses speak -- let them contradict themselves if they must. The Sanhedrin does not act without due process, even under pressure.
 # UNLOCK_EVIDENCE: evidence_temple_authority
 * [The due process is questioned.] -> due_process
 * [The pressure is mounting.] -> pressure_mounting
+
+=== lazarus_danger ===
+# UNLOCK_EVIDENCE: evidence_national_security
+Lazarus was dead, and now he walks openly in Bethany. Every pilgrim who sees him becomes another witness the council cannot dismiss. That is why one man's return has become a danger to the order of an entire nation.
+* [Is truth dangerous only when authority cannot control it?] -> security
+* [Then the witnesses matter.] -> trial
 
 === due_process ===
 The due process is questioned. The Law requires two or three witnesses, valid testimony, proper procedure. We have followed these laws precisely. But the most important thing is not the letter of the law but the spirit of justice it embodies.

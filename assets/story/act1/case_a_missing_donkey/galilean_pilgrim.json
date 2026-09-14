@@ -13,7 +13,7 @@
     ]
   },
   "set_apart": {
-    "content": "I've had that colt set apart since it was born. Never let anyone ride it. Some things you hold in reserve for the right moment.",
+    "content": "# UNLOCK_EVIDENCE: prophecy_scroll\n# UNLOCK_EVIDENCE: palm_branch\nI've had that colt set apart since it was born. Never let anyone ride it. Some things you hold in reserve for the right moment.",
     "choices": [
       {
         "text": "And this was the moment.",
@@ -26,7 +26,7 @@
     ]
   },
   "rope_question": {
-    "content": "The rope was cut? I didn't cut it - I untied the knot myself and handed the colt to them. Someone else must have cut it after. I wasn't watching the post after they left.",
+    "content": "# UNLOCK_EVIDENCE: prophecy_scroll\n# UNLOCK_EVIDENCE: palm_branch\nThe rope was cut? I didn't cut it - I untied the knot myself and handed the colt to them. Someone else must have cut it after. I wasn't watching the post after they left.",
     "choices": [
       {
         "text": "Then who?",

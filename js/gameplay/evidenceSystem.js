@@ -61,12 +61,16 @@ export class EvidenceSystem {
     if (!this.collected.includes(evidenceId)) {
       this.collected.push(evidenceId);
       this.caseManager.recordEvidenceFound(evidenceId);
-      
+
       const ev = this.getById(evidenceId);
       if (ev && ev.type === 'scripture') {
         this._handleScriptureCollected(evidenceId);
       }
-      
+
+      if (ev && ev.revealsProphecy) {
+        this.revealProphecy(ev.revealsProphecy);
+      }
+
       return this.getById(evidenceId);
     }
     return null;
@@ -106,6 +110,10 @@ export class EvidenceSystem {
   revealProphecy(prophecyId) {
     if (prophecyId && this.prophecyStatus[prophecyId] === 'locked') {
       this.prophecyStatus[prophecyId] = 'revealed';
+      const currentStatus = this.caseManager?.getCodexStatus?.(prophecyId);
+      if (currentStatus === 'unseen' || currentStatus === 'locked') {
+        this.caseManager?.setCodexStatus?.(prophecyId, 'rumor');
+      }
       console.log(`[EvidenceSystem] Prophecy Revealed: ${prophecyId}`);
       // Trigger a UI notification via callback
       if (this.onProphecyReveal) {

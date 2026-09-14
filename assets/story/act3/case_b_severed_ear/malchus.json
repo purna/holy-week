@@ -13,7 +13,7 @@
     ]
   },
   "garden_account": {
-    "content": "The garden was dark — torches and lanterns moving between the trees. The Galilean's group was gathered near the centre. I was near the front of our column when the disciple struck. He was not a soldier. The blade caught the side of my head and took the ear completely. I fell.",
+    "content": "# UNLOCK_EVIDENCE: abandoned_linen\n# UNLOCK_EVIDENCE: dropped_torch\nThe garden was dark — torches and lanterns moving between the trees. The Galilean's group was gathered near the centre. I was near the front of our column when the disciple struck. He was not a soldier. The blade caught the side of my head and took the ear completely. I fell.",
     "choices": [
       {
         "text": "And then?",
@@ -26,7 +26,7 @@
     ]
   },
   "healing_account": {
-    "content": "He came toward me. Not to flee, not to fight — He came to me. He said one word to the disciple — something about the sword — and then He picked up what had been cut away and He pressed it to the side of my head. I felt warmth. Not pain. Warmth. And it was whole again.",
+    "content": "# UNLOCK_EVIDENCE: abandoned_linen\n# UNLOCK_EVIDENCE: dropped_torch\nHe came toward me. Not to flee, not to fight — He came to me. He said one word to the disciple — something about the sword — and then He picked up what had been cut away and He pressed it to the side of my head. I felt warmth. Not pain. Warmth. And it was whole again.",
     "choices": [
       {
         "text": "A man being arrested stopped to heal the soldier arresting him.",

@@ -9,11 +9,32 @@
     ]
   },
   "main_hub": {
-    "content": "+ [Ask how the crucifixion itself was carried out] -> unlock_nails\n+ [Ask about the legs of the two other men] -> unlock_legs\n+ [Ask about the sponge and the vinegar] -> unlock_sponge\n+ [Ask what His last words were] -> unlock_final_words\n+ [Leave him] -> repeat_stage",
-    "choices": []
+    "content": "",
+    "choices": [
+      {
+        "text": "Ask how the crucifixion itself was carried out",
+        "destination": "unlock_nails"
+      },
+      {
+        "text": "Ask about the legs of the two other men",
+        "destination": "unlock_legs"
+      },
+      {
+        "text": "Ask about the sponge and the vinegar",
+        "destination": "unlock_sponge"
+      },
+      {
+        "text": "Ask what His last words were",
+        "destination": "unlock_final_words"
+      },
+      {
+        "text": "Leave him",
+        "destination": "repeat_stage"
+      }
+    ]
   },
   "unlock_nails": {
-    "content": "\"Three nails. Wrists, not the palms — palms tear straight through\nonce the body's full weight comes down on them. Feet crossed and\npinned with the third, through the arch. He didn't cry out when\nthey went in. Most men do.\"\n{ not evidence_crucifixion_nails:\n    ~ evidence_crucifixion_nails = true\n    # UNLOCK_EVIDENCE: crucifixion_nails\n}",
+    "content": "# UNLOCK_EVIDENCE: unbroken_legs\n# UNLOCK_EVIDENCE: sour_wine_sponge\n# UNLOCK_EVIDENCE: final_words\n# UNLOCK_EVIDENCE: crucifixion_nails\n\"Three nails. Wrists, not the palms — palms tear straight through\nonce the body's full weight comes down on them. Feet crossed and\npinned with the third, through the arch. He didn't cry out when\nthey went in. Most men do.\"\n{ not evidence_crucifixion_nails:\n    ~ evidence_crucifixion_nails = true\n    # UNLOCK_EVIDENCE: crucifixion_nails\n}",
     "choices": [
       {
         "text": "main_hub",
@@ -22,7 +43,7 @@
     ]
   },
   "unlock_legs": {
-    "content": "\"Orders came down from the priests — break the legs of all three\nbefore sundown, get the bodies off the crosses before the Sabbath.\nStandard procedure, speeds up the death. We did the two thieves.\nBy the time we got to Him, He was already gone. Nothing left to\nbreak.\"\n{ not evidence_unbroken_legs:\n    ~ evidence_unbroken_legs = true\n    # UNLOCK_EVIDENCE: unbroken_legs\n}",
+    "content": "# UNLOCK_EVIDENCE: unbroken_legs\n# UNLOCK_EVIDENCE: sour_wine_sponge\n# UNLOCK_EVIDENCE: final_words\n# UNLOCK_EVIDENCE: crucifixion_nails\n\"Orders came down from the priests — break the legs of all three\nbefore sundown, get the bodies off the crosses before the Sabbath.\nStandard procedure, speeds up the death. We did the two thieves.\nBy the time we got to Him, He was already gone. Nothing left to\nbreak.\"\n{ not evidence_unbroken_legs:\n    ~ evidence_unbroken_legs = true\n    # UNLOCK_EVIDENCE: unbroken_legs\n}",
     "choices": [
       {
         "text": "main_hub",
@@ -31,7 +52,7 @@
     ]
   },
   "unlock_sponge": {
-    "content": "\"Near the end He said He was thirsty. One word, barely audible.\nWe soaked a sponge in the sour wine ration — what we drink on\nduty, not fine stuff — and lifted it up to Him on a hyssop branch.\nWasn't cruelty. It's what we had.\"\n{ not evidence_sour_wine_sponge:\n    ~ evidence_sour_wine_sponge = true\n    # UNLOCK_EVIDENCE: sour_wine_sponge\n}",
+    "content": "# UNLOCK_EVIDENCE: unbroken_legs\n# UNLOCK_EVIDENCE: sour_wine_sponge\n# UNLOCK_EVIDENCE: final_words\n# UNLOCK_EVIDENCE: crucifixion_nails\n\"Near the end He said He was thirsty. One word, barely audible.\nWe soaked a sponge in the sour wine ration — what we drink on\nduty, not fine stuff — and lifted it up to Him on a hyssop branch.\nWasn't cruelty. It's what we had.\"\n{ not evidence_sour_wine_sponge:\n    ~ evidence_sour_wine_sponge = true\n    # UNLOCK_EVIDENCE: sour_wine_sponge\n}",
     "choices": [
       {
         "text": "main_hub",
@@ -40,7 +61,7 @@
     ]
   },
   "unlock_final_words": {
-    "content": "\"I heard it myself, clear as anything. Not a scream, not a groan\n— a declaration. 'Father, into your hands I commit my spirit.'\nThen He bowed His head, and it was finished. Loud. Deliberate.\nLike a man choosing the moment, not one being dragged into it.\"\n{ not evidence_final_words:\n    ~ evidence_final_words = true\n    # UNLOCK_EVIDENCE: final_words\n}",
+    "content": "# UNLOCK_EVIDENCE: unbroken_legs\n# UNLOCK_EVIDENCE: sour_wine_sponge\n# UNLOCK_EVIDENCE: final_words\n# UNLOCK_EVIDENCE: crucifixion_nails\n\"I heard it myself, clear as anything. Not a scream, not a groan\n— a declaration. 'Father, into your hands I commit my spirit.'\nThen He bowed His head, and it was finished. Loud. Deliberate.\nLike a man choosing the moment, not one being dragged into it.\"\n{ not evidence_final_words:\n    ~ evidence_final_words = true\n    # UNLOCK_EVIDENCE: final_words\n}",
     "choices": [
       {
         "text": "main_hub",
@@ -49,7 +70,7 @@
     ]
   },
   "repeat_stage": {
-    "content": "\"Three men crucified today. One of them died differently than the\nother two. I've been doing this a long time. I don't have a good\nexplanation for that.\"\nVAR evidence_crucifixion_nails = false\nVAR evidence_unbroken_legs = false\nVAR evidence_sour_wine_sponge = false\nVAR evidence_final_words = false",
+    "content": "# UNLOCK_EVIDENCE: unbroken_legs\n# UNLOCK_EVIDENCE: sour_wine_sponge\n# UNLOCK_EVIDENCE: final_words\n# UNLOCK_EVIDENCE: crucifixion_nails\n\"Three men crucified today. One of them died differently than the\nother two. I've been doing this a long time. I don't have a good\nexplanation for that.\"\nVAR evidence_crucifixion_nails = false\nVAR evidence_unbroken_legs = false\nVAR evidence_sour_wine_sponge = false\nVAR evidence_final_words = false",
     "choices": []
   }
 }

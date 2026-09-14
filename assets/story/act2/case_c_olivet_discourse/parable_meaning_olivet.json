@@ -1,0 +1,50 @@
+{
+  "start": {
+    "content": "We asked for a timeline. He gave us signs to recognise and parables teaching us how to live while we wait.",
+    "choices": [
+      {
+        "text": "What did the Ten Virgins mean?",
+        "destination": "virgins"
+      },
+      {
+        "text": "What were the cosmic signs?",
+        "destination": "signs"
+      },
+      {
+        "text": "Why did He refuse to give a date?",
+        "destination": "date"
+      }
+    ]
+  },
+  "virgins": {
+    "content": "# UNLOCK_EVIDENCE: parable_of_virgins_notes\n# UNLOCK_EVIDENCE: cosmic_signs_references\nTen virgins waited for the bridegroom. Five carried oil enough for the delay; five had lamps but no reserve.\nWhen the cry came at midnight, appearance was no substitute for readiness. The warning was simple: remain prepared even when the wait is longer than expected.",
+    "choices": [
+      {
+        "text": "closing",
+        "destination": "closing"
+      }
+    ]
+  },
+  "signs": {
+    "content": "# UNLOCK_EVIDENCE: parable_of_virgins_notes\n# UNLOCK_EVIDENCE: cosmic_signs_references\nHe spoke of the sun darkening, the moon withholding its light, and the stars falling. That language was not new. Isaiah and the other prophets used it when kingdoms faced divine judgment.\nHe was placing Jerusalem's coming crisis within that prophetic pattern while also directing us toward His return.",
+    "choices": [
+      {
+        "text": "closing",
+        "destination": "closing"
+      }
+    ]
+  },
+  "date": {
+    "content": "# UNLOCK_EVIDENCE: parable_of_virgins_notes\n# UNLOCK_EVIDENCE: cosmic_signs_references\nHe said no one knows the day or hour. A date would have encouraged calculation; His command required faithfulness.\nWatchfulness means doing the work entrusted to us now, not guessing a calendar.",
+    "choices": [
+      {
+        "text": "closing",
+        "destination": "closing"
+      }
+    ]
+  },
+  "closing": {
+    "content": "The point was not to make us skilled at prediction. It was to make us faithful during the delay.",
+    "choices": []
+  }
+}

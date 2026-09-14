@@ -26,6 +26,7 @@ export const PROFILE_ID_MAP = {
   barabbas: profilePath + "/barabbas.json",
   centurion_longinus: profilePath + "/centurion_longinus.json",
   pashhur: profilePath + "/pashhur.json",
+  lazarus: profilePath + "/lazarus.json",
   john_apostle: profilePath + "/john_apostle.json",
   tobias_owner: profilePath + "/tobias_owner.json",
   jemimah: profilePath + "/jemimah.json",

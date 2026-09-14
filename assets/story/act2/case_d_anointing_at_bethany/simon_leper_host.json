@@ -17,7 +17,7 @@
     ]
   },
   "healed_by_jesus": {
-    "content": "Healed -- yes. Leprosy took my skin, my fingernails, the flesh of my arms and legs. The physicians tried their poultices. Nothing worked. Then He touched me and said, \"Be clean.\" And I was clean.",
+    "content": "# UNLOCK_EVIDENCE: alabaster_jar\nHealed -- yes. Leprosy took my skin, my fingernails, the flesh of my arms and legs. The physicians tried their poultices. Nothing worked. Then He touched me and said, \"Be clean.\" And I was clean.",
     "choices": [
       {
         "text": "The touch was divine.",
@@ -69,7 +69,7 @@
     ]
   },
   "dinner_arranged": {
-    "content": "The dinner was arranged because gratitude demanded it. How do you feed a man who gave you back your life? I offered my table -- and my forgiveness. Let my home be known for what happened that evening.\n# UNLOCK_EVIDENCE: evidence_alabaster_jar",
+    "content": "The dinner was arranged because gratitude demanded it. How do you feed a man who gave you back your life? I offered my table -- and my forgiveness. Let my home be known for what happened that evening.\n# UNLOCK_EVIDENCE: alabaster_jar",
     "choices": [
       {
         "text": "The guests arrived.",
@@ -121,7 +121,7 @@
     ]
   },
   "mary_act": {
-    "content": "Then -- Mary moved. She opened a sealed alabaster jar and poured expensive nard on the Master's feet. The fragrance filled the entire house.\n# UNLOCK_EVIDENCE: evidence_house_filled",
+    "content": "# UNLOCK_EVIDENCE: alabaster_jar\nThen -- Mary moved. She opened a sealed alabaster jar and poured expensive nard on the Master's feet. The fragrance filled the entire house.",
     "choices": [
       {
         "text": "The fragrance was intense.",
@@ -147,7 +147,7 @@
     ]
   },
   "judas_objection": {
-    "content": "Judas objected loudly: \"Why wasn't this sold for three hundred denarii and given to the poor?\" He said it with the tone of compassion, but I knew him better. He kept the money bag, and the Master had noted that already.\n# UNLOCK_EVIDENCE: evidence_judas_complaint",
+    "content": "Judas objected loudly: \"Why wasn't this sold for three hundred denarii and given to the poor?\" He said it with the tone of compassion, but I knew him better. He kept the money bag, and the Master had noted that already.",
     "choices": [
       {
         "text": "His true motive was greed.",

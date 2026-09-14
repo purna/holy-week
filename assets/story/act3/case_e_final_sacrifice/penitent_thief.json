@@ -9,15 +9,36 @@
     ]
   },
   "main_hub": {
-    "content": "+ [Ask what happened this morning] -> neutral_stage\n+ [Ask about the other two men on the crosses] -> cautious_stage\n+ [Press him about what he said to Jesus] -> pressured_stage\n+ [Ask what he heard Jesus say] -> exposed_stage\n+ [Leave him be] -> repeat_stage",
-    "choices": []
+    "content": "",
+    "choices": [
+      {
+        "text": "Ask what happened this morning",
+        "destination": "neutral_stage"
+      },
+      {
+        "text": "Ask about the other two men on the crosses",
+        "destination": "cautious_stage"
+      },
+      {
+        "text": "Press him about what he said to Jesus",
+        "destination": "pressured_stage"
+      },
+      {
+        "text": "Ask what he heard Jesus say",
+        "destination": "exposed_stage"
+      },
+      {
+        "text": "Leave him be",
+        "destination": "repeat_stage"
+      }
+    ]
   },
   "neutral_stage": {
-    "content": "\"They nailed up three crosses that morning. Mine, my friend's,\nand His — right between us. Made a point of it, putting Him in\nthe middle. Wasn't an accident. The charge sheet listed the three\nof us together.\"\n* [Continue] -> unlock_crucified_with_thieves -> main_hub",
+    "content": "# UNLOCK_EVIDENCE: crucified_with_thieves\n# UNLOCK_EVIDENCE: crucifiers_forgiven\n\"They nailed up three crosses that morning. Mine, my friend's,\nand His — right between us. Made a point of it, putting Him in\nthe middle. Wasn't an accident. The charge sheet listed the three\nof us together.\"\n* [Continue] -> unlock_crucified_with_thieves -> main_hub",
     "choices": []
   },
   "cautious_stage": {
-    "content": "\"At first I mocked Him too. Same as my friend on the other side.\n'Aren't you the Messiah? Save yourself — and us, while you're at\nit.' Cheap talk. When you're dying, you'll say anything, hoping\nsomething sticks.\"",
+    "content": "# UNLOCK_EVIDENCE: crucified_with_thieves\n# UNLOCK_EVIDENCE: crucifiers_forgiven\n\"At first I mocked Him too. Same as my friend on the other side.\n'Aren't you the Messiah? Save yourself — and us, while you're at\nit.' Cheap talk. When you're dying, you'll say anything, hoping\nsomething sticks.\"",
     "choices": [
       {
         "text": "Continue",
@@ -26,7 +47,7 @@
     ]
   },
   "pressured_stage": {
-    "content": "\"My friend wouldn't let up on Him. Cursing, jeering, same as the\ncrowd below. I told him to stop. 'Don't you fear God? We're\ngetting exactly what we deserve. This man's done nothing wrong.'\nI don't know why I said it. It just came out true.\n~ penitent_confessed = true",
+    "content": "# UNLOCK_EVIDENCE: crucified_with_thieves\n# UNLOCK_EVIDENCE: crucifiers_forgiven\n\"My friend wouldn't let up on Him. Cursing, jeering, same as the\ncrowd below. I told him to stop. 'Don't you fear God? We're\ngetting exactly what we deserve. This man's done nothing wrong.'\nI don't know why I said it. It just came out true.\n~ penitent_confessed = true",
     "choices": [
       {
         "text": "Continue",
@@ -35,11 +56,11 @@
     ]
   },
   "exposed_stage": {
-    "content": "\"The soldiers were still rolling dice for His clothes when I heard\nit. He wasn't cursing back at anyone. He was praying — for them.\n'Father, forgive them, they don't know what they're doing.'\nI asked Him to remember me when He came into His kingdom. Didn't\nexpect an answer, not really. He said I'd be with Him in paradise.\nToday. Not someday. <i>Today.</i>\"\n* [Continue] -> unlock_crucifiers_forgiven -> main_hub",
+    "content": "# UNLOCK_EVIDENCE: crucified_with_thieves\n# UNLOCK_EVIDENCE: crucifiers_forgiven\n\"The soldiers were still rolling dice for His clothes when I heard\nit. He wasn't cursing back at anyone. He was praying — for them.\n'Father, forgive them, they don't know what they're doing.'\nI asked Him to remember me when He came into His kingdom. Didn't\nexpect an answer, not really. He said I'd be with Him in paradise.\nToday. Not someday. <i>Today.</i>\"\n* [Continue] -> unlock_crucifiers_forgiven -> main_hub",
     "choices": []
   },
   "repeat_stage": {
-    "content": "\"I was numbered among the criminals, same as Him. I know exactly\nwhat that felt like, dying next to Him instead of far from Him.\"",
+    "content": "# UNLOCK_EVIDENCE: crucified_with_thieves\n# UNLOCK_EVIDENCE: crucifiers_forgiven\n\"I was numbered among the criminals, same as Him. I know exactly\nwhat that felt like, dying next to Him instead of far from Him.\"",
     "choices": []
   },
   "unlock_crucified_with_thieves": {

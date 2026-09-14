@@ -29,11 +29,15 @@ I am Pontius Pilate, Prefect of Judea. The priests brought this Galilean before 
 * [What does the crowd want?] -> crowd_wants
 
 === sentence ===
+# UNLOCK_EVIDENCE: pilates_basin
+# UNLOCK_EVIDENCE: wifes_letter
 I am not the one sentencing Him. The crowd is. I offered them a choice under the Passover amnesty: Barabbas — a murderer, an insurrectionist — or this Galilean prophet. They chose Barabbas. They demanded crucifixion. I have been governor of difficult provinces. I have never seen anything like that crowd.
 * [What about your wife's warning?] -> wife
 * [You could have refused.] -> could_refuse
 
 === crowd_wants ===
+# UNLOCK_EVIDENCE: pilates_basin
+# UNLOCK_EVIDENCE: wifes_letter
 The crowd wants blood. The priests have spent three days turning the Passover pilgrims against the man they were celebrating at the beginning of the week. The same crowd that spread cloaks on the road shouted "Crucify Him" five days later. Crowds are not the same thing twice.
 * [You could have stopped it.] -> could_refuse
 * [What did you do?] -> what_pilate_did

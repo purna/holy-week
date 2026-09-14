@@ -17,7 +17,7 @@
     ]
   },
   "crowd": {
-    "content": "The road from Bethphage to Jerusalem was a river of people.\nPilgrims from Galilee, Judea, and beyond — all streaming\ndown the Mount of Olives. When we emerged from the garden\nwith the colt, the crowd simply knew. They understood without\nbeing told. Children waved palm branches. Elders fell to their\nknees. Even the soldiers on the walls looked uncertain.",
+    "content": "# UNLOCK_EVIDENCE: donkey_tracks\n# UNLOCK_EVIDENCE: crowd_testimony\n# UNLOCK_EVIDENCE: witness_account\nThe road from Bethphage to Jerusalem was a river of people.\nPilgrims from Galilee, Judea, and beyond — all streaming\ndown the Mount of Olives. When we emerged from the garden\nwith the colt, the crowd simply knew. They understood without\nbeing told. Children waved palm branches. Elders fell to their\nknees. Even the soldiers on the walls looked uncertain.",
     "choices": [
       {
         "text": "The people recognized the moment.",
@@ -30,7 +30,7 @@
     ]
   },
   "fulfilled": {
-    "content": "Every detail matched exactly. The donkey — never ridden.\nThe cloaks spread on the road. The palm branches waving.\n\"Hosanna to the Son of David!\" — that cry rose like incense.\nI kept thinking of Zechariah's words: \"Your king comes to\nyou... humble and riding on a donkey.\" It was living prophecy.",
+    "content": "# UNLOCK_EVIDENCE: donkey_tracks\n# UNLOCK_EVIDENCE: crowd_testimony\n# UNLOCK_EVIDENCE: witness_account\nEvery detail matched exactly. The donkey — never ridden.\nThe cloaks spread on the road. The palm branches waving.\n\"Hosanna to the Son of David!\" — that cry rose like incense.\nI kept thinking of Zechariah's words: \"Your king comes to\nyou... humble and riding on a donkey.\" It was living prophecy.",
     "choices": [
       {
         "text": "Did the people know what they were saying?",
@@ -43,7 +43,7 @@
     ]
   },
   "colt": {
-    "content": "The colt had never been ridden — our mothers taught us that\nsuch an animal is set apart. When the Lord said \"the Lord\nneeds it,\" the owner understood at once. \"Let my lord go\nin peace,\" he surely meant. No transaction. No payment.\nJust recognition that this was the moment.",
+    "content": "# UNLOCK_EVIDENCE: donkey_tracks\n# UNLOCK_EVIDENCE: crowd_testimony\n# UNLOCK_EVIDENCE: witness_account\nThe colt had never been ridden — our mothers taught us that\nsuch an animal is set apart. When the Lord said \"the Lord\nneeds it,\" the owner understood at once. \"Let my lord go\nin peace,\" he surely meant. No transaction. No payment.\nJust recognition that this was the moment.",
     "choices": [
       {
         "text": "The owner was a prophet too.",

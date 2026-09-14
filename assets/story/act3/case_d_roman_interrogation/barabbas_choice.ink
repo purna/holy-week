@@ -26,11 +26,13 @@ I've been standing here for an hour. I should be moving — a free man in Jerusa
 * [You know what just happened.] -> know_what
 
 === why_not ===
+# UNLOCK_EVIDENCE: barabbas_warrant
 Because the man they took instead of me is on a hill outside the city wall, and I put him there. Not with my own hands — with a crowd's voice and a governor's weakness. But I put him there.
 * [You didn't ask to be released.] -> didnt_ask
 * [You are free. He is dying.] -> he_is_dying
 
 === know_what ===
+# UNLOCK_EVIDENCE: barabbas_warrant
 I know exactly what happened. I've been in that cell long enough to understand Roman process. The Passover amnesty. One prisoner released by crowd vote. They put my name against a teacher from Galilee and the crowd voted my life back to me. I do not know why.
 * [The chief priests pushed the crowd.] -> chief_priests
 * [Did you know the other man?] -> know_the_man

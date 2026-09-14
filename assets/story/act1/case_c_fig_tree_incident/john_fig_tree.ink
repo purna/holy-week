@@ -46,16 +46,19 @@ The Master sees things the rest of us miss, friend. We saw a tree by the road. H
 * [Why curse a tree that was simply out of season?] -> season
 
 === season ===
+# UNLOCK_EVIDENCE: cursed_fig_tree_desc
 That is the very question most people ask first, and it misses what Mark was careful to record. He wrote it plainly: "the time of figs was not yet." The Teacher was not disappointed by nature doing what nature does. Early leaves on a fig tree normally promise a scattering of small early fruit even before the main harvest — the leaves were a claim the tree could not back up. That was the accusation. He made it on purpose, in front of witnesses, on the very morning He was walking toward the Temple.
 * [A claim the tree could not back up.] -> symbolism
 * [Where did this happen, exactly?] -> temple
 
 === symbolism ===
+# UNLOCK_EVIDENCE: cursed_fig_tree_desc
 Exactly. In our own scriptures the fig tree stands again and again for the nation itself. Jeremiah wrote of a day when "there will be no grapes on the vine, nor figs on the fig tree, and the leaf shall fade." Hosea remembered Israel's youth as "the first ripe fruit on the fig tree" — a promise unfulfilled. Micah despaired that he could find "no first-ripe fig that my soul desired" in his own generation. The Teacher did not invent an insult. He quoted a complaint three prophets had already made, and He acted it out on a hillside for anyone willing to look.
 * [Where did this happen, exactly?] -> temple
 * [Peter seems shaken by it.] -> peter_reaction
 
 === peter_reaction ===
+# UNLOCK_EVIDENCE: cursed_fig_tree_desc
 Peter focuses on the power in it — a single word, and a tree is dead to the root by morning. I am trying to understand the sign itself. Why this tree? Why this road? And why the very same day He turned over the moneychangers' tables?
 * [Those two things happened on the same day?] -> temple
 * [What do you mean, the same day?] -> temple

@@ -53,6 +53,8 @@ They call me Longinus. Centurion of the Augustan cohort. I have served Rome for 
 * [You came to investigate this man first?] -> investigation
 
 === investigation ===
+# UNLOCK_EVIDENCE: split_dice
+# UNLOCK_EVIDENCE: pierced_spear
 Yes. Earlier in my career, I had heard reports of a miracle worker from Capernaum — a man who stilled a storm with a word, healed a centurion's servant from a distance, and calmed the fears of those around him. The boy — he was dying of the plague. I sent word. The man never came. But the boy lived. Three days later, the fever broke. I attributed it to medicine. Now I know better.
 * [You studied His ways.] -> study
 * [The servant's healing.] -> servant_healing
@@ -163,6 +165,8 @@ My faith was complete. Not because I wanted it to be. Not because it was easy. B
 * [The centurion's confession endures.] -> closing
 
 === different ===
+# UNLOCK_EVIDENCE: split_dice
+# UNLOCK_EVIDENCE: pierced_spear
 My servant's healing. The words He spoke from the cross. The darkness that fell at noon. The way the centurion's sword found its mark in the side that bore the weight of the world. These were not the signs of a dying man. These were the signs of divinity made manifest in human flesh.
 * [You believed.] -> faith_confession
 * [The evidence was divine.] -> overwhelming
