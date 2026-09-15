@@ -46,6 +46,7 @@ export class GameEngine {
     this.audio = new AudioManager();
     
     this.dm = new DialogueManager();
+    this.dm.caseManager = this.cm;
     if (window.inkjs) this.dm.setInkLib(window.inkjs);
 
     this.labUI = new LabWorkspaceUI(this.de, this.es, this.a11y);
