@@ -40,6 +40,7 @@ export class GameEngine {
     this.ls = new LocationSystem(this.cm);
     this.audio = new AudioManager();
     this.dm = new DialogueManager(this.audio);
+    this.dm.caseManager = this.cm;
     this.accuseUI = new AccuseUI(this.cm);
 
     this.registerAllCases();
