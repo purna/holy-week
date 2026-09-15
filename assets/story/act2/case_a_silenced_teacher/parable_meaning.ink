@@ -18,8 +18,7 @@
 -> start
 
 === start ===
-I am Thomas. Ask more questions than I answer. The honest ones.
-In the Temple courts, Jesus told a story about a vineyard, its tenants, and a son who never returned home. Some stories explain the world. Others expose it.
+I am Thomas. Ask more questions than I answer. The honest ones. In the Temple courts, Jesus told a story about a vineyard, its tenants, and a son who never returned home. Some stories explain the world. Others expose it.
 
 * [Tell me the story.] -> story
 * [Why did He tell it?] -> why

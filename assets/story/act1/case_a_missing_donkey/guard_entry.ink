@@ -26,6 +26,7 @@
 // ============================================================
 
 -> start
+
 === start ===
 "Halt! State your business at the Upper Gate." These are tense times. Passover crowds press against the walls like a living tide. The eastern corridor is our responsibility — keep the route clear for the High Priest's observation detail. What do you want to know?
 * [The procession forming at the city gates] -> procession
@@ -66,11 +67,12 @@ The moment was sacred. Even hardened soldiers know when they stand in the presen
 === psalm_recognized ===
 "Blessed is he who enters in the name of the Lord!" — they quoted Psalm 118. My centurion, a weathered veteran, whispered, "This is no ordinary rabbi." The crowds had done this before — welcomed conquerors into Jerusalem. But never a king who wept over the city and rode on a donkey.
 * [Zechariah's prophecy] -> zechariah
-* [The people understood] -> people_understanding
+* [The people understood] -> report_filed
 
 === zechariah ===
 Zechariah wrote it six centuries ago: "Rejoice greatly, O daughter of Zion! Behold, your king comes to you — humble, and ridden on a donkey." The fulfillment was so precise that even a Roman guard recognized the prophecy being fulfilled before his eyes.
 * [The prophecy was specific] -> prophecy_specific
+* [How did the prophecy affect your understanding of the procession?] -> prophecy_realized
 
 === prophecy_specific ===
 The prophecy was specific about the donkey — the animal, the humility, the peace. No conqueror before this king had entered a city on a donkey. No general had refused a horse. The fulfillment was undeniable.
@@ -99,7 +101,7 @@ A king of peace. That is what Zechariah had promised, and that is what I witness
 === power_paradox ===
 The paradox of kingship. A king who becomes a servant. A king who dies to save His enemies. A king who offers His life as a ransom for many. The donkey that carried Him into Jerusalem would stand empty — but the cross would carry Him into eternity.
 * [The cross would carry Him] -> cross_carries
-* [The victory was hidden] -> hidden_victory
+* [The victory was hidden] -> guard_fear_report
 
 === cross_carries ===
 The cross that seemed like defeat would carry Him into eternity. The tomb that seemed final would open for all. The silence that seemed like defeat would echo through history. The donkey that carried peace would give way to the cross that would carry salvation.
@@ -121,18 +123,19 @@ Fear. That was the word. Not anger, not outrage — fear. These priests, trained
 
 === priestly_stakes ===
 Their stakes were everything. The Sanhedrin's authority. The Temple's revenue. The people's loyalty. The Roman government's tolerance. If "King of the Jews" was truly the crowd's cry, all of it would be questioned. And if this Jesus was indeed the fulfillment of Zechariah's prophecy, then their entire system was wrong.
-* [The system would be overturned] -> overturned
-* [They would have to choose] -> must_choose
+* [The system would be overturned] -> report_filed
+* [They would have to choose] -> guard_fear_report
+* [Conclude.] -> closing2
 
 === conspired ===
 They conspired immediately. I heard the whispers from the temple steps. "What if the whole crowd recognizes Him?" "What if Pilate declares Him King?" "What if the people rise?" The religious leaders were calculating political fallout, not theological truth.
 * [Politics over prophecy] -> politics_over
-* [The people's choice] -> peoples_choice
+* [The people's choice] -> guard_fear_report
 
 === threat ===
 The priests saw the threat. If the crowd truly believed this man was their king, the entire system would collapse. The Temple's authority, the Sanhedrin's power, the Roman garrison's stability — all rested on the assumption that no king would actually come. And now He had — riding on a donkey, welcomed by children.
-* [They realized the prophecy] -> prophecy_realized
-* [They feared the consequences] -> feared_consequences
+* [They realized the prophecy] -> report_filed
+* [They feared the consequences] -> guard_fear_report
 
 === politics_over ===
 Politics over prophecy. Authority over truth. The religious leaders chose their comfort over the call of God. And in choosing, they fulfilled the very prophecies they sought to prevent.
@@ -144,7 +147,7 @@ The irony was complete. The religious leaders who studied the prophecies could n
 
 === prophecy_realized ===
 They realized the prophecy was being fulfilled before their eyes. Zechariah's words — "Behold, your king comes to you, humble, and mounted on a donkey" — were echoing in the shouts of the crowd. And they were not ready.
-* [The unpreparedness was visible] -> visible
+* [The unpreparedness was visible] -> report_filed
 * [The choice was stark] -> stark_choice
 
 === stark_choice ===
@@ -171,4 +174,23 @@ The king who entered Jerusalem on a donkey is the eternal king who will one day 
 
 === closing2 ===
 The donkey's ride into Jerusalem was the beginning of the end — the beginning of the end for the old covenant, and the beginning of the new. The donkey spoke of His first coming — humble, serving, sacrificing. The clouds will speak of His second coming — glorious, conquering, reigning.
+
+
+// ── Consolidated Target Nodes ─────────────────────
 -> DONE
+
+=== colt_unbroken ===
+Report from the watch: The soldiers saw the empty tomb.
+* [Finish the interview.] -> closing2
+
+=== path_chosen ===
+Report from the watch: The elders bribed us to keep silent.
+* [Finish the interview.] -> closing2
+
+=== guard_fear_report ===
+Report from the watch: The guards fell down in fear.
+* [Finish the interview.] -> closing2
+
+=== report_filed ===
+Report from the watch: The report is filed and sealed.
+* [Finish the interview.] -> closing2

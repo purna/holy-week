@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ECHO — Adventures with Anxiety Protocol</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="narrative-editor.css">
+</head>
+<body>
+
+<div id="tree-panel">
+  <div class="tree-header"><i class="fas fa-network-wired"></i> CONVERSATION MAP</div>
+
+  <div id="case-list-section">
+    <div class="case-list-hdr">
+      <span class="case-list-title">Case Files</span>
+      <input type="file" id="import-dialogue" accept=".json" multiple style="display: none;">
+      <button id="preload-btn" type="button" title="Load the default dialogue case files from the repo">Preload</button>
+      <button id="import-btn" type="button">+ Import</button>
+    </div>
+    <select id="case-select"></select>
+    <div id="preload-log" class="hide"></div>
+  </div>
+
+  <div id="tree-scroll">
+    <svg id="tree-svg" viewBox="0 0 260 1200" preserveAspectRatio="xMidYMin meet"></svg>
+  </div>
+  <div class="tree-hint">CLICK NODE TO NAVIGATE SIMULATION</div>
+</div>
+
+<div id="chat-panel">
+  <div class="chat-hdr">
+    <!-- ═══════════════════════════════════════════
+         HEADER / CONTROL BAR — INK LINK & EVIDENCE
+         ═══════════════════════════════════════════ -->
+    <div class="panel-header">
+      <div id="ink-file-link" class="ink-link-panel">
+        <!-- Populated dynamically by NarrativeEditor.updateInkLinkAndEvidence() -->
+      </div>
+    </div>
+  </div>
+  <div id="bub-scroll"></div>
+  <div id="bar-choices" class="hide"></div>
+</div>
+
+<div id="tree-tooltip"></div>
+
+<script src="narrative-editor.js"></script>
+</body>
+</html>

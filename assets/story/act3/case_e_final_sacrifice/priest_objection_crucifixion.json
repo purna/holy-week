@@ -34,7 +34,7 @@
       },
       {
         "text": "The silence was unnatural.",
-        "destination": "unnatural_silence"
+        "destination": "closing"
       }
     ]
   },
@@ -47,7 +47,7 @@
       },
       {
         "text": "What you recorded.",
-        "destination": "official_report"
+        "destination": "closing"
       }
     ]
   },
@@ -56,7 +56,7 @@
     "choices": [
       {
         "text": "The victory was visible.",
-        "destination": "victory_visible"
+        "destination": "closing"
       },
       {
         "text": "The paradox.",
@@ -73,7 +73,7 @@
       },
       {
         "text": "The meaning was clear.",
-        "destination": "meaning_clear"
+        "destination": "closing"
       }
     ]
   },
@@ -156,7 +156,7 @@
     "choices": [
       {
         "text": "Dangerous to the establishment.",
-        "destination": "establishment_threat"
+        "destination": "closing"
       },
       {
         "text": "The priesthood transformed.",
@@ -256,7 +256,7 @@
       },
       {
         "text": "Fear was the response.",
-        "destination": "fear_response"
+        "destination": "closing"
       }
     ]
   },
@@ -278,7 +278,7 @@
     "choices": [
       {
         "text": "The choice was stark.",
-        "destination": "stark_choice"
+        "destination": "closing"
       },
       {
         "text": "Some ran, others stood.",

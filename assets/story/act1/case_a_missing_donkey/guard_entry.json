@@ -95,7 +95,7 @@
       },
       {
         "text": "The people understood",
-        "destination": "people_understanding"
+        "destination": "report_filed"
       }
     ]
   },
@@ -105,6 +105,10 @@
       {
         "text": "The prophecy was specific",
         "destination": "prophecy_specific"
+      },
+      {
+        "text": "How did the prophecy affect your understanding of the procession?",
+        "destination": "prophecy_realized"
       }
     ]
   },
@@ -174,7 +178,7 @@
       },
       {
         "text": "The victory was hidden",
-        "destination": "hidden_victory"
+        "destination": "guard_fear_report"
       }
     ]
   },
@@ -227,11 +231,15 @@
     "choices": [
       {
         "text": "The system would be overturned",
-        "destination": "overturned"
+        "destination": "report_filed"
       },
       {
         "text": "They would have to choose",
-        "destination": "must_choose"
+        "destination": "guard_fear_report"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing2"
       }
     ]
   },
@@ -244,7 +252,7 @@
       },
       {
         "text": "The people's choice",
-        "destination": "peoples_choice"
+        "destination": "guard_fear_report"
       }
     ]
   },
@@ -253,11 +261,11 @@
     "choices": [
       {
         "text": "They realized the prophecy",
-        "destination": "prophecy_realized"
+        "destination": "report_filed"
       },
       {
         "text": "They feared the consequences",
-        "destination": "feared_consequences"
+        "destination": "guard_fear_report"
       }
     ]
   },
@@ -284,7 +292,7 @@
     "choices": [
       {
         "text": "The unpreparedness was visible",
-        "destination": "visible"
+        "destination": "report_filed"
       },
       {
         "text": "The choice was stark",
@@ -348,5 +356,41 @@
   "closing2": {
     "content": "The donkey's ride into Jerusalem was the beginning of the end — the beginning of the end for the old covenant, and the beginning of the new. The donkey spoke of His first coming — humble, serving, sacrificing. The clouds will speak of His second coming — glorious, conquering, reigning.",
     "choices": []
+  },
+  "colt_unbroken": {
+    "content": "Report from the watch: The soldiers saw the empty tomb.",
+    "choices": [
+      {
+        "text": "Finish the interview.",
+        "destination": "closing2"
+      }
+    ]
+  },
+  "path_chosen": {
+    "content": "Report from the watch: The elders bribed us to keep silent.",
+    "choices": [
+      {
+        "text": "Finish the interview.",
+        "destination": "closing2"
+      }
+    ]
+  },
+  "guard_fear_report": {
+    "content": "Report from the watch: The guards fell down in fear.",
+    "choices": [
+      {
+        "text": "Finish the interview.",
+        "destination": "closing2"
+      }
+    ]
+  },
+  "report_filed": {
+    "content": "Report from the watch: The report is filed and sealed.",
+    "choices": [
+      {
+        "text": "Finish the interview.",
+        "destination": "closing2"
+      }
+    ]
   }
 }

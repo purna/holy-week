@@ -1,3 +1,4 @@
+import { createConversation } from '../js/gameplay/conversationStory.js';
 /**
  * Maps dialogueId to their Ink JSON story file paths.
  * NPCs in levels.js use dialogueId instead of storyFile / hasDialogue.
@@ -93,17 +94,13 @@ export class DialogueManager {
     }
 
     createStory(npcId, caseId = null) {
-        if (!this.inkLib) throw new Error('Ink runtime not loaded');
         const data = this.getStory(npcId, caseId);
         if (!data) throw new Error('Story data not found for ' + npcId);
-
-        // Detect if this is an Ink story or our simpler JSON format
         if (data.inkVersion) {
+            if (!this.inkLib) throw new Error('Ink runtime not loaded');
             return new this.inkLib.Story(data);
         }
-
-        // If it's a simple JSON, wrap it in an adapter so the UI logic works identically
-        return new SimpleStoryAdapter(data);
+        return createConversation(data, this, npcId, caseId);
     }
 
     getStory(npcId, caseId = null) {
@@ -176,8 +173,10 @@ export class DialogueManager {
             `<span class="typing-lbl">${npcName} is typing</span>`;
         bubScroll.appendChild(row);
         const delay = 1200 + Math.random() * 600;
+        const generation = this._dialogueGeneration;
         setTimeout(() => {
             row.remove();
+            if (!this.isDialogueOpen || generation !== this._dialogueGeneration) return;
             cb();
         }, delay);
     }
@@ -216,6 +215,7 @@ export class DialogueManager {
             b.className = 'choice-btn';
             b.textContent = '→ ' + c.text;
             b.onclick = () => {
+                barChoices.querySelectorAll("button").forEach(button => { button.disabled = true; });
                 barChoices.classList.add('hide');
                 setTimeout(() => onPick(c), 120);
             };
@@ -266,7 +266,7 @@ export class DialogueManager {
         }
 
         // System handshake message, then start story
-        this.addMsg('SECURE CONNECTION ESTABLISHED.', 'system');
+        this.addMsg(inkStory?.revisiting ? 'Returning to your interview notes.' : 'Interview notes opened.', 'system');
         this._stepStory(inkStory, onClose, onTag);
     }
 

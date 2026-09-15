@@ -28,7 +28,7 @@
 
 -> start
 === start ===
-Annas speaks of systems and history, as if morality were subordinate to administration. But the truth cannot be hidden behind rhetoric. 
+Annas speaks of systems and history, as if morality were subordinate to administration. But the truth cannot be hidden behind rhetoric.
 
 * [Systems do not justify murder.] -> systems_lie
 * [You call a miracle a threat?] -> miracle_lie
@@ -36,7 +36,7 @@ Annas speaks of systems and history, as if morality were subordinate to administ
 
 === systems_lie ===
 # UNLOCK_EVIDENCE: secret_decree
-You claim governments are built on stone, not passion, yet you would destroy a man who embodies divine truth to protect your power. That is not governance — that is tyranny. 
+You claim governments are built on stone, not passion, yet you would destroy a man who embodies divine truth to protect your power. That is not governance — that is tyranny.
 
 * [So your concern is power, not order.] -> power_lie
 * [Morality matters even to rulers.] -> morality_assertion
@@ -62,7 +62,7 @@ Admit it — your concern is not the law or the temple, but retaining influence 
 * [The council acts out of fear, not justice.] -> moral_closure
 
 === morality_assertion ===
-Even the highest priests are accountable. No system can sanctify murder. A man’s life cannot be sacrificed to preserve privilege. 
+Even the highest priests are accountable. No system can sanctify murder. A man’s life cannot be sacrificed to preserve privilege.
 
 * [Then you are exposing hypocrisy.] -> moral_closure
 
@@ -87,6 +87,6 @@ Raising Lazarus is not destruction — it is revelation. Your claims of civil un
 * [Your lies fail under scrutiny.] -> moral_closure
 
 === moral_closure ===
-Every claim you made crumbles under questioning. Systems, fear, law — none justify sin. Your words are clever, but the truth stands unshaken: you plot murder to preserve privilege.  
+Every claim you made crumbles under questioning. Systems, fear, law — none justify sin. Your words are clever, but the truth stands unshaken: you plot murder to preserve privilege.
 
 -> DONE

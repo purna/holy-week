@@ -20,7 +20,6 @@
 -> start
 
 === start ===
-We've convened in emergency session. The political pressure is
-mounting - Jesus must be dealt with decisively.
+We've convened in emergency session. The political pressure is mounting - Jesus must be dealt with decisively.
 
 -> DONE

@@ -41,6 +41,7 @@ A man who threatens Jerusalem's holiest site during Passion week is a threat to 
 The irony was not lost on the senior priests afterward. "Destroy this Temple" — and what happened on the third day? The stone chamber was empty. The guards were silent. The Roman centurion declared, "Truly this was the Son of God." The false testimony had become an unwitting prophecy.
 * [The prophecy fulfilled itself.] -> story_changed
 * [Did you know what you were saying?] -> payment_question
+* [Your colleague contradicted you.] -> witness_contradiction
 
 === crowd_understanding ===
 The crowd understood the reference immediately. John's Gospel records that after the resurrection, the disciples remembered these words. The Temple in question was not Herod's marble — it was the body that died and rose again. The false witnesses had heard a statement about resurrection and filed it as a threat to the physical sanctuary.
@@ -56,6 +57,7 @@ The second witness came forward with: "The man claimed he would destroy the Temp
 The Law requires two or three witnesses. They had them ready. The conviction was pre-arranged. The sentence was decided before the accused entered the chamber. What he said was heresy.
 * [So the trial was a formality.] -> closing
 * [The procedure is the justice.] -> closing
+* [What did Caiaphas do with it?] -> caiaphas_reaction
 
 === caiaphas_reaction ===
 Caiaphas dismissed both witnesses without ceremony. "We have what we need," he said. The false testimony was a disappointment — useful for motive, but insufficient for conviction. That is exactly why he resorted to the divine adjuration: "I adjure you by the living God..."

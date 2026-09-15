@@ -4,15 +4,15 @@
     "choices": [
       {
         "text": "Why was Jesus even brought to Herod?",
-        "destination": "jurisdiction"
+        "destination": "dawn_breaks_final"
       },
       {
         "text": "Tell me about the Baptist first.",
-        "destination": "baptist"
+        "destination": "dawn_breaks_final"
       },
       {
         "text": "Your wife follows this man, doesn't she?",
-        "destination": "joanna_intro"
+        "destination": "dawn_breaks_final"
       },
       {
         "text": "What do you know of Herod's state of mind?",
@@ -29,11 +29,11 @@
       },
       {
         "text": "The crown of guilt.",
-        "destination": "crown_guilt"
+        "destination": "dawn_breaks_final"
       },
       {
         "text": "How did that affect Jesus's fate?",
-        "destination": "jesus_fate"
+        "destination": "dawn_breaks_final"
       }
     ]
   },
@@ -46,7 +46,7 @@
       },
       {
         "text": "The power was real.",
-        "destination": "power_real"
+        "destination": "dawn_breaks_final"
       }
     ]
   },
@@ -59,7 +59,7 @@
       },
       {
         "text": "What did that mean for the priests?",
-        "destination": "priestly_fear"
+        "destination": "dawn_breaks_final"
       }
     ]
   },
@@ -72,7 +72,7 @@
       },
       {
         "text": "The priestly title.",
-        "destination": "priestly_title"
+        "destination": "dawn_breaks_final"
       }
     ]
   },
@@ -85,7 +85,7 @@
       },
       {
         "text": "The irony was bitter.",
-        "destination": "bitter_irony"
+        "destination": "dawn_breaks_final"
       }
     ]
   },
@@ -98,7 +98,7 @@
       },
       {
         "text": "The preparation was false.",
-        "destination": "false_prep"
+        "destination": "dawn_breaks_final"
       }
     ]
   },
@@ -111,7 +111,7 @@
       },
       {
         "text": "The silence that answered.",
-        "destination": "answered_silence"
+        "destination": "dawn_breaks_final"
       }
     ]
   },
@@ -124,7 +124,7 @@
       },
       {
         "text": "The weight of silence.",
-        "destination": "silence_weight"
+        "destination": "dawn_breaks_final"
       }
     ]
   },
@@ -137,7 +137,7 @@
       },
       {
         "text": "The cost of silence.",
-        "destination": "cost_silence"
+        "destination": "dawn_breaks_final"
       }
     ]
   },
@@ -150,7 +150,7 @@
       },
       {
         "text": "The friendship forged.",
-        "destination": "friendship_forge"
+        "destination": "dawn_breaks_final"
       }
     ]
   },
@@ -163,7 +163,7 @@
       },
       {
         "text": "The judgment begins.",
-        "destination": "judgment_begins"
+        "destination": "dawn_breaks_final"
       }
     ]
   },
@@ -176,7 +176,7 @@
       },
       {
         "text": "The stones cry out.",
-        "destination": "stones_cry"
+        "destination": "dawn_breaks_final"
       }
     ]
   },
@@ -189,7 +189,7 @@
       },
       {
         "text": "The disbelief.",
-        "destination": "disbelief"
+        "destination": "dawn_breaks_final"
       }
     ]
   },
@@ -202,7 +202,7 @@
       },
       {
         "text": "The empty tomb.",
-        "destination": "empty_tomb"
+        "destination": "dawn_breaks_final"
       }
     ]
   },
@@ -215,7 +215,7 @@
       },
       {
         "text": "The physicians knew it.",
-        "destination": "physicians_know"
+        "destination": "dawn_breaks_final"
       }
     ]
   },
@@ -228,7 +228,7 @@
       },
       {
         "text": "The robe was thrown.",
-        "destination": "robe_thrown"
+        "destination": "dawn_breaks_final"
       }
     ]
   },
@@ -237,17 +237,13 @@
     "choices": [
       {
         "text": "The return to Pilate.",
-        "destination": "return_pilate"
+        "destination": "final_reconciliation"
       },
       {
         "text": "The reconciliation.",
         "destination": "final_reconciliation"
       }
     ]
-  },
-  "return_pilate": {
-    "content": "",
-    "choices": []
   },
   "final_reconciliation": {
     "content": "The reconciliation — final and complete. \"The same day Pilate and Herod were made friends together.\" Two rulers, former enemies, embraced over a dead man's body. What a strange gospel the world had produced — one where enemies kissed over the tomb of their victim, and the victim was, in fact, alive. The Scriptures had prepared the way for this moment, and neither ruler had read a single line of them.",
@@ -258,7 +254,7 @@
       },
       {
         "text": "The victory was hidden.",
-        "destination": "hidden_victory"
+        "destination": "dawn_breaks_final"
       }
     ]
   },
@@ -271,7 +267,7 @@
       },
       {
         "text": "The field of blood awaits.",
-        "destination": "field_awaits"
+        "destination": "dawn_breaks_final"
       }
     ]
   },
@@ -280,7 +276,7 @@
     "choices": [
       {
         "text": "The silver was counted.",
-        "destination": "silver_counted"
+        "destination": "testimony_endures_final"
       },
       {
         "text": "The testimony endures.",
@@ -288,26 +284,18 @@
       }
     ]
   },
-  "silver_counted": {
-    "content": "",
-    "choices": []
-  },
   "testimony_endures_final": {
     "content": "The testimony endures. Joanna is out there now — beyond the empty tomb, beyond the mountains of Galilee, beyond the reach of Herod's guards. Her name is written in the Gospel of Luke, in the fourteenth chapter, beside Mary Magdalene. And the field I bought with the price of betrayal — it grows.",
     "choices": [
       {
         "text": "The field is testimony.",
-        "destination": "field_is_testimony"
+        "destination": "dawn_breaks_final"
       },
       {
         "text": "The dawn breaks still.",
         "destination": "dawn_breaks_final"
       }
     ]
-  },
-  "field_is_testimony": {
-    "content": "",
-    "choices": []
   },
   "dawn_breaks_final": {
     "content": "The dawn breaks still — and in that dawn, my wife's testimony joins with a hundred others. The earth remembers. The stones cry out. And the King whom Herod mocked — the King whose silence was louder than all the noise of the palace — now reigns.",

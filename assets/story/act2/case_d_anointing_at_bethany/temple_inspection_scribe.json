@@ -25,6 +25,10 @@
       {
         "text": "What of the questioning records?",
         "destination": "questioning_records"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing_scribe"
       }
     ]
   },
@@ -34,6 +38,10 @@
       {
         "text": "So it's just a numbers problem to you?",
         "destination": "numbers_problem"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing_scribe"
       }
     ]
   },
@@ -43,6 +51,10 @@
       {
         "text": "What protocol, exactly, gets enacted for a threshold like this?",
         "destination": "lazarus_protocol"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing_scribe"
       },
       {
         "text": "Continue to ledgers.",
@@ -56,6 +68,10 @@
       {
         "text": "You call a living man an 'asset'?",
         "destination": "asset_perspective"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing_scribe"
       }
     ]
   },
@@ -76,6 +92,10 @@
     "content": "Meaning the council has stopped debating whether the miracle happened and started debating what to do about the man it happened to. I have seen the draft language cross my own desk, Scribe. It does not use soft words like \"monitor\" anymore.",
     "choices": [
       {
+        "text": "Conclude.",
+        "destination": "closing_scribe"
+      },
+      {
         "text": "What words does it use?",
         "destination": "reveal_plot"
       }
@@ -91,6 +111,10 @@
       {
         "text": "Continue to ledgers.",
         "destination": "start"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing_scribe"
       }
     ]
   },
@@ -109,6 +133,10 @@
       {
         "text": "State it.",
         "destination": "reveal_plot"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing_scribe"
       }
     ]
   },
@@ -135,6 +163,10 @@
       {
         "text": "The crowd's reaction?",
         "destination": "crowd_reaction_scribe"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing_scribe"
       }
     ]
   },
@@ -157,6 +189,10 @@
       {
         "text": "Return to proceedings.",
         "destination": "temple_proceedings"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing_scribe"
       }
     ]
   },
@@ -170,6 +206,10 @@
       {
         "text": "The questions were answered.",
         "destination": "questions_answered"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing_scribe"
       }
     ]
   },
@@ -179,6 +219,10 @@
       {
         "text": "Return to proceedings.",
         "destination": "temple_proceedings"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing_scribe"
       }
     ]
   },
@@ -199,6 +243,10 @@
         "destination": "answers_profound"
       },
       {
+        "text": "Conclude.",
+        "destination": "closing_scribe"
+      },
+      {
         "text": "The record is complete.",
         "destination": "record_complete"
       }
@@ -212,6 +260,10 @@
         "destination": "precision_startling"
       },
       {
+        "text": "Conclude.",
+        "destination": "closing_scribe"
+      },
+      {
         "text": "The silence followed.",
         "destination": "silence_followed"
       }
@@ -223,6 +275,10 @@
       {
         "text": "Return to records.",
         "destination": "questioning_records"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing_scribe"
       }
     ]
   },
@@ -232,6 +288,10 @@
       {
         "text": "Return to records.",
         "destination": "questioning_records"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing_scribe"
       }
     ]
   },
@@ -245,6 +305,10 @@
       {
         "text": "The significance was clear.",
         "destination": "significance_clear"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing_scribe"
       }
     ]
   },
@@ -254,6 +318,10 @@
       {
         "text": "Continue.",
         "destination": "record_complete"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing_scribe"
       }
     ]
   },
@@ -263,6 +331,10 @@
       {
         "text": "Continue.",
         "destination": "record_complete"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing_scribe"
       }
     ]
   },
@@ -276,6 +348,10 @@
       {
         "text": "The inspection was thorough.",
         "destination": "inspection_thorough"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing_scribe"
       }
     ]
   },
@@ -298,6 +374,10 @@
       {
         "text": "Continue.",
         "destination": "schedule_precise"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing_scribe"
       }
     ]
   },
@@ -307,6 +387,10 @@
       {
         "text": "Continue.",
         "destination": "schedule_precise"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing_scribe"
       }
     ]
   },
@@ -333,6 +417,10 @@
       {
         "text": "The perfection was proven.",
         "destination": "perfection_proven"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing_scribe"
       }
     ]
   },
@@ -342,6 +430,10 @@
       {
         "text": "Continue.",
         "destination": "yet_what"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing_scribe"
       }
     ]
   },
@@ -364,6 +456,10 @@
       {
         "text": "The records prove it.",
         "destination": "records_prove_it"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing_scribe"
       }
     ]
   },
@@ -373,6 +469,10 @@
       {
         "text": "Continue.",
         "destination": "inspection_passed"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing_scribe"
       }
     ]
   },
@@ -386,6 +486,10 @@
       {
         "text": "The testimony stands.",
         "destination": "testimony_stands_scribe"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing_scribe"
       }
     ]
   },
@@ -404,6 +508,10 @@
       {
         "text": "Continue.",
         "destination": "records_prove_it"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing_scribe"
       }
     ]
   },
@@ -417,6 +525,10 @@
       {
         "text": "The silence was total:",
         "destination": "silence_totally"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing_scribe"
       }
     ]
   },
@@ -456,7 +568,7 @@
     "choices": [
       {
         "text": "Continue.",
-        "destination": "crowd_reaction_scribe"
+        "destination": "closing_scribe"
       }
     ]
   },
@@ -465,7 +577,7 @@
     "choices": [
       {
         "text": "Continue.",
-        "destination": "crowd_reaction_scribe"
+        "destination": "closing_scribe"
       }
     ]
   },

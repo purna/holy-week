@@ -73,7 +73,7 @@ He did not scold me for being absent the first time. He simply came to where I w
 * [Then you were ready for the shore.] -> shore_scene
 
 === shore_scene ===
-# UNLOCK_EVIDENCE: charcoal_fireHe made a charcoal fire on the beach and invited us to breakfast. [John 21:9] The risen Lord — cooking fish with His own hands. He could have appeared in glory. He chose intimacy. He fed us before He said anything that mattered. That order matters.
+# UNLOCK_EVIDENCE: charcoal_fireHe
 
 * [What passed between Him and Peter?] -> peter_commission
 * [Why a charcoal fire?] -> charcoal_meaning
@@ -84,7 +84,7 @@ There was a charcoal fire in the high priest's courtyard the night of the arrest
 * [Three questions.] -> peter_commission
 
 === peter_commission ===
-# UNLOCK_EVIDENCE: threefold_commissionThree times He asked Peter if he loved Him. Three times Peter answered yes. Three times He commissioned: "Feed My lambs. Tend My sheep. Feed My sheep." [John 21:15-17] Peter wept on the third question — he understood what was happening. A precise repair of three denials with three affirmations. The same number, the same context, the same man.
+# UNLOCK_EVIDENCE: threefold_commissionThree
 
 * [Then Peter is restored?] -> restoration
 * [Why did Peter weep?] -> why_weep

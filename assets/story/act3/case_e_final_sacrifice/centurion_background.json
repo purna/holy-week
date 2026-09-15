@@ -9,6 +9,10 @@
       {
         "text": "You came to investigate this man first?",
         "destination": "investigation"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "dialogue_end"
       }
     ]
   },
@@ -17,11 +21,15 @@
     "choices": [
       {
         "text": "You studied His ways.",
-        "destination": "study"
+        "destination": "conversation_end"
       },
       {
         "text": "The servant's healing.",
         "destination": "servant_healing"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "dialogue_end"
       }
     ]
   },
@@ -34,7 +42,11 @@
       },
       {
         "text": "But you kept the report.",
-        "destination": "keep_record"
+        "destination": "conversation_end"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "dialogue_end"
       }
     ]
   },
@@ -47,7 +59,15 @@
       },
       {
         "text": "You were wrong about coincidence.",
-        "destination": "evidence"
+        "destination": "conversation_end"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "dialogue_end"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "dialogue_end"
       }
     ]
   },
@@ -73,7 +93,15 @@
       },
       {
         "text": "What it means.",
-        "destination": "understanding"
+        "destination": "conversation_end"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "dialogue_end"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "dialogue_end"
       }
     ]
   },
@@ -86,7 +114,7 @@
       },
       {
         "text": "They could not convince you.",
-        "destination": "conviction"
+        "destination": "conversation_end"
       }
     ]
   },
@@ -96,6 +124,14 @@
       {
         "text": "Evidence, not faith.",
         "destination": "evidence_based"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "dialogue_end"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "dialogue_end"
       },
       {
         "text": "The evidence was overwhelming.",
@@ -112,7 +148,15 @@
       },
       {
         "text": "What the records showed.",
-        "destination": "divine_evidence"
+        "destination": "conversation_end"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "dialogue_end"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "dialogue_end"
       }
     ]
   },
@@ -139,6 +183,10 @@
       {
         "text": "The evidence was divine.",
         "destination": "overwhelming"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "dialogue_end"
       }
     ]
   },
@@ -152,6 +200,14 @@
       {
         "text": "The cross was His throne.",
         "destination": "cross_throne"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "dialogue_end"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "dialogue_end"
       }
     ]
   },
@@ -178,6 +234,10 @@
       {
         "text": "The completion of the work.",
         "destination": "completion"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "dialogue_end"
       }
     ]
   },
@@ -191,6 +251,10 @@
       {
         "text": "The covenant was sealed.",
         "destination": "completion"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "dialogue_end"
       }
     ]
   },
@@ -202,8 +266,16 @@
         "destination": "investigation_continued"
       },
       {
+        "text": "Conclude.",
+        "destination": "dialogue_end"
+      },
+      {
         "text": "You became a different kind of soldier.",
         "destination": "different_soldier"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "dialogue_end"
       }
     ]
   },
@@ -217,6 +289,10 @@
       {
         "text": "Your skepticism was tested.",
         "destination": "tested_belief"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "dialogue_end"
       }
     ]
   },
@@ -230,6 +306,10 @@
       {
         "text": "The answer was certain.",
         "destination": "faith_final"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "dialogue_end"
       }
     ]
   },
@@ -239,6 +319,10 @@
       {
         "text": "The evidence accumulated.",
         "destination": "accumulating_evidence"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "dialogue_end"
       },
       {
         "text": "You made your choice.",
@@ -269,6 +353,10 @@
       {
         "text": "The record speaks for itself.",
         "destination": "faith_final"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "dialogue_end"
       }
     ]
   },
@@ -278,6 +366,22 @@
       {
         "text": "The centurion's confession endures.",
         "destination": "closing"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "dialogue_end"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "dialogue_end"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "dialogue_end"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "dialogue_end"
       }
     ]
   },
@@ -330,6 +434,10 @@
       {
         "text": "The sword became a symbol.",
         "destination": "faith_final"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "dialogue_end"
       }
     ]
   },
@@ -341,5 +449,18 @@
         "destination": "final_record"
       }
     ]
+  },
+  "dialogue_end": {
+    "content": "The path leads onward and the meaning becomes clear.",
+    "choices": [
+      {
+        "text": "Finish the interview.",
+        "destination": "conversation_end"
+      }
+    ]
+  },
+  "conversation_end": {
+    "content": "",
+    "choices": []
   }
 }

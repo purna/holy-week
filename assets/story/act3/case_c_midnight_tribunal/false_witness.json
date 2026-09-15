@@ -61,6 +61,10 @@
       {
         "text": "Did you know what you were saying?",
         "destination": "payment_question"
+      },
+      {
+        "text": "Your colleague contradicted you.",
+        "destination": "witness_contradiction"
       }
     ]
   },
@@ -100,6 +104,10 @@
       {
         "text": "The procedure is the justice.",
         "destination": "closing"
+      },
+      {
+        "text": "What did Caiaphas do with it?",
+        "destination": "caiaphas_reaction"
       }
     ]
   },

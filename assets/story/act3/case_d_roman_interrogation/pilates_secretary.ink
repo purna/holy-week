@@ -21,9 +21,7 @@
 //
 -> start
 === start ===
-State your name and business for the archives, scribe. I am formatting the official titulus for the crossbeam.
-The charge must be written clearly in Latin, Greek, and Hebrew so every traveler passing the main road reads it.
-The Prefect ordered it to read: 'Jesus of Nazareth, King of the Jews.' The priests are complaining about the phrasing.
+State your name and business for the archives, scribe. I am formatting the official titulus for the crossbeam. The charge must be written clearly in Latin, Greek, and Hebrew so every traveler passing the main road reads it. The Prefect ordered it to read: 'Jesus of Nazareth, King of the Jews.' The priests are complaining about the phrasing.
 * [Why won't the Prefect change the wording?] -> protocol
 * [Are you recording the testimonies from the morning session?] -> records
 

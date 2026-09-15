@@ -31,6 +31,7 @@
 // ============================================================
 
 -> start
+
 === start ===
 We were there to make sure the sentence was carried out. He claimed to be the Son of God. It was blasphemy. We had heard His teachings — the way He spoke to sinners, the way He dismissed our authority. When He died, we expected... relief.
 * [But instead you saw something else.] -> unexpected
@@ -44,22 +45,22 @@ Instead of relief, we felt — fear. Not the fear of a dying man, we see plenty 
 === darkness ===
 At noon, the sun vanished. Not an eclipse — we were told it was a cloud, a natural phenomenon. But we soldiers, hardened by years of campaigns across the provinces, we knew the difference. The birds stopped singing. The wind died. Even the thieves on their crosses fell silent. Three hours of unnatural darkness.
 * [What happened after?] -> death_throes
-* [The silence was unnatural.] -> unnatural_silence
+* [The silence was unnatural.] -> closing
 
 === earthquake ===
 The ground shook beneath our boots. Not the rolling tremor of distant quakes — a focused, violent shudder that shook the very foundations of the hill. The stones cracked. The dust rose. And through the whole of it, the cross stood unmoved.
 * [The cross endured.] -> cross_endured
-* [What you recorded.] -> official_report
+* [What you recorded.] -> closing
 
 === cross_endured ===
 The cross endured. The wood that was meant to be the instrument of shame became the axis on which the entire universe turned. And the man who hung upon it — He stood there, not as a victim, but as a conqueror.
-* [The victory was visible.] -> victory_visible
+* [The victory was visible.] -> closing
 * [The paradox.] -> paradox
 
 === paradox ===
 The paradox. The tool of torture became the symbol of salvation. The mark of shame became the badge of honor. The death of a condemned criminal became the defeat of death itself. We had been sent to witness an execution. We witnessed a resurrection in reverse — life pouring out of death.
 * [What happened then?] -> death_throes
-* [The meaning was clear.] -> meaning_clear
+* [The meaning was clear.] -> closing
 
 === death_throes ===
 He cried out — but not in agony. In declaration. "It is finished." The Greek — tetelestai — means the debt is paid. The contract is fulfilled. The kingdom is established. With those words, He bowed His head and gave up His spirit. Not a snatch of life — a yielding. A gift.
@@ -95,7 +96,7 @@ The way was opened — for Jew and Gentile alike. For the righteous and the wick
 
 === radical_equality ===
 The equality was radical — and terrifying. If anyone could approach God through the cross, what need had we of our temples? Our sacrifices? Our authority? Our centuries of expertise? The democratization of divine access was the most revolutionary — and dangerous — idea in human history.
-* [Dangerous to the establishment.] -> establishment_threat
+* [Dangerous to the establishment.] -> closing
 * [The priesthood transformed.] -> transformed
 
 === transformed ===
@@ -134,7 +135,7 @@ The new had begun. Not with a bang. Not with a revelation. Not with a prophet's 
 === crowd_reaction ===
 The crowd — what reaction we expected. Relief that the troublemaker was dead. Satisfaction that the disturbance was over. Dismissal that the whole affair was now behind them. But when the sky went dark and the earth shook, their mocking turned to murmuring.
 * [Their mocking turned to fear.] -> turning_fear
-* [Fear was the response.] -> fear_response
+* [Fear was the response.] -> closing
 
 === turning_fear ===
 Their mocking turned to fear as the rocks cracked and the birds fell silent. The priests hurried away first — they always do when the supernatural intrudes. The crowd scattered. Even the soldiers, hardened men, fell to their faces.
@@ -143,7 +144,7 @@ Their mocking turned to fear as the rocks cracked and the birds fell silent. The
 
 === fear_replaced_mockery ===
 Fear replaced mockery. The same crowd that had shouted, "He saved others; let Him save Himself!" now stood in stunned silence as the heavens themselves seemed to recoil. The supernatural does not allow neutral observers.
-* [The choice was stark.] -> stark_choice
+* [The choice was stark.] -> closing
 * [Some ran, others stood.] -> stood_or_ran
 
 === stood_or_ran ===
@@ -177,4 +178,6 @@ The authority was irrevocable. The cross could not be undone. The resurrection c
 
 === closing ===
 We were there. We witnessed. We saw. And we cannot unsee. The Temple veil is torn. The darkness was real. The earthquake was felt. The Son of God died on a cross — and the world was forever changed. The question is no longer: "What did you see?" but: "Will you believe it?"
+
+
 -> DONE

@@ -21,13 +21,11 @@
 -> intro
 
 === intro ===
-A man hangs on the cross to the right of the central beam, his
-breathing ragged. He turns his head slightly as you approach —
-still alive enough to notice you, still alive enough to speak.
+* [unlock crucifiers forgiven] -> unlock_crucifiers_forgiven
+* [unlock crucified with thieves] -> unlock_crucified_with_thieves
+A man hangs on the cross to the right of the central beam, his breathing ragged. He turns his head slightly as you approach — still alive enough to notice you, still alive enough to speak.
 
-"Come to gawk? Or come to ask? Everyone else already has their
-verdict on me. Thief. Numbered with him. Might as well be numbered
-with him twice, the way they tell it."
+"Come to gawk? Or come to ask? Everyone else already has their verdict on me. Thief. Numbered with him. Might as well be numbered with him twice, the way they tell it."
 
 -> main_hub
 
@@ -41,30 +39,21 @@ with him twice, the way they tell it."
 === neutral_stage ===
 # UNLOCK_EVIDENCE: crucified_with_thieves
 # UNLOCK_EVIDENCE: crucifiers_forgiven
-"They nailed up three crosses that morning. Mine, my friend's,
-and His — right between us. Made a point of it, putting Him in
-the middle. Wasn't an accident. The charge sheet listed the three
-of us together."
+"They nailed up three crosses that morning. Mine, my friend's, and His — right between us. Made a point of it, putting Him in the middle. Wasn't an accident. The charge sheet listed the three of us together."
 
-* [Continue] -> unlock_crucified_with_thieves -> main_hub
+* [Continue] -> unlock_crucified_with_thieves
 
 === cautious_stage ===
 # UNLOCK_EVIDENCE: crucified_with_thieves
 # UNLOCK_EVIDENCE: crucifiers_forgiven
-"At first I mocked Him too. Same as my friend on the other side.
-'Aren't you the Messiah? Save yourself — and us, while you're at
-it.' Cheap talk. When you're dying, you'll say anything, hoping
-something sticks."
+"At first I mocked Him too. Same as my friend on the other side. 'Aren't you the Messiah? Save yourself — and us, while you're at it.' Cheap talk. When you're dying, you'll say anything, hoping something sticks."
 
 * [Continue] -> main_hub
 
 === pressured_stage ===
 # UNLOCK_EVIDENCE: crucified_with_thieves
 # UNLOCK_EVIDENCE: crucifiers_forgiven
-"My friend wouldn't let up on Him. Cursing, jeering, same as the
-crowd below. I told him to stop. 'Don't you fear God? We're
-getting exactly what we deserve. This man's done nothing wrong.'
-I don't know why I said it. It just came out true.
+"My friend wouldn't let up on Him. Cursing, jeering, same as the crowd below. I told him to stop. 'Don't you fear God? We're getting exactly what we deserve. This man's done nothing wrong.' I don't know why I said it. It just came out true.
 
 ~ penitent_confessed = true
 
@@ -73,34 +62,28 @@ I don't know why I said it. It just came out true.
 === exposed_stage ===
 # UNLOCK_EVIDENCE: crucified_with_thieves
 # UNLOCK_EVIDENCE: crucifiers_forgiven
-"The soldiers were still rolling dice for His clothes when I heard
-it. He wasn't cursing back at anyone. He was praying — for them.
-'Father, forgive them, they don't know what they're doing.'
+"The soldiers were still rolling dice for His clothes when I heard it. He wasn't cursing back at anyone. He was praying — for them. 'Father, forgive them, they don't know what they're doing.'
 
-I asked Him to remember me when He came into His kingdom. Didn't
-expect an answer, not really. He said I'd be with Him in paradise.
-Today. Not someday. <i>Today.</i>"
+I asked Him to remember me when He came into His kingdom. Didn't expect an answer, not really. He said I'd be with Him in paradise. Today. Not someday. <i>Today.</i>"
 
-* [Continue] -> unlock_crucifiers_forgiven -> main_hub
+* [Continue] -> unlock_crucifiers_forgiven
 
 === repeat_stage ===
 # UNLOCK_EVIDENCE: crucified_with_thieves
 # UNLOCK_EVIDENCE: crucifiers_forgiven
-"I was numbered among the criminals, same as Him. I know exactly
-what that felt like, dying next to Him instead of far from Him."
--> DONE
+"I was numbered among the criminals, same as Him. I know exactly what that felt like, dying next to Him instead of far from Him."
 
 // ------------------------------------------------------------
 // Evidence unlock knots
 // ------------------------------------------------------------
+* [Finish the interview.] -> conversation_end
 
 === unlock_crucified_with_thieves ===
 { not evidence_crucified_with_thieves:
     ~ evidence_crucified_with_thieves = true
     # UNLOCK_EVIDENCE: crucified_with_thieves
 }
-
--> DONE
+* [Finish the interview.] -> conversation_end
 
 === unlock_crucifiers_forgiven ===
 { not evidence_crucifiers_forgiven:
@@ -108,7 +91,6 @@ what that felt like, dying next to Him instead of far from Him."
     # UNLOCK_EVIDENCE: crucifiers_forgiven
 }
 
--> DONE
 
 // ------------------------------------------------------------
 // Variables (declare at top of runtime story bundle if merged
@@ -117,3 +99,7 @@ what that felt like, dying next to Him instead of far from Him."
 VAR evidence_crucified_with_thieves = false
 VAR evidence_crucifiers_forgiven = false
 VAR penitent_confessed = false
+* [Finish the interview.] -> conversation_end
+
+=== conversation_end ===
+-> DONE

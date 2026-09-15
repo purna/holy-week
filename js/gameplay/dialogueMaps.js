@@ -49,7 +49,7 @@ export const DIALOGUE_ID_MAP = {
     market_rumors: '../assets/story/act1/case_b_overturned_tables/market_rumors.json',
     pontius_pilate: '../assets/story/act1/case_b_overturned_tables/pontius_pilate.json',
     pilates_secretary: '../assets/story/act1/case_b_overturned_tables/pilates_secretary.json',
-    pharisee_critique: '../assets/story/act1/case_b_overturned_tables/pharisee_critique.json',
+    pharisee_critique: '../assets/story/act2/case_a_silenced_teacher/pharisee_critique.json',
     priest_objection: '../assets/story/act1/case_b_overturned_tables/priest_objection.json',
     priest_objection_temple: '../assets/story/act1/case_b_overturned_tables/priest_objection_temple.json',
     guard_report_temple: '../assets/story/act1/case_b_overturned_tables/guard_report_temple.json',

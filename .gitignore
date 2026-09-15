@@ -4,9 +4,20 @@
 
 .DS_Store
 *.DS_Store
+*/*.DS_Store
+*/*/*.DS_Store
+*/*/*/*.DS_Store
+*.log
+
 *.log
 .kilo/*
 *.kilo
 *.kilo/*
 .vscode/*
 .vscode
+.DS_Store
+assets/.DS_Store
+assets/story/.DS_Store
+tools/.DS_Store
+assets/.DS_Store
+assets/story/.DS_Store

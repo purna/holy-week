@@ -75,7 +75,7 @@ Yes. On this same water three years before — a boat, empty nets, cast on the r
 * [And then breakfast.] -> shore_scene
 
 === shore_scene ===
-# UNLOCK_EVIDENCE: charcoal_fireA charcoal fire burning on the beach. Bread and fish, already cooking. The risen Lord, preparing breakfast with His own hands. We dragged the net ashore and He invited us to eat. No one asked who He was. After we ate, He turned to Peter.
+# UNLOCK_EVIDENCE: charcoal_fireA
 
 * [What passed between them?] -> peter_commission
 * [Why a charcoal fire specifically?] -> charcoal_fire
@@ -86,7 +86,7 @@ Peter denied Him three times in the high priest's courtyard, beside a charcoal f
 * [Three questions.] -> peter_commission
 
 === peter_commission ===
-# UNLOCK_EVIDENCE: threefold_commissionThree times He asked: "Do you love Me?" [John 21:15-17] The first two times Peter answered with the word for a love that holds nothing back. The third time, Jesus used Peter's own word — the ordinary love of a friend. Peter was grieved on the third question. He understood the pattern. "Lord, You know all things; You know that I love You," he said. Each answer received the same commission: "Feed My lambs. Tend My sheep. Feed My sheep."
+# UNLOCK_EVIDENCE: threefold_commissionThree
 
 Ezekiel promised, long before any of this, that God Himself would search for His scattered sheep and feed them. [Ezekiel 34:11-16] I watched that promise handed to a fisherman on a beach.
 

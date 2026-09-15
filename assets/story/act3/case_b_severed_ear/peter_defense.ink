@@ -60,11 +60,12 @@
 // ============================================================
 
 -> start
+
 === start ===
 I am Simon Peter. I followed Him for three years. I healed others, asked impossible questions, and watched Him do things no teacher should be able to do. Then the rooster crowed. I denied Him three times and left. I am still here, which is either resilience or foolishness. You decide.
 
 * [Tell me about the sword.] -> sword
-* [What happened with the donkey?] -> rope
+* [What happened with the donkey?] -> closing
 * [The denials.] -> denials
 
 === sword ===
@@ -109,5 +110,7 @@ I am here because grace is heavier than guilt. Because three denials meet three 
 I write this not to excuse what I did, but to explain what was done for me. The sword I drew in fear is sheathed. The sword He drew in love has not fallen.
 
 My name is Simon Peter. I denied the Messiah. I am forgiven. And I am not done yet.
+
+
 
 -> DONE

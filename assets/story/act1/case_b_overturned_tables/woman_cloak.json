@@ -1,23 +1,35 @@
 {
   "start": {
-    "content": "I had bled for twelve years. Not a woman's course, but a\nconstant, wasting flow that made me an outcast. I heard\nHe was passing through the crowd, and I thought — if I\ncould just touch the hem of His garment...",
+    "content": "The woman lowers her eyes for a moment, then looks back at you. There is something in her expression — relief, perhaps, or the memory of a sorrow that has finally become a joy.\n\"You've heard the story, haven't you?\" she asks quietly. \"The woman who reached through the crowd and touched His cloak.\"\nShe gives a small, almost embarrassed smile.\n\"That woman was me.\"\nFor twelve years I had suffered with bleeding. Twelve years of being separated from others, of being called unclean, of watching my life become smaller and smaller. I had almost forgotten what it felt like to belong.\n\"But that day, I heard that Jesus was passing by. And I thought...\" She pauses.\n\"If I could only touch the hem of His garment.\"",
     "choices": [
       {
-        "text": "You touched His cloak?",
+        "text": "Tell me about your twelve years of suffering.",
+        "destination": "suffering"
+      },
+      {
+        "text": "What happened when you touched His cloak?",
         "destination": "touch"
       },
       {
-        "text": "What happened when you did?",
-        "destination": "healing"
+        "text": "Did you believe Jesus would heal you?",
+        "destination": "faith_sustained"
       },
       {
-        "text": "How long had you suffered?",
-        "destination": "suffering"
+        "text": "What happened when Jesus called you \"daughter\"?",
+        "destination": "called_daughter"
+      },
+      {
+        "text": "How did you feel afterward?",
+        "destination": "peace_after"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing"
       }
     ]
   },
   "suffering": {
-    "content": "Twelve years of bleeding. Twelve years of isolation.\nTwelve years of ritual uncleanness that made me\nuntouchable to my own family. The physicians took\nmy money and gave me nothing. The priests declared\nme ceremonially unclean. And still — the flow\nwould not stop.",
+    "content": "Twelve years of bleeding. Twelve years of isolation. Twelve years of ritual uncleanness that made me untouchable to my own family. The physicians took my money and gave me nothing. The priests declared me ceremonially unclean. And still — the flow would not stop.",
     "choices": [
       {
         "text": "You were completely alone.",
@@ -26,11 +38,15 @@
       {
         "text": "Faith sustained you.",
         "destination": "faith_sustained"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing"
       }
     ]
   },
   "alone": {
-    "content": "Completely alone. My husband divorced me — the\nLaw required it. Leviticus 15 declares a woman\nwith a discharge ritually unclean. My own\nchildren were told to avoid me. Even the\nbeast of burden was cleaner than I.",
+    "content": "Completely alone. My husband divorced me — the Law required it. Leviticus 15 declares a woman with a discharge ritually unclean. My own children were told to avoid me. Even the beast of burden was cleaner than I.",
     "choices": [
       {
         "text": "How did you survive?",
@@ -39,11 +55,15 @@
       {
         "text": "The isolation was crushing.",
         "destination": "crushing"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing"
       }
     ]
   },
   "faith_sustained": {
-    "content": "Faith sustained me — faith in the promises\nof the prophets, faith in the mercies\nof God, faith that someday the flowing\nwould stop. But faith alone cannot\nstop bleeding. Faith alone cannot\npurify the body. Faith alone...\ncan lead me to the hem of His garment.",
+    "content": "Faith sustained me — faith in the promises of the prophets, faith in the mercies of God, faith that someday the flowing would stop. But faith alone cannot stop bleeding. Faith alone cannot purify the body. Faith alone... can lead me to the hem of His garment.",
     "choices": [
       {
         "text": "The hem of His garment.",
@@ -51,38 +71,50 @@
       },
       {
         "text": "Faith becomes action.",
-        "destination": "faith_action"
+        "destination": "testimony"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing"
       }
     ]
   },
   "survive": {
-    "content": "I survived on alms. On the kindness\nof strangers who threw scraps\nfrom their tables without looking\nme in the eye. On the charity\nof women who whispered prayers\nfor my soul while crossing\nthe street to avoid my shadow.",
+    "content": "I survived on alms. On the kindness of strangers who threw scraps from their tables without looking me in the eye. On the charity of women who whispered prayers for my soul while crossing the street to avoid my shadow.",
     "choices": [
       {
         "text": "Kindness without contact.",
-        "destination": "distant_kindness"
+        "destination": "testimony"
       },
       {
         "text": "You hoped for healing.",
-        "destination": "hoped"
+        "destination": "testimony"
       }
     ]
   },
   "crushing": {
-    "content": "The isolation was crushing.\nTwelve years without a\nhuman touch that was\nnot born of duty\nor fear. Twelve\nyears wondering\nif God had\nforgotten\nmy name.",
+    "content": "The isolation was crushing. Twelve years without a human touch that was not born of duty or fear. Twelve years wondering if God had forgotten my name.",
     "choices": [
       {
         "text": "God never forgets.",
-        "destination": "god_remembers"
+        "destination": "seen"
       },
       {
         "text": "The loneliness was deafening.",
-        "destination": "deafening_loneliness"
+        "destination": "seen"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing"
       }
     ]
   },
   "touch": {
-    "content": "I pushed through men with their eyes\nfixed ahead, not caring who brushed\nagainst them. My fingers found the\nfringe of His tallit — the blue cord\nwoven through the corner. I scarcely\nmade contact when I felt the flow\nstop. Not slow, not easing... but\nstopping. Like a spring dammed in\nan instant.",
+    "content": "I pushed through men with their eyes fixed ahead, not caring who brushed against them. My fingers found the fringe of His tallit — the blue cord woven through the corner. I scarcely made contact when I felt the flow stop. Not slow, not easing... but stopping. Like a spring dammed in an instant.",
     "choices": [
       {
         "text": "Did He know?",
@@ -90,16 +122,24 @@
       },
       {
         "text": "Were you afraid?",
-        "destination": "afraid"
+        "destination": "testimony"
       },
       {
         "text": "The touch was electric.",
         "destination": "electric_touch"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing"
       }
     ]
   },
   "electric_touch": {
-    "content": "The touch was electric.\nNot with pain — with\npower. I felt His energy\nflow into me like a\nriver breaking\nthrough a dam.\nThe twelve\nyears of\nemptiness\nfilled at\nonce.",
+    "content": "The touch was electric. Not with pain — with power. I felt His energy flow into me like a river breaking through a dam. The twelve years of emptiness filled at once.",
     "choices": [
       {
         "text": "The power was immediate.",
@@ -112,11 +152,15 @@
       {
         "text": "The dam broke in your favor.",
         "destination": "dam_broke"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing"
       }
     ]
   },
   "power_immediate": {
-    "content": "Immediate.\nNot gradual.\nNot partial.\nBut total.\nComplete.\nWhole.\nAs if\nthe moment\nmy fingers\ntouched\nthe hem\nof His\ngarment,\nthe entire\ntwelve\nyears\nof\nsuffering\nwas\nundone.",
+    "content": "Immediate. Not gradual. Not partial. But total. Complete. Whole. As if the moment my fingers touched the hem of His garment, the entire twelve years of suffering was undone.",
     "choices": [
       {
         "text": "The undoing was complete.",
@@ -133,92 +177,120 @@
     ]
   },
   "river_life": {
-    "content": "The river of life.\nThat is what\nflowed from\nthat single\npoint of\ncontact.\nThe river\nthat Ezekiel\nsaw in\nhis vision.\nThe river\nthat makes\nthe dead\nlive.\nThe river\nthat\ntransforms\neverything\nit touches.",
+    "content": "The river of life. That is what flowed from that single point of contact. The river that Ezekiel saw in his vision. The river that makes the dead live. The river that transforms everything it touches.",
     "choices": [
       {
         "text": "Ezekiel's river.",
-        "destination": "ezekiel_river"
+        "destination": "power"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing"
       },
       {
         "text": "The dead live.",
-        "destination": "dead_live"
+        "destination": "power"
       },
       {
         "text": "Transformation flows.",
-        "destination": "transformation_flows"
+        "destination": "testimony"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing"
       }
     ]
   },
   "dam_broke": {
-    "content": "The dam broke\nin my favor.\nNot in my\nface. Not\nagainst me.\nBut FOR me.\nAs if\nthe very\nheavens\nhad\naligned\nto\nrelease\nwhat\nhad\nbeen\nheld\nback\nfor\ntwelve\nlong\nyears.",
+    "content": "The dam broke in my favor. Not in my face. Not against me. But FOR me. As if the very heavens had aligned to release what had been held back for twelve long years.",
     "choices": [
       {
         "text": "Heaven aligned.",
-        "destination": "heaven_aligned"
+        "destination": "power"
       },
       {
         "text": "Released in favor.",
-        "destination": "released_favor"
+        "destination": "power"
       },
       {
         "text": "The tide turned.",
-        "destination": "tide_turned"
+        "destination": "power"
       }
     ]
   },
   "undoing_complete": {
-    "content": "The undoing\nwas complete.\nNot a single\nthread of\nmy twelve-year\ndisease\nremained.\nNot a\nsingle\nmemory\nof pain.\nNot\na\nsingle\ntrace\nof\nuncleanness.\nJust...\nwholeness.\nPure\nand\ncomplete.",
+    "content": "The undoing was complete. Not a single thread of my twelve-year disease remained. Not a single memory of pain. Not a single trace of uncleanness. Just... wholeness. Pure and complete.",
     "choices": [
       {
         "text": "Wholeness beyond healing.",
-        "destination": "wholeness_beyond"
+        "destination": "testimony"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing"
       },
       {
         "text": "Pure and complete.",
-        "destination": "pure_complete"
+        "destination": "testimony"
       },
       {
         "text": "The old was gone.",
-        "destination": "old_gone"
+        "destination": "testimony"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing"
       }
     ]
   },
   "twelve_instant": {
-    "content": "Twelve\nyears\nin\nan\ninstant.\nTwelve\nyears\nof\nsuffering\nreduced\nto\ntwelve\nseconds\nof\ntouch.\nTwelve\nyears\nof\nisolation\nended\nby\none\nmoment\nof\nfaith.\nTime\ncollapsed.\nPain\ndissolved.\nLife\nreturned.",
+    "content": "Twelve years in an instant. Twelve years of suffering reduced to twelve seconds of touch. Twelve years of isolation ended by one moment of faith. Time collapsed. Pain dissolved. Life returned.",
     "choices": [
       {
         "text": "Time collapsed.",
-        "destination": "time_collapsed"
+        "destination": "power"
       },
       {
         "text": "Pain dissolved.",
-        "destination": "pain_dissolved"
+        "destination": "power"
       },
       {
         "text": "Life returned.",
-        "destination": "life_returned"
+        "destination": "power"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing"
       }
     ]
   },
   "healing_beyond": {
-    "content": "Healing\nbeyond\nhealing.\nNot\njust\nthe\nstopping\nof\nblood.\nNot\njust\nthe\ncleansing\nof\nuncleanness.\nBut\nthe\nrestoration\nof\ndignity.\nOf\nconnection.\nOf\nbelonging.\nThe\nhealing\nwas\ntotal.",
+    "content": "Healing beyond healing. Not just the stopping of blood. Not just the cleansing of uncleanness. But the restoration of dignity. Of connection. Of belonging. The healing was total.",
     "choices": [
       {
         "text": "Dignity restored.",
-        "destination": "dignity_restored"
+        "destination": "testimony"
       },
       {
         "text": "Connection restored.",
-        "destination": "connection_restored"
+        "destination": "testimony"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing"
       },
       {
         "text": "Belonging restored.",
-        "destination": "belonging_restored"
+        "destination": "seen"
+      },
+      {
+        "text": "How do you understand the wider effect of your healing?",
+        "destination": "healing_flowed"
       }
     ]
   },
   "jesus_feels": {
-    "content": "\"Who touched Me?\"\nHe asked — not harshly, but clearly.\nHis disciples looked around bewildered.\n\"Why ask?\" they said. \"All touch You,\nand the crowd presses in.\" But He insisted.\nThen His gaze landed on me.",
+    "content": "\"Who touched Me?\" He asked — not harshly, but clearly. His disciples looked around bewildered. \"Why ask?\" they said. \"All touch You, and the crowd presses in.\" But He insisted. Then His gaze landed on me.",
     "choices": [
       {
         "text": "What happened next?",
@@ -231,15 +303,19 @@
       {
         "text": "The gaze found you.",
         "destination": "gaze_found"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing"
       }
     ]
   },
   "called_daughter": {
-    "content": "He called me \"daughter.\" Not \"woman.\"\nNot \"unclean.\" \"Daughter.\" As if\ntwelve years of bleeding had never\nhappened. As if my isolation meant\nnothing. As if I were the most\nwelcome guest at His table.",
+    "content": "He called me \"daughter.\" Not \"woman.\" Not \"unclean.\" \"Daughter.\" As if twelve years of bleeding had never happened. As if my isolation meant nothing. As if I were the most welcome guest at His table.",
     "choices": [
       {
         "text": "The word was healing.",
-        "destination": "word_healing"
+        "destination": "power"
       },
       {
         "text": "Dignity restored.",
@@ -248,36 +324,52 @@
       {
         "text": "Belonging restored.",
         "destination": "belonging_restored2"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing"
+      },
+      {
+        "text": "What did the word daughter mean to you?",
+        "destination": "word_healing2"
       }
     ]
   },
   "gaze_found": {
-    "content": "His gaze\nfound me\nthrough\nthe crowd.\nNot because\nI was loud.\nNot because\nI was\nimportant.\nBut because\nsomehow —\nsomehow —\nHe knew.\nHe knew\nthat\namong\nall\nthese\npeople,\none\nheart\nhad\nreached\nout\nin\nfaith.\nAnd\nHe\nfound\nthat\nheart.",
+    "content": "His gaze found me through the crowd. Not because I was loud. Not because I was important. But because somehow — somehow — He knew. He knew that among all these people, one heart had reached out in faith. And He found that heart.",
     "choices": [
       {
         "text": "He knows all hearts.",
-        "destination": "knows_hearts"
+        "destination": "seen"
       },
       {
         "text": "The gaze connected.",
-        "destination": "gaze_connected"
+        "destination": "seen"
       },
       {
         "text": "Faith is seen.'",
-        "destination": "faith_seen"
+        "destination": "seen"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing"
       }
     ]
   },
   "confession": {
-    "content": "I fell at His feet, quaking.\nI told Him the truth — all of it.\nThe physicians, the expenses,\nthe growing worse. And how in\nthat single moment of touching\nHis garment, I felt the power\ngo out from Him. I was healed.\nCompletely.",
+    "content": "I fell at His feet, quaking. I told Him the truth — all of it. The physicians, the expenses, the growing worse. And how in that single moment of touching His garment, I felt the power go out from Him. I was healed. Completely.",
     "choices": [
       {
         "text": "What did He say to you?",
         "destination": "grace"
       },
       {
+        "text": "Conclude.",
+        "destination": "closing"
+      },
+      {
         "text": "His power flowed to you.",
-        "destination": "power_flow"
+        "destination": "power"
       },
       {
         "text": "The truth was safe.",
@@ -286,7 +378,7 @@
     ]
   },
   "grace": {
-    "content": "He didn't rebuke me. He called me\n\"daughter.\" As if I were clean.\nAs if I were whole. \"Your faith\nhas healed you,\" He said. \"Go in\npeace.\" And I felt what I had\nnot felt in twelve years —\ntruly whole. Not just the bleeding\nstopped, but my very soul.",
+    "content": "He didn't rebuke me. He called me \"daughter.\" As if I were clean. As if I were whole. \"Your faith has healed you,\" He said. \"Go in peace.\" And I felt what I had not felt in twelve years — truly whole. Not just the bleeding stopped, but my very soul.",
     "choices": [
       {
         "text": "Peace after pain.",
@@ -299,181 +391,240 @@
       {
         "text": "Faith received everything.",
         "destination": "faith_received"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing"
       }
     ]
   },
   "peace_after": {
-    "content": "Peace\nafter\npain.\nRest\nafter\nturmoil.\nSilence\nafter\ntwelve\nyears\nof\nweeping.\nThe\npeace\nof\nGod —\nwhich\npasses\nunderstanding —\nflooded\nthrough\nevery\ncell\nof my\nbeing.\nI\nwas\nat\npeace.\nNot\njust\nin\nmy\nbody.\nNot\njust\nin\nmy\nspirit.\nBut\nin\nmy\n very\n soul.",
+    "content": "Peace after pain. Rest after turmoil. Silence after twelve years of weeping. The peace of God — which passes understanding — flooded through every cell of my being. I was at peace. Not just in my body. Not just in my spirit. But in my very soul.",
     "choices": [
       {
         "text": "The peace was total.",
-        "destination": "peace_total"
+        "destination": "seen"
       },
       {
         "text": "Understanding passed by.",
-        "destination": "understanding_passed"
+        "destination": "seen"
       },
       {
         "text": "The soul found rest.",
-        "destination": "soul_rest"
+        "destination": "seen"
       }
     ]
   },
   "soul_healed": {
-    "content": "The\nsoul\nwas\nhealed\ntoo.\nNot\njust\nthe\nbody.\nNot\njust\nthe\nspirit.\nBut\nthe\nsoul —\nthe\ndeepest\npart,\nthe\npart\nthat\nhad\nbeen\nbruised\nby\ntwelve\nyears\nof\nisolation,\ntwelve\nyears\nof\nrejection,\ntwelve\nyears\nof\nbelieving\nthat\nGod\nhad\nforgotten.\nThe\nsoul\nwas\nmade\nwhole.",
+    "content": "The soul was healed too. Not just the body. Not just the spirit. But the soul — the deepest part, the part that had been bruised by twelve years of isolation, twelve years of rejection, twelve years of believing that God had forgotten. The soul was made whole.",
     "choices": [
       {
         "text": "The bruised soul healed.",
         "destination": "soul_healed"
       },
       {
+        "text": "Conclude.",
+        "destination": "closing"
+      },
+      {
         "text": "The deep place restored.",
-        "destination": "deep_restored"
+        "destination": "testimony"
       },
       {
         "text": "The forgotten remembered.",
-        "destination": "forgotten_remembered"
+        "destination": "seen"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing"
       }
     ]
   },
   "faith_received": {
-    "content": "Faith\nreceived\neverything.\nNot\njust\nhealing.\nNot\njust\npeace.\nNot\njust\nrestoration.\nBut\nrecognition.\nValidation.\nBelonging.\nFaith\nreached\nout\nand\ngrasped\nnot\njust\na\ngarment\nbut\nthe\nheart\nof\nthe\n Son\nof\nGod.\nAnd\nHe\ngave\nback\nmore\nthan\nshe\nhad\nasked.",
+    "content": "Faith received everything. Not just healing. Not just peace. Not just restoration. But recognition. Validation. Belonging. Faith reached out and grasped not just a garment but the heart of the Son of God. And He gave back more than she had asked.",
     "choices": [
       {
         "text": "The heart reached back.",
-        "destination": "heart_reached"
+        "destination": "testimony"
       },
       {
         "text": "More than asked.",
-        "destination": "more_than_asked"
+        "destination": "testimony"
       },
       {
         "text": "Faith grasped grace.",
-        "destination": "faith_grace"
+        "destination": "seen"
       }
     ]
   },
   "word_healing2": {
-    "content": "The\nword\nwas\nhealing —\n\"daughter.\"\nNot\n\"woman.\"\nNot\n\"sinner.\"\n\"Daughter.\"\nThe\nmost\nintimate\nterm\nof\nendearment\nin\nour\nculture.\nA\nchild.\nBeloved.\nAccepted.\nThe\nword\nhealed\nwhat\nthe\ntouch\nbegan.\nAnd\nthe\ntouch\nhealed\nwhat\nthe\nword\nconfirmed.",
+    "content": "The word was healing — \"daughter.\" Not \"woman.\" Not \"sinner.\" \"Daughter.\" The most intimate term of endearment in our culture. A child. Beloved. Accepted. The word healed what the touch began. And the touch healed what the word confirmed.",
     "choices": [
       {
         "text": "Word and touch united.",
-        "destination": "word_touch"
+        "destination": "power"
       },
       {
         "text": "Intimacy over institution.",
-        "destination": "intimacy_inst2"
+        "destination": "seen"
       },
       {
         "text": "The word created worth.",
-        "destination": "word_worth"
+        "destination": "seen"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing"
       }
     ]
   },
   "dignity_restored2": {
-    "content": "Dignity\nrestored.\nTwelve\nyears\nof\nbeing\nuntouchable\nended\nwith\ntwelve\nwords:\n\"Your\nfaith\nhas\nhealed\nyou.\"\nDignity\nrestored.\nWorth\naffirmed.\nValue\nestablished.\nNot\nby\nmy\nfamily.\nNot\nby\nmy\nwealth.\nBut\nby\nthe\nSon\nof\nGod.",
+    "content": "Dignity restored. Twelve years of being untouchable ended with twelve words: \"Your faith has healed you.\" Dignity restored. Worth affirmed. Value established. Not by my family. Not by my wealth. But by the Son of God.",
     "choices": [
       {
         "text": "Worth beyond worthiness.",
-        "destination": "worth_beyond"
+        "destination": "seen"
       },
       {
         "text": "Value through grace.",
-        "destination": "value_grace"
+        "destination": "testimony"
       },
       {
         "text": "Established by divinity.",
-        "destination": "established_divine2"
+        "destination": "power"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing"
       }
     ]
   },
   "belonging_restored2": {
-    "content": "Belonging\nrestored.\nTwelve\nyears\nof\nisolation\nended\nin\na\nmoment.\nI\nwas\nno\nlonger\nan\noutcast.\nI\nwas\na\ndaughter.\nI\nwas\nwelcome.\nI\nwas\nhome.",
+    "content": "Belonging restored. Twelve years of isolation ended in a moment. I was no longer an outcast. I was a daughter. I was welcome. I was home.",
     "choices": [
       {
         "text": "Home at last.",
-        "destination": "home_at_last"
+        "destination": "seen"
       },
       {
         "text": "The outcast welcomed.",
-        "destination": "outcast_welcomed"
+        "destination": "seen"
       },
       {
         "text": "Belonging through faith.",
-        "destination": "belonging_faith"
+        "destination": "seen"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing"
+      },
+      {
+        "text": "Did you feel more than merely welcomed?",
+        "destination": "more_than_welcome"
       }
     ]
   },
   "truth_safe": {
-    "content": "The\ntruth\nwas\nsafe\nwith\nHim.\nNot\njudged.\nNot\ncondemned.\nNot\ndismissed.\nBut\nreceived.\nUnderstood.\nHonored.\nMy\ntwelve\nyears\nof\nshame —\nHe\nheld\nthem\ngently.\nMy\nconfession —\nHe\nmet\nwith\n compassion.\nMy\nfaith —\nHe\nhonored.",
+    "content": "The truth was safe with Him. Not judged. Not condemned. Not dismissed. But received. Understood. Honored. My twelve years of shame — He held them gently. My confession — He met with compassion. My faith — He honored.",
     "choices": [
       {
         "text": "Compassion over judgment.",
-        "destination": "compassion_judgment"
+        "destination": "seen"
       },
       {
         "text": "Shame held gently.",
-        "destination": "shame_gently"
+        "destination": "seen"
       },
       {
         "text": "Faith honored completely.",
-        "destination": "faith_honored"
+        "destination": "testimony"
       }
     ]
   },
   "more_than_welcome": {
-    "content": "More\nthan\nwelcome.\nMore\nthan\naccepted.\nMore\nthan\nunderstood.\nI\nwas\ncelebrated.\nMy\nfaith\nwas\npraised.\nMy\njourney\nwas\nhonored.\nAnd\nmy\nhealing\nwas\npresented\nas\na\ntestimony\nto\nall.",
+    "content": "More than welcome. More than accepted. More than understood. I was celebrated. My faith was praised. My journey was honored. And my healing was presented as a testimony to all.",
     "choices": [
       {
         "text": "Celebrated, not hidden.",
-        "destination": "celebrated"
+        "destination": "testimony"
       },
       {
         "text": "The testimony shared.",
-        "destination": "testimony_shared"
+        "destination": "testimony"
       },
       {
         "text": "Honored in community.",
-        "destination": "honored_community"
+        "destination": "testimony"
       }
     ]
   },
   "healing_flowed": {
-    "content": "The\nhealing\nflowed\nbeyond\nmy\nbody.\nIt\nflowed\nto\nthe\ncrowd\nwho\nwitnessed\nit.\nIt\nflowed\nto\nthe\ndisciples\nwho\nrecorded\nit.\nIt\nflowed\nto\nevery\ngeneration\nthat\nwould\nhear\nmy\nstory.\nOne\ntouch.\nOne\nword.\nOne\nmoment.\nAnd\nthe\n ripple\nof\nhealing\nreaches\nto\nthe\nends\nof\nthe\nearth.",
+    "content": "The healing flowed beyond my body. It flowed to the crowd who witnessed it. It flowed to the disciples who recorded it. It flowed to every generation that would hear my story. One touch. One word. One moment. And the ripple of healing reaches to the ends of the earth.",
     "choices": [
       {
         "text": "The ripple continues.",
-        "destination": "ripple"
+        "destination": "testimony"
       },
       {
         "text": "Healing spreads.'",
-        "destination": "healing_spreads"
+        "destination": "testimony"
       },
       {
         "text": "One touch changes all.'",
-        "destination": "changes_all"
+        "destination": "testimony"
+      },
+      {
+        "text": "What would you want someone hearing your story to understand?",
+        "destination": "closer_to_you"
       }
     ]
   },
   "closer_to_you": {
-    "content": "I am\ncloser\nto\nyou\nnow\nthan\nI\never\nwas.\nNot\nin\ndistance.\nNot\nin\ntime.\nBut\nin\nconnection.\nIn\nunderstanding.\nIn\nthe\nshared\nknowledge\nthat\nhealing\nis\nnot\nearned.\nIt\nis\ngiven.\nAnd\nthose\nwho\nreceive\nit\nare\ncalled\nto\nshare\nit.",
+    "content": "I am closer to you now than I ever was. Not in distance. Not in time. But in connection. In understanding. In the shared knowledge that healing is not earned. It is given. And those who receive it are called to share it.",
     "choices": [
       {
         "text": "Given, not earned.",
-        "destination": "given_not_earned"
+        "destination": "testimony"
       },
       {
         "text": "Healing to share.",
-        "destination": "healing_share"
+        "destination": "testimony"
       },
       {
         "text": "The gift multiplies.",
-        "destination": "gift_multiplies"
+        "destination": "testimony"
       }
     ]
   },
   "closing": {
-    "content": "I am no one remarkable. Just a woman who\ntouched a thread of His cloak. Yet He stopped\nfor me. He saw me. If He notices a broken\nwoman in a crowd of thousands, what might\nHe do for those who seek Him openly?",
+    "content": "I am no one remarkable. Just a woman who touched a thread of His cloak. Yet He stopped for me. He saw me. If He notices a broken woman in a crowd of thousands, what might He do for those who seek Him openly?",
     "choices": []
+  },
+  "testimony": {
+    "content": "The word of healing became a living testimony. What He did for me was not meant to remain hidden. My healing, dignity, faith, and restoration became a witness that His mercy reaches the broken.",
+    "choices": [
+      {
+        "text": "Finish the interview.",
+        "destination": "closing"
+      }
+    ]
+  },
+  "seen": {
+    "content": "He saw me when others saw only an outcast. He remembered me, received me, and restored my place. I was no longer defined by twelve years of suffering, but by being known, loved, and welcomed.",
+    "choices": [
+      {
+        "text": "Finish the interview.",
+        "destination": "closing"
+      }
+    ]
+  },
+  "power": {
+    "content": "His power was immediate and complete. What twelve years of suffering could not change was transformed in a moment of faith. The touch, the word, and the healing all revealed the life-giving power of God.",
+    "choices": [
+      {
+        "text": "Finish the interview.",
+        "destination": "closing"
+      }
+    ]
   }
 }

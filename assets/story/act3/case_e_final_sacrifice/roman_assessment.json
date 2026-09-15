@@ -34,6 +34,10 @@
       {
         "text": "What did you think?",
         "destination": "dice_thoughts"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "final_word"
       }
     ]
   },
@@ -47,6 +51,10 @@
       {
         "text": "The coincidence was uncanny.",
         "destination": "uncanny_coincidence"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "final_word"
       }
     ]
   },
@@ -59,7 +67,11 @@
       },
       {
         "text": "The plan was written.",
-        "destination": "plan_written"
+        "destination": "final_word"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "final_word"
       }
     ]
   },
@@ -68,11 +80,11 @@
     "choices": [
       {
         "text": "The world was watching.",
-        "destination": "world_watching"
+        "destination": "final_word"
       },
       {
         "text": "The temple veil tore.",
-        "destination": "veil_tore"
+        "destination": "final_word"
       }
     ]
   },
@@ -85,7 +97,11 @@
       },
       {
         "text": "The play ended differently.",
-        "destination": "play_ends"
+        "destination": "final_word"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "final_word"
       }
     ]
   },
@@ -98,7 +114,7 @@
       },
       {
         "text": "The temple shook.",
-        "destination": "temple_shook"
+        "destination": "final_word"
       }
     ]
   },
@@ -112,6 +128,10 @@
       {
         "text": "The glory departed.",
         "destination": "glory_departed"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "final_word"
       }
     ]
   },
@@ -125,6 +145,10 @@
       {
         "text": "The way was made.",
         "destination": "way_made"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "final_word"
       }
     ]
   },
@@ -133,11 +157,15 @@
     "choices": [
       {
         "text": "The victory was won.",
-        "destination": "victory_won"
+        "destination": "final_word"
       },
       {
         "text": "The way was made.",
         "destination": "way_made"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "final_word"
       }
     ]
   },
@@ -146,11 +174,15 @@
     "choices": [
       {
         "text": "The healing was complete.",
-        "destination": "healing_complete"
+        "destination": "final_word"
       },
       {
         "text": "The way stands.",
         "destination": "way_stands"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "final_word"
       }
     ]
   },
@@ -163,7 +195,11 @@
       },
       {
         "text": "The light shines.",
-        "destination": "light_shines_final"
+        "destination": "final_word"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "final_word"
       }
     ]
   },
@@ -176,7 +212,11 @@
       },
       {
         "text": "The legacy remains.",
-        "destination": "legacy_remains"
+        "destination": "final_word"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "final_word"
       }
     ]
   },
@@ -189,7 +229,11 @@
       },
       {
         "text": "The confession echoes.",
-        "destination": "confession_echoes"
+        "destination": "final_word"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "final_word"
       }
     ]
   },
@@ -198,11 +242,11 @@
     "choices": [
       {
         "text": "The eagle bowed.",
-        "destination": "eagle_bowed"
+        "destination": "final_word"
       },
       {
         "text": "The cross triumphed.",
-        "destination": "cross_triumph"
+        "destination": "final_word"
       }
     ]
   },
@@ -211,7 +255,7 @@
     "choices": [
       {
         "text": "The moment mattered.",
-        "destination": "moment_mattered"
+        "destination": "final_word"
       },
       {
         "text": "The memory lingers.",
@@ -224,28 +268,36 @@
     "choices": [
       {
         "text": "The name escapes.",
-        "destination": "name_escapes"
+        "destination": "final_word"
       },
       {
         "text": "The details remain.",
-        "destination": "details_remain"
+        "destination": "final_word"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "final_word"
       }
     ]
   },
   "spear": {
-    "content": "My spear — the one I use to dispatch stragglers. I pressed the blade into the side of the central prisoner — to confirm death before removing the body. The blade found blood and water. Dark red, arterial blood. Clear, bright water.\n# UNLOCK_EVIDENCE: evidence_water_and_blood\n=== spear_flesh ==",
+    "content": "My spear — the one I use to dispatch stragglers. I pressed the blade into the side of the central prisoner — to confirm death before removing the body. The blade found blood and water. Dark red, arterial blood. Clear, bright water.\n# UNLOCK_EVIDENCE: evidence_water_and_blood",
     "choices": [
       {
         "text": "The spear entered flesh.",
-        "destination": "spear_flesh"
+        "destination": "spear_flesh2"
       },
       {
         "text": "What flowed out?",
-        "destination": "what_flowed"
+        "destination": "final_word"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "final_word"
       }
     ]
   },
-  "spear_flesh": {
+  "spear_flesh2": {
     "content": "The spear entered flesh — and found blood and water. In all my years of campaigning, I have seen bodies drained of blood, desiccated in the sun. I have never seen a corpse bleed and flow water. The texts say it happens, but I saw it myself.",
     "choices": [
       {
@@ -254,7 +306,11 @@
       },
       {
         "text": "The sign was undeniable.",
-        "destination": "sign_undeniable"
+        "destination": "final_word"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "final_word"
       }
     ]
   },
@@ -263,11 +319,11 @@
     "choices": [
       {
         "text": "The soldiers believed.",
-        "destination": "soldiers_believed"
+        "destination": "final_word"
       },
       {
         "text": "The sign was undeniable.",
-        "destination": "sign_undeniable_final"
+        "destination": "final_word"
       }
     ]
   },
@@ -280,7 +336,11 @@
       },
       {
         "text": "The temple veil tore.",
-        "destination": "veil_tore_detail"
+        "destination": "final_word"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "final_word"
       }
     ]
   },
@@ -293,7 +353,11 @@
       },
       {
         "text": "The silence was absolute.",
-        "destination": "silence_absolute"
+        "destination": "final_word"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "final_word"
       }
     ]
   },
@@ -302,11 +366,11 @@
     "choices": [
       {
         "text": "The earth trembled.",
-        "destination": "earth_trembled"
+        "destination": "final_word"
       },
       {
         "text": "The foundation shook.",
-        "destination": "foundation_shook"
+        "destination": "final_word"
       }
     ]
   },
@@ -319,7 +383,11 @@
       },
       {
         "text": "The Passover connection.",
-        "destination": "passover_connection"
+        "destination": "final_word"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "final_word"
       }
     ]
   },
@@ -332,7 +400,11 @@
       },
       {
         "text": "The lamb was bound.",
-        "destination": "lamb_bound"
+        "destination": "final_word"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "final_word"
       }
     ]
   },
@@ -345,7 +417,7 @@
       },
       {
         "text": "The blood was applied.",
-        "destination": "blood_applied"
+        "destination": "final_word"
       }
     ]
   },
@@ -354,11 +426,11 @@
     "choices": [
       {
         "text": "The temple lamb.",
-        "destination": "temple_lamb"
+        "destination": "final_word"
       },
       {
         "text": "The people's reaction.",
-        "destination": "peoples_reaction"
+        "destination": "final_word"
       }
     ]
   },
@@ -371,7 +443,7 @@
       },
       {
         "text": "The light shines.",
-        "destination": "light_shines_second"
+        "destination": "final_word"
       }
     ]
   },
@@ -380,7 +452,7 @@
     "choices": [
       {
         "text": "The confession stands.",
-        "destination": "confession_stands_second"
+        "destination": "final_word"
       },
       {
         "text": "The legacy remains.",
@@ -397,7 +469,7 @@
       },
       {
         "text": "The dawn breaks.",
-        "destination": "dawn_breaks_final_second"
+        "destination": "final_word"
       }
     ]
   },
@@ -410,7 +482,7 @@
       },
       {
         "text": "The light endures.",
-        "destination": "light_endures"
+        "destination": "final_word"
       }
     ]
   },

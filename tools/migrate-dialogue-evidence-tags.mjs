@@ -1,126 +1,50 @@
+// Evidence is awarded when a conversation opens, independently of branch choice.
+// Run with --check to verify without writing. Existing evidence IDs are preserved.
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { DIALOGUE_ID_MAP } from '../js/gameplay/dialogueMaps.js';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const caseFiles = ['js/act1_case.js', 'js/act2_case.js', 'js/act3_case.js', 'js/act4_case.js'];
-const storyRoot = path.join(root, 'assets/story');
-const requirements = new Map();
+const check = process.argv.includes('--check');
+const tagPattern = /^\s*#\s*UNLOCK_EVIDENCE\s*:\s*([\w-]+)\s*$/i;
+const headerPattern = /^\s*===\s*(\w+)\s*===\s*$/;
 
-for (const relativeFile of caseFiles) {
-  const module = await import(path.join(root, relativeFile));
-  for (const caseData of Object.values(module).filter(value => value && Array.isArray(value.npcs))) {
-    for (const npc of caseData.npcs.filter(Boolean)) {
-      if (!npc.storyFile || !Array.isArray(npc.unlocksEvidence) || npc.unlocksEvidence.length === 0) continue;
-      if (!requirements.has(npc.storyFile)) requirements.set(npc.storyFile, new Set());
-      npc.unlocksEvidence.forEach(id => requirements.get(npc.storyFile).add(id));
-    }
+export function moveEvidenceToOpening(source) {
+  const lines = source.split(/\r?\n/);
+  const ids = [...new Set(lines.map(line => line.match(tagPattern)?.[1]).filter(Boolean))];
+  if (!ids.length) return source;
+  const remaining = lines.filter(line => !tagPattern.test(line));
+  const headers = remaining.map((line, index) => ({ index, name: line.match(headerPattern)?.[1] }))
+    .filter(header => header.name);
+  const opening = headers.find(header => header.name === 'start')
+    || headers.find(header => header.name === 'root') || headers[0];
+  if (!opening) throw new Error('Evidence tags found without a dialogue entry');
+  if (headers.filter(header => header.name === opening.name).length !== 1) {
+    throw new Error('Duplicate opening passage: ' + opening.name);
   }
+  remaining.splice(opening.index + 1, 0, ...ids.map(id => '# UNLOCK_EVIDENCE: ' + id));
+  return remaining.join('\n');
 }
 
-const inkFiles = [];
-const visit = directory => {
-  for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
-    const fullPath = path.join(directory, entry.name);
-    if (entry.isDirectory()) visit(fullPath);
-    else if (entry.name.endsWith('.ink')) inkFiles.push(fullPath);
-  }
-};
-visit(storyRoot);
-
-let changed = 0;
-let changedJson = 0;
-for (const [storyFile, evidenceIds] of requirements) {
-  const mappedJson = DIALOGUE_ID_MAP[storyFile];
-  const mappedInk = mappedJson
-    ? path.resolve(root, mappedJson.replace(/^\.\.\//, '').replace(/\.json$/, '.ink'))
-    : null;
-  const matches = mappedInk && fs.existsSync(mappedInk)
-    ? [mappedInk]
-    : inkFiles.filter(file => path.basename(file, '.ink') === storyFile);
-  if (matches.length !== 1) {
-    console.warn(`${storyFile}: expected one Ink source, found ${matches.length}`);
-    continue;
-  }
-
-  const file = matches[0];
-  const lines = fs.readFileSync(file, 'utf8').split(/\r?\n/);
-  let startIndex = lines.findIndex(line => /^\s*===\s*start\s*===\s*$/.test(line));
-  if (startIndex < 0) startIndex = lines.findIndex(line => /^\s*===.+===\s*$/.test(line));
-  if (startIndex < 0) {
-    console.warn(`${path.relative(root, file)}: no dialogue knot`);
-    continue;
-  }
-
-  const mandatoryTags = [...evidenceIds].map(id => `# UNLOCK_EVIDENCE: ${id}`);
-  const checkpointIndex = lines.findIndex(line => line.trim() === '// Required evidence checkpoint: reached before the first player choice.');
-  let choiceStart = startIndex;
-  let choiceEnd = lines.findIndex((line, index) => index > choiceStart && /^\s*===.+===\s*$/.test(line));
-  let choiceRegion = lines.slice(choiceStart + 1, choiceEnd < 0 ? lines.length : choiceEnd);
-  if (!choiceRegion.some(line => /^\s*[*+]\s*\[/.test(line))) {
-    const hub = choiceRegion.map(line => line.match(/^\s*->\s*([\w.-]+)\s*$/)?.[1]).find(Boolean);
-    const hubIndex = hub ? lines.findIndex(line => line.trim() === `=== ${hub} ===`) : -1;
-    if (hubIndex >= 0) {
-      choiceStart = hubIndex;
-      choiceEnd = lines.findIndex((line, index) => index > choiceStart && /^\s*===.+===\s*$/.test(line));
-      choiceRegion = lines.slice(choiceStart + 1, choiceEnd < 0 ? lines.length : choiceEnd);
+if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+  let changed = 0;
+  let tagged = 0;
+  let tags = 0;
+  const storyRoot = path.join(root, 'assets/story');
+  const files = fs.readdirSync(storyRoot, { recursive: true }).filter(file => file.endsWith('.ink')).sort();
+  for (const relative of files) {
+    const file = path.join(storyRoot, relative);
+    const before = fs.readFileSync(file, 'utf8');
+    const after = moveEvidenceToOpening(before);
+    const count = after.split(/\r?\n/).filter(line => tagPattern.test(line)).length;
+    if (count) tagged++;
+    tags += count;
+    if (before !== after) {
+      changed++;
+      if (!check) fs.writeFileSync(file, after);
     }
   }
-  const destinations = choiceRegion
-      .filter(line => /^\s*[*+]\s*\[/.test(line))
-      .map(line => line.match(/->\s*([\w.-]+)/)?.[1])
-      .filter(Boolean);
-
-  // Remove checkpoints created by older versions of this migration. Unlocking
-  // in the opening paragraph gives the clue away before the player investigates.
-  if (checkpointIndex >= 0) {
-    lines.splice(checkpointIndex, 1);
-    for (const tag of mandatoryTags) {
-      const openingTagIndex = lines.indexOf(tag, startIndex + 1);
-      if (openingTagIndex >= 0 && (choiceEnd < 0 || openingTagIndex < choiceEnd)) lines.splice(openingTagIndex, 1);
-    }
-  }
-
-  const tagsToPlace = mandatoryTags.filter(tag => !lines.includes(tag) || checkpointIndex >= 0);
-  if (tagsToPlace.length > 0 && destinations.length > 0) {
-    for (const destination of [...new Set(destinations)].reverse()) {
-      const knotIndex = lines.findIndex(line => line.trim() === `=== ${destination} ===`);
-      if (knotIndex < 0) continue;
-      const existing = new Set(lines.slice(knotIndex + 1, knotIndex + 1 + mandatoryTags.length + 2));
-      lines.splice(knotIndex + 1, 0, ...mandatoryTags.filter(tag => !existing.has(tag)));
-    }
-    fs.writeFileSync(file, `${lines.join('\n').replace(/\n+$/, '')}\n`);
-    changed++;
-    console.log(`updated ${path.relative(root, file)}: ${mandatoryTags.join(', ')}`);
-  }
-
-  const jsonFile = file.replace(/\.ink$/, '.json');
-  if (fs.existsSync(jsonFile)) {
-    const data = JSON.parse(fs.readFileSync(jsonFile, 'utf8'));
-    const entryKey = data.start ? 'start' : data.root ? 'root' : Object.keys(data)[0];
-    const entry = data[entryKey];
-    if (entry && typeof entry.content === 'string') {
-      const openingPattern = new RegExp(`(?:^|\\n)(?:${mandatoryTags.map(tag => tag.replace(/[.*+?^${}()|[\\]\\]/g, '\\$&')).join('|')})(?=\\n|$)`, 'g');
-      const cleaned = entry.content.replace(openingPattern, '').replace(/\\n{3,}/g, '\\n\\n').trim();
-      let jsonChanged = cleaned !== entry.content;
-      entry.content = cleaned;
-      const firstDestinations = (entry.choices || []).map(choice => choice.destination).filter(Boolean);
-      for (const destination of firstDestinations) {
-        const node = data[destination];
-        if (!node || typeof node.content !== 'string') continue;
-        const missing = mandatoryTags.filter(tag => !node.content.includes(tag));
-        if (!missing.length) continue;
-        node.content = `${missing.join('\n')}\n${node.content}`;
-        jsonChanged = true;
-      }
-      if (jsonChanged) {
-        fs.writeFileSync(jsonFile, `${JSON.stringify(data, null, 2)}\n`);
-        changedJson++;
-      }
-    }
-  }
+  console.log(JSON.stringify({ files: files.length, conversationsWithEvidence: tagged, uniqueTags: tags,
+    [check ? 'filesNeedingMigration' : 'filesUpdated']: changed }));
+  if (check && changed) process.exitCode = 1;
 }
-
-console.log(`Updated ${changed} Ink source files.`);
-console.log(`Updated ${changedJson} dialogue JSON files.`);

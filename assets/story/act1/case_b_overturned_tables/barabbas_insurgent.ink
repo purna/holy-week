@@ -21,6 +21,7 @@
 // ============================================================
 
 -> start
+
 === start ===
 They brought me out of the dungeon that morning in chains. My hands still bore the marks of the manacles — iron on iron, day on day. I was a prince among robbers, a name whispered in the hills. And now the priests wanted me to walk free.
 * [What was their plan?] -> priest_deal
@@ -40,7 +41,7 @@ They threw me into the cistern when I resisted the census. A Zealot with too muc
 === rebel_life ===
 A rebel all my life. My father taught me that the Romans take what they want and give nothing back. My brother died at the lash for refusing to carry a Roman officer's pack. I learned early that mercy is a luxury the oppressed cannot afford. The sword is the only language Rome understands.
 * [But you were sentenced to death?] -> death_sentence
-* [The revolution lives on?] -> revolution_continues
+* [The revolution lives on?] -> closing
 
 === death_sentence ===
 Yes — I was sentenced to die. Four nails through my wrists, a spear through my heart. But the crowd chose me instead of the Nazarene. The substitution was total. I walked free while He walked to the cross. I am alive because the innocent died.
@@ -98,7 +99,7 @@ They chose poorly — and perfectly. Their greatest sin became the instrument of
 === theater ===
 Political theater, yes — but whose theater? Behind the stage, behind the curtain of human agency, the Author was writing His story. I was the unwilling star — but born for this moment, as was He.
 * [The Author writes all stories.] -> divine_irony
-* [Even rebellion serves Him.] -> unknowing
+* [Even rebellion serves Him.] -> closing
 
 === unwilling_star ===
 I was the unwilling star of their production. My freedom was purchased at the price of His death. I never auditioned for this role — but I was born for it, as was He.
@@ -118,7 +119,7 @@ The chains that bound me were not just iron. They were fear, hatred, revenge. Th
 === crowd_mood ===
 The crowd was a living thing that morning. When the priests whispered in the right ears, the tide turned. One moment they asked for Jesus. The next, they screamed for Barabbas. I watched my freedom purchased with the blood of another — and I did not deserve it.
 * [They chose a criminal over Christ.] -> poor_choice
-* [The crowd was manipulated.] -> unknowing
+* [The crowd was manipulated.] -> closing
 
 === unworthy ===
 Worthy? No. I am a murderer, a rebel, a man who cursed the God who judges me. I deserve the cross more than any man. Yet they chose me. And they crucified Him. The injustice is absolute — and that is precisely why it is justice.
@@ -146,7 +147,7 @@ The one who died was not just another criminal. He was the Author of life itself
 
 === victory ===
 The victory over death. Three days later, the tomb was empty. My freedom — purchased at such a cost — was the proof that no sinner is beyond grace.
-* [The power that raised Him.] -> power_raise
+* [The power that raised Him.] -> closing
 * [The love transforms.] -> grace_received
 
 === love_endures ===
@@ -157,7 +158,7 @@ The love endures beyond the cross, beyond the tomb, beyond the grave. The same l
 === follow ===
 Following in His footsteps means laying down the sword that once brought me power. It means picking up the cross that once was my enemy's weapon. It means living for the One who died for me — not dying for causes I believe in.
 * [The sword becomes a plowshare.] -> plowshare
-* [The cross becomes a banner.] -> cross_banner
+* [The cross becomes a banner.] -> closing
 
 === plowshare ===
 The sword becomes a plowshare. The dagger becomes a pen. The rebellion becomes redemption. Every weapon I once used to tear down now builds up. The God who stopped my violence with His sacrifice now calls me to stop violence with His love.
@@ -172,12 +173,12 @@ The weapons are reversed. Where I once used the sword to take life, I now use lo
 === ally ===
 The enemy becomes the ally. The executioner becomes the executed. The victim becomes the victor. And the one who died on the cross — He is not the victim. He is the Victor.
 * [The victory is complete.] -> completion
-* [The story continues.] -> story_continues
+* [The story continues.] -> closing
 
 === cycle_breaks ===
 The cycle of violence breaks on a cross. For two thousand years, humanity has responded to hatred with hatred. But the cross whispers: love. Forgiveness. Grace. Redemption.
 * [Love fights the real battles.] -> love_fights
-* [The cross changes everything.] -> changes_everything
+* [The cross changes everything.] -> closing
 
 === love_fights ===
 Love fights the real battles. Not with swords and shields. But with sacrifice and service. With forgiveness and mercy. With a willingness to take the place of the guilty and die for the undeserving.
@@ -194,4 +195,6 @@ The proof endures. The freedman walks in peace. The killer finds rest. The grave
 
 === closing ===
 I go back to the hills. But the knives I carry now are not for killing — they are for cutting the bonds that still bind my people. The Galilean goes to the hill of execution, and I go to the hill of testimony. Let history decide who was useful — the criminal who was freed, or the Savior who died that I might live.
+
+
 -> DONE

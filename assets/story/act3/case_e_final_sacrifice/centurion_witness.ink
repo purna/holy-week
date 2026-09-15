@@ -58,5 +58,5 @@ To satisfy the record, I took my hasta—my spear. I drove the iron into His sid
 * [Continue.] -> closing
 
 === closing ===
-The hill is empty now. A wealthy counselor took the body. But I suspect your investigation is only beginning, scribe. 
+The hill is empty now. A wealthy counselor took the body. But I suspect your investigation is only beginning, scribe.
 -> DONE

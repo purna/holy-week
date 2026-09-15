@@ -13,6 +13,5 @@
 
 -> start
 === start ===
-Peter, I know you denied knowing Me. But your faith was not lost -- it was being refined in the fire of trial.
-Your reinstatement is My gift of grace. Feed My sheep, as you have been fed.
+Peter, I know you denied knowing Me. But your faith was not lost -- it was being refined in the fire of trial. Your reinstatement is My gift of grace. Feed My sheep, as you have been fed.
 -> DONE

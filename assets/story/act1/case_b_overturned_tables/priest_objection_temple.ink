@@ -1,926 +1,187 @@
 // ============================================================
-// CHARACTER: Temple Priest (Course of Abijah)
+// CHARACTER: Temple Priest (Course of Abijah - Expansion)
 // ACT: Act I
 // CASE: The Overturned Tables
 // CASE ID: temple_cleansing
 // CASE EXPORT: temple_cleansing
-// SOURCE: act1_case.js → NPC 'priest_objection_temple'
-// BIBLE REFERENCE: Psalm 69:9; Isaiah 56:7; Jeremiah 7:11; Malachi 3:1
+// SOURCE: act1_case.js → NPC 'priest_objection_temple_2'
+// BIBLE REFERENCE: Malachi 3:1; Numbers 3:10; 1 Samuel 2:35
 // ------------------------------------------------------------
-// BIBLICAL CONTEXT:
-//   Summary: On Monday morning of Holy Week, Jesus entered the
-//   Temple courts and forcefully drove out those who were buying
-//   and selling. He overturned the tables of the moneychangers
-//   and the benches of those selling doves, declaring: "My house
-//   shall be called a house of prayer for all nations."
-//   The priests witnessed this disruption and debated how to
-//   respond. Their concern was both religious and political —
-//   the event threatened Roman tolerance of the Temple system.
-// ----------------------------------------------------------------
-
--> start
-
-=== start ===
-I am a priest of the course of Abijah, serving in the Temple
-of the Lord. The Torah does not bend for crowds or healings.
-A man claims to be Lord of the Sabbath and calls this house
-His own. Torah knows what to do with such questions. By
-turning the Court of the Gentiles into a riot, He has given
-Rome every excuse to restrict our ceremonies and profane
-our sacred courts.
-
-* [Did He have a legitimate complaint?] -> complaint
-* [What about the Psalm He quoted?] -> psalm_69
-
-=== complaint ===
-Legitimate? The Court of the Gentiles is not a marketplace.
-It is the only place on earth where a non-Jew can come to
-pray to the God of Israel. By driving out the merchants,
-He made it impossible for the nations to worship. That is
-not zeal. That is sabotage against the very purpose of the
-Temple.
-
-* [The merchants were exploiting the poor.] -> exploiting
-* [He said the Temple had become a den of thieves.] -> den_thieves
-
-=== psalm_69 ===
-Psalm 69:9. "Zeal for your house will consume me." Even a
-zealot can be a prophet. But a prophet who attacks the
-priesthood's authority without divine commission is a
-blasphemer. The Sanhedrin will decide. But mark my words:
-this man has declared war on the Temple, and the Temple
-will not fall without a fight.
-
-* [The Temple needs reform, not war.] -> reform
-* [What will the Sanhedrin do?] -> sanhedrin_action
-
-=== exploiting ===
-Exploiting? The exchange rates are set by the priestly
-families according to Torah. The half-shekel tax is
-required by Moses. If there is exploitation, it is our
-system, not His to destroy. He should have come to the
-Sanhedrin. Presented His case. Argued His point. Not
-picked up a whip like a common zealot.
-
-* [The Sanhedrin would not have listened.] -> not_listen
-* [He acted with prophetic authority.] -> prophetic_auth
-
-=== den_thieves ===
-"Den of thieves." He quoted Jeremiah 7:11 and turned it
-against us. The merchants operate under priestly license.
-Their profits maintain the Temple. Their sacrifices provide
-for the poor. By destroying their cages, He has made it
-impossible for the poor to offer their doves. That is not
-justice. That is cruelty.
-
-* [The cages were a business, not a mitzvah.] -> business
-* [He freed the birds.] -> freed
-
-=== reform ===
-Reform comes from within. From the Sanhedrin. From the
-priests who have spent lifetimes studying the Law. Not
-from a Galilean carpenter with a whip and a crowd.
-This man offers destruction, not reform. And destruction
-is always easier than rebuilding.
-
-* [Destruction can be prophetic.] -> prophetic_destruction
-* [The system is beyond reform.] -> beyond_reform
-
-=== sanhedrin_action ===
-The Sanhedrin will convene. We will examine the charges.
-We will hear the witnesses. We will apply the Law. If He
-is a blasphemer, He will be stoned. If He is a prophet,
-we will acknowledge Him. There is no middle ground for
-a man who claims to be Lord of the Sabbath.
-
-* [And if He is both?] -> both
-* [You have already decided.] -> decided
-
-=== not_listen ===
-Would they? The High Priest has already declared Him a threat.
-The Sadducees have already plotted. The Sanhedrin is a court,
-not a debating society. It judges. It does not listen.
-Especially not to Galilean prophets who disrupt the courts
-with whips.
-
-* [Then the Sanhedrin is corrupt.] -> corrupt
-* [You are all guilty of the same crime.] -> guilty
-
-=== prophetic_auth ===
-Prophetic authority? The prophets of old called the people
-to repentance. They wept over Jerusalem. They interceded
-for the nation. They did not pick up whips and break cages.
-This man is not a prophet. He is a revolutionary. And
-revolutionaries get crucified.
-
-* [He offered a different kind of kingdom.] -> kingdom
-* [You fear what you cannot control.] -> fear_control
-
-=== business ===
-A business that serves the poor. The dove merchants provide
-sacrifices the Law requires. Without them, the lepers have
-no offerings. The poor have no access to atonement. The
-Temple closes its doors to the very people it was built
-to serve. That is not a business. That is a sacred trust.
-
-* [The trust was broken by the priests.] -> broken_trust
-* [He offered direct access to God.] -> direct_access
-
-=== freed ===
-He freed them. And now the poor have no way to offer.
-The Temple stands empty of the very people it was
-built for. That is not freedom. That is abandonment.
-And abandonment is not a virtue.
-
-* [He freed them from exploitation.] -> free_exploit
-* [The priests will replace the cages.] -> replace
-
-=== prophetic_destruction ===
-Prophetic destruction? Jeremiah destroyed the scroll.
-Ezekiel burned the hair. But they did it with God's
-command. With prophetic authority. This man has no
-commission. No call. No authority from the Sanhedrin.
-He is a prophet without a portfolio. A voice without a call.
-
-* [His call is from the Father.] -> father_call
-* [You reject what you cannot control.] -> reject_control
-
-=== beyond_reform ===
-Beyond reform? Never. The Temple has survived worse.
-It has survived Babylon. Greece. Rome. It will survive
-a Galilean with a whip. The cages will be mended.
-The coins will be recollected. The merchants will
-return. And the system will continue. Because
-God protects His own.
-
-* [God protects the humble, not the system.] -> humble
-* [The system is falling.] -> falling
-
-=== both ===
-Both? A man cannot be both Messiah and blasphemer.
-If He is the Christ, He must sit on David's throne.
-If He is a blasphemer, He must be stoned. The Sanhedrin
-will decide. And the decision will be according to
-the Law, not according to crowds or prophecies
-or wishes.
-
-* [The Law is not your tool.] -> law_tool
-* [You will condemn an innocent man.] -> innocent_condemned
-
-=== corrupt ===
-Corrupt? The Sanhedrin has guided Israel for centuries.
-We have preserved the Law through every empire. We are
-not corrupt. We are survivors. And survival requires
-hard choices.
-
-* [Survival is not the same as righteousness.] -> survival_righteousness
-* [You are surviving by destroying innocence.] -> destroying_innocence
-
-=== guilty ===
-Guilty? Of what? Of serving the Law? Of protecting the
-Temple? Of preserving the covenant? If those are crimes,
-then I am guilty. And I will stand guilty before the God
-of Israel with a clean conscience.
-
-* [Your conscience is not clean.] -> unclean_conscience
-* [God sees the heart.] -> heart
-
-=== kingdom ===
-A different kingdom? Every prophet claims a different
-kingdom. The Zealots claim a military kingdom. The
-Essenes claim a holy kingdom. This man claims a spiritual
-kingdom. But kingdoms require power. And power requires
-authority. And authority requires... proof.
-
-* [His proof is in the miracles.] -> miracles
-* [His kingdom is not of this world.] -> not_this_world
-
-=== fear_control ===
-Fear? I am a priest of the living God. I do not fear
-Galilean prophets. I fear the Lord. And the Lord has
-given me the Law. The Law commands me to purge
-blasphemy from Israel. That is my duty. Not fear.
-Duty.
-
-* [Your duty is to justice.] -> duty_justice
-* [You confuse duty with fear.] -> duty_fear
-
-=== broken_trust ===
-Broken? The trust is three thousand years old. It has
-survived every empire, every conquest, every persecution.
-It will survive a Galilean with a whip. The cages will
-be rebuilt. The coins will be recollected. The trust
-will endure.
-
-* [Not if the people reject it.] -> reject_trust
-* [Endurance is not the same as righteousness.] -> endurance_righteousness
-
-=== direct_access ===
-Direct access? There is no direct access to God.
-There is only the Law. The sacrifices. The priesthood.
-That is the system God ordained. This man would
-abolish the system and leave the people with nothing
-but His own authority. And that is not access.
-That is chaos.
-
-* [He is the way.] -> the_way
-* [You are the barrier.] -> barrier_priest
-
-=== free_exploit ===
-From exploitation? The Law protects the poor. The dove
-merchants serve the poor. The exchange rates serve the
-poor. If there is exploitation, it is in the hearts of
-men, not in the system. And you do not fix hearts
-by breaking cages.
-
-* [You preserve exploitation.] -> preserve_exploit
-* [The Law should protect the vulnerable.] -> vulnerable
-
-=== replace ===
-Replace? They will replace them by sundown. The
-merchants will return. The coins will be reset.
-The cages will be mended. The system will
-continue. Because the system is not made of
-wood and string. It is made of Law and covenant.
-And those cannot be broken by a whip.
-
-* [The covenant is broken by your hearts.] -> broken_covenant
-* [The system is already broken.] -> already_broken
-
-=== father_call ===
-From the Father? Every prophet claims that. Every
-false messiah claims that. The test is not the claim.
-The test is the fruit. And the fruit of today is
-broken cages and a Sanhedrin that must now decide
-whether to stone a prophet or acknowledge a Messiah.
-
-* [The fruit is corruption exposed.] -> exposed_fruit
-* [You will choose to stone.] -> choose_stone
-
-=== reject_control ===
-Reject? I do not reject. I judge. I apply the Law.
-The Law is clear: a prophet who acts without
-authority is a false prophet. And a false prophet
-must be silenced. Not because I fear Him. Because
-I love the Law more than my own safety.
-
-* [You love the Law more than the Lawgiver.] -> lawgiver_priest
-* [The Law is love.] -> law_love
-
-=== humble ===
-The humble? The poor who bring their doves? The widows
-who give their coins? The Temple serves them every day.
-This man disrupted their worship. He made it impossible
-for them to offer. That is not humility. That is arrogance.
-
-* [He offered something better.] -> better_offering
-* [You serve the system, not the people.] -> system_not_people
-
-=== falling ===
-Falling? The Temple has stood for a thousand years.
-It will stand for a thousand more. This man will fall.
-His movement will fall. The crowds will disperse.
-And the Temple will remain. Because the Temple is
-not built by human hands. It is built by God.
-
-* [God is not confined to a building.] -> not_bound
-* [The Temple fell in AD 70.] -> fell_70
-
-=== law_tool ===
-Not a tool? The Law is the sword of God. It cuts
-both ways. It protects the innocent. It punishes
-the guilty. If this man is guilty of blasphemy,
-the Law demands his death. Not because I say so.
-Because God says so.
-
-* [God's sword is justice, not murder.] -> sword_justice
-* [You have blood on your hands.] -> blood_hands
-
-=== innocent_condemned ===
-Innocent? By whose standard? By the standard of
-the Galilean? By the standard of the crowd? By
-the standard of the Romans? I answer to the Law.
-To the Torah. To the covenant. And if the Law
-says He is guilty, He is guilty. Not because
-I say so. Because God says so.
-
-* [God does not condemn the innocent.] -> god_innocent
-* [You are condemning God's Son.] -> condemning_son
-
-=== unclean_conscience ===
-Clean? My conscience is alive. It speaks every
-time I enter the Holy Place. It speaks every time
-I read the prophets. It speaks every time I see
-the poor bringing their offerings. And today,
-it speaks in the wreckage of the Court of the
-Gentiles. A dead conscience would not feel this weight.
-
-* [Then act on it.] -> act_conscience
-* [Weight is not the same as action.] -> weight_action
-
-=== heart ===
-God sees the heart? Then He sees mine. He sees
-a priest who has served Him for forty years.
-He sees a guardian of the Law. He sees one
-who has preserved the covenant through
-centuries of turmoil. If God condemns that,
-then His judgment is harsher than I imagined.
-
-* [Preservation without faith.] -> preservation_faith
-* [The heart is what matters.] -> heart_matters
-* [Service without sacrifice.] -> service_sacrifice
-
-=== survival_righteousness ===
-Survival is righteousness? When Israel survives,
-righteousness endures. When Israel falls,
-righteousness perishes. I choose survival. Not
-because I love power. Because I love the
-covenant. And the covenant requires a people.
-A Temple. A Law. Without these, there is nothing.
-
-* [The covenant is bigger than the Temple.] -> bigger_covenant
-* [You are preserving a corpse.] -> corpse
-
-=== destroying_innocence ===
-Destroying innocence? I am preserving the Law.
-The Law is innocent. The Temple is innocent.
-The covenant is innocent. If condemning this
-man preserves these things, then I will condemn
-Him. Not with joy. With sorrow. But with resolve.
-
-* [That is not sorrow. That is murder.] -> murder
-* [The Law is not innocent if it kills the innocent.] -> law_not_innocent
-
-=== miracles ===
-Miracles? Moses performed miracles. Elijah performed
-miracles. But they did so with God's authority. With
-a call. With a commission. This man has no commission.
-No call. No authority from the Sanhedrin. His miracles
-are impressive. But they prove nothing about his
-messiahship.
-
-* [His miracles prove His Father's approval.] -> father_approval
-* [You reject the evidence.] -> reject_evidence
-
-=== not_this_world ===
-Not of this world? Then why does He act in this
-world? Why does He disrupt our courts? Why does
-He challenge our authority? A kingdom not of
-this world does not interfere in the governance
-of this world. This man interferes constantly.
-
-* [His kingdom is advancing.] -> advancing
-* [You are threatened by a greater kingdom.] -> greater_kingdom
-
-=== duty_justice ===
-Justice? The Law is justice. The Law demands
-blood for blasphemy. If this man is guilty of
-blasphemy, justice demands his death. If He
-is innocent, justice demands his release. I
-will apply the Law fairly. Not because I am
-just. Because the Law is just.
-
-* [The Law is not just if it condemns the innocent.] -> unjust_law
-* [You will find Him guilty.] -> find_guilty
-
-=== duty_fear ===
-Duty and fear are not opposites. A priest who
-fears God fears His Law. And the Law is
-terrifying. It demands perfection. It condemns
-imperfection. It kills the blasphemer. If I
-fear the Law, it is because I know its power.
-And its power is absolute.
-
-* [The Law is love.] -> law_love
-* [You have turned the Law into a terror.] -> law_terror
-
-=== reject_trust ===
-Reject it? The people need the Temple. They need
-the sacrifices. They need the Law. Without these,
-they are lost. This man offers them nothing but
-chaos. And chaos is not what Israel needs.
-Israel needs order. Covenant. Sacrifice.
-The things that have sustained us
-for millennia.
-
-* [Israel needs a Messiah.] -> messiah_needed
-* [You mistake control for care.] -> control_care
-
-=== endurance_righteousness ===
-Endurance is righteousness? The righteous
-endure. The wicked fall. The Temple has
-endured because it is righteous. This man
-will fall because He opposes the very
-things that make Israel great.
-
-* [He is the righteousness of Israel.] -> righteousness_israel
-* [You have it backwards.] -> backwards
-
-=== law_love ===
-The Law is love. I know that. I
-have studied it. I have taught it.
-I have lived it. But love requires
-boundaries. Love requires order.
-Love requires the preservation
-of what God has established.
-If this man would destroy
-that order in the name of love...
-then his love is
-destructive.
-
-* [Love without destruction.] -> love_without
-* [Order without love is tyranny.] -> order_tyranny
-* [The boundaries have become walls.] -> walls
-
-=== law_terror ===
-Terror? The Law
-terrifies because
-it reveals
-the depth
-of our
-brokenness.
-But this
-man does
-not
-terrify.
-He
-heals.
-He
-welcomes.
-He
-dines.
-And
-in
-His
-presence,
-the
-Law's
-terror
-is
-transformed
-into
-comfort.
-
-* [Terror transformed into comfort.] -> terror_comfort
-* [The Law's purpose fulfilled.] -> law_fulfilled
-* [Comfort through Christ.] -> comfort_christ
-
-=== not_bound ===
-God is not confined
-to a building.
-But He chooses
-to dwell
-among His
-people.
-In the
-Temple.
-Through
-the
-priesthood.
-Through
-the
-sacrifices.
-This
-man would
-remove
-the
-dwelling
-place.
-And with
-it,
-the
-people's
-connection
-to God.
-
-* [Connection through Christ.] -> connection_christ
-* [The dwelling moves.] -> dwelling_moves
-* [The building becomes the body.] -> building_body
-
-=== bigger_covenant ===
-Bigger? The covenant is the
-Temple. The sacrifices. The Law.
-The people. You cannot separate
-them. If you remove the Temple,
-you remove the covenant. If
-you remove the covenant, you
-remove Israel. And if you
-remove Israel, you remove
-God from the earth.
-
-* [God is not confined to a building.] -> not_confined
-* [The new covenant is in His blood.] -> new_covenant
-
-=== corpse ===
-A corpse? The Temple is
-alive. The sacrifices continue.
-The priests serve. The people
-come. It is alive. It is
-vibrant. It is the heart
-of Israel. This man would
-stop the heart. And if
-he does, Israel dies.
-
-* [Israel will survive the Temple.] -> survive_temple
-* [The heart is already dead.] -> dead_heart
-
-=== law_love2 ===
-The Law is love.
-Love is the Law.
-To love God is
-to keep His
-commandments.
-And His commandments
-are not burden
-but freedom.
-This man proclaims
-freedom. I proclaim
-the Law. Perhaps
-we are not as
-different as I
-have supposed.
-
-* [The difference is authority.] -> authority_diff
-* [Freedom in the Law.] -> freedom_law
-* [Love fulfills the Law.] -> love_fulfills
-
-=== law_terror2 ===
-The Law
-terrifies
-because
-it
-reveals
-the
-depth
-of
-our
-brokenness.
-But
-this
-man
-does
-not
-terrify.
-He
-heals.
-He
-welcomes.
-He
-dines.
-And
-in
-His
-presence,
-the
-Law's
-terror
-is
-transformed
-into
-comfort.
-
-* [Terror transformed into comfort.] -> terror_comfort
-* [The Law's purpose fulfilled.] -> law_fulfilled
-* [Comfort through Christ.] -> comfort_christ
-
-=== unjust_law ===
-The Law is
-not just
-if it
-condemns
-the innocent.
-Justice
-requires
-truth.
-Truth
-requires
-evidence.
-And the
-evidence
-points to
-a man who
-heals
-the sick,
-feeds the
-hungry,
-welcomes
-the outcast.
-If that
-is
-blasphemy...
-then
-blasphemy
-is the
-highest
-virtue.
-
-* [The highest virtue.] -> highest_virtue
-* [The law inverted.] -> law_inverted
-* [Justice demands more.] -> justice_demands
-
-=== find_guilty ===
-I will
-find Him
-guilty
-because
-the Law
-demands
-it.
-Because
-His
-claims
-threaten
-the
-order.
-Because
-His
-followers
-threaten
-the
-peace.
-Because
-His
-miracles
-threaten
-our
-understanding.
-
-* [The understanding was wrong.] -> understanding_wrong
-* [The order needs reforming.] -> order_reforming
-* [The peace is false.] -> false_peace
-
-=== exposed_fruit ===
-The
-fruit
-is
-corruption
-exposed.
-The
-cages
-are
-empty.
-The
-coins
-are
-scattered.
-The
-people
-see
-what
-the
-priests
-have
-built.
-Not
-a
-house
-of
-prayer.
-A
-house
-of
-profit.
-And
-the
-profit
-has
-no
-place
-in
-the
-kingdom
-of
-God.
-
-* [The kingdom is here.] -> kingdom_here
-* [The profit has no foundation.] -> profit_no_foundation
-* [The kingdom builds without profit.] -> kingdom_no_profit
-
-=== choose_stone ===
-You
-will
-choose
-to
-stone.
-Because
-the
-Law
-demands
-it.
-Because
-the
-prophecy
-demands
-it.
-Because
-the
-system
-demands
-it.
-You
-will
-stone
-the
-prophet.
-The
-prophet.
-The
-healer.
-The
-teacher.
-The
-king.
-And
-the
-stones
-will
-cry
-out
-that
-you
-were
-wrong.
-
-* [The stones will speak.] -> stones_speak
-* [The king will rise.] -> king_rise
-* [The system will fall.] -> system_fall
-
-=== lawgiver_priest ===
-You
-love
-the
-Law
-more
-than
-the
-Lawgiver.
-You
-serve
-the
-system
-more
-than
-the
-Savior.
-You
-preserve
-the
-Temple
-more
-than
-the
-Truth.
-And
-the
-Truth
-is
-standing
-in
-front
-of
-you,
-looking
-at
-you
-with
-grief
-and
-love
-and
-the
-same
-patience
-He
-showed
-the
-woman
-caught
-in
-adultery.
-
-* [The patience will not last forever.] -> patience_fade
-* [The grief is for you.] -> grief_for
-* [The love will overcome.] -> love_overcome
-
-=== closing_priest ===
-I
-have
-spoken
-my
-piece.
-My
-conscience
-is
-clear.
-The
-Temple
-is
-protected.
-The
-Law
-is
-preserved.
-The
-system
-endures.
-If
-this
-man's
-claims
-are
-true,
-then
-I
-am
-a
-false
-priest.
-If
-they
-are
-false,
-then
-I
-am
-a
-faithful
-guardian.
-The
-choice
-is
-mine
-to
-make.
-And
-I
-choose
-faithfulness
-to
- what
- I
- have
- been
-given.
-
--> DONE
-
-=== final_choice ===
-But
-the
-weight
-burdens
-me.
-The
-scribal
-record.
-The
-Temple
-ledger.
-The
-priestly
-line.
-All
-of it
- rests
-on
-my
- shoulders.
-Do
- I
-protect
-a
- system
-that
-serves
- God
-—
-or
-a
- man
-who
-claims
-to
-be
-God
-incarnate?
-The
- Law
-demands
-an
-answer.
-My
-conscience
-demands
-truth.
-And
-the
-silence
-of
-the
- crowd
-demands
-that
-someone
-speak.
 
+=== priest_abijah_extended ===
+The lot fell to my father's house, as it fell to Zechariah before the altar of incense. We did not choose this burden. The course of Abijah has guarded the holy precincts since the days of David. Now a stranger from Galilee walks in with cords in His hands and speaks of judgment against the house of Zadok.
+
+* [You treat the office as an inheritance rather than a calling.] -> office_inheritance
+* [Malachi spoke of a refiner coming suddenly to His temple.] -> malachi_refiner
+* [Conclude.] -> closing_priest_ext
+
+=== office_inheritance ===
+An inheritance? It is an unbroken stewardship. Every stone of this court has been watered by the prayers of the faithful. What has this Nazarene built? A following of fishermen and tax collectors who know nothing of the inner veil.
+
+* [The veil was torn from top to bottom.] -> veil_torn
+* [God is not bound by your stewardship.] -> God_not_bound
+* [Conclude.] -> closing_priest_ext
+
+=== malachi_refiner ===
+"And the Lord, whom you seek, will suddenly come to His temple." Yes, the messenger of the covenant. We know the text. But Malachi also asked: "Who can endure the day of His coming?" Not the crowds shouting Hosanna on the road. Not a prophet who disrupts the morning sacrifice.
+
+* [He came to purify the sons of Levi.] -> purify_levi
+* [You fear the refiner's fire.] -> refiners_fire
+* [Conclude.] -> closing_priest_ext
+
+=== veil_torn ===
+Torn? No human hand has breached the Holy of Holies. The veil hangs thick and heavy, woven with blue and purple and scarlet. What you speak of is a delusion born of mob fury.
+
+* [A divine hand tore it when He breathed His last.] -> divine_tear
+* [Conclude.] -> closing_priest_ext
+
+=== God_not_bound ===
+Not bound? He chose Mount Zion. He chose the threshing floor of Araunah. He placed His name here forever. To say He is unbound from His own dwelling is to say the covenant is a shadow.
+
+* [The shadow has given way to the substance.] -> shadow_substance
+* [Conclude.] -> closing_priest_ext
+
+=== purify_levi ===
+Purify us? By handing us over to the judgment of the Governor? By inviting the Roman eagles into the sanctuary? If this is purification, it looks remarkably like ruin.
+
+* [Ruin is required before true restoration.] -> ruin_restoration
+* [Conclude.] -> closing_priest_ext
+
+=== refiners_fire ===
+Fire consumes the dross, scribe. But it also tests whether the gold is pure. We have kept the flame burning through Greek desecration and Maccabean blood. Where was the Galilean when Antiochus set up the abomination? He was nowhere. We were here.
+
+* [You survived by compromising with every power that conquered you.] -> compromise_power
+* [Conclude.] -> closing_priest_ext
+
+=== divine_tear ===
+Breathed His last? You speak of future things as if the sentence were already executed. The trial has not even begun. The Sanhedrin sits tonight.
+
+* [The verdict was written before the foundations of the world.] -> verdict_written
+* [Conclude.] -> closing_priest_ext
+
+=== shadow_substance ===
+Substance without form is a ghost. You preach a kingdom without a capital, a sacrifice without an altar, a priesthood without anointing. Israel cannot live on spirit alone; we are flesh and bone, requiring bread and blood.
+
+* [He is the bread of life and the final sacrifice.] -> final_sacrifice
+* [Conclude.] -> closing_priest_ext
+
+=== ruin_restoration ===
+Restoration is the promise given to Zerubbabel and Nehemiah. It was built with trowel in one hand and sword in the other. We need no new foundation. We need only for the disturbers of the peace to be silenced.
+
+* [You cannot silence the truth.] -> truth_unbounded
+* [Conclude.] -> closing_priest_ext
+
+=== compromise_power ===
+Compromise? Call it survival. Call it stewardship under the yoke. If we did not bend to Caesar, the plough would go over Zion and not one stone would be left upon another.
+
+* [And now you fulfill your own prophecy.] -> stone_upon_stone
+* [Conclude.] -> closing_priest_ext
+
+=== verdict_written ===
+Pre-written? That is the language of Pharisees and fatalists. We have free will under the Law. We weigh the evidence. We vote. The Sanhedrin is not a rubber stamp for heaven or Rome.
+
+* [Yet your minds are already made up.] -> minds_made_up
+* [Conclude.] -> closing_priest_ext
+
+=== final_sacrifice ===
+The final sacrifice... If every man becomes his own priest, then the altar is abolished, the tribe of Levi is cast aside, and the order given on Sinai is mocked. That is not redemption. That is lawlessness.
+
+* [It is the fulfillment of the Law, not its abolition.] -> law_fulfillment
+* [Conclude.] -> closing_priest_ext
+
+=== truth_unbounded ===
+Truth without an institution is a wind that blows where it lists, leaving only wreckage behind. I will stay with the stones I can touch and the God whose name is inscribed upon them.
+
+-> closing_priest_ext
+
+=== stone_upon_stone ===
+Not one stone... You speak the words of doom like a curse. Is that what you want? Fire and ash? A scattered people and a silent altar?
+
+* [Sometimes the house must fall so the true temple can rise.] -> true_temple_rise
+* [Conclude.] -> closing_priest_ext
+
+=== minds_made_up ===
+Made up? We are burdened. Every member of the council feels the weight of the Sabbath and the crowd. But when a man breaks the peace of the feast, choice narrows to necessity.
+
+* [Necessity is the tyrant's excuse.] -> tyrant_excuse
+* [Conclude.] -> closing_priest_ext
+
+=== law_fulfillment ===
+Fulfillment... Every revolutionary claims to fulfill the law by breaking it. Moses did not break the tablets until the people turned to gold. This man broke the tables before the people even understood His teaching.
+
+* [His actions spoke louder than your parchment.] -> actions_louder
+* [Conclude.] -> closing_priest_ext
+
+=== true_temple_rise ===
+Rise in three days? That was His boast in the outer court. Three days to replace forty and six years of cedar and marble. Let Him try it from the dust of Gabbatha.
+
+* [He will.] -> closing_priest_ext
+* [Conclude.] -> closing_priest_ext
+
+=== tyrant_excuse ===
+Call it tyranny if you like. When the legions march down the Antonia fortress because the courts are in revolt, you will not talk to me of grace. You will look for a hiding place.
+
+* [I have nothing to hide from the King of kings.] -> king_of_kings
+* [Conclude.] -> closing_priest_ext
+
+=== actions_louder ===
+Loud, yes. The noise of a whip, the clatter of silver on stone, the shouting of frightened doves. It filled the air with confusion. And out of confusion, you expect me to see the finger of God?
+
+* [God is found in the still small voice, not the riot.] -> still_small_voice
+* [Conclude.] -> closing_priest_ext
+
+=== king_of_kings ===
+King of kings... Written above His head in Hebrew, Latin, and Greek before the sun goes down. A strange kingship, crowned with thorns and bleeding upon Roman wood. If that is your victor, keep Him.
+
+* [He bore your sins upon that wood.] -> sins_borne
+* [Conclude.] -> closing_priest_ext
+
+=== still_small_voice ===
+A still small voice spoke to Elijah on Horeb, true. But it also gave the Law in thunder and lightning upon the mountain. God is not only whispered; He is commanded. And His commands are written in the Torah.
+
+* [And His living Word stands before you.] -> living_word
+* [Conclude.] -> closing_priest_ext
+
+=== sins_borne ===
+My sins? I am a priest of the Most High. I offer the sin offering year after year according to the ordinance. I have cleansed my hands at the bronze laver. Do not speak to me of bearing sins I have already laid upon the head of the lamb.
+
+* [The blood of bulls and goats cannot take away sin.] -> blood_ineffective
+* [Conclude.] -> closing_priest_ext
+
+=== living_word ===
+A living word that stands silent before the high priest, answering nothing. If He has words of power, let Him speak them to the Sanhedrin. Let Him justify His disruption under oath.
+
+* [He spoke all that needed to be spoken.] -> spoken_enough
+* [Conclude.] -> closing_priest_ext
+
+=== blood_ineffective ===
+Ineffective? You blaspheme the entire economy of God's mercy. Without those lambs, the nation perishes in its uncleanness. Without those altars, we are naked before His holiness.
+
+* [Clothed in His righteousness, we need no other cover.] -> clothed_righteousness
+* [Conclude.] -> closing_priest_ext
+
+=== spoken_enough ===
+He said enough to seal His doom. And enough to test whether any among the priests have ears to hear beyond the walls of this courtyard.
+
+* [Open your ears before the walls fall.] -> open_ears
+* [Conclude.] -> closing_priest_ext
+
+=== clothed_righteousness ===
+Righteousness imputed without works, without blood, without the temple? That is the doctrine of lawlessness. It dissolves the moral fabric of Israel and leaves us at the mercy of every wind of doctrine.
+
+* [It is the grace that saves.] -> grace_saves
+* [Conclude.] -> closing_priest_ext
+
+=== open_ears ===
+My ears are deaf to rebellion, scribe. But they are open to the voice of the living God as delivered through Moses. Write your record. Seal your scroll. The night is falling over Jerusalem, and the Passover lamb is waiting.
+
+-> closing_priest_ext
+
+=== grace_saves ===
+Grace... We shall see if grace saves the nation when the Roman standards are planted in the holy place. Until then, my post is at the altar.
+
+-> closing_priest_ext
+
+=== closing_priest_ext ===
+The record is made. The service of Abijah concludes its watch. Whatever comes with the morning light, the God of our fathers remains upon His throne.
 -> DONE

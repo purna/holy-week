@@ -33,6 +33,7 @@
 // ============================================================
 
 -> start
+
 === start ===
 I am Simon Peter. Three times I denied the man I swore I would never deny. The rooster crowed, and He turned. I saw the look in His eyes — disappointment, not anger. I am a broken man.
 * [What did you say?] -> denials
@@ -90,7 +91,7 @@ After eight days of silence, He appeared on the shore. Three times He asked me: 
 === intimate_question ===
 "Do you love Me?" — agape. The love that gives itself completely. Not the affection of a casual acquaintance. The love that lays down its life. I had used that word when I promised never to deny Him. Now He was offering me the chance to give it again — with everything I had learned about failure.
 * [The love that remains.] -> feeding
-* [The grace to try again.] -> grace_to_try
+* [The grace to try again.] -> closing
 
 === feeding ===
 "Feed My sheep." Not "try again." Not "be more careful." "Feed My sheep." The same charge He gave to all of us on the mountain. The restoration was not about my competence — it was about His commission. The man who denied Him from fear became His voice to the world.
@@ -103,4 +104,6 @@ They heard. And they came. The Gospel reached Jerusalem. The Gospel reached Anti
 
 === closing ===
 I am Peter. I denied Him. He restored me. And every day since, I have remembered: the same grace that forgave my denial now flows through me to others. The rooster may crow again, but the Shepherd's love is louder than any bird's call.
+
+
 -> DONE

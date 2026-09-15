@@ -14,6 +14,13 @@
     "files": ["case-editor.html"]
   },
   {
+    "name": "Narrative Editor",
+    "path": "Narrative/",
+    "tag": "Narrative Editor Tool",
+    "description": "Iterative narrative editing environment.",
+    "files": ["narrative-editor.html"]
+  },
+  {
     "name": "Character Generator 2D",
     "path": "Character Generator 2D/",
     "tag": "Asset Tool",

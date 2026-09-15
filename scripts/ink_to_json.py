@@ -21,6 +21,8 @@ import sys
 import json
 import argparse
 import shutil
+import ast
+import hashlib
 from pathlib import Path
 
 
@@ -34,6 +36,111 @@ BLANK_RE    = re.compile(r'^\s*$')
 
 
 def parse_ink(text: str) -> dict:
+    return parse_stateful_ink(text)
+
+
+def expression(source):
+    """Compile a deliberately small, safe expression dialect; never eval text."""
+    source = re.sub(r'\btrue\b', 'True', source.strip())
+    source = re.sub(r'\bfalse\b', 'False', source)
+    def visit(node):
+        if isinstance(node, ast.Constant) and type(node.value) in (bool, int, float, str):
+            return {'literal': node.value}
+        if isinstance(node, ast.Name):
+            return {'variable': node.id}
+        if isinstance(node, ast.UnaryOp) and isinstance(node.op, ast.Not):
+            return {'not': visit(node.operand)}
+        if isinstance(node, ast.BoolOp):
+            return {'all' if isinstance(node.op, ast.And) else 'any': [visit(v) for v in node.values]}
+        if isinstance(node, ast.Compare) and len(node.ops) == 1:
+            op = {ast.Eq: 'eq', ast.NotEq: 'ne', ast.Gt: 'gt', ast.GtE: 'ge', ast.Lt: 'lt', ast.LtE: 'le'}.get(type(node.ops[0]))
+            if op:
+                return {'compare': op, 'left': visit(node.left), 'right': visit(node.comparators[0])}
+        raise ValueError('Unsupported expression: ' + source)
+    return visit(ast.parse(source, mode='eval').body)
+
+
+def parse_stateful_ink(text):
+    nodes, variables, conditions = {}, {}, []
+    node = None
+    entry = None
+    for number, raw in enumerate(text.splitlines(), 1):
+        line = raw.strip()
+        if not line or line.startswith('//'):
+            continue
+        declaration = re.fullmatch(r'VAR\s+(\w+)\s*=\s*(.+)', line)
+        if declaration:
+            value = expression(declaration[2])
+            if 'literal' not in value:
+                raise ValueError(f'Line {number}: defaults must be literals')
+            variables[declaration[1]] = value['literal']
+            continue
+        header = INK_NODE_RE.fullmatch(line)
+        if header:
+            if conditions:
+                raise ValueError(f'Line {number}: unclosed condition')
+            name = header[1]
+            if name in nodes:
+                raise ValueError(f'Line {number}: duplicate passage {name}')
+            node = nodes[name] = {'content': '', 'choices': [], 'steps': []}
+            continue
+        block = re.fullmatch(r'\{\s*(.+):', line)
+        if block:
+            conditions.append(expression(block[1]))
+            continue
+        if line == '- else:':
+            if not conditions:
+                raise ValueError(f'Line {number}: else without condition')
+            conditions[-1] = {'not': conditions[-1]}
+            continue
+        if line == '}':
+            if not conditions:
+                raise ValueError(f'Line {number}: unmatched brace')
+            conditions.pop()
+            continue
+        divert = DIVERT_RE.fullmatch(line)
+        if node is None:
+            if divert:
+                entry = divert[1]
+                continue
+            raise ValueError(f'Line {number}: content outside a passage')
+        condition = {'all': list(conditions)}
+        choice = re.fullmatch(r'([*+])\s*(?:\{(.+?)\}\s*)?\[(.+?)\]\s*->\s*([\w.-]+)', line)
+        if choice:
+            guards = list(conditions)
+            if choice[2]:
+                guards.append(expression(choice[2]))
+            node['choices'].append({'text': choice[3], 'destination': choice[4], 'once': choice[1] == '*', 'condition': {'all': guards}})
+            continue
+        assignment = re.fullmatch(r'~\s*(\w+)\s*(=|\+=|-=)\s*(.+)', line)
+        if assignment:
+            node['steps'].append({'set': assignment[1], 'operator': assignment[2], 'value': expression(assignment[3]), 'condition': condition})
+        elif divert:
+            node['steps'].append({'divert': divert[1], 'condition': condition})
+        elif line.startswith('#'):
+            node['steps'].append({'tag': line[1:].strip(), 'condition': condition})
+        else:
+            if line.startswith(('~', '{', '}', '*', '+', 'LIST ', 'EXTERNAL ', 'INCLUDE ')):
+                raise ValueError(f'Line {number}: unsupported Ink syntax: {line}')
+            node['steps'].append({'text': line, 'condition': condition})
+            node['content'] += ('\n' if node['content'] else '') + line
+    if conditions:
+        raise ValueError('Unclosed condition')
+    if not nodes:
+        return {}
+    entry = entry or ('start' if 'start' in nodes else 'root' if 'root' in nodes else next(iter(nodes)))
+    if entry not in nodes:
+        raise ValueError('Missing entry: ' + entry)
+    for name, passage in nodes.items():
+        targets = [c['destination'] for c in passage['choices']] + [s['divert'] for s in passage['steps'] if 'divert' in s]
+        for target in targets:
+            if target not in nodes and target not in ('DONE', 'END'):
+                raise ValueError(f'{name}: missing destination {target}')
+    nodes['_meta'] = {'schema': 2, 'entry': entry, 'variables': variables, 'revision': hashlib.sha256(text.encode()).hexdigest()[:16]}
+    return nodes
+
+
+def parse_legacy_ink(text: str) -> dict:
     """
     Parse raw .ink text into {node_name: {content, choices}}.
     - Strips // comments and blank lines.

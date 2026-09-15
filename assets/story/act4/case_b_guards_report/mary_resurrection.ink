@@ -88,8 +88,7 @@ The voice I had lived with for three years — the voice that spoke in parables 
 * [That was enough.] -> jesus_quote
 
 === jesus_quote ===
-"I said to Him, 'Do not cling to Me — for I have not yet ascended to the Father.' But He said, 'But go to My brothers and say to them, I am ascending to my Father and your God, to my God and Father.'"
-The intimacy was shattered not by absence but by purpose. He did not reject my love — He redirected it. The embrace had to become the announcement. The touch had to become the testimony.
+"I said to Him, 'Do not cling to Me — for I have not yet ascended to the Father.' But He said, 'But go to My brothers and say to them, I am ascending to my Father and your God, to my God and Father.'" The intimacy was shattered not by absence but by purpose. He did not reject my love — He redirected it. The embrace had to become the announcement. The touch had to become the testimony.
 # UNLOCK_EVIDENCE: resurrection_appearance
 # UNLOCK_EVIDENCE: mary_testimony
 # UNLOCK_EVIDENCE: empty_tomb

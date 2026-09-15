@@ -4,17 +4,10 @@
 // CASE: The Overturned Tables (Temple Cleansing)
 // CASE ID: case_b_overturned_tables
 // CASE EXPORT: overturn_tables
-// SOURCE: act1_case.js → NPC 'guard_report_temple'
+// SOURCE: act1_case.js -> NPC 'guard_report_temple'
 // BIBLE REFERENCE: Psalm 69:9 — "Zeal for your house will consume me"
 // ------------------------------------------------------------
-// BIBLICAL CONTEXT:
-//   Summary: A Roman guard stationed at the Antonia fortress
-//   witnesses Jesus cleansing the Temple. He sees the tables
-//   overturned, coins scattered, doves released. He observes
-//   the crowd's reaction and the priests' fury. His testimony
-//   provides a Roman perspective on the events.
-// ------------------------------------------------------------
-// CASE FACTS (Truth Object):
+// CASE FACTS:
 //   witness: roman_guard
 //   observation: Saw Jesus enter the Court of Gentiles with
 //   a whip of rushes, overturn tables, scatter coins, release
@@ -22,319 +15,139 @@
 //   significance: Demonstrates Jesus' messianic authority and
 //   the religious leaders' rejection of Him.
 // ============================================================
-//
 
 -> start
 
 === start ===
-I am on duty at the Antonia fortress. I have been stationed on the high outer wall walkways for three years. I have seen riots. I have seen rebellions. I have seen crucifixions. But I have never seen anything like what happened in the Temple courts today. The Galilean — Jesus — He walked into the Court of the Gentiles with a whip made of rushes and turned the whole place upside down.
+I am on duty at the Antonia fortress. Three years on the wall walkways. I have seen riots, rebellions, crucifixions. But never anything like today. The Galilean — Jesus — walked into the Court of the Gentiles with a whip of rushes and turned the whole place upside down.
 
-+ [What did you see?] -> saw
-+ [Why didn't you intervene?] -> intervene
+* [What did you see?] -> saw_cleansing
+* [Why didn't Rome intervene?] -> no_intervention
+* [Did you recognize His authority?] -> authority_seen
 
-=== saw ===
+=== saw_cleansing ===
 # UNLOCK_EVIDENCE: whip_of_cords
-I saw tables overturned. Coins flying. Doves scattering. Merchants running. The Galilean standing in the middle of it all, looking like He owned the place. He didn't strike anyone. Didn't yell. Didn't even raise His voice. Just... looked at them. And they ran. Like sheep before a shepherd. Or convicts before a centurion.
+Tables overturned. Coins flying. Doves scattering. Merchants running. The Galilean standing in the middle of it all, looking like He owned the place. He didn't strike anyone. Didn't yell. Just looked at them. And they ran. Like sheep before a shepherd.
 
-+ [What was He saying?] -> saying
-+ [The crowd followed Him?] -> crowd
+* [He quoted Scripture.] -> scripture_zeal
+* [The crowd surged after Him.] -> crowd_surge
+* [It was not a threat to Rome.] -> not_roman_threat
 
-=== intervene ===
+=== no_intervention ===
 # UNLOCK_EVIDENCE: whip_of_cords
-Intervene? Our orders were clear: do not engage unless there is a full-scale rebellion. Flipped tables don't count. Scattered coins don't count. Even a broken dove cage doesn't count. The Romans don't die for Jewish commerce. We die for Roman order. And this... this was not a threat to Roman order.
+Intervene? Orders were clear: engage only on full-scale rebellion. Flipped tables don't count. Scattered coins don't count. The Romans don't die for Jewish commerce. This was not a threat to Roman order — it was the priests' problem to handle.
 
-+ [It was a threat to the Temple.] -> temple_threat
-+ [The priests were furious.] -> priests_furious
+* [The priests complained to Pilate.] -> priests_complain
+* [Pilate saw through it.] -> pilate_saw
 
-=== saying ===
-He was quoting Scripture. Psalm 69:9 — 'Zeal for your house will consume me.' His disciples were shouting it afterward. They say it proves He is the Messiah. But from where I stood, it looked like a man with a whip and a grievance. A dangerous combination in this city.
+=== authority_seen ===
+He had authority — not the kind of legions or procurators. Something deeper, older. The kind that makes men obey without thinking. The kind that makes crowds follow without question. From the parapet, it was unsettling.
 
-+ [He had zeal, not violence.] -> zeal
-+ [The priests feared that zeal.] -> priests_fear
+* [It was divine authority.] -> divine_power
+* [It frightened you.] -> feeling_fear
 
-=== crowd ===
-Followed Him? They didn't just follow Him. They surged. Like a tide. One minute they were buying doves and changing money. The next minute they were chasing after this Galilean like He was the emperor returning to Rome. I have never seen anything like it. Not even at the Passover pilgrimages.
+=== scripture_zeal ===
+He was quoting Scripture — Psalm 69: "Zeal for your house will consume me." His disciples shouted it afterward. They say it proves He is the Messiah. But from where I stood, it looked like a man with a whip and a grievance. A dangerous combination in this city.
 
-+ [He had that kind of authority.] -> authority
-+ [It was a dangerous moment.] -> dangerous
+* [The priests feared this zeal.] -> priestly_fear
+* [You recognized something different.] -> not_zealot
 
-=== temple_threat ===
-Threat to the Temple? Maybe. But the Temple has its own guards. Its own police. Its own way of handling prophets. They don't need Roman auxiliaries to clean up their markets. They need to clean up their own corruption. That Galilean... He might have done them a favor.
+=== crowd_surge ===
+Followed Him? They surged like a tide. One minute buying doves and changing money. The next chasing after this Galilean like He was the emperor returning to Rome. I have never seen anything like it. Not even at the Passover pilgrimages.
 
-+ [You sympathize with Him?] -> sympathize
-+ [The priests see it differently.] -> priests_differently
+* [He had that kind of authority.] -> authority_recognized
+* [The movement was growing.] -> movement_grows
 
-=== priests_furious ===
-Furious? They came to Pilate himself. Demanding action. Calling it insurrection. But when Pilate asked for the bodies — for the wounded, for the dead — they had nothing. No Roman casualties. No property damage to Rome. Just their precious temple tax scattered in the dirt. Pilate sent them packing.
+=== not_roman_threat ===
+Dangerous to the Temple, yes. To the priests, definitely. To Rome? No. A man who cleanses a market is not a military threat. A man who quotes Psalms is not a revolutionary. He is a prophet. And prophets are dangerous — but not to the empire.
 
-+ [Pilate saw through it.] -> pilate_saw
-+ [But the priests will not stop.] -> priests_not_stop
+* [Pilate will yield to pressure.] -> crucifixion_path
+* [The net is tightening.] -> net_closes
 
-=== zeal ===
-Zeal? The man had the eyes of a zealot. But zealots kill. Zealots burn. Zealots start wars. This man... He broke cages and scattered coins. He released doves. He didn't hurt anyone. That's not zeal. That's... something else. Something I can't name. Something that made the bravest centurion in the legion pause.
+=== priests_complain ===
+Furious. They went straight to Pilate, demanding action, calling it insurrection. But when Pilate asked for bodies — the wounded, the dead — they had nothing. No Roman casualties. No property damage to Rome. Just their precious temple tax scattered in the dirt. Pilate sent them packing.
 
-+ [It was prophetic zeal.] -> prophetic
-+ [You were affected by it too.] -> affected
-
-=== priests_fear ===
-Fear? The priests fear everything. They fear the Romans. They fear the crowds. They fear the prophets. They fear losing their power. This Galilean threatens all of it. His zeal. His authority. His following. He is everything they fear wrapped in one man. And they will stop at nothing to destroy Him.
-
-+ [They will succeed.] -> succeed
-+ [They are already plotting.] -> plotting
-
-=== authority ===
-Authority? He had authority. Not the kind you see in the legions. Not the kind you see in the Sanhedrin. Something deeper. Something older. The kind of authority that makes men obey without thinking. The kind that makes crowds follow without question. It was... unsettling. Even from the parapet.
-
-+ [Divine authority.] -> divine
-+ [It frightened you.] -> frightened
-
-=== dangerous ===
-Dangerous? To the Temple, yes. To the priests, definitely. To Rome? I don't think so. A man who cleanses a market is not a military threat. A man who quotes Psalms is not a revolutionary. He is a prophet. And prophets are dangerous — but not to the empire. To the establishment.
-
-+ [The priests made Him a threat to Rome.] -> made_threat
-+ [You see the distinction.] -> distinction
-
-=== sympathize ===
-Sympathize? I'm a Roman soldier. I don't sympathize with Jewish prophets. I follow orders. But... there was something about that man. The way He looked at the merchants. Not with anger. With sorrow. Like a father looking at wayward children. That got to me. And I've seen things that don't get to me.
-
-+ [You saw His heart.] -> heart
-+ [That's why you didn't intervene.] -> didnt_intervene
-
-=== priests_differently ===
-Differently? The priests see a threat. I see a man cleaning up a mess. They see blasphemy. I see a prophet calling them out. They see a criminal. I see... I'm not sure what I see. But it's not a criminal. That much I know.
-
-+ [You know more than you admit.] -> know_more
-+ [Your perspective is valuable.] -> valuable
+* [But this will not end here.] -> crucifixion_path
+* [Pilate will eventually yield.] -> crucifixion_path
 
 === pilate_saw ===
-Pilate saw through it. Of course he did. He's a Roman governor. He deals in facts. In evidence. In Roman law. The priests came to him with accusations of insurrection. He asked for bodies. They had nothing. Just their wounded pride and scattered coins. Pilate doesn't care about Jewish religious disputes. He cares about Roman order.
+Pilate saw through it immediately. A Roman governor deals in facts, evidence, Roman law. The priests came with accusations of insurrection. He asked for bodies. They had nothing. He called it a religious dispute and told them to sort it themselves. For now.
 
-+ [But he will yield to the crowd.] -> yield
-+ [Pilate is more complex than you think.] -> complex
+* [The priests will find another way.] -> crucifixion_path
+* [Pilate is more complex than this.] -> crucifixion_path
 
-=== priests_not_stop ===
-They won't stop? They never stop. The High Priest has decided. The Sanhedrin is plotting. They will find a way to make this Roman business. They will fabricate a sedition charge. They will bring Him to Pilate's praetorium. And then... then we will see what Pilate does.
+=== divine_power ===
+Divine authority? I don't believe in your gods. But I know power when I see it. Not the power of a legion. Not the power of a procurator. Something older, stronger. Authority that makes men obey without weapons. Without threats. Without fear.
 
-+ [Pilate will crucify Him.] -> crucify
-+ [Pilate might resist.] -> resist
+* [You are seeing the divine.] -> faith_begins
+* [You cannot explain it.] -> faith_begins
 
-=== prophetic ===
-Prophetic zeal? Maybe. I don't know much about Jewish prophets. But I know what I saw. A man with a whip of reeds. A crowd of terrified merchants. A Temple in chaos. And a peace that passed all understanding. That's not revolution. That's... something else. Something I can't explain.
+=== feeling_fear ===
+Frightened? I haven't been frightened since recruit training. But that man — He looked at the crowd like He owned them. Like He created them. And they followed Him. Not out of fear. Out of love. Out of devotion. It frightened me. Because I knew I was in the presence of something real.
 
-+ [You are seeing the Kingdom.] -> kingdom
-+ [Your Roman mind cannot process it.] -> roman_mind
+* [That was the presence of God.] -> faith_begins
+* [Fear is the beginning of faith.] -> faith_begins
 
-=== affected ===
-Affected? I'm a guard. I'm supposed to be unaffected. But that man... He looked right at me. From the parapet. Through the crowd. Right at me. And I felt... something. Not fear. Not respect. Something deeper. Like I was in the presence of something holy. Something I don't have a category for.
+=== priestly_fear ===
+The priests fear everything. They fear the Romans. They fear the crowds. They fear the prophets. They fear losing their power. This Galilean threatens all of it — His zeal, His authority, His following. They will stop at nothing to destroy Him.
 
-+ [You encountered the divine.] -> divine2
-+ [That will stay with you forever.] -> forever
+* [They will succeed.] -> crucifixion_path
+* [They are already plotting.] -> crucifixion_path
 
-=== succeed ===
-Succeed? The priests will arrest Him. The Sanhedrin will convict Him. Pilate will sentence Him. The Romans will crucify Him. And the crowds will cheer. Success is not the issue. Justice is. And in this city, justice is whatever the powerful say it is.
+=== not_zealot ===
+Zealots kill. Zealots burn. Zealots start wars. This man broke cages and scattered coins. He didn't hurt anyone. That's not zeal. That's something else. Something I can't name. Something that made the bravest centurion in the legion pause.
 
-+ [You are more perceptive than you look.] -> perceptive
-+ [You see the injustice.] -> injustice
+* [You felt a spiritual presence.] -> faith_begins
+* [You recognized a prophet.] -> prophet_recognized
 
-=== plotting ===
-Plotting? They are always plotting. The priests. The Sanhedrin. The Herodians. They plot against each other. Against the Romans. Against the prophets. Against anyone who threatens their power. This Galilean is just the latest target. But He is different. He has something they don't. Something they can't kill.
+=== authority_recognized ===
+That kind of authority — it doesn't come from position or power. It comes from somewhere else. From truth. From conviction. From something deeper than Rome's finest steel. Even from the parapet, I could feel it shifting the crowd's allegiance.
 
-+ [The truth.] -> truth
-+ [The resurrection.] -> resurrection
+* [You saw it transform people.] -> faith_begins
+* [That is prophetic authority.] -> prophet_recognized
 
-=== divine ===
-Divine authority? I don't believe in your gods. But I know power when I see it. And that man had power. Not the power of a legion. Not the power of a procurator. Something else. Something older. Something that made men obey without weapons. Without threats. Without fear.
+=== movement_grows ===
+The movement was growing. The crowd surged. But Jesus didn't call for an army. Didn't call for revolt. Just walked out of the Temple courts with a whip of rushes and a following. A following that grows, not by conquest but by conviction.
 
-+ [You are believing.] -> believing
-+ [That is the Holy Spirit.] -> holy_spirit
+* [This cannot stop the priests.] -> crucifixion_path
+* [You are witnessing something greater.] -> faith_begins
 
-=== frightened ===
-Frightened? I haven't been frightened since I was a recruit. But that man... He looked at the crowd like He owned them. Like He created them. And they followed Him. Not out of fear. Out of love. Out of devotion. I have never seen anything like it. And it frightened me. Because I knew... I knew that I was in the presence of something real.
+=== crucifixion_path ===
+The net was tightening. The circle was closing. Three powerful forces converged: the priests wanted blood, Pilate wanted peace, the crowd wanted spectacle. And Jesus — Jesus walked into it knowingly. He knew what was coming. And He went anyway.
 
-+ [You were in the presence of God.] -> presence_god
-+ [That fear is the beginning of faith.] -> beginning_faith
+* [You witnessed the crucifixion.] -> crucifixion_witnessed
+* [That was the price of truth.] -> crucifixion_witnessed
 
-=== made_threat ===
-Made Him a threat? The priests will take a prophet and turn Him into a revolutionary. They will take a healer and turn Him into a criminal. They will take a man who loves people and turn Him into a threat to Rome. And Pilate... Pilate will sign the death warrant. Because he fears the crowd more than he fears the truth.
+=== net_closes ===
+The net closes. The circle tightens. And the Teacher — He walks into it knowingly. He knows what they will do. And He goes anyway. Not because He is defeated. But because He has counted the cost. And the cost is worth paying. For all of us.
 
-+ [You are a prophet.] -> prophet_guard
-+ [You see the whole picture.] -> whole_picture
+* [You could not stop it.] -> crucifixion_witnessed
+* [You understood the sacrifice.] -> faith_begins
 
-=== distinction ===
-Distinction? A man who cleanses the Temple is not a rebel. A man who heals the sick is not a criminal. A man who teaches love is not a threat. But the priests need Him to be all those things. Because if He is just a prophet... if He is just a good man... then they have no excuse to kill Him. So they make Him a threat. To Rome. To order. To everything.
+=== faith_begins ===
+What I saw in the Temple courts that day — it changed me. Not immediately. Not completely. But enough to know that this was not just another execution. The peace in the chaos. The authority in the silence. The love in the violence. Something was happening there that transcended Roman understanding.
 
-+ [You understand the conspiracy.] -> conspiracy
-+ [You are a truth-teller.] -> truth_teller
+* [The resurrection will change everything.] -> resurrection_hope
+* [You became a witness.] -> closing_guard
 
-=== heart ===
-His heart? He had the heart of a shepherd. Looking at lost sheep. At wounded sheep. At sheep that didn't even know they were lost. That's what I saw in His eyes. Not anger. Not judgment. Sorrow. Love. A love that would die for those sheep. And did.
+=== prophet_recognized ===
+Prophet? From a Roman guard's perspective, maybe. But not an ordinary one. He looked at the crowd like He owned them. And they followed Him. Not out of fear. Out of love. Something deeper than military discipline. Something I cannot name but I will never forget.
 
-+ [You saw the Good Shepherd.] -> good_shepherd
-+ [You are a watcher.] -> watcher
+* [You saw divine presence.] -> faith_begins
+* [You filed your report.] -> closing_guard
 
-=== didnt_intervene ===
-Didn't intervene? My orders were to stand down. But even if they weren't... even if I had been ordered to attack... I don't think I could have. That man had a power over me. Not magic. Not fear. Something deeper. Something that made me want to follow Him instead of fight Him.
+=== resurrection_hope ===
+Three days later, the stone was rolled away. The guards at the tomb said the earth shook. An angel spoke. The centurion at the cross — his last words were "Truly this was the Son of God." And I — I saw the peace that passed all understanding. That peace did not die with Him in the tomb.
 
-+ [You were called.] -> called
-+ [That is the beginning of faith.] -> beginning_faith2
+* [Your testimony endures.] -> closing_guard
 
-=== know_more ===
-Know more? I know what I saw. A man with a whip of reeds. A Temple in chaos. A crowd of followers. And a peace that passed all understanding. I know the priests are lying. I know Pilate is conflicted. I know the Galilean is innocent. And I know... I know that I will never be the same.
+=== crucifixion_witnessed ===
+On the hill outside the city walls, I watched them nail Him to the cross. The peace from the Temple courts was gone. The screams of the crowd replaced the murmurs of amazement. The soldiers gambled for His clothes. The religious leaders stood there, satisfied. But one thing was different — even as He died, people were drawn to Him. Even in death, He had authority.
 
-+ [You are a witness.] -> witness
-+ [Your testimony matters.] -> matters
-
-=== valuable ===
-Valuable? I'm a Roman guard. My testimony doesn't matter. I'm a nobody. A pawn. A piece on the board. But... what I saw today. The Galilean. The whip. The crowd. The peace. That matters. And if I tell someone... if I write it down... maybe it will matter. Maybe it will make a difference.
-
-+ [It already has.] -> already_mattered
-+ [Your witness is important.] -> important
-
-=== yield ===
-Yield? He already did. When the priests brought Him. When the crowd screamed. When they demanded Barabbas instead. Pilate yielded. He washed his hands. He signed the warrant. He sent an innocent man to the cross. And he will live with that decision for the rest of his life.
-
-+ [Pilate is a coward.] -> coward
-+ [You are more honest than Pilate.] -> more_honest
-
-=== complex ===
-Complex? Pilate is a Roman governor. He deals in power. In politics. In survival. But today... today he faced a choice. Between a prophet and a province. Between justice and peace. And he chose peace. He chose survival. He chose to crucify an innocent man. That is not complex. That is cowardice.
-
-+ [You are judging Pilate.] -> judging_pilate
-+ [You have a moral compass.] -> compass
-
-=== crucify ===
-Crucify Him? The Romans will crucify Him. Not because He is guilty. But because the priests want Him dead. And Pilate wants peace. And the crowd wants blood. Three powerful forces. One innocent man. And the cross. That is how this city works. Innocent men die. Powerful men sleep soundly.
-
-+ [You are angry about injustice.] -> angry
-+ [You are becoming a believer.] -> becoming
-
-=== resist ===
-Resist? Pilate tried. He offered them Barabbas. He offered them a titulus. He offered them a choice. But they chose Barabbas. They chose blood. They chose death. And Pilate... Pilate yielded. Because in this province, the crowd is always right. Even when they are wrong.
-
-+ [Pilate found no fault in Him.] -> no_fault
-+ [The crowd chose a murderer.] -> chose_murderer
-
-=== kingdom ===
-Kingdom? I don't know much about Jewish kingdoms. But I know power. And that man had power. The kind that doesn't need swords. Doesn't need shields. Doesn't need legions. The kind that makes men follow freely. The kind that makes crowds obey willingly. That is not of this world. That is... from another kingdom.
-
-+ [The Kingdom of God.] -> kingdom_god
-+ [You are seeing the truth.] -> seeing_truth
-
-=== roman_mind ===
-Roman mind? I think in formations. In tactics. In logistics. But today... today I saw something that doesn't fit any formation. A man with a whip. A crowd of followers. A Temple in chaos. And a peace that defied explanation. My Roman mind cannot process it. But my heart... my heart knows it is real.
-
-+ [Your heart is being awakened.] -> awakened
-+ [You are experiencing faith.] -> experiencing_faith
-
-=== believing ===
-Believing? I don't believe in your Jewish God. Not yet. But I believe in what I saw. A man who could command a crowd with a look. A man who could cleanse a Temple with a whip of reeds. A man who could make a Roman centurion pause in awe. I believe in that man. And I think... I think He might be who they say He is.
-
-+ [You are on the edge of faith.] -> edge_faith
-+ [The Holy Spirit is working.] -> spirit_working
-
-=== holy_spirit ===
-Spirit? I don't know about spirits. But I know what I felt. When that man looked at me... through the crowd... from the parapet... I felt something. Warm. Powerful. Real. Like a presence. Like a voice. Like... like God. And I haven't been the same since.
-
-+ [That was the Holy Spirit.] -> holy_spirit2
-+ [You have been called.] -> called2
-
-=== presence_god ===
-Presence of God? I am a Roman. I worship Jupiter. Mars. The emperor. But today... today I felt a presence. In that Galilean. In that crowd. In that moment. A presence that made me tremble. Not with fear. With awe. With wonder. With something I have never felt before.
-
-+ [You encountered the one true God.] -> one_true_god
-+ [That presence is Jesus.] -> jesus_presence
-
-=== beginning_faith ===
-Beginning of faith? Maybe. I don't know much about your faith. But I know what I saw. And what I saw changed me. A man who could command crowds without weapons. A man who could cleanse a Temple without violence. A man who could make a Roman guard feel something holy. That is the beginning of something. For me. For the world. For everyone.
-
-+ [You are a new creation.] -> new_creation
-+ [Your journey has just begun.] -> journey_begins
-
-=== prophet_guard ===
-A prophet? I'm a Roman guard. I don't judge prophets. I arrest them. I guard them. I crucify them. But this one... this one is different. He doesn't act like a prophet. He acts like... like a king. But not a king of this world. A king of something else. Something better. Something I want to be part of.
-
-+ [You are becoming a disciple.] -> disciple
-+ [You see the Kingdom.] -> see_kingdom
-
-=== whole_picture ===
-The whole picture? I see a man. A mission. A movement. A mystery. The priests want Him dead. Pilate wants peace. The crowd wants blood. And Jesus... Jesus wants something else. Something I can't quite see. But I want to see it. I want to be part of it. Whatever it is.
-
-+ [You are seeking the truth.] -> seeking
-+ [You will find Him.] -> find_him
-
-=== good_shepherd ===
-The Good Shepherd? I don't know your Scriptures. But I know that look. I've seen it in centurions who care for their men. In fathers who protect their children. In masters who love their servants. That was the look of a shepherd. And those were His sheep. The crowd. The disciples. The world. He loves them. All of them. Even the ones who will kill Him.
-
-+ [You have recognized the Shepherd.] -> recognized_shepherd
-+ [You are one of His sheep.] -> his_sheep
-
-=== watcher ===
-A watcher? I watch from the walls. I see everything. The Temple rituals. The market chaos. The crowd movements. The Roman patrols. I see it all. And today... today I saw something that changed my watching. From observing to believing. From duty to devotion. I am a watcher. And I will watch for Him. Forever.
-
-+ [You are a sentry for Christ.] -> sentry
-+ [Your watch is not in vain.] -> not_vain
-
-=== called ===
-Called? I don't know about calls. But something happened today. Something inside me. Something that won't let me forget what I saw. That Galilean. That whip. That crowd. That peace. It's like a seed. Planted in my soul. Growing. Sprouting. Becoming something. I don't know what yet. But I know it's real.
-
-+ [You are being drawn to Christ.] -> drawn
-+ [That seed will grow into faith.] -> seed_faith
-
-=== beginning_faith2 ===
-Beginning? My faith is just beginning. I saw a man die today. A good man. An innocent man. A man who loved people so much He died for them. And I... I was there. I watched it happen. And I couldn't stop it. But now... now I can tell the story. I can be a witness. I can help people see what I saw. The truth. The love. The resurrection.
-
-+ [You are a witness to the truth.] -> witness_truth2
-+ [Your faith will grow.] -> will_grow
-
-=== truth ===
-Truth? The truth is this: a good man died today. Not a criminal. Not a rebel. A good man. And the world killed Him. Because the world hates goodness. The world hates truth. The world hates love. And the world killed the best man who ever lived. But that's not the end. Because I saw something today. Something that says the story is not over.
-
-+ [The resurrection is coming.] -> resurrection_coming
-+ [You saw the beginning.] -> beginning
-
-=== resurrection ===
-Resurrection? I don't know if I believe in resurrections. But I know what I saw. A man die with a prayer on His lips. A curtain tear at the exact moment of His death. An earthquake that shook the fortress. And a peace that defied explanation. If that's not resurrection power... I don't know what is.
-
-+ [You are a resurrection witness.] -> resurrection_witness2
-+ [You believe.] -> you_believe
-
-=== divine2 ===
-Divine? I serve Rome. Rome has gods. Jupiter. Mars. The emperor. But this... this was different. This was not Roman power. This was not Jewish power. This was something else. Something older. Something stronger. Something that made centurions tremble and crowds obey and priests plot and governors yield. Whatever it was... it was divine.
-
-+ [You have seen the one true God.] -> one_true_god2
-+ [You are a believer.] -> believer2
-
-=== frightened2 ===
-Frightened? I was. I am. Because I know what I saw. And I know what it means. That man is not just a prophet. He is not just a teacher. He is the Son of God. And I... I watched Him die. And I did nothing. I just stood there. On the wall. Watching. While the world killed its Savior. And that frightens me more than any battle.
-
-+ [You are a witness to the crucifixion.] -> crucifixion_witness
-+ [Your fear is the beginning of faith.] -> fear_faith
-
-=== perceptive ===
-Perceptive? I see what's in front of me. A man with a whip. A Temple in chaos. A crowd of followers. A Roman governor who can't make up his mind. And a priesthood that wants blood. That's not perceptive. That's just watching. And watching is my job.
-
-+ [You are more than a watcher.] -> more_than_watcher
-+ [Your observations are profound.] -> profound
-
-=== injustice ===
-Injustice? I've seen injustice in this province. I've seen Romans crucify innocent men. I've seen priests exploit the poor. I've seen crowds demand blood for no reason. But this... this is different. This is the murder of innocence. The killing of goodness. The destruction of truth. And it's happening in broad daylight. With the approval of the most powerful men in the city.
-
-+ [You are a voice for justice.] -> voice_justice
-+ [Your testimony will matter.] -> matter
-
-=== conspiracy ===
-Conspiracy? It's not a conspiracy. It's a system. The priests. The Sanhedrin. The Romans. The crowds. They all work together. To maintain power. To maintain order. To maintain the status quo. And anyone who threatens that system — anyone who speaks truth to power — gets eliminated. This Galilean is just the latest victim.
-
-+ [But the system cannot kill the truth.] -> cannot_kill
-+ [You understand the world.] -> understand_world
-
-=== truth_teller ===
-Truth-teller? I tell the truth about what I see. A man with a whip. A Temple in chaos. A crowd of followers. A Roman governor who yields. A priesthood that plots. That's the truth. And the truth is... the truth is that this Galilean is innocent. And He is going to die. Because the world kills innocent men. Every day. Everywhere.
-
-+ [You are a prophet.] -> prophet_simple
-+ [Your truth-telling is important.] -> important_truth
+* [You recognized the moment.] -> faith_begins
+* [You could not look away.] -> faith_begins
 
 === closing_guard ===
-I was on the wall. I saw the whole thing. The whip. The coins. The doves. The crowd. The peace. And I know... I know that man is who they say He is. The Son of God. The Savior. The Lamb. And I... I watched Him die. And I couldn't stop it. But I can tell the story. I can be a witness. And I will. For the rest of my life. Until He comes again.
+I was on the wall. I saw the whole thing. The whip. The coins. The doves. The crowd. The peace. And I know — I know that man is who they say He is. The Son of God. The Savior. The Lamb. And I watched Him die. I couldn't stop it. But I can tell the story. I can be a witness. For the rest of my life. Until He comes again.
 
 -> DONE

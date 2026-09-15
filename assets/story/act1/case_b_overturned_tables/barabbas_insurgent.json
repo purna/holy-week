@@ -51,7 +51,7 @@
       },
       {
         "text": "The revolution lives on?",
-        "destination": "revolution_continues"
+        "destination": "closing"
       }
     ]
   },
@@ -190,7 +190,7 @@
       },
       {
         "text": "Even rebellion serves Him.",
-        "destination": "unknowing"
+        "destination": "closing"
       }
     ]
   },
@@ -242,7 +242,7 @@
       },
       {
         "text": "The crowd was manipulated.",
-        "destination": "unknowing"
+        "destination": "closing"
       }
     ]
   },
@@ -312,7 +312,7 @@
     "choices": [
       {
         "text": "The power that raised Him.",
-        "destination": "power_raise"
+        "destination": "closing"
       },
       {
         "text": "The love transforms.",
@@ -342,7 +342,7 @@
       },
       {
         "text": "The cross becomes a banner.",
-        "destination": "cross_banner"
+        "destination": "closing"
       }
     ]
   },
@@ -381,7 +381,7 @@
       },
       {
         "text": "The story continues.",
-        "destination": "story_continues"
+        "destination": "closing"
       }
     ]
   },
@@ -394,7 +394,7 @@
       },
       {
         "text": "The cross changes everything.",
-        "destination": "changes_everything"
+        "destination": "closing"
       }
     ]
   },

@@ -16,7 +16,15 @@
       },
       {
         "text": "Did you fear the crowd's reaction?",
-        "destination": "crowd_fear"
+        "destination": "closing"
+      },
+      {
+        "text": "Did they strike Him?",
+        "destination": "stuck"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing"
       }
     ]
   },
@@ -33,7 +41,11 @@
       },
       {
         "text": "The procedure was ignored.",
-        "destination": "procedure_ignored"
+        "destination": "closing"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing"
       }
     ]
   },
@@ -46,7 +58,11 @@
       },
       {
         "text": "The risk was worth it.",
-        "destination": "risk_worth_it"
+        "destination": "closing"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing"
       }
     ]
   },
@@ -55,11 +71,11 @@
     "choices": [
       {
         "text": "The Lazarus event was dangerous.",
-        "destination": "lazarus_danger"
+        "destination": "closing"
       },
       {
         "text": "The timing was critical.",
-        "destination": "timing_critical"
+        "destination": "closing"
       }
     ]
   },
@@ -72,7 +88,11 @@
       },
       {
         "text": "The Daniel prophecy.",
-        "destination": "daniel_prophecy"
+        "destination": "closing"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing"
       }
     ]
   },
@@ -85,7 +105,7 @@
       },
       {
         "text": "The pressure mounted.",
-        "destination": "pressure_mounted"
+        "destination": "closing"
       }
     ]
   },
@@ -99,6 +119,10 @@
       {
         "text": "The Temple charge.",
         "destination": "temple_charge"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing"
       }
     ]
   },
@@ -111,7 +135,7 @@
       },
       {
         "text": "The foundation stones.",
-        "destination": "foundation_stones"
+        "destination": "closing"
       }
     ]
   },
@@ -124,7 +148,11 @@
       },
       {
         "text": "The truth emerged.",
-        "destination": "truth_emerged"
+        "destination": "closing"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing"
       }
     ]
   },
@@ -133,11 +161,15 @@
     "choices": [
       {
         "text": "The law was honored.",
-        "destination": "law_honored"
+        "destination": "closing"
       },
       {
         "text": "The silence won.",
-        "destination": "silence_won"
+        "destination": "closing"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing"
       }
     ]
   },
@@ -167,7 +199,11 @@
       },
       {
         "text": "The witnesses were coached.",
-        "destination": "witnesses_coached"
+        "destination": "closing"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing"
       }
     ]
   },
@@ -180,7 +216,11 @@
       },
       {
         "text": "The prophecy was alive.",
-        "destination": "prophecy_alive"
+        "destination": "closing"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing"
       }
     ]
   },
@@ -193,7 +233,11 @@
       },
       {
         "text": "The answer came at last.",
-        "destination": "answer_comes"
+        "destination": "closing"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing"
       }
     ]
   },
@@ -206,7 +250,7 @@
       },
       {
         "text": "The weight of the moment.",
-        "destination": "moment_weight"
+        "destination": "closing"
       }
     ]
   },
@@ -215,7 +259,7 @@
     "choices": [
       {
         "text": "You had your answer.",
-        "destination": "verdict"
+        "destination": "closing"
       },
       {
         "text": "The Daniel vision was named.",
@@ -236,7 +280,11 @@
       },
       {
         "text": "The claim was impossible.",
-        "destination": "claim_impossible"
+        "destination": "closing"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing"
       }
     ]
   },
@@ -245,11 +293,15 @@
     "choices": [
       {
         "text": "The boundary was crossed.",
-        "destination": "boundary_crossed"
+        "destination": "closing"
       },
       {
         "text": "The verdict was sealed.",
         "destination": "verdict_sealed"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing"
       }
     ]
   },
@@ -262,11 +314,15 @@
       },
       {
         "text": "Did you fear His words?",
-        "destination": "fear"
+        "destination": "closing"
       },
       {
         "text": "The Sanhedrin's decision.",
         "destination": "sanhedrin_decision"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing"
       }
     ]
   },
@@ -288,11 +344,15 @@
     "choices": [
       {
         "text": "The sign was refused.",
-        "destination": "sign_refused"
+        "destination": "closing"
       },
       {
         "text": "The council was split.",
-        "destination": "council_split"
+        "destination": "closing"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing"
       }
     ]
   },
@@ -305,7 +365,11 @@
       },
       {
         "text": "They struck Him.",
-        "destination": "struck"
+        "destination": "stuck"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing"
       }
     ]
   },
@@ -318,7 +382,11 @@
       },
       {
         "text": "The voice did not retreat.",
-        "destination": "voice_no_retreat"
+        "destination": "closing"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing"
       }
     ]
   },
@@ -331,7 +399,11 @@
       },
       {
         "text": "The admission was made.",
-        "destination": "admission_made"
+        "destination": "closing"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing"
       }
     ]
   },
@@ -344,7 +416,11 @@
       },
       {
         "text": "The glory was rejected.",
-        "destination": "glory_rejected"
+        "destination": "closing"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing"
       }
     ]
   },
@@ -353,11 +429,15 @@
     "choices": [
       {
         "text": "The victory was won.",
-        "destination": "victory_won"
+        "destination": "closing"
       },
       {
         "text": "The way was made.",
-        "destination": "way_made"
+        "destination": "closing"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing"
       }
     ]
   },
@@ -370,7 +450,7 @@
       },
       {
         "text": "The prophecy fulfilled.",
-        "destination": "prophecy_fulfilled_court"
+        "destination": "closing"
       }
     ]
   },
@@ -383,7 +463,11 @@
       },
       {
         "text": "The irony deepens.",
-        "destination": "irony_deepens"
+        "destination": "closing"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing"
       }
     ]
   },
@@ -392,11 +476,11 @@
     "choices": [
       {
         "text": "The haunting.",
-        "destination": "the_haunting"
+        "destination": "closing"
       },
       {
         "text": "The weight of decision.",
-        "destination": "weight_decision"
+        "destination": "closing"
       }
     ]
   },
@@ -410,6 +494,10 @@
       {
         "text": "The divine name.",
         "destination": "divine_name_invoked"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing"
       }
     ]
   },
@@ -422,7 +510,11 @@
       },
       {
         "text": "The judgment was mutual.",
-        "destination": "mutual_judgment"
+        "destination": "closing"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing"
       }
     ]
   },
@@ -435,7 +527,11 @@
       },
       {
         "text": "The weight of truth.",
-        "destination": "weight_truth"
+        "destination": "closing"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing"
       }
     ]
   },
@@ -448,11 +544,11 @@
       },
       {
         "text": "The Temple deception.",
-        "destination": "temple_deception"
+        "destination": "closing"
       },
       {
         "text": "The blasphemy was real.",
-        "destination": "blasphemy_real"
+        "destination": "closing"
       }
     ]
   },
@@ -478,7 +574,7 @@
       },
       {
         "text": "The verdict was unchanged.",
-        "destination": "verdict_unchanged"
+        "destination": "closing"
       }
     ]
   },
@@ -487,11 +583,15 @@
     "choices": [
       {
         "text": "The kingdom endures.",
-        "destination": "kingdom_endures"
+        "destination": "closing"
       },
       {
         "text": "The testimony continues.",
-        "destination": "testimony_continues"
+        "destination": "closing"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing"
       }
     ]
   },

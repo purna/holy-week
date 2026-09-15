@@ -1,6 +1,6 @@
 {
   "start": {
-    "content": "Lazarus has been raised from the dead. The whole city is talking about it.\nThere are thirteen extra mouths to feed tonight, and the road to Jerusalem is monitored by patrols. Mary sits at His feet listening, but someone must handle the bread, the water, and the structural security of this house. We are hiding people who have prices on their heads.",
+    "content": "Lazarus has been raised from the dead. The whole city is talking about it. There are thirteen extra mouths to feed tonight, and the road to Jerusalem is monitored by patrols. Mary sits at His feet listening, but someone must handle the bread, the water, and the structural security of this house. We are hiding people who have prices on their heads.",
     "choices": [
       {
         "text": "Your brother is alive.",
@@ -9,6 +9,10 @@
       {
         "text": "How is Mary handling all this?",
         "destination": "mary"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing2"
       }
     ]
   },
@@ -18,6 +22,10 @@
       {
         "text": "What questions?",
         "destination": "danger"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing2"
       }
     ]
   },
@@ -25,8 +33,16 @@
     "content": "# UNLOCK_EVIDENCE: grave_dirt\nMary has always been the listener. She sits at the feet of teachers while Martha handles the serving. Tonight, I understand her. He is speaking words that feed the soul.",
     "choices": [
       {
+        "text": "Conclude.",
+        "destination": "closing2"
+      },
+      {
         "text": "But you are afraid?",
         "destination": "danger"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing2"
       }
     ]
   },
@@ -36,24 +52,24 @@
       {
         "text": "Can you protect him?",
         "destination": "closing"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing2"
       }
     ]
   },
   "closing": {
     "content": "We have dried grain and oil for three days. The authorities are closing in. If I am speaking to you, it is because I believe someone outside this house needs to know what is happening in Bethany. Everyone believes Jesus is a prophet who has come to save his people from the Romans.",
-    "choices": [
-      {
-        "text": "How long can you hide him?",
-        "destination": "closing"
-      },
-      {
-        "text": "What happens if they find him?",
-        "destination": "closing"
-      }
-    ]
+    "choices": []
   },
   "closing2": {
     "content": "The guards are already patrolling the eastern road. If they sweep the houses at dawn, I will have nowhere left to hide him. But I will try. For all our sakes.",
-    "choices": []
+    "choices": [
+      {
+        "text": "Finish the interview.",
+        "destination": "closing"
+      }
+    ]
   }
 }

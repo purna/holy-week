@@ -29,7 +29,11 @@
       },
       {
         "text": "Peter's reaction at the table.",
-        "destination": "peter_table"
+        "destination": "conversation_end"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "victory_is_his"
       }
     ]
   },
@@ -47,6 +51,10 @@
       {
         "text": "Why does Matthew name Jeremiah?",
         "destination": "jeremiah_attribution"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "victory_is_his"
       }
     ]
   },
@@ -56,6 +64,10 @@
       {
         "text": "Trace what happened to each coin.",
         "destination": "matthew_fulfillment"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "victory_is_his"
       },
       {
         "text": "So two prophetic pictures converge.",
@@ -68,11 +80,19 @@
     "choices": [
       {
         "text": "The Field of Blood preserved the testimony.",
-        "destination": "akeldama_testimony"
+        "destination": "conversation_end"
       },
       {
         "text": "The priests completed what they tried to contain.",
         "destination": "prophetic_threads"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "victory_is_his"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "victory_is_his"
       }
     ]
   },
@@ -98,7 +118,11 @@
       },
       {
         "text": "The price was agreed.",
-        "destination": "price_agreed_detail"
+        "destination": "conversation_end"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "victory_is_his"
       }
     ]
   },
@@ -108,6 +132,10 @@
       {
         "text": "The choice was real.",
         "destination": "choice_was_real"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "victory_is_his"
       },
       {
         "text": "The responsibility was mine.",
@@ -120,11 +148,15 @@
     "choices": [
       {
         "text": "The field was bought.",
-        "destination": "field_bought"
+        "destination": "conversation_end"
       },
       {
         "text": "The price was different.",
-        "destination": "price_different"
+        "destination": "conversation_end"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "victory_is_his"
       }
     ]
   },
@@ -137,7 +169,11 @@
       },
       {
         "text": "The light remained.",
-        "destination": "light_remained"
+        "destination": "conversation_end"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "victory_is_his"
       }
     ]
   },
@@ -151,6 +187,18 @@
       {
         "text": "What became of the silver?",
         "destination": "silver_became"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "victory_is_his"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "victory_is_his"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "victory_is_his"
       }
     ]
   },
@@ -159,11 +207,15 @@
     "choices": [
       {
         "text": "The payment was counted.",
-        "destination": "payment_counted"
+        "destination": "conversation_end"
       },
       {
         "text": "The testimony was buried.",
-        "destination": "testimony_buried"
+        "destination": "conversation_end"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "victory_is_his"
       }
     ]
   },
@@ -172,11 +224,11 @@
     "choices": [
       {
         "text": "Akeldama's testimony.",
-        "destination": "akeldama_testimony"
+        "destination": "conversation_end"
       },
       {
         "text": "The soil remembers.",
-        "destination": "soil_remembers"
+        "destination": "conversation_end"
       }
     ]
   },
@@ -189,7 +241,11 @@
       },
       {
         "text": "The field still grows.",
-        "destination": "field_still_grows"
+        "destination": "conversation_end"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "victory_is_his"
       }
     ]
   },
@@ -201,8 +257,16 @@
         "destination": "witnesses_multiplied_detail"
       },
       {
+        "text": "Conclude.",
+        "destination": "victory_is_his"
+      },
+      {
         "text": "The testimony spread.",
         "destination": "testimony_spread_detail"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "victory_is_his"
       }
     ]
   },
@@ -215,7 +279,7 @@
       },
       {
         "text": "The lie could not hold.",
-        "destination": "lie_could_not_hold"
+        "destination": "conversation_end"
       }
     ]
   },
@@ -224,16 +288,24 @@
     "choices": [
       {
         "text": "The foundation was weak.",
-        "destination": "foundation_weak_detail"
+        "destination": "conversation_end"
       },
       {
         "text": "The kingdom was built on weak things.",
-        "destination": "weak_things"
+        "destination": "conversation_end"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "victory_is_his"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "victory_is_his"
       }
     ]
   },
   "bag_heavy": {
-    "content": "The money bag does seem heavy tonight. Thirty silver coins — the weight of a life. I did what was necessary, or so I told myself.\n~ money_bag_impression = true",
+    "content": "The money bag does seem heavy tonight. Thirty silver coins — the weight of a life. I did what was necessary, or so I told myself.\nmoney_bag_impression = true",
     "choices": [
       {
         "text": "What was necessary.",
@@ -241,7 +313,11 @@
       },
       {
         "text": "Jesus spoke of a new covenant.",
-        "destination": "new_covenant"
+        "destination": "conversation_end"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "victory_is_his"
       }
     ]
   },
@@ -254,7 +330,11 @@
       },
       {
         "text": "Satan's role.",
-        "destination": "satans_role"
+        "destination": "conversation_end"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "victory_is_his"
       }
     ]
   },
@@ -263,11 +343,15 @@
     "choices": [
       {
         "text": "The price was exact.",
-        "destination": "price_exact_detail"
+        "destination": "conversation_end"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "victory_is_his"
       },
       {
         "text": "The betrayal was sealed.",
-        "destination": "betrayal_sealed"
+        "destination": "conversation_end"
       }
     ]
   },
@@ -280,7 +364,7 @@
       },
       {
         "text": "John recorded this.",
-        "destination": "john_recorded"
+        "destination": "conversation_end"
       }
     ]
   },
@@ -292,8 +376,12 @@
         "destination": "jesus_knew_detail"
       },
       {
+        "text": "Conclude.",
+        "destination": "victory_is_his"
+      },
+      {
         "text": "The prediction was clear.",
-        "destination": "prediction_clear"
+        "destination": "conversation_end"
       }
     ]
   },
@@ -302,11 +390,15 @@
     "choices": [
       {
         "text": "The path was clear.",
-        "destination": "path_was_clear_detail"
+        "destination": "conversation_end"
       },
       {
         "text": "The regret began.",
-        "destination": "regret_begins_detail"
+        "destination": "conversation_end"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "victory_is_his"
       }
     ]
   },
@@ -328,11 +420,11 @@
     "choices": [
       {
         "text": "Akeldama's echo.",
-        "destination": "akeldama_echo"
+        "destination": "conversation_end"
       },
       {
         "text": "The earth bore witness.",
-        "destination": "earth_bore_witness"
+        "destination": "conversation_end"
       },
       {
         "text": "Why does Matthew name Jeremiah?",
@@ -349,7 +441,7 @@
       },
       {
         "text": "The forgiveness was offered.",
-        "destination": "forgiveness_offered_detail"
+        "destination": "conversation_end"
       }
     ]
   },
@@ -358,7 +450,7 @@
     "choices": [
       {
         "text": "Before the foundation.",
-        "destination": "before_foundation_detail"
+        "destination": "conversation_end"
       },
       {
         "text": "The betrayal was instrument.",
@@ -371,7 +463,7 @@
     "choices": [
       {
         "text": "The redemption was sufficient.",
-        "destination": "redemption_sufficient"
+        "destination": "conversation_end"
       },
       {
         "text": "The gift was free.",
@@ -388,7 +480,7 @@
       },
       {
         "text": "The rejection was mine.",
-        "destination": "rejection_was_mine"
+        "destination": "conversation_end"
       }
     ]
   },
@@ -402,6 +494,10 @@
       {
         "text": "The light endures.",
         "destination": "light_endures"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "victory_is_his"
       }
     ]
   },
@@ -410,11 +506,11 @@
     "choices": [
       {
         "text": "The final word.",
-        "destination": "final_word_detail"
+        "destination": "conversation_end"
       },
       {
         "text": "The dawn breaks.",
-        "destination": "dawn_breaks_final_detail"
+        "destination": "conversation_end"
       }
     ]
   },
@@ -427,7 +523,7 @@
       },
       {
         "text": "The earth testifies.",
-        "destination": "earth_testifies_final"
+        "destination": "conversation_end"
       }
     ]
   },
@@ -440,7 +536,7 @@
       },
       {
         "text": "The blood calls.",
-        "destination": "blood_calls"
+        "destination": "conversation_end"
       }
     ]
   },
@@ -453,7 +549,7 @@
       },
       {
         "text": "The judgment comes.",
-        "destination": "judgment_comes"
+        "destination": "conversation_end"
       }
     ]
   },
@@ -466,7 +562,7 @@
       },
       {
         "text": "The choice remains.",
-        "destination": "choice_remains_final"
+        "destination": "conversation_end"
       }
     ]
   },
@@ -479,7 +575,7 @@
       },
       {
         "text": "The gift accepted.",
-        "destination": "gift_accepted"
+        "destination": "conversation_end"
       }
     ]
   },
@@ -492,7 +588,7 @@
       },
       {
         "text": "The testimony complete.",
-        "destination": "testimony_complete_final"
+        "destination": "conversation_end"
       }
     ]
   },
@@ -505,7 +601,7 @@
       },
       {
         "text": "The covenant stands.",
-        "destination": "covenant_stands"
+        "destination": "conversation_end"
       }
     ]
   },
@@ -518,7 +614,7 @@
       },
       {
         "text": "The forgiveness is full.",
-        "destination": "forgiveness_full"
+        "destination": "conversation_end"
       }
     ]
   },
@@ -531,7 +627,7 @@
       },
       {
         "text": "The light beckons.",
-        "destination": "light_beckons"
+        "destination": "conversation_end"
       }
     ]
   },
@@ -544,7 +640,7 @@
       },
       {
         "text": "The table is set.",
-        "destination": "table_set"
+        "destination": "conversation_end"
       }
     ]
   },
@@ -557,7 +653,7 @@
       },
       {
         "text": "The testimony endures.",
-        "destination": "testimony_endures_final"
+        "destination": "conversation_end"
       }
     ]
   },
@@ -570,7 +666,7 @@
       },
       {
         "text": "The gates stand open.",
-        "destination": "gates_open"
+        "destination": "conversation_end"
       }
     ]
   },
@@ -583,12 +679,21 @@
       },
       {
         "text": "The testimony complete.",
-        "destination": "testimony_complete_victory"
+        "destination": "conversation_end"
       }
     ]
   },
   "victory_is_his": {
     "content": "The victory is His. The testimony complete. The dawn breaks. The earth remembers. The testimony endures.",
+    "choices": [
+      {
+        "text": "Finish the interview.",
+        "destination": "conversation_end"
+      }
+    ]
+  },
+  "conversation_end": {
+    "content": "",
     "choices": []
   }
 }

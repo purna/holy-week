@@ -18,7 +18,7 @@
 
 -> start
 === start ===
-You have questions about the market? I have ledgers. Every sacrifice registered this week, every coin exchanged, every lamb inspected. My records show a 40 percent increase in moneychanger fees since Tuesday. 
+You have questions about the market? I have ledgers. Every sacrifice registered this week, every coin exchanged, every lamb inspected. My records show a 40 percent increase in moneychanger fees since Tuesday.
 * [What about the Passover lambs?] -> lambs
 * [Did Jesus disrupt the schedule?] -> schedule
 === lambs ===

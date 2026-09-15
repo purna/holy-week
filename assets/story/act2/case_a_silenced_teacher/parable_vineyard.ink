@@ -34,8 +34,7 @@ The tenants saw the heir and said, "This is the one we will kill, so that the in
 * [And then?] -> vineyard_expansion
 
 === vineyard_expansion ===
-It was not just a story. It was Isaiah 5 sung aloud in a new voice:
-"My beloved had a vineyard on a very fertile hill. He expected it to produce good grapes, but it yielded wild fruit. And now I will tell you what I will do to my vineyard..."
+It was not just a story. It was Isaiah 5 sung aloud in a new voice: "My beloved had a vineyard on a very fertile hill. He expected it to produce good grapes, but it yielded wild fruit. And now I will tell you what I will do to my vineyard..."
 
 The Galilean was telling a story that Isaiah had written centuries before. The vineyard was Israel. The owner was God. The tenants were the leaders entrusted with the people. The servants were the prophets sent again and again, rejected and killed. The son was the heir, sent last, and also condemned.
 
@@ -43,13 +42,11 @@ The Galilean was telling a story that Isaiah had written centuries before. The v
 * [What happens to the vineyard then?] -> vineyard_judgment
 
 === vineyard_judgment ===
-Jesus asked:
-"When the owner comes, what will he do to those tenants?"
+Jesus asked: "When the owner comes, what will he do to those tenants?"
 
 Even the leaders could answer. Judgment would come. The vineyard would be taken from them and given to others who would produce its fruit.
 
-Then He said:
-"The stone the builders rejected has become the cornerstone."
+Then He said: "The stone the builders rejected has become the cornerstone."
 
 It was not just a story. It was prophecy. Judgment. Hope.
 
@@ -68,12 +65,12 @@ The rejected stone becomes the cornerstone. The owner’s son, once cast out and
 * [Thomas, what does it all mean?] -> closing
 
 === closing ===
-I trade in stories, but some answers are plain enough that even a listener cannot ignore them: 
+I trade in stories, but some answers are plain enough that even a listener cannot ignore them:
 
 A vineyard planted in hope. Servants sent and slain. A son rejected. A stone made the cornerstone.
 
 The Galilean spoke in parables, but the meaning was clear: those who reject God’s messengers risk losing the vineyard itself.
 
-The prists hated the way he behaved like God's words where about him. 
+The prists hated the way he behaved like God's words where about him.
 
 -> DONE

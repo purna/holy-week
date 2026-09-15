@@ -8,7 +8,11 @@
       },
       {
         "text": "How did Jesus appear?",
-        "destination": "appearance"
+        "destination": "closing2"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing2"
       }
     ]
   },
@@ -22,6 +26,10 @@
       {
         "text": "What did you do?",
         "destination": "interrogation"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing2"
       }
     ]
   },
@@ -35,6 +43,14 @@
       {
         "text": "The priests grew angry.",
         "destination": "priestly_fury"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing2"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing2"
       }
     ]
   },
@@ -56,11 +72,15 @@
     "choices": [
       {
         "text": "What did the crowd say?",
-        "destination": "crowd_reaction"
+        "destination": "closing2"
       },
       {
         "text": "How did you handle it?",
         "destination": "interrogation"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing2"
       }
     ]
   },
@@ -74,6 +94,14 @@
       {
         "text": "What did you learn?",
         "destination": "realization"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing2"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing2"
       }
     ]
   },
@@ -83,6 +111,10 @@
       {
         "text": "The priests heard everything.",
         "destination": "priestly_fury"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing2"
       },
       {
         "text": "You were troubled.",
@@ -100,6 +132,10 @@
       {
         "text": "The crowd turned against you.",
         "destination": "crowd_turn"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing2"
       }
     ]
   },
@@ -113,6 +149,14 @@
       {
         "text": "You washed your hands.",
         "destination": "washing_hands"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing2"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing2"
       }
     ]
   },
@@ -122,6 +166,10 @@
       {
         "text": "You still had options?",
         "destination": "barabbas_offer"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing2"
       }
     ]
   },
@@ -131,6 +179,10 @@
       {
         "text": "Barabbas was a real criminal.",
         "destination": "barabbas_reality"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing2"
       },
       {
         "text": "They chose Barabbas.",
@@ -144,6 +196,10 @@
       {
         "text": "The choice was made.",
         "destination": "choosing_death"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing2"
       }
     ]
   },
@@ -157,6 +213,10 @@
       {
         "text": "The weight of command.",
         "destination": "realization"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing2"
       }
     ]
   },
@@ -190,6 +250,10 @@
         "destination": "closing"
       },
       {
+        "text": "Conclude.",
+        "destination": "closing2"
+      },
+      {
         "text": "The weight of your decision.",
         "destination": "closing"
       }
@@ -203,8 +267,16 @@
         "destination": "record"
       },
       {
+        "text": "Conclude.",
+        "destination": "closing2"
+      },
+      {
         "text": "Could you have stopped it?",
         "destination": "stopping_it"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing2"
       }
     ]
   },
@@ -218,6 +290,14 @@
       {
         "text": "What the priests feared.",
         "destination": "priests_fear"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing2"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing2"
       }
     ]
   },
@@ -236,6 +316,10 @@
       {
         "text": "The title endured.",
         "destination": "closing"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing2"
       }
     ]
   },

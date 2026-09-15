@@ -8,11 +8,15 @@
       },
       {
         "text": "You called the guards to your chamber.",
-        "destination": "guard_meeting"
+        "destination": "conversation_end"
       },
       {
         "text": "And the soldiers?",
-        "destination": "soldiers_reaction"
+        "destination": "conversation_end"
+      },
+      {
+        "text": "What was the institutional calculation behind your response?",
+        "destination": "calculated_risk"
       }
     ]
   },
@@ -25,7 +29,7 @@
       },
       {
         "text": "You chose silence.",
-        "destination": "chosen_silence"
+        "destination": "conversation_end"
       }
     ]
   },
@@ -38,7 +42,7 @@
       },
       {
         "text": "What was the first step?",
-        "destination": "first_step"
+        "destination": "conversation_end"
       }
     ]
   },
@@ -51,7 +55,7 @@
       },
       {
         "text": "Even the guards were involved.",
-        "destination": "guards_involved"
+        "destination": "conversation_end"
       }
     ]
   },
@@ -90,7 +94,11 @@
       },
       {
         "text": "But the testimony endured.",
-        "destination": "testimony_endured"
+        "destination": "conversation_end"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "truth_prevailed"
       }
     ]
   },
@@ -99,11 +107,15 @@
     "choices": [
       {
         "text": "The weakness of the testimony.",
-        "destination": "weakness_of_testimony"
+        "destination": "conversation_end"
       },
       {
         "text": "Which proves its authenticity.",
-        "destination": "authenticity"
+        "destination": "conversation_end"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "truth_prevailed"
       }
     ]
   },
@@ -116,7 +128,11 @@
       },
       {
         "text": "You saw the numbers.",
-        "destination": "saw_numbers"
+        "destination": "conversation_end"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "truth_prevailed"
       }
     ]
   },
@@ -125,11 +141,11 @@
     "choices": [
       {
         "text": "The evidence was spreading.",
-        "destination": "evidence_spreading"
+        "destination": "conversation_end"
       },
       {
         "text": "What was your response?",
-        "destination": "response"
+        "destination": "conversation_end"
       }
     ]
   },
@@ -155,7 +171,11 @@
       },
       {
         "text": "It would not hold.",
-        "destination": "would_not_hold"
+        "destination": "conversation_end"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "truth_prevailed"
       }
     ]
   },
@@ -169,6 +189,10 @@
       {
         "text": "The plan had stages.",
         "destination": "plan_stages"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "truth_prevailed"
       }
     ]
   },
@@ -181,7 +205,11 @@
       },
       {
         "text": "Without knowing.",
-        "destination": "without_knowing"
+        "destination": "conversation_end"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "truth_prevailed"
       }
     ]
   },
@@ -190,11 +218,15 @@
     "choices": [
       {
         "text": "The prophecy was fulfilled.",
-        "destination": "prophecy_fulfilled"
+        "destination": "conversation_end"
       },
       {
         "text": "The death was necessary.",
-        "destination": "death_necessary"
+        "destination": "conversation_end"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "truth_prevailed"
       }
     ]
   },
@@ -203,11 +235,15 @@
     "choices": [
       {
         "text": "The monitoring was constant.",
-        "destination": "monitoring"
+        "destination": "conversation_end"
       },
       {
         "text": "The counter-narrative was aggressive.",
-        "destination": "counter_narrative"
+        "destination": "conversation_end"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "truth_prevailed"
       }
     ]
   },
@@ -220,7 +256,7 @@
       },
       {
         "text": "The cost to the Temple.",
-        "destination": "temple_cost"
+        "destination": "conversation_end"
       }
     ]
   },
@@ -229,7 +265,7 @@
     "choices": [
       {
         "text": "The irony was complete.",
-        "destination": "irony_complete"
+        "destination": "conversation_end"
       },
       {
         "text": "The cost was internal.",
@@ -246,7 +282,7 @@
       },
       {
         "text": "The evidence was self-incriminating.",
-        "destination": "self_incriminating"
+        "destination": "conversation_end"
       }
     ]
   },
@@ -272,7 +308,7 @@
       },
       {
         "text": "The evidence is irrefutable.",
-        "destination": "irrefutable"
+        "destination": "conversation_end"
       }
     ]
   },
@@ -285,7 +321,7 @@
       },
       {
         "text": "No stone is unturned.",
-        "destination": "unturned"
+        "destination": "conversation_end"
       }
     ]
   },
@@ -298,13 +334,18 @@
       },
       {
         "text": "The house of cards falls.",
-        "destination": "falls"
+        "destination": "conversation_end"
       }
     ]
   },
   "revelation_complete": {
-    "content": "The revelation will be complete. The house of cards built on silver and silence will come crashing down. The Sanhedrin's reputation — built on centuries of religious authority — will be exposed as the product of political calculation and theological cowardice.\n# UNLOCK_EVIDENCE: sanhedrin_report\n*",
-    "choices": []
+    "content": "The revelation will be complete. The house of cards built on silver and silence will come crashing down. The Sanhedrin's reputation — built on centuries of religious authority — will be exposed as the product of political calculation and theological cowardice.\n# UNLOCK_EVIDENCE: sanhedrin_report",
+    "choices": [
+      {
+        "text": "Finish the interview.",
+        "destination": "conversation_end"
+      }
+    ]
   },
   "calculated_risk": {
     "content": "The calculated risk of institutional collapse. If the resurrection reports gained traction — and they were gaining — the Temple's revenue stream would evaporate within months. The pilgrim trade, the sacrifice fees, the money-changing commissions — all dependent on a population that still believed in the sacrificial system. The resurrection threatened to make all of it obsolete.",
@@ -315,7 +356,7 @@
       },
       {
         "text": "The threat was financial.",
-        "destination": "financial_threat"
+        "destination": "conversation_end"
       }
     ]
   },
@@ -324,7 +365,7 @@
     "choices": [
       {
         "text": "The collapse was theological.",
-        "destination": "theological_collapse"
+        "destination": "conversation_end"
       },
       {
         "text": "The response was decisive.",
@@ -341,7 +382,7 @@
       },
       {
         "text": "The narrative was controlled.",
-        "destination": "narrative_controlled"
+        "destination": "conversation_end"
       }
     ]
   },
@@ -350,7 +391,7 @@
     "choices": [
       {
         "text": "The silence was bought.",
-        "destination": "silence_bought_tool"
+        "destination": "conversation_end"
       },
       {
         "text": "The narrative was weaponized.",
@@ -367,7 +408,7 @@
       },
       {
         "text": "The objective was met.",
-        "destination": "objective_met"
+        "destination": "conversation_end"
       }
     ]
   },
@@ -376,7 +417,7 @@
     "choices": [
       {
         "text": "The simplicity was deceptive.",
-        "destination": "deceptive"
+        "destination": "conversation_end"
       },
       {
         "text": "The deception would be exposed.",
@@ -389,17 +430,13 @@
     "choices": [
       {
         "text": "The contradiction was in their records.",
-        "destination": "contradiction_records"
+        "destination": "truth_will_out"
       },
       {
         "text": "The evidence was undeniable.",
-        "destination": "undeniable_evidence"
+        "destination": "conversation_end"
       }
     ]
-  },
-  "contradiction_records": {
-    "content": "",
-    "choices": []
   },
   "truth_will_out": {
     "content": "The truth will out. Matthew — the tax collector, the former outcast — writes it down for all to read. He records that the soldiers said \"His disciples stole the body.\" But he also writes: \"When the people heard this, they were greatly distressed.\" The lie did not convince. The truth endured.",
@@ -410,7 +447,7 @@
       },
       {
         "text": "The lie was insufficient.",
-        "destination": "lie_insufficient"
+        "destination": "conversation_end"
       }
     ]
   },
@@ -425,6 +462,15 @@
   },
   "truth_prevailed": {
     "content": "The truth prevailed. Not because we stopped lying — we continued to lie. Not because the people stopped questioning — they continued to question. But because the resurrection happened whether we acknowledged it or not. A lie cannot cover up a fact.",
+    "choices": [
+      {
+        "text": "Finish the interview.",
+        "destination": "conversation_end"
+      }
+    ]
+  },
+  "conversation_end": {
+    "content": "",
     "choices": []
   }
 }

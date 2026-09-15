@@ -25,7 +25,11 @@
       },
       {
         "text": "Pilate agreed to suppress.",
-        "destination": "pilate_arrangement"
+        "destination": "conversation_end"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "eternal"
       }
     ]
   },
@@ -34,11 +38,15 @@
     "choices": [
       {
         "text": "The seal was intact",
-        "destination": "seal_intact"
+        "destination": "conversation_end"
       },
       {
         "text": "What happened at dawn?",
         "destination": "dawn_events"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "eternal"
       }
     ]
   },
@@ -51,7 +59,11 @@
       },
       {
         "text": "The coins were Temple currency.",
-        "destination": "temple_currency"
+        "destination": "conversation_end"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "eternal"
       }
     ]
   },
@@ -63,8 +75,12 @@
         "destination": "unprecedented_payment"
       },
       {
+        "text": "Conclude.",
+        "destination": "eternal"
+      },
+      {
         "text": "The weight felt wrong.",
-        "destination": "felt_wrong"
+        "destination": "conversation_end"
       }
     ]
   },
@@ -77,7 +93,11 @@
       },
       {
         "text": "The practice was routine.",
-        "destination": "routine_bribery"
+        "destination": "conversation_end"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "eternal"
       }
     ]
   },
@@ -86,11 +106,19 @@
     "choices": [
       {
         "text": "The cover was comprehensive.",
-        "destination": "cover_comprehensive"
+        "destination": "conversation_end"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "eternal"
       },
       {
         "text": "The truth would out.",
         "destination": "truth_will_out"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "eternal"
       }
     ]
   },
@@ -99,11 +127,15 @@
     "choices": [
       {
         "text": "The truth was unshakeable.",
-        "destination": "unshakeable"
+        "destination": "conversation_end"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "eternal"
       },
       {
         "text": "The evidence was divine.",
-        "destination": "divine_evidence"
+        "destination": "conversation_end"
       }
     ]
   },
@@ -113,6 +145,10 @@
       {
         "text": "The light appeared.",
         "destination": "light_appears"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "eternal"
       },
       {
         "text": "The soldiers were paralyzed.",
@@ -125,7 +161,11 @@
     "choices": [
       {
         "text": "The recognition was divine.",
-        "destination": "divine_recognition"
+        "destination": "conversation_end"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "eternal"
       },
       {
         "text": "The spear broke.",
@@ -139,6 +179,10 @@
       {
         "text": "The evidence was complete.",
         "destination": "evidence_complete"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "eternal"
       }
     ]
   },
@@ -147,11 +191,15 @@
     "choices": [
       {
         "text": "The force was supernatural.",
-        "destination": "supernatural_force"
+        "destination": "conversation_end"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "eternal"
       },
       {
         "text": "The evidence was physical.",
-        "destination": "physical_evidence"
+        "destination": "conversation_end"
       }
     ]
   },
@@ -164,7 +212,11 @@
       },
       {
         "text": "The truth was purchased.",
-        "destination": "purchased"
+        "destination": "conversation_end"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "eternal"
       }
     ]
   },
@@ -173,11 +225,11 @@
     "choices": [
       {
         "text": "The admission is in writing.",
-        "destination": "written_admission"
+        "destination": "conversation_end"
       },
       {
         "text": "The cover-up is documented.",
-        "destination": "documented"
+        "destination": "conversation_end"
       }
     ]
   },
@@ -190,7 +242,7 @@
       },
       {
         "text": "The truth is in the evidence.",
-        "destination": "evidence_proves"
+        "destination": "conversation_end"
       }
     ]
   },
@@ -203,7 +255,7 @@
       },
       {
         "text": "The cover-up is complete.",
-        "destination": "complete_cover"
+        "destination": "conversation_end"
       }
     ]
   },
@@ -216,7 +268,7 @@
       },
       {
         "text": "The witnesses will testify.",
-        "destination": "witnesses_testify"
+        "destination": "conversation_end"
       }
     ]
   },
@@ -225,7 +277,7 @@
     "choices": [
       {
         "text": "The explanation was divine.",
-        "destination": "divine_explanation"
+        "destination": "conversation_end"
       },
       {
         "text": "The testimony is eternal.",
@@ -235,6 +287,15 @@
   },
   "eternal": {
     "content": "The testimony is eternal. The evidence will speak. And the truth — that something beyond human comprehension happened in a garden outside Jerusalem — will echo through every generation until the Son of Man returns.",
+    "choices": [
+      {
+        "text": "Finish the interview.",
+        "destination": "conversation_end"
+      }
+    ]
+  },
+  "conversation_end": {
+    "content": "",
     "choices": []
   }
 }

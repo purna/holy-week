@@ -1,717 +1,152 @@
 {
   "start": {
-    "content": "I am Master Scribe. The archives hold testimony -- not opinion. My scrolls from this morning record every question the Sanhedrin dared to raise, and every answer that left them with nothing further to say.",
+    "content": "I am Master Scribe Samuel. The archives hold testimony — not opinion. My scrolls from this morning record every question the Sanhedrin dared to raise, and every answer that left them with nothing further to say. The religious leadership came with scrolls, seals, and strategies. They left with silence.",
     "choices": [
       {
-        "text": "What have you been recording?",
-        "destination": "truth_records"
+        "text": "Tell me about the authority challenge.",
+        "destination": "authority_challenge"
       },
       {
-        "text": "What did you observe in the Temple courts?",
-        "destination": "temple_observations"
+        "text": "The tax question and Caesar's coin.",
+        "destination": "caesar_coin"
       },
       {
-        "text": "I am investigating the authority challenge.",
-        "destination": "authority_inquiry"
-      },
-      {
-        "text": "Tell me about the widow's offering.",
-        "destination": "widow_observation"
+        "text": "The widow's offering.",
+        "destination": "widow_offering"
       }
     ]
   },
-  "truth_records": {
-    "content": "I record what is said, not what I believe. My notes are the same either way -- official, detailed, comprehensive. The past week has generated more scroll than the entire month of Tishri.\n# UNLOCK_EVIDENCE: witness_scroll",
-    "choices": [
-      {
-        "text": "How detailed were the records?",
-        "destination": "records_detailed"
-      },
-      {
-        "text": "Did the crowd witness it all?",
-        "destination": "crowd_witnessed_all"
-      },
-      {
-        "text": "Continue to temple observations.",
-        "destination": "temple_observations"
-      }
-    ]
-  },
-  "records_detailed": {
-    "content": "Every exchange, every rebuttal, every glance across the court. The Pharisees' body language when He answered their tax question. The Sadducees' hesitation when the resurrection was discussed. Even the Herodians' concession when He spoke of Caesar and God in the same breath.",
-    "choices": [
-      {
-        "text": "The precision was remarkable.",
-        "destination": "precision_remarkable"
-      },
-      {
-        "text": "What of the questioners' reactions?",
-        "destination": "questioners_reactions"
-      },
-      {
-        "text": "Continue to authority inquiry.",
-        "destination": "authority_inquiry"
-      }
-    ]
-  },
-  "precision_remarkable": {
-    "content": "Remarkable precision. When the Herodian delegation brought the denarius, expecting a Yes or No on tribute, He asked whose image bore on the coin. Caesar's. And whose inscription? Caesar's. Then: \"Render therefore to Caesar the things that are Caesar's, and to God the things that are God's.\" The trap snapped shut on them instead of Him.\n# UNLOCK_EVIDENCE: coin_of_caesar",
-    "choices": [
-      {
-        "text": "The crowd recognized the shift.",
-        "destination": "crowd_recognized_shift"
-      },
-      {
-        "text": "The Herodians were caught off guard.",
-        "destination": "herodians_off_guard"
-      },
-      {
-        "text": "Continue to temple observations.",
-        "destination": "temple_observations"
-      }
-    ]
-  },
-  "crowd_recognized_shift": {
-    "content": "The crowd recognised the shift instantly. He had not said \"pay taxes\" or \"refuse taxes.\" He had reframed the entire question around image and allegiance. Caesar's image on the coin; God's image on every person listening.",
-    "choices": [
-      {
-        "text": "The image question was deeper.",
-        "destination": "image_question_deeper"
-      },
-      {
-        "text": "The trap backfired completely.",
-        "destination": "trap_backfired"
-      },
-      {
-        "text": "Continue to start.",
-        "destination": "start"
-      }
-    ]
-  },
-  "image_question_deeper": {
-    "content": "Deeper than politics. When He spoke of rendering to God what was God's, He meant the very breath and fabric of humanity -- made in the divine image. The Herodians left with their coin and no answer to give their masters.\n# UNLOCK_EVIDENCE: coin_of_caesar",
-    "choices": [
-      {
-        "text": "The leadership's frustration.",
-        "destination": "leadership_frustration"
-      },
-      {
-        "text": "Return to start.",
-        "destination": "start"
-      }
-    ]
-  },
-  "trap_backfired": {
-    "content": "The trap backfired completely. They had come to entrap Him on taxation policy. He left them contemplating the nature of human identity. I recorded it all in column seven.",
-    "choices": [
-      {
-        "text": "The records preserve this.",
-        "destination": "records_preserve_this"
-      },
-      {
-        "text": "Continue to start.",
-        "destination": "start"
-      }
-    ]
-  },
-  "records_preserve_this": {
-    "content": "My records preserve this moment. Column seven, entry dated 15:32: \"The delegation departed without retrieving their coin from the ground where it had fallen. The Teacher's answer reframed the question entirely.\"\n# UNLOCK_EVIDENCE: witness_scroll",
-    "choices": [
-      {
-        "text": "Return to start.",
-        "destination": "start"
-      }
-    ]
-  },
-  "herodians_off_guard": {
-    "content": "The Herodians left off guard. They expected political evasion. They received divine philosophy. Their coin -- inscribed with Caesar's image -- became the instrument through which they learned about the divine image in humanity. I noted their confusion in column eight.",
-    "choices": [
-      {
-        "text": "The confusion was evident.",
-        "destination": "herodian_confusion"
-      },
-      {
-        "text": "Return to start.",
-        "destination": "start"
-      }
-    ]
-  },
-  "herodian_confusion": {
-    "content": "Evident in their departure. The delegation walked away without retrieving their denarius from the Temple floor. I picked it up and logged it -- silver denarius, Tiberius Caesar. The coin that became an instrument of divine teaching.\n# UNLOCK_EVIDENCE: coin_of_caesar",
-    "choices": [
-      {
-        "text": "The archives stand.",
-        "destination": "archives_stand"
-      },
-      {
-        "text": "Return to start.",
-        "destination": "start"
-      }
-    ]
-  },
-  "leadership_frustration": {
-    "content": "Frustration marked their retreat. The chief priests exchanged glances. One muttered something in Aramaic picked up by the court recorder. The Alexandria visitor's scroll records: \"They left Him alone, marveling at the answer He had given.\"\n# UNLOCK_EVIDENCE: question_scroll",
-    "choices": [
-      {
-        "text": "Their retreat was noted.",
-        "destination": "retreat_noted"
-      },
-      {
-        "text": "Return to start.",
-        "destination": "start"
-      }
-    ]
-  },
-  "retreat_noted": {
-    "content": "Noted at 16:03. The delegation withdrew to the priestly chambers. No further formal challenge was mounted that day. The people's favour had shifted decisively, and the leadership recognised their trap had backfired.",
-    "choices": [
-      {
-        "text": "The admission was telling.",
-        "destination": "admission_telling"
-      },
-      {
-        "text": "Continue to final entry.",
-        "destination": "final_entry"
-      }
-    ]
-  },
-  "admission_telling": {
-    "content": "Telling, yes. The leaders of Israel, who spent their lives parsing the law, could not determine the source of John's authority. Yet they demanded to judge the Teacher's. I filed this under \"Opposition Tactics\" for future reference.\n# UNLOCK_EVIDENCE: question_scroll",
-    "choices": [
-      {
-        "text": "Continue.",
-        "destination": "final_entry"
-      },
-      {
-        "text": "Return to start.",
-        "destination": "start"
-      }
-    ]
-  },
-  "temple_observations": {
-    "content": "The Temple courts this morning -- a theater of questions that never concluded. The chief priests came first, then the Pharisees, the Sadducees, the Herodians. Each faction with a different angle, each leaving with the same result: silence.",
-    "choices": [
-      {
-        "text": "The silence was notable.",
-        "destination": "silence_notable"
-      },
-      {
-        "text": "What of the crowd?",
-        "destination": "crowd_reaction_scribe"
-      },
-      {
-        "text": "Did Jesus answer every question?",
-        "destination": "answered_all"
-      },
-      {
-        "text": "Continue to truth records.",
-        "destination": "truth_records"
-      }
-    ]
-  },
-  "silence_notable": {
-    "content": "Silence hung over the court like incense -- present, weighty, unmistakable. After the baptism counter-question, after the resurrection refutation, after the law commandment clarification, after the Caesar-God distinction -- there was nothing left for them to ask. I dated and signed that observation.",
-    "choices": [
-      {
-        "text": "The crowd's silence was different.",
-        "destination": "crowd_silence_different"
-      },
-      {
-        "text": "Return to authority inquiry.",
-        "destination": "authority_inquiry"
-      },
-      {
-        "text": "Continue to start.",
-        "destination": "start"
-      }
-    ]
-  },
-  "crowd_silence_different": {
-    "content": "The crowd's silence was different from the questioners' silence. The crowd had been listening, and their silence was engagement -- they were processing what they had heard. The questioners' silence was defeat. The crowd stayed; the leaders left.\n# UNLOCK_EVIDENCE: witness_scroll",
-    "choices": [
-      {
-        "text": "Continue to crowd reaction.",
-        "destination": "crowd_reaction_scribe"
-      },
-      {
-        "text": "Return to start.",
-        "destination": "start"
-      }
-    ]
-  },
-  "crowd_reaction_scribe": {
-    "content": "The crowd's reaction was mixed -- amazement at His answers, confusion at their implications, discomfort at their own inadequacy. The Gospel writers later recorded: \"The chief priests and the scribes... were looking for a way to kill Him, for they feared Him because the whole crowd was amazed at His teaching.\"",
-    "choices": [
-      {
-        "text": "The fear was real.",
-        "destination": "fear_was_real_scribe"
-      },
-      {
-        "text": "The praise was notable.",
-        "destination": "praise_notable"
-      },
-      {
-        "text": "Continue to start.",
-        "destination": "start"
-      }
-    ]
-  },
-  "fear_was_real_scribe": {
-    "content": "Fear was the leadership's constant companion that day. They had come to trap a Teacher and left having been trapped themselves. I noted the timing -- they withdrew immediately after the widow's offering, perhaps realising their wealth contrasted unfavorably with her sacrifice.\n# UNLOCK_EVIDENCE: question_scroll",
-    "choices": [
-      {
-        "text": "The archives preserve this.",
-        "destination": "records_preserve_this"
-      },
-      {
-        "text": "Return to start.",
-        "destination": "start"
-      }
-    ]
-  },
-  "praise_notable": {
-    "content": "Notable, yes. From the outermost court to the inner colonnade, the crowd's murmurs carried the evening news: \"A Teacher who answers beyond the wisdom of the elders.\" I recorded the geographical spread of witnesses, from Galilee to Alexandria to Babylon.\n# UNLOCK_EVIDENCE: witness_scroll",
-    "choices": [
-      {
-        "text": "Return to start.",
-        "destination": "start"
-      },
-      {
-        "text": "Continue to final entry.",
-        "destination": "final_entry"
-      }
-    ]
-  },
-  "answered_all": {
-    "content": "Every question was met, not with evasion, but with truth that reframed the entire context. The resurrection question about the Sadducees became a lesson on the nature of eternal life. The law question from the Pharisee became a declaration of love itself. The tax question from the Herodians became a statement on divine-human dual allegiance. Nothing was left unanswered.\n# UNLOCK_EVIDENCE: coin_of_caesar",
-    "choices": [
-      {
-        "text": "The reframing was consistent.",
-        "destination": "reframing_consistent"
-      },
-      {
-        "text": "The preservation was thorough.",
-        "destination": "preservation_thorough"
-      },
-      {
-        "text": "Continue to start.",
-        "destination": "start"
-      }
-    ]
-  },
-  "reframing_consistent": {
-    "content": "Consistent in its divine clarity. Each answer did not merely evade the trap -- it exposed the trap's flawed premise and replaced it with a higher truth. I recorded each reframing alongside the original question, for posterity to judge the disparity.",
-    "choices": [
-      {
-        "text": "The testimony multiplies.",
-        "destination": "testimony_multiplies"
-      },
-      {
-        "text": "Return to start.",
-        "destination": "start"
-      }
-    ]
-  },
-  "preservation_thorough": {
-    "content": "Thorough, yes. Column by column, question by question, answer by answer. I preserved not just the words but the context, the atmosphere, the reactions. A future investigator, reading these records, would see exactly what happened that morning.\n# UNLOCK_EVIDENCE: witness_scroll",
-    "choices": [
-      {
-        "text": "Continue to final entry.",
-        "destination": "final_entry"
-      }
-    ]
-  },
-  "testimony_multiplies": {
-    "content": "Multiplies, yes. Each witness added their thread to the tapestry of that day's testimony. The scribe's scrolls, the treasurer's ledger, the crowd's memory -- all converging on one undeniable fact: the Teacher who entered the Temple courts as a questioner became the one who answered all questions.\n# UNLOCK_EVIDENCE: witness_scroll",
-    "choices": [
-      {
-        "text": "Continue to final entry.",
-        "destination": "final_entry"
-      }
-    ]
-  },
-  "questioners_reactions": {
-    "content": "Reactions varied. The Pharisees exchanged heated glances -- their legal expertise had been turned against them. The Sadducees' faces were grim -- their theological challenge had been reframed as a discussion of eternal life. The Herodians' expressions suggested they had completely misread their target.",
-    "choices": [
-      {
-        "text": "Their retreat was telling.",
-        "destination": "retreat_telling"
-      },
-      {
-        "text": "Return to start.",
-        "destination": "start"
-      }
-    ]
-  },
-  "retreat_telling": {
-    "content": "Already covered under retreat_noted above.",
-    "choices": [
-      {
-        "text": "Return to start.",
-        "destination": "start"
-      }
-    ]
-  },
-  "defeat_public": {
-    "content": "Public and undeniable. Before the crowds, before the Gentile visitors, before the children who would later cry \"Hosanna\" in the Temple -- the religious leadership was shown to be inadequate. I recorded their defeat alongside their original challenge, for balance.\n# UNLOCK_EVIDENCE: witness_scroll",
-    "choices": [
-      {
-        "text": "Continue to final entry.",
-        "destination": "final_entry"
-      }
-    ]
-  },
-  "authority_inquiry": {
-    "content": "The formal authority challenge arrived with full ceremony -- chief priests, scribes, and elders, three seals on their scroll. \"By what authority do you do these things?\" they demanded. \"Who gave you this authority?\"\n# UNLOCK_EVIDENCE: question_scroll",
-    "choices": [
-      {
-        "text": "The question was loaded.",
-        "destination": "question_loaded"
-      },
-      {
-        "text": "His response surprised them.",
-        "destination": "response_surprised"
-      },
-      {
-        "text": "The counter-question trapped them.",
-        "destination": "counter_question_trapped"
-      },
-      {
-        "text": "Continue to start.",
-        "destination": "start"
-      }
-    ]
-  },
-  "question_loaded": {
-    "content": "Loaded, yes. The question carried the weight of Temple law, the Sanhedrin's authority, the full apparatus of religious power. They expected Him to either submit to their jurisdiction or cite a higher authority -- both of which would provide grounds for arrest.",
-    "choices": [
-      {
-        "text": "The trap was visible.",
-        "destination": "trap_visible"
-      },
-      {
-        "text": "They were prepared.",
-        "destination": "they_prepared"
-      },
-      {
-        "text": "Continue to His response.",
-        "destination": "response_surprised"
-      }
-    ]
-  },
-  "response_surprised": {
-    "content": "His response surprised them because it was not evasion -- it was another question. \"Was John's baptism from heaven or from men?\" He put them in the same position they had put Him: forced to choose, forced to commit, forced to either confess or contradict themselves.",
-    "choices": [
-      {
-        "text": "The baptism question was key.",
-        "destination": "baptism_key"
-      },
-      {
-        "text": "They could not answer.",
-        "destination": "could_not_answer"
-      },
-      {
-        "text": "Continue to the trap.",
-        "destination": "counter_question_trapped"
-      }
-    ]
-  },
-  "counter_question_trapped": {
-    "content": "Trapped by their own dilemma. If they said \"from heaven,\" He would ask why they did not believe John, who had pointed to Him. If they said \"from men,\" the crowd would turn against them -- the people believed John was a prophet. The Alexandria visitor recorded: \"They could not respond because they did not know the answer.\"\n# UNLOCK_EVIDENCE: question_scroll",
-    "choices": [
-      {
-        "text": "Their silence was recorded.",
-        "destination": "silence_recorded"
-      },
-      {
-        "text": "The crowd's reaction.",
-        "destination": "crowd_after_challenge"
-      },
-      {
-        "text": "Continue to final entry.",
-        "destination": "final_entry"
-      }
-    ]
-  },
-  "baptism_key": {
-    "content": "The baptism question was key precisely because it was prior. If John's authority was divine, then Jesus's authority -- which John himself had confessed -- was also divine. If John's authority was merely human, then their objection was to a human messenger, which would make them look petty before the crowd.\n# UNLOCK_EVIDENCE: question_scroll",
+  "authority_challenge": {
+    "content": "The formal authority challenge arrived with full ceremony — chief priests, scribes, and elders, three seals on their scroll. \"By what authority do you do these things?\" they demanded. \"Who gave you this authority?\"\n# UNLOCK_EVIDENCE: question_scroll\nHis response surprised them. Not evasion — another question. \"Was John's baptism from heaven or from men?\" He put them in the same position they had put Him: forced to choose, forced to commit.",
     "choices": [
       {
         "text": "They were caught in the dilemma.",
-        "destination": "caught_in_dilemma"
+        "destination": "dilemma_caught"
       },
       {
-        "text": "Continue to their silence.",
+        "text": "Their silence was recorded.",
         "destination": "silence_recorded"
       }
     ]
   },
-  "could_not_answer": {
-    "content": "Could not answer. The baptism question forced them to choose between acknowledging divine authority or admitting their own ignorance. Neither was acceptable. So they said, \"We do not know\" -- which was admission enough that their authority question was never about discovering truth.\n# UNLOCK_EVIDENCE: question_scroll",
-    "choices": [
-      {
-        "text": "The council's frustration.",
-        "destination": "council_frustration"
-      },
-      {
-        "text": "Return to start.",
-        "destination": "start"
-      }
-    ]
-  },
-  "caught_in_dilemma": {
-    "content": "Caught in the dilemma they had crafted. They muttered \"We do not know\" -- which was admission enough that their challenge was not about discovering truth but about manufacturing it. I recorded their admission in column three.\n# UNLOCK_EVIDENCE: question_scroll",
-    "choices": [
-      {
-        "text": "The admission was recorded.",
-        "destination": "admission_recorded"
-      },
-      {
-        "text": "Continue to final entry.",
-        "destination": "final_entry"
-      }
-    ]
-  },
-  "council_frustration": {
-    "content": "Frustration, yes. I observed the chief priests exchanging glances after that exchange. One muttered something in Aramaic picked up by the court recorder. The Alexandria visitor's scroll records: \"They left Him alone, marveling at the answer He had given.\"\n# UNLOCK_EVIDENCE: question_scroll",
-    "choices": [
-      {
-        "text": "Their retreat was noted.",
-        "destination": "retreat_noted"
-      },
-      {
-        "text": "Return to start.",
-        "destination": "start"
-      }
-    ]
-  },
-  "admission_recorded": {
-    "content": "Recorded in my official scroll. \"The elders and scribes, having asked Him about His authority, were unable to provide a response to His counter-question.\" The precision of their defeat was as devastating as the precision of His answers.\n# UNLOCK_EVIDENCE: witness_scroll",
-    "choices": [
-      {
-        "text": "Continue to final entry.",
-        "destination": "final_entry"
-      },
-      {
-        "text": "Return to start.",
-        "destination": "start"
-      }
-    ]
-  },
-  "trap_visible": {
-    "content": "Visible from the start. The delegation's body language suggested they had a plan. The formal scroll, the coordinated arrival, the precise question -- all pointed to preparation. What they had not prepared for was being asked about John.",
-    "choices": [
-      {
-        "text": "They underestimated Him.",
-        "destination": "underestimated_him"
-      },
-      {
-        "text": "Continue to baptism key.",
-        "destination": "baptism_key"
-      }
-    ]
-  },
-  "they_prepared": {
-    "content": "Prepared, yes. The delegation arrived at the ninth hour with scrolls in hand, maps drawn, precedents cited. But they had not prepared for being questioned themselves. When He asked about John's baptism, their script fell silent.\n# UNLOCK_EVIDENCE: question_scroll",
-    "choices": [
-      {
-        "text": "Their script failed.",
-        "destination": "script_failed"
-      },
-      {
-        "text": "Continue to final entry.",
-        "destination": "final_entry"
-      }
-    ]
-  },
-  "silence_recorded": {
-    "content": "Recorded, yes. Column three, margin note: \"The questioners had no answer.\" That single notation captured the entire morning's outcome. They sought to trap Him, and instead, were trapped by their own inability to formulate a response.",
+  "dilemma_caught": {
+    "content": "If they said \"from heaven,\" He would ask why they did not believe John, who had pointed to Him. If they said \"from men,\" the crowd would turn against them — the people believed John was a prophet. The Alexandria visitor recorded: \"They could not respond because they did not know the answer.\"\n# UNLOCK_EVIDENCE: question_scroll\n# UNLOCK_EVIDENCE: witness_scroll",
     "choices": [
       {
         "text": "The trap was self-inflicted.",
         "destination": "trap_self_inflicted"
-      },
+      }
+    ]
+  },
+  "silence_recorded": {
+    "content": "Column three, margin note: \"The questioners had no answer.\" That single notation captured the entire morning's outcome. They sought to trap Him, and instead, were trapped by their own inability to formulate a response.\n# UNLOCK_EVIDENCE: question_scroll\n# UNLOCK_EVIDENCE: witness_scroll",
+    "choices": [
       {
-        "text": "Return to start.",
-        "destination": "start"
+        "text": "The defeat was public.",
+        "destination": "public_defeat"
       }
     ]
   },
   "trap_self_inflicted": {
-    "content": "Self-inflicted, completely. Their question about authority became a question about John. Their question about John became a statement about their own ignorance. Their question about their own ignorance became a public admission that they could not discern divine authority when it stood before them.\n# UNLOCK_EVIDENCE: question_scroll",
+    "content": "Completely. Their question about authority became a question about John. Their question about John became a statement about their own ignorance. Their question about their own ignorance became a public admission that they could not discern divine authority when it stood before them.\n# UNLOCK_EVIDENCE: question_scroll",
     "choices": [
       {
         "text": "The defeat was recorded.",
-        "destination": "defeat_recorded"
-      },
-      {
-        "text": "Return to start.",
-        "destination": "start"
+        "destination": "public_defeat"
       }
     ]
   },
-  "defeat_recorded": {
-    "content": "Recorded in my official scroll. \"The elders and scribes, having asked Him about His authority, were unable to provide a response to His counter-question.\" The precision of their defeat was as devastating as the precision of His answers.\n# UNLOCK_EVIDENCE: witness_scroll",
+  "public_defeat": {
+    "content": "Before the crowds, before the Gentile visitors, before the children who would later cry \"Hosanna\" — the religious leadership was shown to be inadequate. My scroll records their original challenge alongside their defeated retreat. The precision of their defeat matched the precision of His answers.\n# UNLOCK_EVIDENCE: witness_scroll",
     "choices": [
       {
         "text": "Continue to final entry.",
         "destination": "final_entry"
-      },
-      {
-        "text": "Return to start.",
-        "destination": "start"
       }
     ]
   },
-  "underestimated_him": {
-    "content": "Underestimated Him, certainly. They thought legal precision would corner Him. Instead, He turned the question of authority back upon them -- who was John? If they affirmed John's divine commission, they affirmed the Teacher's authority. If they denied it, they lost the crowd's respect.\n# UNLOCK_EVIDENCE: question_scroll",
+  "caesar_coin": {
+    "content": "The Herodian delegation brought a denarius, expecting a Yes or No on tribute. He asked whose image bore on the coin. Caesar's. And whose inscription? Caesar's. Then: \"Render therefore to Caesar the things that are Caesar's, and to God the things that are God's.\"\n# UNLOCK_EVIDENCE: coin_of_caesar\nThe trap snapped shut on them instead of Him. The image on the coin — Caesar's — became the instrument to teach about the divine image in humanity.",
+    "choices": [
+      {
+        "text": "The crowd recognized the shift.",
+        "destination": "crowd_recognized"
+      },
+      {
+        "text": "The Herodians left confused.",
+        "destination": "herodians_confused"
+      }
+    ]
+  },
+  "crowd_recognized": {
+    "content": "The crowd recognised the shift instantly. He had not said \"pay taxes\" or \"refuse taxes.\" He had reframed the entire question around image and allegiance. Caesar's image on the coin; God's image on every person listening. The delegation walked away without retrieving their denarius from the Temple floor.\n# UNLOCK_EVIDENCE: coin_of_caesar\n# UNLOCK_EVIDENCE: witness_scroll",
+    "choices": [
+      {
+        "text": "The leadership's frustration.",
+        "destination": "leadership_frustration"
+      }
+    ]
+  },
+  "herodians_confused": {
+    "content": "They expected political evasion. They received divine philosophy. Their coin — inscribed with Caesar's image — became the instrument through which they learned about the divine image in humanity. Their body language suggested they had a plan. What they had not prepared for was being questioned themselves.\n# UNLOCK_EVIDENCE: coin_of_caesar\n# UNLOCK_EVIDENCE: question_scroll",
+    "choices": [
+      {
+        "text": "Their script failed.",
+        "destination": "script_failed"
+      }
+    ]
+  },
+  "leadership_frustration": {
+    "content": "Frustration marked their retreat. The chief priests exchanged glances. One muttered something in Aramaic, caught by the court recorder. The Alexandria visitor's scroll records: \"They left Him alone, marveling at the answer He had given.\"\n# UNLOCK_EVIDENCE: question_scroll\n# UNLOCK_EVIDENCE: witness_scroll",
     "choices": [
       {
         "text": "Their retreat was noted.",
-        "destination": "retreat_noted"
-      },
-      {
-        "text": "Continue to baptism question.",
-        "destination": "baptism_key"
+        "destination": "public_defeat"
       }
     ]
   },
   "script_failed": {
-    "content": "Failed completely. The carefully prepared questions became stammered evasions. The legal experts became beggars for words. The scribes who prided themselves on their ability to answer any theological query found themselves speechless before a Galilean carpenter.\n# UNLOCK_EVIDENCE: question_scroll",
+    "content": "The carefully prepared questions became stammered evasions. The legal experts became beggars for words. The scribes who prided themselves on their ability to answer any theological query found themselves speechless before a Galilean carpenter.\n# UNLOCK_EVIDENCE: question_scroll",
     "choices": [
       {
-        "text": "The defeat was public.",
-        "destination": "defeat_public"
-      },
-      {
-        "text": "Return to start.",
-        "destination": "start"
+        "text": "The defeat was recorded.",
+        "destination": "public_defeat"
       }
     ]
   },
-  "widow_observation": {
-    "content": "The widow's offering came after the last questioner left. Two small coins into the treasury. I noted it because the treasurer's ledger shows the deposit alongside the substantial contributions from the wealthy. The contrast was unmistakable.\n# UNLOCK_EVIDENCE: widow_two_coins",
+  "widow_offering": {
+    "content": "The widow's offering came after the last questioner left. Two small coins into the treasury. I noted it because the treasurer's ledger shows the deposit alongside the substantial contributions from the wealthy. The contrast was unmistakable.\n# UNLOCK_EVIDENCE: widow_two_coins\n# UNLOCK_EVIDENCE: witness_scroll",
     "choices": [
       {
-        "text": "The contrast was intentional.",
-        "destination": "intentional_contrast"
+        "text": "More than she had.",
+        "destination": "sacrifice_meaning"
       },
       {
-        "text": "The widow's identity.",
-        "destination": "widow_identity"
-      },
-      {
-        "text": "Continue to start.",
-        "destination": "start"
+        "text": "The scribes devoured widows' houses.",
+        "destination": "scribal_hypocrisy"
       }
     ]
   },
-  "intentional_contrast": {
-    "content": "Intentional or not, the contrast spoke volumes. The wealthy dropped their contributions from a distance, their coins clinking against the metal slots. The widow -- two leptons, the smallest currency -- placed everything she had into the same chest.",
-    "choices": [
-      {
-        "text": "The meaning was clear.",
-        "destination": "meaning_clear"
-      },
-      {
-        "text": "The lesson was recorded.",
-        "destination": "lesson_recorded"
-      },
-      {
-        "text": "Continue to start.",
-        "destination": "start"
-      }
-    ]
-  },
-  "meaning_clear": {
-    "content": "Clear enough for the disciples to remember and record. \"Truly I tell you,\" He said to those nearby, \"this poor widow has put in more than all others.\" Not because her coins were heavier, but because her sacrifice was complete.\n# UNLOCK_EVIDENCE: widow_two_coins",
-    "choices": [
-      {
-        "text": "The scribal note was damning.",
-        "destination": "scribal_note_damning"
-      },
-      {
-        "text": "Continue to start.",
-        "destination": "start"
-      }
-    ]
-  },
-  "lesson_recorded": {
-    "content": "Recorded in column twelve of my proceedings scroll. The lesson: the measure is not of what you give, but what you keep. All she had was two coins. All they had was surplus.\n# UNLOCK_EVIDENCE: widow_two_coins",
+  "sacrifice_meaning": {
+    "content": "Clear enough for the disciples to remember and record. \"Truly I tell you,\" He said to those nearby, \"this poor widow has put in more than all others.\" Not because her coins were heavier, but because her sacrifice was complete. The measure is not of what you give, but what you keep.\n# UNLOCK_EVIDENCE: widow_two_coins",
     "choices": [
       {
         "text": "The testimony stands.",
-        "destination": "testimony_stands_final"
-      },
-      {
-        "text": "Return to start.",
-        "destination": "start"
-      }
-    ]
-  },
-  "widow_identity": {
-    "content": "She was a widow -- the most vulnerable position a woman could occupy in our society. Without a husband's protection, dependent on the charity of relatives who might or might not exist. Yet she gave first. The Law required the orphan and the widow be defended. Here was one who defended the Temple treasury with her last coins.",
-    "choices": [
-      {
-        "text": "The reversal was profound.",
-        "destination": "reversal_profound"
-      },
-      {
-        "text": "Return to start.",
-        "destination": "start"
-      }
-    ]
-  },
-  "reversal_profound": {
-    "content": "Profound, yes. The one society expected to beg was the one who gave everything. The scribes who reclined in expensive robes were the ones who devoured widows' houses. The contradiction was not lost on Him -- or on me, who recorded it.\n# UNLOCK_EVIDENCE: widow_two_coins",
-    "choices": [
-      {
-        "text": "The archives stand.",
-        "destination": "archives_stand"
-      },
-      {
-        "text": "Return to start.",
-        "destination": "start"
-      }
-    ]
-  },
-  "scribal_note_damning": {
-    "content": "I noted it plainly: \"Widow's contribution exceeds all others in proportional giving.\" The Alexandria visitor's scroll records the same observation. The leadership's wealth and the widow's poverty formed a mirror -- their abundance reflected their spiritual emptiness, her poverty reflected perfect trust.\n# UNLOCK_EVIDENCE: widow_two_coins",
-    "choices": [
-      {
-        "text": "The testimony multiplies.",
-        "destination": "testimony_multiplies"
-      },
-      {
-        "text": "Return to start.",
-        "destination": "start"
-      }
-    ]
-  },
-  "archives_stand": {
-    "content": "The archives stand intact. No decree has expunged these records, no fire has consumed them, no enemy has breached the sanctuary where they rest. They speak still, as clearly as they spoke that morning.\n# UNLOCK_EVIDENCE: witness_scroll",
-    "choices": [
-      {
-        "text": "Continue to final entry.",
         "destination": "final_entry"
-      },
-      {
-        "text": "Return to start.",
-        "destination": "start"
       }
     ]
   },
-  "testimony_stands_final": {
-    "content": "The testimony stands. My scrolls, the treasurer's ledger, the crowd's memory, even the dust beneath their sandals -- all bear witness to the fact that the Teacher was not silenced in that court. Instead, His questioners were silenced.\n# UNLOCK_EVIDENCE: witness_scroll",
+  "scribal_hypocrisy": {
+    "content": "The contradiction was not lost on Him — or on me, who recorded it. The scribes who reclined in expensive robes were the ones who devoured widows' houses. The one society expected to beg was the one who gave everything. My note: \"Widow's contribution exceeds all others in proportional giving.\"\n# UNLOCK_EVIDENCE: widow_two_coins\n# UNLOCK_EVIDENCE: witness_scroll",
     "choices": [
       {
-        "text": "The case is complete.",
+        "text": "The testimony stands.",
         "destination": "final_entry"
       }
     ]
   },
   "final_entry": {
-    "content": "My final entry for the day: \"At the close of proceedings, no one dared ask Him any more questions.\" I dated it, signed it, and sealed it. The archives preserve what the powerful sought to obscure -- and what the powerful witnessed.\n# UNLOCK_EVIDENCE: witness_scroll",
+    "content": "My final entry for the day: \"At the close of proceedings, no one dared ask Him any more questions.\" I dated it, signed it, and sealed it. The archives preserve what the powerful sought to obscure.\n# UNLOCK_EVIDENCE: witness_scroll\n# UNLOCK_EVIDENCE: question_scroll",
     "choices": [
       {
         "text": "The testimony endures.",
@@ -723,9 +158,13 @@
     "content": "The testimony endures in ink that will not fade. My scrolls, stored in the Temple archives, preserve evidence that outlasts any attempt to rewrite it. The questioners sought to trap Him; they ended up trapped by their own failed stratagems. I recorded it all.\n# UNLOCK_EVIDENCE: witness_scroll",
     "choices": [
       {
-        "text": "End of testimony",
-        "destination": "DONE"
+        "text": "Finish the interview.",
+        "destination": "closing_scribe"
       }
     ]
+  },
+  "closing_scribe": {
+    "content": "The stone the builders rejected has become the cornerstone. Before the religious leadership stood a prophet, a teacher, a king — and they silenced Him with their questions. But the questions they hurled became the very words that silenced them. My scrolls preserve what power could not erase.",
+    "choices": []
   }
 }

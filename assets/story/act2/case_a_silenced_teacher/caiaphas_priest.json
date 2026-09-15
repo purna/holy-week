@@ -1,6 +1,6 @@
 {
   "start": {
-    "content": "You look at a single man, scribe, and you see a moral puzzle. I look at this city and I see an entire nation facing absolute erasure.\nIf the legions move to clear these courts, Sinai becomes a memory. It is expedient that one man should die for the people. Do you understand the weight of this chair?",
+    "content": "You look at a single man, scribe, and you see a moral puzzle. I look at this city and I see an entire nation facing absolute erasure. If the legions move to clear these courts, Sinai becomes a memory. It is expedient that one man should die for the people. Do you understand the weight of this chair?",
     "choices": [
       {
         "text": "Is justice something that can be bartered for national security?",
@@ -38,7 +38,11 @@
       },
       {
         "text": "The challenge is existential.",
-        "destination": "challenge_existential"
+        "destination": "closing"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing"
       }
     ]
   },
@@ -51,7 +55,11 @@
       },
       {
         "text": "The people are watching.",
-        "destination": "people_watching"
+        "destination": "closing"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing"
       }
     ]
   },
@@ -60,11 +68,15 @@
     "choices": [
       {
         "text": "The witness is universal.",
-        "destination": "witness_universal"
+        "destination": "closing"
       },
       {
         "text": "The moment is critical.",
-        "destination": "moment_critical"
+        "destination": "closing"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing"
       }
     ]
   },
@@ -77,7 +89,7 @@
       },
       {
         "text": "The danger was real.",
-        "destination": "danger_real"
+        "destination": "closing"
       }
     ]
   },
@@ -90,7 +102,7 @@
       },
       {
         "text": "The response was desperate.",
-        "destination": "response_desperate"
+        "destination": "closing"
       }
     ]
   },
@@ -103,7 +115,7 @@
       },
       {
         "text": "The Sadducees were divided.",
-        "destination": "sadducees_divided"
+        "destination": "closing"
       }
     ]
   },
@@ -112,7 +124,7 @@
     "choices": [
       {
         "text": "The contradiction was fatal.",
-        "destination": "contradiction_fatal"
+        "destination": "closing"
       },
       {
         "text": "The decision was made.",
@@ -129,7 +141,7 @@
       },
       {
         "text": "The divine purpose.",
-        "destination": "divine_purpose_caiaphas"
+        "destination": "closing"
       }
     ]
   },
@@ -142,7 +154,7 @@
       },
       {
         "text": "The consequence was eternal.",
-        "destination": "consequence_eternal"
+        "destination": "closing"
       }
     ]
   },
@@ -155,7 +167,7 @@
       },
       {
         "text": "The testimony spread.",
-        "destination": "testimony_spread_caiaphas"
+        "destination": "closing"
       }
     ]
   },
@@ -168,7 +180,7 @@
       },
       {
         "text": "The final word.",
-        "destination": "final_word_caiaphas"
+        "destination": "closing"
       }
     ]
   },
@@ -190,7 +202,11 @@
       },
       {
         "text": "The pressure is mounting.",
-        "destination": "pressure_mounting"
+        "destination": "closing"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing"
       }
     ]
   },
@@ -216,7 +232,11 @@
       },
       {
         "text": "The burden is great.",
-        "destination": "burden_great"
+        "destination": "closing"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing"
       }
     ]
   },
@@ -229,7 +249,11 @@
       },
       {
         "text": "The consequences are eternal.",
-        "destination": "consequences_eternal"
+        "destination": "closing"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing"
       }
     ]
   },
@@ -238,11 +262,11 @@
     "choices": [
       {
         "text": "The mark is indelible.",
-        "destination": "mark_indelible"
+        "destination": "closing"
       },
       {
         "text": "The testimony endures.",
-        "destination": "testimony_endures_caiaphas"
+        "destination": "closing"
       }
     ]
   },

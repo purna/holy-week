@@ -102,23 +102,18 @@ It does not accuse. It waits.
 * [Feed my lambs...] -> feeding
 
 === peter_answer ===
-"Yes, Lord; You know that I love You."
-"Feed My lambs." [John 21:15]
+"Yes, Lord; You know that I love You." "Feed My lambs." [John 21:15]
 
-Again: "Simon, son of John, do you love Me?"
-"Yes, Lord; You know that I love You."
-"Tend My sheep." [John 21:16]
+Again: "Simon, son of John, do you love Me?" "Yes, Lord; You know that I love You." "Tend My sheep." [John 21:16]
 
 A third time — and the word changes. Not the love that holds nothing back, but the word Peter himself has been using all along: the ordinary love of a friend. Peter is grieved. He understands, at last, that he is being met on his own terms, not accused on someone else's.
 
-"Lord, You know all things; You know that I love You."
-"Feed My sheep." [John 21:17]
+"Lord, You know all things; You know that I love You." "Feed My sheep." [John 21:17]
 
 * [Three questions. Three answers. Three commissions.] -> feeding
 
 === feeding ===
-Three denials, spoken beside a fire, in the dark, to strangers who meant nothing to him.
-Three affirmations, spoken beside a fire, in the daylight, to the One who means everything.
+Three denials, spoken beside a fire, in the dark, to strangers who meant nothing to him. Three affirmations, spoken beside a fire, in the daylight, to the One who means everything.
 
 The wound and the healing share the same shape.
 

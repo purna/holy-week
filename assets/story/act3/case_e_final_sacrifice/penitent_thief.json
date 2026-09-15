@@ -1,7 +1,15 @@
 {
   "intro": {
-    "content": "A man hangs on the cross to the right of the central beam, his\nbreathing ragged. He turns his head slightly as you approach —\nstill alive enough to notice you, still alive enough to speak.\n\"Come to gawk? Or come to ask? Everyone else already has their\nverdict on me. Thief. Numbered with him. Might as well be numbered\nwith him twice, the way they tell it.\"",
+    "content": "A man hangs on the cross to the right of the central beam, his breathing ragged. He turns his head slightly as you approach — still alive enough to notice you, still alive enough to speak.\n\"Come to gawk? Or come to ask? Everyone else already has their verdict on me. Thief. Numbered with him. Might as well be numbered with him twice, the way they tell it.\"",
     "choices": [
+      {
+        "text": "unlock crucifiers forgiven",
+        "destination": "unlock_crucifiers_forgiven"
+      },
+      {
+        "text": "unlock crucified with thieves",
+        "destination": "unlock_crucified_with_thieves"
+      },
       {
         "text": "main_hub",
         "destination": "main_hub"
@@ -34,11 +42,16 @@
     ]
   },
   "neutral_stage": {
-    "content": "# UNLOCK_EVIDENCE: crucified_with_thieves\n# UNLOCK_EVIDENCE: crucifiers_forgiven\n\"They nailed up three crosses that morning. Mine, my friend's,\nand His — right between us. Made a point of it, putting Him in\nthe middle. Wasn't an accident. The charge sheet listed the three\nof us together.\"\n* [Continue] -> unlock_crucified_with_thieves -> main_hub",
-    "choices": []
+    "content": "# UNLOCK_EVIDENCE: crucified_with_thieves\n# UNLOCK_EVIDENCE: crucifiers_forgiven\n\"They nailed up three crosses that morning. Mine, my friend's, and His — right between us. Made a point of it, putting Him in the middle. Wasn't an accident. The charge sheet listed the three of us together.\"",
+    "choices": [
+      {
+        "text": "Continue",
+        "destination": "unlock_crucified_with_thieves"
+      }
+    ]
   },
   "cautious_stage": {
-    "content": "# UNLOCK_EVIDENCE: crucified_with_thieves\n# UNLOCK_EVIDENCE: crucifiers_forgiven\n\"At first I mocked Him too. Same as my friend on the other side.\n'Aren't you the Messiah? Save yourself — and us, while you're at\nit.' Cheap talk. When you're dying, you'll say anything, hoping\nsomething sticks.\"",
+    "content": "# UNLOCK_EVIDENCE: crucified_with_thieves\n# UNLOCK_EVIDENCE: crucifiers_forgiven\n\"At first I mocked Him too. Same as my friend on the other side. 'Aren't you the Messiah? Save yourself — and us, while you're at it.' Cheap talk. When you're dying, you'll say anything, hoping something sticks.\"",
     "choices": [
       {
         "text": "Continue",
@@ -47,7 +60,7 @@
     ]
   },
   "pressured_stage": {
-    "content": "# UNLOCK_EVIDENCE: crucified_with_thieves\n# UNLOCK_EVIDENCE: crucifiers_forgiven\n\"My friend wouldn't let up on Him. Cursing, jeering, same as the\ncrowd below. I told him to stop. 'Don't you fear God? We're\ngetting exactly what we deserve. This man's done nothing wrong.'\nI don't know why I said it. It just came out true.\n~ penitent_confessed = true",
+    "content": "# UNLOCK_EVIDENCE: crucified_with_thieves\n# UNLOCK_EVIDENCE: crucifiers_forgiven\n\"My friend wouldn't let up on Him. Cursing, jeering, same as the crowd below. I told him to stop. 'Don't you fear God? We're getting exactly what we deserve. This man's done nothing wrong.' I don't know why I said it. It just came out true.\n~ penitent_confessed = true",
     "choices": [
       {
         "text": "Continue",
@@ -56,19 +69,43 @@
     ]
   },
   "exposed_stage": {
-    "content": "# UNLOCK_EVIDENCE: crucified_with_thieves\n# UNLOCK_EVIDENCE: crucifiers_forgiven\n\"The soldiers were still rolling dice for His clothes when I heard\nit. He wasn't cursing back at anyone. He was praying — for them.\n'Father, forgive them, they don't know what they're doing.'\nI asked Him to remember me when He came into His kingdom. Didn't\nexpect an answer, not really. He said I'd be with Him in paradise.\nToday. Not someday. <i>Today.</i>\"\n* [Continue] -> unlock_crucifiers_forgiven -> main_hub",
-    "choices": []
+    "content": "# UNLOCK_EVIDENCE: crucified_with_thieves\n# UNLOCK_EVIDENCE: crucifiers_forgiven\n\"The soldiers were still rolling dice for His clothes when I heard it. He wasn't cursing back at anyone. He was praying — for them. 'Father, forgive them, they don't know what they're doing.'\nI asked Him to remember me when He came into His kingdom. Didn't expect an answer, not really. He said I'd be with Him in paradise. Today. Not someday. <i>Today.</i>\"",
+    "choices": [
+      {
+        "text": "Continue",
+        "destination": "unlock_crucifiers_forgiven"
+      }
+    ]
   },
   "repeat_stage": {
-    "content": "# UNLOCK_EVIDENCE: crucified_with_thieves\n# UNLOCK_EVIDENCE: crucifiers_forgiven\n\"I was numbered among the criminals, same as Him. I know exactly\nwhat that felt like, dying next to Him instead of far from Him.\"",
-    "choices": []
+    "content": "# UNLOCK_EVIDENCE: crucified_with_thieves\n# UNLOCK_EVIDENCE: crucifiers_forgiven\n\"I was numbered among the criminals, same as Him. I know exactly what that felt like, dying next to Him instead of far from Him.\"",
+    "choices": [
+      {
+        "text": "Finish the interview.",
+        "destination": "conversation_end"
+      }
+    ]
   },
   "unlock_crucified_with_thieves": {
     "content": "{ not evidence_crucified_with_thieves:\n    ~ evidence_crucified_with_thieves = true\n    # UNLOCK_EVIDENCE: crucified_with_thieves\n}",
-    "choices": []
+    "choices": [
+      {
+        "text": "Finish the interview.",
+        "destination": "conversation_end"
+      }
+    ]
   },
   "unlock_crucifiers_forgiven": {
     "content": "{ not evidence_crucifiers_forgiven:\n    ~ evidence_crucifiers_forgiven = true\n    # UNLOCK_EVIDENCE: crucifiers_forgiven\n}\nVAR evidence_crucified_with_thieves = false\nVAR evidence_crucifiers_forgiven = false\nVAR penitent_confessed = false",
+    "choices": [
+      {
+        "text": "Finish the interview.",
+        "destination": "conversation_end"
+      }
+    ]
+  },
+  "conversation_end": {
+    "content": "",
     "choices": []
   }
 }

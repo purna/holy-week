@@ -745,7 +745,7 @@ export const act4CaseA = {
         repeat: "I saw Him. I spoke to Him. I don't expect everyone to believe me. But I know what I saw.",
       },
       reactions: {
-        burial_linen: { text: "The grave cloths were lying there, shaped like a body but empty. Peter went straight in and stood there, confused. But John went in after him and he saw and believed. I think the cloths told him something the rest of us weren't ready to understand yet.", isLie: false },
+        burial_linen: { text: "Peter and the other disciple examined the tomb. Their account describes linen strips lying there and the head cloth separately. Ask them about that examination; my own testimony is the encounter with Jesus.", isLie: false },
         angelic_witness: { text: "Two figures — like bright light. They asked me, 'Woman, why are you weeping?' I said, 'They have taken my Lord, and I don't know where they have laid him.' And then I turned around.", isLie: false, revealedClue: "burial_linen" },
         spice_jars: { text: "I set them down when I saw the stone was moved. I didn't need them anymore — but I didn't know that yet. I just stood there staring.", isLie: false, revealedClue: "empty_tomb" },
         rolled_stone: { text: "I was so worried about the stone. It's so heavy! But it was already pushed aside. That's when I saw the tomb was open and empty.", isLie: false, revealedClue: "empty_tomb" },
@@ -802,17 +802,17 @@ export const act4CaseA = {
         neutral: "I provided this tomb for Him. I have no regrets about that, regardless of what the council thinks of me.",
         cautious: "I was a member of the Sanhedrin. I know what the official position is. I also know what I put into that tomb and what the stone looked like when it was sealed.",
         pressured: "Nicodemus and I wrapped the body ourselves. We prepared it according to Jewish custom with myrrh and aloes. We placed Him in this tomb and watched the stone rolled shut. I know what was there.",
-        exposed: "And now it is gone. The linens are there. The tomb is open. I walked inside this morning. I stood where I placed Him. And I find I am no longer grieving the way I expected to.",
+        exposed: "I can confirm where we laid Him and how we prepared His body. The witnesses who went to the tomb on the first day must speak for what they saw then.",
         repeat: "What I believe about what happened — that is my own business. What I can tell you is what I saw with my own eyes.",
       },
       reactions: {
-        burial_linen: { text: "I chose those linens myself. The finest cloth I could obtain quickly before the Sabbath began. I know how we wrapped Him. What remains in that tomb — the linens haven't been unwrapped. They're still in the shape He was in. I can't explain that.", isLie: false },
-        spice_jars: { text: "Nicodemus brought seventy-five pounds of myrrh and aloes (John 19:39). That fulfilled Isaiah 53:9 — the rich burial the prophet described. These jars the women brought were additional. None of it was used this morning.", isLie: false },
-        rolled_stone: { text: "I watched four men seal that stone and apply the Roman wax. It took all four of them to move it. This morning it's beside the entrance as if resting there, not rolled or fallen — placed. Something placed it there.", isLie: false },
-        empty_tomb: { text: "I am a wealthy man with many resources at my disposal. I buried Him in my own tomb. I had every reason to know exactly what was in that tomb, and I had every resource to investigate if something had been moved. The body is gone. The linens remain. I do not believe it was stolen.", isLie: false },
+        burial_linen: { text: "Nicodemus and I wrapped His body with spices in strips of linen, according to Jewish burial customs. I can describe the burial, not the later arrangement of the cloths.", isLie: false },
+        spice_jars: { text: "Nicodemus brought about seventy-five pounds of myrrh and aloes. We used those spices when wrapping Jesus for burial. I cannot identify these particular jars as his.", isLie: false },
+        rolled_stone: { text: "I rolled a large stone against the entrance after placing Jesus in my tomb. I cannot testify to the guards applying a seal or to how the stone was later moved.", isLie: false },
+        empty_tomb: { text: "It was my new tomb, and no one had been buried there before. Nicodemus and I laid Jesus there. Compare that burial record with the accounts of those who later found the tomb empty.", isLie: false },
       },
       contradictions: {
-        "burial_linen+rolled_stone": { exposed: "You want to know what I think? I've read Psalm 16:10. 'You will not let your holy one see corruption.' I read it as poetry before. I was wrong. The linens are arranged as if a body simply passed through them. The stone is resting, not tumbled. And Joseph's testimony about the guard — no one slept through that. This tomb is empty. He said it would be. I am beginning to believe He was right." },
+        "burial_linen+rolled_stone": { exposed: "My part in this record is the burial: Pilate gave permission, Nicodemus brought spices, and we wrapped Jesus and laid Him in the nearby unused tomb. The later witnesses must answer your questions about the open tomb and the linen." },
       },
     },
   ],
@@ -845,7 +845,7 @@ export const act4CaseA = {
     "empty_tomb+burial_linen": {
       compare: {
         text: "An empty tomb and orderly, in-situ burial linens together rule out the most plausible alternative: theft. Grave robbers stealing a body would either leave the linens in disarray (if they unwrapped the body inside) or take the linens with the body (if they carried it wrapped).",
-        insight: "John's Gospel specifically says that the 'beloved disciple' saw the burial cloths and 'believed' (John 20:8). The arrangement of the linens was itself a witness to something beyond grave robbery. Joseph of Arimathea's testimony confirms the linens are arranged as if the body passed through them.",
+        insight: "John's Gospel specifically says that the 'beloved disciple' saw the burial cloths and 'believed' (John 20:8). The arrangement of the linens was itself a witness to something beyond grave robbery. Joseph confirms the linen wrapping at burial; John does not describe a body passing through the cloths.",
         isKey: true,
         revealsProphecy: "psalm_16_10",
         bibleRef: "John 20:6–8; Psalm 16:10",

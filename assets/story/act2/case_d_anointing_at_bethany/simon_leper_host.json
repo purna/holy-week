@@ -1,218 +1,614 @@
 {
   "start": {
-    "content": "They still call me \"the Leper,\" even now. It reminds everyone at my table what was done for me. When the Master first came to my door, they crossed the street to avoid me.",
+    "content": "Simon gestures toward the table before settling into his seat.\n\"They still call me Simon the Leper,\" he says. \"Even though the disease is gone. Perhaps it is easier for people to remember what I was than to believe what I became.\"\nHe looks toward the doorway.\n\"But I remember. I remember what it was like when people saw me coming and crossed the street. I remember the silence. The distance. The fear.\"\nThen he smiles.\n\"And I remember the day the Master came near.\"",
     "choices": [
       {
-        "text": "You were healed by Jesus.",
+        "text": "Jesus healed you.",
         "destination": "healed_by_jesus"
       },
       {
-        "text": "The dinner was arranged.",
+        "text": "Tell me about the dinner.",
         "destination": "dinner_arranged"
       },
       {
-        "text": "Mary performed the anointing.",
+        "text": "What happened when Mary anointed Jesus?",
         "destination": "mary_act"
+      },
+      {
+        "text": "Why was that evening so important to you?",
+        "destination": "dinner_meaning"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing"
       }
     ]
   },
   "healed_by_jesus": {
-    "content": "# UNLOCK_EVIDENCE: alabaster_jar\nHealed -- yes. Leprosy took my skin, my fingernails, the flesh of my arms and legs. The physicians tried their poultices. Nothing worked. Then He touched me and said, \"Be clean.\" And I was clean.",
+    "content": "# UNLOCK_EVIDENCE: alabaster_jar\n\"Yes. He healed me.\"\nSimon looks down at his hands.\n\"Leprosy had taken almost everything. My health. My livelihood. My place among my people. The physicians tried to help, but nothing changed.\"\n\"Then Jesus came near.\"\n\"He did not stand at a distance. He did not recoil. He touched me and said, 'Be clean.'\"\nSimon slowly opens his hands.\n\"And I was clean.\"",
     "choices": [
       {
-        "text": "The touch was divine.",
+        "text": "What did it mean to be touched again?",
         "destination": "divine_touch"
       },
       {
-        "text": "Your community rejected you.",
+        "text": "How did the community react?",
         "destination": "community_reaction"
+      },
+      {
+        "text": "Was the healing immediate?",
+        "destination": "healing_immediate"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing"
       }
     ]
   },
   "divine_touch": {
-    "content": "The touch was divine. The Master looked at my rotting flesh and saw something worth restoring. The villagers said it was unclean to be near me. He said it was unclean to stay away.",
+    "content": "\"I had forgotten what a human touch felt like.\"\nSimon pauses.\n\"People think the miracle was only that the disease disappeared. It was more than that. When the Master touched me, He crossed the boundary everyone else feared.\"\n\"He looked at what everyone called unclean and treated me as someone worth restoring.\"",
     "choices": [
       {
-        "text": "Why did He risk it?",
+        "text": "Why would He risk becoming unclean?",
         "destination": "why_risk"
       },
       {
-        "text": "The healing was immediate.",
-        "destination": "healing_immediate"
+        "text": "What did that tell you about Him?",
+        "destination": "authority_greater"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing"
       }
     ]
   },
   "why_risk": {
-    "content": "Why risk ceremonial uncleanness? The Law required separation. Yet He crossed the street to reach me, and the Law yielded. I have thought about this often -- what divine authority allows Him to override the purity code?",
+    "content": "\"That is the question I have asked myself ever since.\"\n\"The Law required separation from uncleanness. Everyone knew that. Yet Jesus came near anyway.\"\n\"He did not behave as though impurity had power over Him. Instead, His holiness seemed to move in the other direction.\"\nSimon looks toward the table.\n\"The uncleanness did not spread to Him. His cleansing spread to me.\"",
     "choices": [
       {
-        "text": "The authority was greater.",
+        "text": "His authority was greater than disease.",
         "destination": "authority_greater"
       },
       {
-        "text": "The Law was incomplete.",
-        "destination": "law_incomplete"
+        "text": "Did you think He possessed divine authority?",
+        "destination": "scope_cosmic"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing"
       }
     ]
   },
   "authority_greater": {
-    "content": "The authority was greater than the Law itself. He did not need to consult the priests, did not need to purify afterward, did not need to make offerings for His own cleansing. He simply touched and it was done. If He had power over disease, what else could He do?",
+    "content": "\"Greater authority. That is how I came to understand it.\"\n\"He did not need a physician to declare me healed. He did not need fear of the disease to keep Him away. He spoke, He touched, and the impossible happened.\"\nSimon shakes his head.\n\"If He had authority over a disease that had destroyed my life, then I began to wonder...\"\n\"What else does He have authority over?\"",
     "choices": [
       {
-        "text": "Power over death.",
+        "text": "Even death?",
         "destination": "power_over_death"
       },
       {
-        "text": "The scope was cosmic.",
+        "text": "Something greater than healing?",
         "destination": "scope_cosmic"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing"
+      }
+    ]
+  },
+  "power_over_death": {
+    "content": "\"Death.\"\nSimon says the word quietly.\n\"After what happened to Lazarus, none of us could speak about death in quite the same way.\"\n\"If Jesus could call a man from the grave, then disease was only the beginning of what His authority revealed.\"",
+    "choices": [
+      {
+        "text": "Lazarus was there that evening.",
+        "destination": "lazarus_present"
+      },
+      {
+        "text": "That must have changed the meaning of the dinner.",
+        "destination": "dinner_meaning"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing"
+      }
+    ]
+  },
+  "scope_cosmic": {
+    "content": "\"At first I thought I had simply been healed.\"\n\"But then I began to see a larger pattern. The Master did not merely repair broken bodies. He restored what sin, suffering, and death had taken away.\"\n\"And that is why the events around that Passover troubled me so deeply.\"",
+    "choices": [
+      {
+        "text": "What pattern did you see?",
+        "destination": "pattern_emerged"
+      },
+      {
+        "text": "Was Mary part of that pattern?",
+        "destination": "mary_act"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing"
+      }
+    ]
+  },
+  "community_reaction": {
+    "content": "\"The community did not know what to do with me.\"\n\"For years they had known me as the man who must remain outside. Then suddenly I could walk among them again.\"\n\"Some rejoiced. Some were suspicious. Others simply stared.\"\n\"But the strangest part was sitting at my own table and realizing that people were no longer afraid to sit beside me.\"",
+    "choices": [
+      {
+        "text": "That must have been overwhelming.",
+        "destination": "dinner_meaning"
+      },
+      {
+        "text": "You wanted to celebrate.",
+        "destination": "dinner_arranged"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing"
+      }
+    ]
+  },
+  "healing_immediate": {
+    "content": "\"Immediate.\"\nSimon smiles.\n\"There was no gradual recovery. No long treatment. No waiting to see whether the disease would return.\"\n\"The Master spoke, touched me, and my life changed.\"\n\"But the greatest healing was not what happened to my skin.\"\n\"It was what happened to my place in the world.\"",
+    "choices": [
+      {
+        "text": "You were restored to the community.",
+        "destination": "community_reaction"
+      },
+      {
+        "text": "And that led to the dinner.",
+        "destination": "dinner_arranged"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing"
       }
     ]
   },
   "dinner_arranged": {
-    "content": "The dinner was arranged because gratitude demanded it. How do you feed a man who gave you back your life? I offered my table -- and my forgiveness. Let my home be known for what happened that evening.\n# UNLOCK_EVIDENCE: alabaster_jar",
+    "content": "# UNLOCK_EVIDENCE: alabaster_jar\n\"The dinner was my way of saying thank you.\"\nSimon gestures around the room.\n\"How do you repay a man who gives you your life back?\"\n\"I could not. So I opened my home.\"\n\"I wanted Him at my table. I wanted the people who had witnessed my healing to see that I was no longer the man they remembered.\"",
     "choices": [
-      {
-        "text": "The guests arrived.",
-        "destination": "guests_arrived"
-      },
       {
         "text": "What preparations did you make?",
         "destination": "preparations"
+      },
+      {
+        "text": "Who came to the dinner?",
+        "destination": "guests_arrived"
+      },
+      {
+        "text": "Why was the table so important?",
+        "destination": "dinner_meaning"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing"
       }
     ]
   },
   "preparations": {
-    "content": "The preparations took all day. The finest lambs from my flock, the best wine from my cellar, bread baked fresh with honey. My servants set the table with my best linen. I wanted everything proper -- this was the Master's table.",
+    "content": "\"I wanted everything to be worthy of Him.\"\n\"The finest food. Good wine. Fresh bread. My best linen.\"\nSimon laughs softly.\n\"I probably spent far too much.\"\n\"But when someone has given you back your life, ordinary hospitality does not seem enough.\"",
     "choices": [
       {
-        "text": "The proper preparations.",
+        "text": "Were the guests important?",
+        "destination": "notable_guests"
+      },
+      {
+        "text": "You wanted everything to be proper.",
         "destination": "proper_prep"
       },
       {
-        "text": "The guests were notable.",
-        "destination": "notable_guests"
+        "text": "Conclude.",
+        "destination": "closing"
+      }
+    ]
+  },
+  "proper_prep": {
+    "content": "\"Proper? Yes.\"\n\"But I learned something that evening.\"\n\"I had prepared the house. Mary had prepared something far more costly.\"\n\"I was preparing a dinner. She was preparing for something none of us fully understood.\"",
+    "choices": [
+      {
+        "text": "You mean her anointing of Jesus.",
+        "destination": "mary_act"
+      },
+      {
+        "text": "You sensed something larger was happening.",
+        "destination": "dinner_meaning"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing"
+      }
+    ]
+  },
+  "notable_guests": {
+    "content": "\"There were many people of importance there, but one guest overshadowed them all.\"\n\"Lazarus was there. The man who had been dead and was now sitting at the table.\"\n\"That alone made the evening extraordinary.\"",
+    "choices": [
+      {
+        "text": "Lazarus's presence must have amazed everyone.",
+        "destination": "lazarus_present"
+      },
+      {
+        "text": "And then Mary acted.",
+        "destination": "mary_act"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing"
       }
     ]
   },
   "guests_arrived": {
-    "content": "The guests arrived -- disciples, Pharisees, local townspeople. Lazarus was there, walking, talking, eating -- a walking miracle of the Master's power. My own sister Martha bustled about, ensuring everything was proper.",
+    "content": "\"The guests arrived, and soon the house was full.\"\n\"Lazarus was there. Martha was serving. The disciples were there.\"\n\"And there was Mary.\"\nSimon pauses.\n\"I did not know then how important her actions would become.\"",
     "choices": [
       {
-        "text": "Lazarus's presence amazed them.",
+        "text": "Tell me about Lazarus.",
         "destination": "lazarus_present"
       },
       {
-        "text": "Martha was busy serving.",
+        "text": "Tell me about Mary.",
+        "destination": "mary_act"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing"
+      },
+      {
+        "text": "What was Martha doing during the meal?",
         "destination": "martha_service"
       }
     ]
   },
   "lazarus_present": {
-    "content": "Lazarus's presence -- the man who had been dead four days, now alive and eating fish from my table. The crowd whispered. The children pointed. The priests shifted uncomfortably. No one spoke of how he had been buried, how the earth had been sealed.",
+    "content": "\"Lazarus was impossible to ignore.\"\n\"He had been dead four days. Now he was alive, eating at my table.\"\n\"People whispered about him. Some came simply to see whether the stories were true.\"\n\"But there he was.\"\nSimon lowers his voice.\n\"And perhaps that is why what happened next carried such weight. One man had been called out of death. Another was about to face it.\"",
     "choices": [
       {
-        "text": "The silence was strange.",
+        "text": "The contrast was striking.",
+        "destination": "pattern_emerged"
+      },
+      {
+        "text": "Was the atmosphere uncomfortable?",
         "destination": "strange_silence"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing"
+      }
+    ]
+  },
+  "strange_silence": {
+    "content": "\"Yes.\"\n\"There were moments when the room seemed strangely quiet.\"\n\"Everyone could see Lazarus alive. Everyone could see Jesus sitting there.\"\n\"But no one seemed prepared to say what it might mean.\"\n\"Some miracles are easier to witness than to understand.\"",
+    "choices": [
+      {
+        "text": "And then Mary broke the silence.",
+        "destination": "mary_act"
       },
       {
         "text": "The miracle was undeniable.",
         "destination": "undeniable_miracle"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing"
+      }
+    ]
+  },
+  "undeniable_miracle": {
+    "content": "\"Lazarus was living proof.\"\n\"You could argue with a story. You could question a witness.\"\n\"But you could not easily explain away the man sitting at the table.\"\n\"His life was testimony.\"\n\"And that made the hostility toward Jesus all the more difficult to understand.\"",
+    "choices": [
+      {
+        "text": "The danger was growing.",
+        "destination": "pattern_emerged"
+      },
+      {
+        "text": "Tell me what Mary did.",
+        "destination": "mary_act"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing"
+      }
+    ]
+  },
+  "martha_service": {
+    "content": "\"Martha served.\"\n\"She was always attentive to the practical things. Food. Guests. The household.\"\n\"But Mary was different that evening.\"\n\"Mary seemed to understand that the moment required something beyond ordinary hospitality.\"",
+    "choices": [
+      {
+        "text": "What did Mary do?",
+        "destination": "mary_act"
+      },
+      {
+        "text": "Why was her action so significant?",
+        "destination": "dinner_meaning"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing"
       }
     ]
   },
   "mary_act": {
-    "content": "# UNLOCK_EVIDENCE: alabaster_jar\nThen -- Mary moved. She opened a sealed alabaster jar and poured expensive nard on the Master's feet. The fragrance filled the entire house.",
+    "content": "# UNLOCK_EVIDENCE: alabaster_jar\n\"Then Mary came forward.\"\n\"She had an alabaster jar filled with costly perfume.\"\n\"She broke it and poured the nard upon Jesus.\"\nSimon closes his eyes for a moment.\n\"The fragrance filled the entire house.\"\n\"Everyone knew immediately that this was no ordinary gesture.\"",
     "choices": [
       {
-        "text": "The fragrance was intense.",
+        "text": "The perfume must have been overwhelming.",
         "destination": "fragrance_intense"
       },
       {
-        "text": "Judas objected loudly.",
+        "text": "Judas objected.",
         "destination": "judas_objection"
+      },
+      {
+        "text": "Why did Mary do it?",
+        "destination": "burial_prep"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing"
       }
     ]
   },
   "fragrance_intense": {
-    "content": "The fragrance was intense -- pure spikenard from the mountains of India, imported at great cost. The scent clung to every guest, filled every corner of the house. I could still smell it the next morning when I opened the door.",
+    "content": "\"It was powerful.\"\n\"The scent filled every corner of the house. It clung to our clothes. Even afterward, I could still smell it.\"\n\"But it was not the fragrance that shocked me.\"\n\"It was the cost.\"\n\"Mary had not brought something cheap and called it devotion. She had given something precious.\"",
     "choices": [
       {
-        "text": "The cost was great.",
+        "text": "The cost was enormous.",
         "destination": "cost_great"
       },
       {
-        "text": "Judas's complaint followed.",
+        "text": "And Judas objected.",
+        "destination": "judas_objection"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing"
+      }
+    ]
+  },
+  "cost_great": {
+    "content": "\"Yes. Very great.\"\n\"Judas calculated its value. Three hundred denarii.\"\n\"That was the language he understood: cost, price, profit.\"\n\"But Mary seemed to be speaking another language entirely.\"\n\"She was not calculating what Jesus was worth to her.\"\n\"She was giving Him everything she could.\"",
+    "choices": [
+      {
+        "text": "Then Judas complained.",
         "destination": "judas_complaint"
+      },
+      {
+        "text": "The Master understood her.",
+        "destination": "masters_response"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing"
       }
     ]
   },
   "judas_objection": {
-    "content": "Judas objected loudly: \"Why wasn't this sold for three hundred denarii and given to the poor?\" He said it with the tone of compassion, but I knew him better. He kept the money bag, and the Master had noted that already.",
+    "content": "\"Judas objected.\"\n\"He said the perfume could have been sold and the money given to the poor.\"\n\"On the surface, it sounded noble.\"\n\"But there was something beneath his words.\"",
     "choices": [
       {
-        "text": "His true motive was greed.",
+        "text": "What was his real motive?",
         "destination": "judas_motive"
       },
       {
-        "text": "The Master saw through him.",
+        "text": "How did Jesus respond?",
         "destination": "masters_response"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing"
+      }
+    ]
+  },
+  "judas_complaint": {
+    "content": "\"Judas complained about the waste.\"\n\"I remember thinking that he had completely missed the point.\"\n\"Mary was not wasting something valuable.\"\n\"She was recognizing that Jesus Himself was more valuable than anything she could pour out.\"",
+    "choices": [
+      {
+        "text": "What did the Master say?",
+        "destination": "masters_response"
+      },
+      {
+        "text": "Did Judas understand?",
+        "destination": "master_knew"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing"
       }
     ]
   },
   "judas_motive": {
-    "content": "His true motive was not compassion. The Gospel writer John saw it plainly -- Judas handled the money bag, and yes, he used to steal from it. His concern for the poor was a cover for his own greed. The Master knew.",
+    "content": "\"John tells us something important about Judas.\"\n\"He carried the money bag, and he had been stealing from it.\"\n\"So perhaps his concern for the poor was not as pure as he wanted us to believe.\"\nSimon looks toward the doorway.\n\"But the Master already knew what was in Judas's heart.\"",
     "choices": [
       {
-        "text": "The Master knew his heart.",
+        "text": "Jesus saw through him.",
         "destination": "master_knew"
       },
       {
-        "text": "His response was devastating.",
-        "destination": "response_quiet"
+        "text": "How did Jesus respond?",
+        "destination": "masters_response"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing"
+      }
+    ]
+  },
+  "master_knew": {
+    "content": "\"The Master knew.\"\n\"That is what strikes me most.\"\n\"He knew Judas's heart. He knew Mary's heart. He knew what was coming.\"\n\"And still He allowed Mary to anoint Him.\"",
+    "choices": [
+      {
+        "text": "His response was remarkable.",
+        "destination": "masters_response"
+      },
+      {
+        "text": "He knew the hour was approaching.",
+        "destination": "burial_prep"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing"
+      },
+      {
+        "text": "What do you think the Master saw that others overlooked?",
+        "destination": "seen"
       }
     ]
   },
   "masters_response": {
-    "content": "The Master's response was quiet but devastating: \"Let her alone -- she has done a beautiful thing to me. The poor you will always have with you, but you will not always have me.\" He saw what no one else did -- this was preparation for His burial.",
+    "content": "\"The Master did not rebuke Mary.\"\n\"He defended her.\"\n\"He said she had done a beautiful thing.\"\nSimon pauses.\n\"And then He said something that made the room feel very different.\"\n\"Her act was connected with His burial.\"",
     "choices": [
       {
-        "text": "Preparation for burial.",
+        "text": "She was preparing Him for burial.",
         "destination": "burial_prep"
       },
       {
-        "text": "The meaning was deeper.",
+        "text": "What did you understand from that?",
         "destination": "meaning_deeper"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing"
       }
     ]
   },
   "burial_prep": {
-    "content": "Preparation for burial. Mary understood what Judas could not -- the Master was not just entering Jerusalem as a king, but as a sacrifice. The anointing oil was the chrism, the fragrance the offering, the house the temple.",
+    "content": "\"At the time, I did not fully understand.\"\n\"Now I believe Mary understood more than most of us.\"\n\"The perfume was not simply an act of affection.\"\n\"It pointed toward His death.\"\n\"Passover was approaching. The Lamb was moving toward the sacrifice.\"",
     "choices": [
       {
-        "text": "The parallel was clear.",
-        "destination": "parallel_clear"
+        "text": "You saw a pattern.",
+        "destination": "pattern_emerged"
       },
       {
-        "text": "The pattern emerged.",
-        "destination": "pattern_emerged"
+        "text": "The meaning was deeper than the dinner.",
+        "destination": "meaning_deeper"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing"
       }
     ]
   },
-  "pattern_emerged": {
-    "content": "The pattern emerged clearly -- selection on Palm Sunday (triumphal entry), inspection in the Temple courts (the questioning), anointing at Bethany (Mary's act), and soon the sacrifice itself. The Passover lamb, just as the Exodus records it.",
+  "meaning_deeper": {
+    "content": "\"The dinner was about gratitude, but it became something greater.\"\n\"Every detail seemed to point beyond itself.\"\n\"Lazarus represented life restored.\"\n\"Mary represented costly devotion.\"\n\"The perfume pointed toward burial.\"\n\"And Jesus sat at the center of it all.\"\n\"Only later did I begin to understand that the Passover Lamb pattern was unfolding before our eyes.\"",
     "choices": [
+      {
+        "text": "Tell me about that pattern.",
+        "destination": "pattern_emerged"
+      },
       {
         "text": "The Exodus connection.",
         "destination": "exodus_connection"
       },
       {
+        "text": "Conclude.",
+        "destination": "closing"
+      }
+    ]
+  },
+  "pattern_emerged": {
+    "content": "\"Look at the sequence.\"\n\"The King entered Jerusalem.\"\n\"He was examined and questioned.\"\n\"He was anointed.\"\n\"And then He went toward His sacrifice.\"\nSimon slowly shakes his head.\n\"At the time, we saw separate events.\"\n\"Afterward, they looked like pieces of the same story.\"",
+    "choices": [
+      {
+        "text": "The Passover connection.",
+        "destination": "exodus_connection"
+      },
+      {
+        "text": "The pattern was remarkably precise.",
+        "destination": "pattern_precise"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing"
+      }
+    ]
+  },
+  "exodus_connection": {
+    "content": "\"At Passover, Israel remembered the lamb whose blood meant deliverance.\"\n\"Now Jesus was moving toward Jerusalem, toward His own sacrifice.\"\n\"I began to wonder whether the old story was pointing toward Him all along.\"\n\"Deliverance through sacrifice.\"\n\"Life through the blood of another.\"\n\"That was the pattern I could no longer ignore.\"",
+    "choices": [
+      {
         "text": "The pattern was precise.",
         "destination": "pattern_precise"
+      },
+      {
+        "text": "Isaiah had spoken of a suffering servant.",
+        "destination": "pattern_precise"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing"
+      }
+    ]
+  },
+  "pattern_precise": {
+    "content": "\"The more I looked, the harder it became to dismiss.\"\n\"The timing. The Passover. The sacrifice. The preparation.\"\n\"And Isaiah had already spoken of one who would bear the sins of others.\"\nSimon looks directly at you.\n\"Perhaps Mary understood it before the rest of us.\"\n\"Perhaps she knew that the One at our table was preparing to become the offering.\"",
+    "choices": [
+      {
+        "text": "The alabaster jar was part of that witness.",
+        "destination": "testimony"
+      },
+      {
+        "text": "The meaning was still unfolding.",
+        "destination": "power"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing"
+      }
+    ]
+  },
+  "dinner_meaning": {
+    "content": "\"I thought I was inviting Jesus to dinner because I was grateful.\"\n\"And I was.\"\n\"But looking back, I think the table became a place where several things came together.\"\n\"The healed sat with the living.\"\n\"The dead who had been raised sat beside the One who would soon die.\"\n\"And Mary poured out something precious in preparation for His burial.\"\nSimon smiles sadly.\n\"I thought I was hosting a dinner.\"\n\"Perhaps I was witnessing something much greater.\"",
+    "choices": [
+      {
+        "text": "What do you mean by a greater purpose?",
+        "destination": "greater_purpose"
+      },
+      {
+        "text": "What do you want people to remember?",
+        "destination": "testimony"
+      },
+      {
+        "text": "Conclude.",
+        "destination": "closing"
+      }
+    ]
+  },
+  "greater_purpose": {
+    "content": "\"The dinner was more than a celebration of my healing.\"\n\"It became a witness to what Jesus was about to do.\"\n\"Lazarus showed His power over death. Mary showed the cost of devotion. And Jesus was moving toward Jerusalem and the sacrifice that awaited Him.\"\n\"I did not understand all of it that night.\"\n\"But I remember the feeling that something greater was unfolding before us.\"\n[You saw the pattern afterward.] -> pattern_emerged [Mary's actions suddenly make more sense.] -> burial_prep [Conclude.] -> closing",
+    "choices": [
+      {
+        "text": "Finish the interview.",
+        "destination": "closing"
       }
     ]
   },
   "closing": {
-    "content": "I have very little left to give that would embarrass me to give. Let my house be remembered for what happened at my table, not for what I once was. Please -- eat. There is more than enough.",
+    "content": "Simon looks around the room.\n\"I have very little left to give that would embarrass me to give.\"\n\"My health was given back to me. My place was restored. And that evening, my house became a witness to something I did not yet understand.\"\n\"Let my house be remembered for what happened at this table, not for what I once was.\"\nHe gestures toward the food.\n\"Please. Eat.\"\n\"There is more than enough.\"",
     "choices": []
+  },
+  "testimony": {
+    "content": "Simon smiles.\n\"Some things are meant to be remembered.\"\n\"My healing became a testimony. Mary's devotion became a testimony. Lazarus's life became a testimony.\"\n\"And the Master Himself became the center of them all.\"\n\"That is what I want you to remember.\"",
+    "choices": [
+      {
+        "text": "Finish the interview.",
+        "destination": "closing"
+      }
+    ]
+  },
+  "seen": {
+    "content": "\"The Master saw what others overlooked.\"\n\"He saw the outcast. He saw the grateful host. He saw Mary's devotion. He saw Judas's heart.\"\n\"Nothing was hidden from Him.\"\n\"And somehow, even knowing what was coming, He continued toward the sacrifice.\"",
+    "choices": [
+      {
+        "text": "Finish the interview.",
+        "destination": "closing"
+      }
+    ]
+  },
+  "power": {
+    "content": "\"The more I remember that evening, the more clearly I see His authority.\"\n\"He had authority over disease. Authority over death. Authority over uncleanness.\"\n\"And soon He would demonstrate an authority greater still — the authority to lay down His life and become the offering.\"\n```",
+    "choices": [
+      {
+        "text": "Finish the interview.",
+        "destination": "closing"
+      }
+    ]
   }
 }

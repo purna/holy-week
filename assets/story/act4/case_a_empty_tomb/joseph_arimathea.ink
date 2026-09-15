@@ -29,7 +29,7 @@
 //   rich in His death."
 // ------------------------------------------------------------
 //
- 
+
 -> start
 === start ===
 I went to the tomb early on the first day of the week. The stone was rolled away, and the grave clothes lay there — but the body was gone. After Peter had examined the linen wrappings, I took them. I could not leave them exposed.

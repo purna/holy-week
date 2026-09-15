@@ -1,3 +1,4 @@
+import { createConversation } from '../js/gameplay/conversationStory.js';
 /* 
 NPCs in levels.js use dialogueId instead of storyFile / hasDialogue.
 This map bridges that gap so loadStoryForNPC can normalise the path.
@@ -28,7 +29,7 @@ export class DialogueManager {
 
     setInkLib(lib) { this.inkLib = lib; }
     setActiveNPC(npc) { this.activeNpc = npc; }
-    setDialogueOpen(state) { this.isDialogueOpen = state; }
+    setDialogueOpen(state) { this.isDialogueOpen = state; this._dialogueGeneration = (this._dialogueGeneration || 0) + 1; }
 
     // ── Story loading ────────────────────────────────────────────────────────
 
@@ -48,22 +49,14 @@ export class DialogueManager {
             .catch(e => console.error(`[DialogueManager] Failed to load story for ${npc.name}:`, e));
     }
 
-    createStory(npcId) {
-        if (!this.inkLib) throw new Error('Ink runtime not loaded');
+    createStory(npcId, caseId = null) {
         const data = this.npcStories[npcId];
-        if (!data || typeof data !== 'object' || !data.inkVersion) {
-            return null;
-        }
-        try {
+        if (!data) throw new Error('Story data not found for ' + npcId);
+        if (data.inkVersion) {
+            if (!this.inkLib) throw new Error('Ink runtime not loaded');
             return new this.inkLib.Story(data);
-        } catch (err) {
-            // If inkjs fails but it has a 'start' node, it might be our Simple JSON format
-            if (data.start || data.root) {
-                return null; // openDialogue will handle Simple JSON as a fallback
-            }
-            console.error(`[DialogueManager] inkjs failed to parse story for ${npcId}:`, err);
-            return null;
         }
+        return createConversation(data, this, npcId, caseId);
     }
 
     getStory(npcId) {
@@ -117,8 +110,10 @@ export class DialogueManager {
             `<span class="typing-lbl">${displayName} is typing…</span>`;
         bubScroll.appendChild(row);
         bubScroll.scrollTop = bubScroll.scrollHeight;
+        const generation = this._dialogueGeneration;
         setTimeout(() => {
             row.remove();
+            if (!this.isDialogueOpen || generation !== this._dialogueGeneration) return;
             cb();
         }, 600 + Math.random() * 200);
     }
@@ -157,6 +152,7 @@ export class DialogueManager {
      */
     openDialogue(npc, inkStory, onClose, onTag) {
         const storyData = this.npcStories[npc.id];
+        if (!inkStory && storyData) inkStory = this.createStory(npc.id);
         const isSimple = storyData && !!storyData.start;
 
         if (!inkStory && !isSimple) {
@@ -202,7 +198,7 @@ export class DialogueManager {
         if (this.audio) this.audio.playTalk();
 
         // System handshake message, then start story
-        this.addMsg('SECURE CONNECTION ESTABLISHED.', 'system');
+        this.addMsg(inkStory?.revisiting ? 'Returning to your interview notes.' : 'Interview notes opened.', 'system');
         if (inkStory) {
             this._stepStory(inkStory, onClose, onTag);
         } else {
@@ -250,6 +246,9 @@ export class DialogueManager {
                 if (line) {
                     this.addMsg(line, 'npc');
 
+                }
+                {
+                    // Process tags even when a passage contains no visible text.
                     // process line tags immediately (e.g. # reveal:evidence_id)
                     if (inkStory.currentTags && typeof onTag === 'function') {
                         inkStory.currentTags.forEach(tag => onTag(tag));

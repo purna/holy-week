@@ -1,820 +1,140 @@
 {
   "start": {
-    "content": "I was on duty. I will read this scene plainly and let you draw your own conclusions. Last Sabbath outside the outer court — tables overturned, animals scattered, the crowd orange with excitement. He called it \"My Father's house.\" The merchants called it their living. I called it my afternoon.",
+    "content": "On duty at the Antonia fortress. I watched the whole thing from the parapet. Last Sabbath morning outside the outer court — tables overturned, animals scattered, the crowd orange with excitement. He called it \"My Father's house.\" The merchants called it their living. I called it my afternoon.",
     "choices": [
       {
-        "text": "What did the merchants do?",
-        "destination": "merchants"
+        "text": "What did you witness?",
+        "destination": "witnessed"
       },
       {
-        "text": "Did He hurt anyone?",
-        "destination": "violence"
+        "text": "Your orders were to stand down.",
+        "destination": "stand_down"
       },
       {
-        "text": "What did He quote?",
-        "destination": "scripture"
+        "text": "Did He quote Scripture?",
+        "destination": "scripture_quote"
       }
     ]
   },
-  "merchants": {
-    "content": "The money changers scattered first — Tyrian shekels rolling into the drainage cracks. Then the livestock dealers. Within minutes the court was cleared and the crowd was singing.",
+  "witnessed": {
+    "content": "# UNLOCK_EVIDENCE: temple_action\n# UNLOCK_EVIDENCE: scattered_shekels\nThe money changers scattered first — Tyrian shekels rolling into the drainage cracks. Then the livestock dealers. Within minutes the court was cleared and the crowd was singing. I observed from the wall — disciplined, controlled, no blade drawn. Every movement had purpose.",
     "choices": [
       {
-        "text": "The crowd supported Him?",
+        "text": "The crowd supported Him.",
         "destination": "crowd_support"
       },
       {
-        "text": "Why were the merchants there?",
-        "destination": "merchant_purpose"
-      }
-    ]
-  },
-  "merchant_purpose": {
-    "content": "They provided the mandatory sacrifices — the unblemished doves, the Passover lambs, the sin offerings. Pilgrims from Egypt, Babylon, Rome — they could not bring Roman currency or Greek coins into the Temple courts. They needed exchange, and the merchants were the gatekeepers.",
-    "choices": [
-      {
-        "text": "They overcharged?",
-        "destination": "overcharge"
-      },
-      {
-        "text": "The exchange rates?",
-        "destination": "rates"
-      }
-    ]
-  },
-  "overcharge": {
-    "content": "Overcharged? By a third at least. A Tyrian shekel buys a lamb that a farmer raised for fifty asses. The markup covers the \"temple tax,\" the \"inspection fee,\" the \"transport cost.\" My own uncle paid seven times the market rate for two doves and left without change.",
-    "choices": [
-      {
-        "text": "The priests approved it.",
-        "destination": "priestly_approval"
-      },
-      {
-        "text": "It was legalized corruption.",
-        "destination": "legal_corruption"
-      }
-    ]
-  },
-  "legal_corruption": {
-    "content": "It was legalized corruption. The priests licensed the moneychangers, taxed the exchanges, and collected the fees. The Court of the Gentiles — meant for all nations to pray — was turned into a marketplace. Foreigners could not even enter.",
-    "choices": [
-      {
-        "text": "The foreigners were excluded.",
-        "destination": "exclusion"
-      },
-      {
-        "text": "This was Jesus's target.",
-        "destination": "jesus_target"
-      }
-    ]
-  },
-  "jesus_target": {
-    "content": "This was exactly what Jesus saw. He came to the Temple not to destroy it but to restore it. The whip He made from rushes was not an instrument of violence — it was a symbol. A sign that the age of exploitation was ending.",
-    "choices": [
-      {
-        "text": "A calculated prophetic act.",
-        "destination": "calculated"
-      },
-      {
-        "text": "The whip was symbolic.",
-        "destination": "whip_symbolic"
-      }
-    ]
-  },
-  "calculated": {
-    "content": "The timing was calculated to maximum impact. Monday morning. Passover week. Peak transaction hour. When every desk was full, every ledger open, every merchant shouting over prices. He crashed the peak transaction window.",
-    "choices": [
-      {
-        "text": "The priests panicked.",
-        "destination": "papal_panic"
-      },
-      {
-        "text": "The crowd was energized.",
-        "destination": "crowd_energized"
-      }
-    ]
-  },
-  "crowd_energized": {
-    "content": "The crowd was energized — liberated. People who had been saving for months to buy a single lamb now saw their money returned tenfold in principle. They sang as the shekels scattered. Some even tried to catch the coins as they fell.",
-    "choices": [
-      {
-        "text": "The singing was unusual.",
-        "destination": "unusual"
-      },
-      {
         "text": "The priests watched.",
-        "destination": "priests_watching"
+        "destination": "priests_watched"
       }
     ]
   },
-  "priests_watching": {
-    "content": "The priests watched from the eastern gallery. They did not intervene. They could not. To stop the cleansing would have required more than words — it would have required force. And force against a crowd singing praises was force against God Himself.",
+  "stand_down": {
+    "content": "Orders from the Centurion: do not intervene unless a full political rebellion. Flipped tables don't violate Roman civil law. Broken cages — not our tactical concern. The priests were furious we didn't send in cohorts. But why should Roman blood protect their currency exchange booths?",
     "choices": [
       {
-        "text": "They understood the threat.",
-        "destination": "understood_threat"
+        "text": "The priests wanted Roman force.",
+        "destination": "priests_watched"
       },
       {
-        "text": "They would plot later.",
-        "destination": "plotting_later"
+        "text": "You recognized something deeper.",
+        "destination": "deeper_meaning"
       }
     ]
   },
-  "violence": {
-    "content": "No blade was drawn. No centurion was summoned. He made a whip and used it strategically. Everyone fled before him. He simply stood there while the merchants scattered. It was the most disciplined crowd-disruption I have ever witnessed.",
+  "scripture_quote": {
+    "content": "He quoted Jeremiah: \"My house shall be called a house of prayer for all nations.\" Then Isaiah: \"They shall call on the Lord's name — as messengers of the Lord.\" The words were calm. The action was decisive. The Temple rang with prophecy.\n# UNLOCK_EVIDENCE: scripture_quote\n# UNLOCK_EVIDENCE: whip_of_cords",
     "choices": [
       {
-        "text": "That sounds rehearsed.",
-        "destination": "rehearsed"
-      },
-      {
-        "text": "The whip had no leather.",
-        "destination": "whip_symbolic"
-      }
-    ]
-  },
-  "rehearsed": {
-    "content": "Rehearsed? No. Precise? Yes. Every movement had purpose. The whip struck the tables — not the people. The coins were scattered — but no one was hurt. The animals were released — but no one was trampled. This was controlled force. This was prophetic precision.",
-    "choices": [
-      {
-        "text": "Controlled force.",
-        "destination": "controlled"
-      },
-      {
-        "text": "Every action was deliberate.",
-        "destination": "deliberate"
-      }
-    ]
-  },
-  "controlled": {
-    "content": "Controlled force. Deliberate timing. Strategic positioning. The Galilean understood crowds — how they move, how they react, when they will follow. One man with a whip of rushes faced down the entire Temple economy.",
-    "choices": [
-      {
-        "text": "The crowd followed Him.",
-        "destination": "crowd_follows"
-      },
-      {
-        "text": "The priests could not stop it.",
-        "destination": "cannot_stop"
-      }
-    ]
-  },
-  "crowd_follows": {
-    "content": "The crowd followed Him — not with weapons, but with worship. Children climbed onto their fathers' shoulders to see better. The elderly pointed and whispered to their grandchildren. Even the merchants, despite losing their tables, did not curse Him.",
-    "choices": [
-      {
-        "text": "The transformation was visible.",
-        "destination": "transformation"
-      },
-      {
-        "text": "No one resisted.",
-        "destination": "no_resistance"
-      }
-    ]
-  },
-  "scripture": {
-    "content": "He quoted Jeremiah: \"My house shall be called a house of prayer for all nations.\" Then Isaiah: \"They shall call on the Lord's name — as messengers of the Lord.\" The words were calm. The action was decisive. The Temple rang with prophecy.",
-    "choices": [
-      {
-        "text": "The words were as important as the actions.",
-        "destination": "words_and_deeds"
+        "text": "The words mattered as much as the actions.",
+        "destination": "deeper_meaning"
       },
       {
         "text": "The crowd heard both.",
-        "destination": "crowd_heard"
-      },
-      {
-        "text": "The priests understood.",
-        "destination": "priests_understood"
-      }
-    ]
-  },
-  "words_and_deeds": {
-    "content": "The words were as important as the actions. Jesus did not just overturn tables — He declared what the Temple was meant to be. A house of prayer. A place of encounter. A doorway to the divine. The stones and the scriptures both witnessed.",
-    "choices": [
-      {
-        "text": "The declaration was bold.",
-        "destination": "bold_declaration"
-      },
-      {
-        "text": "The impact was immediate.",
-        "destination": "immediate_impact"
-      }
-    ]
-  },
-  "bold_declaration": {
-    "content": "The impact was immediate. From the high priest to the beggar at the gate, everyone knew: the rules had changed. The Temple would never be the same. And the man who had just redefined holiness with a whip of rushes was now in charge of the conversation.",
-    "choices": [
-      {
-        "text": "The conversation was about Jesus.",
-        "destination": "the_conversation"
-      },
-      {
-        "text": "The temple would never be the same.",
-        "destination": "never_same"
-      }
-    ]
-  },
-  "immediate_impact": {
-    "content": "The immediate impact was theological. The merchants scattered. The animals ran loose through the Court of the Gentiles. The coins — hundreds of Tyrian shekels — rolled across the stone like metallic tears. And the crowd? They sang.\n# UNLOCK_EVIDENCE: temple_action\n# UNLOCK_EVIDENCE: scripture_quote",
-    "choices": [
-      {
-        "text": "The coins rolled like tears.",
-        "destination": "coins_tears"
-      },
-      {
-        "text": "The crowd's response.",
-        "destination": "crowd_response"
-      }
-    ]
-  },
-  "coins_tears": {
-    "content": "The coins rolled like tears across the marble — tears for the corruption that had defined the Temple economy for generations. Tears for the pilgrims who had been cheated. Tears for the foreigners who had been barred. The sound of silver on stone echoed like rain on the Day of Judgment.",
-    "choices": [
-      {
-        "text": "The sound was significant.",
-        "destination": "significant_sound"
-      },
-      {
-        "text": "The judgment was beginning.",
-        "destination": "beginning"
-      }
-    ]
-  },
-  "beginning": {
-    "content": "The judgment was beginning. Not with fire from heaven — but with a whip of rushes. Not with an earthquake — but with scattered coins. Not with thunder — but with a crowd singing. The Messiah had begun His cleansing. And this was only the beginning.",
-    "choices": [
-      {
-        "text": "The first strike.",
-        "destination": "first_strike"
-      },
-      {
-        "text": "The kingdom was coming.",
-        "destination": "kingdom_coming"
-      }
-    ]
-  },
-  "first_strike": {
-    "content": "The first strike of the Messiah's final week. Monday morning. Passover week. The temple action that would echo through history. They crucified the King who cleansed the Temple. Three days later, the Temple itself would be gone — and the true Temple would rise.\n# UNLOCK_EVIDENCE: crowd_response",
-    "choices": [
-      {
-        "text": "The crowd's response.",
-        "destination": "crowd_response"
-      }
-    ]
-  },
-  "kingdom_coming": {
-    "content": "The kingdom was coming. Not with the fanfare of empires. Not with the glory of kings. But with the sound of scattered coins and the smell of bruised animals. The kingdom was coming — and it would not be stopped.",
-    "choices": [
-      {
-        "text": "The crowd recognized.",
-        "destination": "crowd_response"
-      },
-      {
-        "text": "The priests feared.",
-        "destination": "papal_panic"
+        "destination": "crowd_support"
       }
     ]
   },
   "crowd_support": {
-    "content": "The people were already agitated from the triumphal entry two days prior. This was not a random crowd — this was a movement with momentum. They sang as the tables fell.",
+    "content": "The crowd responded with songs of liberation. Pilgrims who had been cheated on previous visits felt vindicated. Foreigners who had been excluded felt welcomed. The Temple was becoming what it was meant to be — a house of prayer for all nations. Not a marketplace.\n# UNLOCK_EVIDENCE: crowd_response",
     "choices": [
       {
-        "text": "And the priests?",
-        "destination": "papal_panic"
+        "text": "The priests were afraid.",
+        "destination": "priests_watched"
       },
-      {
-        "text": "The action was prophetic.",
-        "destination": "prophetic_act"
-      }
-    ]
-  },
-  "papal_panic": {
-    "content": "The Temple authorities have been meeting emergency sessions since then. They are not meeting about the coinage. They are meeting about the man. The cleansing was a sign they could not ignore — and a threat they could not contain.",
-    "choices": [
-      {
-        "text": "The threat was theological.",
-        "destination": "theological_threat"
-      },
-      {
-        "text": "They would plot arrest.",
-        "destination": "plotting_later"
-      }
-    ]
-  },
-  "theological_threat": {
-    "content": "The threat was theological at its core. Jesus had not just disrupted commerce — He had declared that the Temple's true purpose was prayer, not profit. That holiness was not in the inspection fees but in the hearts of the worshippers. That the house of God belonged to all nations.",
-    "choices": [
       {
         "text": "The redefinition was radical.",
-        "destination": "redefinition"
-      },
-      {
-        "text": "They needed to act.",
-        "destination": "plotting_later"
+        "destination": "radical_redefinition"
       }
     ]
   },
-  "redefinition": {
-    "content": "The redefinition was radical — and irreversible. Once someone has seen the Temple as a house of prayer, they cannot unsee it. Once someone has heard that God's house is for all nations, they cannot shrink it back to a Jewish monopoly. The damage was conceptual, not just commercial.",
+  "priests_watched": {
+    "content": "The priests watched from the eastern gallery. They did not intervene — they could not. To stop the cleansing would have required force. And force against a crowd singing praises was force against God Himself. After the crowd dispersed, the emergency sessions began. The Temple authorities were meeting about the man, not the coinage. They could not contain this threat.\n# UNLOCK_EVIDENCE: priestly_fear",
     "choices": [
       {
-        "text": "The concept was contagious.",
-        "destination": "contagious"
+        "text": "They would plot arrest.",
+        "destination": "plot_arrest"
       },
       {
-        "text": "The priests panicked.",
-        "destination": "papal_panic"
+        "text": "The threat was theological.",
+        "destination": "radical_redefinition"
       }
     ]
   },
-  "contagious": {
-    "content": "The concept was contagious. Within hours, the crowds began to understand that the Temple system was not the final word. That God's house was not a building but a body. That worship was not a transaction but a relationship. The ripples spread through every street in Jerusalem.",
+  "deeper_meaning": {
+    "content": "The meaning was not in the means. The means were the message. The donkey was not transportation. It was testimony. The whip of rushes was not violence. It was vindication. The Messiah declared that God's house belongs to all nations — Jew and Gentile alike.",
     "choices": [
       {
-        "text": "The ripples spread.",
-        "destination": "ripples"
-      },
-      {
-        "text": "The change was permanent.",
-        "destination": "never_same"
-      }
-    ]
-  },
-  "ripples": {
-    "content": "The ripples spread like stones cast into still water. A beggar at the gate began quoting Isaiah. A child in the crowd repeated \"house of prayer\" like a mantra. A Roman centurion — a friend of mine — asked if this was the fulfillment of prophecy. The stones themselves seemed to listen.",
-    "choices": [
-      {
-        "text": "Even the centurion heard.",
-        "destination": "centurion_heard"
-      },
-      {
-        "text": "The moment was historic.",
-        "destination": "historic"
-      }
-    ]
-  },
-  "centurion_heard": {
-    "content": "My friend the centurion said later: \"If this is fulfilled prophecy, then we are witnessing something that changes everything.\" He was right — and he did not even know the half of it. The stones were waiting to cry out. The crowds were ready to worship. And the priests were scrambling to maintain an order that was already dissolving.",
-    "choices": [
-      {
-        "text": "The order was dissolving.",
-        "destination": "dissolving"
+        "text": "The declaration was permanent.",
+        "destination": "radical_redefinition"
       },
       {
         "text": "The kingdom was advancing.",
-        "destination": "kingdom_coming"
+        "destination": "kingdom_advancing"
       }
     ]
   },
-  "dissolving": {
-    "content": "The order was dissolving. The merchants' tables were broken. The coins were scattered. The inspection fees were forgotten. The priests' authority was questioned. And in the midst of it all stood a man with a whip of rushes — declaring that His Father's house was a house of prayer for all nations.",
-    "choices": [
-      {
-        "text": "The declaration stood.",
-        "destination": "declaration_stood"
-      },
-      {
-        "text": "The priests retreated.",
-        "destination": "priests_retreat"
-      }
-    ]
-  },
-  "priests_retreat": {
-    "content": "The priests retreated. They could not argue with \"house of prayer.\" They could not oppose \"all nations.\" They could not prevent the crowd from singing. The only response left was silence — and the planning of more desperate measures.",
-    "choices": [
-      {
-        "text": "They would retaliate.",
-        "destination": "plotting_later"
-      },
-      {
-        "text": "The retaliation would fail.",
-        "destination": "fail_retaliate"
-      }
-    ]
-  },
-  "fail_retaliate": {
-    "content": "The retaliation would fail. Every plot against the Messiah was part of the divine plan. Every attempt to stop the kingdom only advanced it further. The whip of rushes had done more damage than all their legal charges combined.",
-    "choices": [
-      {
-        "text": "The whip was more powerful.",
-        "destination": "whip_power"
-      },
-      {
-        "text": "The kingdom would prevail.",
-        "destination": "kingdom_coming"
-      }
-    ]
-  },
-  "whip_power": {
-    "content": "The whip was more powerful than the sword. A whip of rushes spoke more truth than a legion of soldiers. A scattered table declared more justice than a thousand court cases. The Messiah did not need to fight — His very presence was revolution.",
-    "choices": [
-      {
-        "text": "Revolution through love.",
-        "destination": "revolutionary_love"
-      },
-      {
-        "text": "The kingdom would prevail.",
-        "destination": "kingdom_coming"
-      }
-    ]
-  },
-  "revolutionary_love": {
-    "content": "Revolution through love. Justice through mercy. Salvation through sacrifice. That was the Gospel the Galilean preached. And the Temple cleansing was its first public demonstration — not a riot, but a revelation. Not violence, but vindication.",
-    "choices": [
-      {
-        "text": "The revelation was complete.",
-        "destination": "complete_revelation"
-      },
-      {
-        "text": "The vindication was total.",
-        "destination": "vindication"
-      }
-    ]
-  },
-  "complete_revelation": {
-    "content": "The revelation was complete. The house of prayer was declared. The Temple system was exposed. The crowd was energized. And the priests — the priests were left with a choice: acknowledge the Messiah or oppose Him. They chose opposition.",
-    "choices": [
-      {
-        "text": "The choice was theirs.",
-        "destination": "their_choice"
-      },
-      {
-        "text": "The consequence was sealed.",
-        "destination": "sealed"
-      }
-    ]
-  },
-  "their_choice": {
-    "content": "The choice was theirs — and it was sealed. From that moment, the path was set. The arrest. The trial. The cross. All because a man with a whip of rushes had declared that God's house was for all nations.",
-    "choices": [
-      {
-        "text": "The path was set.",
-        "destination": "path_set"
-      },
-      {
-        "text": "The consequence echoed.",
-        "destination": "echoing"
-      }
-    ]
-  },
-  "path_set": {
-    "content": "The path was set. The cleansing was the first strike in a week that would change the world. The whip had fallen. The tables had broken. The coins had scattered. And the crowd had sung. Nothing would ever be the same.",
-    "choices": [
-      {
-        "text": "The change was permanent.",
-        "destination": "never_same"
-      },
-      {
-        "text": "The kingdom would come.",
-        "destination": "kingdom_coming"
-      }
-    ]
-  },
-  "never_same": {
-    "content": "The Temple was never the same after that morning. The priests met in emergency session. The merchants filed complaints. The crowd sang songs they had never sung before. And the man who had cleansed the Temple — He would soon cleanse the grave. The transformation had begun.",
+  "radical_redefinition": {
+    "content": "The redefinition was irreversible. Once someone had seen the Temple as a house of prayer, they could not unsee it. Once someone had heard that God's house was for all nations, they could not shrink it back to a Jewish monopoly. The conceptual damage was done — and it was eternal.",
     "choices": [
       {
         "text": "The transformation was cosmic.",
-        "destination": "cosmic"
+        "destination": "kingdom_advancing"
       },
       {
-        "text": "The change was eternal.",
-        "destination": "eternal_change"
+        "text": "The priests would resist.",
+        "destination": "plot_arrest"
       }
     ]
   },
-  "cosmic": {
-    "content": "The transformation was cosmic. Not just Jerusalem. Not just the Temple. The entire structure of spiritual authority was shaken. The house of prayer would become a house of exile. The chosen people would become the scattered. And the scattered would become the gathered.",
+  "kingdom_advancing": {
+    "content": "The kingdom was advancing — not with the fanfare of empires, not with the glory of kings, but with the sound of scattered coins and the smell of bruised animals. A whip of rushes declared more truth than a legion of soldiers. The Messiah who cleansed the Temple would soon cleanse the grave. The victory was certain.",
     "choices": [
       {
-        "text": "The gathering began.",
-        "destination": "gathering"
-      },
-      {
-        "text": "The exile was announced.",
-        "destination": "exile_announced"
-      }
-    ]
-  },
-  "exile_announced": {
-    "content": "The exile was announced — not by Roman legions but by religious rejection. The Temple would be destroyed in 70 CE. The priesthood would be disbanded. The sacrifices would cease. All because of a morning when a rabbi with a whip of rushes declared that God's house was for all nations.",
-    "choices": [
-      {
-        "text": "The prophecy was fulfilled.",
-        "destination": "fulfilled"
-      },
-      {
-        "text": "The kingdom would come.",
-        "destination": "kingdom_coming"
-      }
-    ]
-  },
-  "fulfilled": {
-    "content": "The prophecy was fulfilled. The Temple that had been a den of thieves became ruins. The priesthood that had opposed the cleansing became refugees. And the kingdom that Jesus declared would come — not with destruction, but with restoration.",
-    "choices": [
-      {
-        "text": "The restoration was complete.",
-        "destination": "completion"
-      },
-      {
-        "text": "The kingdom was established.",
-        "destination": "established"
-      }
-    ]
-  },
-  "established": {
-    "content": "The kingdom was established. Not in stone and mortar. Not in gold and silver. But in hearts and lives. In the testimony of witnesses. In the proclamation of the Gospel. In the memory of a morning when a whip of rushes changed everything.",
-    "choices": [
-      {
-        "text": "The memory endured.",
-        "destination": "enduring"
-      },
-      {
-        "text": "The witness remained.",
-        "destination": "witness_remained"
-      }
-    ]
-  },
-  "enduring": {
-    "content": "The memory endured. The witness remained. The testimony spread. And the kingdom — the kingdom that Jesus declared with a whip of rushes — would never be stopped. The gates of hell itself would not prevail against it.",
-    "choices": [
-      {
-        "text": "The victory was certain.",
-        "destination": "victory_certain"
-      },
-      {
-        "text": "The kingdom would come.",
-        "destination": "kingdom_coming"
-      }
-    ]
-  },
-  "witness_remained": {
-    "content": "The witness remained. I have recorded the events. The priests have filed their reports. The crowd has sung their songs. And the man who cleansed the Temple — He would soon cleanse the grave. The story continues.",
-    "choices": [
-      {
-        "text": "The story continues.",
-        "destination": "continuing"
-      },
-      {
-        "text": "The victory was certain.",
-        "destination": "victory_certain"
-      }
-    ]
-  },
-  "continuing": {
-    "content": "The story continues. The whispers in the courtyard became the declarations of the early Church. The scattered coins became the currency of grace. The overturned tables became the foundation of a new temple — the body of Christ, built not with hands but with hearts.",
-    "choices": [
-      {
-        "text": "The body was the temple.",
-        "destination": "cosmic"
-      },
-      {
-        "text": "The transformation was complete.",
-        "destination": "complete_revelation"
-      }
-    ]
-  },
-  "crowd_response": {
-    "content": "The crowd responded with songs of liberation. Pilgrims who had been cheated on previous visits felt vindicated. Foreigners who had been excluded felt welcomed. The Temple was becoming what it was meant to be — a house of prayer for all nations.\n# UNLOCK_EVIDENCE: crowd_response",
-    "choices": [
-      {
-        "text": "The response was spiritual.",
-        "destination": "spiritual"
-      },
-      {
-        "text": "The priests feared.",
-        "destination": "papal_panic"
-      }
-    ]
-  },
-  "spiritual": {
-    "content": "The response was spiritual. The crowd did not just see an economic disruption — they saw a theological revolution. The Messiah had declared that God's house was not a marketplace but a sanctuary. That holiness was not in inspection fees but in honest hearts. That worship was not a transaction but a relationship.",
-    "choices": [
-      {
-        "text": "The revolution was quiet.",
-        "destination": "quiet_revolution"
-      },
-      {
-        "text": "The impact was eternal.",
-        "destination": "eternal_change"
-      }
-    ]
-  },
-  "quiet_revolution": {
-    "content": "The revolution was quiet — no swords, no bloodshed, no political upheaval. Just a whip of rushes and a declaration of truth. Yet the impact was eternal. The Temple would be gone in 70 years. But the kingdom that Jesus declared that morning would outlast every empire.",
-    "choices": [
-      {
-        "text": "The kingdom would last.",
-        "destination": "kingdom_coming"
-      },
-      {
-        "text": "The impact was eternal.",
-        "destination": "eternal_change"
-      }
-    ]
-  },
-  "victory_certain": {
-    "content": "The victory was certain. The Messiah who cleansed the Temple with a whip of rushes would soon cleanse the grave with the power of resurrection. The Temple system that opposed Him would crumble. And the kingdom that He declared — a house of prayer for all nations — would endure forever.",
-    "choices": [
-      {
-        "text": "The kingdom endures.",
-        "destination": "eternal_kingdom"
+        "text": "The victory was complete.",
+        "destination": "closing"
       },
       {
         "text": "The testimony spreads.",
-        "destination": "spreading"
+        "destination": "closing"
       }
     ]
   },
-  "eternal_kingdom": {
-    "content": "The eternal kingdom. The one that Jesus declared with a whip of rushes. The one that the crowd sang about in the midst of the scattering coins. The one that the priests tried to stop but could not contain. The one that would outlast the Temple, the priesthood, and even Rome itself.",
+  "plot_arrest": {
+    "content": "From emergency sessions to whispered councils, the priests plotted. Arrest. Trial. Execution. Anything to restore their order. But every plot against the Messiah was part of the divine plan. Every attempt to stop the kingdom only advanced it further. The scattered coins had declared more justice than all their legal charges combined.",
     "choices": [
       {
-        "text": "The kingdom is here.",
-        "destination": "eternal_change"
+        "text": "The plan could not be frustrated.",
+        "destination": "closing"
       },
       {
-        "text": "The kingdom is coming.",
-        "destination": "kingdom_coming2"
-      }
-    ]
-  },
-  "kingdom_coming2": {
-    "content": "The kingdom is coming. Not in the future tense — in the present. The Messiah declared it. The crowd recognized it. The priests resisted it. And the centurion who stood guard that morning — he felt it too. The kingdom was advancing. And nothing — nothing — could stop it.",
-    "choices": [
-      {
-        "text": "The advancement was unstoppable.",
-        "destination": "unstoppable"
-      },
-      {
-        "text": "Nothing could stop it.",
-        "destination": "unstoppable2"
-      }
-    ]
-  },
-  "unstoppable": {
-    "content": "The advancement was unstoppable. The Messiah who cleansed the Temple would soon cleanse the grave. The one who scattered coins with a whip of rushes would soon scatter death itself. The kingdom that began with a whip of rushes would end with a spear and a stone rolled away.",
-    "choices": [
-      {
-        "text": "The spear and the stone.",
-        "destination": "spear_stone"
-      },
-      {
-        "text": "The victory was complete.",
-        "destination": "complete_victory"
-      }
-    ]
-  },
-  "unstoppable2": {
-    "content": "Nothing could stop it. The Temple priests could not contain it. The Roman legions could not conquer it. The forces of darkness could not defeat it. The kingdom that Jesus declared with a whip of rushes — it would come. And it would never end.",
-    "choices": [
-      {
-        "text": "The kingdom never ends.",
-        "destination": "eternal_kingdom2"
-      }
-    ]
-  },
-  "spear_stone": {
-    "content": "The spear and the stone. The crown of thorns and the empty grave. The whip of rushes and the cross of glory. All of it — the cleansing, the crown, the crucifixion, the resurrection — all of it was part of one divine plan that could not be frustrated by human opposition.",
-    "choices": [
-      {
-        "text": "The plan was perfect.",
-        "destination": "perfect_plan"
-      },
-      {
-        "text": "The execution was flawless.",
-        "destination": "flawless"
-      }
-    ]
-  },
-  "perfect_plan": {
-    "content": "The plan was perfect. The execution was flawless. The result was certain. The Messiah would triumph. The Temple would fall. And the kingdom — the kingdom that Jesus declared with a whip of rushes — would be established. Not by force. Not by power. But by love.",
-    "choices": [
-      {
-        "text": "By love alone.",
-        "destination": "love_alone"
-      },
-      {
-        "text": "The kingdom would be established.",
-        "destination": "established2"
-      }
-    ]
-  },
-  "love_alone": {
-    "content": "By love alone. Not by the sword. Not by the whip. Not by the crown of thorns. But by the cross — the ultimate declaration of love that gives itself completely. The same love that drove the Messiah to cleanse the Temple with a whip of rushes now drove Him to cleanse the world with the blood of the cross.",
-    "choices": [
-      {
-        "text": "The love was ultimate.",
-        "destination": "ultimate_love"
-      },
-      {
-        "text": "The cleansing was complete.",
-        "destination": "cleansing_complete"
-      }
-    ]
-  },
-  "ultimate_love": {
-    "content": "The love was ultimate. The cleansing was complete. The victory was won. And the kingdom — the kingdom that Jesus declared with a whip of rushes on a Monday morning — would outlast every empire, every priesthood, every stone of the Temple itself.",
-    "choices": [
-      {
-        "text": "The kingdom endures forever.",
-        "destination": "eternal_kingdom3"
-      }
-    ]
-  },
-  "eternal_kingdom3": {
-    "content": "The kingdom endures forever. From the temple cleansing to the empty grave — from the whip of rushes to the power of the cross — the kingdom of God, once declared, cannot be undone. It advances. It conquers. It endures. And it will come — in fullness — when the Son of Man returns in glory.",
-    "choices": []
-  },
-  "reopening": {
-    "content": "The reopening of the temple courts was the true sign. Not just the scattering of merchants — but the declaration that the house was once again a place of prayer. Pilgrims returned, not to buy and sell, but to meet with God. And in that meeting, the stage was set for the final act.",
-    "choices": [
-      {
-        "text": "The stage was set.",
-        "destination": "path_set"
-      },
-      {
-        "text": "The final act was coming.",
-        "destination": "coming"
-      }
-    ]
-  },
-  "coming": {
-    "content": "The final act was coming. The cleansing was not the end — it was the beginning. The week had just started. The Passover meal still awaited. The garden of Gethsemane still beckoned. And the cross — the cross that would be the ultimate cleansing — was three days away.",
-    "choices": [
-      {
-        "text": "The cleansing continued.",
-        "destination": "continuation"
-      },
-      {
-        "text": "The story would climax.",
-        "destination": "climax"
-      }
-    ]
-  },
-  "continuation": {
-    "content": "The cleansing continued. From the Temple courts to the upper room. From the upper room to the garden. From the garden to the cross. And from the cross to the empty grave. The same love that drove the cleansing with a whip of rushes now drove the cleansing of death itself.",
-    "choices": [
-      {
-        "text": "The love was consistent.",
-        "destination": "consistent"
-      },
-      {
-        "text": "The victory was certain.",
-        "destination": "victory_certain"
-      }
-    ]
-  },
-  "consistent": {
-    "content": "The love was consistent. The power was divine. The purpose was redemptive. And the kingdom — the kingdom that began with scattered coins — would end with scattered grains of wheat, falling into the ground to bear much fruit.",
-    "choices": [
-      {
-        "text": "The fruit would multiply.",
-        "destination": "multiplying"
-      },
-      {
-        "text": "The victory was assured.",
-        "destination": "victory_assured"
-      }
-    ]
-  },
-  "multiplying": {
-    "content": "The fruit would multiply beyond measure. The scattered coins became the currency of grace. The scattered grain would bear thirtyfold, sixtyfold, a hundredfold. And the kingdom that Jesus declared with a whip of rushes — it would never end.",
-    "choices": [
-      {
-        "text": "The kingdom never ends.",
-        "destination": "eternal_kingdom4"
-      },
-      {
-        "text": "The victory was complete.",
-        "destination": "complete_victory"
-      }
-    ]
-  },
-  "eternal_kingdom4": {
-    "content": "The kingdom never ends. It advances. It conquers. It transforms. And it endures. From a whip of rushes to a cross of wood — from scattered coins to scattered lives — the kingdom of God is here. And it is coming. And it will never, never end.",
-    "choices": []
-  },
-  "complete_victory": {
-    "content": "The victory was complete. The cleansing was finished. The kingdom was declared. The testimony was recorded. And the witness — the witness of a Roman guard who saw it all — remains as evidence that the Messiah who cleansed the Temple with a whip of rushes is the same Messiah who died on the cross and rose again on the third day.",
-    "choices": []
-  },
-  "revelation": {
-    "content": "The revelation was complete. The house of prayer was declared. The Temple system was exposed. The crowd was energized. And the priests — the priests were left with a choice: acknowledge the Messiah or oppose Him. They chose opposition.",
-    "choices": [
-      {
-        "text": "The choice was theirs.",
-        "destination": "path_set"
-      },
-      {
-        "text": "The consequence was sealed.",
-        "destination": "sealed"
+        "text": "The kingdom would prevail.",
+        "destination": "closing"
       }
     ]
   },
   "closing": {
-    "content": "I am on duty. I will stick to what I observed. The rest belongs to the archives and the Sanhedrin's emergency sessions. But I have told you what I saw — a man with a whip of rushes, declaring that God's house is a house of prayer. And that declaration changed everything.",
+    "content": "I have recorded what I witnessed. The Temple priests have filed their reports. The crowd has sung their songs. And the man who cleansed the Temple with a whip of rushes — He would soon cleanse the grave. The story continues. The kingdom that began with scattered coins would end with scattered chains. From a whip of rushes to a cross of glory — the advancement was unstoppable.",
     "choices": []
   }
 }

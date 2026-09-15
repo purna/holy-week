@@ -20,7 +20,6 @@
 -> start
 
 === start ===
-I've served in Judea for three years. This Jesus... He's different
-from the usual rabble we deal with.
+I've served in Judea for three years. This Jesus... He's different from the usual rabble we deal with.
 
 -> DONE

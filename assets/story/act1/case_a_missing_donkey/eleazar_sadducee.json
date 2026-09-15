@@ -1,971 +1,152 @@
 {
   "start": {
-    "content": "My name is Eleazar. I am a son of Aaron — not by birth, but by\ncontract. The Temple employs my family to manage its commercial\ninterests. What you call the \"Triumphal Entry,\" I call an\nunauthorized seizure of property. The colt was not lent. It was\ntaken. By force. Under cover of religious fervor.",
+    "content": "My name is Eleazar. I am a son of Aaron — not by birth, but by contract. The Temple employs my family to manage its commercial interests. What you call the \"Triumphal Entry,\" I call an unauthorized seizure of property. The colt was not lent. It was taken. By force. Under cover of religious fervor.",
     "choices": [
       {
-        "text": "You filed a complaint with the authorities.",
-        "destination": "complaint"
+        "text": "You filed a deposition with the authorities.",
+        "destination": "deposition"
       },
       {
         "text": "The owner says he gave it willingly.",
-        "destination": "willing_owner"
+        "destination": "owner_testimony"
       },
       {
-        "text": "You witnessed the Temple cleansing too.",
+        "text": "You also witnessed the Temple cleansing.",
         "destination": "temple_cleansing"
       }
     ]
   },
-  "complaint": {
-    "content": "I witnessed the entire event from my villa's upper terrace. Two\nrough-looking men approached the tethering post near the gate.\nThey drew blades — crude iron points — and hacked through the\nrope. The owner protested. Violently. I have the guards'\ntestimony to corroborate my deposition.",
+  "deposition": {
+    "content": "# UNLOCK_EVIDENCE: witness_account\n# UNLOCK_EVIDENCE: rope_fibers\nI witnessed the entire event from my villa's upper terrace. Two rough-looking men approached the tethering post near the gate. They drew blades — crude iron points — and hacked through the rope. The owner protested. Violently. I have the guards' testimony to corroborate my deposition.",
     "choices": [
       {
-        "text": "The rope fibers show no cuts.",
-        "destination": "rope_evidence"
+        "text": "But rope fibers show no cuts.",
+        "destination": "evidence_conflict"
       },
       {
-        "text": "The owner contradicts your deposition.",
-        "destination": "owner_contradicts"
+        "text": "The owner contradicts your account.",
+        "destination": "owner_testimony"
       },
       {
-        "text": "You had a view but not the full picture.",
-        "destination": "partial_view"
+        "text": "Your villa gave you limited perspective.",
+        "destination": "limited_view"
       }
     ]
   },
-  "willing_owner": {
-    "content": "Tobias is a dreamer. He sees prophecies in every bird that flies\nover his field and every breeze that stirs his curtains. When I\nquestioned him, he insisted the colt was \"given freely\" and that\nthe stranger's words — \"The Lord needs it\" — unlocked some ancient\nrecognition. I have studied the Torah for forty years, not folk tales.",
+  "owner_testimony": {
+    "content": "# UNLOCK_EVIDENCE: witness_account\nTobias is a dreamer. He sees prophecies in every bird that flies over his field and every breeze that stirs his curtains. When I questioned him, he insisted the colt was \"given freely\" and that the stranger's words — \"The Lord needs it\" — unlocked some ancient recognition. I have studied the Torah for forty years, not folk tales.",
     "choices": [
       {
-        "text": "Tobias is not qualified to testify.",
-        "destination": "discredit_owner"
+        "text": "You frame faith as delusion.",
+        "destination": "limited_view"
       },
       {
-        "text": "Your deposition is perjured.",
-        "destination": "perjury"
-      },
-      {
-        "text": "The owner is a zealot.",
-        "destination": "zealot_discredit"
+        "text": "The Sanhedrin accepts your deposition.",
+        "destination": "sanhedrin"
       }
     ]
   },
   "temple_cleansing": {
-    "content": "Three days later, the same crowd that celebrated a stolen donkey\ndemanded that I explain why our Temple had become a marketplace.\nI stood in the outer courts and watched a Galilean carpenter\ndestroy three centuries of established commerce with nothing\nbut a whip of rushes. He called it \"cleansing.\" I call it\neconomic terrorism.",
+    "content": "Three days later, the same crowd that celebrated a stolen donkey demanded that I explain why our Temple had become a marketplace. I stood in the outer courts and watched a Galilean carpenter destroy three centuries of established commerce with nothing but a whip of rushes. He called it \"cleansing.\" I call it economic terrorism.",
     "choices": [
-      {
-        "text": "You supported the Temple authorities.",
-        "destination": "temple_support"
-      },
       {
         "text": "The merchants had licenses.",
-        "destination": "legal_licenses"
+        "destination": "temple_defense"
       },
       {
-        "text": "You feared the disruption.",
-        "destination": "fear_disruption"
+        "text": "You fear Roman retaliation.",
+        "destination": "roman_threat"
+      },
+      {
+        "text": "The system serves the people.",
+        "destination": "temple_defense"
       }
     ]
   },
-  "rope_evidence": {
-    "content": "The rope fibers, examined under magnification, show fresh\nseparation at the cut points. Iron residue on the remaining\nstrands. The owner's claim that he \"untied\" the colt is\nphysically impossible. I am a man of evidence, not superstition.",
+  "evidence_conflict": {
+    "content": "The rope fibers, examined under magnification, show fresh separation at the cut points. Iron residue on the remaining strands. The owner's claim that he \"untied\" the colt is physically impossible. I am a man of evidence, not superstition. But my investigators found no iron in the rope. Only the owner's word against my deposition.",
     "choices": [
       {
-        "text": "But you were in your villa.",
-        "destination": "alibi_issue"
+        "text": "The investigation contradicts you.",
+        "destination": "limited_view"
       },
       {
-        "text": "The owner's eyes were clear.",
-        "destination": "owner_clear"
-      },
-      {
-        "text": "You have not examined the scene.",
-        "destination": "scene_unexamined"
+        "text": "You stand by your account regardless.",
+        "destination": "closing_eleazar"
       }
     ]
   },
-  "owner_contradicts": {
-    "content": "Yes. Tobias contradicts my deposition. He claims the colt was\n\"lent willingly.\" I have reviewed his testimony. He is either\nlying or delusional. A man who believes Zechariah's prophecy\nwalks off the page cannot be trusted with legal testimony.",
-    "choices": [
-      {
-        "text": "You are protecting your investment.",
-        "destination": "investment_protection"
-      },
-      {
-        "text": "Your income depends on Temple commerce.",
-        "destination": "income_dependence"
-      },
-      {
-        "text": "You frame it as delusion.",
-        "destination": "dismissal_tactic"
-      }
-    ]
-  },
-  "partial_view": {
-    "content": "I had a villa overview. Not the ground-level detail. But I\nsaw the approach, the confrontation, the removal of the\nanimal. The crowd's reaction. The owner's protest. From\ntwo hundred cubits up, I had sufficient perspective to\nfile an accurate deposition.",
-    "choices": [
-      {
-        "text": "Perspective without proximity.",
-        "destination": "distant_perspective"
-      },
-      {
-        "text": "Your deposition lacks crucial details.",
-        "destination": "lacks_detail"
-      }
-    ]
-  },
-  "discredit_owner": {
-    "content": "Tobias tends barley fields outside the city walls. He is a\nsimple farmer. He deals in metaphors and folk wisdom. I\ndeal in contracts, in legal precedents, in the kind of\nevidence that survives scrutiny in a Roman court of law.",
-    "choices": [
-      {
-        "text": "The simple can see what the wise miss.",
-        "destination": "simple_see"
-      },
-      {
-        "text": "He has witnesses too.",
-        "destination": "owner_witnesses"
-      },
-      {
-        "text": "Your education has not prepared you for this.",
-        "destination": "unprepared"
-      }
-    ]
-  },
-  "perjury": {
-    "content": "Perjury? My deposition is sworn testimony. I stand by every\nword. If the owner's memory fails him under pressure, that\ndoes not invalidate my account. Two temple guards confirm\nthey heard the owner's protest. My word against his fantasy.",
-    "choices": [
-      {
-        "text": "You pressure the guards.",
-        "destination": "pressure_guards"
-      },
-      {
-        "text": "Your guards are paid by you.",
-        "destination": "paid_guards"
-      },
-      {
-        "text": "The guards' testimony is hearsay.",
-        "destination": "hearsay"
-      }
-    ]
-  },
-  "zealot_discredit": {
-    "content": "Call it what you will — a dreamer, a zealot, a fool carrying\nold scrolls and talking about kings and prophecies. The point\nremains: property was removed without proper authorization.\nThe Sanhedrin has already taken my deposition seriously enough\nto open an inquiry.",
-    "choices": [
-      {
-        "text": "The Sanhedrin is divided.",
-        "destination": "sanhedrin_divided"
-      },
-      {
-        "text": "They use your deposition.",
-        "destination": "using_deposition"
-      },
-      {
-        "text": "The inquiry favors the donkey's owner.",
-        "destination": "inquiry_favors"
-      }
-    ]
-  },
-  "temple_support": {
-    "content": "I support the established order. The Temple is not merely\na religious institution — it is the economic engine of\nJudea. Without its commercial operations, the priesthood\ncannot function. Without the priesthood, the people lose\ntheir connection to the covenant.",
-    "choices": [
-      {
-        "text": "Commerce corrupts covenant.",
-        "destination": "corruption_point"
-      },
-      {
-        "text": "The system has endured centuries.",
-        "destination": "system_endurance"
-      },
-      {
-        "text": "Profit motives are incompatible with worship.",
-        "destination": "worship_profit"
-      }
-    ]
-  },
-  "legal_licenses": {
-    "content": "Every merchant in the Court of the Gentiles operates under\npriestly license. Every transaction is registered. Every\nanimal is inspected. We maintain standards that a carpenter\nfrom Nazareth cannot comprehend.",
-    "choices": [
-      {
-        "text": "The licenses are bought and sold.",
-        "destination": "bought_licenses"
-      },
-      {
-        "text": "Inspection is cursory at best.",
-        "destination": "cursory_inspection"
-      },
-      {
-        "text": "The poor are overcharged.",
-        "destination": "overcharging"
-      }
-    ]
-  },
-  "fear_disruption": {
-    "content": "I fear what the crowd will do if left to their own devices.\nToday it is a whip and scattered coins. Tomorrow it could\nbe actual violence. The Romans do not distinguish between\nreligious enthusiasm and political rebellion. They respond\nto both with legions.",
-    "choices": [
-      {
-        "text": "The Romans will be called in.",
-        "destination": "roman_response"
-      },
-      {
-        "text": "Your fear is misplaced.",
-        "destination": "misplaced_fear"
-      },
-      {
-        "text": "The real threat is the king.",
-        "destination": "real_threat"
-      }
-    ]
-  },
-  "investment_protection": {
-    "content": "My family has invested three generations of wealth in\nthis Temple operation. My father, my grandfather, and\nmy son all draw income from the commercial activities.\nA man who threatens that enterprise threatens not just\nmy livelihood but my family's security. I am protecting\nwhat is mine by inheritance.",
-    "choices": [
-      {
-        "text": "What is the kingdom of God worth?",
-        "destination": "kingdom_worth"
-      },
-      {
-        "text": "Your investment is in the wrong place.",
-        "destination": "wrong_investment"
-      },
-      {
-        "text": "You serve money, not God.",
-        "destination": "money_serving"
-      }
-    ]
-  },
-  "income_dependence": {
-    "content": "My income depends on the Temple's stability, just as\nevery Jerusalem merchant depends on its prosperity.\nThe Galilean's \"cleansing\" disrupted a system that\nfunctioned for two thousand years. I was protecting\nthe livelihood of hundreds of families.",
+  "limited_view": {
+    "content": "I had a villa overview. Not the ground-level detail. But I saw the approach, the confrontation, the removal of the animal. From two hundred cubits up, I had sufficient perspective to file a credible deposition. My income depends on the Temple's stability, just as every Jerusalem merchant depends on its prosperity. The Galilean's \"cleansing\" disrupted a system that functioned for two thousand years.",
     "choices": [
       {
         "text": "The system was already corrupt.",
-        "destination": "system_corrupt"
+        "destination": "corruption"
       },
       {
-        "text": "Families suffer from exploitation.",
-        "destination": "exploitation_suffering"
+        "text": "You protect your investment.",
+        "destination": "corruption"
       },
       {
-        "text": "The poor need access, not protection of profit.",
-        "destination": "poor_access"
+        "text": "Your view is motivated by profit.",
+        "destination": "closing_eleazar"
       }
     ]
   },
-  "dismissal_tactic": {
-    "content": "I am not dismissing him as delusional. I am dismissing\nhis claims as unfounded. A man who says he is the\nfulfillment of Zechariah's prophecy bears the burden\nof proof. An unridden donkey does not make a king.\nPeaceable entry does not establish divine authority.",
+  "sanhedrin": {
+    "content": "The Sanhedrin is divided. Caiaphas sees political threat. The Pharisees see theological concern. Some scribes see genuine prophecy. But the Sadducees — those who control the Temple finances — see the greatest threat to the established order. My deposition confirmed what we already knew.",
     "choices": [
       {
-        "text": "The proof is in the crowd's recognition.",
-        "destination": "crowd_proof"
-      },
-      {
-        "text": "You demand impossible evidence.",
-        "destination": "impossible_evidence"
-      },
-      {
-        "text": "Signs and wonders are not political evidence.",
-        "destination": "political_evidence"
-      }
-    ]
-  },
-  "sanhedrin_divided": {
-    "content": "The Sanhedrin is indeed divided. Caiaphas sees political\nthreat. The Pharisees see theological concern. Some\nscribes see genuine prophecy. But the Sadducees — those\nwho control the Temple finances — see the greatest\nthreat to the established order. I am not alone.",
-    "choices": [
-      {
-        "text": "Division weakens their position.",
-        "destination": "weak_position"
+        "text": "Division weakens your position.",
+        "destination": "closing_eleazar"
       },
       {
         "text": "The Sadducees have the most to lose.",
-        "destination": "most_to_lose"
-      },
-      {
-        "text": "Their wealth drives their opposition.",
-        "destination": "wealth_drives"
+        "destination": "closing_eleazar"
       }
     ]
   },
-  "using_deposition": {
-    "content": "They use my deposition because it is accurate. I am not\na religious extremist. I am not a zealot. I am a\nbusinessman who witnessed unauthorized property seizure\nand filed the appropriate report. If my testimony\nthreatens their position, that is their problem.",
+  "temple_defense": {
+    "content": "Every merchant in the Court of the Gentiles operates under priestly license. Every transaction is registered. Every animal is inspected. We maintain standards that a carpenter from Nazareth cannot comprehend. Corruption in commerce exists, yes — but corruption in faith is a different question entirely. The Galilean speaks of love and forgiveness, but He does not provide the means by which the Temple functions. Without our commerce, how do the poor offer their sacrifices?",
     "choices": [
       {
-        "text": "Your accuracy is questionable.",
-        "destination": "questionable_accuracy"
+        "text": "Prayer replaces sacrifice.",
+        "destination": "closing_eleazar"
       },
       {
-        "text": "The property seizure was authorized.",
-        "destination": "authorized_seizure"
-      },
-      {
-        "text": "You twist facts to fit conclusions.",
-        "destination": "twisted_facts"
+        "text": "The means should not become the end.",
+        "destination": "closing_eleazar"
       }
     ]
   },
-  "inquiry_favors": {
-    "content": "The inquiry is ongoing. The owner's testimony has\nnot yet been cross-examined under oath. When it is,\nthe inconsistencies will emerge. A man who claims\n\"the Lord needs it\" speaks of divine mandate, not\nproperty transfer.",
+  "corruption": {
+    "content": "Every institution has corruption. But the system as a whole is not corrupt. It is the individuals within it who sometimes fail. The system provides structure, order, predictability. Through Babylonian captivity. Through Maccabean revolt. Through Roman occupation. The Temple endures because it adapts while remaining faithful to its core function.",
     "choices": [
       {
-        "text": "Divine mandate over legal transfer.",
-        "destination": "divine_mandate"
-      },
-      {
-        "text": "Your concern is legal, not spiritual.",
-        "destination": "legal_spiritual"
-      },
-      {
-        "text": "The law and the gospel conflict.",
-        "destination": "law_gospel_conflict"
-      }
-    ]
-  },
-  "alibi_issue": {
-    "content": "I was in my villa. My servants confirm it. But the\ndeposit boxes at the Antonia fortress have guards on\nrotation. Their testimony supports the timing of\nthe incident. I had adequate observation to file\na credible deposition.",
-    "choices": [
-      {
-        "text": "Secondhand evidence is not firsthand.",
-        "destination": "secondhand_evidence"
-      },
-      {
-        "text": "The guards change their story.",
-        "destination": "guard_inconsistency"
-      },
-      {
-        "text": "Multiple sources confirm your version.",
-        "destination": "multiple_sources"
-      }
-    ]
-  },
-  "owner_clear": {
-    "content": "The owner's eyes were clear. Perhaps too clear.\nPerhaps drugged. Perhaps delirious with religious\necstasy. I have seen farmers who have worked too\nlong in the sun. Their perceptions grow...\nunreliable.",
-    "choices": [
-      {
-        "text": "You question his sanity.",
-        "destination": "sanity_question"
-      },
-      {
-        "text": "His testimony is consistent.",
-        "destination": "consistent_testimony"
-      },
-      {
-        "text": "You seek to discredit all witnesses.",
-        "destination": "discredit_all"
-      }
-    ]
-  },
-  "scene_unexamined": {
-    "content": "I have not examined the scene personally. But I\nemploy investigators. The report from my agent\nconfirms the iron residue on the rope fibers.\nThe cut marks are visible under magnification.\nI trust those who examine details.",
-    "choices": [
-      {
-        "text": "Your agents are biased.",
-        "destination": "biased_agents"
-      },
-      {
-        "text": "The report contradicts owner's account.",
-        "destination": "contradicting_report"
-      },
-      {
-        "text": "You delegate your observation.",
-        "destination": "delegation"
-      }
-    ]
-  },
-  "bought_licenses": {
-    "content": "The licenses are purchased through proper channels\nand renewed annually. The fees support the priestly\nfamilies who maintain the Temple's sacred functions.\nWithout this revenue, the institution cannot operate.\nCommerce and covenant are not opposites — they\nare partners.",
-    "choices": [
-      {
-        "text": "Partners or parasites?",
-        "destination": "parasite_question"
-      },
-      {
-        "text": "The poor deserve better.",
-        "destination": "poor_better"
-      },
-      {
-        "text": "The partnership is corrupt.",
-        "destination": "corrupt_partnership"
-      }
-    ]
-  },
-  "cursory_inspection": {
-    "content": "The inspections are cursory. The priests are old.\nThe standards are... flexible. Animals that would\nbe rejected in any other market are accepted here\nbecause the buyers are pilgrims who cannot afford\nto be picky.",
-    "choices": [
-      {
-        "text": "You exploit pilgrims.",
-        "destination": "exploit_pilgrims"
-      },
-      {
-        "text": "The system allows it.",
-        "destination": "system_allows"
-      },
-      {
-        "text": "Flexibility is corruption.",
-        "destination": "flexibility_corruption"
-      }
-    ]
-  },
-  "overcharging": {
-    "content": "The poor bring what little they have. We provide\nwhat they need. The prices reflect the reality\nof Temple commerce — transportation, inspection,\nmaintenance, security. If they cannot afford\nour prices, they can pray from outside the gates.",
-    "choices": [
-      {
-        "text": "Prayer does not require payment.",
-        "destination": "prayer_free"
-      },
-      {
-        "text": "Access should not require payment.",
-        "destination": "access_free"
-      },
-      {
-        "text": "You have turned worship into commerce.",
-        "destination": "worship_commerce"
-      }
-    ]
-  },
-  "roman_response": {
-    "content": "The Romans will be called in when the crowds\nbecome unruly. Today it is scattered coins.\nTomorrow — when the people realize their\nleader has been taken — it could be stones.\nOr worse. I prefer order to chaos.",
-    "choices": [
-      {
-        "text": "Order through oppression.",
-        "destination": "order_oppression"
-      },
-      {
-        "text": "The chaos is your fear.",
-        "destination": "chaos_fear"
-      },
-      {
-        "text": "The king offers real peace.",
-        "destination": "real_peace"
-      }
-    ]
-  },
-  "misplaced_fear": {
-    "content": "My fear is not misplaced. I have lived in\nJerusalem long enough to know how quickly\ncrowds turn from celebration to violence.\nThe same people who shouted \"Hosanna\"\ncan just as easily shout \"Crucify.\" I prefer\nto be on the side of order.",
-    "choices": [
-      {
-        "text": "You pick the wrong side.",
-        "destination": "wrong_side"
-      },
-      {
-        "text": "Order without justice is tyranny.",
-        "destination": "justice_required"
-      },
-      {
-        "text": "History judges those who choose order over righteousness.",
-        "destination": "history_judges"
-      }
-    ]
-  },
-  "real_threat": {
-    "content": "The real threat is not the donkey or the whip.\nThe real threat is the claim that this man\n— this carpenter — is the king God promised.\nIf the people believe that, they will abandon\nthe Temple. They will abandon us. They will\nabandon everything that makes this city great.",
-    "choices": [
-      {
-        "text": "What makes the city great?",
-        "destination": "city_greatness"
-      },
-      {
-        "text": "The Temple's authority is challenged.",
-        "destination": "temple_authority"
-      },
-      {
-        "text": "They abandon idols for the living God.",
-        "destination": "living_god"
-      }
-    ]
-  },
-  "kingdom_worth": {
-    "content": "What is the kingdom of God worth? It is worth\nthe cost of following it. The question you should\nask is: what is the Temple worth? What is the\nestablished order worth? What is the system that\nhas served Israel for centuries worth?",
-    "choices": [
-      {
-        "text": "More than comfort.",
-        "destination": "more_than_comfort"
-      },
-      {
-        "text": "More than tradition.",
-        "destination": "more_than_tradition"
-      },
-      {
-        "text": "The price is measured in souls.",
-        "destination": "souls_measured"
-      }
-    ]
-  },
-  "wrong_investment": {
-    "content": "My investment is in the stability of Jerusalem.\nIn the prosperity of my family. In the Temple's\nenduring relevance. These are not wrong\ninvestments. They are wise ones.",
-    "choices": [
-      {
-        "text": "The Temple's relevance is questioned.",
-        "destination": "temple_questioned"
-      },
-      {
-        "text": "Your family's prosperity comes at a cost.",
-        "destination": "prosperity_cost"
-      },
-      {
-        "text": "Investment in stone cannot save souls.",
-        "destination": "stone_cannot_save"
-      }
-    ]
-  },
-  "money_serving": {
-    "content": "I serve the system that has provided for my\nfamily for generations. I serve the Temple\nthat has been the centre of Jewish worship\nfor centuries. I serve the order that\nprevents chaos. If that makes me a\n\"money-serving\" man, then all of Jerusalem\nserves money.",
-    "choices": [
-      {
-        "text": "All of Jerusalem serves money.",
-        "destination": "all_serve"
-      },
-      {
-        "text": "The system is the problem.",
-        "destination": "system_problem"
-      },
-      {
-        "text": "You defend corruption.",
-        "destination": "defend_corruption"
-      }
-    ]
-  },
-  "corruption_point": {
-    "content": "Corruption in commerce? Of course there is corruption.\nBut corruption in faith? That is a different question\nentirely. The Galilean speaks of love and forgiveness,\nbut He does not provide the means by which the Temple\nfunctions. Without our commerce, how do the poor\noffer their sacrifices?",
-    "choices": [
-      {
-        "text": "The poor need the system.",
-        "destination": "poor_need"
-      },
-      {
-        "text": "Corruption cannot be justified.",
-        "destination": "cannot_justify"
-      },
-      {
-        "text": "The system serves a purpose, but it can be reformed.",
-        "destination": "system_reform"
-      }
-    ]
-  },
-  "system_endurance": {
-    "content": "The system has endured because it works.\nTwo thousand years of continuous operation.\nThrough Babylonian captivity. Through\nMaccabean revolt. Through Roman occupation.\nThe Temple endures because it adapts while\nremaining faithful to its core function.",
-    "choices": [
-      {
-        "text": "Endurance is not proof of truth.",
-        "destination": "endurance_not_truth"
-      },
-      {
-        "text": "The system resists change.",
-        "destination": "resists_change"
-      },
-      {
-        "text": "Adaptation without reform is stagnation.",
-        "destination": "stagnation"
-      }
-    ]
-  },
-  "worship_profit": {
-    "content": "Worship without institutional support becomes\nchaos. Profit without worship becomes greed.\nWe maintain the balance. We provide the\nmeans by which worship can function in a\ncomplex society. Remove the profit, and\nworship becomes impossible.",
-    "choices": [
-      {
-        "text": "The balance is broken.",
-        "destination": "broken_balance"
-      },
-      {
-        "text": "Profit serves worship.",
-        "destination": "profit_serve"
-      },
-      {
-        "text": "You have inverted the relationship.",
-        "destination": "inverted"
-      }
-    ]
-  },
-  "parasite_question": {
-    "content": "Parasites? The merchants, the priests, the\nscribes, the guards — we all serve the\nsame purpose. We maintain the system\nthat allows worship to happen. Without\nus, the pilgrims would have no sacrifices.\nNo offerings. No access to God.",
-    "choices": [
-      {
-        "text": "Direct access to God.",
-        "destination": "direct_access"
-      },
-      {
-        "text": "The system creates dependence.",
-        "destination": "creates_dependence"
-      },
-      {
-        "text": "You are part of the problem.",
-        "destination": "part_problem"
-      }
-    ]
-  },
-  "poor_better": {
-    "content": "The poor deserve better than a king who\nrides on a donkey. They deserve a system\nthat provides predictable, reliable access\nto the divine. Religious enthusiasm disrupts\nthat reliability.",
-    "choices": [
-      {
-        "text": "Reliability over revolution.",
-        "destination": "reliability_over"
-      },
-      {
-        "text": "The donkey king disrupts.",
-        "destination": "donkey_disrupts"
-      },
-      {
-        "text": "You prefer stability to salvation.",
-        "destination": "stability_salvation"
-      }
-    ]
-  },
-  "exploitation_suffering": {
-    "content": "Exploitation? The prices are set by\nthe market. The poor pay what they\ncan. Those who cannot afford the\nofferings pray from outside the gates.\nThis is not exploitation — it is\neconomic reality.",
-    "choices": [
-      {
-        "text": "Economic reality is not moral reality.",
-        "destination": "moral_reality"
-      },
-      {
-        "text": "The market fails the poor.",
-        "destination": "market_fails"
-      },
-      {
-        "text": "Justice requires more than economics.",
-        "destination": "justice_more"
-      }
-    ]
-  },
-  "system_corrupt": {
-    "content": "Every institution has corruption. But\nthe system as a whole is not corrupt.\nIt is the individuals within it who\nsometimes fail. The system provides\nstructure, order, predictability.",
-    "choices": [
-      {
-        "text": "Structure for whom?",
-        "destination": "structure_for_whom"
-      },
-      {
-        "text": "Predictability of profit.",
-        "destination": "predict_profit"
+        "text": "Stability without righteousness is not stability.",
+        "destination": "closing_eleazar"
       },
       {
         "text": "The system protects itself, not the people.",
-        "destination": "protects_self"
+        "destination": "closing_eleazar"
       }
     ]
   },
-  "exploit_pilgrims": {
-    "content": "The pilgrims know the prices. They\nunderstand the costs. They come\nprepared. Those who are unprepared\nare turned away — but that is their\nresponsibility, not ours.",
+  "roman_threat": {
+    "content": "The Romans will be called in when the crowds become unruly. Today it is scattered coins. Tomorrow — when the people realize their leader has been taken — it could be stones. Or worse. A king who enters on a donkey invites chaos. A priest who maintains contracts maintains order.",
     "choices": [
       {
-        "text": "You shift blame to the victims.",
-        "destination": "blame_victims"
+        "text": "The chaos is your fear.",
+        "destination": "closing_eleazar"
       },
       {
-        "text": "The prepared come prepared.",
-        "destination": "prepared_come"
-      },
-      {
-        "text": "God sees the poor.",
-        "destination": "god_sees_poor"
-      }
-    ]
-  },
-  "system_allows": {
-    "content": "The system allows what the market allows.\nIf the prices are too high, the pilgrims\nwill not come. But they do come.\nBecause they have no alternative.\nAnd we provide the alternative they\nneed.",
-    "choices": [
-      {
-        "text": "No alternative is not consent.",
-        "destination": "no_alternative"
-      },
-      {
-        "text": "Monopoly enables abuse.",
-        "destination": "monopoly_abuse"
-      },
-      {
-        "text": "You benefit from the monopoly.",
-        "destination": "benefit_monopoly"
-      }
-    ]
-  },
-  "flexibility_corruption": {
-    "content": "Flexibility in standards. Flexibility\nin interpretation. Flexibility in\nenforcement. These are not corruption —\nthey are the practical realities of\nmaintaining order in a complex society.",
-    "choices": [
-      {
-        "text": "Practical corruption.",
-        "destination": "practical_corruption"
-      },
-      {
-        "text": "Flexibility serves the powerful.",
-        "destination": "serves_powerful"
-      },
-      {
-        "text": "The letter becomes the spirit.",
-        "destination": "letter_spirit"
-      }
-    ]
-  },
-  "prayer_free": {
-    "content": "Prayer does not require payment.\nBut sacrifice does. And sacrifice\nrequires animals. And animals\nrequire Temple commerce. We\nare not selling prayer — we\nare enabling sacrifice.",
-    "choices": [
-      {
-        "text": "Sacrifice was never the point.",
-        "destination": "sacrifice_not_point"
-      },
-      {
-        "text": "The system confuses means and ends.",
-        "destination": "means_ends"
-      },
-      {
-        "text": "Direct prayer replaces sacrifice.",
-        "destination": "direct_prayer"
-      }
-    ]
-  },
-  "access_free": {
-    "content": "Access should not require payment.\nBut the animals do. The\ninspection does. The Temple\nmaintenance does. We charge\nfor the service, not the\nspiritual encounter.",
-    "choices": [
-      {
-        "text": "You commodify the sacred.",
-        "destination": "commodify_sacred"
-      },
-      {
-        "text": "Service without spirit.",
-        "destination": "service_spirit"
-      },
-      {
-        "text": "The encounter is what matters.",
-        "destination": "encounter_matters"
-      }
-    ]
-  },
-  "worship_commerce": {
-    "content": "You have turned worship into\ncommerce. We have turned\ncommerce into worship.\nDifferent perspectives.\nSame reality.",
-    "choices": [
-      {
-        "text": "Both perspectives serve greed.",
-        "destination": "both_serve"
-      },
-      {
-        "text": "The distinction is meaningless.",
-        "destination": "meaningless"
-      },
-      {
-        "text": "God sees both perspectives.",
-        "destination": "god_sees_both"
-      }
-    ]
-  },
-  "order_oppression": {
-    "content": "Order is not oppression.\nOrder is the framework\nwithin which freedom can\nflourish. Without order,\nthere is only chaos.\nAnd chaos serves no one.",
-    "choices": [
-      {
-        "text": "Order without justice is oppression.",
-        "destination": "order_no_justice"
-      },
-      {
-        "text": "The framework restricts freedom.",
-        "destination": "framework_restricts"
-      },
-      {
-        "text": "Chaos is what you fear.",
-        "destination": "chaos_fear_order"
-      }
-    ]
-  },
-  "chaos_fear": {
-    "content": "The chaos is my fear.\nThe fear of what happens\nwhen crowds believe a\ncarpenter is a king.\nWhen enthusiasm replaces\ndiscipline. When emotion\nreplaces order. When\nthe system that has\nserved Israel for\ncenturies is\nthrown into\ndisarray.",
-    "choices": [
-      {
-        "text": "The system deserves to be thrown.",
-        "destination": "deserves_thrown"
-      },
-      {
-        "text": "Fear motivates opposition.",
-        "destination": "fear_motivates"
-      },
-      {
-        "text": "Chaos follows false kings.",
-        "destination": "false_kings_chaos"
-      }
-    ]
-  },
-  "real_peace": {
-    "content": "The king offers peace\nthrough submission to\nauthority. My peace\nthrough preservation of\nthe Temple system.\nThe king on a donkey\nbrings chaos. The\npriest with contracts\nbrings order.",
-    "choices": [
-      {
-        "text": "The donkey brings peace.",
-        "destination": "donkey_peace"
-      },
-      {
-        "text": "Authority through submission or oppression.",
-        "destination": "authority_oppression"
-      },
-      {
-        "text": "You define peace as control.",
-        "destination": "peace_control"
-      }
-    ]
-  },
-  "city_greatness": {
-    "content": "What makes the city great\nis its Temple. Its system.\nIts order. Its predictability.\nIts ability to serve\nthousands of pilgrims each\nyear without chaos. The\nking on a donkey threatens\nthat greatness.",
-    "choices": [
-      {
-        "text": "Greatness through stability.",
-        "destination": "stability_greatness"
-      },
-      {
-        "text": "The greatness is false.",
-        "destination": "false_greatness"
-      },
-      {
-        "text": "Stability without justice is not greatness.",
-        "destination": "not_greatness"
-      }
-    ]
-  },
-  "temple_questioned": {
-    "content": "The Temple's authority\nis questioned by a man\nwho has never studied\nthe Torah. Who has\nnever served in the\npriesthood. Who has\nnever managed the\ncomplex logistics of\nsacred service.",
-    "choices": [
-      {
-        "text": "Authority from God, not position.",
-        "destination": "god_auth"
-      },
-      {
-        "text": "The untrained see clearly.",
-        "destination": "untrained_see"
-      },
-      {
-        "text": "Position does not guarantee truth.",
-        "destination": "position_not_truth"
-      }
-    ]
-  },
-  "living_god": {
-    "content": "They abandon idols for\nthe living God? What\nthey abandon is the\nsystem that has\nconnected them to\nthe living God for\ntwo thousand years.\nA king on a donkey\ncannot replace a\nTemple.",
-    "choices": [
-      {
-        "text": "The Temple is replaced by the body.",
-        "destination": "body_replaces"
-      },
-      {
-        "text": "Direct access through the living God.",
-        "destination": "direct_living"
-      },
-      {
-        "text": "A donkey is not an idol.",
-        "destination": "donkey_not_idol"
-      }
-    ]
-  },
-  "more_than_comfort": {
-    "content": "More than comfort.\nMore than security.\nMore than tradition.\nThe cost is\neverything. And\nthe reward is\neternity. What\nis your\ninvestment\nworth?",
-    "choices": [
-      {
-        "text": "My investment is in dust.",
-        "destination": "dust_investment"
-      },
-      {
-        "text": "Eternity over temporary gain.",
-        "destination": "eternity_temp"
-      },
-      {
-        "text": "Your investment will fail.",
-        "destination": "investment_fail"
-      }
-    ]
-  },
-  "more_than_tradition": {
-    "content": "More than tradition.\nMore than ritual.\nMore than the\nforms of worship\nthat have\npreserved us\nfor centuries.\nThe king\ndemands\neverything.\nThe Temple\ndemands\npayment.\nChoose.",
-    "choices": [
-      {
-        "text": "The king offers grace over payment.",
-        "destination": "grace_over_payment"
-      },
-      {
-        "text": "The choice is clear.",
-        "destination": "clear_choice"
-      },
-      {
-        "text": "Tradition cannot save souls.",
-        "destination": "tradition_no_save"
-      }
-    ]
-  },
-  "souls_measured": {
-    "content": "The price is measured\nin souls. The system's\nprice. The king's\nprice. The Temple's\nprice. Which\nprice\nwill\nyou\npay?",
-    "choices": [
-      {
-        "text": "The king's price is grace.",
-        "destination": "grace_price"
-      },
-      {
-        "text": "The system's price is everything.",
-        "destination": "everything_price"
-      },
-      {
-        "text": "Grace is the only payment possible.",
-        "destination": "grace_only"
-      }
-    ]
-  },
-  "all_serve": {
-    "content": "All of Jerusalem\nserves the system.\nAll of Jerusalem\nbenefits from\nthe order.\nAll of Jerusalem\ndepends on\nthe Temple's\ncommercial\noperations.\nWe are\npartners\nin\nsurvival.",
-    "choices": [
-      {
-        "text": "Partners in corruption.",
-        "destination": "corruption_partners"
-      },
-      {
-        "text": "Survival without the system.",
-        "destination": "survival_system"
-      },
-      {
-        "text": "The partnership enables oppression.",
-        "destination": "oppression_enables"
-      }
-    ]
-  },
-  "system_problem": {
-    "content": "The system is the\nproblem? Or are\nthe people\nwithin it?\nA system is\na framework.\nPeople are\nthe actors.\nWe act within\nthe constraints\nwe choose.",
-    "choices": [
-      {
-        "text": "The system constrains choice.",
-        "destination": "constrains_choice"
-      },
-      {
-        "text": "You chose the constraints.",
-        "destination": "chose_constraints"
-      },
-      {
-        "text": "Constraints without conscience.",
-        "destination": "no_conscience"
-      }
-    ]
-  },
-  "defend_corruption": {
-    "content": "You say I\ndefend\ncorruption.\nI say I\nmaintain\norder.\nYou see\noppression.\nI see\nstability.\nYou see\ngreed.\nI see\nnecessary\nfunction.\nWe see\ndifferent\nthings\nbecause\nwe\nvalue\ndifferent\noutcomes.",
-    "choices": [
-      {
-        "text": "The outcomes are measured differently.",
-        "destination": "different_outcomes"
-      },
-      {
-        "text": "Stability without righteousness is not stability.",
-        "destination": "not_righteous"
-      },
-      {
-        "text": "You cannot defend what is indefensible.",
-        "destination": "indefensible"
-      }
-    ]
-  },
-  "direct_access": {
-    "content": "Direct access\nto God?\nThrough\nwhat?\nThrough\nfaith?\nThrough\ngrace?\nThrough\na man\non a\ndonkey?\nThe\nTemple\nprovides\nthe\nmeans.\nThe\nsystem\nprovides\nthe\nstructure.\nThe priest\nprovides\nthe\nsacrament.",
-    "choices": [
-      {
-        "text": "The means become the message.",
-        "destination": "means_message"
-      },
-      {
-        "text": "The structure becomes the idol.",
-        "destination": "structure_idol"
-      },
-      {
-        "text": "Faith without structure is wandering.",
-        "destination": "wandering_faith"
+        "text": "The king offers real peace.",
+        "destination": "closing_eleazar"
       }
     ]
   },
   "closing_eleazar": {
-    "content": "I am Eleazar ben Simon.\nI have filed my deposition.\nI have stated my concerns.\nI have defended the system\nthat has served Israel for\ntwo thousand years. You\ncan believe me or not.\nBut you cannot deny\nthat I witnessed what\nI witnessed. And I\nwill testify to it.\nWhatever the cost.",
+    "content": "I am Eleazar ben Simon. I have filed my deposition. I have stated my concerns. I have defended the system that has served Israel for two thousand years. You can believe me or not. But you cannot deny that I witnessed what I witnessed. And I will testify to it. Whatever the cost.",
     "choices": []
   }
 }
