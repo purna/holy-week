@@ -4,34 +4,100 @@
     "choices": [
       {
         "text": "What are you cataloguing?",
-        "destination": "catalogue"
+        "destination": "catalogue",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "For whom do you work?",
-        "destination": "employer"
+        "destination": "employer",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "tag": "UNLOCK_EVIDENCE: crowd_report",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Keep moving, scribe. Do not look at me directly. I am cataloguing the faces near the treasury gates.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "catalogue": {
-    "content": "# UNLOCK_EVIDENCE: crowd_report\nThe faces of the men who came to hear the Galilean today. The chief priests, the scribes, the Pharisees — they all came with questions. He answered every one.",
+    "content": "The faces of the men who came to hear the Galilean today. The chief priests, the scribes, the Pharisees — they all came with questions. He answered every one.",
     "choices": [
       {
         "text": "And the answers?",
-        "destination": "employer"
+        "destination": "employer",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The faces of the men who came to hear the Galilean today. The chief priests, the scribes, the Pharisees — they all came with questions. He answered every one.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "employer": {
-    "content": "# UNLOCK_EVIDENCE: crowd_report\nThe High Priest's household employs many watchers. I watch the Temple because the Temple is where power assembles. And power, when challenged, remembers.",
+    "content": "The High Priest's household employs many watchers. I watch the Temple because the Temple is where power assembles. And power, when challenged, remembers.",
     "choices": [
       {
-        "text": "You heard the teachings?",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The High Priest's household employs many watchers. I watch the Temple because the Temple is where power assembles. And power, when challenged, remembers.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "closing": {
     "content": "Say nothing. The treasury walls have ears. The Galilean's words are being weighed, and the scales do not favour Him.",
-    "choices": []
+    "choices": [],
+    "steps": [
+      {
+        "text": "Say nothing. The treasury walls have ears. The Galilean's words are being weighed, and the scales do not favour Him.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "divert": "DONE",
+        "condition": {
+          "all": []
+        }
+      }
+    ]
+  },
+  "_meta": {
+    "schema": 2,
+    "entry": "start",
+    "variables": {},
+    "revision": "103aa384ba3cb104"
   }
 }

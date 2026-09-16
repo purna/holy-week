@@ -4,36 +4,98 @@
     "choices": [
       {
         "text": "You sold Him for thirty pieces of silver.",
-        "destination": "motivations"
+        "destination": "motivations",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "You regret it now.",
-        "destination": "regret"
+        "destination": "regret",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "What did Jesus say to you at the supper?",
-        "destination": "supper_quote"
+        "destination": "supper_quote",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "tag": "UNLOCK_EVIDENCE: evidence_judas_betrayal_price",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "tag": "UNLOCK_EVIDENCE: evidence_field_of_blood",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "tag": "UNLOCK_EVIDENCE: evidence_peter_contrast",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "You trace my steps with ink and parchment, little scribe, as though thirty pieces of silver were the whole of the story. You cannot know what it means to sit at the table of the Son of God and contemplate the weight of what the prophets have written. I saw the path ahead and thought I could shorten the journey by force. I was wrong.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "motivations": {
-    "content": "Thirty pieces of silver. The Torah sets that exact sum as the price paid when a slave is gored — Exodus 21:32. That is what the chief priests weighed into my hand: not a fortune, but a slave's price.\n# UNLOCK_EVIDENCE: evidence_judas_betrayal_price",
+    "content": "Thirty pieces of silver. The Torah sets that exact sum as the price paid when a slave is gored — Exodus 21:32. That is what the chief priests weighed into my hand: not a fortune, but a slave's price.",
     "choices": [
       {
         "text": "Zechariah wrote of this exact price.",
-        "destination": "zechariah_price"
+        "destination": "zechariah_price",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The money bag seems heavy tonight.",
-        "destination": "bag_heavy"
+        "destination": "bag_heavy",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Peter's reaction at the table.",
-        "destination": "conversation_end"
+        "destination": "conversation_end",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "victory_is_his"
+        "text": "Finish the interview.",
+        "destination": "victory_is_his",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Thirty pieces of silver. The Torah sets that exact sum as the price paid when a slave is gored — Exodus 21:32. That is what the chief priests weighed into my hand: not a fortune, but a slave's price.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -42,70 +104,146 @@
     "choices": [
       {
         "text": "Whose hand guided yours?",
-        "destination": "whose_hand"
+        "destination": "whose_hand",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The silver was prophetic.",
-        "destination": "silver_prophetic"
+        "destination": "silver_prophetic",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Why does Matthew name Jeremiah?",
-        "destination": "jeremiah_attribution"
+        "destination": "jeremiah_attribution",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "victory_is_his"
+        "text": "Finish the interview.",
+        "destination": "victory_is_his",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "You know your prophets. \"So they weighed for my price thirty pieces of silver... and I cast them to the potter in the house of the LORD.\" Zechariah wrote this centuries before I was born. I fulfilled it to the coin without setting out to follow his scroll. If the price was written before I chose it, whose hand was really moving mine?",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "jeremiah_attribution": {
-    "content": "Matthew records what followed and says that the words spoken through Jeremiah were fulfilled: thirty pieces returned to the sanctuary, then used to buy the potter's field. The price and the casting of the silver echo Zechariah 11:12–13. Jeremiah supplies the wider image — the potter, the shattered vessel, and a field purchased under judgment and hope in Jeremiah 19 and 32. Matthew gathers those prophetic threads under Jeremiah's name and shows them converging in what the priests did with my blood money.\n# UNLOCK_EVIDENCE: evidence_field_of_blood",
+    "content": "Matthew records what followed and says that the words spoken through Jeremiah were fulfilled: thirty pieces returned to the sanctuary, then used to buy the potter's field. The price and the casting of the silver echo Zechariah 11:12–13. Jeremiah supplies the wider image — the potter, the shattered vessel, and a field purchased under judgment and hope in Jeremiah 19 and 32. Matthew gathers those prophetic threads under Jeremiah's name and shows them converging in what the priests did with my blood money.",
     "choices": [
       {
         "text": "Trace what happened to each coin.",
-        "destination": "matthew_fulfillment"
+        "destination": "matthew_fulfillment",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "victory_is_his"
+        "text": "Finish the interview.",
+        "destination": "victory_is_his",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "So two prophetic pictures converge.",
-        "destination": "prophetic_threads"
+        "destination": "prophetic_threads",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Matthew records what followed and says that the words spoken through Jeremiah were fulfilled: thirty pieces returned to the sanctuary, then used to buy the potter's field. The price and the casting of the silver echo Zechariah 11:12–13. Jeremiah supplies the wider image — the potter, the shattered vessel, and a field purchased under judgment and hope in Jeremiah 19 and 32. Matthew gathers those prophetic threads under Jeremiah's name and shows them converging in what the priests did with my blood money.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "matthew_fulfillment": {
-    "content": "Matthew 27:3–10 traces it step by step. I saw that Jesus was condemned. I returned the thirty pieces and confessed that I had betrayed innocent blood. The priests refused responsibility. I threw the coins into the sanctuary and went away to hang myself. Because they called the money blood money, they would not return it to the treasury. Instead they bought the potter's field as a burial place for foreigners. Price, sanctuary, potter, field — the details became evidence after my voice was gone.\n# UNLOCK_EVIDENCE: evidence_judas_betrayal_price\n# UNLOCK_EVIDENCE: evidence_field_of_blood",
+    "content": "Matthew 27:3–10 traces it step by step. I saw that Jesus was condemned. I returned the thirty pieces and confessed that I had betrayed innocent blood. The priests refused responsibility. I threw the coins into the sanctuary and went away to hang myself. Because they called the money blood money, they would not return it to the treasury. Instead they bought the potter's field as a burial place for foreigners. Price, sanctuary, potter, field — the details became evidence after my voice was gone.",
     "choices": [
       {
         "text": "The Field of Blood preserved the testimony.",
-        "destination": "conversation_end"
+        "destination": "conversation_end",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The priests completed what they tried to contain.",
-        "destination": "prophetic_threads"
+        "destination": "prophetic_threads",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "victory_is_his"
-      },
+        "text": "Finish the interview.",
+        "destination": "victory_is_his",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "Conclude.",
-        "destination": "victory_is_his"
+        "text": "Matthew 27:3–10 traces it step by step. I saw that Jesus was condemned. I returned the thirty pieces and confessed that I had betrayed innocent blood. The priests refused responsibility. I threw the coins into the sanctuary and went away to hang myself. Because they called the money blood money, they would not return it to the treasury. Instead they bought the potter's field as a burial place for foreigners. Price, sanctuary, potter, field — the details became evidence after my voice was gone.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "prophetic_threads": {
-    "content": "Two prophetic pictures converge. Zechariah gives the rejected shepherd's contemptible wage — thirty silver pieces thrown to the potter in the house of the LORD. Jeremiah gives the potter and the field as signs of judgment, while a purchased field also becomes a witness that God's purpose reaches beyond disaster. Matthew does not let the priests' transaction remain bookkeeping. He reads it as fulfilment.\n# UNLOCK_EVIDENCE: evidence_field_of_blood",
+    "content": "Two prophetic pictures converge. Zechariah gives the rejected shepherd's contemptible wage — thirty silver pieces thrown to the potter in the house of the LORD. Jeremiah gives the potter and the field as signs of judgment, while a purchased field also becomes a witness that God's purpose reaches beyond disaster. Matthew does not let the priests' transaction remain bookkeeping. He reads it as fulfilment.",
     "choices": [
       {
         "text": "The transaction became testimony.",
-        "destination": "testimony_endures_detail"
+        "destination": "testimony_endures_detail",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Return to what happened at the field.",
-        "destination": "field_calls"
+        "destination": "field_calls",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Two prophetic pictures converge. Zechariah gives the rejected shepherd's contemptible wage — thirty silver pieces thrown to the potter in the house of the LORD. Jeremiah gives the potter and the field as signs of judgment, while a purchased field also becomes a witness that God's purpose reaches beyond disaster. Matthew does not let the priests' transaction remain bookkeeping. He reads it as fulfilment.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -114,15 +252,35 @@
     "choices": [
       {
         "text": "The betrayal was foreknown.",
-        "destination": "foreknown_betrayal"
+        "destination": "foreknown_betrayal",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The price was agreed.",
-        "destination": "conversation_end"
+        "destination": "conversation_end",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "victory_is_his"
+        "text": "Finish the interview.",
+        "destination": "victory_is_his",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Whose hand guided mine? The same hand that guided Moses, that guided David, that guided the prophets who spoke of this very moment. All of it was written before the foundation of the world. I was the instrument, not the author.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -131,15 +289,35 @@
     "choices": [
       {
         "text": "The choice was real.",
-        "destination": "choice_was_real"
+        "destination": "choice_was_real",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "victory_is_his"
+        "text": "Finish the interview.",
+        "destination": "victory_is_his",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The responsibility was mine.",
-        "destination": "responsibility_mine"
+        "destination": "responsibility_mine",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Foreknown by the Father before the foundation of the world — yet I chose. The Scriptures declare: \"He was foreknown before the foundation of the world.\" The Lamb was slain. And yet I am responsible.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -148,15 +326,35 @@
     "choices": [
       {
         "text": "The field was bought.",
-        "destination": "conversation_end"
+        "destination": "conversation_end",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The price was different.",
-        "destination": "conversation_end"
+        "destination": "conversation_end",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "victory_is_his"
+        "text": "Finish the interview.",
+        "destination": "victory_is_his",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The choice was real. My silver bought a field. His sacrifice bought a kingdom. I chose the lesser price. The wages of sin is death.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -165,15 +363,35 @@
     "choices": [
       {
         "text": "The refusal was mine.",
-        "destination": "refusal_was_mine"
+        "destination": "refusal_was_mine",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The light remained.",
-        "destination": "conversation_end"
+        "destination": "conversation_end",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "victory_is_his"
+        "text": "Finish the interview.",
+        "destination": "victory_is_his",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The responsibility was mine. Not God's. Not the Scriptures'. Mine. \"Repent therefore, and be converted, that sins may be blotted out.\"",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -182,53 +400,93 @@
     "choices": [
       {
         "text": "The field calls.",
-        "destination": "field_calls"
+        "destination": "field_calls",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "What became of the silver?",
-        "destination": "silver_became"
+        "destination": "silver_became",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "victory_is_his"
-      },
+        "text": "Finish the interview.",
+        "destination": "victory_is_his",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "Conclude.",
-        "destination": "victory_is_his"
-      },
-      {
-        "text": "Conclude.",
-        "destination": "victory_is_his"
+        "text": "The refusal was mine. The invitation was extended to me as to all. I chose the darkness I preferred to the light I had seen.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "silver_prophetic": {
-    "content": "The silver was prophetic — not because I sought prophecy, but because the prophecy sought me. \"They weighed out as my wages thirty pieces of silver\" — Zechariah. Thirty pieces: the price I could not take back.\n# UNLOCK_EVIDENCE: evidence_judas_betrayal_price",
+    "content": "The silver was prophetic — not because I sought prophecy, but because the prophecy sought me. \"They weighed out as my wages thirty pieces of silver\" — Zechariah. Thirty pieces: the price I could not take back.",
     "choices": [
       {
         "text": "The payment was counted.",
-        "destination": "conversation_end"
+        "destination": "conversation_end",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The testimony was buried.",
-        "destination": "conversation_end"
+        "destination": "conversation_end",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "victory_is_his"
+        "text": "Finish the interview.",
+        "destination": "victory_is_his",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The silver was prophetic — not because I sought prophecy, but because the prophecy sought me. \"They weighed out as my wages thirty pieces of silver\" — Zechariah. Thirty pieces: the price I could not take back.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "field_calls": {
-    "content": "The field calls — and answered. Akeldama. The blood of the prophet, mixed with the price of betrayal, soaked into soil that welcomed it as it had welcomed Abel's blood.\n# UNLOCK_EVIDENCE: evidence_field_of_blood",
+    "content": "The field calls — and answered. Akeldama. The blood of the prophet, mixed with the price of betrayal, soaked into soil that welcomed it as it had welcomed Abel's blood.",
     "choices": [
       {
-        "text": "Akeldama's testimony.",
-        "destination": "conversation_end"
-      },
+        "text": "Continue.",
+        "destination": "conversation_end",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "The soil remembers.",
-        "destination": "conversation_end"
+        "text": "The field calls — and answered. Akeldama. The blood of the prophet, mixed with the price of betrayal, soaked into soil that welcomed it as it had welcomed Abel's blood.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -237,15 +495,35 @@
     "choices": [
       {
         "text": "The testimony endures.",
-        "destination": "testimony_endures_detail"
+        "destination": "testimony_endures_detail",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The field still grows.",
-        "destination": "conversation_end"
+        "destination": "conversation_end",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "victory_is_his"
+        "text": "Finish the interview.",
+        "destination": "victory_is_his",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Silver became soil. Soil became testimony. Testimony became history. History became the foundation of a kingdom.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -254,19 +532,35 @@
     "choices": [
       {
         "text": "The witnesses multiplied.",
-        "destination": "witnesses_multiplied_detail"
+        "destination": "witnesses_multiplied_detail",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "victory_is_his"
+        "text": "Finish the interview.",
+        "destination": "victory_is_his",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The testimony spread.",
-        "destination": "testimony_spread_detail"
-      },
+        "destination": "testimony_spread_detail",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "Conclude.",
-        "destination": "victory_is_his"
+        "text": "The testimony endures. Mary Magdalene first, whose testimony the priests tried to counter with a lie. Then Peter, restored. Then the centurion confessing.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -275,11 +569,27 @@
     "choices": [
       {
         "text": "The testimony spread.",
-        "destination": "testimony_spread_detail"
+        "destination": "testimony_spread_detail",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The lie could not hold.",
-        "destination": "conversation_end"
+        "destination": "conversation_end",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The witnesses multiplied. Mary Magdalene first. Then Peter and John. Then the women with their message of joy. Then the centurion with his confession.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -288,19 +598,35 @@
     "choices": [
       {
         "text": "The foundation was weak.",
-        "destination": "conversation_end"
+        "destination": "conversation_end",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The kingdom was built on weak things.",
-        "destination": "conversation_end"
+        "destination": "conversation_end",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "victory_is_his"
-      },
+        "text": "Finish the interview.",
+        "destination": "victory_is_his",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "Conclude.",
-        "destination": "victory_is_his"
+        "text": "The testimony spread. Each witness added credibility. Each appearance multiplied the evidence. The women rejected became the foundation of the Gospel message.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -309,15 +635,41 @@
     "choices": [
       {
         "text": "What was necessary.",
-        "destination": "was_necessary"
+        "destination": "was_necessary",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Jesus spoke of a new covenant.",
-        "destination": "conversation_end"
+        "destination": "conversation_end",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "victory_is_his"
+        "text": "Finish the interview.",
+        "destination": "victory_is_his",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The money bag does seem heavy tonight. Thirty silver coins — the weight of a life. I did what was necessary, or so I told myself.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "money_bag_impression = true",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -326,15 +678,35 @@
     "choices": [
       {
         "text": "The definition mattered.",
-        "destination": "definition_mattered"
+        "destination": "definition_mattered",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Satan's role.",
-        "destination": "conversation_end"
+        "destination": "conversation_end",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "victory_is_his"
+        "text": "Finish the interview.",
+        "destination": "victory_is_his",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "What was necessary — to force His hand, to fulfill the Scriptures. Peter will tell you I was possessed by Satan. But the Scriptures were precise. The price was exact.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -343,15 +715,35 @@
     "choices": [
       {
         "text": "The price was exact.",
-        "destination": "conversation_end"
+        "destination": "conversation_end",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "victory_is_his"
+        "text": "Finish the interview.",
+        "destination": "victory_is_his",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The betrayal was sealed.",
-        "destination": "conversation_end"
+        "destination": "conversation_end",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The definition mattered. Judas Iscariot — not \"the disciple who betrayed Him,\" but \"Judas, a common name.\" Thirty pieces of silver, the price of a slave. The Scriptures were precise.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -360,11 +752,27 @@
     "choices": [
       {
         "text": "He quoted a psalm about you first.",
-        "destination": "psalm_quote_detail"
+        "destination": "psalm_quote_detail",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "John recorded this.",
-        "destination": "conversation_end"
+        "destination": "conversation_end",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "He knew before I had even risen from the table. He dipped the bread and gave it to me, saying: \"That thou doest, do quickly.\" John thought He meant an errand. Only I understood — He was releasing me, not stopping me.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -373,15 +781,35 @@
     "choices": [
       {
         "text": "Jesus knew.",
-        "destination": "jesus_knew_detail"
+        "destination": "jesus_knew_detail",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "victory_is_his"
+        "text": "Finish the interview.",
+        "destination": "victory_is_his",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The prediction was clear.",
-        "destination": "conversation_end"
+        "destination": "conversation_end",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Earlier that evening, He said: \"He that eateth bread with me hath lifted up my heel against me.\" David wrote those words a thousand years before. I had eaten His bread every night.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -390,45 +818,101 @@
     "choices": [
       {
         "text": "The path was clear.",
-        "destination": "conversation_end"
+        "destination": "conversation_end",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The regret began.",
-        "destination": "conversation_end"
+        "destination": "conversation_end",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "victory_is_his"
+        "text": "Finish the interview.",
+        "destination": "victory_is_his",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Jesus knew. He had spoken of His death and resurrection three times. The silver was waiting. The trap was laid. Judas of Kerioth — the man trusted with the bag, chose the outer darkness.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "regret": {
-    "content": "I watched three years of expectation curdle. The Messiah was supposed to be a king who broke Rome. Instead He washed feet. Instead He spoke of dying. The Zealots wanted a general. I wanted a winner. I was wrong.\n# UNLOCK_EVIDENCE: evidence_peter_contrast",
+    "content": "I watched three years of expectation curdle. The Messiah was supposed to be a king who broke Rome. Instead He washed feet. Instead He spoke of dying. The Zealots wanted a general. I wanted a winner. I was wrong.",
     "choices": [
       {
         "text": "What happened to the money?",
-        "destination": "field_of_blood_detail"
+        "destination": "field_of_blood_detail",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "He prayed for you.",
-        "destination": "jesus_prayed_detail"
+        "destination": "jesus_prayed_detail",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "I watched three years of expectation curdle. The Messiah was supposed to be a king who broke Rome. Instead He washed feet. Instead He spoke of dying. The Zealots wanted a general. I wanted a winner. I was wrong.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "field_of_blood_detail": {
-    "content": "I took it back. I threw thirty pieces of silver onto the floor, telling the priests: \"I have sinned.\" They said: \"What is that to us? See to it yourself.\" Then I went and hanged myself.\n# UNLOCK_EVIDENCE: evidence_field_of_blood",
+    "content": "I took it back. I threw thirty pieces of silver onto the floor, telling the priests: \"I have sinned.\" They said: \"What is that to us? See to it yourself.\" Then I went and hanged myself.",
     "choices": [
       {
         "text": "Akeldama's echo.",
-        "destination": "conversation_end"
+        "destination": "conversation_end",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The earth bore witness.",
-        "destination": "conversation_end"
+        "destination": "conversation_end",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Why does Matthew name Jeremiah?",
-        "destination": "jeremiah_attribution"
+        "destination": "jeremiah_attribution",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "I took it back. I threw thirty pieces of silver onto the floor, telling the priests: \"I have sinned.\" They said: \"What is that to us? See to it yourself.\" Then I went and hanged myself.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -437,11 +921,27 @@
     "choices": [
       {
         "text": "The prayer included the traitor.",
-        "destination": "prayer_included_traitor"
+        "destination": "prayer_included_traitor",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The forgiveness was offered.",
-        "destination": "conversation_end"
+        "destination": "conversation_end",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "John records that Jesus prayed for His disciples — and for all who would believe, including me. \"I pray for those you have given me.\" I was among those He had been given.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -450,11 +950,27 @@
     "choices": [
       {
         "text": "Before the foundation.",
-        "destination": "conversation_end"
+        "destination": "conversation_end",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The betrayal was instrument.",
-        "destination": "betrayal_instrument"
+        "destination": "betrayal_instrument",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The prayer included the traitor. The forgiveness was offered before the betrayal was complete. The redemption was planned before the silver was paid.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -463,11 +979,27 @@
     "choices": [
       {
         "text": "The redemption was sufficient.",
-        "destination": "conversation_end"
+        "destination": "conversation_end",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The gift was free.",
-        "destination": "gift_was_free"
+        "destination": "gift_was_free",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The betrayal was not the interruption of divine plan — it was the instrument of divine purpose. The Lamb was slain before the foundation of the world.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -476,11 +1008,27 @@
     "choices": [
       {
         "text": "The salvation was offered.",
-        "destination": "salvation_offered_detail"
+        "destination": "salvation_offered_detail",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The rejection was mine.",
-        "destination": "conversation_end"
+        "destination": "conversation_end",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The gift was free. The wages of sin is death, but the gift of God is eternal life. My thirty pieces could not buy back what I had sold.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -489,15 +1037,35 @@
     "choices": [
       {
         "text": "The testimony is complete.",
-        "destination": "testimony_complete_detail"
+        "destination": "testimony_complete_detail",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The light endures.",
-        "destination": "light_endures"
+        "destination": "light_endures",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "victory_is_his"
+        "text": "Finish the interview.",
+        "destination": "victory_is_his",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The salvation was offered — to me, Peter, the centurion, Mary, to all who would believe. The rejection was mine. But the offer stands.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -505,12 +1073,20 @@
     "content": "The testimony is complete. The witnesses have spoken. The tomb is empty. The earth has borne witness. The Scriptures have been fulfilled.",
     "choices": [
       {
-        "text": "The final word.",
-        "destination": "conversation_end"
-      },
+        "text": "Continue.",
+        "destination": "conversation_end",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "The dawn breaks.",
-        "destination": "conversation_end"
+        "text": "The testimony is complete. The witnesses have spoken. The tomb is empty. The earth has borne witness. The Scriptures have been fulfilled.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -519,11 +1095,27 @@
     "choices": [
       {
         "text": "The testimony spreads still.",
-        "destination": "testimony_spreads_still"
+        "destination": "testimony_spreads_still",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The earth testifies.",
-        "destination": "conversation_end"
+        "destination": "conversation_end",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The light endures. The dawn breaks. And the testimony — \"I am the resurrection and the life\" — endures still. My silver bought a field for strangers. His sacrifice bought a kingdom for all.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -532,11 +1124,27 @@
     "choices": [
       {
         "text": "Every knee bows.",
-        "destination": "every_knee_final"
+        "destination": "every_knee_final",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The blood calls.",
-        "destination": "conversation_end"
+        "destination": "conversation_end",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The testimony spreads still — from that hill to the ends of the earth. From my silver, a field was bought. From His sacrifice, a kingdom was won. From my silence, a warning. From His voice — eternal life.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -545,11 +1153,27 @@
     "choices": [
       {
         "text": "The throne awaits.",
-        "destination": "throne_awaits"
+        "destination": "throne_awaits",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The judgment comes.",
-        "destination": "conversation_end"
+        "destination": "conversation_end",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Every knee bows — even mine, in the day when I stand before the throne. \"Repent therefore, and be converted, that sins may be blotted out.\"",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -558,11 +1182,27 @@
     "choices": [
       {
         "text": "The contrast is etched.",
-        "destination": "contrast_etched"
+        "destination": "contrast_etched",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The choice remains.",
-        "destination": "conversation_end"
+        "destination": "conversation_end",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The throne awaits. The books are open. Every deed stands recorded. My silver — a slave's price. His sacrifice — a king's ransom. My field — Akeldama. His cross — the Tree of Life.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -571,11 +1211,27 @@
     "choices": [
       {
         "text": "The price was paid.",
-        "destination": "price_paid_final"
+        "destination": "price_paid_final",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The gift accepted.",
-        "destination": "conversation_end"
+        "destination": "conversation_end",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The contrast is etched in stone and blood and testimony. My silver could not purchase redemption. But His blood — shed once for all — paid the price I could never pay.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -584,11 +1240,27 @@
     "choices": [
       {
         "text": "The record erased.",
-        "destination": "record_erased"
+        "destination": "record_erased",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The testimony complete.",
-        "destination": "conversation_end"
+        "destination": "conversation_end",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The price was paid. It is finished. The debt is canceled. The handwriting that accused me — nailed to the cross — is gone.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -597,11 +1269,27 @@
     "choices": [
       {
         "text": "The blood was sufficient.",
-        "destination": "blood_sufficient"
+        "destination": "blood_sufficient",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The covenant stands.",
-        "destination": "conversation_end"
+        "destination": "conversation_end",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The record erased — blotted out the charge that was against me, nailing it to the cross. What was written against me, sealed with the thirty pieces of silver — gone. What was written for me, sealed with the blood of the cross — eternal.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -610,11 +1298,27 @@
     "choices": [
       {
         "text": "The cleansing is complete.",
-        "destination": "cleansing_complete"
+        "destination": "cleansing_complete",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The forgiveness is full.",
-        "destination": "conversation_end"
+        "destination": "conversation_end",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The blood was sufficient. More than sufficient. \"The blood of Jesus, His Son, cleanses us from all sin.\" Not some sins. Not many sins. All sin. Even mine.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -623,11 +1327,27 @@
     "choices": [
       {
         "text": "The invitation stands.",
-        "destination": "invitation_stands_final"
+        "destination": "invitation_stands_final",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The light beckons.",
-        "destination": "conversation_end"
+        "destination": "conversation_end",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The cleansing is complete. The forgiveness is full. The invitation remains.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -636,11 +1356,27 @@
     "choices": [
       {
         "text": "The readiness is here.",
-        "destination": "readiness_here"
+        "destination": "readiness_here",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The table is set.",
-        "destination": "conversation_end"
+        "destination": "conversation_end",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The invitation stands. Not because I deserved it, but because He is faithful. \"Come, for all things are now ready.\"",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -649,11 +1385,27 @@
     "choices": [
       {
         "text": "The tree of life.",
-        "destination": "tree_of_life"
+        "destination": "tree_of_life",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The testimony endures.",
-        "destination": "conversation_end"
+        "destination": "conversation_end",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The readiness is here. The table is set. The lamb is slain. The cup is poured. The testimony is true. He who overcomes — He shall eat of the tree of life.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -662,11 +1414,27 @@
     "choices": [
       {
         "text": "The river flows.",
-        "destination": "river_flows"
+        "destination": "river_flows",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The gates stand open.",
-        "destination": "conversation_end"
+        "destination": "conversation_end",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The tree of life — once barred to me, now opened. The gates of the city stand open. The river of life flows from the throne.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -675,11 +1443,27 @@
     "choices": [
       {
         "text": "The victory is His.",
-        "destination": "victory_is_his"
+        "destination": "victory_is_his",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The testimony complete.",
-        "destination": "conversation_end"
+        "destination": "conversation_end",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The river flows. The testimony flows. The light flows. And in that light, I see — not my failure, but His victory. Not my silver, but His sacrifice. Not Akeldama, but the Tree of Life.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -688,12 +1472,38 @@
     "choices": [
       {
         "text": "Finish the interview.",
-        "destination": "conversation_end"
+        "destination": "conversation_end",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The victory is His. The testimony complete. The dawn breaks. The earth remembers. The testimony endures.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "conversation_end": {
     "content": "",
-    "choices": []
+    "choices": [],
+    "steps": [
+      {
+        "divert": "DONE",
+        "condition": {
+          "all": []
+        }
+      }
+    ]
+  },
+  "_meta": {
+    "schema": 2,
+    "entry": "start",
+    "variables": {},
+    "revision": "0365f0d5cfe04c11"
   }
 }

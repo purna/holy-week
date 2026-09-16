@@ -4,11 +4,45 @@
     "choices": [
       {
         "text": "What did the elders ask?",
-        "destination": "elders"
+        "destination": "elders",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "What did the healed man say?",
-        "destination": "testimony"
+        "destination": "testimony",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The man who was healed was taken straight to the priests.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "At first, I thought they would rejoice. A miracle had happened in plain sight. A man who had lived in darkness could suddenly see.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "But they scarcely spoke of the healing.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Their questions were all about the one who performed it.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -17,11 +51,75 @@
     "choices": [
       {
         "text": "Were they angry?",
-        "destination": "anger"
+        "destination": "anger",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "What happened next?",
-        "destination": "testimony"
+        "destination": "testimony",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "They pressed him again and again.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"Who healed you?\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"How did he do it?\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"What is his name?\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "When he answered, \"Jesus of Nazareth,\" the mood in the room changed.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Some exchanged uneasy glances. Others frowned.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "The discussion quickly turned to the Sabbath.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "According to their interpretation of the Law, no work was to be done on that day (Jeremiah 17:22). To some of them, healing a man was work.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "The miracle stood before them, yet they argued over whether it should have happened at all.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -30,7 +128,37 @@
     "choices": [
       {
         "text": "Go on.",
-        "destination": "testimony"
+        "destination": "testimony",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Angry? Some were.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Others were afraid.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "A miracle creates a problem for those who have already decided what is possible and what is not.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "The more the healed man spoke, the more divided they became.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -39,7 +167,55 @@
     "choices": [
       {
         "text": "Why wouldn't they believe him?",
-        "destination": "blindman"
+        "destination": "blindman",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The man never changed his story.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "His words were simple.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"I was blind. Now I see.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "No elaborate explanation. No clever argument.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Just a fact no one could deny.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Yet instead of celebrating, the Pharisees called for further questioning. Some demanded witnesses. Others searched for a reason to dismiss what had happened.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "The evidence stood before them, but many refused to accept what it meant.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -47,17 +223,105 @@
     "content": "That is the question, isn't it?\nA man born blind receives his sight.\nHis neighbors know him.\nHis family confirms it.\nHe stands before the council seeing the world for the first time.\nWhat more proof could they ask for?\nAnd yet some hearts are harder to open than blind eyes.",
     "choices": [
       {
-        "text": "What happened to Jesus?",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "That is the question, isn't it?",
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Go on.",
-        "destination": "closing"
+        "text": "A man born blind receives his sight.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "His neighbors know him.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "His family confirms it.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "He stands before the council seeing the world for the first time.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "What more proof could they ask for?",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "And yet some hearts are harder to open than blind eyes.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "closing": {
     "content": "The testimony ends there.\nWhether the miracle changed their minds, I cannot say.\nBut the healed man never wavered.\n\"I was blind, and now I see.\"\nSometimes the simplest truth is the hardest to deny.",
-    "choices": []
+    "choices": [],
+    "steps": [
+      {
+        "text": "The testimony ends there.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Whether the miracle changed their minds, I cannot say.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "But the healed man never wavered.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"I was blind, and now I see.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Sometimes the simplest truth is the hardest to deny.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "divert": "DONE",
+        "condition": {
+          "all": []
+        }
+      }
+    ]
+  },
+  "_meta": {
+    "schema": 2,
+    "entry": "start",
+    "variables": {},
+    "revision": "cea91ea1bc32fb14"
   }
 }

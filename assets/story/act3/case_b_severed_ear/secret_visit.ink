@@ -24,18 +24,17 @@
 -> start
 === start ===
 I was the servant of the high priest that night. Name of Malchus. We came with torches and swords to seize the Rabbi from Nazareth. There were six of us, and then one of His followers drew a blade.
-* [What happened to you?] -> ear
-* [The disciple cut off your ear?] -> ear
++ [Continue.] -> ear
 === ear ===
 The sword flashed. I felt the hot slice across my temple. Blood. Darkness. My ear — gone! And then He turned, and without hesitation, He touched my wound. Light filled the garden. My ear was whole again.
-* [And you saw Him after?] -> arrest
-* [Did you keep your position?] -> after
++ [And you saw Him after?] -> arrest
++ [Did you keep your position?] -> after
 === arrest ===
 They led Him away in chains, but my ear remained. The centurion examined it, skeptical. Yet the wound was closed, the flesh restored. No scar remained.
-* [Continue.] -> closing
++ [Finish the interview.] -> closing
 === after ===
 I kept my post. The priests never spoke of it. But I know what I experienced — the Rabbi who healed without medicine, who gave His life willingly. Some of us servants believed that night.
-* [Continue.] -> closing
++ [Finish the interview.] -> closing
 === closing ===
 The ear was restored. The man was crucified. But I tell you — I have seen the power that raises the dead. That servant who cut my ear off wept when he saw it healed. Go and tell this story.
 -> DONE

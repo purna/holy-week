@@ -4,11 +4,27 @@
     "choices": [
       {
         "text": "Tell me of the rooster crowing.",
-        "destination": "rooster"
+        "destination": "rooster",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "And after — why did you stay?",
-        "destination": "stay"
+        "destination": "stay",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "I am Simon Peter. Three times I denied the man I swore I would never deny. The rooster crowed, and He turned. I saw the look in His eyes — disappointment, not anger. I am a broken man.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -17,7 +33,19 @@
     "choices": [
       {
         "text": "How does failure become hope?",
-        "destination": "stay"
+        "destination": "stay",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The third time, He turned. He looked at me — right through the smoke and the noise. And I knew. I had denied Him three times before that dawn. I ran. I wept. And somehow, I was still following.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -25,13 +53,45 @@
     "content": "Three days later I found the tomb empty. And then I saw Him — alive. He forgave me before I could ask. He commissioned me before I could explain. That is why I am here.",
     "choices": [
       {
-        "text": "This is your simple defense.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Three days later I found the tomb empty. And then I saw Him — alive. He forgave me before I could ask. He commissioned me before I could explain. That is why I am here.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "closing": {
     "content": "Mock me if you will. I earned my place at that table by failing spectacularly and being restored completely. That is the gospel in three sentences.",
-    "choices": []
+    "choices": [],
+    "steps": [
+      {
+        "text": "Mock me if you will. I earned my place at that table by failing spectacularly and being restored completely. That is the gospel in three sentences.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "divert": "DONE",
+        "condition": {
+          "all": []
+        }
+      }
+    ]
+  },
+  "_meta": {
+    "schema": 2,
+    "entry": "start",
+    "variables": {},
+    "revision": "0ffc3e6f7c2c8650"
   }
 }

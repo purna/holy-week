@@ -5,7 +5,7 @@ import { NPCSystem } from './npcSystem.js';
 import { DeductionEngine } from './../js/gameplay/deductionEngine.js';
 import { LocationSystem } from './../js/gameplay/locationSystem.js';
 import { AccessibilityManager } from "../js/ui/AccessibilityManager.js";
-import { LabWorkspaceUI } from "../js/ui/LabWorkspaceUI.js"; 
+import { LabWorkspaceUI } from "../js/ui/LabWorkspaceUI.js?v=20260916-lab-save"; 
 import { AudioManager } from "./audioManager.js"; // Mobile uses its own AudioManager
 import { DialogueManager } from "./dialogueManager.js";
 

@@ -1,5 +1,5 @@
 const CACHE_PREFIX = 'holy-week-cache';
-const CACHE_VERSION = 'v2.10'; // Dialogue-driven evidence unlocks
+const CACHE_VERSION = 'v2.13-lab-save'; // Stateful interview runtime and revised stories
 const CACHE_NAME = `${CACHE_PREFIX}-${CACHE_VERSION}`;
 
 // List all critical assets that need to be cached for offline use.
@@ -7,6 +7,7 @@ const CACHE_NAME = `${CACHE_PREFIX}-${CACHE_VERSION}`;
 // images, fonts, GLB models, audio files, and Ink JSON dialogue files.
 // Paths are relative to the service worker's location (e.g., './' for index.html).
 const urlsToCache = [
+  '../js/gameplay/conversationStory.js',
   // Core App Shell
   '../facebook.html',
   './favicon.ico',
@@ -33,7 +34,7 @@ const urlsToCache = [
   '../js/gameplay/chainManager.js',
   '../js/gameplay/dialogueMaps.js',
   '../js/ui/AccessibilityManager.js',
-  '../js/ui/LabWorkspaceUI.js',
+  '../js/ui/LabWorkspaceUI.js?v=20260916-lab-save',
   '../js/ui/PeopleUI.js',
   '../js/ui/SceneUI.js',
   '../js/ui/AccuseUI.js',

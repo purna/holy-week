@@ -4,11 +4,27 @@
     "choices": [
       {
         "text": "He spoke of the Temple of His body.",
-        "destination": "body_clarification"
+        "destination": "body_clarification",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Why did your story change between hearings?",
-        "destination": "story_changed"
+        "destination": "story_changed",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "I heard him say it myself! \"I will destroy this Temple and rebuild it in three days!\" I was standing three cubits away. Both my colleague and I heard the same words.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -17,11 +33,27 @@
     "choices": [
       {
         "text": "Your second witness gave a different version.",
-        "destination": "story_changed"
+        "destination": "story_changed",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Threatening the Temple carries a death sentence.",
-        "destination": "death_implications"
+        "destination": "death_implications",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "He spoke of stone and mortar! The Great Temple — the one behind us! A direct threat to the sacred institution. Caiaphas agrees with me. So does the second witness.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -30,11 +62,27 @@
     "choices": [
       {
         "text": "Did anyone catch the irony?",
-        "destination": "irony"
+        "destination": "irony",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "What exactly did He say?",
-        "destination": "actual_quote"
+        "destination": "actual_quote",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "A man who threatens Jerusalem's holiest site during Passion week is a threat to everyone. The High Priest knows the gravity. You cannot speak treason against the Temple and expect mercy.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -43,11 +91,27 @@
     "choices": [
       {
         "text": "The story was shaky.",
-        "destination": "story_changed"
+        "destination": "story_changed",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "What did the crowd understand by this?",
-        "destination": "crowd_understanding"
+        "destination": "crowd_understanding",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "\"I will destroy this Temple, and in three days I will raise it up.\" The words hung in the courtyard air. He did not flinch. He did not retract. When the scribe asked for clarification, our witness suddenly seemed uncertain about the distance — \"near\" versus \"within arm's reach.\"",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -56,15 +120,35 @@
     "choices": [
       {
         "text": "The prophecy fulfilled itself.",
-        "destination": "story_changed"
+        "destination": "story_changed",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Did you know what you were saying?",
-        "destination": "payment_question"
+        "destination": "payment_question",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Your colleague contradicted you.",
-        "destination": "witness_contradiction"
+        "destination": "witness_contradiction",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The irony was not lost on the senior priests afterward. \"Destroy this Temple\" — and what happened on the third day? The stone chamber was empty. The guards were silent. The Roman centurion declared, \"Truly this was the Son of God.\" The false testimony had become an unwitting prophecy.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -73,11 +157,27 @@
     "choices": [
       {
         "text": "They misunderstood the resurrection language.",
-        "destination": "story_changed"
+        "destination": "story_changed",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Did you see the resurrection?",
-        "destination": "payment_question"
+        "destination": "payment_question",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The crowd understood the reference immediately. John's Gospel records that after the resurrection, the disciples remembered these words. The Temple in question was not Herod's marble — it was the body that died and rose again. The false witnesses had heard a statement about resurrection and filed it as a threat to the physical sanctuary.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -86,11 +186,27 @@
     "choices": [
       {
         "text": "The Law requires identical testimony.",
-        "destination": "law_requirement"
+        "destination": "law_requirement",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "How did Caiaphas react?",
-        "destination": "caiaphas_reaction"
+        "destination": "caiaphas_reaction",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The second witness came forward with: \"The man claimed he would destroy the Temple made by human hands and rebuild it in three days.\" But when pressed on details — timing, method, witnesses — the two testimonies diverged like two paths that began at the same gate and never meet again.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -98,16 +214,28 @@
     "content": "The Law requires two or three witnesses. They had them ready. The conviction was pre-arranged. The sentence was decided before the accused entered the chamber. What he said was heresy.",
     "choices": [
       {
-        "text": "So the trial was a formality.",
-        "destination": "closing"
-      },
-      {
-        "text": "The procedure is the justice.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "What did Caiaphas do with it?",
-        "destination": "caiaphas_reaction"
+        "destination": "caiaphas_reaction",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The Law requires two or three witnesses. They had them ready. The conviction was pre-arranged. The sentence was decided before the accused entered the chamber. What he said was heresy.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -115,8 +243,20 @@
     "content": "Caiaphas dismissed both witnesses without ceremony. \"We have what we need,\" he said. The false testimony was a disappointment — useful for motive, but insufficient for conviction. That is exactly why he resorted to the divine adjuration: \"I adjure you by the living God...\"",
     "choices": [
       {
-        "text": "The adjuration worked.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Caiaphas dismissed both witnesses without ceremony. \"We have what we need,\" he said. The false testimony was a disappointment — useful for motive, but insufficient for conviction. That is exactly why he resorted to the divine adjuration: \"I adjure you by the living God...\"",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -125,11 +265,27 @@
     "choices": [
       {
         "text": "The Law requires two witnesses with identical testimony.",
-        "destination": "law_requirement"
+        "destination": "law_requirement",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "You are improvising under cross-examination.",
-        "destination": "improvising"
+        "destination": "improvising",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The room is noisy! It is difficult to keep every word perfectly straight under pressure. But the substance is the same — He is a threat to the Law. The High Priest has affirmed that.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -138,11 +294,27 @@
     "choices": [
       {
         "text": "Paraphrase is not testimony.",
-        "destination": "exposed"
+        "destination": "exposed",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "You were paid to be here.",
-        "destination": "payment_question"
+        "destination": "payment_question",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "I am stating what I heard! The acoustics of the outer courts are difficult. Perhaps I paraphrased. But the meaning was clear — He is dangerous.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -151,7 +323,19 @@
     "choices": [
       {
         "text": "Your presence was arranged through the Temple steward two days ago.",
-        "destination": "exposed"
+        "destination": "exposed",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "I— that is a serious accusation. My presence here is voluntary, as a civic-minded member of—",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -159,17 +343,45 @@
     "content": "He is a blasphemer. That is all you need to record, Scribe. The High Priest knows the truth. Whatever procedural objections you raise, the council has already made its determination.",
     "choices": [
       {
-        "text": "A determination built on contradicted testimony.",
-        "destination": "closing"
-      },
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "The procedure is not an obstacle. It is the justice.",
-        "destination": "closing"
+        "text": "He is a blasphemer. That is all you need to record, Scribe. The High Priest knows the truth. Whatever procedural objections you raise, the council has already made its determination.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "closing": {
     "content": "Write what you like. The verdict will not change. Caiaphas has spoken. He is a blasphemer. That is sufficient.",
-    "choices": []
+    "choices": [],
+    "steps": [
+      {
+        "text": "Write what you like. The verdict will not change. Caiaphas has spoken. He is a blasphemer. That is sufficient.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "divert": "DONE",
+        "condition": {
+          "all": []
+        }
+      }
+    ]
+  },
+  "_meta": {
+    "schema": 2,
+    "entry": "start",
+    "variables": {},
+    "revision": "842c54fad0da0f12"
   }
 }

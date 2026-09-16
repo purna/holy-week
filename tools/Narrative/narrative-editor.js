@@ -3,6 +3,8 @@
    Narrative / Dialogue Editor
    ═══════════════════════════════════════════ */
 
+import { ConversationStory } from '../../js/gameplay/conversationStory.js';
+
 class NarrativeEditor {
   constructor() {
     // ── DOM refs ──
@@ -230,8 +232,8 @@ class NarrativeEditor {
 
   getNodeEvidence(node) {
     if (!node) return [];
-    const textToScan = (node.content || '') + ' ' + (node.choices ? node.choices.map(c => c.text).join(' ') : '');
-    const matches = textToScan.match(/#\s*UNLOCK_EVIDENCE:\s*([^\n#]+)/gi);
+    const textToScan = (node.content || '') + ' ' + (node.steps || []).map(s => s.tag ? '# ' + s.tag : '').join(' ') + ' ' + (node.choices ? node.choices.map(c => c.text).join(' ') : '');
+    const matches = textToScan.match(/#\s*UNLOCK_EVIDENCE:\s*[\w-]+/gi);
     if (!matches) return [];
     return matches.map(m => m.replace(/#\s*UNLOCK_EVIDENCE:\s*/i, '').trim());
   }
@@ -325,18 +327,22 @@ class NarrativeEditor {
   revealNode(nodeId) {
     const node = this.STORY[nodeId];
     if (!node) return;
-
+    const generation = this.simulationGeneration;
     this.showChoices(null);
-
     this.addTyping(() => {
-      this.addMsg('npc', node.content);
-      this.visited[nodeId] = true;
-
-      if (node.choices && node.choices.length > 0) {
-        this.showChoices(node.choices);
-      } else {
-        this.showChoices([{ text: "🔄 [ RESTART SIMULATION ]", destination: "Start" }]);
+      if (generation !== this.simulationGeneration) return;
+      if (!this.simulation) this.simulation = new ConversationStory(this.STORY);
+      if (this.simulation.session.node !== nodeId) {
+        this.simulation.session.node = nodeId;
+        this.simulation.session.rendered = null;
+        this.simulation.canContinue = true;
       }
+      const text = this.simulation.Continue();
+      if (text.trim()) this.addMsg('npc', text);
+      this.curNode = this.simulation.session.node;
+      this.visited[this.curNode] = true;
+      this.showChoices(this.simulation.currentChoices.length ? this.simulation.currentChoices
+        : [{ text: 'Restart interview preview', destination: this.simulation.entry, index: -1 }]);
       this.renderTree();
     });
   }
@@ -345,7 +351,9 @@ class NarrativeEditor {
     this.showChoices(null);
     this.addMsg('player', choice.text);
 
-    const dest = choice.destination;
+    if (choice.index === -1) this.simulation = new ConversationStory(this.caseFiles[this.currentCaseName]);
+    else this.simulation.ChooseChoiceIndex(choice.index);
+    const dest = this.simulation.session.node;
     if (!dest || !this.STORY[dest]) return;
 
     this.curNode = dest;
@@ -358,6 +366,7 @@ class NarrativeEditor {
   jumpTo(nodeId) {
     if (nodeId === this.curNode) return;
     this.curNode = nodeId;
+    this.simulationGeneration = (this.simulationGeneration || 0) + 1;
     this.visited[nodeId] = true;
     this.computePathToNode(nodeId);
     this.bubScroll.innerHTML = '';
@@ -377,6 +386,9 @@ class NarrativeEditor {
       if (n.choices) {
         n.choices.forEach((c) => this.adjacency[title].push(c.destination));
       }
+      (n.steps || []).forEach(step => {
+        if (step.divert && this.STORY[step.divert]) this.adjacency[title].push(step.divert);
+      });
     });
   }
 
@@ -727,7 +739,7 @@ class NarrativeEditor {
       })
       .forEach((name) => {
         const label = this.caseMeta[name] || this.formatCaseLabel(name);
-        makeOption(name, label, Object.keys(this.caseFiles[name]).length);
+        makeOption(name, label, Object.keys(this.caseFiles[name]).filter(key => key !== '_meta').length);
       });
   }
 
@@ -739,6 +751,9 @@ class NarrativeEditor {
     if (this.caseListEl) this.caseListEl.value = this.currentCaseName;
 
     this.STORY = JSON.parse(JSON.stringify(data));
+    delete this.STORY._meta;
+    this.simulation = new ConversationStory(data);
+    this.simulationGeneration = (this.simulationGeneration || 0) + 1;
 
     this.visited = {};
     this.positions = null;
@@ -750,7 +765,7 @@ class NarrativeEditor {
     this.updateInkLinkAndEvidence();
 
     if (!this.STORY["Start"]) {
-      const firstKey = Object.keys(this.STORY)[0];
+      const firstKey = data._meta?.entry || Object.keys(this.STORY)[0];
       if (firstKey) {
         this.curNode = firstKey;
       } else {
@@ -879,7 +894,7 @@ class NarrativeEditor {
         "assets/story/act2/case_a_silenced_teacher/caiaphas_priest.json",
         "assets/story/act2/case_a_silenced_teacher/parable_meaning.json",
         "assets/story/act2/case_a_silenced_teacher/parable_vineyard.json",
-        "assets/story/act2/case_a_silenced_teacher/rich_young_ruller.json",
+        "assets/story/act2/case_a_silenced_teacher/rich_young_ruler.json",
         "assets/story/act2/case_a_silenced_teacher/scribe_intro.json",
         "assets/story/act2/case_a_silenced_teacher/simon_pharisee_authority.json",
         "assets/story/act2/case_a_silenced_teacher/teaching_mount.json",
@@ -1004,7 +1019,7 @@ class NarrativeEditor {
         const label = `${groupTitle}: ${characterName.charAt(0).toUpperCase() + characterName.slice(1)}`;
 
         try {
-          const response = await fetch(fetchUrl);
+          const response = await fetch(fetchUrl + '?dialogue=2', { cache: 'no-store' });
           if (!response.ok) throw new Error(`HTTP ${response.status}`);
           const dialogue = await response.json();
           if (!this.validateStoryStructure(dialogue)) {

@@ -1,6 +1,26 @@
 {
   "start": {
     "content": "Peter, I know you denied knowing Me. But your faith was not lost -- it was being refined in the fire of trial. Your reinstatement is My gift of grace. Feed My sheep, as you have been fed.",
-    "choices": []
+    "choices": [],
+    "steps": [
+      {
+        "text": "Peter, I know you denied knowing Me. But your faith was not lost -- it was being refined in the fire of trial. Your reinstatement is My gift of grace. Feed My sheep, as you have been fed.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "divert": "DONE",
+        "condition": {
+          "all": []
+        }
+      }
+    ]
+  },
+  "_meta": {
+    "schema": 2,
+    "entry": "start",
+    "variables": {},
+    "revision": "0694129ef675bf36"
   }
 }

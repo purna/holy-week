@@ -12,7 +12,11 @@ class InkAuditTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             path = Path(directory) / 'story.ink'
             path.write_text(text)
-            path.with_suffix('.json').write_text(json.dumps(parse_ink(text)))
+            try:
+                compiled = parse_ink(text)
+            except (ValueError, SyntaxError):
+                compiled = {}
+            path.with_suffix('.json').write_text(json.dumps(compiled))
             return [kind for _, kind, _ in audit(path)[0]]
 
     def test_reflow_preserves_structure_and_paragraphs(self):

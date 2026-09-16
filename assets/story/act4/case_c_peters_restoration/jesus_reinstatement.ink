@@ -46,31 +46,33 @@
 -> start
 
 === start ===
+# UNLOCK_EVIDENCE: charcoal_fire
+# UNLOCK_EVIDENCE: threefold_commission
 "Children" — the word for grown men who had fished all night — "have you caught anything?"
 
 Nothing. Not one fish since the light left the sky.
 
-* [We have caught nothing.] -> cast_net
-* [Who calls us "children" from the shore?] -> identity
++ [We have caught nothing.] -> cast_net
++ [Who calls us "children" from the shore?] -> identity
 
 === cast_net ===
 "Cast the net on the right side of the boat, and you will find some." [John 21:6]
 
 No proof offered first. Only the instruction — the same kind given the first time this net was cast at His word, three years and a lifetime ago.
 
-* [Cast the net.] -> catch
++ [Cast the net.] -> catch
 
 === catch ===
 The net does not merely fill. It strains, bulges, drags the boat sideways — a hundred and fifty-three fish, and still it does not tear. [John 21:11]
 
-* [It is the Lord!] -> identity
++ [It is the Lord!] -> identity
 
 === identity ===
 John says it first, quietly, almost to himself. "It is the Lord." [John 21:7]
 
 Peter does not wait for the boat. He ties his outer garment around him and goes into the water.
 
-* [Go to the shore.] -> shore
++ [Go to the shore.] -> shore
 
 === shore ===
 A charcoal fire burns on the sand. Fish already laid on the coals. Bread beside it.
@@ -79,27 +81,25 @@ A charcoal fire burns on the sand. Fish already laid on the coals. Bread beside 
 
 No question yet about the water that night, or the courtyard three nights before. Feed them first.
 
-* [Sit and eat.] -> restoration
-* [Why a fire, of all things?] -> fire_meaning
++ [Sit and eat.] -> restoration
++ [Why a fire, of all things?] -> fire_meaning
 
 === fire_meaning ===
 There was another fire. A courtyard, three nights past, where a servant girl asked a question and a man denied he ever knew Me. [John 18:18, 25-27]
 
 That fire has not been forgotten. This one was built on purpose.
 
-* [Continue.] -> restoration
++ [Continue.] -> restoration
 
 === restoration ===
-# UNLOCK_EVIDENCE: charcoal_fire
-# UNLOCK_EVIDENCE: threefold_commission
 When they have eaten, the question turns to Simon Peter. Not to the group. To him.
 
 "Simon, son of John, do you love Me more than these?" [John 21:15]
 
 It does not accuse. It waits.
 
-* [What does Peter answer?] -> peter_answer
-* [Feed my lambs...] -> feeding
++ [What does Peter answer?] -> peter_answer
++ [Feed my lambs...] -> feeding
 
 === peter_answer ===
 "Yes, Lord; You know that I love You." "Feed My lambs." [John 21:15]
@@ -110,7 +110,7 @@ A third time — and the word changes. Not the love that holds nothing back, but
 
 "Lord, You know all things; You know that I love You." "Feed My sheep." [John 21:17]
 
-* [Three questions. Three answers. Three commissions.] -> feeding
++ [Three questions. Three answers. Three commissions.] -> feeding
 
 === feeding ===
 Three denials, spoken beside a fire, in the dark, to strangers who meant nothing to him. Three affirmations, spoken beside a fire, in the daylight, to the One who means everything.
@@ -121,7 +121,7 @@ The wound and the healing share the same shape.
 
 The same two words that began it all, on this same water, three years before.
 
-* [Continue.] -> closing
++ [Finish the interview.] -> closing
 
 === closing ===
 No explanation was demanded for the failure. Only love, three times — and a flock built on the answer.

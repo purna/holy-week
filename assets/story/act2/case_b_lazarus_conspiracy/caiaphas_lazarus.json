@@ -4,24 +4,62 @@
     "choices": [
       {
         "text": "What exactly happened?",
-        "destination": "what_happened"
+        "destination": "what_happened",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "What does the council intend to do?",
-        "destination": "council_plan"
+        "destination": "council_plan",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "tag": "UNLOCK_EVIDENCE: grave_dirt",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "I am Caiaphas. We called an emergency session of the council this morning. The raising of Lazarus in Bethany has spread through every pilgrim camp in the city. The crowds are out of control.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "what_happened": {
-    "content": "# UNLOCK_EVIDENCE: grave_dirt\nFour days dead, sealed in a tomb, bound in burial linen — and then walking out at the command of this Galilean. I do not dismiss it. I cannot. Even our own sources in Bethany confirm it. That is exactly the problem.",
+    "content": "Four days dead, sealed in a tomb, bound in burial linen — and then walking out at the command of this Galilean. I do not dismiss it. I cannot. Even our own sources in Bethany confirm it. That is exactly the problem.",
     "choices": [
       {
         "text": "You accept the miracle happened?",
-        "destination": "accept_miracle"
+        "destination": "accept_miracle",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Yet you still plan to stop Him.",
-        "destination": "stop_anyway"
+        "destination": "stop_anyway",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Four days dead, sealed in a tomb, bound in burial linen — and then walking out at the command of this Galilean. I do not dismiss it. I cannot. Even our own sources in Bethany confirm it. That is exactly the problem.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -30,24 +68,56 @@
     "choices": [
       {
         "text": "It means you lose control.",
-        "destination": "lose_control"
+        "destination": "lose_control",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "So the miracle itself is the threat.",
-        "destination": "miracle_threat"
+        "destination": "miracle_threat",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Accepting it as fact does not change my position. If anything, it hardens it. A man who can reverse death commands the loyalty of every person in this city who has ever lost someone. You understand what that means for Rome? For us?",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "council_plan": {
-    "content": "# UNLOCK_EVIDENCE: grave_dirt\nThe council is divided between fear and argument. Some want to wait. Some want to question Him publicly. I ended that discussion. There is only one calculation that matters: if we let Him continue, the Romans come, and both our Temple and our nation are destroyed.",
+    "content": "The council is divided between fear and argument. Some want to wait. Some want to question Him publicly. I ended that discussion. There is only one calculation that matters: if we let Him continue, the Romans come, and both our Temple and our nation are destroyed.",
     "choices": [
       {
         "text": "One man's life for the nation's survival.",
-        "destination": "utilitarian_logic"
+        "destination": "utilitarian_logic",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "You have already decided He must die.",
-        "destination": "already_decided"
+        "destination": "already_decided",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The council is divided between fear and argument. Some want to wait. Some want to question Him publicly. I ended that discussion. There is only one calculation that matters: if we let Him continue, the Romans come, and both our Temple and our nation are destroyed.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -56,11 +126,27 @@
     "choices": [
       {
         "text": "That sounds like murder dressed as policy.",
-        "destination": "murder_policy"
+        "destination": "murder_policy",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "What is your plan?",
-        "destination": "already_decided"
+        "destination": "already_decided",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "A man who can raise the dead poses a threat proportional to his power. We have built order in this city through Roman tolerance and our own authority. He erodes both with every miracle. He must be stopped before Passover crowds turn this into a revolution.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -69,11 +155,27 @@
     "choices": [
       {
         "text": "Even if the adult commits murder.",
-        "destination": "murder_policy"
+        "destination": "murder_policy",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "And if He truly is who the people think?",
-        "destination": "if_true"
+        "destination": "if_true",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "We have managed Judea by occupying the space between the people and Rome. We translate, we moderate, we contain. If the people crown this Galilean king, Rome will crush the city and there will be nothing left for anyone to manage. I am not the villain. I am the only adult in the room.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -82,11 +184,27 @@
     "choices": [
       {
         "text": "So you intend to kill Lazarus too.",
-        "destination": "lazarus_death"
+        "destination": "lazarus_death",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The truth will not be silenced by one death.",
-        "destination": "truth_unsilenced"
+        "destination": "truth_unsilenced",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Precisely. Lazarus is not a symbol — Lazarus is evidence. Living, breathing, recognizable evidence. As long as he walks around Bethany, our counter-narrative has no ground to stand on. We cannot argue against a man who was dead and is now serving dinner at Simon the Leper's house.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -95,11 +213,27 @@
     "choices": [
       {
         "text": "You do not understand what you are saying.",
-        "destination": "unaware_prophecy"
+        "destination": "unaware_prophecy",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "That logic would justify any execution.",
-        "destination": "justify_anything"
+        "destination": "justify_anything",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "It is not cruelty. It is governance. You cannot preserve a community by sacrificing the community for the sake of one individual — however extraordinary that individual may be. Better one man than thousands.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -108,11 +242,27 @@
     "choices": [
       {
         "text": "And if He does leave?",
-        "destination": "if_he_leaves"
+        "destination": "if_he_leaves",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "You are planning an assassination.",
-        "destination": "murder_policy"
+        "destination": "murder_policy",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Since before this morning's council finished. The question was never whether — only when and how. We cannot move during the feast without causing a riot. But He will not leave Jerusalem without giving us an opportunity.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -120,12 +270,20 @@
     "content": "Call it what you like. I call it the preservation of the covenant community. Moses killed when necessary. The prophets endorsed judgment. A nation that cannot defend its own existence has no future to defend.",
     "choices": [
       {
-        "text": "You invoke Moses to justify what Moses would condemn.",
-        "destination": "closing"
-      },
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "History will not be kind to this decision.",
-        "destination": "closing"
+        "text": "Call it what you like. I call it the preservation of the covenant community. Moses killed when necessary. The prophets endorsed judgment. A nation that cannot defend its own existence has no future to defend.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -133,8 +291,20 @@
     "content": "If He is the Messiah? Then we are living inside a moment I am not equipped to manage with the tools I have. But I am the High Priest. I have an institution, a city, and a people to protect. I will do what the office demands. I must.",
     "choices": [
       {
-        "text": "And if the office demands the wrong thing?",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "If He is the Messiah? Then we are living inside a moment I am not equipped to manage with the tools I have. But I am the High Priest. I have an institution, a city, and a people to protect. I will do what the office demands. I must.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -143,7 +313,19 @@
     "choices": [
       {
         "text": "You would kill a man to suppress a miracle.",
-        "destination": "suppress_miracle"
+        "destination": "suppress_miracle",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "We have discussed it. Yes. If Lazarus survives, his very existence is a sermon. Every Passover pilgrim who meets him will become a convert. We cannot allow that. The council will take the appropriate steps.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -151,8 +333,20 @@
     "content": "One truth can be managed. Two truths — the healing and the raising — become a theology. A theology becomes a movement. A movement becomes an army. I have seen it with the Zealots. I am not watching it happen again in my city.",
     "choices": [
       {
-        "text": "And yet here we are.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "One truth can be managed. Two truths — the healing and the raising — become a theology. A theology becomes a movement. A movement becomes an army. I have seen it with the Zealots. I am not watching it happen again in my city.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -160,8 +354,20 @@
     "content": "What do you mean?",
     "choices": [
       {
-        "text": "You are saying more than you know.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "What do you mean?",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -169,8 +375,20 @@
     "content": "Every government that has ever existed has made that calculation. Rome makes it every day. We make it when we select who receives Temple patronage and who does not. I am not innovating. I am simply being honest about what all rulers already do in secret.",
     "choices": [
       {
-        "text": "Honesty about sin is still sin.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Every government that has ever existed has made that calculation. Rome makes it every day. We make it when we select who receives Temple patronage and who does not. I am not innovating. I am simply being honest about what all rulers already do in secret.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -178,8 +396,20 @@
     "content": "He will not leave. He came to Jerusalem for Passover with the full weight of that entry behind him — palm branches, cloaks in the road, the people calling him Son of David. A man who stages that kind of entrance has not come to leave quietly. He has come for something. And we will be there when He reaches for it.",
     "choices": [
       {
-        "text": "Then you are both headed toward the same end.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "He will not leave. He came to Jerusalem for Passover with the full weight of that entry behind him — palm branches, cloaks in the road, the people calling him Son of David. A man who stages that kind of entrance has not come to leave quietly. He has come for something. And we will be there when He reaches for it.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -187,13 +417,45 @@
     "content": "We are not suppressing a miracle. We are managing the civic consequences of an event that the population has misinterpreted. There is a difference.",
     "choices": [
       {
-        "text": "There is no difference.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "We are not suppressing a miracle. We are managing the civic consequences of an event that the population has misinterpreted. There is a difference.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "closing": {
     "content": "The council has made its decision. Whoever is found responsible for this investigation — whether scribe, spy, or sympathiser — would do well to remember which side of the Temple gate protects them.",
-    "choices": []
+    "choices": [],
+    "steps": [
+      {
+        "text": "The council has made its decision. Whoever is found responsible for this investigation — whether scribe, spy, or sympathiser — would do well to remember which side of the Temple gate protects them.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "divert": "DONE",
+        "condition": {
+          "all": []
+        }
+      }
+    ]
+  },
+  "_meta": {
+    "schema": 2,
+    "entry": "start",
+    "variables": {},
+    "revision": "68e262ae745ceead"
   }
 }

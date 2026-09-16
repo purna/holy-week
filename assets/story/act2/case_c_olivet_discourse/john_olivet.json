@@ -4,37 +4,91 @@
     "choices": [
       {
         "text": "What warnings stayed with you?",
-        "destination": "warning"
+        "destination": "warning",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Where was the hope?",
-        "destination": "hope"
+        "destination": "hope",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "tag": "UNLOCK_EVIDENCE: temple_overlook_view",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "From the ridge we watched Jerusalem below us while He spoke of the end of the age. The discourse moved between warning and hope with unsettling clarity. Nothing He said was vague. The problem is that it spans enormous distances of time.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "warning": {
-    "content": "# UNLOCK_EVIDENCE: temple_overlook_view\nHe said many would come in His name claiming to be the Messiah. Wars and rumours of wars. Nations against nations. Famines, earthquakes, persecution of believers. He called these birth pains — the travail before delivery. We were told not to be alarmed, not because the events would not be terrible, but because they would not be final.",
+    "content": "He said many would come in His name claiming to be the Messiah. Wars and rumours of wars. Nations against nations. Famines, earthquakes, persecution of believers. He called these birth pains — the travail before delivery. We were told not to be alarmed, not because the events would not be terrible, but because they would not be final.",
     "choices": [
       {
         "text": "The birth pains lead to something.",
-        "destination": "hope"
+        "destination": "hope",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "And the specific sign for Jerusalem?",
-        "destination": "jerusalem_sign"
+        "destination": "jerusalem_sign",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "He said many would come in His name claiming to be the Messiah. Wars and rumours of wars. Nations against nations. Famines, earthquakes, persecution of believers. He called these birth pains — the travail before delivery. We were told not to be alarmed, not because the events would not be terrible, but because they would not be final.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "hope": {
-    "content": "# UNLOCK_EVIDENCE: temple_overlook_view\nHe promised the gospel would reach all nations. He promised the Son of Man would come with power and great glory. He said this generation would not pass away before the Temple judgment came to pass — but He also stretched the horizon far beyond our generation for the cosmic conclusion. History is not chaos to Him; it is appointment.",
+    "content": "He promised the gospel would reach all nations. He promised the Son of Man would come with power and great glory. He said this generation would not pass away before the Temple judgment came to pass — but He also stretched the horizon far beyond our generation for the cosmic conclusion. History is not chaos to Him; it is appointment.",
     "choices": [
       {
         "text": "The near prophecy and the far prophecy.",
-        "destination": "two_horizons"
+        "destination": "two_horizons",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "He promised to come back.",
-        "destination": "return_promise"
+        "destination": "return_promise",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "He promised the gospel would reach all nations. He promised the Son of Man would come with power and great glory. He said this generation would not pass away before the Temple judgment came to pass — but He also stretched the horizon far beyond our generation for the cosmic conclusion. History is not chaos to Him; it is appointment.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -42,12 +96,20 @@
     "content": "He described a desolating sacrilege in the holy place — a specific desecration that would signal the moment to flee Jerusalem immediately, without delay. He used language from Daniel. When you see it, go. Do not go back for possessions. Pray your flight is not in winter or on the Sabbath. He gave us specific, practical instruction for a specific, local catastrophe.",
     "choices": [
       {
-        "text": "For his generation.",
-        "destination": "two_horizons"
-      },
+        "text": "Continue.",
+        "destination": "two_horizons",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "A warning for those who would be alive.",
-        "destination": "two_horizons"
+        "text": "He described a desolating sacrilege in the holy place — a specific desecration that would signal the moment to flee Jerusalem immediately, without delay. He used language from Daniel. When you see it, go. Do not go back for possessions. Pray your flight is not in winter or on the Sabbath. He gave us specific, practical instruction for a specific, local catastrophe.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -56,11 +118,27 @@
     "choices": [
       {
         "text": "The Temple falls soon. The return comes later.",
-        "destination": "return_promise"
+        "destination": "return_promise",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "How do we know which prophecy is which?",
-        "destination": "interpretation"
+        "destination": "interpretation",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "This is the part I have thought hardest about. Some of what He said was addressed directly to us — \"this generation.\" The Temple will fall within living memory. Some of what He said extended far beyond our lives — signs in sun and moon and stars, the nations in distress. He was speaking on two timescales simultaneously. Both were real.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -69,11 +147,27 @@
     "choices": [
       {
         "text": "So the Olivet Discourse is partly about Him.",
-        "destination": "about_him"
+        "destination": "about_him",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "What did the disciples do with that?",
-        "destination": "disciple_response"
+        "destination": "disciple_response",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "He said: \"The Son of Man will come on the clouds with power and great glory, and He will send His angels to gather the elect from the four winds.\" He was quoting Daniel 7:13. Anyone who knew Daniel heard the claim He was making about Himself — the Ancient of Days conferring on the Son of Man an everlasting kingdom. He was announcing His own cosmic authority.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -82,11 +176,27 @@
     "choices": [
       {
         "text": "That ruled out all prophetic timelines.",
-        "destination": "no_timelines"
+        "destination": "no_timelines",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "So vigilance matters more than calculation.",
-        "destination": "vigilance_imperative"
+        "destination": "vigilance_imperative",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "He gave us one key: when you see the Fig Tree putting out its leaves, you know summer is near. So also, when you see these things happening — you know the time is near. Watch the events, not the calendar. The signs are for discernment, not for date-setting. He said specifically that no one knows the day or hour — not even the angels, not even the Son, but only the Father.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -95,7 +205,19 @@
     "choices": [
       {
         "text": "So the end of the age is His.",
-        "destination": "return_promise"
+        "destination": "return_promise",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The entire discourse is partly about Him. The Temple falls because the nation rejected its king. The cosmic signs are His return in vindication. The gathering of the elect is His initiative. He is not a commentator on history. He is the subject and the conclusion of it.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -104,7 +226,19 @@
     "choices": [
       {
         "text": "That was the practical instruction.",
-        "destination": "vigilance_imperative"
+        "destination": "vigilance_imperative",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Silence, mostly. We sat on the ridge and looked at Jerusalem and the sun was already going down and the city was beautiful and He had just told us it was going to burn. We did not know what to say. He said watch and pray. So we watched and prayed.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -113,7 +247,19 @@
     "choices": [
       {
         "text": "Faithfulness over calculation.",
-        "destination": "vigilance_imperative"
+        "destination": "vigilance_imperative",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Yes. He closed every door to specific calculation. Which means all the energy spent calculating dates is misdirected. The instruction was not predict — it was prepare. Stay awake. Be ready. Keep serving. The master returns at an unknown hour, and the servants who are found doing their work will be commended.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -121,13 +267,45 @@
     "content": "He said to stay awake and be ready, because the Son of Man is coming at an hour you do not expect. And then He gave three parables in a row — the householder, the servants, the bridesmaids — all about being prepared for a return whose timing is unknown but certain. The certainty is what matters, not the schedule.",
     "choices": [
       {
-        "text": "Certainty of return without certainty of timing.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "He said to stay awake and be ready, because the Son of Man is coming at an hour you do not expect. And then He gave three parables in a row — the householder, the servants, the bridesmaids — all about being prepared for a return whose timing is unknown but certain. The certainty is what matters, not the schedule.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "closing": {
     "content": "What I remember most is that He said these words not as warnings alone, but as anchors. The world will shake. The Temple will fall. History will be long and painful. But He will be at the end of it. That is the thing that changed how I hold everything else — He is not describing history from outside it. He is in it. And He has told us how it ends.",
-    "choices": []
+    "choices": [],
+    "steps": [
+      {
+        "text": "What I remember most is that He said these words not as warnings alone, but as anchors. The world will shake. The Temple will fall. History will be long and painful. But He will be at the end of it. That is the thing that changed how I hold everything else — He is not describing history from outside it. He is in it. And He has told us how it ends.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "divert": "DONE",
+        "condition": {
+          "all": []
+        }
+      }
+    ]
+  },
+  "_meta": {
+    "schema": 2,
+    "entry": "start",
+    "variables": {},
+    "revision": "f7fea30308a9c63a"
   }
 }

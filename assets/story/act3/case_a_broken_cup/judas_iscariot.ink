@@ -63,22 +63,22 @@
 
 -> start
 === start ===
+# UNLOCK_EVIDENCE: money_bag_impression
+# UNLOCK_EVIDENCE: evidence_money_bag_impression
 You trace my steps with your ink and parchment, little scribe. You think you are tracking a simple exchange of silver. You have no understanding of what it means to watch three years of momentum evaporate into poetry and feet-washing. We were supposed to hold the gates of the city! Now he speaks of tombs and broken bread. Someone must force his hand to action.
 
-* [You sold Him for thirty pieces.] -> motives
-* [You regret it.] -> regret
++ [You sold Him for thirty pieces.] -> motives
++ [You regret it.] -> regret
 
 === motives ===
-# UNLOCK_EVIDENCE: money_bag_impression
 Thirty pieces of silver. The price of a slave. That is what the Temple assessed the Son of God to be worth. And they paid me to deliver Him.
 
-* [The money bag seems heavy tonight.] -> bag_heavy
-* [Jesus spoke of a new covenant.] -> new_covenant
++ [The money bag seems heavy tonight.] -> bag_heavy
++ [Jesus spoke of a new covenant.] -> new_covenant
 
 === bag_heavy ===
 The money bag seems heavy tonight. Thirty silver coins is the weight of a life in this city. A slave's price. I did what was necessary for the group.
 
-# UNLOCK_EVIDENCE: evidence_money_bag_impression
 /#
 
 Jesus told us to be prepared. I am merely ensuring we are.
@@ -89,10 +89,9 @@ He speaks of many things. Blood, wine, bread. I look at the silver and I see rea
 -> closing
 
 === regret ===
-# UNLOCK_EVIDENCE: money_bag_impression
 I watched three years of expectation curdle into disappointment. The Messiah was supposed to be a king. Instead He washed feet. Instead He spoke of dying. The Zealots wanted a general. I wanted a winner. I was wrong.
 
-* [What happened to the money?] -> closing
++ [Finish the interview.] -> closing
 
 === closing ===
 Silver is a ledger entry. Disappointment is a fire. The Temple priests counted it out. I took it. And then I saw Him look at me from across the courtyard. I threw the silver at them and ran. I can no longer live with what I have done.

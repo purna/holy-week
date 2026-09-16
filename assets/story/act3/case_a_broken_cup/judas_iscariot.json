@@ -4,56 +4,162 @@
     "choices": [
       {
         "text": "You sold Him for thirty pieces.",
-        "destination": "motives"
+        "destination": "motives",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "You regret it.",
-        "destination": "regret"
+        "destination": "regret",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "tag": "UNLOCK_EVIDENCE: money_bag_impression",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "tag": "UNLOCK_EVIDENCE: evidence_money_bag_impression",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "You trace my steps with your ink and parchment, little scribe. You think you are tracking a simple exchange of silver. You have no understanding of what it means to watch three years of momentum evaporate into poetry and feet-washing. We were supposed to hold the gates of the city! Now he speaks of tombs and broken bread. Someone must force his hand to action.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "motives": {
-    "content": "# UNLOCK_EVIDENCE: money_bag_impression\nThirty pieces of silver. The price of a slave. That is what the Temple assessed the Son of God to be worth. And they paid me to deliver Him.",
+    "content": "Thirty pieces of silver. The price of a slave. That is what the Temple assessed the Son of God to be worth. And they paid me to deliver Him.",
     "choices": [
       {
         "text": "The money bag seems heavy tonight.",
-        "destination": "bag_heavy"
+        "destination": "bag_heavy",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Jesus spoke of a new covenant.",
-        "destination": "new_covenant"
+        "destination": "new_covenant",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Thirty pieces of silver. The price of a slave. That is what the Temple assessed the Son of God to be worth. And they paid me to deliver Him.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "bag_heavy": {
-    "content": "The money bag seems heavy tonight. Thirty silver coins is the weight of a life in this city. A slave's price. I did what was necessary for the group.\n# UNLOCK_EVIDENCE: evidence_money_bag_impression\n/#\nJesus told us to be prepared. I am merely ensuring we are.",
-    "choices": [
+    "content": "The money bag seems heavy tonight. Thirty silver coins is the weight of a life in this city. A slave's price. I did what was necessary for the group.\n/#\nJesus told us to be prepared. I am merely ensuring we are.",
+    "choices": [],
+    "steps": [
       {
-        "text": "closing",
-        "destination": "closing"
+        "text": "The money bag seems heavy tonight. Thirty silver coins is the weight of a life in this city. A slave's price. I did what was necessary for the group.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "/#",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Jesus told us to be prepared. I am merely ensuring we are.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "divert": "closing",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "new_covenant": {
     "content": "He speaks of many things. Blood, wine, bread. I look at the silver and I see reality. He is walking into a trap he will not avoid.",
-    "choices": [
+    "choices": [],
+    "steps": [
       {
-        "text": "closing",
-        "destination": "closing"
+        "text": "He speaks of many things. Blood, wine, bread. I look at the silver and I see reality. He is walking into a trap he will not avoid.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "divert": "closing",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "regret": {
-    "content": "# UNLOCK_EVIDENCE: money_bag_impression\nI watched three years of expectation curdle into disappointment. The Messiah was supposed to be a king. Instead He washed feet. Instead He spoke of dying. The Zealots wanted a general. I wanted a winner. I was wrong.",
+    "content": "I watched three years of expectation curdle into disappointment. The Messiah was supposed to be a king. Instead He washed feet. Instead He spoke of dying. The Zealots wanted a general. I wanted a winner. I was wrong.",
     "choices": [
       {
-        "text": "What happened to the money?",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "I watched three years of expectation curdle into disappointment. The Messiah was supposed to be a king. Instead He washed feet. Instead He spoke of dying. The Zealots wanted a general. I wanted a winner. I was wrong.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "closing": {
     "content": "Silver is a ledger entry. Disappointment is a fire. The Temple priests counted it out. I took it. And then I saw Him look at me from across the courtyard. I threw the silver at them and ran. I can no longer live with what I have done.",
-    "choices": []
+    "choices": [],
+    "steps": [
+      {
+        "text": "Silver is a ledger entry. Disappointment is a fire. The Temple priests counted it out. I took it. And then I saw Him look at me from across the courtyard. I threw the silver at them and ran. I can no longer live with what I have done.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "divert": "DONE",
+        "condition": {
+          "all": []
+        }
+      }
+    ]
+  },
+  "_meta": {
+    "schema": 2,
+    "entry": "start",
+    "variables": {},
+    "revision": "4eb51ba769e99525"
   }
 }

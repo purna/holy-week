@@ -4,11 +4,27 @@
     "choices": [
       {
         "text": "Tell me the story.",
-        "destination": "story"
+        "destination": "story",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Why did He tell it?",
-        "destination": "why"
+        "destination": "why",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "I am Thomas. Ask more questions than I answer. The honest ones. In the Temple courts, Jesus told a story about a vineyard, its tenants, and a son who never returned home. Some stories explain the world. Others expose it.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -17,11 +33,63 @@
     "choices": [
       {
         "text": "Who are these people meant to be?",
-        "destination": "vineyard"
+        "destination": "vineyard",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "What happened when Jesus finished?",
-        "destination": "reaction"
+        "destination": "reaction",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "A landowner planted a vineyard, built a wall around it, dug a winepress, and leased it to tenants before departing.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "When harvest came, he sent servants to collect his share of the fruit.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "The tenants beat one servant, killed another, and stoned a third.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "More servants came. They suffered the same fate.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Finally, the owner said, \"They will respect my son.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Instead, the tenants saw the heir and said, \"Come, let us kill him and take his inheritance.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "So they cast him out of the vineyard and killed him.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -30,7 +98,31 @@
     "choices": [
       {
         "text": "So who are the tenants?",
-        "destination": "vineyard"
+        "destination": "vineyard",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The chief priests had demanded to know by what authority Jesus taught.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "He answered with questions, then with stories.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "A parable can slip past a man's defenses before he realizes it is describing him.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -39,11 +131,57 @@
     "choices": [
       {
         "text": "Did the priests understand?",
-        "destination": "reaction"
+        "destination": "reaction",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "What happened to the son?",
-        "destination": "son"
+        "destination": "son",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The vineyard is Israel.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "The owner is God.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "The tenants are the religious leaders entrusted with God's people.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "The servants are the prophets sent generation after generation.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "The son is the heir.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "By this point, many in the crowd understood exactly where the story was leading.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -52,7 +190,37 @@
     "choices": [
       {
         "text": "And then?",
-        "destination": "stone"
+        "destination": "stone",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The son is cast out of the vineyard and killed.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Jesus did not need to explain every detail.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Some truths arrive before their fulfillment.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "The story sounded like a warning. Later it would sound like a memory.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -61,7 +229,49 @@
     "choices": [
       {
         "text": "And the stone He mentioned?",
-        "destination": "stone"
+        "destination": "stone",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Jesus asked a question:",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"When the owner of the vineyard comes, what will he do to those tenants?\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Even His opponents knew the answer.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "The wicked tenants would be judged, and the vineyard entrusted to others who would produce its fruit.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "The chief priests and Pharisees realized the parable was about them.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "That was the moment the silence began.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -70,11 +280,51 @@
     "choices": [
       {
         "text": "What did the crowd think?",
-        "destination": "crowd"
+        "destination": "crowd",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Thomas, what does the stone mean?",
-        "destination": "cornerstone"
+        "destination": "cornerstone",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Then Jesus quoted the psalm:",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"The stone the builders rejected has become the cornerstone.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "That is Psalm 118.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "The rejected stone becomes the foundation.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "The leaders heard a story about rebellious tenants, a murdered son, and a rejected stone. They heard judgment and warning in the same breath.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -83,7 +333,37 @@
     "choices": [
       {
         "text": "And the cornerstone?",
-        "destination": "cornerstone"
+        "destination": "cornerstone",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Some were astonished.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Some were afraid.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Many simply watched the faces of the chief priests.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "The crowd could see what the leaders could not admit aloud: the parable had found its target.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -91,13 +371,87 @@
     "content": "The builders rejected the stone because they did not recognize its value.\nYet God chose that very stone as the cornerstone.\nThe leaders could reject Jesus.\nThat did not mean they could stop what God was building.",
     "choices": [
       {
-        "text": "Thomas, you understand these parables.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The builders rejected the stone because they did not recognize its value.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Yet God chose that very stone as the cornerstone.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "The leaders could reject Jesus.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "That did not mean they could stop what God was building.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "closing": {
     "content": "I ask questions. That is my trade.\nBut some answers stand in the open for everyone to see.\nA vineyard. Servants. A son.\nA rejected stone becoming the cornerstone.\nThe man from Nazareth told stories that sounded simple enough for a child. Yet somehow the most learned men in Jerusalem heard them and became afraid.",
-    "choices": []
+    "choices": [],
+    "steps": [
+      {
+        "text": "I ask questions. That is my trade.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "But some answers stand in the open for everyone to see.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "A vineyard. Servants. A son.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "A rejected stone becoming the cornerstone.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "The man from Nazareth told stories that sounded simple enough for a child. Yet somehow the most learned men in Jerusalem heard them and became afraid.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "divert": "DONE",
+        "condition": {
+          "all": []
+        }
+      }
+    ]
+  },
+  "_meta": {
+    "schema": 2,
+    "entry": "start",
+    "variables": {},
+    "revision": "612988880dad59f4"
   }
 }

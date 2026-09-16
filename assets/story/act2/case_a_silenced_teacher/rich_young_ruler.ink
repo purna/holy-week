@@ -24,8 +24,8 @@ There was one I still remember. A young ruler. Wealthy. Respected. Sincere.
 
 He ran to Jesus in the road outside Judea and knelt before Him in the dust.
 
-* [What did he ask?] -> question
-* [Why do you remember him?] -> remember
++ [What did he ask?] -> question
++ [Why do you remember him?] -> remember
 === remember ===
 -> question
 
@@ -40,7 +40,7 @@ Jesus spoke of the commandments.
 
 The young man listened carefully.
 
-* [What did he say?] -> commandments
++ [What did he say?] -> commandments
 
 === commandments ===
 Jesus named the commandments: do not murder, do not commit adultery, do not steal, do not bear false witness, honor your father and mother.
@@ -53,8 +53,8 @@ There was no boasting in his voice.
 
 At least, none that I heard.
 
-* [Was he telling the truth?] -> truth
-* [What happened next?] -> next
++ [Was he telling the truth?] -> truth
++ [What happened next?] -> next
 
 === truth ===
 Perhaps.
@@ -71,7 +71,7 @@ That detail has always troubled me.
 
 The hard words came after the love.
 
-* [What hard words?] -> next
++ [What hard words?] -> next
 
 === next ===
 Jesus said:
@@ -80,7 +80,7 @@ Jesus said:
 
 The road became very quiet.
 
-* [Why?] -> sorrow
++ [Why?] -> sorrow
 
 === sorrow ===
 Because the young ruler had great wealth.
@@ -97,8 +97,8 @@ Not offended.
 
 Grieving.
 
-* [Why grieving?] -> why_grieving
-* [Did he leave?] -> leave
++ [Why grieving?] -> why_grieving
++ [Did he leave?] -> leave
 
 === why_grieving ===
 Because he had found the answer he asked for.
@@ -115,7 +115,7 @@ For others it is power, reputation, certainty, or comfort.
 
 The ruler's treasure owned him more than he owned it.
 
-* [Did he leave?] -> leave
++ [Did he leave?] -> leave
 
 === leave ===
 Yes.
@@ -132,7 +132,7 @@ But sorrow is harder to forget.
 
 He stood before the Messiah and walked away.
 
-* [What did Jesus say afterward?] -> camel
++ [What did Jesus say afterward?] -> camel
 
 === camel ===
 Jesus watched him go and said:
@@ -147,7 +147,7 @@ The disciples exchanged nervous looks.
 
 If the wealthy and blessed struggled to enter, what hope was there for anyone?
 
-* [What did the disciples ask?] -> disciples
++ [What did the disciples ask?] -> disciples
 
 === disciples ===
 They asked:
@@ -166,7 +166,7 @@ The kingdom is not purchased.
 
 It is received.
 
-* [Did Peter say anything?] -> peter
++ [Did Peter say anything?] -> peter
 
 === peter ===
 Of course Peter spoke.
@@ -187,7 +187,7 @@ Jesus promised that no one who leaves such things for the kingdom would lose the
 
 God keeps better accounts than merchants.
 
-* [Thomas, what became of the young ruler?] -> closing
++ [Finish the interview.] -> closing
 
 === closing ===
 I do not know.

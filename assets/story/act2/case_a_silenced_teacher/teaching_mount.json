@@ -4,11 +4,27 @@
     "choices": [
       {
         "text": "What question?",
-        "destination": "question"
+        "destination": "question",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The crowd's reaction?",
-        "destination": "crowd_reaction"
+        "destination": "crowd_reaction",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "You walked up Mount Olivet. Most people approach Jerusalem and see only walls. He spoke in parables. People laughed, left, or argued. Then He asked the question.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -16,8 +32,20 @@
     "content": "He asked about the stone the builders rejected. The stone that becomes the cornerstone. The crowd was silent after that. Some looked confused. Some looked... afraid.",
     "choices": [
       {
-        "text": "Afraid of what?",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "He asked about the stone the builders rejected. The stone that becomes the cornerstone. The crowd was silent after that. Some looked confused. Some looked... afraid.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -25,13 +53,45 @@
     "content": "People laughed, then left, or argued. The parables were not comfortable. They were mirrors. Each person saw themselves — and didn't always like what they saw.",
     "choices": [
       {
-        "text": "And then?",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "People laughed, then left, or argued. The parables were not comfortable. They were mirrors. Each person saw themselves — and didn't always like what they saw.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "closing": {
     "content": "He spoke as someone who owned the Law, not merely interpreted it. That was the most unsettling thing of all.",
-    "choices": []
+    "choices": [],
+    "steps": [
+      {
+        "text": "He spoke as someone who owned the Law, not merely interpreted it. That was the most unsettling thing of all.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "divert": "DONE",
+        "condition": {
+          "all": []
+        }
+      }
+    ]
+  },
+  "_meta": {
+    "schema": 2,
+    "entry": "start",
+    "variables": {},
+    "revision": "73aef2791a531ad9"
   }
 }

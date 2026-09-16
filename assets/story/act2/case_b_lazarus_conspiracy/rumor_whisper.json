@@ -4,11 +4,27 @@
     "choices": [
       {
         "text": "Why are you telling me this?",
-        "destination": "nervous_tell"
+        "destination": "nervous_tell",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The Pharisees didn't believe him?",
-        "destination": "pharisee_response"
+        "destination": "pharisee_response",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "(A nervous citizen glances sideways before leaning close.) Last Sabbath a man blind from birth walked out of the Pool of Siloam and now says he sees. The Pharisees asked for details. He said, \"I was blind. Now I can see.\" I will not say my name, but you should find him and ask.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -17,7 +33,19 @@
     "choices": [
       {
         "text": "What did they do?",
-        "destination": "pharisee_response"
+        "destination": "pharisee_response",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Jesus put mud on his eyes and when it came off he could see. Because what happened at that pool was not natural. The man had been blind since birth — the disciples themselves had asked Jesus about him once. Now he's seeing. The Pharisees want the story buried.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -25,12 +53,20 @@
     "content": "They questioned him closely. Not about the healing — about the voice. They wanted to know who spoke to him. He said \"the man they call Jesus.\" They didn't like that answer. How was he healed?",
     "choices": [
       {
-        "text": "Talk to the blind man?",
-        "destination": "blindman"
-      },
+        "text": "Continue.",
+        "destination": "blindman",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "How was he healed?",
-        "destination": "blindman"
+        "text": "They questioned him closely. Not about the healing — about the voice. They wanted to know who spoke to him. He said \"the man they call Jesus.\" They didn't like that answer. How was he healed?",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -39,15 +75,101 @@
     "choices": [
       {
         "text": "What happened after the Pharisees questioned you?",
-        "destination": "pharisee_after"
+        "destination": "pharisee_after",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Where is Jesus now?",
-        "destination": "jesus_where"
+        "destination": "jesus_where",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Thank you for your testimony.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "(An older man stands near the pool. His eyes wander across the city as though he is seeing everything for the first time.)",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"You've come to ask about what happened to me, haven't you? I understand. Everyone is asking.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"I was blind from birth. Not injured. Not sick and then healed. Blind from the day I was born. I knew the streets by touch and sound. I knew voices better than faces because I had never seen a face.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"That morning a man named Jesus approached. He spat on the ground, made mud, and spread it over my eyes. Then he told me, 'Go and wash in the Pool of Siloam.'\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"I did not understand why, but I obeyed.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"When I washed the mud away, light rushed in. Colors. Shapes. Faces. For the first time in my life I could see.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "(The man pauses, looking around in wonder.)",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"My neighbors scarcely recognized me. Some said, 'This is the man who used to beg.' Others said, 'No, he only looks like him.' I kept telling them, 'I am the man.'\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"They asked how it happened. I told them exactly what I have told you: Jesus put mud on my eyes, I washed, and now I see.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"The Pharisees questioned me afterward. They wanted explanations I could not give. They asked who Jesus was. I told them only what I knew.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "(He shrugs.)",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"I cannot explain the miracle. I only know this: I was blind. Now I can see.\"",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -56,7 +178,19 @@
     "choices": [
       {
         "text": "Return",
-        "destination": "blindman"
+        "destination": "blindman",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "\"They argued among themselves. Some said a man who heals cannot be a sinner. Others said no sinner could do such signs. They could not agree.\"",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -65,12 +199,44 @@
     "choices": [
       {
         "text": "Return",
-        "destination": "blindman"
+        "destination": "blindman",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "\"I do not know where he is. When I first received my sight, he had already gone. But I know what he did. And I know what it means.\"",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "closing": {
     "content": "The conversation is over. Go in peace.",
-    "choices": []
+    "choices": [],
+    "steps": [
+      {
+        "text": "The conversation is over. Go in peace.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "divert": "DONE",
+        "condition": {
+          "all": []
+        }
+      }
+    ]
+  },
+  "_meta": {
+    "schema": 2,
+    "entry": "start",
+    "variables": {},
+    "revision": "39b9099dd3b3816e"
   }
 }

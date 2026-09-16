@@ -30,18 +30,17 @@
 
 -> start
 === start ===
-Look at this mess! Ink spilled everywhere, ledgers torn, Tyrian shekels scattered into the filth! We operate under a legal lease signed by the high priest himself. Our weights are fair, our rates are posted! He calls this a den of thieves, but without us, no traveler could buy an unblemished sacrifice! How are we meant to make money? This Jesus says we dishonour God.
-* [Why Tyrian coinage specifically?] -> tyrian
-* [Where did the crowd go after the tables fell?] -> crowd
-=== tyrian ===
 # UNLOCK_EVIDENCE: broken_cages
-The Law forbids images of foreign kings in the inner house. Tyrian silver is pure — it has no emperor's face on it. It is logistics - the coins have the head of the god Melqart, not greed!
-* [The disciples were violent too?] -> closing
-=== crowd ===
 # UNLOCK_EVIDENCE: scattered_shekels
-# UNLOCK_EVIDENCE: broken_cages
+Look at this mess! Ink spilled everywhere, ledgers torn, Tyrian shekels scattered into the filth! We operate under a legal lease signed by the high priest himself. Our weights are fair, our rates are posted! He calls this a den of thieves, but without us, no traveler could buy an unblemished sacrifice! How are we meant to make money? This Jesus says we dishonour God.
++ [Why Tyrian coinage specifically?] -> tyrian
++ [Where did the crowd go after the tables fell?] -> crowd
+=== tyrian ===
+The Law forbids images of foreign kings in the inner house. Tyrian silver is pure — it has no emperor's face on it. It is logistics - the coins have the head of the god Melqart, not greed!
++ [Finish the interview.] -> closing
+=== crowd ===
 They scattered toward the outer gates, singing like madmen. The priests are inside meeting right now. This will not stand.
-* [What happened to the animals?] -> closing
++ [Finish the interview.] -> closing
 === closing ===
 The conversation is over. Go in peace.
 -> DONE

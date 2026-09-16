@@ -4,46 +4,112 @@
     "choices": [
       {
         "text": "What did it look like yesterday?",
-        "destination": "yesterday"
+        "destination": "yesterday",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "What did it look like this morning?",
-        "destination": "this_morning"
+        "destination": "this_morning",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Press: Did you see anyone near it?",
-        "destination": "pressure"
+        "destination": "pressure",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "tag": "UNLOCK_EVIDENCE: withered_fig_tree_state",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "I walk this road every day between Bethany and Jerusalem. I saw that fig tree yesterday morning, full of leaves. And this morning... well, you wouldn't believe it.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "yesterday": {
-    "content": "# UNLOCK_EVIDENCE: withered_fig_tree_state\nIt was a fine-looking tree, lots of leaves. But no figs. Not a single one. A bit early in the season, perhaps, but still, a shame. All show, no substance.",
+    "content": "It was a fine-looking tree, lots of leaves. But no figs. Not a single one. A bit early in the season, perhaps, but still, a shame. All show, no substance.",
     "choices": [
       {
         "text": "Continue.",
-        "destination": "this_morning"
+        "destination": "this_morning",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "It was a fine-looking tree, lots of leaves. But no figs. Not a single one. A bit early in the season, perhaps, but still, a shame. All show, no substance.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "this_morning": {
-    "content": "# UNLOCK_EVIDENCE: withered_fig_tree_state\nWithered. Completely. From the roots up. Blackened leaves, brittle branches. Like it had been struck by lightning, but there was no storm. It happened overnight.",
+    "content": "Withered. Completely. From the roots up. Blackened leaves, brittle branches. Like it had been struck by lightning, but there was no storm. It happened overnight.",
     "choices": [
       {
         "text": "Continue.",
-        "destination": "pressure"
+        "destination": "pressure",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Withered. Completely. From the roots up. Blackened leaves, brittle branches. Like it had been struck by lightning, but there was no storm. It happened overnight.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "pressure": {
-    "content": "# UNLOCK_EVIDENCE: withered_fig_tree_state\nI saw the Galilean teacher and his disciples pass by both mornings. Yesterday, he stopped and looked at it. This morning, one of his men pointed it out, astonished. They seemed to know something about it.",
+    "content": "I saw the Galilean teacher and his disciples pass by both mornings. Yesterday, he stopped and looked at it. This morning, one of his men pointed it out, astonished. They seemed to know something about it.",
     "choices": [
       {
-        "text": "Accept: They were involved.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Challenge: Did you see them do anything?",
-        "destination": "exposed"
+        "destination": "exposed",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "I saw the Galilean teacher and his disciples pass by both mornings. Yesterday, he stopped and looked at it. This morning, one of his men pointed it out, astonished. They seemed to know something about it.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -51,13 +117,45 @@
     "content": "No, I didn't see them do anything. Just look. But the way the teacher looked at it yesterday... it was a look that could curdle milk. And this morning, one of his followers told me what he'd said to it out loud, the day before — \"Let no one eat fruit from you ever again.\" I didn't think much of it at the time. Words are cheap on this road. But the tree is dead, and the words weren't.",
     "choices": [
       {
-        "text": "Move forward.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "No, I didn't see them do anything. Just look. But the way the teacher looked at it yesterday... it was a look that could curdle milk. And this morning, one of his followers told me what he'd said to it out loud, the day before — \"Let no one eat fruit from you ever again.\" I didn't think much of it at the time. Words are cheap on this road. But the tree is dead, and the words weren't.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "closing": {
     "content": "I don't know what to make of any of it, if I'm honest. I've walked this road for years and trees don't die like that — not overnight, not from a sentence. All I can tell you is what my own eyes saw on two mornings running: leaves on Monday, and a dead tree on Tuesday, and a teacher who seemed to know which one was coming before I did.",
-    "choices": []
+    "choices": [],
+    "steps": [
+      {
+        "text": "I don't know what to make of any of it, if I'm honest. I've walked this road for years and trees don't die like that — not overnight, not from a sentence. All I can tell you is what my own eyes saw on two mornings running: leaves on Monday, and a dead tree on Tuesday, and a teacher who seemed to know which one was coming before I did.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "divert": "DONE",
+        "condition": {
+          "all": []
+        }
+      }
+    ]
+  },
+  "_meta": {
+    "schema": 2,
+    "entry": "start",
+    "variables": {},
+    "revision": "facd8972f06bae2d"
   }
 }

@@ -47,32 +47,30 @@
 -> start
 
 === start ===
+# UNLOCK_EVIDENCE: grave_dirt
 Lazarus has been raised from the dead. The whole city is talking about it. There are thirteen extra mouths to feed tonight, and the road to Jerusalem is monitored by patrols. Mary sits at His feet listening, but someone must handle the bread, the water, and the structural security of this house. We are hiding people who have prices on their heads.
 
-* [Your brother is alive.] -> lazarus
-* [How is Mary handling all this?] -> mary
-* [Conclude.] -> closing2
++ [Your brother is alive.] -> lazarus
++ [How is Mary handling all this?] -> mary
++ [What will you do if the household is searched?] -> closing2
 
 === lazarus ===
-# UNLOCK_EVIDENCE: grave_dirt
 He is the proof they want to destroy. A man who was dead for four days walking around is a living problem for the Sadducees. We keep him out of sight. The authorities have already been asking questions in Bethany.
 
-* [What questions?] -> danger
-* [Conclude.] -> closing2
++ [What questions?] -> danger
++ [What will you do if the household is searched?] -> closing2
 
 === mary ===
-# UNLOCK_EVIDENCE: grave_dirt
 Mary has always been the listener. She sits at the feet of teachers while Martha handles the serving. Tonight, I understand her. He is speaking words that feed the soul.
 
-* [Conclude.] -> closing2
-* [But you are afraid?] -> danger
-* [Conclude.] -> closing2
++ [What will you do if the household is searched?] -> closing2
++ [But you are afraid?] -> danger
 
 === danger ===
 They want him silenced. They cannot deny the miracle - Lazarus himself has been in the Temple courts three times now. So they are looking for a way to make him disappear permanently.
 
-* [Can you protect him?] -> closing
-* [Conclude.] -> closing2
++ [Finish the interview.] -> closing
++ [What will you do if the household is searched?] -> closing2
 
 === closing ===
 We have dried grain and oil for three days. The authorities are closing in. If I am speaking to you, it is because I believe someone outside this house needs to know what is happening in Bethany. Everyone believes Jesus is a prophet who has come to save his people from the Romans.
@@ -80,4 +78,4 @@ We have dried grain and oil for three days. The authorities are closing in. If I
 
 === closing2 ===
 The guards are already patrolling the eastern road. If they sweep the houses at dawn, I will have nowhere left to hide him. But I will try. For all our sakes.
-* [Finish the interview.] -> closing
++ [Finish the interview.] -> closing

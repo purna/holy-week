@@ -4,36 +4,98 @@
     "choices": [
       {
         "text": "Why was Jesus even brought to Herod?",
-        "destination": "dawn_breaks_final"
+        "destination": "dawn_breaks_final",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Tell me about the Baptist first.",
-        "destination": "dawn_breaks_final"
+        "destination": "dawn_breaks_final",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Your wife follows this man, doesn't she?",
-        "destination": "dawn_breaks_final"
+        "destination": "dawn_breaks_final",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "What do you know of Herod's state of mind?",
-        "destination": "herod_mind"
+        "destination": "herod_mind",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "tag": "UNLOCK_EVIDENCE: evidence_herod_jealousy",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "tag": "UNLOCK_EVIDENCE: evidence_messianic_sign_claim",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "tag": "UNLOCK_EVIDENCE: evidence_pilate_pact",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "I am Chuza, steward of the household of Herod Antipas, Tetrarch of Galilee. Eleven years I have managed this palace, and I have never once seen my master's hands shake — not until the morning the Nazarene stood in front of him.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "herod_mind": {
-    "content": "Herod Antipas carries a darkness I have witnessed firsthand. He murdered John the Baptist — a righteous man, a prophet, and more. Herod feared him, believing he was the returned Elijah who would confront the king's sins. When the dancing girl asked for John's head in a silver charger, Herod was \"sorry\" — Luke's word — yet his pride as a ruler held him fast. He wore that guilt like a crown.\n# UNLOCK_EVIDENCE: evidence_herod_jealousy",
+    "content": "Herod Antipas carries a darkness I have witnessed firsthand. He murdered John the Baptist — a righteous man, a prophet, and more. Herod feared him, believing he was the returned Elijah who would confront the king's sins. When the dancing girl asked for John's head in a silver charger, Herod was \"sorry\" — Luke's word — yet his pride as a ruler held him fast. He wore that guilt like a crown.",
     "choices": [
       {
         "text": "The fear of power.",
-        "destination": "herod_fear"
+        "destination": "herod_fear",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The crown of guilt.",
-        "destination": "dawn_breaks_final"
+        "destination": "dawn_breaks_final",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "How did that affect Jesus's fate?",
-        "destination": "dawn_breaks_final"
+        "destination": "dawn_breaks_final",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Herod Antipas carries a darkness I have witnessed firsthand. He murdered John the Baptist — a righteous man, a prophet, and more. Herod feared him, believing he was the returned Elijah who would confront the king's sins. When the dancing girl asked for John's head in a silver charger, Herod was \"sorry\" — Luke's word — yet his pride as a ruler held him fast. He wore that guilt like a crown.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -42,24 +104,56 @@
     "choices": [
       {
         "text": "He believed in resurrection.",
-        "destination": "believes_resurrection"
+        "destination": "believes_resurrection",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The power was real.",
-        "destination": "dawn_breaks_final"
+        "destination": "dawn_breaks_final",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The fear of power — not His power over Rome, but over the crowds. Herod had heard the reports from Galilee: crowds of five thousand fed with scraps, crowds of three thousand healed in a day, the dead raised. These things are not done by charlatans or madmen. Herod was convinced it was John the Baptist returned from the grave.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "believes_resurrection": {
-    "content": "He believed — yes, Herod believed in resurrection. When the first whispers of the empty tomb reached Judea, he asked his own servants, \"Did the Nazarene really rise from the dead as He said?\" And I, watching his hands tremble, knew that he feared the answer would be yes.\n# UNLOCK_EVIDENCE: evidence_messianic_sign_claim",
+    "content": "He believed — yes, Herod believed in resurrection. When the first whispers of the empty tomb reached Judea, he asked his own servants, \"Did the Nazarene really rise from the dead as He said?\" And I, watching his hands tremble, knew that he feared the answer would be yes.",
     "choices": [
       {
         "text": "The hands that trembled.",
-        "destination": "trembling_hands"
+        "destination": "trembling_hands",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "What did that mean for the priests?",
-        "destination": "dawn_breaks_final"
+        "destination": "dawn_breaks_final",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "He believed — yes, Herod believed in resurrection. When the first whispers of the empty tomb reached Judea, he asked his own servants, \"Did the Nazarene really rise from the dead as He said?\" And I, watching his hands tremble, knew that he feared the answer would be yes.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -68,11 +162,27 @@
     "choices": [
       {
         "text": "The golden torque.",
-        "destination": "golden_torque"
+        "destination": "golden_torque",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The priestly title.",
-        "destination": "dawn_breaks_final"
+        "destination": "dawn_breaks_final",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The hands that trembled were not idle. I watched them clutch at the golden torque that always sat at his throat — the one the priests had given him after Pilate's predecessor had removed the sacred vestments. \"Keep this,\" they had said, \"and the people will respect you as a priest-king.\" He never took it off. Not even in the bath. Not even when he sent for his brother Philip's wife.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -81,11 +191,27 @@
     "choices": [
       {
         "text": "The alliance formed.",
-        "destination": "priestly_alliance"
+        "destination": "priestly_alliance",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The irony was bitter.",
-        "destination": "dawn_breaks_final"
+        "destination": "dawn_breaks_final",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The golden torque — inscribed with the tetragrammaton itself — was a symbol the high priest had reluctantly bestowed. \"We must deal with this Nazarene,\" the old man had said, \"for the people follow Him more than they follow us.\" Herod took the torque as a promise that the Sanhedrin would help him if this Jesus threatened his throne. Instead, the Sanhedrin became his unlikeliest allies.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -94,11 +220,27 @@
     "choices": [
       {
         "text": "The desire was curiosity.",
-        "destination": "curious_desire"
+        "destination": "curious_desire",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The preparation was false.",
-        "destination": "dawn_breaks_final"
+        "destination": "dawn_breaks_final",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The alliance formed — Herod wanted to keep his throne; the priests wanted to keep their power; Jesus was a threat to both. Yet when Pilate brought Jesus to Herod's door, expecting Herod to help suppress a potential uprising, Herod was delighted — not to suppress, but to watch. \"At length for a long time I have desired to see Thee,\" he said, \"and I am here prepared to see Thee.\"",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -107,11 +249,27 @@
     "choices": [
       {
         "text": "Jesus saw the heart.",
-        "destination": "jesus_saw"
+        "destination": "jesus_saw",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The silence that answered.",
-        "destination": "dawn_breaks_final"
+        "destination": "dawn_breaks_final",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The desire was curiosity, not devotion. Herod wanted to see — to witness — to consume. Like a vulture circling above a carcass, he circled above the truth waiting to be told. Luke records this with devastating precision: the tetrarch \"desired to see him.\" Not to hear him. Not to learn from him. Just to see.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -120,24 +278,56 @@
     "choices": [
       {
         "text": "The prophecy fulfilled.",
-        "destination": "prophecy_fulfilled"
+        "destination": "prophecy_fulfilled",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The weight of silence.",
-        "destination": "dawn_breaks_final"
+        "destination": "dawn_breaks_final",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Jesus saw the heart — the curiosity that wanted a spectacle, the fear that wanted a sign, the pride that wanted to be satisfied. And Jesus spoke no word. Isaiah had written it: \"He was oppressed, and He also was afflicted; He opened not His mouth.\" The lamb before the shearers, silent and led.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "prophecy_fulfilled": {
-    "content": "The prophecy fulfilled in that room — Isaiah 53:7 — the silent lamb. Not a word of defense, not a word of appeal, not even a word to Herod's face. Just the weight of knowing that every prophecy ever written about His suffering was being enacted by the very man the priests had told to keep his throne.\n# UNLOCK_EVIDENCE: evidence_pilate_pact",
+    "content": "The prophecy fulfilled in that room — Isaiah 53:7 — the silent lamb. Not a word of defense, not a word of appeal, not even a word to Herod's face. Just the weight of knowing that every prophecy ever written about His suffering was being enacted by the very man the priests had told to keep his throne.",
     "choices": [
       {
         "text": "The pact between rulers.",
-        "destination": "rulers_pact"
+        "destination": "rulers_pact",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The cost of silence.",
-        "destination": "dawn_breaks_final"
+        "destination": "dawn_breaks_final",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The prophecy fulfilled in that room — Isaiah 53:7 — the silent lamb. Not a word of defense, not a word of appeal, not even a word to Herod's face. Just the weight of knowing that every prophecy ever written about His suffering was being enacted by the very man the priests had told to keep his throne.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -146,11 +336,27 @@
     "choices": [
       {
         "text": "The psalm spoken.",
-        "destination": "psalm_spoken"
+        "destination": "psalm_spoken",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The friendship forged.",
-        "destination": "dawn_breaks_final"
+        "destination": "dawn_breaks_final",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The pact between rulers — Herod and Pilate, former enemies, reconciled over the body of one man. They had been at enmity — Pilate had once had Galileans slaughtered in the Temple courts, a violation of Jewish law that would have warranted death. Yet that morning, they \"were made friends together.\" Psalm 2 fulfilled — \"The kings of the earth set themselves, and the rulers take counsel together.\" They did not know they were the psalm's text.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -159,11 +365,27 @@
     "choices": [
       {
         "text": "The earth remembers.",
-        "destination": "earth_remembers"
+        "destination": "earth_remembers",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The judgment begins.",
-        "destination": "dawn_breaks_final"
+        "destination": "dawn_breaks_final",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The psalm spoken — by their own actions, written long ago by David, who by the Spirit had seen the day of Christ. \"Again, the LORD brings to the one who rules them all... you will be saved from deceit.\" They were ruling the world that day, and they were being ruled by it. The irony was not lost on the earth beneath their feet — it remembered the blood of Abel, and it was recording the blood of Christ.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -172,11 +394,27 @@
     "choices": [
       {
         "text": "The testimony recorded.",
-        "destination": "testimony_recorded"
+        "destination": "testimony_recorded",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The stones cry out.",
-        "destination": "dawn_breaks_final"
+        "destination": "dawn_breaks_final",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The earth remembers all. Abel's blood cried out from the ground; Christ's blood speaks better things — \"and yet You would not kill me, a sinless man.\" The soil of Pilate's judgment hall, the stones of Herod's palace, the dust of the Via Dolorosa — they all remember. And when Lazarus walked out of his tomb, when the women ran from the garden, when the soldiers were paid to stay silent — the earth held their testimony.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -185,11 +423,27 @@
     "choices": [
       {
         "text": "Joanna's testimony.",
-        "destination": "joanna_testimony"
+        "destination": "joanna_testimony",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The disbelief.",
-        "destination": "dawn_breaks_final"
+        "destination": "dawn_breaks_final",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The testimony recorded — by the women, by the soldiers, by the earth itself. Joanna — my own wife — was among the first to see and to tell. Luke, the physician who traveled with Paul, recorded her name beside Mary Magdalene's, saying they were \"the eight women\" who brought word to the disciples. They were not believed.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -198,11 +452,27 @@
     "choices": [
       {
         "text": "The healing first.",
-        "destination": "healing_first"
+        "destination": "healing_first",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The empty tomb.",
-        "destination": "dawn_breaks_final"
+        "destination": "dawn_breaks_final",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Joanna's testimony — she who had been healed by the Nazarene years before, who had hosted the court's elite for years, who had seen the power of God in the flesh — she brought the news of the empty tomb to those who had feasted at Herod's table. The irony was exquisite.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -211,11 +481,27 @@
     "choices": [
       {
         "text": "The power was divine.",
-        "destination": "divine_power"
+        "destination": "divine_power",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The physicians knew it.",
-        "destination": "dawn_breaks_final"
+        "destination": "dawn_breaks_final",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The healing first — years before. A woman of the household — not my wife, but her servant, a girl of seventeen — suffered from an issue of blood that no physician could touch. The palace physicians had given up, had recommended a trip to Asclepius's temple. Joanna had taken the girl to this Jesus of Nazareth, and in five minutes' touch — \"If I may but touch the hem of His garment, I shall be whole\" — the girl was healed. The physicians had their recipes, the priests had their sacrifices. The Nazarene had something they did not: power over the body that broke.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -224,11 +510,27 @@
     "choices": [
       {
         "text": "The mockery began.",
-        "destination": "mockery_began"
+        "destination": "mockery_began",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The robe was thrown.",
-        "destination": "dawn_breaks_final"
+        "destination": "dawn_breaks_final",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The power was divine. Even the court physicians — hardened men who had dissected bodies and seen the body's weakness firsthand — acknowledged it. They did not believe in Messiahs; they believed in results. And the results were undeniable. Herod — who had once wanted John the Baptist's head — now found himself wanting to see this Jesus, not to arrest Him, not to question Him, but to witness.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -236,12 +538,20 @@
     "content": "The mockery began — Herod's soldiers dressed Him in a white robe, crowned Him with reeds, and mock-bowed. \"Hail, King of the Jews!\" they called out, and Herod laughed — but I saw his hands shake as he did. The same hands that had once demanded John's head in a silver charger now held out his own trembling fingers to receive the Nazarene.",
     "choices": [
       {
-        "text": "The return to Pilate.",
-        "destination": "final_reconciliation"
-      },
+        "text": "Continue.",
+        "destination": "final_reconciliation",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "The reconciliation.",
-        "destination": "final_reconciliation"
+        "text": "The mockery began — Herod's soldiers dressed Him in a white robe, crowned Him with reeds, and mock-bowed. \"Hail, King of the Jews!\" they called out, and Herod laughed — but I saw his hands shake as he did. The same hands that had once demanded John's head in a silver charger now held out his own trembling fingers to receive the Nazarene.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -250,11 +560,27 @@
     "choices": [
       {
         "text": "The Scriptures unheeded.",
-        "destination": "scriptures_unheeded"
+        "destination": "scriptures_unheeded",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The victory was hidden.",
-        "destination": "dawn_breaks_final"
+        "destination": "dawn_breaks_final",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The reconciliation — final and complete. \"The same day Pilate and Herod were made friends together.\" Two rulers, former enemies, embraced over a dead man's body. What a strange gospel the world had produced — one where enemies kissed over the tomb of their victim, and the victim was, in fact, alive. The Scriptures had prepared the way for this moment, and neither ruler had read a single line of them.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -263,11 +589,27 @@
     "choices": [
       {
         "text": "The writers did not know.",
-        "destination": "writers_unaware"
+        "destination": "writers_unaware",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The field of blood awaits.",
-        "destination": "dawn_breaks_final"
+        "destination": "dawn_breaks_final",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The Scriptures were unheeded — by the rulers, by the priests, by the soldiers who gambled for His clothes. Yet they were fulfilled to the letter. The price of betrayal — the field of blood, the thrones of men, the crown of thorns, the inscription over the cross — \"This is the King of the Jews.\" Written, yes — but the writers did not know what they wrote.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -275,12 +617,20 @@
     "content": "The writers did not know — they thought they were writing letters to their wives, recording tax receipts, noting the price of a slave's life. But their quills moved in the hand of the Eternal Scribe, and every stroke of the pen was a thread in the tapestry of redemption. The thirty pieces of silver that Judas threw down — I heard the clink myself — was caught and counted by the priests.",
     "choices": [
       {
-        "text": "The silver was counted.",
-        "destination": "testimony_endures_final"
-      },
+        "text": "Continue.",
+        "destination": "testimony_endures_final",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "The testimony endures.",
-        "destination": "testimony_endures_final"
+        "text": "The writers did not know — they thought they were writing letters to their wives, recording tax receipts, noting the price of a slave's life. But their quills moved in the hand of the Eternal Scribe, and every stroke of the pen was a thread in the tapestry of redemption. The thirty pieces of silver that Judas threw down — I heard the clink myself — was caught and counted by the priests.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -288,17 +638,45 @@
     "content": "The testimony endures. Joanna is out there now — beyond the empty tomb, beyond the mountains of Galilee, beyond the reach of Herod's guards. Her name is written in the Gospel of Luke, in the fourteenth chapter, beside Mary Magdalene. And the field I bought with the price of betrayal — it grows.",
     "choices": [
       {
-        "text": "The field is testimony.",
-        "destination": "dawn_breaks_final"
-      },
+        "text": "Continue.",
+        "destination": "dawn_breaks_final",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "The dawn breaks still.",
-        "destination": "dawn_breaks_final"
+        "text": "The testimony endures. Joanna is out there now — beyond the empty tomb, beyond the mountains of Galilee, beyond the reach of Herod's guards. Her name is written in the Gospel of Luke, in the fourteenth chapter, beside Mary Magdalene. And the field I bought with the price of betrayal — it grows.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "dawn_breaks_final": {
     "content": "The dawn breaks still — and in that dawn, my wife's testimony joins with a hundred others. The earth remembers. The stones cry out. And the King whom Herod mocked — the King whose silence was louder than all the noise of the palace — now reigns.",
-    "choices": []
+    "choices": [],
+    "steps": [
+      {
+        "text": "The dawn breaks still — and in that dawn, my wife's testimony joins with a hundred others. The earth remembers. The stones cry out. And the King whom Herod mocked — the King whose silence was louder than all the noise of the palace — now reigns.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "divert": "DONE",
+        "condition": {
+          "all": []
+        }
+      }
+    ]
+  },
+  "_meta": {
+    "schema": 2,
+    "entry": "start",
+    "variables": {},
+    "revision": "85075da5c8031321"
   }
 }

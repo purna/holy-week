@@ -4,45 +4,125 @@
     "choices": [
       {
         "text": "Tell me about the woman at the dinner.",
-        "destination": "dinner"
+        "destination": "dinner",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "What happened at the Temple? Did He cite Scripture?",
-        "destination": "temple_scripture"
+        "destination": "temple_scripture",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "You questioned His authority earlier.",
-        "destination": "authority_question"
+        "destination": "authority_question",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "tag": "UNLOCK_EVIDENCE: witness_account",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "tag": "UNLOCK_EVIDENCE: crowd_testimony",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "tag": "UNLOCK_EVIDENCE: prophecy_scroll",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "tag": "UNLOCK_EVIDENCE: witness_scroll",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "I am Simon. A Pharisee of the council. A keeper of the law. On the Sabbath, my peers and I questioned the Teacher about His authority. Before that, He visited my home — and a woman anointed His feet. I invited Him, but I did not invite her. I questioned His worthiness, but I did not question my own.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "dinner": {
-    "content": "# UNLOCK_EVIDENCE: witness_account\n# UNLOCK_EVIDENCE: crowd_testimony\nShe entered uninvited. A woman of the city — they whispered. She carried an alabaster jar of ointment and stood weeping at His feet. I watched from my couch. I noted it immediately. \"If this man were a prophet,\" I thought, \"he would know who is touching his body.\" I composed myself, but inwardly I was satisfied. My suspicion was confirmed.",
+    "content": "She entered uninvited. A woman of the city — they whispered. She carried an alabaster jar of ointment and stood weeping at His feet. I watched from my couch. I noted it immediately. \"If this man were a prophet,\" I thought, \"he would know who is touching his body.\" I composed myself, but inwardly I was satisfied. My suspicion was confirmed.",
     "choices": [
       {
         "text": "She anointed His feet.",
-        "destination": "anointing"
+        "destination": "anointing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "What did you think about her tears?",
-        "destination": "tears"
+        "destination": "tears",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "She entered uninvited. A woman of the city — they whispered. She carried an alabaster jar of ointment and stood weeping at His feet. I watched from my couch. I noted it immediately. \"If this man were a prophet,\" I thought, \"he would know who is touching his body.\" I composed myself, but inwardly I was satisfied. My suspicion was confirmed.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "temple_scripture": {
-    "content": "# UNLOCK_EVIDENCE: prophecy_scroll\n# UNLOCK_EVIDENCE: crowd_testimony\nAt the Temple, He did not answer our authority question directly. He spoke of John's baptism — divine or human? We could not respond without condemning ourselves. But in the Upper Room — weeks later — He said: \"The hour has come for the Son of Man to be glorified.\" And He spoke of the grain of wheat falling into the ground. Some believed. Others did not.",
+    "content": "At the Temple, He did not answer our authority question directly. He spoke of John's baptism — divine or human? We could not respond without condemning ourselves. But in the Upper Room — weeks later — He said: \"The hour has come for the Son of Man to be glorified.\" And He spoke of the grain of wheat falling into the ground. Some believed. Others did not.",
     "choices": [
       {
         "text": "You recognized the divine claim.",
-        "destination": "divine_claim"
+        "destination": "divine_claim",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The crowd split on His words.",
-        "destination": "crowd_split"
+        "destination": "crowd_split",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "At the Temple, He did not answer our authority question directly. He spoke of John's baptism — divine or human? We could not respond without condemning ourselves. But in the Upper Room — weeks later — He said: \"The hour has come for the Son of Man to be glorified.\" And He spoke of the grain of wheat falling into the ground. Some believed. Others did not.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -51,24 +131,48 @@
     "choices": [
       {
         "text": "The trap backfired.",
-        "destination": "trap_backfired"
+        "destination": "trap_backfired",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "You left with nothing to say.",
-        "destination": "silence"
+        "destination": "silence",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The authority question — my colleagues and I approached Him boldly. \"By what authority do you do these things?\" we asked. \"Who gave you this authority?\" He turned it back on us: \"Was John's baptism from heaven or from men?\" We were cornered. Admit John was divine and we admitted Christ's authority. Deny it and the crowd turned against us. So we said we did not know.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "anointing": {
-    "content": "# UNLOCK_EVIDENCE: crowd_testimony\nThe ointment was expensive — a pound of spikenard, worth a month's wages. She poured it on His feet and wiped them with her hair. My guests muttered about waste. \"This could have been sold and given to the poor,\" they said. But He — He defended her. He said she had prepared Him for burial. He called her love greater than my criticism.",
+    "content": "The ointment was expensive — a pound of spikenard, worth a month's wages. She poured it on His feet and wiped them with her hair. My guests muttered about waste. \"This could have been sold and given to the poor,\" they said. But He — He defended her. He said she had prepared Him for burial. He called her love greater than my criticism.",
     "choices": [
       {
-        "text": "Love versus waste.",
-        "destination": "love_greater"
-      },
+        "text": "Continue.",
+        "destination": "love_greater",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "He called her love greater.",
-        "destination": "love_greater"
+        "text": "The ointment was expensive — a pound of spikenard, worth a month's wages. She poured it on His feet and wiped them with her hair. My guests muttered about waste. \"This could have been sold and given to the poor,\" they said. But He — He defended her. He said she had prepared Him for burial. He called her love greater than my criticism.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -76,12 +180,20 @@
     "content": "Her tears filled His feet and she dried them with her hair. I noted her lack of propriety — no proper veil, no decent covering, her hair unbound in public. A respectable woman covers her head in the presence of authority. She showed no such respect — for anyone except Him. And her tears were not tears of shame. They were tears of devotion.",
     "choices": [
       {
-        "text": "She had nothing to be ashamed of.",
-        "destination": "love_greater"
-      },
+        "text": "Continue.",
+        "destination": "love_greater",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "Her tears cleansed her sins.",
-        "destination": "love_greater"
+        "text": "Her tears filled His feet and she dried them with her hair. I noted her lack of propriety — no proper veil, no decent covering, her hair unbound in public. A respectable woman covers her head in the presence of authority. She showed no such respect — for anyone except Him. And her tears were not tears of shame. They were tears of devotion.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -90,11 +202,27 @@
     "choices": [
       {
         "text": "You were troubled.",
-        "destination": "divine_claim_troubled"
+        "destination": "divine_claim_troubled",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The authority was unprecedented.",
-        "destination": "unprecedented"
+        "destination": "unprecedented",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The divine claim was irrefutable. \"The hour has come.\" Not \"I hope.\" Not \"I intend.\" But \"has come.\" As if the timing were not His to negotiate but His to declare. I am a Pharisee — I know the law, the Scriptures, the precedents. But I did not know what to make of a man who spoke as if the Father spoke through Him.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -102,25 +230,49 @@
     "content": "The crowd was split that evening. Some clung to His words about the grain of wheat — the idea that a seed must fall into the ground and die. Others recoiled. When He said, \"If anyone comes to Me and does not hate his own family,\" they called it harsh. When He said, \"I have not come to bring peace,\" they called it divisive. I watched the religious leaders among them turn away.",
     "choices": [
       {
-        "text": "Division was the result.",
-        "destination": "closing"
-      },
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "You recognized the cost.",
-        "destination": "closing"
+        "text": "The crowd was split that evening. Some clung to His words about the grain of wheat — the idea that a seed must fall into the ground and die. Others recoiled. When He said, \"If anyone comes to Me and does not hate his own family,\" they called it harsh. When He said, \"I have not come to bring peace,\" they called it divisive. I watched the religious leaders among them turn away.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "trap_backfired": {
-    "content": "The trap backfired completely. We expected evasion. We got a mirror. We asked about authority, and He asked about John. We sought to ensnare Him in His words, and instead, He ensnared us in our own. The people were with Him — \"Blessed is the King who comes in the name of the Lord.\" And we... we had nothing to say.\n# UNLOCK_EVIDENCE: witness_account",
+    "content": "The trap backfired completely. We expected evasion. We got a mirror. We asked about authority, and He asked about John. We sought to ensnare Him in His words, and instead, He ensnared us in our own. The people were with Him — \"Blessed is the King who comes in the name of the Lord.\" And we... we had nothing to say.",
     "choices": [
       {
         "text": "You understood your defeat.",
-        "destination": "defeat_understand"
+        "destination": "defeat_understand",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "The defeat was public.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The trap backfired completely. We expected evasion. We got a mirror. We asked about authority, and He asked about John. We sought to ensnare Him in His words, and instead, He ensnared us in our own. The people were with Him — \"Blessed is the King who comes in the name of the Lord.\" And we... we had nothing to say.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -129,11 +281,27 @@
     "choices": [
       {
         "text": "You were humbled.",
-        "destination": "humbled"
+        "destination": "humbled",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The parable of the debtors.",
-        "destination": "debtors_parable"
+        "destination": "debtors_parable",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "His words echoed in the hall long after she left. \"Her sins, which are many, are forgiven — for she loved much. But to whom little is forgiven, the same loveth little.\" I had trusted in my ceremonial cleansing, my careful observance, my righteous standing before God. But He spoke of a love that forgave more than it judged. Of a mercy that exceeded the law. Of a grace that surpassed my righteousness.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -142,11 +310,27 @@
     "choices": [
       {
         "text": "You questioned your certainty.",
-        "destination": "humbled"
+        "destination": "humbled",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "The words were authoritative.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Troubled, yes. Not because I doubted Scripture — I knew it intimately. But because this man handled it as no rabbi had. No debate. No citation of authorities. No careful parsing of texts. He spoke as if the words came from His own mouth — not from Moses or the prophets. And the crowd accepted it.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -154,25 +338,49 @@
     "content": "Unprecedented authority. No rabbi taught like this. No sage spoke as if the divine council debated in His presence. When He declared, \"Your faith has saved you; go in peace,\" it was as if He bore the burden of sin and the power of absolution. I had spent my life studying the Law — and this man claimed to fulfill it, not explain it.",
     "choices": [
       {
-        "text": "Fulfillment, not exposition.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "You were convicted.",
-        "destination": "humbled"
+        "destination": "humbled",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Unprecedented authority. No rabbi taught like this. No sage spoke as if the divine council debated in His presence. When He declared, \"Your faith has saved you; go in peace,\" it was as if He bore the burden of sin and the power of absolution. I had spent my life studying the Law — and this man claimed to fulfill it, not explain it.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "silence": {
-    "content": "Silence. We had come with scrolls in hand, ready to record His contradiction. Instead, He handed us a question we could not answer. \"We do not know,\" we said. And the crowd — the crowd that had gathered — they understood. They knew we had been outmaneuvered not by rhetoric, but by truth.\n# UNLOCK_EVIDENCE: witness_scroll",
+    "content": "Silence. We had come with scrolls in hand, ready to record His contradiction. Instead, He handed us a question we could not answer. \"We do not know,\" we said. And the crowd — the crowd that had gathered — they understood. They knew we had been outmaneuvered not by rhetoric, but by truth.",
     "choices": [
       {
-        "text": "The admission was recorded.",
-        "destination": "closing"
-      },
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "You left with no answer.",
-        "destination": "closing"
+        "text": "Silence. We had come with scrolls in hand, ready to record His contradiction. Instead, He handed us a question we could not answer. \"We do not know,\" we said. And the crowd — the crowd that had gathered — they understood. They knew we had been outmaneuvered not by rhetoric, but by truth.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -181,24 +389,56 @@
     "choices": [
       {
         "text": "You went home thoughtful.",
-        "destination": "humbled"
+        "destination": "humbled",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "The victory was effortless.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "I understood the defeat instantly. But it was not the defeat of an enemy — it was the exposure of my own inadequacy. I had prepared questions. He gave answers that required no preparation. I had studied the Law. He lived it without study. I had observed the rules. He broke them with authority.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "humbled": {
-    "content": "Humbled. The parable of the debtors echoed in my mind: \"A certain creditor had two debtors. One owed ten thousand. The other fifty. Neither could pay. The creditor forgave both. Which loves him more?\" I had been forgiven nothing — because I had acknowledged no debt. I was the one who needed the physician, not the one who diagnosed the disease.\n# UNLOCK_EVIDENCE: witness_account",
+    "content": "Humbled. The parable of the debtors echoed in my mind: \"A certain creditor had two debtors. One owed ten thousand. The other fifty. Neither could pay. The creditor forgave both. Which loves him more?\" I had been forgiven nothing — because I had acknowledged no debt. I was the one who needed the physician, not the one who diagnosed the disease.",
     "choices": [
       {
         "text": "The parable struck home.",
-        "destination": "debtors_parable"
+        "destination": "debtors_parable",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "You saw your reflection.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Humbled. The parable of the debtors echoed in my mind: \"A certain creditor had two debtors. One owed ten thousand. The other fifty. Neither could pay. The creditor forgave both. Which loves him more?\" I had been forgiven nothing — because I had acknowledged no debt. I was the one who needed the physician, not the one who diagnosed the disease.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -206,17 +446,45 @@
     "content": "The parable of the debtors cut deeper than any blade. \"To whom little is forgiven, the same loveth little.\" I thought I was rich in righteousness. But I was bankrupt. The woman — the sinful woman — she had loved much. And I — I had loved little. Her tears cleansed her sins. My pride cleansed nothing.",
     "choices": [
       {
-        "text": "The reflection was painful.",
-        "destination": "closing"
-      },
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "You left a changed man.",
-        "destination": "closing"
+        "text": "The parable of the debtors cut deeper than any blade. \"To whom little is forgiven, the same loveth little.\" I thought I was rich in righteousness. But I was bankrupt. The woman — the sinful woman — she had loved much. And I — I had loved little. Her tears cleansed her sins. My pride cleansed nothing.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "closing": {
-    "content": "# UNLOCK_EVIDENCE: witness_account\n# UNLOCK_EVIDENCE: prophecy_scroll\nI am Simon the Pharisee. I invited a prophet to dinner and discovered I was the one being judged. I questioned a teacher about His authority and found my own authority was nothing. The woman who anointed Him — she entered my home uninvited but left as a guest of honor. And I — I left humbled, holding scrolls that recorded not just His words but my own exposed inadequacy before the divine.",
-    "choices": []
+    "content": "I am Simon the Pharisee. I invited a prophet to dinner and discovered I was the one being judged. I questioned a teacher about His authority and found my own authority was nothing. The woman who anointed Him — she entered my home uninvited but left as a guest of honor. And I — I left humbled, holding scrolls that recorded not just His words but my own exposed inadequacy before the divine.",
+    "choices": [],
+    "steps": [
+      {
+        "text": "I am Simon the Pharisee. I invited a prophet to dinner and discovered I was the one being judged. I questioned a teacher about His authority and found my own authority was nothing. The woman who anointed Him — she entered my home uninvited but left as a guest of honor. And I — I left humbled, holding scrolls that recorded not just His words but my own exposed inadequacy before the divine.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "divert": "DONE",
+        "condition": {
+          "all": []
+        }
+      }
+    ]
+  },
+  "_meta": {
+    "schema": 2,
+    "entry": "start",
+    "variables": {},
+    "revision": "99c17b875748c31d"
   }
 }

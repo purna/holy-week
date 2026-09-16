@@ -25,8 +25,8 @@ But they scarcely spoke of the healing.
 
 Their questions were all about the one who performed it.
 
-* [What did the elders ask?] -> elders
-* [What did the healed man say?] -> testimony
++ [What did the elders ask?] -> elders
++ [What did the healed man say?] -> testimony
 
 === elders ===
 They pressed him again and again.
@@ -47,8 +47,8 @@ According to their interpretation of the Law, no work was to be done on that day
 
 The miracle stood before them, yet they argued over whether it should have happened at all.
 
-* [Were they angry?] -> anger
-* [What happened next?] -> testimony
++ [Were they angry?] -> anger
++ [What happened next?] -> testimony
 
 === anger ===
 Angry? Some were.
@@ -59,7 +59,7 @@ A miracle creates a problem for those who have already decided what is possible 
 
 The more the healed man spoke, the more divided they became.
 
-* [Go on.] -> testimony
++ [Go on.] -> testimony
 
 === testimony ===
 The man never changed his story.
@@ -76,7 +76,7 @@ Yet instead of celebrating, the Pharisees called for further questioning. Some d
 
 The evidence stood before them, but many refused to accept what it meant.
 
-* [Why wouldn't they believe him?] -> blindman
++ [Why wouldn't they believe him?] -> blindman
 
 === blindman ===
 That is the question, isn't it?
@@ -93,8 +93,7 @@ What more proof could they ask for?
 
 And yet some hearts are harder to open than blind eyes.
 
-* [What happened to Jesus?] -> closing
-* [Go on.] -> closing
++ [Finish the interview.] -> closing
 
 === closing ===
 The testimony ends there.

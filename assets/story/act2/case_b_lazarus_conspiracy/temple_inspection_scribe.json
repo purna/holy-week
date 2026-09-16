@@ -4,15 +4,35 @@
     "choices": [
       {
         "text": "What does your data tell you?",
-        "destination": "data_analysis"
+        "destination": "data_analysis",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Are you tracking the man, Lazarus?",
-        "destination": "tracking_lazarus"
+        "destination": "tracking_lazarus",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "What is the official Temple response?",
-        "destination": "official_response"
+        "destination": "official_response",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "My ledgers track movement, not miracles. The traffic flow between Bethany and the Eastern Gate has exceeded standard Passover deviation by over 400%. That is a data point. What do you require?",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -21,7 +41,19 @@
     "choices": [
       {
         "text": "So it's just a numbers problem to you?",
-        "destination": "numbers_problem"
+        "destination": "numbers_problem",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "It tells me an unsanctioned event in Bethany has created a significant public order challenge. We have documented a surge in foot traffic, a rise in seditious chatter, and a statistical probability of civil unrest. My job is to report the numbers, not interpret the cause.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -30,39 +62,98 @@
     "choices": [
       {
         "text": "You call a living man an 'asset'?",
-        "destination": "asset_perspective"
+        "destination": "asset_perspective",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The 'Bethany asset' is a focal point for this anomaly. His public appearances correlate directly with spikes in crowd density. From a security standpoint, he is a catalyst for instability. Whether he was dead or simply... unavailable... is irrelevant to my report.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "official_response": {
     "content": "The council acts on verified intelligence. My reports are one part of that. The data suggests a need for proactive containment to mitigate risk to public order and Temple security. Final policy is above my pay grade.",
-    "choices": [
+    "choices": [],
+    "steps": [
       {
-        "text": "closing",
-        "destination": "closing"
+        "text": "The council acts on verified intelligence. My reports are one part of that. The data suggests a need for proactive containment to mitigate risk to public order and Temple security. Final policy is above my pay grade.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "divert": "closing",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "numbers_problem": {
     "content": "Everything is a numbers problem. Passion is unpredictable. Data is not. When the numbers exceed a certain threshold, protocols are enacted. It is simple risk management.",
-    "choices": [
+    "choices": [],
+    "steps": [
       {
-        "text": "closing",
-        "destination": "closing"
+        "text": "Everything is a numbers problem. Passion is unpredictable. Data is not. When the numbers exceed a certain threshold, protocols are enacted. It is simple risk management.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "divert": "closing",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "asset_perspective": {
     "content": "He is an element in a complex security equation. His status generates crowds that threaten the peace. That makes him an asset to be managed or a liability to be contained.",
-    "choices": [
+    "choices": [],
+    "steps": [
       {
-        "text": "closing",
-        "destination": "closing"
+        "text": "He is an element in a complex security equation. His status generates crowds that threaten the peace. That makes him an asset to be managed or a liability to be contained.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "divert": "closing",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "closing": {
     "content": "The data speaks for itself. I have logged your inquiry.",
-    "choices": []
+    "choices": [],
+    "steps": [
+      {
+        "text": "The data speaks for itself. I have logged your inquiry.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "divert": "DONE",
+        "condition": {
+          "all": []
+        }
+      }
+    ]
+  },
+  "_meta": {
+    "schema": 2,
+    "entry": "start",
+    "variables": {},
+    "revision": "e1da2a7289056c60"
   }
 }

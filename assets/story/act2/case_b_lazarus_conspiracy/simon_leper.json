@@ -4,11 +4,27 @@
     "choices": [
       {
         "text": "Tell me about the anointing.",
-        "destination": "anointing"
+        "destination": "anointing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Lazarus is here as well?",
-        "destination": "lazarus"
+        "destination": "lazarus",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "My house was a place of exclusion once. The Law declared me unclean. Now, it is a place where the Son of God eats bread. Lazarus, another man who has defeated a tomb, sits at my table. And Mary... she has just filled the air with the scent of a king's burial.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -17,16 +33,37 @@
     "choices": [
       {
         "text": "How did the disciples react?",
-        "destination": "disciples_reaction"
+        "destination": "disciples_reaction",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The disciples saw the cost. I saw the courage. To bring something so valuable and break it for Him... it was an act of total surrender. The Teacher said it was to prepare Him for burial. The mood in the room changed after He said that.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "lazarus": {
     "content": "He sits there, eating and breathing. A living miracle. He is the reason the chief priests are so afraid. They cannot deny a man who was dead for four days. So they plot to kill him again. My house is full of life, and the city is full of death warrants.",
-    "choices": [
+    "choices": [],
+    "steps": [
       {
-        "text": "closing",
-        "destination": "closing"
+        "text": "He sits there, eating and breathing. A living miracle. He is the reason the chief priests are so afraid. They cannot deny a man who was dead for four days. So they plot to kill him again. My house is full of life, and the city is full of death warrants.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "divert": "closing",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -35,21 +72,62 @@
     "choices": [
       {
         "text": "And Jesus?",
-        "destination": "jesus_reaction"
+        "destination": "jesus_reaction",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Judas was angry. He spoke of the poor, but his hands are always near the money bag. The others were quiet, but you could see them doing the math in their heads. They do not yet understand the economy of His kingdom.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "jesus_reaction": {
     "content": "He looked at Mary with such kindness. He honored her gift above all their objections. He saw her heart, not the price of the perfume. In my own house, I saw a man who was once unclean be honored, a man who was dead be welcomed, and a woman's love be treasured. This is the kingdom He speaks of.",
-    "choices": [
+    "choices": [],
+    "steps": [
       {
-        "text": "closing",
-        "destination": "closing"
+        "text": "He looked at Mary with such kindness. He honored her gift above all their objections. He saw her heart, not the price of the perfume. In my own house, I saw a man who was once unclean be honored, a man who was dead be welcomed, and a woman's love be treasured. This is the kingdom He speaks of.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "divert": "closing",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "closing": {
     "content": "They can watch my house. They can send their spies. But what happened in here tonight... it cannot be undone.",
-    "choices": []
+    "choices": [],
+    "steps": [
+      {
+        "text": "They can watch my house. They can send their spies. But what happened in here tonight... it cannot be undone.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "divert": "DONE",
+        "condition": {
+          "all": []
+        }
+      }
+    ]
+  },
+  "_meta": {
+    "schema": 2,
+    "entry": "start",
+    "variables": {},
+    "revision": "3b500b405bded01a"
   }
 }

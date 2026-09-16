@@ -62,40 +62,37 @@
 -> start
 
 === start ===
+# UNLOCK_EVIDENCE: severed_ear_wrap
 I am Simon Peter. I followed Him for three years. I healed others, asked impossible questions, and watched Him do things no teacher should be able to do. Then the rooster crowed. I denied Him three times and left. I am still here, which is either resilience or foolishness. You decide.
 
-* [Tell me about the sword.] -> sword
-* [What happened with the donkey?] -> closing
-* [The denials.] -> denials
++ [Tell me about the sword.] -> sword
++ [Finish the interview.] -> closing
++ [The denials.] -> denials
 
 === sword ===
-# UNLOCK_EVIDENCE: severed_ear_wrap
 It happened so fast. Judas appeared with torches and weapons. The moment I saw them close in on Him, something snapped. I drew my sword — the one I carried since the day He called me to leave my nets. My blade found its mark, and the ear of the high priest's servant fell to the ground.
 
 Jesus turned. Not to fight. Not to flee. He looked at me — at all of us — and said one word. "Put your sword back." Then He knelt and touched the wound. Warmth flooded through the garden, and I felt the ear whole again.
 
-* [What else did He say?] -> sword_cont
-* [That silenced you.] -> sword_cont
++ [Continue.] -> sword_cont
 
 === sword_cont ===
 "Shall I not drink the cup the Father has given me?" He asked. The arrest was not happening to Him. He was orchestrating it. He had counted the cost. He had drunk the cup from the beginning, and He would drink it to the last drop.
 
 The soldiers stepped forward. I could have cut them down. There were twelve of us against six hundred. But the words He spoke — "I am he" — and they fell back. Not from our swords. From His voice.
 
-* [You could have fought.] -> sword
-* [That is not power you expected.] -> power
++ [You could have fought.] -> sword
++ [That is not power you expected.] -> power
 
 === power ===
 Power? Yes. The power to command an army to fall. The power to heal a severed ear. The power to let them take Him while protecting every one of us. I had expected to die for my Rabbi. I never expected Him to die for me.
 
-* [Then you ran too.] -> denials
++ [Then you ran too.] -> denials
 
 === denials ===
-# UNLOCK_EVIDENCE: severed_ear_wrap
 Three times before the rooster crowed twice. "I do not know the man." "I do not know him." Then cursing and swearing. Each denial carved deeper than the last. But when He turned — "Jesus looked at me" — I saw not anger, but grief. And love. And I ran. I wept. And somehow, I was still following.
 
-* [How did you get here?] -> redemption
-* [Three days later.] -> redemption
++ [Continue.] -> redemption
 
 === redemption ===
 The tomb was empty. The linen wrappings lay in perfect folds. And then He appeared — alive. Not a ghost. Not a vision. A man who had been dead and was now standing in front of me, eating fish and laughing with the others.
@@ -104,7 +101,7 @@ He did not reproach me. He did not say, "You denied me three times." He simply l
 
 I am here because grace is heavier than guilt. Because three denials meet three invitations. Because the Shepherd who was struck became the Shepherd who seeks.
 
-* [What do you do now?] -> closing
++ [Finish the interview.] -> closing
 
 === closing ===
 I write this not to excuse what I did, but to explain what was done for me. The sword I drew in fear is sheathed. The sword He drew in love has not fallen.

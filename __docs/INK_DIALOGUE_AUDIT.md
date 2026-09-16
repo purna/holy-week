@@ -8,20 +8,29 @@ This checks the node-based dialect used by `scripts/ink_to_json.py`, not full In
 
 | Finding | Count |
 | --- | ---: |
+| duplicate | 0 |
+| entry | 0 |
+| json_mismatch | 0 |
+| missing | 0 |
+| mixed_end | 0 |
+| no_exit | 0 |
+| syntax | 0 |
+| tag | 0 |
+| unreachable | 0 |
 
 ## File inventory
 
 | File | Passages | Findings |
 | --- | ---: | ---: |
-| assets/story/act1/case_a_missing_donkey/eleazar_sadducee.ink | 11 | 0 |
-| assets/story/act1/case_a_missing_donkey/excited_child_donkey.ink | 15 | 0 |
-| assets/story/act1/case_a_missing_donkey/galilean_pilgrim.ink | 8 | 0 |
-| assets/story/act1/case_a_missing_donkey/guard_entry.ink | 35 | 0 |
-| assets/story/act1/case_a_missing_donkey/jerusalem_local.ink | 26 | 0 |
-| assets/story/act1/case_a_missing_donkey/john_donkey.ink | 13 | 0 |
-| assets/story/act1/case_a_missing_donkey/nathanael_pharisee_entry.ink | 6 | 0 |
-| assets/story/act1/case_a_missing_donkey/peter_donkey.ink | 9 | 0 |
-| assets/story/act1/case_a_missing_donkey/sadducee_opposition.ink | 7 | 0 |
+| assets/story/act1/case_a_missing_donkey/eleazar_sadducee.ink | 6 | 0 |
+| assets/story/act1/case_a_missing_donkey/excited_child_donkey.ink | 5 | 0 |
+| assets/story/act1/case_a_missing_donkey/galilean_pilgrim.ink | 6 | 0 |
+| assets/story/act1/case_a_missing_donkey/guard_entry.ink | 5 | 0 |
+| assets/story/act1/case_a_missing_donkey/jerusalem_local.ink | 5 | 0 |
+| assets/story/act1/case_a_missing_donkey/john_donkey.ink | 6 | 0 |
+| assets/story/act1/case_a_missing_donkey/nathanael_pharisee_entry.ink | 5 | 0 |
+| assets/story/act1/case_a_missing_donkey/peter_donkey.ink | 6 | 0 |
+| assets/story/act1/case_a_missing_donkey/sadducee_opposition.ink | 4 | 0 |
 | assets/story/act1/case_b_overturned_tables/barabbas_insurgent.ink | 35 | 0 |
 | assets/story/act1/case_b_overturned_tables/corrupt_seller.ink | 6 | 0 |
 | assets/story/act1/case_b_overturned_tables/guard_report.ink | 11 | 0 |
@@ -94,16 +103,16 @@ This checks the node-based dialect used by `scripts/ink_to_json.py`, not full In
 | assets/story/act3/case_e_final_sacrifice/joseph_arimathea_cross.ink | 17 | 0 |
 | assets/story/act3/case_e_final_sacrifice/mary_james_joses.ink | 6 | 0 |
 | assets/story/act3/case_e_final_sacrifice/pashhur.ink | 20 | 0 |
-| assets/story/act3/case_e_final_sacrifice/penitent_thief.ink | 10 | 0 |
-| assets/story/act3/case_e_final_sacrifice/priest_objection_crucifixion.ink | 31 | 0 |
+| assets/story/act3/case_e_final_sacrifice/penitent_thief.ink | 5 | 0 |
+| assets/story/act3/case_e_final_sacrifice/priest_objection_crucifixion.ink | 6 | 0 |
 | assets/story/act3/case_e_final_sacrifice/roman_assessment.ink | 32 | 0 |
 | assets/story/act3/case_e_final_sacrifice/salome_crucifixion.ink | 7 | 0 |
 | assets/story/act3/case_e_final_sacrifice/simon_cyrene.ink | 6 | 0 |
 | assets/story/act3/case_e_final_sacrifice/temple_curtain.ink | 20 | 0 |
 | assets/story/act3/case_e_final_sacrifice/upper_room_prep.ink | 15 | 0 |
 | assets/story/act4/case_a_empty_tomb/execution_soldier.ink | 11 | 0 |
-| assets/story/act4/case_a_empty_tomb/joseph_arimathea.ink | 9 | 0 |
-| assets/story/act4/case_a_empty_tomb/mary_magdalene.ink | 19 | 0 |
+| assets/story/act4/case_a_empty_tomb/joseph_arimathea.ink | 6 | 0 |
+| assets/story/act4/case_a_empty_tomb/mary_magdalene.ink | 9 | 0 |
 | assets/story/act4/case_b_guards_report/caiaphas_roman_inquiry.ink | 35 | 0 |
 | assets/story/act4/case_b_guards_report/herods_servant.ink | 23 | 0 |
 | assets/story/act4/case_b_guards_report/judas_betrayal.ink | 46 | 0 |

@@ -4,20 +4,51 @@
     "choices": [
       {
         "text": "What did he ask?",
-        "destination": "question"
+        "destination": "question",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Why do you remember him?",
-        "destination": "remember"
+        "destination": "remember",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "I am Thomas. I remember faces better than sermons. Some faces stay with a man.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "There was one I still remember. A young ruler. Wealthy. Respected. Sincere.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "He ran to Jesus in the road outside Judea and knelt before Him in the dust.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "remember": {
     "content": "",
-    "choices": [
+    "choices": [],
+    "steps": [
       {
-        "text": "question",
-        "destination": "question"
+        "divert": "question",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -26,7 +57,43 @@
     "choices": [
       {
         "text": "What did he say?",
-        "destination": "commandments"
+        "destination": "commandments",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "He asked, \"Good Teacher, what must I do to inherit eternal life?\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Not a trick. Not a trap.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Most men came looking for an argument. This one came looking for an answer.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Jesus spoke of the commandments.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "The young man listened carefully.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -35,11 +102,51 @@
     "choices": [
       {
         "text": "Was he telling the truth?",
-        "destination": "truth"
+        "destination": "truth",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "What happened next?",
-        "destination": "next"
+        "destination": "next",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Jesus named the commandments: do not murder, do not commit adultery, do not steal, do not bear false witness, honor your father and mother.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "The young ruler nodded.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"All these I have kept since my youth.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "There was no boasting in his voice.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "At least, none that I heard.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -48,7 +155,55 @@
     "choices": [
       {
         "text": "What hard words?",
-        "destination": "next"
+        "destination": "next",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Perhaps.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Many men claim obedience while hiding their failures.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "But Jesus did not challenge his answer.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Instead, He looked at him.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Mark says He loved him.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "That detail has always troubled me.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "The hard words came after the love.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -57,7 +212,31 @@
     "choices": [
       {
         "text": "Why?",
-        "destination": "sorrow"
+        "destination": "sorrow",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Jesus said:",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"One thing you lack. Sell what you possess, give to the poor, and you will have treasure in heaven. Then come, follow Me.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "The road became very quiet.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -66,11 +245,63 @@
     "choices": [
       {
         "text": "Why grieving?",
-        "destination": "why_grieving"
+        "destination": "why_grieving",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Did he leave?",
-        "destination": "leave"
+        "destination": "leave",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Because the young ruler had great wealth.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Everyone expected him to smile.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Instead, his face fell.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "He rose from the ground and walked away grieving.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Not angry.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Not offended.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Grieving.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -79,7 +310,55 @@
     "choices": [
       {
         "text": "Did he leave?",
-        "destination": "leave"
+        "destination": "leave",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Because he had found the answer he asked for.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "It simply cost more than he expected.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Many people want eternal life.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Far fewer want to surrender the thing they trust most.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "For some men it is money.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "For others it is power, reputation, certainty, or comfort.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "The ruler's treasure owned him more than he owned it.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -88,7 +367,55 @@
     "choices": [
       {
         "text": "What did Jesus say afterward?",
-        "destination": "camel"
+        "destination": "camel",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Yes.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "That is why I remember his face.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "I have seen men shout at Jesus.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "I have seen men mock Him.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "I have seen priests rage against Him.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "But sorrow is harder to forget.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "He stood before the Messiah and walked away.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -97,7 +424,49 @@
     "choices": [
       {
         "text": "What did the disciples ask?",
-        "destination": "disciples"
+        "destination": "disciples",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Jesus watched him go and said:",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"How difficult it is for the wealthy to enter the kingdom of God.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Then He said something that startled everyone:",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"It is easier for a camel to pass through the eye of a needle than for a rich man to enter the kingdom of God.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "The disciples exchanged nervous looks.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "If the wealthy and blessed struggled to enter, what hope was there for anyone?",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -106,7 +475,61 @@
     "choices": [
       {
         "text": "Did Peter say anything?",
-        "destination": "peter"
+        "destination": "peter",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "They asked:",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"Then who can be saved?\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "A sensible question.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "If a righteous, wealthy ruler could not do it, who could?",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Jesus answered:",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"With man this is impossible, but with God all things are possible.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "The kingdom is not purchased.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "It is received.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -114,13 +537,147 @@
     "content": "Of course Peter spoke.\nPeter reminded Jesus that we had left everything to follow Him.\nHomes.\nBoats.\nFamilies.\nTrades.\nThe things that once defined us.\nJesus promised that no one who leaves such things for the kingdom would lose their reward.\nGod keeps better accounts than merchants.",
     "choices": [
       {
-        "text": "Thomas, what became of the young ruler?",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Of course Peter spoke.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Peter reminded Jesus that we had left everything to follow Him.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Homes.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Boats.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Families.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Trades.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "The things that once defined us.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Jesus promised that no one who leaves such things for the kingdom would lose their reward.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "God keeps better accounts than merchants.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "closing": {
     "content": "I do not know.\nScripture never tells us.\nPerhaps he kept his wealth.\nPerhaps he later sold it all.\nPerhaps he stood in some distant crowd and listened again.\nI only know this:\nHe came running.\nHe left slowly.\nAnd every time I remember his face, I find myself asking the same question he asked that day.\nWhat am I unwilling to surrender?",
-    "choices": []
+    "choices": [],
+    "steps": [
+      {
+        "text": "I do not know.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Scripture never tells us.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Perhaps he kept his wealth.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Perhaps he later sold it all.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Perhaps he stood in some distant crowd and listened again.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "I only know this:",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "He came running.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "He left slowly.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "And every time I remember his face, I find myself asking the same question he asked that day.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "What am I unwilling to surrender?",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "divert": "DONE",
+        "condition": {
+          "all": []
+        }
+      }
+    ]
+  },
+  "_meta": {
+    "schema": 2,
+    "entry": "start",
+    "variables": {},
+    "revision": "6194547ed7eada4f"
   }
 }

@@ -4,34 +4,106 @@
     "choices": [
       {
         "text": "Why Tyrian coinage specifically?",
-        "destination": "tyrian"
+        "destination": "tyrian",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Where did the crowd go after the tables fell?",
-        "destination": "crowd"
+        "destination": "crowd",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "tag": "UNLOCK_EVIDENCE: broken_cages",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "tag": "UNLOCK_EVIDENCE: scattered_shekels",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Look at this mess! Ink spilled everywhere, ledgers torn, Tyrian shekels scattered into the filth! We operate under a legal lease signed by the high priest himself. Our weights are fair, our rates are posted! He calls this a den of thieves, but without us, no traveler could buy an unblemished sacrifice! How are we meant to make money? This Jesus says we dishonour God.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "tyrian": {
-    "content": "# UNLOCK_EVIDENCE: broken_cages\nThe Law forbids images of foreign kings in the inner house. Tyrian silver is pure — it has no emperor's face on it. It is logistics - the coins have the head of the god Melqart, not greed!",
+    "content": "The Law forbids images of foreign kings in the inner house. Tyrian silver is pure — it has no emperor's face on it. It is logistics - the coins have the head of the god Melqart, not greed!",
     "choices": [
       {
-        "text": "The disciples were violent too?",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The Law forbids images of foreign kings in the inner house. Tyrian silver is pure — it has no emperor's face on it. It is logistics - the coins have the head of the god Melqart, not greed!",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "crowd": {
-    "content": "# UNLOCK_EVIDENCE: scattered_shekels\n# UNLOCK_EVIDENCE: broken_cages\nThey scattered toward the outer gates, singing like madmen. The priests are inside meeting right now. This will not stand.",
+    "content": "They scattered toward the outer gates, singing like madmen. The priests are inside meeting right now. This will not stand.",
     "choices": [
       {
-        "text": "What happened to the animals?",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "They scattered toward the outer gates, singing like madmen. The priests are inside meeting right now. This will not stand.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "closing": {
     "content": "The conversation is over. Go in peace.",
-    "choices": []
+    "choices": [],
+    "steps": [
+      {
+        "text": "The conversation is over. Go in peace.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "divert": "DONE",
+        "condition": {
+          "all": []
+        }
+      }
+    ]
+  },
+  "_meta": {
+    "schema": 2,
+    "entry": "start",
+    "variables": {},
+    "revision": "d552e795072c4ab3"
   }
 }

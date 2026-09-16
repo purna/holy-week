@@ -4,11 +4,27 @@
     "choices": [
       {
         "text": "What did you see?",
-        "destination": "what_saw"
+        "destination": "what_saw",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Were you aware of the crucifixion?",
-        "destination": "aware_crucifixion"
+        "destination": "aware_crucifixion",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "I was serving in the inner courts when it happened. Third rotation of the day. The afternoon offerings. There was nothing unusual about the sky from where I stood — only reports from outside that the hill had gone dark.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -17,11 +33,27 @@
     "choices": [
       {
         "text": "The earthquake.",
-        "destination": "earthquake"
+        "destination": "earthquake",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Was there a sound?",
-        "destination": "the_sound"
+        "destination": "the_sound",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "At the ninth hour — the hour of the afternoon sacrifice — the whole building moved. Not the way the ground moves in the hills. The Temple has its own weight, its own presence. When it moved, every man in the courts felt it as something interior, not just structural.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -30,11 +62,27 @@
     "choices": [
       {
         "text": "So you were at your post.",
-        "destination": "what_saw"
+        "destination": "what_saw",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Did you know Jesus personally?",
-        "destination": "know_jesus"
+        "destination": "know_jesus",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Every priest on duty that morning knew. The Galilean had been condemned through the night and executed by the third hour. There had been debate in the service quarters about whether any of us should leave our posts to watch. We stayed. Attending the altar during Passion week is not optional.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -43,7 +91,19 @@
     "choices": [
       {
         "text": "Tell me.",
-        "destination": "the_curtain"
+        "destination": "the_curtain",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The earthquake, yes. But that is not the primary thing I am telling you. The earthquake is a fact others will corroborate. What I am telling you is what I saw with my own eyes immediately after, while the trembling was still fading from the stones under my feet.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -52,7 +112,19 @@
     "choices": [
       {
         "text": "The veil.",
-        "destination": "the_curtain"
+        "destination": "the_curtain",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Not a sound like fabric tears — not a ripping. More like the sound of the air changing. As if the room had been holding its breath for a thousand years and exhaled. Then I heard the other priests crying out from the direction of the veil.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -61,11 +133,27 @@
     "choices": [
       {
         "text": "So you were already uncertain?",
-        "destination": "already_uncertain"
+        "destination": "already_uncertain",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "What happened at the ninth hour?",
-        "destination": "what_saw"
+        "destination": "what_saw",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "I heard Him teach in the outer courts twice. He quoted Isaiah 56 after He drove out the merchants — \"My house shall be called a house of prayer for all nations.\" I knew the passage. Every priest knew it. Hearing it quoted by someone who then cleared the courts to make room for the words — that was not easy to dismiss.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -74,11 +162,27 @@
     "choices": [
       {
         "text": "What did you see inside?",
-        "destination": "inside"
+        "destination": "inside",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "From top to bottom.",
-        "destination": "top_to_bottom"
+        "destination": "top_to_bottom",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The veil between the Holy Place and the Most Holy Place — sixty feet from floor to ceiling, woven so thick two horses could not pull it apart — tore from the top. Not from the bottom where a man could begin the cut. From the top. In one motion. The two panels fell to either side and the interior of the Most Holy Place was open for every priest in the complex to see.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -87,7 +191,19 @@
     "choices": [
       {
         "text": "What happened at the ninth hour?",
-        "destination": "what_saw"
+        "destination": "what_saw",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "I told myself that uncertainty was the scholar's privilege and the priest's professional hazard. Teachers come. Teachers argue. We manage the altar and let theology sort itself out over centuries. Then the centuries accelerated into one afternoon.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -96,11 +212,27 @@
     "choices": [
       {
         "text": "The Shekhinah.",
-        "destination": "shekinah"
+        "destination": "shekinah",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "You believe something left.",
-        "destination": "presence_departed"
+        "destination": "presence_departed",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Empty. As it should be — we have no Ark since the Exile. But the room was not simply vacant. The air was different. A priest in the inner courts spends years learning the quality of the air near the holy objects. This was not the emptiness of an unused room. This was the emptiness of a presence that had departed.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -109,11 +241,27 @@
     "choices": [
       {
         "text": "What does the official report say?",
-        "destination": "official_report"
+        "destination": "official_report",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The council is suppressing your testimony.",
-        "destination": "suppressed"
+        "destination": "suppressed",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "No human could begin that cut at the top. The architects who built this complex took the height into account precisely because this curtain was never meant to be accessible. The motion was from above. Every priest who stood there knows it. And every priest who stood there has been instructed by the council to say nothing beyond the official incident report.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -122,11 +270,27 @@
     "choices": [
       {
         "text": "Gone to where?",
-        "destination": "gone_where"
+        "destination": "gone_where",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "You believe this was God's act.",
-        "destination": "gods_act"
+        "destination": "gods_act",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The manifest presence of God in the Temple. Yes. That is the tradition. And yes — as a priest, what I felt in that moment was the absence of something that had been present since the dedication under Solomon. Three hundred years at most, before the Exile. And then gone again.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -135,11 +299,27 @@
     "choices": [
       {
         "text": "No longer needed because access had been granted.",
-        "destination": "hebrews_insight"
+        "destination": "hebrews_insight",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Fulfilled how?",
-        "destination": "gods_act"
+        "destination": "gods_act",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "A priest learns to distinguish the presence in a sacred space from simple vacancy. Every serving priest does. Some of us can feel it more precisely than others. What I felt in that room after the curtain fell was a departure. A finality. As if the purpose of this specific space had been fulfilled and was no longer needed.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -148,11 +328,27 @@
     "choices": [
       {
         "text": "You are contradicting your own official testimony.",
-        "destination": "contradiction"
+        "destination": "contradiction",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Why?",
-        "destination": "why_speak"
+        "destination": "why_speak",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Structural instability. The earthquake caused stress fractures in the mounting points. A worn curtain under pressure. Age and seismic force. I wrote the report myself. I was instructed to write it. I wrote what I was told to write. And then I came here and I am telling you what I actually saw.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -161,11 +357,27 @@
     "choices": [
       {
         "text": "The access barrier between man and God was removed.",
-        "destination": "hebrews_insight"
+        "destination": "hebrews_insight",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "That is why you are speaking to me.",
-        "destination": "why_speak"
+        "destination": "why_speak",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The council cannot afford the implication. If the Temple veil tears at the moment a man condemned by the High Priest dies outside the city — the theological meaning is not obscure. It is catastrophic for the institution.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -174,7 +386,19 @@
     "choices": [
       {
         "text": "The sentence is: the way to God was opened.",
-        "destination": "hebrews_insight"
+        "destination": "hebrews_insight",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "I have been asking that question since the ninth hour. Every scripture I know points in one direction. I am not prepared to say the full sentence yet. But I am no longer able to say it is not true.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -183,11 +407,27 @@
     "choices": [
       {
         "text": "Written from the top down, like a Torah scroll.",
-        "destination": "hebrews_insight"
+        "destination": "hebrews_insight",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "And now you must decide what to do with that.",
-        "destination": "why_speak"
+        "destination": "why_speak",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "What else? The measurement of that curtain was taken at the last rewoven — sixty-two feet, two inches. No seismic event splits a curtain from the top in a clean bilateral tear. No seismic event chooses a sixty-foot textile and ignores the stone columns beside it. This was not geology. This was authorship.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -195,12 +435,20 @@
     "content": "The High Priest enters the Most Holy Place once a year with blood, for his own sins and the people's. The Galilean entered it differently. Not once. Not with animal blood. And now the curtain is in two pieces on the floor of the sanctuary and the altar is still burning and I have absolutely no framework for what this afternoon has been.",
     "choices": [
       {
-        "text": "Perhaps the framework is the point.",
-        "destination": "why_speak"
-      },
+        "text": "Continue.",
+        "destination": "why_speak",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "The old framework ended at the ninth hour.",
-        "destination": "why_speak"
+        "text": "The High Priest enters the Most Holy Place once a year with blood, for his own sins and the people's. The Galilean entered it differently. Not once. Not with animal blood. And now the curtain is in two pieces on the floor of the sanctuary and the altar is still burning and I have absolutely no framework for what this afternoon has been.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -208,8 +456,20 @@
     "content": "Yes. I wrote a false official report and I am telling you the truth. You can use whichever one serves your investigation. But you should know that every priest who stood in the inner courts this afternoon is doing exactly the same thing: filing the report they were told to file, and then spending their nights trying to reconcile it with what they saw.",
     "choices": [
       {
-        "text": "Truth does not stay filed.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Yes. I wrote a false official report and I am telling you the truth. You can use whichever one serves your investigation. But you should know that every priest who stood in the inner courts this afternoon is doing exactly the same thing: filing the report they were told to file, and then spending their nights trying to reconcile it with what they saw.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -217,13 +477,45 @@
     "content": "Because I am a priest. My function is to stand between the holy and the common and manage the access. The curtain was the architecture of that function. When it tore, the architecture changed. I cannot maintain the fiction of a structural fault when the stones under my feet know what happened here. Someone has to say it.",
     "choices": [
       {
-        "text": "Then say it clearly.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Because I am a priest. My function is to stand between the holy and the common and manage the access. The curtain was the architecture of that function. When it tore, the architecture changed. I cannot maintain the fiction of a structural fault when the stones under my feet know what happened here. Someone has to say it.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "closing": {
     "content": "The curtain tore. It tore from the top. At the exact hour of the afternoon sacrifice, at the exact moment a man outside the city who had driven merchants from these courts and quoted Isaiah about a house for all nations died on a Roman cross. I do not have a seismic explanation. I have only what I saw. And what I saw changed everything.",
-    "choices": []
+    "choices": [],
+    "steps": [
+      {
+        "text": "The curtain tore. It tore from the top. At the exact hour of the afternoon sacrifice, at the exact moment a man outside the city who had driven merchants from these courts and quoted Isaiah about a house for all nations died on a Roman cross. I do not have a seismic explanation. I have only what I saw. And what I saw changed everything.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "divert": "DONE",
+        "condition": {
+          "all": []
+        }
+      }
+    ]
+  },
+  "_meta": {
+    "schema": 2,
+    "entry": "start",
+    "variables": {},
+    "revision": "b369f0fa53a42578"
   }
 }

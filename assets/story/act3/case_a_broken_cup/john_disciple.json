@@ -4,34 +4,112 @@
     "choices": [
       {
         "text": "You saw Judas watching the door?",
-        "destination": "judas"
+        "destination": "judas",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "What happened at the table?",
-        "destination": "table"
+        "destination": "table",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "tag": "UNLOCK_EVIDENCE: betrayal_dipped_bread",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "tag": "UNLOCK_EVIDENCE: bread_crumbs",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "tag": "UNLOCK_EVIDENCE: new_covenant_declaration",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "The candles are burning down, and He keeps speaking about washing feet and breaking bread like it is a farewell. I looked across the table at Judas — his eyes were tracking the doorway the entire evening. Something is fracturing inside our circle tonight, and I do not think words can mend it.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "judas": {
-    "content": "# UNLOCK_EVIDENCE: betrayal_dipped_bread\nHis eyes kept moving. Not like he was worried about being caught — like he had somewhere else to be. Something urgent. Then Jesus gave him a piece of bread, dipped in the bitter herbs. \"Do quickly,\" He said. Judas left immediately. It was night.",
+    "content": "His eyes kept moving. Not like he was worried about being caught — like he had somewhere else to be. Something urgent. Then Jesus gave him a piece of bread, dipped in the bitter herbs. \"Do quickly,\" He said. Judas left immediately. It was night.",
     "choices": [
       {
         "text": "You knew what was happening.",
-        "destination": "table"
+        "destination": "table",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "His eyes kept moving. Not like he was worried about being caught — like he had somewhere else to be. Something urgent. Then Jesus gave him a piece of bread, dipped in the bitter herbs. \"Do quickly,\" He said. Judas left immediately. It was night.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "table": {
-    "content": "# UNLOCK_EVIDENCE: bread_crumbs\n# UNLOCK_EVIDENCE: new_covenant_declaration\n# UNLOCK_EVIDENCE: betrayal_dipped_bread\nJesus took the bread and broke it. \"This is my body.\" Then the cup: \"This cup is the new covenant in my blood.\" We didn't understand. We were still thinking in terms of kingdoms and swords. He was speaking of something far greater — and far more terrible.",
+    "content": "Jesus took the bread and broke it. \"This is my body.\" Then the cup: \"This cup is the new covenant in my blood.\" We didn't understand. We were still thinking in terms of kingdoms and swords. He was speaking of something far greater — and far more terrible.",
     "choices": [
       {
-        "text": "You wrote it down.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Jesus took the bread and broke it. \"This is my body.\" Then the cup: \"This cup is the new covenant in my blood.\" We didn't understand. We were still thinking in terms of kingdoms and swords. He was speaking of something far greater — and far more terrible.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "closing": {
     "content": "The conversation is over. Go in peace.",
-    "choices": []
+    "choices": [],
+    "steps": [
+      {
+        "text": "The conversation is over. Go in peace.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "divert": "DONE",
+        "condition": {
+          "all": []
+        }
+      }
+    ]
+  },
+  "_meta": {
+    "schema": 2,
+    "entry": "start",
+    "variables": {},
+    "revision": "473285afbe062a62"
   }
 }

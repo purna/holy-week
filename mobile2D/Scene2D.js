@@ -120,7 +120,7 @@ export class Scene2D {
         this.container = document.getElementById(containerId);
         if (!this.container) return;
         this.container.innerHTML = `
-            <div id="game-container"><div id="lives-display"></div></div>
+            <div id="game-container"></div>
             <div id="game-over-screen" class="game-overlay" style="display:none;"><h1>GAME OVER</h1><button id="btn-try-again">Try Again</button></div>
             <div id="ui-controls-overlay">
                 <div class="dpad">
@@ -140,6 +140,7 @@ export class Scene2D {
         this._bindControls();
         this._setupActionsPanel();
         this._initializeGame();
+        this.updateLivesDisplay();
         console.log('[Scene2D] Before _initPixi, MAP_SIZE:', MAP_SIZE, 'levelMap rows:', this.levelMap.length);
         await this._initPixi();
         console.log('[Scene2D] After _initPixi, app:', !!this.app, 'world children:', this.world?.children?.length);
@@ -426,7 +427,11 @@ export class Scene2D {
         else talkButton.classList.remove('active');
     }
 
-    updateLivesDisplay() { const el = document.getElementById('lives-display'); if (el) el.textContent = 'Lives: ' + this.player.lives; }
+    updateLivesDisplay() {
+        const el = document.getElementById('lives-display');
+        if (!el || !this.player) return;
+        el.querySelector('.val-lives').textContent = Math.max(0, this.player.lives);
+    }
 
     handlePlayerArrested() {
         this.isDialogueOpen = true;
@@ -586,7 +591,7 @@ export class Scene2D {
         this.app = new PIXI.Application();
         await this.app.init({ width: VIEW_WIDTH, height: VIEW_HEIGHT, backgroundColor: 0x120f0d, antialias: false, resolution: 1, autoDensity: false });
         const gc = document.getElementById('game-container');
-        if (gc) gc.insertBefore(this.app.canvas, document.getElementById('lives-display'));
+        if (gc) gc.appendChild(this.app.canvas);
         this.world = new PIXI.Container(); this.app.stage.addChild(this.world);
         this.npcLayer = new PIXI.Container(); this.playerLayer = new PIXI.Container(); this.enemyLayer = new PIXI.Container(); this.uiWorldLayer = new PIXI.Container(); this.particleLayer = new PIXI.Container(); this.minimapLayer = new PIXI.Container();
         this.world.addChild(this.npcLayer); this.world.addChild(this.playerLayer); this.world.addChild(this.enemyLayer); this.world.addChild(this.uiWorldLayer);

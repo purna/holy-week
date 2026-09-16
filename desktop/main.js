@@ -1,5 +1,5 @@
 import { GameEngine } from "./gameEngine.js";
-import { LabWorkspaceUI } from "../js/ui/LabWorkspaceUI.js";
+import { LabWorkspaceUI } from "../js/ui/LabWorkspaceUI.js?v=20260916-lab-save";
 import { AccessibilityManager } from "./accessibility.js";
 import { ChainManager } from "../js/gameplay/chainManager.js";
 import { DEBUG } from "../js/config.js";

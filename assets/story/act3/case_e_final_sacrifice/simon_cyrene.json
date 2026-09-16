@@ -1,10 +1,31 @@
 {
   "intro": {
     "content": "A pilgrim sits apart from the crowd, still catching his breath, rubbing at one shoulder beneath a cloak worn through at the seam. He looks like a man who arrived in Jerusalem expecting a feast, not this.\n\"I wasn't a follower. I wasn't even from here. I was walking in from the countryside for the feast, and Roman hands grabbed me off the road. No warning. No explanation.\"",
-    "choices": [
+    "choices": [],
+    "steps": [
       {
-        "text": "main_hub",
-        "destination": "main_hub"
+        "tag": "UNLOCK_EVIDENCE: cross_burden",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "A pilgrim sits apart from the crowd, still catching his breath, rubbing at one shoulder beneath a cloak worn through at the seam. He looks like a man who arrived in Jerusalem expecting a feast, not this.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"I wasn't a follower. I wasn't even from here. I was walking in from the countryside for the feast, and Roman hands grabbed me off the road. No warning. No explanation.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "divert": "main_hub",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -13,51 +34,139 @@
     "choices": [
       {
         "text": "Ask what happened on the road",
-        "destination": "cautious_stage"
+        "destination": "cautious_stage",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Ask why the soldiers chose him",
-        "destination": "pressured_stage"
+        "destination": "pressured_stage",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Ask what he makes of it now",
-        "destination": "exposed_stage"
+        "destination": "exposed_stage",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Leave him",
-        "destination": "repeat_stage"
+        "destination": "repeat_stage",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       }
-    ]
+    ],
+    "steps": []
   },
   "cautious_stage": {
-    "content": "# UNLOCK_EVIDENCE: cross_burden\n\"He'd already been carrying it Himself, from what I could tell — the whole beam, on His own back. But He went down under it. Couldn't get back up carrying that weight, not after what they'd clearly already done to Him before I ever saw Him.\"",
+    "content": "\"He'd already been carrying it Himself, from what I could tell — the whole beam, on His own back. But He went down under it. Couldn't get back up carrying that weight, not after what they'd clearly already done to Him before I ever saw Him.\"",
     "choices": [
       {
-        "text": "Continue",
-        "destination": "main_hub"
+        "text": "Return to my questions.",
+        "destination": "main_hub",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "\"He'd already been carrying it Himself, from what I could tell — the whole beam, on His own back. But He went down under it. Couldn't get back up carrying that weight, not after what they'd clearly already done to Him before I ever saw Him.\"",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "pressured_stage": {
-    "content": "# UNLOCK_EVIDENCE: cross_burden\n\"The soldiers didn't ask. They pulled me straight out of the crowd, forced my hands onto the beam, pointed me up the hill. I didn't have a choice in any of it. Wrong place, wrong moment — that's all it was, far as I understood it then.\"",
+    "content": "\"The soldiers didn't ask. They pulled me straight out of the crowd, forced my hands onto the beam, pointed me up the hill. I didn't have a choice in any of it. Wrong place, wrong moment — that's all it was, far as I understood it then.\"",
     "choices": [
       {
-        "text": "Continue",
-        "destination": "main_hub"
+        "text": "Return to my questions.",
+        "destination": "main_hub",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "\"The soldiers didn't ask. They pulled me straight out of the crowd, forced my hands onto the beam, pointed me up the hill. I didn't have a choice in any of it. Wrong place, wrong moment — that's all it was, far as I understood it then.\"",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "exposed_stage": {
-    "content": "# UNLOCK_EVIDENCE: cross_burden\n\"I keep thinking of Isaac. Carrying the wood up the mountain for his own sacrifice, not knowing what it meant, trusting his father without understanding why. I carried this man's wood up a different mountain, and I didn't know what it meant either. Not then. I think about it every day since.\"\n{ not evidence_cross_burden:\n    ~ evidence_cross_burden = true\n    # UNLOCK_EVIDENCE: cross_burden\n}",
-    "choices": [
+    "content": "\"I keep thinking of Isaac. Carrying the wood up the mountain for his own sacrifice, not knowing what it meant, trusting his father without understanding why. I carried this man's wood up a different mountain, and I didn't know what it meant either. Not then. I think about it every day since.\"",
+    "choices": [],
+    "steps": [
       {
-        "text": "main_hub",
-        "destination": "main_hub"
+        "text": "\"I keep thinking of Isaac. Carrying the wood up the mountain for his own sacrifice, not knowing what it meant, trusting his father without understanding why. I carried this man's wood up a different mountain, and I didn't know what it meant either. Not then. I think about it every day since.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "set": "evidence_cross_burden",
+        "operator": "=",
+        "value": {
+          "literal": true
+        },
+        "condition": {
+          "all": [
+            {
+              "not": {
+                "variable": "evidence_cross_burden"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "divert": "main_hub",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "repeat_stage": {
-    "content": "# UNLOCK_EVIDENCE: cross_burden\n\"My shoulder still bears the mark of it. I don't think it will ever fully fade. I'm not sure I want it to.\"\nVAR evidence_cross_burden = false",
-    "choices": []
+    "content": "\"My shoulder still bears the mark of it. I don't think it will ever fully fade. I'm not sure I want it to.\"",
+    "choices": [],
+    "steps": [
+      {
+        "text": "\"My shoulder still bears the mark of it. I don't think it will ever fully fade. I'm not sure I want it to.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "divert": "DONE",
+        "condition": {
+          "all": []
+        }
+      }
+    ]
+  },
+  "_meta": {
+    "schema": 2,
+    "entry": "intro",
+    "variables": {
+      "evidence_cross_burden": false
+    },
+    "revision": "c012be21e8c2e8ef"
   }
 }

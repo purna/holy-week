@@ -6,6 +6,9 @@
 const CHARACTER_PRESETS_DATA = {
   "senior_scribe": {
     "name": "Senior Scribe",
+    "earringStyle": "none",
+    "necklaceStyle": "pendant",
+    "trimStyle": "edging",
     "noseScale": 0.95,
     "noseShape": "button",
     "eyeShape": "almond",
@@ -161,6 +164,9 @@ const CHARACTER_PRESETS_DATA = {
     "colorLip": "#966355"},
   "temple_priest": {
     "name": "The Temple Priest",
+    "earringStyle": "none",
+    "necklaceStyle": "amulet",
+    "trimStyle": "neckline",
     "noseScale": 1.1,
     "noseShape": "button",
     "eyeShape": "round",
@@ -192,6 +198,9 @@ const CHARACTER_PRESETS_DATA = {
     "colorLip": "#966355"},
   "caiaphas": {
     "name": "Caiaphas",
+    "earringStyle": "none",
+    "necklaceStyle": "collar_plate",
+    "trimStyle": "jewelled",
     "noseScale": 1.0,
     "noseShape": "wide",
     "eyeShape": "narrow",
@@ -223,6 +232,9 @@ const CHARACTER_PRESETS_DATA = {
     "colorLip": "#a85d5d"},
   "annas": {
     "name": "Annas the Patriarch",
+    "earringStyle": "none",
+    "necklaceStyle": "pendant",
+    "trimStyle": "edging",
     "noseScale": 1.1,
     "noseShape": "wide",
     "eyeShape": "hooded",
@@ -316,6 +328,9 @@ const CHARACTER_PRESETS_DATA = {
     "colorLip": "#b06a5a"},
   "nicodemus": {
     "name": "Nicodemus",
+    "earringStyle": "none",
+    "necklaceStyle": "pendant",
+    "trimStyle": "neckline",
     "noseScale": 1.1,
     "noseShape": "aquiline",
     "eyeShape": "round",
@@ -440,6 +455,9 @@ const CHARACTER_PRESETS_DATA = {
     "colorLip": "#9a5f52"},
   "sadducee_authority": {
     "name": "Sadducee Opposer",
+    "earringStyle": "none",
+    "necklaceStyle": "torc",
+    "trimStyle": "jewelled",
     "noseScale": 1.05,
     "noseShape": "aquiline",
     "eyeShape": "downturned",
@@ -471,6 +489,7 @@ const CHARACTER_PRESETS_DATA = {
     "colorLip": "#a85d5d"},
   "peter": {
     "name": "Simon Peter",
+    "showArms": true,
     "noseScale": 1.15,
     "noseShape": "straight",
     "eyeShape": "upturned",
@@ -564,6 +583,9 @@ const CHARACTER_PRESETS_DATA = {
     "colorLip": "#b06a5a"},
   "mary_magdalene": {
     "name": "Mary Magdalene",
+    "earringStyle": "gem_drops",
+    "necklaceStyle": "beaded",
+    "trimStyle": "neckline",
     "noseScale": 0.95,
     "noseShape": "wide",
     "eyeShape": "hooded",
@@ -595,6 +617,9 @@ const CHARACTER_PRESETS_DATA = {
     "colorLip": "#a85d5d"},
   "martha": {
     "name": "Martha of Bethany",
+    "earringStyle": "studs",
+    "necklaceStyle": "cord",
+    "trimStyle": "none",
     "noseScale": 1.0,
     "noseShape": "straight",
     "eyeShape": "hooded",
@@ -626,6 +651,9 @@ const CHARACTER_PRESETS_DATA = {
     "colorLip": "#966355"},
   "mary_bethany": {
     "name": "Mary of Bethany",
+    "earringStyle": "small_hoops",
+    "necklaceStyle": "cord",
+    "trimStyle": "neckline",
     "noseScale": 0.95,
     "noseShape": "button",
     "eyeShape": "hooded",
@@ -657,6 +685,7 @@ const CHARACTER_PRESETS_DATA = {
     "colorLip": "#b06a5a"},
   "andrew": {
     "name": "Andrew",
+    "showArms": true,
     "noseScale": 1.1,
     "noseShape": "wide",
     "eyeShape": "hooded",
@@ -688,6 +717,7 @@ const CHARACTER_PRESETS_DATA = {
     "colorLip": "#9a5f52"},
   "john_mark": {
     "name": "John Mark",
+    "showArms": true,
     "noseScale": 1.15,
     "noseShape": "straight",
     "eyeShape": "hooded",
@@ -781,6 +811,9 @@ const CHARACTER_PRESETS_DATA = {
     "colorLip": "#966355"},
   "pontius_pilate": {
     "name": "Pontius Pilate",
+    "earringStyle": "none",
+    "necklaceStyle": "torc",
+    "trimStyle": "jewelled",
     "noseScale": 1.0,
     "noseShape": "straight",
     "eyeShape": "almond",
@@ -812,6 +845,9 @@ const CHARACTER_PRESETS_DATA = {
     "colorLip": "#7a453a"},
   "pilates_secretary": {
     "name": "Pilate's Secretary",
+    "earringStyle": "none",
+    "necklaceStyle": "cord",
+    "trimStyle": "neckline",
     "noseScale": 1.15,
     "noseShape": "straight",
     "eyeShape": "almond",
@@ -843,6 +879,9 @@ const CHARACTER_PRESETS_DATA = {
     "colorLip": "#9a5f52"},
   "claudia_procula": {
     "name": "Claudia Procula",
+    "earringStyle": "chandelier",
+    "necklaceStyle": "collar_plate",
+    "trimStyle": "full_regalia",
     "noseScale": 1.05,
     "noseShape": "aquiline",
     "eyeShape": "round",
@@ -874,6 +913,10 @@ const CHARACTER_PRESETS_DATA = {
     "colorLip": "#b06a5a"},
   "centurion_longinus": {
     "name": "Centurion Longinus",
+    "earringStyle": "none",
+    "necklaceStyle": "torc",
+    "trimStyle": "shoulder_clasps",
+    "showArms": true,
     "noseScale": 1.1,
     "noseShape": "straight",
     "eyeShape": "downturned",
@@ -905,6 +948,7 @@ const CHARACTER_PRESETS_DATA = {
     "colorLip": "#a85d5d"},
   "sentry_lucas": {
     "name": "Sentry Lucas / Garrison Guard",
+    "showArms": true,
     "noseScale": 0.9,
     "noseShape": "aquiline",
     "eyeShape": "almond",
@@ -936,6 +980,7 @@ const CHARACTER_PRESETS_DATA = {
     "colorLip": "#a85d5d"},
   "execution_soldier": {
     "name": "Execution Detail Soldier",
+    "showArms": true,
     "noseScale": 0.9,
     "noseShape": "button",
     "eyeShape": "hooded",
@@ -967,6 +1012,7 @@ const CHARACTER_PRESETS_DATA = {
     "colorLip": "#a85d5d"},
   "galilean_pilgrim": {
     "name": "Galilean Pilgrim",
+    "showArms": true,
     "noseScale": 0.9,
     "noseShape": "wide",
     "eyeShape": "downturned",
@@ -1029,6 +1075,7 @@ const CHARACTER_PRESETS_DATA = {
     "colorLip": "#b06a5a"},
   "market_vendor": {
     "name": "Market Vendor",
+    "showArms": true,
     "noseScale": 1.05,
     "noseShape": "button",
     "eyeShape": "round",
@@ -1091,6 +1138,10 @@ const CHARACTER_PRESETS_DATA = {
     "colorLip": "#966355"},
   "malachi_moneychanger": {
     "name": "Malachi the Money Changer",
+    "earringStyle": "drops",
+    "necklaceStyle": "layered",
+    "trimStyle": "banded",
+    "showArms": true,
     "noseScale": 1.05,
     "noseShape": "button",
     "eyeShape": "narrow",
@@ -1122,6 +1173,10 @@ const CHARACTER_PRESETS_DATA = {
     "colorLip": "#b06a5a"},
   "temple_merchant": {
     "name": "Corrupt Animal Seller",
+    "earringStyle": "small_hoops",
+    "necklaceStyle": "cord",
+    "trimStyle": "banded",
+    "showArms": true,
     "noseScale": 1.15,
     "noseShape": "aquiline",
     "eyeShape": "hooded",
@@ -1153,6 +1208,10 @@ const CHARACTER_PRESETS_DATA = {
     "colorLip": "#7a453a"},
   "displaced_merchant": {
     "name": "Upset Pilgrim Buyer",
+    "earringStyle": "crescents",
+    "necklaceStyle": "beaded",
+    "trimStyle": "banded",
+    "showArms": true,
     "noseScale": 0.9,
     "noseShape": "wide",
     "eyeShape": "almond",
@@ -1215,6 +1274,9 @@ const CHARACTER_PRESETS_DATA = {
     "colorLip": "#7a453a"},
   "city_gossip": {
     "name": "Nervous Citizen / City Gossip",
+    "earringStyle": "large_hoops",
+    "necklaceStyle": "beaded",
+    "trimStyle": "none",
     "noseScale": 1.05,
     "noseShape": "straight",
     "eyeShape": "narrow",
@@ -1246,6 +1308,7 @@ const CHARACTER_PRESETS_DATA = {
     "colorLip": "#9a5f52"},
   "nathan_gardener": {
     "name": "Nathan the Gardener",
+    "showArms": true,
     "noseScale": 1.05,
     "noseShape": "button",
     "eyeShape": "narrow",
@@ -1277,6 +1340,7 @@ const CHARACTER_PRESETS_DATA = {
     "colorLip": "#966355"},
   "simon_cyrene": {
     "name": "Simon of Cyrene",
+    "showArms": true,
     "noseScale": 1.15,
     "noseShape": "wide",
     "eyeShape": "almond",
@@ -1339,6 +1403,9 @@ const CHARACTER_PRESETS_DATA = {
     "colorLip": "#8f5245"},
   "joseph_arimathea": {
     "name": "Joseph of Arimathea",
+    "earringStyle": "none",
+    "necklaceStyle": "amulet",
+    "trimStyle": "edging",
     "noseScale": 1.05,
     "noseShape": "wide",
     "eyeShape": "hooded",
@@ -1370,6 +1437,7 @@ const CHARACTER_PRESETS_DATA = {
     "colorLip": "#8f5245"},
   "barabbas": {
     "name": "Barabbas the Insurgent",
+    "showArms": true,
     "noseScale": 0.9,
     "noseShape": "straight",
     "eyeShape": "almond",
@@ -1401,6 +1469,7 @@ const CHARACTER_PRESETS_DATA = {
     "colorLip": "#8f5245"},
   "malchus": {
     "name": "Malchus",
+    "showArms": true,
     "noseScale": 1.1,
     "noseShape": "wide",
     "eyeShape": "narrow",
@@ -1432,6 +1501,10 @@ const CHARACTER_PRESETS_DATA = {
     "colorLip": "#8f5245"},
   "marcus": {
     "name": "Marcus the Guard",
+    "earringStyle": "none",
+    "necklaceStyle": "cord",
+    "trimStyle": "shoulder_clasps",
+    "showArms": true,
     "noseScale": 1.05,
     "noseShape": "straight",
     "eyeShape": "narrow",
@@ -1463,6 +1536,9 @@ const CHARACTER_PRESETS_DATA = {
     "colorLip": "#8f5245"},
   "jemimah": {
     "name": "Jemimah the Skeptic",
+    "earringStyle": "large_hoops",
+    "necklaceStyle": "beaded",
+    "trimStyle": "banded",
     "noseScale": 0.95,
     "noseShape": "button",
     "eyeShape": "round",
@@ -1494,6 +1570,9 @@ const CHARACTER_PRESETS_DATA = {
     "colorLip": "#966355"},
   "rhoda": {
     "name": "Rhoda the Servant",
+    "earringStyle": "studs",
+    "necklaceStyle": "cord",
+    "trimStyle": "none",
     "noseScale": 1.0,
     "noseShape": "aquiline",
     "eyeShape": "round",
@@ -1525,6 +1604,7 @@ const CHARACTER_PRESETS_DATA = {
     "colorLip": "#b06a5a"},
   "tobias_owner": {
     "name": "Tobias (Donkey Owner)",
+    "showArms": true,
     "noseScale": 1.15,
     "noseShape": "straight",
     "eyeShape": "round",
@@ -1618,6 +1698,9 @@ const CHARACTER_PRESETS_DATA = {
     "colorLip": "#9a5f52"},
   "rich_young_ruler": {
     "name": "Rich Young Ruler",
+    "earringStyle": "gem_studs",
+    "necklaceStyle": "layered",
+    "trimStyle": "jewelled",
     "noseScale": 1.1,
     "noseShape": "wide",
     "eyeShape": "hooded",
@@ -1649,6 +1732,7 @@ const CHARACTER_PRESETS_DATA = {
     "colorLip": "#7a453a"},
   "local_traveler": {
     "name": "Local Traveler",
+    "showArms": true,
     "noseScale": 0.95,
     "noseShape": "straight",
     "eyeShape": "hooded",

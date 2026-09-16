@@ -4,38 +4,106 @@
     "choices": [
       {
         "text": "What about the Passover lambs?",
-        "destination": "lambs"
+        "destination": "lambs",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Did Jesus disrupt the schedule?",
-        "destination": "schedule"
+        "destination": "schedule",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "tag": "UNLOCK_EVIDENCE: broken_cages",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "tag": "UNLOCK_EVIDENCE: scattered_shekels",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "You have questions about the market? I have ledgers. Every sacrifice registered this week, every coin exchanged, every lamb inspected. My records show a 40 percent increase in moneychanger fees since Tuesday.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "lambs": {
-    "content": "# UNLOCK_EVIDENCE: broken_cages\nThe inspectors were supposed to screen for blemishes from Nisan 10 onward. That was four days ago. Instead, the merchants are crowded into the Court of Gentiles while the priests argue over inspection fees. The lambs are queued outside the walls. The one thing required for Passover is being crowded out by the one thing forbidden — commerce.",
+    "content": "The inspectors were supposed to screen for blemishes from Nisan 10 onward. That was four days ago. Instead, the merchants are crowded into the Court of Gentiles while the priests argue over inspection fees. The lambs are queued outside the walls. The one thing required for Passover is being crowded out by the one thing forbidden — commerce.",
     "choices": [
       {
         "text": "So the Temple priorities are inverted?",
-        "destination": "schedule"
+        "destination": "schedule",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The inspectors were supposed to screen for blemishes from Nisan 10 onward. That was four days ago. Instead, the merchants are crowded into the Court of Gentiles while the priests argue over inspection fees. The lambs are queued outside the walls. The one thing required for Passover is being crowded out by the one thing forbidden — commerce.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "schedule": {
-    "content": "# UNLOCK_EVIDENCE: scattered_shekels\n# UNLOCK_EVIDENCE: broken_cages\nIf the Galilean's timing was intentional, He chose the morning of the inspection rush. Not when the priests were relaxed, but when every desk was full, every ledger open, every merchant shouting over prices. He crashed the peak transaction window.",
+    "content": "If the Galilean's timing was intentional, He chose the morning of the inspection rush. Not when the priests were relaxed, but when every desk was full, every ledger open, every merchant shouting over prices. He crashed the peak transaction window.",
     "choices": [
       {
-        "text": "That sounds calculated.",
-        "destination": "closing"
-      },
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "Why would He do that?",
-        "destination": "closing"
+        "text": "If the Galilean's timing was intentional, He chose the morning of the inspection rush. Not when the priests were relaxed, but when every desk was full, every ledger open, every merchant shouting over prices. He crashed the peak transaction window.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "closing": {
     "content": "My ledgers do not record motives. But the numbers do not lie: when He left, the fees stopped. The inspectors resumed two hours later. The lambs went through. Order returned — but only after the tables were broken.",
-    "choices": []
+    "choices": [],
+    "steps": [
+      {
+        "text": "My ledgers do not record motives. But the numbers do not lie: when He left, the fees stopped. The inspectors resumed two hours later. The lambs went through. Order returned — but only after the tables were broken.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "divert": "DONE",
+        "condition": {
+          "all": []
+        }
+      }
+    ]
+  },
+  "_meta": {
+    "schema": 2,
+    "entry": "start",
+    "variables": {},
+    "revision": "926c6218224166d1"
   }
 }

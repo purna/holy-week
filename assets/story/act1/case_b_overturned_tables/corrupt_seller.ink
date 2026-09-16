@@ -31,21 +31,21 @@
 -> start
 === start ===
 You think this is about birds and coins? Look around you! I provide what the Law requires — unblemished offerings for the pilgrims. Without me, how would a woman from Alexandria bring her dove?
-* [Your scales are dishonest.] -> scales
-* [The animals have blemishes.] -> blemish
++ [Your scales are dishonest.] -> scales
++ [The animals have blemishes.] -> blemish
 === scales ===
 My scales are tested! The priests themselves have approved my weights. What — you think I would cheat the altar of God? The prices reflect the seasonal cost of transport from the hill country.
-* [So you admit to high prices.] -> high_price
-* [The buyer over there says you cheated him.] -> buyer_upset
++ [So you admit to high prices.] -> high_price
++ [The buyer over there says you cheated him.] -> buyer_upset
 === blemish ===
 Every animal has minor flaws — that's why they're sacrificial! The Law speaks of blemish, not perfection. A blind eye, a limp — these are acceptable offerings for the poor.
-* [But not for the wealthy pilgrim.] -> closing
++ [Finish the interview.] -> closing
 === high_price ===
 I have overhead! The temple tax on each animal, the cost of keeping them in the sacred precincts, the guards for security. I take my due — as any businessman would.
-* [The Teacher calls this theft.] -> closing
++ [Finish the interview.] -> closing
 === buyer_upset ===
 The woman complains? She brought coins of clay and expected premium lambs! I showed her what her money could afford — a dove, acceptable under the Law.
-* [She says you shortchanged her.] -> closing
++ [Finish the interview.] -> closing
 === closing ===
 Go in peace. Offer your sacrifice. Let those who manage God's house worry about the rest.
 -> DONE

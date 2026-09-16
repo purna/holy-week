@@ -4,12 +4,44 @@
     "choices": [
       {
         "text": "Was he?",
-        "destination": "dangerous"
+        "destination": "dangerous",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "We were dispatched with the Temple guard. A cohort detachment. It was unusual, a joint operation for a local teacher. They said he was dangerous.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "dangerous": {
     "content": "He didn't fight. One of his men drew a sword, but the teacher stopped him. He seemed to be in control of the entire situation, even his own arrest. It was... strange. We just followed the Temple guard's lead.",
-    "choices": []
+    "choices": [],
+    "steps": [
+      {
+        "text": "He didn't fight. One of his men drew a sword, but the teacher stopped him. He seemed to be in control of the entire situation, even his own arrest. It was... strange. We just followed the Temple guard's lead.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "divert": "DONE",
+        "condition": {
+          "all": []
+        }
+      }
+    ]
+  },
+  "_meta": {
+    "schema": 2,
+    "entry": "start",
+    "variables": {},
+    "revision": "646ff50abf042fbf"
   }
 }

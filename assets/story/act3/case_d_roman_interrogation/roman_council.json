@@ -1,6 +1,26 @@
 {
   "start": {
     "content": "We've convened in emergency session. The political pressure is mounting - Jesus must be dealt with decisively.",
-    "choices": []
+    "choices": [],
+    "steps": [
+      {
+        "text": "We've convened in emergency session. The political pressure is mounting - Jesus must be dealt with decisively.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "divert": "DONE",
+        "condition": {
+          "all": []
+        }
+      }
+    ]
+  },
+  "_meta": {
+    "schema": 2,
+    "entry": "start",
+    "variables": {},
+    "revision": "cf30168d5dd7b26b"
   }
 }

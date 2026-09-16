@@ -4,24 +4,134 @@
     "choices": [
       {
         "text": "What happened first?",
-        "destination": "crucifixion_begins"
+        "destination": "crucifixion_begins",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "How did the crowd behave?",
-        "destination": "crowd_behavior"
+        "destination": "crowd_behavior",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "tag": "UNLOCK_EVIDENCE: guard_report",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "tag": "UNLOCK_EVIDENCE: rolled_stone",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "I am Marcus. I was on duty. I have seen men die, but this day was unlike any other. Outside the city, on Golgotha, three crosses cast long shadows. One man in the center drew every eye — condemned, silent, yet commanding attention.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "crowd_behavior": {
-    "content": "# UNLOCK_EVIDENCE: guard_report\n# UNLOCK_EVIDENCE: rolled_stone\nCrowds are predictable.\nSome came for justice.\nSome came for entertainment.\nSome simply followed everyone else.\nThe priests stood close enough to watch but far enough to avoid association. They mocked Him openly.\nPassersby joined in. They pointed at the sign above His head and repeated the accusations from the trial.\nYet not everyone mocked.\nA group of women remained nearby despite the danger. They wept openly.\nA few men stood with them, saying very little.\nAs the hours passed, the crowd changed.\nMockery is easy in daylight.\nSilence comes more naturally when the sky turns black.",
+    "content": "Crowds are predictable.\nSome came for justice.\nSome came for entertainment.\nSome simply followed everyone else.\nThe priests stood close enough to watch but far enough to avoid association. They mocked Him openly.\nPassersby joined in. They pointed at the sign above His head and repeated the accusations from the trial.\nYet not everyone mocked.\nA group of women remained nearby despite the danger. They wept openly.\nA few men stood with them, saying very little.\nAs the hours passed, the crowd changed.\nMockery is easy in daylight.\nSilence comes more naturally when the sky turns black.",
     "choices": [
       {
         "text": "The sky turned black?",
-        "destination": "darkness"
+        "destination": "darkness",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "What were the priests saying?",
-        "destination": "priests"
+        "destination": "priests",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Crowds are predictable.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Some came for justice.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Some came for entertainment.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Some simply followed everyone else.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "The priests stood close enough to watch but far enough to avoid association. They mocked Him openly.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Passersby joined in. They pointed at the sign above His head and repeated the accusations from the trial.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Yet not everyone mocked.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "A group of women remained nearby despite the danger. They wept openly.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "A few men stood with them, saying very little.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "As the hours passed, the crowd changed.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Mockery is easy in daylight.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Silence comes more naturally when the sky turns black.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -30,20 +140,96 @@
     "choices": [
       {
         "text": "What happened when darkness fell?",
-        "destination": "darkness"
+        "destination": "darkness",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The chief priests seemed pleased at first.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "They called out:",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"He saved others; let Him save Himself.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "They demanded a sign while standing beneath one.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "When the darkness came, the shouting became less frequent.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "By the time the earth began to shake, many had already started moving toward the city.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "crucifixion_begins": {
-    "content": "# UNLOCK_EVIDENCE: guard_report\n# UNLOCK_EVIDENCE: rolled_stone\nThey brought Him forward.\nThe nails went through hands and feet.\nI held the hammer; another held His arms. I had seen this before. Only this time, I noticed His calm. Not a struggle. Not a curse.\nThe robbers on either side jeered. One cursed. The other rebuked him and asked for mercy from this man in the middle.",
+    "content": "They brought Him forward.\nThe nails went through hands and feet.\nI held the hammer; another held His arms. I had seen this before. Only this time, I noticed His calm. Not a struggle. Not a curse.\nThe robbers on either side jeered. One cursed. The other rebuked him and asked for mercy from this man in the middle.",
     "choices": [
       {
         "text": "What did the robbers say?",
-        "destination": "criminals"
+        "destination": "criminals",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Did He respond?",
-        "destination": "words"
+        "destination": "words",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "They brought Him forward.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "The nails went through hands and feet.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "I held the hammer; another held His arms. I had seen this before. Only this time, I noticed His calm. Not a struggle. Not a curse.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "The robbers on either side jeered. One cursed. The other rebuked him and asked for mercy from this man in the middle.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -52,7 +238,31 @@
     "choices": [
       {
         "text": "What did He say?",
-        "destination": "words"
+        "destination": "words",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "One mocked: \"If You are the Messiah, save Yourself and us.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "The other said quietly: \"Do you not fear God? We are punished rightly, but this man has done nothing wrong.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Even from my perch, I could see His eyes turn toward him.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -61,7 +271,31 @@
     "choices": [
       {
         "text": "What about the soldiers?",
-        "destination": "vinegar"
+        "destination": "vinegar",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "He said nothing to the mocker.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "He spoke to the penitent one: \"Today you will be with Me in Paradise.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "I did not understand how words so few could silence a man, calm a thief, and enrage priests all at once.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -70,7 +304,43 @@
     "choices": [
       {
         "text": "What happened then?",
-        "destination": "darkness"
+        "destination": "darkness",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Later, they offered Him sour wine.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "He tasted it. He refused it at first, then drank.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Some soldiers joked about mercy. I did not. I held my spear ready.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "When He cried out, \"It is finished,\" I did not move. Then, as the others prepared for Him to be taken down, I thrust the spear into His side. Blood and water poured out.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Even hardened soldiers murmured.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -79,7 +349,31 @@
     "choices": [
       {
         "text": "What did you record officially?",
-        "destination": "report"
+        "destination": "report",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The sky grew black. Midday, and yet the sun hid its face.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "The ground shook. Stones cracked. The Temple curtain tore from top to bottom.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Even the priests fled to safe distance. A few, perhaps, wondered what they had done.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -88,7 +382,25 @@
     "choices": [
       {
         "text": "Anything else extraordinary?",
-        "destination": "extraordinary"
+        "destination": "extraordinary",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "I reported: \"Three men executed. Middle victim silent. Witnesses among criminals: one justified, one mocking. Darkness and earthquake observed. Curtain torn. Soldier used spear; blood and water observed.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "I wrote it plainly. I do not interpret miracles. I note facts.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -96,13 +408,69 @@
     "content": "The centurion near me fell to his knees. He said, \"Surely this was the Son of God.\"\nSome in the crowd wept. Some ran. The darkness lasted hours. The ground still trembled long after the crosses were removed.\nI have never seen death wear such majesty.",
     "choices": [
       {
-        "text": "Closing statement",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The centurion near me fell to his knees. He said, \"Surely this was the Son of God.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Some in the crowd wept. Some ran. The darkness lasted hours. The ground still trembled long after the crosses were removed.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "I have never seen death wear such majesty.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "closing": {
     "content": "I am Marcus. I held the hammer. I held the spear. I watched the sky go dark.\nThe man on the center cross commanded the attention of all — criminals, soldiers, priests, and the crowd alike.\nI record only what I saw. What it means belongs to those who follow Him.",
-    "choices": []
+    "choices": [],
+    "steps": [
+      {
+        "text": "I am Marcus. I held the hammer. I held the spear. I watched the sky go dark.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "The man on the center cross commanded the attention of all — criminals, soldiers, priests, and the crowd alike.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "I record only what I saw. What it means belongs to those who follow Him.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "divert": "DONE",
+        "condition": {
+          "all": []
+        }
+      }
+    ]
+  },
+  "_meta": {
+    "schema": 2,
+    "entry": "start",
+    "variables": {},
+    "revision": "c20e0a5dc5071211"
   }
 }

@@ -4,45 +4,99 @@
     "choices": [
       {
         "text": "Your brother is alive.",
-        "destination": "lazarus"
+        "destination": "lazarus",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "How is Mary handling all this?",
-        "destination": "mary"
+        "destination": "mary",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing2"
+        "text": "What will you do if the household is searched?",
+        "destination": "closing2",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "tag": "UNLOCK_EVIDENCE: grave_dirt",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Lazarus has been raised from the dead. The whole city is talking about it. There are thirteen extra mouths to feed tonight, and the road to Jerusalem is monitored by patrols. Mary sits at His feet listening, but someone must handle the bread, the water, and the structural security of this house. We are hiding people who have prices on their heads.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "lazarus": {
-    "content": "# UNLOCK_EVIDENCE: grave_dirt\nHe is the proof they want to destroy. A man who was dead for four days walking around is a living problem for the Sadducees. We keep him out of sight. The authorities have already been asking questions in Bethany.",
+    "content": "He is the proof they want to destroy. A man who was dead for four days walking around is a living problem for the Sadducees. We keep him out of sight. The authorities have already been asking questions in Bethany.",
     "choices": [
       {
         "text": "What questions?",
-        "destination": "danger"
+        "destination": "danger",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing2"
+        "text": "What will you do if the household is searched?",
+        "destination": "closing2",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "He is the proof they want to destroy. A man who was dead for four days walking around is a living problem for the Sadducees. We keep him out of sight. The authorities have already been asking questions in Bethany.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "mary": {
-    "content": "# UNLOCK_EVIDENCE: grave_dirt\nMary has always been the listener. She sits at the feet of teachers while Martha handles the serving. Tonight, I understand her. He is speaking words that feed the soul.",
+    "content": "Mary has always been the listener. She sits at the feet of teachers while Martha handles the serving. Tonight, I understand her. He is speaking words that feed the soul.",
     "choices": [
       {
-        "text": "Conclude.",
-        "destination": "closing2"
+        "text": "What will you do if the household is searched?",
+        "destination": "closing2",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "But you are afraid?",
-        "destination": "danger"
-      },
+        "destination": "danger",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "Conclude.",
-        "destination": "closing2"
+        "text": "Mary has always been the listener. She sits at the feet of teachers while Martha handles the serving. Tonight, I understand her. He is speaking words that feed the soul.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -50,26 +104,74 @@
     "content": "They want him silenced. They cannot deny the miracle - Lazarus himself has been in the Temple courts three times now. So they are looking for a way to make him disappear permanently.",
     "choices": [
       {
-        "text": "Can you protect him?",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing2"
+        "text": "What will you do if the household is searched?",
+        "destination": "closing2",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "They want him silenced. They cannot deny the miracle - Lazarus himself has been in the Temple courts three times now. So they are looking for a way to make him disappear permanently.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "closing": {
     "content": "We have dried grain and oil for three days. The authorities are closing in. If I am speaking to you, it is because I believe someone outside this house needs to know what is happening in Bethany. Everyone believes Jesus is a prophet who has come to save his people from the Romans.",
-    "choices": []
+    "choices": [],
+    "steps": [
+      {
+        "text": "We have dried grain and oil for three days. The authorities are closing in. If I am speaking to you, it is because I believe someone outside this house needs to know what is happening in Bethany. Everyone believes Jesus is a prophet who has come to save his people from the Romans.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "divert": "DONE",
+        "condition": {
+          "all": []
+        }
+      }
+    ]
   },
   "closing2": {
     "content": "The guards are already patrolling the eastern road. If they sweep the houses at dawn, I will have nowhere left to hide him. But I will try. For all our sakes.",
     "choices": [
       {
         "text": "Finish the interview.",
-        "destination": "closing"
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The guards are already patrolling the eastern road. If they sweep the houses at dawn, I will have nowhere left to hide him. But I will try. For all our sakes.",
+        "condition": {
+          "all": []
+        }
       }
     ]
+  },
+  "_meta": {
+    "schema": 2,
+    "entry": "start",
+    "variables": {},
+    "revision": "04ffb9fb9268b101"
   }
 }

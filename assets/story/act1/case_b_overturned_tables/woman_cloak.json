@@ -4,27 +4,95 @@
     "choices": [
       {
         "text": "Tell me about your twelve years of suffering.",
-        "destination": "suffering"
+        "destination": "suffering",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "What happened when you touched His cloak?",
-        "destination": "touch"
+        "destination": "touch",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Did you believe Jesus would heal you?",
-        "destination": "faith_sustained"
+        "destination": "faith_sustained",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "What happened when Jesus called you \"daughter\"?",
-        "destination": "called_daughter"
+        "destination": "called_daughter",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "How did you feel afterward?",
-        "destination": "peace_after"
+        "destination": "peace_after",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The woman lowers her eyes for a moment, then looks back at you. There is something in her expression — relief, perhaps, or the memory of a sorrow that has finally become a joy.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"You've heard the story, haven't you?\" she asks quietly. \"The woman who reached through the crowd and touched His cloak.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "She gives a small, almost embarrassed smile.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"That woman was me.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "For twelve years I had suffered with bleeding. Twelve years of being separated from others, of being called unclean, of watching my life become smaller and smaller. I had almost forgotten what it felt like to belong.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"But that day, I heard that Jesus was passing by. And I thought...\" She pauses.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"If I could only touch the hem of His garment.\"",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -33,15 +101,35 @@
     "choices": [
       {
         "text": "You were completely alone.",
-        "destination": "alone"
+        "destination": "alone",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Faith sustained you.",
-        "destination": "faith_sustained"
+        "destination": "faith_sustained",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Twelve years of bleeding. Twelve years of isolation. Twelve years of ritual uncleanness that made me untouchable to my own family. The physicians took my money and gave me nothing. The priests declared me ceremonially unclean. And still — the flow would not stop.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -50,15 +138,35 @@
     "choices": [
       {
         "text": "How did you survive?",
-        "destination": "survive"
+        "destination": "survive",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The isolation was crushing.",
-        "destination": "crushing"
+        "destination": "crushing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Completely alone. My husband divorced me — the Law required it. Leviticus 15 declares a woman with a discharge ritually unclean. My own children were told to avoid me. Even the beast of burden was cleaner than I.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -67,19 +175,35 @@
     "choices": [
       {
         "text": "The hem of His garment.",
-        "destination": "touch"
+        "destination": "touch",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Faith becomes action.",
-        "destination": "testimony"
+        "destination": "testimony",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing"
-      },
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "Conclude.",
-        "destination": "closing"
+        "text": "Faith sustained me — faith in the promises of the prophets, faith in the mercies of God, faith that someday the flowing would stop. But faith alone cannot stop bleeding. Faith alone cannot purify the body. Faith alone... can lead me to the hem of His garment.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -87,12 +211,20 @@
     "content": "I survived on alms. On the kindness of strangers who threw scraps from their tables without looking me in the eye. On the charity of women who whispered prayers for my soul while crossing the street to avoid my shadow.",
     "choices": [
       {
-        "text": "Kindness without contact.",
-        "destination": "testimony"
-      },
+        "text": "Continue.",
+        "destination": "testimony",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "You hoped for healing.",
-        "destination": "testimony"
+        "text": "I survived on alms. On the kindness of strangers who threw scraps from their tables without looking me in the eye. On the charity of women who whispered prayers for my soul while crossing the street to avoid my shadow.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -101,15 +233,35 @@
     "choices": [
       {
         "text": "God never forgets.",
-        "destination": "seen"
+        "destination": "seen",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The loneliness was deafening.",
-        "destination": "seen"
+        "destination": "seen",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The isolation was crushing. Twelve years without a human touch that was not born of duty or fear. Twelve years wondering if God had forgotten my name.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -118,23 +270,43 @@
     "choices": [
       {
         "text": "Did He know?",
-        "destination": "jesus_feels"
+        "destination": "jesus_feels",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Were you afraid?",
-        "destination": "testimony"
+        "destination": "testimony",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The touch was electric.",
-        "destination": "electric_touch"
+        "destination": "electric_touch",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing"
-      },
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "Conclude.",
-        "destination": "closing"
+        "text": "I pushed through men with their eyes fixed ahead, not caring who brushed against them. My fingers found the fringe of His tallit — the blue cord woven through the corner. I scarcely made contact when I felt the flow stop. Not slow, not easing... but stopping. Like a spring dammed in an instant.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -143,19 +315,43 @@
     "choices": [
       {
         "text": "The power was immediate.",
-        "destination": "power_immediate"
+        "destination": "power_immediate",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The river of life.",
-        "destination": "river_life"
+        "destination": "river_life",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The dam broke in your favor.",
-        "destination": "dam_broke"
+        "destination": "dam_broke",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The touch was electric. Not with pain — with power. I felt His energy flow into me like a river breaking through a dam. The twelve years of emptiness filled at once.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -164,15 +360,35 @@
     "choices": [
       {
         "text": "The undoing was complete.",
-        "destination": "undoing_complete"
+        "destination": "undoing_complete",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Twelve years in an instant.",
-        "destination": "twelve_instant"
+        "destination": "twelve_instant",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Healing beyond healing.",
-        "destination": "healing_beyond"
+        "destination": "healing_beyond",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Immediate. Not gradual. Not partial. But total. Complete. Whole. As if the moment my fingers touched the hem of His garment, the entire twelve years of suffering was undone.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -181,23 +397,43 @@
     "choices": [
       {
         "text": "Ezekiel's river.",
-        "destination": "power"
+        "destination": "power",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The dead live.",
-        "destination": "power"
+        "destination": "power",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Transformation flows.",
-        "destination": "testimony"
-      },
+        "destination": "testimony",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "Conclude.",
-        "destination": "closing"
+        "text": "The river of life. That is what flowed from that single point of contact. The river that Ezekiel saw in his vision. The river that makes the dead live. The river that transforms everything it touches.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -205,16 +441,20 @@
     "content": "The dam broke in my favor. Not in my face. Not against me. But FOR me. As if the very heavens had aligned to release what had been held back for twelve long years.",
     "choices": [
       {
-        "text": "Heaven aligned.",
-        "destination": "power"
-      },
+        "text": "Continue.",
+        "destination": "power",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "Released in favor.",
-        "destination": "power"
-      },
-      {
-        "text": "The tide turned.",
-        "destination": "power"
+        "text": "The dam broke in my favor. Not in my face. Not against me. But FOR me. As if the very heavens had aligned to release what had been held back for twelve long years.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -223,23 +463,43 @@
     "choices": [
       {
         "text": "Wholeness beyond healing.",
-        "destination": "testimony"
+        "destination": "testimony",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Pure and complete.",
-        "destination": "testimony"
+        "destination": "testimony",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The old was gone.",
-        "destination": "testimony"
-      },
+        "destination": "testimony",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "Conclude.",
-        "destination": "closing"
+        "text": "The undoing was complete. Not a single thread of my twelve-year disease remained. Not a single memory of pain. Not a single trace of uncleanness. Just... wholeness. Pure and complete.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -248,19 +508,43 @@
     "choices": [
       {
         "text": "Time collapsed.",
-        "destination": "power"
+        "destination": "power",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Pain dissolved.",
-        "destination": "power"
+        "destination": "power",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Life returned.",
-        "destination": "power"
+        "destination": "power",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Twelve years in an instant. Twelve years of suffering reduced to twelve seconds of touch. Twelve years of isolation ended by one moment of faith. Time collapsed. Pain dissolved. Life returned.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -269,23 +553,51 @@
     "choices": [
       {
         "text": "Dignity restored.",
-        "destination": "testimony"
+        "destination": "testimony",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Connection restored.",
-        "destination": "testimony"
+        "destination": "testimony",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Belonging restored.",
-        "destination": "seen"
+        "destination": "seen",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "How do you understand the wider effect of your healing?",
-        "destination": "healing_flowed"
+        "destination": "healing_flowed",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Healing beyond healing. Not just the stopping of blood. Not just the cleansing of uncleanness. But the restoration of dignity. Of connection. Of belonging. The healing was total.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -294,19 +606,43 @@
     "choices": [
       {
         "text": "What happened next?",
-        "destination": "confession"
+        "destination": "confession",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "He called you daughter.",
-        "destination": "called_daughter"
+        "destination": "called_daughter",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The gaze found you.",
-        "destination": "gaze_found"
+        "destination": "gaze_found",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "\"Who touched Me?\" He asked — not harshly, but clearly. His disciples looked around bewildered. \"Why ask?\" they said. \"All touch You, and the crowd presses in.\" But He insisted. Then His gaze landed on me.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -315,23 +651,51 @@
     "choices": [
       {
         "text": "The word was healing.",
-        "destination": "power"
+        "destination": "power",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Dignity restored.",
-        "destination": "dignity_restored2"
+        "destination": "dignity_restored2",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Belonging restored.",
-        "destination": "belonging_restored2"
+        "destination": "belonging_restored2",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "What did the word daughter mean to you?",
-        "destination": "word_healing2"
+        "destination": "word_healing2",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "He called me \"daughter.\" Not \"woman.\" Not \"unclean.\" \"Daughter.\" As if twelve years of bleeding had never happened. As if my isolation meant nothing. As if I were the most welcome guest at His table.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -340,19 +704,43 @@
     "choices": [
       {
         "text": "He knows all hearts.",
-        "destination": "seen"
+        "destination": "seen",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The gaze connected.",
-        "destination": "seen"
+        "destination": "seen",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Faith is seen.'",
-        "destination": "seen"
+        "destination": "seen",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "His gaze found me through the crowd. Not because I was loud. Not because I was important. But because somehow — somehow — He knew. He knew that among all these people, one heart had reached out in faith. And He found that heart.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -361,19 +749,43 @@
     "choices": [
       {
         "text": "What did He say to you?",
-        "destination": "grace"
+        "destination": "grace",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "His power flowed to you.",
-        "destination": "power"
+        "destination": "power",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The truth was safe.",
-        "destination": "truth_safe"
+        "destination": "truth_safe",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "I fell at His feet, quaking. I told Him the truth — all of it. The physicians, the expenses, the growing worse. And how in that single moment of touching His garment, I felt the power go out from Him. I was healed. Completely.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -382,19 +794,43 @@
     "choices": [
       {
         "text": "Peace after pain.",
-        "destination": "peace_after"
+        "destination": "peace_after",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The soul was healed too.",
-        "destination": "soul_healed"
+        "destination": "soul_healed",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Faith received everything.",
-        "destination": "faith_received"
+        "destination": "faith_received",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "He didn't rebuke me. He called me \"daughter.\" As if I were clean. As if I were whole. \"Your faith has healed you,\" He said. \"Go in peace.\" And I felt what I had not felt in twelve years — truly whole. Not just the bleeding stopped, but my very soul.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -402,16 +838,20 @@
     "content": "Peace after pain. Rest after turmoil. Silence after twelve years of weeping. The peace of God — which passes understanding — flooded through every cell of my being. I was at peace. Not just in my body. Not just in my spirit. But in my very soul.",
     "choices": [
       {
-        "text": "The peace was total.",
-        "destination": "seen"
-      },
+        "text": "Continue.",
+        "destination": "seen",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "Understanding passed by.",
-        "destination": "seen"
-      },
-      {
-        "text": "The soul found rest.",
-        "destination": "seen"
+        "text": "Peace after pain. Rest after turmoil. Silence after twelve years of weeping. The peace of God — which passes understanding — flooded through every cell of my being. I was at peace. Not just in my body. Not just in my spirit. But in my very soul.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -420,23 +860,43 @@
     "choices": [
       {
         "text": "The bruised soul healed.",
-        "destination": "soul_healed"
+        "destination": "soul_healed",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The deep place restored.",
-        "destination": "testimony"
+        "destination": "testimony",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The forgotten remembered.",
-        "destination": "seen"
-      },
+        "destination": "seen",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "Conclude.",
-        "destination": "closing"
+        "text": "The soul was healed too. Not just the body. Not just the spirit. But the soul — the deepest part, the part that had been bruised by twelve years of isolation, twelve years of rejection, twelve years of believing that God had forgotten. The soul was made whole.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -445,15 +905,35 @@
     "choices": [
       {
         "text": "The heart reached back.",
-        "destination": "testimony"
+        "destination": "testimony",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "More than asked.",
-        "destination": "testimony"
+        "destination": "testimony",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Faith grasped grace.",
-        "destination": "seen"
+        "destination": "seen",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Faith received everything. Not just healing. Not just peace. Not just restoration. But recognition. Validation. Belonging. Faith reached out and grasped not just a garment but the heart of the Son of God. And He gave back more than she had asked.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -462,19 +942,43 @@
     "choices": [
       {
         "text": "Word and touch united.",
-        "destination": "power"
+        "destination": "power",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Intimacy over institution.",
-        "destination": "seen"
+        "destination": "seen",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The word created worth.",
-        "destination": "seen"
+        "destination": "seen",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The word was healing — \"daughter.\" Not \"woman.\" Not \"sinner.\" \"Daughter.\" The most intimate term of endearment in our culture. A child. Beloved. Accepted. The word healed what the touch began. And the touch healed what the word confirmed.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -483,19 +987,43 @@
     "choices": [
       {
         "text": "Worth beyond worthiness.",
-        "destination": "seen"
+        "destination": "seen",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Value through grace.",
-        "destination": "testimony"
+        "destination": "testimony",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Established by divinity.",
-        "destination": "power"
+        "destination": "power",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Dignity restored. Twelve years of being untouchable ended with twelve words: \"Your faith has healed you.\" Dignity restored. Worth affirmed. Value established. Not by my family. Not by my wealth. But by the Son of God.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -504,23 +1032,51 @@
     "choices": [
       {
         "text": "Home at last.",
-        "destination": "seen"
+        "destination": "seen",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The outcast welcomed.",
-        "destination": "seen"
+        "destination": "seen",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Belonging through faith.",
-        "destination": "seen"
+        "destination": "seen",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Did you feel more than merely welcomed?",
-        "destination": "more_than_welcome"
+        "destination": "more_than_welcome",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Belonging restored. Twelve years of isolation ended in a moment. I was no longer an outcast. I was a daughter. I was welcome. I was home.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -529,15 +1085,35 @@
     "choices": [
       {
         "text": "Compassion over judgment.",
-        "destination": "seen"
+        "destination": "seen",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Shame held gently.",
-        "destination": "seen"
+        "destination": "seen",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Faith honored completely.",
-        "destination": "testimony"
+        "destination": "testimony",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The truth was safe with Him. Not judged. Not condemned. Not dismissed. But received. Understood. Honored. My twelve years of shame — He held them gently. My confession — He met with compassion. My faith — He honored.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -545,16 +1121,20 @@
     "content": "More than welcome. More than accepted. More than understood. I was celebrated. My faith was praised. My journey was honored. And my healing was presented as a testimony to all.",
     "choices": [
       {
-        "text": "Celebrated, not hidden.",
-        "destination": "testimony"
-      },
+        "text": "Continue.",
+        "destination": "testimony",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "The testimony shared.",
-        "destination": "testimony"
-      },
-      {
-        "text": "Honored in community.",
-        "destination": "testimony"
+        "text": "More than welcome. More than accepted. More than understood. I was celebrated. My faith was praised. My journey was honored. And my healing was presented as a testimony to all.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -563,19 +1143,43 @@
     "choices": [
       {
         "text": "The ripple continues.",
-        "destination": "testimony"
+        "destination": "testimony",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Healing spreads.'",
-        "destination": "testimony"
+        "destination": "testimony",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "One touch changes all.'",
-        "destination": "testimony"
+        "destination": "testimony",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "What would you want someone hearing your story to understand?",
-        "destination": "closer_to_you"
+        "destination": "closer_to_you",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The healing flowed beyond my body. It flowed to the crowd who witnessed it. It flowed to the disciples who recorded it. It flowed to every generation that would hear my story. One touch. One word. One moment. And the ripple of healing reaches to the ends of the earth.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -583,29 +1187,59 @@
     "content": "I am closer to you now than I ever was. Not in distance. Not in time. But in connection. In understanding. In the shared knowledge that healing is not earned. It is given. And those who receive it are called to share it.",
     "choices": [
       {
-        "text": "Given, not earned.",
-        "destination": "testimony"
-      },
+        "text": "Continue.",
+        "destination": "testimony",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "Healing to share.",
-        "destination": "testimony"
-      },
-      {
-        "text": "The gift multiplies.",
-        "destination": "testimony"
+        "text": "I am closer to you now than I ever was. Not in distance. Not in time. But in connection. In understanding. In the shared knowledge that healing is not earned. It is given. And those who receive it are called to share it.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "closing": {
     "content": "I am no one remarkable. Just a woman who touched a thread of His cloak. Yet He stopped for me. He saw me. If He notices a broken woman in a crowd of thousands, what might He do for those who seek Him openly?",
-    "choices": []
+    "choices": [],
+    "steps": [
+      {
+        "text": "I am no one remarkable. Just a woman who touched a thread of His cloak. Yet He stopped for me. He saw me. If He notices a broken woman in a crowd of thousands, what might He do for those who seek Him openly?",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "divert": "DONE",
+        "condition": {
+          "all": []
+        }
+      }
+    ]
   },
   "testimony": {
     "content": "The word of healing became a living testimony. What He did for me was not meant to remain hidden. My healing, dignity, faith, and restoration became a witness that His mercy reaches the broken.",
     "choices": [
       {
         "text": "Finish the interview.",
-        "destination": "closing"
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The word of healing became a living testimony. What He did for me was not meant to remain hidden. My healing, dignity, faith, and restoration became a witness that His mercy reaches the broken.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -614,7 +1248,19 @@
     "choices": [
       {
         "text": "Finish the interview.",
-        "destination": "closing"
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "He saw me when others saw only an outcast. He remembered me, received me, and restored my place. I was no longer defined by twelve years of suffering, but by being known, loved, and welcomed.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -623,8 +1269,26 @@
     "choices": [
       {
         "text": "Finish the interview.",
-        "destination": "closing"
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "His power was immediate and complete. What twelve years of suffering could not change was transformed in a moment of faith. The touch, the word, and the healing all revealed the life-giving power of God.",
+        "condition": {
+          "all": []
+        }
       }
     ]
+  },
+  "_meta": {
+    "schema": 2,
+    "entry": "start",
+    "variables": {},
+    "revision": "ab21dc6cd378f89f"
   }
 }

@@ -58,68 +58,68 @@
 -> start
 
 === start ===
+# UNLOCK_EVIDENCE: charcoal_fire
+# UNLOCK_EVIDENCE: threefold_commission
 I want to tell it the way it happened, not the way it is easier to tell.
 
 Three days before the beach, I did not believe the women. Not to their faces — but I did not believe them. "Idle tales," is how Luke recorded it plainly enough. [Luke 24:11] Mary of Magdala came running, out of breath, saying the tomb was open and He was alive, and my first thought was that grief was talking, not truth.
 
-* [But you went to look anyway.] -> ran_to_tomb
-* [Tell me about the beach.] -> beach
++ [But you went to look anyway.] -> ran_to_tomb
++ [Tell me about the beach.] -> beach
 
 === ran_to_tomb ===
 I ran anyway. John outran me — younger legs — but I went in first. Linen wrappings, lying there. No body. I went home "wondering at that which was come to pass." [Luke 24:12] Not believing yet. Wondering.
 
 A woman's word carried no legal weight in a court in those days — the Law would not receive it. It should have carried weight with me regardless. I had walked with Him three years. I still needed more.
 
-* [What happened next?] -> beach
++ [What happened next?] -> beach
 
 === beach ===
 We went fishing. Not from unbelief exactly — from not knowing what a forgiven-but-unrestored man does with his hands. We caught nothing all night.
 
 At dawn a stranger on the shore asked if we had any fish. We said no. "Cast the net on the right side," He said, and we did, and it would not come up — a hundred and fifty-three of them. [John 21:11]
 
-* [How did you know it was Him?] -> recognition
-* [What happened when you reached the shore?] -> fire
++ [How did you know it was Him?] -> recognition
++ [What happened when you reached the shore?] -> fire
 
 === recognition ===
 John said it before I understood it. "It is the Lord." [John 21:7] I did not wait for the boat. I put my coat on — a strange thing to do before swimming, but I would not go to Him half-dressed — and went into the water.
 
-* [Continue.] -> fire
++ [Continue.] -> fire
 
 === fire ===
-# UNLOCK_EVIDENCE: charcoal_fire
 A charcoal fire. Fish already cooking. Bread.
 
 I had warmed my hands at a charcoal fire once before — the courtyard, the night I said three times that I did not know Him. [John 18:18, 25-27] He did not have to build this fire on this beach. He chose to.
 
-* [What did He ask you?] -> questions
++ [What did He ask you?] -> questions
 
 === questions ===
-# UNLOCK_EVIDENCE: threefold_commission
 "Simon, son of John, do you love Me more than these?" Three times. I answered yes three times. The third time He used my own word back to me — not the love that costs everything, but the ordinary love of a friend — and I understood He was meeting me exactly where I had fallen, not where I wished I still stood.
 
 Each answer, He gave me something to do. "Feed My lambs." "Tend My sheep." "Feed My sheep." [John 21:15-17]
 
-* [You wrote about that later, didn't you?] -> later_writing
-* [Then He said "Follow Me."] -> follow
++ [You wrote about that later, didn't you?] -> later_writing
++ [Then He said "Follow Me."] -> follow
 
 === later_writing ===
 Years after, writing to churches scattered across Asia Minor, I could not help myself: "Ye were as sheep going astray; but are now returned unto the Shepherd and Bishop of your souls." [1 Peter 2:25] I did not plan to write my own restoration into that line. It came out anyway.
 
 And when I told the elders how to lead: "Feed the flock of God which is among you... and when the chief Shepherd shall appear, ye shall receive a crown of glory that fadeth not away." [1 Peter 5:2-4] Every shepherd I ever taught to feed a flock, I taught with His words still in my mouth.
 
-* [Then He said "Follow Me."] -> follow
++ [Then He said "Follow Me."] -> follow
 
 === follow ===
 "Follow Me." [John 21:19]
 
 Two words. The same two He used the first day, on this same water. Three years, a denial, a death, an empty tomb, and it ends — begins again — exactly where it started.
 
-* [Is that where it stopped, for you?] -> pentecost
++ [Is that where it stopped, for you?] -> pentecost
 
 === pentecost ===
 No. Fifty days later I stood up in Jerusalem, in front of a crowd that had watched Him die, and quoted David to them: "Thou wilt not leave my soul in hell, neither wilt thou suffer thine Holy One to see corruption." [Acts 2:27; Psalm 16:10] I told them the empty tomb was the proof. I did not learn to say that on my own — I had stood in front of an empty tomb myself, three days after doubting a woman who had told me the truth.
 
-* [Continue.] -> closing
++ [Finish the interview.] -> closing
 
 === closing ===
 No explanation was demanded of me for the denial. Only love, asked three times — and a flock built on the answer. The Shepherd who was struck lives, [Zechariah 13:7] and sent the sheep who scattered to gather others. [Ezekiel 34:11-16]

@@ -20,8 +20,8 @@
 === start ===
 I am Thomas. Ask more questions than I answer. The honest ones. In the Temple courts, Jesus told a story about a vineyard, its tenants, and a son who never returned home. Some stories explain the world. Others expose it.
 
-* [Tell me the story.] -> story
-* [Why did He tell it?] -> why
++ [Tell me the story.] -> story
++ [Why did He tell it?] -> why
 
 === story ===
 A landowner planted a vineyard, built a wall around it, dug a winepress, and leased it to tenants before departing.
@@ -38,8 +38,8 @@ Instead, the tenants saw the heir and said, "Come, let us kill him and take his 
 
 So they cast him out of the vineyard and killed him.
 
-* [Who are these people meant to be?] -> vineyard
-* [What happened when Jesus finished?] -> reaction
++ [Who are these people meant to be?] -> vineyard
++ [What happened when Jesus finished?] -> reaction
 
 === why ===
 The chief priests had demanded to know by what authority Jesus taught.
@@ -48,7 +48,7 @@ He answered with questions, then with stories.
 
 A parable can slip past a man's defenses before he realizes it is describing him.
 
-* [So who are the tenants?] -> vineyard
++ [So who are the tenants?] -> vineyard
 
 === vineyard ===
 The vineyard is Israel.
@@ -63,8 +63,8 @@ The son is the heir.
 
 By this point, many in the crowd understood exactly where the story was leading.
 
-* [Did the priests understand?] -> reaction
-* [What happened to the son?] -> son
++ [Did the priests understand?] -> reaction
++ [What happened to the son?] -> son
 
 === son ===
 The son is cast out of the vineyard and killed.
@@ -75,7 +75,7 @@ Some truths arrive before their fulfillment.
 
 The story sounded like a warning. Later it would sound like a memory.
 
-* [And then?] -> stone
++ [And then?] -> stone
 
 === reaction ===
 Jesus asked a question:
@@ -90,7 +90,7 @@ The chief priests and Pharisees realized the parable was about them.
 
 That was the moment the silence began.
 
-* [And the stone He mentioned?] -> stone
++ [And the stone He mentioned?] -> stone
 
 === stone ===
 Then Jesus quoted the psalm:
@@ -103,8 +103,8 @@ The rejected stone becomes the foundation.
 
 The leaders heard a story about rebellious tenants, a murdered son, and a rejected stone. They heard judgment and warning in the same breath.
 
-* [What did the crowd think?] -> crowd
-* [Thomas, what does the stone mean?] -> cornerstone
++ [What did the crowd think?] -> crowd
++ [Thomas, what does the stone mean?] -> cornerstone
 
 === crowd ===
 Some were astonished.
@@ -115,7 +115,7 @@ Many simply watched the faces of the chief priests.
 
 The crowd could see what the leaders could not admit aloud: the parable had found its target.
 
-* [And the cornerstone?] -> cornerstone
++ [And the cornerstone?] -> cornerstone
 
 === cornerstone ===
 The builders rejected the stone because they did not recognize its value.
@@ -126,7 +126,7 @@ The leaders could reject Jesus.
 
 That did not mean they could stop what God was building.
 
-* [Thomas, you understand these parables.] -> closing
++ [Finish the interview.] -> closing
 
 === closing ===
 I ask questions. That is my trade.

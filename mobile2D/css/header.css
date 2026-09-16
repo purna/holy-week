@@ -54,6 +54,12 @@
     color: var(--text-muted);
 }
 
+.header-lives {
+    color: #f87171;
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+}
+
 .val-reputation, .val-doubt {
     display: inline-block;
 }

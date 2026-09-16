@@ -4,19 +4,43 @@
     "choices": [
       {
         "text": "Who buys your information?",
-        "destination": "buyers"
+        "destination": "buyers",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "What do you know about the betrayal?",
-        "destination": "betrayal"
+        "destination": "betrayal",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The Sanhedrin's surveillance.",
-        "destination": "surveillance"
+        "destination": "surveillance",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "What is truth worth?",
-        "destination": "truth_value"
+        "destination": "truth_value",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Information has a price. Names have a price. Silence also has a price. The Galilean's gathering had a ledger before the sun went down. One of the twelve.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -24,12 +48,20 @@
     "content": "The Sanhedrin pays in Tyrian shekels — gold-standard silver that no Roman mint has ever debased. The Zealots pay in copper and promises. The wealthy families pay in land deeds and daughters' dowries. And the priests? They pay in secrets. I take what I can carry.",
     "choices": [
       {
-        "text": "The price of silence.",
-        "destination": "silence_price"
-      },
+        "text": "Continue.",
+        "destination": "silence_price",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "Favors have their limits.",
-        "destination": "silence_price"
+        "text": "The Sanhedrin pays in Tyrian shekels — gold-standard silver that no Roman mint has ever debased. The Zealots pay in copper and promises. The wealthy families pay in land deeds and daughters' dowries. And the priests? They pay in secrets. I take what I can carry.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -37,12 +69,20 @@
     "content": "One of the twelve disciples. The one who keeps the purse. He has concerns. Concerns that translate well into seventy pieces of silver — the price of a slave's life, Exodus 21:32. The information I provided led to a meeting in the shadows. A plan set in motion. Coincidence? I think not. The prophecy was written centuries before, and the fulfillment was arranged centuries before that.",
     "choices": [
       {
-        "text": "Judas Iscariot.",
-        "destination": "closing"
-      },
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "Prophecy fulfilled precisely.",
-        "destination": "closing"
+        "text": "One of the twelve disciples. The one who keeps the purse. He has concerns. Concerns that translate well into seventy pieces of silver — the price of a slave's life, Exodus 21:32. The information I provided led to a meeting in the shadows. A plan set in motion. Coincidence? I think not. The prophecy was written centuries before, and the fulfillment was arranged centuries before that.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -50,12 +90,20 @@
     "content": "The Sanhedrin's network spans the city — gate guards, market watchers, Temple attendants. Every eye has its price. Every ear has its loyalty. They track movement through the gates, cross-reference tax records with synagogue rolls, monitor the markets. Their thoroughness is impressive. Desperate. And the Teacher's name is at the top of every list.",
     "choices": [
       {
-        "text": "Miracles defy prediction.",
-        "destination": "closing"
-      },
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "They cannot trap what they can predict.",
-        "destination": "closing"
+        "text": "The Sanhedrin's network spans the city — gate guards, market watchers, Temple attendants. Every eye has its price. Every ear has its loyalty. They track movement through the gates, cross-reference tax records with synagogue rolls, monitor the markets. Their thoroughness is impressive. Desperate. And the Teacher's name is at the top of every list.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -63,12 +111,20 @@
     "content": "The truth has a price, scribe — not because truth wants payment, but because men demand payment for what they have suppressed. Truth outlasts the crowd. The Teacher speaks truth today, just as He did when the priests asked about His authority yesterday.",
     "choices": [
       {
-        "text": "Truth over popularity.",
-        "destination": "closing"
-      },
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "Truth should be free.",
-        "destination": "closing"
+        "text": "The truth has a price, scribe — not because truth wants payment, but because men demand payment for what they have suppressed. Truth outlasts the crowd. The Teacher speaks truth today, just as He did when the priests asked about His authority yesterday.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -76,17 +132,45 @@
     "content": "Favors are promises. Promises break in storms. They fade in time. They are forgotten when power shifts. Coin is fact. Promise is hope. The priests pay well for silence — but silver cannot silence inevitability. The truth that is suppressed has weight. And weight has momentum. And momentum cannot be bought.",
     "choices": [
       {
-        "text": "The weight builds.",
-        "destination": "closing"
-      },
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "Silver cannot silence truth.",
-        "destination": "closing"
+        "text": "Favors are promises. Promises break in storms. They fade in time. They are forgotten when power shifts. Coin is fact. Promise is hope. The priests pay well for silence — but silver cannot silence inevitability. The truth that is suppressed has weight. And weight has momentum. And momentum cannot be bought.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "closing": {
     "content": "Information has a price. Names have a price. Silence also has a price. The choice is yours — buy the truth or bear the cost of its absence. Choose wisely, scribe. Your investigation depends on it.",
-    "choices": []
+    "choices": [],
+    "steps": [
+      {
+        "text": "Information has a price. Names have a price. Silence also has a price. The choice is yours — buy the truth or bear the cost of its absence. Choose wisely, scribe. Your investigation depends on it.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "divert": "DONE",
+        "condition": {
+          "all": []
+        }
+      }
+    ]
+  },
+  "_meta": {
+    "schema": 2,
+    "entry": "start",
+    "variables": {},
+    "revision": "9799b6bcccff5572"
   }
 }

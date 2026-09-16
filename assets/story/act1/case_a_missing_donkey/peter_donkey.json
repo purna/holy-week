@@ -1,98 +1,296 @@
 {
   "start": {
-    "content": "The morning dawned differently from any other. The Teacher's voice carried an urgency I had never heard. \"Go into the village ahead of you,\" He told James and John and me. \"You will find a colt tied near the gate — a young donkey that has never been ridden. Untie it and bring it to Me. If anyone asks, say, 'My Lord needs it.'\"",
+    "content": "You wanted to go over the colt again? Ask. I would rather you had the account straight.\nThe Teacher sent two of our company ahead for a colt. You are asking whether it was stolen? Then begin with what He told them to do, not with the shouting afterward.",
     "choices": [
       {
-        "text": "The colt knew what was coming.",
-        "destination": "colt_prepared"
+        "text": "What instructions did He give?",
+        "destination": "instructions",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Why those exact words?",
-        "destination": "phrase_key"
+        "text": "What happened when the colt arrived?",
+        "destination": "cloaks",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "The owner recognized you.",
-        "destination": "owner_recognized"
-      }
-    ]
-  },
-  "colt_prepared": {
-    "content": "# UNLOCK_EVIDENCE: rope_fibers\n# UNLOCK_EVIDENCE: cloaks\nI have tended animals since childhood — my nets were not the only thing I knew how to handle. This colt was exceptional. Its coat shone like polished chestnut in the morning light. Its ears pricked at every sound. It was not skittish — it was ... waiting. As if it knew.",
-    "choices": [
-      {
-        "text": "Prophecy prepared it.",
-        "destination": "generational_preparation"
+        "text": "What can you tell me about the owners?",
+        "destination": "owners",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Sacred symbolism.",
-        "destination": "sacred_symbolism"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       }
-    ]
-  },
-  "phrase_key": {
-    "content": "# UNLOCK_EVIDENCE: rope_fibers\n# UNLOCK_EVIDENCE: cloaks\n\"My Lord needs it.\" James thought I was mad when the Teacher gave us those exact words. But He knew — He knew the owner would recognize the phrase. Tobias, the man who kept the colt, had been expecting this moment for decades. His grandfather had owned the animal's sire. Three generations of preparation.",
-    "choices": [
+    ],
+    "steps": [
       {
-        "text": "Centuries of waiting.",
-        "destination": "generational_preparation"
+        "tag": "UNLOCK_EVIDENCE: rope_fibers",
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "A password of faith.",
-        "destination": "password_faith"
-      }
-    ]
-  },
-  "owner_recognized": {
-    "content": "# UNLOCK_EVIDENCE: rope_fibers\n# UNLOCK_EVIDENCE: cloaks\nTobias looked at us, then at the colt, then at the road ahead. His eyes were bright with unshed tears. \"My Lord needs it,\" he repeated. As if to himself. As if confirming what he already knew. Then he handed us the reins without another word.",
-    "choices": [
-      {
-        "text": "He had been waiting.",
-        "destination": "generational_preparation"
+        "tag": "UNLOCK_EVIDENCE: cloaks",
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "No charge was mentioned.",
-        "destination": "no_charge"
+        "text": "You wanted to go over the colt again? Ask. I would rather you had the account straight.",
+        "condition": {
+          "all": [
+            {
+              "compare": "gt",
+              "left": {
+                "variable": "visited_start"
+              },
+              "right": {
+                "literal": 1
+              }
+            }
+          ]
+        }
+      },
+      {
+        "text": "The Teacher sent two of our company ahead for a colt. You are asking whether it was stolen? Then begin with what He told them to do, not with the shouting afterward.",
+        "condition": {
+          "all": [
+            {
+              "not": {
+                "compare": "gt",
+                "left": {
+                  "variable": "visited_start"
+                },
+                "right": {
+                  "literal": 1
+                }
+              }
+            }
+          ]
+        }
       }
     ]
   },
-  "generational_preparation": {
-    "content": "Tobias told us — his voice shaking slightly — that his family had kept this line of donkeys for over a century. Each generation prepared for the moment when the king would come. They never knew exactly when. But they kept the colts unridden, just in case.",
+  "instructions": {
+    "content": "He told them where to find a colt that no one had ridden. They were to untie it and bring it. If questioned, they were to say, \"The Lord needs it.\"\nThat was the instruction. Not to threaten anyone. Not to take a sword to the rope.",
     "choices": [
       {
-        "text": "Promises kept.",
-        "destination": "closing_peter"
+        "text": "What did the owners ask?",
+        "destination": "owners",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Return to my questions.",
+        "destination": "start",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "set": "asked_instructions",
+        "operator": "=",
+        "value": {
+          "literal": true
+        },
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "He told them where to find a colt that no one had ridden. They were to untie it and bring it. If questioned, they were to say, \"The Lord needs it.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "That was the instruction. Not to threaten anyone. Not to take a sword to the rope.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
-  "password_faith": {
-    "content": "\"The Lord needs it\" — the password of faith. Spoken by disciples. Recognized by the owner. Verified by prophecy. And the colt stepped forward to serve its king.",
+  "owners": {
+    "content": "The men reported that the owners asked why they were untying it. They gave the answer Jesus had told them to give.\nAsk the owners about their own intentions. I will not put thoughts into their heads for your report.",
     "choices": [
       {
-        "text": "The password worked.",
-        "destination": "closing_peter"
+        "text": "How was Jesus seated on the colt?",
+        "destination": "cloaks",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Return to my questions.",
+        "destination": "start",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The men reported that the owners asked why they were untying it. They gave the answer Jesus had told them to give.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Ask the owners about their own intentions. I will not put thoughts into their heads for your report.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
-  "no_charge": {
-    "content": "No charge, no contract, no receipt. Just an old man placing a precious colt into the hands of Galilean fishermen. The crowd that gathered saw it happen. They understood. A king who enters without cost will reign without price.",
+  "cloaks": {
+    "content": "We put our cloaks on the colt and helped Jesus onto it. Along the road, people spread their own cloaks before Him.\nIt was not a saddle fit for a ruler. It was what we had to offer.",
     "choices": [
       {
-        "text": "Freedom as gift.",
-        "destination": "closing_peter"
+        "text": "Did everyone understand what the entry meant?",
+        "destination": "understanding",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Return to my questions.",
+        "destination": "start",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "set": "asked_cloaks",
+        "operator": "=",
+        "value": {
+          "literal": true
+        },
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "We put our cloaks on the colt and helped Jesus onto it. Along the road, people spread their own cloaks before Him.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "It was not a saddle fit for a ruler. It was what we had to offer.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
-  "sacred_symbolism": {
-    "content": "The donkey of peace. The colt of humility. The unridden beast of sacred purpose. All of Israel knew what these symbols meant. A king who comes on a donkey comes not to conquer but to reconcile. Not to destroy but to redeem.",
+  "understanding": {
+    "content": "Do not make us wiser than we were. I knew I wanted to follow Him. Knowing what every part of that day meant was another matter.\nPut down what we did. Let the words of Scripture be examined carefully.",
     "choices": [
       {
-        "text": "Consecration.",
-        "destination": "closing_peter"
+        "text": "Return to my questions.",
+        "destination": "start",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Do not make us wiser than we were. I knew I wanted to follow Him. Knowing what every part of that day meant was another matter.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Put down what we did. Let the words of Scripture be examined carefully.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
-  "closing_peter": {
-    "content": "Now I understand why the Teacher wept over Jerusalem. Not because of what it would face. But because of what it had received. The king had come. In peace. In truth. In love. And Jerusalem would never be the same.",
-    "choices": []
+  "closing": {
+    "content": "You have the instruction and the preparation for the ride. Keep those separate from rumours about force.\nThere is more I can tell you about the instructions and the cloaks when you return.",
+    "choices": [],
+    "steps": [
+      {
+        "text": "You have the instruction and the preparation for the ride. Keep those separate from rumours about force.",
+        "condition": {
+          "all": [
+            {
+              "all": [
+                {
+                  "variable": "asked_instructions"
+                },
+                {
+                  "variable": "asked_cloaks"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "text": "There is more I can tell you about the instructions and the cloaks when you return.",
+        "condition": {
+          "all": [
+            {
+              "not": {
+                "all": [
+                  {
+                    "variable": "asked_instructions"
+                  },
+                  {
+                    "variable": "asked_cloaks"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "divert": "DONE",
+        "condition": {
+          "all": []
+        }
+      }
+    ]
+  },
+  "_meta": {
+    "schema": 2,
+    "entry": "start",
+    "variables": {
+      "asked_instructions": false,
+      "asked_cloaks": false
+    },
+    "revision": "072e100ad23ef76a"
   }
 }

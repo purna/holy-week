@@ -17,12 +17,14 @@ export class ConversationStory {
         this.save = save;
         this.facts = facts;
         this.entry = data._meta?.entry || (data.start ? 'start' : data.root ? 'root' : Object.keys(data)[0]);
-        const compatible = saved?.version === 1 && saved.revision === data._meta?.revision;
+        const compatible = saved?.version === 1 && saved.revision === data._meta?.revision
+            && saved.variables && saved.visits && saved.selected && data[saved.node];
         this.session = compatible ? JSON.parse(JSON.stringify(saved)) : {
             version: 1, revision: data._meta?.revision, variables: { ...data._meta?.variables },
-            visits: {}, selected: {}, node: this.entry, completed: false, rendered: null
+            visits: {}, selected: {}, asked: {}, node: this.entry, completed: false, rendered: null
         };
         this.revisiting = compatible;
+        this.session.asked ||= {};
         if (this.session.completed) {
             this.session.node = this.entry;
             this.session.selected = {};
@@ -39,11 +41,19 @@ export class ConversationStory {
         return { ...this.session.variables, ...visits, ...this.facts() };
     }
 
+    choicesFor(name) {
+        return (this.data[name]?.choices || []).map((choice, index) => ({ ...choice, sourceIndex: index, key: `${name}:${index}` }))
+            .filter(choice => evaluate(choice.condition, this.variables) && !(choice.once && this.session.selected[choice.key]))
+            .map((choice, index) => ({ ...choice, index,
+                text: `${choice.text}${this.session.asked[choice.key] ? ' (reviewed)' : ''}` }));
+    }
+
     Continue() {
         if (!this.canContinue) return '';
         this.currentTags = [];
         if (this.session.rendered) {
-            this.currentChoices = this.session.rendered.choices;
+            // Evidence may have been collected since the interview was paused.
+            this.currentChoices = this.choicesFor(this.session.node);
             this.canContinue = false;
             return this.session.rendered.text;
         }
@@ -67,10 +77,7 @@ export class ConversationStory {
                 }
                 if ('divert' in step) next = step.divert;
             }
-            this.currentChoices = (node.choices || []).map((choice, index) => ({ ...choice, sourceIndex: index, key: `${name}:${index}` }))
-                .filter(choice => evaluate(choice.condition, this.variables) && !(choice.once && this.session.selected[choice.key]))
-                .map((choice, index) => ({ ...choice, index,
-                    text: `${choice.text}${this.session.selected[choice.key] ? ' (reviewed)' : ''}` }));
+            this.currentChoices = this.choicesFor(name);
             if (this.currentChoices.length) break;
             if (!next || next === 'DONE' || next === 'END') {
                 this.session.completed = true;
@@ -91,6 +98,7 @@ export class ConversationStory {
         if (!choice || !evaluate(choice.condition, this.variables)) return;
         if (!this.data[choice.destination]) throw new Error(`Missing conversation destination: ${choice.destination}`);
         this.session.selected[choice.key] = true;
+        this.session.asked[choice.key] = true;
         this.session.node = choice.destination;
         this.session.rendered = null;
         this.currentChoices = [];

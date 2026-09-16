@@ -50,6 +50,7 @@ export class DialogueManager {
 
     setDialogueOpen(state) {
         this.isDialogueOpen = state;
+        this._dialogueGeneration = (this._dialogueGeneration || 0) + 1;
     }
 
     _storyKey(caseId, npcId) {
@@ -107,7 +108,7 @@ export class DialogueManager {
         const resolvedCase = caseId || this.activeCaseId || null;
         const key = this._storyKey(resolvedCase, npcId);
         let story = this.npcStories[key];
-        if (!story) {
+        if (!story && !resolvedCase) {
             // Fallback: search any stored key ending with `::npcId`,
             // preferring the active case to avoid cross-case collisions
             // (e.g. 'peter' in triumphal_entry vs peter_restoration).
@@ -244,6 +245,7 @@ export class DialogueManager {
 
         console.log(`[DialogueManager] Initializing dialogue for ${npc.name} (${npc.id}). Reference: ${npc.storyFile || 'none'}`);
 
+        this._activeStory = inkStory;
         this.setActiveNPC(npc);
         this.onCloseCallback = onClose;
         this.onMessageCallback = onMessage;
@@ -301,7 +303,7 @@ export class DialogueManager {
       * @param {Function} onClose
       */
     _stepStory(story, onClose, onTag) {
-        if (!story) return;
+        if (!story || !this.isDialogueOpen || story !== this._activeStory) return;
 
         this.addTyping(() => {
             let text = "";

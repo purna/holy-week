@@ -20,6 +20,7 @@
 -> intro
 
 === intro ===
+# UNLOCK_EVIDENCE: cross_burden
 A pilgrim sits apart from the crowd, still catching his breath, rubbing at one shoulder beneath a cloak worn through at the seam. He looks like a man who arrived in Jerusalem expecting a feast, not this.
 
 "I wasn't a follower. I wasn't even from here. I was walking in from the countryside for the feast, and Roman hands grabbed me off the road. No warning. No explanation."
@@ -33,29 +34,24 @@ A pilgrim sits apart from the crowd, still catching his breath, rubbing at one s
 + [Leave him] -> repeat_stage
 
 === cautious_stage ===
-# UNLOCK_EVIDENCE: cross_burden
 "He'd already been carrying it Himself, from what I could tell — the whole beam, on His own back. But He went down under it. Couldn't get back up carrying that weight, not after what they'd clearly already done to Him before I ever saw Him."
 
-* [Continue] -> main_hub
++ [Return to my questions.] -> main_hub
 
 === pressured_stage ===
-# UNLOCK_EVIDENCE: cross_burden
 "The soldiers didn't ask. They pulled me straight out of the crowd, forced my hands onto the beam, pointed me up the hill. I didn't have a choice in any of it. Wrong place, wrong moment — that's all it was, far as I understood it then."
 
-* [Continue] -> main_hub
++ [Return to my questions.] -> main_hub
 
 === exposed_stage ===
-# UNLOCK_EVIDENCE: cross_burden
 "I keep thinking of Isaac. Carrying the wood up the mountain for his own sacrifice, not knowing what it meant, trusting his father without understanding why. I carried this man's wood up a different mountain, and I didn't know what it meant either. Not then. I think about it every day since."
 
 { not evidence_cross_burden:
     ~ evidence_cross_burden = true
-    # UNLOCK_EVIDENCE: cross_burden
 }
 -> main_hub
 
 === repeat_stage ===
-# UNLOCK_EVIDENCE: cross_burden
 "My shoulder still bears the mark of it. I don't think it will ever fully fade. I'm not sure I want it to."
 -> DONE
 

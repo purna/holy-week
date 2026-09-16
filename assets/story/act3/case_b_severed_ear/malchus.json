@@ -4,37 +4,97 @@
     "choices": [
       {
         "text": "What did you see in that garden?",
-        "destination": "garden_account"
+        "destination": "garden_account",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "How do you account for the healing?",
-        "destination": "healing_account"
+        "destination": "healing_account",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "tag": "UNLOCK_EVIDENCE: abandoned_linen",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "tag": "UNLOCK_EVIDENCE: dropped_torch",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "I am Malchus, servant to the High Priest. Tonight I came to arrest a man my master called a rebel. Now I speak with a healer who refused to let my wound stay open. My severed ear still remembers the cold steel of a disciple's knife.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "garden_account": {
-    "content": "# UNLOCK_EVIDENCE: abandoned_linen\n# UNLOCK_EVIDENCE: dropped_torch\nThe garden was dark — torches and lanterns moving between the trees. The Galilean's group was gathered near the centre. I was near the front of our column when the disciple struck. He was not a soldier. The blade caught the side of my head and took the ear completely. I fell.",
+    "content": "The garden was dark — torches and lanterns moving between the trees. The Galilean's group was gathered near the centre. I was near the front of our column when the disciple struck. He was not a soldier. The blade caught the side of my head and took the ear completely. I fell.",
     "choices": [
       {
         "text": "And then?",
-        "destination": "healing_account"
+        "destination": "healing_account",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Which disciple struck you?",
-        "destination": "which_disciple"
+        "destination": "which_disciple",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The garden was dark — torches and lanterns moving between the trees. The Galilean's group was gathered near the centre. I was near the front of our column when the disciple struck. He was not a soldier. The blade caught the side of my head and took the ear completely. I fell.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "healing_account": {
-    "content": "# UNLOCK_EVIDENCE: abandoned_linen\n# UNLOCK_EVIDENCE: dropped_torch\nHe came toward me. Not to flee, not to fight — He came to me. He said one word to the disciple — something about the sword — and then He picked up what had been cut away and He pressed it to the side of my head. I felt warmth. Not pain. Warmth. And it was whole again.",
+    "content": "He came toward me. Not to flee, not to fight — He came to me. He said one word to the disciple — something about the sword — and then He picked up what had been cut away and He pressed it to the side of my head. I felt warmth. Not pain. Warmth. And it was whole again.",
     "choices": [
       {
         "text": "A man being arrested stopped to heal the soldier arresting him.",
-        "destination": "paradox"
+        "destination": "paradox",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The disciple — was he disciplined?",
-        "destination": "which_disciple"
+        "destination": "which_disciple",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "He came toward me. Not to flee, not to fight — He came to me. He said one word to the disciple — something about the sword — and then He picked up what had been cut away and He pressed it to the side of my head. I felt warmth. Not pain. Warmth. And it was whole again.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -43,11 +103,27 @@
     "choices": [
       {
         "text": "That is not the behaviour of someone caught off guard.",
-        "destination": "knew_what_coming"
+        "destination": "knew_what_coming",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "And then He healed you.",
-        "destination": "paradox"
+        "destination": "paradox",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Peter. Simon bar Jonah. One of the lead figures. He did not appear to be a trained fighter — the blow was awkward, emotional. But it connected. And then the teacher told him to put the sword away and spoke about those who live by the sword dying by it. The man being arrested was managing His own arrest.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -56,11 +132,27 @@
     "choices": [
       {
         "text": "What does that tell you?",
-        "destination": "what_tells"
+        "destination": "what_tells",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Were you changed by it?",
-        "destination": "changed"
+        "destination": "changed",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "I have been the High Priest's servant for eleven years. I have been in courts, in cells, in the presence of the condemned. A man going to his execution does not stop to help the person arresting him. He runs, he pleads, he fights. He does not kneel in the dirt to heal the ear of a Temple agent.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -69,11 +161,27 @@
     "choices": [
       {
         "text": "The divine name.",
-        "destination": "divine_name"
+        "destination": "divine_name",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "And then He allowed the arrest.",
-        "destination": "allowed_arrest"
+        "destination": "allowed_arrest",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "He submitted without resistance. He greeted us with a question: \"Whom do you seek?\" When we said His name, He said \"I am he\" and something happened — men at the front of the column stepped backward and fell. Not from force. From the words. I saw it. I cannot explain it.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -81,12 +189,20 @@
     "content": "That either He is exactly who the crowds say He is, or He is operating on some logic I do not have a category for. My master sent me to arrest a dangerous teacher. I came home with the hearing He restored. I do not know how to file that in any report.",
     "choices": [
       {
-        "text": "Perhaps you are not supposed to file it.",
-        "destination": "changed"
-      },
+        "text": "Continue.",
+        "destination": "changed",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "What will you do?",
-        "destination": "changed"
+        "text": "That either He is exactly who the crowds say He is, or He is operating on some logic I do not have a category for. My master sent me to arrest a dangerous teacher. I came home with the hearing He restored. I do not know how to file that in any report.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -94,8 +210,20 @@
     "content": "I submitted the arrest report as instructed. I recorded the disciple's assault and said nothing about the healing. The council does not want complicating details. But I walk around this city whole, by the act of a man I helped deliver to execution, and I cannot pretend that changes nothing.",
     "choices": [
       {
-        "text": "It changes everything.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "I submitted the arrest report as instructed. I recorded the disciple's assault and said nothing about the healing. The council does not want complicating details. But I walk around this city whole, by the act of a man I helped deliver to execution, and I cannot pretend that changes nothing.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -103,8 +231,20 @@
     "content": "Yes. \"I am he.\" In Hebrew — the echo of the divine name. The men who fell had drawn weapons. After they rose, they did not press forward until He gave them permission. A man being arrested was managing the timetable of His own arrest.",
     "choices": [
       {
-        "text": "And you were part of that timetable.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Yes. \"I am he.\" In Hebrew — the echo of the divine name. The men who fell had drawn weapons. After they rose, they did not press forward until He gave them permission. A man being arrested was managing the timetable of His own arrest.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -113,12 +253,44 @@
     "choices": [
       {
         "text": "What did you think in that moment?",
-        "destination": "what_tells"
+        "destination": "what_tells",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "He said: \"If you are seeking me, let these men go.\" He negotiated the release of His disciples as a condition of His cooperation. An arrested man protecting his friends with no leverage except whatever authority caused those men to fall. I have arrested people for thirty years. I have never arrested anyone like this.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "closing": {
     "content": "He told Peter the sword was not the way. He healed the wound the sword made. Then He walked ahead of the column, not behind it. We followed Him to the High Priest's house. I am a witness, Scribe. To the arrest and to the healing. I have given both accounts. What you do with them is not something I can control.",
-    "choices": []
+    "choices": [],
+    "steps": [
+      {
+        "text": "He told Peter the sword was not the way. He healed the wound the sword made. Then He walked ahead of the column, not behind it. We followed Him to the High Priest's house. I am a witness, Scribe. To the arrest and to the healing. I have given both accounts. What you do with them is not something I can control.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "divert": "DONE",
+        "condition": {
+          "all": []
+        }
+      }
+    ]
+  },
+  "_meta": {
+    "schema": 2,
+    "entry": "start",
+    "variables": {},
+    "revision": "cf28841de539319d"
   }
 }

@@ -23,18 +23,18 @@
 === start ===
 I am Simon Peter. Three times I denied the man I swore I would never deny. The rooster crowed, and He turned. I saw the look in His eyes — disappointment, not anger. I am a broken man.
 
-* [Tell me of the rooster crowing.] -> rooster
-* [And after — why did you stay?] -> stay
++ [Tell me of the rooster crowing.] -> rooster
++ [And after — why did you stay?] -> stay
 
 === rooster ===
 The third time, He turned. He looked at me — right through the smoke and the noise. And I knew. I had denied Him three times before that dawn. I ran. I wept. And somehow, I was still following.
 
-* [How does failure become hope?] -> stay
++ [How does failure become hope?] -> stay
 
 === stay ===
 Three days later I found the tomb empty. And then I saw Him — alive. He forgave me before I could ask. He commissioned me before I could explain. That is why I am here.
 
-* [This is your simple defense.] -> closing
++ [Finish the interview.] -> closing
 
 === closing ===
 Mock me if you will. I earned my place at that table by failing spectacularly and being restored completely. That is the gospel in three sentences.

@@ -4,51 +4,120 @@
     "choices": [
       {
         "text": "What does the harvest mean?",
-        "destination": "harvest"
+        "destination": "harvest",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Why does the enemy sow at night?",
-        "destination": "night"
+        "destination": "night",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "What does this have to do with Lazarus?",
-        "destination": "lazarus"
+        "destination": "lazarus",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "tag": "UNLOCK_EVIDENCE: parable_notes",
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "closing",
-        "destination": "closing"
+        "text": "He told us a story about a farmer's field, and it hasn't left me since. A man sows good seed. That night, while everyone sleeps, his enemy comes and sows weeds among the wheat — then slips away before anyone sees his face. The servants want to rip the weeds out immediately. The master says no. Wait. Let them grow together until the harvest, or you'll tear up the wheat with them.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "divert": "closing",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "harvest": {
-    "content": "# UNLOCK_EVIDENCE: parable_notes\nHe explained it to us privately afterward, away from the crowd. The field is the world. The good seed are the people of the kingdom; the weeds are the people of the evil one. The harvest is the end of the age, and the reapers are angels. Everything sown in secret gets separated in the light eventually. Nothing stays hidden past the harvest.",
-    "choices": [
+    "content": "He explained it to us privately afterward, away from the crowd. The field is the world. The good seed are the people of the kingdom; the weeds are the people of the evil one. The harvest is the end of the age, and the reapers are angels. Everything sown in secret gets separated in the light eventually. Nothing stays hidden past the harvest.",
+    "choices": [],
+    "steps": [
       {
-        "text": "closing",
-        "destination": "closing"
+        "text": "He explained it to us privately afterward, away from the crowd. The field is the world. The good seed are the people of the kingdom; the weeds are the people of the evil one. The harvest is the end of the age, and the reapers are angels. Everything sown in secret gets separated in the light eventually. Nothing stays hidden past the harvest.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "divert": "closing",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "night": {
-    "content": "# UNLOCK_EVIDENCE: parable_notes\nThat's the detail I keep circling back to. The enemy doesn't sow in the open field at noon, in front of witnesses. He waits for the household to sleep. Whatever is being planted against Lazarus right now — whatever the priests are drafting behind closed doors after dark — it's the same posture. Men only work that quietly when they already know the light would condemn them.",
-    "choices": [
+    "content": "That's the detail I keep circling back to. The enemy doesn't sow in the open field at noon, in front of witnesses. He waits for the household to sleep. Whatever is being planted against Lazarus right now — whatever the priests are drafting behind closed doors after dark — it's the same posture. Men only work that quietly when they already know the light would condemn them.",
+    "choices": [],
+    "steps": [
       {
-        "text": "closing",
-        "destination": "closing"
+        "text": "That's the detail I keep circling back to. The enemy doesn't sow in the open field at noon, in front of witnesses. He waits for the household to sleep. Whatever is being planted against Lazarus right now — whatever the priests are drafting behind closed doors after dark — it's the same posture. Men only work that quietly when they already know the light would condemn them.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "divert": "closing",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "lazarus": {
-    "content": "# UNLOCK_EVIDENCE: parable_notes\nThink about it. A man is raised, plainly, publicly, in front of everyone in Bethany. That's the wheat — undeniable, growing where anyone can see it. And now, quietly, at night, in a council chamber, someone is sowing something else against him. A decree. A plan. They think they're being careful. They don't understand they're just proving the parable true in real time. Rabbi said, \"I will open my mouth in parables; I will utter what has been hidden since the foundation of the world.\" He wasn't just telling stories. He was pulling back a curtain on how God has always worked — and on what's happening in that council room tonight.",
-    "choices": [
+    "content": "Think about it. A man is raised, plainly, publicly, in front of everyone in Bethany. That's the wheat — undeniable, growing where anyone can see it. And now, quietly, at night, in a council chamber, someone is sowing something else against him. A decree. A plan. They think they're being careful. They don't understand they're just proving the parable true in real time. Rabbi said, \"I will open my mouth in parables; I will utter what has been hidden since the foundation of the world.\" He wasn't just telling stories. He was pulling back a curtain on how God has always worked — and on what's happening in that council room tonight.",
+    "choices": [],
+    "steps": [
       {
-        "text": "closing",
-        "destination": "closing"
+        "text": "Think about it. A man is raised, plainly, publicly, in front of everyone in Bethany. That's the wheat — undeniable, growing where anyone can see it. And now, quietly, at night, in a council chamber, someone is sowing something else against him. A decree. A plan. They think they're being careful. They don't understand they're just proving the parable true in real time. Rabbi said, \"I will open my mouth in parables; I will utter what has been hidden since the foundation of the world.\" He wasn't just telling stories. He was pulling back a curtain on how God has always worked — and on what's happening in that council room tonight.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "divert": "closing",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "closing": {
     "content": "",
-    "choices": []
+    "choices": [],
+    "steps": [
+      {
+        "divert": "DONE",
+        "condition": {
+          "all": []
+        }
+      }
+    ]
+  },
+  "_meta": {
+    "schema": 2,
+    "entry": "start",
+    "variables": {},
+    "revision": "6f26803aa879f98f"
   }
 }

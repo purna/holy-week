@@ -220,7 +220,7 @@ export class LabWorkspaceUI {
 
     this._initState();
     this._restoreActiveTab();
-    this._setFeedback("Connections: select two evidence cards, choose their relationship, then test the connection.");
+    this._setFeedback(this._lastFeedback?.text || "Connections: select two evidence cards, choose their relationship, then test the connection.", this._lastFeedback?.type || "");
     this._renderBanks();
 
     this.root.querySelectorAll(".lab-btn[data-lw-tab]").forEach(btn => {
@@ -380,10 +380,6 @@ export class LabWorkspaceUI {
             this._renderFolderContents();
             this._setFeedback(`Filed ${item.name} as ${folderTitle}.`, "success");
           } else if (this._activeTimelineStep) {
-            if (this._labVerified.timeline) {
-              this._setFeedback("Timeline already verified.", "error");
-              return;
-            }
             const step = this._activeTimelineStep;
             if (!this.timelineSlots[step]) this.timelineSlots[step] = [];
             const idx = this.timelineSlots[step].indexOf(id);
@@ -452,10 +448,6 @@ export class LabWorkspaceUI {
         const id = e.dataTransfer.getData('text/plain');
         if (!id) return;
 
-        if (this._labVerified.timeline && dropZone.classList.contains('timeline-step')) {
-          this._setFeedback("Timeline already verified.", "error");
-          return;
-        }
         if (dropZone.id.startsWith('lw-comp-slot-')) {
           const idx = parseInt(dropZone.id.replace("lw-comp-slot-", ""), 10);
           if (this.compareSlots[idx]?.id === id) {
@@ -507,6 +499,7 @@ export class LabWorkspaceUI {
   }
 
   _initState() {
+    this._workspaceCaseId = (this.es.caseManager || this.de.caseManager)?.activeCaseId;
     this.score = 0;
     const pool = this.es.getCollected?.() || this.es.getEvidencePool?.().filter(e => this.es.isCollected(e.id)) || [];
     const typeMap = { physical: 'physical', testimonial: 'testimonial', analytical: 'analytical', environmental: 'environmental' };
@@ -539,9 +532,81 @@ export class LabWorkspaceUI {
       folders: !!insightAwards['lab:folder_verify'],
       timeline: !!insightAwards['lab:timeline_test']
     };
+    const cm = this.es.caseManager || this.de.caseManager;
+    const saved = cm?.getCaseProgress?.(this._workspaceCaseId)?.labWorkspace;
+    const byId = new Map(this.evidence.map(item => [item.id, item]));
+    const restoreGroups = (groups, allowedKeys, allowedIds) => {
+      const seen = new Set();
+      return Object.fromEntries(Object.entries(groups || {}).filter(([key]) => allowedKeys.has(key)).map(([key, ids]) =>
+        [key, (Array.isArray(ids) ? ids : []).filter(id => {
+          if (!allowedIds.has(id) || seen.has(id)) return false;
+          seen.add(id);
+          return true;
+        })]));
+    };
+    this._folderChecked = !!saved?.folderChecked;
+    this._timelineChecked = !!saved?.timelineChecked;
+    this._lastFeedback = saved?.feedback || null;
+    this.currentTab = ['connections', 'link', 'timeline', 'reliability'].includes(saved?.tab) ? saved.tab : 'connections';
+    if (saved?.version === 1) {
+      this.folderState = restoreGroups(saved.folders, new Set(Object.keys(folderInfoData)), new Set(byId.keys()));
+      const timeline = this._getTimelineEvidence();
+      this.timelineSlots = restoreGroups(saved.timeline, new Set(this._getAllTimelineEvidence().map(item => String(item.timelineOrder))), new Set(timeline.map(item => item.id)));
+      this.compareSlots = [0, 1].map(index => byId.get(saved.compare?.[index]) || null);
+    } else {
+      // Older saves recorded completed tasks but discarded their placements.
+      if (this._labVerified.folders) {
+        for (const item of this.evidence) (this.folderState[item.category] ||= []).push(item.id);
+        this._folderChecked = true;
+      }
+      if (this._labVerified.timeline) {
+        for (const item of this._getTimelineEvidence()) (this.timelineSlots[item.timelineOrder] ||= []).push(item.id);
+        this._timelineChecked = true;
+      }
+    }
+  }
+
+  _saveWorkspace() {
+    const cm = this.es.caseManager || this.de.caseManager;
+    // A delayed callback from an old case must never write into the new one.
+    if (!this._workspaceCaseId || cm?.activeCaseId !== this._workspaceCaseId) return;
+    const progress = cm.getCaseProgress?.(this._workspaceCaseId);
+    if (!progress) return;
+    progress.labWorkspace = JSON.parse(JSON.stringify({
+      version: 1, folders: this.folderState, timeline: this.timelineSlots,
+      compare: this.compareSlots.map(item => item?.id || null), tab: this.currentTab,
+      folderChecked: this._folderChecked, timelineChecked: this._timelineChecked,
+      feedback: this._lastFeedback
+    }));
+    cm._saveProgress?.();
+  }
+
+  _showPlacementResults(kind) {
+    const folderMode = kind === 'folder';
+    const groups = folderMode ? this.folderState : this.timelineSlots;
+    this.root.querySelectorAll(folderMode ? '.folder-tray' : '.timeline-step').forEach(group => {
+      group.classList.add('expanded');
+      const key = folderMode ? group.dataset.folder : group.dataset.step;
+      group.querySelectorAll('.ev-card').forEach(card => {
+        const item = this.evidence.find(e => e.id === card.dataset.evidenceId);
+        const correct = item && (folderMode ? item.category === key : String(item.timelineOrder) === key);
+        card.setAttribute('data-folder-status', correct ? 'correct' : 'wrong');
+        card.setAttribute('aria-label', `${item?.name || 'Evidence'}: ${correct ? 'Correct placement' : 'Wrong placement'}`);
+      });
+      const badge = group.querySelector('[data-folder-badge]');
+      if (badge) {
+        const expected = this.evidence.filter(item => item.category === key).length;
+        const ids = groups[key] || [];
+        const count = ids.filter(id => this.evidence.find(item => item.id === id)?.category === key).length;
+        badge.hidden = false;
+        badge.textContent = `${count}/${expected}`;
+        badge.className = `folder-verify-badge ${count === expected && ids.length === expected ? 'badge-correct' : 'badge-wrong'}`;
+      }
+    });
   }
 
   _renderBanks() {
+    this._renderComparatorSlots();
     this._renderComparatorBank();
     this._renderFolderGrid();
     this._renderFolderContents();
@@ -720,6 +785,7 @@ export class LabWorkspaceUI {
   }
 
   _renderComparatorSlots() {
+    this._saveWorkspace();
     for (let i = 0; i < 2; i++) {
       const slot = this.root.querySelector(`#lw-comp-card-${i}`);
       const container = this.root.querySelector(`#lw-comp-slot-${i}`);
@@ -756,6 +822,7 @@ export class LabWorkspaceUI {
   }
 
   _renderFolderContents() {
+    this._saveWorkspace();
     for (const key of Object.keys(folderInfoData)) {
       const el = this.root.querySelector(`#lw-folder-${key}`);
       if (!el) continue;
@@ -774,6 +841,7 @@ export class LabWorkspaceUI {
     bank.innerHTML = unfiled.length
       ? unfiled.map(item => this._cardHTML(item)).join("")
       : `<span class="folder-empty">${this.evidence.length ? 'All evidence has been filed. Verify your folders.' : 'No evidence collected yet. Return after finding a clue.'}</span>`;
+    if (this._folderChecked) this._showPlacementResults('folder');
   }
 
   _moveEvidenceToFolder(id, folderKey) {
@@ -824,6 +892,7 @@ export class LabWorkspaceUI {
   }
 
   _renderTimelineSteps() {
+    this._saveWorkspace();
     const stepsEl = this.root.querySelector("#lw-timeline-steps");
     if (!stepsEl) return;
     const allTimelineEvidence = this._getAllTimelineEvidence();
@@ -862,6 +931,7 @@ export class LabWorkspaceUI {
         </div>
       `;
     }).join("");
+    if (this._timelineChecked) this._showPlacementResults('timeline');
   }
 
   _renderTimelineBank() {
@@ -1007,6 +1077,9 @@ export class LabWorkspaceUI {
   }
 
   _submitFolders() {
+    this._folderChecked = true;
+    this._showPlacementResults('folder');
+    this._saveWorkspace();
     if (!this.evidence.length) {
       this._setFeedback("Collect evidence before using the Link folders.", "error");
       return;
@@ -1088,6 +1161,9 @@ export class LabWorkspaceUI {
   }
 
   _testTimeline() {
+    this._timelineChecked = true;
+    this._showPlacementResults('timeline');
+    this._saveWorkspace();
     const authoredTimelineIds = this._getActiveCase()?.timelineEvidenceIds || [];
     const collectedTimelineIds = new Set(this.evidence.map(e => e.id));
     const missingTimelineCount = authoredTimelineIds.filter(id => !collectedTimelineIds.has(id)).length;
@@ -1104,7 +1180,7 @@ export class LabWorkspaceUI {
       if (!stepEl) return;
       const ids = this.timelineSlots[step] || [];
       if (ids.length === 0) return;
-      const allCorrect = ids.every(id => {
+      const correctIds = ids.filter(id => {
         const item = timelineEvidence.find(e => e.id === id);
         if (item && item.timelineOrder === step) {
           correct++;
@@ -1112,6 +1188,7 @@ export class LabWorkspaceUI {
         }
         return false;
       });
+      const allCorrect = correctIds.length === ids.length;
       stepEl.classList.add(allCorrect ? "correct" : "wrong");
       ids.forEach(id => {
         const card = stepEl.querySelector(`.ev-card[data-evidence-id="${id}"]`);
@@ -1124,6 +1201,7 @@ export class LabWorkspaceUI {
     });
     if (correct === totalTimelineItems && totalTimelineItems > 0) {
       const wasAlreadySolved = this._labVerified.timeline;
+      this._labVerified.timeline = true;
       this._setFeedback("Timeline is correct.", "success");
       this.onResult?.({ type: 'timeline_test', success: true, scoreDelta: 10, feedback: "Timeline is correct. +10 Insight Points", feedbackType: "success" });
       const activeCase = this._getActiveCase();
@@ -1145,6 +1223,8 @@ export class LabWorkspaceUI {
   }
 
   _setFeedback(text, type = "") {
+    this._lastFeedback = { text, type };
+    this._saveWorkspace();
     const el = this.root.querySelector("#lw-feedback");
     if (!el) return;
     el.className = `lw-feedback ${type}`.trim();

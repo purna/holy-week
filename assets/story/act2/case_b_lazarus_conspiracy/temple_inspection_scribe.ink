@@ -30,17 +30,17 @@
 
 === start ===
 My ledgers track movement, not miracles. The traffic flow between Bethany and the Eastern Gate has exceeded standard Passover deviation by over 400%. That is a data point. What do you require?
-* [What does your data tell you?] -> data_analysis
-* [Are you tracking the man, Lazarus?] -> tracking_lazarus
-* [What is the official Temple response?] -> official_response
++ [What does your data tell you?] -> data_analysis
++ [Are you tracking the man, Lazarus?] -> tracking_lazarus
++ [What is the official Temple response?] -> official_response
 
 === data_analysis ===
 It tells me an unsanctioned event in Bethany has created a significant public order challenge. We have documented a surge in foot traffic, a rise in seditious chatter, and a statistical probability of civil unrest. My job is to report the numbers, not interpret the cause.
-* [So it's just a numbers problem to you?] -> numbers_problem
++ [So it's just a numbers problem to you?] -> numbers_problem
 
 === tracking_lazarus ===
 The 'Bethany asset' is a focal point for this anomaly. His public appearances correlate directly with spikes in crowd density. From a security standpoint, he is a catalyst for instability. Whether he was dead or simply... unavailable... is irrelevant to my report.
-* [You call a living man an 'asset'?] -> asset_perspective
++ [You call a living man an 'asset'?] -> asset_perspective
 
 === official_response ===
 The council acts on verified intelligence. My reports are one part of that. The data suggests a need for proactive containment to mitigate risk to public order and Temple security. Final policy is above my pay grade.

@@ -20,14 +20,14 @@
 
 -> start
 === start ===
-I am Marcus. I was on duty. I have seen men die, but this day was unlike any other. Outside the city, on Golgotha, three crosses cast long shadows. One man in the center drew every eye — condemned, silent, yet commanding attention.
-
-* [What happened first?] -> crucifixion_begins
-* [How did the crowd behave?] -> crowd_behavior
-
-=== crowd_behavior ===
 # UNLOCK_EVIDENCE: guard_report
 # UNLOCK_EVIDENCE: rolled_stone
+I am Marcus. I was on duty. I have seen men die, but this day was unlike any other. Outside the city, on Golgotha, three crosses cast long shadows. One man in the center drew every eye — condemned, silent, yet commanding attention.
+
++ [What happened first?] -> crucifixion_begins
++ [How did the crowd behave?] -> crowd_behavior
+
+=== crowd_behavior ===
 Crowds are predictable.
 
 Some came for justice.
@@ -52,8 +52,8 @@ Mockery is easy in daylight.
 
 Silence comes more naturally when the sky turns black.
 
-* [The sky turned black?] -> darkness
-* [What were the priests saying?] -> priests
++ [The sky turned black?] -> darkness
++ [What were the priests saying?] -> priests
 
 === priests ===
 The chief priests seemed pleased at first.
@@ -68,12 +68,10 @@ When the darkness came, the shouting became less frequent.
 
 By the time the earth began to shake, many had already started moving toward the city.
 
-* [What happened when darkness fell?] -> darkness
++ [What happened when darkness fell?] -> darkness
 
 
 === crucifixion_begins ===
-# UNLOCK_EVIDENCE: guard_report
-# UNLOCK_EVIDENCE: rolled_stone
 They brought Him forward.
 
 The nails went through hands and feet.
@@ -82,8 +80,8 @@ I held the hammer; another held His arms. I had seen this before. Only this time
 
 The robbers on either side jeered. One cursed. The other rebuked him and asked for mercy from this man in the middle.
 
-* [What did the robbers say?] -> criminals
-* [Did He respond?] -> words
++ [What did the robbers say?] -> criminals
++ [Did He respond?] -> words
 
 === criminals ===
 One mocked: "If You are the Messiah, save Yourself and us."
@@ -92,7 +90,7 @@ The other said quietly: "Do you not fear God? We are punished rightly, but this 
 
 Even from my perch, I could see His eyes turn toward him.
 
-* [What did He say?] -> words
++ [What did He say?] -> words
 
 === words ===
 He said nothing to the mocker.
@@ -101,7 +99,7 @@ He spoke to the penitent one: "Today you will be with Me in Paradise."
 
 I did not understand how words so few could silence a man, calm a thief, and enrage priests all at once.
 
-* [What about the soldiers?] -> vinegar
++ [What about the soldiers?] -> vinegar
 
 === vinegar ===
 Later, they offered Him sour wine.
@@ -114,7 +112,7 @@ When He cried out, "It is finished," I did not move. Then, as the others prepare
 
 Even hardened soldiers murmured.
 
-* [What happened then?] -> darkness
++ [What happened then?] -> darkness
 
 === darkness ===
 The sky grew black. Midday, and yet the sun hid its face.
@@ -123,14 +121,14 @@ The ground shook. Stones cracked. The Temple curtain tore from top to bottom.
 
 Even the priests fled to safe distance. A few, perhaps, wondered what they had done.
 
-* [What did you record officially?] -> report
++ [What did you record officially?] -> report
 
 === report ===
 I reported: "Three men executed. Middle victim silent. Witnesses among criminals: one justified, one mocking. Darkness and earthquake observed. Curtain torn. Soldier used spear; blood and water observed."
 
 I wrote it plainly. I do not interpret miracles. I note facts.
 
-* [Anything else extraordinary?] -> extraordinary
++ [Anything else extraordinary?] -> extraordinary
 
 === extraordinary ===
 The centurion near me fell to his knees. He said, "Surely this was the Son of God."
@@ -139,7 +137,7 @@ Some in the crowd wept. Some ran. The darkness lasted hours. The ground still tr
 
 I have never seen death wear such majesty.
 
-* [Closing statement] -> closing
++ [Finish the interview.] -> closing
 
 === closing ===
 I am Marcus. I held the hammer. I held the spear. I watched the sky go dark.

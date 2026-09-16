@@ -23,7 +23,7 @@
 
 === start ===
 We were dispatched with the Temple guard. A cohort detachment. It was unusual, a joint operation for a local teacher. They said he was dangerous.
-* [Was he?] -> dangerous
++ [Was he?] -> dangerous
 
 === dangerous ===
 He didn't fight. One of his men drew a sword, but the teacher stopped him. He seemed to be in control of the entire situation, even his own arrest. It was... strange. We just followed the Temple guard's lead.

@@ -31,12 +31,12 @@
 
 === start ===
 My house was a place of exclusion once. The Law declared me unclean. Now, it is a place where the Son of God eats bread. Lazarus, another man who has defeated a tomb, sits at my table. And Mary... she has just filled the air with the scent of a king's burial.
-* [Tell me about the anointing.] -> anointing
-* [Lazarus is here as well?] -> lazarus
++ [Tell me about the anointing.] -> anointing
++ [Lazarus is here as well?] -> lazarus
 
 === anointing ===
 The disciples saw the cost. I saw the courage. To bring something so valuable and break it for Him... it was an act of total surrender. The Teacher said it was to prepare Him for burial. The mood in the room changed after He said that.
-* [How did the disciples react?] -> disciples_reaction
++ [How did the disciples react?] -> disciples_reaction
 
 === lazarus ===
 He sits there, eating and breathing. A living miracle. He is the reason the chief priests are so afraid. They cannot deny a man who was dead for four days. So they plot to kill him again. My house is full of life, and the city is full of death warrants.
@@ -44,7 +44,7 @@ He sits there, eating and breathing. A living miracle. He is the reason the chie
 
 === disciples_reaction ===
 Judas was angry. He spoke of the poor, but his hands are always near the money bag. The others were quiet, but you could see them doing the math in their heads. They do not yet understand the economy of His kingdom.
-* [And Jesus?] -> jesus_reaction
++ [And Jesus?] -> jesus_reaction
 
 === jesus_reaction ===
 He looked at Mary with such kindness. He honored her gift above all their objections. He saw her heart, not the price of the perfume. In my own house, I saw a man who was once unclean be honored, a man who was dead be welcomed, and a woman's love be treasured. This is the kingdom He speaks of.

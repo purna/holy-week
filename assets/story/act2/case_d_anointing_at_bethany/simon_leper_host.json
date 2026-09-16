@@ -4,44 +4,168 @@
     "choices": [
       {
         "text": "Jesus healed you.",
-        "destination": "healed_by_jesus"
+        "destination": "healed_by_jesus",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Tell me about the dinner.",
-        "destination": "dinner_arranged"
+        "destination": "dinner_arranged",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "What happened when Mary anointed Jesus?",
-        "destination": "mary_act"
+        "destination": "mary_act",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Why was that evening so important to you?",
-        "destination": "dinner_meaning"
+        "destination": "dinner_meaning",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "tag": "UNLOCK_EVIDENCE: alabaster_jar",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Simon gestures toward the table before settling into his seat.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"They still call me Simon the Leper,\" he says. \"Even though the disease is gone. Perhaps it is easier for people to remember what I was than to believe what I became.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "He looks toward the doorway.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"But I remember. I remember what it was like when people saw me coming and crossed the street. I remember the silence. The distance. The fear.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Then he smiles.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"And I remember the day the Master came near.\"",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "healed_by_jesus": {
-    "content": "# UNLOCK_EVIDENCE: alabaster_jar\n\"Yes. He healed me.\"\nSimon looks down at his hands.\n\"Leprosy had taken almost everything. My health. My livelihood. My place among my people. The physicians tried to help, but nothing changed.\"\n\"Then Jesus came near.\"\n\"He did not stand at a distance. He did not recoil. He touched me and said, 'Be clean.'\"\nSimon slowly opens his hands.\n\"And I was clean.\"",
+    "content": "\"Yes. He healed me.\"\nSimon looks down at his hands.\n\"Leprosy had taken almost everything. My health. My livelihood. My place among my people. The physicians tried to help, but nothing changed.\"\n\"Then Jesus came near.\"\n\"He did not stand at a distance. He did not recoil. He touched me and said, 'Be clean.'\"\nSimon slowly opens his hands.\n\"And I was clean.\"",
     "choices": [
       {
         "text": "What did it mean to be touched again?",
-        "destination": "divine_touch"
+        "destination": "divine_touch",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "How did the community react?",
-        "destination": "community_reaction"
+        "destination": "community_reaction",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Was the healing immediate?",
-        "destination": "healing_immediate"
+        "destination": "healing_immediate",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "\"Yes. He healed me.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Simon looks down at his hands.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"Leprosy had taken almost everything. My health. My livelihood. My place among my people. The physicians tried to help, but nothing changed.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"Then Jesus came near.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"He did not stand at a distance. He did not recoil. He touched me and said, 'Be clean.'\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Simon slowly opens his hands.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"And I was clean.\"",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -50,15 +174,53 @@
     "choices": [
       {
         "text": "Why would He risk becoming unclean?",
-        "destination": "why_risk"
+        "destination": "why_risk",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "What did that tell you about Him?",
-        "destination": "authority_greater"
+        "destination": "authority_greater",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "\"I had forgotten what a human touch felt like.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Simon pauses.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"People think the miracle was only that the disease disappeared. It was more than that. When the Master touched me, He crossed the boundary everyone else feared.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"He looked at what everyone called unclean and treated me as someone worth restoring.\"",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -67,15 +229,59 @@
     "choices": [
       {
         "text": "His authority was greater than disease.",
-        "destination": "authority_greater"
+        "destination": "authority_greater",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Did you think He possessed divine authority?",
-        "destination": "scope_cosmic"
+        "destination": "scope_cosmic",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "\"That is the question I have asked myself ever since.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"The Law required separation from uncleanness. Everyone knew that. Yet Jesus came near anyway.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"He did not behave as though impurity had power over Him. Instead, His holiness seemed to move in the other direction.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Simon looks toward the table.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"The uncleanness did not spread to Him. His cleansing spread to me.\"",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -84,15 +290,59 @@
     "choices": [
       {
         "text": "Even death?",
-        "destination": "power_over_death"
+        "destination": "power_over_death",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Something greater than healing?",
-        "destination": "scope_cosmic"
+        "destination": "scope_cosmic",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "\"Greater authority. That is how I came to understand it.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"He did not need a physician to declare me healed. He did not need fear of the disease to keep Him away. He spoke, He touched, and the impossible happened.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Simon shakes his head.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"If He had authority over a disease that had destroyed my life, then I began to wonder...\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"What else does He have authority over?\"",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -101,15 +351,53 @@
     "choices": [
       {
         "text": "Lazarus was there that evening.",
-        "destination": "lazarus_present"
+        "destination": "lazarus_present",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "That must have changed the meaning of the dinner.",
-        "destination": "dinner_meaning"
+        "destination": "dinner_meaning",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "\"Death.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Simon says the word quietly.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"After what happened to Lazarus, none of us could speak about death in quite the same way.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"If Jesus could call a man from the grave, then disease was only the beginning of what His authority revealed.\"",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -118,15 +406,47 @@
     "choices": [
       {
         "text": "What pattern did you see?",
-        "destination": "pattern_emerged"
+        "destination": "pattern_emerged",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Was Mary part of that pattern?",
-        "destination": "mary_act"
+        "destination": "mary_act",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "\"At first I thought I had simply been healed.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"But then I began to see a larger pattern. The Master did not merely repair broken bodies. He restored what sin, suffering, and death had taken away.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"And that is why the events around that Passover troubled me so deeply.\"",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -135,15 +455,53 @@
     "choices": [
       {
         "text": "That must have been overwhelming.",
-        "destination": "dinner_meaning"
+        "destination": "dinner_meaning",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "You wanted to celebrate.",
-        "destination": "dinner_arranged"
+        "destination": "dinner_arranged",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "\"The community did not know what to do with me.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"For years they had known me as the man who must remain outside. Then suddenly I could walk among them again.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"Some rejoiced. Some were suspicious. Others simply stared.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"But the strangest part was sitting at my own table and realizing that people were no longer afraid to sit beside me.\"",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -152,36 +510,134 @@
     "choices": [
       {
         "text": "You were restored to the community.",
-        "destination": "community_reaction"
+        "destination": "community_reaction",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "And that led to the dinner.",
-        "destination": "dinner_arranged"
+        "destination": "dinner_arranged",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "\"Immediate.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Simon smiles.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"There was no gradual recovery. No long treatment. No waiting to see whether the disease would return.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"The Master spoke, touched me, and my life changed.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"But the greatest healing was not what happened to my skin.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"It was what happened to my place in the world.\"",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "dinner_arranged": {
-    "content": "# UNLOCK_EVIDENCE: alabaster_jar\n\"The dinner was my way of saying thank you.\"\nSimon gestures around the room.\n\"How do you repay a man who gives you your life back?\"\n\"I could not. So I opened my home.\"\n\"I wanted Him at my table. I wanted the people who had witnessed my healing to see that I was no longer the man they remembered.\"",
+    "content": "\"The dinner was my way of saying thank you.\"\nSimon gestures around the room.\n\"How do you repay a man who gives you your life back?\"\n\"I could not. So I opened my home.\"\n\"I wanted Him at my table. I wanted the people who had witnessed my healing to see that I was no longer the man they remembered.\"",
     "choices": [
       {
         "text": "What preparations did you make?",
-        "destination": "preparations"
+        "destination": "preparations",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Who came to the dinner?",
-        "destination": "guests_arrived"
+        "destination": "guests_arrived",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Why was the table so important?",
-        "destination": "dinner_meaning"
+        "destination": "dinner_meaning",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "\"The dinner was my way of saying thank you.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Simon gestures around the room.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"How do you repay a man who gives you your life back?\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"I could not. So I opened my home.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"I wanted Him at my table. I wanted the people who had witnessed my healing to see that I was no longer the man they remembered.\"",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -190,15 +646,59 @@
     "choices": [
       {
         "text": "Were the guests important?",
-        "destination": "notable_guests"
+        "destination": "notable_guests",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "You wanted everything to be proper.",
-        "destination": "proper_prep"
+        "destination": "proper_prep",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "\"I wanted everything to be worthy of Him.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"The finest food. Good wine. Fresh bread. My best linen.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Simon laughs softly.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"I probably spent far too much.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"But when someone has given you back your life, ordinary hospitality does not seem enough.\"",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -207,15 +707,53 @@
     "choices": [
       {
         "text": "You mean her anointing of Jesus.",
-        "destination": "mary_act"
+        "destination": "mary_act",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "You sensed something larger was happening.",
-        "destination": "dinner_meaning"
+        "destination": "dinner_meaning",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "\"Proper? Yes.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"But I learned something that evening.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"I had prepared the house. Mary had prepared something far more costly.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"I was preparing a dinner. She was preparing for something none of us fully understood.\"",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -224,15 +762,47 @@
     "choices": [
       {
         "text": "Lazarus's presence must have amazed everyone.",
-        "destination": "lazarus_present"
+        "destination": "lazarus_present",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "And then Mary acted.",
-        "destination": "mary_act"
+        "destination": "mary_act",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "\"There were many people of importance there, but one guest overshadowed them all.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"Lazarus was there. The man who had been dead and was now sitting at the table.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"That alone made the evening extraordinary.\"",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -241,19 +811,67 @@
     "choices": [
       {
         "text": "Tell me about Lazarus.",
-        "destination": "lazarus_present"
+        "destination": "lazarus_present",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Tell me about Mary.",
-        "destination": "mary_act"
+        "destination": "mary_act",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "What was Martha doing during the meal?",
-        "destination": "martha_service"
+        "destination": "martha_service",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "\"The guests arrived, and soon the house was full.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"Lazarus was there. Martha was serving. The disciples were there.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"And there was Mary.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Simon pauses.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"I did not know then how important her actions would become.\"",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -262,15 +880,65 @@
     "choices": [
       {
         "text": "The contrast was striking.",
-        "destination": "pattern_emerged"
+        "destination": "pattern_emerged",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Was the atmosphere uncomfortable?",
-        "destination": "strange_silence"
+        "destination": "strange_silence",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "\"Lazarus was impossible to ignore.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"He had been dead four days. Now he was alive, eating at my table.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"People whispered about him. Some came simply to see whether the stories were true.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"But there he was.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Simon lowers his voice.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"And perhaps that is why what happened next carried such weight. One man had been called out of death. Another was about to face it.\"",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -279,15 +947,59 @@
     "choices": [
       {
         "text": "And then Mary broke the silence.",
-        "destination": "mary_act"
+        "destination": "mary_act",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The miracle was undeniable.",
-        "destination": "undeniable_miracle"
+        "destination": "undeniable_miracle",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "\"Yes.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"There were moments when the room seemed strangely quiet.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"Everyone could see Lazarus alive. Everyone could see Jesus sitting there.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"But no one seemed prepared to say what it might mean.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"Some miracles are easier to witness than to understand.\"",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -296,15 +1008,59 @@
     "choices": [
       {
         "text": "The danger was growing.",
-        "destination": "pattern_emerged"
+        "destination": "pattern_emerged",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Tell me what Mary did.",
-        "destination": "mary_act"
+        "destination": "mary_act",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "\"Lazarus was living proof.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"You could argue with a story. You could question a witness.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"But you could not easily explain away the man sitting at the table.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"His life was testimony.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"And that made the hostility toward Jesus all the more difficult to understand.\"",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -313,36 +1069,128 @@
     "choices": [
       {
         "text": "What did Mary do?",
-        "destination": "mary_act"
+        "destination": "mary_act",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Why was her action so significant?",
-        "destination": "dinner_meaning"
+        "destination": "dinner_meaning",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "\"Martha served.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"She was always attentive to the practical things. Food. Guests. The household.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"But Mary was different that evening.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"Mary seemed to understand that the moment required something beyond ordinary hospitality.\"",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "mary_act": {
-    "content": "# UNLOCK_EVIDENCE: alabaster_jar\n\"Then Mary came forward.\"\n\"She had an alabaster jar filled with costly perfume.\"\n\"She broke it and poured the nard upon Jesus.\"\nSimon closes his eyes for a moment.\n\"The fragrance filled the entire house.\"\n\"Everyone knew immediately that this was no ordinary gesture.\"",
+    "content": "\"Then Mary came forward.\"\n\"She had an alabaster jar filled with costly perfume.\"\n\"She broke it and poured the nard upon Jesus.\"\nSimon closes his eyes for a moment.\n\"The fragrance filled the entire house.\"\n\"Everyone knew immediately that this was no ordinary gesture.\"",
     "choices": [
       {
         "text": "The perfume must have been overwhelming.",
-        "destination": "fragrance_intense"
+        "destination": "fragrance_intense",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Judas objected.",
-        "destination": "judas_objection"
+        "destination": "judas_objection",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Why did Mary do it?",
-        "destination": "burial_prep"
+        "destination": "burial_prep",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "\"Then Mary came forward.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"She had an alabaster jar filled with costly perfume.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"She broke it and poured the nard upon Jesus.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Simon closes his eyes for a moment.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"The fragrance filled the entire house.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"Everyone knew immediately that this was no ordinary gesture.\"",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -351,15 +1199,59 @@
     "choices": [
       {
         "text": "The cost was enormous.",
-        "destination": "cost_great"
+        "destination": "cost_great",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "And Judas objected.",
-        "destination": "judas_objection"
+        "destination": "judas_objection",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "\"It was powerful.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"The scent filled every corner of the house. It clung to our clothes. Even afterward, I could still smell it.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"But it was not the fragrance that shocked me.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"It was the cost.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"Mary had not brought something cheap and called it devotion. She had given something precious.\"",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -368,15 +1260,65 @@
     "choices": [
       {
         "text": "Then Judas complained.",
-        "destination": "judas_complaint"
+        "destination": "judas_complaint",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The Master understood her.",
-        "destination": "masters_response"
+        "destination": "masters_response",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "\"Yes. Very great.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"Judas calculated its value. Three hundred denarii.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"That was the language he understood: cost, price, profit.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"But Mary seemed to be speaking another language entirely.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"She was not calculating what Jesus was worth to her.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"She was giving Him everything she could.\"",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -385,15 +1327,53 @@
     "choices": [
       {
         "text": "What was his real motive?",
-        "destination": "judas_motive"
+        "destination": "judas_motive",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "How did Jesus respond?",
-        "destination": "masters_response"
+        "destination": "masters_response",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "\"Judas objected.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"He said the perfume could have been sold and the money given to the poor.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"On the surface, it sounded noble.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"But there was something beneath his words.\"",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -402,15 +1382,53 @@
     "choices": [
       {
         "text": "What did the Master say?",
-        "destination": "masters_response"
+        "destination": "masters_response",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Did Judas understand?",
-        "destination": "master_knew"
+        "destination": "master_knew",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "\"Judas complained about the waste.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"I remember thinking that he had completely missed the point.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"Mary was not wasting something valuable.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"She was recognizing that Jesus Himself was more valuable than anything she could pour out.\"",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -419,15 +1437,59 @@
     "choices": [
       {
         "text": "Jesus saw through him.",
-        "destination": "master_knew"
+        "destination": "master_knew",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "How did Jesus respond?",
-        "destination": "masters_response"
+        "destination": "masters_response",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "\"John tells us something important about Judas.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"He carried the money bag, and he had been stealing from it.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"So perhaps his concern for the poor was not as pure as he wanted us to believe.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Simon looks toward the doorway.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"But the Master already knew what was in Judas's heart.\"",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -436,19 +1498,61 @@
     "choices": [
       {
         "text": "His response was remarkable.",
-        "destination": "masters_response"
+        "destination": "masters_response",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "He knew the hour was approaching.",
-        "destination": "burial_prep"
+        "destination": "burial_prep",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "What do you think the Master saw that others overlooked?",
-        "destination": "seen"
+        "destination": "seen",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "\"The Master knew.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"That is what strikes me most.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"He knew Judas's heart. He knew Mary's heart. He knew what was coming.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"And still He allowed Mary to anoint Him.\"",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -457,15 +1561,65 @@
     "choices": [
       {
         "text": "She was preparing Him for burial.",
-        "destination": "burial_prep"
+        "destination": "burial_prep",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "What did you understand from that?",
-        "destination": "meaning_deeper"
+        "destination": "meaning_deeper",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "\"The Master did not rebuke Mary.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"He defended her.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"He said she had done a beautiful thing.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Simon pauses.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"And then He said something that made the room feel very different.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"Her act was connected with His burial.\"",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -474,15 +1628,59 @@
     "choices": [
       {
         "text": "You saw a pattern.",
-        "destination": "pattern_emerged"
+        "destination": "pattern_emerged",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The meaning was deeper than the dinner.",
-        "destination": "meaning_deeper"
+        "destination": "meaning_deeper",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "\"At the time, I did not fully understand.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"Now I believe Mary understood more than most of us.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"The perfume was not simply an act of affection.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"It pointed toward His death.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"Passover was approaching. The Lamb was moving toward the sacrifice.\"",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -491,15 +1689,71 @@
     "choices": [
       {
         "text": "Tell me about that pattern.",
-        "destination": "pattern_emerged"
+        "destination": "pattern_emerged",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The Exodus connection.",
-        "destination": "exodus_connection"
+        "destination": "exodus_connection",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "\"The dinner was about gratitude, but it became something greater.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"Every detail seemed to point beyond itself.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"Lazarus represented life restored.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"Mary represented costly devotion.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"The perfume pointed toward burial.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"And Jesus sat at the center of it all.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"Only later did I begin to understand that the Passover Lamb pattern was unfolding before our eyes.\"",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -508,15 +1762,77 @@
     "choices": [
       {
         "text": "The Passover connection.",
-        "destination": "exodus_connection"
+        "destination": "exodus_connection",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The pattern was remarkably precise.",
-        "destination": "pattern_precise"
+        "destination": "pattern_precise",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "\"Look at the sequence.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"The King entered Jerusalem.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"He was examined and questioned.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"He was anointed.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"And then He went toward His sacrifice.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Simon slowly shakes his head.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"At the time, we saw separate events.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"Afterward, they looked like pieces of the same story.\"",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -525,15 +1841,65 @@
     "choices": [
       {
         "text": "The pattern was precise.",
-        "destination": "pattern_precise"
+        "destination": "pattern_precise",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Isaiah had spoken of a suffering servant.",
-        "destination": "pattern_precise"
+        "destination": "pattern_precise",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "\"At Passover, Israel remembered the lamb whose blood meant deliverance.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"Now Jesus was moving toward Jerusalem, toward His own sacrifice.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"I began to wonder whether the old story was pointing toward Him all along.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"Deliverance through sacrifice.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"Life through the blood of another.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"That was the pattern I could no longer ignore.\"",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -542,15 +1908,65 @@
     "choices": [
       {
         "text": "The alabaster jar was part of that witness.",
-        "destination": "testimony"
+        "destination": "testimony",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The meaning was still unfolding.",
-        "destination": "power"
+        "destination": "power",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "\"The more I looked, the harder it became to dismiss.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"The timing. The Passover. The sacrifice. The preparation.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"And Isaiah had already spoken of one who would bear the sins of others.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Simon looks directly at you.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"Perhaps Mary understood it before the rest of us.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"Perhaps she knew that the One at our table was preparing to become the offering.\"",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -559,15 +1975,83 @@
     "choices": [
       {
         "text": "What do you mean by a greater purpose?",
-        "destination": "greater_purpose"
+        "destination": "greater_purpose",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "What do you want people to remember?",
-        "destination": "testimony"
+        "destination": "testimony",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "\"I thought I was inviting Jesus to dinner because I was grateful.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"And I was.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"But looking back, I think the table became a place where several things came together.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"The healed sat with the living.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"The dead who had been raised sat beside the One who would soon die.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"And Mary poured out something precious in preparation for His burial.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Simon smiles sadly.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"I thought I was hosting a dinner.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"Perhaps I was witnessing something much greater.\"",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -576,20 +2060,148 @@
     "choices": [
       {
         "text": "Finish the interview.",
-        "destination": "closing"
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "\"The dinner was more than a celebration of my healing.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"It became a witness to what Jesus was about to do.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"Lazarus showed His power over death. Mary showed the cost of devotion. And Jesus was moving toward Jerusalem and the sacrifice that awaited Him.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"I did not understand all of it that night.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"But I remember the feeling that something greater was unfolding before us.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "[You saw the pattern afterward.] -> pattern_emerged [Mary's actions suddenly make more sense.] -> burial_prep [Conclude.] -> closing",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "closing": {
     "content": "Simon looks around the room.\n\"I have very little left to give that would embarrass me to give.\"\n\"My health was given back to me. My place was restored. And that evening, my house became a witness to something I did not yet understand.\"\n\"Let my house be remembered for what happened at this table, not for what I once was.\"\nHe gestures toward the food.\n\"Please. Eat.\"\n\"There is more than enough.\"",
-    "choices": []
+    "choices": [],
+    "steps": [
+      {
+        "text": "Simon looks around the room.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"I have very little left to give that would embarrass me to give.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"My health was given back to me. My place was restored. And that evening, my house became a witness to something I did not yet understand.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"Let my house be remembered for what happened at this table, not for what I once was.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "He gestures toward the food.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"Please. Eat.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"There is more than enough.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "divert": "DONE",
+        "condition": {
+          "all": []
+        }
+      }
+    ]
   },
   "testimony": {
     "content": "Simon smiles.\n\"Some things are meant to be remembered.\"\n\"My healing became a testimony. Mary's devotion became a testimony. Lazarus's life became a testimony.\"\n\"And the Master Himself became the center of them all.\"\n\"That is what I want you to remember.\"",
     "choices": [
       {
         "text": "Finish the interview.",
-        "destination": "closing"
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Simon smiles.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"Some things are meant to be remembered.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"My healing became a testimony. Mary's devotion became a testimony. Lazarus's life became a testimony.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"And the Master Himself became the center of them all.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"That is what I want you to remember.\"",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -598,17 +2210,77 @@
     "choices": [
       {
         "text": "Finish the interview.",
-        "destination": "closing"
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "\"The Master saw what others overlooked.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"He saw the outcast. He saw the grateful host. He saw Mary's devotion. He saw Judas's heart.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"Nothing was hidden from Him.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"And somehow, even knowing what was coming, He continued toward the sacrifice.\"",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "power": {
-    "content": "\"The more I remember that evening, the more clearly I see His authority.\"\n\"He had authority over disease. Authority over death. Authority over uncleanness.\"\n\"And soon He would demonstrate an authority greater still — the authority to lay down His life and become the offering.\"\n```",
+    "content": "\"The more I remember that evening, the more clearly I see His authority.\"\n\"He had authority over disease. Authority over death. Authority over uncleanness.\"\n\"And soon He would demonstrate an authority greater still — the authority to lay down His life and become the offering.\"",
     "choices": [
       {
         "text": "Finish the interview.",
-        "destination": "closing"
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "\"The more I remember that evening, the more clearly I see His authority.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"He had authority over disease. Authority over death. Authority over uncleanness.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"And soon He would demonstrate an authority greater still — the authority to lay down His life and become the offering.\"",
+        "condition": {
+          "all": []
+        }
       }
     ]
+  },
+  "_meta": {
+    "schema": 2,
+    "entry": "start",
+    "variables": {},
+    "revision": "2acb2449d4d5686f"
   }
 }

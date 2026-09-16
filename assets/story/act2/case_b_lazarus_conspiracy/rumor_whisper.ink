@@ -27,19 +27,18 @@
 === start ===
 (A nervous citizen glances sideways before leaning close.) Last Sabbath a man blind from birth walked out of the Pool of Siloam and now says he sees. The Pharisees asked for details. He said, "I was blind. Now I can see." I will not say my name, but you should find him and ask.
 
-* [Why are you telling me this?] -> nervous_tell
-* [The Pharisees didn't believe him?] -> pharisee_response
++ [Why are you telling me this?] -> nervous_tell
++ [The Pharisees didn't believe him?] -> pharisee_response
 
 === nervous_tell ===
 Jesus put mud on his eyes and when it came off he could see. Because what happened at that pool was not natural. The man had been blind since birth — the disciples themselves had asked Jesus about him once. Now he's seeing. The Pharisees want the story buried.
 
-* [What did they do?] -> pharisee_response
++ [What did they do?] -> pharisee_response
 
 === pharisee_response ===
 They questioned him closely. Not about the healing — about the voice. They wanted to know who spoke to him. He said "the man they call Jesus." They didn't like that answer. How was he healed?
 
-* [Talk to the blind man?] -> blindman
-* [How was he healed?] -> blindman
++ [Continue.] -> blindman
 
 === blindman ===
 (An older man stands near the pool. His eyes wander across the city as though he is seeing everything for the first time.)
@@ -66,19 +65,19 @@ They questioned him closely. Not about the healing — about the voice. They wan
 
 "I cannot explain the miracle. I only know this: I was blind. Now I can see."
 
-* [What happened after the Pharisees questioned you?] -> pharisee_after
-* [Where is Jesus now?] -> jesus_where
-* [Thank you for your testimony.] -> closing
++ [What happened after the Pharisees questioned you?] -> pharisee_after
++ [Where is Jesus now?] -> jesus_where
++ [Finish the interview.] -> closing
 
 === pharisee_after ===
 "They argued among themselves. Some said a man who heals cannot be a sinner. Others said no sinner could do such signs. They could not agree."
 
-* [Return] -> blindman
++ [Return] -> blindman
 
 === jesus_where ===
 "I do not know where he is. When I first received my sight, he had already gone. But I know what he did. And I know what it means."
 
-* [Return] -> blindman
++ [Return] -> blindman
 
 === closing ===
 The conversation is over. Go in peace.

@@ -4,15 +4,27 @@
     "choices": [
       {
         "text": "What did the priests say?",
-        "destination": "priestly_charge"
+        "destination": "priestly_charge",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "How did Jesus appear?",
-        "destination": "closing2"
-      },
+        "text": "Finish the interview.",
+        "destination": "closing2",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "Conclude.",
-        "destination": "closing2"
+        "text": "The chamber was cold this morning. Stone floors hold the night's chill long after dawn breaks. They brought the Galilean before me — not in chains, not in fetters, but surrounded by a mob that wanted blood. The charge sheet said \"King of the Jews.\" A theological claim. Not a political crime. That troubled me.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -21,15 +33,35 @@
     "choices": [
       {
         "text": "Did He defend Himself?",
-        "destination": "jesus_silence"
+        "destination": "jesus_silence",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "What did you do?",
-        "destination": "interrogation"
+        "destination": "interrogation",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing2"
+        "text": "Finish the interview.",
+        "destination": "closing2",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "\"The Jews have found Him guilty of blasphemy,\" they said. But blasphemy is not a Roman offense. I needed a political charge — sedition, rebellion, anything that would justify the death sentence I knew they wanted. I looked at the man they brought before me. He was calm. Too calm.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -38,19 +70,35 @@
     "choices": [
       {
         "text": "What did He say?",
-        "destination": "kingdom_answer"
+        "destination": "kingdom_answer",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The priests grew angry.",
-        "destination": "priestly_fury"
+        "destination": "priestly_fury",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing2"
-      },
+        "text": "Finish the interview.",
+        "destination": "closing2",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "Conclude.",
-        "destination": "closing2"
+        "text": "I asked Him directly: \"Are You the King of the Jews?\" The silence stretched. The priests crowded closer. The crowd outside pressed against the doors. And He spoke — but not as they expected. Not with defiance. Not with threat. But with quiet certainty that seemed to fill the entire chamber.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -59,11 +107,27 @@
     "choices": [
       {
         "text": "You pressed Him further.",
-        "destination": "interrogation"
+        "destination": "interrogation",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "That confused you.",
-        "destination": "confused"
+        "destination": "confused",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "\"My kingdom is not of this world.\" Those were the words. \"If my kingdom were of this world, my servants would fight.\" He did not need soldiers. He did not need swords. He did not need political alliances. His kingdom operated by a different order entirely.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -71,16 +135,28 @@
     "content": "A kingdom not of this world — what did that mean? I had expected rebellion. A claim to political power. A threat to Caesar's rule. Instead, I found a philosopher who spoke in parables of a kingdom that would not be established by force. What crime was that? What law had He broken?",
     "choices": [
       {
-        "text": "What did the crowd say?",
-        "destination": "closing2"
+        "text": "Finish the interview.",
+        "destination": "closing2",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "How did you handle it?",
-        "destination": "interrogation"
-      },
+        "destination": "interrogation",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "Conclude.",
-        "destination": "closing2"
+        "text": "A kingdom not of this world — what did that mean? I had expected rebellion. A claim to political power. A threat to Caesar's rule. Instead, I found a philosopher who spoke in parables of a kingdom that would not be established by force. What crime was that? What law had He broken?",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -89,19 +165,35 @@
     "choices": [
       {
         "text": "He would not cooperate.",
-        "destination": "jesus_silence2"
+        "destination": "jesus_silence2",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "What did you learn?",
-        "destination": "realization"
+        "destination": "realization",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing2"
-      },
+        "text": "Finish the interview.",
+        "destination": "closing2",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "Conclude.",
-        "destination": "closing2"
+        "text": "I found myself questioning Him about it repeatedly. \"Tell me, is it true that You are the Son of God?\" He looked at me with eyes that seemed to see through my title and my authority, through my three legions and my golden bracelets. He did not answer me the way the priests demanded.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -110,15 +202,35 @@
     "choices": [
       {
         "text": "The priests heard everything.",
-        "destination": "priestly_fury"
+        "destination": "priestly_fury",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing2"
+        "text": "Finish the interview.",
+        "destination": "closing2",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "You were troubled.",
-        "destination": "confused"
+        "destination": "confused",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "He would not give them the answer they wanted. \"It is as you say,\" He replied when pressed. And then He spoke of the Son of Man sitting at the right hand of Power and coming on the clouds of heaven — words that sounded like the very prophecies I had dismissed as Jewish superstition. But He spoke them with such quiet authority...",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -127,15 +239,35 @@
     "choices": [
       {
         "text": "Did you offer clemency?",
-        "destination": "barabbas_offer"
+        "destination": "barabbas_offer",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The crowd turned against you.",
-        "destination": "crowd_turn"
+        "destination": "crowd_turn",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing2"
+        "text": "Finish the interview.",
+        "destination": "closing2",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "\"They accused Him of claiming to be the Son of God — a charge that carries the death penalty under their law!\" But Rome's law is different. A man claiming divinity is a madman, not a criminal. The real danger was the crowd — restless, passionate, easily turned. They were not interested in legal nuance. They wanted blood.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -144,19 +276,35 @@
     "choices": [
       {
         "text": "The political trap.",
-        "destination": "political_trap"
+        "destination": "political_trap",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "You washed your hands.",
-        "destination": "washing_hands"
+        "destination": "washing_hands",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing2"
-      },
+        "text": "Finish the interview.",
+        "destination": "closing2",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "Conclude.",
-        "destination": "closing2"
+        "text": "The crowd — which had started as priests and officers — had grown into a mob. They began shouting: \"Crucify Him!\" And louder: \"If you release this man, you are no friend of Caesar's!\" Those were fighting words to a Roman. No governor could ignore that accusation.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -165,11 +313,27 @@
     "choices": [
       {
         "text": "You still had options?",
-        "destination": "barabbas_offer"
+        "destination": "barabbas_offer",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing2"
+        "text": "Finish the interview.",
+        "destination": "closing2",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "A clever trap, but not unexpected. Accuse me of disloyalty to Caesar. Make my defense of this Galilean look like rebellion against Rome. I was cornered — either execute an innocent man to save my position, or risk my career for a philosophical conversation in a dusty Judean town. The choice was never truly mine.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -178,15 +342,35 @@
     "choices": [
       {
         "text": "Barabbas was a real criminal.",
-        "destination": "barabbas_reality"
+        "destination": "barabbas_reality",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing2"
+        "text": "Finish the interview.",
+        "destination": "closing2",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "They chose Barabbas.",
-        "destination": "choosing_death"
+        "destination": "choosing_death",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "I offered them the Passover custom — release one prisoner. \"Whom would you have me release to you — Barabbas, the king of the thieves? Or Jesus, called the Christ?\" The priests had stirred the crowd. The answer was predictable.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -195,11 +379,27 @@
     "choices": [
       {
         "text": "The choice was made.",
-        "destination": "choosing_death"
+        "destination": "choosing_death",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing2"
+        "text": "Finish the interview.",
+        "destination": "closing2",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Barabbas was a real murderer. A real rebel. A real threat to Roman order. And I offered him as an alternative to a pacifist rabbi who spoke of a kingdom that would not be defended with swords. They chose the killer. They always choose the killer when given the option.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -208,15 +408,35 @@
     "choices": [
       {
         "text": "You washed your hands.",
-        "destination": "washing_hands"
+        "destination": "washing_hands",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The weight of command.",
-        "destination": "realization"
+        "destination": "realization",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing2"
+        "text": "Finish the interview.",
+        "destination": "closing2",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The shouts grew louder: \"Not this man's blood — let His blood be on us and on our children!\" They took the responsibility. They accepted the verdict. They chose Barabbas — and condemned the Son of Man to crucifixion. My hands were clean, but my soul was not.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -225,11 +445,27 @@
     "choices": [
       {
         "text": "The priests accused you.",
-        "destination": "priests_accuse"
+        "destination": "priests_accuse",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The guilt remained.",
-        "destination": "realization"
+        "destination": "realization",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "I returned to the basin of water and poured it over my hands while speaking into the crowd: \"I am innocent of this man's blood; see to it yourselves.\" The water ran red in the morning light — or perhaps it was my imagination. The stain of responsibility is not so easily washed away.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -238,7 +474,19 @@
     "choices": [
       {
         "text": "What did you learn?",
-        "destination": "realization"
+        "destination": "realization",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "\"You are not Caesar's friend,\" they hissed afterward. \"You have condemned a man to death, and now his blood is on your hands forever.\" They were wrong. The blood was never mine to bear. But the decision — the choice to crucify — that was mine to make. And I made it.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -246,16 +494,28 @@
     "content": "I learned that power without truth is tyranny. I learned that political survival without moral courage is cowardice. I learned that some choices leave scars that no amount of washing can remove. And I learned — too late perhaps — that I had just crucified the Son of God, whose kingdom was indeed not of this world.",
     "choices": [
       {
-        "text": "The kingdom that cannot be defeated.",
-        "destination": "closing"
+        "text": "What happened after the hearing?",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing2"
-      },
+        "text": "Finish the interview.",
+        "destination": "closing2",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "The weight of your decision.",
-        "destination": "closing"
+        "text": "I learned that power without truth is tyranny. I learned that political survival without moral courage is cowardice. I learned that some choices leave scars that no amount of washing can remove. And I learned — too late perhaps — that I had just crucified the Son of God, whose kingdom was indeed not of this world.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -264,19 +524,35 @@
     "choices": [
       {
         "text": "What did you record in your logs?",
-        "destination": "record"
+        "destination": "record",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing2"
+        "text": "Finish the interview.",
+        "destination": "closing2",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Could you have stopped it?",
-        "destination": "stopping_it"
-      },
+        "destination": "stopping_it",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "Conclude.",
-        "destination": "closing2"
+        "text": "The chamber door closed behind them. The crowd went out to see Him mocked, beaten, stripped, and crowned with thorns. By the time they led Him away, the morning crowds had thinned. I stood at the window watching the procession carry the cross — and thinking of a rabbi who spoke of a kingdom not of this world.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -285,19 +561,35 @@
     "choices": [
       {
         "text": "The inscription would outlive you.",
-        "destination": "outlive"
+        "destination": "outlive",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "What the priests feared.",
-        "destination": "priests_fear"
+        "destination": "priests_fear",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing2"
-      },
+        "text": "Finish the interview.",
+        "destination": "closing2",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "Conclude.",
-        "destination": "closing2"
+        "text": "In my official records, I wrote: \"Jesus of Nazareth, King of the Jews.\" The priests complained. I told my secretary: \"What I have written, I have written.\" The Latin was precise. The Greek was clear. The Hebrew was unambiguous. Every reader would understand: this was the title He claimed, and it would echo through history.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -305,8 +597,20 @@
     "content": "What I wrote in three languages would outlive the Temple, outlive the Sanhedrin, outlive Rome itself. The centurions would read it. The pilgrims would read it. The soldiers would mock it. And centuries later, historians would debate its meaning. \"King of the Jews\" — a title of authority that could not be erased.",
     "choices": [
       {
-        "text": "The title was prophetic.",
-        "destination": "closing"
+        "text": "What happened after the hearing?",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "What I wrote in three languages would outlive the Temple, outlive the Sanhedrin, outlive Rome itself. The centurions would read it. The pilgrims would read it. The soldiers would mock it. And centuries later, historians would debate its meaning. \"King of the Jews\" — a title of authority that could not be erased.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -314,12 +618,28 @@
     "content": "The priests feared — and with reason. A king who died and rose again was a king who could not be defeated by death. A crown of thorns was a crown no power could strip away. The title I wrote would echo through every generation: \"Jesus of Nazareth, King of the Jews.\"",
     "choices": [
       {
-        "text": "The title endured.",
-        "destination": "closing"
+        "text": "What happened after the hearing?",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing2"
+        "text": "Finish the interview.",
+        "destination": "closing2",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The priests feared — and with reason. A king who died and rose again was a king who could not be defeated by death. A crown of thorns was a crown no power could strip away. The title I wrote would echo through every generation: \"Jesus of Nazareth, King of the Jews.\"",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -327,17 +647,45 @@
     "content": "Could I have stopped it? I had the power. I had the guards. I had the authority. But I also had the crowd — restless, violent, politically volatile. One spark, and the entire city would burn. I chose order over justice. Peace over truth. Caesar's approval over divine justice. The choice haunted me.",
     "choices": [
       {
-        "text": "The choice was yours.",
-        "destination": "closing"
-      },
+        "text": "What happened after the hearing?",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "No one saw the alternative.",
-        "destination": "closing"
+        "text": "Could I have stopped it? I had the power. I had the guards. I had the authority. But I also had the crowd — restless, violent, politically volatile. One spark, and the entire city would burn. I chose order over justice. Peace over truth. Caesar's approval over divine justice. The choice haunted me.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "closing2": {
     "content": "I have no further comments for your investigation. The matter is concluded. What I have written, I have written.",
-    "choices": []
+    "choices": [],
+    "steps": [
+      {
+        "text": "I have no further comments for your investigation. The matter is concluded. What I have written, I have written.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "divert": "DONE",
+        "condition": {
+          "all": []
+        }
+      }
+    ]
+  },
+  "_meta": {
+    "schema": 2,
+    "entry": "start",
+    "variables": {},
+    "revision": "aa88296198f955d8"
   }
 }

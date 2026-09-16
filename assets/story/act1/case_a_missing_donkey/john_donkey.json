@@ -1,190 +1,302 @@
 {
   "start": {
-    "content": "I have walked with the Teacher for three years, but today — today I understood something I had never grasped before. From my place among the disciples, I watched the crowds recognize in Him the fulfillment of prophecies written centuries before our birth.",
+    "content": "We can return to any part of the procession. I want your record to distinguish what we saw from what we understood.\nI remember the branches, the voices, and Jesus riding toward the city. There was joy in that crowd. There were questions too.",
     "choices": [
       {
-        "text": "Tell me about the crowd.",
-        "destination": "crowd"
+        "text": "What did you see and hear?",
+        "destination": "crowd",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Did you see the prophecy fulfilled?",
-        "destination": "fulfilled"
+        "text": "What did you understand at the time?",
+        "destination": "meaning",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "What about the donkey colt?",
-        "destination": "colt"
+        "text": "Can your account establish the owner's consent?",
+        "destination": "limits",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "tag": "UNLOCK_EVIDENCE: donkey_tracks",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "tag": "UNLOCK_EVIDENCE: crowd_testimony",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "tag": "UNLOCK_EVIDENCE: witness_account",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "We can return to any part of the procession. I want your record to distinguish what we saw from what we understood.",
+        "condition": {
+          "all": [
+            {
+              "compare": "gt",
+              "left": {
+                "variable": "visited_start"
+              },
+              "right": {
+                "literal": 1
+              }
+            }
+          ]
+        }
+      },
+      {
+        "text": "I remember the branches, the voices, and Jesus riding toward the city. There was joy in that crowd. There were questions too.",
+        "condition": {
+          "all": [
+            {
+              "not": {
+                "compare": "gt",
+                "left": {
+                  "variable": "visited_start"
+                },
+                "right": {
+                  "literal": 1
+                }
+              }
+            }
+          ]
+        }
       }
     ]
   },
   "crowd": {
-    "content": "# UNLOCK_EVIDENCE: donkey_tracks\n# UNLOCK_EVIDENCE: crowd_testimony\n# UNLOCK_EVIDENCE: witness_account\nThe road from Bethphage to Jerusalem was a river of people. Pilgrims from Galilee, Judea, and beyond — all streaming down the Mount of Olives. When we emerged from the garden with the colt, the crowd simply knew. They understood without being told. Children waved palm branches. Elders fell to their knees. Even the soldiers on the walls looked uncertain.",
+    "content": "People took palm branches and went out to meet Him. They cried \"Hosanna!\" and welcomed the one coming in the Lord's name.\nI can repeat the words. I cannot tell you that every person shouting them expected the same kind of king.",
     "choices": [
       {
-        "text": "The people recognized the moment.",
-        "destination": "recognition"
+        "text": "How did the disciples understand it?",
+        "destination": "meaning",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "The soldiers seemed confused.",
-        "destination": "soldiers"
+        "text": "Return to my questions.",
+        "destination": "start",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "set": "asked_crowd",
+        "operator": "=",
+        "value": {
+          "literal": true
+        },
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "hour_arrived"
+        "text": "People took palm branches and went out to meet Him. They cried \"Hosanna!\" and welcomed the one coming in the Lord's name.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "I can repeat the words. I cannot tell you that every person shouting them expected the same kind of king.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
-  "fulfilled": {
-    "content": "# UNLOCK_EVIDENCE: donkey_tracks\n# UNLOCK_EVIDENCE: crowd_testimony\n# UNLOCK_EVIDENCE: witness_account\nEvery detail matched exactly. The donkey — never ridden. The cloaks spread on the road. The palm branches waving. \"Hosanna to the Son of David!\" — that cry rose like incense. I kept thinking of Zechariah's words: \"Your king comes to you... humble and riding on a donkey.\" It was living prophecy.",
+  "meaning": {
+    "content": "We did not understand all this at first. Later, after Jesus was glorified, we remembered what had been written about Him and what had been done.\nThat distinction matters. Recognition afterward is not the same as understanding everything that morning.",
     "choices": [
       {
-        "text": "Did the people know what they were saying?",
-        "destination": "hosanna_meaning"
+        "text": "Which passage did you remember?",
+        "destination": "scripture",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "The detail was divine.",
-        "destination": "divine_detail"
+        "text": "Return to my questions.",
+        "destination": "start",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "set": "asked_meaning",
+        "operator": "=",
+        "value": {
+          "literal": true
+        },
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "hour_arrived"
+        "text": "We did not understand all this at first. Later, after Jesus was glorified, we remembered what had been written about Him and what had been done.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "That distinction matters. Recognition afterward is not the same as understanding everything that morning.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
-  "colt": {
-    "content": "# UNLOCK_EVIDENCE: donkey_tracks\n# UNLOCK_EVIDENCE: crowd_testimony\n# UNLOCK_EVIDENCE: witness_account\nThe colt had never been ridden — our mothers taught us that such an animal is set apart. When the Lord said \"the Lord needs it,\" the owner understood at once. \"Let my lord go in peace,\" he surely meant. No transaction. No payment. Just recognition that this was the moment.",
+  "scripture": {
+    "content": "The words about Zion's king coming on a donkey's colt. Read the passage alongside the account of His arrival.\nI am giving you the memory that led us back to the Scripture, not asking you to skip the comparison.",
     "choices": [
       {
-        "text": "The owner was a prophet too.",
-        "destination": "owner_recognized"
+        "text": "Return to my questions.",
+        "destination": "start",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The words about Zion's king coming on a donkey's colt. Read the passage alongside the account of His arrival.",
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "No one questioned it.",
-        "destination": "no_questions"
+        "text": "I am giving you the memory that led us back to the Scripture, not asking you to skip the comparison.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
-  "recognition": {
-    "content": "I watched old men weep as they recognized the scene. They had studied the same scriptures their whole lives. Suddenly the words had feet, had voice, had presence. The crowd sang in fragments I recognized — Psalms my grandmother taught me as a child. But now the Psalms were alive with meaning.",
+  "limits": {
+    "content": "For the exchange at the tethering place, take the owners' testimony and the messengers' account. A cheering crowd cannot settle what happened before it gathered.\nWhat I can help you establish is how Jesus was received.",
     "choices": [
       {
-        "text": "The scriptures became real.",
-        "destination": "common_node"
+        "text": "Tell me about that reception.",
+        "destination": "crowd",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Prophecy walking among them.",
-        "destination": "common_node"
+        "text": "Return to my questions.",
+        "destination": "start",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "For the exchange at the tethering place, take the owners' testimony and the messengers' account. A cheering crowd cannot settle what happened before it gathered.",
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "hour_arrived"
+        "text": "What I can help you establish is how Jesus was received.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
-  "soldiers": {
-    "content": "The Antonia garrison was positioned on the walls. I saw them tense — spears half-raised, eyes scanning the crowd for signs of unrest. But we gave them no cause. The crowd was too focused on the Teacher, too caught up in the joy of recognition.",
-    "choices": [
+  "closing": {
+    "content": "Record both things: the welcome we witnessed, and the understanding that came later.\nKeep a little room in your notes for what we did not yet understand.",
+    "choices": [],
+    "steps": [
       {
-        "text": "Rome had no cause for alarm.",
-        "destination": "common_node"
+        "text": "Record both things: the welcome we witnessed, and the understanding that came later.",
+        "condition": {
+          "all": [
+            {
+              "all": [
+                {
+                  "variable": "asked_crowd"
+                },
+                {
+                  "variable": "asked_meaning"
+                }
+              ]
+            }
+          ]
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "hour_arrived"
+        "text": "Keep a little room in your notes for what we did not yet understand.",
+        "condition": {
+          "all": [
+            {
+              "not": {
+                "all": [
+                  {
+                    "variable": "asked_crowd"
+                  },
+                  {
+                    "variable": "asked_meaning"
+                  }
+                ]
+              }
+            }
+          ]
+        }
       },
       {
-        "text": "The soldiers watched silently.",
-        "destination": "common_node"
-      },
-      {
-        "text": "Conclude.",
-        "destination": "hour_arrived"
+        "divert": "DONE",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
-  "hosanna_meaning": {
-    "content": "\"Hosanna\" — that word echoed from every throat. \"Save now, we beseech You!\" It is not praise. It is desperation. A cry for salvation. The crowd knew what they needed. The crowd knew what they were asking for.",
-    "choices": [
-      {
-        "text": "They asked for salvation.",
-        "destination": "common_node"
-      },
-      {
-        "text": "The moment was urgent.",
-        "destination": "common_node"
-      },
-      {
-        "text": "Conclude.",
-        "destination": "hour_arrived"
-      }
-    ]
-  },
-  "divine_detail": {
-    "content": "Every detail was arranged — the exact colt, the precise timing, the crowd's movement like a choreographed dance. The Teacher did not arrive by accident. He orchestrated the convergence of prophecy, prophecy-fulfillment, and people ready to receive their king.",
-    "choices": [
-      {
-        "text": "This was divine appointment.",
-        "destination": "common_node"
-      },
-      {
-        "text": "Nothing was left to chance.",
-        "destination": "common_node"
-      },
-      {
-        "text": "Conclude.",
-        "destination": "hour_arrived"
-      }
-    ]
-  },
-  "owner_recognized": {
-    "content": "The owner of the colt — his name was Tobias — I recognized his face from Bethphage. When the Teacher's disciple spoke the words, Tobias simply nodded. He had been waiting. His entire life he had prepared for this moment. The colt was his offering.",
-    "choices": [
-      {
-        "text": "Waiting his whole life.",
-        "destination": "common_node"
-      },
-      {
-        "text": "A willing sacrifice.",
-        "destination": "common_node"
-      }
-    ]
-  },
-  "no_questions": {
-    "content": "No one questioned. No one challenged. The owner released his best animal without a second thought. The crowd made room without hesitation. Even the soldiers on the wall stood back.\nBecause everyone recognized: this was not theft or rebellion. This was worship.",
-    "choices": [
-      {
-        "text": "Worship in motion.",
-        "destination": "common_node"
-      },
-      {
-        "text": "The city bowed.",
-        "destination": "common_node"
-      }
-    ]
-  },
-  "hour_arrived": {
-    "content": "The hour had arrived. The moment foretold. The prophecy fulfilled. The king entered. The people recognized. And history was changed forever.",
-    "choices": [
-      {
-        "text": "Finish the interview.",
-        "destination": "final"
-      }
-    ]
-  },
-  "final": {
-    "content": "I am John. I have walked with the Teacher for three years. I have seen his miracles. I have heard his teachings. But today — today I understood who he truly was. And I knew — from this moment forward — everything would be different.",
-    "choices": []
-  },
-  "common_node": {
-    "content": "The weight of the moment hangs heavy over the streets, and the consequences of what is unfolding continue to ripple through the city.\n```[cite: 3]",
-    "choices": [
-      {
-        "text": "Return to the start",
-        "destination": "start"
-      },
-      {
-        "text": "Conclude",
-        "destination": "hour_arrived"
-      }
-    ]
+  "_meta": {
+    "schema": 2,
+    "entry": "start",
+    "variables": {
+      "asked_crowd": false,
+      "asked_meaning": false
+    },
+    "revision": "6b17b5063cd48392"
   }
 }

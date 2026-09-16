@@ -4,11 +4,27 @@
     "choices": [
       {
         "text": "What does the weightiest evidence carry?",
-        "destination": "weight"
+        "destination": "weight",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "What have the pages told you?",
-        "destination": "pages"
+        "destination": "pages",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "I have watched your investigation board grow. You have evidence that changes conclusions and evidence you are keeping out of affection. Can you tell the difference yet?",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -16,8 +32,20 @@
     "content": "The evidence with the most weight is the one that refuses to be explained away. A weighty piece of evidence is not the most dramatic — it is the one that generates the fewest alternative explanations.",
     "choices": [
       {
-        "text": "Like?",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The evidence with the most weight is the one that refuses to be explained away. A weighty piece of evidence is not the most dramatic — it is the one that generates the fewest alternative explanations.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -25,13 +53,45 @@
     "content": "The pages tell me that the most dangerous thing about this man was not the healings. It was the categories He would not fit. Every questioner came with a trap. Every trap shattered on contact with the truth.",
     "choices": [
       {
-        "text": "Why is that terrifying?",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The pages tell me that the most dangerous thing about this man was not the healings. It was the categories He would not fit. Every questioner came with a trap. Every trap shattered on contact with the truth.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "closing": {
     "content": "Keep gathering. The board grows, but the truth is already there. You just have to be willing to see it.",
-    "choices": []
+    "choices": [],
+    "steps": [
+      {
+        "text": "Keep gathering. The board grows, but the truth is already there. You just have to be willing to see it.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "divert": "DONE",
+        "condition": {
+          "all": []
+        }
+      }
+    ]
+  },
+  "_meta": {
+    "schema": 2,
+    "entry": "start",
+    "variables": {},
+    "revision": "1ef5164a24a61cde"
   }
 }

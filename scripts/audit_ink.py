@@ -15,7 +15,7 @@ from pathlib import Path
 from ink_to_json import parse_ink
 
 HEADER = re.compile(r'^===\s*(\w+)\s*===\s*$')
-CHOICE = re.compile(r'^\s*[+*]\s*\[(.+?)\]\s*->\s*([\w.-]+)\s*$')
+CHOICE = re.compile(r'^\s*[+*]\s*(?:\{.+?\}\s*)?\[(.+?)\]\s*->\s*([\w.-]+)\s*$')
 DIVERT = re.compile(r'^\s*->\s*([\w.-]+)\s*$')
 TERMINALS = {'DONE', 'END'}
 
@@ -72,9 +72,14 @@ def audit(path):
     entry = 'start' if 'start' in nodes else 'root' if 'root' in nodes else next(iter(nodes), None)
     if entry is None:
         issues.append((1, 'entry', 'No playable passages.'))
-    parsed = parse_ink(text)
-    graph = {n: {c['destination'] for c in v['choices'] if c['destination'] in parsed}
-             for n, v in parsed.items()}
+    try:
+        parsed = parse_ink(text)
+        entry = parsed.get('_meta', {}).get('entry', entry)
+    except (ValueError, SyntaxError) as error:
+        parsed = {}
+        issues.append((1, 'syntax', str(error)))
+    graph = {n: {target for source, target, _ in links if source == n and target in nodes}
+             for n in nodes}
     for source, target, number in links:
         if target not in nodes:
             issues.append((number, 'missing', f'`{source or "entry"}` → `{target}` does not exist.'))
@@ -88,7 +93,7 @@ def audit(path):
     for node in nodes.keys() - reachable:
         issues.append((nodes[node], 'unreachable', f'`{node}` cannot be reached from `{entry}`.'))
     # Use the actual converter's exit semantics; a node with no choices ends.
-    can_exit = {n for n, v in parsed.items() if not v['choices']}
+    can_exit = explicit_ends | {n for n in nodes if not any(source == n for source, _, _ in links)}
     while True:
         expanded = can_exit | {n for n, edges in graph.items() if edges & can_exit}
         if expanded == can_exit:
@@ -131,7 +136,8 @@ def main():
     lines = ['# Ink dialogue audit', '', f'Files checked: {len(paths)}. Files with findings: {sum(bool(i) for _, i, _ in results)}.', '',
              'This checks the node-based dialect used by `scripts/ink_to_json.py`, not full Ink compilation. It checks connections and source/JSON synchronization, not biblical accuracy or evidence-ID validity.', '',
              '## Summary', '', '| Finding | Count |', '| --- | ---: |']
-    lines += [f'| {kind} | {count} |' for kind, count in sorted(counts.items())]
+    categories = {'duplicate', 'syntax', 'tag', 'entry', 'missing', 'unreachable', 'no_exit', 'mixed_end', 'json_mismatch'}
+    lines += [f'| {kind} | {counts[kind]} |' for kind in sorted(categories | counts.keys())]
     lines += ['', '## File inventory', '', '| File | Passages | Findings |', '| --- | ---: | ---: |']
     lines += [f'| {p.relative_to(args.root)} | {size} | {len(issues)} |' for p, issues, size in results]
     for path, issues, _ in results:

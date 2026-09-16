@@ -4,37 +4,91 @@
     "choices": [
       {
         "text": "Why were you there at all?",
-        "destination": "why_there"
+        "destination": "why_there",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "You are a Sanhedrin member.",
-        "destination": "sanhedrin_member"
+        "destination": "sanhedrin_member",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "tag": "UNLOCK_EVIDENCE: linen_shroud_receipt",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "I was there. I stood where the crowd was thinnest, on the east side of the hill, where the road curves away. I watched from the moment they raised the cross until the moment the sky changed.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "why_there": {
-    "content": "# UNLOCK_EVIDENCE: linen_shroud_receipt\nBecause I believed in Him. Quietly, carefully, in secret — the way cowardice disguises itself as prudence. I had listened to every teaching I could manage without being seen listening. I voted against the condemnation. I was outnumbered and I said nothing public. Today I am paying the price of that silence in a different currency.",
+    "content": "Because I believed in Him. Quietly, carefully, in secret — the way cowardice disguises itself as prudence. I had listened to every teaching I could manage without being seen listening. I voted against the condemnation. I was outnumbered and I said nothing public. Today I am paying the price of that silence in a different currency.",
     "choices": [
       {
         "text": "You watched the man you believed in die.",
-        "destination": "watching_die"
+        "destination": "watching_die",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "You could have spoken at the trial.",
-        "destination": "spoken_at_trial"
+        "destination": "spoken_at_trial",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Because I believed in Him. Quietly, carefully, in secret — the way cowardice disguises itself as prudence. I had listened to every teaching I could manage without being seen listening. I voted against the condemnation. I was outnumbered and I said nothing public. Today I am paying the price of that silence in a different currency.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "sanhedrin_member": {
-    "content": "# UNLOCK_EVIDENCE: linen_shroud_receipt\nA Sanhedrin member watching his teacher crucified by a decision he voted against and did not have the courage to contest openly. Yes. That is exactly what I am. Let the record note it clearly.",
+    "content": "A Sanhedrin member watching his teacher crucified by a decision he voted against and did not have the courage to contest openly. Yes. That is exactly what I am. Let the record note it clearly.",
     "choices": [
       {
         "text": "Why the secrecy until now?",
-        "destination": "secrecy_reason"
+        "destination": "secrecy_reason",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "What changed today?",
-        "destination": "what_changed"
+        "destination": "what_changed",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "A Sanhedrin member watching his teacher crucified by a decision he voted against and did not have the courage to contest openly. Yes. That is exactly what I am. Let the record note it clearly.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -43,11 +97,27 @@
     "choices": [
       {
         "text": "Did He see you?",
-        "destination": "eye_contact"
+        "destination": "eye_contact",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "What happened at the ninth hour?",
-        "destination": "darkness_sign"
+        "destination": "darkness_sign",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "I watched Him speak from the cross. He asked the Father to forgive the crowd. He spoke to a man dying beside Him — a criminal — with the same authority He used in every teaching. Even at the end, He was the Rabbi.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -56,11 +126,27 @@
     "choices": [
       {
         "text": "You tell yourself that.",
-        "destination": "self_justification"
+        "destination": "self_justification",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "What will you do now?",
-        "destination": "what_changed"
+        "destination": "what_changed",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "I know. That question will follow me until I die. What could one vote have changed? The decision was made before the trial began. Caiaphas had built the consensus over weeks. My dissent was noted in the record and dismissed. It was not courage I lacked — it was enough votes.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -69,7 +155,19 @@
     "choices": [
       {
         "text": "What changed your mind?",
-        "destination": "what_changed"
+        "destination": "what_changed",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Because a Sanhedrin member who is openly a follower of a Galilean teacher does not remain a Sanhedrin member. I convinced myself I was more useful inside the institution than martyred on its steps. Today I am no longer convinced.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -78,11 +176,27 @@
     "choices": [
       {
         "text": "The curtain between the Holy Place and the Most Holy.",
-        "destination": "curtain_meaning"
+        "destination": "curtain_meaning",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "You believe these reports?",
-        "destination": "believe_reports"
+        "destination": "believe_reports",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "He died at the ninth hour. The sky had been dark since noon. Then — and I will state this in any record you choose — the earth shook, stones split, and a report came from two of the younger priests on duty in the inner courts that the curtain in the Temple was torn. From top to bottom. By no human hand.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -91,11 +205,27 @@
     "choices": [
       {
         "text": "A man being executed for love.",
-        "destination": "curtain_meaning"
+        "destination": "curtain_meaning",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Then what?",
-        "destination": "darkness_sign"
+        "destination": "darkness_sign",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Once. When they lifted the cross into position and He scanned the crowd. I do not know if He saw me specifically. But the look He gave the whole crowd — there was no accusation in it. Only grief. And something that looked like love.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -104,11 +234,27 @@
     "choices": [
       {
         "text": "The curtain tore.",
-        "destination": "curtain_meaning"
+        "destination": "curtain_meaning",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "And then you decided.",
-        "destination": "decision"
+        "destination": "decision",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "At the sixth hour the sky darkened. Not a cloud — a darkness that had no ordinary explanation. It lasted three hours. The soldiers stopped speaking. Even the priests who had come to mock fell silent. When He gave up his spirit the earth moved. I had never felt the ground move in Jerusalem. I felt it then.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -117,7 +263,19 @@
     "choices": [
       {
         "text": "Until now.",
-        "destination": "decision"
+        "destination": "decision",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Every coward has a justification. Mine was more architecturally detailed than most. But yes — that is what it is. I had the wealth, the access, the standing. What I did not have was the willingness to spend them.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -126,7 +284,19 @@
     "choices": [
       {
         "text": "You intend to act on that.",
-        "destination": "decision"
+        "destination": "decision",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Sixty feet of double-woven fabric, as thick as a man's fist. Hanging from floor to ceiling in the most restricted chamber in the known world. Torn from the ceiling downward — the direction no human arm could begin. That curtain was not an accident. It was the end of a system.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -135,7 +305,19 @@
     "choices": [
       {
         "text": "The evidence is accumulating.",
-        "destination": "decision"
+        "destination": "decision",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The priests who reported it were shaking. One of them — Pashhur, a man I know — could barely speak. He kept repeating that the air had changed inside the sanctuary. You can dismiss one frightened priest. You cannot dismiss all of them simultaneously, in an institution that has suppressed every unusual report for thirty years.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -144,11 +326,27 @@
     "choices": [
       {
         "text": "That will end your position on the council.",
-        "destination": "cost_of_decision"
+        "destination": "cost_of_decision",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Nicodemus?",
-        "destination": "nicodemus_joining"
+        "destination": "nicodemus_joining",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "I have asked my servant to prepare materials for burial. Before sunset — before the Sabbath — I will go to Pilate personally and request the body. I will use my name. My title. My tomb. And I will bury Him properly, with the honour the institution denied Him.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -157,7 +355,19 @@
     "choices": [
       {
         "text": "Why tell me this at all?",
-        "destination": "why_tell"
+        "destination": "why_tell",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "I know exactly what it costs. I calculated it standing on that hill while the darkness lasted. If I had spoken sooner, the cost would have been smaller. But I did not speak sooner. This is the bill I owe. I will pay it.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -166,7 +376,19 @@
     "choices": [
       {
         "text": "Two Sanhedrin members publicly burying Jesus.",
-        "destination": "cost_of_decision"
+        "destination": "cost_of_decision",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "He came to me during the darkness. He had already arranged the spices — myrrh and aloes, a hundred litras. He had made his decision before I made mine. We will do this together.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -174,17 +396,45 @@
     "content": "Because a decision made in secret has the weight of a secret. If I speak it aloud to a witness, I am bound to it. You are my witness, Scribe. Write what I have said and note the time. I am going to Pilate now.",
     "choices": [
       {
-        "text": "Go. And go boldly.",
-        "destination": "closing"
-      },
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "I will record it.",
-        "destination": "closing"
+        "text": "Because a decision made in secret has the weight of a secret. If I speak it aloud to a witness, I am bound to it. You are my witness, Scribe. Write what I have said and note the time. I am going to Pilate now.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "closing": {
     "content": "Isaiah wrote that the Servant would be with a rich man in his death. I read that passage a hundred times in my library and never imagined I would be the mechanism of its fulfilment. God has a severe sense of irony. And a longer memory than any of us.",
-    "choices": []
+    "choices": [],
+    "steps": [
+      {
+        "text": "Isaiah wrote that the Servant would be with a rich man in his death. I read that passage a hundred times in my library and never imagined I would be the mechanism of its fulfilment. God has a severe sense of irony. And a longer memory than any of us.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "divert": "DONE",
+        "condition": {
+          "all": []
+        }
+      }
+    ]
+  },
+  "_meta": {
+    "schema": 2,
+    "entry": "start",
+    "variables": {},
+    "revision": "e1c9100a24e89dd4"
   }
 }

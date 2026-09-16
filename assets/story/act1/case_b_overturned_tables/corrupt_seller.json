@@ -4,11 +4,27 @@
     "choices": [
       {
         "text": "Your scales are dishonest.",
-        "destination": "scales"
+        "destination": "scales",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The animals have blemishes.",
-        "destination": "blemish"
+        "destination": "blemish",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "You think this is about birds and coins? Look around you! I provide what the Law requires — unblemished offerings for the pilgrims. Without me, how would a woman from Alexandria bring her dove?",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -17,11 +33,27 @@
     "choices": [
       {
         "text": "So you admit to high prices.",
-        "destination": "high_price"
+        "destination": "high_price",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The buyer over there says you cheated him.",
-        "destination": "buyer_upset"
+        "destination": "buyer_upset",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "My scales are tested! The priests themselves have approved my weights. What — you think I would cheat the altar of God? The prices reflect the seasonal cost of transport from the hill country.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -29,8 +61,20 @@
     "content": "Every animal has minor flaws — that's why they're sacrificial! The Law speaks of blemish, not perfection. A blind eye, a limp — these are acceptable offerings for the poor.",
     "choices": [
       {
-        "text": "But not for the wealthy pilgrim.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Every animal has minor flaws — that's why they're sacrificial! The Law speaks of blemish, not perfection. A blind eye, a limp — these are acceptable offerings for the poor.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -38,8 +82,20 @@
     "content": "I have overhead! The temple tax on each animal, the cost of keeping them in the sacred precincts, the guards for security. I take my due — as any businessman would.",
     "choices": [
       {
-        "text": "The Teacher calls this theft.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "I have overhead! The temple tax on each animal, the cost of keeping them in the sacred precincts, the guards for security. I take my due — as any businessman would.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -47,13 +103,45 @@
     "content": "The woman complains? She brought coins of clay and expected premium lambs! I showed her what her money could afford — a dove, acceptable under the Law.",
     "choices": [
       {
-        "text": "She says you shortchanged her.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The woman complains? She brought coins of clay and expected premium lambs! I showed her what her money could afford — a dove, acceptable under the Law.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "closing": {
     "content": "Go in peace. Offer your sacrifice. Let those who manage God's house worry about the rest.",
-    "choices": []
+    "choices": [],
+    "steps": [
+      {
+        "text": "Go in peace. Offer your sacrifice. Let those who manage God's house worry about the rest.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "divert": "DONE",
+        "condition": {
+          "all": []
+        }
+      }
+    ]
+  },
+  "_meta": {
+    "schema": 2,
+    "entry": "start",
+    "variables": {},
+    "revision": "077d19f92fb92e71"
   }
 }

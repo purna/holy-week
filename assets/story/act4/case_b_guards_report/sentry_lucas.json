@@ -1,18 +1,68 @@
 {
   "start": {
-    "content": "The shift began at 2100 hours. Standard post at the garden tomb. The imperial seal was intact. Four of us — rotating watch. The disciples' report said we were asleep. That is the official story.",
+    "content": "My watch began after nightfall. Standard post at the garden tomb. The imperial seal was intact. Four of us — rotating watch. The disciples' report said we were asleep. That is the official story.",
     "choices": [
       {
         "text": "A Roman guard sleeping on post faces execution.",
-        "destination": "execution_threat"
+        "destination": "execution_threat",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Where did those coins in your locker come from?",
-        "destination": "bribe_question"
+        "destination": "bribe_question",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "You were awake when it happened.",
-        "destination": "truth_claim"
+        "destination": "truth_claim",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "tag": "UNLOCK_EVIDENCE: broken_imperial_seal",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "tag": "UNLOCK_EVIDENCE: bribe_shekels",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "tag": "UNLOCK_EVIDENCE: sanhedrin_report",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "tag": "UNLOCK_EVIDENCE: shattered_spear",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "tag": "UNLOCK_EVIDENCE: resurrection_appearance",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "My watch began after nightfall. Standard post at the garden tomb. The imperial seal was intact. Four of us — rotating watch. The disciples' report said we were asleep. That is the official story.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -21,49 +71,109 @@
     "choices": [
       {
         "text": "The letter from Pilate.",
-        "destination": "pilate_letter"
+        "destination": "pilate_letter",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Pilate agreed to suppress.",
-        "destination": "conversation_end"
+        "destination": "conversation_end",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "eternal"
+        "text": "Finish the interview.",
+        "destination": "eternal",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Which is why the High Priest gave his personal word to Pilate. Under Lex Julia, sleeping at your post during a sacred assignment carried the death sentence. But Caiaphas held a letter from the procurator.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "pilate_letter": {
-    "content": "The letter from Pilate — I saw it. \"No harm to the body of the prisoner.\" Those were his exact words. He instructed his agents to ensure the corpse remained intact.\n# UNLOCK_EVIDENCE: broken_imperial_seal",
+    "content": "The letter from Pilate — I saw it. \"No harm to the body of the prisoner.\" Those were his exact words. He instructed his agents to ensure the corpse remained intact.",
     "choices": [
       {
         "text": "The seal was intact",
-        "destination": "conversation_end"
+        "destination": "conversation_end",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "What happened at dawn?",
-        "destination": "dawn_events"
+        "destination": "dawn_events",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "eternal"
+        "text": "Finish the interview.",
+        "destination": "eternal",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The letter from Pilate — I saw it. \"No harm to the body of the prisoner.\" Those were his exact words. He instructed his agents to ensure the corpse remained intact.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "bribe_question": {
-    "content": "That silver is a \"security stipend.\" The chief priests counted it out in the Sanhedrin chamber.\n# UNLOCK_EVIDENCE: bribe_shekels",
+    "content": "That silver is a \"security stipend.\" The chief priests counted it out in the Sanhedrin chamber.",
     "choices": [
       {
         "text": "How many shekels?",
-        "destination": "shekel_count"
+        "destination": "shekel_count",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The coins were Temple currency.",
-        "destination": "conversation_end"
+        "destination": "conversation_end",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "eternal"
+        "text": "Finish the interview.",
+        "destination": "eternal",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "That silver is a \"security stipend.\" The chief priests counted it out in the Sanhedrin chamber.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -72,15 +182,35 @@
     "choices": [
       {
         "text": "The payment was unprecedented.",
-        "destination": "unprecedented_payment"
+        "destination": "unprecedented_payment",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "eternal"
+        "text": "Finish the interview.",
+        "destination": "eternal",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The weight felt wrong.",
-        "destination": "conversation_end"
+        "destination": "conversation_end",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Fifty shekels each — enough to buy a small vineyard. The steward distributed them with practiced efficiency. The weight in my palm was unmistakable.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -89,36 +219,72 @@
     "choices": [
       {
         "text": "The machinery was sophisticated.",
-        "destination": "sophisticated"
+        "destination": "sophisticated",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The practice was routine.",
-        "destination": "conversation_end"
+        "destination": "conversation_end",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "eternal"
+        "text": "Finish the interview.",
+        "destination": "eternal",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The payment was unprecedented. The amount could buy a small vineyard or fund a new start. The steward acted as if buying witness silence was routine. The machinery of cover-up was well-oiled.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "sophisticated": {
-    "content": "The machinery was sophisticated. The Sanhedrin knew how to handle inconvenient witnesses. Bribe money. A letter from the procurator. A pre-approved narrative.\n# UNLOCK_EVIDENCE: sanhedrin_report",
+    "content": "The machinery was sophisticated. The Sanhedrin knew how to handle inconvenient witnesses. Bribe money. A letter from the procurator. A pre-approved narrative.",
     "choices": [
       {
         "text": "The cover was comprehensive.",
-        "destination": "conversation_end"
+        "destination": "conversation_end",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "eternal"
+        "text": "Finish the interview.",
+        "destination": "eternal",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The truth would out.",
-        "destination": "truth_will_out"
-      },
+        "destination": "truth_will_out",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "Conclude.",
-        "destination": "eternal"
+        "text": "The machinery was sophisticated. The Sanhedrin knew how to handle inconvenient witnesses. Bribe money. A letter from the procurator. A pre-approved narrative.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -127,15 +293,35 @@
     "choices": [
       {
         "text": "The truth was unshakeable.",
-        "destination": "conversation_end"
+        "destination": "conversation_end",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "eternal"
+        "text": "Finish the interview.",
+        "destination": "eternal",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The evidence was divine.",
-        "destination": "conversation_end"
+        "destination": "conversation_end",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The truth will out. It always does. No amount of silver can erase the earthquake. No letter can explain the light. No approved narrative can make the dead stay dead.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -144,15 +330,35 @@
     "choices": [
       {
         "text": "The light appeared.",
-        "destination": "light_appears"
+        "destination": "light_appears",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "eternal"
+        "text": "Finish the interview.",
+        "destination": "eternal",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The soldiers were paralyzed.",
-        "destination": "paralyzed"
+        "destination": "paralyzed",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Dawn brought the earthquake. A focused, violent shaking knocked every man flat. Dust filled the air. And in the chaos, a light white as lightning filled the garden.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -161,62 +367,138 @@
     "choices": [
       {
         "text": "The recognition was divine.",
-        "destination": "conversation_end"
+        "destination": "conversation_end",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "eternal"
+        "text": "Finish the interview.",
+        "destination": "eternal",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The spear broke.",
-        "destination": "spear_breaks"
+        "destination": "spear_breaks",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The light appeared — white as lightning, brighter than the noonday sun, yet silent. It filled the garden, touched the tomb entrance, and the stone began to move.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "paralyzed": {
-    "content": "Paralyzed by something beyond physical force. Awe and terror gripped us as we witnessed the divine intervention unfolding.\n# UNLOCK_EVIDENCE: shattered_spear",
+    "content": "Paralyzed by something beyond physical force. Awe and terror gripped us as we witnessed the divine intervention unfolding.",
     "choices": [
       {
         "text": "The evidence was complete.",
-        "destination": "evidence_complete"
+        "destination": "evidence_complete",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "eternal"
+        "text": "Finish the interview.",
+        "destination": "eternal",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Paralyzed by something beyond physical force. Awe and terror gripped us as we witnessed the divine intervention unfolding.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "spear_breaks": {
-    "content": "My spear — the pilum that served me eight years — snapped clean in two. The wood fibers showed compression failure.\n# UNLOCK_EVIDENCE: shattered_spear",
+    "content": "My spear — the pilum that served me eight years — snapped clean in two. The wood fibers showed compression failure.",
     "choices": [
       {
         "text": "The force was supernatural.",
-        "destination": "conversation_end"
+        "destination": "conversation_end",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "eternal"
+        "text": "Finish the interview.",
+        "destination": "eternal",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The evidence was physical.",
-        "destination": "conversation_end"
+        "destination": "conversation_end",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "My spear — the pilum that served me eight years — snapped clean in two. The wood fibers showed compression failure.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "evidence_complete": {
-    "content": "The evidence was complete. We ran to the priests — not to Pilate. The priests smiled. And they counted out the coins.\n# UNLOCK_EVIDENCE: sanhedrin_report",
+    "content": "The evidence was complete. We ran to the priests — not to Pilate. The priests smiled. And they counted out the coins.",
     "choices": [
       {
         "text": "The report was filed.",
-        "destination": "report_filed"
+        "destination": "report_filed",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The truth was purchased.",
-        "destination": "conversation_end"
+        "destination": "conversation_end",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "eternal"
+        "text": "Finish the interview.",
+        "destination": "eternal",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The evidence was complete. We ran to the priests — not to Pilate. The priests smiled. And they counted out the coins.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -224,25 +506,49 @@
     "content": "The Sanhedrin report was filed in triplicate. One copy for the procurator. One for the Temple elders. One — the one I keep hidden — for the day someone asks questions.",
     "choices": [
       {
-        "text": "The admission is in writing.",
-        "destination": "conversation_end"
-      },
+        "text": "Continue.",
+        "destination": "conversation_end",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "The cover-up is documented.",
-        "destination": "conversation_end"
+        "text": "The Sanhedrin report was filed in triplicate. One copy for the procurator. One for the Temple elders. One — the one I keep hidden — for the day someone asks questions.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "truth_claim": {
-    "content": "I will repeat the authorized statement: \"We fell asleep. The disciples stole the body.\" But the Sanhedrin knows we did not sleep. The coins prove it. The report proves it. The spear proves it.\n# UNLOCK_EVIDENCE: sanhedrin_report",
+    "content": "I will repeat the authorized statement: \"We fell asleep. The disciples stole the body.\" But the Sanhedrin knows we did not sleep. The coins prove it. The report proves it. The spear proves it.",
     "choices": [
       {
         "text": "The contradiction is in their records.",
-        "destination": "contradiction"
+        "destination": "contradiction",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The truth is in the evidence.",
-        "destination": "conversation_end"
+        "destination": "conversation_end",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "I will repeat the authorized statement: \"We fell asleep. The disciples stole the body.\" But the Sanhedrin knows we did not sleep. The coins prove it. The report proves it. The spear proves it.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -251,11 +557,27 @@
     "choices": [
       {
         "text": "The evidence is overwhelming.",
-        "destination": "overwhelming_evidence"
+        "destination": "overwhelming_evidence",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The cover-up is complete.",
-        "destination": "conversation_end"
+        "destination": "conversation_end",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The contradiction is in their own records. The Sanhedrin report admits receiving our account. The bribe coins were minted by the Temple. The broken seal bears the procurator's stamp.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -264,24 +586,56 @@
     "choices": [
       {
         "text": "The testimony is true.",
-        "destination": "truth_undeniable"
+        "destination": "truth_undeniable",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The witnesses will testify.",
-        "destination": "conversation_end"
+        "destination": "conversation_end",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The evidence is overwhelming. The coins. The seal. The spear. The report. All of it points to the same conclusion: something beyond human explanation occurred at the garden tomb.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "truth_undeniable": {
-    "content": "The testimony is undeniable. We are Roman soldiers. We do not fabricate. The earth shook. The light appeared. The stone moved. The tomb was empty.\n# UNLOCK_EVIDENCE: resurrection_appearance",
+    "content": "The testimony is undeniable. We are Roman soldiers. We do not fabricate. The earth shook. The light appeared. The stone moved. The tomb was empty.",
     "choices": [
       {
         "text": "The explanation was divine.",
-        "destination": "conversation_end"
+        "destination": "conversation_end",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The testimony is eternal.",
-        "destination": "eternal"
+        "destination": "eternal",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The testimony is undeniable. We are Roman soldiers. We do not fabricate. The earth shook. The light appeared. The stone moved. The tomb was empty.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -290,12 +644,38 @@
     "choices": [
       {
         "text": "Finish the interview.",
-        "destination": "conversation_end"
+        "destination": "conversation_end",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The testimony is eternal. The evidence will speak. And the truth — that something beyond human comprehension happened in a garden outside Jerusalem — will echo through every generation until the Son of Man returns.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "conversation_end": {
     "content": "",
-    "choices": []
+    "choices": [],
+    "steps": [
+      {
+        "divert": "DONE",
+        "condition": {
+          "all": []
+        }
+      }
+    ]
+  },
+  "_meta": {
+    "schema": 2,
+    "entry": "start",
+    "variables": {},
+    "revision": "1e9f21c33cea90e6"
   }
 }

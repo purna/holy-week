@@ -665,7 +665,7 @@ export class GameEngine {
     cases.forEach(c => {
       (c.npcs || []).forEach(npc => {
         if (npc.profileFile) profileUrls.add(PROFILE_ID_MAP[npc.profileFile] || npc.profileFile);
-        if (npc.hasDialogue || npc.dialogueId || npc.storyFile) storyNpcs.push(npc);
+        if (npc.hasDialogue || npc.dialogueId || npc.storyFile) storyNpcs.push({ caseId: c.id, npc });
       });
     });
     return { profileUrls, storyNpcs };
@@ -690,14 +690,14 @@ export class GameEngine {
       if (barEl) barEl.style.width = `${pct}%`;
     };
 
-    const storyLoads = storyNpcs.map(npc => this.dm.loadStoryForNPC(npc).then(tick, tick));
+    const storyLoads = storyNpcs.map(({ caseId, npc }) => this.dm.loadStoryForNPC(npc, caseId).then(tick, tick));
     const profileLoads = Array.from(profileUrls).map(url => this.ns.loader.loadProfile(url).then(tick, tick));
     await Promise.all([...storyLoads, ...profileLoads]);
 
     // Warm the cache for not-yet-unlocked cases in the background without blocking the loading screen
     const later = this._collectCaseAssets(allCases.filter(c => !unlockedIds.has(c.id)));
     Promise.all([
-      ...later.storyNpcs.map(npc => this.dm.loadStoryForNPC(npc)),
+      ...later.storyNpcs.map(({ caseId, npc }) => this.dm.loadStoryForNPC(npc, caseId)),
       ...Array.from(later.profileUrls).map(url => this.ns.loader.loadProfile(url))
     ]).catch(() => {});
   }
@@ -765,7 +765,7 @@ export class GameEngine {
     // Pre-load Ink stories
     if (caseData.npcs) {
       (caseData.npcs || []).forEach(npc => {
-        if (npc.hasDialogue || npc.dialogueId || npc.storyFile) this.dm.loadStoryForNPC(npc);
+        if (npc.hasDialogue || npc.dialogueId || npc.storyFile) this.dm.loadStoryForNPC(npc, caseId);
       });
     }
 

@@ -1,68 +1,153 @@
 {
   "start": {
-    "content": "Look at the state of these streets. Palm branches, mud, and Galileans shouting enough to wake the Governor in Caesarea.",
+    "content": "I object to the royal display. Do not reduce that objection to a quarrel over an animal.",
     "choices": [
       {
-        "text": "You seem displeased with the procession.",
-        "destination": "disdain"
+        "text": "What danger do you anticipate?",
+        "destination": "danger",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "I'm investigating the missing donkey from Bethphage.",
-        "destination": "donkey_claim"
-      }
-    ]
-  },
-  "disdain": {
-    "content": "Displeased? It's a security tinderbox! And the \"King\" they're following? He's riding a stolen animal.",
-    "choices": [
-      {
-        "text": "Stolen? The owner says he lent it.",
-        "destination": "donkey_claim"
-      }
-    ]
-  },
-  "donkey_claim": {
-    "content": "Lent it? Hah! I saw two rough-looking men hacking at the tether with rusted knives. They practically dragged the poor beast over the wall while the owner cried out.",
-    "choices": [
-      {
-        "text": "The rope fibers don't show marks of hacking.",
-        "destination": "pressure"
+        "text": "What do you know about the owner's consent?",
+        "destination": "consent",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "The owner had a scroll of Zechariah.",
-        "destination": "fanatical"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "I object to the royal display. Do not reduce that objection to a quarrel over an animal.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
-  "pressure": {
-    "content": "The light was poor at dawn! But I heard the owner shouting for help!",
+  "danger": {
+    "content": "A crowd may disperse before the consequences arrive. The people responsible for order must remain here afterward.\nThat is my concern. It is a prediction of danger, not a report that violence has already occurred.",
     "choices": [
       {
-        "text": "The villager says he nodded and let them go.",
-        "destination": "exposed"
+        "text": "Does that change the question of consent?",
+        "destination": "consent",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Return to my questions.",
+        "destination": "start",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "A crowd may disperse before the consequences arrive. The people responsible for order must remain here afterward.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "That is my concern. It is a prediction of danger, not a report that violence has already occurred.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
-  "fanatical": {
-    "content": "The owner is a dreamer. He probably thinks every bird that flies over his field is an angel. His testimony is worthless.",
+  "consent": {
+    "content": "The owners must answer that. I cannot turn my opposition to the procession into knowledge of their intentions.\nIf they allowed the colt to go, record it. That does not require me to approve of the acclamation.",
     "choices": [
       {
-        "text": "Continue.",
-        "destination": "pressure"
+        "text": "Return to my questions.",
+        "destination": "start",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       }
-    ]
-  },
-  "exposed": {
-    "content": "Fine! The owner is a fool who gave his property away. But we cannot have people claiming royal titles unvetted. I told the guards it was theft to ensure they would intervene. Order is more important than your \"truth.\"",
-    "choices": [
+    ],
+    "steps": [
       {
-        "text": "closing",
-        "destination": "closing"
+        "set": "distinction_made",
+        "operator": "=",
+        "value": {
+          "literal": true
+        },
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "The owners must answer that. I cannot turn my opposition to the procession into knowledge of their intentions.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "If they allowed the colt to go, record it. That does not require me to approve of the acclamation.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "closing": {
-    "content": "I have a meeting at the Temple. Do not block my way.",
-    "choices": []
+    "content": "You may disagree with my judgment. At least keep judgment separate from eyewitness evidence.\nAsk the people involved before you settle the charge.",
+    "choices": [],
+    "steps": [
+      {
+        "text": "You may disagree with my judgment. At least keep judgment separate from eyewitness evidence.",
+        "condition": {
+          "all": [
+            {
+              "variable": "distinction_made"
+            }
+          ]
+        }
+      },
+      {
+        "text": "Ask the people involved before you settle the charge.",
+        "condition": {
+          "all": [
+            {
+              "not": {
+                "variable": "distinction_made"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "divert": "DONE",
+        "condition": {
+          "all": []
+        }
+      }
+    ]
+  },
+  "_meta": {
+    "schema": 2,
+    "entry": "start",
+    "variables": {
+      "distinction_made": false
+    },
+    "revision": "4bc17bc50d081761"
   }
 }

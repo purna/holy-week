@@ -4,37 +4,91 @@
     "choices": [
       {
         "text": "Why not?",
-        "destination": "why_not"
+        "destination": "why_not",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "You know what just happened.",
-        "destination": "know_what"
+        "destination": "know_what",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "tag": "UNLOCK_EVIDENCE: barabbas_warrant",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "I've been standing here for an hour. I should be moving — a free man in Jerusalem on Passover morning with every reason to disappear before the garrison changes shifts. But I can't make myself move yet.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "why_not": {
-    "content": "# UNLOCK_EVIDENCE: barabbas_warrant\nBecause the man they took instead of me is on a hill outside the city wall, and I put him there. Not with my own hands — with a crowd's voice and a governor's weakness. But I put him there.",
+    "content": "Because the man they took instead of me is on a hill outside the city wall, and I put him there. Not with my own hands — with a crowd's voice and a governor's weakness. But I put him there.",
     "choices": [
       {
         "text": "You didn't ask to be released.",
-        "destination": "didnt_ask"
+        "destination": "didnt_ask",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "You are free. He is dying.",
-        "destination": "he_is_dying"
+        "destination": "he_is_dying",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Because the man they took instead of me is on a hill outside the city wall, and I put him there. Not with my own hands — with a crowd's voice and a governor's weakness. But I put him there.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "know_what": {
-    "content": "# UNLOCK_EVIDENCE: barabbas_warrant\nI know exactly what happened. I've been in that cell long enough to understand Roman process. The Passover amnesty. One prisoner released by crowd vote. They put my name against a teacher from Galilee and the crowd voted my life back to me. I do not know why.",
+    "content": "I know exactly what happened. I've been in that cell long enough to understand Roman process. The Passover amnesty. One prisoner released by crowd vote. They put my name against a teacher from Galilee and the crowd voted my life back to me. I do not know why.",
     "choices": [
       {
         "text": "The chief priests pushed the crowd.",
-        "destination": "chief_priests"
+        "destination": "chief_priests",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Did you know the other man?",
-        "destination": "know_the_man"
+        "destination": "know_the_man",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "I know exactly what happened. I've been in that cell long enough to understand Roman process. The Passover amnesty. One prisoner released by crowd vote. They put my name against a teacher from Galilee and the crowd voted my life back to me. I do not know why.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -43,11 +97,27 @@
     "choices": [
       {
         "text": "Instead you walked out.",
-        "destination": "walked_out"
+        "destination": "walked_out",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "What did you think when you saw the crowd?",
-        "destination": "saw_crowd"
+        "destination": "saw_crowd",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "No. I never asked. I was sitting in that cell calculating how long before they ran out of legal reasons to keep me alive. It was not a comfortable calculation. Then the guard came and said my name had been called. I thought they meant for execution.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -56,11 +126,27 @@
     "choices": [
       {
         "text": "Substitution.",
-        "destination": "substitution"
+        "destination": "substitution",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Why does it bother you?",
-        "destination": "why_bother"
+        "destination": "why_bother",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Yes. And I've killed men before. I've watched men die who I put in the ground myself. This is different. I cannot explain why it is different. But the man going up that hill did not earn what I earned. He taught in the Temple and the crowd loved Him for it. I burned buildings and the crowd loved me for letting me go. That is not justice. That is not even politics. That is something I don't have a word for.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -69,11 +155,27 @@
     "choices": [
       {
         "text": "They used you as a tool.",
-        "destination": "used_as_tool"
+        "destination": "used_as_tool",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "And the governor agreed.",
-        "destination": "pilate_decision"
+        "destination": "pilate_decision",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "I heard it from the guards. Caiaphas's men worked the crowd the night before. The Galilean had supporters, but His support was scattered — pilgrims, fishermen, women. The priests know how to organize a crowd. They chose me because I am exactly what they needed: someone the Galilean's followers would not shout for.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -82,11 +184,27 @@
     "choices": [
       {
         "text": "But you never met Him.",
-        "destination": "never_met"
+        "destination": "never_met",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "You respected Him.",
-        "destination": "respected"
+        "destination": "respected",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "By reputation. He drove the merchants out of the Temple courts. That took nerve, even for a Zealot. He healed people in public with no payment. The Sanhedrin was afraid of Him. That alone told me He was doing something right.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -95,7 +213,19 @@
     "choices": [
       {
         "text": "What did you understand?",
-        "destination": "understood"
+        "destination": "understood",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Into the light, past the crowd, past Pilate standing there washing his hands in a bowl — I remember thinking that was strange. A governor washing his hands publicly. I walked through the gate and I turned around and I saw them bringing Him forward with the crown they had put on Him. And I understood immediately what the exchange was.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -104,7 +234,19 @@
     "choices": [
       {
         "text": "And the man who did deserve it...",
-        "destination": "he_is_dying"
+        "destination": "he_is_dying",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "They were shouting my name. People I did not know, in the voice people use for heroes. I killed a man in an alleyway during a street brawl over a tax dispute. I am not a hero. The crowd made me one in ten minutes because the priests needed my name to clear the board. I did not deserve that crowd.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -113,11 +255,27 @@
     "choices": [
       {
         "text": "Then you understand more than you think.",
-        "destination": "deeper_meaning"
+        "destination": "deeper_meaning",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "An innocent man took your place.",
-        "destination": "innocent_exchange"
+        "destination": "innocent_exchange",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "I know that word. Theologically. The Passover lamb. The sacrifice that stands in the place of the one under judgment. I have been in enough courts to understand legal substitution — one penalty paid by a party who did not accrue it. I understand it in law. I understand it in Leviticus. I do not understand it when it has my name on it.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -126,11 +284,27 @@
     "choices": [
       {
         "text": "What will you do with the debt?",
-        "destination": "what_do"
+        "destination": "what_do",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Something else entirely, you said.",
-        "destination": "something_else"
+        "destination": "something_else",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Because I owe him a debt I cannot repay. He is going to die on the Roman cross with my charges above his head — and I have not met him. I do not know if he knows my name. I do not know if this was an accident of Roman politics or something else entirely. But I owe him.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -139,7 +313,19 @@
     "choices": [
       {
         "text": "That changes the meaning of being a tool.",
-        "destination": "substitution"
+        "destination": "substitution",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Yes. Caiaphas needed a name the crowd would choose to get rid of the Galilean. My name was convenient. I am a man who has spent his whole life being used as a tool by men who had more patience and less courage than me. Today was no different. Except this time, being the tool set me free and crucified someone else.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -148,7 +334,19 @@
     "choices": [
       {
         "text": "And then there was you.",
-        "destination": "innocent_exchange"
+        "destination": "innocent_exchange",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Pilate found no fault in Him. He said so three times according to the soldiers. He offered Herod. He offered flogging as a lesser punishment. He offered the amnesty. He did everything except the one thing that mattered — he said no. He washed his hands instead. A governor who washes his hands is still a governor who decided.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -157,7 +355,19 @@
     "choices": [
       {
         "text": "But His face replaced yours this morning.",
-        "destination": "innocent_exchange"
+        "destination": "innocent_exchange",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "No. I know Him only by what He did and what the guards said about the night trial. They brought Him to the Praetorium before dawn, after a council session at the High Priest's house that they held in the dark. I was awake in the cell. I heard them bringing Him through. I did not see His face.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -166,7 +376,19 @@
     "choices": [
       {
         "text": "To take your place.",
-        "destination": "innocent_exchange"
+        "destination": "innocent_exchange",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "I respected anyone who frightened the Sanhedrin. In my business you learn quickly who the real power is by watching who makes the priests nervous. He made them nervous from the moment He arrived in this city. A man who can do that with parables and healings — yes, I respected Him. I just didn't expect to be walking out while He walked in.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -175,7 +397,19 @@
     "choices": [
       {
         "text": "What did you feel?",
-        "destination": "why_bother"
+        "destination": "why_bother",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "I understood that I was looking at the man who was going to die because the crowd chose me over him. I understood that this was not random. The priests had built this particular moment with precision. I was the instrument. He was the target. And the man who could have stopped it was standing there with wet hands and an expression I have only ever seen on men who know they have just made the worst decision of their lives.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -184,11 +418,27 @@
     "choices": [
       {
         "text": "What do you think?",
-        "destination": "what_do"
+        "destination": "what_do",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "He entered Jerusalem knowing it would come to this.",
-        "destination": "knowing_entry"
+        "destination": "knowing_entry",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Are you saying the man dying up there knew what He was doing? That this exchange was not a accident of Roman politics but something... intended?",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -197,7 +447,19 @@
     "choices": [
       {
         "text": "What will you do with that?",
-        "destination": "what_do"
+        "destination": "what_do",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "An innocent man took my place. An innocent man is dying on a Roman cross with charges written for my crimes. I do not know what to do with that. I have seen injustice before. But injustice usually goes the other direction — the innocent man is forgotten and the guilty man escapes without acknowledgement. This is reversed. And the reversal has my name inside it.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -206,7 +468,19 @@
     "choices": [
       {
         "text": "What was running the schedule?",
-        "destination": "deeper_meaning"
+        "destination": "deeper_meaning",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The earthquake was felt in the city an hour ago. Then the darkness before it. I have been outside too long now. But I keep looking at that hill and I keep thinking: this was not arranged by Caiaphas. Caiaphas thought he was arranging it. But something larger than Caiaphas was running this schedule.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -214,12 +488,20 @@
     "content": "I don't know yet. I'm standing here instead of running, which means something. I am a violent man by profession and I am standing here with no blade in my hand for the first time in years, watching a man die in my place, and I feel like I am supposed to do something with the rest of the life I just got back. I just don't know what that is yet.",
     "choices": [
       {
-        "text": "Perhaps find out who He was.",
-        "destination": "closing"
-      },
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "The rest of your life is a gift you did not earn.",
-        "destination": "closing"
+        "text": "I don't know yet. I'm standing here instead of running, which means something. I am a violent man by profession and I am standing here with no blade in my hand for the first time in years, watching a man die in my place, and I feel like I am supposed to do something with the rest of the life I just got back. I just don't know what that is yet.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -228,12 +510,44 @@
     "choices": [
       {
         "text": "A schedule that included your freedom.",
-        "destination": "innocent_exchange"
+        "destination": "innocent_exchange",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "I heard the story of His entry three days ago. The palm branches, the crowd from Bethany. He came down the hill on a donkey's colt like a king who knew exactly what crown He was coming to claim. I thought it was bravado. Now I wonder if it was schedule.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "closing": {
     "content": "Tell me His name. His full name. I know everyone calls him the Galilean — but tell me His name. If a man died in my place, I want to know his name before I walk out of this city.",
-    "choices": []
+    "choices": [],
+    "steps": [
+      {
+        "text": "Tell me His name. His full name. I know everyone calls him the Galilean — but tell me His name. If a man died in my place, I want to know his name before I walk out of this city.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "divert": "DONE",
+        "condition": {
+          "all": []
+        }
+      }
+    ]
+  },
+  "_meta": {
+    "schema": 2,
+    "entry": "start",
+    "variables": {},
+    "revision": "1b59fa19a592c318"
   }
 }

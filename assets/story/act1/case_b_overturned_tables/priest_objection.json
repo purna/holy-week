@@ -4,15 +4,35 @@
     "choices": [
       {
         "text": "The altar itself has been defiled.",
-        "destination": "defiled_altar"
+        "destination": "defiled_altar",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "True repentance starts with mercy.",
-        "destination": "mercy_start"
+        "destination": "mercy_start",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing_priest"
+        "text": "Finish the interview.",
+        "destination": "closing_priest",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The Temple needs repair, yes, but not the kind that comes with a whip and scattered coin. It needs the repentance of the heart, the turning back of the nation to the statutes given on Sinai. Reform without the altar is just rebellion wearing priestly garments.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -21,15 +41,35 @@
     "choices": [
       {
         "text": "The ritual lacks justice.",
-        "destination": "ritual_justice"
+        "destination": "ritual_justice",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "God desires mercy, not sacrifice.",
-        "destination": "mercy_sacrifice_quote"
+        "destination": "mercy_sacrifice_quote",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing_priest"
+        "text": "Finish the interview.",
+        "destination": "closing_priest",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Defiled? The sacrifices continue morning and evening without fail. The blood is sprinkled. The incense rises. The lamps burn bright. How can the altar be defiled when the ritual is kept to the very letter of Moses?",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -38,15 +78,35 @@
     "choices": [
       {
         "text": "Holiness does not require cruelty.",
-        "destination": "holiness_cruelty"
+        "destination": "holiness_cruelty",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "You guard an empty shell.",
-        "destination": "empty_shell"
+        "destination": "empty_shell",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing_priest"
+        "text": "Finish the interview.",
+        "destination": "closing_priest",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Mercy without truth is sentimentality. Truth without mercy is tyranny. We have the truth of the Law. If we lack mercy, it is because we have borne the burden of guarding God's holiness in a world that despises it.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -55,11 +115,27 @@
     "choices": [
       {
         "text": "The Law demands both.",
-        "destination": "law_both"
+        "destination": "law_both",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing_priest"
+        "text": "Finish the interview.",
+        "destination": "closing_priest",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Justice? The orphan is neglected, the widow has no defense, and the courts of the Gentiles are turned into a bazaar. You keep the letter of the blood while losing the spirit of the God who demanded it.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -68,11 +144,27 @@
     "choices": [
       {
         "text": "Sacrifice without a heart is dead.",
-        "destination": "dead_sacrifice"
+        "destination": "dead_sacrifice",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing_priest"
+        "text": "Finish the interview.",
+        "destination": "closing_priest",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "\"I desire mercy and not sacrifice.\" Words of Hosea, often quoted by those who wish to escape the discipline of obedience. But God commanded the sacrifice just as surely as He commanded mercy. One does not cancel the other.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -81,11 +173,27 @@
     "choices": [
       {
         "text": "The wall has become a prison.",
-        "destination": "prison_wall"
+        "destination": "prison_wall",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing_priest"
+        "text": "Finish the interview.",
+        "destination": "closing_priest",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Cruelty? It is not cruelty to uphold the boundaries that keep chaos at bay. Without the wall, there is no vineyard. Without the Law, there is no Israel.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -94,11 +202,27 @@
     "choices": [
       {
         "text": "The true Temple is standing before you.",
-        "destination": "true_temple_standing"
+        "destination": "true_temple_standing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing_priest"
+        "text": "Finish the interview.",
+        "destination": "closing_priest",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "An empty shell? You look at stone and cedar and see emptiness. I look at stone and cedar and see the dwelling place of the Most High, preserved through exile and sword.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -107,11 +231,27 @@
     "choices": [
       {
         "text": "Governance is not salvation.",
-        "destination": "governance_not_salvation"
+        "destination": "governance_not_salvation",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing_priest"
+        "text": "Finish the interview.",
+        "destination": "closing_priest",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Both, yes! Both justice and the weightier matters of the Law. We try, scribe. We try in a world that pulls us toward Rome on one side and lawlessness on the other. This Galilean makes it look simple, but governance is never simple.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -120,11 +260,27 @@
     "choices": [
       {
         "text": "The fire is about to change form.",
-        "destination": "fire_change"
+        "destination": "fire_change",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing_priest"
+        "text": "Finish the interview.",
+        "destination": "closing_priest",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Dead? The smoke of the altar ascends day and night. God receives it. If the heart of the nation were truly dead, the fire would have gone out long ago.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -133,11 +289,27 @@
     "choices": [
       {
         "text": "Choose your side carefully.",
-        "destination": "final_choice"
+        "destination": "final_choice",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing_priest"
+        "text": "Finish the interview.",
+        "destination": "closing_priest",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "A prison? Or a shield? You call it a cage; I call it a sanctuary. But as we speak, the councils gather, the testimonies are weighed, and the decision draws near.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -146,11 +318,27 @@
     "choices": [
       {
         "text": "His glory is hidden in weakness.",
-        "destination": "glory_weakness"
+        "destination": "glory_weakness",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing_priest"
+        "text": "Finish the interview.",
+        "destination": "closing_priest",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Standing before us? A man of dust and Nazareth. If God chose to dwell in flesh, He would not choose a carpenter who disrupts the courts and defies the elders of Israel. He would choose power. He would choose glory.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -159,11 +347,27 @@
     "choices": [
       {
         "text": "A burden born without faith.",
-        "destination": "burden_faith"
+        "destination": "burden_faith",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing_priest"
+        "text": "Finish the interview.",
+        "destination": "closing_priest",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Salvation is for the world to come; governance is for the world that is. We must manage the state, appease the governor, and keep the peace of Jerusalem. That is the priest's burden.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -171,12 +375,20 @@
     "content": "Change form? What do you mean? The Roman legions are outside. The zealots are in the hills. And inside, the priests hold the line. Nothing changes.",
     "choices": [
       {
-        "text": "Everything is about to change.",
-        "destination": "closing_priest"
-      },
+        "text": "Finish the interview.",
+        "destination": "closing_priest",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "Conclude.",
-        "destination": "closing_priest"
+        "text": "Change form? What do you mean? The Roman legions are outside. The zealots are in the hills. And inside, the priests hold the line. Nothing changes.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -185,11 +397,27 @@
     "choices": [
       {
         "text": "Surviving is not reigning.",
-        "destination": "surviving_reigning"
+        "destination": "surviving_reigning",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing_priest"
+        "text": "Finish the interview.",
+        "destination": "closing_priest",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Hidden in weakness? A strange place for the King of Israel. Weakness gets you crucified under Roman law. Power gets you a throne. I know which one survives.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -198,11 +426,27 @@
     "choices": [
       {
         "text": "Let Him carry the stone.",
-        "destination": "carry_stone"
+        "destination": "carry_stone",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing_priest"
+        "text": "Finish the interview.",
+        "destination": "closing_priest",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Without faith? No. With too much of it, perhaps. When you carry the weight of an entire nation's covenant before God every single day, faith stops being a poetic dream and becomes a crushing stone.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -211,11 +455,27 @@
     "choices": [
       {
         "text": "History belongs to Him.",
-        "destination": "history_him"
+        "destination": "history_him",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing_priest"
+        "text": "Finish the interview.",
+        "destination": "closing_priest",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Reigning? A dead man on a tree reigns over nothing. History belongs to the living empires and the enduring institutions.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -224,20 +484,45 @@
     "choices": [
       {
         "text": "It is not madness. It is resurrection.",
-        "destination": "resurrection_node"
+        "destination": "resurrection_node",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing_priest"
+        "text": "Finish the interview.",
+        "destination": "closing_priest",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Carry it? We tried. We laid it on the altar. And now this Galilean comes along, claiming He can rebuild it all in three days. Madness. Utter madness.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "history_him": {
     "content": "Time will tell whose history endures—Rome's, the Sanhedrin's, or the carpenter's. Until then, my duty remains at the altar.",
-    "choices": [
+    "choices": [],
+    "steps": [
       {
-        "text": "closing_priest",
-        "destination": "closing_priest"
+        "text": "Time will tell whose history endures—Rome's, the Sanhedrin's, or the carpenter's. Until then, my duty remains at the altar.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "divert": "closing_priest",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -246,11 +531,27 @@
     "choices": [
       {
         "text": "He is the exception to every rule.",
-        "destination": "exception_rule"
+        "destination": "exception_rule",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing_priest"
+        "text": "Finish the interview.",
+        "destination": "closing_priest",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Resurrection? You speak of dead things rising as if it were a common market trade. Death is final, scribe. That is the one rule Rome and the Torah agree upon.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -258,8 +559,20 @@
     "content": "An exception... If He breaks death as He broke the tables in the courtyard, then nothing we have built will stand. And perhaps... perhaps that is what terrifies me most.",
     "choices": [
       {
-        "text": "Conclude.",
-        "destination": "closing_priest"
+        "text": "Finish the interview.",
+        "destination": "closing_priest",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "An exception... If He breaks death as He broke the tables in the courtyard, then nothing we have built will stand. And perhaps... perhaps that is what terrifies me most.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -268,12 +581,44 @@
     "choices": [
       {
         "text": "Finish the interview.",
-        "destination": "closing_priest"
+        "destination": "closing_priest",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The choice is set. The Sanhedrin will judge, the Romans will execute, and the stones of the Temple will look down upon it all. Record it however you like, scribe. History will judge us both.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "closing_priest": {
     "content": "The service of the Lord continues, regardless of the noise in the courts. Write your notes, scribe, and let the God of Israel judge the hearts of us all.",
-    "choices": []
+    "choices": [],
+    "steps": [
+      {
+        "text": "The service of the Lord continues, regardless of the noise in the courts. Write your notes, scribe, and let the God of Israel judge the hearts of us all.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "divert": "DONE",
+        "condition": {
+          "all": []
+        }
+      }
+    ]
+  },
+  "_meta": {
+    "schema": 2,
+    "entry": "repentance_needed",
+    "variables": {},
+    "revision": "4c9dde70c01ce6e8"
   }
 }

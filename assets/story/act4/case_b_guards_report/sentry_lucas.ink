@@ -27,121 +27,116 @@
 -> start
 
 === start ===
-The shift began at 2100 hours. Standard post at the garden tomb. The imperial seal was intact. Four of us — rotating watch. The disciples' report said we were asleep. That is the official story.
-* [A Roman guard sleeping on post faces execution.] -> execution_threat
-* [Where did those coins in your locker come from?] -> bribe_question
-* [You were awake when it happened.] -> truth_claim
+# UNLOCK_EVIDENCE: broken_imperial_seal
+# UNLOCK_EVIDENCE: bribe_shekels
+# UNLOCK_EVIDENCE: sanhedrin_report
+# UNLOCK_EVIDENCE: shattered_spear
+# UNLOCK_EVIDENCE: resurrection_appearance
+My watch began after nightfall. Standard post at the garden tomb. The imperial seal was intact. Four of us — rotating watch. The disciples' report said we were asleep. That is the official story.
++ [A Roman guard sleeping on post faces execution.] -> execution_threat
++ [Where did those coins in your locker come from?] -> bribe_question
++ [You were awake when it happened.] -> truth_claim
 
 === execution_threat ===
 Which is why the High Priest gave his personal word to Pilate. Under Lex Julia, sleeping at your post during a sacred assignment carried the death sentence. But Caiaphas held a letter from the procurator.
-* [The letter from Pilate.] -> pilate_letter
-* [Pilate agreed to suppress.] -> conversation_end
-* [Conclude.] -> eternal
++ [The letter from Pilate.] -> pilate_letter
++ [Pilate agreed to suppress.] -> conversation_end
++ [Finish the interview.] -> eternal
 
 === pilate_letter ===
 The letter from Pilate — I saw it. "No harm to the body of the prisoner." Those were his exact words. He instructed his agents to ensure the corpse remained intact.
-# UNLOCK_EVIDENCE: broken_imperial_seal
-* [The seal was intact] -> conversation_end
-* [What happened at dawn?] -> dawn_events
-* [Conclude.] -> eternal
++ [The seal was intact] -> conversation_end
++ [What happened at dawn?] -> dawn_events
++ [Finish the interview.] -> eternal
 
 === bribe_question ===
 That silver is a "security stipend." The chief priests counted it out in the Sanhedrin chamber.
-# UNLOCK_EVIDENCE: bribe_shekels
-* [How many shekels?] -> shekel_count
-* [The coins were Temple currency.] -> conversation_end
-* [Conclude.] -> eternal
++ [How many shekels?] -> shekel_count
++ [The coins were Temple currency.] -> conversation_end
++ [Finish the interview.] -> eternal
 
 === shekel_count ===
 Fifty shekels each — enough to buy a small vineyard. The steward distributed them with practiced efficiency. The weight in my palm was unmistakable.
-* [The payment was unprecedented.] -> unprecedented_payment
-* [Conclude.] -> eternal
-* [The weight felt wrong.] -> conversation_end
++ [The payment was unprecedented.] -> unprecedented_payment
++ [Finish the interview.] -> eternal
++ [The weight felt wrong.] -> conversation_end
 
 === unprecedented_payment ===
 The payment was unprecedented. The amount could buy a small vineyard or fund a new start. The steward acted as if buying witness silence was routine. The machinery of cover-up was well-oiled.
-* [The machinery was sophisticated.] -> sophisticated
-* [The practice was routine.] -> conversation_end
-* [Conclude.] -> eternal
++ [The machinery was sophisticated.] -> sophisticated
++ [The practice was routine.] -> conversation_end
++ [Finish the interview.] -> eternal
 
 === sophisticated ===
 The machinery was sophisticated. The Sanhedrin knew how to handle inconvenient witnesses. Bribe money. A letter from the procurator. A pre-approved narrative.
-# UNLOCK_EVIDENCE: sanhedrin_report
-* [The cover was comprehensive.] -> conversation_end
-* [Conclude.] -> eternal
-* [The truth would out.] -> truth_will_out
-* [Conclude.] -> eternal
++ [The cover was comprehensive.] -> conversation_end
++ [Finish the interview.] -> eternal
++ [The truth would out.] -> truth_will_out
 
 === truth_will_out ===
 The truth will out. It always does. No amount of silver can erase the earthquake. No letter can explain the light. No approved narrative can make the dead stay dead.
-* [The truth was unshakeable.] -> conversation_end
-* [Conclude.] -> eternal
-* [The evidence was divine.] -> conversation_end
++ [The truth was unshakeable.] -> conversation_end
++ [Finish the interview.] -> eternal
++ [The evidence was divine.] -> conversation_end
 
 === dawn_events ===
 Dawn brought the earthquake. A focused, violent shaking knocked every man flat. Dust filled the air. And in the chaos, a light white as lightning filled the garden.
-* [The light appeared.] -> light_appears
-* [Conclude.] -> eternal
-* [The soldiers were paralyzed.] -> paralyzed
++ [The light appeared.] -> light_appears
++ [Finish the interview.] -> eternal
++ [The soldiers were paralyzed.] -> paralyzed
 
 === light_appears ===
 The light appeared — white as lightning, brighter than the noonday sun, yet silent. It filled the garden, touched the tomb entrance, and the stone began to move.
-* [The recognition was divine.] -> conversation_end
-* [Conclude.] -> eternal
-* [The spear broke.] -> spear_breaks
++ [The recognition was divine.] -> conversation_end
++ [Finish the interview.] -> eternal
++ [The spear broke.] -> spear_breaks
 
 === paralyzed ===
 Paralyzed by something beyond physical force. Awe and terror gripped us as we witnessed the divine intervention unfolding.
-# UNLOCK_EVIDENCE: shattered_spear
-* [The evidence was complete.] -> evidence_complete
-* [Conclude.] -> eternal
++ [The evidence was complete.] -> evidence_complete
++ [Finish the interview.] -> eternal
 
 === spear_breaks ===
 My spear — the pilum that served me eight years — snapped clean in two. The wood fibers showed compression failure.
-# UNLOCK_EVIDENCE: shattered_spear
-* [The force was supernatural.] -> conversation_end
-* [Conclude.] -> eternal
-* [The evidence was physical.] -> conversation_end
++ [The force was supernatural.] -> conversation_end
++ [Finish the interview.] -> eternal
++ [The evidence was physical.] -> conversation_end
 
 === evidence_complete ===
 The evidence was complete. We ran to the priests — not to Pilate. The priests smiled. And they counted out the coins.
-# UNLOCK_EVIDENCE: sanhedrin_report
-* [The report was filed.] -> report_filed
-* [The truth was purchased.] -> conversation_end
-* [Conclude.] -> eternal
++ [The report was filed.] -> report_filed
++ [The truth was purchased.] -> conversation_end
++ [Finish the interview.] -> eternal
 
 === report_filed ===
 The Sanhedrin report was filed in triplicate. One copy for the procurator. One for the Temple elders. One — the one I keep hidden — for the day someone asks questions.
-* [The admission is in writing.] -> conversation_end
-* [The cover-up is documented.] -> conversation_end
++ [Continue.] -> conversation_end
 
 === truth_claim ===
 I will repeat the authorized statement: "We fell asleep. The disciples stole the body." But the Sanhedrin knows we did not sleep. The coins prove it. The report proves it. The spear proves it.
-# UNLOCK_EVIDENCE: sanhedrin_report
-* [The contradiction is in their records.] -> contradiction
-* [The truth is in the evidence.] -> conversation_end
++ [The contradiction is in their records.] -> contradiction
++ [The truth is in the evidence.] -> conversation_end
 
 === contradiction ===
 The contradiction is in their own records. The Sanhedrin report admits receiving our account. The bribe coins were minted by the Temple. The broken seal bears the procurator's stamp.
-* [The evidence is overwhelming.] -> overwhelming_evidence
-* [The cover-up is complete.] -> conversation_end
++ [The evidence is overwhelming.] -> overwhelming_evidence
++ [The cover-up is complete.] -> conversation_end
 
 === overwhelming_evidence ===
 The evidence is overwhelming. The coins. The seal. The spear. The report. All of it points to the same conclusion: something beyond human explanation occurred at the garden tomb.
-* [The testimony is true.] -> truth_undeniable
-* [The witnesses will testify.] -> conversation_end
++ [The testimony is true.] -> truth_undeniable
++ [The witnesses will testify.] -> conversation_end
 
 === truth_undeniable ===
 The testimony is undeniable. We are Roman soldiers. We do not fabricate. The earth shook. The light appeared. The stone moved. The tomb was empty.
-# UNLOCK_EVIDENCE: resurrection_appearance
-* [The explanation was divine.] -> conversation_end
-* [The testimony is eternal.] -> eternal
++ [The explanation was divine.] -> conversation_end
++ [The testimony is eternal.] -> eternal
 
 === eternal ===
 The testimony is eternal. The evidence will speak. And the truth — that something beyond human comprehension happened in a garden outside Jerusalem — will echo through every generation until the Son of Man returns.
 
 
-* [Finish the interview.] -> conversation_end
++ [Finish the interview.] -> conversation_end
 
 === conversation_end ===
 -> DONE

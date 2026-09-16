@@ -4,15 +4,35 @@
     "choices": [
       {
         "text": "Your wife sent a message?",
-        "destination": "wifes_warning"
+        "destination": "wifes_warning",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "You don't see Him as a threat?",
-        "destination": "threat"
+        "destination": "threat",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The crowd wants Barabbas.",
-        "destination": "barabbas"
+        "destination": "barabbas",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Am I an expert in your theological disputes? Your priests drag this man to my praetorium at dawn and expect me to sign a death warrant for philosophical claims. But the disturbance is not only in the streets; it has entered my own sleeping chambers.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -21,11 +41,27 @@
     "choices": [
       {
         "text": "Does her dream worry you?",
-        "destination": "truth_question"
+        "destination": "truth_question",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "You dismissed her concern.",
-        "destination": "dismiss_warning"
+        "destination": "dismiss_warning",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Claudia sent a frantic note to the judgment seat: \"Have nothing to do with that righteous man.\" She has suffered a great deal in a dream today because of him. She sees a guilt in this room that my ledgers cannot account for. A Roman of noble blood, not given to the superstitions of this province — yet she saw his face in torment.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -34,11 +70,27 @@
     "choices": [
       {
         "text": "But you will execute Him.",
-        "destination": "crowd_response"
+        "destination": "crowd_response",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Why did He not answer?",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "I told her it was only a dream. Roman discipline does not bend to visions. Yet I found myself asking the prisoner to speak — and received silence instead. His wife sees a righteous man; the Sanhedrin sees a rebel. I see a man who makes the silence heavier than a shield wall.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -47,7 +99,19 @@
     "choices": [
       {
         "text": "But you will execute Him.",
-        "destination": "crowd_response"
+        "destination": "crowd_response",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "What is truth to a man holding three legions? I asked him the same. He spoke of a kingdom not of this world. My wife sees a righteous man; the priests see a rebel. I see a man who makes the silence heavier than a shield wall.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -56,7 +120,19 @@
     "choices": [
       {
         "text": "But you will execute Him.",
-        "destination": "crowd_response"
+        "destination": "crowd_response",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "What is truth to a man holding three legions? A man who heals the blind and raises the dead is not a military threat. He is a philosophical problem. And Rome does not execute philosophers.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -65,7 +141,19 @@
     "choices": [
       {
         "text": "You are washing your hands.",
-        "destination": "crowd_response"
+        "destination": "crowd_response",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The crowd wants Barabbas — an actual murderer. Give them what they want. It satisfies the feast custom, and it gets this theological dispute off my docket.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -74,7 +162,19 @@
     "choices": [
       {
         "text": "And the inscription on the cross?",
-        "destination": "writing"
+        "destination": "writing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Mobs are volatile. Give them Barabbas if they want a thief. I will wash my hands of this local dispute. The sentence stands.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -82,13 +182,45 @@
     "content": "\"Jesus of Nazareth, King of the Jews.\" That is the titulus I authorised — in Latin, Greek, and Hebrew for every traveller on the road to read. The priests complained. I told them: what is written, is written. The Prefect does not take edits from the Sanhedrin.",
     "choices": [
       {
-        "text": "That is defiance.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "\"Jesus of Nazareth, King of the Jews.\" That is the titulus I authorised — in Latin, Greek, and Hebrew for every traveller on the road to read. The priests complained. I told them: what is written, is written. The Prefect does not take edits from the Sanhedrin.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "closing": {
     "content": "I have no further comments for your investigation. The matter is concluded.",
-    "choices": []
+    "choices": [],
+    "steps": [
+      {
+        "text": "I have no further comments for your investigation. The matter is concluded.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "divert": "DONE",
+        "condition": {
+          "all": []
+        }
+      }
+    ]
+  },
+  "_meta": {
+    "schema": 2,
+    "entry": "start",
+    "variables": {},
+    "revision": "7ecb025953d9ab50"
   }
 }

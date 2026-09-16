@@ -340,6 +340,8 @@ def main():
         print('(dry run — no files written)')
     elif args.backup and results['ok']:
         print('Backups saved as .json.bak alongside originals.')
+    if results['error']:
+        sys.exit(1)
 
 
 if __name__ == '__main__':

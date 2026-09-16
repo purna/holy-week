@@ -1,0 +1,23 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Lab workspace regression fixture</title>
+<link rel="stylesheet" href="../mobile/css/tokens.css">
+<link rel="stylesheet" href="../mobile/css/lab-workspace.css">
+<style>body{background:#10131d;color:#eee;font-family:Arial;margin:16px}button,select{font:inherit}#fixture{max-width:850px;margin:auto}#host{margin-top:16px}</style>
+<div id="fixture"><h1>Lab persistence test</h1><p>Isolated sample evidence; does not use or change game saves.</p><button id="reopen">Reopen Lab</button><div id="host"></div></div>
+<script type="module">
+import { LabWorkspaceUI } from '../js/ui/LabWorkspaceUI.js?v=20260916-lab-save';
+const key = 'holy-week-lab-fixture-v1';
+const evidence = [
+  {id:'a',name:'First clue',type:'physical',timelineOrder:1,desc:'A physical sample from the first event.'},
+  {id:'b',name:'Second clue',type:'testimonial',timelineOrder:2,desc:'A witness account of the second event.'}
+];
+const caseData = {evidencePool:evidence,timelineEvidenceIds:['a','b'],deductions:{'a+b':{compare:{text:'The two accounts agree.',isKey:true}}}};
+const cm = {activeCaseId:'fixture',progress:JSON.parse(localStorage.getItem(key)||'{"fixture":{}}'),getCaseProgress(id){return this.progress[id]},getActiveCase(){return caseData},_saveProgress(){localStorage.setItem(key,JSON.stringify(this.progress));return true}};
+const es = {caseManager:cm,getCollected:()=>evidence,getEvidencePool:()=>evidence,selectForSlot(){},deselectAll(){}};
+const de = {caseManager:cm,operate(operation){const result={operation,evidenceAId:'a',evidenceBId:'b',isValidatedInsight:true,text:'The two accounts agree.'};cm.progress.fixture.deductionsMade=[result];cm._saveProgress();return result}};
+function open(){const lab=new LabWorkspaceUI(de,es,{});const host=document.querySelector('#host');host.innerHTML=lab.render();lab.bindEvents(host)}
+document.querySelector('#reopen').onclick=open;
+open();
+</script>

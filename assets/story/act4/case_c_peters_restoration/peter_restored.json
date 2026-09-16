@@ -4,11 +4,45 @@
     "choices": [
       {
         "text": "But you went to look anyway.",
-        "destination": "ran_to_tomb"
+        "destination": "ran_to_tomb",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Tell me about the beach.",
-        "destination": "beach"
+        "destination": "beach",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "tag": "UNLOCK_EVIDENCE: charcoal_fire",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "tag": "UNLOCK_EVIDENCE: threefold_commission",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "I want to tell it the way it happened, not the way it is easier to tell.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Three days before the beach, I did not believe the women. Not to their faces — but I did not believe them. \"Idle tales,\" is how Luke recorded it plainly enough. [Luke 24:11] Mary of Magdala came running, out of breath, saying the tomb was open and He was alive, and my first thought was that grief was talking, not truth.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -17,7 +51,25 @@
     "choices": [
       {
         "text": "What happened next?",
-        "destination": "beach"
+        "destination": "beach",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "I ran anyway. John outran me — younger legs — but I went in first. Linen wrappings, lying there. No body. I went home \"wondering at that which was come to pass.\" [Luke 24:12] Not believing yet. Wondering.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "A woman's word carried no legal weight in a court in those days — the Law would not receive it. It should have carried weight with me regardless. I had walked with Him three years. I still needed more.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -26,11 +78,33 @@
     "choices": [
       {
         "text": "How did you know it was Him?",
-        "destination": "recognition"
+        "destination": "recognition",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "What happened when you reached the shore?",
-        "destination": "fire"
+        "destination": "fire",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "We went fishing. Not from unbelief exactly — from not knowing what a forgiven-but-unrestored man does with his hands. We caught nothing all night.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "At dawn a stranger on the shore asked if we had any fish. We said no. \"Cast the net on the right side,\" He said, and we did, and it would not come up — a hundred and fifty-three of them. [John 21:11]",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -39,29 +113,81 @@
     "choices": [
       {
         "text": "Continue.",
-        "destination": "fire"
+        "destination": "fire",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "John said it before I understood it. \"It is the Lord.\" [John 21:7] I did not wait for the boat. I put my coat on — a strange thing to do before swimming, but I would not go to Him half-dressed — and went into the water.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "fire": {
-    "content": "# UNLOCK_EVIDENCE: charcoal_fire\nA charcoal fire. Fish already cooking. Bread.\nI had warmed my hands at a charcoal fire once before — the courtyard, the night I said three times that I did not know Him. [John 18:18, 25-27] He did not have to build this fire on this beach. He chose to.",
+    "content": "A charcoal fire. Fish already cooking. Bread.\nI had warmed my hands at a charcoal fire once before — the courtyard, the night I said three times that I did not know Him. [John 18:18, 25-27] He did not have to build this fire on this beach. He chose to.",
     "choices": [
       {
         "text": "What did He ask you?",
-        "destination": "questions"
+        "destination": "questions",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "A charcoal fire. Fish already cooking. Bread.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "I had warmed my hands at a charcoal fire once before — the courtyard, the night I said three times that I did not know Him. [John 18:18, 25-27] He did not have to build this fire on this beach. He chose to.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "questions": {
-    "content": "# UNLOCK_EVIDENCE: threefold_commission\n\"Simon, son of John, do you love Me more than these?\" Three times. I answered yes three times. The third time He used my own word back to me — not the love that costs everything, but the ordinary love of a friend — and I understood He was meeting me exactly where I had fallen, not where I wished I still stood.\nEach answer, He gave me something to do. \"Feed My lambs.\" \"Tend My sheep.\" \"Feed My sheep.\" [John 21:15-17]",
+    "content": "\"Simon, son of John, do you love Me more than these?\" Three times. I answered yes three times. The third time He used my own word back to me — not the love that costs everything, but the ordinary love of a friend — and I understood He was meeting me exactly where I had fallen, not where I wished I still stood.\nEach answer, He gave me something to do. \"Feed My lambs.\" \"Tend My sheep.\" \"Feed My sheep.\" [John 21:15-17]",
     "choices": [
       {
         "text": "You wrote about that later, didn't you?",
-        "destination": "later_writing"
+        "destination": "later_writing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Then He said \"Follow Me.\"",
-        "destination": "follow"
+        "destination": "follow",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "\"Simon, son of John, do you love Me more than these?\" Three times. I answered yes three times. The third time He used my own word back to me — not the love that costs everything, but the ordinary love of a friend — and I understood He was meeting me exactly where I had fallen, not where I wished I still stood.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Each answer, He gave me something to do. \"Feed My lambs.\" \"Tend My sheep.\" \"Feed My sheep.\" [John 21:15-17]",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -70,7 +196,25 @@
     "choices": [
       {
         "text": "Then He said \"Follow Me.\"",
-        "destination": "follow"
+        "destination": "follow",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Years after, writing to churches scattered across Asia Minor, I could not help myself: \"Ye were as sheep going astray; but are now returned unto the Shepherd and Bishop of your souls.\" [1 Peter 2:25] I did not plan to write my own restoration into that line. It came out anyway.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "And when I told the elders how to lead: \"Feed the flock of God which is among you... and when the chief Shepherd shall appear, ye shall receive a crown of glory that fadeth not away.\" [1 Peter 5:2-4] Every shepherd I ever taught to feed a flock, I taught with His words still in my mouth.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -79,7 +223,25 @@
     "choices": [
       {
         "text": "Is that where it stopped, for you?",
-        "destination": "pentecost"
+        "destination": "pentecost",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "\"Follow Me.\" [John 21:19]",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Two words. The same two He used the first day, on this same water. Three years, a denial, a death, an empty tomb, and it ends — begins again — exactly where it started.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -87,13 +249,51 @@
     "content": "No. Fifty days later I stood up in Jerusalem, in front of a crowd that had watched Him die, and quoted David to them: \"Thou wilt not leave my soul in hell, neither wilt thou suffer thine Holy One to see corruption.\" [Acts 2:27; Psalm 16:10] I told them the empty tomb was the proof. I did not learn to say that on my own — I had stood in front of an empty tomb myself, three days after doubting a woman who had told me the truth.",
     "choices": [
       {
-        "text": "Continue.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "No. Fifty days later I stood up in Jerusalem, in front of a crowd that had watched Him die, and quoted David to them: \"Thou wilt not leave my soul in hell, neither wilt thou suffer thine Holy One to see corruption.\" [Acts 2:27; Psalm 16:10] I told them the empty tomb was the proof. I did not learn to say that on my own — I had stood in front of an empty tomb myself, three days after doubting a woman who had told me the truth.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "closing": {
     "content": "No explanation was demanded of me for the denial. Only love, asked three times — and a flock built on the answer. The Shepherd who was struck lives, [Zechariah 13:7] and sent the sheep who scattered to gather others. [Ezekiel 34:11-16]\nI am the rock that was shattered and given back whole. I spent the rest of my life proving I meant every \"yes.\"",
-    "choices": []
+    "choices": [],
+    "steps": [
+      {
+        "text": "No explanation was demanded of me for the denial. Only love, asked three times — and a flock built on the answer. The Shepherd who was struck lives, [Zechariah 13:7] and sent the sheep who scattered to gather others. [Ezekiel 34:11-16]",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "I am the rock that was shattered and given back whole. I spent the rest of my life proving I meant every \"yes.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "divert": "DONE",
+        "condition": {
+          "all": []
+        }
+      }
+    ]
+  },
+  "_meta": {
+    "schema": 2,
+    "entry": "start",
+    "variables": {},
+    "revision": "467976cb8c3a1287"
   }
 }

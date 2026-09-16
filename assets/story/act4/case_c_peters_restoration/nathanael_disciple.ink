@@ -45,63 +45,63 @@
 -> start
 
 === start ===
+# UNLOCK_EVIDENCE: charcoal_fireA
+# UNLOCK_EVIDENCE: threefold_commissionThree
 I was there that morning — I had come down from Cana with the others. [John 21:2] The women had already told us about the empty tomb. Two of us had seen Him ourselves, twice, in Jerusalem. Peter still said he was going fishing. Seven of us went with him.
 
-* [What did you observe on the water?] -> observation
-* [What was Peter's state of mind?] -> response
-* [What about the women's report — was it believed?] -> womens_testimony
++ [What did you observe on the water?] -> observation
++ [What was Peter's state of mind?] -> response
++ [What about the women's report — was it believed?] -> womens_testimony
 
 === womens_testimony ===
 Mary Magdalene ran to tell us first. [John 20:18] Under the Law, a woman's word does not stand alone in a court — no magistrate would take it on its own. And yet the men who set these accounts down did not smooth that detail away. If we were inventing a resurrection for people to believe, we would never have made women the first witnesses — it would have weakened the report in the hearing of anyone we told. It reads this way because this is how it happened.
 
 Peter did not fully believe them either, if I am honest. He ran to the tomb anyway. Wondering is not believing, but it is not nothing.
 
-* [Then the fishing trip.] -> observation
++ [Then the fishing trip.] -> observation
 
 === observation ===
 We fished all night and caught nothing. At dawn a man stood on the shore and called out to cast on the right side. We cast, and the net filled so fast we could not haul it — a hundred and fifty-three large fish, and the net held. [John 21:11] John recognised Him first. "It is the Lord." [John 21:7] Peter jumped in immediately.
 
-* [The same miracle as when He first called them.] -> first_calling
-* [What happened on the shore?] -> shore_scene
++ [The same miracle as when He first called them.] -> first_calling
++ [What happened on the shore?] -> shore_scene
 
 === response ===
 Peter was quiet on the water. Not the Peter who argues with everyone — subdued. Three denials beside a fire still had their weight on him. [John 18:17, 25-27] He had seen the risen Lord in Jerusalem. He believed. But believing and being forgiven are not always the same moment.
 
-* [He needed more than belief.] -> shore_scene
++ [He needed more than belief.] -> shore_scene
 
 === first_calling ===
 Yes. On this same water three years before — a boat, empty nets, cast on the right side, then a catch too heavy to lift. [Luke 5:1-11] It was not subtle. He was giving them — giving Peter — the very sign that began everything. Only now it was ending something, or beginning it again, differently.
 
-* [And then breakfast.] -> shore_scene
++ [And then breakfast.] -> shore_scene
 
 === shore_scene ===
-# UNLOCK_EVIDENCE: charcoal_fireA
 
-* [What passed between them?] -> peter_commission
-* [Why a charcoal fire specifically?] -> charcoal_fire
++ [What passed between them?] -> peter_commission
++ [Why a charcoal fire specifically?] -> charcoal_fire
 
 === charcoal_fire ===
 Peter denied Him three times in the high priest's courtyard, beside a charcoal fire — John is specific about that detail, and John was there. [John 18:18] On this beach, another charcoal fire. Not a coincidence He would have missed. Zechariah wrote, centuries before any of us were born, that the shepherd would be struck and the sheep scattered. [Zechariah 13:7] Jesus quoted that very verse to us Himself, the night it happened, before it happened. [Matthew 26:31] This fire is where the scattering starts to reverse.
 
-* [Three questions.] -> peter_commission
++ [Three questions.] -> peter_commission
 
 === peter_commission ===
-# UNLOCK_EVIDENCE: threefold_commissionThree
 
 Ezekiel promised, long before any of this, that God Himself would search for His scattered sheep and feed them. [Ezekiel 34:11-16] I watched that promise handed to a fisherman on a beach.
 
-* [Then Peter is restored?] -> restoration
-* [He was not accused. Just asked.] -> grace_pattern
++ [Then Peter is restored?] -> restoration
++ [He was not accused. Just asked.] -> grace_pattern
 
 === restoration ===
 Restored and commissioned. Three denials, three questions, three reinstatements. Then Jesus said: "Follow Me." [John 21:19] The exact words He used at the beginning, on this same sea. Three years, a death, a resurrection, and it ends with the same two words. I think that was the whole point. It was never about achievement. It was always about following.
 
-* [A precise repair for a precise wound.] -> grace_pattern
++ [A precise repair for a precise wound.] -> grace_pattern
 
 === grace_pattern ===
 He did not demand an explanation. He did not rehearse the failures. He asked one question — love — and built everything on the answer. Three times, because the wound required three. That kind of precision is not human management. That is something else.
 
-* [What did Peter's face look like after?] -> closing
++ [Finish the interview.] -> closing
 
 === closing ===
 Like a man who had been carrying something for three days and had just been given permission to put it down. He wept on the third question. Then Jesus said "Follow Me," and Peter stood up and followed, and his face was the face of a man who had received back something he had given up expecting to have again.

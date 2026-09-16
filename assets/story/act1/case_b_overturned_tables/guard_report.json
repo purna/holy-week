@@ -4,28 +4,100 @@
     "choices": [
       {
         "text": "What did you witness?",
-        "destination": "witnessed"
+        "destination": "witnessed",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Your orders were to stand down.",
-        "destination": "stand_down"
+        "destination": "stand_down",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Did He quote Scripture?",
-        "destination": "scripture_quote"
+        "destination": "scripture_quote",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "tag": "UNLOCK_EVIDENCE: temple_action",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "tag": "UNLOCK_EVIDENCE: scattered_shekels",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "tag": "UNLOCK_EVIDENCE: scripture_quote",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "tag": "UNLOCK_EVIDENCE: whip_of_cords",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "tag": "UNLOCK_EVIDENCE: crowd_response",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "tag": "UNLOCK_EVIDENCE: priestly_fear",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "On duty at the Antonia fortress. I watched the whole thing from the parapet. Last Sabbath morning outside the outer court — tables overturned, animals scattered, the crowd orange with excitement. He called it \"My Father's house.\" The merchants called it their living. I called it my afternoon.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "witnessed": {
-    "content": "# UNLOCK_EVIDENCE: temple_action\n# UNLOCK_EVIDENCE: scattered_shekels\nThe money changers scattered first — Tyrian shekels rolling into the drainage cracks. Then the livestock dealers. Within minutes the court was cleared and the crowd was singing. I observed from the wall — disciplined, controlled, no blade drawn. Every movement had purpose.",
+    "content": "The money changers scattered first — Tyrian shekels rolling into the drainage cracks. Then the livestock dealers. Within minutes the court was cleared and the crowd was singing. I observed from the wall — disciplined, controlled, no blade drawn. Every movement had purpose.",
     "choices": [
       {
         "text": "The crowd supported Him.",
-        "destination": "crowd_support"
+        "destination": "crowd_support",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The priests watched.",
-        "destination": "priests_watched"
+        "destination": "priests_watched",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The money changers scattered first — Tyrian shekels rolling into the drainage cracks. Then the livestock dealers. Within minutes the court was cleared and the crowd was singing. I observed from the wall — disciplined, controlled, no blade drawn. Every movement had purpose.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -34,50 +106,114 @@
     "choices": [
       {
         "text": "The priests wanted Roman force.",
-        "destination": "priests_watched"
+        "destination": "priests_watched",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "You recognized something deeper.",
-        "destination": "deeper_meaning"
+        "destination": "deeper_meaning",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Orders from the Centurion: do not intervene unless a full political rebellion. Flipped tables don't violate Roman civil law. Broken cages — not our tactical concern. The priests were furious we didn't send in cohorts. But why should Roman blood protect their currency exchange booths?",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "scripture_quote": {
-    "content": "He quoted Jeremiah: \"My house shall be called a house of prayer for all nations.\" Then Isaiah: \"They shall call on the Lord's name — as messengers of the Lord.\" The words were calm. The action was decisive. The Temple rang with prophecy.\n# UNLOCK_EVIDENCE: scripture_quote\n# UNLOCK_EVIDENCE: whip_of_cords",
+    "content": "He quoted Jeremiah: \"My house shall be called a house of prayer for all nations.\" Then Isaiah: \"They shall call on the Lord's name — as messengers of the Lord.\" The words were calm. The action was decisive. The Temple rang with prophecy.",
     "choices": [
       {
         "text": "The words mattered as much as the actions.",
-        "destination": "deeper_meaning"
+        "destination": "deeper_meaning",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The crowd heard both.",
-        "destination": "crowd_support"
+        "destination": "crowd_support",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "He quoted Jeremiah: \"My house shall be called a house of prayer for all nations.\" Then Isaiah: \"They shall call on the Lord's name — as messengers of the Lord.\" The words were calm. The action was decisive. The Temple rang with prophecy.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "crowd_support": {
-    "content": "The crowd responded with songs of liberation. Pilgrims who had been cheated on previous visits felt vindicated. Foreigners who had been excluded felt welcomed. The Temple was becoming what it was meant to be — a house of prayer for all nations. Not a marketplace.\n# UNLOCK_EVIDENCE: crowd_response",
+    "content": "The crowd responded with songs of liberation. Pilgrims who had been cheated on previous visits felt vindicated. Foreigners who had been excluded felt welcomed. The Temple was becoming what it was meant to be — a house of prayer for all nations. Not a marketplace.",
     "choices": [
       {
         "text": "The priests were afraid.",
-        "destination": "priests_watched"
+        "destination": "priests_watched",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The redefinition was radical.",
-        "destination": "radical_redefinition"
+        "destination": "radical_redefinition",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The crowd responded with songs of liberation. Pilgrims who had been cheated on previous visits felt vindicated. Foreigners who had been excluded felt welcomed. The Temple was becoming what it was meant to be — a house of prayer for all nations. Not a marketplace.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "priests_watched": {
-    "content": "The priests watched from the eastern gallery. They did not intervene — they could not. To stop the cleansing would have required force. And force against a crowd singing praises was force against God Himself. After the crowd dispersed, the emergency sessions began. The Temple authorities were meeting about the man, not the coinage. They could not contain this threat.\n# UNLOCK_EVIDENCE: priestly_fear",
+    "content": "The priests watched from the eastern gallery. They did not intervene — they could not. To stop the cleansing would have required force. And force against a crowd singing praises was force against God Himself. After the crowd dispersed, the emergency sessions began. The Temple authorities were meeting about the man, not the coinage. They could not contain this threat.",
     "choices": [
       {
         "text": "They would plot arrest.",
-        "destination": "plot_arrest"
+        "destination": "plot_arrest",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The threat was theological.",
-        "destination": "radical_redefinition"
+        "destination": "radical_redefinition",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The priests watched from the eastern gallery. They did not intervene — they could not. To stop the cleansing would have required force. And force against a crowd singing praises was force against God Himself. After the crowd dispersed, the emergency sessions began. The Temple authorities were meeting about the man, not the coinage. They could not contain this threat.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -86,11 +222,27 @@
     "choices": [
       {
         "text": "The declaration was permanent.",
-        "destination": "radical_redefinition"
+        "destination": "radical_redefinition",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The kingdom was advancing.",
-        "destination": "kingdom_advancing"
+        "destination": "kingdom_advancing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The meaning was not in the means. The means were the message. The donkey was not transportation. It was testimony. The whip of rushes was not violence. It was vindication. The Messiah declared that God's house belongs to all nations — Jew and Gentile alike.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -99,11 +251,27 @@
     "choices": [
       {
         "text": "The transformation was cosmic.",
-        "destination": "kingdom_advancing"
+        "destination": "kingdom_advancing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The priests would resist.",
-        "destination": "plot_arrest"
+        "destination": "plot_arrest",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The redefinition was irreversible. Once someone had seen the Temple as a house of prayer, they could not unsee it. Once someone had heard that God's house was for all nations, they could not shrink it back to a Jewish monopoly. The conceptual damage was done — and it was eternal.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -111,12 +279,20 @@
     "content": "The kingdom was advancing — not with the fanfare of empires, not with the glory of kings, but with the sound of scattered coins and the smell of bruised animals. A whip of rushes declared more truth than a legion of soldiers. The Messiah who cleansed the Temple would soon cleanse the grave. The victory was certain.",
     "choices": [
       {
-        "text": "The victory was complete.",
-        "destination": "closing"
-      },
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "The testimony spreads.",
-        "destination": "closing"
+        "text": "The kingdom was advancing — not with the fanfare of empires, not with the glory of kings, but with the sound of scattered coins and the smell of bruised animals. A whip of rushes declared more truth than a legion of soldiers. The Messiah who cleansed the Temple would soon cleanse the grave. The victory was certain.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -124,17 +300,45 @@
     "content": "From emergency sessions to whispered councils, the priests plotted. Arrest. Trial. Execution. Anything to restore their order. But every plot against the Messiah was part of the divine plan. Every attempt to stop the kingdom only advanced it further. The scattered coins had declared more justice than all their legal charges combined.",
     "choices": [
       {
-        "text": "The plan could not be frustrated.",
-        "destination": "closing"
-      },
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "The kingdom would prevail.",
-        "destination": "closing"
+        "text": "From emergency sessions to whispered councils, the priests plotted. Arrest. Trial. Execution. Anything to restore their order. But every plot against the Messiah was part of the divine plan. Every attempt to stop the kingdom only advanced it further. The scattered coins had declared more justice than all their legal charges combined.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "closing": {
     "content": "I have recorded what I witnessed. The Temple priests have filed their reports. The crowd has sung their songs. And the man who cleansed the Temple with a whip of rushes — He would soon cleanse the grave. The story continues. The kingdom that began with scattered coins would end with scattered chains. From a whip of rushes to a cross of glory — the advancement was unstoppable.",
-    "choices": []
+    "choices": [],
+    "steps": [
+      {
+        "text": "I have recorded what I witnessed. The Temple priests have filed their reports. The crowd has sung their songs. And the man who cleansed the Temple with a whip of rushes — He would soon cleanse the grave. The story continues. The kingdom that began with scattered coins would end with scattered chains. From a whip of rushes to a cross of glory — the advancement was unstoppable.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "divert": "DONE",
+        "condition": {
+          "all": []
+        }
+      }
+    ]
+  },
+  "_meta": {
+    "schema": 2,
+    "entry": "start",
+    "variables": {},
+    "revision": "c419a602203de894"
   }
 }

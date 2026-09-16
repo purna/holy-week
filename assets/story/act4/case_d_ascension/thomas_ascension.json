@@ -4,29 +4,75 @@
     "choices": [
       {
         "text": "What did the ascension look like?",
-        "destination": "ascent"
+        "destination": "ascent",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "How is your faith now?",
-        "destination": "faith"
+        "destination": "faith",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "tag": "UNLOCK_EVIDENCE: wound_marks_testimony",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "I had doubted. I admit it freely. When the others said He was alive, I needed proof — tangible proof. I told them I would not believe unless I touched the nail marks and put my hand into His side. Eight days later, He stood among us and said, 'Put your finger here. See my hands. Reach out your hand and put it into my side. Stop doubting and believe.' I did. And I believed. Now, forty days later, I have seen Him ascend.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "ascent": {
-    "content": "# UNLOCK_EVIDENCE: wound_marks_testimony\nHe was lifted up. Not like a balloon rising, but with purpose — upward, steadily, until a cloud covered Him and He disappeared from our sight. There was no wind, no sound. Just a slow, deliberate departure into the presence of the Father. I strained my eyes until the cloud passed and the sky was empty.",
+    "content": "He was lifted up, and a cloud took Him from our sight. I kept looking. I wanted to follow every movement, but there came a point when I could see Him no longer. That is the limit of what my eyes can tell you.",
     "choices": [
       {
         "text": "Were you afraid?",
-        "destination": "faith"
+        "destination": "faith",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "He was lifted up, and a cloud took Him from our sight. I kept looking. I wanted to follow every movement, but there came a point when I could see Him no longer. That is the limit of what my eyes can tell you.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "faith": {
-    "content": "# UNLOCK_EVIDENCE: wound_marks_testimony\nAfraid? No. Astonished. The man I had doubted was now the man I would follow to the ends of the earth. His wounds are real. His ascension is real. His promise is real. 'Because you have seen me, you have believed,' He said to me. 'Blessed are those who have not seen and yet have believed.' I carry those words.",
+    "content": "Afraid? No. Astonished. The man I had doubted was now the man I would follow to the ends of the earth. His wounds are real. His ascension is real. His promise is real. 'Because you have seen me, you have believed,' He said to me. 'Blessed are those who have not seen and yet have believed.' I carry those words.",
     "choices": [
       {
         "text": "What about the mission?",
-        "destination": "mission"
+        "destination": "mission",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Afraid? No. Astonished. The man I had doubted was now the man I would follow to the ends of the earth. His wounds are real. His ascension is real. His promise is real. 'Because you have seen me, you have believed,' He said to me. 'Blessed are those who have not seen and yet have believed.' I carry those words.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -35,7 +81,19 @@
     "choices": [
       {
         "text": "The angels spoke to you too?",
-        "destination": "angels"
+        "destination": "angels",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "'You will be my witnesses in Jerusalem, Judea, Samaria, and to the ends of the earth.' The scope of it still overwhelms me. But if the One who conquered death can commission a doubter like me, there is hope for anyone.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -43,13 +101,45 @@
     "content": "They appeared as two men in white. Their message was simple and sharp: 'This same Jesus, who has been taken from you into heaven, will come back in the same way you have seen him go into heaven.' A promise wrapped in a command. He is returning. We must be ready.",
     "choices": [
       {
-        "text": "Any final thoughts?",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "They appeared as two men in white. Their message was simple and sharp: 'This same Jesus, who has been taken from you into heaven, will come back in the same way you have seen him go into heaven.' A promise wrapped in a command. He is returning. We must be ready.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "closing": {
     "content": "My doubt led me to the wound marks. My touch led me to the truth. My witness leads me now to the world. Thomas the doubter is now Thomas the believer. And I will never be the same.",
-    "choices": []
+    "choices": [],
+    "steps": [
+      {
+        "text": "My doubt led me to the wound marks. My touch led me to the truth. My witness leads me now to the world. Thomas the doubter is now Thomas the believer. And I will never be the same.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "divert": "DONE",
+        "condition": {
+          "all": []
+        }
+      }
+    ]
+  },
+  "_meta": {
+    "schema": 2,
+    "entry": "start",
+    "variables": {},
+    "revision": "238d79645b753de8"
   }
 }

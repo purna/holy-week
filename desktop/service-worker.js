@@ -1,9 +1,10 @@
 const CACHE_PREFIX = 'holy-week-desktop-cache';
-const CACHE_VERSION = 'v1.3'; // Authored Lab progression update
+const CACHE_VERSION = 'v2.13-lab-save'; // Stateful interview runtime and revised stories
 const CACHE_NAME = `${CACHE_PREFIX}-${CACHE_VERSION}`;
 
 // This list MUST be updated with all files required for the desktop version to run offline.
 const urlsToCache = [
+  '../js/gameplay/conversationStory.js',
   // Core App Shell
   '../desktop.html',
   './manifest.json',
@@ -27,7 +28,7 @@ const urlsToCache = [
   '../js/gameplay/dialogueManager.js',
   '../js/gameplay/npcSystem.js',
   '../js/ui/AccessibilityManager.js',
-  '../js/ui/LabWorkspaceUI.js',
+  '../js/ui/LabWorkspaceUI.js?v=20260916-lab-save',
   '../js/ui/PeopleUI.js',
   '../js/ui/SceneUI.js',
   '../js/ui/AccuseUI.js',

@@ -28,8 +28,8 @@ Whatever happened in the Temple courts changed everything.
 
 The atmosphere in the upper city tonight is not celebration. It is expectation. Tension. The feeling that everyone is waiting for something they cannot yet name.
 
-* [Who prepared this room?] -> preparers
-* [What happened when they arrived?] -> arrival
++ [Who prepared this room?] -> preparers
++ [What happened when they arrived?] -> arrival
 
 === preparers ===
 Peter and John were sent ahead.
@@ -50,8 +50,8 @@ He told them where to go, whom they would meet, and what they would find.
 
 How could He know?
 
-* [This was deliberate.] -> deliberate
-* [What happened when everyone gathered?] -> arrival
++ [This was deliberate.] -> deliberate
++ [What happened when everyone gathered?] -> arrival
 
 === deliberate ===
 Nothing about this evening feels accidental.
@@ -66,7 +66,7 @@ The meal.
 
 He has been moving toward this night for a very long time.
 
-* [What happened when everyone gathered?] -> arrival
++ [What happened when everyone gathered?] -> arrival
 
 === arrival ===
 The disciples arrived expecting Passover.
@@ -83,7 +83,7 @@ Inside the room, however, there was a strange uneasiness.
 
 No one seemed willing to speak first.
 
-* [Why the uneasiness?] -> washing
++ [Why the uneasiness?] -> washing
 
 === washing ===
 Because no servant appeared.
@@ -106,7 +106,7 @@ The Teacher washing His students.
 
 The Master serving His servants.
 
-* [How did they react?] -> peter_wash
++ [How did they react?] -> peter_wash
 
 === peter_wash ===
 Peter objected immediately.
@@ -125,7 +125,7 @@ Peter changed his mind very quickly.
 
 As Peter often did.
 
-* [What happened after that?] -> betrayal
++ [What happened after that?] -> betrayal
 
 === betrayal ===
 After the washing, they returned to the table.
@@ -146,7 +146,7 @@ Each man began asking the same question:
 
 Even the innocent sounded uncertain.
 
-* [Did He reveal who it was?] -> judas
++ [Did He reveal who it was?] -> judas
 
 === judas ===
 He identified the betrayer indirectly.
@@ -165,7 +165,7 @@ Few understood what was happening.
 
 The night outside seemed darker after he departed.
 
-* [What happened next?] -> bread
++ [What happened next?] -> bread
 
 === bread ===
 Then Jesus took bread.
@@ -184,7 +184,7 @@ The bread was no longer only a remembrance of Egypt.
 
 He was making Himself the center of the meal.
 
-* [And the cup?] -> cup
++ [And the cup?] -> cup
 
 === cup ===
 After supper He took the cup.
@@ -203,7 +203,7 @@ The disciples did not yet understand.
 
 Years later, they would remember every word.
 
-* [Did they understand any of it?] -> understanding
++ [Did they understand any of it?] -> understanding
 
 === understanding ===
 Not much.
@@ -216,7 +216,7 @@ Others thought He was preparing them for some great public victory.
 
 None expected the next twenty-four hours.
 
-* [What did He tell them afterward?] -> peter_warning
++ [What did He tell them afterward?] -> peter_warning
 
 === peter_warning ===
 He warned them that all of them would stumble.
@@ -237,7 +237,7 @@ Peter would deny Him three times.
 
 The room fell quiet again.
 
-* [What happened before they left?] -> farewell
++ [What happened before they left?] -> farewell
 
 === farewell ===
 He spoke for a long time.
@@ -256,7 +256,7 @@ Then He prayed for those who would one day believe through their testimony.
 
 It sounded less like a sermon and more like a farewell.
 
-* [Where did they go afterward?] -> departure
++ [Where did they go afterward?] -> departure
 
 === departure ===
 They sang the Passover hymns.
@@ -275,7 +275,7 @@ No one knew it then, but the meal was over.
 
 The trial had already begun.
 
-* [This was all deliberate.] -> closing
++ [Finish the interview.] -> closing
 
 === closing ===
 Whatever happened in that room was not a coincidence.

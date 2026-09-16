@@ -4,40 +4,112 @@
     "choices": [
       {
         "text": "Tell me about the soldiers casting lots.",
-        "destination": "dice"
+        "destination": "dice",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "What happened when you pierced his side?",
-        "destination": "spear"
+        "destination": "spear",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "What about the sour wine on the hyssop stalk?",
-        "destination": "hyssop"
+        "destination": "hyssop",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "What did you observe about his death?",
-        "destination": "cosmic_signs"
+        "destination": "cosmic_signs",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "What did you report to your superiors?",
-        "destination": "report"
+        "destination": "report",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "tag": "UNLOCK_EVIDENCE: evidence_torn_tunic",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "tag": "UNLOCK_EVIDENCE: evidence_centurion_confession",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "tag": "UNLOCK_EVIDENCE: evidence_water_and_blood",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "tag": "UNLOCK_EVIDENCE: evidence_darkness_and_earthquake",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "I am Claudius Longinus, centurion of the Antonia Fortress. I have overseen more executions than I can count — crucifixions for rebels, bandits, and slaves who dreamed beyond their station. That morning, I processed three prisoners for the hill. Two I forgot by afternoon. The third — He changed everything about how I understand the world I serve in.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "dice": {
-    "content": "Standard procedure for a valuable garment. A seamless tunic — woven in one piece, no seams to unravel — is a rare find. The quartermaster ordered us to divide His possessions among ourselves. We cast lots for it — four of us, kneeling in the dust beneath that cross.\n# UNLOCK_EVIDENCE: evidence_torn_tunic",
+    "content": "Standard procedure for a valuable garment. A seamless tunic — woven in one piece, no seams to unravel — is a rare find. The quartermaster ordered us to divide His possessions among ourselves. We cast lots for it — four of us, kneeling in the dust beneath that cross.",
     "choices": [
       {
         "text": "The psalm spoke of this.",
-        "destination": "psalm_dice"
+        "destination": "psalm_dice",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "What did you think?",
-        "destination": "dice_thoughts"
+        "destination": "dice_thoughts",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "final_word"
+        "text": "Finish the interview.",
+        "destination": "final_word",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Standard procedure for a valuable garment. A seamless tunic — woven in one piece, no seams to unravel — is a rare find. The quartermaster ordered us to divide His possessions among ourselves. We cast lots for it — four of us, kneeling in the dust beneath that cross.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -46,15 +118,35 @@
     "choices": [
       {
         "text": "Scripture fulfilled in action.",
-        "destination": "scripture_action"
+        "destination": "scripture_action",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The coincidence was uncanny.",
-        "destination": "uncanny_coincidence"
+        "destination": "uncanny_coincidence",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "final_word"
+        "text": "Finish the interview.",
+        "destination": "final_word",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Psalm 22. David wrote it a thousand years before that hill existed — \"They cast lots for my clothing, for my clothing among them, they divided my garments.\" My grandfather had verses from that psalm memorized. We were reading it on the march. The centurions carried scrolls, not just swords. We knew the words, living them.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -63,15 +155,35 @@
     "choices": [
       {
         "text": "The divine author.",
-        "destination": "divine_author"
+        "destination": "divine_author",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The plan was written.",
-        "destination": "final_word"
+        "destination": "final_word",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "final_word"
+        "text": "Finish the interview.",
+        "destination": "final_word",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Scripture fulfilled in action — yes, that is precisely what it was. The Gospel writers were not embellishing. They were reporting what happened, and what happened was that we fulfilled the psalm to the letter. Not by design — by divine orchestration before Caesar was born.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -79,12 +191,20 @@
     "content": "The coincidence was uncanny. But I have learned that coins with two heads are minted with intent. When we divided His garments, we were not choosing randomly. We were enacting a drama written before the foundation of the world.",
     "choices": [
       {
-        "text": "The world was watching.",
-        "destination": "final_word"
-      },
+        "text": "Continue.",
+        "destination": "final_word",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "The temple veil tore.",
-        "destination": "final_word"
+        "text": "The coincidence was uncanny. But I have learned that coins with two heads are minted with intent. When we divided His garments, we were not choosing randomly. We were enacting a drama written before the foundation of the world.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -93,15 +213,35 @@
     "choices": [
       {
         "text": "What was written?",
-        "destination": "what_was_written"
+        "destination": "what_was_written",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The play ended differently.",
-        "destination": "final_word"
+        "destination": "final_word",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "final_word"
+        "text": "Finish the interview.",
+        "destination": "final_word",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The divine author — I did not know His name at the time. Our sign read Latin: \"IHS REX IUDaeorum.\" But even in my ignorance, I knew we were not the authors of what was happening. We were actors in a play whose script had been written before Caesar was born.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -110,11 +250,27 @@
     "choices": [
       {
         "text": "The veil tore from top to bottom.",
-        "destination": "veil_detail"
+        "destination": "veil_detail",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The temple shook.",
-        "destination": "final_word"
+        "destination": "final_word",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "What was written was this: the lamb led to slaughter, the sheep before the shearers. The lamb with no broken bones, the blood on the doorposts, the veil torn from top to bottom. A thousand details, all converging on this one hill.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -123,15 +279,35 @@
     "choices": [
       {
         "text": "The access was opened.",
-        "destination": "access_opened"
+        "destination": "access_opened",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The glory departed.",
-        "destination": "glory_departed"
+        "destination": "glory_departed",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "final_word"
+        "text": "Finish the interview.",
+        "destination": "final_word",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The veil tore from top to bottom — indicating divine action from above. In all my years, I have seen curtains burn, banners fall, standards break. But never a veil that separates the earthly from the divine — torn by an invisible hand.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -140,15 +316,35 @@
     "choices": [
       {
         "text": "The glory departed.",
-        "destination": "glory_departed"
+        "destination": "glory_departed",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The way was made.",
-        "destination": "way_made"
+        "destination": "way_made",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "final_word"
+        "text": "Finish the interview.",
+        "destination": "final_word",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The access was opened — not by human hands, but by divine power. The temple veil, the most sacred barrier in Judaism, was rent. If the high priest tore it, it would be human action. From above — it was the finger of God.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -157,15 +353,35 @@
     "choices": [
       {
         "text": "The victory was won.",
-        "destination": "final_word"
+        "destination": "final_word",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The way was made.",
-        "destination": "way_made"
+        "destination": "way_made",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "final_word"
+        "text": "Finish the interview.",
+        "destination": "final_word",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The glory departed — Isaiah spoke of it: \"The glory of the LORD departs from the temple.\" The Shekhinah that had dwelt in the temple for a thousand years — gone. Not in defeat, but in triumph. The veil was rent; the glory was released.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -174,15 +390,35 @@
     "choices": [
       {
         "text": "The healing was complete.",
-        "destination": "final_word"
+        "destination": "final_word",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The way stands.",
-        "destination": "way_stands"
+        "destination": "way_stands",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "final_word"
+        "text": "Finish the interview.",
+        "destination": "final_word",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The way was made — through the torn veil, through the rent sanctuary curtain, through the broken body of the Lamb. Isaiah 53:5: \"He was pierced for our transgressions... by his wounds we are healed.\" The way to the Father — opened.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -191,15 +427,35 @@
     "choices": [
       {
         "text": "The testimony endures.",
-        "destination": "testimony_endures_final"
+        "destination": "testimony_endures_final",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The light shines.",
-        "destination": "final_word"
+        "destination": "final_word",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "final_word"
+        "text": "Finish the interview.",
+        "destination": "final_word",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The way stands open — for me, a Roman centurion, and for you, whoever reads this. No longer mediated by priest, veil, or sacrifice. The way is through the torn veil, through the empty tomb.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -208,32 +464,72 @@
     "choices": [
       {
         "text": "The confession stands.",
-        "destination": "confession_stands"
+        "destination": "confession_stands",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The legacy remains.",
-        "destination": "final_word"
+        "destination": "final_word",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "final_word"
+        "text": "Finish the interview.",
+        "destination": "final_word",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The testimony endures. The Gospel writers recorded it. The historians confirmed it. The archaeology uncovered it. And the centurion's confession echoed through the empire.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "confession_stands": {
-    "content": "The confession stands — \"Truly this was the Son of God.\" Three words. And they did more: they announced that the divine had entered human history, that the sacred had touched the profane, that the Creator had been crucified by the creation.\n# UNLOCK_EVIDENCE: evidence_centurion_confession",
+    "content": "The confession stands — \"Truly this was the Son of God.\" Three words. And they did more: they announced that the divine had entered human history, that the sacred had touched the profane, that the Creator had been crucified by the creation.",
     "choices": [
       {
         "text": "The empire would kneel.",
-        "destination": "empire_kneel"
+        "destination": "empire_kneel",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The confession echoes.",
-        "destination": "final_word"
+        "destination": "final_word",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "final_word"
+        "text": "Finish the interview.",
+        "destination": "final_word",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The confession stands — \"Truly this was the Son of God.\" Three words. And they did more: they announced that the divine had entered human history, that the sacred had touched the profane, that the Creator had been crucified by the creation.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -241,12 +537,20 @@
     "content": "The empire would kneel — not to Caesar, but to the crucified king. Within three hundred years, the eagle standard of Rome would bow to the cross standard of Christ. The centurion's confession would be quoted by emperors.",
     "choices": [
       {
-        "text": "The eagle bowed.",
-        "destination": "final_word"
-      },
+        "text": "Continue.",
+        "destination": "final_word",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "The cross triumphed.",
-        "destination": "final_word"
+        "text": "The empire would kneel — not to Caesar, but to the crucified king. Within three hundred years, the eagle standard of Rome would bow to the cross standard of Christ. The centurion's confession would be quoted by emperors.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -255,11 +559,27 @@
     "choices": [
       {
         "text": "The moment mattered.",
-        "destination": "final_word"
+        "destination": "final_word",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The memory lingers.",
-        "destination": "memory_lingers"
+        "destination": "memory_lingers",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "What did I think as I cast lots? I thought of my pay — a denarius, maybe two from the auction. I thought of my duty — I was following orders. And I thought of the prisoner, hanging there. But I also thought — this moment matters.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -267,33 +587,57 @@
     "content": "The memory lingers — thirty years later, when earthquakes still shake the eastern provinces, I still see that hill. When I am asked to certify a report about a crucified preacher, his name escapes me.",
     "choices": [
       {
-        "text": "The name escapes.",
-        "destination": "final_word"
-      },
+        "text": "Continue.",
+        "destination": "final_word",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "The details remain.",
-        "destination": "final_word"
-      },
-      {
-        "text": "Conclude.",
-        "destination": "final_word"
+        "text": "The memory lingers — thirty years later, when earthquakes still shake the eastern provinces, I still see that hill. When I am asked to certify a report about a crucified preacher, his name escapes me.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "spear": {
-    "content": "My spear — the one I use to dispatch stragglers. I pressed the blade into the side of the central prisoner — to confirm death before removing the body. The blade found blood and water. Dark red, arterial blood. Clear, bright water.\n# UNLOCK_EVIDENCE: evidence_water_and_blood",
+    "content": "My spear — the one I use to dispatch stragglers. I pressed the blade into the side of the central prisoner — to confirm death before removing the body. The blade found blood and water. Dark red, arterial blood. Clear, bright water.",
     "choices": [
       {
         "text": "The spear entered flesh.",
-        "destination": "spear_flesh2"
+        "destination": "spear_flesh2",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "What flowed out?",
-        "destination": "final_word"
+        "destination": "final_word",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "final_word"
+        "text": "Finish the interview.",
+        "destination": "final_word",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "My spear — the one I use to dispatch stragglers. I pressed the blade into the side of the central prisoner — to confirm death before removing the body. The blade found blood and water. Dark red, arterial blood. Clear, bright water.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -302,15 +646,35 @@
     "choices": [
       {
         "text": "The testimony was immediate.",
-        "destination": "testimony_immediate"
+        "destination": "testimony_immediate",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The sign was undeniable.",
-        "destination": "final_word"
+        "destination": "final_word",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "final_word"
+        "text": "Finish the interview.",
+        "destination": "final_word",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The spear entered flesh — and found blood and water. In all my years of campaigning, I have seen bodies drained of blood, desiccated in the sun. I have never seen a corpse bleed and flow water. The texts say it happens, but I saw it myself.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -318,29 +682,57 @@
     "content": "The testimony was immediate — the soldiers around me saw it too. Some fell to their knees. Others crossed themselves. We had all seen death. We had never seen this.",
     "choices": [
       {
-        "text": "The soldiers believed.",
-        "destination": "final_word"
-      },
+        "text": "Continue.",
+        "destination": "final_word",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "The sign was undeniable.",
-        "destination": "final_word"
+        "text": "The testimony was immediate — the soldiers around me saw it too. Some fell to their knees. Others crossed themselves. We had all seen death. We had never seen this.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "cosmic_signs": {
-    "content": "The cosmic signs began at noon — not at dawn, when the first guard change occurs, but at noon, when the sun stands at its zenith. Darkness fell. Not a cloud — a divine withdrawal.\n# UNLOCK_EVIDENCE: evidence_darkness_and_earthquake",
+    "content": "The cosmic signs began at noon — not at dawn, when the first guard change occurs, but at noon, when the sun stands at its zenith. Darkness fell. Not a cloud — a divine withdrawal.",
     "choices": [
       {
         "text": "The darkness lasted how long?",
-        "destination": "darkness_duration"
+        "destination": "darkness_duration",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The temple veil tore.",
-        "destination": "final_word"
+        "destination": "final_word",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "final_word"
+        "text": "Finish the interview.",
+        "destination": "final_word",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The cosmic signs began at noon — not at dawn, when the first guard change occurs, but at noon, when the sun stands at its zenith. Darkness fell. Not a cloud — a divine withdrawal.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -349,15 +741,35 @@
     "choices": [
       {
         "text": "The creation groaned.",
-        "destination": "creation_groaned"
+        "destination": "creation_groaned",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The silence was absolute.",
-        "destination": "final_word"
+        "destination": "final_word",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "final_word"
+        "text": "Finish the interview.",
+        "destination": "final_word",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The darkness lasted three hours. The sun did not shine. The moon turned to blood. The stars fell from their courses. In that darkness, the centurions knew — this was no ordinary execution.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -365,12 +777,20 @@
     "content": "The creation groaned — \"the whole creation has been groaning.\" We felt it. The horses whinnied. The earth trembled. And in that trembling, we understood that the foundation of the world was not what we thought.",
     "choices": [
       {
-        "text": "The earth trembled.",
-        "destination": "final_word"
-      },
+        "text": "Continue.",
+        "destination": "final_word",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "The foundation shook.",
-        "destination": "final_word"
+        "text": "The creation groaned — \"the whole creation has been groaning.\" We felt it. The horses whinnied. The earth trembled. And in that trembling, we understood that the foundation of the world was not what we thought.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -379,15 +799,35 @@
     "choices": [
       {
         "text": "The hyssop was significant.",
-        "destination": "hyssop_significant"
+        "destination": "hyssop_significant",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The Passover connection.",
-        "destination": "final_word"
+        "destination": "final_word",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "final_word"
+        "text": "Finish the interview.",
+        "destination": "final_word",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "He cried, \"I thirst!\" — and one of the soldiers lifted a sponge soaked in posca on a hyssop branch and placed it to His lips. The posca was standard issue. But the hyssop... that is the herb of the Passover.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -396,15 +836,35 @@
     "choices": [
       {
         "text": "The first Passover.",
-        "destination": "first_passover"
+        "destination": "first_passover",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The lamb was bound.",
-        "destination": "final_word"
+        "destination": "final_word",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "final_word"
+        "text": "Finish the interview.",
+        "destination": "final_word",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The hyssop was significant — a Roman soldier offering wine on a Passover herb to a Jewish king. The irony was rich. We were the occupiers, the executioners, unwittingly re-enacting the night of the first Passover.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -413,11 +873,27 @@
     "choices": [
       {
         "text": "The lamb was slain.",
-        "destination": "lamb_slain"
+        "destination": "lamb_slain",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The blood was applied.",
-        "destination": "final_word"
+        "destination": "final_word",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The first Passover — the night of deliverance, the night of judgment, the night the lamb's blood marked the doorposts. And here, on this hill, a Roman soldier offered wine on hyssop to a Jewish king who was about to become the Passover lamb.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -425,12 +901,20 @@
     "content": "The lamb was slain — not in the temple, not by the high priest, not with the blood of bulls and goats. But on a Roman execution hill, by Roman hands, with Roman weapons. Yet it was the most Jewish moment of history.",
     "choices": [
       {
-        "text": "The temple lamb.",
-        "destination": "final_word"
-      },
+        "text": "Continue.",
+        "destination": "final_word",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "The people's reaction.",
-        "destination": "final_word"
+        "text": "The lamb was slain — not in the temple, not by the high priest, not with the blood of bulls and goats. But on a Roman execution hill, by Roman hands, with Roman weapons. Yet it was the most Jewish moment of history.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -439,11 +923,27 @@
     "choices": [
       {
         "text": "The testimony endures.",
-        "destination": "testimony_endures_second"
+        "destination": "testimony_endures_second",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The light shines.",
-        "destination": "final_word"
+        "destination": "final_word",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "I reported — and they wrote it down. The centurion's report became the historians' record. The testimony spread from the hill to the ends of the earth. \"Truly this was the Son of God.\"",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -452,11 +952,27 @@
     "choices": [
       {
         "text": "The confession stands.",
-        "destination": "final_word"
+        "destination": "final_word",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The legacy remains.",
-        "destination": "legacy_remains_second"
+        "destination": "legacy_remains_second",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The testimony endures. The Gospel writers recorded it. The historians confirmed it. The archaeology uncovered it.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -465,11 +981,27 @@
     "choices": [
       {
         "text": "The testimony is complete.",
-        "destination": "testimony_complete_final_second"
+        "destination": "testimony_complete_final_second",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The dawn breaks.",
-        "destination": "final_word"
+        "destination": "final_word",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The legacy remains — the confession, the testimony, the empty tomb. My spear found blood and water. My eyes saw darkness and light. My voice confessed what my training could not explain.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -477,17 +1009,45 @@
     "content": "The testimony is complete. The witnesses have spoken. The tomb is empty. The earth has borne witness. The Scriptures have been fulfilled.",
     "choices": [
       {
-        "text": "The final word.",
-        "destination": "final_word"
-      },
+        "text": "Continue.",
+        "destination": "final_word",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "The light endures.",
-        "destination": "final_word"
+        "text": "The testimony is complete. The witnesses have spoken. The tomb is empty. The earth has borne witness. The Scriptures have been fulfilled.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "final_word": {
     "content": "The final word — and it is not mine. It is His: \"It is finished.\" But finished does not mean ended. It means accomplished. The debt is paid. The testimony is true.",
-    "choices": []
+    "choices": [],
+    "steps": [
+      {
+        "text": "The final word — and it is not mine. It is His: \"It is finished.\" But finished does not mean ended. It means accomplished. The debt is paid. The testimony is true.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "divert": "DONE",
+        "condition": {
+          "all": []
+        }
+      }
+    ]
+  },
+  "_meta": {
+    "schema": 2,
+    "entry": "start",
+    "variables": {},
+    "revision": "1748aee9a0bdba74"
   }
 }

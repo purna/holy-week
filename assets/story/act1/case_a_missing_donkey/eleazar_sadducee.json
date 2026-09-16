@@ -1,152 +1,302 @@
 {
   "start": {
-    "content": "My name is Eleazar. I am a son of Aaron — not by birth, but by contract. The Temple employs my family to manage its commercial interests. What you call the \"Triumphal Entry,\" I call an unauthorized seizure of property. The colt was not lent. It was taken. By force. Under cover of religious fervor.",
+    "content": "You have returned. I trust you will distinguish a correction to my report from approval of that procession.\nMen take a colt and a crowd declares a king. You see a celebration; I see the beginnings of disorder. I reported what looked to me like a seizure.",
     "choices": [
       {
-        "text": "You filed a deposition with the authorities.",
-        "destination": "deposition"
+        "text": "Where were you standing?",
+        "destination": "vantage",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "The owner says he gave it willingly.",
-        "destination": "owner_testimony"
+        "text": "What made you call it a seizure?",
+        "destination": "accusation",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "You also witnessed the Temple cleansing.",
-        "destination": "temple_cleansing"
+        "text": "Compare your claim with the owner's account.",
+        "destination": "consent",
+        "once": false,
+        "condition": {
+          "all": [
+            {
+              "variable": "evidence_witness_account"
+            }
+          ]
+        }
+      },
+      {
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "You have returned. I trust you will distinguish a correction to my report from approval of that procession.",
+        "condition": {
+          "all": [
+            {
+              "compare": "gt",
+              "left": {
+                "variable": "visited_start"
+              },
+              "right": {
+                "literal": 1
+              }
+            }
+          ]
+        }
+      },
+      {
+        "text": "Men take a colt and a crowd declares a king. You see a celebration; I see the beginnings of disorder. I reported what looked to me like a seizure.",
+        "condition": {
+          "all": [
+            {
+              "not": {
+                "compare": "gt",
+                "left": {
+                  "variable": "visited_start"
+                },
+                "right": {
+                  "literal": 1
+                }
+              }
+            }
+          ]
+        }
       }
     ]
   },
-  "deposition": {
-    "content": "# UNLOCK_EVIDENCE: witness_account\n# UNLOCK_EVIDENCE: rope_fibers\nI witnessed the entire event from my villa's upper terrace. Two rough-looking men approached the tethering post near the gate. They drew blades — crude iron points — and hacked through the rope. The owner protested. Violently. I have the guards' testimony to corroborate my deposition.",
+  "vantage": {
+    "content": "Above the road, at some distance. I could see men by the tethering place and an exchange with the people there. I could not hear every word.\nYou may note the distance. Do not pretend distance makes every observation worthless.",
     "choices": [
       {
-        "text": "But rope fibers show no cuts.",
-        "destination": "evidence_conflict"
+        "text": "Which part did you actually see?",
+        "destination": "accusation",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "The owner contradicts your account.",
-        "destination": "owner_testimony"
+        "text": "Return to my questions.",
+        "destination": "start",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "set": "view_established",
+        "operator": "=",
+        "value": {
+          "literal": true
+        },
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Your villa gave you limited perspective.",
-        "destination": "limited_view"
+        "text": "Above the road, at some distance. I could see men by the tethering place and an exchange with the people there. I could not hear every word.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "You may note the distance. Do not pretend distance makes every observation worthless.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
-  "owner_testimony": {
-    "content": "# UNLOCK_EVIDENCE: witness_account\nTobias is a dreamer. He sees prophecies in every bird that flies over his field and every breeze that stirs his curtains. When I questioned him, he insisted the colt was \"given freely\" and that the stranger's words — \"The Lord needs it\" — unlocked some ancient recognition. I have studied the Torah for forty years, not folk tales.",
+  "accusation": {
+    "content": "The approach, the questioning, the animal being led away. I took the questioning to mean an objection.\nNo, I cannot give you the exact words from where I stood. You have already established that limitation.\nIf you intend to dispute it, first ask where I stood. A report should state its vantage point.",
     "choices": [
       {
-        "text": "You frame faith as delusion.",
-        "destination": "limited_view"
+        "text": "The owner's account distinguishes a question from a refusal.",
+        "destination": "consent",
+        "once": false,
+        "condition": {
+          "all": [
+            {
+              "variable": "evidence_witness_account"
+            }
+          ]
+        }
       },
       {
-        "text": "The Sanhedrin accepts your deposition.",
-        "destination": "sanhedrin"
+        "text": "Ask about your vantage point.",
+        "destination": "vantage",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Return to my questions.",
+        "destination": "start",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The approach, the questioning, the animal being led away. I took the questioning to mean an objection.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "No, I cannot give you the exact words from where I stood. You have already established that limitation.",
+        "condition": {
+          "all": [
+            {
+              "variable": "view_established"
+            }
+          ]
+        }
+      },
+      {
+        "text": "If you intend to dispute it, first ask where I stood. A report should state its vantage point.",
+        "condition": {
+          "all": [
+            {
+              "not": {
+                "variable": "view_established"
+              }
+            }
+          ]
+        }
       }
     ]
   },
-  "temple_cleansing": {
-    "content": "Three days later, the same crowd that celebrated a stolen donkey demanded that I explain why our Temple had become a marketplace. I stood in the outer courts and watched a Galilean carpenter destroy three centuries of established commerce with nothing but a whip of rushes. He called it \"cleansing.\" I call it economic terrorism.",
+  "consent": {
+    "content": "If the owner says he allowed it, then my description of a seizure goes beyond what I can establish.\nRecord that correction. I remain concerned about the crowd's royal acclamation. You have challenged one claim, not answered every question about what follows.",
     "choices": [
       {
-        "text": "The merchants had licenses.",
-        "destination": "temple_defense"
+        "text": "Why does the crowd worry you?",
+        "destination": "concern",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "You fear Roman retaliation.",
-        "destination": "roman_threat"
+        "text": "Return to my questions.",
+        "destination": "start",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "set": "consent_challenged",
+        "operator": "=",
+        "value": {
+          "literal": true
+        },
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "The system serves the people.",
-        "destination": "temple_defense"
+        "text": "If the owner says he allowed it, then my description of a seizure goes beyond what I can establish.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Record that correction. I remain concerned about the crowd's royal acclamation. You have challenged one claim, not answered every question about what follows.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
-  "evidence_conflict": {
-    "content": "The rope fibers, examined under magnification, show fresh separation at the cut points. Iron residue on the remaining strands. The owner's claim that he \"untied\" the colt is physically impossible. I am a man of evidence, not superstition. But my investigators found no iron in the rope. Only the owner's word against my deposition.",
+  "concern": {
+    "content": "Rome watches a gathering like that. If soldiers intervene, traders, pilgrims, and residents all pay for it.\nPerhaps you think my judgment too severe. But do not confuse my fear of unrest with proof that the animal was stolen. They are separate matters.",
     "choices": [
       {
-        "text": "The investigation contradicts you.",
-        "destination": "limited_view"
+        "text": "Return to my questions.",
+        "destination": "start",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Rome watches a gathering like that. If soldiers intervene, traders, pilgrims, and residents all pay for it.",
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "You stand by your account regardless.",
-        "destination": "closing_eleazar"
+        "text": "Perhaps you think my judgment too severe. But do not confuse my fear of unrest with proof that the animal was stolen. They are separate matters.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
-  "limited_view": {
-    "content": "I had a villa overview. Not the ground-level detail. But I saw the approach, the confrontation, the removal of the animal. From two hundred cubits up, I had sufficient perspective to file a credible deposition. My income depends on the Temple's stability, just as every Jerusalem merchant depends on its prosperity. The Galilean's \"cleansing\" disrupted a system that functioned for two thousand years.",
-    "choices": [
+  "closing": {
+    "content": "My report must distinguish what I saw from what I assumed. Include the owner's account alongside mine.\nCheck the owner's answer before treating my suspicion as a settled charge.",
+    "choices": [],
+    "steps": [
       {
-        "text": "The system was already corrupt.",
-        "destination": "corruption"
+        "text": "My report must distinguish what I saw from what I assumed. Include the owner's account alongside mine.",
+        "condition": {
+          "all": [
+            {
+              "variable": "consent_challenged"
+            }
+          ]
+        }
       },
       {
-        "text": "You protect your investment.",
-        "destination": "corruption"
+        "text": "Check the owner's answer before treating my suspicion as a settled charge.",
+        "condition": {
+          "all": [
+            {
+              "not": {
+                "variable": "consent_challenged"
+              }
+            }
+          ]
+        }
       },
       {
-        "text": "Your view is motivated by profit.",
-        "destination": "closing_eleazar"
+        "divert": "DONE",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
-  "sanhedrin": {
-    "content": "The Sanhedrin is divided. Caiaphas sees political threat. The Pharisees see theological concern. Some scribes see genuine prophecy. But the Sadducees — those who control the Temple finances — see the greatest threat to the established order. My deposition confirmed what we already knew.",
-    "choices": [
-      {
-        "text": "Division weakens your position.",
-        "destination": "closing_eleazar"
-      },
-      {
-        "text": "The Sadducees have the most to lose.",
-        "destination": "closing_eleazar"
-      }
-    ]
-  },
-  "temple_defense": {
-    "content": "Every merchant in the Court of the Gentiles operates under priestly license. Every transaction is registered. Every animal is inspected. We maintain standards that a carpenter from Nazareth cannot comprehend. Corruption in commerce exists, yes — but corruption in faith is a different question entirely. The Galilean speaks of love and forgiveness, but He does not provide the means by which the Temple functions. Without our commerce, how do the poor offer their sacrifices?",
-    "choices": [
-      {
-        "text": "Prayer replaces sacrifice.",
-        "destination": "closing_eleazar"
-      },
-      {
-        "text": "The means should not become the end.",
-        "destination": "closing_eleazar"
-      }
-    ]
-  },
-  "corruption": {
-    "content": "Every institution has corruption. But the system as a whole is not corrupt. It is the individuals within it who sometimes fail. The system provides structure, order, predictability. Through Babylonian captivity. Through Maccabean revolt. Through Roman occupation. The Temple endures because it adapts while remaining faithful to its core function.",
-    "choices": [
-      {
-        "text": "Stability without righteousness is not stability.",
-        "destination": "closing_eleazar"
-      },
-      {
-        "text": "The system protects itself, not the people.",
-        "destination": "closing_eleazar"
-      }
-    ]
-  },
-  "roman_threat": {
-    "content": "The Romans will be called in when the crowds become unruly. Today it is scattered coins. Tomorrow — when the people realize their leader has been taken — it could be stones. Or worse. A king who enters on a donkey invites chaos. A priest who maintains contracts maintains order.",
-    "choices": [
-      {
-        "text": "The chaos is your fear.",
-        "destination": "closing_eleazar"
-      },
-      {
-        "text": "The king offers real peace.",
-        "destination": "closing_eleazar"
-      }
-    ]
-  },
-  "closing_eleazar": {
-    "content": "I am Eleazar ben Simon. I have filed my deposition. I have stated my concerns. I have defended the system that has served Israel for two thousand years. You can believe me or not. But you cannot deny that I witnessed what I witnessed. And I will testify to it. Whatever the cost.",
-    "choices": []
+  "_meta": {
+    "schema": 2,
+    "entry": "start",
+    "variables": {
+      "view_established": false,
+      "consent_challenged": false
+    },
+    "revision": "1adc47abe9ee11b2"
   }
 }

@@ -30,7 +30,7 @@
   <link rel="stylesheet" href="css/tokens.css">
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/screens.css">
-  <link rel="stylesheet" href="css/header.css">
+  <link rel="stylesheet" href="css/header.css?v=20260916-lives">
   <link rel="stylesheet" href="css/map.css">
   <link rel="stylesheet" href="css/cases.css">
   <link rel="stylesheet" href="css/evidence-cards.css">
@@ -45,11 +45,12 @@
   <link rel="stylesheet" href="css/game-complete.css">
   <link rel="stylesheet" href="css/misc.css">
   <link rel="stylesheet" href="css/scene-3d.css">
-  <link rel="stylesheet" href="css/scene-2d.css">
+  <link rel="stylesheet" href="css/scene-2d.css?v=20260916-lives">
 
   <script type="importmap" id="importmap">
     {
       "imports": {
+        "./Scene2D.js": "./Scene2D.js?v=20260916-lives",
         "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
         "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/",
         "cannon": "https://unpkg.com/cannon-es@0.20.0/dist/cannon-es.js"
@@ -538,6 +539,9 @@
           <div class="header-score" title="Insight Points: Earned by solving deductions, contradictions, and prophecy links."><i class="fa-solid fa-shield metric-icon"></i> <span class="hidden">Insight Points:</span>
             <span class="val-score">0</span> pts
           </div> <!-- Current Insight Points -->
+          <div id="lives-display" class="header-metric header-lives" role="status" aria-live="polite" aria-atomic="true" title="Lives remaining">
+            <i class="fa-solid fa-heart metric-icon" aria-hidden="true"></i> <span class="hidden">Lives:</span> <span class="val-lives">3</span>
+          </div>
           <div class="header-metric"><i class="fa-solid fa-book-open metric-icon"></i> <span
               class="hidden">Prophecies:</span> <span class="val-prophecies">0/0</span></div>
           <!-- In-game prophecy count -->

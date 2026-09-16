@@ -4,28 +4,82 @@
     "choices": [
       {
         "text": "Is justice something that can be bartered for national security?",
-        "destination": "security"
+        "destination": "security",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "What about the witnesses at the trial?",
-        "destination": "trial"
+        "destination": "trial",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The Lazarus event was dangerous.",
-        "destination": "lazarus_danger"
+        "destination": "lazarus_danger",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "tag": "UNLOCK_EVIDENCE: evidence_national_security",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "tag": "UNLOCK_EVIDENCE: evidence_temple_authority",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "tag": "UNLOCK_EVIDENCE: evidence_prophecy_fulfilled",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "You look at a single man, scribe, and you see a moral puzzle. I look at this city and I see an entire nation facing absolute erasure. If the legions move to clear these courts, Sinai becomes a memory. It is expedient that one man should die for the people. Do you understand the weight of this chair?",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "security": {
-    "content": "# UNLOCK_EVIDENCE: evidence_national_security\nWithout a nation, there is no altar. Without an altar, there is no law. Order is the highest form of justice we can offer under Rome. The Romans do not distinguish between religious dispute and political sedition -- neither do I when the alternative is the eagle standard in our holy of holies.\n# UNLOCK_EVIDENCE: evidence_temple_authority",
+    "content": "Without a nation, there is no altar. Without an altar, there is no law. Order is the highest form of justice we can offer under Rome. The Romans do not distinguish between religious dispute and political sedition -- neither do I when the alternative is the eagle standard in our holy of holies.",
     "choices": [
       {
         "text": "The temple's authority is at stake.",
-        "destination": "temple_stakes"
+        "destination": "temple_stakes",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The cost is calculated.",
-        "destination": "cost_calculated"
+        "destination": "cost_calculated",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Without a nation, there is no altar. Without an altar, there is no law. Order is the highest form of justice we can offer under Rome. The Romans do not distinguish between religious dispute and political sedition -- neither do I when the alternative is the eagle standard in our holy of holies.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -34,15 +88,27 @@
     "choices": [
       {
         "text": "The precedent is sacred.",
-        "destination": "precedent_sacred"
+        "destination": "precedent_sacred",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "The challenge is existential.",
-        "destination": "closing"
-      },
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "Conclude.",
-        "destination": "closing"
+        "text": "The temple's authority is at stake. Not my personal preference, but the collective authority of the priesthood, the Sanhedrin, the entire Levitical system. If this Galilean's claims go unchallenged, what becomes of forty years of established precedent?",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -51,15 +117,27 @@
     "choices": [
       {
         "text": "The risk is great.",
-        "destination": "risk_great"
+        "destination": "risk_great",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "The people are watching.",
-        "destination": "closing"
-      },
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "Conclude.",
-        "destination": "closing"
+        "text": "The precedent is sacred. The Sanhedrin has governed Jewish religious life according to the Oral Law for three centuries. We are the guardians of the Mishnah, the interpreters of the Talmud. To allow a carpenter's son from Nazareth to redefine that -- to claim authority greater than Moses himself -- is to risk everything.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -67,29 +145,49 @@
     "content": "The risk is great -- and the people are watching. Every word from His mouth, every miracle He performs, every challenge He issues to our authority is recorded by dozens of scribes in the galleries. The Pharisees, the Sadducees, the teachers of the law -- we are all witnesses to what is happening.",
     "choices": [
       {
-        "text": "The witness is universal.",
-        "destination": "closing"
-      },
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "The moment is critical.",
-        "destination": "closing"
-      },
-      {
-        "text": "Conclude.",
-        "destination": "closing"
+        "text": "The risk is great -- and the people are watching. Every word from His mouth, every miracle He performs, every challenge He issues to our authority is recorded by dozens of scribes in the galleries. The Pharisees, the Sadducees, the teachers of the law -- we are all witnesses to what is happening.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "cost_calculated": {
-    "content": "The cost is calculated. Lazarus of Bethany -- recently raised from the dead. What the physician Luke recorded was not merely a miracle but a declaration of war against the natural order. If a man can command death itself, what cannot he command?\n# UNLOCK_EVIDENCE: evidence_prophecy_fulfilled",
+    "content": "The cost is calculated. Lazarus of Bethany -- recently raised from the dead. What the physician Luke recorded was not merely a miracle but a declaration of war against the natural order. If a man can command death itself, what cannot he command?",
     "choices": [
       {
         "text": "The timing was critical.",
-        "destination": "timing_critical_caiaphas"
+        "destination": "timing_critical_caiaphas",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "The danger was real.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The cost is calculated. Lazarus of Bethany -- recently raised from the dead. What the physician Luke recorded was not merely a miracle but a declaration of war against the natural order. If a man can command death itself, what cannot he command?",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -98,11 +196,27 @@
     "choices": [
       {
         "text": "The faith was contagious.",
-        "destination": "faith_contagious"
+        "destination": "faith_contagious",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "The response was desperate.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The timing was critical. Passover was drawing near. The crowds were already murmuring about the miraculous raising of Lazarus. If word spread that the Messiah could defeat death itself, the entire city would erupt. Herod was already watching from his fortress. Pilate was receiving reports from Caesarea.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -111,11 +225,27 @@
     "choices": [
       {
         "text": "The theology was questioned.",
-        "destination": "theology_questioned"
+        "destination": "theology_questioned",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "The Sadducees were divided.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The faith was contagious -- and that is precisely what made it dangerous. A crowd that witnessed a dead man walk out of his tomb would follow anything he said next. The Sadducees, who denied resurrection, found their theology challenged in the most public way possible.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -123,12 +253,28 @@
     "content": "The theology was questioned -- and we could not answer. Lazarus was a living sermon. Every day he walked the streets, a walking testament that the resurrection was real. We were the guardians of a religion that taught resurrection -- and here was its fulfillment walking in our own city.",
     "choices": [
       {
-        "text": "The contradiction was fatal.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The decision was made.",
-        "destination": "decision_made"
+        "destination": "decision_made",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The theology was questioned -- and we could not answer. Lazarus was a living sermon. Every day he walked the streets, a walking testament that the resurrection was real. We were the guardians of a religion that taught resurrection -- and here was its fulfillment walking in our own city.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -137,11 +283,27 @@
     "choices": [
       {
         "text": "The unwitting prophecy.",
-        "destination": "unwitting_prophecy"
+        "destination": "unwitting_prophecy",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "The divine purpose.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The decision was made -- not in council, not in session, but in the quiet of my study, where the oil lamps had burned out and only the necessity remained. To arrest Him publicly would cause a riot. To arrest Him secretly would be... expedient. One man's death could preserve the nation.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -150,11 +312,27 @@
     "choices": [
       {
         "text": "The irony was sharp.",
-        "destination": "irony_sharp"
+        "destination": "irony_sharp",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "The consequence was eternal.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The prophecy was unwitting. Years later, the physician John would write: \"Caiaphas prophesied that Jesus would die for the nation.\" Not because he sought to fulfill prophecy -- but because he sought to prevent chaos. \"It is expedient for us that one man should perish for the people, and not that the whole nation should perish.\"",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -163,11 +341,27 @@
     "choices": [
       {
         "text": "The message endured.",
-        "destination": "message_endured"
+        "destination": "message_endured",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "The testimony spread.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The irony was sharp -- a high priest who sought to suppress the truth, unknowingly speaking it. My words were not my own. They were the voice of prophecy speaking through a mouth that did not intend to prophesy. The instrument was flawed, but the message transcended it.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -176,11 +370,27 @@
     "choices": [
       {
         "text": "The greatest story.",
-        "destination": "greatest_story"
+        "destination": "greatest_story",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "The final word.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The message endured -- not because of me, but despite me. The archives I maintained, the judgments I pronounced, the calculations I made -- all of it now serves a purpose I never intended. Truth, like a stone rolled away, cannot be contained.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -188,38 +398,78 @@
     "content": "The greatest story -- for me, for this council, for this nation, for the world -- is that justice and mercy meet at the cross. That truth and power confront each other. That the high priest who sought to preserve his position would instead be remembered as the man who unknowingly sealed his own people's salvation.",
     "choices": [
       {
-        "text": "The record stands.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The greatest story -- for me, for this council, for this nation, for the world -- is that justice and mercy meet at the cross. That truth and power confront each other. That the high priest who sought to preserve his position would instead be remembered as the man who unknowingly sealed his own people's salvation.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "trial": {
-    "content": "# UNLOCK_EVIDENCE: evidence_national_security\nWe will hear them all. The truth will reveal itself, but the public safety verdict cannot be delayed. Let the witnesses speak -- let them contradict themselves if they must. The Sanhedrin does not act without due process, even under pressure.\n# UNLOCK_EVIDENCE: evidence_temple_authority",
+    "content": "We will hear them all. The truth will reveal itself, but the public safety verdict cannot be delayed. Let the witnesses speak -- let them contradict themselves if they must. The Sanhedrin does not act without due process, even under pressure.",
     "choices": [
       {
         "text": "The due process is questioned.",
-        "destination": "due_process"
+        "destination": "due_process",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "The pressure is mounting.",
-        "destination": "closing"
-      },
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "Conclude.",
-        "destination": "closing"
+        "text": "We will hear them all. The truth will reveal itself, but the public safety verdict cannot be delayed. Let the witnesses speak -- let them contradict themselves if they must. The Sanhedrin does not act without due process, even under pressure.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "lazarus_danger": {
-    "content": "# UNLOCK_EVIDENCE: evidence_national_security\nLazarus was dead, and now he walks openly in Bethany. Every pilgrim who sees him becomes another witness the council cannot dismiss. That is why one man's return has become a danger to the order of an entire nation.",
+    "content": "Lazarus was dead, and now he walks openly in Bethany. Every pilgrim who sees him becomes another witness the council cannot dismiss. That is why one man's return has become a danger to the order of an entire nation.",
     "choices": [
       {
         "text": "Is truth dangerous only when authority cannot control it?",
-        "destination": "security"
+        "destination": "security",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Then the witnesses matter.",
-        "destination": "trial"
+        "destination": "trial",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Lazarus was dead, and now he walks openly in Bethany. Every pilgrim who sees him becomes another witness the council cannot dismiss. That is why one man's return has become a danger to the order of an entire nation.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -228,15 +478,27 @@
     "choices": [
       {
         "text": "The safety of many.",
-        "destination": "safety_many"
+        "destination": "safety_many",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "The burden is great.",
-        "destination": "closing"
-      },
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "Conclude.",
-        "destination": "closing"
+        "text": "The due process is questioned. The Law requires two or three witnesses, valid testimony, proper procedure. We have followed these laws precisely. But the most important thing is not the letter of the law but the spirit of justice it embodies.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -245,15 +507,27 @@
     "choices": [
       {
         "text": "The judgment is final.",
-        "destination": "judgment_final"
+        "destination": "judgment_final",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "The consequences are eternal.",
-        "destination": "closing"
-      },
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "Conclude.",
-        "destination": "closing"
+        "text": "The safety of many outweighs the rights of one. When a single individual threatens the peace of the entire community, the community preservation becomes the higher imperative. The Talmudic sages understood this principle deeply.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -261,17 +535,45 @@
     "content": "The judgment is final -- for the condemned, for the judges, for the nation that watches. I have seen prophets come and go, messiahs rise and fall. Few leave their mark on the face of eternity as this one does.",
     "choices": [
       {
-        "text": "The mark is indelible.",
-        "destination": "closing"
-      },
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "The testimony endures.",
-        "destination": "closing"
+        "text": "The judgment is final -- for the condemned, for the judges, for the nation that watches. I have seen prophets come and go, messiahs rise and fall. Few leave their mark on the face of eternity as this one does.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "closing": {
     "content": "The record stands -- not because I desired it, but because the truth, like a stone rolled away, cannot be contained. My council chamber, my judgment hall, my very chair -- all of it became a stage for the greatest story ever told. The archives I touched as a scribe, the robes I wore as a priest, the crown I carried as a judge -- all of it now serves eternity instead of temporality.",
-    "choices": []
+    "choices": [],
+    "steps": [
+      {
+        "text": "The record stands -- not because I desired it, but because the truth, like a stone rolled away, cannot be contained. My council chamber, my judgment hall, my very chair -- all of it became a stage for the greatest story ever told. The archives I touched as a scribe, the robes I wore as a priest, the crown I carried as a judge -- all of it now serves eternity instead of temporality.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "divert": "DONE",
+        "condition": {
+          "all": []
+        }
+      }
+    ]
+  },
+  "_meta": {
+    "schema": 2,
+    "entry": "start",
+    "variables": {},
+    "revision": "8f1b4da23ba18276"
   }
 }

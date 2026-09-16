@@ -4,11 +4,27 @@
     "choices": [
       {
         "text": "I seek truth here.",
-        "destination": "truth_seeker"
+        "destination": "truth_seeker",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "What do the streets say?",
-        "destination": "street_rumors"
+        "destination": "street_rumors",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Master Scribe. The archives hold testimony — not opinion. Many have walked these stones carrying questions no scroll could answer.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -17,11 +33,27 @@
     "choices": [
       {
         "text": "Tell me about the authority challenge.",
-        "destination": "authority_challenge"
+        "destination": "authority_challenge",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "What was the crowd's reaction?",
-        "destination": "crowd_reaction"
+        "destination": "crowd_reaction",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Then you have come to the right place. I have recorded the morning's events in the Temple courts — the challenges to the Galilean's authority, His answers, the silence that fell over the Sanhedrin by midday.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -30,7 +62,19 @@
     "choices": [
       {
         "text": "You were there?",
-        "destination": "truth_seeker"
+        "destination": "truth_seeker",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The streets are full of a hundred different versions of the same story. I prefer the official record. The Sanhedrin challenged Him at the Temple this morning. He answered every question. They had no response.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -39,7 +83,19 @@
     "choices": [
       {
         "text": "Paralysed?",
-        "destination": "exposed_authority"
+        "destination": "exposed_authority",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The chief priests and elders came with formal questions — signed, sealed, presented with all the drama of a legal tribunal. They asked: \"By what authority do you do these things?\" He answered with a question about John the Baptist that left them publicly paralysed.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -48,7 +104,19 @@
     "choices": [
       {
         "text": "And the Pharisees?",
-        "destination": "pharisee_fall"
+        "destination": "pharisee_fall",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "By the end, the crowd was silent. Not because they were unimpressed — because they were watching the strongest arguments in the city being dismantled one by one.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -57,7 +125,19 @@
     "choices": [
       {
         "text": "So they couldn't trap Him.",
-        "destination": "exposed_authority"
+        "destination": "exposed_authority",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The Pharisees and Herodians came with the tax question. They thought they had Him. Instead, He pointed to Caesar's coin and said: \"Give to Caesar what is Caesar's, and to God what is God's.\" The coalition fell apart in that moment.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -66,7 +146,19 @@
     "choices": [
       {
         "text": "And the widow's offering?",
-        "destination": "widow_reveal"
+        "destination": "widow_reveal",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "No one could say a word in reply. And from that day on, no one dared ask Him any more questions. That is in the archives. That is the record.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -74,8 +166,20 @@
     "content": "Ah, you know that detail too. Yes — the widow gave two small copper coins. He called her over. He said she had given more than all the others. That was the moment I stopped writing and just... watched.",
     "choices": [
       {
-        "text": "You were moved.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Ah, you know that detail too. Yes — the widow gave two small copper coins. He called her over. He said she had given more than all the others. That was the moment I stopped writing and just... watched.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -84,11 +188,27 @@
     "choices": [
       {
         "text": "What scares them?",
-        "destination": "fear"
+        "destination": "fear",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The healings?",
-        "destination": "healings"
+        "destination": "healings",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Apprentice — you add something to the piece that was missing when I first read your draft. You have the witness from the pool, the Roman record from Rome, the accounts from Mark's house, the Galilean who frightened the chief priests. But the real question is not about the man. It is about what scares people most about Him.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -97,11 +217,27 @@
     "choices": [
       {
         "text": "They fear losing control.",
-        "destination": "control"
+        "destination": "control",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Continue.",
-        "destination": "closing2"
+        "text": "Finish the interview.",
+        "destination": "closing2",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The threat was not the healings. The threat was the categories He would not fit. A man who claims authority over the Sabbath. A teacher who quotes Isaiah 5 and points at the Sanhedrin. A prophet who raises the dead and will not call down fire on Rome.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -109,8 +245,20 @@
     "content": "Healings happen. The Essenes have healing traditions. But this man speaks as if He authored the Law itself. That is not a prophet's tone. That is the tone of Someone withholding an inheritance from its current stewards.",
     "choices": [
       {
-        "text": "The Sanhedrin heard that tone.",
-        "destination": "closing2"
+        "text": "Finish the interview.",
+        "destination": "closing2",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Healings happen. The Essenes have healing traditions. But this man speaks as if He authored the Law itself. That is not a prophet's tone. That is the tone of Someone withholding an inheritance from its current stewards.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -119,7 +267,19 @@
     "choices": [
       {
         "text": "And the Roman Governor?",
-        "destination": "pilate_path"
+        "destination": "pilate_path",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Yes. When a man acts as though the Temple is His Father's house, and the Pharisees are tenants who have abused the lease, the tenants begin to think about eviction. Not by legal process — by elimination.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -127,8 +287,20 @@
     "content": "Pilate found no fault in Him. Even Pilate — who washed his hands of the whole affair — could not find a capital crime. The Sanhedrin's case was fabricated from start to finish.",
     "choices": [
       {
-        "text": "So the whole trial was illegal.",
-        "destination": "closing2"
+        "text": "Finish the interview.",
+        "destination": "closing2",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Pilate found no fault in Him. Even Pilate — who washed his hands of the whole affair — could not find a capital crime. The Sanhedrin's case was fabricated from start to finish.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -137,7 +309,19 @@
     "choices": [
       {
         "text": "The weightiest evidence.",
-        "destination": "board_review"
+        "destination": "board_review",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "But there is a final category, Maluch — one that no archive can fully contain. They think they are taking His life, but He is giving it up. This is not just a trial in a Judean court; it is the moment where heaven itself descends to touch the dust. He is the Son of God, delivering Himself up for the sins of the world. Write that, apprentice. For that is the only truth that will endure when these stones are gone.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -145,17 +329,45 @@
     "content": "The evidence with the most weight is the one that refuses to be explained away. A weighty piece of evidence is not the most dramatic — it is the one that generates the fewest alternative explanations.",
     "choices": [
       {
-        "text": "The truth is already there.",
-        "destination": "final"
-      },
+        "text": "Continue.",
+        "destination": "final",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "The board grows.",
-        "destination": "final"
+        "text": "The evidence with the most weight is the one that refuses to be explained away. A weighty piece of evidence is not the most dramatic — it is the one that generates the fewest alternative explanations.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "final": {
     "content": "Keep gathering. The board grows, but the truth is already there. You just have to be willing to see it.",
-    "choices": []
+    "choices": [],
+    "steps": [
+      {
+        "text": "Keep gathering. The board grows, but the truth is already there. You just have to be willing to see it.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "divert": "DONE",
+        "condition": {
+          "all": []
+        }
+      }
+    ]
+  },
+  "_meta": {
+    "schema": 2,
+    "entry": "start",
+    "variables": {},
+    "revision": "677b5c1c716a0be2"
   }
 }

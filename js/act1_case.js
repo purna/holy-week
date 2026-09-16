@@ -158,7 +158,7 @@ export const act1CaseA = {
     },
   ],
 
-  intro: formatIntro(`It is Palm Sunday morning, Nisan 10. Jesus and His disciples have spent the night in Bethany and are now walking toward Jerusalem. Two disciples were sent ahead to the village of Bethphage with specific instructions: untie a donkey colt they would find there, and if anyone challenged them, say only **"The Lord needs it."** But when you arrive at the tethering post — the colt is gone, a rope has been cut, and three people were seen in the area. Was it stolen? Or is something else _entirely_ happening here?`),
+  intro: formatIntro(`It is Palm Sunday morning, Nisan 10. Jesus and His disciples have spent the night in Bethany and are now walking toward Jerusalem. Two disciples were sent ahead to the village of Bethphage with specific instructions: untie a donkey colt they would find there, and if anyone challenged them, say only **"The Lord needs it."** But when you arrive at the tethering post — the colt is gone, its tether lies loose, and witnesses disagree about what happened. Was it stolen? Or is something else _entirely_ happening here?`),
 
   suspects: [
     { id: "peter", name: "Peter", role: "Disciple of Jesus", avatar: "peter.svg", bibleRef: "Mark 11:1–6" },
@@ -339,14 +339,14 @@ export const act1CaseA = {
 
     {
       id: "rope_fibers",
-      name: "Cut Rope at the Tethering Post",
+      name: "Loose Tether at the Post",
       type: "physical",
       icon: "../assets/gfx/link-duotone.svg",
       emoji: "", // Retaining for reference, but icon is now SVG
       iconFA: "fa-solid fa-link",
       pos: [-2, 0, -5],
       location: "Stone Tethering Post, Bethphage",
-      desc: "The rope used to tie the colt has been cut cleanly — not frayed or broken, suggesting deliberate untying or cutting with a tool. The knot style is a simple shepherd's hitch.",
+      desc: "A loose tether remains at the post. The reconstructed scene is consistent with an animal being untied, but the rope alone cannot establish consent or identify who handled it.",
       bibleRef: "Mark 11:2 — 'You will find a colt tied there, which no one has ever ridden. Untie it and bring it here.'",
       bibleLink: "mark_11_2",
       propheticLink: "Jesus specified it must be a colt 'no one has ever ridden' — in Jewish law, an animal used for sacred purposes must be one that has not been used for common work (Numbers 19:2; Deuteronomy 21:3). This detail proves the act was religiously intentional, not criminal.",
@@ -359,15 +359,15 @@ export const act1CaseA = {
         { ref: "Numbers 19:2", link: "numbers_192" },
         { ref: "Deuteronomy 21:3", link: "deuteronomy_213" }
       ],
-      investigatorNote: "A thief would cut a rope. A disciple would untie it carefully. The clean cut could go either way — unless you know the context.",
+      investigatorNote: "Compare the physical clue with the owners' account. Neither a loose knot nor a piece of rope proves permission by itself.",
       fake: false,
       category: 'event',
       timelineOrder: 2,
       clues: {
         compare: "Pairs with the witness account to confirm the colt was untied, not stolen.",
         link: "Event — physical evidence from the tethering post.",
-        timeline: "CHRONOLOGY: The rope was cut early in the sequence, before the colt was led away.",
-        contradict: "RELIABILITY: The clean cut is consistent with careful untying, not criminal cutting."
+        timeline: "CHRONOLOGY: The colt was untied before it was led away.",
+        contradict: "RELIABILITY: This scene reconstruction does not establish a violent seizure. Test that claim against the witness account."
       }
     },
 
@@ -552,30 +552,23 @@ export const act1CaseA = {
       unlocksSuspects: ["peter"],
       unlocksEvidence: ["cloaks", "rope_fibers"],
       revealsProphecy: "genesis_49_10_11",
-      background: "Simon Peter, a fisherman from Galilee, is one of the inner circle of three disciples (along with James and John). Passionate and impulsive, he speaks before thinking. He was one of the two sent to find the donkey.",
+      background: "A loyal and practical disciple. He recounts the instructions given to two unnamed messengers and the preparation of the colt for Jesus.",
       dialogue: {
-        neutral: {
-          text: "Peter and I untied the rope carefully, just as the owner asked. Everything was done according to the Law.",
-          isLie: true,
-          correction: "I'll be honest—the knot was tight and I was in a hurry to get back to the Teacher, so I cut the rope with my fish-knife."
-        },
-        cautious: "We weren't stealing anything! The Lord had authorised this. It's all perfectly within the Law.",
-        pressured: "Alright — yes, we showed the owner a scroll of Zechariah. He understood immediately. He was actually glad to help.",
-        exposed: "The owner had been waiting for this day his whole life. We untied the colt, draped our cloaks over it as a saddle, and led it to Jesus. The crowds came from everywhere. It was like the whole Mount of Olives was alive.",
-        repeat: "I've already told you what happened. Everything went exactly as Jesus said it would.",
+        neutral: { text: "Two of our company were sent for the colt. They were told to untie it and answer, 'The Lord needs it,' if questioned.", isLie: false },
+        cautious: "Ask the owners about consent. I can explain what the Teacher instructed and how we prepared the ride.",
+        pressured: "I will not invent a threat or a struggle to satisfy a charge. Compare the accounts.",
+        exposed: "We put our cloaks on the colt and helped Jesus onto it. People spread their cloaks on the road.",
+        repeat: "We can go through the instructions or the cloaks again.",
       },
       reactions: {
-        cloaks: { text: "Those are mine and John's cloaks. We used them as a saddle for the colt because it had never been ridden — we didn't want it to bolt on the road.", isLie: false },
-        donkey_tracks: { text: "Of course there are tracks — we led the colt along the western road into Jerusalem. Hundreds of people walked with us!", isLie: false },
-        witness_account: { text: "That account is entirely accurate. The owner let us go without hesitation once we said 'The Lord needs it.' That phrase — Jesus told us to say exactly that.", isLie: false, revealedClue: "prophecy_scroll" },
-        prophecy_scroll: { text: "We had a copy of Zechariah 9:9 with us. When we said 'The Lord needs it,' the owner recognised what was happening. He'd been reading that scripture for years.", isLie: false },
-        rope_fibers: { text: "John untied the rope — he didn't cut it. I don't know how it ended up cut. Maybe someone else came along later.", isLie: true },
-        crowd_testimony: { text: "The Pharisees were furious. Jesus told them if the crowd went silent, the stones themselves would cry out. You can't stop prophecy being fulfilled.", isLie: false },
+        cloaks: { text: "We laid cloaks on the colt before Jesus sat on it.", isLie: false },
+        donkey_tracks: { text: "Tracks can show movement. They cannot tell you whether an owner gave permission.", isLie: false },
+        witness_account: { text: "The owners questioned the men, who gave the answer Jesus had supplied. Keep the question distinct from a refusal.", isLie: false },
+        prophecy_scroll: { text: "Compare the Scripture with the entry. Do not assume we understood every connection that morning.", isLie: false },
+        rope_fibers: { text: "The instruction was to untie the colt. The owners' testimony matters more than a guess about a loose tether.", isLie: false },
+        crowd_testimony: { text: "There was a royal welcome. People did not all understand it in the same way.", isLie: false },
       },
-      contradictions: {
-        "witness_account+rope_fibers": { exposed: "Alright — I cut the rope. Not to steal anything, but the knot had been tied extra tight and I was in a hurry.", corrects: "neutral" },
-        "prophecy_scroll+crowd_testimony": { exposed: "The owner knew. The Pharisees knew. The whole city knew what this meant. Jesus wasn't being subtle — He was making a public claim to be the prophesied king." },
-      },
+      contradictions: {},
     },
     {
       id: "john",
@@ -594,9 +587,9 @@ export const act1CaseA = {
       unlocksEvidence: ["donkey_tracks", "crowd_testimony", "witness_account"],
       background: "John son of Zebedee — later called 'the disciple Jesus loved' — is meticulous, observant, and the most likely to recall precise details. He would later write a Gospel account of this very event (John 12:12–19).",
       dialogue: {
-        neutral: "Peter and I went together. Jesus gave us exact instructions — even the words to say if challenged.",
+        neutral: "Jesus sent two of our company ahead. I can describe the public welcome, but take the exchange at the post from those involved.",
         cautious: "I'm telling you everything. There was nothing secret about this. When the crowd started gathering, it felt like something long-awaited had finally arrived.",
-        pressured: "I actually wrote about this day. John 12. I recorded that the disciples didn't fully understand its significance until after the resurrection — then we realised the scriptures had predicted it all along.",
+        pressured: "We did not understand all this at first. Later we remembered what had been written about Him.",
         exposed: "The most striking thing was the colt had never been ridden. For a royal or sacred purpose in Jewish law, that's required. Jesus knew that. Every detail was intentional.",
         repeat: "I believe I've shared all that I recall. It was a day I'll never forget.",
       },
@@ -636,7 +629,7 @@ export const act1CaseA = {
       reactions: {
         prophecy_scroll: { text: "That scroll is mine. My grandfather gave it to me. Zechariah 9:9 — we always believed that a day would come when those words walked off the page and into history. I believe today was that day.", isLie: false },
         cloaks: { text: "I saw those cloaks go by — they used them as a saddle. That's also from the old accounts. When kings are anointed, people give what they have. It's an act of honour.", isLie: false },
-        rope_fibers: { text: "The rope was cut. I didn't cut it — I untied the knot myself and handed the colt to them. Someone else must have cut it after. I wasn't watching the post after they left.", isLie: false },
+        rope_fibers: { text: "They were untying it when we asked why. They answered, and I allowed the colt to go. A loose rope cannot speak for my consent; I can.", isLie: false },
         palm_branch: { text: "The palms — that brought tears to my eyes. In the days of the Maccabees, palms meant liberation. Those people understood the language of what was happening.", isLie: false },
         crowd_testimony: { text: "The Pharisees' complaint says 'the whole world has gone after him.' If even they say that — perhaps they're right. Perhaps they just don't know what to do with it.", isLie: false },
       },
@@ -794,15 +787,15 @@ export const act1CaseA = {
     "crowd_testimony+witness_account": {
       compare: {
         text: "The Pharisees' complaint confirms the event was public, loud, and unmistakably messianic. The villager's testimony confirms the disciples had pre-authorised access to the colt.",
-        insight: "The religious authorities' alarm is itself evidence of how the crowd interpreted the entry. This was not an ambiguous moment — everyone present understood the claim being made.",
+        insight: "The religious authorities' alarm is itself evidence of how the crowd interpreted the entry. The royal acclamation was public, but people did not all understand it in the same way.",
         isKey: true,
         bibleRef: "John 12:19; Luke 19:39–40",
       },
     },
     "rope_fibers+cloaks": {
       contradict: {
-        text: "The rope was cut, but the cloaks were left — neatly folded. A thief would take whatever was useful and flee. Someone who cut the rope had a reason to be there and no reason to hide.",
-        insight: "The cut rope points to haste, not criminal intent. The folded cloaks point to the disciples — who left them behind when they used them as a saddle for the colt.",
+        text: "The tether concerns how the animal was released; the cloaks concern preparation for the ride. Neither object, on its own, establishes the owners' permission.",
+        insight: "Keep the sequence clear: the colt was untied, brought to Jesus, and covered with cloaks for Him to sit on. Compare this with the owners' account of the exchange.",
         isKey: false,
         bibleRef: "Mark 11:7",
       },
@@ -812,7 +805,7 @@ export const act1CaseA = {
   truth: {
     culprit: "none",
     motive: "There was no crime. The donkey was lent willingly by a sympathetic owner who recognised the fulfilment of Zechariah 9:9. The disciples had been given authorised access by Jesus, who foreknew the entire situation.",
-    method: "Jesus gave His disciples precise instructions, including a pre-arranged phrase ('The Lord needs it') that would signal the owner to release the colt. The colt — which had never been ridden, meeting the Jewish requirement for sacred or royal purposes — was led down the Mount of Olives to Jesus. The crowd gathered spontaneously, waving palm branches and quoting Psalm 118:25–26 in a public messianic declaration.",
+    method: "Jesus instructed two disciples to bring the colt and told them to answer, 'The Lord needs it,' if questioned. The owners questioned them and allowed the colt to go. They brought the unridden colt to Jesus and placed their cloaks on it. The crowd gathered spontaneously, waving palm branches and quoting Psalm 118:25–26 in a public messianic declaration.",
     lesson: "The triumphal entry was a carefully orchestrated prophetic event, not a random arrival. Every detail — the donkey colt, the phrase given to the disciples, the unridden animal, the route, the crowd's response — connected to centuries of Scripture. What looked suspicious to an outsider was actually one of the most precisely predicted moments in history being fulfilled in real time.",
     prophesyFulfilled: ["Zechariah 9:9", "Psalm 118:25–26", "Genesis 49:10–11", "Malachi 3:1"],
     furtherReading: ["Matthew 21:1–11", "Mark 11:1–11", "Luke 19:28–44", "John 12:12–19"],

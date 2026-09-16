@@ -1,111 +1,217 @@
 {
   "intro": {
-    "content": "A man hangs on the cross to the right of the central beam, his breathing ragged. He turns his head slightly as you approach — still alive enough to notice you, still alive enough to speak.\n\"Come to gawk? Or come to ask? Everyone else already has their verdict on me. Thief. Numbered with him. Might as well be numbered with him twice, the way they tell it.\"",
+    "content": "His words come with effort. There are three crosses; Jesus is between the two condemned men.\nThe man beside Him has little breath to spare.",
     "choices": [
       {
-        "text": "unlock crucifiers forgiven",
-        "destination": "unlock_crucifiers_forgiven"
+        "text": "Listen without interrupting.",
+        "destination": "appeal",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "unlock crucified with thieves",
-        "destination": "unlock_crucified_with_thieves"
+        "text": "Ask quietly what he heard Jesus say.",
+        "destination": "forgiveness",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "main_hub",
-        "destination": "main_hub"
+        "text": "Leave him in peace.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       }
-    ]
-  },
-  "main_hub": {
-    "content": "",
-    "choices": [
+    ],
+    "steps": [
       {
-        "text": "Ask what happened this morning",
-        "destination": "neutral_stage"
+        "tag": "UNLOCK_EVIDENCE: crucified_with_thieves",
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Ask about the other two men on the crosses",
-        "destination": "cautious_stage"
+        "tag": "UNLOCK_EVIDENCE: crucifiers_forgiven",
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Press him about what he said to Jesus",
-        "destination": "pressured_stage"
+        "text": "His words come with effort. There are three crosses; Jesus is between the two condemned men.",
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Ask what he heard Jesus say",
-        "destination": "exposed_stage"
+        "text": "The man beside Him has little breath to spare.",
+        "condition": {
+          "all": []
+        }
+      }
+    ]
+  },
+  "forgiveness": {
+    "content": "He prayed for the people doing this to Him. Asked the Father to forgive them.\nI have been thinking about that. He is suffering here with us, and those are the words He gives them.",
+    "choices": [
+      {
+        "text": "Listen.",
+        "destination": "appeal",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Leave him be",
-        "destination": "repeat_stage"
+        "text": "Leave him in peace.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "He prayed for the people doing this to Him. Asked the Father to forgive them.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "I have been thinking about that. He is suffering here with us, and those are the words He gives them.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
-  "neutral_stage": {
-    "content": "# UNLOCK_EVIDENCE: crucified_with_thieves\n# UNLOCK_EVIDENCE: crucifiers_forgiven\n\"They nailed up three crosses that morning. Mine, my friend's, and His — right between us. Made a point of it, putting Him in the middle. Wasn't an accident. The charge sheet listed the three of us together.\"",
+  "appeal": {
+    "content": "We are receiving punishment for what we have done. This man has done nothing wrong.\nJesus, remember me when You come into Your kingdom.",
     "choices": [
       {
-        "text": "Continue",
-        "destination": "unlock_crucified_with_thieves"
+        "text": "Remain silent and listen.",
+        "destination": "promise",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Step back.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "set": "heard_appeal",
+        "operator": "=",
+        "value": {
+          "literal": true
+        },
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "We are receiving punishment for what we have done. This man has done nothing wrong.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Jesus, remember me when You come into Your kingdom.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
-  "cautious_stage": {
-    "content": "# UNLOCK_EVIDENCE: crucified_with_thieves\n# UNLOCK_EVIDENCE: crucifiers_forgiven\n\"At first I mocked Him too. Same as my friend on the other side. 'Aren't you the Messiah? Save yourself — and us, while you're at it.' Cheap talk. When you're dying, you'll say anything, hoping something sticks.\"",
+  "promise": {
+    "content": "Jesus assures him that today he will be with Him in paradise.\nNo further question is needed. The man has made his appeal and received an answer.",
     "choices": [
       {
-        "text": "Continue",
-        "destination": "main_hub"
+        "text": "Leave him in peace.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       }
-    ]
-  },
-  "pressured_stage": {
-    "content": "# UNLOCK_EVIDENCE: crucified_with_thieves\n# UNLOCK_EVIDENCE: crucifiers_forgiven\n\"My friend wouldn't let up on Him. Cursing, jeering, same as the crowd below. I told him to stop. 'Don't you fear God? We're getting exactly what we deserve. This man's done nothing wrong.' I don't know why I said it. It just came out true.\n~ penitent_confessed = true",
-    "choices": [
+    ],
+    "steps": [
       {
-        "text": "Continue",
-        "destination": "main_hub"
-      }
-    ]
-  },
-  "exposed_stage": {
-    "content": "# UNLOCK_EVIDENCE: crucified_with_thieves\n# UNLOCK_EVIDENCE: crucifiers_forgiven\n\"The soldiers were still rolling dice for His clothes when I heard it. He wasn't cursing back at anyone. He was praying — for them. 'Father, forgive them, they don't know what they're doing.'\nI asked Him to remember me when He came into His kingdom. Didn't expect an answer, not really. He said I'd be with Him in paradise. Today. Not someday. <i>Today.</i>\"",
-    "choices": [
+        "set": "heard_promise",
+        "operator": "=",
+        "value": {
+          "literal": true
+        },
+        "condition": {
+          "all": []
+        }
+      },
       {
-        "text": "Continue",
-        "destination": "unlock_crucifiers_forgiven"
-      }
-    ]
-  },
-  "repeat_stage": {
-    "content": "# UNLOCK_EVIDENCE: crucified_with_thieves\n# UNLOCK_EVIDENCE: crucifiers_forgiven\n\"I was numbered among the criminals, same as Him. I know exactly what that felt like, dying next to Him instead of far from Him.\"",
-    "choices": [
+        "text": "Jesus assures him that today he will be with Him in paradise.",
+        "condition": {
+          "all": []
+        }
+      },
       {
-        "text": "Finish the interview.",
-        "destination": "conversation_end"
+        "text": "No further question is needed. The man has made his appeal and received an answer.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
-  "unlock_crucified_with_thieves": {
-    "content": "{ not evidence_crucified_with_thieves:\n    ~ evidence_crucified_with_thieves = true\n    # UNLOCK_EVIDENCE: crucified_with_thieves\n}",
-    "choices": [
+  "closing": {
+    "content": "You step back, leaving his appeal and Jesus's answer to stand without interrogation.\nYou step back. His suffering is not an opportunity to press for more.",
+    "choices": [],
+    "steps": [
       {
-        "text": "Finish the interview.",
-        "destination": "conversation_end"
-      }
-    ]
-  },
-  "unlock_crucifiers_forgiven": {
-    "content": "{ not evidence_crucifiers_forgiven:\n    ~ evidence_crucifiers_forgiven = true\n    # UNLOCK_EVIDENCE: crucifiers_forgiven\n}\nVAR evidence_crucified_with_thieves = false\nVAR evidence_crucifiers_forgiven = false\nVAR penitent_confessed = false",
-    "choices": [
+        "text": "You step back, leaving his appeal and Jesus's answer to stand without interrogation.",
+        "condition": {
+          "all": [
+            {
+              "variable": "heard_promise"
+            }
+          ]
+        }
+      },
       {
-        "text": "Finish the interview.",
-        "destination": "conversation_end"
+        "text": "You step back. His suffering is not an opportunity to press for more.",
+        "condition": {
+          "all": [
+            {
+              "not": {
+                "variable": "heard_promise"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "divert": "DONE",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
-  "conversation_end": {
-    "content": "",
-    "choices": []
+  "_meta": {
+    "schema": 2,
+    "entry": "intro",
+    "variables": {
+      "heard_appeal": false,
+      "heard_promise": false
+    },
+    "revision": "6515b2e4b5e2ac9e"
   }
 }

@@ -33,7 +33,7 @@ export class DialogueManager {
 
     // ── Story loading ────────────────────────────────────────────────────────
 
-    loadStoryForNPC(npc) {
+    loadStoryForNPC(npc, caseId = this.caseManager?.activeCaseId) {
         // NPCs from config.js use storyFile / hasDialogue directly.
         // NPCs from levels.js use dialogueId plus this DIALOGUE_ID_MAP.
         // We now allow storyFile to be an ID reference.
@@ -45,12 +45,12 @@ export class DialogueManager {
                 if (!r.ok) throw new Error(`HTTP ${r.status}`);
                 return r.json();
             })
-            .then(data => { this.npcStories[npc.id] = data; })
+            .then(data => { this.npcStories[`${caseId}::${npc.id}`] = data; })
             .catch(e => console.error(`[DialogueManager] Failed to load story for ${npc.name}:`, e));
     }
 
     createStory(npcId, caseId = null) {
-        const data = this.npcStories[npcId];
+        const data = this.getStory(npcId, caseId);
         if (!data) throw new Error('Story data not found for ' + npcId);
         if (data.inkVersion) {
             if (!this.inkLib) throw new Error('Ink runtime not loaded');
@@ -59,8 +59,8 @@ export class DialogueManager {
         return createConversation(data, this, npcId, caseId);
     }
 
-    getStory(npcId) {
-        const story = this.npcStories[npcId];
+    getStory(npcId, caseId = this.caseManager?.activeCaseId) {
+        const story = this.npcStories[`${caseId || this.caseManager?.activeCaseId}::${npcId}`];
         if (!story) {
             console.warn('[DialogueManager] No story for npcId:', npcId,
                 '| Available:', Object.keys(this.npcStories));
@@ -133,7 +133,10 @@ export class DialogueManager {
             const b = document.createElement('button');
             b.className = 'choice-btn';
             b.textContent = '→ ' + c.text;
-            b.onclick = () => onPick(c);
+            b.onclick = () => {
+                barChoices.querySelectorAll("button").forEach(button => { button.disabled = true; });
+                onPick(c);
+            };
             barChoices.appendChild(b);
         });
     }
@@ -151,7 +154,7 @@ export class DialogueManager {
      * @param {Function} onTag     — Called when a tag (e.g., reveal:id) is encountered
      */
     openDialogue(npc, inkStory, onClose, onTag) {
-        const storyData = this.npcStories[npc.id];
+        const storyData = this.getStory(npc.id);
         if (!inkStory && storyData) inkStory = this.createStory(npc.id);
         const isSimple = storyData && !!storyData.start;
 
@@ -168,6 +171,7 @@ export class DialogueManager {
             document.getElementById(id)?.classList.remove('active');
         });
 
+        this._activeStory = inkStory;
         this.setActiveNPC(npc);
         this.setDialogueOpen(true);
 
@@ -233,6 +237,7 @@ export class DialogueManager {
      * @param {Function} onTag
      */
     _stepStory(inkStory, onClose, onTag) {
+        if (!this.isDialogueOpen || inkStory !== this._activeStory) return;
         // Ensure the choices bar is hidden while text lines are still arriving
         this.showChoices(null, () => { });
 

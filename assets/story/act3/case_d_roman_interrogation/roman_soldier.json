@@ -1,6 +1,26 @@
 {
   "start": {
     "content": "I've served in Judea for three years. This Jesus... He's different from the usual rabble we deal with.",
-    "choices": []
+    "choices": [],
+    "steps": [
+      {
+        "text": "I've served in Judea for three years. This Jesus... He's different from the usual rabble we deal with.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "divert": "DONE",
+        "condition": {
+          "all": []
+        }
+      }
+    ]
+  },
+  "_meta": {
+    "schema": 2,
+    "entry": "start",
+    "variables": {},
+    "revision": "3499d71c3209c6c2"
   }
 }

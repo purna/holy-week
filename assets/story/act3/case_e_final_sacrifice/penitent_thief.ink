@@ -1,105 +1,37 @@
-// ============================================================
-// STORY: Dismas (The Penitent Thief)
-// CASE: crucifixion_site (act3CaseE — The Final Sacrifice)
-// NPC ID: penitent_thief
-// UNLOCKS: crucified_with_thieves, crucifiers_forgiven
-// REVEALS PROPHECY: isaiah_53_12
-// SOURCE: Luke 23:32-33, Luke 23:34, Luke 23:39-43
-// ------------------------------------------------------------
-// BIBLICAL CONTEXT:
-//   Summary: One of the two criminals crucified beside Jesus
-//   rebuked the other for mocking Him, admitted their own guilt,
-//   and asked Jesus to remember him when He came into His kingdom —
-//   receiving the promise, "Today you will be with me in paradise."
-//   Significance: Jesus was crucified between two criminals,
-//   fulfilling Isaiah 53:12's prophecy that the Suffering Servant
-//   would be "numbered with the transgressors," while the thief's
-//   deathbed faith shows salvation offered without any work beyond
-//   belief.
-// ============================================================
-
+// CHARACTER: The penitent criminal. Emotional scene, not a coercive interrogation.
+// SOURCE CONTEXT: Luke 23:32-43. Reconstructed dramatic listening scene.
+// FRAME: At the cross. Questions are quiet prompts, not demands for an extended deposition.
+VAR heard_appeal = false
+VAR heard_promise = false
 -> intro
-
 === intro ===
-* [unlock crucifiers forgiven] -> unlock_crucifiers_forgiven
-* [unlock crucified with thieves] -> unlock_crucified_with_thieves
-A man hangs on the cross to the right of the central beam, his breathing ragged. He turns his head slightly as you approach — still alive enough to notice you, still alive enough to speak.
-
-"Come to gawk? Or come to ask? Everyone else already has their verdict on me. Thief. Numbered with him. Might as well be numbered with him twice, the way they tell it."
-
--> main_hub
-
-=== main_hub ===
-+ [Ask what happened this morning] -> neutral_stage
-+ [Ask about the other two men on the crosses] -> cautious_stage
-+ [Press him about what he said to Jesus] -> pressured_stage
-+ [Ask what he heard Jesus say] -> exposed_stage
-+ [Leave him be] -> repeat_stage
-
-=== neutral_stage ===
 # UNLOCK_EVIDENCE: crucified_with_thieves
 # UNLOCK_EVIDENCE: crucifiers_forgiven
-"They nailed up three crosses that morning. Mine, my friend's, and His — right between us. Made a point of it, putting Him in the middle. Wasn't an accident. The charge sheet listed the three of us together."
-
-* [Continue] -> unlock_crucified_with_thieves
-
-=== cautious_stage ===
-# UNLOCK_EVIDENCE: crucified_with_thieves
-# UNLOCK_EVIDENCE: crucifiers_forgiven
-"At first I mocked Him too. Same as my friend on the other side. 'Aren't you the Messiah? Save yourself — and us, while you're at it.' Cheap talk. When you're dying, you'll say anything, hoping something sticks."
-
-* [Continue] -> main_hub
-
-=== pressured_stage ===
-# UNLOCK_EVIDENCE: crucified_with_thieves
-# UNLOCK_EVIDENCE: crucifiers_forgiven
-"My friend wouldn't let up on Him. Cursing, jeering, same as the crowd below. I told him to stop. 'Don't you fear God? We're getting exactly what we deserve. This man's done nothing wrong.' I don't know why I said it. It just came out true.
-
-~ penitent_confessed = true
-
-* [Continue] -> main_hub
-
-=== exposed_stage ===
-# UNLOCK_EVIDENCE: crucified_with_thieves
-# UNLOCK_EVIDENCE: crucifiers_forgiven
-"The soldiers were still rolling dice for His clothes when I heard it. He wasn't cursing back at anyone. He was praying — for them. 'Father, forgive them, they don't know what they're doing.'
-
-I asked Him to remember me when He came into His kingdom. Didn't expect an answer, not really. He said I'd be with Him in paradise. Today. Not someday. <i>Today.</i>"
-
-* [Continue] -> unlock_crucifiers_forgiven
-
-=== repeat_stage ===
-# UNLOCK_EVIDENCE: crucified_with_thieves
-# UNLOCK_EVIDENCE: crucifiers_forgiven
-"I was numbered among the criminals, same as Him. I know exactly what that felt like, dying next to Him instead of far from Him."
-
-// ------------------------------------------------------------
-// Evidence unlock knots
-// ------------------------------------------------------------
-* [Finish the interview.] -> conversation_end
-
-=== unlock_crucified_with_thieves ===
-{ not evidence_crucified_with_thieves:
-    ~ evidence_crucified_with_thieves = true
-    # UNLOCK_EVIDENCE: crucified_with_thieves
+His words come with effort. There are three crosses; Jesus is between the two condemned men.
+The man beside Him has little breath to spare.
++ [Listen without interrupting.] -> appeal
++ [Ask quietly what he heard Jesus say.] -> forgiveness
++ [Leave him in peace.] -> closing
+=== forgiveness ===
+He prayed for the people doing this to Him. Asked the Father to forgive them.
+I have been thinking about that. He is suffering here with us, and those are the words He gives them.
++ [Listen.] -> appeal
++ [Leave him in peace.] -> closing
+=== appeal ===
+~ heard_appeal = true
+We are receiving punishment for what we have done. This man has done nothing wrong.
+Jesus, remember me when You come into Your kingdom.
++ [Remain silent and listen.] -> promise
++ [Step back.] -> closing
+=== promise ===
+~ heard_promise = true
+Jesus assures him that today he will be with Him in paradise.
+No further question is needed. The man has made his appeal and received an answer.
++ [Leave him in peace.] -> closing
+=== closing ===
+{ heard_promise:
+You step back, leaving his appeal and Jesus's answer to stand without interrogation.
+- else:
+You step back. His suffering is not an opportunity to press for more.
 }
-* [Finish the interview.] -> conversation_end
-
-=== unlock_crucifiers_forgiven ===
-{ not evidence_crucifiers_forgiven:
-    ~ evidence_crucifiers_forgiven = true
-    # UNLOCK_EVIDENCE: crucifiers_forgiven
-}
-
-
-// ------------------------------------------------------------
-// Variables (declare at top of runtime story bundle if merged
-// into a shared variables file rather than kept per-knot)
-// ------------------------------------------------------------
-VAR evidence_crucified_with_thieves = false
-VAR evidence_crucifiers_forgiven = false
-VAR penitent_confessed = false
-* [Finish the interview.] -> conversation_end
-
-=== conversation_end ===
 -> DONE

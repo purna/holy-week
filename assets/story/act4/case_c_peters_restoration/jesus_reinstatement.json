@@ -4,11 +4,45 @@
     "choices": [
       {
         "text": "We have caught nothing.",
-        "destination": "cast_net"
+        "destination": "cast_net",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Who calls us \"children\" from the shore?",
-        "destination": "identity"
+        "destination": "identity",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "tag": "UNLOCK_EVIDENCE: charcoal_fire",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "tag": "UNLOCK_EVIDENCE: threefold_commission",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"Children\" — the word for grown men who had fished all night — \"have you caught anything?\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Nothing. Not one fish since the light left the sky.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -17,7 +51,25 @@
     "choices": [
       {
         "text": "Cast the net.",
-        "destination": "catch"
+        "destination": "catch",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "\"Cast the net on the right side of the boat, and you will find some.\" [John 21:6]",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "No proof offered first. Only the instruction — the same kind given the first time this net was cast at His word, three years and a lifetime ago.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -26,7 +78,19 @@
     "choices": [
       {
         "text": "It is the Lord!",
-        "destination": "identity"
+        "destination": "identity",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The net does not merely fill. It strains, bulges, drags the boat sideways — a hundred and fifty-three fish, and still it does not tear. [John 21:11]",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -35,7 +99,25 @@
     "choices": [
       {
         "text": "Go to the shore.",
-        "destination": "shore"
+        "destination": "shore",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "John says it first, quietly, almost to himself. \"It is the Lord.\" [John 21:7]",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Peter does not wait for the boat. He ties his outer garment around him and goes into the water.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -44,11 +126,39 @@
     "choices": [
       {
         "text": "Sit and eat.",
-        "destination": "restoration"
+        "destination": "restoration",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Why a fire, of all things?",
-        "destination": "fire_meaning"
+        "destination": "fire_meaning",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "A charcoal fire burns on the sand. Fish already laid on the coals. Bread beside it.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"Bring some of the fish you have just caught... Come and have breakfast.\" [John 21:10, 12]",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "No question yet about the water that night, or the courtyard three nights before. Feed them first.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -57,20 +167,66 @@
     "choices": [
       {
         "text": "Continue.",
-        "destination": "restoration"
+        "destination": "restoration",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "There was another fire. A courtyard, three nights past, where a servant girl asked a question and a man denied he ever knew Me. [John 18:18, 25-27]",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "That fire has not been forgotten. This one was built on purpose.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "restoration": {
-    "content": "# UNLOCK_EVIDENCE: charcoal_fire\n# UNLOCK_EVIDENCE: threefold_commission\nWhen they have eaten, the question turns to Simon Peter. Not to the group. To him.\n\"Simon, son of John, do you love Me more than these?\" [John 21:15]\nIt does not accuse. It waits.",
+    "content": "When they have eaten, the question turns to Simon Peter. Not to the group. To him.\n\"Simon, son of John, do you love Me more than these?\" [John 21:15]\nIt does not accuse. It waits.",
     "choices": [
       {
         "text": "What does Peter answer?",
-        "destination": "peter_answer"
+        "destination": "peter_answer",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Feed my lambs...",
-        "destination": "feeding"
+        "destination": "feeding",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "When they have eaten, the question turns to Simon Peter. Not to the group. To him.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"Simon, son of John, do you love Me more than these?\" [John 21:15]",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "It does not accuse. It waits.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -79,7 +235,37 @@
     "choices": [
       {
         "text": "Three questions. Three answers. Three commissions.",
-        "destination": "feeding"
+        "destination": "feeding",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "\"Yes, Lord; You know that I love You.\" \"Feed My lambs.\" [John 21:15]",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Again: \"Simon, son of John, do you love Me?\" \"Yes, Lord; You know that I love You.\" \"Tend My sheep.\" [John 21:16]",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "A third time — and the word changes. Not the love that holds nothing back, but the word Peter himself has been using all along: the ordinary love of a friend. Peter is grieved. He understands, at last, that he is being met on his own terms, not accused on someone else's.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"Lord, You know all things; You know that I love You.\" \"Feed My sheep.\" [John 21:17]",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -87,13 +273,69 @@
     "content": "Three denials, spoken beside a fire, in the dark, to strangers who meant nothing to him. Three affirmations, spoken beside a fire, in the daylight, to the One who means everything.\nThe wound and the healing share the same shape.\n\"Follow Me.\" [John 21:19]\nThe same two words that began it all, on this same water, three years before.",
     "choices": [
       {
-        "text": "Continue.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Three denials, spoken beside a fire, in the dark, to strangers who meant nothing to him. Three affirmations, spoken beside a fire, in the daylight, to the One who means everything.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "The wound and the healing share the same shape.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"Follow Me.\" [John 21:19]",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "The same two words that began it all, on this same water, three years before.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "closing": {
     "content": "No explanation was demanded for the failure. Only love, three times — and a flock built on the answer.\nThe tomb is empty. The Shepherd who was struck lives. [Zechariah 13:7] And the sheep who scattered — Simon first among them — is sent now to gather others. [Ezekiel 34:11-16]",
-    "choices": []
+    "choices": [],
+    "steps": [
+      {
+        "text": "No explanation was demanded for the failure. Only love, three times — and a flock built on the answer.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "The tomb is empty. The Shepherd who was struck lives. [Zechariah 13:7] And the sheep who scattered — Simon first among them — is sent now to gather others. [Ezekiel 34:11-16]",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "divert": "DONE",
+        "condition": {
+          "all": []
+        }
+      }
+    ]
+  },
+  "_meta": {
+    "schema": 2,
+    "entry": "start",
+    "variables": {},
+    "revision": "5b4f5080ed4afbec"
   }
 }

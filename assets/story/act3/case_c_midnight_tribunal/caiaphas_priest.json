@@ -4,27 +4,87 @@
     "choices": [
       {
         "text": "How did you begin questioning Him?",
-        "destination": "questioning"
+        "destination": "questioning",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "What charges did you bring?",
-        "destination": "charges"
+        "destination": "charges",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "What did you know about trials at night?",
-        "destination": "illegal_trial"
+        "destination": "illegal_trial",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Did you fear the crowd's reaction?",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Did they strike Him?",
-        "destination": "stuck"
+        "destination": "stuck",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "tag": "UNLOCK_EVIDENCE: evidence_illegal_proceedings",
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing"
+        "tag": "UNLOCK_EVIDENCE: evidence_silence_under_pressure",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "tag": "UNLOCK_EVIDENCE: evidence_self_declaration",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "tag": "UNLOCK_EVIDENCE: evidence_daniel_vision",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "tag": "UNLOCK_EVIDENCE: evidence_blasphemy_charge",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "tag": "UNLOCK_EVIDENCE: evidence_sanhedrin_verdict",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "I am Joseph ben Caiaphas. High Priest since the eighteenth year of Tiberius. In all my years studying Torah, in all my seasons judging disputes, I have never encountered the like of this Nazarene. The Sanhedrin convened at midnight -- not proper procedure under the Mosaic Code, but the hour demanded urgency. By dawn, the Passover crowds would stir, and we could not allow the temple courts to be filled with His voice.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -33,36 +93,64 @@
     "choices": [
       {
         "text": "You knew it was illegal.",
-        "destination": "knew_illegal"
+        "destination": "knew_illegal",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The urgency was real.",
-        "destination": "urgency_real"
+        "destination": "urgency_real",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "The procedure was ignored.",
-        "destination": "closing"
-      },
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "Conclude.",
-        "destination": "closing"
+        "text": "The Mishnah is clear: capital cases must be heard in daylight, in the Hall of the Sanhedrin, on weekdays, not on the eve of Passover. We violated every procedural safeguard the scribes had established over centuries. But what choice did we have? The people were beginning to believe.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "knew_illegal": {
-    "content": "I knew it was illegal. The Great Sanhedrin -- seventy-one judges representing Israel -- cannot convene at night for capital cases. The Talmud teaches that such trials are invalid and must be repeated. But I had calculated -- the shorter the delay, the greater the chance of controlling the outcome.\n# UNLOCK_EVIDENCE: evidence_illegal_proceedings",
+    "content": "I knew it was illegal. The Great Sanhedrin -- seventy-one judges representing Israel -- cannot convene at night for capital cases. The Talmud teaches that such trials are invalid and must be repeated. But I had calculated -- the shorter the delay, the greater the chance of controlling the outcome.",
     "choices": [
       {
         "text": "The calculation was political.",
-        "destination": "calculation_political"
+        "destination": "calculation_political",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "The risk was worth it.",
-        "destination": "closing"
-      },
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "Conclude.",
-        "destination": "closing"
+        "text": "I knew it was illegal. The Great Sanhedrin -- seventy-one judges representing Israel -- cannot convene at night for capital cases. The Talmud teaches that such trials are invalid and must be repeated. But I had calculated -- the shorter the delay, the greater the chance of controlling the outcome.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -70,12 +158,20 @@
     "content": "The calculation was political. Every day we delayed gave the teachers of the law more time to spread the story of Lazarus -- the man who had been dead four days and now walked alive. If the crowds in Bethany reached Jerusalem before we acted, the entire city would erupt.",
     "choices": [
       {
-        "text": "The Lazarus event was dangerous.",
-        "destination": "closing"
-      },
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "The timing was critical.",
-        "destination": "closing"
+        "text": "The calculation was political. Every day we delayed gave the teachers of the law more time to spread the story of Lazarus -- the man who had been dead four days and now walked alive. If the crowds in Bethany reached Jerusalem before we acted, the entire city would erupt.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -84,15 +180,27 @@
     "choices": [
       {
         "text": "The political calculation.",
-        "destination": "political_calc"
+        "destination": "political_calc",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "The Daniel prophecy.",
-        "destination": "closing"
-      },
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "Conclude.",
-        "destination": "closing"
+        "text": "The urgency was real -- and I must confess, it came from me. I had been thinking. Not about Torah. Not about law. About my own position, my own survival. The Roman eagle over Jerusalem's walls, the tax collectors' ledgers filling with the Temple's wealth. If this man's influence grew, the Sanhedrin's authority would be swept away.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -101,11 +209,27 @@
     "choices": [
       {
         "text": "The Roman response.",
-        "destination": "roman_response"
+        "destination": "roman_response",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "The pressure mounted.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The political calculation was unavoidable. The Roman administration tolerated Jewish religious customs but not political rivals. Jesus disciples spoke of His kingdom -- a word the Romans understood as \"republic.\" A king was a threat to Caesar's peace.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -114,15 +238,35 @@
     "choices": [
       {
         "text": "To Pilate with Him.",
-        "destination": "next_steps"
+        "destination": "next_steps",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The Temple charge.",
-        "destination": "temple_charge"
+        "destination": "temple_charge",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The Roman response would be swift. Pilate had no love for Jewish theological debates. But political charges would stick. King of the Jews. Rival to Caesar. Tax refusal. These were the stones that would break the silence.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -131,11 +275,27 @@
     "choices": [
       {
         "text": "The twisting began.",
-        "destination": "twisting_begin"
+        "destination": "twisting_begin",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "The foundation stones.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The Temple charge was the most useful fiction -- \"Destroy this temple, and in three days I will raise it up.\" Twisted from John's Gospel, from the temple of His body. But the people would hear \"Temple\" and think stones. The Romans would hear \"destruction\" and think rebellion.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -144,15 +304,27 @@
     "choices": [
       {
         "text": "The contradictions mattered.",
-        "destination": "contradictions"
+        "destination": "contradictions",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "The truth emerged.",
-        "destination": "closing"
-      },
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "Conclude.",
-        "destination": "closing"
+        "text": "The twisting began immediately. The false witnesses tried to frame His words about the Temple's destruction as treason. But they could not agree on the specifics. One claimed He said it about Herod temple. Another about His own body. Their contradiction undermined their case.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -160,16 +332,20 @@
     "content": "In a capital case, testimony must be consistent. The Mishnah records: a single false witness invalidates the entire proceeding. When Jesus refused to answer and simply gazed at the high priest, the false witnesses knew their testimony was void.",
     "choices": [
       {
-        "text": "The law was honored.",
-        "destination": "closing"
-      },
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "The silence won.",
-        "destination": "closing"
-      },
-      {
-        "text": "Conclude.",
-        "destination": "closing"
+        "text": "In a capital case, testimony must be consistent. The Mishnah records: a single false witness invalidates the entire proceeding. When Jesus refused to answer and simply gazed at the high priest, the false witnesses knew their testimony was void.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -178,15 +354,35 @@
     "choices": [
       {
         "text": "What did He say to that?",
-        "destination": "jesus_speaks"
+        "destination": "jesus_speaks",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Why the formal adjuration?",
-        "destination": "formal_adjure"
+        "destination": "formal_adjure",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The witnesses had failed.",
-        "destination": "witness_failure"
+        "destination": "witness_failure",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "I began as the Law prescribes. The Mishnah teaches that a capital case begins with a solemn adjuration. \"By the holy name of the living God,\" I said, \"I adjure you to tell us whether you are the Christ, the Son of God.\" The oil lamps flickered, and the room fell utterly still. No false witness had appeared at dawn that day -- they contradicted each other on the third hour.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -195,32 +391,56 @@
     "choices": [
       {
         "text": "The silence was strategic.",
-        "destination": "strategic_silence"
+        "destination": "strategic_silence",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "The witnesses were coached.",
-        "destination": "closing"
-      },
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "Conclude.",
-        "destination": "closing"
+        "text": "The witnesses had failed. Two men stepped forward and said the same thing -- \"We heard Him say, 'I will destroy this temple made with hands, and in three days I will build another without hands.' But they contradicted each other on the details. Their testimony was invalid under Deuteronomy 19.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "strategic_silence": {
-    "content": "The silence was strategic -- not cowardice, not confusion, but the deliberate choice of the suffering servant. Isaiah had described it centuries before: \"He was oppressed, and He also was afflicted; He opened not His mouth.\" Before the shearers, the lamb.\n# UNLOCK_EVIDENCE: evidence_silence_under_pressure",
+    "content": "The silence was strategic -- not cowardice, not confusion, but the deliberate choice of the suffering servant. Isaiah had described it centuries before: \"He was oppressed, and He also was afflicted; He opened not His mouth.\" Before the shearers, the lamb.",
     "choices": [
       {
         "text": "You pressed for an answer.",
-        "destination": "press_answer"
+        "destination": "press_answer",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "The prophecy was alive.",
-        "destination": "closing"
-      },
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "Conclude.",
-        "destination": "closing"
+        "text": "The silence was strategic -- not cowardice, not confusion, but the deliberate choice of the suffering servant. Isaiah had described it centuries before: \"He was oppressed, and He also was afflicted; He opened not His mouth.\" Before the shearers, the lamb.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -229,15 +449,27 @@
     "choices": [
       {
         "text": "He looked directly at you.",
-        "destination": "direct_gaze"
+        "destination": "direct_gaze",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "The answer came at last.",
-        "destination": "closing"
-      },
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "Conclude.",
-        "destination": "closing"
+        "text": "I pressed -- as a high priest must. The Law demands a response when God's name is invoked in adjuration. No Israelite can hear \"I adjure you by the living God\" and remain silent. The adjuration carries the weight of heaven itself.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -246,45 +478,93 @@
     "choices": [
       {
         "text": "The declaration.",
-        "destination": "jesus_speaks"
+        "destination": "jesus_speaks",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "The weight of the moment.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "He looked directly at me -- not at my accusers, not at the false witnesses, but at me, the high priest of Israel. And in that gaze, I saw recognition of something written long before either of us was born. He spoke, and the words rang out like temple bells:",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "jesus_speaks": {
-    "content": "\"You have said so,\" He said. \"But I tell you -- in the presence of God I declare to you: From now on you will see the Son of Man seated at the right hand of Power and coming on the clouds of heaven.\" Psalm 110. Daniel 7. All of it converging on this courtroom.\n# UNLOCK_EVIDENCE: evidence_self_declaration",
+    "content": "\"You have said so,\" He said. \"But I tell you -- in the presence of God I declare to you: From now on you will see the Son of Man seated at the right hand of Power and coming on the clouds of heaven.\" Psalm 110. Daniel 7. All of it converging on this courtroom.",
     "choices": [
       {
-        "text": "You had your answer.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The Daniel vision was named.",
-        "destination": "daniel_vision_named"
+        "destination": "daniel_vision_named",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "How did you react?",
-        "destination": "reaction"
+        "destination": "reaction",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "\"You have said so,\" He said. \"But I tell you -- in the presence of God I declare to you: From now on you will see the Son of Man seated at the right hand of Power and coming on the clouds of heaven.\" Psalm 110. Daniel 7. All of it converging on this courtroom.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "daniel_vision_named": {
-    "content": "The Son of Man -- Daniel's vision from the seventh century before Christ. \"One like a son of man... was given dominion and glory and a kingdom.\" I had studied those words in the academies, taught on those verses in the synagogue. And now -- a man from Nazareth was speaking them as His own.\n# UNLOCK_EVIDENCE: evidence_daniel_vision",
+    "content": "The Son of Man -- Daniel's vision from the seventh century before Christ. \"One like a son of man... was given dominion and glory and a kingdom.\" I had studied those words in the academies, taught on those verses in the synagogue. And now -- a man from Nazareth was speaking them as His own.",
     "choices": [
       {
         "text": "The vision was specific.",
-        "destination": "vision_specific"
+        "destination": "vision_specific",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "The claim was impossible.",
-        "destination": "closing"
-      },
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "Conclude.",
-        "destination": "closing"
+        "text": "The Son of Man -- Daniel's vision from the seventh century before Christ. \"One like a son of man... was given dominion and glory and a kingdom.\" I had studied those words in the academies, taught on those verses in the synagogue. And now -- a man from Nazareth was speaking them as His own.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -292,37 +572,65 @@
     "content": "The vision was specific -- not vague imagery, but the precise language of Daniel: \"coming on the clouds of heaven\" with \"clouds\" as the very phrase identifying the divine. No human can make that claim without crossing the final boundary.",
     "choices": [
       {
-        "text": "The boundary was crossed.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The verdict was sealed.",
-        "destination": "verdict_sealed"
-      },
+        "destination": "verdict_sealed",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "Conclude.",
-        "destination": "closing"
+        "text": "The vision was specific -- not vague imagery, but the precise language of Daniel: \"coming on the clouds of heaven\" with \"clouds\" as the very phrase identifying the divine. No human can make that claim without crossing the final boundary.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "verdict_sealed": {
-    "content": "The verdict was sealed in that moment. Blasphemy -- the most sacred of charges. Under the Mosaic Code, the high priest could not show mercy. The court had been convened, the Law had been invoked, and the verdict was unavoidable.\n# UNLOCK_EVIDENCE: evidence_blasphemy_charge",
+    "content": "The verdict was sealed in that moment. Blasphemy -- the most sacred of charges. Under the Mosaic Code, the high priest could not show mercy. The court had been convened, the Law had been invoked, and the verdict was unavoidable.",
     "choices": [
       {
         "text": "Then to Pilate.",
-        "destination": "next_steps"
+        "destination": "next_steps",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Did you fear His words?",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The Sanhedrin's decision.",
-        "destination": "sanhedrin_decision"
-      },
+        "destination": "sanhedrin_decision",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "Conclude.",
-        "destination": "closing"
+        "text": "The verdict was sealed in that moment. Blasphemy -- the most sacred of charges. Under the Mosaic Code, the high priest could not show mercy. The court had been convened, the Law had been invoked, and the verdict was unavoidable.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -331,11 +639,27 @@
     "choices": [
       {
         "text": "The vote reflected division.",
-        "destination": "vote_division"
+        "destination": "vote_division",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The urgency was real.",
-        "destination": "urgency_real"
+        "destination": "urgency_real",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The Sanhedrin -- seventy-one judges -- was divided. Some argued for leniency. Others for immediate delivery to Rome. The vote was close -- forty-three to twenty-eight -- until the self-declaration sealed it. Blasphemy under the Mosaic Code was a capital offense.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -343,16 +667,20 @@
     "content": "The vote reflected division. Some argued He was a prophet, others a deceiver. Some saw the miracles, others saw manipulation. Caiaphas himself had spoken earlier that week -- at the council meeting where Nicodemus had pressed for dialogue. We had argued for a sign. Jesus refused.",
     "choices": [
       {
-        "text": "The sign was refused.",
-        "destination": "closing"
-      },
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "The council was split.",
-        "destination": "closing"
-      },
-      {
-        "text": "Conclude.",
-        "destination": "closing"
+        "text": "The vote reflected division. Some argued He was a prophet, others a deceiver. Some saw the miracles, others saw manipulation. Caiaphas himself had spoken earlier that week -- at the council meeting where Nicodemus had pressed for dialogue. We had argued for a sign. Jesus refused.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -361,15 +689,35 @@
     "choices": [
       {
         "text": "The verdict was sealed.",
-        "destination": "verdict_sealed"
+        "destination": "verdict_sealed",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "They struck Him.",
-        "destination": "stuck"
+        "destination": "stuck",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The room divided. Some priests tried to speak after Him -- they struck Him with the palm of the hand. One demanded He name the specific time of His return. Another asked if He thought Himself greater than Abraham or the prophets. But His statement had already done what a hundred witnesses could not.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -378,15 +726,27 @@
     "choices": [
       {
         "text": "The strikes could not unname Him.",
-        "destination": "strikes_unname"
+        "destination": "strikes_unname",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "The voice did not retreat.",
-        "destination": "closing"
-      },
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "Conclude.",
-        "destination": "closing"
+        "text": "They struck Him. Slapped Him. Said, \"Who is it that struck You?\" Each blow was an attempt to silence the voice that spoke of clouds and power and judgment. Each blow was a failure.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -395,32 +755,56 @@
     "choices": [
       {
         "text": "The tearing of robes.",
-        "destination": "robe_tearing"
+        "destination": "robe_tearing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "The admission was made.",
-        "destination": "closing"
-      },
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "Conclude.",
-        "destination": "closing"
+        "text": "The strikes could not unname Him. If anything, the more they struck, the more certain the words became. The high priest tore His robes. The soldiers struck His face. The crowd mocked. And the Son of Man was named in the council chamber.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "robe_tearing": {
-    "content": "The tearing of robes -- kriah -- the high priest's acknowledgment of blasphemy. In the Talmud, they discuss this moment: \"When the high priest tore his garments, the Shekhinah departed from the Temple.\" The tearing was not just acknowledgment. It was farewell.\n# UNLOCK_EVIDENCE: evidence_sanhedrin_verdict",
+    "content": "The tearing of robes -- kriah -- the high priest's acknowledgment of blasphemy. In the Talmud, they discuss this moment: \"When the high priest tore his garments, the Shekhinah departed from the Temple.\" The tearing was not just acknowledgment. It was farewell.",
     "choices": [
       {
         "text": "The Shekhinah's departure.",
-        "destination": "shekhinah_departure"
+        "destination": "shekhinah_departure",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "The glory was rejected.",
-        "destination": "closing"
-      },
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "Conclude.",
-        "destination": "closing"
+        "text": "The tearing of robes -- kriah -- the high priest's acknowledgment of blasphemy. In the Talmud, they discuss this moment: \"When the high priest tore his garments, the Shekhinah departed from the Temple.\" The tearing was not just acknowledgment. It was farewell.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -428,16 +812,20 @@
     "content": "The Shekhinah departed -- Isaiah spoke of it: \"The glory of the LORD departs from the temple.\" The sanctity that had dwelt for a thousand years was gone. Not in defeat, but in triumph. The veil was rent; the glory was released.",
     "choices": [
       {
-        "text": "The victory was won.",
-        "destination": "closing"
-      },
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "The way was made.",
-        "destination": "closing"
-      },
-      {
-        "text": "Conclude.",
-        "destination": "closing"
+        "text": "The Shekhinah departed -- Isaiah spoke of it: \"The glory of the LORD departs from the temple.\" The sanctity that had dwelt for a thousand years was gone. Not in defeat, but in triumph. The veil was rent; the glory was released.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -446,11 +834,27 @@
     "choices": [
       {
         "text": "The choice was made.",
-        "destination": "choice_made"
+        "destination": "choice_made",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "The prophecy fulfilled.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "From the council chamber to the praetorium. I carried the sentence of death folded inside the charge of insurrection. The guards took Him away. By dawn, the city would need to choose between Caesar prisoner and the Galilean prophet.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -459,15 +863,27 @@
     "choices": [
       {
         "text": "Pilate's dilemma.",
-        "destination": "pilates_dilemma"
+        "destination": "pilates_dilemma",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "The irony deepens.",
-        "destination": "closing"
-      },
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "Conclude.",
-        "destination": "closing"
+        "text": "The choice was made -- Barabbas or the Lamb. The murderer or the Messiah. The crowd, whipped into a frenzy by the priests, chose the murderer. Pilate, finding no fault in Him, offered to release Jesus -- but they shouted, \"Crucify Him!\"",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -475,12 +891,20 @@
     "content": "Pilate's dilemma -- and mine. We had done what we believed was necessary. The Sanhedrin's verdict was sealed in blood, recorded in the official register. \"Jesus of Nazareth, King of the Jews,\" was the charge. Yet something about the proceedings haunted us both.",
     "choices": [
       {
-        "text": "The haunting.",
-        "destination": "closing"
-      },
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "The weight of decision.",
-        "destination": "closing"
+        "text": "Pilate's dilemma -- and mine. We had done what we believed was necessary. The Sanhedrin's verdict was sealed in blood, recorded in the official register. \"Jesus of Nazareth, King of the Jews,\" was the charge. Yet something about the proceedings haunted us both.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -489,15 +913,35 @@
     "choices": [
       {
         "text": "And He answered.",
-        "destination": "jesus_speaks"
+        "destination": "jesus_speaks",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The divine name.",
-        "destination": "divine_name_invoked"
+        "destination": "divine_name_invoked",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The adjuration was not casual. \"I adjure you by the living God\" -- these are the words of a priest invoking the Shem HaMephorash, the ineffable name of God. No Israelite in their right mind could hear the divine name invoked and refuse to answer.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -506,15 +950,27 @@
     "choices": [
       {
         "text": "The roles reversed.",
-        "destination": "roles_reverse"
+        "destination": "roles_reverse",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "The judgment was mutual.",
-        "destination": "closing"
-      },
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "Conclude.",
-        "destination": "closing"
+        "text": "The divine name -- the Tetragrammaton, pronounced only once a year by the high priest on the Day of Atonement. To invoke it in a criminal proceeding was to bring the sanctity of the temple into the secular realm.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -523,15 +979,27 @@
     "choices": [
       {
         "text": "The tearing of robes.",
-        "destination": "robe_tearing"
+        "destination": "robe_tearing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "The weight of truth.",
-        "destination": "closing"
-      },
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "Conclude.",
-        "destination": "closing"
+        "text": "The roles were reversed. I, the anointed high priest, was questioning the accused. And He, the accused, stood in the place of the divine judge. \"You have said so\" -- the Son of Man was naming Himself in the council chamber.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -540,15 +1008,27 @@
     "choices": [
       {
         "text": "Political charges.",
-        "destination": "political"
+        "destination": "political",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "The Temple deception.",
-        "destination": "closing"
-      },
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "The blasphemy was real.",
-        "destination": "closing"
+        "text": "I brought the charge of blasphemy under the Mosaic Code -- the most sacred of all offenses. But the Sanhedrin's authority ended at the edge of the executioner's block. Rome reserves the sword. So I presented political charges as well.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -557,11 +1037,27 @@
     "choices": [
       {
         "text": "Did He respond to the charges?",
-        "destination": "jesus_responds_to_political"
+        "destination": "jesus_responds_to_political",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "What did Pilate hear?",
-        "destination": "next_steps"
+        "destination": "next_steps",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "King of the Jews. A rival claimant to Caesar's peace. Tax refusal. Incitement to rebellion. These were the stones the Romans understood. The blasphemy charge -- the true offense -- was the weapon we could not publicly wield.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -570,11 +1066,27 @@
     "choices": [
       {
         "text": "The answer was cosmic.",
-        "destination": "cosmic_answer"
+        "destination": "cosmic_answer",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "The verdict was unchanged.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "\"My kingdom is not of this world.\" He answered the political charge with a kingdom that transcends all categories. \"If my kingdom were of this world, my servants would fight.\" But He would not fight. He would not defend. He would not call down legions.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -582,21 +1094,45 @@
     "content": "The answer was cosmic -- a kingdom not of this world. He did not need to fight. The temple would fall. The city would burn. The people would disperse. And in exile, they would remember what He had said. \"My kingdom is not of this world\" -- and yet it would outlast Rome.",
     "choices": [
       {
-        "text": "The kingdom endures.",
-        "destination": "closing"
-      },
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "The testimony continues.",
-        "destination": "closing"
-      },
-      {
-        "text": "Conclude.",
-        "destination": "closing"
+        "text": "The answer was cosmic -- a kingdom not of this world. He did not need to fight. The temple would fall. The city would burn. The people would disperse. And in exile, they would remember what He had said. \"My kingdom is not of this world\" -- and yet it would outlast Rome.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "closing": {
-    "content": "I have recorded in the official register that Jesus of Nazareth claimed to be the Son of Man from Daniel's vision. Whether that record will outlast the Temple -- only the Son of Man knows. The Temple that stood here for four centuries fell to the armies of Rome in the end. But the record remains. The Word remains. The testimony remains.\n# UNLOCK_EVIDENCE: evidence_self_declaration",
-    "choices": []
+    "content": "I have recorded in the official register that Jesus of Nazareth claimed to be the Son of Man from Daniel's vision. Whether that record will outlast the Temple -- only the Son of Man knows. The Temple that stood here for four centuries fell to the armies of Rome in the end. But the record remains. The Word remains. The testimony remains.",
+    "choices": [],
+    "steps": [
+      {
+        "text": "I have recorded in the official register that Jesus of Nazareth claimed to be the Son of Man from Daniel's vision. Whether that record will outlast the Temple -- only the Son of Man knows. The Temple that stood here for four centuries fell to the armies of Rome in the end. But the record remains. The Word remains. The testimony remains.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "divert": "DONE",
+        "condition": {
+          "all": []
+        }
+      }
+    ]
+  },
+  "_meta": {
+    "schema": 2,
+    "entry": "start",
+    "variables": {},
+    "revision": "d8d665cd51561805"
   }
 }

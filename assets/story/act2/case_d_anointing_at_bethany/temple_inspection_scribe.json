@@ -4,31 +4,85 @@
     "choices": [
       {
         "text": "What does your data tell you about the crowds?",
-        "destination": "data_analysis"
+        "destination": "data_analysis",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Are you tracking the man, Lazarus?",
-        "destination": "tracking_lazarus"
+        "destination": "tracking_lazarus",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "What is the official Temple response?",
-        "destination": "official_response"
+        "destination": "official_response",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "What have you recorded this week regarding the Temple proceedings?",
-        "destination": "temple_proceedings"
+        "destination": "temple_proceedings",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Show me the Passover lamb records.",
-        "destination": "lamb_records"
+        "destination": "lamb_records",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "What of the questioning records?",
-        "destination": "questioning_records"
+        "destination": "questioning_records",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing_scribe"
+        "text": "Finish the interview.",
+        "destination": "closing_scribe",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "tag": "UNLOCK_EVIDENCE: inspection_notes",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "tag": "UNLOCK_EVIDENCE: lamb_records",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "tag": "UNLOCK_EVIDENCE: fig_leaf_withered",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "I am Hillel, a junior scribe assigned to the Court of the Gentiles, and alongside me, Maluch tracks the logistics of the district. My hands are stained with ink from inspection ledgers and dust from the court. What do you require?",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -37,11 +91,27 @@
     "choices": [
       {
         "text": "So it's just a numbers problem to you?",
-        "destination": "numbers_problem"
+        "destination": "numbers_problem",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing_scribe"
+        "text": "Finish the interview.",
+        "destination": "closing_scribe",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "It tells me an unsanctioned event in Bethany has created a significant public order challenge. We have documented a surge in foot traffic, a rise in seditious chatter, and a statistical probability of civil unrest. My job is to report the numbers, not interpret the cause.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -50,15 +120,35 @@
     "choices": [
       {
         "text": "What protocol, exactly, gets enacted for a threshold like this?",
-        "destination": "lazarus_protocol"
+        "destination": "lazarus_protocol",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing_scribe"
+        "text": "Finish the interview.",
+        "destination": "closing_scribe",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Continue to ledgers.",
-        "destination": "start"
+        "text": "Return to my questions.",
+        "destination": "start",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Everything is a numbers problem. Passion is unpredictable. Data is not. When the numbers exceed a certain threshold, protocols are enacted. It is simple risk management.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -67,11 +157,27 @@
     "choices": [
       {
         "text": "You call a living man an 'asset'?",
-        "destination": "asset_perspective"
+        "destination": "asset_perspective",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing_scribe"
+        "text": "Finish the interview.",
+        "destination": "closing_scribe",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The 'Bethany asset' is a focal point for this anomaly. His public appearances correlate directly with spikes in crowd density. From a security standpoint, he is a catalyst for instability. Whether he was dead or simply... unavailable... is irrelevant to my report.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -80,11 +186,27 @@
     "choices": [
       {
         "text": "\"Contained\" meaning what, precisely?",
-        "destination": "asset_contained"
+        "destination": "asset_contained",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Continue to ledgers.",
-        "destination": "start"
+        "text": "Return to my questions.",
+        "destination": "start",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "He is an element in a complex security equation. His status generates crowds that threaten the peace. That makes him an asset to be managed or a liability to be contained.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -92,12 +214,28 @@
     "content": "Meaning the council has stopped debating whether the miracle happened and started debating what to do about the man it happened to. I have seen the draft language cross my own desk, Scribe. It does not use soft words like \"monitor\" anymore.",
     "choices": [
       {
-        "text": "Conclude.",
-        "destination": "closing_scribe"
+        "text": "Finish the interview.",
+        "destination": "closing_scribe",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "What words does it use?",
-        "destination": "reveal_plot"
+        "destination": "reveal_plot",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Meaning the council has stopped debating whether the miracle happened and started debating what to do about the man it happened to. I have seen the draft language cross my own desk, Scribe. It does not use soft words like \"monitor\" anymore.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -106,15 +244,35 @@
     "choices": [
       {
         "text": "\"Containment.\" That's a careful word.",
-        "destination": "official_deeper"
+        "destination": "official_deeper",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Continue to ledgers.",
-        "destination": "start"
+        "text": "Return to my questions.",
+        "destination": "start",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing_scribe"
+        "text": "Finish the interview.",
+        "destination": "closing_scribe",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The council acts on verified intelligence. My reports are one part of that. The data suggests a need for proactive containment to mitigate risk to public order and Temple security. Final policy is above my pay grade.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -123,7 +281,19 @@
     "choices": [
       {
         "text": "Say it plainly. What does the memo actually recommend?",
-        "destination": "reveal_plot"
+        "destination": "reveal_plot",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Careful is my job description, Scribe. I log numbers. I do not authorize policy. But I have drafted enough containment memos to recognize the shape of one that has stopped being about crowd control and started being about a specific individual. I am not required to have an opinion on that distinction. I am required to file the memo.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -132,457 +302,1033 @@
     "choices": [
       {
         "text": "State it.",
-        "destination": "reveal_plot"
+        "destination": "reveal_plot",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing_scribe"
+        "text": "Finish the interview.",
+        "destination": "closing_scribe",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The threshold protocol for a security concern this size has three tiers: monitor, disperse, or remove the variable entirely. I log which tier gets recommended. I do not choose it. But I can tell you which tier the Bethany file has been escalated to this week, if you are prepared to hear it stated without the softening.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "reveal_plot": {
-    "content": "Remove the variable. That is the language in the draft, Scribe, whatever euphemism you want to dress it in afterward. The council has moved past debating Jesus of Nazareth. It will likely be written down plainly enough one day: \"the chief priests took counsel that they might put Lazarus also to death, because on his account many of the Jews were going away and believing in Jesus.\" I did not invent that sentence. I only stopped being able to file this as a mere numbers problem once I understood who the memo was actually written about — a man whose only offense was staying alive after everyone had already watched him die once. Your own prophets wrote that death itself would one day be swallowed up forever. I did not expect to find myself logging the paperwork for the men trying to feed it one more meal first.\n# UNLOCK_EVIDENCE: inspection_notes\n# UNLOCK_EVIDENCE: lamb_records",
+    "content": "Remove the variable. That is the language in the draft, Scribe, whatever euphemism you want to dress it in afterward. The council has moved past debating Jesus of Nazareth. It will likely be written down plainly enough one day: \"the chief priests took counsel that they might put Lazarus also to death, because on his account many of the Jews were going away and believing in Jesus.\" I did not invent that sentence. I only stopped being able to file this as a mere numbers problem once I understood who the memo was actually written about — a man whose only offense was staying alive after everyone had already watched him die once. Your own prophets wrote that death itself would one day be swallowed up forever. I did not expect to find myself logging the paperwork for the men trying to feed it one more meal first.",
     "choices": [
       {
-        "text": "Return to the court records.",
-        "destination": "start"
+        "text": "Return to my questions.",
+        "destination": "start",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Remove the variable. That is the language in the draft, Scribe, whatever euphemism you want to dress it in afterward. The council has moved past debating Jesus of Nazareth. It will likely be written down plainly enough one day: \"the chief priests took counsel that they might put Lazarus also to death, because on his account many of the Jews were going away and believing in Jesus.\" I did not invent that sentence. I only stopped being able to file this as a mere numbers problem once I understood who the memo was actually written about — a man whose only offense was staying alive after everyone had already watched him die once. Your own prophets wrote that death itself would one day be swallowed up forever. I did not expect to find myself logging the paperwork for the men trying to feed it one more meal first.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "temple_proceedings": {
-    "content": "The Temple proceedings this week have been extraordinary. I have documented four separate factions challenging the Galilean's authority, each using different legal precedents, each leaving without an answer.\n# UNLOCK_EVIDENCE: inspection_notes",
+    "content": "The Temple proceedings this week have been extraordinary. I have documented four separate factions challenging the Galilean's authority, each using different legal precedents, each leaving without an answer.",
     "choices": [
       {
         "text": "The factions were coordinated.",
-        "destination": "factions_coordinated"
+        "destination": "factions_coordinated",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "None could trap Him.",
-        "destination": "none_trapped"
+        "destination": "none_trapped",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The crowd's reaction?",
-        "destination": "crowd_reaction_scribe"
+        "destination": "crowd_reaction_scribe",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing_scribe"
+        "text": "Finish the interview.",
+        "destination": "closing_scribe",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The Temple proceedings this week have been extraordinary. I have documented four separate factions challenging the Galilean's authority, each using different legal precedents, each leaving without an answer.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "factions_coordinated": {
-    "content": "The factions were coordinated -- chief priests, Pharisees, Sadducees, Herodians. Each brought a different angle, a different scripture, a different legal precedent. They approached it like seasoned prosecutors. But their case collapsed repeatedly.\n# UNLOCK_EVIDENCE: inspection_notes",
+    "content": "The factions were coordinated -- chief priests, Pharisees, Sadducees, Herodians. Each brought a different angle, a different scripture, a different legal precedent. They approached it like seasoned prosecutors. But their case collapsed repeatedly.",
     "choices": [
       {
         "text": "The collapses were recorded.",
-        "destination": "collapses_recorded"
+        "destination": "collapses_recorded",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "What went wrong for them?",
-        "destination": "went_wrong"
+        "destination": "went_wrong",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The factions were coordinated -- chief priests, Pharisees, Sadducees, Herodians. Each brought a different angle, a different scripture, a different legal precedent. They approached it like seasoned prosecutors. But their case collapsed repeatedly.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "went_wrong": {
-    "content": "They assumed legalistic entrapment would work against the author of the Law. Every trap they laid was built on a false dichotomy that He effortlessly bypassed by shifting the paradigm from transactional legality to eternal truth.\n# UNLOCK_EVIDENCE: inspection_notes",
+    "content": "They assumed legalistic entrapment would work against the author of the Law. Every trap they laid was built on a false dichotomy that He effortlessly bypassed by shifting the paradigm from transactional legality to eternal truth.",
     "choices": [
       {
         "text": "Return to proceedings.",
-        "destination": "temple_proceedings"
+        "destination": "temple_proceedings",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing_scribe"
+        "text": "Finish the interview.",
+        "destination": "closing_scribe",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "They assumed legalistic entrapment would work against the author of the Law. Every trap they laid was built on a false dichotomy that He effortlessly bypassed by shifting the paradigm from transactional legality to eternal truth.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "none_trapped": {
-    "content": "None could trap Him. The Herodians came with their tax question, the Sadducees with their resurrection puzzle, the Pharisees with their law question, the chief priests with their authority challenge. Each question answered in a way that turned the questioner's own weapon against them.\n# UNLOCK_EVIDENCE: inspection_notes",
+    "content": "None could trap Him. The Herodians came with their tax question, the Sadducees with their resurrection puzzle, the Pharisees with their law question, the chief priests with their authority challenge. Each question answered in a way that turned the questioner's own weapon against them.",
     "choices": [
       {
         "text": "The weapons were turned.",
-        "destination": "weapons_turned"
+        "destination": "weapons_turned",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The questions were answered.",
-        "destination": "questions_answered"
+        "destination": "questions_answered",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing_scribe"
+        "text": "Finish the interview.",
+        "destination": "closing_scribe",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "None could trap Him. The Herodians came with their tax question, the Sadducees with their resurrection puzzle, the Pharisees with their law question, the chief priests with their authority challenge. Each question answered in a way that turned the questioner's own weapon against them.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "weapons_turned": {
-    "content": "The weapons were turned instantly. When pressed on tribute to Caesar, the image on the coin settled the debate. When pressed on levirate marriage, the nature of heavenly existence shattered the Sadducees' skepticism.\n# UNLOCK_EVIDENCE: inspection_notes",
+    "content": "The weapons were turned instantly. When pressed on tribute to Caesar, the image on the coin settled the debate. When pressed on levirate marriage, the nature of heavenly existence shattered the Sadducees' skepticism.",
     "choices": [
       {
         "text": "Return to proceedings.",
-        "destination": "temple_proceedings"
+        "destination": "temple_proceedings",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing_scribe"
+        "text": "Finish the interview.",
+        "destination": "closing_scribe",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The weapons were turned instantly. When pressed on tribute to Caesar, the image on the coin settled the debate. When pressed on levirate marriage, the nature of heavenly existence shattered the Sadducees' skepticism.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "questions_answered": {
-    "content": "Every question met its match in divine clarity. The interrogators became the interrogated simply by standing before Him.\n# UNLOCK_EVIDENCE: inspection_notes",
+    "content": "Every question met its match in divine clarity. The interrogators became the interrogated simply by standing before Him.",
     "choices": [
       {
         "text": "Return to proceedings.",
-        "destination": "temple_proceedings"
+        "destination": "temple_proceedings",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Every question met its match in divine clarity. The interrogators became the interrogated simply by standing before Him.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "questioning_records": {
-    "content": "My questioning records span seventeen columns of careful script. The chief priests asked about authority -- He answered about John's baptism. The Pharisees asked about resurrection -- He spoke of Abraham's calling. The Herodians asked about taxes -- He spoke of Caesar and God.\n# UNLOCK_EVIDENCE: inspection_notes",
+    "content": "My questioning records span seventeen columns of careful script. The chief priests asked about authority -- He answered about John's baptism. The Pharisees asked about resurrection -- He spoke of Abraham's calling. The Herodians asked about taxes -- He spoke of Caesar and God.",
     "choices": [
       {
         "text": "The answers were profound.",
-        "destination": "answers_profound"
+        "destination": "answers_profound",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing_scribe"
+        "text": "Finish the interview.",
+        "destination": "closing_scribe",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The record is complete.",
-        "destination": "record_complete"
+        "destination": "record_complete",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "My questioning records span seventeen columns of careful script. The chief priests asked about authority -- He answered about John's baptism. The Pharisees asked about resurrection -- He spoke of Abraham's calling. The Herodians asked about taxes -- He spoke of Caesar and God.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "answers_profound": {
-    "content": "The answers were profound in their simplicity. Not lengthy treatises, not legal citations, but single sentences that reframed the entire question. When asked about resurrection, He did not argue theology -- He simply stated, \"God is not the God of the dead, but of the living.\" A grammatical observation that undermined their entire premise.\n# UNLOCK_EVIDENCE: inspection_notes",
+    "content": "The answers were profound in their simplicity. Not lengthy treatises, not legal citations, but single sentences that reframed the entire question. When asked about resurrection, He did not argue theology -- He simply stated, \"God is not the God of the dead, but of the living.\" A grammatical observation that undermined their entire premise.",
     "choices": [
       {
         "text": "The precision was startling.",
-        "destination": "precision_startling"
+        "destination": "precision_startling",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing_scribe"
+        "text": "Finish the interview.",
+        "destination": "closing_scribe",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The silence followed.",
-        "destination": "silence_followed"
+        "destination": "silence_followed",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The answers were profound in their simplicity. Not lengthy treatises, not legal citations, but single sentences that reframed the entire question. When asked about resurrection, He did not argue theology -- He simply stated, \"God is not the God of the dead, but of the living.\" A grammatical observation that undermined their entire premise.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "precision_startling": {
-    "content": "The precision was startling. It left the scribes and lawyers with nothing further to add to the docket.\n# UNLOCK_EVIDENCE: inspection_notes",
+    "content": "The precision was startling. It left the scribes and lawyers with nothing further to add to the docket.",
     "choices": [
       {
         "text": "Return to records.",
-        "destination": "questioning_records"
+        "destination": "questioning_records",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing_scribe"
+        "text": "Finish the interview.",
+        "destination": "closing_scribe",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The precision was startling. It left the scribes and lawyers with nothing further to add to the docket.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "silence_followed": {
-    "content": "The silence that followed was absolute. No one dared ask Him any more questions after that day.\n# UNLOCK_EVIDENCE: inspection_notes",
+    "content": "The silence that followed was absolute. No one dared ask Him any more questions after that day.",
     "choices": [
       {
         "text": "Return to records.",
-        "destination": "questioning_records"
+        "destination": "questioning_records",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing_scribe"
+        "text": "Finish the interview.",
+        "destination": "closing_scribe",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The silence that followed was absolute. No one dared ask Him any more questions after that day.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "record_complete": {
-    "content": "The record is complete. Every question, every hesitation in the crowd, every glance exchanged between the questioners. I was trained to record details -- dates, names, locations -- but this day required something beyond mere documentation. I felt I was witnessing history being made.\n# UNLOCK_EVIDENCE: inspection_notes",
+    "content": "The record is complete. Every question, every hesitation in the crowd, every glance exchanged between the questioners. I was trained to record details -- dates, names, locations -- but this day required something beyond mere documentation. I felt I was witnessing history being made.",
     "choices": [
       {
         "text": "The history was visible.",
-        "destination": "history_visible"
+        "destination": "history_visible",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The significance was clear.",
-        "destination": "significance_clear"
+        "destination": "significance_clear",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing_scribe"
+        "text": "Finish the interview.",
+        "destination": "closing_scribe",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The record is complete. Every question, every hesitation in the crowd, every glance exchanged between the questioners. I was trained to record details -- dates, names, locations -- but this day required something beyond mere documentation. I felt I was witnessing history being made.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "history_visible": {
-    "content": "The history was visible in the shifting power dynamics of the court. The crowds leaned in; the authorities backed away.\n# UNLOCK_EVIDENCE: inspection_notes",
+    "content": "The history was visible in the shifting power dynamics of the court. The crowds leaned in; the authorities backed away.",
     "choices": [
       {
         "text": "Continue.",
-        "destination": "record_complete"
+        "destination": "record_complete",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing_scribe"
+        "text": "Finish the interview.",
+        "destination": "closing_scribe",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The history was visible in the shifting power dynamics of the court. The crowds leaned in; the authorities backed away.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "significance_clear": {
-    "content": "The significance was clear to anyone willing to look past the ink and parchment: the ultimate authority was standing right there in the Court of the Gentiles.\n# UNLOCK_EVIDENCE: inspection_notes",
+    "content": "The significance was clear to anyone willing to look past the ink and parchment: the ultimate authority was standing right there in the Court of the Gentiles.",
     "choices": [
       {
         "text": "Continue.",
-        "destination": "record_complete"
+        "destination": "record_complete",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing_scribe"
+        "text": "Finish the interview.",
+        "destination": "closing_scribe",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The significance was clear to anyone willing to look past the ink and parchment: the ultimate authority was standing right there in the Court of the Gentiles.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "lamb_records": {
-    "content": "The lamb records -- I keep the official schedules for the Temple's livestock market. Passover lambs are selected on the tenth of Nisan, inspected daily until the fourteenth, and slaughtered at twilight. Each animal marked, each blemish noted, each breath counted. It is a rigorous process.\n# UNLOCK_EVIDENCE: lamb_records",
+    "content": "The lamb records -- I keep the official schedules for the Temple's livestock market. Passover lambs are selected on the tenth of Nisan, inspected daily until the fourteenth, and slaughtered at twilight. Each animal marked, each blemish noted, each breath counted. It is a rigorous process.",
     "choices": [
       {
         "text": "The schedule was precise.",
-        "destination": "schedule_precise"
+        "destination": "schedule_precise",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The inspection was thorough.",
-        "destination": "inspection_thorough"
+        "destination": "inspection_thorough",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing_scribe"
+        "text": "Finish the interview.",
+        "destination": "closing_scribe",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The lamb records -- I keep the official schedules for the Temple's livestock market. Passover lambs are selected on the tenth of Nisan, inspected daily until the fourteenth, and slaughtered at twilight. Each animal marked, each blemish noted, each breath counted. It is a rigorous process.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "schedule_precise": {
-    "content": "The schedule was precise. Ten days of selection, four days of inspection, one night of sacrifice. Same as it has been for centuries. Same as it will be for generations to come. The reliability is the point -- the lamb must be flawless, the record must be unbroken.\n# UNLOCK_EVIDENCE: lamb_records",
+    "content": "The schedule was precise. Ten days of selection, four days of inspection, one night of sacrifice. Same as it has been for centuries. Same as it will be for generations to come. The reliability is the point -- the lamb must be flawless, the record must be unbroken.",
     "choices": [
       {
         "text": "The parallel is unmistakable.",
-        "destination": "parallel_unmistakable"
+        "destination": "parallel_unmistakable",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The pattern is clear.",
-        "destination": "pattern_clear_lamb"
+        "destination": "pattern_clear_lamb",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The schedule was precise. Ten days of selection, four days of inspection, one night of sacrifice. Same as it has been for centuries. Same as it will be for generations to come. The reliability is the point -- the lamb must be flawless, the record must be unbroken.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "parallel_unmistakable": {
-    "content": "The parallel is unmistakable to anyone tracking the dates. The timeline of His arrival in Bethany aligns precisely with the selection of the lamb.\n# UNLOCK_EVIDENCE: lamb_records",
+    "content": "The parallel is unmistakable to anyone tracking the dates. The timeline of His arrival in Bethany aligns precisely with the selection of the lamb.",
     "choices": [
       {
         "text": "Continue.",
-        "destination": "schedule_precise"
+        "destination": "schedule_precise",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing_scribe"
+        "text": "Finish the interview.",
+        "destination": "closing_scribe",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The parallel is unmistakable to anyone tracking the dates. The timeline of His arrival in Bethany aligns precisely with the selection of the lamb.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "pattern_clear_lamb": {
-    "content": "The pattern points directly toward a fulfillment that transcends temple bureaucracy.\n# UNLOCK_EVIDENCE: lamb_records",
+    "content": "The pattern points directly toward a fulfillment that transcends temple bureaucracy.",
     "choices": [
       {
         "text": "Continue.",
-        "destination": "schedule_precise"
+        "destination": "schedule_precise",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing_scribe"
+        "text": "Finish the interview.",
+        "destination": "closing_scribe",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The pattern points directly toward a fulfillment that transcends temple bureaucracy.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "inspection_thorough": {
-    "content": "The inspection was thorough. Priests examined each lamb for blemish, deformity, age, and health. A lame lamb was disqualified. A blind lamb was set aside. A bull or goat with any imperfection was rejected. And yet --\n# UNLOCK_EVIDENCE: lamb_records",
+    "content": "The inspection was thorough. Priests examined each lamb for blemish, deformity, age, and health. A lame lamb was disqualified. A blind lamb was set aside. A bull or goat with any imperfection was rejected. And yet --",
     "choices": [
       {
         "text": "And yet what?",
-        "destination": "yet_what"
+        "destination": "yet_what",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The inspection passed.",
-        "destination": "inspection_passed"
+        "destination": "inspection_passed",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The inspection was thorough. Priests examined each lamb for blemish, deformity, age, and health. A lame lamb was disqualified. A blind lamb was set aside. A bull or goat with any imperfection was rejected. And yet --",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "yet_what": {
-    "content": "And yet the one being inspected was not an animal. He was a man -- a carpenter's son from Nazareth. For four days, the religious authorities had subjected Him to the same scrutiny they give to sacrificial animals. The same questions, the same challenges, the same demand for perfection.\n# UNLOCK_EVIDENCE: lamb_records",
+    "content": "And yet the one being inspected was not an animal. He was a man -- a carpenter's son from Nazareth. For four days, the religious authorities had subjected Him to the same scrutiny they give to sacrificial animals. The same questions, the same challenges, the same demand for perfection.",
     "choices": [
       {
         "text": "The scrutiny was divine.",
-        "destination": "scrutiny_divine"
+        "destination": "scrutiny_divine",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The perfection was proven.",
-        "destination": "perfection_proven"
+        "destination": "perfection_proven",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing_scribe"
+        "text": "Finish the interview.",
+        "destination": "closing_scribe",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "And yet the one being inspected was not an animal. He was a man -- a carpenter's son from Nazareth. For four days, the religious authorities had subjected Him to the same scrutiny they give to sacrificial animals. The same questions, the same challenges, the same demand for perfection.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "scrutiny_divine": {
-    "content": "The scrutiny was divine in its irony. They sought blemish, but found only absolute purity.\n# UNLOCK_EVIDENCE: lamb_records",
+    "content": "The scrutiny was divine in its irony. They sought blemish, but found only absolute purity.",
     "choices": [
       {
         "text": "Continue.",
-        "destination": "yet_what"
+        "destination": "yet_what",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing_scribe"
+        "text": "Finish the interview.",
+        "destination": "closing_scribe",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The scrutiny was divine in its irony. They sought blemish, but found only absolute purity.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "perfection_proven": {
-    "content": "The perfection was proven under the harshest lights of institutional interrogation.\n# UNLOCK_EVIDENCE: lamb_records",
+    "content": "The perfection was proven under the harshest lights of institutional interrogation.",
     "choices": [
       {
         "text": "Continue.",
-        "destination": "yet_what"
+        "destination": "yet_what",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The perfection was proven under the harshest lights of institutional interrogation.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "inspection_passed": {
-    "content": "The inspection passed -- no blemish found, no flaw detected. The Herodians could not catch Him in His words. The Sadducees could not ensnare Him with their theology. The Pharisees could not trip Him up in the Law. Each test revealed the same result: spotless, blameless, without defect.\n# UNLOCK_EVIDENCE: lamb_records\n# UNLOCK_EVIDENCE: fig_leaf_withered",
+    "content": "The inspection passed -- no blemish found, no flaw detected. The Herodians could not catch Him in His words. The Sadducees could not ensnare Him with their theology. The Pharisees could not trip Him up in the Law. Each test revealed the same result: spotless, blameless, without defect.",
     "choices": [
       {
         "text": "The result was conclusive.",
-        "destination": "result_conclusive"
+        "destination": "result_conclusive",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The records prove it.",
-        "destination": "records_prove_it"
+        "destination": "records_prove_it",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing_scribe"
+        "text": "Finish the interview.",
+        "destination": "closing_scribe",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The inspection passed -- no blemish found, no flaw detected. The Herodians could not catch Him in His words. The Sadducees could not ensnare Him with their theology. The Pharisees could not trip Him up in the Law. Each test revealed the same result: spotless, blameless, without defect.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "result_conclusive": {
-    "content": "The result of every test was completely uniform. There was no defense to make against Him because His walk matched His word entirely.\n# UNLOCK_EVIDENCE: lamb_records",
+    "content": "The result of every test was completely uniform. There was no defense to make against Him because His walk matched His word entirely.",
     "choices": [
       {
         "text": "Continue.",
-        "destination": "inspection_passed"
+        "destination": "inspection_passed",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing_scribe"
+        "text": "Finish the interview.",
+        "destination": "closing_scribe",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The result of every test was completely uniform. There was no defense to make against Him because His walk matched His word entirely.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "records_prove_it": {
-    "content": "The records prove it. My ledgers, meticulously maintained, show that every challenge was met, every question answered, every trap sprung back upon its setter. The ink is permanent, the testimony is true, and the conclusion is unavoidable.\n# UNLOCK_EVIDENCE: lamb_records",
+    "content": "The records prove it. My ledgers, meticulously maintained, show that every challenge was met, every question answered, every trap sprung back upon its setter. The ink is permanent, the testimony is true, and the conclusion is unavoidable.",
     "choices": [
       {
         "text": "The archives are trusted.",
-        "destination": "archives_trusted"
+        "destination": "archives_trusted",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The testimony stands.",
-        "destination": "testimony_stands_scribe"
+        "destination": "testimony_stands_scribe",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing_scribe"
+        "text": "Finish the interview.",
+        "destination": "closing_scribe",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The records prove it. My ledgers, meticulously maintained, show that every challenge was met, every question answered, every trap sprung back upon its setter. The ink is permanent, the testimony is true, and the conclusion is unavoidable.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "archives_trusted": {
-    "content": "The archives are kept under strict temple seal, yet even these administrative logs bear unintentional witness to the truth.\n# UNLOCK_EVIDENCE: lamb_records",
+    "content": "The archives are kept under strict temple seal, yet even these administrative logs bear unintentional witness to the truth.",
     "choices": [
       {
         "text": "Continue.",
-        "destination": "records_prove_it"
+        "destination": "records_prove_it",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The archives are kept under strict temple seal, yet even these administrative logs bear unintentional witness to the truth.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "testimony_stands_scribe": {
-    "content": "The testimony stands unshakeable across all written accounts.\n# UNLOCK_EVIDENCE: lamb_records",
+    "content": "The testimony stands unshakeable across all written accounts.",
     "choices": [
       {
         "text": "Continue.",
-        "destination": "records_prove_it"
+        "destination": "records_prove_it",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing_scribe"
+        "text": "Finish the interview.",
+        "destination": "closing_scribe",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The testimony stands unshakeable across all written accounts.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "collapses_recorded": {
-    "content": "The collapses were recorded. Every faction that approached the Galilean left without victory. The scholars would later discuss these encounters -- \"The debates of that month,\" they called them, \"when the Son of Man silenced every challenger.\"\n# UNLOCK_EVIDENCE: inspection_notes",
+    "content": "The collapses were recorded. Every faction that approached the Galilean left without victory. The scholars would later discuss these encounters -- \"The debates of that month,\" they called them, \"when the Son of Man silenced every challenger.\"",
     "choices": [
       {
         "text": "The Talmud recorded them?",
-        "destination": "talmud_recorded"
+        "destination": "talmud_recorded",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The silence was total:",
-        "destination": "silence_totally"
+        "destination": "silence_totally",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing_scribe"
+        "text": "Finish the interview.",
+        "destination": "closing_scribe",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The collapses were recorded. Every faction that approached the Galilean left without victory. The scholars would later discuss these encounters -- \"The debates of that month,\" they called them, \"when the Son of Man silenced every challenger.\"",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "talmud_recorded": {
-    "content": "Subsequent rabbinical notes mention these disputes, acknowledging the confounding wisdom that checked every official maneuver.\n# UNLOCK_EVIDENCE: inspection_notes",
+    "content": "Subsequent rabbinical notes mention these disputes, acknowledging the confounding wisdom that checked every official maneuver.",
     "choices": [
       {
         "text": "Continue.",
-        "destination": "collapses_recorded"
+        "destination": "collapses_recorded",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Subsequent rabbinical notes mention these disputes, acknowledging the confounding wisdom that checked every official maneuver.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "silence_totally": {
-    "content": "The silence was total among His adversaries, forced into retreat by their own failure to construct a valid charge.\n# UNLOCK_EVIDENCE: inspection_notes",
+    "content": "The silence was total among His adversaries, forced into retreat by their own failure to construct a valid charge.",
     "choices": [
       {
         "text": "Continue.",
-        "destination": "collapses_recorded"
+        "destination": "collapses_recorded",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The silence was total among His adversaries, forced into retreat by their own failure to construct a valid charge.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "crowd_reaction_scribe": {
-    "content": "The crowd's reaction was mixed -- amazement at His answers, confusion at their implications, discomfort at their own inadequacy. The Gospel writers would later record: \"The chief priests and the scribes... were looking for a way to kill Him, for they feared Him because the whole crowd was amazed at His teaching.\"\n# UNLOCK_EVIDENCE: inspection_notes",
+    "content": "The crowd's reaction was mixed -- amazement at His answers, confusion at their implications, discomfort at their own inadequacy. The Gospel writers would later record: \"The chief priests and the scribes... were looking for a way to kill Him, for they feared Him because the whole crowd was amazed at His teaching.\"",
     "choices": [
       {
         "text": "The fear was real.",
-        "destination": "fear_was_real"
+        "destination": "fear_was_real",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The amazement was public.",
-        "destination": "amazement_public"
+        "destination": "amazement_public",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The crowd's reaction was mixed -- amazement at His answers, confusion at their implications, discomfort at their own inadequacy. The Gospel writers would later record: \"The chief priests and the scribes... were looking for a way to kill Him, for they feared Him because the whole crowd was amazed at His teaching.\"",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "fear_was_real": {
-    "content": "The leadership's fear grew in direct proportion to public admiration.\n# UNLOCK_EVIDENCE: inspection_notes",
+    "content": "The leadership's fear grew in direct proportion to public admiration.",
     "choices": [
       {
-        "text": "Continue.",
-        "destination": "closing_scribe"
+        "text": "Finish the interview.",
+        "destination": "closing_scribe",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The leadership's fear grew in direct proportion to public admiration.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "amazement_public": {
-    "content": "The amazement was openly displayed in the temple courts before the entire pilgrim populace.\n# UNLOCK_EVIDENCE: inspection_notes",
+    "content": "The amazement was openly displayed in the temple courts before the entire pilgrim populace.",
     "choices": [
       {
-        "text": "Continue.",
-        "destination": "closing_scribe"
+        "text": "Finish the interview.",
+        "destination": "closing_scribe",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The amazement was openly displayed in the temple courts before the entire pilgrim populace.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "closing_scribe": {
-    "content": "Read the two ledgers side by side, if you like. The lamb records and the questioning records. I only write down what happens. But the pattern emerging from the records is unmistakable: the Passover lamb is being selected, inspected, challenged, and proven flawless. The same sequence, the same days, the same outcome.\n# UNLOCK_EVIDENCE: lamb_records\n# UNLOCK_EVIDENCE: inspection_notes",
-    "choices": []
+    "content": "Read the two ledgers side by side, if you like. The lamb records and the questioning records. I only write down what happens. But the pattern emerging from the records is unmistakable: the Passover lamb is being selected, inspected, challenged, and proven flawless. The same sequence, the same days, the same outcome.",
+    "choices": [],
+    "steps": [
+      {
+        "text": "Read the two ledgers side by side, if you like. The lamb records and the questioning records. I only write down what happens. But the pattern emerging from the records is unmistakable: the Passover lamb is being selected, inspected, challenged, and proven flawless. The same sequence, the same days, the same outcome.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "divert": "DONE",
+        "condition": {
+          "all": []
+        }
+      }
+    ]
+  },
+  "_meta": {
+    "schema": 2,
+    "entry": "start",
+    "variables": {},
+    "revision": "cc4014206f26355e"
   }
 }

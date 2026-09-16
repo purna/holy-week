@@ -1,487 +1,196 @@
 {
   "start": {
-    "content": "The whole city is in an uproar because of these country pilgrims. They're tracking mud everywhere and throwing their dirty garments in the middle of the road! I have work to do, and they are blocking the eastern valley gate with their procession.",
+    "content": "I had work to do, and suddenly the road was full of branches and people. You can admire the procession and still admit it made getting home difficult.",
     "choices": [
       {
-        "text": "Who do people say this Galilean is?",
-        "destination": "who_is_he"
+        "text": "Who did people say He was?",
+        "destination": "identity",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "The crowds are very devoted.",
-        "destination": "crowd_devotion"
+        "text": "What did you see on the road?",
+        "destination": "road",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Is this not a religious celebration?",
-        "destination": "religious_celebration"
+        "text": "Did you hear a complaint from the colt's owner?",
+        "destination": "limits",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
-      {
-        "text": "Closing Jerusalem",
-        "destination": "closing_jerusalem"
-      }
-    ]
-  },
-  "who_is_he": {
-    "content": "Everyone is yelling \"Hosanna!\" from the tops of their lungs. I heard one priest mutter that the whole world has gone after Him. They were scribbling notes, frowning. I know nothing good comes from Nazareth — I'll tell you that much. Nothing good ever comes from Galilee.",
-    "choices": [
-      {
-        "text": "But the people believe.",
-        "destination": "people_believe"
-      },
-      {
-        "text": "The priests are concerned.",
-        "destination": "priest_concern"
-      },
-      {
-        "text": "A prophet from Galilee?",
-        "destination": "prophet_from_galilee"
-      },
-      {
-        "text": "Conclude.",
-        "destination": "jerusalem_still"
-      }
-    ]
-  },
-  "crowd_devotion": {
-    "content": "People were cutting palm branches off the trees toward Jericho and dragging them all the way up the path. The noise was deafening — hundreds of voices shouting the same words. Cloaks spread on the road. It was a miracle no one was blinded by the flying palm fronds.",
-    "choices": [
-      {
-        "text": "The cloaks were expensive.",
-        "destination": "expensive_cloaks"
-      },
-      {
-        "text": "The palms carry political weight.",
-        "destination": "palm_politics"
-      },
-      {
-        "text": "This is more than a welcome.",
-        "destination": "more_than_welcome"
-      }
-    ]
-  },
-  "religious_celebration": {
-    "content": "Is this a religious celebration? Yes, technically. It is Passover season. But this — this is not worship. This is political theater. A man rides into the city on a borrowed donkey, and suddenly everyone declares him king.",
-    "choices": [
-      {
-        "text": "The king they want is different.",
-        "destination": "different_king"
-      },
-      {
-        "text": "Political theater has consequences.",
-        "destination": "political_consequences"
-      },
-      {
-        "text": "The religious meaning matters.",
-        "destination": "religious_meaning"
-      },
-      {
-        "text": "Conclude.",
-        "destination": "jerusalem_still"
-      }
-    ]
-  },
-  "people_believe": {
-    "content": "Believe? Yes. People who have walked with this Teacher for three years believe He is the Messiah. They believe He can raise the dead. They believe He speaks with authority. But belief without understanding is dangerous. These people are inviting Roman intervention.",
-    "choices": [
-      {
-        "text": "Roman intervention means violence.",
-        "destination": "roman_violence"
-      },
-      {
-        "text": "The people misunderstand.",
-        "destination": "people_misunderstand"
-      },
-      {
-        "text": "They invite consequences.",
-        "destination": "invite_consequences"
-      },
-      {
-        "text": "Conclude.",
-        "destination": "jerusalem_still"
-      }
-    ]
-  },
-  "priest_concern": {
-    "content": "The priests are concerned — and rightly so. A crowd this size, declaring a man to be king, is a threat to the established order. The Sanhedrin knows what Rome does to threats. The people do not.",
-    "choices": [
-      {
-        "text": "The priests should guide, not suppress.",
-        "destination": "guide_vs_suppress"
-      },
-      {
-        "text": "The Sanhedrin fears losing power.",
-        "destination": "fear_power"
-      },
-      {
-        "text": "Both sides have valid concerns.",
-        "destination": "valid_concerns"
-      },
-      {
-        "text": "Conclude.",
-        "destination": "jerusalem_still"
-      }
-    ]
-  },
-  "prophet_from_galilee": {
-    "content": "A prophet? Maybe. But prophets do not usually ride into town with an unauthorised parade. They do not gather crowds large enough to shake the city gates. And they most certainly do not provoke the Sanhedrin into emergency sessions the way this one does.",
-    "choices": [
-      {
-        "text": "He is more than a prophet.",
-        "destination": "more_than_prophet"
-      },
-      {
-        "text": "The Sanhedrin reacts too quickly.",
-        "destination": "reacts_quickly"
-      },
-      {
-        "text": "Prophets are meant to provoke.",
-        "destination": "prophets_provoke"
-      },
-      {
-        "text": "Conclude.",
-        "destination": "jerusalem_still"
-      }
-    ]
-  },
-  "expensive_cloaks": {
-    "content": "The cloaks they spread on the road — some were fine linen, woven in Galilee. Others were wool dyed purple. These were not beggars. These were people who had traveled from distant lands, sacrificing their possessions to honor this Teacher. The value of those garments scattered in the dust was considerable.",
-    "choices": [
-      {
-        "text": "Sacrificial giving.",
-        "destination": "common_node"
-      },
-      {
-        "text": "The cost showed devotion.",
-        "destination": "common_node"
-      },
-      {
-        "text": "Wasteful or worshipful?",
-        "destination": "common_node"
-      },
-      {
-        "text": "Conclude.",
-        "destination": "jerusalem_still"
-      }
-    ]
-  },
-  "palm_politics": {
-    "content": "Palm branches are not innocent decorations. The last time Jerusalem waved palms in the streets was when Simon Maccabaeus liberated the city from the Seleucids. The crowd knows exactly what they are invoking. This is not a greeting — it is a coronation gesture.",
-    "choices": [
-      {
-        "text": "The Maccabean precedent.",
-        "destination": "common_node"
-      },
-      {
-        "text": "Coronation, not celebration.",
-        "destination": "common_node"
-      },
-      {
-        "text": "The political message is clear.",
-        "destination": "common_node"
-      }
-    ]
-  },
-  "more_than_welcome": {
-    "content": "This is more than a welcome. It is a demand. A declaration that the existing order must yield to a new king. The priests understood immediately. The soldiers on the walls tensed. Even the merchants paused in their work.",
-    "choices": [
-      {
-        "text": "The atmosphere changed.",
-        "destination": "common_node"
-      },
-      {
-        "text": "Everyone sensed the shift.",
-        "destination": "common_node"
-      },
-      {
-        "text": "History was being made.",
-        "destination": "common_node"
-      }
-    ]
-  },
-  "roman_violence": {
-    "content": "Roman violence? Yes. The Praetorian guard has five cohorts stationed around Jerusalem for Passover. One spark, one false rumor, and they will flood these streets with steel. The last time crowds gathered like this, forty thousand died in the streets.",
-    "choices": [
-      {
-        "text": "The memory of past massacres.",
-        "destination": "common_node"
-      },
-      {
-        "text": "The priests prevent this.",
-        "destination": "common_node"
-      },
-      {
-        "text": "Fear of repetition.",
-        "destination": "common_node"
-      },
-      {
-        "text": "Conclude.",
-        "destination": "jerusalem_still"
-      }
-    ]
-  },
-  "people_misunderstand": {
-    "content": "They misunderstand the nature of kingdoms. This Teacher speaks of love and forgiveness, not of armies and conquest. He speaks of a kingdom that is \"not of this world.\" How does a kingdom that is not of this world defend itself from Rome?",
-    "choices": [
-      {
-        "text": "The kingdom is spiritual.",
-        "destination": "common_node"
-      },
-      {
-        "text": "Not of this world is not a political strategy.",
-        "destination": "common_node"
-      },
-      {
-        "text": "The misunderstanding grows.",
-        "destination": "common_node"
-      },
-      {
-        "text": "Conclude.",
-        "destination": "jerusalem_still"
-      }
-    ]
-  },
-  "invite_consequences": {
-    "content": "By declaring this Teacher king, the people invite consequences they cannot control. Rome does not tolerate rival kings. Not even symbolic ones. Not even on donkeys.",
-    "choices": [
-      {
-        "text": "The consequences arrive.",
-        "destination": "common_node"
-      },
-      {
-        "text": "They cannot control Rome.",
-        "destination": "common_node"
-      },
-      {
-        "text": "The price of defiance.",
-        "destination": "common_node"
-      }
-    ]
-  },
-  "different_king": {
-    "content": "The king they want is a general. A conquering hero who will drive the Romans from the city. The king they got rides on a donkey. The king they got speaks of turning the other cheek. The king they got will die on a cross.",
-    "choices": [
-      {
-        "text": "The disappointment will be great.",
-        "destination": "common_node"
-      },
-      {
-        "text": "They wanted power, not peace.",
-        "destination": "common_node"
-      },
-      {
-        "text": "The prophecy was different.",
-        "destination": "common_node"
-      },
-      {
-        "text": "Conclude.",
-        "destination": "jerusalem_still"
-      }
-    ]
-  },
-  "political_consequences": {
-    "content": "Political theater has consequences. The priests know this. The soldiers know this. The merchants know this. Only the crowd — drunk on enthusiasm — fails to see what they are inviting.",
-    "choices": [
-      {
-        "text": "The crowd is blind to danger.",
-        "destination": "common_node"
-      },
-      {
-        "text": "Enthusiasm breeds ignorance.",
-        "destination": "common_node"
-      },
-      {
-        "text": "The danger is real.",
-        "destination": "common_node"
-      }
-    ]
-  },
-  "religious_meaning": {
-    "content": "The religious meaning matters. This is not merely political theater. The crowd recognizes something deeper — something that connects Zechariah's prophecy to the present moment. They see the fulfillment. They see the king.",
-    "choices": [
-      {
-        "text": "The religious insight is valid.",
-        "destination": "common_node"
-      },
-      {
-        "text": "But the political consequence is real.",
-        "destination": "common_node"
-      },
-      {
-        "text": "Faith without wisdom.",
-        "destination": "common_node"
-      },
-      {
-        "text": "Conclude.",
-        "destination": "jerusalem_still"
-      }
-    ]
-  },
-  "guide_vs_suppress": {
-    "content": "The priests should guide, not suppress. But suppression is easier than guidance. Suppression is quieter than confrontation. Suppression preserves the system that has served Israel for centuries.",
-    "choices": [
-      {
-        "text": "Preservation through suppression.",
-        "destination": "common_node"
-      },
-      {
-        "text": "The system fears truth.",
-        "destination": "common_node"
-      },
-      {
-        "text": "Guidance requires courage.",
-        "destination": "common_node"
-      },
-      {
-        "text": "Conclude.",
-        "destination": "jerusalem_still"
-      }
-    ]
-  },
-  "fear_power": {
-    "content": "The Sanhedrin fears losing power. Of course they do. Power is not surrendered willingly. It is not challenged without consequence. And this Teacher is challenging the very foundation of their authority.",
-    "choices": [
-      {
-        "text": "Power without wisdom is tyranny.",
-        "destination": "common_node"
-      },
-      {
-        "text": "The challenge is theological.",
-        "destination": "common_node"
-      },
-      {
-        "text": "They fear God more than Rome.",
-        "destination": "common_node"
-      }
-    ]
-  },
-  "valid_concerns": {
-    "content": "Both sides have valid concerns. The people seek salvation. The priests seek stability. The soldiers seek order. Each perspective has merit. But merit does not resolve the fundamental conflict.",
-    "choices": [
-      {
-        "text": "The conflict cannot be resolved.",
-        "destination": "common_node"
-      },
-      {
-        "text": "One perspective must dominate.",
-        "destination": "common_node"
-      },
-      {
-        "text": "The price is paid by the innocent.",
-        "destination": "common_node"
-      },
-      {
-        "text": "Conclude.",
-        "destination": "jerusalem_still"
-      }
-    ]
-  },
-  "more_than_prophet": {
-    "content": "He is more than a prophet. He is a claim. A challenge. A declaration that the existing order — priesthood, sacrifice, Temple — must yield to something greater. Something that the priests cannot control.",
-    "choices": [
-      {
-        "text": "The claim is kingly.",
-        "destination": "common_node"
-      },
-      {
-        "text": "The challenge is to the system.",
-        "destination": "common_node"
-      },
-      {
-        "text": "Something greater indeed.",
-        "destination": "common_node"
-      },
-      {
-        "text": "Conclude.",
-        "destination": "jerusalem_still"
-      }
-    ]
-  },
-  "reacts_quickly": {
-    "content": "The Sanhedrin reacts quickly because they understand the implications. A crowd declaring a man to be king is not a religious observation — it is a political declaration. And political declarations require immediate response.",
-    "choices": [
-      {
-        "text": "The response should be measured.",
-        "destination": "common_node"
-      },
-      {
-        "text": "Political declarations threaten peace.",
-        "destination": "common_node"
-      },
-      {
-        "text": "They respond with fear, not wisdom.",
-        "destination": "common_node"
-      },
-      {
-        "text": "Conclude.",
-        "destination": "jerusalem_still"
-      }
-    ]
-  },
-  "prophets_provoke": {
-    "content": "Prophets are meant to provoke. To challenge. To disturb the comfortable. But this Teacher provokes in a way that threatens the very existence of the system. Prophets can be managed. Kings cannot.",
-    "choices": [
-      {
-        "text": "The distinction matters.",
-        "destination": "common_node"
-      },
-      {
-        "text": "Kings are harder to manage than prophets.",
-        "destination": "common_node"
-      },
-      {
-        "text": "The system's limit is reached.",
-        "destination": "common_node"
-      },
-      {
-        "text": "Conclude.",
-        "destination": "jerusalem_still"
-      }
-    ]
-  },
-  "whole_city": {
-    "content": "The whole city watched. Merchants left their tables. Soldiers paused in their patrols. Priests stopped their prayers. Children forgot their games. Everyone looked up from their concerns and looked toward the east gate.",
-    "choices": [
-      {
-        "text": "A moment of universal attention.",
-        "destination": "common_node"
-      },
-      {
-        "text": "The city pauses.",
-        "destination": "common_node"
-      },
-      {
-        "text": "All eyes turn east.",
-        "destination": "common_node"
-      }
-    ]
-  },
-  "jerusalem_still": {
-    "content": "All of Jerusalem stood still. The marketplace fell silent. The Temple courts held their breath. The Roman garrison on the walls waited for signs of unrest. And the crowd continued their procession, singing Hosanna, waving palms, declaring the king who had been waiting in the margins of history for this exact moment in time.",
-    "choices": [
       {
         "text": "Finish the interview.",
-        "destination": "closing_jerusalem"
-      },
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "What did you notice around the city?",
-        "destination": "whole_city"
+        "text": "I had work to do, and suddenly the road was full of branches and people. You can admire the procession and still admit it made getting home difficult.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
-  "closing_jerusalem": {
-    "content": "I have worked these streets for twenty-seven years. I have seen processions before. I have seen crowds gather. I have seen priests panic. But this — this was different. The man on the donkey was not like other teachers. His crowd was not like other crowds. And the prophecy that walked into our city — it was not like other prophecies.\nIt was alive.",
-    "choices": []
-  },
-  "common_node": {
-    "content": "The weight of the moment hangs heavy over the streets, and the consequences of what is unfolding continue to ripple through the city.",
+  "identity": {
+    "content": "People were asking who He was. Others answered that He was Jesus, the prophet from Nazareth in Galilee.\nSo no, the whole city did not arrive with one settled opinion. Some of us were trying to find out what was happening.",
     "choices": [
       {
-        "text": "Return to the main scene",
-        "destination": "start"
+        "text": "What did you observe yourself?",
+        "destination": "road",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude",
-        "destination": "jerusalem_still"
+        "text": "Return to my questions.",
+        "destination": "start",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "set": "heard_identity",
+        "operator": "=",
+        "value": {
+          "literal": true
+        },
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "People were asking who He was. Others answered that He was Jesus, the prophet from Nazareth in Galilee.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "So no, the whole city did not arrive with one settled opinion. Some of us were trying to find out what was happening.",
+        "condition": {
+          "all": []
+        }
       }
     ]
+  },
+  "road": {
+    "content": "Cloaks underfoot. People making space for the colt, then crowding in again to see the rider. Excitement spreads quickly when a street is packed.\nI can tell you the road was blocked. That does not tell you whether the animal was stolen.",
+    "choices": [
+      {
+        "text": "What did you hear about its owner?",
+        "destination": "limits",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Return to my questions.",
+        "destination": "start",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Cloaks underfoot. People making space for the colt, then crowding in again to see the rider. Excitement spreads quickly when a street is packed.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "I can tell you the road was blocked. That does not tell you whether the animal was stolen.",
+        "condition": {
+          "all": []
+        }
+      }
+    ]
+  },
+  "limits": {
+    "content": "Not from the owner. I heard people repeat a charge. Repeating it would not make me a second witness.\nAsk the person whose animal it was. My complaint is about the road.",
+    "choices": [
+      {
+        "text": "Return to my questions.",
+        "destination": "start",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Not from the owner. I heard people repeat a charge. Repeating it would not make me a second witness.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Ask the person whose animal it was. My complaint is about the road.",
+        "condition": {
+          "all": []
+        }
+      }
+    ]
+  },
+  "closing": {
+    "content": "Put the questions in your account too. People were asking who He was, not all giving the same answer.\nYou have my account. An inconvenient procession is not proof of a theft.",
+    "choices": [],
+    "steps": [
+      {
+        "text": "Put the questions in your account too. People were asking who He was, not all giving the same answer.",
+        "condition": {
+          "all": [
+            {
+              "variable": "heard_identity"
+            }
+          ]
+        }
+      },
+      {
+        "text": "You have my account. An inconvenient procession is not proof of a theft.",
+        "condition": {
+          "all": [
+            {
+              "not": {
+                "variable": "heard_identity"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "divert": "DONE",
+        "condition": {
+          "all": []
+        }
+      }
+    ]
+  },
+  "_meta": {
+    "schema": 2,
+    "entry": "start",
+    "variables": {
+      "heard_identity": false
+    },
+    "revision": "4ff2e0e89008c9f0"
   }
 }

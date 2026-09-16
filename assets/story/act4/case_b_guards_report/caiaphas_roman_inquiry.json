@@ -4,32 +4,90 @@
     "choices": [
       {
         "text": "What threat could a dead man pose?",
-        "destination": "threat_assessment"
+        "destination": "threat_assessment",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "You called the guards to your chamber.",
-        "destination": "conversation_end"
+        "destination": "conversation_end",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "And the soldiers?",
-        "destination": "conversation_end"
+        "destination": "conversation_end",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "What was the institutional calculation behind your response?",
-        "destination": "calculated_risk"
+        "destination": "calculated_risk",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "tag": "UNLOCK_EVIDENCE: coverup_documentation",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "tag": "UNLOCK_EVIDENCE: sanhedrin_report",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "tag": "UNLOCK_EVIDENCE: bribe_shekels",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "I speak as both High Priest of Israel and a pragmatic administrator of this province. When the guard unit reported what they had seen — the earthquake, the light, the empty tomb — I did not dismiss it as superstition. I assessed the threat.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "threat_assessment": {
-    "content": "The threat was not theological. It was institutional. A movement that could produce dozens of witnesses to a resurrection — a former prostitute in Mary Magdalene, a tax collector's household in Joanna, even a Roman centurion — could not be contained by a single false narrative. We needed absolute control of the story.",
+    "content": "The threat was not theological. It was institutional. A movement that could produce dozens of witnesses to a resurrection — Mary Magdalene, other women who followed Him, and His disciples — could not be contained by a single false narrative. We needed absolute control of the story.",
     "choices": [
       {
         "text": "Absolute control?",
-        "destination": "absolute_control"
+        "destination": "absolute_control",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "You chose silence.",
-        "destination": "conversation_end"
+        "destination": "conversation_end",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The threat was not theological. It was institutional. A movement that could produce dozens of witnesses to a resurrection — Mary Magdalene, other women who followed Him, and His disciples — could not be contained by a single false narrative. We needed absolute control of the story.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -38,11 +96,27 @@
     "choices": [
       {
         "text": "You knew the reports were multiplying.",
-        "destination": "reports_spreading"
+        "destination": "reports_spreading",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "What was the first step?",
-        "destination": "conversation_end"
+        "destination": "conversation_end",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Absolute control of the narrative. The Sanhedrin has managed this city's religious discourse for decades. We permit debate. We allow discussion. But we do not permit movements that challenge the fundamental architecture of Temple worship. The empty tomb was precisely such a challenge.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -51,11 +125,27 @@
     "choices": [
       {
         "text": "The women came first.",
-        "destination": "women_first"
+        "destination": "women_first",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Even the guards were involved.",
-        "destination": "conversation_end"
+        "destination": "conversation_end",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The reports were multiplying faster than we could contain them. By the third day after the crucifixion, women were returning from the garden with tears of joy — not mourning. The disciples were meeting in private — not hiding, but preaching. And the guards — men who do not invent earthquakes — were demanding protection from the procurator himself.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -64,11 +154,27 @@
     "choices": [
       {
         "text": "You knew them.",
-        "destination": "knew_them"
+        "destination": "knew_them",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "And their testimony was rejected.",
-        "destination": "testimony_rejected"
+        "destination": "testimony_rejected",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The women came first — naturally. They had been with Him from the beginning, from the day He cast seven demons from Mary Magdalene in the region of Galilee. They had followed Him through the cities and towns, ministering to Him out of their own means, as Luke records. They were the last to leave the cross, and now they were the first to announce the resurrection.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -77,11 +183,27 @@
     "choices": [
       {
         "text": "What did you do with their testimony?",
-        "destination": "testimony_handling"
+        "destination": "testimony_handling",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Their testimony could not be ignored.",
-        "destination": "could_not_ignore"
+        "destination": "could_not_ignore",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "I knew them. The Sanhedrin has catalogued these women for years. Mary Magdalene — wept from her, a victim of demonic oppression now healed by this Galilean. Joanna — Chuza's wife, a wealthy woman whose household records still list \"expenditures for the Teacher\" before the final entry: \"expenditures ceased.\" Martha and Mary — sisters of Bethany, hosts of multiple dinners where He had reclined at their table.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -90,15 +212,35 @@
     "choices": [
       {
         "text": "Even the apostles struggled.",
-        "destination": "apostles_struggled"
+        "destination": "apostles_struggled",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "But the testimony endured.",
-        "destination": "conversation_end"
+        "destination": "conversation_end",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "truth_prevailed"
+        "text": "Finish the interview.",
+        "destination": "truth_prevailed",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Their testimony was... inconvenient. Luke records what happened when they returned to the Eleven: \"Their words seemed to them as idle tales, and they believed them not.\" Even the apostles — who had spent three years with the Teacher — could not accept the testimony of women.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -107,15 +249,35 @@
     "choices": [
       {
         "text": "The weakness of the testimony.",
-        "destination": "conversation_end"
+        "destination": "conversation_end",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Which proves its authenticity.",
-        "destination": "conversation_end"
+        "destination": "conversation_end",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "truth_prevailed"
+        "text": "Finish the interview.",
+        "destination": "truth_prevailed",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The apostles struggled with women's testimony because our legal system provides no recourse — Deuteronomy 19 requires two or three witnesses, and a woman's word alone carries no weight before the Sanhedrin. This is not malice — it is statute. Yet if eleven men conspired to fabricate a resurrection, no sane fabricator would build his story on a woman's word, knowing that word would be dismissed.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -124,15 +286,35 @@
     "choices": [
       {
         "text": "The credibility multiplied.",
-        "destination": "credibility_multiplied"
+        "destination": "credibility_multiplied",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "You saw the numbers.",
-        "destination": "conversation_end"
+        "destination": "conversation_end",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "truth_prevailed"
+        "text": "Finish the interview.",
+        "destination": "truth_prevailed",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "But their testimony could not be ignored — because it kept spreading. More women reported more encounters. More disciples claimed more appearances. The movement was growing faster than the Temple's ability to suppress it. Each witness added credibility to the others.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -140,12 +322,20 @@
     "content": "The credibility multiplied. Five hundred at once — Paul writes of this years later, a number too large to dismiss as hallucination. The women who went to Simon Peter and the others — they were not the only ones who saw the risen Christ. The evidence was no longer contained to Galilee or even to Judea. It was traveling.",
     "choices": [
       {
-        "text": "The evidence was spreading.",
-        "destination": "conversation_end"
-      },
+        "text": "Continue.",
+        "destination": "conversation_end",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "What was your response?",
-        "destination": "conversation_end"
+        "text": "The credibility multiplied. Five hundred at once — Paul writes of this years later, a number too large to dismiss as hallucination. The women who went to Simon Peter and the others — they were not the only ones who saw the risen Christ. The evidence was no longer contained to Galilee or even to Judea. It was traveling.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -154,11 +344,27 @@
     "choices": [
       {
         "text": "The words were strategic.",
-        "destination": "strategic_words"
+        "destination": "strategic_words",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The money was substantial.",
-        "destination": "money_substantial"
+        "destination": "money_substantial",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "I authorized a carefully worded response. Matthew notes that when the guards reported to us, \"when they were assembled with the elders, they consulted together, and they gave a large sum of money to the soldiers, saying, 'Tell them, His disciples came by night and stole Him away while we slept.'\"",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -167,32 +373,72 @@
     "choices": [
       {
         "text": "The narrative was pre-fabricated.",
-        "destination": "pre_fabricated"
+        "destination": "pre_fabricated",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "It would not hold.",
-        "destination": "conversation_end"
+        "destination": "conversation_end",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "truth_prevailed"
+        "text": "Finish the interview.",
+        "destination": "truth_prevailed",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "\"Tell them His disciples came by night and stole Him away while we slept.\" Strategic in its simplicity. It explains the empty tomb without denying the supernatural events — the earthquake, the light, the paralyzed soldiers. It redirects the narrative to human agency: the disciples, thieves, liars, frightened men.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "pre_fabricated": {
-    "content": "The narrative was pre-fabricated. We had been discussing the possibility since Lazarus — when the Sanhedrin first realized that this man could raise the dead and that the people were beginning to believe. The cover story was written in draft form months before the first guard ever reported. We were ready.\n# UNLOCK_EVIDENCE: coverup_documentation\n# UNLOCK_EVIDENCE: sanhedrin_report\n# UNLOCK_EVIDENCE: bribe_shekels",
+    "content": "The narrative was pre-fabricated. We had been discussing the possibility since Lazarus — when the Sanhedrin first realized that this man could raise the dead and that the people were beginning to believe. The cover story was written in draft form months before the first guard ever reported. We were ready.",
     "choices": [
       {
         "text": "The draft was written in advance.",
-        "destination": "draft_in_advance"
+        "destination": "draft_in_advance",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The plan had stages.",
-        "destination": "plan_stages"
+        "destination": "plan_stages",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "truth_prevailed"
+        "text": "Finish the interview.",
+        "destination": "truth_prevailed",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The narrative was pre-fabricated. We had been discussing the possibility since Lazarus — when the Sanhedrin first realized that this man could raise the dead and that the people were beginning to believe. The cover story was written in draft form months before the first guard ever reported. We were ready.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -201,15 +447,35 @@
     "choices": [
       {
         "text": "Caiaphas prophesied it.",
-        "destination": "caiaphas_prophecy"
+        "destination": "caiaphas_prophecy",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Without knowing.",
-        "destination": "conversation_end"
+        "destination": "conversation_end",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "truth_prevailed"
+        "text": "Finish the interview.",
+        "destination": "truth_prevailed",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The draft was written in advance. Caiaphas himself raised the question at the Sanhedrin meeting after Lazarus: \"You know nothing at all. If we let Him go on, all the world will be going to Him, and the Romans will come and take away both our place and our nation.\" John records that he did not understand that He was speaking of the death of the Son of God.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -218,15 +484,35 @@
     "choices": [
       {
         "text": "The prophecy was fulfilled.",
-        "destination": "conversation_end"
+        "destination": "conversation_end",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The death was necessary.",
-        "destination": "conversation_end"
+        "destination": "conversation_end",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "truth_prevailed"
+        "text": "Finish the interview.",
+        "destination": "truth_prevailed",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Caiaphas prophesied it — and John notes that he did so as High Priest, \"prophesying that Jesus would die for the nation, and not for the nation only, but also to gather together into one the children of God who were scattered abroad.\" A high priest speaking salvation while intending political survival. The irony was complete.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -235,28 +521,64 @@
     "choices": [
       {
         "text": "The monitoring was constant.",
-        "destination": "conversation_end"
+        "destination": "conversation_end",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The counter-narrative was aggressive.",
-        "destination": "conversation_end"
+        "destination": "conversation_end",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "truth_prevailed"
+        "text": "Finish the interview.",
+        "destination": "truth_prevailed",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The plan had stages. Stage one: manage the guards' report. Stage two: pay the soldiers. Stage three: ensure the false narrative is spread throughout the city. Stage four: monitor the spread of the alternative accounts and counter them with our own.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "money_substantial": {
-    "content": "The money was substantial. Matthew records the exact figure: \"a large sum of money.\" Not a pittance — enough to enrich four men permanently. Enough to buy silence for years. The Temple treasury paid for truth to be buried.\n# UNLOCK_EVIDENCE: bribe_shekels",
+    "content": "The money was substantial. Matthew records the exact figure: \"a large sum of money.\" Not a pittance — enough to enrich four men permanently. Enough to buy silence for years. The Temple treasury paid for truth to be buried.",
     "choices": [
       {
         "text": "The price of silence.",
-        "destination": "price_silence"
+        "destination": "price_silence",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The cost to the Temple.",
-        "destination": "conversation_end"
+        "destination": "conversation_end",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The money was substantial. Matthew records the exact figure: \"a large sum of money.\" Not a pittance — enough to enrich four men permanently. Enough to buy silence for years. The Temple treasury paid for truth to be buried.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -265,11 +587,27 @@
     "choices": [
       {
         "text": "The irony was complete.",
-        "destination": "conversation_end"
+        "destination": "conversation_end",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The cost was internal.",
-        "destination": "internal_cost"
+        "destination": "internal_cost",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The price of silence was paid in Temple shekels — the very currency that paid for the sacrifices that this man had just rendered obsolete. The irony was too perfect: the Temple's sacred treasury financing the cover-up of a resurrection that would end the need for Temple sacrifice.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -278,11 +616,27 @@
     "choices": [
       {
         "text": "The proof was in the spending.",
-        "destination": "proof_spending"
+        "destination": "proof_spending",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The evidence was self-incriminating.",
-        "destination": "conversation_end"
+        "destination": "conversation_end",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The cost was internal. Every shekel paid to the soldiers was a shekel taken from the Temple's reserves. Every attempt to silence witnesses was an admission that the witnesses had something worth silencing. The more we spent, the more we proved the truth.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -291,24 +645,56 @@
     "choices": [
       {
         "text": "The records survive.",
-        "destination": "records_survive"
+        "destination": "records_survive",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The investigation will find them.",
-        "destination": "investigation_finds"
+        "destination": "investigation_finds",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The evidence was self-incriminating. Our own records — the Sanhedrin report, the correspondence between Caiaphas and the Temple steward, the ledger entries showing the disbursement — all of it proved that we knew what the guards had seen was real. We spent silver to cover up what the earthquake revealed.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "records_survive": {
-    "content": "The records survive. The Sanhedrin report — Matthew calls it that — was filed in the Temple archives. The correspondence — correspondence between the High Priest's office, the Temple steward who handled the money, and the scribe who recorded the guards' testimony — still exists.\n# UNLOCK_EVIDENCE: coverup_documentation",
+    "content": "The records survive. The Sanhedrin report — Matthew calls it that — was filed in the Temple archives. The correspondence — correspondence between the High Priest's office, the Temple steward who handled the money, and the scribe who recorded the guards' testimony — still exists.",
     "choices": [
       {
         "text": "The investigation will find them.",
-        "destination": "investigation_finds"
+        "destination": "investigation_finds",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The evidence is irrefutable.",
-        "destination": "conversation_end"
+        "destination": "conversation_end",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The records survive. The Sanhedrin report — Matthew calls it that — was filed in the Temple archives. The correspondence — correspondence between the High Priest's office, the Temple steward who handled the money, and the scribe who recorded the guards' testimony — still exists.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -317,11 +703,27 @@
     "choices": [
       {
         "text": "The truth is in the files.",
-        "destination": "truth_files"
+        "destination": "truth_files",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "No stone is unturned.",
-        "destination": "conversation_end"
+        "destination": "conversation_end",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The investigation will find them — if you know where to look. The Temple archives. The Sanhedrin records. The correspondence between Caiaphas and the procurator. Everything was documented. Everything was filed. Everything was signed. The paper trail of the greatest cover-up in Jewish history.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -330,20 +732,48 @@
     "choices": [
       {
         "text": "The revelation will be complete.",
-        "destination": "revelation_complete"
+        "destination": "revelation_complete",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The house of cards falls.",
-        "destination": "conversation_end"
+        "destination": "conversation_end",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The truth is in the files. And the files will be read. One day, someone — perhaps a scribe like you — will open this very chamber and find the letters, the ledgers, the testimonies, and the silver weights that prove we knew what we were covering up.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "revelation_complete": {
-    "content": "The revelation will be complete. The house of cards built on silver and silence will come crashing down. The Sanhedrin's reputation — built on centuries of religious authority — will be exposed as the product of political calculation and theological cowardice.\n# UNLOCK_EVIDENCE: sanhedrin_report",
+    "content": "The revelation will be complete. The house of cards built on silver and silence will come crashing down. The Sanhedrin's reputation — built on centuries of religious authority — will be exposed as the product of political calculation and theological cowardice.",
     "choices": [
       {
         "text": "Finish the interview.",
-        "destination": "conversation_end"
+        "destination": "conversation_end",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The revelation will be complete. The house of cards built on silver and silence will come crashing down. The Sanhedrin's reputation — built on centuries of religious authority — will be exposed as the product of political calculation and theological cowardice.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -352,11 +782,27 @@
     "choices": [
       {
         "text": "The economics of faith.",
-        "destination": "faith_economics"
+        "destination": "faith_economics",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The threat was financial.",
-        "destination": "conversation_end"
+        "destination": "conversation_end",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The calculated risk of institutional collapse. If the resurrection reports gained traction — and they were gaining — the Temple's revenue stream would evaporate within months. The pilgrim trade, the sacrifice fees, the money-changing commissions — all dependent on a population that still believed in the sacrificial system. The resurrection threatened to make all of it obsolete.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -365,11 +811,27 @@
     "choices": [
       {
         "text": "The collapse was theological.",
-        "destination": "conversation_end"
+        "destination": "conversation_end",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The response was decisive.",
-        "destination": "decisive"
+        "destination": "decisive",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The economics of faith were straightforward. The people come to Jerusalem, they offer sacrifices, they pay for the animals, they exchange their coins, they donate to the Temple treasury. Remove the belief that sacrifices are necessary, and the entire system crumbles. The resurrection of one man threatened to collapse a thousand years of religious commerce.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -378,11 +840,27 @@
     "choices": [
       {
         "text": "The tools of power.",
-        "destination": "tools_of_power"
+        "destination": "tools_of_power",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The narrative was controlled.",
-        "destination": "conversation_end"
+        "destination": "conversation_end",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The response was decisive. We could not debate the resurrection in the open — that would give it legitimacy. We could not engage the witnesses directly — that would validate their claims. We had to act behind the scenes, in the shadows of the Temple administration, with the tools of institutional power: money, narrative, and silence.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -391,11 +869,27 @@
     "choices": [
       {
         "text": "The silence was bought.",
-        "destination": "conversation_end"
+        "destination": "conversation_end",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The narrative was weaponized.",
-        "destination": "narrative_weaponized"
+        "destination": "narrative_weaponized",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The tools of power. Money — to pay the guards to stay quiet. Narrative — to explain away the empty tomb without engaging with the supernatural. Silence — to prevent any discussion of the earthquake, the light, or the divine intervention that the soldiers had witnessed.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -404,11 +898,27 @@
     "choices": [
       {
         "text": "The burden was shifted.",
-        "destination": "burden_shifted"
+        "destination": "burden_shifted",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The objective was met.",
-        "destination": "conversation_end"
+        "destination": "conversation_end",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The narrative was weaponized. \"His disciples came by night and stole Him away while we slept.\" The narrative was designed to accomplish three objectives: it explained the empty tomb without acknowledging the supernatural, it blamed the disciples without implicating the Sanhedrin, and it shifted the burden of proof to someone else's actions.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -417,11 +927,27 @@
     "choices": [
       {
         "text": "The simplicity was deceptive.",
-        "destination": "conversation_end"
+        "destination": "conversation_end",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The deception would be exposed.",
-        "destination": "deception_exposed"
+        "destination": "deception_exposed",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The burden of proof was shifted to the disciples — accused of theft and deception, not the authorities of covering up a miracle. The narrative was designed to make the witnesses look dishonest and the establishment look reasonable. The simplicity of the lie was its strength.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -430,11 +956,27 @@
     "choices": [
       {
         "text": "The contradiction was in their records.",
-        "destination": "truth_will_out"
+        "destination": "truth_will_out",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The evidence was undeniable.",
-        "destination": "conversation_end"
+        "destination": "conversation_end",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The deception would be exposed. Every coin paid to the soldiers was a coin that proved we knew what they saw was real. Every letter written was a letter that proved we were trying to hide it. Every narrative we pushed was a narrative that contradicted the physical evidence — the broken seal, the shattered spear, the unbroken silence of the tomb.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -443,11 +985,27 @@
     "choices": [
       {
         "text": "The people knew.",
-        "destination": "people_knew"
+        "destination": "people_knew",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The lie was insufficient.",
-        "destination": "conversation_end"
+        "destination": "conversation_end",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The truth will out. Matthew — the tax collector, the former outcast — writes it down for all to read. He records that the soldiers said \"His disciples stole the body.\" But he also writes: \"When the people heard this, they were greatly distressed.\" The lie did not convince. The truth endured.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -456,7 +1014,19 @@
     "choices": [
       {
         "text": "The truth prevailed.",
-        "destination": "truth_prevailed"
+        "destination": "truth_prevailed",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The people knew. Even under the weight of the official narrative, even with the silver flowing, even with the Sanhedrin's authority behind the cover story — the people knew. They had witnessed the crucifixion. They had seen the darkness. They had felt the earthquake. The lie could not override what they had seen.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -465,12 +1035,38 @@
     "choices": [
       {
         "text": "Finish the interview.",
-        "destination": "conversation_end"
+        "destination": "conversation_end",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The truth prevailed. Not because we stopped lying — we continued to lie. Not because the people stopped questioning — they continued to question. But because the resurrection happened whether we acknowledged it or not. A lie cannot cover up a fact.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "conversation_end": {
     "content": "",
-    "choices": []
+    "choices": [],
+    "steps": [
+      {
+        "divert": "DONE",
+        "condition": {
+          "all": []
+        }
+      }
+    ]
+  },
+  "_meta": {
+    "schema": 2,
+    "entry": "start",
+    "variables": {},
+    "revision": "6d20ad65cb88b6ee"
   }
 }

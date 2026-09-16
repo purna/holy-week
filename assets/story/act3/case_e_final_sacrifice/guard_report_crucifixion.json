@@ -1,10 +1,49 @@
 {
   "intro": {
     "content": "A Roman soldier stands apart from the others, cleaning his hands with a rag that does little good. He has the look of a man who has done this before, many times — and of a man unsettled by having done it again today.\n\"You want to know how it's done, or you want to know what I saw? They're not the same question. Ask carefully.\"",
-    "choices": [
+    "choices": [],
+    "steps": [
       {
-        "text": "main_hub",
-        "destination": "main_hub"
+        "tag": "UNLOCK_EVIDENCE: unbroken_legs",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "tag": "UNLOCK_EVIDENCE: sour_wine_sponge",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "tag": "UNLOCK_EVIDENCE: final_words",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "tag": "UNLOCK_EVIDENCE: crucifixion_nails",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "A Roman soldier stands apart from the others, cleaning his hands with a rag that does little good. He has the look of a man who has done this before, many times — and of a man unsettled by having done it again today.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"You want to know how it's done, or you want to know what I saw? They're not the same question. Ask carefully.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "divert": "main_hub",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -13,64 +52,210 @@
     "choices": [
       {
         "text": "Ask how the crucifixion itself was carried out",
-        "destination": "unlock_nails"
+        "destination": "unlock_nails",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Ask about the legs of the two other men",
-        "destination": "unlock_legs"
+        "destination": "unlock_legs",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Ask about the sponge and the vinegar",
-        "destination": "unlock_sponge"
+        "destination": "unlock_sponge",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Ask what His last words were",
-        "destination": "unlock_final_words"
+        "destination": "unlock_final_words",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Leave him",
-        "destination": "repeat_stage"
+        "destination": "repeat_stage",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       }
-    ]
+    ],
+    "steps": []
   },
   "unlock_nails": {
-    "content": "# UNLOCK_EVIDENCE: unbroken_legs\n# UNLOCK_EVIDENCE: sour_wine_sponge\n# UNLOCK_EVIDENCE: final_words\n# UNLOCK_EVIDENCE: crucifixion_nails\n\"Three nails. Wrists, not the palms — palms tear straight through once the body's full weight comes down on them. Feet crossed and pinned with the third, through the arch. He didn't cry out when they went in. Most men do.\"\n{ not evidence_crucifixion_nails:\n    ~ evidence_crucifixion_nails = true\n    # UNLOCK_EVIDENCE: crucifixion_nails\n}",
-    "choices": [
+    "content": "\"Three nails. Wrists, not the palms — palms tear straight through once the body's full weight comes down on them. Feet crossed and pinned with the third, through the arch. He didn't cry out when they went in. Most men do.\"",
+    "choices": [],
+    "steps": [
       {
-        "text": "main_hub",
-        "destination": "main_hub"
+        "text": "\"Three nails. Wrists, not the palms — palms tear straight through once the body's full weight comes down on them. Feet crossed and pinned with the third, through the arch. He didn't cry out when they went in. Most men do.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "set": "evidence_crucifixion_nails",
+        "operator": "=",
+        "value": {
+          "literal": true
+        },
+        "condition": {
+          "all": [
+            {
+              "not": {
+                "variable": "evidence_crucifixion_nails"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "divert": "main_hub",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "unlock_legs": {
-    "content": "# UNLOCK_EVIDENCE: unbroken_legs\n# UNLOCK_EVIDENCE: sour_wine_sponge\n# UNLOCK_EVIDENCE: final_words\n# UNLOCK_EVIDENCE: crucifixion_nails\n\"Orders came down from the priests — break the legs of all three before sundown, get the bodies off the crosses before the Sabbath. Standard procedure, speeds up the death. We did the two thieves. By the time we got to Him, He was already gone. Nothing left to break.\"\n{ not evidence_unbroken_legs:\n    ~ evidence_unbroken_legs = true\n    # UNLOCK_EVIDENCE: unbroken_legs\n}",
-    "choices": [
+    "content": "\"Orders came down from the priests — break the legs of all three before sundown, get the bodies off the crosses before the Sabbath. Standard procedure, speeds up the death. We did the two thieves. By the time we got to Him, He was already gone. Nothing left to break.\"",
+    "choices": [],
+    "steps": [
       {
-        "text": "main_hub",
-        "destination": "main_hub"
+        "text": "\"Orders came down from the priests — break the legs of all three before sundown, get the bodies off the crosses before the Sabbath. Standard procedure, speeds up the death. We did the two thieves. By the time we got to Him, He was already gone. Nothing left to break.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "set": "evidence_unbroken_legs",
+        "operator": "=",
+        "value": {
+          "literal": true
+        },
+        "condition": {
+          "all": [
+            {
+              "not": {
+                "variable": "evidence_unbroken_legs"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "divert": "main_hub",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "unlock_sponge": {
-    "content": "# UNLOCK_EVIDENCE: unbroken_legs\n# UNLOCK_EVIDENCE: sour_wine_sponge\n# UNLOCK_EVIDENCE: final_words\n# UNLOCK_EVIDENCE: crucifixion_nails\n\"Near the end He said He was thirsty. One word, barely audible. We soaked a sponge in the sour wine ration — what we drink on duty, not fine stuff — and lifted it up to Him on a hyssop branch. Wasn't cruelty. It's what we had.\"\n{ not evidence_sour_wine_sponge:\n    ~ evidence_sour_wine_sponge = true\n    # UNLOCK_EVIDENCE: sour_wine_sponge\n}",
-    "choices": [
+    "content": "\"Near the end He said He was thirsty. One word, barely audible. We soaked a sponge in the sour wine ration — what we drink on duty, not fine stuff — and lifted it up to Him on a hyssop branch. Wasn't cruelty. It's what we had.\"",
+    "choices": [],
+    "steps": [
       {
-        "text": "main_hub",
-        "destination": "main_hub"
+        "text": "\"Near the end He said He was thirsty. One word, barely audible. We soaked a sponge in the sour wine ration — what we drink on duty, not fine stuff — and lifted it up to Him on a hyssop branch. Wasn't cruelty. It's what we had.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "set": "evidence_sour_wine_sponge",
+        "operator": "=",
+        "value": {
+          "literal": true
+        },
+        "condition": {
+          "all": [
+            {
+              "not": {
+                "variable": "evidence_sour_wine_sponge"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "divert": "main_hub",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "unlock_final_words": {
-    "content": "# UNLOCK_EVIDENCE: unbroken_legs\n# UNLOCK_EVIDENCE: sour_wine_sponge\n# UNLOCK_EVIDENCE: final_words\n# UNLOCK_EVIDENCE: crucifixion_nails\n\"I heard it myself, clear as anything. Not a scream, not a groan — a declaration. 'Father, into your hands I commit my spirit.' Then He bowed His head, and it was finished. Loud. Deliberate. Like a man choosing the moment, not one being dragged into it.\"\n{ not evidence_final_words:\n    ~ evidence_final_words = true\n    # UNLOCK_EVIDENCE: final_words\n}",
-    "choices": [
+    "content": "\"I heard it myself, clear as anything. Not a scream, not a groan — a declaration. 'Father, into your hands I commit my spirit.' Then He bowed His head, and it was finished. Loud. Deliberate. Like a man choosing the moment, not one being dragged into it.\"",
+    "choices": [],
+    "steps": [
       {
-        "text": "main_hub",
-        "destination": "main_hub"
+        "text": "\"I heard it myself, clear as anything. Not a scream, not a groan — a declaration. 'Father, into your hands I commit my spirit.' Then He bowed His head, and it was finished. Loud. Deliberate. Like a man choosing the moment, not one being dragged into it.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "set": "evidence_final_words",
+        "operator": "=",
+        "value": {
+          "literal": true
+        },
+        "condition": {
+          "all": [
+            {
+              "not": {
+                "variable": "evidence_final_words"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "divert": "main_hub",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "repeat_stage": {
-    "content": "# UNLOCK_EVIDENCE: unbroken_legs\n# UNLOCK_EVIDENCE: sour_wine_sponge\n# UNLOCK_EVIDENCE: final_words\n# UNLOCK_EVIDENCE: crucifixion_nails\n\"Three men crucified today. One of them died differently than the other two. I've been doing this a long time. I don't have a good explanation for that.\"\nVAR evidence_crucifixion_nails = false\nVAR evidence_unbroken_legs = false\nVAR evidence_sour_wine_sponge = false\nVAR evidence_final_words = false",
-    "choices": []
+    "content": "\"Three men crucified today. One of them died differently than the other two. I've been doing this a long time. I don't have a good explanation for that.\"",
+    "choices": [],
+    "steps": [
+      {
+        "text": "\"Three men crucified today. One of them died differently than the other two. I've been doing this a long time. I don't have a good explanation for that.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "divert": "DONE",
+        "condition": {
+          "all": []
+        }
+      }
+    ]
+  },
+  "_meta": {
+    "schema": 2,
+    "entry": "intro",
+    "variables": {
+      "evidence_crucifixion_nails": false,
+      "evidence_unbroken_legs": false,
+      "evidence_sour_wine_sponge": false,
+      "evidence_final_words": false
+    },
+    "revision": "9cb2e3485c9f1693"
   }
 }

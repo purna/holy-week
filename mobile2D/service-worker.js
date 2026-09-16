@@ -1,5 +1,5 @@
 const CACHE_PREFIX = 'holy-week-cache';
-const CACHE_VERSION = 'v2.10'; // Dialogue-driven evidence unlocks
+const CACHE_VERSION = 'v2.13-lab-save'; // Conversation runtime and lives header
 const CACHE_NAME = `${CACHE_PREFIX}-${CACHE_VERSION}`;
 
 // List all critical assets that need to be cached for offline use.
@@ -7,6 +7,7 @@ const CACHE_NAME = `${CACHE_PREFIX}-${CACHE_VERSION}`;
 // images, fonts, GLB models, audio files, and Ink JSON dialogue files.
 // Paths are relative to the service worker's location (e.g., './' for index.html).
 const urlsToCache = [
+  '../js/gameplay/conversationStory.js',
   // Core App Shell
   '../mobile2d.html',
   './favicon.ico',
@@ -20,7 +21,7 @@ const urlsToCache = [
   './npcSystem.js',
   './deductionEngine.js',
   './locationSystem.js',
-  './Scene2D.js',
+  './Scene2D.js?v=20260916-lives',
   './ink-dialogue.js',
   './BibleReader2.js',
 
@@ -35,7 +36,7 @@ const urlsToCache = [
   '../js/gameplay/chainManager.js',
   '../js/gameplay/dialogueMaps.js',
   '../js/ui/AccessibilityManager.js',
-  '../js/ui/LabWorkspaceUI.js',
+  '../js/ui/LabWorkspaceUI.js?v=20260916-lab-save',
   '../js/ui/PeopleUI.js',
   '../js/ui/SceneUI.js',
   '../js/ui/AccuseUI.js',
@@ -51,7 +52,7 @@ const urlsToCache = [
   './css/tokens.css',
   './css/base.css',
   './css/screens.css',
-  './css/header.css',
+  './css/header.css?v=20260916-lives',
   './css/map.css',
   './css/cases.css',
   './css/evidence-cards.css',
@@ -66,7 +67,7 @@ const urlsToCache = [
   './css/game-complete.css',
   './css/misc.css',
   './css/scene-3d.css',
-  './css/scene-2d.css',
+  './css/scene-2d.css?v=20260916-lives',
 
   // Local Plugins
   '../js/plugins/howler.min.js',

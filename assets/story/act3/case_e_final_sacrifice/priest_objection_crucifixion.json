@@ -1,360 +1,274 @@
 {
   "start": {
-    "content": "We were there to make sure the sentence was carried out. He claimed to be the Son of God. It was blasphemy. We had heard His teachings — the way He spoke to sinners, the way He dismissed our authority. When He died, we expected... relief.",
+    "content": "You want my account of His death. I opposed His claims. That is no secret. But an account should say more than whether its witness approved of the condemned man.",
     "choices": [
       {
-        "text": "But instead you saw something else.",
-        "destination": "unexpected"
+        "text": "What did you observe at the place of execution?",
+        "destination": "hill",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "The crowd's reaction.",
-        "destination": "crowd_reaction"
-      }
-    ]
-  },
-  "unexpected": {
-    "content": "Instead of relief, we felt — fear. Not the fear of a dying man, we see plenty of those. The fear of witnessing something we could not explain. The sky went dark. The earth trembled. And the Temple veil — our sacred veil — tore itself in two from the top, as if God Himself had rejected our system.",
-    "choices": [
-      {
-        "text": "The darkness at noon.",
-        "destination": "darkness"
+        "text": "What do you know about the Temple curtain?",
+        "destination": "curtain",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "The earthquake.",
-        "destination": "earthquake"
-      }
-    ]
-  },
-  "darkness": {
-    "content": "At noon, the sun vanished. Not an eclipse — we were told it was a cloud, a natural phenomenon. But we soldiers, hardened by years of campaigns across the provinces, we knew the difference. The birds stopped singing. The wind died. Even the thieves on their crosses fell silent. Three hours of unnatural darkness.",
-    "choices": [
-      {
-        "text": "What happened after?",
-        "destination": "death_throes"
+        "text": "Has this changed your judgment?",
+        "destination": "judgment",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "The silence was unnatural.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       }
-    ]
-  },
-  "earthquake": {
-    "content": "The ground shook beneath our boots. Not the rolling tremor of distant quakes — a focused, violent shudder that shook the very foundations of the hill. The stones cracked. The dust rose. And through the whole of it, the cross stood unmoved.",
-    "choices": [
+    ],
+    "steps": [
       {
-        "text": "The cross endured.",
-        "destination": "cross_endured"
+        "tag": "UNLOCK_EVIDENCE: temple_curtain",
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "What you recorded.",
-        "destination": "closing"
-      }
-    ]
-  },
-  "cross_endured": {
-    "content": "The cross endured. The wood that was meant to be the instrument of shame became the axis on which the entire universe turned. And the man who hung upon it — He stood there, not as a victim, but as a conqueror.",
-    "choices": [
-      {
-        "text": "The victory was visible.",
-        "destination": "closing"
+        "tag": "UNLOCK_EVIDENCE: darkness",
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "The paradox.",
-        "destination": "paradox"
-      }
-    ]
-  },
-  "paradox": {
-    "content": "The paradox. The tool of torture became the symbol of salvation. The mark of shame became the badge of honor. The death of a condemned criminal became the defeat of death itself. We had been sent to witness an execution. We witnessed a resurrection in reverse — life pouring out of death.",
-    "choices": [
-      {
-        "text": "What happened then?",
-        "destination": "death_throes"
+        "tag": "UNLOCK_EVIDENCE: final_words",
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "The meaning was clear.",
-        "destination": "closing"
+        "text": "You want my account of His death. I opposed His claims. That is no secret. But an account should say more than whether its witness approved of the condemned man.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
-  "death_throes": {
-    "content": "He cried out — but not in agony. In declaration. \"It is finished.\" The Greek — tetelestai — means the debt is paid. The contract is fulfilled. The kingdom is established. With those words, He bowed His head and gave up His spirit. Not a snatch of life — a yielding. A gift.",
+  "hill": {
+    "content": "The darkness unsettled me. So did the voices around the crosses: mockery from some, grief from others. I had expected the sentence to end the dispute.\nDo not make me a soldier in your notes. I was not responsible for carrying out the execution.",
     "choices": [
       {
-        "text": "Then the veil tore.",
-        "destination": "veil_tore"
+        "text": "What can you establish about His final words?",
+        "destination": "words",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "The sacrifice was consumed.",
-        "destination": "sacrifice_consumed"
+        "text": "Return to my questions.",
+        "destination": "start",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       }
-    ]
-  },
-  "veil_tore": {
-    "content": "\"And the curtain of the temple was torn in two from top to bottom.\" The words of the Gospel echo in my ears even now. The barrier between human and divine was removed. The Most Holy Place — accessible to all. No more priests. No more sacrifices. No more blood of bulls and goats. One sacrifice, once for all.\n# UNLOCK_EVIDENCE: temple_curtain\n# UNLOCK_EVIDENCE: darkness\n# UNLOCK_EVIDENCE: final_words",
-    "choices": [
+    ],
+    "steps": [
       {
-        "text": "The old system ended.",
-        "destination": "old_system"
+        "text": "The darkness unsettled me. So did the voices around the crosses: mockery from some, grief from others. I had expected the sentence to end the dispute.",
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "The access was granted.",
-        "destination": "access_granted"
+        "text": "Do not make me a soldier in your notes. I was not responsible for carrying out the execution.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
-  "sacrifice_consumed": {
-    "content": "\"Consumed\" is not the right word — the sacrifice was not destroyed, it was completed. The offering was made. The payment was accepted. The covenant was sealed. When the earth stopped shaking and the birds began to sing again, the old covenant was finished, and the new had begun.",
+  "words": {
+    "content": "There were cries from the cross. Ask those nearest Him for the exact words they heard. Different witnesses may have heard different moments.\nI will not turn another person's account into a quotation I can swear I heard myself.",
     "choices": [
       {
-        "text": "The old covenant ended.",
-        "destination": "old_system"
+        "text": "And the report from the Temple?",
+        "destination": "curtain",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "The new had begun.",
-        "destination": "new_begun"
+        "text": "Return to my questions.",
+        "destination": "start",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       }
-    ]
-  },
-  "old_system": {
-    "content": "The old system ended at the moment of death. The Temple sacrifices, the priestly mediations, the blood of animals, the yearly atonement — all of it was fulfilled and surpassed. The veil that separated was now in two pieces on the sanctuary floor. The old was passing away. The new was here.",
-    "choices": [
+    ],
+    "steps": [
       {
-        "text": "The new was here.",
-        "destination": "new_begun"
-      }
-    ]
-  },
-  "access_granted": {
-    "content": "The access was granted — not through the Temple hierarchy, not through priestly intercession, not through ritual cleansing. Through a single act of love on a hill called Skull. The veil was rent, and the way was open.",
-    "choices": [
-      {
-        "text": "The way was opened.",
-        "destination": "opened"
+        "text": "There were cries from the cross. Ask those nearest Him for the exact words they heard. Different witnesses may have heard different moments.",
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "The priesthood transformed.",
-        "destination": "transformed"
+        "text": "I will not turn another person's account into a quotation I can swear I heard myself.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
-  "opened": {
-    "content": "The way was opened — for Jew and Gentile alike. For the righteous and the wicked. For the pure and the unclean. For the priest and the prostitute. No more intermediaries. No more gatekeepers. No more barriers of race, class, or status.",
+  "curtain": {
+    "content": "I heard that the curtain had torn. But the Sanctuary is not visible from the place of execution. You must question those who were there.\nI understand why you connect the reports. First establish who witnessed each event and when, then consider what they mean together.",
     "choices": [
       {
-        "text": "The equality was radical.",
-        "destination": "radical_equality"
+        "text": "What does that report mean to you?",
+        "destination": "judgment",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "The implications were staggering.",
-        "destination": "staggering_implications"
+        "text": "Return to my questions.",
+        "destination": "start",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       }
-    ]
-  },
-  "radical_equality": {
-    "content": "The equality was radical — and terrifying. If anyone could approach God through the cross, what need had we of our temples? Our sacrifices? Our authority? Our centuries of expertise? The democratization of divine access was the most revolutionary — and dangerous — idea in human history.",
-    "choices": [
+    ],
+    "steps": [
       {
-        "text": "Dangerous to the establishment.",
-        "destination": "closing"
+        "set": "separated_reports",
+        "operator": "=",
+        "value": {
+          "literal": true
+        },
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "The priesthood transformed.",
-        "destination": "transformed"
-      }
-    ]
-  },
-  "transformed": {
-    "content": "The priesthood was transformed. No longer a class of chosen men. Not a hierarchy of ordained intermediaries. Every believer — a priest. Every prayer — an offering. Every life — a sacrifice. The cross democratized holiness itself, making every human heart a sanctuary.",
-    "choices": [
-      {
-        "text": "The democratization of holiness.",
-        "destination": "democratization"
+        "text": "I heard that the curtain had torn. But the Sanctuary is not visible from the place of execution. You must question those who were there.",
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "The implications were staggering.",
-        "destination": "staggering_implications"
+        "text": "I understand why you connect the reports. First establish who witnessed each event and when, then consider what they mean together.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
-  "democratization": {
-    "content": "The democratization of holiness. The Temple was no longer a building. The priesthood was no longer an office. The sacrifice was no longer an animal. It was a person — crucified, resurrected, ascended. And His name would be spoken in every language, in every nation, by every tribe.",
+  "judgment": {
+    "content": "It troubles me. That is an honest answer, even if it is not the answer you hoped to write.\nI do not yet know how to reconcile what happened with the judgment I supported. Do not record either certainty or repentance that I have not expressed.",
     "choices": [
       {
-        "text": "The name would go to the ends of the earth.",
-        "destination": "ends_of_earth"
+        "text": "Return to my questions.",
+        "destination": "start",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "set": "admitted_uncertainty",
+        "operator": "=",
+        "value": {
+          "literal": true
+        },
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "The implications were staggering.",
-        "destination": "staggering_implications"
-      }
-    ]
-  },
-  "ends_of_earth": {
-    "content": "The name would go to the ends of the earth. Not through conquest. Not through empire. Not through force. But through witness. Through love. Through a cross that became the banner of a kingdom that could not be defeated.",
-    "choices": [
-      {
-        "text": "The victory over death.",
-        "destination": "victory_over_death"
+        "text": "It troubles me. That is an honest answer, even if it is not the answer you hoped to write.",
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "The story continues.",
-        "destination": "closing"
-      }
-    ]
-  },
-  "victory_over_death": {
-    "content": "The victory over death. A cross that looked like defeat became the proof of victory. A tomb that should have held Him became the gateway to eternity. A crucifixion that seemed like the end became the beginning of everything.",
-    "choices": [
-      {
-        "text": "The beginning of everything.",
-        "destination": "beginning_everything"
-      },
-      {
-        "text": "The testimony remains.",
-        "destination": "closing"
-      }
-    ]
-  },
-  "beginning_everything": {
-    "content": "The beginning of everything. In three days, the stone would roll away. In forty days, the risen Lord would ascend. In fifty, the Spirit would descend. In a thousand years, the empire would fall. And in two thousand, the story would still be told.",
-    "choices": [
-      {
-        "text": "The story continues.",
-        "destination": "closing"
-      }
-    ]
-  },
-  "staggering_implications": {
-    "content": "The implications were staggering. Not to us — we were too invested in the old ways. But to the world. To the generations yet unborn. To the millions who would hear the story and wonder: could this be true? Could the death of one man really change everything?",
-    "choices": [
-      {
-        "text": "The answer is yes.",
-        "destination": "closing"
-      }
-    ]
-  },
-  "new_begun": {
-    "content": "The new had begun. Not with a bang. Not with a revelation. Not with a prophet's voice from the mountain. But with a whispered word from a dying man: \"It is finished.\" And through that whispered word, a new creation dawned.",
-    "choices": [
-      {
-        "text": "The creation dawned.",
-        "destination": "closing"
-      },
-      {
-        "text": "The dawn was complete.",
-        "destination": "closing"
-      }
-    ]
-  },
-  "crowd_reaction": {
-    "content": "The crowd — what reaction we expected. Relief that the troublemaker was dead. Satisfaction that the disturbance was over. Dismissal that the whole affair was now behind them. But when the sky went dark and the earth shook, their mocking turned to murmuring.",
-    "choices": [
-      {
-        "text": "Their mocking turned to fear.",
-        "destination": "turning_fear"
-      },
-      {
-        "text": "Fear was the response.",
-        "destination": "closing"
-      }
-    ]
-  },
-  "turning_fear": {
-    "content": "Their mocking turned to fear as the rocks cracked and the birds fell silent. The priests hurried away first — they always do when the supernatural intrudes. The crowd scattered. Even the soldiers, hardened men, fell to their faces.",
-    "choices": [
-      {
-        "text": "They abandoned the cross.",
-        "destination": "abandon"
-      },
-      {
-        "text": "Fear replaced mockery.",
-        "destination": "fear_replaced_mockery"
-      }
-    ]
-  },
-  "fear_replaced_mockery": {
-    "content": "Fear replaced mockery. The same crowd that had shouted, \"He saved others; let Him save Himself!\" now stood in stunned silence as the heavens themselves seemed to recoil. The supernatural does not allow neutral observers.",
-    "choices": [
-      {
-        "text": "The choice was stark.",
-        "destination": "closing"
-      },
-      {
-        "text": "Some ran, others stood.",
-        "destination": "stood_or_ran"
-      }
-    ]
-  },
-  "stood_or_ran": {
-    "content": "Some ran, others stood. The ones who stood — they were changed. The ones who ran — they were never the same. And the ones who crucified Him — they were left with a choice: the old world of temples and sacrifices and blood-money, or this terrifying new world where a dying man's last word was \"finished\" and everything had changed.",
-    "choices": [
-      {
-        "text": "The choice remained.",
-        "destination": "choice"
-      },
-      {
-        "text": "The old gave way.",
-        "destination": "new_begun"
-      }
-    ]
-  },
-  "choice": {
-    "content": "The choice remained. To believe or to disbelieve. To accept the demolition of the old system or to rebuild it in defiance. To acknowledge the cross as the center of divine power, or to retreat into the security of familiar rituals. The cross forced a decision.",
-    "choices": [
-      {
-        "text": "The decision mattered.",
-        "destination": "decision_matters"
-      }
-    ]
-  },
-  "decision_matters": {
-    "content": "The decision mattered — and still matters. Two thousand years later, every person who encounters the story of the cross must decide: is this madness or divine wisdom? Is this defeat or victory? Is this the end of the story or the beginning? We stood at that cross and chose. And the choice echoes still.",
-    "choices": [
-      {
-        "text": "The echo continues.",
-        "destination": "closing"
-      }
-    ]
-  },
-  "abandon": {
-    "content": "They abandoned the cross. They abandoned the man they had crucified. They abandoned the old certainties that had defined their faith for centuries. The Temple veil tore, and with it, their sense of control.",
-    "choices": [
-      {
-        "text": "The loss of control.",
-        "destination": "control_lost"
-      }
-    ]
-  },
-  "control_lost": {
-    "content": "The loss of control was absolute. They had orchestrated this execution. They had manipulated the crowd. They had satisfied Rome. But in the moment of death — when the sky went dark and the earth shook — they lost control completely. The Son of Man was no longer under their power. He was under divine authority.",
-    "choices": [
-      {
-        "text": "The authority shifted.",
-        "destination": "shifting_authority"
-      }
-    ]
-  },
-  "shifting_authority": {
-    "content": "The authority shifted. From the Sanhedrin to the Savior. From the Temple to the throne. From law to love. From death to life. And the priests who had orchestrated His death found themselves standing outside an empty tomb, holding two thousand years of authority that no longer applied.",
-    "choices": [
-      {
-        "text": "The authority was irrevocable.",
-        "destination": "irrevocable"
-      }
-    ]
-  },
-  "irrevocable": {
-    "content": "The authority was irrevocable. The cross could not be undone. The resurrection could not be explained away. The veil that separated — torn. The door that was opened — could not be closed again. The old covenant had passed away, and the new had come.",
-    "choices": [
-      {
-        "text": "The new covenant stands.",
-        "destination": "closing"
+        "text": "I do not yet know how to reconcile what happened with the judgment I supported. Do not record either certainty or repentance that I have not expressed.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "closing": {
-    "content": "We were there. We witnessed. We saw. And we cannot unsee. The Temple veil is torn. The darkness was real. The earthquake was felt. The Son of God died on a cross — and the world was forever changed. The question is no longer: \"What did you see?\" but: \"Will you believe it?\"",
-    "choices": []
+    "content": "You have my uncertainty, and the distinction between my observations and the report from the Sanctuary. Preserve both.\nRecord my opposition if you must. Record the limits of my knowledge as carefully.",
+    "choices": [],
+    "steps": [
+      {
+        "text": "You have my uncertainty, and the distinction between my observations and the report from the Sanctuary. Preserve both.",
+        "condition": {
+          "all": [
+            {
+              "all": [
+                {
+                  "variable": "separated_reports"
+                },
+                {
+                  "variable": "admitted_uncertainty"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "text": "Record my opposition if you must. Record the limits of my knowledge as carefully.",
+        "condition": {
+          "all": [
+            {
+              "not": {
+                "all": [
+                  {
+                    "variable": "separated_reports"
+                  },
+                  {
+                    "variable": "admitted_uncertainty"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "divert": "DONE",
+        "condition": {
+          "all": []
+        }
+      }
+    ]
+  },
+  "_meta": {
+    "schema": 2,
+    "entry": "start",
+    "variables": {
+      "separated_reports": false,
+      "admitted_uncertainty": false
+    },
+    "revision": "327dbf07b5769faf"
   }
 }

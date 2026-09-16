@@ -4,11 +4,33 @@
     "choices": [
       {
         "text": "When will these things happen?",
-        "destination": "signs"
+        "destination": "signs",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The Temple is eternal, surely?",
-        "destination": "doom"
+        "destination": "doom",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "He spoke of the end, Scribe. Not just of our lives, but of those great stones down there. He says not one will be left standing on another.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"Do you see all these things?\" He asked us, looking out over the Temple. \"Truly I tell you, not one stone here will be left upright that will not be torn down.\"",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -17,24 +39,62 @@
     "choices": [
       {
         "text": "A long road before the end.",
-        "destination": "long_road"
+        "destination": "long_road",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "What should we watch for?",
-        "destination": "watch_signs"
+        "destination": "watch_signs",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "He warned us of deceptions and wars — men claiming to be the Messiah, nations rising against nations, famines and earthquakes. But He called these birth pains, not the end itself. \"Take heed that no one leads you astray,\" He said. Then He told us: \"The gospel of the kingdom will be preached to all nations, and then the end will come.\"",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "doom": {
-    "content": "That is what we thought. But look at His face — He was not guessing. He was mourning what He knows is coming. He has looked at this city and loved it and He is describing its destruction without flinching. A man who weeps over Jerusalem does not exaggerate its fate.\n\"Not one stone here will be left,\" He repeated. \"See you not all these things?\" When He said it, Andrew — my own brother — he understood. The stones were the promises of permanence. And He was saying they would not endure.",
+    "content": "That is what we thought. But look at His face — He was not guessing. He was mourning what He knows is coming. He has looked at this city and loved it and He is describing its destruction without flinching. A man who weeps over Jerusalem does not exaggerate its fate.\n\"Not one stone here will be left,\" He repeated. \"See you not all these things?\" When He said it, Peter, my brother, was beside me. The stones were the promises of permanence. And He was saying they would not endure.",
     "choices": [
       {
         "text": "He wept over Jerusalem.",
-        "destination": "weeping_city"
+        "destination": "weeping_city",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Then the Temple will fall.",
-        "destination": "temple_fall"
+        "destination": "temple_fall",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "That is what we thought. But look at His face — He was not guessing. He was mourning what He knows is coming. He has looked at this city and loved it and He is describing its destruction without flinching. A man who weeps over Jerusalem does not exaggerate its fate.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"Not one stone here will be left,\" He repeated. \"See you not all these things?\" When He said it, Peter, my brother, was beside me. The stones were the promises of permanence. And He was saying they would not endure.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -43,11 +103,33 @@
     "choices": [
       {
         "text": "And the Good News to all nations?",
-        "destination": "nations_commission"
+        "destination": "nations_commission",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "He was telling you what to expect.",
-        "destination": "watch_signs"
+        "destination": "watch_signs",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Peter and I asked about the timing — when and what sign. He told us to be careful not to be deceived. \"Wars and disturbances are not instantaneous events,\" He said. \"But the end is not yet.\" He was telling us not to panic and not to give up. Stay at the task. Endure to the end. That is the command.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"Take heed; I have told you beforehand. When therefore you see the abomination of desolation, spoken of by Daniel the prophet, standing where it ought not... then those in Judea let them flee to the mountains.\"",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -56,11 +138,33 @@
     "choices": [
       {
         "text": "A future specific enough to act on.",
-        "destination": "nations_commission"
+        "destination": "nations_commission",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Pray because we cannot know the hour.",
-        "destination": "end_words"
+        "destination": "end_words",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "He spoke of a specific sign — the abomination of desolation standing in the holy place, the signal to flee. \"When you see these things coming to pass, you know that the kingdom of God is near.\" He warned of false christs performing signs, even able to deceive the elect if possible. \"Take heed that you do not become deceived.\" The instruction was to test, not to follow every voice. Endure, watch, and pray.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"And they will see the Son of Man coming on the clouds with power and great glory. And then He will send His angels and gather together His elect from the four winds.\"",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -69,7 +173,25 @@
     "choices": [
       {
         "text": "Judgment spoken with grief.",
-        "destination": "nations_commission"
+        "destination": "nations_commission",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Yes. On the road into the city a few days before this. He wept aloud — \"If you had known on this day what would bring you peace. But now it is hidden from your eyes.\" He knew exactly what the rejection meant for Jerusalem. The Olivet Discourse is the explanation of that weeping.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"Jerusalem, Jerusalem, the one who kills the prophets and stones those who are sent to her! How often I wanted to gather your children together, as a hen gathers her chicks under her wings, but you were not willing!\"",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -78,7 +200,25 @@
     "choices": [
       {
         "text": "And the people?",
-        "destination": "nations_commission"
+        "destination": "nations_commission",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Within a generation, He said. Those stones — the ones we were admiring as we left, each one the size of a house — not one will be left. \"The Temple will fall,\" He warned. \"And then many will come in My name, saying, 'I am He.' Do not believe them.'\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "The nation that rejects its king will lose the institution that defined it. It is the pattern of every prior judgment in the Scripture.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -86,12 +226,26 @@
     "content": "This is the part I carry with me most. He turned from the destruction of the Temple and the cosmic signs — and He spoke about mission. \"This gospel of the kingdom will be preached in all the world as a witness to all nations, and then the end will come.\"\nThe Temple falls. The mission continues. The two are not contradictions. The end of one system is the beginning of a wider one.",
     "choices": [
       {
-        "text": "The Jewish centre disperses to the whole world.",
-        "destination": "end_words"
+        "text": "Continue.",
+        "destination": "end_words",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "This is the part I carry with me most. He turned from the destruction of the Temple and the cosmic signs — and He spoke about mission. \"This gospel of the kingdom will be preached in all the world as a witness to all nations, and then the end will come.\"",
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "And then the end comes.",
-        "destination": "end_words"
+        "text": "The Temple falls. The mission continues. The two are not contradictions. The end of one system is the beginning of a wider one.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -99,13 +253,63 @@
     "content": "Watch and pray. Those were His final words on the subject. Not dates, not calculations. \"Watch therefore, for you do not know what day your Master is coming.\"\n\"Therefore, stay awake — for you know neither the day nor the hour.\"\nHe left us with the responsibility to stay awake without knowing the timetable. I think that was deliberate.",
     "choices": [
       {
-        "text": "Faith without certainty about timing.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Watch and pray. Those were His final words on the subject. Not dates, not calculations. \"Watch therefore, for you do not know what day your Master is coming.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"Therefore, stay awake — for you know neither the day nor the hour.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "He left us with the responsibility to stay awake without knowing the timetable. I think that was deliberate.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "closing": {
     "content": "He trusts us with enough to act, but not enough to stop watching. I used to think I wanted the date. Now I think knowing the date would ruin the waiting. The watching is the point.\n\"And what I say to you, I say to all: Watch.\"",
-    "choices": []
+    "choices": [],
+    "steps": [
+      {
+        "text": "He trusts us with enough to act, but not enough to stop watching. I used to think I wanted the date. Now I think knowing the date would ruin the waiting. The watching is the point.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"And what I say to you, I say to all: Watch.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "divert": "DONE",
+        "condition": {
+          "all": []
+        }
+      }
+    ]
+  },
+  "_meta": {
+    "schema": 2,
+    "entry": "start",
+    "variables": {},
+    "revision": "78a0475a264f9f8f"
   }
 }

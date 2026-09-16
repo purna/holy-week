@@ -4,11 +4,27 @@
     "choices": [
       {
         "text": "I'm looking for information about the Galilean.",
-        "destination": "galilean_rumors"
+        "destination": "galilean_rumors",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Have you heard about the Temple courts?",
-        "destination": "court_rumors"
+        "destination": "court_rumors",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Good day! The market moves faster than news. People are saying strange things. What draws you to my stall? Have you heard the reports about the miracles circulating through the city?",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -17,11 +33,27 @@
     "choices": [
       {
         "text": "What are the priests saying?",
-        "destination": "priest_response"
+        "destination": "priest_response",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The crowd accepts it.",
-        "destination": "crowd_accept"
+        "destination": "crowd_accept",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "People are saying He healed a blind man at Bethesda. Others say He raised Lazarus from the dead in Bethany - a man dead for four days. The Pharisees are trying to keep it quiet, but you cannot stop a story like that from spreading. Who is He that can raise the dead?",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -30,11 +62,27 @@
     "choices": [
       {
         "text": "Tell me about the questions?",
-        "destination": "priest_response"
+        "destination": "priest_response",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The people were amazed.",
-        "destination": "crowd_amazed"
+        "destination": "crowd_amazed",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The Temple courts have been a whirlwind for three days running. Questions, answers, more questions - and the Galilean traps them with His words at every turn. They tried to trap Him on the question of taxes to Caesar or to God. He answered: \"Give to Caesar what is Caesar's, and to God what is God's.\"",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -42,12 +90,28 @@
     "content": "The chief priests and Pharisees met in emergency session after Lazarus. They're planning something. I don't know what, but when the Sanhedrin starts meeting before dawn, it is never good for anyone.",
     "choices": [
       {
-        "text": "Have you seen anything suspicious?",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "They are plotting.",
-        "destination": "plotting"
+        "destination": "plotting",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The chief priests and Pharisees met in emergency session after Lazarus. They're planning something. I don't know what, but when the Sanhedrin starts meeting before dawn, it is never good for anyone.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -55,8 +119,20 @@
     "content": "Who wouldn't? A man who can raise the dead - that is the kind of answer people have been waiting for. The crowds at the gate are thicker than the Passover traffic. Everyone is streaming toward Bethany.",
     "choices": [
       {
-        "text": "The Sanhedrin is alarmed.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Who wouldn't? A man who can raise the dead - that is the kind of answer people have been waiting for. The crowds at the gate are thicker than the Passover traffic. Everyone is streaming toward Bethany.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -65,7 +141,19 @@
     "choices": [
       {
         "text": "The priests are troubled.",
-        "destination": "plotting"
+        "destination": "plotting",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Amazed is the right word. They asked about the Temple tax, about resurrection, about the greatest commandment. Every time, He answered so they could not find a flaw. The scribes took notes and looked foolish. The Pharisees left without their lunch.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -73,13 +161,45 @@
     "content": "Troubled? They are terrified. I heard one of the priests slip away from the council meeting this morning - his robes were damp, and he kept looking back over his shoulder. They know something is wrong. The Galilean knows their hearts too well.",
     "choices": [
       {
-        "text": "Will they act?",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Troubled? They are terrified. I heard one of the priests slip away from the council meeting this morning - his robes were damp, and he kept looking back over his shoulder. They know something is wrong. The Galilean knows their hearts too well.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "closing": {
     "content": "Keep your eyes open. I saw one of the coin-changers' guild slip into the High Priest's courtyard three days ago with a leather pouch full of silver.",
-    "choices": []
+    "choices": [],
+    "steps": [
+      {
+        "text": "Keep your eyes open. I saw one of the coin-changers' guild slip into the High Priest's courtyard three days ago with a leather pouch full of silver.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "divert": "DONE",
+        "condition": {
+          "all": []
+        }
+      }
+    ]
+  },
+  "_meta": {
+    "schema": 2,
+    "entry": "start",
+    "variables": {},
+    "revision": "5ce7660adde18281"
   }
 }

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Character Head Generator — Noah (3D)</title>
+<title>3D Character Builder</title>
 <link href="../fonts.css" rel="stylesheet">
 <!-- JSZip for bulk exporting -->
 <script src="../vendor/jszip.3.10.1.min.js"></script>
@@ -2412,7 +2412,7 @@
 
 <div class="workspace">
   <div class="sidebar">
-    <div class="brand">Noah Head Forge <small>Game-Ready 3D</small></div>
+    <div class="brand">3D Character Builder <small>Game-Ready</small></div>
 
     <div class="control-group">
       <h3 class="section-title">Character Presets</h3>
@@ -2514,6 +2514,10 @@
         <span class="row">Face Size <span class="val" id="head-size-val">1.0×</span></span>
         <input type="range" id="head-size" min="0.5" max="1.5" step="0.1" value="1">
       </label>
+      <label class="field">
+        <span class="row">Body Build <span class="val" id="body-size-val">1.0×</span></span>
+        <input type="range" id="body-size" min="0.7" max="1.4" step="0.05" value="1">
+      </label>
       <label class="field">Forehead Height
         <select id="forehead-height">
           <option value="low">Low</option>
@@ -2596,20 +2600,34 @@
       <label class="field">Hair Style
         <select id="hair-style">
           <option value="bald">Bald</option>
-          <option value="buzz">Buzz Cut</option>
-          <option value="short">Short</option>
-          <option value="wavy">Wavy</option>
-          <option value="curly">Curly</option>
-          <option value="afro">Afro</option>
-          <option value="receding">Receding</option>
-          <option value="flowing">Flowing</option>
-          <option value="braids">Braids</option>
-          <option value="tied_back">Tied Back</option>
-          <option value="shoulder_waves">Shoulder-Length Waves</option>
-          <option value="side_braid">Side Braid</option>
-          <option value="crown_braids">Crown Braids</option>
-          <option value="locs">Locs</option>
-          <option value="shaved_sides">Shaved Sides</option>
+          <optgroup label="Sculpted (imported meshes)">
+            <option value="sculpt_1">Sculpted 1 — Swept</option>
+            <option value="sculpt_2">Sculpted 2 — Long Back</option>
+            <option value="sculpt_3">Sculpted 3 — Very Long</option>
+            <option value="sculpt_4">Sculpted 4 — Layered</option>
+            <option value="sculpt_5">Sculpted 5 — Bob</option>
+            <option value="sculpt_6">Sculpted 6 — Short Crop</option>
+            <option value="sculpt_7">Sculpted 7 — Side Part</option>
+            <option value="sculpt_8">Sculpted 8 — Pixie</option>
+            <option value="sculpt_9">Sculpted 9 — Rounded</option>
+            <option value="sculpt_10">Sculpted 10 — Full Volume</option>
+          </optgroup>
+          <optgroup label="Procedural">
+            <option value="buzz">Buzz Cut</option>
+            <option value="short">Short</option>
+            <option value="wavy">Wavy</option>
+            <option value="curly">Curly</option>
+            <option value="afro">Afro</option>
+            <option value="receding">Receding</option>
+            <option value="flowing">Flowing</option>
+            <option value="braids">Braids</option>
+            <option value="tied_back">Tied Back</option>
+            <option value="shoulder_waves">Shoulder-Length Waves</option>
+            <option value="side_braid">Side Braid</option>
+            <option value="crown_braids">Crown Braids</option>
+            <option value="locs">Locs</option>
+            <option value="shaved_sides">Shaved Sides</option>
+          </optgroup>
         </select>
       </label>
       <label class="field">
@@ -2646,6 +2664,10 @@
       <label class="field">
         <span class="row">Head Covering Size <span class="val" id="hat-size-val">1.0×</span></span>
         <input type="range" id="hat-size" min="0.5" max="2.0" step="0.1" value="1">
+      </label>
+      <label class="field">
+        <span class="row">Head Covering Height <span class="val" id="hat-offset-y-val">0.00</span></span>
+        <input type="range" id="hat-offset-y" min="-0.4" max="0.4" step="0.02" value="0">
       </label>
       <div class="checkbox-row">
         <input type="checkbox" id="hat-match-hair">
@@ -2694,12 +2716,58 @@
         </select>
       </label>
       <div class="checkbox-row">
+        <input type="checkbox" id="show-arms">
+        <label for="show-arms">Show arms (sleeve length follows the chosen garment)</label>
+      </div>
+      <div class="checkbox-row">
         <input type="checkbox" id="has-hood">
         <label for="has-hood">Cloak hood (draped at back — Layered Robe, Traveller Cloak, Desert Mantle, Prophet Mantle, Royal Robes only)</label>
       </div>
-      <div class="checkbox-row">
+    </div>
+
+    <div class="control-group">
+      <h3 class="section-title">Jewellery &amp; Trim</h3>
+      <label class="field">Earrings
+        <select id="earring-style">
+          <option value="none">None</option>
+          <option value="studs">Plain Studs</option>
+          <option value="gem_studs">Gemmed Studs</option>
+          <option value="small_hoops">Small Hoops</option>
+          <option value="large_hoops">Large Hoops</option>
+          <option value="drops">Metal Drops</option>
+          <option value="gem_drops">Gem Drops</option>
+          <option value="chandelier">Chandelier</option>
+          <option value="crescents">Crescents</option>
+        </select>
+      </label>
+      <label class="field">Necklace
+        <select id="necklace-style">
+          <option value="auto">Auto (follow preset)</option>
+          <option value="none">None</option>
+          <option value="cord">Simple Cord</option>
+          <option value="beaded">Beaded Strand</option>
+          <option value="torc">Metal Torc</option>
+          <option value="pendant">Pendant</option>
+          <option value="amulet">Amulet Disc</option>
+          <option value="layered">Layered Chains</option>
+          <option value="collar_plate">Broad Collar</option>
+        </select>
+      </label>
+      <label class="field">Garment Trim
+        <select id="trim-style">
+          <option value="auto">Auto (follow preset)</option>
+          <option value="none">None</option>
+          <option value="neckline">Neckline Band</option>
+          <option value="edging">Metal Edging</option>
+          <option value="banded">Woven Bands</option>
+          <option value="jewelled">Jewelled Collar</option>
+          <option value="shoulder_clasps">Shoulder Clasps</option>
+          <option value="full_regalia">Full Regalia</option>
+        </select>
+      </label>
+      <div class="checkbox-row" style="opacity:.75">
         <input type="checkbox" id="has-fashion-layer">
-        <label for="has-fashion-layer">Fashion layer — necklace &amp; trim accents (not shown on Peasant Rags / Work Tunic)</label>
+        <label for="has-fashion-layer">Legacy fashion layer (used by older presets that predate the menus above)</label>
       </div>
     </div>
 
@@ -2740,7 +2808,7 @@
 
   <div class="canvas-area">
     <div class="medallion" id="medallion">
-      <div class="stage-badge">Game-ready · full-length robe · normalized scale</div>
+      <div class="stage-badge">Game-ready · normalized scale</div>
       <div class="scale-badge" id="scale-badge">1.80m</div>
       <div id="three-container"></div>
       <div class="error-banner" id="error-banner"></div>
@@ -2754,6 +2822,8 @@
 </div>
 
 <script src="character_presets.js"></script>
+<!-- Sculpted hairstyle meshes exported from hair+woman.+vol+4.glb -->
+<script src="imported_hair_assets.js"></script>
 <script>
 /* ==========================================================
    3D CHARACTER RENDER LOGIC (Three.js)
@@ -3075,9 +3145,6 @@ function buildHead(state) {
         groove.position.set(0, 1.185, 0.42);
         group.add(groove);
     }
-    // whole-head scale (Face Size)
-    group.scale.setScalar(state.headSize);
-    group.position.y = 1.6 * (1 - state.headSize); // keep chin roughly anchored to neck
     return group;
 }
 
@@ -3105,8 +3172,6 @@ function buildEars(state) {
     right.rotation.z = -Math.PI/2 * 0.3;
     [left, right].forEach(e => e.scale.setScalar(state.earSize));
     group.add(left, right);
-    group.scale.setScalar(state.headSize);
-    group.position.y = 1.6 * (1 - state.headSize);
     return group;
 }
 
@@ -3146,8 +3211,6 @@ function buildEyes(state) {
     const left = mkEye(-1); left.position.set(-spacing, 1.68, 0.46);
     const right = mkEye(1); right.position.set(spacing, 1.68, 0.46);
     group.add(left, right);
-    group.scale.setScalar(state.headSize);
-    group.position.y = 1.6 * (1 - state.headSize);
     return group;
 }
 
@@ -3173,8 +3236,6 @@ function buildEyebrows(state) {
         return mesh;
     };
     group.add(mk(-1), mk(1));
-    group.scale.setScalar(state.headSize);
-    group.position.y = 1.6 * (1 - state.headSize);
     return group;
 }
 
@@ -3235,8 +3296,6 @@ function buildNose(state) {
     // re-apply head scale AFTER nose scale by wrapping
     const wrap = new THREE.Group();
     wrap.add(group);
-    wrap.scale.setScalar(state.headSize);
-    wrap.position.y = 1.6 * (1 - state.headSize);
     return wrap;
 }
 
@@ -3283,15 +3342,122 @@ function buildMouth(state) {
         }
     }
     group.add(mesh);
-    group.scale.setScalar(state.headSize);
-    group.position.y = 1.6 * (1 - state.headSize);
     return group;
 }
 
+/* ==========================================================
+   SCULPTED HAIR SHELL
+   ----------------------------------------------------------
+   A sphere segment makes a bowl: its lower edge is a flat circle at one
+   height all the way round, which is exactly what a wig-cap/bowl-cut reads
+   as. Real hair doesn't do that — it sits high across the brow, drops past
+   the ears into sideburns, and falls lowest at the nape.
+
+   So instead of trimming a sphere at a constant angle, this sweeps the cut
+   angle around the head: `thetaMax` is a function of azimuth. It also
+   ripples the radius into strand grooves and builds an inner wall, so the
+   hair is a solid with a visible edge rather than a thin shell.
+   ========================================================== */
+function sculptedHairCap({
+    radius = 0.64,
+    heightScale = 1.05,
+    thickness = 0.045,
+    baseTheta = Math.PI * 0.52,  // overall coverage
+    frontLift = 0.30,            // how far the hairline pulls back off the brow
+    backExtend = 0.34,           // how far the nape drops at the back
+    sideExtend = 0.16,           // sideburn / over-ear drop
+    strandCount = 9,             // number of strand grooves round the head
+    strandDepth = 0.035,         // groove depth
+    volume = 0.0,                // extra puff (afro etc.)
+    sweep = 0.0,                 // lateral sweep/parting offset
+    segsAz = 56,
+    segsTh = 18,
+} = {}) {
+    const positions = [], indices = [];
+
+    const thetaMaxAt = (az) => {
+        const c = Math.cos(az), s = Math.abs(Math.sin(az));
+        const frontF = Math.max(0, c);      // 1 at brow
+        const backF = Math.max(0, -c);      // 1 at nape
+        return baseTheta - frontLift * frontF * frontF
+                         + backExtend * backF * backF
+                         + sideExtend * s * s;
+    };
+
+    // shrink = 0 -> outer wall, shrink = thickness -> inner wall
+    const vertexAt = (az, t, shrink) => {
+        const thetaMax = thetaMaxAt(az);
+        const theta = t * thetaMax;
+        // strand grooves fade out at crown and hem so edges stay clean
+        const groove = Math.sin(az * strandCount) * strandDepth * Math.sin(Math.PI * t);
+        const puff = volume * Math.sin(Math.PI * Math.min(t * 1.15, 1));
+        const rr = Math.max(radius - shrink + groove + puff, 0.01);
+        const sinT = Math.sin(theta);
+        return [
+            rr * sinT * Math.sin(az) + sweep * sinT * sinT,
+            rr * heightScale * Math.cos(theta),
+            rr * sinT * Math.cos(az),
+        ];
+    };
+
+    const ringStride = segsAz + 1;
+    const wallVerts = (segsTh + 1) * ringStride;
+
+    // Two walls: outer (shrink 0) then inner (shrink = thickness).
+    for (const shrink of [0, thickness]) {
+        for (let j = 0; j <= segsTh; j++) {
+            const t = j / segsTh;
+            for (let i = 0; i <= segsAz; i++) {
+                const az = (i / segsAz) * Math.PI * 2;
+                positions.push(...vertexAt(az, t, shrink));
+            }
+        }
+    }
+
+    const quad = (a, b, c, d) => { indices.push(a, b, d, b, c, d); };
+
+    for (let j = 0; j < segsTh; j++) {
+        for (let i = 0; i < segsAz; i++) {
+            const o = j * ringStride + i;
+            quad(o, o + 1, o + ringStride + 1, o + ringStride);             // outer
+            const n = wallVerts + o;                                         // inner (reverse winding)
+            quad(n + ringStride, n + ringStride + 1, n + 1, n);
+        }
+    }
+    // Rim that joins the two walls along the hairline, giving hair a real edge.
+    const outerHem = segsTh * ringStride, innerHem = wallVerts + segsTh * ringStride;
+    for (let i = 0; i < segsAz; i++) {
+        quad(outerHem + i, outerHem + i + 1, innerHem + i + 1, innerHem + i);
+    }
+
+    const geo = new THREE.BufferGeometry();
+    geo.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+    geo.setIndex(indices);
+    geo.computeVertexNormals();
+    return geo;
+}
+
 /* ---------- HAIR ---------- */
+/* Sculpted styles map onto the imported .glb meshes; everything else falls
+   through to the procedural builder below. */
+const SCULPTED_HAIR_MAP = {
+    sculpt_1:'1', sculpt_2:'2', sculpt_3:'3', sculpt_4:'4', sculpt_5:'5',
+    sculpt_6:'6', sculpt_7:'7', sculpt_8:'8', sculpt_9:'9', sculpt_10:'10'
+};
+
 function buildHair(state) {
     const group = new THREE.Group();
     if (state.hairStyle === 'bald') return group;
+
+    const sculptKey = SCULPTED_HAIR_MAP[state.hairStyle];
+    if (sculptKey) {
+        const geo = getImportedHairGeometry(sculptKey);
+        if (geo) { group.add(fitImportedHair(geo, state)); return group; }
+        // Asset file missing — fall through to a procedural style rather than
+        // leaving the character bald with no explanation.
+        state = { ...state, hairStyle: 'short' };
+    }
+
     const mat = hairMaterial(state.colorHair);
     const foreheadY = state.foreheadHeight === 'high' ? 2.08 : (state.foreheadHeight === 'low' ? 1.92 : 2.00);
     const scalpTop = new THREE.Vector3(0, foreheadY - 0.30, 0);
@@ -3321,11 +3487,17 @@ function buildHair(state) {
         return angle;
     };
 
-    const cap = (thetaLength, phiStart=0, phiLength=Math.PI*2, radius=0.62, heightScale=1.05) => {
-        const g = new THREE.SphereGeometry(radius, 20, 14, phiStart, phiLength, 0, thetaLength);
-        g.scale(1, heightScale, 1);
+    /* Sculpted replacement for the old sphere-segment bowl. Each style passes
+       its own hairline shaping, so the lower edge follows a brow/ear/nape
+       contour instead of sitting at one constant height all the way round. */
+    const cap = (opts = {}) => {
+        const radius = opts.radius ?? 0.64;
+        const heightScale = opts.heightScale ?? 1.05;
+        const g = sculptedHairCap({ radius, heightScale, ...opts });
         const m = new THREE.Mesh(g, mat);
-        m.rotation.x = backTilt(radius, heightScale, thetaLength);
+        // Safety net only: a proper hairline already keeps hair off the eyes,
+        // but a very low-coverage style can still be nudged back.
+        m.rotation.x = backTilt(radius, heightScale, (opts.baseTheta ?? Math.PI*0.52) - (opts.frontLift ?? 0.30));
         m.position.copy(scalpTop);
         return m;
     };
@@ -3339,13 +3511,13 @@ function buildHair(state) {
 
     switch(state.hairStyle) {
         case 'buzz':
-            group.add(cap(Math.PI*0.52, 0, Math.PI*2, 0.63, 1.02));
+            group.add(cap({ radius:0.635, heightScale:1.02, baseTheta:Math.PI*0.54, frontLift:0.34, backExtend:0.20, sideExtend:0.12, strandCount:14, strandDepth:0.012, thickness:0.03 }));
             break;
         case 'short':
-            group.add(cap(Math.PI*0.58, 0, Math.PI*2, 0.65, 1.05));
+            group.add(cap({ radius:0.65, heightScale:1.05, baseTheta:Math.PI*0.56, frontLift:0.30, backExtend:0.30, sideExtend:0.17, strandCount:10, strandDepth:0.028 }));
             break;
         case 'wavy': {
-            group.add(cap(Math.PI*0.58, 0, Math.PI*2, 0.65, 1.05));
+            group.add(cap({ radius:0.655, heightScale:1.06, baseTheta:Math.PI*0.58, frontLift:0.28, backExtend:0.38, sideExtend:0.22, strandCount:7, strandDepth:0.05, thickness:0.05 }));
             for (let i=0;i<6;i++) {
                 const a = (i/6) * Math.PI*2;
                 const bump = new THREE.Mesh(new THREE.SphereGeometry(0.09, 8, 8), mat);
@@ -3355,7 +3527,7 @@ function buildHair(state) {
             break;
         }
         case 'curly': {
-            group.add(cap(Math.PI*0.55, 0, Math.PI*2, 0.62, 1.0));
+            group.add(cap({ radius:0.64, heightScale:1.02, baseTheta:Math.PI*0.57, frontLift:0.26, backExtend:0.32, sideExtend:0.22, strandCount:13, strandDepth:0.055, volume:0.04, thickness:0.05 }));
             for (let i=0;i<10;i++) {
                 const a = (i/10) * Math.PI*2;
                 const bump = new THREE.Mesh(new THREE.SphereGeometry(0.08, 8, 8), mat);
@@ -3365,31 +3537,31 @@ function buildHair(state) {
             break;
         }
         case 'afro':
-            group.add(cap(Math.PI*0.7, 0, Math.PI*2, 0.85, 1.0));
+            group.add(cap({ radius:0.84, heightScale:1.0, baseTheta:Math.PI*0.68, frontLift:0.20, backExtend:0.18, sideExtend:0.10, strandCount:18, strandDepth:0.045, volume:0.05, thickness:0.06 }));
             break;
         case 'receding':
-            group.add(cap(Math.PI*0.42, 0, Math.PI*2, 0.63, 1.0));
+            group.add(cap({ radius:0.635, heightScale:1.0, baseTheta:Math.PI*0.52, frontLift:0.60, backExtend:0.34, sideExtend:0.26, strandCount:9, strandDepth:0.022 }));
             break;
         case 'flowing': {
-            group.add(cap(Math.PI*0.58, 0, Math.PI*2, 0.65, 1.05));
+            group.add(cap({ radius:0.655, heightScale:1.06, baseTheta:Math.PI*0.58, frontLift:0.24, backExtend:0.44, sideExtend:0.26, strandCount:8, strandDepth:0.045, thickness:0.05 }));
             [-1,1].forEach(s => group.add(braid(s*0.55, -0.1, 0.9, 0.09, scalpY)));
             group.add(braid(0, -0.5, 0.7, 0.11, scalpY - 0.05));
             break;
         }
         case 'braids': {
-            group.add(cap(Math.PI*0.55, 0, Math.PI*2, 0.62, 1.0));
+            group.add(cap({ radius:0.635, heightScale:1.02, baseTheta:Math.PI*0.56, frontLift:0.26, backExtend:0.30, sideExtend:0.18, strandCount:16, strandDepth:0.04 }));
             for (let i=-2;i<=2;i++) group.add(braid(i*0.18, -0.55, 0.75 - Math.abs(i)*0.08, 0.045, scalpY - 0.15));
             break;
         }
         case 'tied_back': {
-            group.add(cap(Math.PI*0.55, 0, Math.PI*2, 0.62, 1.0));
+            group.add(cap({ radius:0.635, heightScale:1.02, baseTheta:Math.PI*0.55, frontLift:0.30, backExtend:0.24, sideExtend:0.14, strandCount:20, strandDepth:0.018 }));
             const bun = new THREE.Mesh(new THREE.SphereGeometry(0.14, 12, 10), mat);
             bun.position.set(0, scalpY, -0.55);
             group.add(bun);
             break;
         }
         case 'shoulder_waves': {
-            group.add(cap(Math.PI*0.58, 0, Math.PI*2, 0.65, 1.05));
+            group.add(cap({ radius:0.655, heightScale:1.06, baseTheta:Math.PI*0.58, frontLift:0.26, backExtend:0.42, sideExtend:0.30, strandCount:8, strandDepth:0.045, thickness:0.05 }));
             [-1,1].forEach(s => {
                 const g = new THREE.CylinderGeometry(0.16, 0.1, 0.85, 10, 1, true);
                 const m = new THREE.Mesh(g, mat);
@@ -3399,12 +3571,12 @@ function buildHair(state) {
             break;
         }
         case 'side_braid': {
-            group.add(cap(Math.PI*0.55, 0, Math.PI*2, 0.62, 1.0));
+            group.add(cap({ radius:0.64, heightScale:1.03, baseTheta:Math.PI*0.56, frontLift:0.28, backExtend:0.30, sideExtend:0.20, strandCount:11, strandDepth:0.035, sweep:0.05 }));
             group.add(braid(0.5, -0.3, 1.0, 0.075, scalpY - 0.15));
             break;
         }
         case 'crown_braids': {
-            group.add(cap(Math.PI*0.4, 0, Math.PI*2, 0.6, 0.9));
+            group.add(cap({ radius:0.62, heightScale:0.94, baseTheta:Math.PI*0.5, frontLift:0.22, backExtend:0.24, sideExtend:0.14, strandCount:22, strandDepth:0.025 }));
             const ring = new THREE.Mesh(new THREE.TorusGeometry(0.62, 0.05, 8, 20), mat);
             ring.rotation.x = Math.PI/2;
             ring.position.set(0, scalpY + 0.18, 0);
@@ -3412,7 +3584,7 @@ function buildHair(state) {
             break;
         }
         case 'locs': {
-            group.add(cap(Math.PI*0.55, 0, Math.PI*2, 0.62, 1.0));
+            group.add(cap({ radius:0.635, heightScale:1.02, baseTheta:Math.PI*0.56, frontLift:0.26, backExtend:0.28, sideExtend:0.18, strandCount:12, strandDepth:0.05 }));
             for (let i=0;i<9;i++) {
                 const a = -Math.PI*0.4 + (i/8)*Math.PI*0.8;
                 const x = Math.sin(a)*0.55, z = Math.cos(a)*0.4 - 0.1;
@@ -3421,7 +3593,7 @@ function buildHair(state) {
             break;
         }
         case 'shaved_sides':
-            group.add(cap(Math.PI*0.35, 0, Math.PI*2, 0.60, 0.85));
+            group.add(cap({ radius:0.615, heightScale:0.9, baseTheta:Math.PI*0.44, frontLift:0.20, backExtend:0.10, sideExtend:-0.10, strandCount:16, strandDepth:0.03 }));
             break;
     }
     // Scale around the scalp anchor, not the world origin — scaling about
@@ -3432,8 +3604,6 @@ function buildHair(state) {
     group.position.y += scalpY * (1 - state.hairSize);
     const wrap = new THREE.Group();
     wrap.add(group);
-    wrap.scale.setScalar(state.headSize);
-    wrap.position.y = 1.6 * (1 - state.headSize);
     return wrap;
 }
 
@@ -3528,12 +3698,22 @@ function buildBeard(state) {
     }
     const wrap = new THREE.Group();
     wrap.add(group);
-    wrap.scale.setScalar(state.headSize);
-    wrap.position.y = 1.6 * (1 - state.headSize);
     return wrap;
 }
 
 /* ---------- HEAD COVERING ---------- */
+/* Measures the hair currently on the head so a covering can be sized to sit
+   OVER it rather than through it. Returns null when there's no hair. */
+function measureHairVolume(state) {
+    if (!state.hairStyle || state.hairStyle === 'bald') return null;
+    const hair = buildHair(state);
+    hair.updateMatrixWorld(true);
+    const box = new THREE.Box3().setFromObject(hair);
+    if (!isFinite(box.min.y) || box.isEmpty()) return null;
+    const size = new THREE.Vector3(); box.getSize(size);
+    return { radius: Math.max(size.x, size.z) / 2, top: box.max.y, bottom: box.min.y };
+}
+
 function buildHat(state) {
     const group = new THREE.Group();
     if (state.hatStyle === 'none') return group;
@@ -3543,9 +3723,20 @@ function buildHat(state) {
     const cMatInner = clothMaterial(inner, 'plain');
     const mMat = metalMaterial(state.colorAccent);
 
+    /* Soft cloth coverings drape OVER the hair, so they need to know how much
+       hair is under them — a veil over a big sculpted style has to sit wider
+       and higher than the same veil over a buzz cut, or the hair pokes
+       straight through it. Rigid coverings (helmets, diadems) keep their own
+       shape and are left alone. */
+    const DRAPES_OVER_HAIR = ['veil', 'headscarf', 'hood', 'shepherd_wrap', 'wrapped_scarf'];
+    const hairVol = DRAPES_OVER_HAIR.includes(state.hatStyle) ? measureHairVolume(state) : null;
+
     switch(state.hatStyle) {
         case 'hood': {
-            const g = new THREE.CylinderGeometry(0.72, 0.30, 1.9, 20, 1, true);
+            const g = shelledLathe([
+                [0.78, -0.95], [0.80, -0.55], [0.74, -0.1], [0.62, 0.35], [0.40, 0.75], [0.30, 0.95],
+                [0.19, 1.06], [0.07, 1.11],   // closed crown
+            ], { thickness: 0.06, segments: 22, foldCount: 8, foldDepth: 0.02 });
             const m = new THREE.Mesh(g, cMat);
             m.position.set(0, 0.95, -0.05);
             group.add(m);
@@ -3568,7 +3759,10 @@ function buildHat(state) {
             break;
         }
         case 'headscarf': {
-            const g = new THREE.CylinderGeometry(0.68, 0.32, 1.7, 20, 1, true);
+            const g = shelledLathe([
+                [0.72, -0.85], [0.74, -0.45], [0.70, 0.0], [0.58, 0.4], [0.40, 0.7], [0.32, 0.85],
+                [0.20, 0.96], [0.07, 1.01],   // closed crown
+            ], { thickness: 0.05, segments: 22, foldCount: 9, foldDepth: 0.018 });
             const m = new THREE.Mesh(g, cMat);
             m.position.set(0, 1.05, -0.05);
             group.add(m);
@@ -3593,7 +3787,10 @@ function buildHat(state) {
             break;
         }
         case 'veil': {
-            const g = new THREE.CylinderGeometry(0.70, 0.34, 2.1, 20, 1, true);
+            const g = shelledLathe([
+                [0.74, -1.05], [0.76, -0.6], [0.72, -0.1], [0.60, 0.4], [0.42, 0.85], [0.34, 1.05],
+                [0.22, 1.16], [0.08, 1.21],   // closed crown — a veil covers the top of the head
+            ], { thickness: 0.035, segments: 22, foldCount: 10, foldDepth: 0.022 });
             const m = new THREE.Mesh(g, veilMaterial(outer));
             m.position.set(0, 0.9, -0.05);
             group.add(m);
@@ -3633,7 +3830,9 @@ function buildHat(state) {
             break;
         }
         case 'pharaoh_crown': {
-            const flare = new THREE.Mesh(new THREE.CylinderGeometry(0.55, 0.68, 1.0, 16, 1, true), cMat);
+            const flare = new THREE.Mesh(shelledLathe([
+                [0.68, -0.5], [0.66, -0.1], [0.60, 0.25], [0.55, 0.5],
+            ], { thickness: 0.055, segments: 20 }), cMat);
             flare.position.set(0, 2.1, 0);
             [-1,1].forEach(s => {
                 const lappet = new THREE.Mesh(new THREE.BoxGeometry(0.22, 0.7, 0.03), cMat);
@@ -3655,10 +3854,28 @@ function buildHat(state) {
         }
     }
     group.scale.multiplyScalar(state.hatSize);
+    // Widen and lift soft coverings so they genuinely enclose the hair
+    // underneath. Measured after the fact rather than guessed, so it holds for
+    // every hairstyle including the imported sculpted meshes.
+    if (hairVol) {
+        group.updateMatrixWorld(true);
+        const hb = new THREE.Box3().setFromObject(group);
+        const hatR = Math.max(hb.max.x - hb.min.x, hb.max.z - hb.min.z) / 2;
+        const MARGIN = 0.045;
+        if (hatR > 0.01) {
+            const widen = Math.max(1, (hairVol.radius + MARGIN) / hatR);
+            group.scale.x *= widen;
+            group.scale.z *= widen;
+        }
+        group.updateMatrixWorld(true);
+        const after = new THREE.Box3().setFromObject(group);
+        group.position.y += Math.max(0, (hairVol.top + MARGIN) - after.max.y);
+    }
+    // Manual vertical trim — lets a covering be seated exactly where wanted
+    // on the head rather than only where the defaults put it.
+    group.position.y += (state.hatOffsetY ?? 0);
     const wrap = new THREE.Group();
     wrap.add(group);
-    wrap.scale.setScalar(state.headSize);
-    wrap.position.y = 1.6 * (1 - state.headSize);
     return wrap;
 }
 
@@ -3670,26 +3887,105 @@ function buildHat(state) {
 // than a perfectly smooth tube.
 // profilePoints: [[radius, y], ...] bottom-to-top or top-to-bottom, either
 // order works since LatheGeometry just connects them in sequence.
-function foldedLathe(profilePoints, { segments = 28, foldCount = 0, foldDepth = 0, foldMaxY = Infinity, foldMinY = -Infinity } = {}) {
-    const pts = profilePoints.map(([r, y]) => new THREE.Vector2(Math.max(r, 0.0001), y));
-    const geo = new THREE.LatheGeometry(pts, segments);
-    if (foldCount > 0 && foldDepth > 0) {
-        const pos = geo.attributes.position;
-        for (let i = 0; i < pos.count; i++) {
-            const x = pos.getX(i), y = pos.getY(i), z = pos.getZ(i);
-            if (y > foldMaxY || y < foldMinY) continue;
-            const radius = Math.sqrt(x * x + z * z);
-            if (radius < 0.0001) continue;
-            const angle = Math.atan2(z, x);
-            const newRadius = radius + Math.sin(angle * foldCount) * foldDepth;
-            const scale = newRadius / radius;
-            pos.setX(i, x * scale);
-            pos.setZ(i, z * scale);
-        }
-        pos.needsUpdate = true;
-        geo.computeVertexNormals();
+function applyFolds(geo, { foldCount = 0, foldDepth = 0, foldMaxY = Infinity, foldMinY = -Infinity } = {}) {
+    if (!(foldCount > 0 && foldDepth > 0)) return geo;
+    const pos = geo.attributes.position;
+    for (let i = 0; i < pos.count; i++) {
+        const x = pos.getX(i), y = pos.getY(i), z = pos.getZ(i);
+        if (y > foldMaxY || y < foldMinY) continue;
+        const radius = Math.sqrt(x * x + z * z);
+        if (radius < 0.0001) continue;
+        const angle = Math.atan2(z, x);
+        const newRadius = radius + Math.sin(angle * foldCount) * foldDepth;
+        const scale = newRadius / radius;
+        pos.setX(i, x * scale);
+        pos.setZ(i, z * scale);
     }
+    pos.needsUpdate = true;
+    geo.computeVertexNormals();
     return geo;
+}
+
+function foldedLathe(profilePoints, { segments = 28, ...foldOpts } = {}) {
+    const pts = profilePoints.map(([r, y]) => new THREE.Vector2(Math.max(r, 0.0001), y));
+    return applyFolds(new THREE.LatheGeometry(pts, segments), foldOpts);
+}
+
+/* ==========================================================
+   IMPORTED HAIR ASSETS (real modelled hair from a .glb)
+   ----------------------------------------------------------
+   imported_hair_assets.js stores each hairstyle as base64:
+     p  = Float32 positions      n  = Float32 normals
+     i  = Uint16 indices         count = index count
+   These are real sculpted meshes, so they carry silhouette and volume
+   that primitive spheres can't. They're authored at human scale (~0.17
+   units wide) and get auto-fitted to whatever head the sliders produce.
+   ========================================================== */
+function b64ToArrayBuffer(b64) {
+    const bin = atob(b64);
+    const bytes = new Uint8Array(bin.length);
+    for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+    return bytes.buffer;
+}
+
+const importedHairGeometryCache = new Map();
+function getImportedHairGeometry(key) {
+    if (importedHairGeometryCache.has(key)) return importedHairGeometryCache.get(key);
+    if (typeof IMPORTED_HAIR_ASSETS === 'undefined' || !IMPORTED_HAIR_ASSETS[key]) return null;
+    const a = IMPORTED_HAIR_ASSETS[key];
+    const geo = new THREE.BufferGeometry();
+    geo.setAttribute('position', new THREE.BufferAttribute(new Float32Array(b64ToArrayBuffer(a.p)), 3));
+    if (a.n) geo.setAttribute('normal', new THREE.BufferAttribute(new Float32Array(b64ToArrayBuffer(a.n)), 3));
+    if (a.i) geo.setIndex(new THREE.BufferAttribute(new Uint16Array(b64ToArrayBuffer(a.i)), 1));
+    if (!a.n) geo.computeVertexNormals();
+    geo.computeBoundingBox();
+    importedHairGeometryCache.set(key, geo);
+    return geo;
+}
+
+/* Fit an imported hair mesh onto the procedural head: match its width to the
+   skull, centre it, and drop its crown just above the scalp so it reads as
+   hair growing from the head rather than a hat resting on it. */
+function fitImportedHair(geo, state) {
+    const bb = geo.boundingBox;
+    const size = new THREE.Vector3(); bb.getSize(size);
+    const centre = new THREE.Vector3(); bb.getCenter(centre);
+    const [, , templeWidth] = faceWidths(state.faceShape);
+    const skullWidth = templeWidth * 2 * 1.16;       // slight overhang past the temples
+    const scale = (skullWidth / Math.max(size.x, 0.0001)) * (state.hairSize || 1);
+    const crownY = foreheadTopY(state.foreheadHeight) + 0.10;
+    const wrapper = new THREE.Group();
+    const mesh = new THREE.Mesh(geo, hairMaterial(state.colorHair));
+    // Re-centre horizontally, then hang the mesh so its own top meets the crown.
+    mesh.position.set(-centre.x, -bb.max.y, -centre.z);
+    wrapper.add(mesh);
+    wrapper.scale.setScalar(scale);
+    wrapper.position.set(0, crownY, 0.02);
+    return wrapper;
+}
+
+/* ----------------------------------------------------------
+   shelledLathe — a garment with REAL WALL THICKNESS.
+
+   A plain lathe is an infinitely thin surface: seen edge-on at the hem or
+   neckline it vanishes to a line, and layering several of them reads as
+   "thin planes stacked over thin planes". This instead revolves a CLOSED
+   profile — up the outer face, in across the top rim, back down the inner
+   face, and out across the bottom rim — so the cloth is a true solid with
+   an edge you can actually see. Stacked layers then read as garments worn
+   over each other rather than decals.
+
+   profilePoints run hem -> collar as [radius, y].
+   ---------------------------------------------------------- */
+function shelledLathe(profilePoints, { thickness = 0.05, segments = 28, ...foldOpts } = {}) {
+    const outer = profilePoints.map(([r, y]) => [Math.max(r, 0.0001), y]);
+    // Inner wall: same profile pulled inward, walked back down toward the hem.
+    const inner = outer.map(([r, y]) => [Math.max(r - thickness, 0.0005), y]).reverse();
+    // Closing the loop back onto the first point seals the bottom rim, so the
+    // hem shows a visible edge of cloth rather than an open hole.
+    const loop = outer.concat(inner, [outer[0].slice()]);
+    const pts = loop.map(([r, y]) => new THREE.Vector2(r, y));
+    return applyFolds(new THREE.LatheGeometry(pts, segments), foldOpts);
 }
 
 function buildTorso(state) {
@@ -3715,7 +4011,7 @@ function buildTorso(state) {
     // base torso (bust — cut off at the bottom, matches the medallion framing)
     // A curved profile (waist tucked in, chest/shoulders eased back out)
     // reads as a body wearing cloth, not a cone.
-    const base = new THREE.Mesh(foldedLathe([
+    const base = new THREE.Mesh(shelledLathe([
         [0.85, -0.6],  // hem
         [0.72, -0.4],  // waist taper begins
         [0.62, -0.2],  // waist
@@ -3723,15 +4019,15 @@ function buildTorso(state) {
         [0.60,  0.2],  // chest
         [0.50,  0.4],  // upper chest
         [0.44,  0.6],  // shoulder/neckline
-    ], { segments: 24, foldCount: 10, foldDepth: 0.012 }), outer);
+    ], { thickness: 0.055, segments: 24, foldCount: 10, foldDepth: 0.012 }), outer);
     base.position.set(0, 0.35, 0);
     group.add(base);
 
     switch(state.clothingType) {
         case 'layered_robe': {
-            const layer = new THREE.Mesh(foldedLathe([
+            const layer = new THREE.Mesh(shelledLathe([
                 [0.95, -0.65], [0.80, -0.35], [0.68, -0.05], [0.72, 0.25], [0.5, 0.65],
-            ], { segments: 24, foldCount: 9, foldDepth: 0.02 }), inner);
+            ], { thickness: 0.05, segments: 24, foldCount: 9, foldDepth: 0.02 }), inner);
             layer.position.set(0, 0.25, -0.06);
             layer.scale.set(1.08, 1, 1.08);
             group.add(layer);
@@ -3751,7 +4047,9 @@ function buildTorso(state) {
         }
         case 'military_lorica': {
             for (let i=0;i<3;i++) {
-                const band = new THREE.Mesh(new THREE.CylinderGeometry(0.72 - i*0.06, 0.76 - i*0.06, 0.16, 20, 1, true), metalMaterial(outer.color.getStyle()));
+                const band = new THREE.Mesh(shelledLathe([
+                    [0.76 - i*0.06, -0.08], [0.78 - i*0.06, 0.0], [0.74 - i*0.06, 0.08],
+                ], { thickness: 0.05, segments: 22 }), metalMaterial(outer.color.getStyle()));
                 band.position.set(0, 0.55 - i*0.2, 0);
                 group.add(band);
             }
@@ -3902,22 +4200,422 @@ function buildTorso(state) {
         group.add(hood);
     }
 
-    // ---- Fashion layer (optional decoration — historically a marker of
-    // wealth, so it's withheld for the poor-coded garments) ----
-    if (state.hasFashionLayer && !['peasant_rags','work_tunic'].includes(state.clothingType)) {
-        const necklace = new THREE.Mesh(new THREE.TorusGeometry(0.24, 0.02, 8, 20), accentMat);
-        necklace.rotation.x = Math.PI/2; necklace.position.set(0, 0.92, 0.15);
-        group.add(necklace);
-        const pendant = new THREE.Mesh(new THREE.SphereGeometry(0.03, 8, 8), gemMaterial());
-        pendant.position.set(0, 0.75, 0.28);
-        group.add(pendant);
-    }
+    // ---- Necklace ----
+    buildNecklace(state, accentMat).forEach(m => group.add(m));
+    // ---- Garment trim ----
+    buildGarmentTrim(state, accentMat, accentCloth).forEach(m => group.add(m));
 
+    return group;
+}
+
+/* ==========================================================
+   ORNAMENT: NECKLACES / TRIM / EARRINGS
+   Ornate dress was a wealth marker, so the poor-coded garments are still
+   excluded from trim — but jewellery itself is now explicitly chosen rather
+   than a single on/off "fashion layer".
+   ========================================================== */
+const PLAIN_GARMENTS = ['peasant_rags', 'work_tunic'];
+
+function buildNecklace(state, accentMat) {
+    // Legacy presets used a boolean; treat it as "give them the simple pendant".
+    let style = state.necklaceStyle;
+    if (!style || style === 'auto') style = state.hasFashionLayer ? 'pendant' : 'none';
+    if (style === 'none') return [];
+
+    const out = [];
+    const band = (r, tube, y, z, mat) => {
+        const m = new THREE.Mesh(new THREE.TorusGeometry(r, tube, 8, 24), mat);
+        m.rotation.x = Math.PI / 2;
+        m.position.set(0, y, z);
+        return m;
+    };
+    switch (style) {
+        case 'cord':
+            out.push(band(0.26, 0.012, 0.93, 0.10, clothMaterial(state.colorAccent, 'plain')));
+            break;
+        case 'beaded': {
+            const beadMat = gemMaterial();
+            for (let i = 0; i < 18; i++) {
+                const a = -Math.PI * 0.62 + (i / 17) * Math.PI * 1.24;
+                const bead = new THREE.Mesh(new THREE.SphereGeometry(0.026, 8, 8), i % 3 === 0 ? accentMat : beadMat);
+                bead.position.set(Math.sin(a) * 0.27, 0.92 - Math.cos(a) * 0.04, 0.10 + Math.cos(a) * 0.17);
+                out.push(bead);
+            }
+            break;
+        }
+        case 'torc': {
+            // Open metal collar with terminals — the heavy, rigid kind.
+            const t = new THREE.Mesh(new THREE.TorusGeometry(0.27, 0.028, 10, 26, Math.PI * 1.5), accentMat);
+            t.rotation.x = Math.PI / 2; t.rotation.z = Math.PI * 0.25;
+            t.position.set(0, 0.94, 0.09);
+            out.push(t);
+            [-1, 1].forEach(s => {
+                const knob = new THREE.Mesh(new THREE.SphereGeometry(0.042, 10, 8), accentMat);
+                knob.position.set(s * 0.19, 0.94, 0.28);
+                out.push(knob);
+            });
+            break;
+        }
+        case 'pendant': {
+            out.push(band(0.24, 0.018, 0.93, 0.13, accentMat));
+            const drop = new THREE.Mesh(new THREE.SphereGeometry(0.034, 10, 8), gemMaterial());
+            drop.scale.set(1, 1.3, 0.7);
+            drop.position.set(0, 0.76, 0.30);
+            out.push(drop);
+            break;
+        }
+        case 'layered': {
+            out.push(band(0.22, 0.012, 0.96, 0.11, accentMat));
+            out.push(band(0.28, 0.012, 0.88, 0.14, accentMat));
+            out.push(band(0.34, 0.012, 0.79, 0.16, accentMat));
+            break;
+        }
+        case 'collar_plate': {
+            // Broad Egyptian-style collar of concentric rows.
+            for (let r = 0; r < 4; r++) {
+                const ring = new THREE.Mesh(
+                    new THREE.TorusGeometry(0.24 + r * 0.055, 0.020, 8, 26, Math.PI * 1.15),
+                    r % 2 ? accentMat : gemMaterial());
+                ring.rotation.x = Math.PI / 2; ring.rotation.z = -Math.PI * 0.075;
+                ring.position.set(0, 0.95 - r * 0.045, 0.10);
+                out.push(ring);
+            }
+            break;
+        }
+        case 'amulet': {
+            out.push(band(0.25, 0.013, 0.94, 0.12, accentMat));
+            const disc = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.06, 0.022, 14), accentMat);
+            disc.rotation.x = Math.PI / 2;
+            disc.position.set(0, 0.74, 0.31);
+            out.push(disc);
+            const stone = new THREE.Mesh(new THREE.SphereGeometry(0.028, 10, 8), gemMaterial());
+            stone.position.set(0, 0.74, 0.335);
+            out.push(stone);
+            break;
+        }
+    }
+    return out;
+}
+
+function buildGarmentTrim(state, accentMat, accentCloth) {
+    let style = state.trimStyle;
+    if (!style || style === 'auto') style = state.hasFashionLayer ? 'edging' : 'none';
+    if (style === 'none' || PLAIN_GARMENTS.includes(state.clothingType)) return [];
+
+    const out = [];
+    const ring = (r, tube, y, mat, arc = Math.PI * 2) => {
+        const m = new THREE.Mesh(new THREE.TorusGeometry(r, tube, 8, 28, arc), mat);
+        m.rotation.x = Math.PI / 2;
+        m.position.set(0, y, 0);
+        return m;
+    };
+    switch (style) {
+        case 'neckline':
+            out.push(ring(0.455, 0.022, 0.92, accentCloth));
+            break;
+        case 'edging':
+            out.push(ring(0.455, 0.020, 0.92, accentMat));
+            out.push(ring(0.655, 0.022, 0.30, accentMat));
+            break;
+        case 'banded':
+            out.push(ring(0.47, 0.024, 0.88, accentCloth));
+            out.push(ring(0.63, 0.024, 0.45, accentCloth));
+            out.push(ring(0.68, 0.024, 0.10, accentCloth));
+            break;
+        case 'jewelled': {
+            out.push(ring(0.455, 0.022, 0.92, accentMat));
+            for (let i = 0; i < 10; i++) {
+                const a = -Math.PI * 0.5 + (i / 9) * Math.PI;
+                const gem = new THREE.Mesh(new THREE.SphereGeometry(0.024, 8, 8), gemMaterial());
+                gem.position.set(Math.sin(a) * 0.45, 0.90, Math.cos(a) * 0.45);
+                out.push(gem);
+            }
+            break;
+        }
+        case 'shoulder_clasps': {
+            [-1, 1].forEach(s => {
+                const clasp = new THREE.Mesh(new THREE.SphereGeometry(0.062, 12, 10), accentMat);
+                clasp.scale.set(1, 0.7, 1);
+                clasp.position.set(s * 0.37, 0.86, 0.14);
+                out.push(clasp);
+                const stone = new THREE.Mesh(new THREE.SphereGeometry(0.028, 8, 8), gemMaterial());
+                stone.position.set(s * 0.37, 0.90, 0.20);
+                out.push(stone);
+            });
+            break;
+        }
+        case 'full_regalia': {
+            out.push(ring(0.455, 0.022, 0.92, accentMat));
+            out.push(ring(0.655, 0.024, 0.30, accentMat));
+            for (let i = 0; i < 8; i++) {
+                const a = -Math.PI * 0.45 + (i / 7) * Math.PI * 0.9;
+                const gem = new THREE.Mesh(new THREE.SphereGeometry(0.026, 8, 8), gemMaterial());
+                gem.position.set(Math.sin(a) * 0.45, 0.90, Math.cos(a) * 0.45);
+                out.push(gem);
+            }
+            [-1, 1].forEach(s => {
+                const clasp = new THREE.Mesh(new THREE.SphereGeometry(0.058, 12, 10), accentMat);
+                clasp.scale.set(1, 0.7, 1);
+                clasp.position.set(s * 0.37, 0.86, 0.14);
+                out.push(clasp);
+            });
+            break;
+        }
+    }
+    return out;
+}
+
+/* Earrings hang from the earlobes, so they track ear position AND ear size —
+   they live on the head pivot and scale with the head like everything else. */
+function buildEarrings(state) {
+    const group = new THREE.Group();
+    const style = state.earringStyle;
+    if (!style || style === 'none') return group;
+
+    const metal = metalMaterial(state.colorAccent);
+    const earSize = state.earSize ?? 1;
+    // Earlobe sits at the bottom-outer edge of the ear mesh.
+    const lobeX = 0.5 + 0.02 * earSize, lobeY = 1.5 - 0.10 * earSize, lobeZ = 0.02;
+
+    const mkSide = (sign) => {
+        const side = new THREE.Group();
+        switch (style) {
+            case 'studs': {
+                const stud = new THREE.Mesh(new THREE.SphereGeometry(0.030, 10, 8), metal);
+                side.add(stud);
+                break;
+            }
+            case 'gem_studs': {
+                const setting = new THREE.Mesh(new THREE.SphereGeometry(0.030, 10, 8), metal);
+                const stone = new THREE.Mesh(new THREE.SphereGeometry(0.022, 8, 8), gemMaterial());
+                stone.position.x = sign * 0.016;
+                side.add(setting, stone);
+                break;
+            }
+            case 'small_hoops': {
+                const hoop = new THREE.Mesh(new THREE.TorusGeometry(0.052, 0.010, 8, 18), metal);
+                hoop.rotation.y = Math.PI / 2;
+                hoop.position.y = -0.045;
+                side.add(hoop);
+                break;
+            }
+            case 'large_hoops': {
+                const hoop = new THREE.Mesh(new THREE.TorusGeometry(0.085, 0.011, 8, 22), metal);
+                hoop.rotation.y = Math.PI / 2;
+                hoop.position.y = -0.079;
+                side.add(hoop);
+                break;
+            }
+            case 'drops': {
+                const link = new THREE.Mesh(new THREE.CylinderGeometry(0.007, 0.007, 0.075, 6), metal);
+                link.position.y = -0.042;
+                const drop = new THREE.Mesh(new THREE.SphereGeometry(0.034, 10, 8), metal);
+                drop.scale.set(1, 1.35, 1);
+                drop.position.y = -0.105;
+                side.add(link, drop);
+                break;
+            }
+            case 'gem_drops': {
+                const link = new THREE.Mesh(new THREE.CylinderGeometry(0.007, 0.007, 0.070, 6), metal);
+                link.position.y = -0.040;
+                const stone = new THREE.Mesh(new THREE.SphereGeometry(0.030, 10, 8), gemMaterial());
+                stone.scale.set(1, 1.45, 0.8);
+                stone.position.y = -0.102;
+                side.add(link, stone);
+                break;
+            }
+            case 'chandelier': {
+                const bar = new THREE.Mesh(new THREE.CylinderGeometry(0.006, 0.006, 0.05, 6), metal);
+                bar.position.y = -0.032;
+                side.add(bar);
+                const spread = [-0.032, 0, 0.032];
+                spread.forEach((dz, i) => {
+                    const len = i === 1 ? 0.085 : 0.058;
+                    const strand = new THREE.Mesh(new THREE.CylinderGeometry(0.005, 0.005, len, 6), metal);
+                    strand.position.set(0, -0.06 - len / 2, dz);
+                    const bead = new THREE.Mesh(new THREE.SphereGeometry(0.019, 8, 8), gemMaterial());
+                    bead.position.set(0, -0.06 - len - 0.014, dz);
+                    side.add(strand, bead);
+                });
+                break;
+            }
+            case 'crescents': {
+                const c = new THREE.Mesh(new THREE.TorusGeometry(0.058, 0.011, 8, 16, Math.PI * 1.15), metal);
+                c.rotation.y = Math.PI / 2; c.rotation.z = -Math.PI * 0.42;
+                c.position.y = -0.055;
+                side.add(c);
+                break;
+            }
+        }
+        side.position.set(sign * lobeX, lobeY, lobeZ);
+        return side;
+    };
+    group.add(mkSide(-1), mkSide(1));
     return group;
 }
 
 /* ---------- SKIRT / ROBE HEM (floor-length — characters are always fully
    robed, so there's no need to model separate legs) ---------- */
+/* Measure the actual built garment silhouette: returns y -> max radius.
+   Garments differ enormously (a slim tunic vs flared royal robes), so arms
+   are placed against the real measured shape instead of fixed numbers. */
+function sampleSilhouette(object3D, band = 0.04) {
+    object3D.updateMatrixWorld(true);
+    const bands = new Map(), v = new THREE.Vector3();
+    object3D.traverse(o => {
+        if (!o.isMesh) return;
+        const p = o.geometry.attributes.position;
+        for (let i = 0; i < p.count; i++) {
+            v.fromBufferAttribute(p, i).applyMatrix4(o.matrixWorld);
+            const k = Math.round(v.y / band), r = Math.hypot(v.x, v.z);
+            if (!(r <= 1e6)) continue;
+            bands.set(k, Math.max(bands.get(k) ?? 0, r));
+        }
+    });
+    return (y) => {
+        // Take the widest point across a small window rather than the first
+        // band found. Lathe rings leave gaps between bands, and scanning in
+        // one direction can land on the narrow neck instead of the shoulder
+        // just below it — which would place the arm far too close in.
+        const k = Math.round(y / band);
+        let best = 0, found = false;
+        for (let d = -3; d <= 3; d++) {
+            const r = bands.get(k + d);
+            if (r !== undefined) { best = Math.max(best, r); found = true; }
+        }
+        return found ? best : 0.5;
+    };
+}
+
+/* ---------- ARMS ----------
+   Optional. Robed characters read fine without them, but arms help for
+   working/military figures and anything that needs to gesture or hold props.
+   They hang naturally at the sides (not a T-pose) to match the standing
+   robe silhouette, and are built from tapered solids rather than flat
+   cylinders so they hold up in profile.
+
+   Sleeve length follows the garment: heavy robes cover to the wrist, work
+   clothes stop at the elbow, rags are near-sleeveless. */
+const SLEEVE_LENGTH_BY_GARMENT = {
+    peasant_rags: 0.18, work_tunic: 0.42, tunic: 0.52, merchant_sash: 0.52,
+    military_lorica: 0.34, priestly_ephod: 0.72, court_dress: 0.78,
+    layered_robe: 0.82, traveller_cloak: 0.80, desert_mantle: 0.80,
+    prophet_mantle: 0.84, royal_robes: 0.88,
+};
+
+function buildArms(state, silhouetteAt) {
+    const group = new THREE.Group();
+    if (!state.showArms) return group;
+
+    const skin = skinMaterial(state.colorSkin);
+    const sleeveMat = clothMaterial(state.colorOuter, state.materialStyle);
+    const sleeveFrac = SLEEVE_LENGTH_BY_GARMENT[state.clothingType] ?? 0.55;
+
+    const SHOULDER_Y = 0.82;
+    const UPPER_LEN = 0.46, FORE_LEN = 0.44;
+    const HAND_R = 0.075, CLEARANCE = 0.05;
+    const profile = silhouetteAt || (() => 0.5);
+    const shoulderX = profile(SHOULDER_Y) * 0.80;
+    const shoulderZ = 0.16;
+
+    /* A floor-length robe is wider than a straight-hanging arm can reach, so
+       arms pinned to the sides disappear inside the cloth. Real robed figures
+       rest their hands in front of the body instead — so the elbow bends
+       forward. Search outward/forward angles for the least-exaggerated pose
+       that still leaves the hand clear of the garment. */
+    const handPose = (out, fwd) => {
+        const ex = shoulderX + Math.sin(out) * UPPER_LEN;
+        const ey = SHOULDER_Y - Math.cos(out) * UPPER_LEN;
+        return {
+            x: ex + Math.sin(out) * FORE_LEN * Math.cos(fwd),
+            y: ey - Math.cos(out) * FORE_LEN * Math.cos(fwd),
+            z: shoulderZ + Math.sin(fwd) * FORE_LEN,
+        };
+    };
+    let outward = 0.14, forward = 0.95, cleared = false;
+    outer:
+    for (let fwd = 0.85; fwd <= 1.45; fwd += 0.05) {
+        for (let out = 0.12; out <= 0.50; out += 0.04) {
+            const h = handPose(out, fwd);
+            const r = Math.hypot(h.x, h.z);
+            if (r - HAND_R > profile(h.y) + CLEARANCE) {
+                outward = out; forward = fwd; cleared = true; break outer;
+            }
+        }
+    }
+    if (!cleared) { outward = 0.42; forward = 1.35; } // widest fallback pose
+
+    const mkArm = (sign) => {
+        const arm = new THREE.Group();
+
+        const shoulder = new THREE.Mesh(new THREE.SphereGeometry(0.155, 14, 12), sleeveMat);
+        shoulder.scale.set(1, 0.92, 1);
+        arm.add(shoulder);
+
+        // Upper arm — tapered lathe so it swells at the bicep.
+        const upper = new THREE.Mesh(foldedLathe([
+            [0.082, -UPPER_LEN],
+            [0.098, -UPPER_LEN * 0.55],
+            [0.115, -UPPER_LEN * 0.18],
+            [0.125,  0.0],
+        ], { segments: 16 }), skin);
+        arm.add(upper);
+
+        // Sleeve over the upper arm, with real wall thickness at the cuff.
+        if (sleeveFrac > 0.05) {
+            const total = UPPER_LEN + FORE_LEN;
+            const cuffY = Math.max(-UPPER_LEN, -total * sleeveFrac);
+            const sleeve = new THREE.Mesh(shelledLathe([
+                [0.108, cuffY],
+                [0.122, cuffY + 0.10],
+                [0.142, -0.02],
+                [0.152,  0.10],
+            ], { thickness: 0.026, segments: 18, foldCount: 6, foldDepth: 0.008 }), sleeveMat);
+            arm.add(sleeve);
+        }
+
+        // Elbow joint — forearm hinges forward from here.
+        const elbow = new THREE.Group();
+        elbow.position.y = -UPPER_LEN;
+        elbow.rotation.x = -forward;   // negative swings the forearm FORWARD (+z)
+        const joint = new THREE.Mesh(new THREE.SphereGeometry(0.083, 12, 10), skin);
+        elbow.add(joint);
+
+        const fore = new THREE.Mesh(foldedLathe([
+            [0.056, -FORE_LEN],
+            [0.066, -FORE_LEN * 0.62],
+            [0.076, -FORE_LEN * 0.28],
+            [0.083,  0.0],
+        ], { segments: 16 }), skin);
+        elbow.add(fore);
+
+        // Long sleeves carry past the elbow onto the forearm.
+        if (sleeveFrac > 0.62) {
+            const foreCuff = -FORE_LEN * ((sleeveFrac - 0.62) / 0.38);
+            const foreSleeve = new THREE.Mesh(shelledLathe([
+                [0.080, foreCuff],
+                [0.092, foreCuff + 0.08],
+                [0.100,  0.06],
+            ], { thickness: 0.022, segments: 16 }), sleeveMat);
+            elbow.add(foreSleeve);
+        }
+
+        const hand = new THREE.Mesh(new THREE.SphereGeometry(HAND_R, 12, 10), skin);
+        hand.scale.set(0.8, 1.15, 0.62);
+        hand.name = 'hand';
+        hand.position.y = -FORE_LEN - 0.045;
+        elbow.add(hand);
+
+        arm.add(elbow);
+        arm.position.set(sign * shoulderX, SHOULDER_Y, shoulderZ);
+        arm.rotation.z = sign * outward;   // positive swings the arm OUTWARD (away from the body)
+        return arm;
+    };
+
+    group.add(mkArm(-1), mkArm(1));
+    return group;
+}
+
 function buildSkirt(state) {
     const group = new THREE.Group();
     const outer = clothMaterial(state.colorOuter, state.materialStyle);
@@ -3934,19 +4632,23 @@ function buildSkirt(state) {
     // down to the floor. An S-curve profile (tucks in slightly below the
     // hip, then flares toward the hem) plus soft fold ripples reads as
     // draped cloth falling under its own weight, not a traffic cone.
-    const skirt = new THREE.Mesh(foldedLathe([
+    const skirt = new THREE.Mesh(shelledLathe([
         [1.05, -0.75],  // hem
         [1.0,  -0.55],  // flare toward the floor
         [0.85, -0.2],
         [0.78,  0.15],  // slight tuck below the hip
         [0.80,  0.5],
         [0.85,  0.75],  // continues torso hem
-    ], { segments: 28, foldCount: 12, foldDepth: 0.03, foldMaxY: 0.5 }), outer);
+    ], { thickness: 0.06, segments: 28, foldCount: 12, foldDepth: 0.03, foldMaxY: 0.5 }), outer);
     skirt.position.set(0, -1.0, 0);
     group.add(skirt);
 
     // thin inner-color hem lining peeking out at the very bottom
-    const hem = new THREE.Mesh(new THREE.CylinderGeometry(1.0, 1.0, 0.06, 24, 1, true), hemMat);
+    // Solid hem band rather than an open cylinder shell, so the bottom edge
+    // of the robe has visible depth when seen from a low angle.
+    const hem = new THREE.Mesh(shelledLathe([
+        [1.06, -0.04], [1.08, 0.0], [1.06, 0.04],
+    ], { thickness: 0.07, segments: 28 }), hemMat);
     hem.position.set(0, -1.75, 0);
     group.add(hem);
 
@@ -3955,22 +4657,59 @@ function buildSkirt(state) {
 
 /* ---------- FULL BUILD ---------- */
 const GAME_CHARACTER_HEIGHT = 1.8; // meters — standard adult game-character height
+const NECK_JOINT_Y = 1.22;         // where the head meets the body, in model space
 
+/* Two pivots drive the whole rig:
+
+     bodyPivot — everything below the neck. Scaled by bodySize about the floor
+                 (y=0), mostly in girth so height normalisation can't undo it.
+     headPivot — every head part (skull, ears, eyes, brows, nose, mouth, beard,
+                 hair, covering). Scaled by headSize about the NECK JOINT, so
+                 the head grows upward out of the collar instead of drifting.
+
+   Each part builder now returns geometry in plain model space and does no
+   scaling of its own, so head accessories can never disagree with the skull
+   about how big the head is — they're all children of the same transform. */
 function rebuildCharacter(state) {
     if (characterGroup) { scene.remove(characterGroup); disposeObject3D(characterGroup); }
     characterGroup = new THREE.Group();
     characterGroup.name = 'Character_' + slugify(state.name || 'custom');
-    characterGroup.add(buildSkirt(state));
-    characterGroup.add(buildTorso(state));
-    characterGroup.add(buildEars(state));
-    characterGroup.add(buildHead(state));
-    characterGroup.add(buildEyes(state));
-    characterGroup.add(buildEyebrows(state));
-    characterGroup.add(buildNose(state));
-    characterGroup.add(buildMouth(state));
-    characterGroup.add(buildBeard(state));
-    characterGroup.add(buildHair(state));
-    characterGroup.add(buildHat(state));
+
+    const bodySize = state.bodySize || 1.0;
+    const headSize = state.headSize || 1.0;
+
+    // ---- body ----
+    const bodyPivot = new THREE.Group();
+    bodyPivot.name = 'body';
+    // Build the clothed body first, then measure its real silhouette so the
+    // arms can be hung outside whatever shape the chosen garment produced.
+    bodyPivot.add(buildSkirt(state));
+    bodyPivot.add(buildTorso(state));
+    const silhouetteAt = state.showArms ? sampleSilhouette(bodyPivot) : null;
+    bodyPivot.add(buildArms(state, silhouetteAt));
+    // Girth reads as "build"; height follows only slightly, so a broader
+    // character stays recognisably the same person rather than a giant.
+    const bodyHeightScale = 1 + (bodySize - 1) * 0.35;
+    bodyPivot.scale.set(bodySize, bodyHeightScale, bodySize);
+    characterGroup.add(bodyPivot);
+
+    // ---- head ----
+    const headPivot = new THREE.Group();
+    headPivot.name = 'head';
+    headPivot.add(buildEars(state));
+    headPivot.add(buildEarrings(state));
+    headPivot.add(buildHead(state));
+    headPivot.add(buildEyes(state));
+    headPivot.add(buildEyebrows(state));
+    headPivot.add(buildNose(state));
+    headPivot.add(buildMouth(state));
+    headPivot.add(buildBeard(state));
+    headPivot.add(buildHair(state));
+    headPivot.add(buildHat(state));
+    headPivot.scale.setScalar(headSize);
+    // Scale about the neck joint, then ride whatever height the body ended up.
+    headPivot.position.y = NECK_JOINT_Y * (bodyHeightScale - headSize);
+    characterGroup.add(headPivot);
 
     // Normalize to a fixed real-world height with feet exactly at y=0, regardless
     // of headSize/hairSize/hatSize sliders — this is what makes the export a
@@ -4092,10 +4831,11 @@ const FALLBACK_PRESET = {
     hairStyle: "short", beardStyle: "none", hatStyle: "none",
     clothingType: "tunic", materialStyle: "woven_linen",
     faceShape: "oval", foreheadHeight: "medium", chinShape: "rounded",
-    earSize: 1.0, earShape: "round", headSize: 1.0, hairSize: 1.0, hatSize: 1.0,
+    earSize: 1.0, earShape: "round", headSize: 1.0, bodySize: 1.0, hairSize: 1.0, hatSize: 1.0,
     hatMatchHair: false,
     dualStripe: false,
-    beltStyle: "leather_strap", hasHood: false, hasFashionLayer: false,
+    beltStyle: "leather_strap", hasHood: false, hasFashionLayer: false, showArms: false,
+    hatOffsetY: 0, earringStyle: "none", necklaceStyle: "auto", trimStyle: "auto",
     colorInner: "#4a423a", colorOuter: "#2f2b25", colorCloak: "#1a1815",
     colorAccent: "#3b3831", colorGarment2: "#8a7a5a",
     colorSkin: "#c49366", colorHair: "#241c14", colorEye: "#4a3b32", colorLip: "#9a5f52"
@@ -4107,7 +4847,7 @@ function loadPresets() {
     if (typeof CHARACTER_PRESETS_DATA !== "undefined" && CHARACTER_PRESETS_DATA && Object.keys(CHARACTER_PRESETS_DATA).length) {
         presets = CHARACTER_PRESETS_DATA;
         const firstKey = (typeof CHARACTER_PRESETS_META !== "undefined" && CHARACTER_PRESETS_META.defaultPreset) || Object.keys(presets)[0];
-        state = { hairSize: 1.0, hatSize: 1.0, hatMatchHair: false, beltStyle: "leather_strap", hasHood: false, hasFashionLayer: false, ...presets[firstKey] };
+        state = { bodySize: 1.0, hairSize: 1.0, hatSize: 1.0, hatMatchHair: false, beltStyle: "leather_strap", hasHood: false, hasFashionLayer: false, showArms: false, hatOffsetY: 0, earringStyle: "none", necklaceStyle: "auto", trimStyle: "auto", ...presets[firstKey] };
         hidePresetError();
     } else {
         console.error("CHARACTER_PRESETS_DATA not found — character_presets.js did not load.");
@@ -4132,7 +4872,7 @@ function hidePresetError() {
 /* ==========================================================
    UI CONTROLLER (mirrors the 2D tool's field ids)
    ========================================================== */
-const ids = ["face-shape:faceShape","forehead-height:foreheadHeight","eye-spacing:eyeSpacing","ear-size:earSize","head-size:headSize","hair-size:hairSize","hat-size:hatSize","chin-shape:chinShape","eye-shape:eyeShape","eyebrow-style:eyebrowStyle","nose-shape:noseShape","mouth-style:mouthStyle","hair-style:hairStyle","beard-style:beardStyle","hat-style:hatStyle","clothing-type:clothingType","material-style:materialStyle","ear-shape:earShape","belt-style:beltStyle"];
+const ids = ["face-shape:faceShape","forehead-height:foreheadHeight","eye-spacing:eyeSpacing","ear-size:earSize","head-size:headSize","hair-size:hairSize","hat-size:hatSize","chin-shape:chinShape","eye-shape:eyeShape","eyebrow-style:eyebrowStyle","nose-shape:noseShape","mouth-style:mouthStyle","hair-style:hairStyle","beard-style:beardStyle","hat-style:hatStyle","clothing-type:clothingType","material-style:materialStyle","ear-shape:earShape","belt-style:beltStyle","earring-style:earringStyle","necklace-style:necklaceStyle","trim-style:trimStyle"];
 const colorIds = ["color-inner:colorInner","color-outer:colorOuter","color-cloak:colorCloak","color-accent:colorAccent","color-skin:colorSkin","color-hair:colorHair","color-eye:colorEye","color-lip:colorLip","color-garment2:colorGarment2"];
 
 function formatName(str) { return str.replace(/_/g, " ").replace(/\b\w/g, l => l.toUpperCase()); }
@@ -4151,18 +4891,23 @@ function readUIIntoState() {
     state.eyeSpacing = parseFloat(document.getElementById("eye-spacing").value);
     state.earSize = parseFloat(document.getElementById("ear-size").value);
     state.headSize = parseFloat(document.getElementById("head-size").value);
+    state.bodySize = parseFloat(document.getElementById("body-size").value);
     state.hairSize = parseFloat(document.getElementById("hair-size").value);
     state.hatSize = parseFloat(document.getElementById("hat-size").value);
+    state.hatOffsetY = parseFloat(document.getElementById("hat-offset-y").value);
     state.hatMatchHair = document.getElementById("hat-match-hair").checked;
     state.dualStripe = document.getElementById("dual-stripe").checked;
+    state.showArms = document.getElementById("show-arms").checked;
     state.hasHood = document.getElementById("has-hood").checked;
     state.hasFashionLayer = document.getElementById("has-fashion-layer").checked;
     document.getElementById("nose-scale-val").textContent = state.noseScale.toFixed(2) + "×";
     document.getElementById("eye-spacing-val").textContent = state.eyeSpacing.toFixed(1) + "×";
     document.getElementById("ear-size-val").textContent = state.earSize.toFixed(1) + "×";
     document.getElementById("head-size-val").textContent = state.headSize.toFixed(1) + "×";
+    document.getElementById("body-size-val").textContent = state.bodySize.toFixed(2) + "×";
     document.getElementById("hair-size-val").textContent = state.hairSize.toFixed(1) + "×";
     document.getElementById("hat-size-val").textContent = state.hatSize.toFixed(1) + "×";
+    document.getElementById("hat-offset-y-val").textContent = state.hatOffsetY.toFixed(2);
     document.getElementById("stripe-row").style.display = state.dualStripe ? "flex" : "none";
     state.name = "Custom Character";
     render();
@@ -4179,13 +4924,18 @@ function writeStateIntoUI() {
     document.getElementById("ear-size-val").textContent = state.earSize.toFixed(1) + "×";
     document.getElementById("head-size").value = state.headSize;
     document.getElementById("head-size-val").textContent = state.headSize.toFixed(1) + "×";
+    document.getElementById("body-size").value = state.bodySize;
+    document.getElementById("body-size-val").textContent = state.bodySize.toFixed(2) + "×";
     document.getElementById("hair-size").value = state.hairSize;
     document.getElementById("hair-size-val").textContent = state.hairSize.toFixed(1) + "×";
     document.getElementById("hat-size").value = state.hatSize;
     document.getElementById("hat-size-val").textContent = state.hatSize.toFixed(1) + "×";
+    document.getElementById("hat-offset-y").value = state.hatOffsetY ?? 0;
+    document.getElementById("hat-offset-y-val").textContent = (state.hatOffsetY ?? 0).toFixed(2);
     document.getElementById("hat-match-hair").checked = !!state.hatMatchHair;
     document.getElementById("dual-stripe").checked = !!state.dualStripe;
     document.getElementById("stripe-row").style.display = state.dualStripe ? "flex" : "none";
+    document.getElementById("show-arms").checked = !!state.showArms;
     document.getElementById("has-hood").checked = !!state.hasHood;
     document.getElementById("has-fashion-layer").checked = !!state.hasFashionLayer;
 }
@@ -4193,7 +4943,7 @@ function writeStateIntoUI() {
 const presetSelect = document.getElementById("characterPresetSelect");
 document.getElementById("load-preset").addEventListener("click", () => {
     const key = presetSelect.value;
-    if (presets[key]) { state = { hairSize: 1.0, hatSize: 1.0, hatMatchHair: false, beltStyle: "leather_strap", hasHood: false, hasFashionLayer: false, ...presets[key] }; writeStateIntoUI(); render(); }
+    if (presets[key]) { state = { bodySize: 1.0, hairSize: 1.0, hatSize: 1.0, hatMatchHair: false, beltStyle: "leather_strap", hasHood: false, hasFashionLayer: false, showArms: false, hatOffsetY: 0, earringStyle: "none", necklaceStyle: "auto", trimStyle: "auto", ...presets[key] }; writeStateIntoUI(); render(); }
 });
 document.querySelectorAll(".sidebar input, .sidebar select").forEach(el => {
     if (el.id !== "characterPresetSelect") el.addEventListener("input", readUIIntoState);
@@ -4285,7 +5035,7 @@ document.getElementById("export-batch").addEventListener("click", async () => {
         const zip = new JSZip();
         cameraYaw = 0; updateCameraPosition();
         for (const [key, preset] of Object.entries(presets)) {
-            const presetState = { hairSize: 1.0, hatSize: 1.0, hatMatchHair: false, beltStyle: "leather_strap", hasHood: false, hasFashionLayer: false, ...preset };
+            const presetState = { bodySize: 1.0, hairSize: 1.0, hatSize: 1.0, hatMatchHair: false, beltStyle: "leather_strap", hasHood: false, hasFashionLayer: false, showArms: false, hatOffsetY: 0, earringStyle: "none", necklaceStyle: "auto", trimStyle: "auto", ...preset };
             rebuildCharacter(presetState);
             const blob = await captureFrame();
             zip.file(`${key}.png`, blob);
@@ -4298,7 +5048,7 @@ document.getElementById("export-batch").addEventListener("click", async () => {
             }
         }
         const zipBlob = await zip.generateAsync({ type: "blob" });
-        triggerDownload(zipBlob, "historical_character_profiles_3d.zip");
+        triggerDownload(zipBlob, "character_profiles_3d.zip");
     } catch (err) {
         console.error(err);
         Object.entries(presets).forEach(([key, preset], i) => {

@@ -1,4 +1,3 @@
-```text
 // ============================================================
 // CHARACTER: Simon the Leper (Dinner Host)
 // ACT: Act II
@@ -14,6 +13,7 @@
 -> start
 
 === start ===
+# UNLOCK_EVIDENCE: alabaster_jar
 Simon gestures toward the table before settling into his seat.
 
 "They still call me Simon the Leper," he says. "Even though the disease is gone. Perhaps it is easier for people to remember what I was than to believe what I became."
@@ -26,14 +26,13 @@ Then he smiles.
 
 "And I remember the day the Master came near."
 
-* [Jesus healed you.] -> healed_by_jesus
-* [Tell me about the dinner.] -> dinner_arranged
-* [What happened when Mary anointed Jesus?] -> mary_act
-* [Why was that evening so important to you?] -> dinner_meaning
-* [Conclude.] -> closing
++ [Jesus healed you.] -> healed_by_jesus
++ [Tell me about the dinner.] -> dinner_arranged
++ [What happened when Mary anointed Jesus?] -> mary_act
++ [Why was that evening so important to you?] -> dinner_meaning
++ [Finish the interview.] -> closing
 
 === healed_by_jesus ===
-# UNLOCK_EVIDENCE: alabaster_jar
 "Yes. He healed me."
 
 Simon looks down at his hands.
@@ -48,10 +47,10 @@ Simon slowly opens his hands.
 
 "And I was clean."
 
-* [What did it mean to be touched again?] -> divine_touch
-* [How did the community react?] -> community_reaction
-* [Was the healing immediate?] -> healing_immediate
-* [Conclude.] -> closing
++ [What did it mean to be touched again?] -> divine_touch
++ [How did the community react?] -> community_reaction
++ [Was the healing immediate?] -> healing_immediate
++ [Finish the interview.] -> closing
 
 === divine_touch ===
 "I had forgotten what a human touch felt like."
@@ -62,9 +61,9 @@ Simon pauses.
 
 "He looked at what everyone called unclean and treated me as someone worth restoring."
 
-* [Why would He risk becoming unclean?] -> why_risk
-* [What did that tell you about Him?] -> authority_greater
-* [Conclude.] -> closing
++ [Why would He risk becoming unclean?] -> why_risk
++ [What did that tell you about Him?] -> authority_greater
++ [Finish the interview.] -> closing
 
 === why_risk ===
 "That is the question I have asked myself ever since."
@@ -77,9 +76,9 @@ Simon looks toward the table.
 
 "The uncleanness did not spread to Him. His cleansing spread to me."
 
-* [His authority was greater than disease.] -> authority_greater
-* [Did you think He possessed divine authority?] -> scope_cosmic
-* [Conclude.] -> closing
++ [His authority was greater than disease.] -> authority_greater
++ [Did you think He possessed divine authority?] -> scope_cosmic
++ [Finish the interview.] -> closing
 
 === authority_greater ===
 "Greater authority. That is how I came to understand it."
@@ -92,9 +91,9 @@ Simon shakes his head.
 
 "What else does He have authority over?"
 
-* [Even death?] -> power_over_death
-* [Something greater than healing?] -> scope_cosmic
-* [Conclude.] -> closing
++ [Even death?] -> power_over_death
++ [Something greater than healing?] -> scope_cosmic
++ [Finish the interview.] -> closing
 
 === power_over_death ===
 "Death."
@@ -105,9 +104,9 @@ Simon says the word quietly.
 
 "If Jesus could call a man from the grave, then disease was only the beginning of what His authority revealed."
 
-* [Lazarus was there that evening.] -> lazarus_present
-* [That must have changed the meaning of the dinner.] -> dinner_meaning
-* [Conclude.] -> closing
++ [Lazarus was there that evening.] -> lazarus_present
++ [That must have changed the meaning of the dinner.] -> dinner_meaning
++ [Finish the interview.] -> closing
 
 === scope_cosmic ===
 "At first I thought I had simply been healed."
@@ -116,9 +115,9 @@ Simon says the word quietly.
 
 "And that is why the events around that Passover troubled me so deeply."
 
-* [What pattern did you see?] -> pattern_emerged
-* [Was Mary part of that pattern?] -> mary_act
-* [Conclude.] -> closing
++ [What pattern did you see?] -> pattern_emerged
++ [Was Mary part of that pattern?] -> mary_act
++ [Finish the interview.] -> closing
 
 === community_reaction ===
 "The community did not know what to do with me."
@@ -129,9 +128,9 @@ Simon says the word quietly.
 
 "But the strangest part was sitting at my own table and realizing that people were no longer afraid to sit beside me."
 
-* [That must have been overwhelming.] -> dinner_meaning
-* [You wanted to celebrate.] -> dinner_arranged
-* [Conclude.] -> closing
++ [That must have been overwhelming.] -> dinner_meaning
++ [You wanted to celebrate.] -> dinner_arranged
++ [Finish the interview.] -> closing
 
 === healing_immediate ===
 "Immediate."
@@ -146,12 +145,11 @@ Simon smiles.
 
 "It was what happened to my place in the world."
 
-* [You were restored to the community.] -> community_reaction
-* [And that led to the dinner.] -> dinner_arranged
-* [Conclude.] -> closing
++ [You were restored to the community.] -> community_reaction
++ [And that led to the dinner.] -> dinner_arranged
++ [Finish the interview.] -> closing
 
 === dinner_arranged ===
-# UNLOCK_EVIDENCE: alabaster_jar
 "The dinner was my way of saying thank you."
 
 Simon gestures around the room.
@@ -162,10 +160,10 @@ Simon gestures around the room.
 
 "I wanted Him at my table. I wanted the people who had witnessed my healing to see that I was no longer the man they remembered."
 
-* [What preparations did you make?] -> preparations
-* [Who came to the dinner?] -> guests_arrived
-* [Why was the table so important?] -> dinner_meaning
-* [Conclude.] -> closing
++ [What preparations did you make?] -> preparations
++ [Who came to the dinner?] -> guests_arrived
++ [Why was the table so important?] -> dinner_meaning
++ [Finish the interview.] -> closing
 
 === preparations ===
 "I wanted everything to be worthy of Him."
@@ -178,9 +176,9 @@ Simon laughs softly.
 
 "But when someone has given you back your life, ordinary hospitality does not seem enough."
 
-* [Were the guests important?] -> notable_guests
-* [You wanted everything to be proper.] -> proper_prep
-* [Conclude.] -> closing
++ [Were the guests important?] -> notable_guests
++ [You wanted everything to be proper.] -> proper_prep
++ [Finish the interview.] -> closing
 
 === proper_prep ===
 "Proper? Yes."
@@ -191,9 +189,9 @@ Simon laughs softly.
 
 "I was preparing a dinner. She was preparing for something none of us fully understood."
 
-* [You mean her anointing of Jesus.] -> mary_act
-* [You sensed something larger was happening.] -> dinner_meaning
-* [Conclude.] -> closing
++ [You mean her anointing of Jesus.] -> mary_act
++ [You sensed something larger was happening.] -> dinner_meaning
++ [Finish the interview.] -> closing
 
 === notable_guests ===
 "There were many people of importance there, but one guest overshadowed them all."
@@ -202,9 +200,9 @@ Simon laughs softly.
 
 "That alone made the evening extraordinary."
 
-* [Lazarus's presence must have amazed everyone.] -> lazarus_present
-* [And then Mary acted.] -> mary_act
-* [Conclude.] -> closing
++ [Lazarus's presence must have amazed everyone.] -> lazarus_present
++ [And then Mary acted.] -> mary_act
++ [Finish the interview.] -> closing
 
 === guests_arrived ===
 "The guests arrived, and soon the house was full."
@@ -217,10 +215,10 @@ Simon pauses.
 
 "I did not know then how important her actions would become."
 
-* [Tell me about Lazarus.] -> lazarus_present
-* [Tell me about Mary.] -> mary_act
-* [Conclude.] -> closing
-* [What was Martha doing during the meal?] -> martha_service
++ [Tell me about Lazarus.] -> lazarus_present
++ [Tell me about Mary.] -> mary_act
++ [Finish the interview.] -> closing
++ [What was Martha doing during the meal?] -> martha_service
 
 === lazarus_present ===
 "Lazarus was impossible to ignore."
@@ -235,9 +233,9 @@ Simon lowers his voice.
 
 "And perhaps that is why what happened next carried such weight. One man had been called out of death. Another was about to face it."
 
-* [The contrast was striking.] -> pattern_emerged
-* [Was the atmosphere uncomfortable?] -> strange_silence
-* [Conclude.] -> closing
++ [The contrast was striking.] -> pattern_emerged
++ [Was the atmosphere uncomfortable?] -> strange_silence
++ [Finish the interview.] -> closing
 
 === strange_silence ===
 "Yes."
@@ -250,9 +248,9 @@ Simon lowers his voice.
 
 "Some miracles are easier to witness than to understand."
 
-* [And then Mary broke the silence.] -> mary_act
-* [The miracle was undeniable.] -> undeniable_miracle
-* [Conclude.] -> closing
++ [And then Mary broke the silence.] -> mary_act
++ [The miracle was undeniable.] -> undeniable_miracle
++ [Finish the interview.] -> closing
 
 === undeniable_miracle ===
 "Lazarus was living proof."
@@ -265,9 +263,9 @@ Simon lowers his voice.
 
 "And that made the hostility toward Jesus all the more difficult to understand."
 
-* [The danger was growing.] -> pattern_emerged
-* [Tell me what Mary did.] -> mary_act
-* [Conclude.] -> closing
++ [The danger was growing.] -> pattern_emerged
++ [Tell me what Mary did.] -> mary_act
++ [Finish the interview.] -> closing
 
 === martha_service ===
 "Martha served."
@@ -278,12 +276,11 @@ Simon lowers his voice.
 
 "Mary seemed to understand that the moment required something beyond ordinary hospitality."
 
-* [What did Mary do?] -> mary_act
-* [Why was her action so significant?] -> dinner_meaning
-* [Conclude.] -> closing
++ [What did Mary do?] -> mary_act
++ [Why was her action so significant?] -> dinner_meaning
++ [Finish the interview.] -> closing
 
 === mary_act ===
-# UNLOCK_EVIDENCE: alabaster_jar
 "Then Mary came forward."
 
 "She had an alabaster jar filled with costly perfume."
@@ -296,10 +293,10 @@ Simon closes his eyes for a moment.
 
 "Everyone knew immediately that this was no ordinary gesture."
 
-* [The perfume must have been overwhelming.] -> fragrance_intense
-* [Judas objected.] -> judas_objection
-* [Why did Mary do it?] -> burial_prep
-* [Conclude.] -> closing
++ [The perfume must have been overwhelming.] -> fragrance_intense
++ [Judas objected.] -> judas_objection
++ [Why did Mary do it?] -> burial_prep
++ [Finish the interview.] -> closing
 
 === fragrance_intense ===
 "It was powerful."
@@ -312,9 +309,9 @@ Simon closes his eyes for a moment.
 
 "Mary had not brought something cheap and called it devotion. She had given something precious."
 
-* [The cost was enormous.] -> cost_great
-* [And Judas objected.] -> judas_objection
-* [Conclude.] -> closing
++ [The cost was enormous.] -> cost_great
++ [And Judas objected.] -> judas_objection
++ [Finish the interview.] -> closing
 
 === cost_great ===
 "Yes. Very great."
@@ -329,9 +326,9 @@ Simon closes his eyes for a moment.
 
 "She was giving Him everything she could."
 
-* [Then Judas complained.] -> judas_complaint
-* [The Master understood her.] -> masters_response
-* [Conclude.] -> closing
++ [Then Judas complained.] -> judas_complaint
++ [The Master understood her.] -> masters_response
++ [Finish the interview.] -> closing
 
 === judas_objection ===
 "Judas objected."
@@ -342,9 +339,9 @@ Simon closes his eyes for a moment.
 
 "But there was something beneath his words."
 
-* [What was his real motive?] -> judas_motive
-* [How did Jesus respond?] -> masters_response
-* [Conclude.] -> closing
++ [What was his real motive?] -> judas_motive
++ [How did Jesus respond?] -> masters_response
++ [Finish the interview.] -> closing
 
 === judas_complaint ===
 "Judas complained about the waste."
@@ -355,9 +352,9 @@ Simon closes his eyes for a moment.
 
 "She was recognizing that Jesus Himself was more valuable than anything she could pour out."
 
-* [What did the Master say?] -> masters_response
-* [Did Judas understand?] -> master_knew
-* [Conclude.] -> closing
++ [What did the Master say?] -> masters_response
++ [Did Judas understand?] -> master_knew
++ [Finish the interview.] -> closing
 
 === judas_motive ===
 "John tells us something important about Judas."
@@ -370,9 +367,9 @@ Simon looks toward the doorway.
 
 "But the Master already knew what was in Judas's heart."
 
-* [Jesus saw through him.] -> master_knew
-* [How did Jesus respond?] -> masters_response
-* [Conclude.] -> closing
++ [Jesus saw through him.] -> master_knew
++ [How did Jesus respond?] -> masters_response
++ [Finish the interview.] -> closing
 
 === master_knew ===
 "The Master knew."
@@ -383,10 +380,10 @@ Simon looks toward the doorway.
 
 "And still He allowed Mary to anoint Him."
 
-* [His response was remarkable.] -> masters_response
-* [He knew the hour was approaching.] -> burial_prep
-* [Conclude.] -> closing
-* [What do you think the Master saw that others overlooked?] -> seen
++ [His response was remarkable.] -> masters_response
++ [He knew the hour was approaching.] -> burial_prep
++ [Finish the interview.] -> closing
++ [What do you think the Master saw that others overlooked?] -> seen
 
 === masters_response ===
 "The Master did not rebuke Mary."
@@ -401,9 +398,9 @@ Simon pauses.
 
 "Her act was connected with His burial."
 
-* [She was preparing Him for burial.] -> burial_prep
-* [What did you understand from that?] -> meaning_deeper
-* [Conclude.] -> closing
++ [She was preparing Him for burial.] -> burial_prep
++ [What did you understand from that?] -> meaning_deeper
++ [Finish the interview.] -> closing
 
 === burial_prep ===
 "At the time, I did not fully understand."
@@ -416,9 +413,9 @@ Simon pauses.
 
 "Passover was approaching. The Lamb was moving toward the sacrifice."
 
-* [You saw a pattern.] -> pattern_emerged
-* [The meaning was deeper than the dinner.] -> meaning_deeper
-* [Conclude.] -> closing
++ [You saw a pattern.] -> pattern_emerged
++ [The meaning was deeper than the dinner.] -> meaning_deeper
++ [Finish the interview.] -> closing
 
 === meaning_deeper ===
 "The dinner was about gratitude, but it became something greater."
@@ -435,9 +432,9 @@ Simon pauses.
 
 "Only later did I begin to understand that the Passover Lamb pattern was unfolding before our eyes."
 
-* [Tell me about that pattern.] -> pattern_emerged
-* [The Exodus connection.] -> exodus_connection
-* [Conclude.] -> closing
++ [Tell me about that pattern.] -> pattern_emerged
++ [The Exodus connection.] -> exodus_connection
++ [Finish the interview.] -> closing
 
 === pattern_emerged ===
 "Look at the sequence."
@@ -456,9 +453,9 @@ Simon slowly shakes his head.
 
 "Afterward, they looked like pieces of the same story."
 
-* [The Passover connection.] -> exodus_connection
-* [The pattern was remarkably precise.] -> pattern_precise
-* [Conclude.] -> closing
++ [The Passover connection.] -> exodus_connection
++ [The pattern was remarkably precise.] -> pattern_precise
++ [Finish the interview.] -> closing
 
 === exodus_connection ===
 "At Passover, Israel remembered the lamb whose blood meant deliverance."
@@ -473,9 +470,9 @@ Simon slowly shakes his head.
 
 "That was the pattern I could no longer ignore."
 
-* [The pattern was precise.] -> pattern_precise
-* [Isaiah had spoken of a suffering servant.] -> pattern_precise
-* [Conclude.] -> closing
++ [The pattern was precise.] -> pattern_precise
++ [Isaiah had spoken of a suffering servant.] -> pattern_precise
++ [Finish the interview.] -> closing
 
 === pattern_precise ===
 "The more I looked, the harder it became to dismiss."
@@ -490,9 +487,9 @@ Simon looks directly at you.
 
 "Perhaps she knew that the One at our table was preparing to become the offering."
 
-* [The alabaster jar was part of that witness.] -> testimony
-* [The meaning was still unfolding.] -> power
-* [Conclude.] -> closing
++ [The alabaster jar was part of that witness.] -> testimony
++ [The meaning was still unfolding.] -> power
++ [Finish the interview.] -> closing
 
 === dinner_meaning ===
 "I thought I was inviting Jesus to dinner because I was grateful."
@@ -512,9 +509,9 @@ Simon smiles sadly.
 "I thought I was hosting a dinner."
 
 "Perhaps I was witnessing something much greater."
-* [What do you mean by a greater purpose?] -> greater_purpose
-* [What do you want people to remember?] -> testimony
-* [Conclude.] -> closing
++ [What do you mean by a greater purpose?] -> greater_purpose
++ [What do you want people to remember?] -> testimony
++ [Finish the interview.] -> closing
 
 === greater_purpose ===
 "The dinner was more than a celebration of my healing."
@@ -528,7 +525,7 @@ Simon smiles sadly.
 "But I remember the feeling that something greater was unfolding before us."
 
 [You saw the pattern afterward.] -> pattern_emerged [Mary's actions suddenly make more sense.] -> burial_prep [Conclude.] -> closing
-* [Finish the interview.] -> closing
++ [Finish the interview.] -> closing
 
 === closing ===
 Simon looks around the room.
@@ -559,7 +556,7 @@ Simon smiles.
 "And the Master Himself became the center of them all."
 
 "That is what I want you to remember."
-* [Finish the interview.] -> closing
++ [Finish the interview.] -> closing
 
 === seen ===
 "The Master saw what others overlooked."
@@ -569,7 +566,7 @@ Simon smiles.
 "Nothing was hidden from Him."
 
 "And somehow, even knowing what was coming, He continued toward the sacrifice."
-* [Finish the interview.] -> closing
++ [Finish the interview.] -> closing
 
 === power ===
 "The more I remember that evening, the more clearly I see His authority."
@@ -578,5 +575,4 @@ Simon smiles.
 
 "And soon He would demonstrate an authority greater still — the authority to lay down His life and become the offering."
 
-```
-* [Finish the interview.] -> closing
++ [Finish the interview.] -> closing

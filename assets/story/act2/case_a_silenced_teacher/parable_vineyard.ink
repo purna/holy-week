@@ -19,8 +19,8 @@
 === start ===
 I am a merchant from Tyre. I trade in spices and stories — both travel well along the Roman roads. I heard the Galilean tell the story of the vineyard in the Temple courtyard.
 
-* [What is the story?] -> vineyard
-* [The crowd's reaction?] -> reaction
++ [What is the story?] -> vineyard
++ [The crowd's reaction?] -> reaction
 
 === vineyard ===
 There was a man who planted a vineyard. He chose the best hill, cleared the stones, and dug a winepress. Around it he built a fence and a watchtower to guard it. Then he leased it to tenants and went away.
@@ -31,15 +31,15 @@ Finally, the owner said, "They will respect my son."
 
 The tenants saw the heir and said, "This is the one we will kill, so that the inheritance is ours."
 
-* [And then?] -> vineyard_expansion
++ [And then?] -> vineyard_expansion
 
 === vineyard_expansion ===
 It was not just a story. It was Isaiah 5 sung aloud in a new voice: "My beloved had a vineyard on a very fertile hill. He expected it to produce good grapes, but it yielded wild fruit. And now I will tell you what I will do to my vineyard..."
 
 The Galilean was telling a story that Isaiah had written centuries before. The vineyard was Israel. The owner was God. The tenants were the leaders entrusted with the people. The servants were the prophets sent again and again, rejected and killed. The son was the heir, sent last, and also condemned.
 
-* [Did the crowd understand?] -> reaction
-* [What happens to the vineyard then?] -> vineyard_judgment
++ [Did the crowd understand?] -> reaction
++ [What happens to the vineyard then?] -> vineyard_judgment
 
 === vineyard_judgment ===
 Jesus asked: "When the owner comes, what will he do to those tenants?"
@@ -50,19 +50,19 @@ Then He said: "The stone the builders rejected has become the cornerstone."
 
 It was not just a story. It was prophecy. Judgment. Hope.
 
-* [How did the leaders react?] -> reaction
++ [How did the leaders react?] -> reaction
 
 === reaction ===
 The crowd murmured in awe and fear. They had heard Isaiah 5 many times, but this time, the story pointed to people they could see, sitting right in front of them.
 
 The chief priests turned pale. The Pharisees whispered. Many left early, unwilling to hear the rest.
 
-* [And the stone?] -> stone
++ [And the stone?] -> stone
 
 === stone ===
 The rejected stone becomes the cornerstone. The owner’s son, once cast out and killed, becomes the foundation. God’s plan cannot be stopped, even if men reject it.
 
-* [Thomas, what does it all mean?] -> closing
++ [Finish the interview.] -> closing
 
 === closing ===
 I trade in stories, but some answers are plain enough that even a listener cannot ignore them:

@@ -29,17 +29,17 @@
 -> start
 === start ===
 I have walked fifteen days from the southern regions to stand before the altar. My family's savings are in this pouch — enough for the lamb the Law requires. But the seller...
-* [What did the seller do?] -> cheated
-* [How did the Teacher respond?] -> teacher
++ [What did the seller do?] -> cheated
++ [How did the Teacher respond?] -> teacher
 === cheated ===
 He took my coins, said they were insufficient for a proper lamb. Offered a dove instead — but when I examined it, one wing hung limp. A blemished offering! When I objected, he said it was 'close enough for strangers.'
-* [What about the scales?] -> scales
++ [What about the scales?] -> scales
 === scales ===
 My servant noticed first — the scale showed correct weight, but the merchant's hand lingered on the tray. Coins slipped. I saw three pieces fall into his sleeve. When I called him out, he laughed and said I lacked understanding of temple trade.
-* [What did the Teacher do?] -> closing
++ [Finish the interview.] -> closing
 === teacher ===
 Jesus entered with a whip — not of leather, but of rushes. He overturned the tables, scattered the coins. He said 'Take these things away! Do not make my Father's house a house of trade!'
-* [Did He speak to you?] -> closing
++ [Finish the interview.] -> closing
 === closing ===
 I stood there with my blemished dove in hand. The seller wept. So did I — but not for him. For years of pilgrims cheated, of strangers made fools, of worship turned to merchandise. The Temple was meant to be pure.
 -> DONE

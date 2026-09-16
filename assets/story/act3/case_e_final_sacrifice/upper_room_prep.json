@@ -4,11 +4,39 @@
     "choices": [
       {
         "text": "Who prepared this room?",
-        "destination": "preparers"
+        "destination": "preparers",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "What happened when they arrived?",
-        "destination": "arrival"
+        "destination": "arrival",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "They have prepared the room for the evening meal.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Whatever happened in the Temple courts changed everything.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "The atmosphere in the upper city tonight is not celebration. It is expectation. Tension. The feeling that everyone is waiting for something they cannot yet name.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -17,11 +45,75 @@
     "choices": [
       {
         "text": "This was deliberate.",
-        "destination": "deliberate"
+        "destination": "deliberate",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "What happened when everyone gathered?",
-        "destination": "arrival"
+        "destination": "arrival",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Peter and John were sent ahead.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "They followed a man carrying a water jar — the sign He had given them.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "The city was overflowing with pilgrims. Every guest room in Jerusalem should have been occupied.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Yet the room was waiting.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Ready.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Furnished.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Prepared.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "He told them where to go, whom they would meet, and what they would find.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "How could He know?",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -30,7 +122,49 @@
     "choices": [
       {
         "text": "What happened when everyone gathered?",
-        "destination": "arrival"
+        "destination": "arrival",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Nothing about this evening feels accidental.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "The room.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "The timing.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "The city.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "The meal.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "He has been moving toward this night for a very long time.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -39,7 +173,55 @@
     "choices": [
       {
         "text": "Why the uneasiness?",
-        "destination": "washing"
+        "destination": "washing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The disciples arrived expecting Passover.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Instead, the evening unfolded unlike any Passover they had ever known.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "The table was prepared.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "The lamps were lit.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "The city below hummed with thousands of pilgrims celebrating.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Inside the room, however, there was a strange uneasiness.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "No one seemed willing to speak first.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -48,7 +230,73 @@
     "choices": [
       {
         "text": "How did they react?",
-        "destination": "peter_wash"
+        "destination": "peter_wash",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Because no servant appeared.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "No one washed the dust from anyone's feet.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "The roads of Jerusalem are not kind to sandals.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Everyone noticed.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "No one volunteered.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Then Jesus stood.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "He removed His outer garment, wrapped a towel around His waist, poured water into a basin, and began washing feet.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "One by one.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "The Teacher washing His students.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "The Master serving His servants.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -57,7 +305,61 @@
     "choices": [
       {
         "text": "What happened after that?",
-        "destination": "betrayal"
+        "destination": "betrayal",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Peter objected immediately.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"Lord, are You going to wash my feet?\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "The room became uncomfortable.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Jesus continued.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "When Peter refused, Jesus answered:",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"Unless I wash you, you have no part with Me.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Peter changed his mind very quickly.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "As Peter often did.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -66,7 +368,67 @@
     "choices": [
       {
         "text": "Did He reveal who it was?",
-        "destination": "judas"
+        "destination": "judas",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "After the washing, they returned to the table.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "The mood did not improve.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Jesus spoke quietly:",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"One of you will betray Me.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "The room froze.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "No accusation could have shocked them more.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Each man began asking the same question:",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"Surely not I?\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Even the innocent sounded uncertain.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -75,7 +437,61 @@
     "choices": [
       {
         "text": "What happened next?",
-        "destination": "bread"
+        "destination": "bread",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "He identified the betrayer indirectly.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "A morsel of bread.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "A shared dish.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "A final opportunity to turn back.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Judas left the room.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "The others assumed he was attending to Passover business.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Few understood what was happening.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "The night outside seemed darker after he departed.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -84,7 +500,61 @@
     "choices": [
       {
         "text": "And the cup?",
-        "destination": "cup"
+        "destination": "cup",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Then Jesus took bread.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "He gave thanks.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "He broke it.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"This is My body, given for you.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "No rabbi speaks that way during Passover.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "The room grew silent.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "The bread was no longer only a remembrance of Egypt.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "He was making Himself the center of the meal.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -93,7 +563,61 @@
     "choices": [
       {
         "text": "Did they understand any of it?",
-        "destination": "understanding"
+        "destination": "understanding",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "After supper He took the cup.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"This cup is the new covenant in My blood, poured out for many.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "The words were unsettling.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Covenants required sacrifice.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Blood.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Death.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "The disciples did not yet understand.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Years later, they would remember every word.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -102,7 +626,43 @@
     "choices": [
       {
         "text": "What did He tell them afterward?",
-        "destination": "peter_warning"
+        "destination": "peter_warning",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Not much.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Not yet.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Some believed He was speaking in symbols.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Others thought He was preparing them for some great public victory.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "None expected the next twenty-four hours.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -111,7 +671,67 @@
     "choices": [
       {
         "text": "What happened before they left?",
-        "destination": "farewell"
+        "destination": "farewell",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "He warned them that all of them would stumble.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Peter protested the loudest.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Peter always did.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "\"Even if everyone else falls away, I never will.\"",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Jesus answered gently.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Before dawn.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Before the rooster crowed twice.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Peter would deny Him three times.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "The room fell quiet again.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -120,7 +740,61 @@
     "choices": [
       {
         "text": "Where did they go afterward?",
-        "destination": "departure"
+        "destination": "departure",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "He spoke for a long time.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "About love.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "About service.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "About the coming Helper.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "About remaining in Him as branches remain connected to a vine.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "He prayed for those around the table.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Then He prayed for those who would one day believe through their testimony.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "It sounded less like a sermon and more like a farewell.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -128,13 +802,141 @@
     "content": "They sang the Passover hymns.\nThe same psalms sung by generations before them.\nThen they left the upper room and crossed the city toward the Mount of Olives.\nThe lamps remained burning behind them.\nThe bread remained on the table.\nThe cups remained half-empty.\nNo one knew it then, but the meal was over.\nThe trial had already begun.",
     "choices": [
       {
-        "text": "This was all deliberate.",
-        "destination": "closing"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "They sang the Passover hymns.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "The same psalms sung by generations before them.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Then they left the upper room and crossed the city toward the Mount of Olives.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "The lamps remained burning behind them.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "The bread remained on the table.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "The cups remained half-empty.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "No one knew it then, but the meal was over.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "The trial had already begun.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "closing": {
     "content": "Whatever happened in that room was not a coincidence.\nThe Teacher chose the place.\nThe hour.\nThe meal.\nThe towel.\nThe bread.\nThe cup.\nEven the betrayal unfolded exactly where He said it would.\nJerusalem celebrated Passover that night.\nIn an upper room, something greater was taking place.",
-    "choices": []
+    "choices": [],
+    "steps": [
+      {
+        "text": "Whatever happened in that room was not a coincidence.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "The Teacher chose the place.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "The hour.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "The meal.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "The towel.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "The bread.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "The cup.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Even the betrayal unfolded exactly where He said it would.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Jerusalem celebrated Passover that night.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "In an upper room, something greater was taking place.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "divert": "DONE",
+        "condition": {
+          "all": []
+        }
+      }
+    ]
+  },
+  "_meta": {
+    "schema": 2,
+    "entry": "start",
+    "variables": {},
+    "revision": "a13b9f452b027bd8"
   }
 }

@@ -4,54 +4,128 @@
     "choices": [
       {
         "text": "Systems do not justify murder.",
-        "destination": "systems_lie"
+        "destination": "systems_lie",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "You call a miracle a threat?",
-        "destination": "miracle_lie"
+        "destination": "miracle_lie",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "How can raising Lazarus cause chaos?",
-        "destination": "chaos_lie"
+        "destination": "chaos_lie",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "tag": "UNLOCK_EVIDENCE: secret_decree",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Annas speaks of systems and history, as if morality were subordinate to administration. But the truth cannot be hidden behind rhetoric.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "systems_lie": {
-    "content": "# UNLOCK_EVIDENCE: secret_decree\nYou claim governments are built on stone, not passion, yet you would destroy a man who embodies divine truth to protect your power. That is not governance — that is tyranny.",
+    "content": "You claim governments are built on stone, not passion, yet you would destroy a man who embodies divine truth to protect your power. That is not governance — that is tyranny.",
     "choices": [
       {
         "text": "So your concern is power, not order.",
-        "destination": "power_lie"
+        "destination": "power_lie",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Morality matters even to rulers.",
-        "destination": "morality_assertion"
+        "destination": "morality_assertion",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "You claim governments are built on stone, not passion, yet you would destroy a man who embodies divine truth to protect your power. That is not governance — that is tyranny.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "miracle_lie": {
-    "content": "# UNLOCK_EVIDENCE: secret_decree\nYou say Jesus’s popularity is like water, eroding structures, yet you ignore that the structure itself is rotten. The crowd celebrates life, not rebellion. Labeling virtue as threat does not make it true.",
+    "content": "You say Jesus’s popularity is like water, eroding structures, yet you ignore that the structure itself is rotten. The crowd celebrates life, not rebellion. Labeling virtue as threat does not make it true.",
     "choices": [
       {
         "text": "Popularity is not a crime.",
-        "destination": "popularity_expose"
+        "destination": "popularity_expose",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "So you're afraid of truth.",
-        "destination": "fear_truth"
+        "destination": "fear_truth",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "You say Jesus’s popularity is like water, eroding structures, yet you ignore that the structure itself is rotten. The crowd celebrates life, not rebellion. Labeling virtue as threat does not make it true.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "chaos_lie": {
-    "content": "# UNLOCK_EVIDENCE: secret_decree\nYou suggest that Lazarus’s survival threatens Jerusalem, yet it is your own fear and scheming that endanger the city. Miracles inspire, but murder invites ruin.",
+    "content": "You suggest that Lazarus’s survival threatens Jerusalem, yet it is your own fear and scheming that endanger the city. Miracles inspire, but murder invites ruin.",
     "choices": [
       {
         "text": "So this is political fear, not public safety.",
-        "destination": "political_fear"
+        "destination": "political_fear",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The miracle itself is not dangerous.",
-        "destination": "miracle_safety"
+        "destination": "miracle_safety",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "You suggest that Lazarus’s survival threatens Jerusalem, yet it is your own fear and scheming that endanger the city. Miracles inspire, but murder invites ruin.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -59,12 +133,20 @@
     "content": "Admit it — your concern is not the law or the temple, but retaining influence over people. You manipulate the council to justify your personal authority. That is corruption, plain and simple.",
     "choices": [
       {
-        "text": "And that justifies nothing.",
-        "destination": "moral_closure"
-      },
+        "text": "Continue.",
+        "destination": "moral_closure",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "The council acts out of fear, not justice.",
-        "destination": "moral_closure"
+        "text": "Admit it — your concern is not the law or the temple, but retaining influence over people. You manipulate the council to justify your personal authority. That is corruption, plain and simple.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -73,7 +155,19 @@
     "choices": [
       {
         "text": "Then you are exposing hypocrisy.",
-        "destination": "moral_closure"
+        "destination": "moral_closure",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Even the highest priests are accountable. No system can sanctify murder. A man’s life cannot be sacrificed to preserve privilege.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -82,7 +176,19 @@
     "choices": [
       {
         "text": "Truth cannot be silenced.",
-        "destination": "moral_closure"
+        "destination": "moral_closure",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "A crowd’s voice reflects longing for truth, not chaos. You twist reality to label righteousness as dangerous. Your words are clever, but they are lies.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -91,7 +197,19 @@
     "choices": [
       {
         "text": "Fear is not a policy.",
-        "destination": "moral_closure"
+        "destination": "moral_closure",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Yes, fear is the real motivator. Fear of exposure, fear of losing control, fear of recognizing God’s authority. That is the lie hidden behind every procedural argument you make.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -100,7 +218,19 @@
     "choices": [
       {
         "text": "Power over people, not protection of God.",
-        "destination": "moral_closure"
+        "destination": "moral_closure",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Exactly. Your council debates are smokescreens for self-preservation. You act as if protecting the temple requires murder, but it only protects your reputation.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -109,12 +239,44 @@
     "choices": [
       {
         "text": "Your lies fail under scrutiny.",
-        "destination": "moral_closure"
+        "destination": "moral_closure",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Raising Lazarus is not destruction — it is revelation. Your claims of civil unrest are excuses for inaction in the face of divine truth. You fear, therefore you lie.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "moral_closure": {
     "content": "Every claim you made crumbles under questioning. Systems, fear, law — none justify sin. Your words are clever, but the truth stands unshaken: you plot murder to preserve privilege.",
-    "choices": []
+    "choices": [],
+    "steps": [
+      {
+        "text": "Every claim you made crumbles under questioning. Systems, fear, law — none justify sin. Your words are clever, but the truth stands unshaken: you plot murder to preserve privilege.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "divert": "DONE",
+        "condition": {
+          "all": []
+        }
+      }
+    ]
+  },
+  "_meta": {
+    "schema": 2,
+    "entry": "start",
+    "variables": {},
+    "revision": "957483c52762c9e0"
   }
 }

@@ -1,90 +1,262 @@
 {
   "start": {
-    "content": "I went to the tomb early on the first day of the week. The stone was rolled away, and the grave clothes lay there — but the body was gone. After Peter had examined the linen wrappings, I took them. I could not leave them exposed.",
+    "content": "I can tell you how Jesus was laid in the tomb. I asked Pilate for His body, and permission was given. Begin there, if you wish to establish whose body was buried and who handled it.",
     "choices": [
       {
-        "text": "This was your tomb?",
-        "destination": "my_tomb"
+        "text": "Who helped you prepare the body?",
+        "destination": "preparation",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "You kept the grave clothes?",
-        "destination": "examination"
+        "text": "Why that tomb?",
+        "destination": "tomb",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "What did you see?",
-        "destination": "empty_tomb"
-      }
-    ]
-  },
-  "my_tomb": {
-    "content": "# UNLOCK_EVIDENCE: spice_jars\nIt was my new tomb. Never used. Cut from solid rock in my own garden, close to Golgotha — the kind of resting place only a wealthy man could commission for himself. When I asked for His body, I broke ranks with the council. I was a secret disciple — but I could not let them leave Him to the criminals' burial pits at Hinnom, thrown among the condemned like refuse. That tomb had never held the dead before His body entered it.",
-    "choices": [
-      {
-        "text": "Why take the risk?",
-        "destination": "risk_taken"
+        "text": "What did it cost you to ask?",
+        "destination": "risk",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Why does the tomb itself matter?",
-        "destination": "tomb_prophecy"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "tag": "UNLOCK_EVIDENCE: spice_jars",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "I can tell you how Jesus was laid in the tomb. I asked Pilate for His body, and permission was given. Begin there, if you wish to establish whose body was buried and who handled it.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
-  "tomb_prophecy": {
-    "content": "Isaiah wrote it centuries before any of us were born: the Servant would make His grave with the wicked, yet be with a rich man in His death. He died condemned between two criminals — the wicked man's grave. And then He was carried to my tomb — the rich man's grave. I was not thinking of Isaiah when I offered it. I was only thinking that I had a tomb and He did not. God apparently was thinking of Isaiah.",
+  "preparation": {
+    "content": "Nicodemus came with me. He brought myrrh and aloes, a substantial quantity, about seventy-five pounds. Together we wrapped the body with the spices in strips of linen, following our burial custom.\nIt was work done with our hands. Whatever questions you now have about the empty tomb, do not lose sight of that burial.",
     "choices": [
       {
-        "text": "You fulfilled it without meaning to.",
-        "destination": "risk_taken"
+        "text": "Where did you lay Him?",
+        "destination": "tomb",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Return to my questions.",
+        "destination": "start",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "set": "burial_recorded",
+        "operator": "=",
+        "value": {
+          "literal": true
+        },
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Nicodemus came with me. He brought myrrh and aloes, a substantial quantity, about seventy-five pounds. Together we wrapped the body with the spices in strips of linen, following our burial custom.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "It was work done with our hands. Whatever questions you now have about the empty tomb, do not lose sight of that burial.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
-  "risk_taken": {
-    "content": "The soldiers knew Pilate's permission was secured. They had no choice but to let me take the corpse. I brought fine linens and the spices we had prepared. Nicodemus came too — he who had visited Him by night. We wrapped Him together, two men who had hidden their faith now exposed by love.",
+  "tomb": {
+    "content": "There was a garden near the place of crucifixion, and a new tomb in which no one had yet been laid. It was nearby, and the day of Preparation pressed upon us.\nI offered the tomb. We placed Jesus there. Those are things I can attest, not conclusions drawn from an empty place afterward.",
     "choices": [
       {
-        "text": "After the burial?",
-        "destination": "examination"
+        "text": "What can you tell me about the later discovery?",
+        "destination": "limits",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Return to my questions.",
+        "destination": "start",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "There was a garden near the place of crucifixion, and a new tomb in which no one had yet been laid. It was nearby, and the day of Preparation pressed upon us.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "I offered the tomb. We placed Jesus there. Those are things I can attest, not conclusions drawn from an empty place afterward.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
-  "examination": {
-    "content": "# UNLOCK_EVIDENCE: spice_jars\nPeter entered first, stooping to look inside. We saw the strips of linen, the face cloth — but no body. The bindings were not undone. They lay as if He had simply passed through them. Peter counted the grave clothes separately, noting the sudarium was not with the main wrappings but rolled up by itself.",
+  "risk": {
+    "content": "I had followed Him secretly because I feared the leaders. Asking the governor for the body was no longer a private allegiance.\nI will not call myself fearless. I was afraid, and I went.",
     "choices": [
       {
-        "text": "What did you take?",
-        "destination": "shroud_kept"
+        "text": "Tell me about Nicodemus's part.",
+        "destination": "preparation",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "Return to my questions.",
+        "destination": "start",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "set": "heard_risk",
+        "operator": "=",
+        "value": {
+          "literal": true
+        },
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "I had followed Him secretly because I feared the leaders. Asking the governor for the body was no longer a private allegiance.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "I will not call myself fearless. I was afraid, and I went.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
-  "shroud_kept": {
-    "content": "I took them all. The main burial cloths, the face cloth. I wrapped them carefully. But when I unfolded the sudarium later... His image was there. Forged into the linen itself. Not painted, not pressed. The very countenance of the Lord, imprinted as if by some power beyond dying flesh.",
+  "limits": {
+    "content": "Take the first discovery of the empty tomb from those who made it. I can confirm the burial arrangements; I should not be made a witness to every event in the garden.\nNor can I offer you an image on a cloth as part of this account. Keep your evidence tied to what the witnesses can actually establish.",
     "choices": [
       {
-        "text": "His image on the cloth?",
-        "destination": "image_revealed"
+        "text": "Return to my questions.",
+        "destination": "start",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       }
-    ]
-  },
-  "empty_tomb": {
-    "content": "# UNLOCK_EVIDENCE: spice_jars\nThe tomb was open. The stone rolled away. The guards had fled. And there, in the burial niche — the linen wrappings lay empty. This was no theft. No grave robber would unwrap a body with such reverence, leaving the clothes in precise folds.",
-    "choices": [
+    ],
+    "steps": [
       {
-        "text": "Peter examined them?",
-        "destination": "examination"
-      }
-    ]
-  },
-  "image_revealed": {
-    "content": "I saw His face. The thorn marks circling His brow. The scars from the whip. I thought the grave clothes were empty, but this — this retained His very form. The image does not fade, and I have kept it wrapped in secrecy. Who would believe such a thing?",
-    "choices": [
+        "text": "Take the first discovery of the empty tomb from those who made it. I can confirm the burial arrangements; I should not be made a witness to every event in the garden.",
+        "condition": {
+          "all": []
+        }
+      },
       {
-        "text": "Continue.",
-        "destination": "closing"
+        "text": "Nor can I offer you an image on a cloth as part of this account. Keep your evidence tied to what the witnesses can actually establish.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "closing": {
-    "content": "The shroud I kept hidden. But I have examined it many times since. The image does not fade. He is not here. He has risen. And the cloth that once covered His face now bears His likeness for all to see.",
-    "choices": []
+    "content": "You have the preparation of the body and my reason for coming forward. Nicodemus can corroborate his own part.\nMy testimony concerns the body entrusted to us and the burial we carried out.",
+    "choices": [],
+    "steps": [
+      {
+        "text": "You have the preparation of the body and my reason for coming forward. Nicodemus can corroborate his own part.",
+        "condition": {
+          "all": [
+            {
+              "all": [
+                {
+                  "variable": "burial_recorded"
+                },
+                {
+                  "variable": "heard_risk"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "text": "My testimony concerns the body entrusted to us and the burial we carried out.",
+        "condition": {
+          "all": [
+            {
+              "not": {
+                "all": [
+                  {
+                    "variable": "burial_recorded"
+                  },
+                  {
+                    "variable": "heard_risk"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "divert": "DONE",
+        "condition": {
+          "all": []
+        }
+      }
+    ]
+  },
+  "_meta": {
+    "schema": 2,
+    "entry": "start",
+    "variables": {
+      "burial_recorded": false,
+      "heard_risk": false
+    },
+    "revision": "779c1b685297ee86"
   }
 }

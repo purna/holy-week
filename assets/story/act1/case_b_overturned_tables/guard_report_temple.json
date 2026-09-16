@@ -4,45 +4,107 @@
     "choices": [
       {
         "text": "What did you see?",
-        "destination": "saw_cleansing"
+        "destination": "saw_cleansing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Why didn't Rome intervene?",
-        "destination": "no_intervention"
+        "destination": "no_intervention",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Did you recognize His authority?",
-        "destination": "authority_seen"
+        "destination": "authority_seen",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "tag": "UNLOCK_EVIDENCE: whip_of_cords",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "I am on duty at the Antonia fortress. Three years on the wall walkways. I have seen riots, rebellions, crucifixions. But never anything like today. The Galilean — Jesus — walked into the Court of the Gentiles with a whip of rushes and turned the whole place upside down.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "saw_cleansing": {
-    "content": "# UNLOCK_EVIDENCE: whip_of_cords\nTables overturned. Coins flying. Doves scattering. Merchants running. The Galilean standing in the middle of it all, looking like He owned the place. He didn't strike anyone. Didn't yell. Just looked at them. And they ran. Like sheep before a shepherd.",
+    "content": "Tables overturned. Coins flying. Doves scattering. Merchants running. The Galilean standing in the middle of it all, looking like He owned the place. He didn't strike anyone. Didn't yell. Just looked at them. And they ran. Like sheep before a shepherd.",
     "choices": [
       {
         "text": "He quoted Scripture.",
-        "destination": "scripture_zeal"
+        "destination": "scripture_zeal",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The crowd surged after Him.",
-        "destination": "crowd_surge"
+        "destination": "crowd_surge",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "It was not a threat to Rome.",
-        "destination": "not_roman_threat"
+        "destination": "not_roman_threat",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Tables overturned. Coins flying. Doves scattering. Merchants running. The Galilean standing in the middle of it all, looking like He owned the place. He didn't strike anyone. Didn't yell. Just looked at them. And they ran. Like sheep before a shepherd.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "no_intervention": {
-    "content": "# UNLOCK_EVIDENCE: whip_of_cords\nIntervene? Orders were clear: engage only on full-scale rebellion. Flipped tables don't count. Scattered coins don't count. The Romans don't die for Jewish commerce. This was not a threat to Roman order — it was the priests' problem to handle.",
+    "content": "Intervene? Orders were clear: engage only on full-scale rebellion. Flipped tables don't count. Scattered coins don't count. The Romans don't die for Jewish commerce. This was not a threat to Roman order — it was the priests' problem to handle.",
     "choices": [
       {
         "text": "The priests complained to Pilate.",
-        "destination": "priests_complain"
+        "destination": "priests_complain",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "Pilate saw through it.",
-        "destination": "pilate_saw"
+        "destination": "pilate_saw",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Intervene? Orders were clear: engage only on full-scale rebellion. Flipped tables don't count. Scattered coins don't count. The Romans don't die for Jewish commerce. This was not a threat to Roman order — it was the priests' problem to handle.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -51,11 +113,27 @@
     "choices": [
       {
         "text": "It was divine authority.",
-        "destination": "divine_power"
+        "destination": "divine_power",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "It frightened you.",
-        "destination": "feeling_fear"
+        "destination": "feeling_fear",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "He had authority — not the kind of legions or procurators. Something deeper, older. The kind that makes men obey without thinking. The kind that makes crowds follow without question. From the parapet, it was unsettling.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -64,11 +142,27 @@
     "choices": [
       {
         "text": "The priests feared this zeal.",
-        "destination": "priestly_fear"
+        "destination": "priestly_fear",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "You recognized something different.",
-        "destination": "not_zealot"
+        "destination": "not_zealot",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "He was quoting Scripture — Psalm 69: \"Zeal for your house will consume me.\" His disciples shouted it afterward. They say it proves He is the Messiah. But from where I stood, it looked like a man with a whip and a grievance. A dangerous combination in this city.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -77,11 +171,27 @@
     "choices": [
       {
         "text": "He had that kind of authority.",
-        "destination": "authority_recognized"
+        "destination": "authority_recognized",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The movement was growing.",
-        "destination": "movement_grows"
+        "destination": "movement_grows",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Followed Him? They surged like a tide. One minute buying doves and changing money. The next chasing after this Galilean like He was the emperor returning to Rome. I have never seen anything like it. Not even at the Passover pilgrimages.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -90,11 +200,27 @@
     "choices": [
       {
         "text": "Pilate will yield to pressure.",
-        "destination": "crucifixion_path"
+        "destination": "crucifixion_path",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "The net is tightening.",
-        "destination": "net_closes"
+        "destination": "net_closes",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Dangerous to the Temple, yes. To the priests, definitely. To Rome? No. A man who cleanses a market is not a military threat. A man who quotes Psalms is not a revolutionary. He is a prophet. And prophets are dangerous — but not to the empire.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -102,12 +228,20 @@
     "content": "Furious. They went straight to Pilate, demanding action, calling it insurrection. But when Pilate asked for bodies — the wounded, the dead — they had nothing. No Roman casualties. No property damage to Rome. Just their precious temple tax scattered in the dirt. Pilate sent them packing.",
     "choices": [
       {
-        "text": "But this will not end here.",
-        "destination": "crucifixion_path"
-      },
+        "text": "Continue.",
+        "destination": "crucifixion_path",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "Pilate will eventually yield.",
-        "destination": "crucifixion_path"
+        "text": "Furious. They went straight to Pilate, demanding action, calling it insurrection. But when Pilate asked for bodies — the wounded, the dead — they had nothing. No Roman casualties. No property damage to Rome. Just their precious temple tax scattered in the dirt. Pilate sent them packing.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -115,12 +249,20 @@
     "content": "Pilate saw through it immediately. A Roman governor deals in facts, evidence, Roman law. The priests came with accusations of insurrection. He asked for bodies. They had nothing. He called it a religious dispute and told them to sort it themselves. For now.",
     "choices": [
       {
-        "text": "The priests will find another way.",
-        "destination": "crucifixion_path"
-      },
+        "text": "Continue.",
+        "destination": "crucifixion_path",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "Pilate is more complex than this.",
-        "destination": "crucifixion_path"
+        "text": "Pilate saw through it immediately. A Roman governor deals in facts, evidence, Roman law. The priests came with accusations of insurrection. He asked for bodies. They had nothing. He called it a religious dispute and told them to sort it themselves. For now.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -128,12 +270,20 @@
     "content": "Divine authority? I don't believe in your gods. But I know power when I see it. Not the power of a legion. Not the power of a procurator. Something older, stronger. Authority that makes men obey without weapons. Without threats. Without fear.",
     "choices": [
       {
-        "text": "You are seeing the divine.",
-        "destination": "faith_begins"
-      },
+        "text": "Continue.",
+        "destination": "faith_begins",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "You cannot explain it.",
-        "destination": "faith_begins"
+        "text": "Divine authority? I don't believe in your gods. But I know power when I see it. Not the power of a legion. Not the power of a procurator. Something older, stronger. Authority that makes men obey without weapons. Without threats. Without fear.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -141,12 +291,20 @@
     "content": "Frightened? I haven't been frightened since recruit training. But that man — He looked at the crowd like He owned them. Like He created them. And they followed Him. Not out of fear. Out of love. Out of devotion. It frightened me. Because I knew I was in the presence of something real.",
     "choices": [
       {
-        "text": "That was the presence of God.",
-        "destination": "faith_begins"
-      },
+        "text": "Continue.",
+        "destination": "faith_begins",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "Fear is the beginning of faith.",
-        "destination": "faith_begins"
+        "text": "Frightened? I haven't been frightened since recruit training. But that man — He looked at the crowd like He owned them. Like He created them. And they followed Him. Not out of fear. Out of love. Out of devotion. It frightened me. Because I knew I was in the presence of something real.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -154,12 +312,20 @@
     "content": "The priests fear everything. They fear the Romans. They fear the crowds. They fear the prophets. They fear losing their power. This Galilean threatens all of it — His zeal, His authority, His following. They will stop at nothing to destroy Him.",
     "choices": [
       {
-        "text": "They will succeed.",
-        "destination": "crucifixion_path"
-      },
+        "text": "Continue.",
+        "destination": "crucifixion_path",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "They are already plotting.",
-        "destination": "crucifixion_path"
+        "text": "The priests fear everything. They fear the Romans. They fear the crowds. They fear the prophets. They fear losing their power. This Galilean threatens all of it — His zeal, His authority, His following. They will stop at nothing to destroy Him.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -168,11 +334,27 @@
     "choices": [
       {
         "text": "You felt a spiritual presence.",
-        "destination": "faith_begins"
+        "destination": "faith_begins",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "You recognized a prophet.",
-        "destination": "prophet_recognized"
+        "destination": "prophet_recognized",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Zealots kill. Zealots burn. Zealots start wars. This man broke cages and scattered coins. He didn't hurt anyone. That's not zeal. That's something else. Something I can't name. Something that made the bravest centurion in the legion pause.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -181,11 +363,27 @@
     "choices": [
       {
         "text": "You saw it transform people.",
-        "destination": "faith_begins"
+        "destination": "faith_begins",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "That is prophetic authority.",
-        "destination": "prophet_recognized"
+        "destination": "prophet_recognized",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "That kind of authority — it doesn't come from position or power. It comes from somewhere else. From truth. From conviction. From something deeper than Rome's finest steel. Even from the parapet, I could feel it shifting the crowd's allegiance.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -194,11 +392,27 @@
     "choices": [
       {
         "text": "This cannot stop the priests.",
-        "destination": "crucifixion_path"
+        "destination": "crucifixion_path",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "You are witnessing something greater.",
-        "destination": "faith_begins"
+        "destination": "faith_begins",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The movement was growing. The crowd surged. But Jesus didn't call for an army. Didn't call for revolt. Just walked out of the Temple courts with a whip of rushes and a following. A following that grows, not by conquest but by conviction.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -206,12 +420,20 @@
     "content": "The net was tightening. The circle was closing. Three powerful forces converged: the priests wanted blood, Pilate wanted peace, the crowd wanted spectacle. And Jesus — Jesus walked into it knowingly. He knew what was coming. And He went anyway.",
     "choices": [
       {
-        "text": "You witnessed the crucifixion.",
-        "destination": "crucifixion_witnessed"
-      },
+        "text": "Continue.",
+        "destination": "crucifixion_witnessed",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "That was the price of truth.",
-        "destination": "crucifixion_witnessed"
+        "text": "The net was tightening. The circle was closing. Three powerful forces converged: the priests wanted blood, Pilate wanted peace, the crowd wanted spectacle. And Jesus — Jesus walked into it knowingly. He knew what was coming. And He went anyway.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -220,11 +442,27 @@
     "choices": [
       {
         "text": "You could not stop it.",
-        "destination": "crucifixion_witnessed"
+        "destination": "crucifixion_witnessed",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
         "text": "You understood the sacrifice.",
-        "destination": "faith_begins"
+        "destination": "faith_begins",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "The net closes. The circle tightens. And the Teacher — He walks into it knowingly. He knows what they will do. And He goes anyway. Not because He is defeated. But because He has counted the cost. And the cost is worth paying. For all of us.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -233,11 +471,27 @@
     "choices": [
       {
         "text": "The resurrection will change everything.",
-        "destination": "resurrection_hope"
+        "destination": "resurrection_hope",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "You became a witness.",
-        "destination": "closing_guard"
+        "text": "Finish the interview.",
+        "destination": "closing_guard",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "What I saw in the Temple courts that day — it changed me. Not immediately. Not completely. But enough to know that this was not just another execution. The peace in the chaos. The authority in the silence. The love in the violence. Something was happening there that transcended Roman understanding.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -246,11 +500,27 @@
     "choices": [
       {
         "text": "You saw divine presence.",
-        "destination": "faith_begins"
+        "destination": "faith_begins",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "You filed your report.",
-        "destination": "closing_guard"
+        "text": "Finish the interview.",
+        "destination": "closing_guard",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Prophet? From a Roman guard's perspective, maybe. But not an ordinary one. He looked at the crowd like He owned them. And they followed Him. Not out of fear. Out of love. Something deeper than military discipline. Something I cannot name but I will never forget.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -258,8 +528,20 @@
     "content": "Three days later, the stone was rolled away. The guards at the tomb said the earth shook. An angel spoke. The centurion at the cross — his last words were \"Truly this was the Son of God.\" And I — I saw the peace that passed all understanding. That peace did not die with Him in the tomb.",
     "choices": [
       {
-        "text": "Your testimony endures.",
-        "destination": "closing_guard"
+        "text": "Finish the interview.",
+        "destination": "closing_guard",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Three days later, the stone was rolled away. The guards at the tomb said the earth shook. An angel spoke. The centurion at the cross — his last words were \"Truly this was the Son of God.\" And I — I saw the peace that passed all understanding. That peace did not die with Him in the tomb.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
@@ -267,17 +549,45 @@
     "content": "On the hill outside the city walls, I watched them nail Him to the cross. The peace from the Temple courts was gone. The screams of the crowd replaced the murmurs of amazement. The soldiers gambled for His clothes. The religious leaders stood there, satisfied. But one thing was different — even as He died, people were drawn to Him. Even in death, He had authority.",
     "choices": [
       {
-        "text": "You recognized the moment.",
-        "destination": "faith_begins"
-      },
+        "text": "Continue.",
+        "destination": "faith_begins",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
       {
-        "text": "You could not look away.",
-        "destination": "faith_begins"
+        "text": "On the hill outside the city walls, I watched them nail Him to the cross. The peace from the Temple courts was gone. The screams of the crowd replaced the murmurs of amazement. The soldiers gambled for His clothes. The religious leaders stood there, satisfied. But one thing was different — even as He died, people were drawn to Him. Even in death, He had authority.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
   "closing_guard": {
     "content": "I was on the wall. I saw the whole thing. The whip. The coins. The doves. The crowd. The peace. And I know — I know that man is who they say He is. The Son of God. The Savior. The Lamb. And I watched Him die. I couldn't stop it. But I can tell the story. I can be a witness. For the rest of my life. Until He comes again.",
-    "choices": []
+    "choices": [],
+    "steps": [
+      {
+        "text": "I was on the wall. I saw the whole thing. The whip. The coins. The doves. The crowd. The peace. And I know — I know that man is who they say He is. The Son of God. The Savior. The Lamb. And I watched Him die. I couldn't stop it. But I can tell the story. I can be a witness. For the rest of my life. Until He comes again.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "divert": "DONE",
+        "condition": {
+          "all": []
+        }
+      }
+    ]
+  },
+  "_meta": {
+    "schema": 2,
+    "entry": "start",
+    "variables": {},
+    "revision": "be28f1c512608ee9"
   }
 }

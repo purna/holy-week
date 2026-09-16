@@ -1,103 +1,196 @@
 {
   "start": {
-    "content": "The crowd was calling \"Hosanna to the Son of David!\" and waving palm branches like the days of the Maccabees. I watched from the Temple steps, noting the political overtones. This is not a gentle religious gathering — this is a coronation gesture with deep nationalist implications.",
+    "content": "You are investigating a missing animal. I am concerned about the words being shouted around its rider. We should not pretend those are the same question.",
     "choices": [
       {
-        "text": "The palm branches were loaded with political meaning.",
-        "destination": "palm"
+        "text": "Which words concern you?",
+        "destination": "titles",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "You knew immediately this was dangerous.",
-        "destination": "danger_immediate"
+        "text": "Why ask the Teacher to rebuke the crowd?",
+        "destination": "rebuke",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "The crowd seemed unified in purpose.",
-        "destination": "unified"
+        "text": "Does your objection establish a theft?",
+        "destination": "distinction",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Conclude.",
-        "destination": "closing_nathanael"
+        "text": "Finish the interview.",
+        "destination": "closing",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "You are investigating a missing animal. I am concerned about the words being shouted around its rider. We should not pretend those are the same question.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
-  "palm": {
-    "content": "The last time Jerusalem waved palms in the streets was when Simon Maccabaeus liberated the city from the Seleucids. When I saw the crowd cutting branches and shouting \"Hosanna,\" I understood — they were invoking messiah-king, not merely prophet. The language of liberation was unmistakable. This was not enthusiasm. This was revolution dressed in religious symbolism.",
+  "titles": {
+    "content": "A royal welcome is no small thing in a city watched by Rome. A title can carry hopes that the speaker has scarcely considered.\nI heard the acclamation. I cannot claim to know every pilgrim's intention.",
     "choices": [
       {
-        "text": "They invoked the Maccabean precedent.",
-        "destination": "common_node"
+        "text": "What response did you want?",
+        "destination": "rebuke",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "Could they have meant it differently?",
-        "destination": "common_node"
+        "text": "Return to my questions.",
+        "destination": "start",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "A royal welcome is no small thing in a city watched by Rome. A title can carry hopes that the speaker has scarcely considered.",
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "The Roman response would be swift.",
-        "destination": "common_node"
-      },
-      {
-        "text": "Conclude.",
-        "destination": "closing_nathanael"
+        "text": "I heard the acclamation. I cannot claim to know every pilgrim's intention.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
-  "danger_immediate": {
-    "content": "I knew immediately. A crowd this size, declaring a Galilean teacher as king, threatens the fragile peace we maintain with Rome. The Sanhedrin walks a tightrope between religious authority and Roman tolerance. This — this was the edge of the rope snapping.",
+  "rebuke": {
+    "content": "Some Pharisees asked Him to rebuke His disciples. He answered that if they were silent, the stones would cry out.\nYou can examine that answer. It did not remove my concern about where the procession might lead.",
     "choices": [
       {
-        "text": "The Sanhedrin's dilemma.",
-        "destination": "common_node"
+        "text": "But is that evidence the colt was stolen?",
+        "destination": "distinction",
+        "once": false,
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "They needed to act fast.",
-        "destination": "common_node"
+        "text": "Return to my questions.",
+        "destination": "start",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "text": "Some Pharisees asked Him to rebuke His disciples. He answered that if they were silent, the stones would cry out.",
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "The teachers should have seen this coming.",
-        "destination": "common_node"
-      },
-      {
-        "text": "Conclude.",
-        "destination": "closing_nathanael"
+        "text": "You can examine that answer. It did not remove my concern about where the procession might lead.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
-  "unified": {
-    "content": "They seemed unified in purpose — all shouting the same words, all moving with the same rhythm. But crowds are deceptive. Behind the surface unity, I saw competing interests. The pilgrims wanted a king. The locals wanted order. The priests wanted control. And the Temple officials... they wanted silence.",
+  "distinction": {
+    "content": "No. My objection to the acclaim does not establish what happened at the tethering place.\nRecord the owners' testimony on that question. I will answer for my own objection, not for an exchange I did not witness.",
     "choices": [
       {
-        "text": "No voice for the silent.",
-        "destination": "common_node"
+        "text": "Return to my questions.",
+        "destination": "start",
+        "once": false,
+        "condition": {
+          "all": []
+        }
+      }
+    ],
+    "steps": [
+      {
+        "set": "distinction_made",
+        "operator": "=",
+        "value": {
+          "literal": true
+        },
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "The unity was superficial.",
-        "destination": "common_node"
+        "text": "No. My objection to the acclaim does not establish what happened at the tethering place.",
+        "condition": {
+          "all": []
+        }
       },
       {
-        "text": "The competing visions.",
-        "destination": "common_node"
-      },
-      {
-        "text": "Conclude.",
-        "destination": "closing_nathanael"
+        "text": "Record the owners' testimony on that question. I will answer for my own objection, not for an exchange I did not witness.",
+        "condition": {
+          "all": []
+        }
       }
     ]
   },
-  "closing_nathanael": {
-    "content": "I watched the procession from the Temple steps, noting every detail, recording every symbol, calculating every risk. The crowd was celebrating. The priests were conspiring. The soldiers were watching. And I — I was trying to understand what I had just witnessed.\nThe Teacher rode into Jerusalem on a donkey. And I, a Pharisee trained in the Law, could not recognize the moment for what it was.\nThe king had come.\nAnd I, like my colleagues, was on the wrong side of history.",
-    "choices": []
-  },
-  "common_node": {
-    "content": "The tension surrounding the procession grows thicker, and every observer on the temple steps realizes that the events unfolding will change the city forever.",
-    "choices": [
+  "closing": {
+    "content": "Keep the two questions separate: permission to use an animal, and the meaning of a royal welcome.\nTake care with titles, and equal care with accusations.",
+    "choices": [],
+    "steps": [
       {
-        "text": "Return to the start",
-        "destination": "start"
+        "text": "Keep the two questions separate: permission to use an animal, and the meaning of a royal welcome.",
+        "condition": {
+          "all": [
+            {
+              "variable": "distinction_made"
+            }
+          ]
+        }
       },
       {
-        "text": "Conclude",
-        "destination": "closing_nathanael"
+        "text": "Take care with titles, and equal care with accusations.",
+        "condition": {
+          "all": [
+            {
+              "not": {
+                "variable": "distinction_made"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "divert": "DONE",
+        "condition": {
+          "all": []
+        }
       }
     ]
+  },
+  "_meta": {
+    "schema": 2,
+    "entry": "start",
+    "variables": {
+      "distinction_made": false
+    },
+    "revision": "ec2733df39df9457"
   }
 }
