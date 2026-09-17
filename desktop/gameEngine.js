@@ -1,14 +1,14 @@
 import * as THREE from 'three';
-import { CaseManager } from './../js/gameplay/caseManager.js';
+import { CaseManager } from './../js/gameplay/caseManager.js?v=20260917-research-r2';
 import { EvidenceSystem } from './../js/gameplay/evidenceSystem.js';
 import { NPCSystem, PROFILE_ID_MAP, CHARACTER_MODEL_MAP } from "./NPCSystem.js";
-import { DeductionEngine } from './../js/gameplay/deductionEngine.js';
+import { DeductionEngine } from './../js/gameplay/deductionEngine.js?v=20260917-research-r2';
 import { LocationSystem } from './../js/gameplay/locationSystem.js';
 import { AccessibilityManager } from "../js/ui/AccessibilityManager.js";
 import { ChatUI } from "../js/ui/ChatUI.js";
 import { AudioManager } from "./audioManager.js"; // Desktop uses its own AudioManager
 import { DialogueManager } from "./dialogueManager.js";
-import { AccuseUI } from "../js/ui/AccuseUI.js";
+import { AccuseUI } from "../js/ui/AccuseUI.js?v=20260917-research-r2";
 
 import { ControlsManager } from "./controls.js";
 import { EnvironmentManager } from "./environment.js";
@@ -1947,6 +1947,7 @@ export class GameEngine {
       };
 
       this.dm.openDialogue(npcConfig, story, () => {
+        this.cm.recordWitnessInterview?.(npcConfig.id);
         // Restore original addMsg
         this.dm.addMsg = originalAddMsg;
         if (npcConfig.revealsProphecy) {
@@ -1962,6 +1963,7 @@ export class GameEngine {
       // Fallback to simple talk when no Ink story is available
       const result = this.ns.talk(npcConfig.id);
       if (result) {
+        this.cm.recordWitnessInterview?.(npcConfig.id);
         this.inDialogue = true;
         this.pVelocity.set(0, 0, 0);
         this.controls.displayAlert(result.text);

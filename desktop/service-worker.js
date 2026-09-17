@@ -1,9 +1,10 @@
 const CACHE_PREFIX = 'holy-week-desktop-cache';
-const CACHE_VERSION = 'v2.13-lab-save'; // Stateful interview runtime and revised stories
+const CACHE_VERSION = 'v2.17-lab-workbench'; // Refresh research data and testimony
 const CACHE_NAME = `${CACHE_PREFIX}-${CACHE_VERSION}`;
 
 // This list MUST be updated with all files required for the desktop version to run offline.
 const urlsToCache = [
+  '../js/gameplay/prophecyResearch.js',
   '../js/gameplay/conversationStory.js',
   // Core App Shell
   '../desktop.html',
@@ -19,19 +20,20 @@ const urlsToCache = [
   // Shared JS modules
   '../js/config.js',
   '../js/utils.js',
-  '../js/gameplay/caseManager.js',
+  '../js/gameplay/caseManager.js?v=20260917-research-r2',
   '../js/gameplay/evidenceSystem.js',
-  '../js/gameplay/deductionEngine.js',
+  '../js/gameplay/deductionEngine.js?v=20260917-research-r2',
   '../js/gameplay/locationSystem.js',
   '../js/gameplay/chainManager.js',
   '../js/gameplay/dialogueMaps.js',
   '../js/gameplay/dialogueManager.js',
   '../js/gameplay/npcSystem.js',
   '../js/ui/AccessibilityManager.js',
-  '../js/ui/LabWorkspaceUI.js?v=20260916-lab-save',
-  '../js/ui/PeopleUI.js',
+  '../js/ui/LabWorkspaceUI.js?v=20260917-workbench',
+  '../css/lab-research.css?v=20260917-workbench',
+  '../js/ui/PeopleUI.js?v=20260917-research-r2',
   '../js/ui/SceneUI.js',
-  '../js/ui/AccuseUI.js',
+  '../js/ui/AccuseUI.js?v=20260917-research-r2',
   '../js/ui/CodexUI.js',
   '../js/ui/ChatUI.js',
 

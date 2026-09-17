@@ -1389,6 +1389,7 @@ export const act3CaseC = {
       text: `"All who see me mock me; they hurl insults, shaking their heads. 'He trusts in the LORD,' they say, 'let the LORD rescue him.'"`,
       written: "~1000 BC",
       explanation: "The verdict was immediately followed by the guards spitting on Jesus, blindfolding Him, striking Him, and mocking Him to 'prophesy' who had struck Him — the same derision this psalm describes, echoed again more publicly at the cross.",
+      researchEvidenceIds: ["spittle_stained_blindfold"],
     },
     {
       reference: "Psalm 38:11",
@@ -1397,6 +1398,7 @@ export const act3CaseC = {
       text: `"My friends and companions avoid me because of my wounds; my neighbors stay far away."`,
       written: "~1000 BC",
       explanation: "Peter, the disciple who swore he would never abandon Jesus, followed the arrest procession only 'at a distance' — the same isolation this psalm foretold, playing out even before the crucifixion.",
+      researchEvidenceIds: ["first_denial_account", "second_denial_account", "peters_bitter_weeping"],
     },
 
   ],
@@ -2052,6 +2054,7 @@ export const act3CaseD = {
       text: `"All who see me mock me; they hurl insults, shaking their heads. 'He trusts in the LORD,' they say, 'let the LORD rescue him.'"`,
       written: "~1000 BC",
       fulfilledBy: "Pilate's soldiers mocking Jesus with a purple robe and crown of thorns immediately after sentencing, hailing Him sarcastically as 'King of the Jews'",
+      researchEvidenceIds: ["praetorium_mockery"],
       gospelLink: "Matthew 27:27-31",
       insight: "The derision this psalm foretold begins the moment the crowd's choice is finalized — before Jesus even leaves the governor's headquarters for Golgotha.",
     },
@@ -2062,6 +2065,7 @@ export const act3CaseD = {
       text: `"My friends and companions avoid me because of my wounds; my neighbors stay far away."`,
       written: "~1000 BC",
       fulfilledBy: "Jesus standing before the crowd with no follower or advocate willing to speak in His defense, while a guilty man is publicly celebrated and released",
+      researchEvidenceIds: ["prisoner_isolation"],
       gospelLink: "Mark 15:6-15",
       insight: "The contrast is deliberate: Barabbas has a crowd chanting his freedom; Jesus, surrounded by the same crowd, stands utterly alone.",
     }
@@ -2091,6 +2095,34 @@ export const act3CaseD = {
   evidencePool: [
 
     {
+      id: "praetorium_mockery",
+      name: "Pilate's Account of the Mocked King",
+      type: "testimonial",
+      relatedProphecy: "psalm_22_7_8",
+      icon: "../assets/gfx/scroll-duotone.svg",
+      location: "The Praetorium",
+      desc: "Pilate describes presenting Jesus wearing the soldiers' crown of thorns and purple robe. The royal costume was an act of humiliation, not a recognition of authority.",
+      bibleRef: "John 19:1–5; Matthew 27:27–31",
+      investigatorNote: "Compare this account of mock kingship with Psalm 22. Pilate's attempt to excuse his decision needs separate scrutiny.",
+      fake: false,
+      category: "people",
+      timelineOrder: 3,
+      clues: { link: "People — Pilate's testimony about the humiliation of Jesus.", timeline: "During the Roman proceedings, before Jesus was led away." }
+    }, {
+      id: "prisoner_isolation",
+      name: "A Prisoner Without Public Support",
+      type: "testimonial",
+      relatedProphecy: "psalm_38_11",
+      icon: "../assets/gfx/scroll-duotone.svg",
+      location: "The Praetorium Bema",
+      desc: "Pilate's account contrasts the crowd's demands for Barabbas with Jesus's isolation before the judgment seat. It records the scene he describes, not proof that every follower had abandoned Jesus.",
+      bibleRef: "Mark 15:6–15",
+      investigatorNote: "Consider the parallel with the loneliness of Psalm 38 without treating the crowd's hostility as evidence of every disciple's location.",
+      fake: false,
+      category: "people",
+      timelineOrder: 3,
+      clues: { link: "People — testimony about the crowd and the isolated prisoner.", timeline: "The public choice of prisoner, before the final verdict." }
+    }, {
       id: "pilates_basin",
       name: "The Governor's Silver Basin",
       type: "physical",
@@ -2235,7 +2267,7 @@ export const act3CaseD = {
       hasDialogue: true,
       storyFile: "pontius_pilate_barabbas",
       revealsProphecy: "psalm_22_7_8",
-      unlocksEvidence: ["pilates_basin", "wifes_letter"],
+      unlocksEvidence: ["pilates_basin", "wifes_letter", "praetorium_mockery", "prisoner_isolation"],
     },
     {
       id: "barabbas_insurgent_trial",
@@ -2439,6 +2471,7 @@ export const act3CaseE = {
       text: `"'In that day,' declares the Sovereign LORD, 'I will make the sun go down at noon and darken the earth in broad daylight.'" / "No one could see anyone else or move about for three days."`,
       written: "~750 BC", 
       fulfilledBy: "The supernatural three-hour darkness blanketing Judea from noon until 3:00 PM as Jesus hung on the cross",
+      researchEvidenceIds: ["the_forsaken_cry"],
       gospelLink: "Matthew 27:45; Mark 15:33; Luke 23:44–45",
       insight: "Matthew's darkness at the crucifixion directly matches Amos's image of the sun going down at noon and echoes Exodus 10:23, when the plague of darkness covered Egypt while God's people had light. At Passover, the echo frames Jesus's death as both divine judgment and a new exodus leading to deliverance.",
     },

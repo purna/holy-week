@@ -98,12 +98,35 @@ export class CaseManager {
     const c = this.getCase(caseId);
     if (!c) return { total: 0, complete: 0, allComplete: false };
     const allProps = c.prophecies || [];
-    const complete = allProps.filter(p => this.getCodexStatus(p.id) === 'complete').length;
+    const complete = allProps.filter(p => this.getCodexStatus(p.id, caseId) === 'complete').length;
     return { total: allProps.length, complete, allComplete: complete === allProps.length && allProps.length > 0 };
   }
 
   getCaseProgress(id) {
     return this.progress.cases[id] || null;
+  }
+
+  recordWitnessInterview(npcId, caseId = this.activeCaseId) {
+    const progress = this.getCaseProgress(caseId);
+    if (!progress || !(this.getCase(caseId)?.npcs || []).some(n => n?.id === npcId)) return;
+    progress.interviewedNPCs ||= [];
+    if (!progress.interviewedNPCs.includes(npcId)) {
+      progress.interviewedNPCs.push(npcId);
+      this._saveProgress();
+    }
+  }
+
+  hasInterviewedAllWitnesses(caseId = this.activeCaseId) {
+    const progress = this.getCaseProgress(caseId);
+    const witnesses = (this.getCase(caseId)?.npcs || []).filter(n => n && (n.hasDialogue || n.dialogue));
+    if (!progress || !witnesses.length) return false;
+    return witnesses.every(n => (progress.interviewedNPCs || []).includes(n.id)
+      || (progress.chatMessagesByNpc?.[n.id] || []).some(m => m.type === 'npc')
+      || Object.entries(progress.conversations || {}).some(([key, session]) => key.startsWith(`${n.id}:`) && Object.keys(session.visits || {}).length > 0));
+  }
+
+  isCaseProphecyListed(prophecyId, caseId = this.activeCaseId) {
+    return this.hasInterviewedAllWitnesses(caseId) || this.getCodexStatus(prophecyId, caseId) !== 'unseen';
   }
 
   recordEvidenceFound(evidenceId) {
@@ -478,7 +501,7 @@ export class CaseManager {
       const caseClosed = !!(caseProgress?.solved || caseProgress?.concluded);
       const props = c.prophecies || [];
       for (const p of props) {
-        const status = caseClosed ? this.getCodexStatus(p.id) : 'unseen';
+        const status = caseClosed ? this.getCodexStatus(p.id, c.id) : 'unseen';
         result.push({
           ...p,
           status,
@@ -529,7 +552,7 @@ export class CaseManager {
     const allProps = c.prophecies || [];
     const progress = this.progress.cases[this.activeCaseId] || {};
     const foundList = progress.propheciesFound || [];
-    const discovered = allProps.filter(p => this.getCodexStatus(p.id) !== 'unseen').length;
+    const discovered = allProps.filter(p => this.isCaseProphecyListed(p.id)).length;
     const complete = allProps.filter(p => this.getCodexStatus(p.id) === 'complete').length;
     return { discovered, complete, total: allProps.length };
   }
@@ -545,13 +568,27 @@ export class CaseManager {
     return "Novice";
   }
 
-  getCodexStatus(prophecyId) {
+  getCodexStatus(prophecyId, caseId = this.activeCaseId) {
+    if (caseId && this.getCase(caseId)?.prophecies?.some(p => p.id === prophecyId)) {
+      const progress = this.getCaseProgress(caseId);
+      if (progress?.prophecyResearch?.[prophecyId]) return progress.prophecyResearch[prophecyId];
+      // Migrate only research actually earned in this case, not another case
+      // with the same Scripture reference.
+      if (progress?.propheciesFound?.includes(prophecyId)) return 'complete';
+      const scripture = this.getCase(caseId).prophecies.find(p => p.id === prophecyId)?.scriptureEvidenceId;
+      return scripture && progress?.evidenceFound?.includes(scripture) ? 'found_scripture' : 'unseen';
+    }
     return this.progress.codex?.[prophecyId] || 'unseen';
   }
 
   setCodexStatus(prophecyId, status) {
     if (!this.progress.codex) this.progress.codex = {};
-    this.progress.codex[prophecyId] = status;
+    const progress = this.getCaseProgress(this.activeCaseId);
+    if (progress && this.getActiveCase()?.prophecies?.some(p => p.id === prophecyId)) {
+      progress.prophecyResearch ||= {};
+      progress.prophecyResearch[prophecyId] = status;
+    }
+    if (this.progress.codex[prophecyId] !== 'complete') this.progress.codex[prophecyId] = status;
     this._saveProgress();
     this._refreshMetricsUI();
   }

@@ -1,5 +1,5 @@
 const CACHE_PREFIX = 'holy-week-cache';
-const CACHE_VERSION = 'v2.13-lab-save'; // Conversation runtime and lives header
+const CACHE_VERSION = 'v2.17-lab-workbench'; // Refresh case maps, scene and research data
 const CACHE_NAME = `${CACHE_PREFIX}-${CACHE_VERSION}`;
 
 // List all critical assets that need to be cached for offline use.
@@ -7,6 +7,7 @@ const CACHE_NAME = `${CACHE_PREFIX}-${CACHE_VERSION}`;
 // images, fonts, GLB models, audio files, and Ink JSON dialogue files.
 // Paths are relative to the service worker's location (e.g., './' for index.html).
 const urlsToCache = [
+  '../js/gameplay/prophecyResearch.js',
   '../js/gameplay/conversationStory.js',
   // Core App Shell
   '../mobile2d.html',
@@ -14,14 +15,14 @@ const urlsToCache = [
   './main.js',
   './gameEngine.js',
   './mobileApp.js',
-  './UIManager.js',
+  './UIManager.js?v=20260917-world',
   './GameManager.js',
   './dialogueManager.js',
   './audioManager.js',
   './npcSystem.js',
-  './deductionEngine.js',
+  './deductionEngine.js?v=20260917-research-r2',
   './locationSystem.js',
-  './Scene2D.js?v=20260916-lives',
+  './Scene2D.js?v=20260917-world',
   './ink-dialogue.js',
   './BibleReader2.js',
 
@@ -29,17 +30,18 @@ const urlsToCache = [
   '../js/config.js',
   '../js/audio/WildlifeSoundscape.js',
   '../js/utils.js',
-  '../js/gameplay/caseManager.js',
+  '../js/gameplay/caseManager.js?v=20260917-research-r2',
   '../js/gameplay/evidenceSystem.js',
-  '../js/gameplay/deductionEngine.js',
+  '../js/gameplay/deductionEngine.js?v=20260917-research-r2',
   '../js/gameplay/locationSystem.js',
   '../js/gameplay/chainManager.js',
   '../js/gameplay/dialogueMaps.js',
   '../js/ui/AccessibilityManager.js',
-  '../js/ui/LabWorkspaceUI.js?v=20260916-lab-save',
-  '../js/ui/PeopleUI.js',
+  '../js/ui/LabWorkspaceUI.js?v=20260917-workbench',
+  '../css/lab-research.css?v=20260917-workbench',
+  '../js/ui/PeopleUI.js?v=20260917-research-r2',
   '../js/ui/SceneUI.js',
-  '../js/ui/AccuseUI.js',
+  '../js/ui/AccuseUI.js?v=20260917-research-r2',
   '../js/ui/CodexUI.js',
 
   // Case Data

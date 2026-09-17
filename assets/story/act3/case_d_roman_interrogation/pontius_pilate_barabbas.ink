@@ -26,7 +26,10 @@
 === start ===
 # UNLOCK_EVIDENCE: pilates_basin
 # UNLOCK_EVIDENCE: wifes_letter
+# UNLOCK_EVIDENCE: praetorium_mockery
+# UNLOCK_EVIDENCE: prisoner_isolation
 I am Pontius Pilate, Prefect of Judea. The priests brought this Galilean before dawn. They accused Him of sedition, of claiming to be a king. I examined Him privately. He spoke of a kingdom not of this world. I found no Roman crime in Him. None. And then I sentenced Him anyway.
+I brought Him before them wearing the soldiers' purple robe and crown of thorns. A beaten man dressed as a king — I thought the sight would satisfy them. Instead they demanded the cross. Barabbas had their voices behind him; this prisoner stood isolated before my judgment seat. Record what happened in that courtyard. Do not ask me to account for the whereabouts of every disciple.
 + [So why are you sentencing Him?] -> sentence
 + [What does the crowd want?] -> crowd_wants
 

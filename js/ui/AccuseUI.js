@@ -114,7 +114,7 @@ export class AccuseUI {
             status: this.cm.getCodexStatus(p.id)
         }));
         const total = prophecies.length;
-        const unlocked = prophecies.filter(p => p.status === 'found_scripture' || p.status === 'complete').length;
+        const unlocked = prophecies.filter(p => p.status === 'complete').length;
         const complete = prophecies.filter(p => p.status === 'complete').length;
         const canConclude = options.canConclude ? this.cm.canConcludeCase() : false;
         const isConcluded = options.isConcluded || false;
@@ -148,12 +148,12 @@ export class AccuseUI {
                 </div>
                  <div class="prophecy-checklist">
                       ${prophecies.map(p => {
-                          const isClickable = p.status === 'complete' || p.status === 'found_scripture';
+                          const isClickable = p.status === 'complete';
                           const clickHandler = isClickable ? `onclick="window.ui.showProphecyDetail('${p.id}')"` : '';
                           return `
                           <div class="prophecy-checklist-item status-${p.status}" ${clickHandler}>
                               <span class="prophecy-checklist-icon" aria-hidden="true">${statusIcon(p.status)}</span>
-                              <span class="prophecy-checklist-name">${p.status === 'unseen' ? '???' : p.reference}</span>
+                              <span class="prophecy-checklist-name">${this.cm.isCaseProphecyListed(p.id) ? p.reference : '???'}${p.status !== 'complete' && this.cm.isCaseProphecyListed(p.id) ? ' — Locked: research in the Lab' : ''}</span>
                           </div>`;
                       }).join("")}
                   </div>

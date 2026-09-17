@@ -1,7 +1,7 @@
 import { getIntroText } from "../js/utils.js";
-import { PeopleUI } from "../js/ui/PeopleUI.js";
+import { PeopleUI } from "../js/ui/PeopleUI.js?v=20260917-research-r2";
 import { SceneUI } from "../js/ui/SceneUI.js";
-import { AccuseUI } from "../js/ui/AccuseUI.js";
+import { AccuseUI } from "../js/ui/AccuseUI.js?v=20260917-research-r2";
 import { CodexUI } from "../js/ui/CodexUI.js";
 
 /**

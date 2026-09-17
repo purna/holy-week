@@ -1,5 +1,5 @@
 import { DIALOGUE_ID_MAP } from "../gameplay/dialogueMaps.js";
-import { PeopleUI } from "./PeopleUI.js";
+import { PeopleUI } from "./PeopleUI.js?v=20260917-research-r2";
 
 function avatarMarkup(a) { if (!a) return ''; if (a.endsWith('.svg')) return `<img src="../assets/characters/${a}"style="width:1.5em;height:1.5em;vertical-align:middle;object-fit:contain;"alt="">`; return a; }
 

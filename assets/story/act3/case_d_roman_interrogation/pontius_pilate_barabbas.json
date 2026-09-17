@@ -1,6 +1,6 @@
 {
   "start": {
-    "content": "I am Pontius Pilate, Prefect of Judea. The priests brought this Galilean before dawn. They accused Him of sedition, of claiming to be a king. I examined Him privately. He spoke of a kingdom not of this world. I found no Roman crime in Him. None. And then I sentenced Him anyway.",
+    "content": "I am Pontius Pilate, Prefect of Judea. The priests brought this Galilean before dawn. They accused Him of sedition, of claiming to be a king. I examined Him privately. He spoke of a kingdom not of this world. I found no Roman crime in Him. None. And then I sentenced Him anyway.\nI brought Him before them wearing the soldiers' purple robe and crown of thorns. A beaten man dressed as a king — I thought the sight would satisfy them. Instead they demanded the cross. Barabbas had their voices behind him; this prisoner stood isolated before my judgment seat. Record what happened in that courtyard. Do not ask me to account for the whereabouts of every disciple.",
     "choices": [
       {
         "text": "So why are you sentencing Him?",
@@ -33,7 +33,25 @@
         }
       },
       {
+        "tag": "UNLOCK_EVIDENCE: praetorium_mockery",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "tag": "UNLOCK_EVIDENCE: prisoner_isolation",
+        "condition": {
+          "all": []
+        }
+      },
+      {
         "text": "I am Pontius Pilate, Prefect of Judea. The priests brought this Galilean before dawn. They accused Him of sedition, of claiming to be a king. I examined Him privately. He spoke of a kingdom not of this world. I found no Roman crime in Him. None. And then I sentenced Him anyway.",
+        "condition": {
+          "all": []
+        }
+      },
+      {
+        "text": "I brought Him before them wearing the soldiers' purple robe and crown of thorns. A beaten man dressed as a king — I thought the sight would satisfy them. Instead they demanded the cross. Barabbas had their voices behind him; this prisoner stood isolated before my judgment seat. Record what happened in that courtyard. Do not ask me to account for the whereabouts of every disciple.",
         "condition": {
           "all": []
         }
@@ -312,6 +330,6 @@
     "schema": 2,
     "entry": "start",
     "variables": {},
-    "revision": "2c532e8d405958ed"
+    "revision": "3fc87df5efca4464"
   }
 }

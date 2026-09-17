@@ -2,6 +2,43 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { LabWorkspaceUI } from '../js/ui/LabWorkspaceUI.js';
 
+test('research workbench omits duplicate locked and completed checklist entries', () => {
+  let listed = false, complete = false;
+  const c = {prophecies: [{id: 'p', reference: 'Passage', text: 'Text', researchEvidenceIds: ['a']}], evidencePool: [{id: 'a', name: 'Clue', type: 'physical'}]};
+  const cm = {getActiveCase: () => c, isCaseProphecyListed: () => listed, getCodexStatus: () => complete ? 'complete' : 'rumor'};
+  const lab = new LabWorkspaceUI({caseManager: cm}, {caseManager: cm, getCollected: () => c.evidencePool}, {});
+  const panel = {innerHTML: ''};
+  lab.root = {querySelector: () => panel};
+  lab._renderResearch();
+  assert.ok(!panel.innerHTML.includes('???'));
+  assert.ok(!panel.innerHTML.includes('<article'));
+  assert.match(panel.innerHTML, /Interview the remaining witnesses/);
+  listed = true; lab._renderResearch();
+  assert.match(panel.innerHTML, /data-research-prophecy="p"/);
+  complete = true; lab._renderResearch();
+  assert.ok(!panel.innerHTML.includes('<article'));
+  assert.match(panel.innerHTML, /Research complete/);
+});
+
+test('connection hints explain missing clues and enable only collected pairs', () => {
+  const c = {evidencePool: [{id: 'a', name: 'First clue'}, {id: 'b', name: 'Second clue'}], requiredConnections: [{pair: 'a+b', operation: 'compare'}]};
+  const cm = {getActiveCase: () => c};
+  const lab = new LabWorkspaceUI({caseManager: cm}, {caseManager: cm}, {});
+  const guide = {innerHTML: ''};
+  lab.root = {querySelector: s => s === '#lw-connection-guide' ? guide : null};
+  lab.evidence = []; lab.matchedPairs = [];
+  lab._updateCompareProgress();
+  assert.match(guide.innerHTML, /disabled>Awaiting clues/);
+  assert.match(guide.innerHTML, /Collect first: First clue \+ Second clue/);
+  lab.evidence = [c.evidencePool[0]]; lab._updateCompareProgress();
+  assert.match(guide.innerHTML, /Collect first: Second clue/);
+  lab.evidence = c.evidencePool; lab._updateCompareProgress();
+  assert.ok(!guide.innerHTML.includes('disabled'));
+  assert.match(guide.innerHTML, /Load hint/);
+  lab.matchedPairs = [['a', 'b', 'Corroborates', 'compare']]; lab._updateCompareProgress();
+  assert.match(guide.innerHTML, /disabled>Complete/);
+});
+
 const evidence = [
   { id: 'a', name: 'First clue', type: 'physical', timelineOrder: 1 },
   { id: 'b', name: 'Second clue', type: 'testimonial', timelineOrder: 2 }

@@ -1,3 +1,4 @@
+@import url("../../css/lab-research.css?v=20260917-workbench");
 /* ═══════════════════════════════════════════════
     LAB WORKSPACE — Scoped for #lab-workspace
  
@@ -1067,6 +1068,16 @@
   color: var(--lw-text);
   font-size: 0.96rem;
   line-height: 1.3;
+}
+
+#lab-workspace .lab-task-guide--unidentified {
+  border-style: dashed;
+  opacity: 0.55;
+  background: var(--lw-surface);
+}
+
+#lab-workspace .lab-task-guide--unidentified h4 {
+  color: var(--lw-text-muted);
 }
 
 #lab-workspace .lab-task-steps {

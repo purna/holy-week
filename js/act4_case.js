@@ -172,6 +172,7 @@ export const act4CaseA = {
     {
       reference: "Isaiah 26:19",
       id: "isaiah_26_19",
+      researchEvidenceIds: ["rolled_stone", "empty_tomb", "angelic_witness"],
       icon: "../assets/gfx/sparkles-duotone.svg",
       text: `"Your dead will live, LORD; their bodies will rise — let those who dwell in the dust wake up and shout for joy."`,
       written: "~700 BC",

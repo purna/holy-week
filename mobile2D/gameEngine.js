@@ -1,12 +1,12 @@
 import { MobileApp } from "./mobileApp.js";
-import { CaseManager } from "./../js/gameplay/caseManager.js";
+import { CaseManager } from "./../js/gameplay/caseManager.js?v=20260917-research-r2";
 import { EvidenceSystem } from './../js/gameplay/evidenceSystem.js';
 import { NPCSystem } from './npcSystem.js';
 import { PROFILE_ID_MAP } from './npcSystem.js';
-import { DeductionEngine } from './../js/gameplay/deductionEngine.js';
+import { DeductionEngine } from './../js/gameplay/deductionEngine.js?v=20260917-research-r2';
 import { LocationSystem } from './../js/gameplay/locationSystem.js';
 import { AccessibilityManager } from "../js/ui/AccessibilityManager.js";
-import { LabWorkspaceUI } from "../js/ui/LabWorkspaceUI.js?v=20260916-lab-save";
+import { LabWorkspaceUI } from "../js/ui/LabWorkspaceUI.js?v=20260917-workbench";
 import { AudioManager } from "./audioManager.js"; // Mobile uses its own AudioManager
 import { DialogueManager } from "./dialogueManager.js";
 

@@ -1,4 +1,4 @@
-import { OPERATIONS } from "../js/gameplay/deductionEngine.js";
+import { OPERATIONS } from "../js/gameplay/deductionEngine.js?v=20260917-research-r2";
 
 export class LabUI {
   constructor(deductionEngine, evidenceSystem, accessibility, onResult) {

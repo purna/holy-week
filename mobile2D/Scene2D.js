@@ -70,7 +70,7 @@ function getStitchNoise(px, py) {
 
 function getTileAt(col, row, levelMap) {
     if (col < 0 || col >= MAP_SIZE || row < 0 || row >= MAP_SIZE) return 2;
-    return levelMap[row][col];
+    return levelMap[row]?.[col] ?? 5;
 }
 
 export class Scene2D {
@@ -281,6 +281,9 @@ export class Scene2D {
     }
 
     loadCase(caseId, tilemapData) {
+        if (!Array.isArray(tilemapData?.background) || !tilemapData.background.length) {
+            throw new Error(`Missing terrain for ${caseId}`);
+        }
         this.npcs = [];
         this.enemies = [];
         this.gameOver = false;
@@ -289,7 +292,7 @@ export class Scene2D {
 
         console.log('[Scene2D] loadCase:', caseId, 'tilemapData keys:', tilemapData ? Object.keys(tilemapData) : 'null');
 
-        const npcDefs = this.ui?.cm?.getActiveCase()?.npcs || [];
+        const npcDefs = (this.ui?.cm?.getActiveCase()?.npcs || []).filter(Boolean);
         const defaultPositions = [{ x: 28, y: 33 }, { x: 42, y: 31 }, { x: 14, y: 31 }];
         npcDefs.forEach((npc, i) => {
             const pos = defaultPositions[i] || { x: 28 + (i % 3) * 5, y: 33 + Math.floor(i / 3) * 2 };
@@ -299,6 +302,8 @@ export class Scene2D {
         if (tilemapData?.background) {
             const rows = tilemapData.gridSize?.rows || tilemapData.background.length;
             const cols = tilemapData.gridSize?.cols || tilemapData.background[0]?.length || MAP_SIZE;
+            this.mapRows = rows;
+            this.mapCols = cols;
             MAP_SIZE = Math.max(rows, cols);
             this.levelMap = []; this.colliderMap = [];
             for (let r = 0; r < rows; r++) {
@@ -396,8 +401,9 @@ export class Scene2D {
     }
 
     _isWalkable(gx, gy) {
-        if (gx < 0 || gx >= MAP_SIZE || gy < 0 || gy >= MAP_SIZE) return false;
-        const backgroundTile = this.levelMap[gy][gx];
+        if (gx < 0 || gx >= (this.mapCols || MAP_SIZE) || gy < 0 || gy >= (this.mapRows || MAP_SIZE)) return false;
+        const backgroundTile = this.levelMap[gy]?.[gx];
+        if (backgroundTile === undefined) return false;
         const colliderTile = this.colliderMap[gy]?.[gx] || 0;
         if (colliderTile === 1 || backgroundTile === 1 || backgroundTile === 2 || backgroundTile === 4 || backgroundTile === 5 || backgroundTile === 6) return false;
         if (this.npcs.some(n => n.x === gx && n.y === gy)) return false;
@@ -675,7 +681,9 @@ export class Scene2D {
 
     _rebuildPixiWorld() {
         this.uiWorldLayer.removeChildren();
+        this.minimapLayer.removeChildren();
         this._bakeTilemap();
+        this._createMinimap();
         this._createNPCEntities();
         this._createEnemyEntities();
     }

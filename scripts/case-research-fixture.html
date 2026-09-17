@@ -1,0 +1,25 @@
+<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Missing Donkey research regression fixture</title>
+<link rel="stylesheet" href="../mobile/css/tokens.css"><link rel="stylesheet" href="../mobile/css/lab-workspace.css"><link rel="stylesheet" href="../mobile/css/accusation.css">
+<style>body{background:#10131d;color:#eee;font-family:Arial;margin:16px}#fixture{max-width:850px;margin:auto}button,select{font:inherit}#file{margin-top:20px}</style>
+<div id="fixture"><h1>Missing Donkey research test</h1><p>Isolated test save. Your game progress is not changed.</p><button id="witnesses">Record all witness interviews</button><button id="clues">Collect case clues</button><button id="reopen">Reopen</button><div id="host"></div><div id="file"></div></div>
+<script type="module">
+import { CaseManager } from '../js/gameplay/caseManager.js?v=20260917-research';
+import { EvidenceSystem } from '../js/gameplay/evidenceSystem.js';
+import { DeductionEngine } from '../js/gameplay/deductionEngine.js?v=20260917-research';
+import { LabWorkspaceUI } from '../js/ui/LabWorkspaceUI.js?v=20260917-workbench';
+import { AccuseUI } from '../js/ui/AccuseUI.js?v=20260917-research';
+import { act1CaseA } from '../js/act1_case.js';
+const fixtureKey = 'holy-week-research-fixture-' + (new URLSearchParams(location.search).get('scenario') || 'default');
+class FixtureManager extends CaseManager {
+  _loadProgress(){return JSON.parse(localStorage.getItem(fixtureKey)||'{"cases":{},"codex":{}}')}
+  _saveProgress(){localStorage.setItem(fixtureKey,JSON.stringify(this.progress));return true}
+}
+const cm=new FixtureManager();cm.registerCase(act1CaseA);cm.startCase(act1CaseA.id);
+const es=new EvidenceSystem(cm);es.loadCase(act1CaseA);const de=new DeductionEngine(cm,es);de.loadCase();
+function file(){document.querySelector('#file').innerHTML=new AccuseUI(cm).render()}
+function open(){const lab=new LabWorkspaceUI(de,es,{},file);const host=document.querySelector('#host');host.innerHTML=lab.render();lab.bindEvents(host);file()}
+document.querySelector('#witnesses').onclick=()=>{act1CaseA.npcs.filter(Boolean).forEach(n=>cm.recordWitnessInterview(n.id));open()};
+document.querySelector('#clues').onclick=()=>{act1CaseA.evidencePool.filter(e=>e.type!=='scripture').forEach(e=>es.discover(e.id));open()};
+document.querySelector('#reopen').onclick=open;open();
+</script>

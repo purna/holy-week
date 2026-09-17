@@ -1,7 +1,7 @@
 import { getIntroText } from "../js/utils.js";
-import { PeopleUI } from "../js/ui/PeopleUI.js";
+import { PeopleUI } from "../js/ui/PeopleUI.js?v=20260917-research-r2";
 import { SceneUI } from "../js/ui/SceneUI.js";
-import { AccuseUI } from "../js/ui/AccuseUI.js";
+import { AccuseUI } from "../js/ui/AccuseUI.js?v=20260917-research-r2";
 import { CodexUI } from "../js/ui/CodexUI.js";
 import { Scene2D } from "./Scene2D.js";
 
@@ -37,13 +37,13 @@ export class UIManager {
   _getTilemapPath(caseId) {
     const actMap = {
       'act1': ['triumphal_entry', 'temple_cleansing', 'fig_tree_incident'],
-      'act2': ['authority_challenged', 'lazarus_plot', 'olivet_discourse'],
+      'act2': ['authority_challenged', 'lazarus_plot', 'olivet_discourse', 'passover_lamb_chain'],
       'act3': ['last_supper', 'gethsemane_arrest', 'sanhedrin_trial', 'barabbas_choice', 'crucifixion_site'],
-      'act4': ['resurrection', 'roman_inquiry', 'peter_restoration']
+      'act4': ['resurrection', 'roman_inquiry', 'peter_restoration', 'ascension']
     };
     const act = Object.keys(actMap).find(key => actMap[key].includes(caseId));
     if (!act) return null;
-    return `./maps/${act}/${caseId}.json`;
+    return new URL(`./maps/${act}/${caseId}.json`, import.meta.url).href;
   }
 
   extractBibleReferences(text) {
@@ -101,34 +101,35 @@ export class UIManager {
     if (nextBtn) {
       nextBtn.addEventListener("click", async () => {
         const panel = container.querySelector(".scene-intro-panel");
-        if (panel) panel.classList.add("hidden");
         const mount = container.querySelector("#scene-canvas-mount");
-        if (mount) mount.style.display = "block";
-
-        const needsInit = !window.scene2d || !document.contains(window.scene2d.container);
-        console.log('[UIManager] Next clicked, needsInit:', needsInit, 'scene2d:', !!window.scene2d);
-        if (needsInit) {
-          await this.init2DScene();
-        }
-
-        const c = this.cm.getActiveCase();
-        console.log('[UIManager] After init, activeCase:', c?.id, 'scene2d.loadCase:', typeof window.scene2d?.loadCase);
-        if (c && window.scene2d && window.scene2d.loadCase) {
+        nextBtn.disabled = true;
+        nextBtn.textContent = 'Loading scene…';
+        try {
           const mapPath = this._getTilemapPath(c.id);
-          console.log('[UIManager] mapPath:', mapPath);
-          if (mapPath) {
-            try {
-              const res = await fetch(mapPath);
-              console.log('[UIManager] fetch result:', res.status, res.statusText);
-              if (res.ok) {
-                const tileData = await res.json();
-                console.log('[UIManager] tileData keys:', Object.keys(tileData));
-                window.scene2d.loadCase(c.id, tileData);
-              }
-            } catch (e) {
-              console.warn('Failed to load tilemap:', mapPath, e);
-            }
+          if (!mapPath) throw new Error(`No map configured for ${c.id}`);
+          const res = await fetch(mapPath, { cache: 'no-cache' });
+          if (!res.ok) throw new Error(`Map request failed: ${res.status}`);
+          const tileData = await res.json();
+          if (!Array.isArray(tileData.background) || !tileData.background.length) throw new Error('Map has no terrain');
+          // Do not start an empty player-only scene while its map is unavailable.
+          if (!document.contains(container) || this.cm.activeCaseId !== c.id) return;
+          if (mount) mount.style.display = 'block';
+          if (!window.scene2d || !document.contains(window.scene2d.container)) {
+            window.scene2d?.stop();
+            await this.init2DScene();
           }
+          window.scene2d.loadCase(c.id, tileData);
+          if (panel) panel.classList.add('hidden');
+        } catch (error) {
+          console.error('Unable to load the case scene:', error);
+          window.scene2d?.stop();
+          window.scene2d = null;
+          if (mount) mount.style.display = 'none';
+          if (panel) panel.classList.remove('hidden');
+          nextBtn.textContent = 'Scene could not load — retry';
+          this.a11y.announce('The scene could not load. Check your connection and retry.');
+        } finally {
+          nextBtn.disabled = false;
         }
       });
     }

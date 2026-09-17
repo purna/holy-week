@@ -2824,6 +2824,8 @@
 <script src="character_presets.js"></script>
 <!-- Sculpted hairstyle meshes exported from hair+woman.+vol+4.glb -->
 <script src="imported_hair_assets.js"></script>
+<!-- Baked jewellery mesh library — earring/necklace/trim frames -->
+<script src="imported_jewellery_assets.js"></script>
 <script>
 /* ==========================================================
    3D CHARACTER RENDER LOGIC (Three.js)
@@ -3928,19 +3930,51 @@ function b64ToArrayBuffer(b64) {
     return bytes.buffer;
 }
 
-const importedHairGeometryCache = new Map();
-function getImportedHairGeometry(key) {
-    if (importedHairGeometryCache.has(key)) return importedHairGeometryCache.get(key);
-    if (typeof IMPORTED_HAIR_ASSETS === 'undefined' || !IMPORTED_HAIR_ASSETS[key]) return null;
-    const a = IMPORTED_HAIR_ASSETS[key];
+/* Shared decoder for every baked mesh table (hair, jewellery, and whatever
+   follows) — same p/n/i base64 schema throughout. `indexType` picks the
+   index array width; it defaults to 16-bit for tables (like the original
+   hair assets) that predate the field. */
+function decodeMeshAsset(a) {
     const geo = new THREE.BufferGeometry();
     geo.setAttribute('position', new THREE.BufferAttribute(new Float32Array(b64ToArrayBuffer(a.p)), 3));
     if (a.n) geo.setAttribute('normal', new THREE.BufferAttribute(new Float32Array(b64ToArrayBuffer(a.n)), 3));
-    if (a.i) geo.setIndex(new THREE.BufferAttribute(new Uint16Array(b64ToArrayBuffer(a.i)), 1));
+    if (a.i) {
+        const IndexArray = a.indexType === 32 ? Uint32Array : Uint16Array;
+        geo.setIndex(new THREE.BufferAttribute(new IndexArray(b64ToArrayBuffer(a.i)), 1));
+    }
     if (!a.n) geo.computeVertexNormals();
     geo.computeBoundingBox();
-    importedHairGeometryCache.set(key, geo);
     return geo;
+}
+
+function makeAssetLoader(getTable) {
+    const cache = new Map();
+    return (key) => {
+        if (cache.has(key)) return cache.get(key);
+        const table = getTable();
+        if (!table || !table[key]) return null;
+        const geo = decodeMeshAsset(table[key]);
+        cache.set(key, geo);
+        return geo;
+    };
+}
+
+// Table lookups are wrapped in try/catch + typeof checks rather than looked
+// up by name off window/globalThis: a top-level `const` in a classic
+// <script> tag is a lexical binding, not a property of window, so
+// window['IMPORTED_HAIR_ASSETS'] would silently be undefined even with the
+// asset file loaded.
+const getImportedHairGeometry = makeAssetLoader(
+    () => (typeof IMPORTED_HAIR_ASSETS !== 'undefined' ? IMPORTED_HAIR_ASSETS : null));
+const getImportedJewelleryGeometry = makeAssetLoader(
+    () => (typeof IMPORTED_JEWELLERY_ASSETS !== 'undefined' ? IMPORTED_JEWELLERY_ASSETS : null));
+
+/* Returns a Mesh built from imported_jewellery_assets.js if that design's
+   key is present, else null so the caller can fall back to building the
+   shape from primitives itself. */
+function importedJewelleryMesh(key, material) {
+    const geo = getImportedJewelleryGeometry(key);
+    return geo ? new THREE.Mesh(geo, material) : null;
 }
 
 /* Fit an imported hair mesh onto the procedural head: match its width to the
@@ -4245,6 +4279,8 @@ function buildNecklace(state, accentMat) {
         }
         case 'torc': {
             // Open metal collar with terminals — the heavy, rigid kind.
+            const imported = importedJewelleryMesh('necklace_torc', accentMat);
+            if (imported) { out.push(imported); break; }
             const t = new THREE.Mesh(new THREE.TorusGeometry(0.27, 0.028, 10, 26, Math.PI * 1.5), accentMat);
             t.rotation.x = Math.PI / 2; t.rotation.z = Math.PI * 0.25;
             t.position.set(0, 0.94, 0.09);
@@ -4257,7 +4293,8 @@ function buildNecklace(state, accentMat) {
             break;
         }
         case 'pendant': {
-            out.push(band(0.24, 0.018, 0.93, 0.13, accentMat));
+            const frame = importedJewelleryMesh('necklace_pendant_frame', accentMat);
+            out.push(frame || band(0.24, 0.018, 0.93, 0.13, accentMat));
             const drop = new THREE.Mesh(new THREE.SphereGeometry(0.034, 10, 8), gemMaterial());
             drop.scale.set(1, 1.3, 0.7);
             drop.position.set(0, 0.76, 0.30);
@@ -4265,14 +4302,22 @@ function buildNecklace(state, accentMat) {
             break;
         }
         case 'layered': {
+            const imported = importedJewelleryMesh('necklace_layered', accentMat);
+            if (imported) { out.push(imported); break; }
             out.push(band(0.22, 0.012, 0.96, 0.11, accentMat));
             out.push(band(0.28, 0.012, 0.88, 0.14, accentMat));
             out.push(band(0.34, 0.012, 0.79, 0.16, accentMat));
             break;
         }
         case 'collar_plate': {
-            // Broad Egyptian-style collar of concentric rows.
+            // Broad Egyptian-style collar of concentric rows. The metal rows
+            // (even r) come from the imported frame when available; the gem
+            // rows (odd r) are always procedural since they need a different
+            // material.
+            const frame = importedJewelleryMesh('necklace_collar_plate_frame', accentMat);
+            if (frame) out.push(frame);
             for (let r = 0; r < 4; r++) {
+                if (frame && r % 2 === 0) continue;
                 const ring = new THREE.Mesh(
                     new THREE.TorusGeometry(0.24 + r * 0.055, 0.020, 8, 26, Math.PI * 1.15),
                     r % 2 ? accentMat : gemMaterial());
@@ -4283,11 +4328,16 @@ function buildNecklace(state, accentMat) {
             break;
         }
         case 'amulet': {
-            out.push(band(0.25, 0.013, 0.94, 0.12, accentMat));
-            const disc = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.06, 0.022, 14), accentMat);
-            disc.rotation.x = Math.PI / 2;
-            disc.position.set(0, 0.74, 0.31);
-            out.push(disc);
+            const frame = importedJewelleryMesh('necklace_amulet_frame', accentMat);
+            if (frame) {
+                out.push(frame);
+            } else {
+                out.push(band(0.25, 0.013, 0.94, 0.12, accentMat));
+                const disc = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.06, 0.022, 14), accentMat);
+                disc.rotation.x = Math.PI / 2;
+                disc.position.set(0, 0.74, 0.31);
+                out.push(disc);
+            }
             const stone = new THREE.Mesh(new THREE.SphereGeometry(0.028, 10, 8), gemMaterial());
             stone.position.set(0, 0.74, 0.335);
             out.push(stone);
@@ -4311,19 +4361,25 @@ function buildGarmentTrim(state, accentMat, accentCloth) {
     };
     switch (style) {
         case 'neckline':
-            out.push(ring(0.455, 0.022, 0.92, accentCloth));
+            out.push(importedJewelleryMesh('trim_neckline', accentCloth) || ring(0.455, 0.022, 0.92, accentCloth));
             break;
-        case 'edging':
+        case 'edging': {
+            const imported = importedJewelleryMesh('trim_edging', accentMat);
+            if (imported) { out.push(imported); break; }
             out.push(ring(0.455, 0.020, 0.92, accentMat));
             out.push(ring(0.655, 0.022, 0.30, accentMat));
             break;
-        case 'banded':
+        }
+        case 'banded': {
+            const imported = importedJewelleryMesh('trim_banded', accentCloth);
+            if (imported) { out.push(imported); break; }
             out.push(ring(0.47, 0.024, 0.88, accentCloth));
             out.push(ring(0.63, 0.024, 0.45, accentCloth));
             out.push(ring(0.68, 0.024, 0.10, accentCloth));
             break;
+        }
         case 'jewelled': {
-            out.push(ring(0.455, 0.022, 0.92, accentMat));
+            out.push(importedJewelleryMesh('trim_jewelled_frame', accentMat) || ring(0.455, 0.022, 0.92, accentMat));
             for (let i = 0; i < 10; i++) {
                 const a = -Math.PI * 0.5 + (i / 9) * Math.PI;
                 const gem = new THREE.Mesh(new THREE.SphereGeometry(0.024, 8, 8), gemMaterial());
@@ -4333,11 +4389,15 @@ function buildGarmentTrim(state, accentMat, accentCloth) {
             break;
         }
         case 'shoulder_clasps': {
+            const frame = importedJewelleryMesh('trim_shoulder_clasps_frame', accentMat);
+            if (frame) out.push(frame);
             [-1, 1].forEach(s => {
-                const clasp = new THREE.Mesh(new THREE.SphereGeometry(0.062, 12, 10), accentMat);
-                clasp.scale.set(1, 0.7, 1);
-                clasp.position.set(s * 0.37, 0.86, 0.14);
-                out.push(clasp);
+                if (!frame) {
+                    const clasp = new THREE.Mesh(new THREE.SphereGeometry(0.062, 12, 10), accentMat);
+                    clasp.scale.set(1, 0.7, 1);
+                    clasp.position.set(s * 0.37, 0.86, 0.14);
+                    out.push(clasp);
+                }
                 const stone = new THREE.Mesh(new THREE.SphereGeometry(0.028, 8, 8), gemMaterial());
                 stone.position.set(s * 0.37, 0.90, 0.20);
                 out.push(stone);
@@ -4345,15 +4405,20 @@ function buildGarmentTrim(state, accentMat, accentCloth) {
             break;
         }
         case 'full_regalia': {
-            out.push(ring(0.455, 0.022, 0.92, accentMat));
-            out.push(ring(0.655, 0.024, 0.30, accentMat));
+            const frame = importedJewelleryMesh('trim_full_regalia_frame', accentMat);
+            if (frame) {
+                out.push(frame);
+            } else {
+                out.push(ring(0.455, 0.022, 0.92, accentMat));
+                out.push(ring(0.655, 0.024, 0.30, accentMat));
+            }
             for (let i = 0; i < 8; i++) {
                 const a = -Math.PI * 0.45 + (i / 7) * Math.PI * 0.9;
                 const gem = new THREE.Mesh(new THREE.SphereGeometry(0.026, 8, 8), gemMaterial());
                 gem.position.set(Math.sin(a) * 0.45, 0.90, Math.cos(a) * 0.45);
                 out.push(gem);
             }
-            [-1, 1].forEach(s => {
+            if (!frame) [-1, 1].forEach(s => {
                 const clasp = new THREE.Mesh(new THREE.SphereGeometry(0.058, 12, 10), accentMat);
                 clasp.scale.set(1, 0.7, 1);
                 clasp.position.set(s * 0.37, 0.86, 0.14);
@@ -4382,31 +4447,38 @@ function buildEarrings(state) {
         switch (style) {
             case 'studs': {
                 const stud = new THREE.Mesh(new THREE.SphereGeometry(0.030, 10, 8), metal);
-                side.add(stud);
+                side.add(importedJewelleryMesh('earring_studs', metal) || stud);
                 break;
             }
             case 'gem_studs': {
-                const setting = new THREE.Mesh(new THREE.SphereGeometry(0.030, 10, 8), metal);
+                const setting = importedJewelleryMesh('earring_gem_studs_frame', metal)
+                    || new THREE.Mesh(new THREE.SphereGeometry(0.030, 10, 8), metal);
                 const stone = new THREE.Mesh(new THREE.SphereGeometry(0.022, 8, 8), gemMaterial());
                 stone.position.x = sign * 0.016;
                 side.add(setting, stone);
                 break;
             }
             case 'small_hoops': {
-                const hoop = new THREE.Mesh(new THREE.TorusGeometry(0.052, 0.010, 8, 18), metal);
-                hoop.rotation.y = Math.PI / 2;
-                hoop.position.y = -0.045;
-                side.add(hoop);
+                const hoop = importedJewelleryMesh('earring_small_hoops', metal);
+                if (hoop) { side.add(hoop); break; }
+                const h = new THREE.Mesh(new THREE.TorusGeometry(0.052, 0.010, 8, 18), metal);
+                h.rotation.y = Math.PI / 2;
+                h.position.y = -0.045;
+                side.add(h);
                 break;
             }
             case 'large_hoops': {
-                const hoop = new THREE.Mesh(new THREE.TorusGeometry(0.085, 0.011, 8, 22), metal);
-                hoop.rotation.y = Math.PI / 2;
-                hoop.position.y = -0.079;
-                side.add(hoop);
+                const hoop = importedJewelleryMesh('earring_large_hoops', metal);
+                if (hoop) { side.add(hoop); break; }
+                const h = new THREE.Mesh(new THREE.TorusGeometry(0.085, 0.011, 8, 22), metal);
+                h.rotation.y = Math.PI / 2;
+                h.position.y = -0.079;
+                side.add(h);
                 break;
             }
             case 'drops': {
+                const imported = importedJewelleryMesh('earring_drops', metal);
+                if (imported) { side.add(imported); break; }
                 const link = new THREE.Mesh(new THREE.CylinderGeometry(0.007, 0.007, 0.075, 6), metal);
                 link.position.y = -0.042;
                 const drop = new THREE.Mesh(new THREE.SphereGeometry(0.034, 10, 8), metal);
@@ -4416,8 +4488,9 @@ function buildEarrings(state) {
                 break;
             }
             case 'gem_drops': {
-                const link = new THREE.Mesh(new THREE.CylinderGeometry(0.007, 0.007, 0.070, 6), metal);
-                link.position.y = -0.040;
+                const importedLink = importedJewelleryMesh('earring_gem_drops_frame', metal);
+                const link = importedLink || new THREE.Mesh(new THREE.CylinderGeometry(0.007, 0.007, 0.070, 6), metal);
+                if (!importedLink) link.position.y = -0.040;
                 const stone = new THREE.Mesh(new THREE.SphereGeometry(0.030, 10, 8), gemMaterial());
                 stone.scale.set(1, 1.45, 0.8);
                 stone.position.y = -0.102;
@@ -4425,25 +4498,34 @@ function buildEarrings(state) {
                 break;
             }
             case 'chandelier': {
-                const bar = new THREE.Mesh(new THREE.CylinderGeometry(0.006, 0.006, 0.05, 6), metal);
-                bar.position.y = -0.032;
-                side.add(bar);
+                const frame = importedJewelleryMesh('earring_chandelier_frame', metal);
+                if (frame) side.add(frame);
                 const spread = [-0.032, 0, 0.032];
                 spread.forEach((dz, i) => {
                     const len = i === 1 ? 0.085 : 0.058;
-                    const strand = new THREE.Mesh(new THREE.CylinderGeometry(0.005, 0.005, len, 6), metal);
-                    strand.position.set(0, -0.06 - len / 2, dz);
+                    if (!frame) {
+                        const strand = new THREE.Mesh(new THREE.CylinderGeometry(0.005, 0.005, len, 6), metal);
+                        strand.position.set(0, -0.06 - len / 2, dz);
+                        side.add(strand);
+                    }
                     const bead = new THREE.Mesh(new THREE.SphereGeometry(0.019, 8, 8), gemMaterial());
                     bead.position.set(0, -0.06 - len - 0.014, dz);
-                    side.add(strand, bead);
+                    side.add(bead);
                 });
+                if (!frame) {
+                    const bar = new THREE.Mesh(new THREE.CylinderGeometry(0.006, 0.006, 0.05, 6), metal);
+                    bar.position.y = -0.032;
+                    side.add(bar);
+                }
                 break;
             }
             case 'crescents': {
-                const c = new THREE.Mesh(new THREE.TorusGeometry(0.058, 0.011, 8, 16, Math.PI * 1.15), metal);
-                c.rotation.y = Math.PI / 2; c.rotation.z = -Math.PI * 0.42;
-                c.position.y = -0.055;
-                side.add(c);
+                const c = importedJewelleryMesh('earring_crescents', metal);
+                if (c) { side.add(c); break; }
+                const cr = new THREE.Mesh(new THREE.TorusGeometry(0.058, 0.011, 8, 16, Math.PI * 1.15), metal);
+                cr.rotation.y = Math.PI / 2; cr.rotation.z = -Math.PI * 0.42;
+                cr.position.y = -0.055;
+                side.add(cr);
                 break;
             }
         }

@@ -2,6 +2,8 @@
 // DEDUCTION ENGINE — reasoning operations, scoring, inference
 // ============================================================
 
+import { getResearchEvidenceIds } from './prophecyResearch.js';
+
 export const OPERATIONS = {
   COMPARE:     { id: "compare",     label: "Compare",     icon: '<i class="fa-solid fa-magnifying-glass"></i>', desc: "Are these consistent?" },
   LINK:        { id: "link",        label: "Link",        icon: '<i class="fa-solid fa-link"></i>',        desc: "Do they point to the same conclusion?" },
@@ -39,7 +41,8 @@ export class DeductionEngine {
     const aIsScripture = a.type === 'scripture';
     const bIsScripture = b.type === 'scripture';
     
-    if (aIsScripture || bIsScripture) {
+    const authoredOperation = c?.deductions?.[key]?.[operation] || c?.deductions?.[keyRev]?.[operation];
+    if ((aIsScripture || bIsScripture) && !authoredOperation) {
       return this._handleResearchPair(a, b);
     }
 
@@ -143,6 +146,30 @@ export class DeductionEngine {
     
     this.deductions.push(result);
     this.caseManager.recordDeduction(result);
+    return result;
+  }
+
+  researchProphecy(prophecyId, evidenceId) {
+    const c = this.caseManager.getActiveCase();
+    const prophecy = c?.prophecies?.find(p => p.id === prophecyId);
+    if (!prophecy || !this.caseManager.isCaseProphecyListed(prophecyId)) return { success: false, error: 'Interview the witnesses to identify this prophecy first.' };
+    if (this.caseManager.getCodexStatus(prophecyId) === 'complete') return { success: true, alreadyComplete: true, text: 'Already researched; no additional points awarded.' };
+    if (!this.evidenceSystem.isCollected(evidenceId)) return { success: false, error: 'Collect this evidence before researching it.' };
+    if (!getResearchEvidenceIds(c, prophecy).includes(evidenceId)) return { success: false, error: 'This clue does not support this prophecy. Read the passage and try another clue.' };
+    const result = {
+      deductionId: `research_${prophecy.id}`, operation: 'research', evidenceAId: evidenceId,
+      revealsProphecy: prophecy.id, isValidatedInsight: true, isKeyDeduction: true,
+      success: true, text: `Research complete: ${prophecy.reference}`,
+      insight: prophecy.insight || prophecy.explanation, score: 10
+    };
+    // The Lab provides the cited text. Log its existing reference card after
+    // successful research; it need not be an unreachable world pickup.
+    const referenceCard = prophecy.scriptureEvidenceId || c.evidencePool.find(e => e.type === 'scripture' && e.relatedProphecy === prophecy.id)?.id;
+    if (referenceCard && this.evidenceSystem.getById(referenceCard)) this.evidenceSystem.discover(referenceCard);
+    this.caseManager.setCodexStatus(prophecy.id, 'complete');
+    this.caseManager.recordProphecyFound(prophecy.id);
+    this.caseManager.recordDeduction(result);
+    this.deductions.push(result);
     return result;
   }
 

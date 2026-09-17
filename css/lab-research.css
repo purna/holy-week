@@ -1,0 +1,47 @@
+/* Shared research/connection guidance across every game shell. */
+#lab-workspace section.lab-task-guide h4,
+#lab-workspace article.lab-task-guide h4 {
+  font-family: var(--font-display, inherit);
+  font-size: .82rem;
+  color: var(--lw-text);
+  line-height: 1.4;
+}
+#lab-workspace .lab-task-guide p,
+#lab-workspace .lab-research-status {
+  font-family: var(--font-mono, monospace);
+  font-size: .75rem;
+  color: var(--lw-text-muted);
+  line-height: 1.6;
+  margin: 8px 0;
+  overflow-wrap: anywhere;
+}
+#lab-workspace .lab-connection-hint {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  border-top: 1px solid var(--lw-border2);
+}
+#lab-workspace .lab-connection-hint-copy { flex: 1; min-width: 0; }
+#lab-workspace .lab-connection-hint p.lab-connection-hint-name { color: var(--lw-text); font-size: .78rem; margin: 0 0 5px; }
+#lab-workspace .lab-connection-hint p.lab-connection-hint-status { font-size: .7rem; margin: 0; }
+#lab-workspace .lab-connection-hint.is-complete .lab-connection-hint-name { color: var(--lw-green); }
+#lab-workspace .lab-connection-hint button {
+  flex-shrink: 0;
+  min-height: 44px;
+  padding: 9px 12px;
+  border: 1px solid var(--lw-gold);
+  border-radius: 8px;
+  background: var(--lw-surface2);
+  color: var(--lw-gold);
+  font-family: var(--font-display, sans-serif);
+  font-size: .75rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+#lab-workspace .lab-connection-hint button:disabled { opacity: 1; color: var(--lw-text-muted); border-color: var(--lw-border2); cursor: default; }
+#lab-workspace .lab-connection-hint button:focus-visible { outline: 2px solid var(--lw-gold); outline-offset: 3px; }
+@media (max-width: 480px) {
+  #lab-workspace .lab-connection-hint { align-items: stretch; flex-direction: column; gap: 8px; }
+  #lab-workspace .lab-connection-hint button { align-self: flex-start; }
+}

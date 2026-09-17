@@ -222,6 +222,7 @@ export class PeopleUI {
           const story = this.dm.createStory(npcId);
           this.dm.openDialogue(npc, story,
             () => {
+              this._getCaseManager()?.recordWitnessInterview?.(npcId);
               const unlocked = handleUnlocks();
               if (this.onAction) this.onAction({ type: "talk_complete", npcId, unlocked });
               this.talkedToNPCs.add(npcId);
@@ -236,6 +237,7 @@ export class PeopleUI {
             (typeof this.npcs.talk === "function" && this.npcs.talk.bind(this.npcs));
           const result = talkFn ? talkFn(npcId) : null;
           if (result) {
+            this._getCaseManager()?.recordWitnessInterview?.(npcId);
             const unlocked = handleUnlocks(true);
             this.addMessage(result.speaker, result.text, "npc", { wasCorrected: result.wasCorrected }, npcId);
             this._refreshNPCFeed(npcId, container);

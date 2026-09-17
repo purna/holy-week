@@ -1,4 +1,7 @@
-import { OPERATIONS } from "../gameplay/deductionEngine.js";
+import { OPERATIONS } from "../gameplay/deductionEngine.js?v=20260917-research-r2";
+import { getResearchEvidenceIds } from '../gameplay/prophecyResearch.js';
+
+const escapeLabText = value => String(value ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 
 export class LabWorkspaceUI {
   constructor(deductionEngine, evidenceSystem, accessibility, onResult) {
@@ -29,6 +32,7 @@ export class LabWorkspaceUI {
           </div>
 
           <div class="lab-actions" role="group" aria-label="Analysis operations">
+            <button class="lab-btn" data-lw-tab="prophecies" aria-label="Prophecies: Research the case references"><span class="lab-btn-label">Prophecies</span></button>
             <button class="lab-btn active" data-lw-tab="connections" aria-label="Connections: How are these pieces of evidence related?">
               <span class="lab-btn-icon" aria-hidden="true"><i class="fa-solid fa-link"></i></span>
               <span class="lab-btn-label">Connections</span>
@@ -50,6 +54,10 @@ export class LabWorkspaceUI {
 
 
           <div id="lw-feedback" class="lw-feedback" role="status" aria-live="polite"></div>
+          <div id="lw-panel-prophecies" class="tab-panel" role="tabpanel" aria-label="Prophecy research">
+            <section class="lab-task-guide"><h4>Research workbench</h4><p>Match an identified passage with collected evidence here. Your full prophecy checklist and completed findings are in Case Files.</p></section>
+            <div id="lw-prophecy-tasks"></div>
+          </div>
 
            <div id="lw-panel-connections" class="tab-panel active" role="tabpanel" aria-label="Evidence connections">
         
@@ -95,6 +103,7 @@ export class LabWorkspaceUI {
             </div>
            
             <div class="card-pool-grid" id="lw-comp-bank"></div>
+            <section class="lab-task-guide"><h4>Required connections</h4><p>Only these key connections are needed to close the case. Other discoveries are optional. Use a hint to load a pair and its suggested relationship, then test it.</p><div id="lw-connection-guide"></div></section>
             <div class="compare-progress" id="lw-compare-progress">
               <span class="compare-progress-label">Key insights:</span>
               <span class="compare-progress-count">0/0</span>
@@ -223,6 +232,37 @@ export class LabWorkspaceUI {
     this._setFeedback(this._lastFeedback?.text || "Connections: select two evidence cards, choose their relationship, then test the connection.", this._lastFeedback?.type || "");
     this._renderBanks();
 
+    this.root.addEventListener('click', event => {
+      const hint = event.target.closest('[data-connection-hint]');
+      if (hint) {
+        if (hint.disabled) return;
+        const connection = this._getRequiredConnections()[Number(hint.dataset.connectionHint)];
+        if (!connection) return;
+        const items = connection.ids.map(id => this.evidence.find(e => e.id === id));
+        if (items.some(item => !item)) { this._setFeedback('Collect both clues before testing this connection.', 'error'); return; }
+        this.compareSlots = items;
+        const option = this.root.querySelector(`input[name="lw-connection-type"][value="${connection.operation}"]`);
+        if (option) option.checked = true;
+        this._updateRelationshipHelp();
+        this._renderComparatorSlots();
+        this._renderComparatorBank();
+        this._setFeedback('Suggested pair loaded. Read the clues, then select Test Connection.');
+        this.root.querySelector('#lw-comp-test')?.focus();
+      }
+      const research = event.target.closest('[data-research-prophecy]');
+      if (research) {
+        const id = research.dataset.researchProphecy;
+        const selected = research.closest('article')?.querySelector('select')?.value;
+        if (!selected) { this._setFeedback('Choose a collected evidence item first.', 'error'); return; }
+        const result = this.de.researchProphecy(id, selected);
+        this._setFeedback(result.error || result.text, result.success ? 'success' : 'error');
+        this._initState();
+        this._restoreActiveTab();
+        this._renderBanks();
+        this.onResult?.({ type: 'prophecy_research', success: result.success, feedback: result.error || result.text, feedbackType: result.success ? 'success' : 'error' });
+      }
+    });
+
     this.root.querySelectorAll(".lab-btn[data-lw-tab]").forEach(btn => {
       btn.addEventListener("click", () => {
         this.root.querySelectorAll(".lab-btn[data-lw-tab]").forEach(b => b.classList.remove("active"));
@@ -233,6 +273,7 @@ export class LabWorkspaceUI {
         if (panel) panel.classList.add("active");
         this.currentTab = tab;
         const instructions = {
+          prophecies: 'Prophecies: read a passage, select supporting evidence, and test the match to unlock it.',
           connections: "Connections: select two evidence cards, choose their relationship, then test the connection.",
           link: "Link: choose an evidence-type folder, place each clue in the correct folder, then verify your work.",
           timeline: "Timeline: place every pivotal evidence card from earliest to latest, then verify the chronology.",
@@ -305,7 +346,11 @@ export class LabWorkspaceUI {
         const stepHeader = e.target.closest(".step-header[data-step-toggle]");
         if (stepHeader) {
           const step = stepHeader.closest(".timeline-step");
-          if (step) step.classList.toggle("expanded");
+          if (step) {
+            step.classList.toggle("expanded");
+            this._activeTimelineStep = Number(step.dataset.step);
+            this._setFeedback(`Tap an item to place into event ${this._activeTimelineStep}.`);
+          }
           return;
         }
 
@@ -547,7 +592,7 @@ export class LabWorkspaceUI {
     this._folderChecked = !!saved?.folderChecked;
     this._timelineChecked = !!saved?.timelineChecked;
     this._lastFeedback = saved?.feedback || null;
-    this.currentTab = ['connections', 'link', 'timeline', 'reliability'].includes(saved?.tab) ? saved.tab : 'connections';
+    this.currentTab = ['connections', 'link', 'timeline', 'reliability', 'prophecies'].includes(saved?.tab) ? saved.tab : 'connections';
     if (saved?.version === 1) {
       this.folderState = restoreGroups(saved.folders, new Set(Object.keys(folderInfoData)), new Set(byId.keys()));
       const timeline = this._getTimelineEvidence();
@@ -606,6 +651,7 @@ export class LabWorkspaceUI {
   }
 
   _renderBanks() {
+    this._renderResearch();
     this._renderComparatorSlots();
     this._renderComparatorBank();
     this._renderFolderGrid();
@@ -640,6 +686,31 @@ export class LabWorkspaceUI {
 
   _getActiveCase() {
     return this.es.caseManager?.getActiveCase?.() || this.de.caseManager?.getActiveCase?.() || null;
+  }
+
+  _renderResearch() {
+    const container = this.root.querySelector('#lw-prophecy-tasks');
+    if (!container) return;
+    const cm = this.es.caseManager || this.de.caseManager;
+    const c = this._getActiveCase();
+    const clues = (this.es.getCollected?.() || []).filter(e => e.type !== 'scripture' && !e.fake);
+    const prophecies = c?.prophecies || [];
+    const pending = prophecies.filter(p => cm.isCaseProphecyListed?.(p.id) && cm.getCodexStatus(p.id) !== 'complete');
+    const unidentified = prophecies.some(p => !cm.isCaseProphecyListed?.(p.id));
+    const reminder = unidentified ? '<p class="lab-research-status">Interview the remaining witnesses to identify more passages. Track your discoveries in Case Files.</p>' : '';
+    if (!pending.length) {
+      container.innerHTML = unidentified ? reminder : '<p class="lab-research-status">Research complete. Review your findings and conclude the investigation in Case Files.</p>';
+      return;
+    }
+    container.innerHTML = reminder + pending.map(p => {
+      const supported = getResearchEvidenceIds(c, p);
+      return `<article class="lab-task-guide"><h4>${escapeLabText(p.reference)}</h4>
+        <p>${escapeLabText(p.text)}</p>
+        ${!clues.length ? '<p>Collect evidence from the scene and witness interviews before testing this passage.</p>' : !supported.length
+          ? '<p>This older case is missing its evidence mapping. Research is unavailable until the case data is corrected.</p>'
+          : `<label>Supporting evidence<select class="folder-move-select" aria-label="Evidence for ${escapeLabText(p.reference)}"><option value="">Choose a collected clue…</option>${clues.map(e => `<option value="${escapeLabText(e.id)}">${escapeLabText(e.name)}</option>`).join('')}</select></label><button class="btn-submit" data-research-prophecy="${escapeLabText(p.id)}">Test prophecy match</button>`}
+      </article>`;
+    }).join('');
   }
 
   _getReliabilityTasks() {
@@ -698,6 +769,15 @@ export class LabWorkspaceUI {
   }
 
   _updateCompareProgress() {
+    const guide = this.root.querySelector('#lw-connection-guide');
+    if (guide) guide.innerHTML = this._getRequiredConnections().map((connection, index) => {
+      const done = this.matchedPairs.some(([a, b, , operation]) => operation === connection.operation && connection.ids.includes(a) && connection.ids.includes(b));
+      const names = connection.ids.map(id => this._getActiveCase()?.evidencePool?.find(e => e.id === id)?.name || id);
+      const missing = connection.ids.filter(id => !this.evidence.some(e => e.id === id));
+      const missingNames = missing.map(id => names[connection.ids.indexOf(id)]);
+      const status = done ? 'Connection verified.' : missing.length ? `Collect first: ${missingNames.join(' + ')}. Find clues at the scene or by interviewing witnesses. Scripture cards are added after Lab research.` : 'Both clues collected — ready to test.';
+      return `<div class="lab-connection-hint ${done ? 'is-complete' : ''}"><div class="lab-connection-hint-copy"><p class="lab-connection-hint-name"><span aria-hidden="true">${done ? '✓' : '○'}</span> ${names.map(escapeLabText).join(' + ')}</p><p class="lab-connection-hint-status" id="lw-hint-status-${index}">${escapeLabText(status)}</p></div><button type="button" class="btn-secondary" data-connection-hint="${index}" aria-describedby="lw-hint-status-${index}" ${done || missing.length ? 'disabled' : ''}>${done ? 'Complete' : missing.length ? 'Awaiting clues' : 'Load hint'}</button></div>`;
+    }).join('');
     const countEl = this.root.querySelector("#lw-compare-progress .compare-progress-count");
     if (!countEl) return;
     const authored = this._getAuthoredConnections();
