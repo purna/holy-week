@@ -1,3 +1,5 @@
+import { UpdateCadence } from '../js/performance/UpdateCadence.js';
+import { shadowProfile, applyShadowProfile } from '../js/performance/shadowQuality.js';
 /**
  * Scene3D - Manages the embedded 3D scene in the Scene tab
  * Uses doubled world size (planet radius 100) and toon shader styling
@@ -43,6 +45,10 @@ export class Scene3D {
         this.gameKeys = window.gameKeys || {};
         this.mouseTarget = null;
         this.npcMeshes = [];
+        this._npcOverlays = new Map();
+        this._overlayPosition = new THREE.Vector3();
+        this._overlayCadence = new UpdateCadence(15);
+        this._locationCadence = new UpdateCadence(10);
         this.evidencePickups = [];
         this.gridData = null;
         this.container = null;
@@ -76,6 +82,8 @@ export class Scene3D {
         this.cameraCtrl = new CameraController(this.sceneMgr.camera);
         
         this.dayNight = new DayNight(this.sceneMgr.scene, this.sceneMgr.renderer);
+        applyShadowProfile(shadowProfile(this.ui.config?.shadowQuality ?? this.ui.cm?.config?.shadowQuality),
+            this.dayNight.sunLight, null, this.player.torch);
         
         this.vfx = new VFXSystem(this.sceneMgr.scene, this.worldMgr.planet, this.worldMgr.planetR, this.worldMgr.planetMesh);
         this.dayNight.registerPlayerEffects(this.player.torch, this.player.bodyMaterial);
@@ -91,6 +99,7 @@ export class Scene3D {
         this.setupSceneIntro();
         this.setupLocOverlay();
         this.setupMobileControls();
+        this._talkButton = this.container.querySelector('#scene-ctrl-talk');
         this.setupKeyboardControls();
         
         // Load NPCs and evidence after scene is initialized
@@ -529,8 +538,12 @@ export class Scene3D {
             }
             return { ...npc, pos, color, hasDialogue: npc.hasDialogue !== false, isGridNPC: true };
         });
-        if (!npcs.length) return;
 
+
+        for (const { overlay } of this._npcOverlays.values()) overlay.remove();
+        this._npcOverlays.clear();
+        this._overlayCadence.reset();
+        for (const body of this.npcBodies || []) this.worldMgr.world.removeBody(body);
         // Clear existing NPCs
         this.npcMeshes.forEach(n => {
             if (n && n.mesh && n.mesh.parent) this.sceneMgr.scene.remove(n.mesh);
@@ -667,6 +680,9 @@ export class Scene3D {
         overlay.appendChild(nameEl);
         overlay.appendChild(btn);
         this.container.appendChild(overlay);
+        const previous = this._npcOverlays.get(npc.id);
+        if (previous) previous.overlay.remove();
+        this._npcOverlays.set(npc.id, { overlay, nameEl, btn, mesh, data: npc });
     }
 
     gameLoop() {
@@ -716,13 +732,13 @@ export class Scene3D {
         this.cameraCtrl.follow(pPos, this.player.camHeading, up);
         
         // Check for nearby NPCs and show talk button
-        this.updateNPCPrompt(pPos, up);
+        if (this._overlayCadence.due(performance.now())) this.updateNPCPrompt(pPos, up);
 
         // Check for evidence pickup
         this.checkEvidencePickup(pPos);
         
         // Check for location proximity
-        this.checkLocationProximity(pPos);
+        if (this._locationCadence.due(performance.now())) this.checkLocationProximity(pPos);
         
         this.sceneMgr.render();
     }
@@ -744,17 +760,16 @@ export class Scene3D {
         const cw = rect.width;
         const ch = rect.height;
 
-        this.container.querySelectorAll('.scene-npc-overlay').forEach(overlay => {
-            const npcId = overlay.dataset.npcId;
-            const npc = this.npcMeshes.find(n => n.data && n.data.id === npcId);
+        this._npcOverlays.forEach(npc => {
+            const { overlay, nameEl, btn } = npc;
             if (!npc || !npc.mesh) {
                 overlay.style.display = 'none';
                 return;
             }
 
             const npcPos = this.gridData?.npcs
-                ? npc.mesh.position.clone().add(new THREE.Vector3(0, 5, 0))
-                : npc.mesh.position.clone().add(up.clone().multiplyScalar(4));
+                ? this._overlayPosition.copy(npc.mesh.position).addScaledVector(THREE.Object3D.DEFAULT_UP, 5)
+                : this._overlayPosition.copy(npc.mesh.position).addScaledVector(up, 4);
             const screenPos = npcPos.project(this.sceneMgr.camera);
 
             if (screenPos.z > 1) {
@@ -767,8 +782,6 @@ export class Scene3D {
             overlay.style.left = x + 'px';
             overlay.style.top = y + 'px';
 
-            const nameEl = overlay.querySelector('.scene-npc-name-tooltip');
-            const btn = overlay.querySelector('.scene-npc-talk-btn');
             if (nameEl) {
                 nameEl.style.display = npc.data.hasDialogue !== false ? 'block' : 'none';
             }
@@ -779,7 +792,7 @@ export class Scene3D {
             overlay.style.display = 'block';
         });
 
-        const talkBtn = this.container.querySelector('#scene-ctrl-talk');
+        const talkBtn = this._talkButton;
         if (talkBtn) {
             talkBtn.disabled = !nearestNpc;
         }

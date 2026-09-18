@@ -1,3 +1,4 @@
+import { UpdateCadence } from '../js/performance/UpdateCadence.js';
 import { DIALOGUE_ID_MAP } from "../js/gameplay/dialogueMaps.js";
 import { actions } from "../js/config.js";
 
@@ -537,6 +538,11 @@ export class Scene2D {
         const chaseRadius = 8;
         const playerVisible = Date.now() > this.player.invisibleUntil;
         const alertedGroups = new Set();
+        // First soldier in each group is the existing leader; build once per tick.
+        const squadLeaders = new Map();
+        for (const enemy of this.enemies) {
+            if (enemy.type === 'SOLDIER' && !squadLeaders.has(enemy.groupId)) squadLeaders.set(enemy.groupId, enemy);
+        }
         if (playerVisible) {
             this.enemies.forEach(enemy => {
                 if (enemy.type === 'SOLDIER' && enemy.groupId !== null) {
@@ -567,7 +573,7 @@ export class Scene2D {
                 } else {
                     let tethered = false;
                     if (enemy.type === 'SOLDIER' && enemy.groupId !== null) {
-                        const squadLeader = this.enemies.find(e => e.type === 'SOLDIER' && e.groupId === enemy.groupId);
+                        const squadLeader = squadLeaders.get(enemy.groupId);
                         if (squadLeader && squadLeader !== enemy) {
                             const ldx = squadLeader.x - enemy.x; const ldy = squadLeader.y - enemy.y; const distToLeader = Math.sqrt(ldx * ldx + ldy * ldy);
                             if (distToLeader > 1.5) { tethered = true; if (Math.abs(ldx) >= Math.abs(ldy)) mx = ldx > 0 ? 1 : -1; else my = ldy > 0 ? 1 : -1; }
@@ -610,6 +616,7 @@ export class Scene2D {
         if (this.tilemapSprite) {
             this.world.removeChild(this.tilemapSprite);
             this.tilemapSprite.destroy();
+            this.tilemapTexture?.destroy(true);
             this.tilemapSprite = null;
         }
         this.mapPixelSize = MAP_SIZE * TILE_SIZE;
@@ -627,9 +634,8 @@ export class Scene2D {
     }
 
     _refreshWaterTiles() {
-        if (!this.bakeCtx || !this.tilemapTexture) return;
-        for (const t of this.waterTiles) { const cached = this.tileCache[1]; if (cached) { this.bakeCtx.clearRect(t.col * TILE_SIZE, t.row * TILE_SIZE, TILE_SIZE, TILE_SIZE); this.bakeCtx.drawImage(cached, t.col * TILE_SIZE, t.row * TILE_SIZE); } }
-        if (this.tilemapTexture.source) this.tilemapTexture.source.update();
+        // Water uses the static, pre-rendered tileCache[1]. It is baked once with
+        // the map; repainting it and uploading the full texture changed no pixels.
     }
 
     _createPlayerGraphics() { this.playerG = new PIXI.Graphics(); this.playerLayer.addChild(this.playerG); }
@@ -736,7 +742,7 @@ export class Scene2D {
 
     _updatePixi() {
         const time = Date.now();
-        this._refreshWaterTiles();
+
 
         let targetX = this.player.x * TILE_SIZE; let targetY = this.player.y * TILE_SIZE;
         this.player.renderX += (targetX - this.player.renderX) * 0.18; this.player.renderY += (targetY - this.player.renderY) * 0.18;
@@ -788,7 +794,8 @@ export class Scene2D {
             this.particlesG.rect(p.x, p.y, p.size * 2, p.size).fill({ color: '#dfb24c', alpha: p.opacity });
         });
 
-        this._drawMinimapDynamic(time);
+        this._minimapCadence ||= new UpdateCadence(15);
+        if (this._minimapCadence.due(time)) this._drawMinimapDynamic(time);
     }
 
     _gameLoop() {

@@ -1,3 +1,6 @@
+import { SpatialGrid } from '../js/performance/SpatialGrid.js';
+import { UpdateCadence } from '../js/performance/UpdateCadence.js';
+import { shadowProfile, applyShadowProfile } from '../js/performance/shadowQuality.js';
 import * as THREE from 'three';
 import { CaseManager } from './../js/gameplay/caseManager.js?v=20260917-research-r2';
 import { EvidenceSystem } from './../js/gameplay/evidenceSystem.js';
@@ -59,6 +62,7 @@ export class GameEngine {
     this.inDialogue = false;
     this.collectedEvidence = [];
     this.npcMeshes = [];
+    this._spatialDirty = true;
     this.evidenceMeshes = [];
     this.audioActive = true;
     this.currentDisplayPreference = 'emojis';
@@ -71,7 +75,27 @@ export class GameEngine {
     // Effects & World Objects
     this.trailParticles = [];
     this.worldObjects = [];
+    this._spatialDirty = true;
     this.vfx = null;
+    this._hudCadence = new UpdateCadence(15);
+    this._proximityCadence = new UpdateCadence(10);
+    this._nearbyNPCs = [];
+    this._minimapMarkers = new Map();
+    this._minimapPosition = new THREE.Vector3();
+    this._tagPosition = new THREE.Vector3();
+    this._collisionGrid = new SpatialGrid(16);
+    this._cameraGrid = new SpatialGrid(32);
+    this._spatialDirty = true;
+    this._nearbyColliders = [];
+    this._cameraCandidates = [];
+    this._cameraFallback = [];
+    this._raycastObjects = [];
+    this._cameraHits = [];
+    this._cameraRaycaster = new THREE.Raycaster();
+    this._queryMin = new THREE.Vector3();
+    this._queryMax = new THREE.Vector3();
+    this._collisionPush = new THREE.Vector3();
+    this.shadowQuality = shadowProfile(config.shadowQuality);
     this._initDebugPanel();
   }
 
@@ -303,6 +327,7 @@ export class GameEngine {
             item.userData = { type: 'collectable' };
             this.scene.add(item);
             this.worldObjects.push(item);
+            this.invalidateSpatialQueries();
             break;
           }
           default: { // prop, decoy, etc.
@@ -317,6 +342,7 @@ export class GameEngine {
                 m.traverse(n => { if (n.isMesh) { n.castShadow = true; n.receiveShadow = true; } });
                 m.userData.collisionRadius = 1.5;
                 this.worldObjects.push(m);
+                this.invalidateSpatialQueries();
               });
               return;
             } else {
@@ -330,6 +356,7 @@ export class GameEngine {
             mesh.castShadow = true; mesh.receiveShadow = true;
             mesh.userData.collisionRadius = 1.2;
             this.worldObjects.push(mesh);
+            this.invalidateSpatialQueries();
           }
         }
       });
@@ -368,7 +395,7 @@ export class GameEngine {
     this.sunLight.shadow.camera.bottom = -50;
     this.sunLight.shadow.camera.near = 10;
     this.sunLight.shadow.camera.far = 2500; // Optimized range for better depth precision
-    this.sunLight.shadow.mapSize.set(2048, 2048);
+    this.sunLight.shadow.mapSize.set(this.shadowQuality.sun, this.shadowQuality.sun);
     this.sunLight.shadow.bias = -0.0001;
     this.sunLight.shadow.normalBias = 0.02; // Anchors shadows to feet (fixes "Peter Panning")
     this.sunLight.shadow.radius = 4;
@@ -383,7 +410,8 @@ export class GameEngine {
     this.moonLight.shadow.camera.bottom = -50;
     this.moonLight.shadow.camera.near = 10;
     this.moonLight.shadow.camera.far = 2500;
-    this.moonLight.shadow.mapSize.set(1024, 1024);
+    this.moonLight.shadow.mapSize.set(this.shadowQuality.moon || 512, this.shadowQuality.moon || 512);
+    this.moonLight.castShadow = this.shadowQuality.moon > 0;
     this.moonLight.shadow.bias = -0.0001;
     this.moonLight.shadow.normalBias = 0.02;
     this.moonLight.shadow.radius = 4;
@@ -738,6 +766,8 @@ export class GameEngine {
     await this._loadGridData(caseData);
 
     this.activeCaseId = caseId;
+    this._hudCadence.reset();
+    this._proximityCadence.reset();
     this.audio.updateActMusic(caseData.actLabel);
     this.nearestNPC = null;
     this.inDialogue = false;
@@ -775,10 +805,12 @@ export class GameEngine {
       (m.parent ? m.parent.remove(m) : this.scene.remove(m));
     });
     this.npcMeshes = [];
+    this._spatialDirty = true;
     this.evidenceMeshes.forEach(m => (m.parent ? m.parent.remove(m) : this.scene.remove(m)));
     this.evidenceMeshes = [];
     this.worldObjects.forEach(m => (m.parent ? m.parent.remove(m) : this.scene.remove(m)));
     this.worldObjects = [];
+    this._spatialDirty = true;
 
     if (this.worldEarth) {
       this.scene.remove(this.worldEarth);
@@ -907,8 +939,9 @@ export class GameEngine {
         }
       });
 
-      model.userData = { config: npc, type: 'npc', state: 'neutral' };
+      model.userData = { config: npc, type: 'npc', state: 'neutral', collisionRadius: 1.5 };
       this.npcMeshes.push(model);
+      this.invalidateSpatialQueries();
 
       const up = pos.clone().normalize();
       const halo = new THREE.Mesh(
@@ -932,8 +965,9 @@ export class GameEngine {
       box.castShadow = true;
       box.receiveShadow = true;
       this._alignToSurface(box);
-      box.userData = { config: npc, type: 'npc', state: 'neutral' };
+      box.userData = { config: npc, type: 'npc', state: 'neutral', collisionRadius: 1.5 };
       this.npcMeshes.push(box);
+      this.invalidateSpatialQueries();
 
       const up = pos.clone().normalize();
       const halo = new THREE.Mesh(
@@ -976,7 +1010,7 @@ export class GameEngine {
 
   _loadPlayerModel() {
     this.torchLight = new THREE.PointLight(0x00f2ff, 0, 25, 1.5);
-    this.torchLight.castShadow = true;
+    this.torchLight.castShadow = this.shadowQuality.torch;
     this.torchLight.shadow.mapSize.set(512, 512);
     this.torchLight.shadow.camera.near = 0.1;
     this.torchLight.shadow.camera.far = 30;
@@ -1074,6 +1108,7 @@ export class GameEngine {
               obj.position.copy(pos);
               this._alignToSurface(obj);
               this.worldObjects.push(obj);
+              this.invalidateSpatialQueries();
             } else if (def.type === 'prim') {
               const geo = def.fn === 'tall' ? buildingTallGeo : buildingShortGeo;
               const mesh = new THREE.Mesh(geo, buildingMaterial);
@@ -1083,6 +1118,7 @@ export class GameEngine {
               mesh.userData.collisionRadius = 0.6;
               this._alignToSurface(mesh);
               this.worldObjects.push(mesh);
+              this.invalidateSpatialQueries();
             }
           }
         }
@@ -1124,6 +1160,7 @@ export class GameEngine {
           mesh.userData.collisionRadius = 0.6 * modelDef.scale;
           this._alignToSurface(mesh);
           this.worldObjects.push(mesh);
+          this.invalidateSpatialQueries();
         } else if (modelDef.type === 'glb') {
           gltfLoader.load(modelDef.path, (gltf) => {
             const model = gltf.scene;
@@ -1141,6 +1178,7 @@ export class GameEngine {
             });
             model.scale.setScalar(modelDef.scale);
             this.worldObjects.push(model);
+            this.invalidateSpatialQueries();
           }, undefined, (error) => {
             console.warn(`Failed to load custom model ${modelDef.path}:`, error);
           });
@@ -1168,6 +1206,7 @@ export class GameEngine {
       m.castShadow = true; m.receiveShadow = true;
       m.userData.collisionRadius = w * 0.5;
       this.worldObjects.push(m);
+      this.invalidateSpatialQueries();
     }
 
     // --- Global golden collectibles (unchanged) ---
@@ -1180,6 +1219,7 @@ export class GameEngine {
       item.userData = { type: 'collectable' };
       this.scene.add(item);
       this.worldObjects.push(item);
+      this.invalidateSpatialQueries();
     }
   }
 
@@ -1206,12 +1246,14 @@ export class GameEngine {
       sprite.userData = { id: loc.id, type: 'case_node', caseId: loc.id };
       this.scene.add(sprite);
       this.worldObjects.push(sprite);
+      this.invalidateSpatialQueries();
     });
   }
 
   _clearWorldObjects() {
     this.worldObjects.forEach(o => this.scene.remove(o));
     this.worldObjects = [];
+    this._spatialDirty = true;
   }
 
   _updateEffects() {
@@ -1229,7 +1271,7 @@ export class GameEngine {
     for (let i = this.worldObjects.length - 1; i >= 0; i--) {
       const obj = this.worldObjects[i];
       if (obj.userData?.type === 'collectable' && this.pPos.distanceTo(obj.position) < 2) {
-        this.scene.remove(obj); this.worldObjects.splice(i, 1);
+        this.scene.remove(obj); this.worldObjects.splice(i, 1); this.invalidateSpatialQueries();
         this.audio.playCollect();
       }
     }
@@ -2135,25 +2177,30 @@ export class GameEngine {
       this.isGrounded = false;
     }
 
-    // World Collision (3D/Mesh Colliders)
-    const playerRadius = 1.2;
-    const handleCollision = (obj) => {
-      if (!obj.userData || !obj.userData.collisionRadius) return;
-      const objPos = new THREE.Vector3();
-      obj.getWorldPosition(objPos);
-      const dist = this.pPos.distanceTo(objPos);
-      const minDist = obj.userData.collisionRadius + playerRadius;
-      if (dist < minDist) {
-        const pushDir = this.pPos.clone().sub(objPos).projectOnPlane(up).normalize();
-        this.pPos.addScaledVector(pushDir, minDist - dist);
-        this.pVelocity.projectOnPlane(pushDir); // Simple physics sliding
+    // Preserve the original narrowphase and ordering, including collision chains.
+    this._ensureSpatialQueries();
+    let lastIndex = -1;
+    let moved;
+    do {
+      moved = false;
+      this._queryMin.copy(this.pPos).addScalar(-1.2);
+      this._queryMax.copy(this.pPos).addScalar(1.2);
+      const nearby = this._collisionGrid.query(this._queryMin, this._queryMax, this._nearbyColliders);
+      nearby.sort((a, b) => a.index - b.index);
+      for (const entry of nearby) {
+        if (entry.index <= lastIndex) continue;
+        lastIndex = entry.index;
+        const dist = this.pPos.distanceTo(entry.position);
+        const minDist = entry.radius + 1.2;
+        if (dist < minDist) {
+          const pushDir = this._collisionPush.copy(this.pPos).sub(entry.position).projectOnPlane(up).normalize();
+          this.pPos.addScaledVector(pushDir, minDist - dist);
+          this.pVelocity.projectOnPlane(pushDir);
+          moved = true;
+          break; // Requery at the corrected position before processing later objects.
+        }
       }
-    };
-    this.worldObjects.forEach(handleCollision);
-    this.npcMeshes.forEach(npc => {
-      npc.userData.collisionRadius = 1.5;
-      handleCollision(npc);
-    });
+    } while (moved);
 
     // 4. Update Mesh Orientation
     this.playerMesh.position.copy(this.pPos);
@@ -2168,10 +2215,26 @@ export class GameEngine {
     const rayDir = desiredCamPos.clone().sub(rayStart).normalize();
     const rayDist = rayStart.distanceTo(desiredCamPos);
 
-    const raycaster = new THREE.Raycaster(rayStart, rayDir, 0.1, rayDist);
-    raycaster.camera = this.camera; // Required for raycasting against sprites in worldObjects
-    const collidables = [...this.worldObjects, this.groundSphere];
-    const hits = raycaster.intersectObjects(collidables, true);
+    const raycaster = this._cameraRaycaster;
+    raycaster.set(rayStart, rayDir);
+    raycaster.near = 0.1;
+    raycaster.far = rayDist;
+    raycaster.camera = this.camera;
+    this._queryMin.copy(rayStart).min(desiredCamPos);
+    this._queryMax.copy(rayStart).max(desiredCamPos);
+    const candidates = this._cameraGrid.query(this._queryMin, this._queryMax, this._cameraCandidates);
+    const collidables = this._raycastObjects;
+    collidables.length = 0;
+    // Keep exact mesh raycasts. Bounds only reject impossible hits.
+    candidates.sort((a, b) => a.index - b.index);
+    for (const entry of candidates) {
+      if (raycaster.ray.intersectsBox(entry.box)) collidables.push(entry.object);
+    }
+    for (const object of this._cameraFallback) collidables.push(object);
+    collidables.push(this.groundSphere);
+    const hits = this._cameraHits;
+    hits.length = 0;
+    raycaster.intersectObjects(collidables, true, hits);
 
     let finalCamPos = desiredCamPos;
     if (hits.length > 0) {
@@ -2191,21 +2254,29 @@ export class GameEngine {
   }
 
   findNPC() {
-    let closest = null, minDist = 25;
-    const playerWorldPos = new THREE.Vector3();
-    this.playerMesh.getWorldPosition(playerWorldPos);
-    this.npcMeshes.forEach(npc => {
-      const npcWorldPos = new THREE.Vector3();
-      npc.getWorldPosition(npcWorldPos);
-      const d = playerWorldPos.distanceTo(npcWorldPos);
-      if (d < minDist) { minDist = d; closest = npc; }
-    });
-    if (closest !== this.nearestNPC) {
-      this.nearestNPC = closest;
-      this.updateActions(this.cm.getActiveCase());
-      this.updateInteractButton();
+    if (this._proximityCadence.due(performance.now())) {
+      this._ensureSpatialQueries();
+      let closest = null, minDist = 25;
+      this._queryMin.copy(this.pPos).addScalar(-25);
+      this._queryMax.copy(this.pPos).addScalar(25);
+      const nearby = this._collisionGrid.query(this._queryMin, this._queryMax, this._nearbyNPCs);
+      nearby.sort((a, b) => a.index - b.index);
+      for (const entry of nearby) {
+        if (!entry.isNPC) continue;
+        const distance = this.pPos.distanceTo(entry.position);
+        if (distance < minDist) { minDist = distance; closest = entry.object; }
+      }
+      if (closest !== this.nearestNPC) {
+        this.nearestNPC = closest;
+        this.updateActions(this.cm.getActiveCase());
+        this.updateInteractButton();
+      }
     }
-    if (this.nearestNPC && minDist < 2) this.pPos.addScaledVector(this.pVelocity, -2 / 60);
+    // Keep the existing close-range movement response at frame rate.
+    if (this.nearestNPC) {
+      const position = this.nearestNPC.getWorldPosition(this._tagPosition);
+      if (this.pPos.distanceTo(position) < 2) this.pPos.addScaledVector(this.pVelocity, -2 / 60);
+    }
   }
 
   updateInWorldTags() {
@@ -2226,7 +2297,7 @@ export class GameEngine {
       }
 
       // Use World Position because NPCs are children of the scaled globe
-      const npcWorldPos = new THREE.Vector3();
+      const npcWorldPos = this._tagPosition;
       this.nearestNPC.getWorldPosition(npcWorldPos);
       const screenPos = npcWorldPos.project(this.camera);
       const x = (screenPos.x * 0.5 + 0.5) * window.innerWidth;
@@ -2243,14 +2314,14 @@ export class GameEngine {
     let nearestItem = null;
     let minDist = 6.5;
     this.evidenceMeshes.forEach(item => {
-      const itemWorldPos = new THREE.Vector3();
+      const itemWorldPos = this._tagPosition;
       item.getWorldPosition(itemWorldPos);
       const d = this.pPos.distanceTo(itemWorldPos);
       if (d < minDist) { minDist = d; nearestItem = item; }
     });
 
     if (nearestItem && minDist > 2) {
-      const itemWorldPos = new THREE.Vector3();
+      const itemWorldPos = this._tagPosition;
       nearestItem.getWorldPosition(itemWorldPos);
       const screenPos = itemWorldPos.project(this.camera);
       const x = (screenPos.x * 0.5 + 0.5) * window.innerWidth;
@@ -2265,50 +2336,73 @@ export class GameEngine {
     }
   }
 
-  updateMinimap() {
-    const container = document.getElementById('minimap-blips-container');
-    if (!container) return;
-    container.innerHTML = '';
-    const offset = 55, scale = 0.55;
+  invalidateSpatialQueries() {
+    this._spatialDirty = true;
+    this._proximityCadence?.reset();
+  }
 
+  _ensureSpatialQueries() {
+    if (!this._spatialDirty) return;
+    this._spatialDirty = false;
+    this._collisionGrid.clear();
+    this._cameraGrid.clear();
+    this._cameraFallback.length = 0;
+    let index = 0;
+    for (const object of [...this.worldObjects, ...this.npcMeshes]) {
+      object.updateWorldMatrix(true, true);
+      const radius = object.userData.collisionRadius;
+      if (radius) {
+        const position = object.getWorldPosition(new THREE.Vector3());
+        this._collisionGrid.insert({ object, index, radius, position, isNPC: index >= this.worldObjects.length },
+          position.clone().addScalar(-radius), position.clone().addScalar(radius));
+      }
+      index++;
+    }
+    this.worldObjects.forEach((object, index) => {
+      let dynamic = object.userData.type === 'collectable' || object.userData.dynamic;
+      object.traverse(node => {
+        if (node.isSprite || node.isSkinnedMesh || node.isInstancedMesh || node.morphTargetInfluences) dynamic = true;
+      });
+      if (dynamic) { this._cameraFallback.push(object); return; }
+      const box = new THREE.Box3().setFromObject(object);
+      if (!box.isEmpty()) this._cameraGrid.insert({ object, index, box }, box.min, box.max);
+      else this._cameraFallback.push(object);
+    });
+  }
+
+  setShadowQuality(quality) {
+    this.shadowQuality = shadowProfile(quality);
+    applyShadowProfile(this.shadowQuality, this.sunLight, this.moonLight, this.torchLight);
+  }
+
+  updateMinimap() {
+    const container = this._minimapContainer || (this._minimapContainer = document.getElementById('minimap-blips-container'));
+    if (!container) return;
+    const offset = 55, scale = 0.55;
     const up = this.pPos.clone().normalize();
     const fwd = this.camHeading.clone().normalize();
     const rgt = new THREE.Vector3().crossVectors(up, fwd);
-
-    this.npcMeshes.forEach(npc => {
-      // Use World Position because NPCs are parented to the scaled worldEarth
-      const npcWorldPos = new THREE.Vector3();
-      npc.getWorldPosition(npcWorldPos);
-      const rel = npcWorldPos.sub(this.pPos);
-      const dist = rel.length();
-      if (dist > 100) return;
-
-      const dx = rel.dot(rgt);
-      const dz = -rel.dot(fwd);
-
-      const blip = document.createElement('div');
-      blip.className = 'minimap-blip npc';
-      blip.style.left = (offset + dx * scale) + 'px';
-      blip.style.top = (offset + dz * scale) + 'px';
-      container.appendChild(blip);
-    });
-
-    // Add distinctive blips for uncollected evidence
-    this.evidenceMeshes.forEach(item => {
-      const itemWorldPos = new THREE.Vector3();
-      item.getWorldPosition(itemWorldPos);
-      const rel = itemWorldPos.clone().sub(this.pPos);
-      if (rel.length() > 100) return;
-
-      const dx = rel.dot(rgt);
-      const dz = -rel.dot(fwd);
-
-      const blip = document.createElement('div');
-      blip.className = 'minimap-blip evidence';
-      blip.style.left = (offset + dx * scale) + 'px';
-      blip.style.top = (offset + dz * scale) + 'px';
-      container.appendChild(blip);
-    });
+    // Reconcile membership at HUD cadence; marker identity survives every position update.
+    const active = new Set([...this.npcMeshes, ...this.evidenceMeshes]);
+    for (const [object, marker] of this._minimapMarkers) {
+      if (!active.has(object)) { marker.remove(); this._minimapMarkers.delete(object); }
+    }
+    const update = (object, kind) => {
+      let marker = this._minimapMarkers.get(object);
+      if (!marker) {
+        marker = document.createElement('div');
+        marker.className = `minimap-blip ${kind}`;
+        container.appendChild(marker);
+        this._minimapMarkers.set(object, marker);
+      }
+      const rel = object.getWorldPosition(this._minimapPosition).sub(this.pPos);
+      marker.style.display = rel.lengthSq() > 10000 ? 'none' : '';
+      if (rel.lengthSq() > 10000) return;
+      marker.style.left = (offset + rel.dot(rgt) * scale) + 'px';
+      marker.style.top = (offset - rel.dot(fwd) * scale) + 'px';
+    };
+    this.npcMeshes.forEach(object => update(object, 'npc'));
+    this.evidenceMeshes.forEach(object => update(object, 'evidence'));
   }
 
   animate() {
@@ -2317,8 +2411,10 @@ export class GameEngine {
       this.movePlayer();
       this.findNPC();
       this.collectEvidence();
-      this.updateMinimap();
-      this.updateInWorldTags();
+      if (this._hudCadence.due(performance.now())) {
+        this.updateMinimap();
+        this.updateInWorldTags();
+      }
       this._updateEffects();
       if (this.vfx) this.vfx.update(1 / 60, this.pPos, this.pVelocity, this.isGrounded);
     }
